@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-23T00:00:00+08:00 lastmod: 2026-05-23T00:00:00+08:00 tech_stack: [] application_domain: AI Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-20” draft: false categories: [“ai-tools”] tags: [“vimax”, “agentic-video”, “ai-video-generation”, “hkuds”, “multi-agent”, “veo”, “long-form-video”, “video-ai”, “open-source-video”, “rag-screenwriting”] aliases:\n/kr/posts/vimax-agentic-video-generation-multi-agent-2026/ 2025년 AI 영상을 막아세운 세 가지 한계 2024–2025년 사이 대중에게 인지된 AI 영상 생성 도구들 — Sora, Runway Gen-3, Pika, Luma Dream Machine, OpenSora — 은 모두 똑같은 세 가지 한계를 공유했다: 1. 짧은 클립만 가능. 5~10초가 사실상 천장이었다. 그 이상으로 가면 일관성이 무너졌다. 2. 일관성 카오스. 같은 캐릭터의 얼굴이 컷마다 달라진다. 같은 방의 소품이 매번 뒤섞인다. 단일 프롬프트 파이프라인은 “1번 신에 나왔던 그 강아지\"라는 개념 자체가 없다. 3. 비주얼 단독 출력. 대본도, 내러티브 곡선도, 동기화된 오디오도 없다. 움직이는 예쁜 그림은 얻지만, 영화는 얻지 못한다.\n소셜 미디어용 짧은 클립이라면 이 한계는 그럭저럭 참을 만했다. 하지만 AI로 실제로 이야기를 들려주려는 사람 — 설명 영상, 교육 콘텐츠, 브랜드 내러티브 — 입장에서는, 사용자가 “2번 신이 1번 신에서 자연스럽게 이어졌으면 좋겠다\"고 말하는 순간 파이프라인이 그냥 깨졌다.\n홍콩과학기술대 데이터사이언스랩(HKUDS)이 만든 ViMax(GitHub: ```HKUDS/ViMax````, 2026년 5월 기준 7,100+ stars)는 영상 생성을 원샷 생성 문제가 아니라 멀티 에이전트 오케스트레이션 문제로 다뤄서 이 한계를 깨려고 시도한 첫 번째 본격 오픈소스 프로젝트다.\n태그라인이 매우 직설적이다: “Director, Screenwriter, Producer, and Video Generator All-in-One.”\n네 개의 에이전트 역할 ViMax의 아키텍처적 베팅은 분명하다 — 현실의 영상 제작은 다중 역할 파이프라인이니, AI 영상 제작도 그래야 한다. 프레임워크는 각자 다른 LLM 기반 임무를 가진 네 개의 자율 에이전트 역할을 정의한다: ### 🎬 Screenwriter (작가) “고양이와 강아지가 친구가 됐다가 새 고양이를 만난다” 같은 고수준 아이디어를 받아서 구조화된 풀 대본을 뽑아낸다 — 캐릭터, 신 분할, 대사, 장면 전환까지. RAG 기반 long script 엔진을 써서 긴 이야기를 멀티 신 포맷으로 똑똑하게 쪼갠다. 1분이 넘는 영상도 일관되게 만들 수 있게 해주는 핵심 레이어가 바로 여기다.\n🎭 Director (감독) 대본을 컷 단위 스토리보드로 옮긴다. 멀티 카메라 세팅, 프레이밍, 페이싱, 신 전환을 결정한다. 다운스트림 생성기가 그대로 렌더링할 수 있는 명시적 컷 디스크립션을 출력한다.\n🎯 Producer (프로듀서) 일관성 엔진이다. 레퍼런스 이미지를 선택하고, 같은 캐릭터가 컷마다 같은 모습으로 등장하는지 검증하고, 리소스를 오케스트레이션하고, MLLM(멀티모달 LLM) 기반 일관성 체크를 돌린다. “캐릭터가 매번 뒤바뀌는” 문제를 해결하는 레이어가 여기다.\n🎥 Video Generator (영상 생성기) 최종 렌더링 레이어. 컷을 병렬로 생성하고, 각 프레임 이미지를 합성하고, 프레임을 영상으로 조립한다. 실제 픽셀 수준 생성은 백엔드 모델(Veo 등)에 위임한다.\n각 역할은 자기만의 프롬프트, 자기만의 컨텍스트 윈도우, 자기만의 결정론적 출력 계약을 가진 별개의 LLM 에이전트다 — 12-Factor Agents factor 10(“작고, 초점이 좁은 에이전트”)의 교과서적 응용.\n기술 스택 언어: Python 3.12, uv로 관리. 멀티 에이전트 프레임워크: 자체 오케스트레이션 레이어. 지원 챗 모델: Google Gemini 2.5 Flash Lite (via OpenRouter), MiniMax-M2.7 (1M 컨텍스트), MiniMax-M2.5 (204K 컨텍스트). long context window가 중요한 이유는 명확하다 — Screenwriter 에이전트는 대본 전체를 워킹 메모리에 들고 있어야 한다. 이미지 생성: Google Nanobana API. 영상 생성: Google Veo API. 라이선스: MIT — 코드는 관대한 라이선스, 단 백엔드 모델 API는 자체 상업 조건을 따라야 한다. 픽셀 수준 생성을 상용 API(Veo, Nanobana)에 위임한 결정은 정직하다. 오픈소스 영상 모델은 아직 최전선 상용 모델의 비주얼 퀄리티를 따라잡지 못했고, 그걸 모르는 척하면 데모가 망가진다. ViMax의 기여는 오케스트레이션이다 — 픽셀 엔진은 알아서 가져와라.\n빠른 설치 git clone https://github.com/HKUDS/ViMax.git cd ViMax uv sync 의존성 설치는 이게 전부다. 챗 모델(Gemini라면 OpenRouter)용 API 키 하나, 그리고 영상·이미지 생성을 위한 Google Veo + Nanobana API 키가 필요하다.\nIdea-to-Video 워크플로 idea = \"If a cat and a dog are best friends, what would happen when they meet a new cat?\" user_requirement = \"For children, do not exceed 3 scenes.\" style = \"Cartoon\" # Run: python main_idea2video.py Screenwriter가 아이디어를 3-신 대본으로 확장한다. Director가 컷을 설계한다. Producer가 레퍼런스를 고르고 일관성을 강제한다. Video Generator가 각 신을 렌더링하고 조립한다.\nScript-to-Video 워크플로 이미 대본이 있는 사용자라면 ````main_script2video.py```가 대본을 그대로 받아 Screenwriter 단계를 스킵한다. 나머지 세 에이전트는 그대로 돌아간다.\nSora·Runway·OpenSora와 어떻게 다른가 항목 ViMax Sora / Runway / OpenSora 파이프라인 멀티 에이전트 (대본 → 스토리보드 → 에셋 → 영상) 프롬프트 → 영상 직결 내러티브 RAG 기반 구조화 대본 생성 단일 프롬프트, 대본 구조 없음 일관성 Producer 에이전트 + MLLM 체크 + 레퍼런스 이미지 선택 컷 간 프레임 드리프트 길이 멀티 신, 분 단위 이상 초 단위 클립 창작 통제 에이전트별 오버라이드 (대본 수정, 스토리보드 재작성) 제한적, 대부분 사후 편집 오디오 동기화된 오디오-영상 바인딩 영상 위주 오픈소스 Yes (MIT) OpenSora만 yes / Sora·Runway는 no 정직한 반박을 하자면 — 컷 하나 단위 픽셀 퀄리티는 Sora와 Runway가 눈에 띄게 더 낫다. ViMax가 이기는 영역은 컷 사이의 일관성이다. 10초짜리 테크 데모가 필요하다면 Sora가 이긴다. 90초짜리 설명 영상에서 4번 신의 강아지가 1번 신과 똑같은 강아지여야 한다면, 당신이 원하는 건 ViMax의 오케스트레이션이다.\nViMax가 아닌 것 기대치 보정을 위해: - 완전한 오픈소스 영상 모델이 아니다. 상용 영상·이미지 모델 호출을 오케스트레이션할 뿐이다. 엔드 투 엔드 셀프 호스팅은 오픈 영상 모델 레이어가 따라잡길 한 사이클 더 기다려야 한다.\n노코드 도구가 아니다. 현재 인터페이스는 Python 스크립트와 설정 파일이다. 에이전트 부분은 정교하지만 UX는 “연구실 프로토타입” 수준이다. 정식 릴리스가 아직 없다. main 브랜치에 329 커밋, 태그된 릴리스 0개. API churn은 각오해라. README에 성능 벤치마크가 없다. ViMax는 정성적 강점(일관성, 길이, 내러티브)을 마케팅한다. 정량적 ablation은 아직 공개되지 않았다. Google API 의존성. Veo와 Nanobana는 무료도 오픈도 아니다. 비용을 계획에 넣어라. 실전 활용 케이스 ViMax의 에이전트 파이프라인이 실제로 차이를 만드는 지점들: - 교육·설명 영상 — 멀티 신, 캐릭터 연속성, 내러티브 구조. “선생님 목소리 + 애니메이션 예시\"라는 고전 포맷.\n어린이 콘텐츠 — README의 예시 케이스, 컷마다 캐릭터가 일관되게 유지되는 짧은 동화. 마케팅 스토리보드 — 캠페인 브리프에서 전체 대본 + 스토리보드를 뽑아내고, 마케팅 팀이 비싼 생성 단계 전에 승인. 롱폼 소셜 콘텐츠 — 5초짜리 단일 컷 클립으로 이미 포화된 피드 대신, 60–90초짜리 일관된 마이크로 내러티브가 있는 TikTok / Reels 콘텐츠. 영화·TV 프리비주얼라이제이션 — 실제 제작 기획용으로, 캐릭터 일관성을 지키는 가성비 프리비스. 이 각각의 케이스에서 ViMax 없이 가능한 대안은 비싼 사람 제작이거나, 이야기를 지속할 수 없는 짧은 클립 AI 도구뿐이다.\n2026년 AI 영상 지형에서 ViMax의 자리 ViMax와 함께 묶으면 좋은 것들: - 이미지 생성기 — 이미 Nanobana가 통합되어 있지만, 셀프 호스팅 이미지 생성 워크플로를 원하면 Stable Diffusion / ComfyUI로 교체 가능.\n내레이션용 TTS — 온디바이스 다국어 음성용 Supertonic. ViMax와 묶으면 내레이션까지 완전 통합된 영상이 나온다. 롱 컨텍스트 LLM — 풀 대본을 다루려면 MiniMax-M2.7의 1M 컨텍스트가 현실적인 선택. 12-Factor의 “own your context window” 원칙이 그대로 적용된다 — 컨텍스트 규율이 가장 중요한 자리가 바로 Screenwriter 에이전트다. ViMax + Supertonic + 오픈소스 이미지 생성기 — 이 조합이 2026년이 도달한 “영화를 묘사하면 영화가 나오는, 그것도 대부분 사용자 통제하에 있는” 파이프라인에 가장 가깝다.\n누가 ViMax를 써야 하나 설치해라, 만약 당신이:\n30초 이상의 내러티브 일관성이 있는 영상이 필요하다. 최종 생성은 Google API 요금을 낼 의향이 있지만 오케스트레이션은 직접 통제하고 싶다. 멀티 에이전트 크리에이티브 워크플로를 연구 중이고 참조 구현체가 필요하다. 클라이언트용 콘텐츠 툴링을 만들면서, 분 단위로 초안을 뽑아 사람이 검토할 수 있는 파이프라인을 원한다. 건너뛰어라, 만약 당신이:\n단일 컷 10초 영상만 필요하고 Sora / Runway가 이미 잘 작동한다. 연구실급 Python 툴링이 불편하다. 완전한 엔드 투 엔드 셀프 호스팅이 필요하다 (오픈 영상 모델 한 사이클만 더 기다려라). 결론 ViMax는 AI 영상 퀄리티의 다음 도약은 더 큰 모델이 아니라 더 나은 오케스트레이션이라는 2026년의 가장 신뢰할 만한 증거다. 영상 제작을 감독·작가·프로듀서·생성기 별도 역할의 멀티 에이전트 문제로 다루면서, HKUDS는 단일 프롬프트 디퓨전 모델이 본질적으로 도달할 수 없는 “장편의, 그리고 일관된 영상\"을 풀어냈다.\nMIT 라이선스, HKUDS의 학술적 배경, 그리고 몇 달 만에 7,100 stars 라는 신호 — 오픈 영상 커뮤니티가 기다려온 도구라는 뜻이다. 아직은 초기다 — 정식 릴리스 없음, 벤치마크 없음, 상용 API에 강한 의존 — 하지만 아키텍처는 정확하다. 이 패턴(생성 모델의 에이전트 오케스트레이션)이 앞으로 12개월 안에 모든 크리에이티브 AI 영역으로 퍼질 거라고 본다.\n대본을 가지고 영상을 만들어본 적이 있다면, ViMax는 마침내 실제 작업이 진행되는 방식과 매핑되는 AI 워크플로다.\nGitHub: HKUDS/ViMax · 라이선스: MIT · Stars: 7.1K+ · 저자: 홍콩과학기술대 데이터사이언스랩(HKUDS) · 상태: 활발한 개발 중, 태그된 릴리스 아직 없음\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “ViMax 리뷰: HKUDS가 만든 멀티 신(scene) 에이전트 영상 생성 프레임워크 (감독·작가·프로듀서·생성기, 2026)”, “datePublished”: “2026-05-23”, “dateModified”: “2026-05-23”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/vimax-agentic-video-generation-multi-agent-2026\" } } Why This Matters Understanding vimax 리뷰: hkuds가 만든 멀티 신(scene) 에이전트 영상 생성 프레임워크 (감독·작가·프로듀서·생성기, 2026) is crucial for modern AI development. Here\"s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion ViMax 리뷰: HKUDS가 만든 멀티 신(scene) 에이전트 영상 생성 프레임워크 (감독·작가·프로듀서·생성기, 2026) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\nRelated Articles hkuds-ai-trader hkuds-ai-trader hkuds-ai-trader hkuds-ai-trader agency-agents-complete-ai-agency-framework Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
-  "wordCount" : "1503",
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-23T00:00:00+08:00 lastmod: 2026-05-23T00:00:00+08:00 tech_stack: [] application_domain: AI Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-20” draft: false categories: [“ai-tools”] tags: [“vimax”, “agentic-video”, “ai-video-generation”, “hkuds”, “multi-agent”, “veo”, “long-form-video”, “video-ai”, “open-source-video”, “rag-screenwriting”] aliases:\n/zh/posts/vimax-agentic-video-generation-multi-agent-2026/- 2025 年压垮 AI 视频的三道天花板 2024–2025 年间所有冲进消费者视野的 AI 视频生成工具——Sora、Runway Gen-3、Pika、Luma Dream Machine、OpenSora——共享三道同样的天花板：\n只能出短片。 5–10 秒是实际上限。再长一点，一致性就崩。 一致性灾难。 同一个角色换个镜头脸就变；同一个房间道具来回重排。单 prompt 流水线根本没有\"这是场景 1 里那只狗\"这种概念。 只有画面。 没有剧本、没有叙事弧线、没有同步音轨。你拿到的是会动的好看图片，不是一部片子。 做短视频片段，这些限制还能忍。一旦想用 AI 真的讲个故事——讲解视频、教育内容、品牌叙事——只要用户希望场景 2 在逻辑上接着场景 1，整条流水线就当场断掉。\nViMax（GitHub：```HKUDS/ViMax````，截至 2026 年 5 月 7,100+ stars）由香港大学数据科学实验室推出，是首个被广泛采纳的开源尝试，思路是把视频生成当成多智能体编排问题，而不是一次性生成问题，来打破上面这三道天花板。\n它的 slogan 说得很直接：“Director, Screenwriter, Producer, and Video Generator All-in-One.”\n四个智能体角色 ViMax 的架构赌注是：现实世界里的视频制作本来就是多角色流水线，那 AI 视频制作也应该是。框架定义了四个自主智能体角色，每个都有不同的 LLM 驱动任务：\n🎬 编剧 Screenwriter 把一个高层想法（“一只猫和一只狗成为朋友，后来遇到一只新猫”）展开成完整的结构化剧本——角色、场景切分、对白、转场。背后是基于 RAG 的长剧本引擎，能把冗长故事智能切成多场景结构。这一层是分钟级长视频能讲通的关键。\n🎭 导演 Director 把剧本翻译成镜头级分镜。决定多机位布置、构图、节奏、场景转场。输出明确的镜头描述，给下游生成器去渲染。\n🎯 制片 Producer 一致性引擎。挑选参考图、用 MLLM（多模态 LLM）一致性校验确保同一个角色在不同镜头里长得一样，编排资源。这一层专门解决\"角色重排\"那个老问题。\n🎥 视频生成器 Video Generator 最后的渲染层。并行生成镜头，为每一帧合成图像，再把帧拼成视频。真正的像素级生成委托给底层模型（Veo 等）来做。\n每个角色都是一个独立的 LLM 智能体，自带 prompt、自带上下文窗口、自带确定性输出契约——教科书级的 12-Factor Agents 第 10 条（“小而专注的智能体”）应用。\n技术栈 语言：Python 3.12，用 uv 管理依赖。 多智能体框架：自研编排层。 支持的 chat 模型：Google Gemini 2.5 Flash Lite（通过 OpenRouter）、MiniMax-M2.7（1M 上下文）、MiniMax-M2.5（204K 上下文）。长上下文窗口在这里很重要——编剧 Agent 需要把整部剧本都放在工作记忆里。 图像生成：Google Nanobana API。 视频生成：Google Veo API。 协议：MIT——代码很宽松；上游模型 API 各自有商业条款。 把像素级生成委托给商用 API（Veo、Nanobana）这个选择是诚实的。开源视频模型的视觉质量还没追上前沿商用模型，硬装作追上了只会毁掉 demo。ViMax 的贡献是编排——像素引擎你自己挑。\n快速上手 git clone https://github.com/HKUDS/ViMax.git cd ViMax uv sync 依赖安装就这两行。你需要至少一个 chat 模型的 API key（OpenRouter 接 Gemini 就行），再加 Google 的 Veo + Nanobana 做视频和图像生成。\nIdea-to-Video 工作流 idea = \"If a cat and a dog are best friends, what would happen when they meet a new cat?\" user_requirement = \"For children, do not exceed 3 scenes.\" style = \"Cartoon\" # Run: python main_idea2video.py 编剧把想法展开成 3 个场景的剧本。导演规划镜头。制片选参考图并强制一致性。视频生成器渲染每个场景并拼接。\nScript-to-Video 工作流 如果你已经有现成剧本，````main_script2video.py``` 直接吃剧本，跳过编剧那一步。其余三个 Agent 照跑。\n它与 Sora、Runway、OpenSora 的差别 | 维度 | ViMax | Sora / Runway / OpenSora | |\n|\n|\n| | 流水线 | 多智能体（剧本 → 分镜 → 素材 → 视频） | 直接 prompt → 视频 | | 叙事 | 基于 RAG 的结构化剧本生成 | 单 prompt，无剧本结构 | | 一致性 | 制片 Agent + MLLM 校验 + 参考图筛选 | 镜头间帧级漂移 | | 时长 | 多场景，分钟级以上 | 秒级短片 | | 创作可控 | 单 Agent 可覆盖（重写剧本、重做分镜） | 有限，主要靠事后剪辑 | | 音频 | 音视频同步绑定 | 视频为主 | | 开源 | 是（MIT） | OpenSora 是；Sora / Runway 否 |\n诚实的反方：Sora 和 Runway 在单镜头像素级质量上肉眼可见地更强。ViMax 赢在跨镜头一致性。要做 10 秒技术 demo，选 Sora；要做 90 秒讲解视频、第 4 个场景里那只狗还得是同一只狗，那 ViMax 这种编排才是你要的。\nViMax 不是什么 把预期校准好：\n不是一个完全开源的视频模型。 它编排的是对商用视频/图像模型的调用。要做端到端自托管，得等开源视频模型这一层追上来。 不是无代码工具。 当下的界面就是 Python 脚本加配置文件。智能体部分很精巧，但 UX 还是\"研究者原型\"。 还没有正式 release。 main 分支 329 个 commit，没打 tag。准备好接受 API 频繁变动。 README 里没有性能 benchmark。 ViMax 主打的是定性优势（一致性、长度、叙事），定量的消融实验暂未公开。 对 Google API 有硬依赖。 Veo 和 Nanobana 不免费也不开源，预算要算上。 真实使用场景 ViMax 这套智能体流水线真正能挪动指针的地方：\n教育 / 讲解视频——多场景、角色连续、叙事结构。经典的\"老师讲解 + 动画示例\"格式。 儿童内容——同一组角色跨场景的小故事（README 里的示例用法）。 营销分镜——从一份 campaign brief 生成完整剧本+分镜，给营销团队过审后再走（更贵的）生成步骤。 长一点的社媒内容——60–90 秒、有完整微叙事的 TikTok / Reels 内容（区别于已经刷烂的 5 秒单镜头片段）。 影视前期可视化（previs）——可负担、能保持角色一致性、能真服务于制作规划的前期预览。 对这些场景来说，没有 ViMax 时的备选要么是昂贵的真人制作，要么是撑不起一个故事的短片 AI 工具。\nViMax 在 2026 年 AI 视频版图里的位置 可以把 ViMax 和以下组件搭配：\n图像生成器——已经内置（Nanobana），也可以换成 Stable Diffusion / ComfyUI 跑自托管的图像生成工作流。 配音 TTS——Supertonic 提供端侧多语种语音；和 ViMax 搭起来就是完整的带旁白视频流水线。 长上下文 LLM——MiniMax-M2.7 的 1M 上下文是跑全长剧本的实战选择。12-Factor 那条\"自己管好上下文窗口\"在这里特别适用——编剧 Agent 正是上下文纪律最关键的地方。 ViMax + Supertonic + 开源图像生成，是 2026 年最接近\"描述一部电影，得到一部电影\"的流水线，而且大部分环节都在用户自己手里。\n谁该试 ViMax 装上，如果你：\n需要叙事连贯、30 秒以上的视频。 接受为最终生成付 Google API 的钱，但希望编排层在自己手里。 在研究多智能体创意工作流，需要一个参考实现。 给客户做内容工具，需要一条能在几分钟内产出可由人复核的草样的流水线。 跳过，如果你：\n只要 10 秒单镜头视频，Sora/Runway 已经够用。 受不了研究者级别的 Python 工具链。 需要完全端到端自托管（再等开源视频模型一轮迭代）。 结论 ViMax 是 2026 年最有说服力的证据：AI 视频质量的下一跳不是更大的模型，而是更好的编排。把视频制作当成多智能体问题、分出导演 / 编剧 / 制片 / 生成器四个独立角色，HKUDS 打开了单 prompt 扩散模型从根本上交付不了的\"长篇连贯视频\"。\nMIT 协议 + HKUDS 的学术背景 + 几个月攒出来的 7,100 stars，指向一个开源视频社区等了很久的工具。它还很早期——没有正式 release、没有 benchmark、强依赖商用 API——但架构方向是对的。期待这种模式（用智能体编排生成模型）在未来 12 个月里扩散到每一个创意 AI 垂类。\n如果你拍过任何一部带剧本的视频，这套 AI 工作流终于第一次和真实创作流程对上号了。\nGitHub：HKUDS/ViMax · 协议：MIT · Stars：7.1K+ · 作者：香港大学数据科学实验室 · 状态：积极开发中，尚无正式 tag release\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “ViMax 评测：HKUDS 出品的智能体多场景视频生成框架（导演·编剧·制片·生成器，2026）”, “datePublished”: “2026-05-23”, “dateModified”: “2026-05-23”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/vimax-agentic-video-generation-multi-agent-2026\" } } Why This Matters Understanding vimax 评测：hkuds 出品的智能体多场景视频生成框架（导演·编剧·制片·生成器，2026） is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion ViMax 评测：HKUDS 出品的智能体多场景视频生成框架（导演·编剧·制片·生成器，2026） represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nRelated Articles hkuds-ai-trader hkuds-ai-trader hkuds-ai-trader hkuds-ai-trader agency-agents-complete-ai-agency-framework Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "735",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>4 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/vimax-agentic-video-generation-multi-agent-2026/">En</a>
@@ -209,39 +209,41 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#2025%eb%85%84-ai-%ec%98%81%ec%83%81%ec%9d%84-%eb%a7%89%ec%95%84%ec%84%b8%ec%9a%b4-%ec%84%b8-%ea%b0%80%ec%a7%80-%ed%95%9c%ea%b3%84" aria-label="2025년 AI 영상을 막아세운 세 가지 한계">2025년 AI 영상을 막아세운 세 가지 한계</a></li>
+                <a href="#2025-%e5%b9%b4%e5%8e%8b%e5%9e%ae-ai-%e8%a7%86%e9%a2%91%e7%9a%84%e4%b8%89%e9%81%93%e5%a4%a9%e8%8a%b1%e6%9d%bf" aria-label="2025 年压垮 AI 视频的三道天花板">2025 年压垮 AI 视频的三道天花板</a></li>
             <li>
-                <a href="#%eb%84%a4-%ea%b0%9c%ec%9d%98-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ec%97%ad%ed%95%a0" aria-label="네 개의 에이전트 역할">네 개의 에이전트 역할</a><ul>
+                <a href="#%e5%9b%9b%e4%b8%aa%e6%99%ba%e8%83%bd%e4%bd%93%e8%a7%92%e8%89%b2" aria-label="四个智能体角色">四个智能体角色</a><ul>
                     
             <li>
-                <a href="#-director-%ea%b0%90%eb%8f%85" aria-label="🎭 Director (감독)">🎭 Director (감독)</a></li>
+                <a href="#-%e7%bc%96%e5%89%a7-screenwriter" aria-label="🎬 编剧 Screenwriter">🎬 编剧 Screenwriter</a></li>
             <li>
-                <a href="#-producer-%ed%94%84%eb%a1%9c%eb%93%80%ec%84%9c" aria-label="🎯 Producer (프로듀서)">🎯 Producer (프로듀서)</a></li>
+                <a href="#-%e5%af%bc%e6%bc%94-director" aria-label="🎭 导演 Director">🎭 导演 Director</a></li>
             <li>
-                <a href="#-video-generator-%ec%98%81%ec%83%81-%ec%83%9d%ec%84%b1%ea%b8%b0" aria-label="🎥 Video Generator (영상 생성기)">🎥 Video Generator (영상 생성기)</a></li></ul>
+                <a href="#-%e5%88%b6%e7%89%87-producer" aria-label="🎯 制片 Producer">🎯 制片 Producer</a></li>
+            <li>
+                <a href="#-%e8%a7%86%e9%a2%91%e7%94%9f%e6%88%90%e5%99%a8-video-generator" aria-label="🎥 视频生成器 Video Generator">🎥 视频生成器 Video Generator</a></li></ul>
             </li>
             <li>
-                <a href="#%ea%b8%b0%ec%88%a0-%ec%8a%a4%ed%83%9d" aria-label="기술 스택">기술 스택</a></li>
+                <a href="#%e6%8a%80%e6%9c%af%e6%a0%88" aria-label="技术栈">技术栈</a></li>
             <li>
-                <a href="#%eb%b9%a0%eb%a5%b8-%ec%84%a4%ec%b9%98" aria-label="빠른 설치">빠른 설치</a><ul>
+                <a href="#%e5%bf%ab%e9%80%9f%e4%b8%8a%e6%89%8b" aria-label="快速上手">快速上手</a><ul>
                     
             <li>
-                <a href="#idea-to-video-%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c" aria-label="Idea-to-Video 워크플로">Idea-to-Video 워크플로</a></li>
+                <a href="#idea-to-video-%e5%b7%a5%e4%bd%9c%e6%b5%81" aria-label="Idea-to-Video 工作流">Idea-to-Video 工作流</a></li>
             <li>
-                <a href="#script-to-video-%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c" aria-label="Script-to-Video 워크플로">Script-to-Video 워크플로</a></li></ul>
+                <a href="#script-to-video-%e5%b7%a5%e4%bd%9c%e6%b5%81" aria-label="Script-to-Video 工作流">Script-to-Video 工作流</a></li></ul>
             </li>
             <li>
-                <a href="#sorarunwayopensora%ec%99%80-%ec%96%b4%eb%96%bb%ea%b2%8c-%eb%8b%a4%eb%a5%b8%ea%b0%80" aria-label="Sora·Runway·OpenSora와 어떻게 다른가">Sora·Runway·OpenSora와 어떻게 다른가</a></li>
+                <a href="#%e5%ae%83%e4%b8%8e-sorarunwayopensora-%e7%9a%84%e5%b7%ae%e5%88%ab" aria-label="它与 Sora、Runway、OpenSora 的差别">它与 Sora、Runway、OpenSora 的差别</a></li>
             <li>
-                <a href="#vimax%ea%b0%80-%ec%95%84%eb%8b%8c-%ea%b2%83" aria-label="ViMax가 아닌 것">ViMax가 아닌 것</a></li>
+                <a href="#vimax-%e4%b8%8d%e6%98%af%e4%bb%80%e4%b9%88" aria-label="ViMax 不是什么">ViMax 不是什么</a></li>
             <li>
-                <a href="#%ec%8b%a4%ec%a0%84-%ed%99%9c%ec%9a%a9-%ec%bc%80%ec%9d%b4%ec%8a%a4" aria-label="실전 활용 케이스">실전 활용 케이스</a></li>
+                <a href="#%e7%9c%9f%e5%ae%9e%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af" aria-label="真实使用场景">真实使用场景</a></li>
             <li>
-                <a href="#2026%eb%85%84-ai-%ec%98%81%ec%83%81-%ec%a7%80%ed%98%95%ec%97%90%ec%84%9c-vimax%ec%9d%98-%ec%9e%90%eb%a6%ac" aria-label="2026년 AI 영상 지형에서 ViMax의 자리">2026년 AI 영상 지형에서 ViMax의 자리</a></li>
+                <a href="#vimax-%e5%9c%a8-2026-%e5%b9%b4-ai-%e8%a7%86%e9%a2%91%e7%89%88%e5%9b%be%e9%87%8c%e7%9a%84%e4%bd%8d%e7%bd%ae" aria-label="ViMax 在 2026 年 AI 视频版图里的位置">ViMax 在 2026 年 AI 视频版图里的位置</a></li>
             <li>
-                <a href="#%eb%88%84%ea%b0%80-vimax%eb%a5%bc-%ec%8d%a8%ec%95%bc-%ed%95%98%eb%82%98" aria-label="누가 ViMax를 써야 하나">누가 ViMax를 써야 하나</a></li>
+                <a href="#%e8%b0%81%e8%af%a5%e8%af%95-vimax" aria-label="谁该试 ViMax">谁该试 ViMax</a></li>
             <li>
-                <a href="#%ea%b2%b0%eb%a1%a0" aria-label="결론">결론</a></li>
+                <a href="#%e7%bb%93%e8%ae%ba" aria-label="结论">结论</a></li>
             <li>
                 <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
                     
@@ -280,154 +282,130 @@ categories: [&ldquo;ai-tools&rdquo;]
 tags: [&ldquo;vimax&rdquo;, &ldquo;agentic-video&rdquo;, &ldquo;ai-video-generation&rdquo;, &ldquo;hkuds&rdquo;, &ldquo;multi-agent&rdquo;, &ldquo;veo&rdquo;, &ldquo;long-form-video&rdquo;, &ldquo;video-ai&rdquo;, &ldquo;open-source-video&rdquo;, &ldquo;rag-screenwriting&rdquo;]
 aliases:</p>
 <ul>
-<li>/kr/posts/vimax-agentic-video-generation-multi-agent-2026/</li>
+<li>/zh/posts/vimax-agentic-video-generation-multi-agent-2026/-</li>
 </ul>
 <hr>
-<h2 id="2025년-ai-영상을-막아세운-세-가지-한계">2025년 AI 영상을 막아세운 세 가지 한계<a hidden class="anchor" aria-hidden="true" href="#2025년-ai-영상을-막아세운-세-가지-한계">#</a></h2>
-<p>2024–2025년 사이 대중에게 인지된 AI 영상 생성 도구들 — Sora, Runway Gen-3, Pika, Luma Dream Machine, OpenSora — 은 모두 똑같은 세 가지 한계를 공유했다: 1. <strong>짧은 클립만 가능.</strong> 5~10초가 사실상 천장이었다. 그 이상으로 가면 일관성이 무너졌다.
-2. <strong>일관성 카오스.</strong> 같은 캐릭터의 얼굴이 컷마다 달라진다. 같은 방의 소품이 매번 뒤섞인다. 단일 프롬프트 파이프라인은 &ldquo;1번 신에 나왔던 그 강아지&quot;라는 개념 자체가 없다.
-3. <strong>비주얼 단독 출력.</strong> 대본도, 내러티브 곡선도, 동기화된 오디오도 없다. 움직이는 예쁜 그림은 얻지만, <em>영화</em>는 얻지 못한다.</p>
-<p>소셜 미디어용 짧은 클립이라면 이 한계는 그럭저럭 참을 만했다. 하지만 AI로 실제로 <em>이야기를 들려주려는</em> 사람 — 설명 영상, 교육 콘텐츠, 브랜드 내러티브 — 입장에서는, 사용자가 &ldquo;2번 신이 1번 신에서 자연스럽게 이어졌으면 좋겠다&quot;고 말하는 순간 파이프라인이 그냥 깨졌다.</p>
-<p>홍콩과학기술대 데이터사이언스랩(HKUDS)이 만든 <strong><a href="https://github.com/HKUDS/ViMax">ViMax</a></strong>(GitHub: ```HKUDS/ViMax````, 2026년 5월 기준 <strong>7,100+ stars</strong>)는 영상 생성을 <em>원샷 생성 문제</em>가 아니라 <em>멀티 에이전트 오케스트레이션 문제</em>로 다뤄서 이 한계를 깨려고 시도한 첫 번째 본격 오픈소스 프로젝트다.</p>
-<p>태그라인이 매우 직설적이다: <strong>&ldquo;Director, Screenwriter, Producer, and Video Generator All-in-One.&rdquo;</strong></p>
+<h2 id="2025-年压垮-ai-视频的三道天花板">2025 年压垮 AI 视频的三道天花板<a hidden class="anchor" aria-hidden="true" href="#2025-年压垮-ai-视频的三道天花板">#</a></h2>
+<p>2024–2025 年间所有冲进消费者视野的 AI 视频生成工具——Sora、Runway Gen-3、Pika、Luma Dream Machine、OpenSora——共享三道同样的天花板：</p>
+<ol>
+<li><strong>只能出短片。</strong> 5–10 秒是实际上限。再长一点，一致性就崩。</li>
+<li><strong>一致性灾难。</strong> 同一个角色换个镜头脸就变；同一个房间道具来回重排。单 prompt 流水线根本没有&quot;这是场景 1 里那只狗&quot;这种概念。</li>
+<li><strong>只有画面。</strong> 没有剧本、没有叙事弧线、没有同步音轨。你拿到的是会动的好看图片，不是一部<em>片子</em>。</li>
+</ol>
+<p>做短视频片段，这些限制还能忍。一旦想用 AI 真的<em>讲个故事</em>——讲解视频、教育内容、品牌叙事——只要用户希望场景 2 在逻辑上接着场景 1，整条流水线就当场断掉。</p>
+<p><strong><a href="https://github.com/HKUDS/ViMax">ViMax</a></strong>（GitHub：```HKUDS/ViMax````，<strong>截至 2026 年 5 月 7,100+ stars</strong>）由香港大学数据科学实验室推出，是首个被广泛采纳的开源尝试，思路是把视频生成当成<em>多智能体编排问题</em>，而不是一次性生成问题，来打破上面这三道天花板。</p>
+<p>它的 slogan 说得很直接：<strong>&ldquo;Director, Screenwriter, Producer, and Video Generator All-in-One.&rdquo;</strong></p>
 <hr>
-<h2 id="네-개의-에이전트-역할">네 개의 에이전트 역할<a hidden class="anchor" aria-hidden="true" href="#네-개의-에이전트-역할">#</a></h2>
-<p>ViMax의 아키텍처적 베팅은 분명하다 — 현실의 영상 제작은 다중 역할 파이프라인이니, AI 영상 제작도 그래야 한다. 프레임워크는 각자 다른 LLM 기반 임무를 가진 네 개의 자율 에이전트 역할을 정의한다: ### 🎬 Screenwriter (작가)
-&ldquo;고양이와 강아지가 친구가 됐다가 새 고양이를 만난다&rdquo; 같은 고수준 아이디어를 받아서 <em>구조화된 풀 대본</em>을 뽑아낸다 — 캐릭터, 신 분할, 대사, 장면 전환까지. <strong>RAG 기반 long script 엔진</strong>을 써서 긴 이야기를 멀티 신 포맷으로 똑똑하게 쪼갠다. 1분이 넘는 영상도 일관되게 만들 수 있게 해주는 핵심 레이어가 바로 여기다.</p>
-<h3 id="-director-감독">🎭 Director (감독)<a hidden class="anchor" aria-hidden="true" href="#-director-감독">#</a></h3>
-<p>대본을 <em>컷 단위 스토리보드</em>로 옮긴다. 멀티 카메라 세팅, 프레이밍, 페이싱, 신 전환을 결정한다. 다운스트림 생성기가 그대로 렌더링할 수 있는 명시적 컷 디스크립션을 출력한다.</p>
-<h3 id="-producer-프로듀서">🎯 Producer (프로듀서)<a hidden class="anchor" aria-hidden="true" href="#-producer-프로듀서">#</a></h3>
-<p>일관성 엔진이다. 레퍼런스 이미지를 선택하고, 같은 캐릭터가 컷마다 같은 모습으로 등장하는지 검증하고, 리소스를 오케스트레이션하고, MLLM(멀티모달 LLM) 기반 일관성 체크를 돌린다. &ldquo;캐릭터가 매번 뒤바뀌는&rdquo; 문제를 해결하는 레이어가 여기다.</p>
-<h3 id="-video-generator-영상-생성기">🎥 Video Generator (영상 생성기)<a hidden class="anchor" aria-hidden="true" href="#-video-generator-영상-생성기">#</a></h3>
-<p>최종 렌더링 레이어. 컷을 병렬로 생성하고, 각 프레임 이미지를 합성하고, 프레임을 영상으로 조립한다. 실제 픽셀 수준 생성은 백엔드 모델(Veo 등)에 위임한다.</p>
-<p>각 역할은 자기만의 프롬프트, 자기만의 컨텍스트 윈도우, 자기만의 결정론적 출력 계약을 가진 별개의 LLM 에이전트다 — <a href="/kr/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/">12-Factor Agents</a> factor 10(&ldquo;작고, 초점이 좁은 에이전트&rdquo;)의 교과서적 응용.</p>
+<h2 id="四个智能体角色">四个智能体角色<a hidden class="anchor" aria-hidden="true" href="#四个智能体角色">#</a></h2>
+<p>ViMax 的架构赌注是：现实世界里的视频制作本来就是多角色流水线，那 AI 视频制作也应该是。框架定义了四个自主智能体角色，每个都有不同的 LLM 驱动任务：</p>
+<h3 id="-编剧-screenwriter">🎬 编剧 Screenwriter<a hidden class="anchor" aria-hidden="true" href="#-编剧-screenwriter">#</a></h3>
+<p>把一个高层想法（&ldquo;一只猫和一只狗成为朋友，后来遇到一只新猫&rdquo;）展开成<em>完整的结构化剧本</em>——角色、场景切分、对白、转场。背后是<strong>基于 RAG 的长剧本引擎</strong>，能把冗长故事智能切成多场景结构。这一层是分钟级长视频能讲通的关键。</p>
+<h3 id="-导演-director">🎭 导演 Director<a hidden class="anchor" aria-hidden="true" href="#-导演-director">#</a></h3>
+<p>把剧本翻译成<em>镜头级分镜</em>。决定多机位布置、构图、节奏、场景转场。输出明确的镜头描述，给下游生成器去渲染。</p>
+<h3 id="-制片-producer">🎯 制片 Producer<a hidden class="anchor" aria-hidden="true" href="#-制片-producer">#</a></h3>
+<p>一致性引擎。挑选参考图、用 MLLM（多模态 LLM）一致性校验确保同一个角色在不同镜头里长得一样，编排资源。这一层专门解决&quot;角色重排&quot;那个老问题。</p>
+<h3 id="-视频生成器-video-generator">🎥 视频生成器 Video Generator<a hidden class="anchor" aria-hidden="true" href="#-视频生成器-video-generator">#</a></h3>
+<p>最后的渲染层。并行生成镜头，为每一帧合成图像，再把帧拼成视频。真正的像素级生成委托给底层模型（Veo 等）来做。</p>
+<p>每个角色都是一个独立的 LLM 智能体，自带 prompt、自带上下文窗口、自带确定性输出契约——教科书级的 <a href="https://dibi8.com/zh/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/">12-Factor Agents</a> 第 10 条（&ldquo;小而专注的智能体&rdquo;）应用。</p>
 <hr>
-<h2 id="기술-스택">기술 스택<a hidden class="anchor" aria-hidden="true" href="#기술-스택">#</a></h2>
+<h2 id="技术栈">技术栈<a hidden class="anchor" aria-hidden="true" href="#技术栈">#</a></h2>
 <ul>
-<li><strong>언어</strong>: Python 3.12, <code>uv</code>로 관리.</li>
-<li><strong>멀티 에이전트 프레임워크</strong>: 자체 오케스트레이션 레이어.</li>
-<li><strong>지원 챗 모델</strong>: Google Gemini 2.5 Flash Lite (via OpenRouter), MiniMax-M2.7 (1M 컨텍스트), MiniMax-M2.5 (204K 컨텍스트). long context window가 중요한 이유는 명확하다 — Screenwriter 에이전트는 대본 전체를 워킹 메모리에 들고 있어야 한다.</li>
-<li><strong>이미지 생성</strong>: Google Nanobana API.</li>
-<li><strong>영상 생성</strong>: Google Veo API.</li>
-<li><strong>라이선스</strong>: MIT — 코드는 관대한 라이선스, 단 백엔드 모델 API는 자체 상업 조건을 따라야 한다.</li>
+<li><strong>语言</strong>：Python 3.12，用 <code>uv</code> 管理依赖。</li>
+<li><strong>多智能体框架</strong>：自研编排层。</li>
+<li><strong>支持的 chat 模型</strong>：Google Gemini 2.5 Flash Lite（通过 OpenRouter）、MiniMax-M2.7（1M 上下文）、MiniMax-M2.5（204K 上下文）。长上下文窗口在这里很重要——编剧 Agent 需要把整部剧本都放在工作记忆里。</li>
+<li><strong>图像生成</strong>：Google Nanobana API。</li>
+<li><strong>视频生成</strong>：Google Veo API。</li>
+<li><strong>协议</strong>：MIT——代码很宽松；上游模型 API 各自有商业条款。</li>
 </ul>
-<p>픽셀 수준 생성을 상용 API(Veo, Nanobana)에 위임한 결정은 정직하다. 오픈소스 영상 모델은 아직 최전선 상용 모델의 비주얼 퀄리티를 따라잡지 못했고, 그걸 모르는 척하면 데모가 망가진다. ViMax의 기여는 <em>오케스트레이션</em>이다 — 픽셀 엔진은 알아서 가져와라.</p>
+<p>把像素级生成委托给商用 API（Veo、Nanobana）这个选择是诚实的。开源视频模型的视觉质量还没追上前沿商用模型，硬装作追上了只会毁掉 demo。ViMax 的贡献是<em>编排</em>——像素引擎你自己挑。</p>
 <hr>
-<h2 id="빠른-설치">빠른 설치<a hidden class="anchor" aria-hidden="true" href="#빠른-설치">#</a></h2>
+<h2 id="快速上手">快速上手<a hidden class="anchor" aria-hidden="true" href="#快速上手">#</a></h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/HKUDS/ViMax.git
 </span></span><span style="display:flex;"><span>cd ViMax
 </span></span><span style="display:flex;"><span>uv sync
-</span></span></code></pre></div><p>의존성 설치는 이게 전부다. 챗 모델(Gemini라면 OpenRouter)용 API 키 하나, 그리고 영상·이미지 생성을 위한 Google Veo + Nanobana API 키가 필요하다.</p>
-<h3 id="idea-to-video-워크플로">Idea-to-Video 워크플로<a hidden class="anchor" aria-hidden="true" href="#idea-to-video-워크플로">#</a></h3>
+</span></span></code></pre></div><p>依赖安装就这两行。你需要至少一个 chat 模型的 API key（OpenRouter 接 Gemini 就行），再加 Google 的 Veo + Nanobana 做视频和图像生成。</p>
+<h3 id="idea-to-video-工作流">Idea-to-Video 工作流<a hidden class="anchor" aria-hidden="true" href="#idea-to-video-工作流">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>idea <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;If a cat and a dog are best friends, what would happen when they meet a new cat?&#34;</span>
 </span></span><span style="display:flex;"><span>user_requirement <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;For children, do not exceed 3 scenes.&#34;</span>
 </span></span><span style="display:flex;"><span>style <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Cartoon&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Run: python main_idea2video.py</span>
-</span></span></code></pre></div><p>Screenwriter가 아이디어를 3-신 대본으로 확장한다. Director가 컷을 설계한다. Producer가 레퍼런스를 고르고 일관성을 강제한다. Video Generator가 각 신을 렌더링하고 조립한다.</p>
-<h3 id="script-to-video-워크플로">Script-to-Video 워크플로<a hidden class="anchor" aria-hidden="true" href="#script-to-video-워크플로">#</a></h3>
-<p>이미 대본이 있는 사용자라면 ````main_script2video.py```가 대본을 그대로 받아 Screenwriter 단계를 스킵한다. 나머지 세 에이전트는 그대로 돌아간다.</p>
+</span></span></code></pre></div><p>编剧把想法展开成 3 个场景的剧本。导演规划镜头。制片选参考图并强制一致性。视频生成器渲染每个场景并拼接。</p>
+<h3 id="script-to-video-工作流">Script-to-Video 工作流<a hidden class="anchor" aria-hidden="true" href="#script-to-video-工作流">#</a></h3>
+<p>如果你已经有现成剧本，````main_script2video.py``` 直接吃剧本，跳过编剧那一步。其余三个 Agent 照跑。</p>
 <hr>
-<h2 id="sorarunwayopensora와-어떻게-다른가">Sora·Runway·OpenSora와 어떻게 다른가<a hidden class="anchor" aria-hidden="true" href="#sorarunwayopensora와-어떻게-다른가">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>항목</th>
-					<th>ViMax</th>
-					<th>Sora / Runway / OpenSora</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>파이프라인</strong></td>
-					<td>멀티 에이전트 (대본 → 스토리보드 → 에셋 → 영상)</td>
-					<td>프롬프트 → 영상 직결</td>
-			</tr>
-			<tr>
-					<td><strong>내러티브</strong></td>
-					<td>RAG 기반 구조화 대본 생성</td>
-					<td>단일 프롬프트, 대본 구조 없음</td>
-			</tr>
-			<tr>
-					<td><strong>일관성</strong></td>
-					<td>Producer 에이전트 + MLLM 체크 + 레퍼런스 이미지 선택</td>
-					<td>컷 간 프레임 드리프트</td>
-			</tr>
-			<tr>
-					<td><strong>길이</strong></td>
-					<td>멀티 신, 분 단위 이상</td>
-					<td>초 단위 클립</td>
-			</tr>
-			<tr>
-					<td><strong>창작 통제</strong></td>
-					<td>에이전트별 오버라이드 (대본 수정, 스토리보드 재작성)</td>
-					<td>제한적, 대부분 사후 편집</td>
-			</tr>
-			<tr>
-					<td><strong>오디오</strong></td>
-					<td>동기화된 오디오-영상 바인딩</td>
-					<td>영상 위주</td>
-			</tr>
-			<tr>
-					<td><strong>오픈소스</strong></td>
-					<td>Yes (MIT)</td>
-					<td>OpenSora만 yes / Sora·Runway는 no</td>
-			</tr>
-	</tbody>
-</table>
-<p>정직한 반박을 하자면 — 컷 하나 단위 픽셀 퀄리티는 Sora와 Runway가 눈에 띄게 더 낫다. ViMax가 이기는 영역은 <em>컷 사이의 일관성</em>이다. 10초짜리 테크 데모가 필요하다면 Sora가 이긴다. 90초짜리 설명 영상에서 4번 신의 강아지가 1번 신과 똑같은 강아지여야 한다면, 당신이 원하는 건 ViMax의 오케스트레이션이다.</p>
+<h2 id="它与-sorarunwayopensora-的差别">它与 Sora、Runway、OpenSora 的差别<a hidden class="anchor" aria-hidden="true" href="#它与-sorarunwayopensora-的差别">#</a></h2>
+<p>| 维度 | ViMax | Sora / Runway / OpenSora |
+|</p>
 <hr>
-<h2 id="vimax가-아닌-것">ViMax가 <em>아닌</em> 것<a hidden class="anchor" aria-hidden="true" href="#vimax가-아닌-것">#</a></h2>
-<p>기대치 보정을 위해: - <strong>완전한 오픈소스 영상 모델이 아니다.</strong> 상용 영상·이미지 모델 호출을 오케스트레이션할 뿐이다. 엔드 투 엔드 셀프 호스팅은 오픈 영상 모델 레이어가 따라잡길 한 사이클 더 기다려야 한다.</p>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>流水线</strong> | 多智能体（剧本 → 分镜 → 素材 → 视频） | 直接 prompt → 视频 |
+| <strong>叙事</strong> | 基于 RAG 的结构化剧本生成 | 单 prompt，无剧本结构 |
+| <strong>一致性</strong> | 制片 Agent + MLLM 校验 + 参考图筛选 | 镜头间帧级漂移 |
+| <strong>时长</strong> | 多场景，分钟级以上 | 秒级短片 |
+| <strong>创作可控</strong> | 单 Agent 可覆盖（重写剧本、重做分镜） | 有限，主要靠事后剪辑 |
+| <strong>音频</strong> | 音视频同步绑定 | 视频为主 |
+| <strong>开源</strong> | 是（MIT） | OpenSora 是；Sora / Runway 否 |</p>
+<p>诚实的反方：Sora 和 Runway 在单镜头像素级质量上肉眼可见地更强。ViMax 赢在<em>跨镜头一致性</em>。要做 10 秒技术 demo，选 Sora；要做 90 秒讲解视频、第 4 个场景里那只狗还得是同一只狗，那 ViMax 这种编排才是你要的。</p>
+<hr>
+<h2 id="vimax-不是什么">ViMax 不是什么<a hidden class="anchor" aria-hidden="true" href="#vimax-不是什么">#</a></h2>
+<p>把预期校准好：</p>
 <ul>
-<li><strong>노코드 도구가 아니다.</strong> 현재 인터페이스는 Python 스크립트와 설정 파일이다. 에이전트 부분은 정교하지만 UX는 &ldquo;연구실 프로토타입&rdquo; 수준이다.</li>
-<li><strong>정식 릴리스가 아직 없다.</strong> main 브랜치에 329 커밋, 태그된 릴리스 0개. API churn은 각오해라.</li>
-<li><strong>README에 성능 벤치마크가 없다.</strong> ViMax는 <em>정성적</em> 강점(일관성, 길이, 내러티브)을 마케팅한다. 정량적 ablation은 아직 공개되지 않았다.</li>
-<li><strong>Google API 의존성.</strong> Veo와 Nanobana는 무료도 오픈도 아니다. 비용을 계획에 넣어라.</li>
+<li><strong>不是一个完全开源的视频模型。</strong> 它编排的是对商用视频/图像模型的调用。要做端到端自托管，得等开源视频模型这一层追上来。</li>
+<li><strong>不是无代码工具。</strong> 当下的界面就是 Python 脚本加配置文件。智能体部分很精巧，但 UX 还是&quot;研究者原型&quot;。</li>
+<li><strong>还没有正式 release。</strong> main 分支 329 个 commit，没打 tag。准备好接受 API 频繁变动。</li>
+<li><strong>README 里没有性能 benchmark。</strong> ViMax 主打的是<em>定性</em>优势（一致性、长度、叙事），定量的消融实验暂未公开。</li>
+<li><strong>对 Google API 有硬依赖。</strong> Veo 和 Nanobana 不免费也不开源，预算要算上。</li>
 </ul>
 <hr>
-<h2 id="실전-활용-케이스">실전 활용 케이스<a hidden class="anchor" aria-hidden="true" href="#실전-활용-케이스">#</a></h2>
-<p>ViMax의 에이전트 파이프라인이 실제로 차이를 만드는 지점들: - <strong>교육·설명 영상</strong> — 멀티 신, 캐릭터 연속성, 내러티브 구조. &ldquo;선생님 목소리 + 애니메이션 예시&quot;라는 고전 포맷.</p>
+<h2 id="真实使用场景">真实使用场景<a hidden class="anchor" aria-hidden="true" href="#真实使用场景">#</a></h2>
+<p>ViMax 这套智能体流水线真正能挪动指针的地方：</p>
 <ul>
-<li><strong>어린이 콘텐츠</strong> — README의 예시 케이스, 컷마다 캐릭터가 일관되게 유지되는 짧은 동화.</li>
-<li><strong>마케팅 스토리보드</strong> — 캠페인 브리프에서 전체 대본 + 스토리보드를 뽑아내고, 마케팅 팀이 비싼 생성 단계 전에 승인.</li>
-<li><strong>롱폼 소셜 콘텐츠</strong> — 5초짜리 단일 컷 클립으로 이미 포화된 피드 대신, 60–90초짜리 일관된 마이크로 내러티브가 있는 TikTok / Reels 콘텐츠.</li>
-<li><strong>영화·TV 프리비주얼라이제이션</strong> — 실제 제작 기획용으로, 캐릭터 일관성을 지키는 가성비 프리비스.</li>
+<li><strong>教育 / 讲解视频</strong>——多场景、角色连续、叙事结构。经典的&quot;老师讲解 + 动画示例&quot;格式。</li>
+<li><strong>儿童内容</strong>——同一组角色跨场景的小故事（README 里的示例用法）。</li>
+<li><strong>营销分镜</strong>——从一份 campaign brief 生成完整剧本+分镜，给营销团队过审后再走（更贵的）生成步骤。</li>
+<li><strong>长一点的社媒内容</strong>——60–90 秒、有完整微叙事的 TikTok / Reels 内容（区别于已经刷烂的 5 秒单镜头片段）。</li>
+<li><strong>影视前期可视化（previs）</strong>——可负担、能保持角色一致性、能真服务于制作规划的前期预览。</li>
 </ul>
-<p>이 각각의 케이스에서 ViMax <em>없이</em> 가능한 대안은 비싼 사람 제작이거나, 이야기를 지속할 수 없는 짧은 클립 AI 도구뿐이다.</p>
+<p>对这些场景来说，<em>没有</em> ViMax 时的备选要么是昂贵的真人制作，要么是撑不起一个故事的短片 AI 工具。</p>
 <hr>
-<h2 id="2026년-ai-영상-지형에서-vimax의-자리">2026년 AI 영상 지형에서 ViMax의 자리<a hidden class="anchor" aria-hidden="true" href="#2026년-ai-영상-지형에서-vimax의-자리">#</a></h2>
-<p>ViMax와 함께 묶으면 좋은 것들: - <strong>이미지 생성기</strong> — 이미 Nanobana가 통합되어 있지만, 셀프 호스팅 <a href="/kr/resources/ai-tools/comfyui-architecture-node-based-ai-image/">이미지 생성 워크플로</a>를 원하면 Stable Diffusion / ComfyUI로 교체 가능.</p>
+<h2 id="vimax-在-2026-年-ai-视频版图里的位置">ViMax 在 2026 年 AI 视频版图里的位置<a hidden class="anchor" aria-hidden="true" href="#vimax-在-2026-年-ai-视频版图里的位置">#</a></h2>
+<p>可以把 ViMax 和以下组件搭配：</p>
 <ul>
-<li><strong>내레이션용 TTS</strong> — 온디바이스 다국어 음성용 <a href="/kr/resources/ai-tools/supertonic-on-device-multilingual-tts-2026/">Supertonic</a>. ViMax와 묶으면 내레이션까지 완전 통합된 영상이 나온다.</li>
-<li><strong>롱 컨텍스트 LLM</strong> — 풀 대본을 다루려면 MiniMax-M2.7의 1M 컨텍스트가 현실적인 선택. 12-Factor의 &ldquo;own your context window&rdquo; 원칙이 그대로 적용된다 — 컨텍스트 규율이 가장 중요한 자리가 바로 Screenwriter 에이전트다.</li>
+<li><strong>图像生成器</strong>——已经内置（Nanobana），也可以换成 Stable Diffusion / ComfyUI 跑自托管的<a href="https://dibi8.com/zh/resources/ai-tools/comfyui-architecture-node-based-ai-image/">图像生成工作流</a>。</li>
+<li><strong>配音 TTS</strong>——<a href="https://dibi8.com/zh/resources/ai-tools/supertonic-on-device-multilingual-tts-2026/">Supertonic</a> 提供端侧多语种语音；和 ViMax 搭起来就是完整的带旁白视频流水线。</li>
+<li><strong>长上下文 LLM</strong>——MiniMax-M2.7 的 1M 上下文是跑全长剧本的实战选择。12-Factor 那条&quot;自己管好上下文窗口&quot;在这里特别适用——编剧 Agent 正是上下文纪律最关键的地方。</li>
 </ul>
-<p>ViMax + Supertonic + 오픈소스 이미지 생성기 — 이 조합이 2026년이 도달한 &ldquo;영화를 묘사하면 영화가 나오는, 그것도 대부분 사용자 통제하에 있는&rdquo; 파이프라인에 가장 가깝다.</p>
+<p>ViMax + Supertonic + 开源图像生成，是 2026 年最接近&quot;描述一部电影，得到一部电影&quot;的流水线，而且大部分环节都在用户自己手里。</p>
 <hr>
-<h2 id="누가-vimax를-써야-하나">누가 ViMax를 써야 하나<a hidden class="anchor" aria-hidden="true" href="#누가-vimax를-써야-하나">#</a></h2>
-<p><strong>설치해라, 만약 당신이:</strong></p>
+<h2 id="谁该试-vimax">谁该试 ViMax<a hidden class="anchor" aria-hidden="true" href="#谁该试-vimax">#</a></h2>
+<p><strong>装上，如果你：</strong></p>
 <ul>
-<li>30초 이상의 내러티브 일관성이 있는 영상이 필요하다.</li>
-<li>최종 생성은 Google API 요금을 낼 의향이 있지만 오케스트레이션은 직접 통제하고 싶다.</li>
-<li>멀티 에이전트 크리에이티브 워크플로를 연구 중이고 참조 구현체가 필요하다.</li>
-<li>클라이언트용 콘텐츠 툴링을 만들면서, 분 단위로 초안을 뽑아 사람이 검토할 수 있는 파이프라인을 원한다.</li>
+<li>需要叙事连贯、30 秒以上的视频。</li>
+<li>接受为最终生成付 Google API 的钱，但希望编排层在自己手里。</li>
+<li>在研究多智能体创意工作流，需要一个参考实现。</li>
+<li>给客户做内容工具，需要一条能在几分钟内产出可由人复核的草样的流水线。</li>
 </ul>
-<p><strong>건너뛰어라, 만약 당신이:</strong></p>
+<p><strong>跳过，如果你：</strong></p>
 <ul>
-<li>단일 컷 10초 영상만 필요하고 Sora / Runway가 이미 잘 작동한다.</li>
-<li>연구실급 Python 툴링이 불편하다.</li>
-<li>완전한 엔드 투 엔드 셀프 호스팅이 필요하다 (오픈 영상 모델 한 사이클만 더 기다려라).</li>
+<li>只要 10 秒单镜头视频，Sora/Runway 已经够用。</li>
+<li>受不了研究者级别的 Python 工具链。</li>
+<li>需要完全端到端自托管（再等开源视频模型一轮迭代）。</li>
 </ul>
 <hr>
-<h2 id="결론">결론<a hidden class="anchor" aria-hidden="true" href="#결론">#</a></h2>
-<p>ViMax는 <strong>AI 영상 퀄리티의 다음 도약은 더 큰 모델이 아니라 더 나은 오케스트레이션이라는</strong> 2026년의 가장 신뢰할 만한 증거다. 영상 제작을 감독·작가·프로듀서·생성기 별도 역할의 멀티 에이전트 문제로 다루면서, HKUDS는 단일 프롬프트 디퓨전 모델이 본질적으로 도달할 수 없는 &ldquo;장편의, 그리고 일관된 영상&quot;을 풀어냈다.</p>
-<p>MIT 라이선스, HKUDS의 학술적 배경, 그리고 몇 달 만에 7,100 stars 라는 신호 — 오픈 영상 커뮤니티가 기다려온 도구라는 뜻이다. 아직은 초기다 — 정식 릴리스 없음, 벤치마크 없음, 상용 API에 강한 의존 — 하지만 아키텍처는 정확하다. 이 패턴(생성 모델의 에이전트 오케스트레이션)이 앞으로 12개월 안에 모든 크리에이티브 AI 영역으로 퍼질 거라고 본다.</p>
-<p>대본을 가지고 영상을 만들어본 적이 있다면, ViMax는 마침내 <em>실제 작업이 진행되는 방식과 매핑되는</em> AI 워크플로다.</p>
+<h2 id="结论">结论<a hidden class="anchor" aria-hidden="true" href="#结论">#</a></h2>
+<p>ViMax 是 2026 年最有说服力的证据：<strong>AI 视频质量的下一跳不是更大的模型，而是更好的编排</strong>。把视频制作当成多智能体问题、分出导演 / 编剧 / 制片 / 生成器四个独立角色，HKUDS 打开了单 prompt 扩散模型从根本上交付不了的&quot;长篇连贯视频&quot;。</p>
+<p>MIT 协议 + HKUDS 的学术背景 + 几个月攒出来的 7,100 stars，指向一个开源视频社区等了很久的工具。它还很早期——没有正式 release、没有 benchmark、强依赖商用 API——但架构方向是对的。期待这种模式（用智能体编排生成模型）在未来 12 个月里扩散到每一个创意 AI 垂类。</p>
+<p>如果你拍过任何一部带剧本的视频，这套 AI 工作流终于第一次和真实创作流程对上号了。</p>
 <hr>
-<p><strong>GitHub</strong>: <a href="https://github.com/HKUDS/ViMax">HKUDS/ViMax</a> · <strong>라이선스</strong>: MIT · <strong>Stars</strong>: 7.1K+ · <strong>저자</strong>: 홍콩과학기술대 데이터사이언스랩(HKUDS) · <strong>상태</strong>: 활발한 개발 중, 태그된 릴리스 아직 없음</p>
+<p><strong>GitHub</strong>：<a href="https://github.com/HKUDS/ViMax">HKUDS/ViMax</a> · <strong>协议</strong>：MIT · <strong>Stars</strong>：7.1K+ · <strong>作者</strong>：香港大学数据科学实验室 · <strong>状态</strong>：积极开发中，尚无正式 tag release</p>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;ViMax 리뷰: HKUDS가 만든 멀티 신(scene) 에이전트 영상 생성 프레임워크 (감독·작가·프로듀서·생성기, 2026)&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;ViMax 评测：HKUDS 出品的智能体多场景视频生成框架（导演·编剧·制片·生成器，2026）&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-23&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-23&rdquo;,
 &ldquo;author&rdquo;: {
@@ -444,12 +422,12 @@ aliases:</p>
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/vimax-agentic-video-generation-multi-agent-2026%22">https://dibi8.com/kr/resources/vimax-agentic-video-generation-multi-agent-2026"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/vimax-agentic-video-generation-multi-agent-2026%22">https://dibi8.com/resources/vimax-agentic-video-generation-multi-agent-2026"</a>
 }
 }
 </script></p>
 <h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
-<p>Understanding vimax 리뷰: hkuds가 만든 멀티 신(scene) 에이전트 영상 생성 프레임워크 (감독·작가·프로듀서·생성기, 2026) is crucial for modern AI development. Here&quot;s why: ### Key Benefits</p>
+<p>Understanding vimax 评测：hkuds 出品的智能体多场景视频生成框架（导演·编剧·制片·生成器，2026） is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
 <ul>
 <li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
 <li><strong>Quality</strong>: Improve output consistency</li>
@@ -487,11 +465,11 @@ aliases:</p>
 </li>
 </ol>
 <h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
-<p>ViMax 리뷰: HKUDS가 만든 멀티 신(scene) 에이전트 영상 생성 프레임워크 (감독·작가·프로듀서·생성기, 2026) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>ViMax 评测：HKUDS 出品的智能体多场景视频生成框架（导演·编剧·制片·生成器，2026） represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
 <p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
 <hr>
 <p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~6 minutes</em></p>
+<em>Read time: ~5 minutes</em></p>
 <hr>
 <h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
 <ul>
@@ -556,6 +534,81 @@ aliases:</p>
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

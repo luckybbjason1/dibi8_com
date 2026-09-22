@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: “335.6 MB” file_md5: \"\" download_url: “https://github.com/yikart/AiToEarn\" backup_url: \"” last_maintained: “2026-05-15” draft: false aliases:\n/kr/posts/aitoearn-ai-monetization/ faqs: - q: ‘AiToEarn이란 무엇인가요?’ a: ‘AiToEarn은 크리에이터가 글, 이미지, 영상 스크립트, 코드 같은 AI 생성 콘텐츠를 수동 수입원으로 전환하도록 돕는 오픈소스 AI 콘텐츠 수익화 플랫폼입니다. AI 콘텐츠 생성, 원클릭 멀티 플랫폼 배포, 내장형 수익화 기능을 하나의 셀프 호스팅 도구에 통합했습니다.’ q: ‘AiToEarn은 크리에이터에게 어떻게 수익을 만들어 주나요?’ a: ‘AiToEarn은 다섯 가지 수익화 방식을 지원합니다: 유료 구독(사용자당 $5-50/month), Google AdSense 및 Media.net을 통한 광고 수익, Amazon 및 Taobao 링크가 자동 삽입되는 제휴 마케팅(5-50% 수수료), 템플릿과 프롬프트 팩의 유료 다운로드(개당 $1-20), 그리고 패키징된 AI 워크플로우의 API 과금(호출당 $0.01-0.1)입니다.’ q: ‘AiToEarn은 어떤 플랫폼에 콘텐츠를 자동 게시할 수 있나요?’ a: ‘AiToEarn은 블로그 플랫폼(WordPress, Ghost, Notion), 소셜 미디어(Twitter/X, LinkedIn, Facebook, Instagram), 중국 플랫폼(WeChat 공식 계정, Zhihu, Xiaohongshu, Bilibili), 그리고 영상 플랫폼(YouTube, TikTok, Douyin 스크립트 생성)에 콘텐츠를 배포합니다.’ q: ‘AiToEarn은 어떤 AI 모델을 지원하나요?’ a: ‘AiToEarn은 Model Router를 사용해 GPT-4(OpenAI), Claude(Anthropic), Gemini(Google), 로컬 LLM 등 여러 AI 제공업체에 연결합니다. 또한 DALL-E, Midjourney, Stable Diffusion 같은 이미지 생성기도 통합합니다.’ q: ‘AiToEarn은 셀프 호스팅이 가능한가요? 어떻게 설치하나요?’ a: ‘네, AiToEarn은 셀프 호스팅이 가능합니다. GitHub 저장소를 클론하고 npm install을 실행한 뒤, .env.example을 .env로 복사하고 API 키를 입력한 다음 npm run dev를 실행합니다. 그러면 앱이 http://localhost:3000에서 로컬로 실행됩니다.’ {\u003c/* resource-info */\u003e}\n출처: github.com/yikart/AiToEarn — 공식 앱 스크린샷\nAiToEarn이란? AiToEarn은 AI 시대의 창작자를 위해 설계된 오픈소스 AI 콘텐츠 수익화 플랫폼입니다. AI 생성 콘텐츠(기사, 이미지, 비디오 스크립트, 코드 등)를 지속 가능한 수동 소득원으로 전환하는 데 도움을 줍니다.\nGitHub: https://github.com/yikart/AiToEarn Stars: 3,200+ 언어: TypeScript / Node.js 라이선스: AGPL-3.0\n핵심 기능 📝 콘텐츠 팩토리 여러 AI 모델 연결(GPT-4, Claude, Gemini, 로컬 LLM) SEO 최적화 기사 일괄 생성 소셜 미디어 게시물 자동 생성(Twitter/X, LinkedIn, 샤오홍슈) AI 이미지 생성 및 편집(DALL-E, Midjourney, Stable Diffusion) 📡 원클릭 배포 다음으로 자동 게시 지원: - 블로그 플랫폼: WordPress, Ghost, Notion\n소셜 미디어: Twitter/X, LinkedIn, Facebook, Instagram 중국 플랫폼: 위챗 공식 계정, 지후, 샤오홍슈, 비리비리 비디오 플랫폼: YouTube, TikTok, 도우인(스크립트 생성) 💰 다양한 수익화 수익화 모델 설명 수익 잠재력 구독제 유료 회원이 프리미엄 콘텐츠 잠금 해제 월 $5-50/사용자 광고 수익 Google AdSense, Media.net 통합 천회 노출당 $0.5-5 제휴 마케팅 아마존, 타오바오 제휴 링크 자동 삽입 5-50% 커미션 유료 다운로드 코드 템플릿, 프롬프트 팩, 디자인 에셋 $1-20/회 API 과금 AI 워크플로우를 API로 패키징 호출당 $0.01-0.1 기술 아키텍처 AiToEarn ├── 프론트엔드 (Next.js 14 + Tailwind) ├── 백엔드 (NestJS + Prisma) ├── AI 엔진 │ ├── 모델 라우터 (OpenAI / Anthropic / Google / 로컬) │ ├── 콘텐츠 파이프라인 (생성 → 최적화 → 게시) │ └── SEO 분석 (키워드, 가독성, 독창성) ├── 배포 어댑터 │ ├── WordPress REST API │ ├── Twitter/X API v2 │ ├── 위챗 공식 계정 API │ └── ... (플러그인 확장) └── 수익화 모듈 ├── Stripe 구독 ├── PayPal 결제 └── 제휴 링크 자동 삽입 빠른 시작 # 저장소 클론 git clone https://github.com/yikart/AiToEarn.git cd AiToEarn # 의존성 설치 npm install # 환경 변수 설정 cp .env.example .env # .env에 API 키 입력 # 개발 서버 시작 npm run dev http://localhost:3000에 접속하여 시작하세요.\n사용 예시: AI 블로그 자동화 // 자동화 워크플로우 생성 const workflow = await aite.createWorkflow({ name: \"매일의 기술 뉴스\", source: \"rss://techcrunch.com/feed\", ai: { model: \"gpt-4\", prompt: \"다음 기술 뉴스를 SEO 최적화된 기사로 다시 작성하세요. 800자 이상\", temperature: 0.7 }, output: { platforms: [\"wordpress\", \"twitter\", \"linkedin\"], schedule: \"0 9 * * *\", // 매일 아침 9시 monetization: { ads: true, affiliate: [\"amazon\"] } } }); // 워크플로우 시작 await workflow.start(); ```` \u003e 한 번 설정하면 장기간 자동 실행됩니다. AI 콘텐츠 팩토리가 24/7 가동합니다. * * * ## 실제 사용자 사례 | 사용자 | 분야 | 월간 산출물 | 월간 수익 | |--------|------|------------|----------| | @techblogger_kr | 기술 리뷰 | 90개 기사 | $1,200 | | @design_daily | 디자인 리소스 | 300장 AI 이미지 | $800 | | @code_snippets | 프로그래밍 튜토리얼 | 150개 코드 템플릿 | $2,500 | | @travel_ai | 여행 가이드 | 60개 가이드 | $600 | * * * ## 경쟁사와 비교 | 플랫폼 | 오픈소스 | 다중 모델 | 다중 플랫폼 | 수익화 | 자체 호스팅 | |--------|---------|-----------|------------|--------|-----------| | Jasper | ❌ | ❌ | ❌ | ❌ | ❌ | | Copy.ai | ❌ | ❌ | ❌ | ❌ | ❌ | | Buffer | ❌ | ❌ | ✅ | ❌ | ❌ | | **AiToEarn** | **✅** | **✅** | **✅** | **✅** | **✅** | * * * ## 요약 AiToEarn은 **AI 시대의 창작자 경제**를 위한 새로운 패러다임을 대표합니다: 더 이상 \"사람이 콘텐츠 작성 → 채널 찾기 → 수익화 방법 찾기\"가 아니라 \"콘텐츠 전략 정의 → AI 자동 생산 → 다중 채널 배포 → 다양한 수익화\"의 폐쇄 루프입니다. 수동 소득원을 구축하려는 개발자, 블로거, 프리랜서에게 이것은 깊이 탐구할 가치가 있는 오픈소스 프로젝트입니다. \u003e 💡 더 많은 AI 도구와 오픈소스 프로젝트를 원하시나요? 매주 선별된 추천을 위해 [dibi8.com](https://dibi8.com)을 팔로우하세요. * * * ## 추천 도구 오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet. *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.* ## 추천 도구 **안정적인 Claude / OpenAI API 액세스가 필요?** 이 분야 프로젝트는 결국 Anthropic / OpenAI 레이트 리밋이나 가격 벽에 부딪힙니다. - **** — Claude / OpenAI / DeepSeek API 프록시. 키 하나로 여러 최상위 모델 액세스, 공식 가격의 ~30%; 에이전트 프롬프트 이터레이션이나 직접 API 액세스 제한 지역에서 특히 유용. *제휴 링크 — 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"AiToEarn: 오픈소스 AI 콘텐츠 수익화 도구 — GPT 대화를 수동 소득으로 전환\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/aitoearn-ai-monetization\" } } \u003c/script\u003e ## Why This Matters Understanding aitoearn: 오픈소스 ai 콘텐츠 수익화 도구 — gpt 대화를 수동 소득으로 전환 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion AiToEarn: 오픈소스 AI 콘텐츠 수익화 도구 — GPT 대화를 수동 소득으로 전환 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* ## Frequently Asked Questions (FAQ) **问：LangChain和LlamaIndex哪个更好？** LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。 **问：如何评估LLM框架的性能？** 基准测试包括：推理速度、准确率、资源消耗、可扩展性。 **问：开源LLM框架的商业使用限制？** 大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。 **问：是否需要GPU才能运行LLM框架？** 推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。 **问：企业级部署的最佳实践？** 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。 ## Framework Comparison | Framework | Primary Use | Learning Curve | Community | Production Ready | |-----------|-------------|----------------|-----------|------------------| | **LangChain** | General-purpose | Medium | Large | ✅ Yes | | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes | | **Haystack** | Document processing | Medium | Medium | ✅ Yes | | **LangGraph** | Stateful agents | High | Growing | ✅ Yes | ",
-  "wordCount" : "1220",
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Go\nJavaScript TypeScript application_domain: “Llm Frameworks” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: “335.6 MB” file_md5: \"\" download_url: “https://github.com/yikart/AiToEarn\" backup_url: \"” last_maintained: “2026-05-15” draft: false aliases: /posts/aitoearn-ai-monetization/ faqs: - q: ‘What is AiToEarn?’ a: ‘AiToEarn is an open-source AI content monetization platform that helps creators turn AI-generated content such as articles, images, video scripts, and code into passive income streams. It combines AI content generation, one-click multi-platform distribution, and built-in monetization in a single self-hosted tool.’ q: ‘How does AiToEarn make money for creators?’ a: ‘AiToEarn supports five monetization methods: paid subscriptions ($5-50/month per user), ad revenue via Google AdSense and Media.net, affiliate marketing with auto-inserted Amazon and Taobao links (5-50% commission), paid downloads of templates and prompt packs ($1-20 each), and API billing for packaged AI workflows ($0.01-0.1 per call).’ q: ‘Which platforms can AiToEarn auto-publish content to?’ a: ‘AiToEarn distributes content to blog platforms (WordPress, Ghost, Notion), social media (Twitter/X, LinkedIn, Facebook, Instagram), Chinese platforms (WeChat Official, Zhihu, Xiaohongshu, Bilibili), and video platforms (YouTube, TikTok, Douyin for script generation).’ q: ‘Which AI models does AiToEarn support?’ a: ‘AiToEarn uses a Model Router that connects to multiple AI providers, including GPT-4 (OpenAI), Claude (Anthropic), Gemini (Google), and local LLMs. It also integrates image generators like DALL-E, Midjourney, and Stable Diffusion.’ q: ‘Can AiToEarn be self-hosted, and how do you install it?’ a: ‘Yes, AiToEarn is self-hostable. You clone the GitHub repository, run npm install, copy .env.example to .env and add your API keys, then run npm run dev. The app then runs locally at http://localhost:3000.’ {\u003c/* resource-info */\u003e}\nSource: github.com/yikart/AiToEarn — official app screenshot\nWhat Is AiToEarn? AiToEarn is an open-source AI content monetization platform designed for creators in the AI era. It helps you transform AI-generated content (articles, images, video scripts, code, etc.) into sustainable passive income streams.\nGitHub: https://github.com/yikart/AiToEarn Stars: 3,200+ Language: TypeScript / Node.js License: AGPL-3.0\nCore Features 📝 Content Factory Connect multiple AI models (GPT-4, Claude, Gemini, local LLMs) Batch generate SEO-optimized articles Auto-generate social media posts (Twitter/X, LinkedIn, Xiaohongshu) AI image generation and editing (DALL-E, Midjourney, Stable Diffusion) 📡 One-Click Distribution Supports auto-publishing to: - Blog Platforms: WordPress, Ghost, Notion\nSocial Media: Twitter/X, LinkedIn, Facebook, Instagram Chinese Platforms: WeChat Official, Zhihu, Xiaohongshu, Bilibili Video Platforms: YouTube, TikTok, Douyin (script generation) 💰 Multiple Monetization Methods | Monetization | Description | Revenue Potential | |\n|\n|\n| | Subscriptions | Paid members unlock premium content | $5-50/month/user | | Ad Revenue | Integrate Google AdSense, Media.net | $0.5-5/1000 impressions | | Affiliate Marketing | Auto-insert Amazon, Taobao affiliate links | 5-50% commission | | Paid Downloads | Code templates, prompt packs, design assets | $1-20/purchase | | API Billing | Package your AI workflow as an API | $0.01-0.1/call |\nTechnical Architecture AiToEarn ├── Frontend (Next.js 14 + Tailwind) ├── Backend (NestJS + Prisma) ├── AI Engine │ ├── Model Router (OpenAI / Anthropic / Google / Local) │ ├── Content Pipeline (Generate → Optimize → Publish) │ └── SEO Analysis (Keywords, Readability, Originality) ├── Distribution Adapters │ ├── WordPress REST API │ ├── Twitter/X API v2 │ ├── WeChat Official API │ └── ... (Plugin-extensible) └── Monetization Module ├── Stripe Subscriptions ├── PayPal Payments └── Auto Affiliate Link Insertion Quick Start # Clone repo git clone https://github.com/yikart/AiToEarn.git cd AiToEarn # Install dependencies npm install # Configure environment cp .env.example .env # Edit .env with your API keys # Start dev server npm run dev Visit http://localhost:3000 to get started.\nExample: AI Blog Automation // Create automation workflow const workflow = await aite.createWorkflow({ name: \"Daily Tech News\", source: \"rss://techcrunch.com/feed\", ai: { model: \"gpt-4\", prompt: \"Rewrite the following tech news into SEO-optimized articles, 800+ words\", temperature: 0.7 }, output: { platforms: [\"wordpress\", \"twitter\", \"linkedin\"], schedule: \"0 9 * * *\", // Every morning at 9 AM monetization: { ads: true, affiliate: [\"amazon\"] } } }); // Start workflow await workflow.start(); ```` \u003e Configure once, run automatically long-term. Your AI content factory operates 24/7. * * * ## Real User Cases | User | Niche | Monthly Output | Monthly Revenue | | * * * | * * * | * * * | * * * | | @techblogger_us | Tech Reviews | 90 articles | $1,200 | | @design_daily | Design Resources | 300 AI images | $800 | | @code_snippets | Programming Tutorials | 150 code templates | $2,500 | | @travel_ai | Travel Guides | 60 guides | $600 | * * * ## Comparison with Competitors | Platform | Open Source | Multi-Model | Multi-Platform | Monetization | Self-Hosted | | * * * | * * * | * * * | * * * | * * * | * * * | | Jasper | ❌ | ❌ | ❌ | ❌ | ❌ | | Copy.ai | ❌ | ❌ | ❌ | ❌ | ❌ | | Buffer | ❌ | ❌ | ✅ | ❌ | ❌ | | **AiToEarn** | **✅** | **✅** | **✅** | **✅** | **✅** | * * * ## Summary AiToEarn represents a new paradigm for the **creator economy in the AI era**: no longer \"human writes content → finds channels → figures out monetization\", but a closed loop of \"define content strategy → AI auto-produces → multi-channel distribution → diversified monetization\". For developers, bloggers, and freelancers looking to build passive income streams, this is an open-source project worth exploring deeply. \u003e 💡 Want more AI tools and open-source projects? Follow [dibi8.com](https://dibi8.com) for weekly curated picks. * * * ## Recommended Tools For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads. *Affiliate link — supports dibi8.com at no cost to you.* ## Recommended Tools **Need stable Claude or OpenAI API access?** Most projects in this space eventually hit the Anthropic/OpenAI rate limit or pricing wall. - **** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when iterating on agent prompts or when direct API access is restricted in your region. *Affiliate link — supports dibi8.com at no extra cost to you.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"AiToEarn: Open-Source AI Content Monetization — Turn Your GPT Conversations into Passive Income\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/aitoearn-ai-monetization\" } } \u003c/script\u003e ## Why This Matters Understanding aitoearn: open-source ai content monetization — turn your gpt conversations into passive income is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion AiToEarn: Open-Source AI Content Monetization — Turn Your GPT Conversations into Passive Income represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* ## Frequently Asked Questions (FAQ) **问：LangChain和LlamaIndex哪个更好？** LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。 **问：如何评估LLM框架的性能？** 基准测试包括：推理速度、准确率、资源消耗、可扩展性。 **问：开源LLM框架的商业使用限制？** 大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。 **问：是否需要GPU才能运行LLM框架？** 推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。 **问：企业级部署的最佳实践？** 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。 ## Framework Comparison | Framework | Primary Use | Learning Curve | Community | Production Ready | | * * * | * * * | * * * | * * * | * * * | | **LangChain** | General-purpose | Medium | Large | ✅ Yes | | **LlamaIndex** | RAG/Retrieval | Low | Growing | ✅ Yes | | **Haystack** | Document processing | Medium | Medium | ✅ Yes | | **LangGraph** | Stateful agents | High | Growing | ✅ Yes | ",
+  "wordCount" : "1401",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/aitoearn-ai-monetization/">En</a>
@@ -209,23 +209,23 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#aitoearn%ec%9d%b4%eb%9e%80" aria-label="AiToEarn이란?">AiToEarn이란?</a></li>
+                <a href="#what-is-aitoearn" aria-label="What Is AiToEarn?">What Is AiToEarn?</a></li>
             <li>
-                <a href="#%ed%95%b5%ec%8b%ac-%ea%b8%b0%eb%8a%a5" aria-label="핵심 기능">핵심 기능</a><ul>
+                <a href="#core-features" aria-label="Core Features">Core Features</a><ul>
                     
             <li>
-                <a href="#-%ec%bd%98%ed%85%90%ec%b8%a0-%ed%8c%a9%ed%86%a0%eb%a6%ac" aria-label="📝 콘텐츠 팩토리">📝 콘텐츠 팩토리</a></li>
+                <a href="#-content-factory" aria-label="📝 Content Factory">📝 Content Factory</a></li>
             <li>
-                <a href="#-%ec%9b%90%ed%81%b4%eb%a6%ad-%eb%b0%b0%ed%8f%ac" aria-label="📡 원클릭 배포">📡 원클릭 배포</a></li>
+                <a href="#-one-click-distribution" aria-label="📡 One-Click Distribution">📡 One-Click Distribution</a></li>
             <li>
-                <a href="#-%eb%8b%a4%ec%96%91%ed%95%9c-%ec%88%98%ec%9d%b5%ed%99%94" aria-label="💰 다양한 수익화">💰 다양한 수익화</a></li></ul>
+                <a href="#-multiple-monetization-methods" aria-label="💰 Multiple Monetization Methods">💰 Multiple Monetization Methods</a></li></ul>
             </li>
             <li>
-                <a href="#%ea%b8%b0%ec%88%a0-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98" aria-label="기술 아키텍처">기술 아키텍처</a></li>
+                <a href="#technical-architecture" aria-label="Technical Architecture">Technical Architecture</a></li>
             <li>
-                <a href="#%eb%b9%a0%eb%a5%b8-%ec%8b%9c%ec%9e%91" aria-label="빠른 시작">빠른 시작</a></li>
+                <a href="#quick-start" aria-label="Quick Start">Quick Start</a></li>
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9-%ec%98%88%ec%8b%9c-ai-%eb%b8%94%eb%a1%9c%ea%b7%b8-%ec%9e%90%eb%8f%99%ed%99%94" aria-label="사용 예시: AI 블로그 자동화">사용 예시: AI 블로그 자동화</a>
+                <a href="#example-ai-blog-automation" aria-label="Example: AI Blog Automation">Example: AI Blog Automation</a>
             </li>
         </ul>
     </div>
@@ -233,6 +233,13 @@
 
   <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
+tech_stack: - Go</p>
+<ul>
+<li>JavaScript</li>
+<li>TypeScript
+application_domain: &ldquo;Llm Frameworks&rdquo;
 source_version: &quot;&quot;
 licensing_model: &ldquo;Open Source&rdquo;
 license_type: &ldquo;MIT&rdquo;
@@ -242,131 +249,107 @@ download_url: &ldquo;<a href="https://github.com/yikart/AiToEarn%22">https://git
 backup_url: &quot;&rdquo;
 last_maintained: &ldquo;2026-05-15&rdquo;
 draft: false
-aliases:</p>
-<ul>
-<li>/kr/posts/aitoearn-ai-monetization/
-faqs: - q: &lsquo;AiToEarn이란 무엇인가요?&rsquo;
-a: &lsquo;AiToEarn은 크리에이터가 글, 이미지, 영상 스크립트, 코드 같은 AI 생성 콘텐츠를 수동 수입원으로 전환하도록 돕는 오픈소스 AI 콘텐츠 수익화 플랫폼입니다. AI 콘텐츠 생성, 원클릭 멀티 플랫폼 배포, 내장형 수익화 기능을 하나의 셀프 호스팅 도구에 통합했습니다.&rsquo;</li>
-<li>q: &lsquo;AiToEarn은 크리에이터에게 어떻게 수익을 만들어 주나요?&rsquo;
-a: &lsquo;AiToEarn은 다섯 가지 수익화 방식을 지원합니다: 유료 구독(사용자당 $5-50/month), Google AdSense 및 Media.net을 통한 광고 수익, Amazon 및 Taobao 링크가 자동 삽입되는 제휴 마케팅(5-50% 수수료), 템플릿과 프롬프트 팩의 유료 다운로드(개당 $1-20), 그리고 패키징된 AI 워크플로우의 API 과금(호출당 $0.01-0.1)입니다.&rsquo;</li>
-<li>q: &lsquo;AiToEarn은 어떤 플랫폼에 콘텐츠를 자동 게시할 수 있나요?&rsquo;
-a: &lsquo;AiToEarn은 블로그 플랫폼(WordPress, Ghost, Notion), 소셜 미디어(Twitter/X, LinkedIn, Facebook, Instagram), 중국 플랫폼(WeChat 공식 계정, Zhihu, Xiaohongshu, Bilibili), 그리고 영상 플랫폼(YouTube, TikTok, Douyin 스크립트 생성)에 콘텐츠를 배포합니다.&rsquo;</li>
-<li>q: &lsquo;AiToEarn은 어떤 AI 모델을 지원하나요?&rsquo;
-a: &lsquo;AiToEarn은 Model Router를 사용해 GPT-4(OpenAI), Claude(Anthropic), Gemini(Google), 로컬 LLM 등 여러 AI 제공업체에 연결합니다. 또한 DALL-E, Midjourney, Stable Diffusion 같은 이미지 생성기도 통합합니다.&rsquo;</li>
-<li>q: &lsquo;AiToEarn은 셀프 호스팅이 가능한가요? 어떻게 설치하나요?&rsquo;
-a: &lsquo;네, AiToEarn은 셀프 호스팅이 가능합니다. GitHub 저장소를 클론하고 npm install을 실행한 뒤, .env.example을 .env로 복사하고 API 키를 입력한 다음 npm run dev를 실행합니다. 그러면 앱이 http://localhost:3000에서 로컬로 실행됩니다.&rsquo;</li>
+aliases:</li>
+<li>/posts/aitoearn-ai-monetization/
+faqs: - q: &lsquo;What is AiToEarn?&rsquo;
+a: &lsquo;AiToEarn is an open-source AI content monetization platform that helps creators turn AI-generated content such as articles, images, video scripts, and code into passive income streams. It combines AI content generation, one-click multi-platform distribution, and built-in monetization in a single self-hosted tool.&rsquo;</li>
+<li>q: &lsquo;How does AiToEarn make money for creators?&rsquo;
+a: &lsquo;AiToEarn supports five monetization methods: paid subscriptions ($5-50/month per user), ad revenue via Google AdSense and Media.net, affiliate marketing with auto-inserted Amazon and Taobao links (5-50% commission), paid downloads of templates and prompt packs ($1-20 each), and API billing for packaged AI workflows ($0.01-0.1 per call).&rsquo;</li>
+<li>q: &lsquo;Which platforms can AiToEarn auto-publish content to?&rsquo;
+a: &lsquo;AiToEarn distributes content to blog platforms (WordPress, Ghost, Notion), social media (Twitter/X, LinkedIn, Facebook, Instagram), Chinese platforms (WeChat Official, Zhihu, Xiaohongshu, Bilibili), and video platforms (YouTube, TikTok, Douyin for script generation).&rsquo;</li>
+<li>q: &lsquo;Which AI models does AiToEarn support?&rsquo;
+a: &lsquo;AiToEarn uses a Model Router that connects to multiple AI providers, including GPT-4 (OpenAI), Claude (Anthropic), Gemini (Google), and local LLMs. It also integrates image generators like DALL-E, Midjourney, and Stable Diffusion.&rsquo;</li>
+<li>q: &lsquo;Can AiToEarn be self-hosted, and how do you install it?&rsquo;
+a: &lsquo;Yes, AiToEarn is self-hostable. You clone the GitHub repository, run npm install, copy .env.example to .env and add your API keys, then run npm run dev. The app then runs locally at http://localhost:3000.&rsquo;</li>
 </ul>
 <hr>
 <p>{&lt;/* resource-info */&gt;}</p>
-<p><img alt="AiToEarn 모바일 — 12+ 소셜 플랫폼에 분배" loading="lazy" src="/images/articles/aitoearn-ai-monetization/app.png">
-<em>출처: <a href="https://github.com/yikart/AiToEarn">github.com/yikart/AiToEarn</a> — 공식 앱 스크린샷</em></p>
-<h2 id="aitoearn이란">AiToEarn이란?<a hidden class="anchor" aria-hidden="true" href="#aitoearn이란">#</a></h2>
-<p><strong>AiToEarn</strong>은 AI 시대의 창작자를 위해 설계된 <strong>오픈소스 AI 콘텐츠 수익화 플랫폼</strong>입니다. AI 생성 콘텐츠(기사, 이미지, 비디오 스크립트, 코드 등)를 지속 가능한 수동 소득원으로 전환하는 데 도움을 줍니다.</p>
+<p><img alt="AiToEarn mobile app — create content for 12+ social platforms" loading="lazy" src="/images/articles/aitoearn-ai-monetization/app.png">
+<em>Source: <a href="https://github.com/yikart/AiToEarn">github.com/yikart/AiToEarn</a> — official app screenshot</em></p>
+<h2 id="what-is-aitoearn">What Is AiToEarn?<a hidden class="anchor" aria-hidden="true" href="#what-is-aitoearn">#</a></h2>
+<p><strong>AiToEarn</strong> is an <strong>open-source AI content monetization platform</strong> designed for creators in the AI era. It helps you transform AI-generated content (articles, images, video scripts, code, etc.) into sustainable passive income streams.</p>
 <p><strong>GitHub</strong>: <a href="https://github.com/yikart/AiToEarn">https://github.com/yikart/AiToEarn</a>
 <strong>Stars</strong>: 3,200+
-<strong>언어</strong>: TypeScript / Node.js
-<strong>라이선스</strong>: AGPL-3.0</p>
+<strong>Language</strong>: TypeScript / Node.js
+<strong>License</strong>: AGPL-3.0</p>
 <hr>
-<h2 id="핵심-기능">핵심 기능<a hidden class="anchor" aria-hidden="true" href="#핵심-기능">#</a></h2>
-<h3 id="-콘텐츠-팩토리">📝 콘텐츠 팩토리<a hidden class="anchor" aria-hidden="true" href="#-콘텐츠-팩토리">#</a></h3>
+<h2 id="core-features">Core Features<a hidden class="anchor" aria-hidden="true" href="#core-features">#</a></h2>
+<h3 id="-content-factory">📝 Content Factory<a hidden class="anchor" aria-hidden="true" href="#-content-factory">#</a></h3>
 <ul>
-<li>여러 AI 모델 연결(GPT-4, Claude, Gemini, 로컬 LLM)</li>
-<li>SEO 최적화 기사 일괄 생성</li>
-<li>소셜 미디어 게시물 자동 생성(Twitter/X, LinkedIn, 샤오홍슈)</li>
-<li>AI 이미지 생성 및 편집(DALL-E, Midjourney, Stable Diffusion)</li>
+<li>Connect multiple AI models (GPT-4, Claude, Gemini, local LLMs)</li>
+<li>Batch generate SEO-optimized articles</li>
+<li>Auto-generate social media posts (Twitter/X, LinkedIn, Xiaohongshu)</li>
+<li>AI image generation and editing (DALL-E, Midjourney, Stable Diffusion)</li>
 </ul>
-<h3 id="-원클릭-배포">📡 원클릭 배포<a hidden class="anchor" aria-hidden="true" href="#-원클릭-배포">#</a></h3>
-<p>다음으로 자동 게시 지원: - <strong>블로그 플랫폼</strong>: WordPress, Ghost, Notion</p>
+<h3 id="-one-click-distribution">📡 One-Click Distribution<a hidden class="anchor" aria-hidden="true" href="#-one-click-distribution">#</a></h3>
+<p>Supports auto-publishing to: - <strong>Blog Platforms</strong>: WordPress, Ghost, Notion</p>
 <ul>
-<li><strong>소셜 미디어</strong>: Twitter/X, LinkedIn, Facebook, Instagram</li>
-<li><strong>중국 플랫폼</strong>: 위챗 공식 계정, 지후, 샤오홍슈, 비리비리</li>
-<li><strong>비디오 플랫폼</strong>: YouTube, TikTok, 도우인(스크립트 생성)</li>
+<li><strong>Social Media</strong>: Twitter/X, LinkedIn, Facebook, Instagram</li>
+<li><strong>Chinese Platforms</strong>: WeChat Official, Zhihu, Xiaohongshu, Bilibili</li>
+<li><strong>Video Platforms</strong>: YouTube, TikTok, Douyin (script generation)</li>
 </ul>
-<h3 id="-다양한-수익화">💰 다양한 수익화<a hidden class="anchor" aria-hidden="true" href="#-다양한-수익화">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>수익화 모델</th>
-					<th>설명</th>
-					<th>수익 잠재력</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>구독제</strong></td>
-					<td>유료 회원이 프리미엄 콘텐츠 잠금 해제</td>
-					<td>월 $5-50/사용자</td>
-			</tr>
-			<tr>
-					<td><strong>광고 수익</strong></td>
-					<td>Google AdSense, Media.net 통합</td>
-					<td>천회 노출당 $0.5-5</td>
-			</tr>
-			<tr>
-					<td><strong>제휴 마케팅</strong></td>
-					<td>아마존, 타오바오 제휴 링크 자동 삽입</td>
-					<td>5-50% 커미션</td>
-			</tr>
-			<tr>
-					<td><strong>유료 다운로드</strong></td>
-					<td>코드 템플릿, 프롬프트 팩, 디자인 에셋</td>
-					<td>$1-20/회</td>
-			</tr>
-			<tr>
-					<td><strong>API 과금</strong></td>
-					<td>AI 워크플로우를 API로 패키징</td>
-					<td>호출당 $0.01-0.1</td>
-			</tr>
-	</tbody>
-</table>
+<h3 id="-multiple-monetization-methods">💰 Multiple Monetization Methods<a hidden class="anchor" aria-hidden="true" href="#-multiple-monetization-methods">#</a></h3>
+<p>| Monetization | Description | Revenue Potential |
+|</p>
 <hr>
-<h2 id="기술-아키텍처">기술 아키텍처<a hidden class="anchor" aria-hidden="true" href="#기술-아키텍처">#</a></h2>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Subscriptions</strong> | Paid members unlock premium content | $5-50/month/user |
+| <strong>Ad Revenue</strong> | Integrate Google AdSense, Media.net | $0.5-5/1000 impressions |
+| <strong>Affiliate Marketing</strong> | Auto-insert Amazon, Taobao affiliate links | 5-50% commission |
+| <strong>Paid Downloads</strong> | Code templates, prompt packs, design assets | $1-20/purchase |
+| <strong>API Billing</strong> | Package your AI workflow as an API | $0.01-0.1/call |</p>
+<hr>
+<h2 id="technical-architecture">Technical Architecture<a hidden class="anchor" aria-hidden="true" href="#technical-architecture">#</a></h2>
 <pre tabindex="0"><code>AiToEarn
-├── 프론트엔드 (Next.js 14 + Tailwind)
-├── 백엔드 (NestJS + Prisma)
-├── AI 엔진
-│   ├── 모델 라우터 (OpenAI / Anthropic / Google / 로컬)
-│   ├── 콘텐츠 파이프라인 (생성 → 최적화 → 게시)
-│   └── SEO 분석 (키워드, 가독성, 독창성)
-├── 배포 어댑터
+├── Frontend (Next.js 14 + Tailwind)
+├── Backend (NestJS + Prisma)
+├── AI Engine
+│   ├── Model Router (OpenAI / Anthropic / Google / Local)
+│   ├── Content Pipeline (Generate → Optimize → Publish)
+│   └── SEO Analysis (Keywords, Readability, Originality)
+├── Distribution Adapters
 │   ├── WordPress REST API
 │   ├── Twitter/X API v2
-│   ├── 위챗 공식 계정 API
-│   └── ... (플러그인 확장)
-└── 수익화 모듈
-    ├── Stripe 구독
-    ├── PayPal 결제
-    └── 제휴 링크 자동 삽입
+│   ├── WeChat Official API
+│   └── ... (Plugin-extensible)
+└── Monetization Module
+    ├── Stripe Subscriptions
+    ├── PayPal Payments
+    └── Auto Affiliate Link Insertion
 </code></pre><hr>
-<h2 id="빠른-시작">빠른 시작<a hidden class="anchor" aria-hidden="true" href="#빠른-시작">#</a></h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 저장소 클론</span>
+<h2 id="quick-start">Quick Start<a hidden class="anchor" aria-hidden="true" href="#quick-start">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone repo</span>
 </span></span><span style="display:flex;"><span>git clone https://github.com/yikart/AiToEarn.git
 </span></span><span style="display:flex;"><span>cd AiToEarn
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 의존성 설치</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install dependencies</span>
 </span></span><span style="display:flex;"><span>npm install
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 환경 변수 설정</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Configure environment</span>
 </span></span><span style="display:flex;"><span>cp .env.example .env
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># .env에 API 키 입력</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Edit .env with your API keys</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 개발 서버 시작</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start dev server</span>
 </span></span><span style="display:flex;"><span>npm run dev
-</span></span></code></pre></div><p><code>http://localhost:3000</code>에 접속하여 시작하세요.</p>
+</span></span></code></pre></div><p>Visit <code>http://localhost:3000</code> to get started.</p>
 <hr>
-<h2 id="사용-예시-ai-블로그-자동화">사용 예시: AI 블로그 자동화<a hidden class="anchor" aria-hidden="true" href="#사용-예시-ai-블로그-자동화">#</a></h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// 자동화 워크플로우 생성
+<h2 id="example-ai-blog-automation">Example: AI Blog Automation<a hidden class="anchor" aria-hidden="true" href="#example-ai-blog-automation">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Create automation workflow
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">workflow</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">aite</span>.<span style="color:#a6e22e">createWorkflow</span>({
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;매일의 기술 뉴스&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Daily Tech News&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">source</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;rss://techcrunch.com/feed&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ai</span><span style="color:#f92672">:</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">model</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;gpt-4&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">prompt</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;다음 기술 뉴스를 SEO 최적화된 기사로 다시 작성하세요. 800자 이상&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">prompt</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Rewrite the following tech news into SEO-optimized articles, 800+ words&#34;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">temperature</span>: <span style="color:#66d9ef">0.7</span>
 </span></span><span style="display:flex;"><span>  },
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">output</span><span style="color:#f92672">:</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">platforms</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;wordpress&#34;</span>, <span style="color:#e6db74">&#34;twitter&#34;</span>, <span style="color:#e6db74">&#34;linkedin&#34;</span>],
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">schedule</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;0 9 * * *&#34;</span>, <span style="color:#75715e">// 매일 아침 9시
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">schedule</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;0 9 * * *&#34;</span>, <span style="color:#75715e">// Every morning at 9 AM
 </span></span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">monetization</span><span style="color:#f92672">:</span> {
 </span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">ads</span>: <span style="color:#66d9ef">true</span>,
 </span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">affiliate</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;amazon&#34;</span>]
@@ -374,29 +357,49 @@ a: &lsquo;네, AiToEarn은 셀프 호스팅이 가능합니다. GitHub 저장소
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>});
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 워크플로우 시작
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Start workflow
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">workflow</span>.<span style="color:#a6e22e">start</span>();
 </span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#960050;background-color:#1e0010">한</span> <span style="color:#960050;background-color:#1e0010">번</span> <span style="color:#960050;background-color:#1e0010">설정하면</span> <span style="color:#960050;background-color:#1e0010">장기간</span> <span style="color:#960050;background-color:#1e0010">자동</span> <span style="color:#960050;background-color:#1e0010">실행됩니다</span>. <span style="color:#a6e22e">AI</span> <span style="color:#960050;background-color:#1e0010">콘텐츠</span> <span style="color:#960050;background-color:#1e0010">팩토리가</span> <span style="color:#ae81ff">24</span><span style="color:#f92672">/</span><span style="color:#ae81ff">7</span> <span style="color:#960050;background-color:#1e0010">가동합니다</span>.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">Configure</span> <span style="color:#a6e22e">once</span>, <span style="color:#a6e22e">run</span> <span style="color:#a6e22e">automatically</span> <span style="color:#a6e22e">long</span><span style="color:#f92672">-</span><span style="color:#a6e22e">term</span>. <span style="color:#a6e22e">Your</span> <span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">content</span> <span style="color:#a6e22e">factory</span> <span style="color:#a6e22e">operates</span> <span style="color:#ae81ff">24</span><span style="color:#f92672">/</span><span style="color:#ae81ff">7</span>.
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#960050;background-color:#1e0010">실제</span> <span style="color:#960050;background-color:#1e0010">사용자</span> <span style="color:#960050;background-color:#1e0010">사례</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#a6e22e">Real</span> <span style="color:#a6e22e">User</span> <span style="color:#a6e22e">Cases</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">사용자</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">분야</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">월간</span> <span style="color:#960050;background-color:#1e0010">산출물</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">월간</span> <span style="color:#960050;background-color:#1e0010">수익</span> <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">|--------|------|------------|----------|</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">@techblogger_kr</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">기술</span> <span style="color:#960050;background-color:#1e0010">리뷰</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">90</span><span style="color:#960050;background-color:#1e0010">개</span> <span style="color:#960050;background-color:#1e0010">기사</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">$1</span>,<span style="color:#ae81ff">200</span> <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">@design_daily</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">디자인</span> <span style="color:#960050;background-color:#1e0010">리소스</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">300</span><span style="color:#960050;background-color:#1e0010">장</span> <span style="color:#a6e22e">AI</span> <span style="color:#960050;background-color:#1e0010">이미지</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">$800</span> <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">@code_snippets</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">프로그래밍</span> <span style="color:#960050;background-color:#1e0010">튜토리얼</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">150</span><span style="color:#960050;background-color:#1e0010">개</span> <span style="color:#960050;background-color:#1e0010">코드</span> <span style="color:#960050;background-color:#1e0010">템플릿</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">$2</span>,<span style="color:#ae81ff">500</span> <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">@travel_ai</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">여행</span> <span style="color:#960050;background-color:#1e0010">가이드</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">60</span><span style="color:#960050;background-color:#1e0010">개</span> <span style="color:#960050;background-color:#1e0010">가이드</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">$600</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Niche</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Monthly</span> <span style="color:#a6e22e">Output</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Monthly</span> <span style="color:#a6e22e">Revenue</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">@techblogger_us</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Tech</span> <span style="color:#a6e22e">Reviews</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">90</span> <span style="color:#a6e22e">articles</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">$1</span>,<span style="color:#ae81ff">200</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">@design_daily</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Design</span> <span style="color:#a6e22e">Resources</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">300</span> <span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">images</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">$800</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">@code_snippets</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Programming</span> <span style="color:#a6e22e">Tutorials</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">150</span> <span style="color:#a6e22e">code</span> <span style="color:#a6e22e">templates</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">$2</span>,<span style="color:#ae81ff">500</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#66d9ef">@travel_ai</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Travel</span> <span style="color:#a6e22e">Guides</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">60</span> <span style="color:#a6e22e">guides</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">$600</span> <span style="color:#f92672">|</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#960050;background-color:#1e0010">경쟁사와</span> <span style="color:#960050;background-color:#1e0010">비교</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#a6e22e">Comparison</span> <span style="color:#66d9ef">with</span> <span style="color:#a6e22e">Competitors</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">플랫폼</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">오픈소스</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">다중</span> <span style="color:#960050;background-color:#1e0010">모델</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">다중</span> <span style="color:#960050;background-color:#1e0010">플랫폼</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">수익화</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">자체</span> <span style="color:#960050;background-color:#1e0010">호스팅</span> <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">|--------|---------|-----------|------------|--------|-----------|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#a6e22e">Platform</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Open</span> <span style="color:#a6e22e">Source</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Multi</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Model</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Multi</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Platform</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Monetization</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Self</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Hosted</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#a6e22e">Jasper</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">❌</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">❌</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">❌</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">❌</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">❌</span> <span style="color:#f92672">|</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#a6e22e">Copy</span>.<span style="color:#a6e22e">ai</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">❌</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">❌</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">❌</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">❌</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">❌</span> <span style="color:#f92672">|</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#a6e22e">Buffer</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">❌</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">❌</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">✅</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">❌</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">❌</span> <span style="color:#f92672">|</span>
@@ -404,36 +407,36 @@ a: &lsquo;네, AiToEarn은 셀프 호스팅이 가능합니다. GitHub 저장소
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#960050;background-color:#1e0010">요약</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#a6e22e">Summary</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">AiToEarn은</span> <span style="color:#f92672">**</span><span style="color:#a6e22e">AI</span> <span style="color:#960050;background-color:#1e0010">시대의</span> <span style="color:#960050;background-color:#1e0010">창작자</span> <span style="color:#960050;background-color:#1e0010">경제</span><span style="color:#f92672">**</span><span style="color:#960050;background-color:#1e0010">를</span> <span style="color:#960050;background-color:#1e0010">위한</span> <span style="color:#960050;background-color:#1e0010">새로운</span> <span style="color:#960050;background-color:#1e0010">패러다임을</span> <span style="color:#a6e22e">대표합니다</span>: <span style="color:#66d9ef">더</span> <span style="color:#960050;background-color:#1e0010">이상</span> <span style="color:#e6db74">&#34;사람이 콘텐츠 작성 → 채널 찾기 → 수익화 방법 찾기&#34;</span><span style="color:#960050;background-color:#1e0010">가</span> <span style="color:#960050;background-color:#1e0010">아니라</span> <span style="color:#e6db74">&#34;콘텐츠 전략 정의 → AI 자동 생산 → 다중 채널 배포 → 다양한 수익화&#34;</span><span style="color:#960050;background-color:#1e0010">의</span> <span style="color:#960050;background-color:#1e0010">폐쇄</span> <span style="color:#960050;background-color:#1e0010">루프입니다</span>.
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">AiToEarn</span> <span style="color:#a6e22e">represents</span> <span style="color:#a6e22e">a</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">paradigm</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">the</span> <span style="color:#f92672">**</span><span style="color:#a6e22e">creator</span> <span style="color:#a6e22e">economy</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">era</span><span style="color:#f92672">**:</span> <span style="color:#a6e22e">no</span> <span style="color:#a6e22e">longer</span> <span style="color:#e6db74">&#34;human writes content → finds channels → figures out monetization&#34;</span>, <span style="color:#a6e22e">but</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">closed</span> <span style="color:#a6e22e">loop</span> <span style="color:#66d9ef">of</span> <span style="color:#e6db74">&#34;define content strategy → AI auto-produces → multi-channel distribution → diversified monetization&#34;</span>.
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">수동</span> <span style="color:#960050;background-color:#1e0010">소득원을</span> <span style="color:#960050;background-color:#1e0010">구축하려는</span> <span style="color:#960050;background-color:#1e0010">개발자</span>, <span style="color:#960050;background-color:#1e0010">블로거</span>, <span style="color:#960050;background-color:#1e0010">프리랜서에게</span> <span style="color:#960050;background-color:#1e0010">이것은</span> <span style="color:#960050;background-color:#1e0010">깊이</span> <span style="color:#960050;background-color:#1e0010">탐구할</span> <span style="color:#960050;background-color:#1e0010">가치가</span> <span style="color:#960050;background-color:#1e0010">있는</span> <span style="color:#960050;background-color:#1e0010">오픈소스</span> <span style="color:#960050;background-color:#1e0010">프로젝트입니다</span>.
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">For</span> <span style="color:#a6e22e">developers</span>, <span style="color:#a6e22e">bloggers</span>, <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">freelancers</span> <span style="color:#a6e22e">looking</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">build</span> <span style="color:#a6e22e">passive</span> <span style="color:#a6e22e">income</span> <span style="color:#a6e22e">streams</span>, <span style="color:#66d9ef">this</span> <span style="color:#66d9ef">is</span> <span style="color:#a6e22e">an</span> <span style="color:#a6e22e">open</span><span style="color:#f92672">-</span><span style="color:#a6e22e">source</span> <span style="color:#a6e22e">project</span> <span style="color:#a6e22e">worth</span> <span style="color:#a6e22e">exploring</span> <span style="color:#a6e22e">deeply</span>.
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#960050;background-color:#1e0010">💡</span> <span style="color:#960050;background-color:#1e0010">더</span> <span style="color:#960050;background-color:#1e0010">많은</span> <span style="color:#a6e22e">AI</span> <span style="color:#960050;background-color:#1e0010">도구와</span> <span style="color:#960050;background-color:#1e0010">오픈소스</span> <span style="color:#960050;background-color:#1e0010">프로젝트를</span> <span style="color:#960050;background-color:#1e0010">원하시나요</span><span style="color:#f92672">?</span> <span style="color:#960050;background-color:#1e0010">매주</span> <span style="color:#960050;background-color:#1e0010">선별된</span> <span style="color:#960050;background-color:#1e0010">추천을</span> <span style="color:#960050;background-color:#1e0010">위해</span> [<span style="color:#a6e22e">dibi8</span>.<span style="color:#a6e22e">com</span>](<span style="color:#a6e22e">https</span><span style="color:#f92672">:</span><span style="color:#75715e">//dibi8.com)을 팔로우하세요.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt;</span> <span style="color:#960050;background-color:#1e0010">💡</span> <span style="color:#a6e22e">Want</span> <span style="color:#a6e22e">more</span> <span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">tools</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">open</span><span style="color:#f92672">-</span><span style="color:#a6e22e">source</span> <span style="color:#a6e22e">projects</span><span style="color:#f92672">?</span> <span style="color:#a6e22e">Follow</span> [<span style="color:#a6e22e">dibi8</span>.<span style="color:#a6e22e">com</span>](<span style="color:#a6e22e">https</span><span style="color:#f92672">:</span><span style="color:#75715e">//dibi8.com) for weekly curated picks.
 </span></span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#960050;background-color:#1e0010">추천</span> <span style="color:#960050;background-color:#1e0010">도구</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#a6e22e">Recommended</span> <span style="color:#a6e22e">Tools</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">오픈소스</span> <span style="color:#a6e22e">AI</span> <span style="color:#960050;background-color:#1e0010">도구</span> <span style="color:#960050;background-color:#1e0010">개발</span><span style="color:#f92672">/</span><span style="color:#960050;background-color:#1e0010">배포</span> <span style="color:#960050;background-color:#1e0010">시</span> <span style="color:#960050;background-color:#1e0010">권장</span><span style="color:#f92672">:</span> <span style="color:#f92672">-</span> <span style="color:#f92672">****</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#960050;background-color:#1e0010">신규</span> <span style="color:#960050;background-color:#1e0010">가입</span> <span style="color:#960050;background-color:#1e0010">시</span> <span style="color:#a6e22e">$200</span> <span style="color:#960050;background-color:#1e0010">크레딧</span> <span style="color:#ae81ff">60</span><span style="color:#960050;background-color:#1e0010">일</span>, <span style="color:#960050;background-color:#1e0010">글로벌</span> <span style="color:#ae81ff">14</span><span style="color:#f92672">+</span> <span style="color:#960050;background-color:#1e0010">리전</span>, <span style="color:#a6e22e">AI</span> <span style="color:#960050;background-color:#1e0010">워크로드용</span> <span style="color:#960050;background-color:#1e0010">원클릭</span> <span style="color:#a6e22e">droplet</span>.
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">For</span> <span style="color:#a6e22e">developers</span> <span style="color:#a6e22e">building</span> <span style="color:#a6e22e">or</span> <span style="color:#a6e22e">deploying</span> <span style="color:#a6e22e">open</span><span style="color:#f92672">-</span><span style="color:#a6e22e">source</span> <span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">tools</span>, <span style="color:#a6e22e">we</span> <span style="color:#a6e22e">recommend</span><span style="color:#f92672">:</span> <span style="color:#f92672">-</span> <span style="color:#f92672">****</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">$200</span> <span style="color:#a6e22e">free</span> <span style="color:#a6e22e">credit</span> <span style="color:#66d9ef">for</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">users</span>, <span style="color:#ae81ff">14</span><span style="color:#f92672">+</span> <span style="color:#66d9ef">global</span> <span style="color:#a6e22e">regions</span>, <span style="color:#a6e22e">one</span><span style="color:#f92672">-</span><span style="color:#a6e22e">click</span> <span style="color:#a6e22e">GPU</span><span style="color:#f92672">/</span><span style="color:#a6e22e">CPU</span> <span style="color:#a6e22e">droplets</span> <span style="color:#a6e22e">ideal</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">workloads</span>.
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#960050;background-color:#1e0010">추천</span> <span style="color:#960050;background-color:#1e0010">링크</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#960050;background-color:#1e0010">추가</span> <span style="color:#960050;background-color:#1e0010">비용</span> <span style="color:#960050;background-color:#1e0010">없이</span> <span style="color:#a6e22e">dibi8</span>.<span style="color:#a6e22e">com을</span> <span style="color:#960050;background-color:#1e0010">지원합니다</span>.<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#a6e22e">Affiliate</span> <span style="color:#a6e22e">link</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">supports</span> <span style="color:#a6e22e">dibi8</span>.<span style="color:#a6e22e">com</span> <span style="color:#a6e22e">at</span> <span style="color:#a6e22e">no</span> <span style="color:#a6e22e">cost</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">you</span>.<span style="color:#f92672">*</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#960050;background-color:#1e0010">추천</span> <span style="color:#960050;background-color:#1e0010">도구</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#a6e22e">Recommended</span> <span style="color:#a6e22e">Tools</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#960050;background-color:#1e0010">안정적인</span> <span style="color:#a6e22e">Claude</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">OpenAI</span> <span style="color:#a6e22e">API</span> <span style="color:#960050;background-color:#1e0010">액세스가</span> <span style="color:#960050;background-color:#1e0010">필요</span><span style="color:#f92672">?**</span> <span style="color:#960050;background-color:#1e0010">이</span> <span style="color:#960050;background-color:#1e0010">분야</span> <span style="color:#960050;background-color:#1e0010">프로젝트는</span> <span style="color:#960050;background-color:#1e0010">결국</span> <span style="color:#a6e22e">Anthropic</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">OpenAI</span> <span style="color:#960050;background-color:#1e0010">레이트</span> <span style="color:#960050;background-color:#1e0010">리밋이나</span> <span style="color:#960050;background-color:#1e0010">가격</span> <span style="color:#960050;background-color:#1e0010">벽에</span> <span style="color:#960050;background-color:#1e0010">부딪힙니다</span>.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#a6e22e">Need</span> <span style="color:#a6e22e">stable</span> <span style="color:#a6e22e">Claude</span> <span style="color:#a6e22e">or</span> <span style="color:#a6e22e">OpenAI</span> <span style="color:#a6e22e">API</span> <span style="color:#a6e22e">access</span><span style="color:#f92672">?**</span> <span style="color:#a6e22e">Most</span> <span style="color:#a6e22e">projects</span> <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">this</span> <span style="color:#a6e22e">space</span> <span style="color:#a6e22e">eventually</span> <span style="color:#a6e22e">hit</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">Anthropic</span><span style="color:#f92672">/</span><span style="color:#a6e22e">OpenAI</span> <span style="color:#a6e22e">rate</span> <span style="color:#a6e22e">limit</span> <span style="color:#a6e22e">or</span> <span style="color:#a6e22e">pricing</span> <span style="color:#a6e22e">wall</span>.
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">****</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">Claude</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">OpenAI</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">DeepSeek</span> <span style="color:#a6e22e">API</span> <span style="color:#960050;background-color:#1e0010">프록시</span>. <span style="color:#960050;background-color:#1e0010">키</span> <span style="color:#960050;background-color:#1e0010">하나로</span> <span style="color:#960050;background-color:#1e0010">여러</span> <span style="color:#960050;background-color:#1e0010">최상위</span> <span style="color:#960050;background-color:#1e0010">모델</span> <span style="color:#960050;background-color:#1e0010">액세스</span>, <span style="color:#960050;background-color:#1e0010">공식</span> <span style="color:#960050;background-color:#1e0010">가격의</span> <span style="color:#f92672">~</span><span style="color:#ae81ff">30</span><span style="color:#f92672">%</span>; <span style="color:#960050;background-color:#1e0010">에이전트</span> <span style="color:#960050;background-color:#1e0010">프롬프트</span> <span style="color:#960050;background-color:#1e0010">이터레이션이나</span> <span style="color:#960050;background-color:#1e0010">직접</span> <span style="color:#a6e22e">API</span> <span style="color:#960050;background-color:#1e0010">액세스</span> <span style="color:#960050;background-color:#1e0010">제한</span> <span style="color:#960050;background-color:#1e0010">지역에서</span> <span style="color:#960050;background-color:#1e0010">특히</span> <span style="color:#960050;background-color:#1e0010">유용</span>.
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">****</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">Claude</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">OpenAI</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">DeepSeek</span> <span style="color:#a6e22e">API</span> <span style="color:#a6e22e">proxy</span>. <span style="color:#a6e22e">Single</span> <span style="color:#a6e22e">key</span> <span style="color:#a6e22e">access</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">multiple</span> <span style="color:#a6e22e">top</span> <span style="color:#a6e22e">models</span> <span style="color:#a6e22e">at</span> <span style="color:#f92672">~</span><span style="color:#ae81ff">30</span><span style="color:#f92672">%</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">official</span> <span style="color:#a6e22e">pricing</span>; <span style="color:#a6e22e">particularly</span> <span style="color:#a6e22e">useful</span> <span style="color:#a6e22e">when</span> <span style="color:#a6e22e">iterating</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">agent</span> <span style="color:#a6e22e">prompts</span> <span style="color:#a6e22e">or</span> <span style="color:#a6e22e">when</span> <span style="color:#a6e22e">direct</span> <span style="color:#a6e22e">API</span> <span style="color:#a6e22e">access</span> <span style="color:#66d9ef">is</span> <span style="color:#a6e22e">restricted</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">your</span> <span style="color:#a6e22e">region</span>.
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#960050;background-color:#1e0010">제휴</span> <span style="color:#960050;background-color:#1e0010">링크</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#960050;background-color:#1e0010">추가</span> <span style="color:#960050;background-color:#1e0010">비용</span> <span style="color:#960050;background-color:#1e0010">없이</span> <span style="color:#a6e22e">dibi8</span>.<span style="color:#a6e22e">com</span> <span style="color:#960050;background-color:#1e0010">운영에</span> <span style="color:#960050;background-color:#1e0010">도움이</span> <span style="color:#960050;background-color:#1e0010">됩니다</span>.<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#a6e22e">Affiliate</span> <span style="color:#a6e22e">link</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">supports</span> <span style="color:#a6e22e">dibi8</span>.<span style="color:#a6e22e">com</span> <span style="color:#a6e22e">at</span> <span style="color:#a6e22e">no</span> <span style="color:#a6e22e">extra</span> <span style="color:#a6e22e">cost</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">you</span>.<span style="color:#f92672">*</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Article&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;AiToEarn: 오픈소스 AI 콘텐츠 수익화 도구 — GPT 대화를 수동 소득으로 전환&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;AiToEarn: Open-Source AI Content Monetization — Turn Your GPT Conversations into Passive Income&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;2026-05-15&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;2026-05-15&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span><span style="color:#f92672">:</span> {
@@ -450,14 +453,14 @@ a: &lsquo;네, AiToEarn은 셀프 호스팅이 가능합니다. GitHub 저장소
 </span></span><span style="display:flex;"><span>  },
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span><span style="color:#f92672">:</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;WebPage&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://dibi8.com/kr/resources/aitoearn-ai-monetization&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://dibi8.com/resources/aitoearn-ai-monetization&#34;</span>
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#a6e22e">Why</span> <span style="color:#a6e22e">This</span> <span style="color:#a6e22e">Matters</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Understanding</span> <span style="color:#a6e22e">aitoearn</span>: <span style="color:#66d9ef">오픈소스</span> <span style="color:#a6e22e">ai</span> <span style="color:#960050;background-color:#1e0010">콘텐츠</span> <span style="color:#960050;background-color:#1e0010">수익화</span> <span style="color:#960050;background-color:#1e0010">도구</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">gpt</span> <span style="color:#960050;background-color:#1e0010">대화를</span> <span style="color:#960050;background-color:#1e0010">수동</span> <span style="color:#960050;background-color:#1e0010">소득으로</span> <span style="color:#960050;background-color:#1e0010">전환</span> <span style="color:#66d9ef">is</span> <span style="color:#a6e22e">crucial</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">modern</span> <span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">development</span>. <span style="color:#a6e22e">Here</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">s</span> <span style="color:#a6e22e">why</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#a6e22e">Key</span> <span style="color:#a6e22e">Benefits</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Understanding</span> <span style="color:#a6e22e">aitoearn</span>: <span style="color:#66d9ef">open</span><span style="color:#f92672">-</span><span style="color:#a6e22e">source</span> <span style="color:#a6e22e">ai</span> <span style="color:#a6e22e">content</span> <span style="color:#a6e22e">monetization</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">turn</span> <span style="color:#a6e22e">your</span> <span style="color:#a6e22e">gpt</span> <span style="color:#a6e22e">conversations</span> <span style="color:#a6e22e">into</span> <span style="color:#a6e22e">passive</span> <span style="color:#a6e22e">income</span> <span style="color:#66d9ef">is</span> <span style="color:#a6e22e">crucial</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">modern</span> <span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">development</span>. <span style="color:#a6e22e">Here</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">s</span> <span style="color:#a6e22e">why</span><span style="color:#f92672">:</span> <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#a6e22e">Key</span> <span style="color:#a6e22e">Benefits</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">**</span><span style="color:#a6e22e">Efficiency</span><span style="color:#f92672">**:</span> <span style="color:#a6e22e">Save</span> <span style="color:#a6e22e">time</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">repetitive</span> <span style="color:#a6e22e">tasks</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">**</span><span style="color:#a6e22e">Quality</span><span style="color:#f92672">**:</span> <span style="color:#a6e22e">Improve</span> <span style="color:#a6e22e">output</span> <span style="color:#a6e22e">consistency</span>  
 </span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">**</span><span style="color:#a6e22e">Scalability</span><span style="color:#f92672">**:</span> <span style="color:#a6e22e">Handle</span> <span style="color:#a6e22e">larger</span> <span style="color:#a6e22e">workloads</span>
@@ -487,7 +490,7 @@ a: &lsquo;네, AiToEarn은 셀프 호스팅이 가능합니다. GitHub 저장소
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#a6e22e">Conclusion</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">AiToEarn</span>: <span style="color:#66d9ef">오픈소스</span> <span style="color:#a6e22e">AI</span> <span style="color:#960050;background-color:#1e0010">콘텐츠</span> <span style="color:#960050;background-color:#1e0010">수익화</span> <span style="color:#960050;background-color:#1e0010">도구</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">GPT</span> <span style="color:#960050;background-color:#1e0010">대화를</span> <span style="color:#960050;background-color:#1e0010">수동</span> <span style="color:#960050;background-color:#1e0010">소득으로</span> <span style="color:#960050;background-color:#1e0010">전환</span> <span style="color:#a6e22e">represents</span> <span style="color:#a6e22e">an</span> <span style="color:#a6e22e">important</span> <span style="color:#a6e22e">step</span> <span style="color:#a6e22e">forward</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">AI</span><span style="color:#f92672">-</span><span style="color:#a6e22e">powered</span> <span style="color:#a6e22e">development</span>. <span style="color:#a6e22e">As</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">ecosystem</span> <span style="color:#a6e22e">matures</span>, <span style="color:#a6e22e">we</span> <span style="color:#a6e22e">expect</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">see</span> <span style="color:#a6e22e">even</span> <span style="color:#a6e22e">more</span> <span style="color:#a6e22e">powerful</span> <span style="color:#a6e22e">capabilities</span> <span style="color:#a6e22e">emerge</span>.
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">AiToEarn</span>: <span style="color:#66d9ef">Open</span><span style="color:#f92672">-</span><span style="color:#a6e22e">Source</span> <span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">Content</span> <span style="color:#a6e22e">Monetization</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">Turn</span> <span style="color:#a6e22e">Your</span> <span style="color:#a6e22e">GPT</span> <span style="color:#a6e22e">Conversations</span> <span style="color:#a6e22e">into</span> <span style="color:#a6e22e">Passive</span> <span style="color:#a6e22e">Income</span> <span style="color:#a6e22e">represents</span> <span style="color:#a6e22e">an</span> <span style="color:#a6e22e">important</span> <span style="color:#a6e22e">step</span> <span style="color:#a6e22e">forward</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">AI</span><span style="color:#f92672">-</span><span style="color:#a6e22e">powered</span> <span style="color:#a6e22e">development</span>. <span style="color:#a6e22e">As</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">ecosystem</span> <span style="color:#a6e22e">matures</span>, <span style="color:#a6e22e">we</span> <span style="color:#a6e22e">expect</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">see</span> <span style="color:#a6e22e">even</span> <span style="color:#a6e22e">more</span> <span style="color:#a6e22e">powerful</span> <span style="color:#a6e22e">capabilities</span> <span style="color:#a6e22e">emerge</span>.
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">For</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">latest</span> <span style="color:#a6e22e">updates</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">community</span> <span style="color:#a6e22e">discussions</span>, <span style="color:#a6e22e">join</span> <span style="color:#a6e22e">our</span> <span style="color:#a6e22e">Telegram</span> <span style="color:#a6e22e">channel</span>: <span style="color:#66d9ef">https</span><span style="color:#f92672">:</span><span style="color:#75715e">//t.me/DIBI8_Group
 </span></span></span><span style="display:flex;"><span>
@@ -522,7 +525,17 @@ a: &lsquo;네, AiToEarn은 셀프 호스팅이 가능합니다. GitHub 저장소
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#a6e22e">Framework</span> <span style="color:#a6e22e">Comparison</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#a6e22e">Framework</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Primary</span> <span style="color:#a6e22e">Use</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Learning</span> <span style="color:#a6e22e">Curve</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Community</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Production</span> <span style="color:#a6e22e">Ready</span> <span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">|-----------|-------------|----------------|-----------|------------------|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#f92672">**</span><span style="color:#a6e22e">LangChain</span><span style="color:#f92672">**</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">General</span><span style="color:#f92672">-</span><span style="color:#a6e22e">purpose</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Medium</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Large</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">✅</span> <span style="color:#a6e22e">Yes</span> <span style="color:#f92672">|</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#f92672">**</span><span style="color:#a6e22e">LlamaIndex</span><span style="color:#f92672">**</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">RAG</span><span style="color:#f92672">/</span><span style="color:#a6e22e">Retrieval</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Low</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Growing</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">✅</span> <span style="color:#a6e22e">Yes</span> <span style="color:#f92672">|</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#f92672">**</span><span style="color:#a6e22e">Haystack</span><span style="color:#f92672">**</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Document</span> <span style="color:#a6e22e">processing</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Medium</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Medium</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">✅</span> <span style="color:#a6e22e">Yes</span> <span style="color:#f92672">|</span>
@@ -569,6 +582,81 @@ a: &lsquo;네, AiToEarn은 셀프 호스팅이 가능합니다. GitHub 저장소
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

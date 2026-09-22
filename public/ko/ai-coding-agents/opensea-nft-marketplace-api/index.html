@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "2021년 폭발적 성장 이후 대체 불가능한 토큰(NFT) 생태계는 상당히 성숙해졌습니다. 디지털 아트 틈새 시장으로 시작했던 것이 게임, 부동산, 신원 인증, 탈중앙화 금융을 아우르는 수십억 달러 규모의 인프라 레이어로 진화했습니다. 이러한 변혁의 중심에는 세계 최대의 NFT 마켓플레이스인 OpenSea와 개발자가 프로그래밍 방식 거래 시스템, 분석 대시보드, 자동화된 컬렉션 관리 도구를 구축할 수 있게 해주는 강력한 OpenSea API가 있습니다.\n이 종합적인 2026 가이드에서는 API 키 획득과 Python SDK 설정부터 NFT 상장, 거래 실행, WebSocket을 통한 실시간 이벤트 스트리밍, 프로덕션 환경의 속도 제한 처리까지 OpenSea API에 대해 알아야 할 모든 것을 살펴 보겠습니다. 트레이딩 봇, 포트폴리오 추적기 또는 마켓플레이스 애그리게이터를 구축하든 이 가이드는 완전한 기술 기초를 제공합니다.\nOpenSea API란 무엇인가? OpenSea API는 OpenSea NFT 마켓플레이스에 대한 전체 액세스를 제공하는 RESTful 및 WebSocket 기반 프로그래밍 인터페이스입니다. 개발자가 NFT 컬렉션을 쿼리하고, 자산 메타데이터를 검색하고, 판매용 아이템을 상장하고, 주문을 이행하고, 계정 활동을 추적하고, 실시간 이벤트 스트림을 구독할 수 있게 해줍니다 — 이 모든 것을 OpenSea 웹사이트와 수동으로 상호작용하지 않고도 할 수 있습니다.\n2026년 현재 OpenSea API는 이더리움, 폴리곤, 아비트럼, 옵티미즘, 베이스, 조라 등 여러 블록체인 네트워크를 지원합니다. 이 API는 ProjectOpenSea에서 유지 관리하며 공식 JavaScript SDK 저장소에서 1,200개 이상의 GitHub 스타를 보유하고 Python, Go, Rust용 래퍼를 기여하는 활발한 개발자 커뮤니티와 함께 NFT 마켓플레이스 통합의 사실상 표준이 되었습니다.\n이 API는 현대적인 REST 규칙을 따륩니며 JSON 요청/응답 형식을 사용하고, API 키 기반 인증을 사용하며, 오류 처리를 위해 표준 HTTP 상태 코드를 구현합니다. 실시간 애플리케이션의 경우 WebSocket API는 1초 미만의 지연 시간으로 거래, 상장, 전송, 컬렉션 업데이트에 대한 이벤트 스트리밍을 제공합니다.\n시작하기: API 키 설정 및 인증 API 호출을 하기 전에 OpenSea 개발자 포털을 통해 API 키를 등록해야 합니다. 모든 인증 엔드포인트에는 API 키가 필요하며, 이는 속도 제한 계층을 결정합니다.\n1단계: 개발자 계정 만들기 OpenSea 개발자 대시보드를 방문하여 지갑이나 이메일 주소로 로그인하세요. API 서비스 약관 동의 및 예상 사용 사례에 대한 간략한 설명 제공을 포함한 개발자 인증 절차를 완료하세요.\n2단계: API 키 생성 승인이 되면 대시보드에서 새 API 키를 만드세요. 두 가지 자격 증명을 받게 됩니다: - API 키: 애플리케이션 식별에 사용\nAPI 시크릿: 특정 인증 요청 서명에 사용 이 자격 증명을 안전하게 환경 변수에 저장하세요: ````bash\n.env 파일 OPENSEA_API_KEY=your_api_key_here OPENSEA_API_SECRET=your_api_secret_here\n### 3단계: 인증 테스트 간단한 헬스 체크로 API 키가 작동하는지 확인하세요: `````python import os import requests from dotenv import load_dotenv load_dotenv() API_KEY = os.getenv(\"OPENSEA_API_KEY\") BASE_URL = \"https://api.opensea.io/api/v2\" headers = { \"X-API-KEY\": API_KEY, \"Accept\": \"application/json\" } # 컬렉션 가져오기로 인증 테스트 response = requests.get( f\"{BASE_URL}/collections\", headers=headers, params={\"chain\": \"ethereum\", \"limit\": 5} ) print(f\"상태: {response.status_code}\") print(f\"컬렉션: {len(response.json()[collections])}\") 4단계: SDK 설치 공식 JavaScript SDK 또는 커뮤니티 Python 래퍼를 설치하세요: `````bash\n공식 JavaScript SDK npm install opensea-js\n커뮤니티 Python SDK pip install opensea-api\n또는 requests 직접 사용 pip install requests python-dotenv\n* * * ## OpenSea API 엔드포인트 개요 OpenSea API는 NFT 마켓플레이스의 모든 측면을 다루는 논리적 엔드포인트 그룹으로 구성되어 있습니다. 이러한 엔드포인트 카테고리를 이해하는 것은 효율적인 애플리케이션을 구축하는 데 필수적입니다. ### 컬렉션 및 메타데이터 엔드포인트 컬렉션 엔드포인트는 바닥 가격, 거래량 통계, 특성 분포, 소셜 링크를 포함한 NFT 컬렉션에 대한 포괄적인 메타데이터를 제공합니다. `````python def get_collection_details(collection_slug: str): \"\"\"NFT 컬렉션의 상세 정보를 가져옵니다.\"\"\" endpoint = f\"{BASE_URL}/collections/{collection_slug}\" response = requests.get(endpoint, headers=headers) data = response.json() return { \"name\": data[\"name\"], \"slug\": data[\"collection\"], \"contract_address\": data[\"contracts\"][0][\"address\"], \"floor_price\": data[\"floor_prices\"][0][\"value\"] if data.get(\"floor_prices\") else None, \"total_supply\": data[\"total_supply\"], \"category\": data.get(\"category\"), \"created_date\": data[\"created_date\"] } # 사용 예시 crypto_punks = get_collection_details(\"cryptopunks\") print(f\"CryptoPunks 바닥: {crypto_punks[floor_price]} ETH\") 자산 조회 엔드포인트 자산 엔드포인트를 통해 개별 NFT의 메타데이터, 소유권 정보, 상장 상태를 검색할 수 있습니다.\ndef get_asset_details(chain: str, address: str, token_id: str): \"\"\"특정 NFT 자산의 메타데이터를 검색합니다.\"\"\" endpoint = f\"{BASE_URL}/chain/{chain}/contract/{address}/nfts/{token_id}\" response = requests.get(endpoint, headers=headers) data = response.json()[\"nft\"] return { \"identifier\": data[\"identifier\"], \"token_standard\": data[\"token_standard\"], \"name\": data[\"name\"], \"description\": data.get(\"description\"), \"image_url\": data[\"image_url\"], \"metadata_url\": data[\"metadata_url\"], \"traits\": data.get(\"traits\", []), \"owners\": data.get(\"owners\", []) } # 특정 복싱 에이프 가져오기 bored_ape = get_asset_details( chain=\"ethereum\", address=\"0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D\", token_id=\"1234\" ) print(f\"자산: {bored_ape[name]}\") print(f\"특성 개수: {len(bored_ape[traits])}\") 상장 및 주문 엔드포인트 상장 엔드포인트는 NFT 판매 주문의 생성, 검색, 취소를 관리합니다. 이들은 프로그래밍 방식 거래의 핵심 엔드포인트입니다.\ndef get_listings_by_collection(collection_slug: str, limit: int = 20): \"\"\"특정 컬렉션의 활성 상장을 가져옵니다.\"\"\" endpoint = f\"{BASE_URL}/listings/collection/{collection_slug}/all\" params = {\"limit\": limit} response = requests.get(endpoint, headers=headers, params=params) listings = response.json()[\"listings\"] return [{ \"order_hash\": l[\"order_hash\"], \"price\": l[\"price\"][\"current\"][\"value\"], \"currency\": l[\"price\"][\"current\"][\"currency\"], \"token\": { \"contract\": l[\"protocol_data\"][\"parameters\"][\"offer\"][0][\"token\"], \"identifier\": l[\"protocol_data\"][\"parameters\"][\"offer\"][0][\"identifierOrCriteria\"] }, \"maker\": l[\"protocol_data\"][\"parameters\"][\"offerer\"], \"expiration\": l[\"expiration_time\"] } for l in listings] # 가장 저렴한 상장 가져오기 listings = get_listings_by_collection(\"boredapeyachtclub\", limit=10) for listing in sorted(listings, key=lambda x: float(x[\"price\"])): print(f\"가격: {listing[price]} | 토큰: {listing[token][identifier]}\") 계정 및 활동 엔드포인트 모든 이더리움 주소의 지갑 활동, 소유 자산, 이력 이벤트를 추적합니다.\ndef get_account_events(account_address: str, event_type: str = \"order\", limit: int = 50): \"\"\"특정 계정의 활동 이벤트를 검색합니다.\"\"\" endpoint = f\"{BASE_URL}/events/accounts/{account_address}\" params = { \"event_type\": event_type, \"limit\": limit } response = requests.get(endpoint, headers=headers, params=params) events = response.json().get(\"asset_events\", []) return [{ \"event_type\": e[\"event_type\"], \"order_hash\": e.get(\"order_hash\"), \"asset\": e.get(\"asset\", {}).get(\"name\"), \"quantity\": e.get(\"quantity\"), \"payment\": e.get(\"payment\", {}).get(\"quantity\") if e.get(\"payment\") else None, \"timestamp\": e[\"event_timestamp\"] } for e in events] # 고래 지갑 활동 모니터링 whale_address = \"0x3b417faee9d1458e\" events = get_account_events(whale_address, event_type=\"sale\", limit=20) for event in events: print(f\"{event[timestamp]}: {event[asset]}이(가) {event[payment]}에 판매됨\") Python SDK 통합 구축하기 공식 OpenSea SDK는 JavaScript/TypeScript로 작성되어 있지만, Python 개발자는 requests 라이브러리나 커뮤니티에서 유지 관리하는 패키지를 사용하여 강력한 통합을 구축할 수 있습니다. 다음은 인증, 페이징, 오류 재시도, 속도 제한을 처리하는 프로덕션 준비 Python SDK 래퍼입니다.\n완전한 Python SDK 클래스 import os import time import logging from typing import Optional, List, Dict, Any from urllib.parse import urljoin import requests from requests.adapters import HTTPAdapter from urllib3.util.retry import Retry logging.basicConfig(level=logging.INFO) logger = logging.getLogger(__name__) class OpenSeaAPI: \"\"\"OpenSea API용 프로덕션 준비 Python SDK.\"\"\" BASE_URL = \"https://api.opensea.io/api/v2\" def __init__(self, api_key: Optional[str] = None, max_retries: int = 3): self.api_key = api_key or os.getenv(\"OPENSEA_API_KEY\") if not self.api_key: raise ValueError(\"API 키가 필요합니다. OPENSEA_API_KEY 환경 변수를 설정하세요.\") self.session = requests.Session() self.session.headers.update({ \"X-API-KEY\": self.api_key, \"Accept\": \"application/json\", \"Content-Type\": \"application/json\" }) # 재시도 전략 구성 retry_strategy = Retry( total=max_retries, backoff_factor=1, status_forcelist=[429, 500, 502, 503, 504], ) adapter = HTTPAdapter(max_retries=retry_strategy) self.session.mount(\"https://\", adapter) def _request(self, method: str, endpoint: str, **kwargs) -\u003e Dict[str, Any]: \"\"\"속도 제한 처리와 함께 인증된 요청을 수행합니다.\"\"\" url = urljoin(self.BASE_URL, endpoint) try: response = self.session.request(method, url, **kwargs) # 속도 제한 처리 if response.status_code == 429: reset_time = int(response.headers.get(\"X-RateLimit-Reset\", 60)) logger.warning(f\"속도 제한됨. {reset_time}초 대기...\") time.sleep(reset_time) response = self.session.request(method, url, **kwargs) response.raise_for_status() return response.json() except requests.exceptions.RequestException as e: logger.error(f\"요청 실패: {e}\") raise def get_collections( self, chain: str = \"ethereum\", limit: int = 100, next_cursor: Optional[str] = None ) -\u003e Dict[str, Any]: \"\"\"페이징이 있는 NFT 컬렉션을 검색합니다.\"\"\" params = {\"chain\": chain, \"limit\": min(limit, 100)} if next_cursor: params[\"next\"] = next_cursor return self._request(\"GET\", \"/collections\", params=params) def get_collection_stats(self, collection_slug: str) -\u003e Dict[str, Any]: \"\"\"바닥 가격, 거래량, 공급량 통계를 가져옵니다.\"\"\" return self._request(\"GET\", f\"/collections/{collection_slug}/stats\") def get_nft( self, chain: str, contract_address: str, token_id: str ) -\u003e Dict[str, Any]: \"\"\"특정 NFT의 상세 정보를 가져옵니다.\"\"\" endpoint = f\"/chain/{chain}/contract/{contract_address}/nfts/{token_id}\" return self._request(\"GET\", endpoint) def get_listings( self, chain: str, contract_address: str, token_id: str, limit: int = 50 ) -\u003e List[Dict[str, Any]]: \"\"\"특정 NFT의 활성 상장을 가져옵니다.\"\"\" endpoint = f\"/orders/{chain}/seaport/listings\" params = { \"asset_contract_address\": contract_address, \"token_ids\": token_id, \"limit\": limit } return self._request(\"GET\", endpoint, params=params) def get_best_listing( self, chain: str, contract_address: str, token_id: str ) -\u003e Optional[Dict[str, Any]]: \"\"\"가장 저렴한 활성 상장을 가져옵니다.\"\"\" listings = self.get_listings(chain, contract_address, token_id, limit=1) return listings[0] if listings else None # SDK 초기화 sdk = OpenSeaAPI() # 컬렉션 통계 가져오기 stats = sdk.get_collection_stats(\"boredapeyachtclub\") print(f\"바닥: {stats[total][floor_price]}\") print(f\"거래량: {stats[total][volume]}\") 프로그래밍 방식으로 NFT 상장, 구매 및 판매하기 프로그래밍 방식 거래는 OpenSea API의 가장 강력한 기능입니다. 코드를 통해 NFT를 상장하고, 오퍼를 수락하고, 주문을 이행할 수 있습니다.\n상장 생성하기 NFT를 상장하려면 Seaport 주문을 생성해야 합니다. 이는 소유자의 개인 키로 주문에 서명해야 합니다: `````python from web3 import Web3\n이더리움 노드에 연결 w3 = Web3(Web3.HTTPProvider(“https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY\"))\n상장 매개변수 구성 listing_data = { “parameters”: { “offerer”: “0xYourWalletAddress”, “zone”: “0x0000000000000000000000000000000000000000”, “offer”: [{ “itemType”: 2, # ERC721 “token”: “0xNFTContractAddress”, “identifierOrCriteria”: “1234”, “startAmount”: “1”, “endAmount”: “1” }], “consideration”: [ { “itemType”: 0, # ETH “token”: “0x0000000000000000000000000000000000000000”, “identifierOrCriteria”: “0”, “startAmount”: “1000000000000000000”, # wei 단위의 1 ETH “endAmount”: “1000000000000000000”, “recipient”: “0xYourWalletAddress” }, { “itemType”: 0, “token”: “0x0000000000000000000000000000000000000000”, “identifierOrCriteria”: “0”, “startAmount”: “25000000000000000”, # 2.5% 수수료 “endAmount”: “25000000000000000”, “recipient”: “0x0000a26b00c1F0DF003000390027140000fAa719” # OpenSea 수수료 } ], “orderType”: 0, “startTime”: int(time.time()), “endTime”: int(time.time()) + 86400 * 7, # 7일 “zoneHash”: “0x0000000000000000000000000000000000000000000000000000000000000000”, “salt”: “0x” + os.urandom(32).hex(), “conduitKey”: “0x0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000”, “totalOriginalConsiderationItems”: 2 }, “signature”: “0x…” # 소유자의 개인 키로 서명 }\nOpenSea에 주문 제출 response = requests.post( f”{BASE_URL}/orders/ethereum/seaport/listings\", headers=headers, json=listing_data ) print(f\"상장 생성됨: {response.status_code}\")\n### 주문 이행하기 (NFT 구매) 상장된 NFT를 구매하려면 주문을 검색하고 이행 트랜잭션을 제출하세요: `````python def fulfill_order(order_hash: str, buyer_address: str): \"\"\"기존 주문을 이행하여 NFT를 구매합니다.\"\"\" # 주문 상세 정보 가져오기 order_response = requests.get( f\"{BASE_URL}/orders/ethereum/seaport/{order_hash}\", headers=headers ) order = order_response.json() # 이행 트랜잭션 구성 fulfillment_data = { \"order_hash\": order_hash, \"fulfiller\": buyer_address, \"offer\": order[\"protocol_data\"][\"parameters\"][\"offer\"], \"consideration\": order[\"protocol_data\"][\"parameters\"][\"consideration\"] } # Seaport 컨트랙트에 제출 seaport_address = \"0x0000000000000068F116a894984e2DB1123eB395\" seaport_contract = w3.eth.contract( address=seaport_address, abi=SEAPORT_ABI ) tx = seaport_contract.functions.fulfillBasicOrder( fulfillment_data ).build_transaction({ \"from\": buyer_address, \"value\": int(order[\"price\"][\"current\"][\"value\"]), \"gas\": 300000, \"nonce\": w3.eth.get_transaction_count(buyer_address) }) return tx # 가장 저렴한 상장 아이템 구매 cheapest = min(listings, key=lambda x: float(x[\"price\"])) tx = fulfill_order(cheapest[\"order_hash\"], \"0xBuyerWalletAddress\") 배치 작업 고빈도 거래를 위해 배치 엔드포인트를 사용하여 여러 작업을 처리하세요: `````python def batch_get_listings(requests_list: List[Dict]) -\u003e List[Dict]: “““단일 요청으로 여러 상장을 가져옵니다.””” response = requests.post( f\"{BASE_URL}/listings/batch\", headers=headers, json={“requests”: requests_list} ) return response.json()[“results”]\n여러 컬렉션에 대한 배치 요청 collections = [“boredapeyachtclub”, “cryptopunks”, “azuki”] requests_list = [{“collection”: c, “limit”: 5} for c in collections] batch_results = batch_get_listings(requests_list)\n* * * ## WebSocket을 통한 실시간 이벤트 스트리밍 OpenSea WebSocket API는 마켓플레이스 이벤트의 실시간 모니터링을 가능하게 합니다. 이는 즉각적인 업데이트가 필요한 트레이딩 봇, 알림 시스템, 분석 플랫폼에 필수적입니다. ### WebSocket 연결 설정 `````python import json import asyncio import websockets class OpenSeaStreamClient: \"\"\"실시간 OpenSea 이벤트 스트리밍을 위한 WebSocket 클라이언트.\"\"\" WS_URL = \"wss://stream.opensea.io/socket\" def __init__(self, api_key: str): self.api_key = api_key self.subscriptions = [] self.running = False async def connect(self): \"\"\"인증과 함께 WebSocket 연결을 설정합니다.\"\"\" self.ws = await websockets.connect( self.WS_URL, extra_headers={\"X-API-KEY\": self.api_key} ) logger.info(\"WebSocket 연결됨\") async def subscribe(self, event_type: str, filters: dict = None): \"\"\"특정 이벤트 스트림을 구독합니다.\"\"\" payload = { \"topic\": event_type, \"filters\": filters or {} } await self.ws.send(json.dumps({ \"method\": \"SUBSCRIBE\", \"params\": [payload] })) logger.info(f\"구독함: {event_type}\") async def listen(self, callback): \"\"\"들어오는 이벤트를 수신합니다.\"\"\" self.running = True while self.running: try: message = await self.ws.recv() data = json.loads(message) await callback(data) except websockets.exceptions.ConnectionClosed: logger.warning(\"연결 종료됨, 재연결 중...\") await self.connect() for sub in self.subscriptions: await self.subscribe(sub[\"type\"], sub.get(\"filters\")) async def disconnect(self): \"\"\"WebSocket 연결을 닫습니다.\"\"\" self.running = False await self.ws.close() # 이벤트 핸들러 async def handle_event(event: dict): \"\"\"들어오는 마켓플레이스 이벤트를 처리합니다.\"\"\" event_type = event.get(\"event_type\") payload = event.get(\"payload\", {}) if event_type == \"item_listed\": print(f\"[상장] {payload[name]} 가격 {payload[base_price]} ETH\") elif event_type == \"item_sold\": print(f\"[판매] {payload[name]}이(가) {payload[sale_price]} ETH에 판매됨\") elif event_type == \"item_cancelled\": print(f\"[취소] {payload[name]}\") elif event_type == \"collection_offer\": print(f\"[오퍼] {payload[collection_slug]}에 대한 컬렉션 오퍼\") # 이벤트 스트림 실행 async def main(): client = OpenSeaStreamClient(api_key=API_KEY) await client.connect() # 이벤트 구독 await client.subscribe(\"item_listed\", {\"collection_slug\": \"boredapeyachtclub\"}) await client.subscribe(\"item_sold\", {\"collection_slug\": \"boredapeyachtclub\"}) # 수신 시작 await client.listen(handle_event) # asyncio.run(main()) 이벤트 유형 참조 WebSocket API는 다양한 사용 사례를 위한 여러 이벤트 유형을 지원합니다: `````python\n사용 가능한 이벤트 유형 EVENT_TYPES = { “item_listed”: “새 상장 생성됨”, “item_sold”: “아이템 구매됨”, “item_cancelled”: “상장 취소됨”, “item_received_bid”: “새 입찰”, “item_received_offer”: “새 오퍼”, “collection_offer”: “전체 컬렉션 오퍼”, “trait_offer”: “특정 특성 오퍼”, “item_metadata_updated”: “NFT 메타데이터 새로고침됨”, “item_transfer”: “토큰 전송됨” }\n* * * ## 속도 제한 및 모범 사례 속도 제한을 이해하는 것은 프로덕션 애플리케이션에 매우 중요합니다. 제한을 초과하면 거래 운영을 중단시킬 수 있는 임시 차단이 발생합니다. ### 속도 제한 계층 | 계층 | 초당 요청 | 버스트 제한 | 사용 사례 | |------|----------|------------|----------| | 묶음 | 1 | 5 | 개발, 테스트 | | 개발자 | 10 | 50 | 소규모 애플리케이션 | | 전문가 | 40 | 200 | 트레이딩 봇, 분석 | | 기업 | 120+ | 600+ | 고빈도 거래 | ### 속도 제한 헤더 모든 API 응답은 속도 제한 헤더를 포함합니다: `````python def check_rate_limits(response: requests.Response): \"\"\"속도 제한 상태를 추출하고 모니터링합니다.\"\"\" limit = response.headers.get(\"X-RateLimit-Limit\") remaining = response.headers.get(\"X-RateLimit-Remaining\") reset = response.headers.get(\"X-RateLimit-Reset\") print(f\"속도 제한: {remaining}/{limit}\") print(f\"초기화까지: {reset}초\") # 제한에 근접하면 경고 if int(remaining) \u003c 10: logger.warning(f\"속도 제한에 근접! 남은 요청 {remaining}개\") return { \"limit\": int(limit) if limit else None, \"remaining\": int(remaining) if remaining else None, \"reset\": int(reset) if reset else None } # 모든 요청에 적용 response = requests.get(f\"{BASE_URL}/collections\", headers=headers) limits = check_rate_limits(response) 백오프 전략 구현 import random class AdaptiveRateLimiter: \"\"\"지수 백오프가 있는 적응형 속도 제한기.\"\"\" def __init__(self, base_delay: float = 1.0, max_delay: float = 60.0): self.base_delay = base_delay self.max_delay = max_delay self.current_delay = base_delay self.consecutive_errors = 0 def wait(self): \"\"\"적응형 지연과 함께 대기합니다.\"\"\" jitter = random.uniform(0, 0.5) time.sleep(self.current_delay + jitter) def on_success(self): \"\"\"성공한 요청 후 지연을 줄입니다.\"\"\" self.consecutive_errors = 0 self.current_delay = max(self.base_delay, self.current_delay * 0.8) def on_error(self, status_code: int): \"\"\"오류 후 지연을 증가시킵니다.\"\"\" self.consecutive_errors += 1 if status_code == 429: self.current_delay = min( self.max_delay, self.current_delay * 2 ** self.consecutive_errors ) logger.warning(f\"속도 제한됨. 백오프: {self.current_delay}초\") # 요청 루프에서 사용 limiter = AdaptiveRateLimiter(base_delay=0.5) for page in range(100): limiter.wait() try: response = requests.get(f\"{BASE_URL}/assets\", headers=headers, params={\"offset\": page * 50}) response.raise_for_status() limiter.on_success() process_assets(response.json()) except requests.exceptions.HTTPError as e: limiter.on_error(e.response.status_code) 캐싱 전략 from functools import lru_cache from datetime import datetime, timedelta class OpenSeaCache: \"\"\"API 응답을 위한 간단한 TTL 캐시.\"\"\" def __init__(self, ttl_seconds: int = 60): self.cache = {} self.ttl = ttl_seconds def get(self, key: str): if key in self.cache: value, expiry = self.cache[key] if datetime.now() \u003c expiry: return value del self.cache[key] return None def set(self, key: str, value): expiry = datetime.now() + timedelta(seconds=self.ttl) self.cache[key] = (value, expiry) # 컬렉션 메타데이터 캐싱 (드물게 변경됨) collection_cache = OpenSeaCache(ttl_seconds=300) def get_cached_collection(slug: str): cached = collection_cache.get(slug) if cached: return cached data = sdk.get_collection_stats(slug) collection_cache.set(slug, data) return data 트레이딩 봇 구축: 완전한 예제 다음은 컬렉션 간 바닥 가격을 모니터링하는 차익 거래 탐지 트레이딩 봇의 완전한 예제입니다: `````python import time from dataclasses import dataclass from typing import Callable\n@dataclass class ArbitrageOpportunity: collection: str token_id: str listed_price: float estimated_value: float profit_margin: float listing_url: str\nclass NFTArbitrageBot: “““OpenSea API를 사용하는 간단한 차익 거래 탐지 봇.”””\ndef __init__(self, api: OpenSeaAPI, min_profit_pct: float = 15.0): self.api = api self.min_profit_pct = min_profit_pct self.watchlist = [] self.callbacks: List[Callable] = [] def add_collection(self, collection_slug: str, floor_threshold: float): \"\"\"감시 목록에 컬렉션을 추가합니다.\"\"\" self.watchlist.append({ \"slug\": collection_slug, \"threshold\": floor_threshold }) def on_opportunity(self, callback: Callable): \"\"\"차익 거래 기회에 대한 콜백을 등록합니다.\"\"\" self.callbacks.append(callback) def analyze_collection(self, collection: dict) -\u003e List[ArbitrageOpportunity]: \"\"\"저가 상장을 위해 컬렉션을 스캔합니다.\"\"\" slug = collection[\"slug\"] # 바닥 가격과 활성 상장 가져오기 stats = self.api.get_collection_stats(slug) floor_price = float(stats[\"total\"][\"floor_price\"]) listings = self.api.get_listings( chain=\"ethereum\", contract_address=collection.get(\"contract\"), limit=50 ) opportunities = [] for listing in listings: price = float(listing[\"price\"]) # 바닥 가격보다 현저히 낮은지 확인 if price \u003c floor_price * (1 - self.min_profit_pct / 100): opp = ArbitrageOpportunity( collection=slug, token_id=listing[\"token_id\"], listed_price=price, estimated_value=floor_price, profit_margin=((floor_price - price) / price) * 100, listing_url=f\"https://opensea.io/assets/ethereum/{collection[contract]}/{listing[token_id]}\" ) opportunities.append(opp) # 콜백 알림 for cb in self.callbacks: cb(opp) return opportunities def run(self, interval: int = 30): \"\"\"지정된 확인 간격으로 봇을 실행합니다.\"\"\" logger.info(f\"봇 시작, {len(self.watchlist)}개 컬렉션 모니터링 중\") try: while True: for collection in self.watchlist: try: opps = self.analyze_collection(collection) if opps: logger.info(f\"{collection[slug]}에서 {len(opps)}개의 기회 발견\") except Exception as e: logger.error(f\"{collection[slug]} 분석 중 오류: {e}\") time.sleep(interval) except KeyboardInterrupt: logger.info(\"사용자가 봇을 중지함\") 사용 예시 def notify_discord(opp: ArbitrageOpportunity): “““기회에 대한 Discord 알림을 볃냅니다.””” message = f\"\"\" 차익 거래 알림! 컬렉션: {opp.collection} 토큰: #{opp.token_id} 상장 가격: {opp.listed_price:.4f} ETH 바닥 가격: {opp.estimated_value:.4f} ETH 수익: {opp.profit_margin:.1f}% 상장 보기 \"\"\" # send_to_discord_webhook(message)\nbot = NFTArbitrageBot(sdk, min_profit_pct=20.0) bot.add_collection(“boredapeyachtclub”, floor_threshold=30.0) bot.add_collection(“azuki”, floor_threshold=10.0) bot.on_opportunity(notify_discord)\nbot.run(interval=60) * * * ## 오류 처리 및 디버깅 프로덕션 애플리케이션에는 강력한 오류 처리가 필요합니다. OpenSea API는 구조화된 오류 응답을 반환합니다: `````python class OpenSeaAPIError(Exception): \"\"\"OpenSea API 오류용 사용자 정의 예외.\"\"\" def __init__(self, message: str, status_code: int = None, response_data: dict = None): super().__init__(message) self.status_code = status_code self.response_data = response_data or {} def handle_api_error(response: requests.Response): \"\"\"적절한 예외를 구문 분석하고 발생시킵니다.\"\"\" try: error_data = response.json() except ValueError: error_data = {\"message\": response.text} error_map = { 400: (\"잘못된 요청\", ValueError), 401: (\"인증되지 않음 - API 키 확인\", PermissionError), 403: (\"금지됨 - 권한 부족\", PermissionError), 404: (\"리소스를 찾을 수 없음\", KeyError), 429: (\"속도 제한 초과\", TimeoutError), 500: (\"낮부 서버 오류\", RuntimeError), 503: (\"서비스를 사용할 수 없음\", ConnectionError) } error_msg, error_class = error_map.get( response.status_code, (f\"HTTP {response.status_code}\", RuntimeError) ) detail = error_data.get(\"message\", error_data.get(\"detail\", \"알 수 없는 오류\")) raise error_class(f\"{error_msg}: {detail}\") # SDK에 적용 class RobustOpenSeaAPI(OpenSeaAPI): def _request(self, method: str, endpoint: str, **kwargs): response = self.session.request(method, self.BASE_URL + endpoint, **kwargs) if not response.ok: handle_api_error(response) return response.json() 자주 묻는 질문 OpenSea API 키는 어떻게 얻나요? OpenSea 개발자 대시보드를 방문하여 지갑으로 로그인하고 개발자 신청을 완료하세요. 승인은 일반적으로 1-3영업일이 소요됩니다. 사용 사례를 설명하고 API 서비스 약관에 동의해야 합니다. 엔터프라이즈 계층 키에는 추가 인증과 직접적인 파트너십 계약이 필요합니다.\nOpenSea API의 속도 제한은 무엇인가요? 속도 제한은 API 계층에 따라 다릅니다. 묶음 계층은 초당 1개 요청, 버스트 5개를 허용합니다. 개발자 계층은 이를 초당 10개 요청, 버스트 50개로 증가시킵니다. 전문가 계층은 초당 40개 요청, 버스트 200개를 지원합니다. 엔터프라이즈 계층은 고빈도 트레이딩 애플리케이션을 위해 초당 120개 이상을 제공합니다. 사용량을 모니터링하려면 모든 응답의 X-RateLimit-* 헤더를 확인하세요.\nAPI를 통해 NFT를 사고 팔 수 있나요? 예, API는 완전한 프로그래밍 방식 거래를 지원합니다. 코드를 통해 상장을 생성하고, 오퍼를 수락하고, 주문을 이행할 수 있습니다. 하지만 NFT를 소유한 지갑의 개인 키가 필요합니다. 모든 거래는 가스 비용이 필요한 온체인 서명이 필요한 Seaport 프로토콜을 통해 실행됩니다.\nOpenSea API는 어떤 블록체인을 지원하나요? 2026년 현재 OpenSea API는 이더리움 메인넷, 폴리곤(PoS 및 zkEVM), 아비트럼 원, 옵티미즘, 베이스, 조라, 세폴리아 테스트넷을 지원합니다. 각 체인에는 자체 엔드포인트 접두사가 있습니다(예: /chain/ethereum/, /chain/polygon/). 교차 체인 애그리게이션 엔드포인트를 통해 여러 네트워크를 동시에 쿼리할 수 있습니다.\nOpenSea에 공식 Python SDK가 있나요? OpenSea에는 공식 Python SDK가 없습니다. 공식 SDK는 opensea-js(JavaScript/TypeScript)입니다. 하지만 여러 커뮤니티에서 유지 관리하는 Python 패키지가 존재하며, 이 가이드에서 설명한 것처럼 requests 라이브러리를 사용하여 자체 통합을 쉽게 구축할 수 있습니다. REST API는 잘 문서화되어 있고 표준 규칙을 따릅니다.\n실시간 이벤트를 어떻게 스트리밍하나요? wss://stream.opensea.io/socket에서 WebSocket API를 사용하세요. 선택적 컬렉션 필터와 함께 item_listed, item_sold, item_cancelled 등의 이벤트 유형을 구독하세요. WebSocket 연결에는 ````X-API-KEY``` 헤더에 API 키가 필요합니다. 프로덕션 안정성을 위해 재연결 로직을 구현하세요.\nSeaport 프로토콜이란 무엇인가요? Seaport는 OpenSea의 탈중앙화된 NFT 트레이딩 프로토콜입니다. 주문 매칭, 이행, 수수료 분배를 처리하는 오픈 소스 스마트 컨트랙트 표준입니다. API를 통해 주문을 생성하거나 이행할 때, 온체인의 Seaport 컨트랙트와 상호작용하는 것입니다. 이 프로토콜은 조건 기반 주문, 부분 채우기, 대량 실행과 같은 고급 기능을 지원합니다.\n추천 호스팅 및 인프라 DigitalOcean — 60일 $200 무료 크레딧. HTStack — 홍콩 VPS, 중국 본토 저지연 접속. 제휴 링크 — 추가 비용 없이 dibi8.com 운영을 지원합니다.\n결론 OpenSea API는 2026년 현재 가장 포괄적이고 실전 검증된 NFT 마켓플레이스 API입니다. 여러 블록체인에 대한 지원, 실시간 WebSocket 스트리밍, 완전한 프로그래밍 방식 거래 기능을 갖추고 있어 정교한 NFT 애플리케이션을 구축하는 데 필요한 모든 것을 개발자에게 제공합니다.\n이 가이드의 핵심 요점: - 인증: 개발자 대시보드에서 API 키를 얻고 항상 환경 변수를 사용하세요\nSDK 전략: 공식 JavaScript SDK를 사용하거나 재시도 로직으로 사용자 정의 Python 래퍼를 구축하세요 거래: 프로그래밍 방식 매수/매도를 위해 Seaport 주문 생성 및 이행을 이해하세요 실시간: 즉각적인 이벤트 알림을 위해 WebSocket 스트림을 활용하세요 속도 제한: 계층 제한 내에서 유지하기 위해 적응형 백오프와 캐싱을 구현하세요 오류 처리: 프로덕션 안정성을 위해 강력한 오류 처리를 구축하세요 간단한 포트폴리오 추적기든 고빈도 트레이딩 봇이든, OpenSea API는 세계 최대의 NFT 마켓플레이스와 프로그래밍 방식으로 상호작용하는 데 필요한 인프라를 제공합니다. 이 가이드의 예제부터 시작하고, 속도 제한을 모니터링하며, 필요에 따라 애플리케이션을 확장하세요.\n이 문서는 2026-05-19에 작성되었습니다. API 사양과 속도 제한은 변경될 수 있습니다. 최신 업데이트는 공식 OpenSea 문서를 참조하세요.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “opensea-nft-marketplace-api”, “datePublished”: “2026-05-20”, “dateModified”: “2026-05-20”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/opensea-nft-marketplace-api\" } } Frequently Asked Questions (FAQ) 问：量化交易的风险有多大？\n取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。\n问：如何选择适合的交易策略？\n根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。\n问：回测结果可信吗？\n回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。\n问：需要编程基础吗？\n基础策略可使用低代码平台，高级策略需要Python/C++编程能力。\n问：交易系统的维护成本？\n包括服务器费用、数据订阅、算法更新、以及监控维护时间。\n",
-  "wordCount" : "3117",
+  "articleBody": "The non-fungible token (NFT) ecosystem has matured significantly since its explosive growth in 2021. What began as a niche market for digital art has evolved into a multi-billion dollar infrastructure layer spanning gaming, real estate, identity, and decentralized finance. At the center of this transformation stands OpenSea, the world’s largest NFT marketplace, and its powerful OpenSea API that enables developers to build programmatic trading systems, analytics dashboards, and automated collection management tools.\nIn this comprehensive 2026 guide, we will explore everything you need to know about the OpenSea API: from obtaining your API key and setting up the Python SDK to listing NFTs, executing trades, streaming real-time events via WebSocket, and handling rate limits in production environments. Whether you are building a trading bot, a portfolio tracker, or a marketplace aggregator, this guide provides the complete technical foundation.\nWhat Is the OpenSea API? The OpenSea API is a RESTful and WebSocket-based programming interface that provides full access to the OpenSea NFT marketplace. It allows developers to query NFT collections, retrieve asset metadata, list items for sale, fulfill orders, track account activity, and subscribe to real-time event streams — all without manually interacting with the OpenSea website.\nAs of 2026, the OpenSea API supports multiple blockchain networks including Ethereum, Polygon, Arbitrum, Optimism, Base, and Zora. The API is maintained by ProjectOpenSea and has become the de facto standard for NFT marketplace integration, with over 1,200 GitHub stars on its official JavaScript SDK repository and an active developer community contributing wrappers for Python, Go, and Rust.\nThe API follows modern REST conventions with JSON request/response formats, uses API key-based authentication, and implements standard HTTP status codes for error handling. For real-time applications, the WebSocket API provides event streaming for trades, listings, transfers, and collection updates with sub-second latency.\nGetting Started: API Key Setup and Authentication Before making any API calls, you need to register for an API key through the OpenSea Developer Portal. The API key is required for all authenticated endpoints and determines your rate limit tier.\nStep 1: Create a Developer Account Visit the OpenSea Developer Dashboard and sign in with your wallet or email address. Complete the developer verification process, which includes agreeing to the API terms of service and providing a brief description of your intended use case.\nStep 2: Generate Your API Key Once approved, create a new API key from the dashboard. You will receive two credentials: - API Key: Used for identifying your application\nAPI Secret: Used for signing certain authenticated requests Store these credentials securely in environment variables: ````bash\n.env file OPENSEA_API_KEY=your_api_key_here OPENSEA_API_SECRET=your_api_secret_here\n### Step 3: Test Your Authentication Verify your API key is working with a simple health check: `````python import os import requests from dotenv import load_dotenv load_dotenv() API_KEY = os.getenv(\"OPENSEA_API_KEY\") BASE_URL = \"https://api.opensea.io/api/v2\" headers = { \"X-API-KEY\": API_KEY, \"Accept\": \"application/json\" } # Test authentication by fetching collections response = requests.get( f\"{BASE_URL}/collections\", headers=headers, params={\"chain\": \"ethereum\", \"limit\": 5} ) print(f\"Status: {response.status_code}\") print(f\"Collections: {len(response.json()[collections])}\") Step 4: SDK Installation Install the official JavaScript SDK or a community Python wrapper: `````bash\nOfficial JavaScript SDK npm install opensea-js\nPython community SDK pip install opensea-api\nOr use requests directly pip install requests python-dotenv\n* * * ## OpenSea API Endpoints Overview The OpenSea API is organized into logical endpoint groups covering every aspect of the NFT marketplace. Understanding these endpoint categories is essential for building efficient applications. ### Collections and Metadata Endpoints Collection endpoints provide comprehensive metadata about NFT collections, including floor prices, volume statistics, trait distributions, and social links. `````python def get_collection_details(collection_slug: str): \"\"\"Fetch detailed information about an NFT collection.\"\"\" endpoint = f\"{BASE_URL}/collections/{collection_slug}\" response = requests.get(endpoint, headers=headers) data = response.json() return { \"name\": data[\"name\"], \"slug\": data[\"collection\"], \"contract_address\": data[\"contracts\"][0][\"address\"], \"floor_price\": data[\"floor_prices\"][0][\"value\"] if data.get(\"floor_prices\") else None, \"total_supply\": data[\"total_supply\"], \"category\": data.get(\"category\"), \"created_date\": data[\"created_date\"] } # Example usage crypto_punks = get_collection_details(\"cryptopunks\") print(f\"CryptoPunks floor: {crypto_punks[floor_price]} ETH\") Asset Querying Endpoints Asset endpoints allow you to retrieve individual NFT metadata, ownership information, and listing status.\ndef get_asset_details(chain: str, address: str, token_id: str): \"\"\"Retrieve metadata for a specific NFT asset.\"\"\" endpoint = f\"{BASE_URL}/chain/{chain}/contract/{address}/nfts/{token_id}\" response = requests.get(endpoint, headers=headers) data = response.json()[\"nft\"] return { \"identifier\": data[\"identifier\"], \"token_standard\": data[\"token_standard\"], \"name\": data[\"name\"], \"description\": data.get(\"description\"), \"image_url\": data[\"image_url\"], \"metadata_url\": data[\"metadata_url\"], \"traits\": data.get(\"traits\", []), \"owners\": data.get(\"owners\", []) } # Fetch a specific Bored Ape bored_ape = get_asset_details( chain=\"ethereum\", address=\"0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D\", token_id=\"1234\" ) print(f\"Asset: {bored_ape[name]}\") print(f\"Traits count: {len(bored_ape[traits])}\") Listing and Order Endpoints Listing endpoints manage the creation, retrieval, and cancellation of NFT sell orders. These are the core endpoints for programmatic trading.\ndef get_listings_by_collection(collection_slug: str, limit: int = 20): \"\"\"Get active listings for a specific collection.\"\"\" endpoint = f\"{BASE_URL}/listings/collection/{collection_slug}/all\" params = {\"limit\": limit} response = requests.get(endpoint, headers=headers, params=params) listings = response.json()[\"listings\"] return [{ \"order_hash\": l[\"order_hash\"], \"price\": l[\"price\"][\"current\"][\"value\"], \"currency\": l[\"price\"][\"current\"][\"currency\"], \"token\": { \"contract\": l[\"protocol_data\"][\"parameters\"][\"offer\"][0][\"token\"], \"identifier\": l[\"protocol_data\"][\"parameters\"][\"offer\"][0][\"identifierOrCriteria\"] }, \"maker\": l[\"protocol_data\"][\"parameters\"][\"offerer\"], \"expiration\": l[\"expiration_time\"] } for l in listings] # Get cheapest listings listings = get_listings_by_collection(\"boredapeyachtclub\", limit=10) for listing in sorted(listings, key=lambda x: float(x[\"price\"])): print(f\"Price: {listing[price]} | Token: {listing[token][identifier]}\") Account and Activity Endpoints Track wallet activity, owned assets, and historical events for any Ethereum address.\ndef get_account_events(account_address: str, event_type: str = \"order\", limit: int = 50): \"\"\"Retrieve activity events for a specific account.\"\"\" endpoint = f\"{BASE_URL}/events/accounts/{account_address}\" params = { \"event_type\": event_type, \"limit\": limit } response = requests.get(endpoint, headers=headers, params=params) events = response.json().get(\"asset_events\", []) return [{ \"event_type\": e[\"event_type\"], \"order_hash\": e.get(\"order_hash\"), \"asset\": e.get(\"asset\", {}).get(\"name\"), \"quantity\": e.get(\"quantity\"), \"payment\": e.get(\"payment\", {}).get(\"quantity\") if e.get(\"payment\") else None, \"timestamp\": e[\"event_timestamp\"] } for e in events] # Monitor whale wallet activity whale_address = \"0x3b417faee9d1458e\" events = get_account_events(whale_address, event_type=\"sale\", limit=20) for event in events: print(f\"{event[timestamp]}: {event[asset]} sold for {event[payment]}\") Building a Python SDK Integration While the official OpenSea SDK is written in JavaScript/TypeScript, Python developers can build robust integrations using the requests library or community-maintained packages. Here is a production-ready Python SDK wrapper that handles authentication, pagination, error retries, and rate limiting.\nComplete Python SDK Class import os import time import logging from typing import Optional, List, Dict, Any from urllib.parse import urljoin import requests from requests.adapters import HTTPAdapter from urllib3.util.retry import Retry logging.basicConfig(level=logging.INFO) logger = logging.getLogger(__name__) class OpenSeaAPI: \"\"\"Production-ready Python SDK for the OpenSea API.\"\"\" BASE_URL = \"https://api.opensea.io/api/v2\" def __init__(self, api_key: Optional[str] = None, max_retries: int = 3): self.api_key = api_key or os.getenv(\"OPENSEA_API_KEY\") if not self.api_key: raise ValueError(\"API key required. Set OPENSEA_API_KEY environment variable.\") self.session = requests.Session() self.session.headers.update({ \"X-API-KEY\": self.api_key, \"Accept\": \"application/json\", \"Content-Type\": \"application/json\" }) # Configure retry strategy retry_strategy = Retry( total=max_retries, backoff_factor=1, status_forcelist=[429, 500, 502, 503, 504], ) adapter = HTTPAdapter(max_retries=retry_strategy) self.session.mount(\"https://\", adapter) def _request(self, method: str, endpoint: str, **kwargs) -\u003e Dict[str, Any]: \"\"\"Make an authenticated request with rate limit handling.\"\"\" url = urljoin(self.BASE_URL, endpoint) try: response = self.session.request(method, url, **kwargs) # Handle rate limiting if response.status_code == 429: reset_time = int(response.headers.get(\"X-RateLimit-Reset\", 60)) logger.warning(f\"Rate limited. Waiting {reset_time} seconds...\") time.sleep(reset_time) response = self.session.request(method, url, **kwargs) response.raise_for_status() return response.json() except requests.exceptions.RequestException as e: logger.error(f\"Request failed: {e}\") raise def get_collections( self, chain: str = \"ethereum\", limit: int = 100, next_cursor: Optional[str] = None ) -\u003e Dict[str, Any]: \"\"\"Retrieve NFT collections with pagination.\"\"\" params = {\"chain\": chain, \"limit\": min(limit, 100)} if next_cursor: params[\"next\"] = next_cursor return self._request(\"GET\", \"/collections\", params=params) def get_collection_stats(self, collection_slug: str) -\u003e Dict[str, Any]: \"\"\"Get floor price, volume, and supply statistics.\"\"\" return self._request(\"GET\", f\"/collections/{collection_slug}/stats\") def get_nft( self, chain: str, contract_address: str, token_id: str ) -\u003e Dict[str, Any]: \"\"\"Fetch a specific NFT's details.\"\"\" endpoint = f\"/chain/{chain}/contract/{contract_address}/nfts/{token_id}\" return self._request(\"GET\", endpoint) def get_listings( self, chain: str, contract_address: str, token_id: str, limit: int = 50 ) -\u003e List[Dict[str, Any]]: \"\"\"Get active listings for a specific NFT.\"\"\" endpoint = f\"/orders/{chain}/seaport/listings\" params = { \"asset_contract_address\": contract_address, \"token_ids\": token_id, \"limit\": limit } return self._request(\"GET\", endpoint, params=params) def get_best_listing( self, chain: str, contract_address: str, token_id: str ) -\u003e Optional[Dict[str, Any]]: \"\"\"Get the lowest-priced active listing.\"\"\" listings = self.get_listings(chain, contract_address, token_id, limit=1) return listings[0] if listings else None # Initialize SDK sdk = OpenSeaAPI() # Fetch collection stats stats = sdk.get_collection_stats(\"boredapeyachtclub\") print(f\"Floor: {stats[total][floor_price]}\") print(f\"Volume: {stats[total][volume]}\") Listing, Buying, and Selling NFTs Programmatically Programmatic trading is the most powerful feature of the OpenSea API. You can list NFTs for sale, accept offers, and fulfill orders entirely through code.\nCreating a Listing To list an NFT, you need to create a Seaport order. This requires signing the order with the owner’s private key: `````python from web3 import Web3\nConnect to Ethereum node w3 = Web3(Web3.HTTPProvider(“https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY\"))\nBuild listing parameters listing_data = { “parameters”: { “offerer”: “0xYourWalletAddress”, “zone”: “0x0000000000000000000000000000000000000000”, “offer”: [{ “itemType”: 2, # ERC721 “token”: “0xNFTContractAddress”, “identifierOrCriteria”: “1234”, “startAmount”: “1”, “endAmount”: “1” }], “consideration”: [ { “itemType”: 0, # ETH “token”: “0x0000000000000000000000000000000000000000”, “identifierOrCriteria”: “0”, “startAmount”: “1000000000000000000”, # 1 ETH in wei “endAmount”: “1000000000000000000”, “recipient”: “0xYourWalletAddress” }, { “itemType”: 0, “token”: “0x0000000000000000000000000000000000000000”, “identifierOrCriteria”: “0”, “startAmount”: “25000000000000000”, # 2.5% fee “endAmount”: “25000000000000000”, “recipient”: “0x0000a26b00c1F0DF003000390027140000fAa719” # OpenSea fee } ], “orderType”: 0, “startTime”: int(time.time()), “endTime”: int(time.time()) + 86400 * 7, # 7 days “zoneHash”: “0x0000000000000000000000000000000000000000000000000000000000000000”, “salt”: “0x” + os.urandom(32).hex(), “conduitKey”: “0x0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000”, “totalOriginalConsiderationItems”: 2 }, “signature”: “0x…” # Signed with owner’s private key }\nSubmit order to OpenSea response = requests.post( f”{BASE_URL}/orders/ethereum/seaport/listings\", headers=headers, json=listing_data ) print(f\"Listing created: {response.status_code}\")\n### Fulfilling an Order (Buying an NFT) To purchase a listed NFT, retrieve the order and submit a fulfillment transaction: `````python def fulfill_order(order_hash: str, buyer_address: str): \"\"\"Fulfill an existing order to purchase an NFT.\"\"\" # Get order details order_response = requests.get( f\"{BASE_URL}/orders/ethereum/seaport/{order_hash}\", headers=headers ) order = order_response.json() # Build fulfillment transaction fulfillment_data = { \"order_hash\": order_hash, \" fulfiller\": buyer_address, \"offer\": order[\"protocol_data\"][\"parameters\"][\"offer\"], \"consideration\": order[\"protocol_data\"][\"parameters\"][\"consideration\"] } # Submit to Seaport contract seaport_address = \"0x0000000000000068F116a894984e2DB1123eB395\" seaport_contract = w3.eth.contract( address=seaport_address, abi=SEAPORT_ABI ) tx = seaport_contract.functions.fulfillBasicOrder( fulfillment_data ).build_transaction({ \"from\": buyer_address, \"value\": int(order[\"price\"][\"current\"][\"value\"]), \"gas\": 300000, \"nonce\": w3.eth.get_transaction_count(buyer_address) }) return tx # Buy the cheapest listed item cheapest = min(listings, key=lambda x: float(x[\"price\"])) tx = fulfill_order(cheapest[\"order_hash\"], \"0xBuyerWalletAddress\") Batch Operations For high-frequency trading, use batch endpoints to process multiple operations: `````python def batch_get_listings(requests_list: List[Dict]) -\u003e List[Dict]: “““Fetch multiple listings in a single request.””” response = requests.post( f\"{BASE_URL}/listings/batch\", headers=headers, json={“requests”: requests_list} ) return response.json()[“results”]\nBatch request multiple collections collections = [“boredapeyachtclub”, “cryptopunks”, “azuki”] requests_list = [{“collection”: c, “limit”: 5} for c in collections] batch_results = batch_get_listings(requests_list)\n* * * ## Real-Time Event Streaming with WebSocket The OpenSea WebSocket API enables real-time monitoring of marketplace events. This is essential for trading bots, notification systems, and analytics platforms that need instant updates. ### WebSocket Connection Setup `````python import json import asyncio import websockets class OpenSeaStreamClient: \"\"\"WebSocket client for real-time OpenSea event streaming.\"\"\" WS_URL = \"wss://stream.opensea.io/socket\" def __init__(self, api_key: str): self.api_key = api_key self.subscriptions = [] self.running = False async def connect(self): \"\"\"Establish WebSocket connection with authentication.\"\"\" self.ws = await websockets.connect( self.WS_URL, extra_headers={\"X-API-KEY\": self.api_key} ) logger.info(\"WebSocket connected\") async def subscribe(self, event_type: str, filters: dict = None): \"\"\"Subscribe to a specific event stream.\"\"\" payload = { \"topic\": event_type, \"filters\": filters or {} } await self.ws.send(json.dumps({ \"method\": \"SUBSCRIBE\", \"params\": [payload] })) logger.info(f\"Subscribed to: {event_type}\") async def listen(self, callback): \"\"\"Listen for incoming events.\"\"\" self.running = True while self.running: try: message = await self.ws.recv() data = json.loads(message) await callback(data) except websockets.exceptions.ConnectionClosed: logger.warning(\"Connection closed, reconnecting...\") await self.connect() for sub in self.subscriptions: await self.subscribe(sub[\"type\"], sub.get(\"filters\")) async def disconnect(self): \"\"\"Close WebSocket connection.\"\"\" self.running = False await self.ws.close() # Event handler async def handle_event(event: dict): \"\"\"Process incoming marketplace events.\"\"\" event_type = event.get(\"event_type\") payload = event.get(\"payload\", {}) if event_type == \"item_listed\": print(f\"[LISTED] {payload[name]} at {payload[base_price]} ETH\") elif event_type == \"item_sold\": print(f\"[SOLD] {payload[name]} for {payload[sale_price]} ETH\") elif event_type == \"item_cancelled\": print(f\"[CANCELLED] {payload[name]}\") elif event_type == \"collection_offer\": print(f\"[OFFER] Collection offer on {payload[collection_slug]}\") # Run event stream async def main(): client = OpenSeaStreamClient(api_key=API_KEY) await client.connect() # Subscribe to events await client.subscribe(\"item_listed\", {\"collection_slug\": \"boredapeyachtclub\"}) await client.subscribe(\"item_sold\", {\"collection_slug\": \"boredapeyachtclub\"}) # Start listening await client.listen(handle_event) # asyncio.run(main()) Event Types Reference The WebSocket API supports multiple event types for different use cases: `````python\nAvailable event types EVENT_TYPES = { “item_listed”: “New listing created”, “item_sold”: “Item purchased”, “item_cancelled”: “Listing cancelled”, “item_received_bid”: “New bid placed”, “item_received_offer”: “New offer received”, “collection_offer”: “Collection-wide offer”, “trait_offer”: “Trait-specific offer”, “item_metadata_updated”: “NFT metadata refreshed”, “item_transfer”: “Token transferred” }\n* * * ## Rate Limiting and Best Practices Understanding rate limits is critical for production applications. Exceeding limits results in temporary bans that can disrupt trading operations. ### Rate Limit Tiers | Tier | Requests/Second | Burst Limit | Use Case | | * * * | * * * | * * * | * * * | | Free | 1 | 5 | Development, testing | | Developer | 10 | 50 | Small applications | | Professional | 40 | 200 | Trading bots, analytics | | Enterprise | 120+ | 600+ | High-frequency trading | ### Rate Limit Headers Every API response includes rate limit headers: `````python def check_rate_limits(response: requests.Response): \"\"\"Extract and monitor rate limit status.\"\"\" limit = response.headers.get(\"X-RateLimit-Limit\") remaining = response.headers.get(\"X-RateLimit-Remaining\") reset = response.headers.get(\"X-RateLimit-Reset\") print(f\"Rate Limit: {remaining}/{limit}\") print(f\"Resets in: {reset} seconds\") # Warning if approaching limit if int(remaining) \u003c 10: logger.warning(f\"Approaching rate limit! {remaining} requests remaining\") return { \"limit\": int(limit) if limit else None, \"remaining\": int(remaining) if remaining else None, \"reset\": int(reset) if reset else None } # Apply to every request response = requests.get(f\"{BASE_URL}/collections\", headers=headers) limits = check_rate_limits(response) Implementing Backoff Strategies import random class AdaptiveRateLimiter: \"\"\"Adaptive rate limiter with exponential backoff.\"\"\" def __init__(self, base_delay: float = 1.0, max_delay: float = 60.0): self.base_delay = base_delay self.max_delay = max_delay self.current_delay = base_delay self.consecutive_errors = 0 def wait(self): \"\"\"Wait with adaptive delay.\"\"\" jitter = random.uniform(0, 0.5) time.sleep(self.current_delay + jitter) def on_success(self): \"\"\"Reduce delay after successful request.\"\"\" self.consecutive_errors = 0 self.current_delay = max(self.base_delay, self.current_delay * 0.8) def on_error(self, status_code: int): \"\"\"Increase delay after error.\"\"\" self.consecutive_errors += 1 if status_code == 429: self.current_delay = min( self.max_delay, self.current_delay * 2 ** self.consecutive_errors ) logger.warning(f\"Rate limited. Backoff: {self.current_delay}s\") # Usage in request loop limiter = AdaptiveRateLimiter(base_delay=0.5) for page in range(100): limiter.wait() try: response = requests.get(f\"{BASE_URL}/assets\", headers=headers, params={\"offset\": page * 50}) response.raise_for_status() limiter.on_success() process_assets(response.json()) except requests.exceptions.HTTPError as e: limiter.on_error(e.response.status_code) Caching Strategies from functools import lru_cache from datetime import datetime, timedelta class OpenSeaCache: \"\"\"Simple TTL cache for API responses.\"\"\" def __init__(self, ttl_seconds: int = 60): self.cache = {} self.ttl = ttl_seconds def get(self, key: str): if key in self.cache: value, expiry = self.cache[key] if datetime.now() \u003c expiry: return value del self.cache[key] return None def set(self, key: str, value): expiry = datetime.now() + timedelta(seconds=self.ttl) self.cache[key] = (value, expiry) # Cache collection metadata (rarely changes) collection_cache = OpenSeaCache(ttl_seconds=300) def get_cached_collection(slug: str): cached = collection_cache.get(slug) if cached: return cached data = sdk.get_collection_stats(slug) collection_cache.set(slug, data) return data Building a Trading Bot: Complete Example Here is a complete example of an arbitrage-sniffing trading bot that monitors floor prices across collections: `````python import time from dataclasses import dataclass from typing import Callable\n@dataclass class ArbitrageOpportunity: collection: str token_id: str listed_price: float estimated_value: float profit_margin: float listing_url: str\nclass NFTArbitrageBot: “““Simple arbitrage detection bot using OpenSea API.”””\ndef __init__(self, api: OpenSeaAPI, min_profit_pct: float = 15.0): self.api = api self.min_profit_pct = min_profit_pct self.watchlist = [] self.callbacks: List[Callable] = [] def add_collection(self, collection_slug: str, floor_threshold: float): \"\"\"Add a collection to the watchlist.\"\"\" self.watchlist.append({ \"slug\": collection_slug, \"threshold\": floor_threshold }) def on_opportunity(self, callback: Callable): \"\"\"Register callback for arbitrage opportunities.\"\"\" self.callbacks.append(callback) def analyze_collection(self, collection: dict) -\u003e List[ArbitrageOpportunity]: \"\"\"Scan collection for underpriced listings.\"\"\" slug = collection[\"slug\"] threshold = collection[\"threshold\"] # Get floor price and active listings stats = self.api.get_collection_stats(slug) floor_price = float(stats[\"total\"][\"floor_price\"]) listings = self.api.get_listings( chain=\"ethereum\", contract_address=collection.get(\"contract\"), limit=50 ) opportunities = [] for listing in listings: price = float(listing[\"price\"]) # Check if significantly below floor if price \u003c floor_price * (1 - self.min_profit_pct / 100): opp = ArbitrageOpportunity( collection=slug, token_id=listing[\"token_id\"], listed_price=price, estimated_value=floor_price, profit_margin=((floor_price - price) / price) * 100, listing_url=f\"https://opensea.io/assets/ethereum/{collection[contract]}/{listing[token_id]}\" ) opportunities.append(opp) # Notify callbacks for cb in self.callbacks: cb(opp) return opportunities def run(self, interval: int = 30): \"\"\"Run the bot with specified check interval.\"\"\" logger.info(f\"Starting bot with {len(self.watchlist)} collections\") try: while True: for collection in self.watchlist: try: opps = self.analyze_collection(collection) if opps: logger.info(f\"Found {len(opps)} opportunities in {collection[slug]}\") except Exception as e: logger.error(f\"Error analyzing {collection[slug]}: {e}\") time.sleep(interval) except KeyboardInterrupt: logger.info(\"Bot stopped by user\") Usage example def notify_discord(opp: ArbitrageOpportunity): “““Send Discord notification for opportunity.””” message = f\"\"\" Arbitrage Alert! Collection: {opp.collection} Token: #{opp.token_id} Listed: {opp.listed_price:.4f} ETH Floor: {opp.estimated_value:.4f} ETH Profit: {opp.profit_margin:.1f}% View Listing \"\"\" # send_to_discord_webhook(message)\nbot = NFTArbitrageBot(sdk, min_profit_pct=20.0) bot.add_collection(“boredapeyachtclub”, floor_threshold=30.0) bot.add_collection(“azuki”, floor_threshold=10.0) bot.on_opportunity(notify_discord)\nbot.run(interval=60) * * * ## Error Handling and Debugging Production applications require robust error handling. The OpenSea API returns structured error responses: `````python class OpenSeaAPIError(Exception): \"\"\"Custom exception for OpenSea API errors.\"\"\" def __init__(self, message: str, status_code: int = None, response_data: dict = None): super().__init__(message) self.status_code = status_code self.response_data = response_data or {} def handle_api_error(response: requests.Response): \"\"\"Parse and raise appropriate exceptions.\"\"\" try: error_data = response.json() except ValueError: error_data = {\"message\": response.text} error_map = { 400: (\"Bad Request\", ValueError), 401: (\"Unauthorized - Check API key\", PermissionError), 403: (\"Forbidden - Insufficient permissions\", PermissionError), 404: (\"Resource not found\", KeyError), 429: (\"Rate limit exceeded\", TimeoutError), 500: (\"Internal server error\", RuntimeError), 503: (\"Service unavailable\", ConnectionError) } error_msg, error_class = error_map.get( response.status_code, (f\"HTTP {response.status_code}\", RuntimeError) ) detail = error_data.get(\"message\", error_data.get(\"detail\", \"Unknown error\")) raise error_class(f\"{error_msg}: {detail}\") # Apply in SDK class RobustOpenSeaAPI(OpenSeaAPI): def _request(self, method: str, endpoint: str, **kwargs): response = self.session.request(method, self.BASE_URL + endpoint, **kwargs) if not response.ok: handle_api_error(response) return response.json() FAQ: Frequently Asked Questions How do I get an OpenSea API key? Visit the OpenSea Developer Dashboard, sign in with your wallet, and complete the developer application. Approval typically takes 1-3 business days. You will need to describe your use case and agree to the API terms of service. Enterprise-tier keys require additional verification and a direct partnership agreement.\nWhat are the rate limits for the OpenSea API? Rate limits depend on your API tier. Free tier allows 1 request per second with a burst of 5. Developer tier increases this to 10 RPS with burst of 50. Professional tier supports 40 RPS with burst of 200. Enterprise tiers offer 120+ RPS for high-frequency trading applications. Check the X-RateLimit-* headers in every response to monitor your usage.\nCan I buy and sell NFTs through the API? Yes, the API supports full programmatic trading. You can create listings, accept offers, and fulfill orders entirely through the API. However, you need the private key of the wallet that owns the NFTs. All transactions are executed through the Seaport protocol, which requires on-chain signatures and gas fees.\nWhich blockchains does the OpenSea API support? As of 2026, the OpenSea API supports Ethereum mainnet, Polygon (PoS and zkEVM), Arbitrum One, Optimism, Base, Zora, and Sepolia testnet. Each chain has its own endpoint prefix (e.g., /chain/ethereum/, /chain/polygon/). Cross-chain aggregation endpoints allow querying across multiple networks simultaneously.\nIs there an official Python SDK for OpenSea? There is no official Python SDK from OpenSea. The official SDK is opensea-js (JavaScript/TypeScript). However, several community-maintained Python packages exist, and you can easily build your own integration using the requests library as demonstrated in this guide. The REST API is well-documented and follows standard conventions.\nHow do I stream real-time events? Use the WebSocket API at wss://stream.opensea.io/socket. Subscribe to event types like item_listed, item_sold, and item_cancelled with optional collection filters. The WebSocket connection requires your API key in the ````X-API-KEY``` header. Implement reconnection logic for production reliability.\nWhat is the Seaport protocol? Seaport is OpenSea’s decentralized NFT trading protocol. It is an open-source smart contract standard that handles order matching, fulfillment, and fee distribution. When you create or fulfill orders through the API, you are interacting with Seaport contracts on-chain. The protocol supports advanced features like criteria-based orders, partial fills, and bulk executions.\nRecommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com. Affiliate links — they don’t cost you extra and they help keep dibi8.com running.\nConclusion The OpenSea API is the most comprehensive and battle-tested NFT marketplace API available in 2026. With support for multiple blockchains, real-time WebSocket streaming, and full programmatic trading capabilities, it provides everything developers need to build sophisticated NFT applications.\nKey takeaways from this guide: - Authentication: Obtain your API key from the Developer Dashboard and always use environment variables\nSDK Strategy: Use the official JavaScript SDK or build a custom Python wrapper with retry logic Trading: Understand Seaport order creation and fulfillment for programmatic buys/sells Real-time: Leverage WebSocket streams for instant event notifications Rate Limits: Implement adaptive backoff and caching to stay within your tier limits Error Handling: Build robust error handling for production reliability Whether you are building a simple portfolio tracker or a high-frequency trading bot, the OpenSea API provides the infrastructure to interact with the world’s largest NFT marketplace programmatically. Start with the examples in this guide, monitor your rate limits, and scale your application as your needs grow.\nThis article was written on 2026-05-19. API specifications and rate limits are subject to change. Refer to the official OpenSea documentation for the latest updates.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “opensea-nft-marketplace-api”, “datePublished”: “2026-05-20”, “dateModified”: “2026-05-20”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/opensea-nft-marketplace-api\" } } Frequently Asked Questions (FAQ) 问：量化交易的风险有多大？\n取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。\n问：如何选择适合的交易策略？\n根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。\n问：回测结果可信吗？\n回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。\n问：需要编程基础吗？\n基础策略可使用低代码平台，高级策略需要Python/C++编程能力。\n问：交易系统的维护成本？\n包括服务器费用、数据订阅、算法更新、以及监控维护时间。\n",
+  "wordCount" : "3487",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>15 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>17 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/opensea-nft-marketplace-api/">En</a>
@@ -209,111 +209,111 @@
 
     <div class="inner"><ul><ul>
             <li>
-                <a href="#opensea-api%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80" aria-label="OpenSea API란 무엇인가?">OpenSea API란 무엇인가?</a></li>
+                <a href="#what-is-the-opensea-api" aria-label="What Is the OpenSea API?">What Is the OpenSea API?</a></li>
             <li>
-                <a href="#%ec%8b%9c%ec%9e%91%ed%95%98%ea%b8%b0-api-%ed%82%a4-%ec%84%a4%ec%a0%95-%eb%b0%8f-%ec%9d%b8%ec%a6%9d" aria-label="시작하기: API 키 설정 및 인증">시작하기: API 키 설정 및 인증</a><ul>
+                <a href="#getting-started-api-key-setup-and-authentication" aria-label="Getting Started: API Key Setup and Authentication">Getting Started: API Key Setup and Authentication</a><ul>
                     
             <li>
-                <a href="#1%eb%8b%a8%ea%b3%84-%ea%b0%9c%eb%b0%9c%ec%9e%90-%ea%b3%84%ec%a0%95-%eb%a7%8c%eb%93%a4%ea%b8%b0" aria-label="1단계: 개발자 계정 만들기">1단계: 개발자 계정 만들기</a></li>
+                <a href="#step-1-create-a-developer-account" aria-label="Step 1: Create a Developer Account">Step 1: Create a Developer Account</a></li>
             <li>
-                <a href="#2%eb%8b%a8%ea%b3%84-api-%ed%82%a4-%ec%83%9d%ec%84%b1" aria-label="2단계: API 키 생성">2단계: API 키 생성</a></li></ul>
+                <a href="#step-2-generate-your-api-key" aria-label="Step 2: Generate Your API Key">Step 2: Generate Your API Key</a></li></ul>
             </li></ul>
                 
             <li>
-                <a href="#env-%ed%8c%8c%ec%9d%bc" aria-label=".env 파일">.env 파일</a><ul>
+                <a href="#env-file" aria-label=".env file">.env file</a><ul>
                     <ul>
                     
             <li>
-                <a href="#4%eb%8b%a8%ea%b3%84-sdk-%ec%84%a4%ec%b9%98" aria-label="4단계: SDK 설치">4단계: SDK 설치</a></li></ul>
+                <a href="#step-4-sdk-installation" aria-label="Step 4: SDK Installation">Step 4: SDK Installation</a></li></ul>
                 </ul>
             </li>
             <li>
-                <a href="#%ea%b3%b5%ec%8b%9d-javascript-sdk" aria-label="공식 JavaScript SDK">공식 JavaScript SDK</a></li>
+                <a href="#official-javascript-sdk" aria-label="Official JavaScript SDK">Official JavaScript SDK</a></li>
             <li>
-                <a href="#%ec%bb%a4%eb%ae%a4%eb%8b%88%ed%8b%b0-python-sdk" aria-label="커뮤니티 Python SDK">커뮤니티 Python SDK</a></li>
+                <a href="#python-community-sdk" aria-label="Python community SDK">Python community SDK</a></li>
             <li>
-                <a href="#%eb%98%90%eb%8a%94-requests-%ec%a7%81%ec%a0%91-%ec%82%ac%ec%9a%a9" aria-label="또는 requests 직접 사용">또는 requests 직접 사용</a><ul>
+                <a href="#or-use-requests-directly" aria-label="Or use requests directly">Or use requests directly</a><ul>
                     <ul>
                     
             <li>
-                <a href="#%ec%9e%90%ec%82%b0-%ec%a1%b0%ed%9a%8c-%ec%97%94%eb%93%9c%ed%8f%ac%ec%9d%b8%ed%8a%b8" aria-label="자산 조회 엔드포인트">자산 조회 엔드포인트</a></li>
+                <a href="#asset-querying-endpoints" aria-label="Asset Querying Endpoints">Asset Querying Endpoints</a></li>
             <li>
-                <a href="#%ec%83%81%ec%9e%a5-%eb%b0%8f-%ec%a3%bc%eb%ac%b8-%ec%97%94%eb%93%9c%ed%8f%ac%ec%9d%b8%ed%8a%b8" aria-label="상장 및 주문 엔드포인트">상장 및 주문 엔드포인트</a></li>
+                <a href="#listing-and-order-endpoints" aria-label="Listing and Order Endpoints">Listing and Order Endpoints</a></li>
             <li>
-                <a href="#%ea%b3%84%ec%a0%95-%eb%b0%8f-%ed%99%9c%eb%8f%99-%ec%97%94%eb%93%9c%ed%8f%ac%ec%9d%b8%ed%8a%b8" aria-label="계정 및 활동 엔드포인트">계정 및 활동 엔드포인트</a></li></ul>
+                <a href="#account-and-activity-endpoints" aria-label="Account and Activity Endpoints">Account and Activity Endpoints</a></li></ul>
                 
             <li>
-                <a href="#python-sdk-%ed%86%b5%ed%95%a9-%ea%b5%ac%ec%b6%95%ed%95%98%ea%b8%b0" aria-label="Python SDK 통합 구축하기">Python SDK 통합 구축하기</a><ul>
+                <a href="#building-a-python-sdk-integration" aria-label="Building a Python SDK Integration">Building a Python SDK Integration</a><ul>
                     
             <li>
-                <a href="#%ec%99%84%ec%a0%84%ed%95%9c-python-sdk-%ed%81%b4%eb%9e%98%ec%8a%a4" aria-label="완전한 Python SDK 클래스">완전한 Python SDK 클래스</a></li></ul>
+                <a href="#complete-python-sdk-class" aria-label="Complete Python SDK Class">Complete Python SDK Class</a></li></ul>
             </li>
             <li>
-                <a href="#%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%98%eb%b0%8d-%eb%b0%a9%ec%8b%9d%ec%9c%bc%eb%a1%9c-nft-%ec%83%81%ec%9e%a5-%ea%b5%ac%eb%a7%a4-%eb%b0%8f-%ed%8c%90%eb%a7%a4%ed%95%98%ea%b8%b0" aria-label="프로그래밍 방식으로 NFT 상장, 구매 및 판매하기">프로그래밍 방식으로 NFT 상장, 구매 및 판매하기</a><ul>
+                <a href="#listing-buying-and-selling-nfts-programmatically" aria-label="Listing, Buying, and Selling NFTs Programmatically">Listing, Buying, and Selling NFTs Programmatically</a><ul>
                     
             <li>
-                <a href="#%ec%83%81%ec%9e%a5-%ec%83%9d%ec%84%b1%ed%95%98%ea%b8%b0" aria-label="상장 생성하기">상장 생성하기</a></li></ul>
+                <a href="#creating-a-listing" aria-label="Creating a Listing">Creating a Listing</a></li></ul>
             </li></ul>
             </li>
             <li>
-                <a href="#%ec%9d%b4%eb%8d%94%eb%a6%ac%ec%9b%80-%eb%85%b8%eb%93%9c%ec%97%90-%ec%97%b0%ea%b2%b0" aria-label="이더리움 노드에 연결">이더리움 노드에 연결</a></li>
+                <a href="#connect-to-ethereum-node" aria-label="Connect to Ethereum node">Connect to Ethereum node</a></li>
             <li>
-                <a href="#%ec%83%81%ec%9e%a5-%eb%a7%a4%ea%b0%9c%eb%b3%80%ec%88%98-%ea%b5%ac%ec%84%b1" aria-label="상장 매개변수 구성">상장 매개변수 구성</a></li>
+                <a href="#build-listing-parameters" aria-label="Build listing parameters">Build listing parameters</a></li>
             <li>
-                <a href="#opensea%ec%97%90-%ec%a3%bc%eb%ac%b8-%ec%a0%9c%ec%b6%9c" aria-label="OpenSea에 주문 제출">OpenSea에 주문 제출</a><ul>
+                <a href="#submit-order-to-opensea" aria-label="Submit order to OpenSea">Submit order to OpenSea</a><ul>
                     <ul>
                     
             <li>
-                <a href="#%eb%b0%b0%ec%b9%98-%ec%9e%91%ec%97%85" aria-label="배치 작업">배치 작업</a></li></ul>
+                <a href="#batch-operations" aria-label="Batch Operations">Batch Operations</a></li></ul>
                 </ul>
             </li>
             <li>
-                <a href="#%ec%97%ac%eb%9f%ac-%ec%bb%ac%eb%a0%89%ec%85%98%ec%97%90-%eb%8c%80%ed%95%9c-%eb%b0%b0%ec%b9%98-%ec%9a%94%ec%b2%ad" aria-label="여러 컬렉션에 대한 배치 요청">여러 컬렉션에 대한 배치 요청</a><ul>
+                <a href="#batch-request-multiple-collections" aria-label="Batch request multiple collections">Batch request multiple collections</a><ul>
                     <ul>
                     
             <li>
-                <a href="#%ec%9d%b4%eb%b2%a4%ed%8a%b8-%ec%9c%a0%ed%98%95-%ec%b0%b8%ec%a1%b0" aria-label="이벤트 유형 참조">이벤트 유형 참조</a></li></ul>
+                <a href="#event-types-reference" aria-label="Event Types Reference">Event Types Reference</a></li></ul>
                 </ul>
             </li>
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9-%ea%b0%80%eb%8a%a5%ed%95%9c-%ec%9d%b4%eb%b2%a4%ed%8a%b8-%ec%9c%a0%ed%98%95" aria-label="사용 가능한 이벤트 유형">사용 가능한 이벤트 유형</a><ul>
+                <a href="#available-event-types" aria-label="Available event types">Available event types</a><ul>
                     <ul>
                     
             <li>
-                <a href="#%eb%b0%b1%ec%98%a4%ed%94%84-%ec%a0%84%eb%9e%b5-%ea%b5%ac%ed%98%84" aria-label="백오프 전략 구현">백오프 전략 구현</a></li>
+                <a href="#implementing-backoff-strategies" aria-label="Implementing Backoff Strategies">Implementing Backoff Strategies</a></li>
             <li>
-                <a href="#%ec%ba%90%ec%8b%b1-%ec%a0%84%eb%9e%b5" aria-label="캐싱 전략">캐싱 전략</a></li></ul>
+                <a href="#caching-strategies" aria-label="Caching Strategies">Caching Strategies</a></li></ul>
                 
             <li>
-                <a href="#%ed%8a%b8%eb%a0%88%ec%9d%b4%eb%94%a9-%eb%b4%87-%ea%b5%ac%ec%b6%95-%ec%99%84%ec%a0%84%ed%95%9c-%ec%98%88%ec%a0%9c" aria-label="트레이딩 봇 구축: 완전한 예제">트레이딩 봇 구축: 완전한 예제</a></li></ul>
+                <a href="#building-a-trading-bot-complete-example" aria-label="Building a Trading Bot: Complete Example">Building a Trading Bot: Complete Example</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9-%ec%98%88%ec%8b%9c" aria-label="사용 예시">사용 예시</a></li>
+                <a href="#usage-example" aria-label="Usage example">Usage example</a></li>
             <li>
                 <a href="#botruninterval60" aria-label="bot.run(interval=60)">bot.run(interval=60)</a><ul>
                     
             <li>
-                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a><ul>
+                <a href="#faq-frequently-asked-questions" aria-label="FAQ: Frequently Asked Questions">FAQ: Frequently Asked Questions</a><ul>
                     
             <li>
-                <a href="#opensea-api-%ed%82%a4%eb%8a%94-%ec%96%b4%eb%96%bb%ea%b2%8c-%ec%96%bb%eb%82%98%ec%9a%94" aria-label="OpenSea API 키는 어떻게 얻나요?">OpenSea API 키는 어떻게 얻나요?</a></li>
+                <a href="#how-do-i-get-an-opensea-api-key" aria-label="How do I get an OpenSea API key?">How do I get an OpenSea API key?</a></li>
             <li>
-                <a href="#opensea-api%ec%9d%98-%ec%86%8d%eb%8f%84-%ec%a0%9c%ed%95%9c%ec%9d%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80%ec%9a%94" aria-label="OpenSea API의 속도 제한은 무엇인가요?">OpenSea API의 속도 제한은 무엇인가요?</a></li>
+                <a href="#what-are-the-rate-limits-for-the-opensea-api" aria-label="What are the rate limits for the OpenSea API?">What are the rate limits for the OpenSea API?</a></li>
             <li>
-                <a href="#api%eb%a5%bc-%ed%86%b5%ed%95%b4-nft%eb%a5%bc-%ec%82%ac%ea%b3%a0-%ed%8c%94-%ec%88%98-%ec%9e%88%eb%82%98%ec%9a%94" aria-label="API를 통해 NFT를 사고 팔 수 있나요?">API를 통해 NFT를 사고 팔 수 있나요?</a></li>
+                <a href="#can-i-buy-and-sell-nfts-through-the-api" aria-label="Can I buy and sell NFTs through the API?">Can I buy and sell NFTs through the API?</a></li>
             <li>
-                <a href="#opensea-api%eb%8a%94-%ec%96%b4%eb%96%a4-%eb%b8%94%eb%a1%9d%ec%b2%b4%ec%9d%b8%ec%9d%84-%ec%a7%80%ec%9b%90%ed%95%98%eb%82%98%ec%9a%94" aria-label="OpenSea API는 어떤 블록체인을 지원하나요?">OpenSea API는 어떤 블록체인을 지원하나요?</a></li>
+                <a href="#which-blockchains-does-the-opensea-api-support" aria-label="Which blockchains does the OpenSea API support?">Which blockchains does the OpenSea API support?</a></li>
             <li>
-                <a href="#opensea%ec%97%90-%ea%b3%b5%ec%8b%9d-python-sdk%ea%b0%80-%ec%9e%88%eb%82%98%ec%9a%94" aria-label="OpenSea에 공식 Python SDK가 있나요?">OpenSea에 공식 Python SDK가 있나요?</a></li>
+                <a href="#is-there-an-official-python-sdk-for-opensea" aria-label="Is there an official Python SDK for OpenSea?">Is there an official Python SDK for OpenSea?</a></li>
             <li>
-                <a href="#%ec%8b%a4%ec%8b%9c%ea%b0%84-%ec%9d%b4%eb%b2%a4%ed%8a%b8%eb%a5%bc-%ec%96%b4%eb%96%bb%ea%b2%8c-%ec%8a%a4%ed%8a%b8%eb%a6%ac%eb%b0%8d%ed%95%98%eb%82%98%ec%9a%94" aria-label="실시간 이벤트를 어떻게 스트리밍하나요?">실시간 이벤트를 어떻게 스트리밍하나요?</a></li>
+                <a href="#how-do-i-stream-real-time-events" aria-label="How do I stream real-time events?">How do I stream real-time events?</a></li>
             <li>
-                <a href="#seaport-%ed%94%84%eb%a1%9c%ed%86%a0%ec%bd%9c%ec%9d%b4%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80%ec%9a%94" aria-label="Seaport 프로토콜이란 무엇인가요?">Seaport 프로토콜이란 무엇인가요?</a></li></ul>
+                <a href="#what-is-the-seaport-protocol" aria-label="What is the Seaport protocol?">What is the Seaport protocol?</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%b6%94%ec%b2%9c-%ed%98%b8%ec%8a%a4%ed%8c%85-%eb%b0%8f-%ec%9d%b8%ed%94%84%eb%9d%bc" aria-label="추천 호스팅 및 인프라">추천 호스팅 및 인프라</a></li>
+                <a href="#recommended-hosting--infrastructure" aria-label="Recommended Hosting &amp; Infrastructure">Recommended Hosting &amp; Infrastructure</a></li>
             <li>
-                <a href="#%ea%b2%b0%eb%a1%a0" aria-label="결론">결론</a></li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
             <li>
                 <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
             </li>
@@ -323,31 +323,31 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><p>2021년 폭발적 성장 이후 대체 불가능한 토큰(NFT) 생태계는 상당히 성숙해졌습니다. 디지털 아트 틈새 시장으로 시작했던 것이 게임, 부동산, 신원 인증, 탈중앙화 금융을 아우르는 수십억 달러 규모의 인프라 레이어로 진화했습니다. 이러한 변혁의 중심에는 세계 최대의 NFT 마켓플레이스인 <a href="https://opensea.io/">OpenSea</a>와 개발자가 프로그래밍 방식 거래 시스템, 분석 대시보드, 자동화된 컬렉션 관리 도구를 구축할 수 있게 해주는 강력한 <a href="https://docs.opensea.io/reference/api-overview">OpenSea API</a>가 있습니다.</p>
-<p>이 종합적인 2026 가이드에서는 API 키 획득과 Python SDK 설정부터 NFT 상장, 거래 실행, WebSocket을 통한 실시간 이벤트 스트리밍, 프로덕션 환경의 속도 제한 처리까지 OpenSea API에 대해 알아야 할 모든 것을 살펴 보겠습니다. 트레이딩 봇, 포트폴리오 추적기 또는 마켓플레이스 애그리게이터를 구축하든 이 가이드는 완전한 기술 기초를 제공합니다.</p>
+  <div class="post-content md-content"><p>The non-fungible token (NFT) ecosystem has matured significantly since its explosive growth in 2021. What began as a niche market for digital art has evolved into a multi-billion dollar infrastructure layer spanning gaming, real estate, identity, and decentralized finance. At the center of this transformation stands <a href="https://opensea.io/">OpenSea</a>, the world&rsquo;s largest NFT marketplace, and its powerful <a href="https://docs.opensea.io/reference/api-overview">OpenSea API</a> that enables developers to build programmatic trading systems, analytics dashboards, and automated collection management tools.</p>
+<p>In this comprehensive 2026 guide, we will explore everything you need to know about the OpenSea API: from obtaining your API key and setting up the Python SDK to listing NFTs, executing trades, streaming real-time events via WebSocket, and handling rate limits in production environments. Whether you are building a trading bot, a portfolio tracker, or a marketplace aggregator, this guide provides the complete technical foundation.</p>
 <hr>
-<h2 id="opensea-api란-무엇인가">OpenSea API란 무엇인가?<a hidden class="anchor" aria-hidden="true" href="#opensea-api란-무엇인가">#</a></h2>
-<p>OpenSea API는 OpenSea NFT 마켓플레이스에 대한 전체 액세스를 제공하는 RESTful 및 WebSocket 기반 프로그래밍 인터페이스입니다. 개발자가 NFT 컬렉션을 쿼리하고, 자산 메타데이터를 검색하고, 판매용 아이템을 상장하고, 주문을 이행하고, 계정 활동을 추적하고, 실시간 이벤트 스트림을 구독할 수 있게 해줍니다 — 이 모든 것을 OpenSea 웹사이트와 수동으로 상호작용하지 않고도 할 수 있습니다.</p>
-<p>2026년 현재 OpenSea API는 이더리움, 폴리곤, 아비트럼, 옵티미즘, 베이스, 조라 등 여러 블록체인 네트워크를 지원합니다. 이 API는 <a href="https://github.com/ProjectOpenSea">ProjectOpenSea</a>에서 유지 관리하며 공식 JavaScript SDK 저장소에서 <strong>1,200개 이상의 GitHub 스타</strong>를 보유하고 Python, Go, Rust용 래퍼를 기여하는 활발한 개발자 커뮤니티와 함께 NFT 마켓플레이스 통합의 사실상 표준이 되었습니다.</p>
-<p>이 API는 현대적인 REST 규칙을 따륩니며 JSON 요청/응답 형식을 사용하고, API 키 기반 인증을 사용하며, 오류 처리를 위해 표준 HTTP 상태 코드를 구현합니다. 실시간 애플리케이션의 경우 WebSocket API는 1초 미만의 지연 시간으로 거래, 상장, 전송, 컬렉션 업데이트에 대한 이벤트 스트리밍을 제공합니다.</p>
+<h2 id="what-is-the-opensea-api">What Is the OpenSea API?<a hidden class="anchor" aria-hidden="true" href="#what-is-the-opensea-api">#</a></h2>
+<p>The OpenSea API is a RESTful and WebSocket-based programming interface that provides full access to the OpenSea NFT marketplace. It allows developers to query NFT collections, retrieve asset metadata, list items for sale, fulfill orders, track account activity, and subscribe to real-time event streams — all without manually interacting with the OpenSea website.</p>
+<p>As of 2026, the OpenSea API supports multiple blockchain networks including Ethereum, Polygon, Arbitrum, Optimism, Base, and Zora. The API is maintained by <a href="https://github.com/ProjectOpenSea">ProjectOpenSea</a> and has become the de facto standard for NFT marketplace integration, with over <strong>1,200 GitHub stars</strong> on its official JavaScript SDK repository and an active developer community contributing wrappers for Python, Go, and Rust.</p>
+<p>The API follows modern REST conventions with JSON request/response formats, uses API key-based authentication, and implements standard HTTP status codes for error handling. For real-time applications, the WebSocket API provides event streaming for trades, listings, transfers, and collection updates with sub-second latency.</p>
 <hr>
-<h2 id="시작하기-api-키-설정-및-인증">시작하기: API 키 설정 및 인증<a hidden class="anchor" aria-hidden="true" href="#시작하기-api-키-설정-및-인증">#</a></h2>
-<p>API 호출을 하기 전에 OpenSea 개발자 포털을 통해 API 키를 등록해야 합니다. 모든 인증 엔드포인트에는 API 키가 필요하며, 이는 속도 제한 계층을 결정합니다.</p>
-<h3 id="1단계-개발자-계정-만들기">1단계: 개발자 계정 만들기<a hidden class="anchor" aria-hidden="true" href="#1단계-개발자-계정-만들기">#</a></h3>
-<p><a href="https://docs.opensea.io/reference/api-keys">OpenSea 개발자 대시보드</a>를 방문하여 지갑이나 이메일 주소로 로그인하세요. API 서비스 약관 동의 및 예상 사용 사례에 대한 간략한 설명 제공을 포함한 개발자 인증 절차를 완료하세요.</p>
-<h3 id="2단계-api-키-생성">2단계: API 키 생성<a hidden class="anchor" aria-hidden="true" href="#2단계-api-키-생성">#</a></h3>
-<p>승인이 되면 대시보드에서 새 API 키를 만드세요. 두 가지 자격 증명을 받게 됩니다: - <strong>API 키</strong>: 애플리케이션 식별에 사용</p>
+<h2 id="getting-started-api-key-setup-and-authentication">Getting Started: API Key Setup and Authentication<a hidden class="anchor" aria-hidden="true" href="#getting-started-api-key-setup-and-authentication">#</a></h2>
+<p>Before making any API calls, you need to register for an API key through the OpenSea Developer Portal. The API key is required for all authenticated endpoints and determines your rate limit tier.</p>
+<h3 id="step-1-create-a-developer-account">Step 1: Create a Developer Account<a hidden class="anchor" aria-hidden="true" href="#step-1-create-a-developer-account">#</a></h3>
+<p>Visit the <a href="https://docs.opensea.io/reference/api-keys">OpenSea Developer Dashboard</a> and sign in with your wallet or email address. Complete the developer verification process, which includes agreeing to the API terms of service and providing a brief description of your intended use case.</p>
+<h3 id="step-2-generate-your-api-key">Step 2: Generate Your API Key<a hidden class="anchor" aria-hidden="true" href="#step-2-generate-your-api-key">#</a></h3>
+<p>Once approved, create a new API key from the dashboard. You will receive two credentials: - <strong>API Key</strong>: Used for identifying your application</p>
 <ul>
-<li><strong>API 시크릿</strong>: 특정 인증 요청 서명에 사용</li>
+<li><strong>API Secret</strong>: Used for signing certain authenticated requests</li>
 </ul>
-<p>이 자격 증명을 안전하게 환경 변수에 저장하세요: ````bash</p>
-<h1 id="env-파일">.env 파일<a hidden class="anchor" aria-hidden="true" href="#env-파일">#</a></h1>
+<p>Store these credentials securely in environment variables: ````bash</p>
+<h1 id="env-file">.env file<a hidden class="anchor" aria-hidden="true" href="#env-file">#</a></h1>
 <p>OPENSEA_API_KEY=your_api_key_here
 OPENSEA_API_SECRET=your_api_secret_here</p>
 <pre tabindex="0"><code>
-### 3단계: 인증 테스트
+### Step 3: Test Your Authentication
 
-간단한 헬스 체크로 API 키가 작동하는지 확인하세요: `````python
+Verify your API key is working with a simple health check: `````python
 import os
 import requests
 from dotenv import load_dotenv
@@ -362,36 +362,36 @@ headers = {
     &#34;Accept&#34;: &#34;application/json&#34;
 }
 
-# 컬렉션 가져오기로 인증 테스트
+# Test authentication by fetching collections
 response = requests.get(
     f&#34;{BASE_URL}/collections&#34;,
     headers=headers,
     params={&#34;chain&#34;: &#34;ethereum&#34;, &#34;limit&#34;: 5}
 )
 
-print(f&#34;상태: {response.status_code}&#34;)
-print(f&#34;컬렉션: {len(response.json()[collections])}&#34;)
-</code></pre><h3 id="4단계-sdk-설치">4단계: SDK 설치<a hidden class="anchor" aria-hidden="true" href="#4단계-sdk-설치">#</a></h3>
-<p>공식 JavaScript SDK 또는 커뮤니티 Python 래퍼를 설치하세요: `````bash</p>
-<h1 id="공식-javascript-sdk">공식 JavaScript SDK<a hidden class="anchor" aria-hidden="true" href="#공식-javascript-sdk">#</a></h1>
+print(f&#34;Status: {response.status_code}&#34;)
+print(f&#34;Collections: {len(response.json()[collections])}&#34;)
+</code></pre><h3 id="step-4-sdk-installation">Step 4: SDK Installation<a hidden class="anchor" aria-hidden="true" href="#step-4-sdk-installation">#</a></h3>
+<p>Install the official JavaScript SDK or a community Python wrapper: `````bash</p>
+<h1 id="official-javascript-sdk">Official JavaScript SDK<a hidden class="anchor" aria-hidden="true" href="#official-javascript-sdk">#</a></h1>
 <p>npm install opensea-js</p>
-<h1 id="커뮤니티-python-sdk">커뮤니티 Python SDK<a hidden class="anchor" aria-hidden="true" href="#커뮤니티-python-sdk">#</a></h1>
+<h1 id="python-community-sdk">Python community SDK<a hidden class="anchor" aria-hidden="true" href="#python-community-sdk">#</a></h1>
 <p>pip install opensea-api</p>
-<h1 id="또는-requests-직접-사용">또는 requests 직접 사용<a hidden class="anchor" aria-hidden="true" href="#또는-requests-직접-사용">#</a></h1>
+<h1 id="or-use-requests-directly">Or use requests directly<a hidden class="anchor" aria-hidden="true" href="#or-use-requests-directly">#</a></h1>
 <p>pip install requests python-dotenv</p>
 <pre tabindex="0"><code>
 * * *
 
-## OpenSea API 엔드포인트 개요
+## OpenSea API Endpoints Overview
 
-OpenSea API는 NFT 마켓플레이스의 모든 측면을 다루는 논리적 엔드포인트 그룹으로 구성되어 있습니다. 이러한 엔드포인트 카테고리를 이해하는 것은 효율적인 애플리케이션을 구축하는 데 필수적입니다.
+The OpenSea API is organized into logical endpoint groups covering every aspect of the NFT marketplace. Understanding these endpoint categories is essential for building efficient applications.
 
-### 컬렉션 및 메타데이터 엔드포인트
+### Collections and Metadata Endpoints
 
-컬렉션 엔드포인트는 바닥 가격, 거래량 통계, 특성 분포, 소셜 링크를 포함한 NFT 컬렉션에 대한 포괄적인 메타데이터를 제공합니다.
+Collection endpoints provide comprehensive metadata about NFT collections, including floor prices, volume statistics, trait distributions, and social links.
 
 `````python
-def get_collection_details(collection_slug: str): &#34;&#34;&#34;NFT 컬렉션의 상세 정보를 가져옵니다.&#34;&#34;&#34;
+def get_collection_details(collection_slug: str): &#34;&#34;&#34;Fetch detailed information about an NFT collection.&#34;&#34;&#34;
     endpoint = f&#34;{BASE_URL}/collections/{collection_slug}&#34;
     response = requests.get(endpoint, headers=headers)
     
@@ -406,12 +406,12 @@ def get_collection_details(collection_slug: str): &#34;&#34;&#34;NFT 컬렉션�
         &#34;created_date&#34;: data[&#34;created_date&#34;]
     }
 
-# 사용 예시
+# Example usage
 crypto_punks = get_collection_details(&#34;cryptopunks&#34;)
-print(f&#34;CryptoPunks 바닥: {crypto_punks[floor_price]} ETH&#34;)
-</code></pre><h3 id="자산-조회-엔드포인트">자산 조회 엔드포인트<a hidden class="anchor" aria-hidden="true" href="#자산-조회-엔드포인트">#</a></h3>
-<p>자산 엔드포인트를 통해 개별 NFT의 메타데이터, 소유권 정보, 상장 상태를 검색할 수 있습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_asset_details</span>(chain: str, address: str, token_id: str): <span style="color:#e6db74">&#34;&#34;&#34;특정 NFT 자산의 메타데이터를 검색합니다.&#34;&#34;&#34;</span>
+print(f&#34;CryptoPunks floor: {crypto_punks[floor_price]} ETH&#34;)
+</code></pre><h3 id="asset-querying-endpoints">Asset Querying Endpoints<a hidden class="anchor" aria-hidden="true" href="#asset-querying-endpoints">#</a></h3>
+<p>Asset endpoints allow you to retrieve individual NFT metadata, ownership information, and listing status.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_asset_details</span>(chain: str, address: str, token_id: str): <span style="color:#e6db74">&#34;&#34;&#34;Retrieve metadata for a specific NFT asset.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>    endpoint <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>BASE_URL<span style="color:#e6db74">}</span><span style="color:#e6db74">/chain/</span><span style="color:#e6db74">{</span>chain<span style="color:#e6db74">}</span><span style="color:#e6db74">/contract/</span><span style="color:#e6db74">{</span>address<span style="color:#e6db74">}</span><span style="color:#e6db74">/nfts/</span><span style="color:#e6db74">{</span>token_id<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(endpoint, headers<span style="color:#f92672">=</span>headers)
 </span></span><span style="display:flex;"><span>    
@@ -427,17 +427,17 @@ print(f&#34;CryptoPunks 바닥: {crypto_punks[floor_price]} ETH&#34;)
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;owners&#34;</span>: data<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;owners&#34;</span>, [])
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 특정 복싱 에이프 가져오기</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Fetch a specific Bored Ape</span>
 </span></span><span style="display:flex;"><span>bored_ape <span style="color:#f92672">=</span> get_asset_details(
 </span></span><span style="display:flex;"><span>    chain<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ethereum&#34;</span>,
 </span></span><span style="display:flex;"><span>    address<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D&#34;</span>,
 </span></span><span style="display:flex;"><span>    token_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1234&#34;</span>
 </span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;자산: </span><span style="color:#e6db74">{</span>bored_ape[name]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;특성 개수: </span><span style="color:#e6db74">{</span>len(bored_ape[traits])<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</span></span></code></pre></div><h3 id="상장-및-주문-엔드포인트">상장 및 주문 엔드포인트<a hidden class="anchor" aria-hidden="true" href="#상장-및-주문-엔드포인트">#</a></h3>
-<p>상장 엔드포인트는 NFT 판매 주문의 생성, 검색, 취소를 관리합니다. 이들은 프로그래밍 방식 거래의 핵심 엔드포인트입니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_listings_by_collection</span>(collection_slug: str, limit: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>): <span style="color:#e6db74">&#34;&#34;&#34;특정 컬렉션의 활성 상장을 가져옵니다.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Asset: </span><span style="color:#e6db74">{</span>bored_ape[name]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Traits count: </span><span style="color:#e6db74">{</span>len(bored_ape[traits])<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="listing-and-order-endpoints">Listing and Order Endpoints<a hidden class="anchor" aria-hidden="true" href="#listing-and-order-endpoints">#</a></h3>
+<p>Listing endpoints manage the creation, retrieval, and cancellation of NFT sell orders. These are the core endpoints for programmatic trading.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_listings_by_collection</span>(collection_slug: str, limit: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>): <span style="color:#e6db74">&#34;&#34;&#34;Get active listings for a specific collection.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>    endpoint <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>BASE_URL<span style="color:#e6db74">}</span><span style="color:#e6db74">/listings/collection/</span><span style="color:#e6db74">{</span>collection_slug<span style="color:#e6db74">}</span><span style="color:#e6db74">/all&#34;</span>
 </span></span><span style="display:flex;"><span>    params <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;limit&#34;</span>: limit}
 </span></span><span style="display:flex;"><span>    
@@ -456,12 +456,12 @@ print(f&#34;CryptoPunks 바닥: {crypto_punks[floor_price]} ETH&#34;)
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;expiration&#34;</span>: l[<span style="color:#e6db74">&#34;expiration_time&#34;</span>]
 </span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">for</span> l <span style="color:#f92672">in</span> listings]
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 가장 저렴한 상장 가져오기</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get cheapest listings</span>
 </span></span><span style="display:flex;"><span>listings <span style="color:#f92672">=</span> get_listings_by_collection(<span style="color:#e6db74">&#34;boredapeyachtclub&#34;</span>, limit<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> listing <span style="color:#f92672">in</span> sorted(listings, key<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> x: float(x[<span style="color:#e6db74">&#34;price&#34;</span>])): print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;가격: </span><span style="color:#e6db74">{</span>listing[price]<span style="color:#e6db74">}</span><span style="color:#e6db74"> | 토큰: </span><span style="color:#e6db74">{</span>listing[token][identifier]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</span></span></code></pre></div><h3 id="계정-및-활동-엔드포인트">계정 및 활동 엔드포인트<a hidden class="anchor" aria-hidden="true" href="#계정-및-활동-엔드포인트">#</a></h3>
-<p>모든 이더리움 주소의 지갑 활동, 소유 자산, 이력 이벤트를 추적합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_account_events</span>(account_address: str, event_type: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;order&#34;</span>, limit: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>): <span style="color:#e6db74">&#34;&#34;&#34;특정 계정의 활동 이벤트를 검색합니다.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> listing <span style="color:#f92672">in</span> sorted(listings, key<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> x: float(x[<span style="color:#e6db74">&#34;price&#34;</span>])): print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Price: </span><span style="color:#e6db74">{</span>listing[price]<span style="color:#e6db74">}</span><span style="color:#e6db74"> | Token: </span><span style="color:#e6db74">{</span>listing[token][identifier]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="account-and-activity-endpoints">Account and Activity Endpoints<a hidden class="anchor" aria-hidden="true" href="#account-and-activity-endpoints">#</a></h3>
+<p>Track wallet activity, owned assets, and historical events for any Ethereum address.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_account_events</span>(account_address: str, event_type: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;order&#34;</span>, limit: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>): <span style="color:#e6db74">&#34;&#34;&#34;Retrieve activity events for a specific account.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>    endpoint <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>BASE_URL<span style="color:#e6db74">}</span><span style="color:#e6db74">/events/accounts/</span><span style="color:#e6db74">{</span>account_address<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>    params <span style="color:#f92672">=</span> {
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;event_type&#34;</span>: event_type,
@@ -480,14 +480,14 @@ print(f&#34;CryptoPunks 바닥: {crypto_punks[floor_price]} ETH&#34;)
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;timestamp&#34;</span>: e[<span style="color:#e6db74">&#34;event_timestamp&#34;</span>]
 </span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">for</span> e <span style="color:#f92672">in</span> events]
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 고래 지갑 활동 모니터링</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Monitor whale wallet activity</span>
 </span></span><span style="display:flex;"><span>whale_address <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0x3b417faee9d1458e&#34;</span>
 </span></span><span style="display:flex;"><span>events <span style="color:#f92672">=</span> get_account_events(whale_address, event_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sale&#34;</span>, limit<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> event <span style="color:#f92672">in</span> events: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>event[timestamp]<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>event[asset]<span style="color:#e6db74">}</span><span style="color:#e6db74">이(가) </span><span style="color:#e6db74">{</span>event[payment]<span style="color:#e6db74">}</span><span style="color:#e6db74">에 판매됨&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> event <span style="color:#f92672">in</span> events: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>event[timestamp]<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>event[asset]<span style="color:#e6db74">}</span><span style="color:#e6db74"> sold for </span><span style="color:#e6db74">{</span>event[payment]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
 </span></span></code></pre></div><hr>
-<h2 id="python-sdk-통합-구축하기">Python SDK 통합 구축하기<a hidden class="anchor" aria-hidden="true" href="#python-sdk-통합-구축하기">#</a></h2>
-<p>공식 OpenSea SDK는 JavaScript/TypeScript로 작성되어 있지만, Python 개발자는 requests 라이브러리나 커뮤니티에서 유지 관리하는 패키지를 사용하여 강력한 통합을 구축할 수 있습니다. 다음은 인증, 페이징, 오류 재시도, 속도 제한을 처리하는 프로덕션 준비 Python SDK 래퍼입니다.</p>
-<h3 id="완전한-python-sdk-클래스">완전한 Python SDK 클래스<a hidden class="anchor" aria-hidden="true" href="#완전한-python-sdk-클래스">#</a></h3>
+<h2 id="building-a-python-sdk-integration">Building a Python SDK Integration<a hidden class="anchor" aria-hidden="true" href="#building-a-python-sdk-integration">#</a></h2>
+<p>While the official OpenSea SDK is written in JavaScript/TypeScript, Python developers can build robust integrations using the <code>requests</code> library or community-maintained packages. Here is a production-ready Python SDK wrapper that handles authentication, pagination, error retries, and rate limiting.</p>
+<h3 id="complete-python-sdk-class">Complete Python SDK Class<a hidden class="anchor" aria-hidden="true" href="#complete-python-sdk-class">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> logging
@@ -502,12 +502,12 @@ print(f&#34;CryptoPunks 바닥: {crypto_punks[floor_price]} ETH&#34;)
 </span></span><span style="display:flex;"><span>logger <span style="color:#f92672">=</span> logging<span style="color:#f92672">.</span>getLogger(__name__)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OpenSeaAPI</span>: <span style="color:#e6db74">&#34;&#34;&#34;OpenSea API용 프로덕션 준비 Python SDK.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OpenSeaAPI</span>: <span style="color:#e6db74">&#34;&#34;&#34;Production-ready Python SDK for the OpenSea API.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>    
 </span></span><span style="display:flex;"><span>    BASE_URL <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://api.opensea.io/api/v2&#34;</span>
 </span></span><span style="display:flex;"><span>    
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, api_key: Optional[str] <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>, max_retries: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>): self<span style="color:#f92672">.</span>api_key <span style="color:#f92672">=</span> api_key <span style="color:#f92672">or</span> os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#34;OPENSEA_API_KEY&#34;</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> self<span style="color:#f92672">.</span>api_key: <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;API 키가 필요합니다. OPENSEA_API_KEY 환경 변수를 설정하세요.&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> self<span style="color:#f92672">.</span>api_key: <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;API key required. Set OPENSEA_API_KEY environment variable.&#34;</span>)
 </span></span><span style="display:flex;"><span>        
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>session <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>Session()
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>session<span style="color:#f92672">.</span>headers<span style="color:#f92672">.</span>update({
@@ -516,7 +516,7 @@ print(f&#34;CryptoPunks 바닥: {crypto_punks[floor_price]} ETH&#34;)
 </span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Content-Type&#34;</span>: <span style="color:#e6db74">&#34;application/json&#34;</span>
 </span></span><span style="display:flex;"><span>        })
 </span></span><span style="display:flex;"><span>        
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 재시도 전략 구성</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Configure retry strategy</span>
 </span></span><span style="display:flex;"><span>        retry_strategy <span style="color:#f92672">=</span> Retry(
 </span></span><span style="display:flex;"><span>            total<span style="color:#f92672">=</span>max_retries,
 </span></span><span style="display:flex;"><span>            backoff_factor<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,
@@ -525,21 +525,21 @@ print(f&#34;CryptoPunks 바닥: {crypto_punks[floor_price]} ETH&#34;)
 </span></span><span style="display:flex;"><span>        adapter <span style="color:#f92672">=</span> HTTPAdapter(max_retries<span style="color:#f92672">=</span>retry_strategy)
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>session<span style="color:#f92672">.</span>mount(<span style="color:#e6db74">&#34;https://&#34;</span>, adapter)
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_request</span>(self, method: str, endpoint: str, <span style="color:#f92672">**</span>kwargs) <span style="color:#f92672">-&gt;</span> Dict[str, Any]: <span style="color:#e6db74">&#34;&#34;&#34;속도 제한 처리와 함께 인증된 요청을 수행합니다.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_request</span>(self, method: str, endpoint: str, <span style="color:#f92672">**</span>kwargs) <span style="color:#f92672">-&gt;</span> Dict[str, Any]: <span style="color:#e6db74">&#34;&#34;&#34;Make an authenticated request with rate limit handling.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>        url <span style="color:#f92672">=</span> urljoin(self<span style="color:#f92672">.</span>BASE_URL, endpoint)
 </span></span><span style="display:flex;"><span>        
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>: response <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>session<span style="color:#f92672">.</span>request(method, url, <span style="color:#f92672">**</span>kwargs)
 </span></span><span style="display:flex;"><span>            
-</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># 속도 제한 처리</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Handle rate limiting</span>
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> response<span style="color:#f92672">.</span>status_code <span style="color:#f92672">==</span> <span style="color:#ae81ff">429</span>: reset_time <span style="color:#f92672">=</span> int(response<span style="color:#f92672">.</span>headers<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;X-RateLimit-Reset&#34;</span>, <span style="color:#ae81ff">60</span>))
-</span></span><span style="display:flex;"><span>                logger<span style="color:#f92672">.</span>warning(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;속도 제한됨. </span><span style="color:#e6db74">{</span>reset_time<span style="color:#e6db74">}</span><span style="color:#e6db74">초 대기...&#34;</span>)
+</span></span><span style="display:flex;"><span>                logger<span style="color:#f92672">.</span>warning(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Rate limited. Waiting </span><span style="color:#e6db74">{</span>reset_time<span style="color:#e6db74">}</span><span style="color:#e6db74"> seconds...&#34;</span>)
 </span></span><span style="display:flex;"><span>                time<span style="color:#f92672">.</span>sleep(reset_time)
 </span></span><span style="display:flex;"><span>                response <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>session<span style="color:#f92672">.</span>request(method, url, <span style="color:#f92672">**</span>kwargs)
 </span></span><span style="display:flex;"><span>            
 </span></span><span style="display:flex;"><span>            response<span style="color:#f92672">.</span>raise_for_status()
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> response<span style="color:#f92672">.</span>json()
 </span></span><span style="display:flex;"><span>            
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> requests<span style="color:#f92672">.</span>exceptions<span style="color:#f92672">.</span>RequestException <span style="color:#66d9ef">as</span> e: logger<span style="color:#f92672">.</span>error(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;요청 실패: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> requests<span style="color:#f92672">.</span>exceptions<span style="color:#f92672">.</span>RequestException <span style="color:#66d9ef">as</span> e: logger<span style="color:#f92672">.</span>error(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Request failed: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">raise</span>
 </span></span><span style="display:flex;"><span>    
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_collections</span>(
@@ -547,13 +547,13 @@ print(f&#34;CryptoPunks 바닥: {crypto_punks[floor_price]} ETH&#34;)
 </span></span><span style="display:flex;"><span>        chain: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ethereum&#34;</span>, 
 </span></span><span style="display:flex;"><span>        limit: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>,
 </span></span><span style="display:flex;"><span>        next_cursor: Optional[str] <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
-</span></span><span style="display:flex;"><span>    ) <span style="color:#f92672">-&gt;</span> Dict[str, Any]: <span style="color:#e6db74">&#34;&#34;&#34;페이징이 있는 NFT 컬렉션을 검색합니다.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    ) <span style="color:#f92672">-&gt;</span> Dict[str, Any]: <span style="color:#e6db74">&#34;&#34;&#34;Retrieve NFT collections with pagination.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>        params <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;chain&#34;</span>: chain, <span style="color:#e6db74">&#34;limit&#34;</span>: min(limit, <span style="color:#ae81ff">100</span>)}
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> next_cursor: params[<span style="color:#e6db74">&#34;next&#34;</span>] <span style="color:#f92672">=</span> next_cursor
 </span></span><span style="display:flex;"><span>        
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_request(<span style="color:#e6db74">&#34;GET&#34;</span>, <span style="color:#e6db74">&#34;/collections&#34;</span>, params<span style="color:#f92672">=</span>params)
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_collection_stats</span>(self, collection_slug: str) <span style="color:#f92672">-&gt;</span> Dict[str, Any]: <span style="color:#e6db74">&#34;&#34;&#34;바닥 가격, 거래량, 공급량 통계를 가져옵니다.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_collection_stats</span>(self, collection_slug: str) <span style="color:#f92672">-&gt;</span> Dict[str, Any]: <span style="color:#e6db74">&#34;&#34;&#34;Get floor price, volume, and supply statistics.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_request(<span style="color:#e6db74">&#34;GET&#34;</span>, <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;/collections/</span><span style="color:#e6db74">{</span>collection_slug<span style="color:#e6db74">}</span><span style="color:#e6db74">/stats&#34;</span>)
 </span></span><span style="display:flex;"><span>    
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_nft</span>(
@@ -561,7 +561,7 @@ print(f&#34;CryptoPunks 바닥: {crypto_punks[floor_price]} ETH&#34;)
 </span></span><span style="display:flex;"><span>        chain: str, 
 </span></span><span style="display:flex;"><span>        contract_address: str, 
 </span></span><span style="display:flex;"><span>        token_id: str
-</span></span><span style="display:flex;"><span>    ) <span style="color:#f92672">-&gt;</span> Dict[str, Any]: <span style="color:#e6db74">&#34;&#34;&#34;특정 NFT의 상세 정보를 가져옵니다.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    ) <span style="color:#f92672">-&gt;</span> Dict[str, Any]: <span style="color:#e6db74">&#34;&#34;&#34;Fetch a specific NFT&#39;s details.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>        endpoint <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;/chain/</span><span style="color:#e6db74">{</span>chain<span style="color:#e6db74">}</span><span style="color:#e6db74">/contract/</span><span style="color:#e6db74">{</span>contract_address<span style="color:#e6db74">}</span><span style="color:#e6db74">/nfts/</span><span style="color:#e6db74">{</span>token_id<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>_request(<span style="color:#e6db74">&#34;GET&#34;</span>, endpoint)
 </span></span><span style="display:flex;"><span>    
@@ -571,7 +571,7 @@ print(f&#34;CryptoPunks 바닥: {crypto_punks[floor_price]} ETH&#34;)
 </span></span><span style="display:flex;"><span>        contract_address: str, 
 </span></span><span style="display:flex;"><span>        token_id: str,
 </span></span><span style="display:flex;"><span>        limit: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">50</span>
-</span></span><span style="display:flex;"><span>    ) <span style="color:#f92672">-&gt;</span> List[Dict[str, Any]]: <span style="color:#e6db74">&#34;&#34;&#34;특정 NFT의 활성 상장을 가져옵니다.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    ) <span style="color:#f92672">-&gt;</span> List[Dict[str, Any]]: <span style="color:#e6db74">&#34;&#34;&#34;Get active listings for a specific NFT.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>        endpoint <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;/orders/</span><span style="color:#e6db74">{</span>chain<span style="color:#e6db74">}</span><span style="color:#e6db74">/seaport/listings&#34;</span>
 </span></span><span style="display:flex;"><span>        params <span style="color:#f92672">=</span> {
 </span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;asset_contract_address&#34;</span>: contract_address,
@@ -585,27 +585,27 @@ print(f&#34;CryptoPunks 바닥: {crypto_punks[floor_price]} ETH&#34;)
 </span></span><span style="display:flex;"><span>        chain: str, 
 </span></span><span style="display:flex;"><span>        contract_address: str, 
 </span></span><span style="display:flex;"><span>        token_id: str
-</span></span><span style="display:flex;"><span>    ) <span style="color:#f92672">-&gt;</span> Optional[Dict[str, Any]]: <span style="color:#e6db74">&#34;&#34;&#34;가장 저렴한 활성 상장을 가져옵니다.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    ) <span style="color:#f92672">-&gt;</span> Optional[Dict[str, Any]]: <span style="color:#e6db74">&#34;&#34;&#34;Get the lowest-priced active listing.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>        listings <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>get_listings(chain, contract_address, token_id, limit<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> listings[<span style="color:#ae81ff">0</span>] <span style="color:#66d9ef">if</span> listings <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">None</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># SDK 초기화</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize SDK</span>
 </span></span><span style="display:flex;"><span>sdk <span style="color:#f92672">=</span> OpenSeaAPI()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 컬렉션 통계 가져오기</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Fetch collection stats</span>
 </span></span><span style="display:flex;"><span>stats <span style="color:#f92672">=</span> sdk<span style="color:#f92672">.</span>get_collection_stats(<span style="color:#e6db74">&#34;boredapeyachtclub&#34;</span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;바닥: </span><span style="color:#e6db74">{</span>stats[total][floor_price]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;거래량: </span><span style="color:#e6db74">{</span>stats[total][volume]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Floor: </span><span style="color:#e6db74">{</span>stats[total][floor_price]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Volume: </span><span style="color:#e6db74">{</span>stats[total][volume]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
 </span></span></code></pre></div><hr>
-<h2 id="프로그래밍-방식으로-nft-상장-구매-및-판매하기">프로그래밍 방식으로 NFT 상장, 구매 및 판매하기<a hidden class="anchor" aria-hidden="true" href="#프로그래밍-방식으로-nft-상장-구매-및-판매하기">#</a></h2>
-<p>프로그래밍 방식 거래는 OpenSea API의 가장 강력한 기능입니다. 코드를 통해 NFT를 상장하고, 오퍼를 수락하고, 주문을 이행할 수 있습니다.</p>
-<h3 id="상장-생성하기">상장 생성하기<a hidden class="anchor" aria-hidden="true" href="#상장-생성하기">#</a></h3>
-<p>NFT를 상장하려면 Seaport 주문을 생성해야 합니다. 이는 소유자의 개인 키로 주문에 서명해야 합니다: `````python
+<h2 id="listing-buying-and-selling-nfts-programmatically">Listing, Buying, and Selling NFTs Programmatically<a hidden class="anchor" aria-hidden="true" href="#listing-buying-and-selling-nfts-programmatically">#</a></h2>
+<p>Programmatic trading is the most powerful feature of the OpenSea API. You can list NFTs for sale, accept offers, and fulfill orders entirely through code.</p>
+<h3 id="creating-a-listing">Creating a Listing<a hidden class="anchor" aria-hidden="true" href="#creating-a-listing">#</a></h3>
+<p>To list an NFT, you need to create a Seaport order. This requires signing the order with the owner&rsquo;s private key: `````python
 from web3 import Web3</p>
-<h1 id="이더리움-노드에-연결">이더리움 노드에 연결<a hidden class="anchor" aria-hidden="true" href="#이더리움-노드에-연결">#</a></h1>
+<h1 id="connect-to-ethereum-node">Connect to Ethereum node<a hidden class="anchor" aria-hidden="true" href="#connect-to-ethereum-node">#</a></h1>
 <p>w3 = Web3(Web3.HTTPProvider(&ldquo;<a href="https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY%22">https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY"</a>))</p>
-<h1 id="상장-매개변수-구성">상장 매개변수 구성<a hidden class="anchor" aria-hidden="true" href="#상장-매개변수-구성">#</a></h1>
+<h1 id="build-listing-parameters">Build listing parameters<a hidden class="anchor" aria-hidden="true" href="#build-listing-parameters">#</a></h1>
 <p>listing_data = {
 &ldquo;parameters&rdquo;: {
 &ldquo;offerer&rdquo;: &ldquo;0xYourWalletAddress&rdquo;,
@@ -622,7 +622,7 @@ from web3 import Web3</p>
 &ldquo;itemType&rdquo;: 0,  # ETH
 &ldquo;token&rdquo;: &ldquo;0x0000000000000000000000000000000000000000&rdquo;,
 &ldquo;identifierOrCriteria&rdquo;: &ldquo;0&rdquo;,
-&ldquo;startAmount&rdquo;: &ldquo;1000000000000000000&rdquo;,  # wei 단위의 1 ETH
+&ldquo;startAmount&rdquo;: &ldquo;1000000000000000000&rdquo;,  # 1 ETH in wei
 &ldquo;endAmount&rdquo;: &ldquo;1000000000000000000&rdquo;,
 &ldquo;recipient&rdquo;: &ldquo;0xYourWalletAddress&rdquo;
 },
@@ -630,49 +630,49 @@ from web3 import Web3</p>
 &ldquo;itemType&rdquo;: 0,
 &ldquo;token&rdquo;: &ldquo;0x0000000000000000000000000000000000000000&rdquo;,
 &ldquo;identifierOrCriteria&rdquo;: &ldquo;0&rdquo;,
-&ldquo;startAmount&rdquo;: &ldquo;25000000000000000&rdquo;,  # 2.5% 수수료
+&ldquo;startAmount&rdquo;: &ldquo;25000000000000000&rdquo;,  # 2.5% fee
 &ldquo;endAmount&rdquo;: &ldquo;25000000000000000&rdquo;,
-&ldquo;recipient&rdquo;: &ldquo;0x0000a26b00c1F0DF003000390027140000fAa719&rdquo;  # OpenSea 수수료
+&ldquo;recipient&rdquo;: &ldquo;0x0000a26b00c1F0DF003000390027140000fAa719&rdquo;  # OpenSea fee
 }
 ],
 &ldquo;orderType&rdquo;: 0,
 &ldquo;startTime&rdquo;: int(time.time()),
-&ldquo;endTime&rdquo;: int(time.time()) + 86400 * 7,  # 7일
+&ldquo;endTime&rdquo;: int(time.time()) + 86400 * 7,  # 7 days
 &ldquo;zoneHash&rdquo;: &ldquo;0x0000000000000000000000000000000000000000000000000000000000000000&rdquo;,
 &ldquo;salt&rdquo;: &ldquo;0x&rdquo; + os.urandom(32).hex(),
 &ldquo;conduitKey&rdquo;: &ldquo;0x0000007b02230091a7ed01230072f7006a004d60a8d4e71d599b8104250f0000&rdquo;,
 &ldquo;totalOriginalConsiderationItems&rdquo;: 2
 },
-&ldquo;signature&rdquo;: &ldquo;0x&hellip;&rdquo;  # 소유자의 개인 키로 서명
+&ldquo;signature&rdquo;: &ldquo;0x&hellip;&rdquo;  # Signed with owner&rsquo;s private key
 }</p>
-<h1 id="opensea에-주문-제출">OpenSea에 주문 제출<a hidden class="anchor" aria-hidden="true" href="#opensea에-주문-제출">#</a></h1>
+<h1 id="submit-order-to-opensea">Submit order to OpenSea<a hidden class="anchor" aria-hidden="true" href="#submit-order-to-opensea">#</a></h1>
 <p>response = requests.post(
 f&rdquo;{BASE_URL}/orders/ethereum/seaport/listings&quot;,
 headers=headers,
 json=listing_data
 )
-print(f&quot;상장 생성됨: {response.status_code}&quot;)</p>
+print(f&quot;Listing created: {response.status_code}&quot;)</p>
 <pre tabindex="0"><code>
-### 주문 이행하기 (NFT 구매)
+### Fulfilling an Order (Buying an NFT)
 
-상장된 NFT를 구매하려면 주문을 검색하고 이행 트랜잭션을 제출하세요: `````python
-def fulfill_order(order_hash: str, buyer_address: str): &#34;&#34;&#34;기존 주문을 이행하여 NFT를 구매합니다.&#34;&#34;&#34;
-    # 주문 상세 정보 가져오기
+To purchase a listed NFT, retrieve the order and submit a fulfillment transaction: `````python
+def fulfill_order(order_hash: str, buyer_address: str): &#34;&#34;&#34;Fulfill an existing order to purchase an NFT.&#34;&#34;&#34;
+    # Get order details
     order_response = requests.get(
         f&#34;{BASE_URL}/orders/ethereum/seaport/{order_hash}&#34;,
         headers=headers
     )
     order = order_response.json()
     
-    # 이행 트랜잭션 구성
+    # Build fulfillment transaction
     fulfillment_data = {
         &#34;order_hash&#34;: order_hash,
-        &#34;fulfiller&#34;: buyer_address,
+        &#34; fulfiller&#34;: buyer_address,
         &#34;offer&#34;: order[&#34;protocol_data&#34;][&#34;parameters&#34;][&#34;offer&#34;],
         &#34;consideration&#34;: order[&#34;protocol_data&#34;][&#34;parameters&#34;][&#34;consideration&#34;]
     }
     
-    # Seaport 컨트랙트에 제출
+    # Submit to Seaport contract
     seaport_address = &#34;0x0000000000000068F116a894984e2DB1123eB395&#34;
     seaport_contract = w3.eth.contract(
         address=seaport_address,
@@ -690,37 +690,37 @@ def fulfill_order(order_hash: str, buyer_address: str): &#34;&#34;&#34;기존 �
     
     return tx
 
-# 가장 저렴한 상장 아이템 구매
+# Buy the cheapest listed item
 cheapest = min(listings, key=lambda x: float(x[&#34;price&#34;]))
 tx = fulfill_order(cheapest[&#34;order_hash&#34;], &#34;0xBuyerWalletAddress&#34;)
-</code></pre><h3 id="배치-작업">배치 작업<a hidden class="anchor" aria-hidden="true" href="#배치-작업">#</a></h3>
-<p>고빈도 거래를 위해 배치 엔드포인트를 사용하여 여러 작업을 처리하세요: `````python
-def batch_get_listings(requests_list: List[Dict]) -&gt; List[Dict]: &ldquo;&ldquo;&ldquo;단일 요청으로 여러 상장을 가져옵니다.&rdquo;&rdquo;&rdquo;
+</code></pre><h3 id="batch-operations">Batch Operations<a hidden class="anchor" aria-hidden="true" href="#batch-operations">#</a></h3>
+<p>For high-frequency trading, use batch endpoints to process multiple operations: `````python
+def batch_get_listings(requests_list: List[Dict]) -&gt; List[Dict]: &ldquo;&ldquo;&ldquo;Fetch multiple listings in a single request.&rdquo;&rdquo;&rdquo;
 response = requests.post(
 f&quot;{BASE_URL}/listings/batch&quot;,
 headers=headers,
 json={&ldquo;requests&rdquo;: requests_list}
 )
 return response.json()[&ldquo;results&rdquo;]</p>
-<h1 id="여러-컬렉션에-대한-배치-요청">여러 컬렉션에 대한 배치 요청<a hidden class="anchor" aria-hidden="true" href="#여러-컬렉션에-대한-배치-요청">#</a></h1>
+<h1 id="batch-request-multiple-collections">Batch request multiple collections<a hidden class="anchor" aria-hidden="true" href="#batch-request-multiple-collections">#</a></h1>
 <p>collections = [&ldquo;boredapeyachtclub&rdquo;, &ldquo;cryptopunks&rdquo;, &ldquo;azuki&rdquo;]
 requests_list = [{&ldquo;collection&rdquo;: c, &ldquo;limit&rdquo;: 5} for c in collections]
 batch_results = batch_get_listings(requests_list)</p>
 <pre tabindex="0"><code>
 * * *
 
-## WebSocket을 통한 실시간 이벤트 스트리밍
+## Real-Time Event Streaming with WebSocket
 
-OpenSea WebSocket API는 마켓플레이스 이벤트의 실시간 모니터링을 가능하게 합니다. 이는 즉각적인 업데이트가 필요한 트레이딩 봇, 알림 시스템, 분석 플랫폼에 필수적입니다.
+The OpenSea WebSocket API enables real-time monitoring of marketplace events. This is essential for trading bots, notification systems, and analytics platforms that need instant updates.
 
-### WebSocket 연결 설정
+### WebSocket Connection Setup
 
 `````python
 import json
 import asyncio
 import websockets
 
-class OpenSeaStreamClient: &#34;&#34;&#34;실시간 OpenSea 이벤트 스트리밍을 위한 WebSocket 클라이언트.&#34;&#34;&#34;
+class OpenSeaStreamClient: &#34;&#34;&#34;WebSocket client for real-time OpenSea event streaming.&#34;&#34;&#34;
     
     WS_URL = &#34;wss://stream.opensea.io/socket&#34;
     
@@ -728,14 +728,14 @@ class OpenSeaStreamClient: &#34;&#34;&#34;실시간 OpenSea 이벤트 스트리�
         self.subscriptions = []
         self.running = False
     
-    async def connect(self): &#34;&#34;&#34;인증과 함께 WebSocket 연결을 설정합니다.&#34;&#34;&#34;
+    async def connect(self): &#34;&#34;&#34;Establish WebSocket connection with authentication.&#34;&#34;&#34;
         self.ws = await websockets.connect(
             self.WS_URL,
             extra_headers={&#34;X-API-KEY&#34;: self.api_key}
         )
-        logger.info(&#34;WebSocket 연결됨&#34;)
+        logger.info(&#34;WebSocket connected&#34;)
     
-    async def subscribe(self, event_type: str, filters: dict = None): &#34;&#34;&#34;특정 이벤트 스트림을 구독합니다.&#34;&#34;&#34;
+    async def subscribe(self, event_type: str, filters: dict = None): &#34;&#34;&#34;Subscribe to a specific event stream.&#34;&#34;&#34;
         payload = {
             &#34;topic&#34;: event_type,
             &#34;filters&#34;: filters or {}
@@ -744,88 +744,96 @@ class OpenSeaStreamClient: &#34;&#34;&#34;실시간 OpenSea 이벤트 스트리�
             &#34;method&#34;: &#34;SUBSCRIBE&#34;,
             &#34;params&#34;: [payload]
         }))
-        logger.info(f&#34;구독함: {event_type}&#34;)
+        logger.info(f&#34;Subscribed to: {event_type}&#34;)
     
-    async def listen(self, callback): &#34;&#34;&#34;들어오는 이벤트를 수신합니다.&#34;&#34;&#34;
+    async def listen(self, callback): &#34;&#34;&#34;Listen for incoming events.&#34;&#34;&#34;
         self.running = True
         while self.running: try: message = await self.ws.recv()
                 data = json.loads(message)
                 await callback(data)
-            except websockets.exceptions.ConnectionClosed: logger.warning(&#34;연결 종료됨, 재연결 중...&#34;)
+            except websockets.exceptions.ConnectionClosed: logger.warning(&#34;Connection closed, reconnecting...&#34;)
                 await self.connect()
                 for sub in self.subscriptions: await self.subscribe(sub[&#34;type&#34;], sub.get(&#34;filters&#34;))
     
-    async def disconnect(self): &#34;&#34;&#34;WebSocket 연결을 닫습니다.&#34;&#34;&#34;
+    async def disconnect(self): &#34;&#34;&#34;Close WebSocket connection.&#34;&#34;&#34;
         self.running = False
         await self.ws.close()
 
 
-# 이벤트 핸들러
-async def handle_event(event: dict): &#34;&#34;&#34;들어오는 마켓플레이스 이벤트를 처리합니다.&#34;&#34;&#34;
+# Event handler
+async def handle_event(event: dict): &#34;&#34;&#34;Process incoming marketplace events.&#34;&#34;&#34;
     event_type = event.get(&#34;event_type&#34;)
     payload = event.get(&#34;payload&#34;, {})
     
-    if event_type == &#34;item_listed&#34;: print(f&#34;[상장] {payload[name]} 가격 {payload[base_price]} ETH&#34;)
-    elif event_type == &#34;item_sold&#34;: print(f&#34;[판매] {payload[name]}이(가) {payload[sale_price]} ETH에 판매됨&#34;)
-    elif event_type == &#34;item_cancelled&#34;: print(f&#34;[취소] {payload[name]}&#34;)
-    elif event_type == &#34;collection_offer&#34;: print(f&#34;[오퍼] {payload[collection_slug]}에 대한 컬렉션 오퍼&#34;)
+    if event_type == &#34;item_listed&#34;: print(f&#34;[LISTED] {payload[name]} at {payload[base_price]} ETH&#34;)
+    elif event_type == &#34;item_sold&#34;: print(f&#34;[SOLD] {payload[name]} for {payload[sale_price]} ETH&#34;)
+    elif event_type == &#34;item_cancelled&#34;: print(f&#34;[CANCELLED] {payload[name]}&#34;)
+    elif event_type == &#34;collection_offer&#34;: print(f&#34;[OFFER] Collection offer on {payload[collection_slug]}&#34;)
 
 
-# 이벤트 스트림 실행
+# Run event stream
 async def main(): client = OpenSeaStreamClient(api_key=API_KEY)
     await client.connect()
     
-    # 이벤트 구독
+    # Subscribe to events
     await client.subscribe(&#34;item_listed&#34;, {&#34;collection_slug&#34;: &#34;boredapeyachtclub&#34;})
     await client.subscribe(&#34;item_sold&#34;, {&#34;collection_slug&#34;: &#34;boredapeyachtclub&#34;})
     
-    # 수신 시작
+    # Start listening
     await client.listen(handle_event)
 
 # asyncio.run(main())
-</code></pre><h3 id="이벤트-유형-참조">이벤트 유형 참조<a hidden class="anchor" aria-hidden="true" href="#이벤트-유형-참조">#</a></h3>
-<p>WebSocket API는 다양한 사용 사례를 위한 여러 이벤트 유형을 지원합니다: `````python</p>
-<h1 id="사용-가능한-이벤트-유형">사용 가능한 이벤트 유형<a hidden class="anchor" aria-hidden="true" href="#사용-가능한-이벤트-유형">#</a></h1>
+</code></pre><h3 id="event-types-reference">Event Types Reference<a hidden class="anchor" aria-hidden="true" href="#event-types-reference">#</a></h3>
+<p>The WebSocket API supports multiple event types for different use cases: `````python</p>
+<h1 id="available-event-types">Available event types<a hidden class="anchor" aria-hidden="true" href="#available-event-types">#</a></h1>
 <p>EVENT_TYPES = {
-&ldquo;item_listed&rdquo;: &ldquo;새 상장 생성됨&rdquo;,
-&ldquo;item_sold&rdquo;: &ldquo;아이템 구매됨&rdquo;,
-&ldquo;item_cancelled&rdquo;: &ldquo;상장 취소됨&rdquo;,
-&ldquo;item_received_bid&rdquo;: &ldquo;새 입찰&rdquo;,
-&ldquo;item_received_offer&rdquo;: &ldquo;새 오퍼&rdquo;,
-&ldquo;collection_offer&rdquo;: &ldquo;전체 컬렉션 오퍼&rdquo;,
-&ldquo;trait_offer&rdquo;: &ldquo;특정 특성 오퍼&rdquo;,
-&ldquo;item_metadata_updated&rdquo;: &ldquo;NFT 메타데이터 새로고침됨&rdquo;,
-&ldquo;item_transfer&rdquo;: &ldquo;토큰 전송됨&rdquo;
+&ldquo;item_listed&rdquo;: &ldquo;New listing created&rdquo;,
+&ldquo;item_sold&rdquo;: &ldquo;Item purchased&rdquo;,
+&ldquo;item_cancelled&rdquo;: &ldquo;Listing cancelled&rdquo;,
+&ldquo;item_received_bid&rdquo;: &ldquo;New bid placed&rdquo;,
+&ldquo;item_received_offer&rdquo;: &ldquo;New offer received&rdquo;,
+&ldquo;collection_offer&rdquo;: &ldquo;Collection-wide offer&rdquo;,
+&ldquo;trait_offer&rdquo;: &ldquo;Trait-specific offer&rdquo;,
+&ldquo;item_metadata_updated&rdquo;: &ldquo;NFT metadata refreshed&rdquo;,
+&ldquo;item_transfer&rdquo;: &ldquo;Token transferred&rdquo;
 }</p>
 <pre tabindex="0"><code>
 * * *
 
-## 속도 제한 및 모범 사례
+## Rate Limiting and Best Practices
 
-속도 제한을 이해하는 것은 프로덕션 애플리케이션에 매우 중요합니다. 제한을 초과하면 거래 운영을 중단시킬 수 있는 임시 차단이 발생합니다.
+Understanding rate limits is critical for production applications. Exceeding limits results in temporary bans that can disrupt trading operations.
 
-### 속도 제한 계층
+### Rate Limit Tiers
 
-| 계층 | 초당 요청 | 버스트 제한 | 사용 사례 |
-|------|----------|------------|----------|
-| 묶음 | 1 | 5 | 개발, 테스트 |
-| 개발자 | 10 | 50 | 소규모 애플리케이션 |
-| 전문가 | 40 | 200 | 트레이딩 봇, 분석 |
-| 기업 | 120+ | 600+ | 고빈도 거래 |
+| Tier | Requests/Second | Burst Limit | Use Case |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Free | 1 | 5 | Development, testing |
+| Developer | 10 | 50 | Small applications |
+| Professional | 40 | 200 | Trading bots, analytics |
+| Enterprise | 120+ | 600+ | High-frequency trading |
 
-### 속도 제한 헤더
+### Rate Limit Headers
 
-모든 API 응답은 속도 제한 헤더를 포함합니다: `````python
-def check_rate_limits(response: requests.Response): &#34;&#34;&#34;속도 제한 상태를 추출하고 모니터링합니다.&#34;&#34;&#34;
+Every API response includes rate limit headers: `````python
+def check_rate_limits(response: requests.Response): &#34;&#34;&#34;Extract and monitor rate limit status.&#34;&#34;&#34;
     limit = response.headers.get(&#34;X-RateLimit-Limit&#34;)
     remaining = response.headers.get(&#34;X-RateLimit-Remaining&#34;)
     reset = response.headers.get(&#34;X-RateLimit-Reset&#34;)
     
-    print(f&#34;속도 제한: {remaining}/{limit}&#34;)
-    print(f&#34;초기화까지: {reset}초&#34;)
+    print(f&#34;Rate Limit: {remaining}/{limit}&#34;)
+    print(f&#34;Resets in: {reset} seconds&#34;)
     
-    # 제한에 근접하면 경고
-    if int(remaining) &lt; 10: logger.warning(f&#34;속도 제한에 근접! 남은 요청 {remaining}개&#34;)
+    # Warning if approaching limit
+    if int(remaining) &lt; 10: logger.warning(f&#34;Approaching rate limit! {remaining} requests remaining&#34;)
     
     return {
         &#34;limit&#34;: int(limit) if limit else None,
@@ -833,37 +841,37 @@ def check_rate_limits(response: requests.Response): &#34;&#34;&#34;속도 제한
         &#34;reset&#34;: int(reset) if reset else None
     }
 
-# 모든 요청에 적용
+# Apply to every request
 response = requests.get(f&#34;{BASE_URL}/collections&#34;, headers=headers)
 limits = check_rate_limits(response)
-</code></pre><h3 id="백오프-전략-구현">백오프 전략 구현<a hidden class="anchor" aria-hidden="true" href="#백오프-전략-구현">#</a></h3>
+</code></pre><h3 id="implementing-backoff-strategies">Implementing Backoff Strategies<a hidden class="anchor" aria-hidden="true" href="#implementing-backoff-strategies">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> random
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AdaptiveRateLimiter</span>: <span style="color:#e6db74">&#34;&#34;&#34;지수 백오프가 있는 적응형 속도 제한기.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AdaptiveRateLimiter</span>: <span style="color:#e6db74">&#34;&#34;&#34;Adaptive rate limiter with exponential backoff.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>    
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, base_delay: float <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>, max_delay: float <span style="color:#f92672">=</span> <span style="color:#ae81ff">60.0</span>): self<span style="color:#f92672">.</span>base_delay <span style="color:#f92672">=</span> base_delay
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>max_delay <span style="color:#f92672">=</span> max_delay
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>current_delay <span style="color:#f92672">=</span> base_delay
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>consecutive_errors <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wait</span>(self): <span style="color:#e6db74">&#34;&#34;&#34;적응형 지연과 함께 대기합니다.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">wait</span>(self): <span style="color:#e6db74">&#34;&#34;&#34;Wait with adaptive delay.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>        jitter <span style="color:#f92672">=</span> random<span style="color:#f92672">.</span>uniform(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0.5</span>)
 </span></span><span style="display:flex;"><span>        time<span style="color:#f92672">.</span>sleep(self<span style="color:#f92672">.</span>current_delay <span style="color:#f92672">+</span> jitter)
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">on_success</span>(self): <span style="color:#e6db74">&#34;&#34;&#34;성공한 요청 후 지연을 줄입니다.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">on_success</span>(self): <span style="color:#e6db74">&#34;&#34;&#34;Reduce delay after successful request.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>consecutive_errors <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>current_delay <span style="color:#f92672">=</span> max(self<span style="color:#f92672">.</span>base_delay, self<span style="color:#f92672">.</span>current_delay <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.8</span>)
 </span></span><span style="display:flex;"><span>    
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">on_error</span>(self, status_code: int): <span style="color:#e6db74">&#34;&#34;&#34;오류 후 지연을 증가시킵니다.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">on_error</span>(self, status_code: int): <span style="color:#e6db74">&#34;&#34;&#34;Increase delay after error.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>consecutive_errors <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> status_code <span style="color:#f92672">==</span> <span style="color:#ae81ff">429</span>: self<span style="color:#f92672">.</span>current_delay <span style="color:#f92672">=</span> min(
 </span></span><span style="display:flex;"><span>                self<span style="color:#f92672">.</span>max_delay,
 </span></span><span style="display:flex;"><span>                self<span style="color:#f92672">.</span>current_delay <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> self<span style="color:#f92672">.</span>consecutive_errors
 </span></span><span style="display:flex;"><span>            )
-</span></span><span style="display:flex;"><span>            logger<span style="color:#f92672">.</span>warning(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;속도 제한됨. 백오프: </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>current_delay<span style="color:#e6db74">}</span><span style="color:#e6db74">초&#34;</span>)
+</span></span><span style="display:flex;"><span>            logger<span style="color:#f92672">.</span>warning(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Rate limited. Backoff: </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>current_delay<span style="color:#e6db74">}</span><span style="color:#e6db74">s&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 요청 루프에서 사용</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Usage in request loop</span>
 </span></span><span style="display:flex;"><span>limiter <span style="color:#f92672">=</span> AdaptiveRateLimiter(base_delay<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> page <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">100</span>): limiter<span style="color:#f92672">.</span>wait()
@@ -872,11 +880,11 @@ limits = check_rate_limits(response)
 </span></span><span style="display:flex;"><span>        limiter<span style="color:#f92672">.</span>on_success()
 </span></span><span style="display:flex;"><span>        process_assets(response<span style="color:#f92672">.</span>json())
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> requests<span style="color:#f92672">.</span>exceptions<span style="color:#f92672">.</span>HTTPError <span style="color:#66d9ef">as</span> e: limiter<span style="color:#f92672">.</span>on_error(e<span style="color:#f92672">.</span>response<span style="color:#f92672">.</span>status_code)
-</span></span></code></pre></div><h3 id="캐싱-전략">캐싱 전략<a hidden class="anchor" aria-hidden="true" href="#캐싱-전략">#</a></h3>
+</span></span></code></pre></div><h3 id="caching-strategies">Caching Strategies<a hidden class="anchor" aria-hidden="true" href="#caching-strategies">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> functools <span style="color:#f92672">import</span> lru_cache
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime, timedelta
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OpenSeaCache</span>: <span style="color:#e6db74">&#34;&#34;&#34;API 응답을 위한 간단한 TTL 캐시.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OpenSeaCache</span>: <span style="color:#e6db74">&#34;&#34;&#34;Simple TTL cache for API responses.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>    
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, ttl_seconds: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">60</span>): self<span style="color:#f92672">.</span>cache <span style="color:#f92672">=</span> {}
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>ttl <span style="color:#f92672">=</span> ttl_seconds
@@ -889,7 +897,7 @@ limits = check_rate_limits(response)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">set</span>(self, key: str, value): expiry <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now() <span style="color:#f92672">+</span> timedelta(seconds<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>ttl)
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>cache[key] <span style="color:#f92672">=</span> (value, expiry)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 컬렉션 메타데이터 캐싱 (드물게 변경됨)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cache collection metadata (rarely changes)</span>
 </span></span><span style="display:flex;"><span>collection_cache <span style="color:#f92672">=</span> OpenSeaCache(ttl_seconds<span style="color:#f92672">=</span><span style="color:#ae81ff">300</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_cached_collection</span>(slug: str): cached <span style="color:#f92672">=</span> collection_cache<span style="color:#f92672">.</span>get(slug)
@@ -899,8 +907,8 @@ limits = check_rate_limits(response)
 </span></span><span style="display:flex;"><span>    collection_cache<span style="color:#f92672">.</span>set(slug, data)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> data
 </span></span></code></pre></div><hr>
-<h2 id="트레이딩-봇-구축-완전한-예제">트레이딩 봇 구축: 완전한 예제<a hidden class="anchor" aria-hidden="true" href="#트레이딩-봇-구축-완전한-예제">#</a></h2>
-<p>다음은 컬렉션 간 바닥 가격을 모니터링하는 차익 거래 탐지 트레이딩 봇의 완전한 예제입니다: `````python
+<h2 id="building-a-trading-bot-complete-example">Building a Trading Bot: Complete Example<a hidden class="anchor" aria-hidden="true" href="#building-a-trading-bot-complete-example">#</a></h2>
+<p>Here is a complete example of an arbitrage-sniffing trading bot that monitors floor prices across collections: `````python
 import time
 from dataclasses import dataclass
 from typing import Callable</p>
@@ -911,25 +919,26 @@ listed_price: float
 estimated_value: float
 profit_margin: float
 listing_url: str</p>
-<p>class NFTArbitrageBot: &ldquo;&ldquo;&ldquo;OpenSea API를 사용하는 간단한 차익 거래 탐지 봇.&rdquo;&rdquo;&rdquo;</p>
+<p>class NFTArbitrageBot: &ldquo;&ldquo;&ldquo;Simple arbitrage detection bot using OpenSea API.&rdquo;&rdquo;&rdquo;</p>
 <pre><code>def __init__(self, api: OpenSeaAPI, min_profit_pct: float = 15.0): self.api = api
     self.min_profit_pct = min_profit_pct
     self.watchlist = []
     self.callbacks: List[Callable] = []
 
-def add_collection(self, collection_slug: str, floor_threshold: float): &quot;&quot;&quot;감시 목록에 컬렉션을 추가합니다.&quot;&quot;&quot;
+def add_collection(self, collection_slug: str, floor_threshold: float): &quot;&quot;&quot;Add a collection to the watchlist.&quot;&quot;&quot;
     self.watchlist.append({
         &quot;slug&quot;: collection_slug,
         &quot;threshold&quot;: floor_threshold
     })
 
-def on_opportunity(self, callback: Callable): &quot;&quot;&quot;차익 거래 기회에 대한 콜백을 등록합니다.&quot;&quot;&quot;
+def on_opportunity(self, callback: Callable): &quot;&quot;&quot;Register callback for arbitrage opportunities.&quot;&quot;&quot;
     self.callbacks.append(callback)
 
-def analyze_collection(self, collection: dict) -&gt; List[ArbitrageOpportunity]: &quot;&quot;&quot;저가 상장을 위해 컬렉션을 스캔합니다.&quot;&quot;&quot;
+def analyze_collection(self, collection: dict) -&gt; List[ArbitrageOpportunity]: &quot;&quot;&quot;Scan collection for underpriced listings.&quot;&quot;&quot;
     slug = collection[&quot;slug&quot;]
+    threshold = collection[&quot;threshold&quot;]
     
-    # 바닥 가격과 활성 상장 가져오기
+    # Get floor price and active listings
     stats = self.api.get_collection_stats(slug)
     floor_price = float(stats[&quot;total&quot;][&quot;floor_price&quot;])
     
@@ -942,7 +951,7 @@ def analyze_collection(self, collection: dict) -&gt; List[ArbitrageOpportunity]:
     opportunities = []
     for listing in listings: price = float(listing[&quot;price&quot;])
         
-        # 바닥 가격보다 현저히 낮은지 확인
+        # Check if significantly below floor
         if price &lt; floor_price * (1 - self.min_profit_pct / 100): opp = ArbitrageOpportunity(
                 collection=slug,
                 token_id=listing[&quot;token_id&quot;],
@@ -953,31 +962,31 @@ def analyze_collection(self, collection: dict) -&gt; List[ArbitrageOpportunity]:
             )
             opportunities.append(opp)
             
-            # 콜백 알림
+            # Notify callbacks
             for cb in self.callbacks: cb(opp)
     
     return opportunities
 
-def run(self, interval: int = 30): &quot;&quot;&quot;지정된 확인 간격으로 봇을 실행합니다.&quot;&quot;&quot;
-    logger.info(f&quot;봇 시작, {len(self.watchlist)}개 컬렉션 모니터링 중&quot;)
+def run(self, interval: int = 30): &quot;&quot;&quot;Run the bot with specified check interval.&quot;&quot;&quot;
+    logger.info(f&quot;Starting bot with {len(self.watchlist)} collections&quot;)
     
     try: while True: for collection in self.watchlist: try: opps = self.analyze_collection(collection)
-                    if opps: logger.info(f&quot;{collection[slug]}에서 {len(opps)}개의 기회 발견&quot;)
-                except Exception as e: logger.error(f&quot;{collection[slug]} 분석 중 오류: {e}&quot;)
+                    if opps: logger.info(f&quot;Found {len(opps)} opportunities in {collection[slug]}&quot;)
+                except Exception as e: logger.error(f&quot;Error analyzing {collection[slug]}: {e}&quot;)
             
             time.sleep(interval)
-    except KeyboardInterrupt: logger.info(&quot;사용자가 봇을 중지함&quot;)
+    except KeyboardInterrupt: logger.info(&quot;Bot stopped by user&quot;)
 </code></pre>
-<h1 id="사용-예시">사용 예시<a hidden class="anchor" aria-hidden="true" href="#사용-예시">#</a></h1>
-<p>def notify_discord(opp: ArbitrageOpportunity): &ldquo;&ldquo;&ldquo;기회에 대한 Discord 알림을 볃냅니다.&rdquo;&rdquo;&rdquo;
+<h1 id="usage-example">Usage example<a hidden class="anchor" aria-hidden="true" href="#usage-example">#</a></h1>
+<p>def notify_discord(opp: ArbitrageOpportunity): &ldquo;&ldquo;&ldquo;Send Discord notification for opportunity.&rdquo;&rdquo;&rdquo;
 message = f&quot;&quot;&quot;
-<strong>차익 거래 알림!</strong>
-컬렉션: {opp.collection}
-토큰: #{opp.token_id}
-상장 가격: {opp.listed_price:.4f} ETH
-바닥 가격: {opp.estimated_value:.4f} ETH
-수익: {opp.profit_margin:.1f}%
-<a href="%7Bopp.listing_url%7D">상장 보기</a>
+<strong>Arbitrage Alert!</strong>
+Collection: {opp.collection}
+Token: #{opp.token_id}
+Listed: {opp.listed_price:.4f} ETH
+Floor: {opp.estimated_value:.4f} ETH
+Profit: {opp.profit_margin:.1f}%
+<a href="%7Bopp.listing_url%7D">View Listing</a>
 &quot;&quot;&quot;
 # send_to_discord_webhook(message)</p>
 <p>bot = NFTArbitrageBot(sdk, min_profit_pct=20.0)
@@ -988,27 +997,27 @@ bot.on_opportunity(notify_discord)</p>
 <pre tabindex="0"><code>
 * * *
 
-## 오류 처리 및 디버깅
+## Error Handling and Debugging
 
-프로덕션 애플리케이션에는 강력한 오류 처리가 필요합니다. OpenSea API는 구조화된 오류 응답을 반환합니다: `````python
-class OpenSeaAPIError(Exception): &#34;&#34;&#34;OpenSea API 오류용 사용자 정의 예외.&#34;&#34;&#34;
+Production applications require robust error handling. The OpenSea API returns structured error responses: `````python
+class OpenSeaAPIError(Exception): &#34;&#34;&#34;Custom exception for OpenSea API errors.&#34;&#34;&#34;
     
     def __init__(self, message: str, status_code: int = None, response_data: dict = None): super().__init__(message)
         self.status_code = status_code
         self.response_data = response_data or {}
 
-def handle_api_error(response: requests.Response): &#34;&#34;&#34;적절한 예외를 구문 분석하고 발생시킵니다.&#34;&#34;&#34;
+def handle_api_error(response: requests.Response): &#34;&#34;&#34;Parse and raise appropriate exceptions.&#34;&#34;&#34;
     try: error_data = response.json()
     except ValueError: error_data = {&#34;message&#34;: response.text}
     
     error_map = {
-        400: (&#34;잘못된 요청&#34;, ValueError),
-        401: (&#34;인증되지 않음 - API 키 확인&#34;, PermissionError),
-        403: (&#34;금지됨 - 권한 부족&#34;, PermissionError),
-        404: (&#34;리소스를 찾을 수 없음&#34;, KeyError),
-        429: (&#34;속도 제한 초과&#34;, TimeoutError),
-        500: (&#34;낮부 서버 오류&#34;, RuntimeError),
-        503: (&#34;서비스를 사용할 수 없음&#34;, ConnectionError)
+        400: (&#34;Bad Request&#34;, ValueError),
+        401: (&#34;Unauthorized - Check API key&#34;, PermissionError),
+        403: (&#34;Forbidden - Insufficient permissions&#34;, PermissionError),
+        404: (&#34;Resource not found&#34;, KeyError),
+        429: (&#34;Rate limit exceeded&#34;, TimeoutError),
+        500: (&#34;Internal server error&#34;, RuntimeError),
+        503: (&#34;Service unavailable&#34;, ConnectionError)
     }
     
     error_msg, error_class = error_map.get(
@@ -1016,49 +1025,49 @@ def handle_api_error(response: requests.Response): &#34;&#34;&#34;적절한 예�
         (f&#34;HTTP {response.status_code}&#34;, RuntimeError)
     )
     
-    detail = error_data.get(&#34;message&#34;, error_data.get(&#34;detail&#34;, &#34;알 수 없는 오류&#34;))
+    detail = error_data.get(&#34;message&#34;, error_data.get(&#34;detail&#34;, &#34;Unknown error&#34;))
     raise error_class(f&#34;{error_msg}: {detail}&#34;)
 
-# SDK에 적용
+# Apply in SDK
 class RobustOpenSeaAPI(OpenSeaAPI): def _request(self, method: str, endpoint: str, **kwargs): response = self.session.request(method, self.BASE_URL + endpoint, **kwargs)
         if not response.ok: handle_api_error(response)
         return response.json()
 </code></pre><hr>
-<h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
-<h3 id="opensea-api-키는-어떻게-얻나요">OpenSea API 키는 어떻게 얻나요?<a hidden class="anchor" aria-hidden="true" href="#opensea-api-키는-어떻게-얻나요">#</a></h3>
-<p><a href="https://docs.opensea.io/reference/api-keys">OpenSea 개발자 대시보드</a>를 방문하여 지갑으로 로그인하고 개발자 신청을 완료하세요. 승인은 일반적으로 1-3영업일이 소요됩니다. 사용 사례를 설명하고 API 서비스 약관에 동의해야 합니다. 엔터프라이즈 계층 키에는 추가 인증과 직접적인 파트너십 계약이 필요합니다.</p>
-<h3 id="opensea-api의-속도-제한은-무엇인가요">OpenSea API의 속도 제한은 무엇인가요?<a hidden class="anchor" aria-hidden="true" href="#opensea-api의-속도-제한은-무엇인가요">#</a></h3>
-<p>속도 제한은 API 계층에 따라 다릅니다. 묶음 계층은 초당 1개 요청, 버스트 5개를 허용합니다. 개발자 계층은 이를 초당 10개 요청, 버스트 50개로 증가시킵니다. 전문가 계층은 초당 40개 요청, 버스트 200개를 지원합니다. 엔터프라이즈 계층은 고빈도 트레이딩 애플리케이션을 위해 초당 120개 이상을 제공합니다. 사용량을 모니터링하려면 모든 응답의 <code>X-RateLimit-*</code> 헤더를 확인하세요.</p>
-<h3 id="api를-통해-nft를-사고-팔-수-있나요">API를 통해 NFT를 사고 팔 수 있나요?<a hidden class="anchor" aria-hidden="true" href="#api를-통해-nft를-사고-팔-수-있나요">#</a></h3>
-<p>예, API는 완전한 프로그래밍 방식 거래를 지원합니다. 코드를 통해 상장을 생성하고, 오퍼를 수락하고, 주문을 이행할 수 있습니다. 하지만 NFT를 소유한 지갑의 개인 키가 필요합니다. 모든 거래는 가스 비용이 필요한 온체인 서명이 필요한 Seaport 프로토콜을 통해 실행됩니다.</p>
-<h3 id="opensea-api는-어떤-블록체인을-지원하나요">OpenSea API는 어떤 블록체인을 지원하나요?<a hidden class="anchor" aria-hidden="true" href="#opensea-api는-어떤-블록체인을-지원하나요">#</a></h3>
-<p>2026년 현재 OpenSea API는 이더리움 메인넷, 폴리곤(PoS 및 zkEVM), 아비트럼 원, 옵티미즘, 베이스, 조라, 세폴리아 테스트넷을 지원합니다. 각 체인에는 자체 엔드포인트 접두사가 있습니다(예: <code>/chain/ethereum/</code>, <code>/chain/polygon/</code>). 교차 체인 애그리게이션 엔드포인트를 통해 여러 네트워크를 동시에 쿼리할 수 있습니다.</p>
-<h3 id="opensea에-공식-python-sdk가-있나요">OpenSea에 공식 Python SDK가 있나요?<a hidden class="anchor" aria-hidden="true" href="#opensea에-공식-python-sdk가-있나요">#</a></h3>
-<p>OpenSea에는 공식 Python SDK가 없습니다. 공식 SDK는 <a href="https://github.com/ProjectOpenSea/opensea-js">opensea-js</a>(JavaScript/TypeScript)입니다. 하지만 여러 커뮤니티에서 유지 관리하는 Python 패키지가 존재하며, 이 가이드에서 설명한 것처럼 requests 라이브러리를 사용하여 자체 통합을 쉽게 구축할 수 있습니다. REST API는 잘 문서화되어 있고 표준 규칙을 따릅니다.</p>
-<h3 id="실시간-이벤트를-어떻게-스트리밍하나요">실시간 이벤트를 어떻게 스트리밍하나요?<a hidden class="anchor" aria-hidden="true" href="#실시간-이벤트를-어떻게-스트리밍하나요">#</a></h3>
-<p><code>wss://stream.opensea.io/socket</code>에서 WebSocket API를 사용하세요. 선택적 컬렉션 필터와 함께 <code>item_listed</code>, <code>item_sold</code>, <code>item_cancelled</code> 등의 이벤트 유형을 구독하세요. WebSocket 연결에는 ````X-API-KEY``` 헤더에 API 키가 필요합니다. 프로덕션 안정성을 위해 재연결 로직을 구현하세요.</p>
-<h3 id="seaport-프로토콜이란-무엇인가요">Seaport 프로토콜이란 무엇인가요?<a hidden class="anchor" aria-hidden="true" href="#seaport-프로토콜이란-무엇인가요">#</a></h3>
-<p>Seaport는 OpenSea의 탈중앙화된 NFT 트레이딩 프로토콜입니다. 주문 매칭, 이행, 수수료 분배를 처리하는 오픈 소스 스마트 컨트랙트 표준입니다. API를 통해 주문을 생성하거나 이행할 때, 온체인의 Seaport 컨트랙트와 상호작용하는 것입니다. 이 프로토콜은 조건 기반 주문, 부분 채우기, 대량 실행과 같은 고급 기능을 지원합니다.</p>
+<h2 id="faq-frequently-asked-questions">FAQ: Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#faq-frequently-asked-questions">#</a></h2>
+<h3 id="how-do-i-get-an-opensea-api-key">How do I get an OpenSea API key?<a hidden class="anchor" aria-hidden="true" href="#how-do-i-get-an-opensea-api-key">#</a></h3>
+<p>Visit the <a href="https://docs.opensea.io/reference/api-keys">OpenSea Developer Dashboard</a>, sign in with your wallet, and complete the developer application. Approval typically takes 1-3 business days. You will need to describe your use case and agree to the API terms of service. Enterprise-tier keys require additional verification and a direct partnership agreement.</p>
+<h3 id="what-are-the-rate-limits-for-the-opensea-api">What are the rate limits for the OpenSea API?<a hidden class="anchor" aria-hidden="true" href="#what-are-the-rate-limits-for-the-opensea-api">#</a></h3>
+<p>Rate limits depend on your API tier. Free tier allows 1 request per second with a burst of 5. Developer tier increases this to 10 RPS with burst of 50. Professional tier supports 40 RPS with burst of 200. Enterprise tiers offer 120+ RPS for high-frequency trading applications. Check the <code>X-RateLimit-*</code> headers in every response to monitor your usage.</p>
+<h3 id="can-i-buy-and-sell-nfts-through-the-api">Can I buy and sell NFTs through the API?<a hidden class="anchor" aria-hidden="true" href="#can-i-buy-and-sell-nfts-through-the-api">#</a></h3>
+<p>Yes, the API supports full programmatic trading. You can create listings, accept offers, and fulfill orders entirely through the API. However, you need the private key of the wallet that owns the NFTs. All transactions are executed through the Seaport protocol, which requires on-chain signatures and gas fees.</p>
+<h3 id="which-blockchains-does-the-opensea-api-support">Which blockchains does the OpenSea API support?<a hidden class="anchor" aria-hidden="true" href="#which-blockchains-does-the-opensea-api-support">#</a></h3>
+<p>As of 2026, the OpenSea API supports Ethereum mainnet, Polygon (PoS and zkEVM), Arbitrum One, Optimism, Base, Zora, and Sepolia testnet. Each chain has its own endpoint prefix (e.g., <code>/chain/ethereum/</code>, <code>/chain/polygon/</code>). Cross-chain aggregation endpoints allow querying across multiple networks simultaneously.</p>
+<h3 id="is-there-an-official-python-sdk-for-opensea">Is there an official Python SDK for OpenSea?<a hidden class="anchor" aria-hidden="true" href="#is-there-an-official-python-sdk-for-opensea">#</a></h3>
+<p>There is no official Python SDK from OpenSea. The official SDK is <a href="https://github.com/ProjectOpenSea/opensea-js">opensea-js</a> (JavaScript/TypeScript). However, several community-maintained Python packages exist, and you can easily build your own integration using the <code>requests</code> library as demonstrated in this guide. The REST API is well-documented and follows standard conventions.</p>
+<h3 id="how-do-i-stream-real-time-events">How do I stream real-time events?<a hidden class="anchor" aria-hidden="true" href="#how-do-i-stream-real-time-events">#</a></h3>
+<p>Use the WebSocket API at <code>wss://stream.opensea.io/socket</code>. Subscribe to event types like <code>item_listed</code>, <code>item_sold</code>, and <code>item_cancelled</code> with optional collection filters. The WebSocket connection requires your API key in the ````X-API-KEY``` header. Implement reconnection logic for production reliability.</p>
+<h3 id="what-is-the-seaport-protocol">What is the Seaport protocol?<a hidden class="anchor" aria-hidden="true" href="#what-is-the-seaport-protocol">#</a></h3>
+<p>Seaport is OpenSea&rsquo;s decentralized NFT trading protocol. It is an open-source smart contract standard that handles order matching, fulfillment, and fee distribution. When you create or fulfill orders through the API, you are interacting with Seaport contracts on-chain. The protocol supports advanced features like criteria-based orders, partial fills, and bulk executions.</p>
 <hr>
-<h2 id="추천-호스팅-및-인프라">추천 호스팅 및 인프라<a hidden class="anchor" aria-hidden="true" href="#추천-호스팅-및-인프라">#</a></h2>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-hosting--infrastructure">#</a></h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions.</p>
 <ul>
-<li><strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 60일 $200 무료 크레딧.</li>
-<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연 접속.</li>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.</li>
 </ul>
-<p><em>제휴 링크 — 추가 비용 없이 dibi8.com 운영을 지원합니다.</em></p>
-<h2 id="결론">결론<a hidden class="anchor" aria-hidden="true" href="#결론">#</a></h2>
-<p>OpenSea API는 2026년 현재 가장 포괄적이고 실전 검증된 NFT 마켓플레이스 API입니다. 여러 블록체인에 대한 지원, 실시간 WebSocket 스트리밍, 완전한 프로그래밍 방식 거래 기능을 갖추고 있어 정교한 NFT 애플리케이션을 구축하는 데 필요한 모든 것을 개발자에게 제공합니다.</p>
-<p>이 가이드의 핵심 요점: - <strong>인증</strong>: 개발자 대시보드에서 API 키를 얻고 항상 환경 변수를 사용하세요</p>
+<p><em>Affiliate links — they don&rsquo;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>The OpenSea API is the most comprehensive and battle-tested NFT marketplace API available in 2026. With support for multiple blockchains, real-time WebSocket streaming, and full programmatic trading capabilities, it provides everything developers need to build sophisticated NFT applications.</p>
+<p>Key takeaways from this guide: - <strong>Authentication</strong>: Obtain your API key from the Developer Dashboard and always use environment variables</p>
 <ul>
-<li><strong>SDK 전략</strong>: 공식 JavaScript SDK를 사용하거나 재시도 로직으로 사용자 정의 Python 래퍼를 구축하세요</li>
-<li><strong>거래</strong>: 프로그래밍 방식 매수/매도를 위해 Seaport 주문 생성 및 이행을 이해하세요</li>
-<li><strong>실시간</strong>: 즉각적인 이벤트 알림을 위해 WebSocket 스트림을 활용하세요</li>
-<li><strong>속도 제한</strong>: 계층 제한 내에서 유지하기 위해 적응형 백오프와 캐싱을 구현하세요</li>
-<li><strong>오류 처리</strong>: 프로덕션 안정성을 위해 강력한 오류 처리를 구축하세요</li>
+<li><strong>SDK Strategy</strong>: Use the official JavaScript SDK or build a custom Python wrapper with retry logic</li>
+<li><strong>Trading</strong>: Understand Seaport order creation and fulfillment for programmatic buys/sells</li>
+<li><strong>Real-time</strong>: Leverage WebSocket streams for instant event notifications</li>
+<li><strong>Rate Limits</strong>: Implement adaptive backoff and caching to stay within your tier limits</li>
+<li><strong>Error Handling</strong>: Build robust error handling for production reliability</li>
 </ul>
-<p>간단한 포트폴리오 추적기든 고빈도 트레이딩 봇이든, OpenSea API는 세계 최대의 NFT 마켓플레이스와 프로그래밍 방식으로 상호작용하는 데 필요한 인프라를 제공합니다. 이 가이드의 예제부터 시작하고, 속도 제한을 모니터링하며, 필요에 따라 애플리케이션을 확장하세요.</p>
+<p>Whether you are building a simple portfolio tracker or a high-frequency trading bot, the OpenSea API provides the infrastructure to interact with the world&rsquo;s largest NFT marketplace programmatically. Start with the examples in this guide, monitor your rate limits, and scale your application as your needs grow.</p>
 <hr>
-<p><em>이 문서는 2026-05-19에 작성되었습니다. API 사양과 속도 제한은 변경될 수 있습니다. 최신 업데이트는 <a href="https://docs.opensea.io/">공식 OpenSea 문서</a>를 참조하세요.</em></p>
+<p><em>This article was written on 2026-05-19. API specifications and rate limits are subject to change. Refer to the <a href="https://docs.opensea.io/">official OpenSea documentation</a> for the latest updates.</em></p>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
@@ -1079,7 +1088,7 @@ class RobustOpenSeaAPI(OpenSeaAPI): def _request(self, method: str, endpoint: st
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/opensea-nft-marketplace-api%22">https://dibi8.com/kr/resources/opensea-nft-marketplace-api"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/opensea-nft-marketplace-api%22">https://dibi8.com/resources/opensea-nft-marketplace-api"</a>
 }
 }
 </script></p>
@@ -1136,6 +1145,81 @@ class RobustOpenSeaAPI(OpenSeaAPI): def _request(self, method: str, endpoint: st
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

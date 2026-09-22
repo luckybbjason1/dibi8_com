@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "데이터 분석의 끊임없이 진화하는 환경에서 Python 개발자들은 오랫동안 좌절스러운 딜레마에 직면해왔습니다. 직관적인 DataFrame API를 위해 pandas를 사용해야 할까요, 아니면 대규모 데이터셋에서 뛰어난 성능을 위해 원시 SQL을 작성해야 할까요? 2026년에 이 트레이드오프는 더 이상 필요하지 않습니다. Ibis를 소개합니다 — 20개 이상의 백엔드에서 고성능 SQL로 표현식을 컴파일하면서도 친숙한 DataFrame API를 제공하는 이식 가능한 오픈소스 Python 라이브러리입니다. 12,000개 이상의 GitHub 스타와 Apache-2.0 라이선스를 보유한 Ibis는 데이터 엔지니어와 과학자들이 데이터베이스와 상호작용하는 방식을 변화시키고 있습니다.\n로컬 DuckDB 인스턴스를 쿼리하든, 프로덕션 PostgreSQL 클러스터를, 페타바이트 규모의 BigQuery 웨어하우스를, 또는 Snowflake 엔터프라이즈 분석 환경을 쿼리하든 Ibis는 단일하고 일관된 API를 제공합니다. 그 비밀 무기 — 지연 평가(lazy evaluation), 타입 안전 표현식, SQL 컴파일 — 은 종종 기존 pandas 워크플로우보다 10배 빠른 성능을 제공하면서도 개발자들이 좋아하는 Pythonic한 표현력을 희생하지 않습니다.\n이 포괄적인 가이드에서는 Ibis가 제공하는 모든 것을 설치와 기본 쿼리부터 고급 패턴과 실제 벤치마크까지 살펴 보겠습니다. 이 글을 마치면, 생산성과 성능 사이의 타협을 거부하는 모든 데이터 실무자에게 Ibis가 기본 선택이 되는 이유를 이해하게 될 것입니다.\nIbis란? 데이터 분석의 새로운 패러다임 Ibis는 Wes McKinney — pandas의 원작자 — 가 만든 Python DataFrame 라이브러리입니다. 완전히 메모리 내에서 작동하는 pandas와 달리, Ibis는 근본적으로 다른 접근 방식을 취합니다: SQL로 컴파일되는 DataFrame API를 제공합니다. 이는 pandas처럼 보고 느껴지는 Python 코드를 작성하지만, Ibis가 해당 표현식을 데이터베이스 엔진 내에서 직접 실행되는 최적화된 SQL 쿼리로 변환한다는 의미입니다.\n그 결과는 무엇일까요? Python의 인체공학과 현대 SQL 쿼리 엔진의 원시적인 성능이라는 두 세계의 장점을 모두 얻게 됩니다. 수백만 행을 메모리로 끌어들여 단순히 집계를 계산할 필요가 없습니다. Python과 SQL 방언 사이에서 컨텍스트를 전환할 필요도 없습니다. Ibis는 우아하고 이식 가능한 인터페이스 아래에서 데이터 워크플로우를 통일합니다.\n# Ibis는 모든 pandas 사용자에게 친숙합니다 import ibis con = ibis.duckdb.connect(\"analytics.db\") t = con.table(\"sales\") result = ( t.group_by(\"region\") .aggregate(total_sales=t.amount.sum()) .order_by(ibis.desc(\"total_sales\")) .limit(10) ) # 쿼리 실행 — DuckDB 낶部에서 실행되며 Python 메모리에서는 실행되지 않습니다 print(result.execute()) 낶 scenes에서 Ibis는 위 표현식을 최적화된 SQL 쿼리로 컴파일하고, 모든 계산을 백엔드로 푸시한 후, 최종 집계 결과만 반환합니다. 이러한 아키텍처 덕분에 Ibis는 pandas 프로세스를 중단시킬 만큼 큰 데이터셋을 처리할 수 있습니다.\n2026년에 Ibis가 중요한 이유 2026년의 데이터 환경은 그 어느 때보다 더 조각화되어 있습니다. 조직들은 여러 시스템의 조합에서 분석을 실행합니다: 개발용 로컬 DuckDB, 트랜잭션 데이터용 PostgreSQL, 데이터 웨어하우스용 BigQuery, 엔터프라이즈 분석용 Snowflake, 실시간 워크로드용 ClickHouse. 역사적으로 이러한 각 시스템은 다른 SDK, 다른 SQL 방언, 다른 멘탈 모델을 학습해야 했습니다.\nIbis는 이러한 조각화 문제를 우아하게 해결합니다. 통합된 DataFrame API는 지원되는 모든 백엔드에서 동일하게 작동합니다. DuckDB용으로 작성한 코드가 BigQuery나 Snowflake에서 변경 없이 작동합니다. 이러한 이식성은 단순한 편의성이 아니라 — 분석 파이프라인을 재작성하지 않고 환경 간에 이동해야 하는 팀에게 게임 체인저입니다.\n# 동일한 코드가 모든 백엔드에서 작동합니다 query = ( t.select(\"customer_id\", \"order_date\", \"amount\") .filter(t.amount \u003e 100) .group_by(\"customer_id\") .aggregate( order_count=t.order_date.count(), total_spent=t.amount.sum(), avg_order=t.amount.mean() ) .filter(ibis._.order_count \u003e= 5) .order_by(ibis.desc(\"total_spent\")) ) # DuckDB에서 실행 con_duck = ibis.duckdb.connect(\"local.db\") result_local = query.execute() # BigQuery에서 정확히 동일한 쿼리 실행 con_bq = ibis.bigquery.connect(project_id=\"my-project\") result_cloud = query.execute() 이식성 외에도 Ibis는 pandas 워크플로우를 괴롭히는 성능 병목 현상을 해결합니다. Ibis는 계산을 백엔드 쿼리 엔진으로 푸시하기 때문에 Python 메모리에 중간 결과를 구체화하지 않습니다. 집계, 조인, 윈도우 함수, 필터는 모두 데이터베이스 낶부에서 — 그래야 할 곳에서 — 실행됩니다.\nIbis 및 백엔드 종속성 설치 Ibis 시작은 간단합니다. 핵심 라이브러리는 가볍고, 필요한 백엔드 extras만 설치하면 됩니다.\n# Ibis 핵심 설치 pip install ibis-framework # 특정 백엔드 지원 설치 pip install \"ibis-framework[duckdb]\" pip install \"ibis-framework[postgres]\" pip install \"ibis-framework[bigquery]\" pip install \"ibis-framework[snowflake]\" pip install \"ibis-framework[mysql]\" pip install \"ibis-framework[clickhouse]\" # 여러 백엔드를 한 번에 설치 pip install \"ibis-framework[duckdb,postgres,bigquery]\" conda 사용자의 경우: `````bash conda install -c conda-forge ibis-framework conda install -c conda-forge ibis-duckdb ibis-postgres\n설치 후 정상 작동 여부를 확인합니다: `````python import ibis print(ibis.__version__) # 사용 가능한 백엔드 목록 print(ibis.util.backend_entry_points()) Ibis는 현재 DuckDB, PostgreSQL, MySQL, SQLite, BigQuery, Snowflake, ClickHouse, Trino, PySpark, DataFusion 등 20개 이상의 백엔드를 지원합니다. 백엔드 생태계는 각 릴리즈마다 계속 확장되고 있습니다.\n20개 이상의 SQL 백엔드에 연결하기 Ibis의 결정적인 강점 중 하나는 사실상 모든 데이터 시스템에 연결할 수 있는 능력입니다. 가장 인기 있는 백엔드에 연결하는 방법을 살펴 보겠습니다.\nDuckDB (로컬 분석용 권장) import ibis # 메모리 내 데이터베이스 con = ibis.duckdb.connect() # 지속 로컬 데이터베이스 con = ibis.duckdb.connect(\"my_analytics.db\") # Parquet 파일 직접 읽기 con.read_parquet(\"data/*.parquet\", table_name=\"events\") # CSV 읽기 con.read_csv(\"customers.csv\", table_name=\"customers\") t = con.table(\"events\") print(t.count().execute()) PostgreSQL import ibis con = ibis.postgres.connect( host=\"localhost\", port=5432, user=\"analytics\", password=\"secret\", database=\"production\" ) t = con.table(\"sales\") print(t.schema()) BigQuery import ibis con = ibis.bigquery.connect( project_id=\"my-gcp-project\", dataset_id=\"analytics_dataset\" ) t = con.table(\"user_events\") result = t.filter(t.event_date \u003e= \"2026-01-01\").execute() Snowflake import ibis con = ibis.snowflake.connect( user=\"ANALYST\", password=\"***\", account=\"myorg-myaccount\", database=\"ANALYTICS\", schema=\"PUBLIC\", warehouse=\"COMPUTE_WH\" ) t = con.table(\"transactions\") SQLite import ibis con = ibis.sqlite.connect(\"sample.db\") t = con.table(\"employees\") 모든 백엔드의 연결 API는 일관됩니다. 연결을 설정하고 테이블 참조를 얻으면, 밑에 무엇이 있든 Ibis 표현식 API는 동일하게 작동합니다.\nIbis DataFrame API: 친숙하면서도 강력한 pandas를 사용해 보셨다면 Ibis API가 즉시 친숙하게 느껴질 것입니다. Ibis는 예상하는 모든 핵심 DataFrame 작업을 제공합니다: select, filter, group_by, aggregate, order_by, limit, join 등.\n선택 및 필터링 import ibis con = ibis.duckdb.connect() con.read_parquet(\"events.parquet\", table_name=\"events\") t = con.table(\"events\") # 특정 열 선택 selected = t.select(\"user_id\", \"event_type\", \"timestamp\", \"value\") # 행 필터링 filtered = t.filter(t.event_type == \"purchase\", t.value \u003e 50) # 조건 결합 filtered = t.filter( (t.event_type == \"purchase\") \u0026 (t.value \u003e 50) \u0026 (t.timestamp \u003e= \"2026-01-01\") ) # .mutate를 사용하여 계산 열 생성 enriched = t.mutate( value_squared=t.value * t.value, is_high_value=t.value \u003e 100 ) 집계 및 그룹화 # 기본 집계 stats = t.aggregate( count=t.user_id.count(), total_value=t.value.sum(), avg_value=t.value.mean(), max_value=t.value.max(), min_value=t.value.min() ) # 다중 집계가 있는 그룹화 by_category = ( t.group_by(\"event_type\", \"region\") .aggregate( count=t.user_id.count(), total=t.value.sum(), avg=t.value.mean() ) .order_by(ibis.desc(\"total\")) ) 조인 users = con.table(\"users\") orders = con.table(\"orders\") # 낶부 조인 joined = users.inner_join( orders, users.user_id == orders.user_id ).select(users.user_id, users.name, orders.amount) # 다중 조건이 있는 왼쪽 조인 joined = users.left_join( orders, [users.user_id == orders.user_id, orders.order_date \u003e= \"2026-01-01\"] ).select(users.name, orders.amount) # 별칭이 있는 자체 조인 managers = users.view(\"managers\") reporting = users.inner_join( managers, users.manager_id == managers.user_id ).select( users.name.name(\"employee\"), managers.name.name(\"manager\") ) 윈도우 함수 # 누적 합계 running = t.mutate( running_total=t.value.sum().over( ibis.window(order_by=t.timestamp) ) ) # 카테고리별로 분할된 행 번호 ranked = t.mutate( row_num=ibis.row_number().over( ibis.window(group_by=t.event_type, order_by=ibis.desc(t.value)) ) ) # 이동 평균 (3행 윈도우) moving = t.mutate( moving_avg=t.value.mean().over( ibis.window(order_by=t.timestamp, preceding=1, following=1) ) ) 지연 평가 및 SQL 컴파일 Ibis의 가장 강력한 기능 중 하나는 지연 평가 모델입니다. Ibis 표현식을 작성할 때 계산이 즉시 발생하지 않습니다. 대신 Ibis는 쿼리의 낶부 표현 — 추상 구문 트리(AST) — 을 구축한 다음, .execute()를 호출할 때만 최적화하고 SQL로 컴파일합니다.\nimport ibis con = ibis.duckdb.connect(\"sales.db\") t = con.table(\"transactions\") # 이것은 표현식 트리를 구축합니다 — 아직 쿼리가 실행되지 않습니다 expr = ( t.filter(t.amount \u003e 100) .group_by(\"category\") .aggregate(total=t.amount.sum()) .order_by(ibis.desc(\"total\")) .limit(5) ) # 실행하지 않고 컴파일된 SQL 검사 print(expr.sql()) 출력은 Ibis가 실행할 정확한 SQL을 보여줍니다: `````sql SELECT “category”, SUM(“amount”) AS “total” FROM “transactions” WHERE “amount” \u003e 100 GROUP BY “category” ORDER BY “total” DESC LIMIT 5\n이러한 지연 접근 방식을 통해 Ibis는 정교한 쿼리 최적화를 수행할 수 있습니다. 필터를 소스로 푸시하고, 불필요한 열을 제거하고, 중복 작업을 병합하며, 기본 SQL 엔진의 전체 최적화 기능을 활용할 수 있습니다. `````python # 여러 작업을 연결 — Ibis는 전체 파이프라인을 최적화합니다 pipeline = ( t.filter(t.status == \"completed\") .select(\"user_id\", \"amount\", \"category\", \"created_at\") .mutate( year=t.created_at.year(), month=t.created_at.month() ) .group_by(\"category\", \"year\", \"month\") .aggregate( revenue=t.amount.sum(), orders=t.amount.count(), avg_order=t.amount.mean() ) .filter(ibis._.revenue \u003e 10000) .order_by(\"year\", \"month\", ibis.desc(\"revenue\")) ) # 최적화된 SQL 보기 print(pipeline.sql()) # 이제 쿼리가 실행됩니다 results = pipeline.execute() 실행 전에 컴파일된 SQL을 검사하는 능력은 디버깅, 쿼리 튜닝, SQL 학습에 매우 귀중합니다. Pythonic한 데이터 조작과 SQL 우선 분석 플랫폼 사이의 간극을 메웁니다.\nIbis로 고급 쿼리 패턴 Ibis는 기본 CRUD 작업을 훨씬 뛰어넘는 정교한 분석 패턴을 지원합니다. 몇 가지 고급 기능을 살펴 보겠습니다.\n사용자 정의 표현식 및 리터럴 import ibis import ibis.selectors as s con = ibis.duckdb.connect() t = con.table(\"sales\") # 선택기를 사용하여 열 그룹 선택 numeric_cols = t.select(s.numeric()) string_cols = t.select(s.of_type(\"string\")) # 리터럴 사용 threshold = ibis.literal(1000) high_value = t.filter(t.amount \u003e threshold) # 조건 표현식 (CASE WHEN) categorized = t.mutate( tier=ibis.case() .when(t.amount \u003e= 10000, \"Platinum\") .when(t.amount \u003e= 5000, \"Gold\") .when(t.amount \u003e= 1000, \"Silver\") .else_(\"Bronze\") .end() ) 복잡한 서브쿼리 # 평균 이상 지출을 한 사용자 찾기 avg_spend = t.amount.mean() above_avg = t.filter(t.amount \u003e avg_spend) # 각 카테고리에서 상위 3개 제품 찾기 from ibis import window, row_number w = window(group_by=t.category, order_by=ibis.desc(t.revenue)) ranked = t.mutate(rn=row_number().over(w)) top3 = ranked.filter(ranked.rn \u003c= 3) 사용자 정의 함수 (UDF) # DuckDB에서 실행되는 Python UDF 정의 @ibis.udf.scalar.python def format_currency(value: float) -\u003e str: return f\"${value:,.2f}\" applied = t.mutate( formatted=format_currency(t.amount) ) _ 참조를 사용한 대화형 작업 # 밑줄(_)은 파이프라인에서 현재 테이블을 참조합니다 result = ( t.filter(_.amount \u003e 100) .group_by(_.category) .aggregate(total=_.amount.sum()) .filter(_.total \u003e 10000) .order_by(_.total.desc()) ) 성능 벤치마크: Ibis 대 pandas 데이터셋 크기가 커짐에 따라 Ibis와 pandas 사이의 성능 차이는 극적으로 나타납니다. 두 라이브러리를 비교하는 구체적인 벤치마크를 살펴 보겠습니다.\nimport ibis import pandas as pd import numpy as np # 1000만 행 데이터셋 생성 np.random.seed(42) n = 10_000_000 df = pd.DataFrame({ \"user_id\": np.random.randint(1, 100000, n), \"category\": np.random.choice([\"A\", \"B\", \"C\", \"D\", \"E\"], n), \"amount\": np.random.exponential(100, n), \"region\": np.random.choice([\"North\", \"South\", \"East\", \"West\"], n) }) df.to_parquet(\"benchmark.parquet\", index=False) # pandas 접근법: 모든 것을 메모리에 로드 import time start = time.time() df = pd.read_parquet(\"benchmark.parquet\") result_pd = ( df[df.amount \u003e 50] .groupby([\"category\", \"region\"]) .agg(total=(\"amount\", \"sum\"), count=(\"amount\", \"count\"), avg=(\"amount\", \"mean\")) .reset_index() .query(\"total \u003e 10000\") .sort_values(\"total\", ascending=False) ) pandas_time = time.time() - start print(f\"pandas: {pandas_time:.2f}s\") # Ibis 접근법: 계산을 DuckDB로 푸시 con = ibis.duckdb.connect() con.read_parquet(\"benchmark.parquet\", table_name=\"data\") t = con.table(\"data\") start = time.time() result_ibis = ( t.filter(t.amount \u003e 50) .group_by(\"category\", \"region\") .aggregate( total=t.amount.sum(), count=t.amount.count(), avg=t.amount.mean() ) .filter(ibis._.total \u003e 10000) .order_by(ibis.desc(\"total\")) .execute() ) ibis_time = time.time() - start print(f\"Ibis + DuckDB: {ibis_time:.2f}s\") print(f\"스피드업: {pandas_time / ibis_time:.1f}x\") 일반적인 하드웨어에서 Ibis + DuckDB 조합은 pandas보다 이 쿼리를 10-15배 빠르게 실행하며, 메모리 사용량도 현저히 낮습니다. pandas는 1000만 행을 모두 RAM에 로드하고, 필터링과 그룹화를 위해 중간 배열을 할당하고, 모든 계산을 Python에서 수행해야 합니다. 반면 Ibis는 모든 것을 DuckDB의 최적화된 C++ 쿼리 엔진으로 푸시하고, Python에서는 작은 집계 결과만 구체화합니다.\n더 큰 데이터셋 — 수억 또는 수십억 행 — 에서는 격차가 더욱 벌어집니다. pandas는 일반적으로 메모리 부족으로 충돌하는 반면, Ibis는 BigQuery, Snowflake 또는 ClickHouse를 통해 땀 한 방울 흘리지 않고 계속 실행됩니다.\nIbis 대 SQLAlchemy 대 pandas: 무엇을 언제 사용할 것인가 Ibis가 기존 도구와 어떻게 비교되는지 이해하면 고유한 가치 제안을 명확히 하는 데 도움이 됩니다.\n기능 pandas SQLAlchemy Ibis API 스타일 DataFrame SQL/ORM DataFrame 실행 방식 메모리 내 Python Python 경유 SQL Python 경유 SQL 백엔드 지원 없음 (로컬만) 여러 데이터베이스 20개 이상 백엔드 지연 평가 아니오 부분 예 (완전) 타입 안전성 런타임만 컴파일 타임 컴파일 타임 SQL 컴파일 해당 없음 예 예 (최적화됨) 확장성 RAM 제한 데이터베이스 규모 데이터베이스 규모 pandas 사용: 메모리에 편안하게 들어가는 소형~중형 데이터셋을 작업하고, 빠른 대화형 탐색이 필요하거나, 복잡한 비 SQL 작업이 필요할 때.\nSQLAlchemy 사용: ORM 기반 애플리케이션을 구축하거나, Flask나 FastAPI와 금밀한 통합이 필요하거나, 명시적 SQL을 Pythonic한 래퍼와 함께 작성하기를 원할 때.\nIbis 사용: 어떤 규모에서든 pandas 같은 경험을 원하고, 동일한 코드로 여러 데이터베이스 백엔드를 쿼리해야 하거나, 최적화된 SQL 컴파일이 포함된 지연 평가를 원할 때. Ibis는 DataFrame 인체공학과 데이터베이스 성능이 만나는 분석 워크로드의 스윗 스팟입니다.\n# Ibis 코드는 분석을 위한 동등한 SQLAlchemy보다 더 간결합니다 # Ibis: result = ( t.group_by(\"category\") .aggregate(total=t.amount.sum()) .order_by(ibis.desc(\"total\")) .limit(10) ).execute() # 동등한 SQLAlchemy는 분석 쿼리에 더 많은 상용구가 필요합니다 자주 묻는 질문 (FAQ) Ibis는 완전히 pandas를 대체합니까? 아니오, Ibis는 직접적인 대처이라기보다는 pandas를 보완합니다. Ibis는 원격 데이터베이스를 쿼리하고 사용 가능한 메모리를 초과하는 대규모 데이터셋을 처리하는 데 뛰어납니다. pandas는 소형~중형 메모리 내 데이터셋에 여전히 훌륭하며 더 풍부한 통계 및 시각화 도구 생태계를 제공합니다. 많은 워크플로우에서 Ibis가 무거운 작업(대규모 필터링, 조인, 집계)을 처리하고, 더 작은 결과를 pandas에 전달하여 최종 분석이나 플로팅을 수행합니다.\n# 하이브리드 워크플로우: 빅데이터용 Ibis, 분석용 pandas large_result = ibis_query.execute() # pandas DataFrame 반환 small_summary = large_result.describe() # pandas로 빠른 통계 Ibis가 생성하는 SQL을 볼 수 있습니까? 예, 물론입니다. 언제든지 Ibis 표현식에서 .sql() 메서드를 사용하여 컴파일된 SQL을 검사할 수 있습니다. 이것은 디버깅, 성능 튜닝, SQL 학습에 매우 유용합니다.\nexpr = t.group_by(\"category\").aggregate(total=t.amount.sum()) print(expr.sql()) Ibis는 프로덕션 ETL 파이프라인에 적합합니까? 예, Ibis는 점점 더 프로덕션 ETL 및 분석 파이프라인에서 사용되고 있습니다. Apache-2.0 라이선스, ibis-project 조직의 적극적인 유지보수, 그리고 성장하는 커뮤니티는 기업 배포에 안전한 선택임을 보장합니다. 백엔드를 변경하지 않고 전환할 수 있는 능력은 로컬 개발 파이프라인이 DuckDB에서 실행되고 프로덕션이 BigQuery나 Snowflake에서 실행될 수 있음을 의미합니다 — 완전히 동일한 Ibis 코드를 사용하면서.\nIbis는 백엔드별 SQL 방언을 어떻게 처리합니까? Ibis는 방언 차이를 자동으로 추상화합니다. Ibis 표현식을 작성할 때, 라이브러리는 PostgreSQL 구문, BigQuery 구문, Snowflake 구문, 또는 대상 백엔드에 필요한 어떤 방언으로의 변환을 처리합니다. Python 코드 하나를 작성하면 Ibis가 나머지를 처리합니다.\n# 이 동일한 표현식은 각 백엔드에 대해 다른 SQL로 컴파일됩니다 expr = t.mutate(year=t.date.year(), month=t.date.month()) # PostgreSQL: EXTRACT(YEAR FROM \"date\") # BigQuery: EXTRACT(YEAR FROM ````date````) # DuckDB: EXTRACT(YEAR FROM \"date\") # Ibis가 이 모든 것을 자동으로 처리합니다 pandas 사용자의 학습 곡선은 어떻습니까? pandas 사용자의 학습 곡선은 놀랍도록 완만합니다. 대부분의 핵심 작업 — filter, select, group_by, aggregate, order_by, mutate, join — 은 친숙한 이름과 의미론을 사용합니다. 주요 조정 사항은 지연 평가를 이해하는 것입니다: 표현식은 ````.execute()```를 호출할 때까지 실행되지 않습니다. 대부분의 숙련된 pandas 사용자는 몇 시간 내에 Ibis를 생산적으로 사용할 수 있습니다.\n추천 호스팅 및 인프라 DigitalOcean — 60일 $200 무료 크레딧. HTStack — 홍콩 VPS, 중국 본토 저지연 접속. 제휴 링크 — 추가 비용 없이 dibi8.com 운영을 지원합니다.\n마지막 생각 Ibis는 Python 데이터 분석의 패러다임 전환을 대표합니다. 통합되고 pandas 호환되는 DataFrame API를 제공하여 20개 이상의 백엔드에 대해 최적화된 SQL로 컴파일함으로써, 개발자 생산성과 쿼리 성능 사이의 역사적인 트레이드오프를 제거합니다. 지연 평가, 타입 안전 표현식, 이식 가능한 백엔드 지원의 조합은 대규모로 작업하는 모든 데이터 전문가에게 필수적인 도구로 만들어줍니다.\n2026년에 데이터 볼륨이 계속 폭발적으로 증가하고 조직이 여러 데이터베이스 시스템에 분석을 분산시키면서, Ibis는 어디서나 작동하는 단일하고 일관된 인터페이스를 제공합니다. DuckDB로 로컬 개발을 하는 데이터 과학자이든, BigQuery에서 페타바이트를 쿼리하는 엔지니어이든, Ibis는 동일한 우아한 Python API를 제공합니다 — 데이터가 있는 곳에서 정확하게 실행되는 가능한 한 가장 빠른 SQL로 컴파일됩니다.\n아직 Ibis를 데이터 도구킷에 추가하지 않았다면, 지금이 바로 그 때입니다. 로컬 개발을 위해 DuckDB부터 시작하고, 분석 워크플로우가 하룻밤 사이에 더 빠르고, 더 이식 가능하고, 더 유지보수하기 쉬워지는 것을 지켜보세요.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “ibis-dataframe-python-sql”, “datePublished”: “2026-05-20”, “dateModified”: “2026-05-20”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/ibis-dataframe-python-sql\" } } ",
-  "wordCount" : "2242",
+  "articleBody": "In the ever-evolving landscape of data analytics, Python developers have long faced a frustrating dilemma: should you use pandas for its intuitive DataFrame API, or write raw SQL for its superior performance on large datasets? In 2026, this trade-off is no longer necessary. Enter Ibis — a portable, open-source Python library that offers a familiar DataFrame API while compiling your expressions to high-performance SQL for execution across 20+ backends. With over 12,000 GitHub stars and an Apache-2.0 license, Ibis is transforming how data engineers and scientists interact with databases.\nWhether you are querying a local DuckDB instance, a production PostgreSQL cluster, a petabyte-scale BigQuery warehouse, or a Snowflake environment, Ibis provides a single, consistent API. Its secret weapons — lazy evaluation, type-safe expressions, and SQL compilation — deliver performance that is often 10x faster than traditional pandas workflows, all without sacrificing the Pythonic expressiveness developers love.\nIn this comprehensive guide, we will explore everything Ibis has to offer: from installation and basic queries to advanced patterns and real-world benchmarks. By the end, you will understand why Ibis is becoming the default choice for data practitioners who refuse to compromise between productivity and performance.\nWhat Is Ibis? A New Paradigm for Data Analytics Ibis is a Python DataFrame library created by Wes McKinney, the original author of pandas. Unlike pandas, which operates entirely in-memory, Ibis takes a fundamentally different approach: it provides a DataFrame API that compiles to SQL. This means you write Python code that looks and feels like pandas, but Ibis translates those expressions into optimized SQL queries that run directly inside your database engine.\nThe result? You get the best of both worlds: the ergonomics of Python combined with the raw power of modern SQL query engines. No more pulling millions of rows into memory just to compute an aggregation. No more context-switching between Python and SQL dialects. Ibis unifies your data workflow under one elegant, portable interface.\n# Ibis looks familiar to any pandas user import ibis con = ibis.duckdb.connect(\"analytics.db\") t = con.table(\"sales\") result = ( t.group_by(\"region\") .aggregate(total_sales=t.amount.sum()) .order_by(ibis.desc(\"total_sales\")) .limit(10) ) # Execute the query - runs inside DuckDB, not in Python memory print(result.execute()) Behind the scenes, Ibis compiles the expression above into an optimized SQL query, pushes all computation to the backend, and returns only the final aggregated results. This architecture is what makes Ibis capable of handling datasets that would crash a pandas process.\nWhy Ibis Matters in 2026 The data landscape in 2026 is more fragmented than ever. Organizations run analytics across a patchwork of systems: local DuckDB for development, PostgreSQL for transactional data, BigQuery for data warehouses, Snowflake for enterprise analytics, and ClickHouse for real-time workloads. Historically, each of these systems required learning a different SDK, a different SQL dialect, and a different mental model.\nIbis solves this fragmentation problem elegantly. Its unified DataFrame API works identically across all supported backends. The code you write for DuckDB works unchanged for BigQuery or Snowflake. This portability is not just a convenience — it is a game-changer for teams that need to move between environments without rewriting their analytics pipelines.\n# The SAME code works across ALL backends query = ( t.select(\"customer_id\", \"order_date\", \"amount\") .filter(t.amount \u003e 100) .group_by(\"customer_id\") .aggregate( order_count=t.order_date.count(), total_spent=t.amount.sum(), avg_order=t.amount.mean() ) .filter(ibis._.order_count \u003e= 5) .order_by(ibis.desc(\"total_spent\")) ) # Run on DuckDB con_duck = ibis.duckdb.connect(\"local.db\") result_local = query.execute() # Run the EXACT SAME query on BigQuery con_bq = ibis.bigquery.connect(project_id=\"my-project\") result_cloud = query.execute() Beyond portability, Ibis addresses the performance bottleneck that plagues pandas workflows. Because Ibis pushes computation to the backend query engine, it never materializes intermediate results in Python memory. Aggregations, joins, window functions, and filters all execute inside the database — where they belong.\nInstalling Ibis and Backend Dependencies Getting started with Ibis is straightforward. The core library is lightweight, and you install only the backend extras you need.\n# Install Ibis core pip install ibis-framework # Install with specific backend support pip install \"ibis-framework[duckdb]\" pip install \"ibis-framework[postgres]\" pip install \"ibis-framework[bigquery]\" pip install \"ibis-framework[snowflake]\" pip install \"ibis-framework[mysql]\" pip install \"ibis-framework[clickhouse]\" # Install multiple backends at once pip install \"ibis-framework[duckdb,postgres,bigquery]\" For conda users: `````bash conda install -c conda-forge ibis-framework conda install -c conda-forge ibis-duckdb ibis-postgres\nAfter installation, verify everything is working: `````python import ibis print(ibis.__version__) # List available backends print(ibis.util.backend_entry_points()) Ibis currently supports 20+ backends including DuckDB, PostgreSQL, MySQL, SQLite, BigQuery, Snowflake, ClickHouse, Trino, PySpark, DataFusion, and more. The backend ecosystem continues to expand with each release.\nConnecting to 20+ SQL Backends One of Ibis’s defining strengths is its ability to connect to virtually any data system. Let us explore how to establish connections to the most popular backends.\nDuckDB (Recommended for Local Analytics) import ibis # In-memory database con = ibis.duckdb.connect() # Persistent local database con = ibis.duckdb.connect(\"my_analytics.db\") # Read a Parquet file directly con.read_parquet(\"data/*.parquet\", table_name=\"events\") # Read CSV con.read_csv(\"customers.csv\", table_name=\"customers\") t = con.table(\"events\") print(t.count().execute()) PostgreSQL import ibis con = ibis.postgres.connect( host=\"localhost\", port=5432, user=\"analytics\", password=\"secret\", database=\"production\" ) t = con.table(\"sales\") print(t.schema()) BigQuery import ibis con = ibis.bigquery.connect( project_id=\"my-gcp-project\", dataset_id=\"analytics_dataset\" ) t = con.table(\"user_events\") result = t.filter(t.event_date \u003e= \"2026-01-01\").execute() Snowflake import ibis con = ibis.snowflake.connect( user=\"ANALYST\", password=\"***\", account=\"myorg-myaccount\", database=\"ANALYTICS\", schema=\"PUBLIC\", warehouse=\"COMPUTE_WH\" ) t = con.table(\"transactions\") SQLite import ibis con = ibis.sqlite.connect(\"sample.db\") t = con.table(\"employees\") The connection API is consistent across all backends. Once you have a connection and a table reference, the Ibis expression API works identically regardless of what is underneath.\nIbis DataFrame API: Familiar Yet Powerful If you have used pandas, the Ibis API will feel immediately familiar. Ibis provides all the core DataFrame operations you expect: select, filter, group_by, aggregate, order_by, limit, join, and more.\nSelecting and Filtering import ibis con = ibis.duckdb.connect() con.read_parquet(\"events.parquet\", table_name=\"events\") t = con.table(\"events\") # Select specific columns selected = t.select(\"user_id\", \"event_type\", \"timestamp\", \"value\") # Filter rows filtered = t.filter(t.event_type == \"purchase\", t.value \u003e 50) # Combine conditions filtered = t.filter( (t.event_type == \"purchase\") \u0026 (t.value \u003e 50) \u0026 (t.timestamp \u003e= \"2026-01-01\") ) # Use .mutate to create computed columns enriched = t.mutate( value_squared=t.value * t.value, is_high_value=t.value \u003e 100 ) Aggregation and Grouping # Basic aggregation stats = t.aggregate( count=t.user_id.count(), total_value=t.value.sum(), avg_value=t.value.mean(), max_value=t.value.max(), min_value=t.value.min() ) # Group by with multiple aggregations by_category = ( t.group_by(\"event_type\", \"region\") .aggregate( count=t.user_id.count(), total=t.value.sum(), avg=t.value.mean() ) .order_by(ibis.desc(\"total\")) ) Joins users = con.table(\"users\") orders = con.table(\"orders\") # Inner join joined = users.inner_join( orders, users.user_id == orders.user_id ).select(users.user_id, users.name, orders.amount) # Left join with multiple conditions joined = users.left_join( orders, [users.user_id == orders.user_id, orders.order_date \u003e= \"2026-01-01\"] ).select(users.name, orders.amount) # Self-join with aliases managers = users.view(\"managers\") reporting = users.inner_join( managers, users.manager_id == managers.user_id ).select( users.name.name(\"employee\"), managers.name.name(\"manager\") ) Window Functions # Running total running = t.mutate( running_total=t.value.sum().over( ibis.window(order_by=t.timestamp) ) ) # Row number partitioned by category ranked = t.mutate( row_num=ibis.row_number().over( ibis.window(group_by=t.event_type, order_by=ibis.desc(t.value)) ) ) # Moving average (3-row window) moving = t.mutate( moving_avg=t.value.mean().over( ibis.window(order_by=t.timestamp, preceding=1, following=1) ) ) Lazy Evaluation and SQL Compilation One of Ibis’s most powerful features is its lazy evaluation model. When you write Ibis expressions, no computation occurs immediately. Instead, Ibis builds an internal representation of your query — an abstract syntax tree (AST) — which it then optimizes and compiles to SQL only when you call .execute().\nimport ibis con = ibis.duckdb.connect(\"sales.db\") t = con.table(\"transactions\") # This builds an expression tree — NO query runs yet expr = ( t.filter(t.amount \u003e 100) .group_by(\"category\") .aggregate(total=t.amount.sum()) .order_by(ibis.desc(\"total\")) .limit(5) ) # Inspect the compiled SQL without executing print(expr.sql()) The output shows the exact SQL that Ibis will execute: `````sql SELECT “category”, SUM(“amount”) AS “total” FROM “transactions” WHERE “amount” \u003e 100 GROUP BY “category” ORDER BY “total” DESC LIMIT 5\nThis lazy approach enables Ibis to perform sophisticated query optimization. It can push filters down to the source, eliminate unnecessary columns, merge redundant operations, and leverage the full optimization power of the underlying SQL engine. `````python # Chain multiple operations — Ibis optimizes the entire pipeline pipeline = ( t.filter(t.status == \"completed\") .select(\"user_id\", \"amount\", \"category\", \"created_at\") .mutate( year=t.created_at.year(), month=t.created_at.month() ) .group_by(\"category\", \"year\", \"month\") .aggregate( revenue=t.amount.sum(), orders=t.amount.count(), avg_order=t.amount.mean() ) .filter(ibis._.revenue \u003e 10000) .order_by(\"year\", \"month\", ibis.desc(\"revenue\")) ) # View the optimized SQL print(pipeline.sql()) # Only now does the query execute results = pipeline.execute() The ability to inspect compiled SQL before execution is invaluable for debugging, query tuning, and learning SQL. It bridges the gap between Pythonic data manipulation and SQL-first analytics platforms.\nAdvanced Query Patterns with Ibis Ibis supports sophisticated analytical patterns that go far beyond basic CRUD operations. Let us explore some advanced capabilities.\nCustom Expressions and Literals import ibis import ibis.selectors as s con = ibis.duckdb.connect() t = con.table(\"sales\") # Using selectors to pick column groups numeric_cols = t.select(s.numeric()) string_cols = t.select(s.of_type(\"string\")) # Using literals threshold = ibis.literal(1000) high_value = t.filter(t.amount \u003e threshold) # Conditional expressions (CASE WHEN) categorized = t.mutate( tier=ibis.case() .when(t.amount \u003e= 10000, \"Platinum\") .when(t.amount \u003e= 5000, \"Gold\") .when(t.amount \u003e= 1000, \"Silver\") .else_(\"Bronze\") .end() ) Complex Subqueries # Find users with above-average spend avg_spend = t.amount.mean() above_avg = t.filter(t.amount \u003e avg_spend) # Find top 3 products in each category from ibis import window, row_number w = window(group_by=t.category, order_by=ibis.desc(t.revenue)) ranked = t.mutate(rn=row_number().over(w)) top3 = ranked.filter(ranked.rn \u003c= 3) User-Defined Functions (UDFs) # Define a Python UDF that runs in DuckDB @ibis.udf.scalar.python def format_currency(value: float) -\u003e str: return f\"${value:,.2f}\" applied = t.mutate( formatted=format_currency(t.amount) ) Interactivity with _ Reference # The underscore (_) refers to the current table in a pipeline result = ( t.filter(_.amount \u003e 100) .group_by(_.category) .aggregate(total=_.amount.sum()) .filter(_.total \u003e 10000) .order_by(_.total.desc()) ) Performance Benchmark: Ibis vs pandas The performance difference between Ibis and pandas becomes dramatic as dataset sizes grow. Let us examine a concrete benchmark comparing the two libraries.\nimport ibis import pandas as pd import numpy as np # Create a 10-million row dataset np.random.seed(42) n = 10_000_000 df = pd.DataFrame({ \"user_id\": np.random.randint(1, 100000, n), \"category\": np.random.choice([\"A\", \"B\", \"C\", \"D\", \"E\"], n), \"amount\": np.random.exponential(100, n), \"region\": np.random.choice([\"North\", \"South\", \"East\", \"West\"], n) }) df.to_parquet(\"benchmark.parquet\", index=False) # pandas approach: load everything into memory import time start = time.time() df = pd.read_parquet(\"benchmark.parquet\") result_pd = ( df[df.amount \u003e 50] .groupby([\"category\", \"region\"]) .agg(total=(\"amount\", \"sum\"), count=(\"amount\", \"count\"), avg=(\"amount\", \"mean\")) .reset_index() .query(\"total \u003e 10000\") .sort_values(\"total\", ascending=False) ) pandas_time = time.time() - start print(f\"pandas: {pandas_time:.2f}s\") # Ibis approach: push computation to DuckDB con = ibis.duckdb.connect() con.read_parquet(\"benchmark.parquet\", table_name=\"data\") t = con.table(\"data\") start = time.time() result_ibis = ( t.filter(t.amount \u003e 50) .group_by(\"category\", \"region\") .aggregate( total=t.amount.sum(), count=t.amount.count(), avg=t.amount.mean() ) .filter(ibis._.total \u003e 10000) .order_by(ibis.desc(\"total\")) .execute() ) ibis_time = time.time() - start print(f\"Ibis + DuckDB: {ibis_time:.2f}s\") print(f\"Speedup: {pandas_time / ibis_time:.1f}x\") On typical hardware, the Ibis + DuckDB combination executes this query 10-15x faster than pandas, and with dramatically lower memory usage. pandas must load all 10 million rows into RAM, allocate intermediate arrays for filtering and grouping, and perform all computation in Python. Ibis, by contrast, pushes everything to DuckDB’s optimized C++ query engine, materializing only the small aggregated result in Python.\nFor even larger datasets — hundreds of millions or billions of rows — the gap widens further. pandas will typically run out of memory and crash, while Ibis continues to execute via BigQuery, Snowflake, or ClickHouse without breaking a sweat.\nIbis vs SQLAlchemy vs pandas: When to Use What Understanding how Ibis compares to existing tools helps clarify its unique value proposition.\n| Feature | pandas | SQLAlchemy | Ibis | |\n|\n|\n|\n| | API Style | DataFrame | SQL/ORM | DataFrame | | Execution | In-memory Python | SQL via Python | SQL via Python | | Backend Support | None (local only) | Many databases | 20+ backends | | Lazy Evaluation | No | Partial | Yes (full) | | Type Safety | Runtime only | Compile-time | Compile-time | | SQL Compilation | N/A | Yes | Yes (optimized) | | Scale | Limited by RAM | Database scale | Database scale |\nUse pandas when you are working with small to medium datasets that fit comfortably in memory, need rapid interactive exploration, or require complex non-SQL operations.\nUse SQLAlchemy when you are building ORM-based applications, need tight integration with Flask or FastAPI, or prefer writing explicit SQL with Pythonic wrappers.\nUse Ibis when you want a pandas-like experience at any scale, need to query multiple database backends with the same code, or want lazy evaluation with optimized SQL compilation. Ibis is the sweet spot for analytics workloads where DataFrame ergonomics meet database performance.\n# Ibis code is more concise than equivalent SQLAlchemy for analytics # Ibis: result = ( t.group_by(\"category\") .aggregate(total=t.amount.sum()) .order_by(ibis.desc(\"total\")) .limit(10) ).execute() # Equivalent SQLAlchemy requires more boilerplate for analytical queries Frequently Asked Questions (FAQ) Does Ibis replace pandas entirely? No, Ibis is complementary to pandas rather than a direct replacement. Ibis excels at querying remote databases and handling large datasets that exceed available memory. pandas remains excellent for small to medium in-memory datasets and offers a richer ecosystem of statistical and visualization tools. Many workflows use Ibis for the heavy lifting (filtering, joining, aggregating at scale) and then pass the smaller results to pandas for final analysis or plotting.\n# Hybrid workflow: Ibis for big data, pandas for analysis large_result = ibis_query.execute() # Returns a pandas DataFrame small_summary = large_result.describe() # pandas for quick stats Can I see the SQL that Ibis generates? Yes, absolutely. You can inspect the compiled SQL at any time using the .sql() method on any Ibis expression. This is incredibly useful for debugging, performance tuning, and learning SQL.\nexpr = t.group_by(\"category\").aggregate(total=t.amount.sum()) print(expr.sql()) Is Ibis suitable for production ETL pipelines? Yes, Ibis is increasingly used in production ETL and analytics pipelines. Its Apache-2.0 license, active maintenance by the ibis-project organization, and growing community make it a safe choice for enterprise deployments. The ability to switch backends without changing code means your local development pipeline can run on DuckDB while production runs on BigQuery or Snowflake — using the exact same Ibis code.\nHow does Ibis handle backend-specific SQL dialects? Ibis abstracts away dialect differences automatically. When you write an Ibis expression, the library handles the translation to PostgreSQL syntax, BigQuery syntax, Snowflake syntax, or whichever dialect your target backend requires. You write one piece of Python code, and Ibis takes care of the rest.\n# This same expression compiles to different SQL for each backend expr = t.mutate(year=t.date.year(), month=t.date.month()) # PostgreSQL: EXTRACT(YEAR FROM \"date\") # BigQuery: EXTRACT(YEAR FROM ````date````) # DuckDB: EXTRACT(YEAR FROM \"date\") # Ibis handles all of these automatically What is the learning curve for pandas users? The learning curve for pandas users is remarkably gentle. Most core operations — filter, select, group_by, aggregate, order_by, mutate, join — use familiar names and semantics. The main adjustment is understanding lazy evaluation: expressions do not execute until you call ````.execute()```. Most experienced pandas users become productive with Ibis within a few hours.\nRecommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com. Affiliate links — they don’t cost you extra and they help keep dibi8.com running.\nFinal Thoughts Ibis represents a paradigm shift in Python data analytics. By offering a unified, pandas-compatible DataFrame API that compiles to optimized SQL for 20+ backends, it eliminates the historical trade-off between developer productivity and query performance. The combination of lazy evaluation, type-safe expressions, and portable backend support makes it an essential tool for any data professional working at scale.\nIn 2026, as data volumes continue to explode and organizations distribute their analytics across multiple database systems, Ibis provides a single, consistent interface that works everywhere. Whether you are a data scientist exploring gigabytes locally with DuckDB, or an engineer querying petabytes in BigQuery, Ibis delivers the same elegant Python API — compiled to the fastest possible SQL, running exactly where your data lives.\nIf you have not yet added Ibis to your data toolkit, now is the time. Start with DuckDB for local development, and watch your analytics workflows become faster, more portable, and more maintainable overnight.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “ibis-dataframe-python-sql”, “datePublished”: “2026-05-20”, “dateModified”: “2026-05-20”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/ibis-dataframe-python-sql\" } } ",
+  "wordCount" : "2691",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/llm-frameworks/ibis-dataframe-python-sql/">En</a>
@@ -209,16 +209,16 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#ibis%eb%9e%80-%eb%8d%b0%ec%9d%b4%ed%84%b0-%eb%b6%84%ec%84%9d%ec%9d%98-%ec%83%88%eb%a1%9c%ec%9a%b4-%ed%8c%a8%eb%9f%ac%eb%8b%a4%ec%9e%84" aria-label="Ibis란? 데이터 분석의 새로운 패러다임">Ibis란? 데이터 분석의 새로운 패러다임</a></li>
+                <a href="#what-is-ibis-a-new-paradigm-for-data-analytics" aria-label="What Is Ibis? A New Paradigm for Data Analytics">What Is Ibis? A New Paradigm for Data Analytics</a></li>
             <li>
-                <a href="#2026%eb%85%84%ec%97%90-ibis%ea%b0%80-%ec%a4%91%ec%9a%94%ed%95%9c-%ec%9d%b4%ec%9c%a0" aria-label="2026년에 Ibis가 중요한 이유">2026년에 Ibis가 중요한 이유</a></li>
+                <a href="#why-ibis-matters-in-2026" aria-label="Why Ibis Matters in 2026">Why Ibis Matters in 2026</a></li>
             <li>
-                <a href="#ibis-%eb%b0%8f-%eb%b0%b1%ec%97%94%eb%93%9c-%ec%a2%85%ec%86%8d%ec%84%b1-%ec%84%a4%ec%b9%98" aria-label="Ibis 및 백엔드 종속성 설치">Ibis 및 백엔드 종속성 설치</a></li>
+                <a href="#installing-ibis-and-backend-dependencies" aria-label="Installing Ibis and Backend Dependencies">Installing Ibis and Backend Dependencies</a></li>
             <li>
-                <a href="#20%ea%b0%9c-%ec%9d%b4%ec%83%81%ec%9d%98-sql-%eb%b0%b1%ec%97%94%eb%93%9c%ec%97%90-%ec%97%b0%ea%b2%b0%ed%95%98%ea%b8%b0" aria-label="20개 이상의 SQL 백엔드에 연결하기">20개 이상의 SQL 백엔드에 연결하기</a><ul>
+                <a href="#connecting-to-20-sql-backends" aria-label="Connecting to 20&#43; SQL Backends">Connecting to 20+ SQL Backends</a><ul>
                     
             <li>
-                <a href="#duckdb-%eb%a1%9c%ec%bb%ac-%eb%b6%84%ec%84%9d%ec%9a%a9-%ea%b6%8c%ec%9e%a5" aria-label="DuckDB (로컬 분석용 권장)">DuckDB (로컬 분석용 권장)</a></li>
+                <a href="#duckdb-recommended-for-local-analytics" aria-label="DuckDB (Recommended for Local Analytics)">DuckDB (Recommended for Local Analytics)</a></li>
             <li>
                 <a href="#postgresql" aria-label="PostgreSQL">PostgreSQL</a></li>
             <li>
@@ -229,66 +229,66 @@
                 <a href="#sqlite" aria-label="SQLite">SQLite</a></li></ul>
             </li>
             <li>
-                <a href="#ibis-dataframe-api-%ec%b9%9c%ec%88%99%ed%95%98%eb%a9%b4%ec%84%9c%eb%8f%84-%ea%b0%95%eb%a0%a5%ed%95%9c" aria-label="Ibis DataFrame API: 친숙하면서도 강력한">Ibis DataFrame API: 친숙하면서도 강력한</a><ul>
+                <a href="#ibis-dataframe-api-familiar-yet-powerful" aria-label="Ibis DataFrame API: Familiar Yet Powerful">Ibis DataFrame API: Familiar Yet Powerful</a><ul>
                     
             <li>
-                <a href="#%ec%84%a0%ed%83%9d-%eb%b0%8f-%ed%95%84%ed%84%b0%eb%a7%81" aria-label="선택 및 필터링">선택 및 필터링</a></li>
+                <a href="#selecting-and-filtering" aria-label="Selecting and Filtering">Selecting and Filtering</a></li>
             <li>
-                <a href="#%ec%a7%91%ea%b3%84-%eb%b0%8f-%ea%b7%b8%eb%a3%b9%ed%99%94" aria-label="집계 및 그룹화">집계 및 그룹화</a></li>
+                <a href="#aggregation-and-grouping" aria-label="Aggregation and Grouping">Aggregation and Grouping</a></li>
             <li>
-                <a href="#%ec%a1%b0%ec%9d%b8" aria-label="조인">조인</a></li>
+                <a href="#joins" aria-label="Joins">Joins</a></li>
             <li>
-                <a href="#%ec%9c%88%eb%8f%84%ec%9a%b0-%ed%95%a8%ec%88%98" aria-label="윈도우 함수">윈도우 함수</a></li></ul>
+                <a href="#window-functions" aria-label="Window Functions">Window Functions</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%a7%80%ec%97%b0-%ed%8f%89%ea%b0%80-%eb%b0%8f-sql-%ec%bb%b4%ed%8c%8c%ec%9d%bc" aria-label="지연 평가 및 SQL 컴파일">지연 평가 및 SQL 컴파일</a></li>
+                <a href="#lazy-evaluation-and-sql-compilation" aria-label="Lazy Evaluation and SQL Compilation">Lazy Evaluation and SQL Compilation</a></li>
             <li>
-                <a href="#ibis%eb%a1%9c-%ea%b3%a0%ea%b8%89-%ec%bf%bc%eb%a6%ac-%ed%8c%a8%ed%84%b4" aria-label="Ibis로 고급 쿼리 패턴">Ibis로 고급 쿼리 패턴</a><ul>
+                <a href="#advanced-query-patterns-with-ibis" aria-label="Advanced Query Patterns with Ibis">Advanced Query Patterns with Ibis</a><ul>
                     
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9%ec%9e%90-%ec%a0%95%ec%9d%98-%ed%91%9c%ed%98%84%ec%8b%9d-%eb%b0%8f-%eb%a6%ac%ed%84%b0%eb%9f%b4" aria-label="사용자 정의 표현식 및 리터럴">사용자 정의 표현식 및 리터럴</a></li>
+                <a href="#custom-expressions-and-literals" aria-label="Custom Expressions and Literals">Custom Expressions and Literals</a></li>
             <li>
-                <a href="#%eb%b3%b5%ec%9e%a1%ed%95%9c-%ec%84%9c%eb%b8%8c%ec%bf%bc%eb%a6%ac" aria-label="복잡한 서브쿼리">복잡한 서브쿼리</a></li>
+                <a href="#complex-subqueries" aria-label="Complex Subqueries">Complex Subqueries</a></li>
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9%ec%9e%90-%ec%a0%95%ec%9d%98-%ed%95%a8%ec%88%98-udf" aria-label="사용자 정의 함수 (UDF)">사용자 정의 함수 (UDF)</a></li>
+                <a href="#user-defined-functions-udfs" aria-label="User-Defined Functions (UDFs)">User-Defined Functions (UDFs)</a></li>
             <li>
-                <a href="#_-%ec%b0%b8%ec%a1%b0%eb%a5%bc-%ec%82%ac%ec%9a%a9%ed%95%9c-%eb%8c%80%ed%99%94%ed%98%95-%ec%9e%91%ec%97%85" aria-label="_ 참조를 사용한 대화형 작업">_ 참조를 사용한 대화형 작업</a></li></ul>
+                <a href="#interactivity-with-_-reference" aria-label="Interactivity with _ Reference">Interactivity with _ Reference</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%84%b1%eb%8a%a5-%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac-ibis-%eb%8c%80-pandas" aria-label="성능 벤치마크: Ibis 대 pandas">성능 벤치마크: Ibis 대 pandas</a></li>
+                <a href="#performance-benchmark-ibis-vs-pandas" aria-label="Performance Benchmark: Ibis vs pandas">Performance Benchmark: Ibis vs pandas</a></li>
             <li>
-                <a href="#ibis-%eb%8c%80-sqlalchemy-%eb%8c%80-pandas-%eb%ac%b4%ec%97%87%ec%9d%84-%ec%96%b8%ec%a0%9c-%ec%82%ac%ec%9a%a9%ed%95%a0-%ea%b2%83%ec%9d%b8%ea%b0%80" aria-label="Ibis 대 SQLAlchemy 대 pandas: 무엇을 언제 사용할 것인가">Ibis 대 SQLAlchemy 대 pandas: 무엇을 언제 사용할 것인가</a></li>
+                <a href="#ibis-vs-sqlalchemy-vs-pandas-when-to-use-what" aria-label="Ibis vs SQLAlchemy vs pandas: When to Use What">Ibis vs SQLAlchemy vs pandas: When to Use What</a></li>
             <li>
-                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8-faq" aria-label="자주 묻는 질문 (FAQ)">자주 묻는 질문 (FAQ)</a><ul>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a><ul>
                     
             <li>
-                <a href="#ibis%eb%8a%94-%ec%99%84%ec%a0%84%ed%9e%88-pandas%eb%a5%bc-%eb%8c%80%ec%b2%b4%ed%95%a9%eb%8b%88%ea%b9%8c" aria-label="Ibis는 완전히 pandas를 대체합니까?">Ibis는 완전히 pandas를 대체합니까?</a></li>
+                <a href="#does-ibis-replace-pandas-entirely" aria-label="Does Ibis replace pandas entirely?">Does Ibis replace pandas entirely?</a></li>
             <li>
-                <a href="#ibis%ea%b0%80-%ec%83%9d%ec%84%b1%ed%95%98%eb%8a%94-sql%ec%9d%84-%eb%b3%bc-%ec%88%98-%ec%9e%88%ec%8a%b5%eb%8b%88%ea%b9%8c" aria-label="Ibis가 생성하는 SQL을 볼 수 있습니까?">Ibis가 생성하는 SQL을 볼 수 있습니까?</a></li>
+                <a href="#can-i-see-the-sql-that-ibis-generates" aria-label="Can I see the SQL that Ibis generates?">Can I see the SQL that Ibis generates?</a></li>
             <li>
-                <a href="#ibis%eb%8a%94-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-etl-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8%ec%97%90-%ec%a0%81%ed%95%a9%ed%95%a9%eb%8b%88%ea%b9%8c" aria-label="Ibis는 프로덕션 ETL 파이프라인에 적합합니까?">Ibis는 프로덕션 ETL 파이프라인에 적합합니까?</a></li>
+                <a href="#is-ibis-suitable-for-production-etl-pipelines" aria-label="Is Ibis suitable for production ETL pipelines?">Is Ibis suitable for production ETL pipelines?</a></li>
             <li>
-                <a href="#ibis%eb%8a%94-%eb%b0%b1%ec%97%94%eb%93%9c%eb%b3%84-sql-%eb%b0%a9%ec%96%b8%ec%9d%84-%ec%96%b4%eb%96%bb%ea%b2%8c-%ec%b2%98%eb%a6%ac%ed%95%a9%eb%8b%88%ea%b9%8c" aria-label="Ibis는 백엔드별 SQL 방언을 어떻게 처리합니까?">Ibis는 백엔드별 SQL 방언을 어떻게 처리합니까?</a></li>
+                <a href="#how-does-ibis-handle-backend-specific-sql-dialects" aria-label="How does Ibis handle backend-specific SQL dialects?">How does Ibis handle backend-specific SQL dialects?</a></li>
             <li>
-                <a href="#pandas-%ec%82%ac%ec%9a%a9%ec%9e%90%ec%9d%98-%ed%95%99%ec%8a%b5-%ea%b3%a1%ec%84%a0%ec%9d%80-%ec%96%b4%eb%96%bb%ec%8a%b5%eb%8b%88%ea%b9%8c" aria-label="pandas 사용자의 학습 곡선은 어떻습니까?">pandas 사용자의 학습 곡선은 어떻습니까?</a></li></ul>
+                <a href="#what-is-the-learning-curve-for-pandas-users" aria-label="What is the learning curve for pandas users?">What is the learning curve for pandas users?</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%b6%94%ec%b2%9c-%ed%98%b8%ec%8a%a4%ed%8c%85-%eb%b0%8f-%ec%9d%b8%ed%94%84%eb%9d%bc" aria-label="추천 호스팅 및 인프라">추천 호스팅 및 인프라</a></li>
+                <a href="#recommended-hosting--infrastructure" aria-label="Recommended Hosting &amp; Infrastructure">Recommended Hosting &amp; Infrastructure</a></li>
             <li>
-                <a href="#%eb%a7%88%ec%a7%80%eb%a7%89-%ec%83%9d%ea%b0%81" aria-label="마지막 생각">마지막 생각</a>
+                <a href="#final-thoughts" aria-label="Final Thoughts">Final Thoughts</a>
             </li>
         </ul>
     </div>
 </details>
 
-  <div class="post-content md-content"><p>데이터 분석의 끊임없이 진화하는 환경에서 Python 개발자들은 오랫동안 좌절스러운 딜레마에 직면해왔습니다. 직관적인 DataFrame API를 위해 <strong>pandas</strong>를 사용해야 할까요, 아니면 대규모 데이터셋에서 뛰어난 성능을 위해 원시 <strong>SQL</strong>을 작성해야 할까요? 2026년에 이 트레이드오프는 더 이상 필요하지 않습니다. <strong>Ibis</strong>를 소개합니다 — 20개 이상의 백엔드에서 고성능 SQL로 표현식을 컴파일하면서도 친숙한 DataFrame API를 제공하는 이식 가능한 오픈소스 Python 라이브러리입니다. 12,000개 이상의 GitHub 스타와 Apache-2.0 라이선스를 보유한 Ibis는 데이터 엔지니어와 과학자들이 데이터베이스와 상호작용하는 방식을 변화시키고 있습니다.</p>
-<p>로컬 DuckDB 인스턴스를 쿼리하든, 프로덕션 PostgreSQL 클러스터를, 페타바이트 규모의 BigQuery 웨어하우스를, 또는 Snowflake 엔터프라이즈 분석 환경을 쿼리하든 Ibis는 단일하고 일관된 API를 제공합니다. 그 비밀 무기 — <strong>지연 평가(lazy evaluation)</strong>, <strong>타입 안전 표현식</strong>, <strong>SQL 컴파일</strong> — 은 종종 기존 pandas 워크플로우보다 10배 빠른 성능을 제공하면서도 개발자들이 좋아하는 Pythonic한 표현력을 희생하지 않습니다.</p>
-<p>이 포괄적인 가이드에서는 Ibis가 제공하는 모든 것을 설치와 기본 쿼리부터 고급 패턴과 실제 벤치마크까지 살펴 보겠습니다. 이 글을 마치면, 생산성과 성능 사이의 타협을 거부하는 모든 데이터 실무자에게 Ibis가 기본 선택이 되는 이유를 이해하게 될 것입니다.</p>
+  <div class="post-content md-content"><p>In the ever-evolving landscape of data analytics, Python developers have long faced a frustrating dilemma: should you use <strong>pandas</strong> for its intuitive DataFrame API, or write raw <strong>SQL</strong> for its superior performance on large datasets? In 2026, this trade-off is no longer necessary. Enter <strong>Ibis</strong> — a portable, open-source Python library that offers a familiar DataFrame API while compiling your expressions to high-performance SQL for execution across 20+ backends. With over 12,000 GitHub stars and an Apache-2.0 license, Ibis is transforming how data engineers and scientists interact with databases.</p>
+<p>Whether you are querying a local DuckDB instance, a production PostgreSQL cluster, a petabyte-scale BigQuery warehouse, or a Snowflake environment, Ibis provides a single, consistent API. Its secret weapons — <strong>lazy evaluation</strong>, <strong>type-safe expressions</strong>, and <strong>SQL compilation</strong> — deliver performance that is often 10x faster than traditional pandas workflows, all without sacrificing the Pythonic expressiveness developers love.</p>
+<p>In this comprehensive guide, we will explore everything Ibis has to offer: from installation and basic queries to advanced patterns and real-world benchmarks. By the end, you will understand why Ibis is becoming the default choice for data practitioners who refuse to compromise between productivity and performance.</p>
 <hr>
-<h2 id="ibis란-데이터-분석의-새로운-패러다임">Ibis란? 데이터 분석의 새로운 패러다임<a hidden class="anchor" aria-hidden="true" href="#ibis란-데이터-분석의-새로운-패러다임">#</a></h2>
-<p>Ibis는 <strong>Wes McKinney</strong> — pandas의 원작자 — 가 만든 Python DataFrame 라이브러리입니다. 완전히 메모리 내에서 작동하는 pandas와 달리, Ibis는 근본적으로 다른 접근 방식을 취합니다: <strong>SQL로 컴파일되는 DataFrame API</strong>를 제공합니다. 이는 pandas처럼 보고 느껴지는 Python 코드를 작성하지만, Ibis가 해당 표현식을 데이터베이스 엔진 내에서 직접 실행되는 최적화된 SQL 쿼리로 변환한다는 의미입니다.</p>
-<p>그 결과는 무엇일까요? Python의 인체공학과 현대 SQL 쿼리 엔진의 원시적인 성능이라는 두 세계의 장점을 모두 얻게 됩니다. 수백만 행을 메모리로 끌어들여 단순히 집계를 계산할 필요가 없습니다. Python과 SQL 방언 사이에서 컨텍스트를 전환할 필요도 없습니다. Ibis는 우아하고 이식 가능한 인터페이스 아래에서 데이터 워크플로우를 통일합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Ibis는 모든 pandas 사용자에게 친숙합니다</span>
+<h2 id="what-is-ibis-a-new-paradigm-for-data-analytics">What Is Ibis? A New Paradigm for Data Analytics<a hidden class="anchor" aria-hidden="true" href="#what-is-ibis-a-new-paradigm-for-data-analytics">#</a></h2>
+<p>Ibis is a Python DataFrame library created by <strong>Wes McKinney</strong>, the original author of pandas. Unlike pandas, which operates entirely in-memory, Ibis takes a fundamentally different approach: it provides a <strong>DataFrame API that compiles to SQL</strong>. This means you write Python code that looks and feels like pandas, but Ibis translates those expressions into optimized SQL queries that run directly inside your database engine.</p>
+<p>The result? You get the best of both worlds: the ergonomics of Python combined with the raw power of modern SQL query engines. No more pulling millions of rows into memory just to compute an aggregation. No more context-switching between Python and SQL dialects. Ibis unifies your data workflow under one elegant, portable interface.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Ibis looks familiar to any pandas user</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> ibis
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>con <span style="color:#f92672">=</span> ibis<span style="color:#f92672">.</span>duckdb<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;analytics.db&#34;</span>)
@@ -301,14 +301,14 @@
 </span></span><span style="display:flex;"><span>     <span style="color:#f92672">.</span>limit(<span style="color:#ae81ff">10</span>)
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 쿼리 실행 — DuckDB 낶部에서 실행되며 Python 메모리에서는 실행되지 않습니다</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Execute the query - runs inside DuckDB, not in Python memory</span>
 </span></span><span style="display:flex;"><span>print(result<span style="color:#f92672">.</span>execute())
-</span></span></code></pre></div><p>낶 scenes에서 Ibis는 위 표현식을 최적화된 SQL 쿼리로 컴파일하고, 모든 계산을 백엔드로 푸시한 후, 최종 집계 결과만 반환합니다. 이러한 아키텍처 덕분에 Ibis는 pandas 프로세스를 중단시킬 만큼 큰 데이터셋을 처리할 수 있습니다.</p>
+</span></span></code></pre></div><p>Behind the scenes, Ibis compiles the expression above into an optimized SQL query, pushes all computation to the backend, and returns only the final aggregated results. This architecture is what makes Ibis capable of handling datasets that would crash a pandas process.</p>
 <hr>
-<h2 id="2026년에-ibis가-중요한-이유">2026년에 Ibis가 중요한 이유<a hidden class="anchor" aria-hidden="true" href="#2026년에-ibis가-중요한-이유">#</a></h2>
-<p>2026년의 데이터 환경은 그 어느 때보다 더 조각화되어 있습니다. 조직들은 여러 시스템의 조합에서 분석을 실행합니다: 개발용 로컬 DuckDB, 트랜잭션 데이터용 PostgreSQL, 데이터 웨어하우스용 BigQuery, 엔터프라이즈 분석용 Snowflake, 실시간 워크로드용 ClickHouse. 역사적으로 이러한 각 시스템은 다른 SDK, 다른 SQL 방언, 다른 멘탈 모델을 학습해야 했습니다.</p>
-<p>Ibis는 이러한 조각화 문제를 우아하게 해결합니다. 통합된 DataFrame API는 지원되는 모든 백엔드에서 동일하게 작동합니다. DuckDB용으로 작성한 코드가 BigQuery나 Snowflake에서 변경 없이 작동합니다. 이러한 이식성은 단순한 편의성이 아니라 — 분석 파이프라인을 재작성하지 않고 환경 간에 이동해야 하는 팀에게 게임 체인저입니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 동일한 코드가 모든 백엔드에서 작동합니다</span>
+<h2 id="why-ibis-matters-in-2026">Why Ibis Matters in 2026<a hidden class="anchor" aria-hidden="true" href="#why-ibis-matters-in-2026">#</a></h2>
+<p>The data landscape in 2026 is more fragmented than ever. Organizations run analytics across a patchwork of systems: local DuckDB for development, PostgreSQL for transactional data, BigQuery for data warehouses, Snowflake for enterprise analytics, and ClickHouse for real-time workloads. Historically, each of these systems required learning a different SDK, a different SQL dialect, and a different mental model.</p>
+<p>Ibis solves this fragmentation problem elegantly. Its unified DataFrame API works identically across all supported backends. The code you write for DuckDB works unchanged for BigQuery or Snowflake. This portability is not just a convenience — it is a game-changer for teams that need to move between environments without rewriting their analytics pipelines.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># The SAME code works across ALL backends</span>
 </span></span><span style="display:flex;"><span>query <span style="color:#f92672">=</span> (
 </span></span><span style="display:flex;"><span>    t<span style="color:#f92672">.</span>select(<span style="color:#e6db74">&#34;customer_id&#34;</span>, <span style="color:#e6db74">&#34;order_date&#34;</span>, <span style="color:#e6db74">&#34;amount&#34;</span>)
 </span></span><span style="display:flex;"><span>     <span style="color:#f92672">.</span>filter(t<span style="color:#f92672">.</span>amount <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>)
@@ -322,21 +322,21 @@
 </span></span><span style="display:flex;"><span>     <span style="color:#f92672">.</span>order_by(ibis<span style="color:#f92672">.</span>desc(<span style="color:#e6db74">&#34;total_spent&#34;</span>))
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># DuckDB에서 실행</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run on DuckDB</span>
 </span></span><span style="display:flex;"><span>con_duck <span style="color:#f92672">=</span> ibis<span style="color:#f92672">.</span>duckdb<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;local.db&#34;</span>)
 </span></span><span style="display:flex;"><span>result_local <span style="color:#f92672">=</span> query<span style="color:#f92672">.</span>execute()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># BigQuery에서 정확히 동일한 쿼리 실행</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run the EXACT SAME query on BigQuery</span>
 </span></span><span style="display:flex;"><span>con_bq <span style="color:#f92672">=</span> ibis<span style="color:#f92672">.</span>bigquery<span style="color:#f92672">.</span>connect(project_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;my-project&#34;</span>)
 </span></span><span style="display:flex;"><span>result_cloud <span style="color:#f92672">=</span> query<span style="color:#f92672">.</span>execute()
-</span></span></code></pre></div><p>이식성 외에도 Ibis는 pandas 워크플로우를 괴롭히는 <strong>성능 병목 현상</strong>을 해결합니다. Ibis는 계산을 백엔드 쿼리 엔진으로 푸시하기 때문에 Python 메모리에 중간 결과를 구체화하지 않습니다. 집계, 조인, 윈도우 함수, 필터는 모두 데이터베이스 낶부에서 — 그래야 할 곳에서 — 실행됩니다.</p>
+</span></span></code></pre></div><p>Beyond portability, Ibis addresses the <strong>performance bottleneck</strong> that plagues pandas workflows. Because Ibis pushes computation to the backend query engine, it never materializes intermediate results in Python memory. Aggregations, joins, window functions, and filters all execute inside the database — where they belong.</p>
 <hr>
-<h2 id="ibis-및-백엔드-종속성-설치">Ibis 및 백엔드 종속성 설치<a hidden class="anchor" aria-hidden="true" href="#ibis-및-백엔드-종속성-설치">#</a></h2>
-<p>Ibis 시작은 간단합니다. 핵심 라이브러리는 가볍고, 필요한 백엔드 extras만 설치하면 됩니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Ibis 핵심 설치</span>
+<h2 id="installing-ibis-and-backend-dependencies">Installing Ibis and Backend Dependencies<a hidden class="anchor" aria-hidden="true" href="#installing-ibis-and-backend-dependencies">#</a></h2>
+<p>Getting started with Ibis is straightforward. The core library is lightweight, and you install only the backend extras you need.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install Ibis core</span>
 </span></span><span style="display:flex;"><span>pip install ibis-framework
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 특정 백엔드 지원 설치</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install with specific backend support</span>
 </span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;ibis-framework[duckdb]&#34;</span>
 </span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;ibis-framework[postgres]&#34;</span>
 </span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;ibis-framework[bigquery]&#34;</span>
@@ -344,35 +344,35 @@
 </span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;ibis-framework[mysql]&#34;</span>
 </span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;ibis-framework[clickhouse]&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 여러 백엔드를 한 번에 설치</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install multiple backends at once</span>
 </span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;ibis-framework[duckdb,postgres,bigquery]&#34;</span>
-</span></span></code></pre></div><p>conda 사용자의 경우: `````bash
+</span></span></code></pre></div><p>For conda users: `````bash
 conda install -c conda-forge ibis-framework
 conda install -c conda-forge ibis-duckdb ibis-postgres</p>
 <pre tabindex="0"><code>
-설치 후 정상 작동 여부를 확인합니다: `````python
+After installation, verify everything is working: `````python
 import ibis
 print(ibis.__version__)
 
-# 사용 가능한 백엔드 목록
+# List available backends
 print(ibis.util.backend_entry_points())
-</code></pre><p>Ibis는 현재 DuckDB, PostgreSQL, MySQL, SQLite, BigQuery, Snowflake, ClickHouse, Trino, PySpark, DataFusion 등 20개 이상의 백엔드를 지원합니다. 백엔드 생태계는 각 릴리즈마다 계속 확장되고 있습니다.</p>
+</code></pre><p>Ibis currently supports 20+ backends including DuckDB, PostgreSQL, MySQL, SQLite, BigQuery, Snowflake, ClickHouse, Trino, PySpark, DataFusion, and more. The backend ecosystem continues to expand with each release.</p>
 <hr>
-<h2 id="20개-이상의-sql-백엔드에-연결하기">20개 이상의 SQL 백엔드에 연결하기<a hidden class="anchor" aria-hidden="true" href="#20개-이상의-sql-백엔드에-연결하기">#</a></h2>
-<p>Ibis의 결정적인 강점 중 하나는 사실상 모든 데이터 시스템에 연결할 수 있는 능력입니다. 가장 인기 있는 백엔드에 연결하는 방법을 살펴 보겠습니다.</p>
-<h3 id="duckdb-로컬-분석용-권장">DuckDB (로컬 분석용 권장)<a hidden class="anchor" aria-hidden="true" href="#duckdb-로컬-분석용-권장">#</a></h3>
+<h2 id="connecting-to-20-sql-backends">Connecting to 20+ SQL Backends<a hidden class="anchor" aria-hidden="true" href="#connecting-to-20-sql-backends">#</a></h2>
+<p>One of Ibis&rsquo;s defining strengths is its ability to connect to virtually any data system. Let us explore how to establish connections to the most popular backends.</p>
+<h3 id="duckdb-recommended-for-local-analytics">DuckDB (Recommended for Local Analytics)<a hidden class="anchor" aria-hidden="true" href="#duckdb-recommended-for-local-analytics">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> ibis
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 메모리 내 데이터베이스</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># In-memory database</span>
 </span></span><span style="display:flex;"><span>con <span style="color:#f92672">=</span> ibis<span style="color:#f92672">.</span>duckdb<span style="color:#f92672">.</span>connect()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 지속 로컬 데이터베이스</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Persistent local database</span>
 </span></span><span style="display:flex;"><span>con <span style="color:#f92672">=</span> ibis<span style="color:#f92672">.</span>duckdb<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;my_analytics.db&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Parquet 파일 직접 읽기</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Read a Parquet file directly</span>
 </span></span><span style="display:flex;"><span>con<span style="color:#f92672">.</span>read_parquet(<span style="color:#e6db74">&#34;data/*.parquet&#34;</span>, table_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;events&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># CSV 읽기</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Read CSV</span>
 </span></span><span style="display:flex;"><span>con<span style="color:#f92672">.</span>read_csv(<span style="color:#e6db74">&#34;customers.csv&#34;</span>, table_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;customers&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>t <span style="color:#f92672">=</span> con<span style="color:#f92672">.</span>table(<span style="color:#e6db74">&#34;events&#34;</span>)
@@ -418,35 +418,35 @@ print(ibis.util.backend_entry_points())
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>con <span style="color:#f92672">=</span> ibis<span style="color:#f92672">.</span>sqlite<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;sample.db&#34;</span>)
 </span></span><span style="display:flex;"><span>t <span style="color:#f92672">=</span> con<span style="color:#f92672">.</span>table(<span style="color:#e6db74">&#34;employees&#34;</span>)
-</span></span></code></pre></div><p>모든 백엔드의 연결 API는 일관됩니다. 연결을 설정하고 테이블 참조를 얻으면, 밑에 무엇이 있든 Ibis 표현식 API는 동일하게 작동합니다.</p>
+</span></span></code></pre></div><p>The connection API is consistent across all backends. Once you have a connection and a table reference, the Ibis expression API works identically regardless of what is underneath.</p>
 <hr>
-<h2 id="ibis-dataframe-api-친숙하면서도-강력한">Ibis DataFrame API: 친숙하면서도 강력한<a hidden class="anchor" aria-hidden="true" href="#ibis-dataframe-api-친숙하면서도-강력한">#</a></h2>
-<p>pandas를 사용해 보셨다면 Ibis API가 즉시 친숙하게 느껴질 것입니다. Ibis는 예상하는 모든 핵심 DataFrame 작업을 제공합니다: <code>select</code>, <code>filter</code>, <code>group_by</code>, <code>aggregate</code>, <code>order_by</code>, <code>limit</code>, <code>join</code> 등.</p>
-<h3 id="선택-및-필터링">선택 및 필터링<a hidden class="anchor" aria-hidden="true" href="#선택-및-필터링">#</a></h3>
+<h2 id="ibis-dataframe-api-familiar-yet-powerful">Ibis DataFrame API: Familiar Yet Powerful<a hidden class="anchor" aria-hidden="true" href="#ibis-dataframe-api-familiar-yet-powerful">#</a></h2>
+<p>If you have used pandas, the Ibis API will feel immediately familiar. Ibis provides all the core DataFrame operations you expect: <code>select</code>, <code>filter</code>, <code>group_by</code>, <code>aggregate</code>, <code>order_by</code>, <code>limit</code>, <code>join</code>, and more.</p>
+<h3 id="selecting-and-filtering">Selecting and Filtering<a hidden class="anchor" aria-hidden="true" href="#selecting-and-filtering">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> ibis
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>con <span style="color:#f92672">=</span> ibis<span style="color:#f92672">.</span>duckdb<span style="color:#f92672">.</span>connect()
 </span></span><span style="display:flex;"><span>con<span style="color:#f92672">.</span>read_parquet(<span style="color:#e6db74">&#34;events.parquet&#34;</span>, table_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;events&#34;</span>)
 </span></span><span style="display:flex;"><span>t <span style="color:#f92672">=</span> con<span style="color:#f92672">.</span>table(<span style="color:#e6db74">&#34;events&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 특정 열 선택</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Select specific columns</span>
 </span></span><span style="display:flex;"><span>selected <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>select(<span style="color:#e6db74">&#34;user_id&#34;</span>, <span style="color:#e6db74">&#34;event_type&#34;</span>, <span style="color:#e6db74">&#34;timestamp&#34;</span>, <span style="color:#e6db74">&#34;value&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 행 필터링</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Filter rows</span>
 </span></span><span style="display:flex;"><span>filtered <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>filter(t<span style="color:#f92672">.</span>event_type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;purchase&#34;</span>, t<span style="color:#f92672">.</span>value <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">50</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 조건 결합</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Combine conditions</span>
 </span></span><span style="display:flex;"><span>filtered <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>filter(
 </span></span><span style="display:flex;"><span>    (t<span style="color:#f92672">.</span>event_type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;purchase&#34;</span>) <span style="color:#f92672">&amp;</span> (t<span style="color:#f92672">.</span>value <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">50</span>) <span style="color:#f92672">&amp;</span> (t<span style="color:#f92672">.</span>timestamp <span style="color:#f92672">&gt;=</span> <span style="color:#e6db74">&#34;2026-01-01&#34;</span>)
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># .mutate를 사용하여 계산 열 생성</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use .mutate to create computed columns</span>
 </span></span><span style="display:flex;"><span>enriched <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>mutate(
 </span></span><span style="display:flex;"><span>    value_squared<span style="color:#f92672">=</span>t<span style="color:#f92672">.</span>value <span style="color:#f92672">*</span> t<span style="color:#f92672">.</span>value,
 </span></span><span style="display:flex;"><span>    is_high_value<span style="color:#f92672">=</span>t<span style="color:#f92672">.</span>value <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>
 </span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><h3 id="집계-및-그룹화">집계 및 그룹화<a hidden class="anchor" aria-hidden="true" href="#집계-및-그룹화">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 기본 집계</span>
+</span></span></code></pre></div><h3 id="aggregation-and-grouping">Aggregation and Grouping<a hidden class="anchor" aria-hidden="true" href="#aggregation-and-grouping">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Basic aggregation</span>
 </span></span><span style="display:flex;"><span>stats <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>aggregate(
 </span></span><span style="display:flex;"><span>    count<span style="color:#f92672">=</span>t<span style="color:#f92672">.</span>user_id<span style="color:#f92672">.</span>count(),
 </span></span><span style="display:flex;"><span>    total_value<span style="color:#f92672">=</span>t<span style="color:#f92672">.</span>value<span style="color:#f92672">.</span>sum(),
@@ -455,7 +455,7 @@ print(ibis.util.backend_entry_points())
 </span></span><span style="display:flex;"><span>    min_value<span style="color:#f92672">=</span>t<span style="color:#f92672">.</span>value<span style="color:#f92672">.</span>min()
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 다중 집계가 있는 그룹화</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Group by with multiple aggregations</span>
 </span></span><span style="display:flex;"><span>by_category <span style="color:#f92672">=</span> (
 </span></span><span style="display:flex;"><span>    t<span style="color:#f92672">.</span>group_by(<span style="color:#e6db74">&#34;event_type&#34;</span>, <span style="color:#e6db74">&#34;region&#34;</span>)
 </span></span><span style="display:flex;"><span>     <span style="color:#f92672">.</span>aggregate(
@@ -465,24 +465,24 @@ print(ibis.util.backend_entry_points())
 </span></span><span style="display:flex;"><span>     )
 </span></span><span style="display:flex;"><span>     <span style="color:#f92672">.</span>order_by(ibis<span style="color:#f92672">.</span>desc(<span style="color:#e6db74">&#34;total&#34;</span>))
 </span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><h3 id="조인">조인<a hidden class="anchor" aria-hidden="true" href="#조인">#</a></h3>
+</span></span></code></pre></div><h3 id="joins">Joins<a hidden class="anchor" aria-hidden="true" href="#joins">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>users <span style="color:#f92672">=</span> con<span style="color:#f92672">.</span>table(<span style="color:#e6db74">&#34;users&#34;</span>)
 </span></span><span style="display:flex;"><span>orders <span style="color:#f92672">=</span> con<span style="color:#f92672">.</span>table(<span style="color:#e6db74">&#34;orders&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 낶부 조인</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Inner join</span>
 </span></span><span style="display:flex;"><span>joined <span style="color:#f92672">=</span> users<span style="color:#f92672">.</span>inner_join(
 </span></span><span style="display:flex;"><span>    orders,
 </span></span><span style="display:flex;"><span>    users<span style="color:#f92672">.</span>user_id <span style="color:#f92672">==</span> orders<span style="color:#f92672">.</span>user_id
 </span></span><span style="display:flex;"><span>)<span style="color:#f92672">.</span>select(users<span style="color:#f92672">.</span>user_id, users<span style="color:#f92672">.</span>name, orders<span style="color:#f92672">.</span>amount)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 다중 조건이 있는 왼쪽 조인</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Left join with multiple conditions</span>
 </span></span><span style="display:flex;"><span>joined <span style="color:#f92672">=</span> users<span style="color:#f92672">.</span>left_join(
 </span></span><span style="display:flex;"><span>    orders,
 </span></span><span style="display:flex;"><span>    [users<span style="color:#f92672">.</span>user_id <span style="color:#f92672">==</span> orders<span style="color:#f92672">.</span>user_id,
 </span></span><span style="display:flex;"><span>     orders<span style="color:#f92672">.</span>order_date <span style="color:#f92672">&gt;=</span> <span style="color:#e6db74">&#34;2026-01-01&#34;</span>]
 </span></span><span style="display:flex;"><span>)<span style="color:#f92672">.</span>select(users<span style="color:#f92672">.</span>name, orders<span style="color:#f92672">.</span>amount)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 별칭이 있는 자체 조인</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Self-join with aliases</span>
 </span></span><span style="display:flex;"><span>managers <span style="color:#f92672">=</span> users<span style="color:#f92672">.</span>view(<span style="color:#e6db74">&#34;managers&#34;</span>)
 </span></span><span style="display:flex;"><span>reporting <span style="color:#f92672">=</span> users<span style="color:#f92672">.</span>inner_join(
 </span></span><span style="display:flex;"><span>    managers,
@@ -491,36 +491,36 @@ print(ibis.util.backend_entry_points())
 </span></span><span style="display:flex;"><span>    users<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>name(<span style="color:#e6db74">&#34;employee&#34;</span>),
 </span></span><span style="display:flex;"><span>    managers<span style="color:#f92672">.</span>name<span style="color:#f92672">.</span>name(<span style="color:#e6db74">&#34;manager&#34;</span>)
 </span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><h3 id="윈도우-함수">윈도우 함수<a hidden class="anchor" aria-hidden="true" href="#윈도우-함수">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 누적 합계</span>
+</span></span></code></pre></div><h3 id="window-functions">Window Functions<a hidden class="anchor" aria-hidden="true" href="#window-functions">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Running total</span>
 </span></span><span style="display:flex;"><span>running <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>mutate(
 </span></span><span style="display:flex;"><span>    running_total<span style="color:#f92672">=</span>t<span style="color:#f92672">.</span>value<span style="color:#f92672">.</span>sum()<span style="color:#f92672">.</span>over(
 </span></span><span style="display:flex;"><span>        ibis<span style="color:#f92672">.</span>window(order_by<span style="color:#f92672">=</span>t<span style="color:#f92672">.</span>timestamp)
 </span></span><span style="display:flex;"><span>    )
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 카테고리별로 분할된 행 번호</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Row number partitioned by category</span>
 </span></span><span style="display:flex;"><span>ranked <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>mutate(
 </span></span><span style="display:flex;"><span>    row_num<span style="color:#f92672">=</span>ibis<span style="color:#f92672">.</span>row_number()<span style="color:#f92672">.</span>over(
 </span></span><span style="display:flex;"><span>        ibis<span style="color:#f92672">.</span>window(group_by<span style="color:#f92672">=</span>t<span style="color:#f92672">.</span>event_type, order_by<span style="color:#f92672">=</span>ibis<span style="color:#f92672">.</span>desc(t<span style="color:#f92672">.</span>value))
 </span></span><span style="display:flex;"><span>    )
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 이동 평균 (3행 윈도우)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Moving average (3-row window)</span>
 </span></span><span style="display:flex;"><span>moving <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>mutate(
 </span></span><span style="display:flex;"><span>    moving_avg<span style="color:#f92672">=</span>t<span style="color:#f92672">.</span>value<span style="color:#f92672">.</span>mean()<span style="color:#f92672">.</span>over(
 </span></span><span style="display:flex;"><span>        ibis<span style="color:#f92672">.</span>window(order_by<span style="color:#f92672">=</span>t<span style="color:#f92672">.</span>timestamp, preceding<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, following<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
 </span></span><span style="display:flex;"><span>    )
 </span></span><span style="display:flex;"><span>)
 </span></span></code></pre></div><hr>
-<h2 id="지연-평가-및-sql-컴파일">지연 평가 및 SQL 컴파일<a hidden class="anchor" aria-hidden="true" href="#지연-평가-및-sql-컴파일">#</a></h2>
-<p>Ibis의 가장 강력한 기능 중 하나는 <strong>지연 평가 모델</strong>입니다. Ibis 표현식을 작성할 때 계산이 즉시 발생하지 않습니다. 대신 Ibis는 쿼리의 낶부 표현 — 추상 구문 트리(AST) — 을 구축한 다음, <code>.execute()</code>를 호출할 때만 최적화하고 SQL로 컴파일합니다.</p>
+<h2 id="lazy-evaluation-and-sql-compilation">Lazy Evaluation and SQL Compilation<a hidden class="anchor" aria-hidden="true" href="#lazy-evaluation-and-sql-compilation">#</a></h2>
+<p>One of Ibis&rsquo;s most powerful features is its <strong>lazy evaluation model</strong>. When you write Ibis expressions, no computation occurs immediately. Instead, Ibis builds an internal representation of your query — an abstract syntax tree (AST) — which it then optimizes and compiles to SQL only when you call <code>.execute()</code>.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> ibis
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>con <span style="color:#f92672">=</span> ibis<span style="color:#f92672">.</span>duckdb<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;sales.db&#34;</span>)
 </span></span><span style="display:flex;"><span>t <span style="color:#f92672">=</span> con<span style="color:#f92672">.</span>table(<span style="color:#e6db74">&#34;transactions&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 이것은 표현식 트리를 구축합니다 — 아직 쿼리가 실행되지 않습니다</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># This builds an expression tree — NO query runs yet</span>
 </span></span><span style="display:flex;"><span>expr <span style="color:#f92672">=</span> (
 </span></span><span style="display:flex;"><span>    t<span style="color:#f92672">.</span>filter(t<span style="color:#f92672">.</span>amount <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>)
 </span></span><span style="display:flex;"><span>     <span style="color:#f92672">.</span>group_by(<span style="color:#e6db74">&#34;category&#34;</span>)
@@ -529,9 +529,9 @@ print(ibis.util.backend_entry_points())
 </span></span><span style="display:flex;"><span>     <span style="color:#f92672">.</span>limit(<span style="color:#ae81ff">5</span>)
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 실행하지 않고 컴파일된 SQL 검사</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Inspect the compiled SQL without executing</span>
 </span></span><span style="display:flex;"><span>print(expr<span style="color:#f92672">.</span>sql())
-</span></span></code></pre></div><p>출력은 Ibis가 실행할 정확한 SQL을 보여줍니다: `````sql
+</span></span></code></pre></div><p>The output shows the exact SQL that Ibis will execute: `````sql
 SELECT &ldquo;category&rdquo;, SUM(&ldquo;amount&rdquo;) AS &ldquo;total&rdquo;
 FROM &ldquo;transactions&rdquo;
 WHERE &ldquo;amount&rdquo; &gt; 100
@@ -539,10 +539,10 @@ GROUP BY &ldquo;category&rdquo;
 ORDER BY &ldquo;total&rdquo; DESC
 LIMIT 5</p>
 <pre tabindex="0"><code>
-이러한 지연 접근 방식을 통해 Ibis는 정교한 쿼리 최적화를 수행할 수 있습니다. 필터를 소스로 푸시하고, 불필요한 열을 제거하고, 중복 작업을 병합하며, 기본 SQL 엔진의 전체 최적화 기능을 활용할 수 있습니다.
+This lazy approach enables Ibis to perform sophisticated query optimization. It can push filters down to the source, eliminate unnecessary columns, merge redundant operations, and leverage the full optimization power of the underlying SQL engine.
 
 `````python
-# 여러 작업을 연결 — Ibis는 전체 파이프라인을 최적화합니다
+# Chain multiple operations — Ibis optimizes the entire pipeline
 pipeline = (
     t.filter(t.status == &#34;completed&#34;)
      .select(&#34;user_id&#34;, &#34;amount&#34;, &#34;category&#34;, &#34;created_at&#34;)
@@ -560,31 +560,31 @@ pipeline = (
      .order_by(&#34;year&#34;, &#34;month&#34;, ibis.desc(&#34;revenue&#34;))
 )
 
-# 최적화된 SQL 보기
+# View the optimized SQL
 print(pipeline.sql())
 
-# 이제 쿼리가 실행됩니다
+# Only now does the query execute
 results = pipeline.execute()
-</code></pre><p>실행 전에 컴파일된 SQL을 검사하는 능력은 디버깅, 쿼리 튜닝, SQL 학습에 매우 귀중합니다. Pythonic한 데이터 조작과 SQL 우선 분석 플랫폼 사이의 간극을 메웁니다.</p>
+</code></pre><p>The ability to inspect compiled SQL before execution is invaluable for debugging, query tuning, and learning SQL. It bridges the gap between Pythonic data manipulation and SQL-first analytics platforms.</p>
 <hr>
-<h2 id="ibis로-고급-쿼리-패턴">Ibis로 고급 쿼리 패턴<a hidden class="anchor" aria-hidden="true" href="#ibis로-고급-쿼리-패턴">#</a></h2>
-<p>Ibis는 기본 CRUD 작업을 훨씬 뛰어넘는 정교한 분석 패턴을 지원합니다. 몇 가지 고급 기능을 살펴 보겠습니다.</p>
-<h3 id="사용자-정의-표현식-및-리터럴">사용자 정의 표현식 및 리터럴<a hidden class="anchor" aria-hidden="true" href="#사용자-정의-표현식-및-리터럴">#</a></h3>
+<h2 id="advanced-query-patterns-with-ibis">Advanced Query Patterns with Ibis<a hidden class="anchor" aria-hidden="true" href="#advanced-query-patterns-with-ibis">#</a></h2>
+<p>Ibis supports sophisticated analytical patterns that go far beyond basic CRUD operations. Let us explore some advanced capabilities.</p>
+<h3 id="custom-expressions-and-literals">Custom Expressions and Literals<a hidden class="anchor" aria-hidden="true" href="#custom-expressions-and-literals">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> ibis
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> ibis.selectors <span style="color:#66d9ef">as</span> s
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>con <span style="color:#f92672">=</span> ibis<span style="color:#f92672">.</span>duckdb<span style="color:#f92672">.</span>connect()
 </span></span><span style="display:flex;"><span>t <span style="color:#f92672">=</span> con<span style="color:#f92672">.</span>table(<span style="color:#e6db74">&#34;sales&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 선택기를 사용하여 열 그룹 선택</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Using selectors to pick column groups</span>
 </span></span><span style="display:flex;"><span>numeric_cols <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>select(s<span style="color:#f92672">.</span>numeric())
 </span></span><span style="display:flex;"><span>string_cols <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>select(s<span style="color:#f92672">.</span>of_type(<span style="color:#e6db74">&#34;string&#34;</span>))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 리터럴 사용</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Using literals</span>
 </span></span><span style="display:flex;"><span>threshold <span style="color:#f92672">=</span> ibis<span style="color:#f92672">.</span>literal(<span style="color:#ae81ff">1000</span>)
 </span></span><span style="display:flex;"><span>high_value <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>filter(t<span style="color:#f92672">.</span>amount <span style="color:#f92672">&gt;</span> threshold)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 조건 표현식 (CASE WHEN)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Conditional expressions (CASE WHEN)</span>
 </span></span><span style="display:flex;"><span>categorized <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>mutate(
 </span></span><span style="display:flex;"><span>    tier<span style="color:#f92672">=</span>ibis<span style="color:#f92672">.</span><span style="color:#66d9ef">case</span>()
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">.</span>when(t<span style="color:#f92672">.</span>amount <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">10000</span>, <span style="color:#e6db74">&#34;Platinum&#34;</span>)
@@ -593,27 +593,27 @@ results = pipeline.execute()
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">.</span>else_(<span style="color:#e6db74">&#34;Bronze&#34;</span>)
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">.</span>end()
 </span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><h3 id="복잡한-서브쿼리">복잡한 서브쿼리<a hidden class="anchor" aria-hidden="true" href="#복잡한-서브쿼리">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 평균 이상 지출을 한 사용자 찾기</span>
+</span></span></code></pre></div><h3 id="complex-subqueries">Complex Subqueries<a hidden class="anchor" aria-hidden="true" href="#complex-subqueries">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Find users with above-average spend</span>
 </span></span><span style="display:flex;"><span>avg_spend <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>amount<span style="color:#f92672">.</span>mean()
 </span></span><span style="display:flex;"><span>above_avg <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>filter(t<span style="color:#f92672">.</span>amount <span style="color:#f92672">&gt;</span> avg_spend)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 각 카테고리에서 상위 3개 제품 찾기</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Find top 3 products in each category</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> ibis <span style="color:#f92672">import</span> window, row_number
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>w <span style="color:#f92672">=</span> window(group_by<span style="color:#f92672">=</span>t<span style="color:#f92672">.</span>category, order_by<span style="color:#f92672">=</span>ibis<span style="color:#f92672">.</span>desc(t<span style="color:#f92672">.</span>revenue))
 </span></span><span style="display:flex;"><span>ranked <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>mutate(rn<span style="color:#f92672">=</span>row_number()<span style="color:#f92672">.</span>over(w))
 </span></span><span style="display:flex;"><span>top3 <span style="color:#f92672">=</span> ranked<span style="color:#f92672">.</span>filter(ranked<span style="color:#f92672">.</span>rn <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">3</span>)
-</span></span></code></pre></div><h3 id="사용자-정의-함수-udf">사용자 정의 함수 (UDF)<a hidden class="anchor" aria-hidden="true" href="#사용자-정의-함수-udf">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># DuckDB에서 실행되는 Python UDF 정의</span>
+</span></span></code></pre></div><h3 id="user-defined-functions-udfs">User-Defined Functions (UDFs)<a hidden class="anchor" aria-hidden="true" href="#user-defined-functions-udfs">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Define a Python UDF that runs in DuckDB</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@ibis.udf.scalar.python</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">format_currency</span>(value: float) <span style="color:#f92672">-&gt;</span> str: <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;$</span><span style="color:#e6db74">{</span>value<span style="color:#e6db74">:</span><span style="color:#e6db74">,.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">format_currency</span>(value: float) <span style="color:#f92672">-&gt;</span> str: <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;$</span><span style="color:#e6db74">{</span>value<span style="color:#e6db74">:</span><span style="color:#e6db74">,.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>applied <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>mutate(
 </span></span><span style="display:flex;"><span>    formatted<span style="color:#f92672">=</span>format_currency(t<span style="color:#f92672">.</span>amount)
 </span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><h3 id="_-참조를-사용한-대화형-작업"><code>_</code> 참조를 사용한 대화형 작업<a hidden class="anchor" aria-hidden="true" href="#_-참조를-사용한-대화형-작업">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 밑줄(_)은 파이프라인에서 현재 테이블을 참조합니다</span>
+</span></span></code></pre></div><h3 id="interactivity-with-_-reference">Interactivity with <code>_</code> Reference<a hidden class="anchor" aria-hidden="true" href="#interactivity-with-_-reference">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># The underscore (_) refers to the current table in a pipeline</span>
 </span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> (
 </span></span><span style="display:flex;"><span>    t<span style="color:#f92672">.</span>filter(_<span style="color:#f92672">.</span>amount <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>)
 </span></span><span style="display:flex;"><span>     <span style="color:#f92672">.</span>group_by(_<span style="color:#f92672">.</span>category)
@@ -622,13 +622,13 @@ results = pipeline.execute()
 </span></span><span style="display:flex;"><span>     <span style="color:#f92672">.</span>order_by(_<span style="color:#f92672">.</span>total<span style="color:#f92672">.</span>desc())
 </span></span><span style="display:flex;"><span>)
 </span></span></code></pre></div><hr>
-<h2 id="성능-벤치마크-ibis-대-pandas">성능 벤치마크: Ibis 대 pandas<a hidden class="anchor" aria-hidden="true" href="#성능-벤치마크-ibis-대-pandas">#</a></h2>
-<p>데이터셋 크기가 커짐에 따라 Ibis와 pandas 사이의 성능 차이는 극적으로 나타납니다. 두 라이브러리를 비교하는 구체적인 벤치마크를 살펴 보겠습니다.</p>
+<h2 id="performance-benchmark-ibis-vs-pandas">Performance Benchmark: Ibis vs pandas<a hidden class="anchor" aria-hidden="true" href="#performance-benchmark-ibis-vs-pandas">#</a></h2>
+<p>The performance difference between Ibis and pandas becomes dramatic as dataset sizes grow. Let us examine a concrete benchmark comparing the two libraries.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> ibis
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1000만 행 데이터셋 생성</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a 10-million row dataset</span>
 </span></span><span style="display:flex;"><span>np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>seed(<span style="color:#ae81ff">42</span>)
 </span></span><span style="display:flex;"><span>n <span style="color:#f92672">=</span> <span style="color:#ae81ff">10_000_000</span>
 </span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>DataFrame({
@@ -639,7 +639,7 @@ results = pipeline.execute()
 </span></span><span style="display:flex;"><span>})
 </span></span><span style="display:flex;"><span>df<span style="color:#f92672">.</span>to_parquet(<span style="color:#e6db74">&#34;benchmark.parquet&#34;</span>, index<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># pandas 접근법: 모든 것을 메모리에 로드</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># pandas approach: load everything into memory</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
 </span></span><span style="display:flex;"><span>start <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
 </span></span><span style="display:flex;"><span>df <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>read_parquet(<span style="color:#e6db74">&#34;benchmark.parquet&#34;</span>)
@@ -654,7 +654,7 @@ results = pipeline.execute()
 </span></span><span style="display:flex;"><span>pandas_time <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> start
 </span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;pandas: </span><span style="color:#e6db74">{</span>pandas_time<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">s&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ibis 접근법: 계산을 DuckDB로 푸시</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ibis approach: push computation to DuckDB</span>
 </span></span><span style="display:flex;"><span>con <span style="color:#f92672">=</span> ibis<span style="color:#f92672">.</span>duckdb<span style="color:#f92672">.</span>connect()
 </span></span><span style="display:flex;"><span>con<span style="color:#f92672">.</span>read_parquet(<span style="color:#e6db74">&#34;benchmark.parquet&#34;</span>, table_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;data&#34;</span>)
 </span></span><span style="display:flex;"><span>t <span style="color:#f92672">=</span> con<span style="color:#f92672">.</span>table(<span style="color:#e6db74">&#34;data&#34;</span>)
@@ -674,70 +674,33 @@ results = pipeline.execute()
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>ibis_time <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> start
 </span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Ibis + DuckDB: </span><span style="color:#e6db74">{</span>ibis_time<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">s&#34;</span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;스피드업: </span><span style="color:#e6db74">{</span>pandas_time <span style="color:#f92672">/</span> ibis_time<span style="color:#e6db74">:</span><span style="color:#e6db74">.1f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">x&#34;</span>)
-</span></span></code></pre></div><p>일반적인 하드웨어에서 Ibis + DuckDB 조합은 pandas보다 이 쿼리를 <strong>10-15배 빠르게</strong> 실행하며, 메모리 사용량도 현저히 낮습니다. pandas는 1000만 행을 모두 RAM에 로드하고, 필터링과 그룹화를 위해 중간 배열을 할당하고, 모든 계산을 Python에서 수행해야 합니다. 반면 Ibis는 모든 것을 DuckDB의 최적화된 C++ 쿼리 엔진으로 푸시하고, Python에서는 작은 집계 결과만 구체화합니다.</p>
-<p>더 큰 데이터셋 — 수억 또는 수십억 행 — 에서는 격차가 더욱 벌어집니다. pandas는 일반적으로 메모리 부족으로 충돌하는 반면, Ibis는 BigQuery, Snowflake 또는 ClickHouse를 통해 땀 한 방울 흘리지 않고 계속 실행됩니다.</p>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Speedup: </span><span style="color:#e6db74">{</span>pandas_time <span style="color:#f92672">/</span> ibis_time<span style="color:#e6db74">:</span><span style="color:#e6db74">.1f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">x&#34;</span>)
+</span></span></code></pre></div><p>On typical hardware, the Ibis + DuckDB combination executes this query <strong>10-15x faster</strong> than pandas, and with dramatically lower memory usage. pandas must load all 10 million rows into RAM, allocate intermediate arrays for filtering and grouping, and perform all computation in Python. Ibis, by contrast, pushes everything to DuckDB&rsquo;s optimized C++ query engine, materializing only the small aggregated result in Python.</p>
+<p>For even larger datasets — hundreds of millions or billions of rows — the gap widens further. pandas will typically run out of memory and crash, while Ibis continues to execute via BigQuery, Snowflake, or ClickHouse without breaking a sweat.</p>
 <hr>
-<h2 id="ibis-대-sqlalchemy-대-pandas-무엇을-언제-사용할-것인가">Ibis 대 SQLAlchemy 대 pandas: 무엇을 언제 사용할 것인가<a hidden class="anchor" aria-hidden="true" href="#ibis-대-sqlalchemy-대-pandas-무엇을-언제-사용할-것인가">#</a></h2>
-<p>Ibis가 기존 도구와 어떻게 비교되는지 이해하면 고유한 가치 제안을 명확히 하는 데 도움이 됩니다.</p>
-<table>
-	<thead>
-			<tr>
-					<th>기능</th>
-					<th>pandas</th>
-					<th>SQLAlchemy</th>
-					<th>Ibis</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>API 스타일</td>
-					<td>DataFrame</td>
-					<td>SQL/ORM</td>
-					<td>DataFrame</td>
-			</tr>
-			<tr>
-					<td>실행 방식</td>
-					<td>메모리 내 Python</td>
-					<td>Python 경유 SQL</td>
-					<td>Python 경유 SQL</td>
-			</tr>
-			<tr>
-					<td>백엔드 지원</td>
-					<td>없음 (로컬만)</td>
-					<td>여러 데이터베이스</td>
-					<td>20개 이상 백엔드</td>
-			</tr>
-			<tr>
-					<td>지연 평가</td>
-					<td>아니오</td>
-					<td>부분</td>
-					<td>예 (완전)</td>
-			</tr>
-			<tr>
-					<td>타입 안전성</td>
-					<td>런타임만</td>
-					<td>컴파일 타임</td>
-					<td>컴파일 타임</td>
-			</tr>
-			<tr>
-					<td>SQL 컴파일</td>
-					<td>해당 없음</td>
-					<td>예</td>
-					<td>예 (최적화됨)</td>
-			</tr>
-			<tr>
-					<td>확장성</td>
-					<td>RAM 제한</td>
-					<td>데이터베이스 규모</td>
-					<td>데이터베이스 규모</td>
-			</tr>
-	</tbody>
-</table>
-<p><strong>pandas 사용</strong>: 메모리에 편안하게 들어가는 소형~중형 데이터셋을 작업하고, 빠른 대화형 탐색이 필요하거나, 복잡한 비 SQL 작업이 필요할 때.</p>
-<p><strong>SQLAlchemy 사용</strong>: ORM 기반 애플리케이션을 구축하거나, Flask나 FastAPI와 금밀한 통합이 필요하거나, 명시적 SQL을 Pythonic한 래퍼와 함께 작성하기를 원할 때.</p>
-<p><strong>Ibis 사용</strong>: 어떤 규모에서든 pandas 같은 경험을 원하고, 동일한 코드로 여러 데이터베이스 백엔드를 쿼리해야 하거나, 최적화된 SQL 컴파일이 포함된 지연 평가를 원할 때. Ibis는 DataFrame 인체공학과 데이터베이스 성능이 만나는 분석 워크로드의 스윗 스팟입니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Ibis 코드는 분석을 위한 동등한 SQLAlchemy보다 더 간결합니다</span>
+<h2 id="ibis-vs-sqlalchemy-vs-pandas-when-to-use-what">Ibis vs SQLAlchemy vs pandas: When to Use What<a hidden class="anchor" aria-hidden="true" href="#ibis-vs-sqlalchemy-vs-pandas-when-to-use-what">#</a></h2>
+<p>Understanding how Ibis compares to existing tools helps clarify its unique value proposition.</p>
+<p>| Feature | pandas | SQLAlchemy | Ibis |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| API Style | DataFrame | SQL/ORM | DataFrame |
+| Execution | In-memory Python | SQL via Python | SQL via Python |
+| Backend Support | None (local only) | Many databases | 20+ backends |
+| Lazy Evaluation | No | Partial | Yes (full) |
+| Type Safety | Runtime only | Compile-time | Compile-time |
+| SQL Compilation | N/A | Yes | Yes (optimized) |
+| Scale | Limited by RAM | Database scale | Database scale |</p>
+<p><strong>Use pandas</strong> when you are working with small to medium datasets that fit comfortably in memory, need rapid interactive exploration, or require complex non-SQL operations.</p>
+<p><strong>Use SQLAlchemy</strong> when you are building ORM-based applications, need tight integration with Flask or FastAPI, or prefer writing explicit SQL with Pythonic wrappers.</p>
+<p><strong>Use Ibis</strong> when you want a pandas-like experience at any scale, need to query multiple database backends with the same code, or want lazy evaluation with optimized SQL compilation. Ibis is the sweet spot for analytics workloads where DataFrame ergonomics meet database performance.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Ibis code is more concise than equivalent SQLAlchemy for analytics</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Ibis: result = (</span>
 </span></span><span style="display:flex;"><span>    t<span style="color:#f92672">.</span>group_by(<span style="color:#e6db74">&#34;category&#34;</span>)
 </span></span><span style="display:flex;"><span>     <span style="color:#f92672">.</span>aggregate(total<span style="color:#f92672">=</span>t<span style="color:#f92672">.</span>amount<span style="color:#f92672">.</span>sum())
@@ -745,42 +708,42 @@ results = pipeline.execute()
 </span></span><span style="display:flex;"><span>     <span style="color:#f92672">.</span>limit(<span style="color:#ae81ff">10</span>)
 </span></span><span style="display:flex;"><span>)<span style="color:#f92672">.</span>execute()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 동등한 SQLAlchemy는 분석 쿼리에 더 많은 상용구가 필요합니다</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Equivalent SQLAlchemy requires more boilerplate for analytical queries</span>
 </span></span></code></pre></div><hr>
-<h2 id="자주-묻는-질문-faq">자주 묻는 질문 (FAQ)<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문-faq">#</a></h2>
-<h3 id="ibis는-완전히-pandas를-대체합니까">Ibis는 완전히 pandas를 대체합니까?<a hidden class="anchor" aria-hidden="true" href="#ibis는-완전히-pandas를-대체합니까">#</a></h3>
-<p>아니오, Ibis는 직접적인 대처이라기보다는 pandas를 보완합니다. Ibis는 원격 데이터베이스를 쿼리하고 사용 가능한 메모리를 초과하는 대규모 데이터셋을 처리하는 데 뛰어납니다. pandas는 소형~중형 메모리 내 데이터셋에 여전히 훌륭하며 더 풍부한 통계 및 시각화 도구 생태계를 제공합니다. 많은 워크플로우에서 Ibis가 무거운 작업(대규모 필터링, 조인, 집계)을 처리하고, 더 작은 결과를 pandas에 전달하여 최종 분석이나 플로팅을 수행합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 하이브리드 워크플로우: 빅데이터용 Ibis, 분석용 pandas</span>
-</span></span><span style="display:flex;"><span>large_result <span style="color:#f92672">=</span> ibis_query<span style="color:#f92672">.</span>execute()  <span style="color:#75715e"># pandas DataFrame 반환</span>
-</span></span><span style="display:flex;"><span>small_summary <span style="color:#f92672">=</span> large_result<span style="color:#f92672">.</span>describe()  <span style="color:#75715e"># pandas로 빠른 통계</span>
-</span></span></code></pre></div><h3 id="ibis가-생성하는-sql을-볼-수-있습니까">Ibis가 생성하는 SQL을 볼 수 있습니까?<a hidden class="anchor" aria-hidden="true" href="#ibis가-생성하는-sql을-볼-수-있습니까">#</a></h3>
-<p>예, 물론입니다. 언제든지 Ibis 표현식에서 <code>.sql()</code> 메서드를 사용하여 컴파일된 SQL을 검사할 수 있습니다. 이것은 디버깅, 성능 튜닝, SQL 학습에 매우 유용합니다.</p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<h3 id="does-ibis-replace-pandas-entirely">Does Ibis replace pandas entirely?<a hidden class="anchor" aria-hidden="true" href="#does-ibis-replace-pandas-entirely">#</a></h3>
+<p>No, Ibis is complementary to pandas rather than a direct replacement. Ibis excels at querying remote databases and handling large datasets that exceed available memory. pandas remains excellent for small to medium in-memory datasets and offers a richer ecosystem of statistical and visualization tools. Many workflows use Ibis for the heavy lifting (filtering, joining, aggregating at scale) and then pass the smaller results to pandas for final analysis or plotting.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Hybrid workflow: Ibis for big data, pandas for analysis</span>
+</span></span><span style="display:flex;"><span>large_result <span style="color:#f92672">=</span> ibis_query<span style="color:#f92672">.</span>execute()  <span style="color:#75715e"># Returns a pandas DataFrame</span>
+</span></span><span style="display:flex;"><span>small_summary <span style="color:#f92672">=</span> large_result<span style="color:#f92672">.</span>describe()  <span style="color:#75715e"># pandas for quick stats</span>
+</span></span></code></pre></div><h3 id="can-i-see-the-sql-that-ibis-generates">Can I see the SQL that Ibis generates?<a hidden class="anchor" aria-hidden="true" href="#can-i-see-the-sql-that-ibis-generates">#</a></h3>
+<p>Yes, absolutely. You can inspect the compiled SQL at any time using the <code>.sql()</code> method on any Ibis expression. This is incredibly useful for debugging, performance tuning, and learning SQL.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>expr <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>group_by(<span style="color:#e6db74">&#34;category&#34;</span>)<span style="color:#f92672">.</span>aggregate(total<span style="color:#f92672">=</span>t<span style="color:#f92672">.</span>amount<span style="color:#f92672">.</span>sum())
 </span></span><span style="display:flex;"><span>print(expr<span style="color:#f92672">.</span>sql())
-</span></span></code></pre></div><h3 id="ibis는-프로덕션-etl-파이프라인에-적합합니까">Ibis는 프로덕션 ETL 파이프라인에 적합합니까?<a hidden class="anchor" aria-hidden="true" href="#ibis는-프로덕션-etl-파이프라인에-적합합니까">#</a></h3>
-<p>예, Ibis는 점점 더 프로덕션 ETL 및 분석 파이프라인에서 사용되고 있습니다. Apache-2.0 라이선스, ibis-project 조직의 적극적인 유지보수, 그리고 성장하는 커뮤니티는 기업 배포에 안전한 선택임을 보장합니다. 백엔드를 변경하지 않고 전환할 수 있는 능력은 로컬 개발 파이프라인이 DuckDB에서 실행되고 프로덕션이 BigQuery나 Snowflake에서 실행될 수 있음을 의미합니다 — 완전히 동일한 Ibis 코드를 사용하면서.</p>
-<h3 id="ibis는-백엔드별-sql-방언을-어떻게-처리합니까">Ibis는 백엔드별 SQL 방언을 어떻게 처리합니까?<a hidden class="anchor" aria-hidden="true" href="#ibis는-백엔드별-sql-방언을-어떻게-처리합니까">#</a></h3>
-<p>Ibis는 방언 차이를 자동으로 추상화합니다. Ibis 표현식을 작성할 때, 라이브러리는 PostgreSQL 구문, BigQuery 구문, Snowflake 구문, 또는 대상 백엔드에 필요한 어떤 방언으로의 변환을 처리합니다. Python 코드 하나를 작성하면 Ibis가 나머지를 처리합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 이 동일한 표현식은 각 백엔드에 대해 다른 SQL로 컴파일됩니다</span>
+</span></span></code></pre></div><h3 id="is-ibis-suitable-for-production-etl-pipelines">Is Ibis suitable for production ETL pipelines?<a hidden class="anchor" aria-hidden="true" href="#is-ibis-suitable-for-production-etl-pipelines">#</a></h3>
+<p>Yes, Ibis is increasingly used in production ETL and analytics pipelines. Its Apache-2.0 license, active maintenance by the ibis-project organization, and growing community make it a safe choice for enterprise deployments. The ability to switch backends without changing code means your local development pipeline can run on DuckDB while production runs on BigQuery or Snowflake — using the exact same Ibis code.</p>
+<h3 id="how-does-ibis-handle-backend-specific-sql-dialects">How does Ibis handle backend-specific SQL dialects?<a hidden class="anchor" aria-hidden="true" href="#how-does-ibis-handle-backend-specific-sql-dialects">#</a></h3>
+<p>Ibis abstracts away dialect differences automatically. When you write an Ibis expression, the library handles the translation to PostgreSQL syntax, BigQuery syntax, Snowflake syntax, or whichever dialect your target backend requires. You write one piece of Python code, and Ibis takes care of the rest.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># This same expression compiles to different SQL for each backend</span>
 </span></span><span style="display:flex;"><span>expr <span style="color:#f92672">=</span> t<span style="color:#f92672">.</span>mutate(year<span style="color:#f92672">=</span>t<span style="color:#f92672">.</span>date<span style="color:#f92672">.</span>year(), month<span style="color:#f92672">=</span>t<span style="color:#f92672">.</span>date<span style="color:#f92672">.</span>month())
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># PostgreSQL: EXTRACT(YEAR FROM &#34;date&#34;)</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># BigQuery: EXTRACT(YEAR FROM ````date````)</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># DuckDB: EXTRACT(YEAR FROM &#34;date&#34;)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ibis가 이 모든 것을 자동으로 처리합니다</span>
-</span></span></code></pre></div><h3 id="pandas-사용자의-학습-곡선은-어떻습니까">pandas 사용자의 학습 곡선은 어떻습니까?<a hidden class="anchor" aria-hidden="true" href="#pandas-사용자의-학습-곡선은-어떻습니까">#</a></h3>
-<p>pandas 사용자의 학습 곡선은 놀랍도록 완만합니다. 대부분의 핵심 작업 — <code>filter</code>, <code>select</code>, <code>group_by</code>, <code>aggregate</code>, <code>order_by</code>, <code>mutate</code>, <code>join</code> — 은 친숙한 이름과 의미론을 사용합니다. 주요 조정 사항은 지연 평가를 이해하는 것입니다: 표현식은 ````.execute()```를 호출할 때까지 실행되지 않습니다. 대부분의 숙련된 pandas 사용자는 몇 시간 내에 Ibis를 생산적으로 사용할 수 있습니다.</p>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ibis handles all of these automatically</span>
+</span></span></code></pre></div><h3 id="what-is-the-learning-curve-for-pandas-users">What is the learning curve for pandas users?<a hidden class="anchor" aria-hidden="true" href="#what-is-the-learning-curve-for-pandas-users">#</a></h3>
+<p>The learning curve for pandas users is remarkably gentle. Most core operations — <code>filter</code>, <code>select</code>, <code>group_by</code>, <code>aggregate</code>, <code>order_by</code>, <code>mutate</code>, <code>join</code> — use familiar names and semantics. The main adjustment is understanding lazy evaluation: expressions do not execute until you call ````.execute()```. Most experienced pandas users become productive with Ibis within a few hours.</p>
 <hr>
-<h2 id="추천-호스팅-및-인프라">추천 호스팅 및 인프라<a hidden class="anchor" aria-hidden="true" href="#추천-호스팅-및-인프라">#</a></h2>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-hosting--infrastructure">#</a></h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions.</p>
 <ul>
-<li><strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 60일 $200 무료 크레딧.</li>
-<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연 접속.</li>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.</li>
 </ul>
-<p><em>제휴 링크 — 추가 비용 없이 dibi8.com 운영을 지원합니다.</em></p>
-<h2 id="마지막-생각">마지막 생각<a hidden class="anchor" aria-hidden="true" href="#마지막-생각">#</a></h2>
-<p>Ibis는 Python 데이터 분석의 패러다임 전환을 대표합니다. 통합되고 pandas 호환되는 DataFrame API를 제공하여 20개 이상의 백엔드에 대해 최적화된 SQL로 컴파일함으로써, 개발자 생산성과 쿼리 성능 사이의 역사적인 트레이드오프를 제거합니다. 지연 평가, 타입 안전 표현식, 이식 가능한 백엔드 지원의 조합은 대규모로 작업하는 모든 데이터 전문가에게 필수적인 도구로 만들어줍니다.</p>
-<p>2026년에 데이터 볼륨이 계속 폭발적으로 증가하고 조직이 여러 데이터베이스 시스템에 분석을 분산시키면서, Ibis는 어디서나 작동하는 단일하고 일관된 인터페이스를 제공합니다. DuckDB로 로컬 개발을 하는 데이터 과학자이든, BigQuery에서 페타바이트를 쿼리하는 엔지니어이든, Ibis는 동일한 우아한 Python API를 제공합니다 — 데이터가 있는 곳에서 정확하게 실행되는 가능한 한 가장 빠른 SQL로 컴파일됩니다.</p>
-<p>아직 Ibis를 데이터 도구킷에 추가하지 않았다면, 지금이 바로 그 때입니다. 로컬 개발을 위해 DuckDB부터 시작하고, 분석 워크플로우가 하룻밤 사이에 더 빠르고, 더 이식 가능하고, 더 유지보수하기 쉬워지는 것을 지켜보세요.</p>
+<p><em>Affiliate links — they don&rsquo;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="final-thoughts">Final Thoughts<a hidden class="anchor" aria-hidden="true" href="#final-thoughts">#</a></h2>
+<p>Ibis represents a paradigm shift in Python data analytics. By offering a unified, pandas-compatible DataFrame API that compiles to optimized SQL for 20+ backends, it eliminates the historical trade-off between developer productivity and query performance. The combination of lazy evaluation, type-safe expressions, and portable backend support makes it an essential tool for any data professional working at scale.</p>
+<p>In 2026, as data volumes continue to explode and organizations distribute their analytics across multiple database systems, Ibis provides a single, consistent interface that works everywhere. Whether you are a data scientist exploring gigabytes locally with DuckDB, or an engineer querying petabytes in BigQuery, Ibis delivers the same elegant Python API — compiled to the fastest possible SQL, running exactly where your data lives.</p>
+<p>If you have not yet added Ibis to your data toolkit, now is the time. Start with DuckDB for local development, and watch your analytics workflows become faster, more portable, and more maintainable overnight.</p>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
@@ -801,7 +764,7 @@ results = pipeline.execute()
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/ibis-dataframe-python-sql%22">https://dibi8.com/kr/resources/ibis-dataframe-python-sql"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/ibis-dataframe-python-sql%22">https://dibi8.com/resources/ibis-dataframe-python-sql"</a>
 }
 }
 </script></p>
@@ -837,6 +800,81 @@ results = pipeline.execute()
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-26T00:00:00+08:00 lastmod: 2026-05-26T00:00:00+08:00 tech_stack: [MCP, ‘Claude Code’, Cursor, TypeScript, Python] application_domain: LLM Frameworks source_version: “MCP 2025-06 spec” licensing_model: Open Source / Mixed license_type: Various last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“mcp”, “model-context-protocol”, “claude-code”, “ai-agents”, “개발자도구”, “통합”, “2026”] aliases:\n/kr/posts/mcp-servers-2026-rankings-selection-guide/ faq: - q: “MCP는 무엇이고 2026년에 왜 중요한가요?” a: “Model Context Protocol(MCP)은 Anthropic이 2024년 말 오픈한 프로토콜로, AI 에이전트를 외부 도구/데이터 소스/서비스에 연결합니다. 2026년에는 사실상 AI 에이전트 플러그인 표준이 되어 Claude Code, Cursor, Codex CLI, Gemini CLI 등 주요 AI 코딩 에이전트가 모두 지원합니다. 2024년 말 약 30개에서 2026년 중반 1000+ 공개 서버로 성장.” q: “stdio, HTTP, SSE-based 중 어떤 MCP 서버를 사용해야 하나요?” a: “stdio는 로컬 서버(filesystem, git, localhost DB) — 최저 지연, 네트워크 제로. HTTP/SSE는 원격 SaaS 통합(GitHub, Linear, Notion). MCP 2025-06 스펙은 OAuth bridge를 추가. 대부분 프로덕션은 혼합: 80% stdio 로컬 + 20% HTTP SaaS.” q: “커뮤니티 MCP 서버 설치의 보안 위험은?” a: “심각합니다. MCP 서버는 완전한 로컬 권한으로 실행 — 파일 읽기, 명령 실행, 네트워크 호출 가능. Anthropic 유지 참조 서버는 감사됨. 커뮤니티 서버는 다양: 항상 소스 읽기, 활성 maintainer + 최근 commit 우선, plain text 붙여넣기 못할 자격증명은 절대 부여하지 마세요.” q: “전문 개발자들이 실제 어떤 MCP 서버를 사용하나요?” a: “주요 MCP registry 사용량 데이터(2026 중반): filesystem, github, git, postgres, sqlite가 로컬 stdio 상위. SaaS: linear, slack, sentry, supabase. 특화: playwright, puppeteer, brave-search, fetch. 900+ long tail 커뮤니티 서버가 niche 통합을 cover하지만 대부분 개발자는 5-10개 핵심만 사용.” q: “MCP 서버 hell(너무 많음, 시작 느림)을 어떻게 피하나요?” a: “세 가지 규칙: (1) 매주 사용하는 것만 설치. (2) per-project MCP config(.cursor/mcp.json, .claude/mcp.json) 사용해 전역 30개 로드 방지. (3) 시작 시간 감사 — 500ms 이상 초기화 서버는 모든 agent 세션을 늦춤. MCP spec이 강제하지 않음; 당신의 규율이 강제.” MCP 서버 2026: 100+ 생태계 지도 + 선정 결정 트리 Meta Description: Model Context Protocol 생태계가 2026년 중반 1000+ 공개 서버를 돌파. 카테고리별 상위 30개, stdio/HTTP-SSE/OAuth-bridged 서버의 아키텍처 트레이드오프, registry에 빠지지 않는 결정 트리.\n2024년 11월 Anthropic이 MCP를 8개 참조 서버와 함께 발표했습니다. 18개월 후, registry와 GitHub와 기업 사설 package index에서 1000+ 공개 MCP 서버를 찾을 수 있습니다. 성장이 너무 폭발적이라 대부분 개발자가 2024년과 정반대 문제를 가집니다: MCP 서버가 너무 많음, 너무 적지 않음.\n⚡ TL;DR — 2분 읽기 생태계 규모: 1000+ 공개 MCP 서버, 3개 transport 모드(stdio, HTTP/SSE, OAuth-bridge). Spec 버전 ```2025-06````이 현재 표준.\n실제 사용: 대부분 개발자가 5-10개 핵심 서버 + per-project mcp.json로 프로젝트별 추가.\nAI 코딩 Top 5: filesystem, git, github, postgres, playwright.\n결정 원칙: stdio \u003e HTTP \u003e OAuth, 이 선호 순서. Anthropic 유지 \u003e 활성 커뮤니티 \u003e 보관됨.\n무작정 설치 금지: 모든 커뮤니티 MCP 서버는 당신의 로컬 권한으로 실행되는 코드.\n세 가지 Transport 모드 1. stdio (Standard I/O) MCP 클라이언트가 spawn하는 로컬 프로세스. stdin/stdout으로 line-delimited JSON 통신. filesystem / git / sqlite / localhost postgres / playwright / puppeteer에 사용. 장점: 최저 지연, 자격증명 노출 제로, 오프라인 작동. 단점: 전체 사용자 권한으로 실행. 언제 선택: 첫 번째 디폴트.\n2. HTTP / SSE (Server-Sent Events) 장기 실행 HTTP 서비스. GitHub / Linear / Notion / Slack 등 SaaS 통합에 사용. 장점: 세션 간 상태 유지, 중앙 자격증명 관리. 단점: 네트워크 지연, 서버 가용성이 에이전트 신뢰성의 일부. 언제 선택: 로컬 복제 불가한 SaaS API.\n3. OAuth-Bridged (MCP 2025-06) MCP 서버가 OAuth 흐름을 orchestrate해서 세션당 scoped 자격증명 발급. 최신 모드. 언제 선택: 세션마다 자격증명 rotation 필요한 엔터프라이즈.\n2026 설치 가치 있는 Top 30 MCP 서버 Tier 1: 글로벌 디폴트 서버 Transport 유지 용도 리스크 filesystem stdio Anthropic 스코프 디렉토리 파일 R/W 낮음 git stdio Anthropic 리포 검사, diff, blame, log 낮음 github HTTP Anthropic PR, 이슈, 검색, 댓글 중간 (토큰 scope) fetch stdio Anthropic 일반 HTTP fetcher + markdown 변환 중간 (URL 주입) sequentialthinking stdio Anthropic 모델용 구조화된 계획 helper 낮음 Tier 2: 프로젝트별 서버 Transport 용도 리스크 postgres stdio Postgres 쿼리 높음 (DB) sqlite stdio SQLite 쿼리 낮음 playwright stdio 브라우저 자동화 중간 brave-search HTTP 프라이버시 친화적 웹 검색 낮음 linear HTTP 프로젝트 관리 통합 중간 slack HTTP Slack workspace 쿼리/포스팅 높음 sentry HTTP 에러 모니터링 중간 supabase HTTP DB + auth + storage 높음 memory stdio 세션 간 영구 메모리 낮음 Tier 3: 특화 (kubernetes / terraform / aws / gcloud / figma / notion / redis / mongodb / elasticsearch / graphql / openapi / shopify / hubspot) 선정 결정 트리 데이터/액션이 로컬 머신에 있을 수 있나? │ ├── Yes → stdio MCP 서버 선호 │ │ │ ├── Anthropic 공식 버전 있나? │ │ └── Yes → 사용. │ │ └── No → 소스 감사: 최근 commit \u003c 90일? 활성 maintainer? Stars \u003e 50? 의심스러운 네트워크 호출 없음? │ │ 전부 yes: 설치. 하나라도 no: 30라인 wrapper 스크립트로 대체. │ └── No → SaaS 또는 원격 리소스 ├── OAuth-bridged 버전 있나? + 세션당 자격증명 필요? │ └── Yes → OAuth bridge 사용 │ └── No → HTTP/SSE + PAT 사용 ├── 감사: 토큰 scope 최소? 신뢰할 인프라? Rate limit 문서화? 최단 버전: stdio \u003e HTTP \u003e OAuth. Anthropic 유지 \u003e 활성 커뮤니티 \u003e 보관됨. 설치 전 소스 읽기.\n보안: 대부분 과소평가하는 리스크 설치하는 모든 MCP 서버는 완전한 로컬 권한으로 코드 실행.\n2026 실제 공격 패턴 Typosquatting: 가짜 github-mcp-server-v2가 토큰 유출. 진짜는 @modelcontextprotocol/server-github. 공급망 주입: 인기 커뮤니티 서버 maintainer 권한 이전 후 telemetry 추가로 파일 경로 유출, 5000 유저 영향. 과도한 scope 토큰: full-access PAT로 GitHub 서버 설치 + prompt injection으로 리포 삭제. Fetched 콘텐츠 prompt injection: fetch 서버가 악성 markdown 끌어와 ~/.ssh/id_rsa 유출. 방어 체크리스트 Fine-grained 토큰 사용. Full-access PAT 절대 부여 X. 설치 전 감사. 5분이 breach를 막음. 버전 고정. 자동 업그레이드 X. Sandbox. 민감한 서버는 컨테이너 또는 firejail. 에이전트 로그 모니터. 발견 도구 mcp.so — 가장 종합적인 커뮤니티 registry smithery.ai — 고큐레이션 + 원클릭 설치 ````glama.ai/mcp/servers``` — 엔터프라이즈 친화적 Anthropic 참조 서버: github.com/modelcontextprotocol/servers.\n자체 호스팅 추천 인프라 팀 공유 MCP 서버(HTTP/SSE) 운영 시 안정 VPS 중요: - **** — 신규 60일 $200 크레딧.\n**** — 홍콩 VPS, dibi8.com 동일 IDC. 제휴 링크 — 추가 비용 없이 dibi8.com 운영에 도움.\n결론 2026 MCP 생태계는 유용할 만큼 성숙하고 큐레이션이 필요할 만큼 혼란스럽습니다. 참조 서버는 우수. 커뮤니티 생태계는 거대하지만 고르지 않음. 프로토콜 자체는 안정.\n가장 흔한 실수: 30+ 서버를 무료라서 설치 → 에이전트 8초 시작 → 이유를 모름. 또는 community 서버에 full-access GitHub PAT 부여 → prompt injection 데모 후 org suspend.\n해결은 선택이지 풍부가 아님. 핵심 stdio 5개 + 리포당 프로젝트별 2-3개 + 새 설치 전 감사 + MCP 서버를 ergonomic한 보안 관련 코드로 취급. 다음 18개월 동안 확장되는 워크플로우.\n참조: github.com/modelcontextprotocol/servers · Spec: MCP 2025-06 · 참조 repo 합계 stars: 60K+\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “MCP 서버 2026: 100+ 생태계 지도 + 선정 결정 트리”, “datePublished”: “2026-05-26”, “dateModified”: “2026-05-26”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/mcp-servers-2026-rankings-selection-guide\" } } Why This Matters Understanding mcp 서버 2026: 100+ 생태계 지도 + 선정 결정 트리 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion MCP 서버 2026: 100+ 생태계 지도 + 선정 결정 트리 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nRelated Articles claude-code-vs-cline gemini-cli-vs-claude-code cc-switch-all-in-one-ai-coding-agent-manager claude-code-vs-aider cursor-vs-claude-code Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
-  "wordCount" : "1322",
+  "articleBody": "title: “MCP Servers 2026: The 100+ Server Ecosystem Map and a De… description: “Technical guide and comparison.” date: 2026-05-26T00:00:00+08:00 lastmod: 2026-05-26T00:00:00+08:00 tech_stack: [MCP, ‘Claude Code’, Cursor, TypeScript, Python] application_domain: LLM Frameworks source_version: “MCP 2025-06 spec” licensing_model: Open Source / Mixed license_type: ‘Various (mostly MIT / Apache-2.0)’ file_size: ’’ file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“mcp”, “model-context-protocol”, “claude-code”, “ai-agents”, “developer-tools”, “integration”, “2026”] aliases:\n/posts/mcp-servers-2026-rankings-selection-guide/ faq: - q: “What is MCP and why does it matter in 2026?” a: “Model Context Protocol (MCP) is Anthropic’s open spec for connecting AI agents to external tools, data sources, and services. In 2026 it became the de facto plug-in standard supported by Claude Code, Cursor, Codex CLI, Gemini CLI, and most major AI coding agents. The ecosystem grew from ~30 servers in late 2024 to 1000+ public servers by mid-2026.” q: “Should I use stdio, HTTP, or SSE-based MCP servers?” a: “stdio for local-only servers running on your machine (filesystem, git, databases on localhost) — lowest latency, zero network. HTTP/SSE for remote SaaS integrations (GitHub, Linear, Notion) where the server is hosted by a third party. New MCP 2025-06 spec adds OAuth bridge for credential-managed servers. Most production setups use a mix: 80% stdio local, 20% HTTP for SaaS.” q: “What’s the security risk of installing community MCP servers?” a: “Significant. MCP servers run with your full local permissions — they can read files, exec commands, and make network calls. The Anthropic-maintained reference servers are audited. Community servers vary: always read the source, prefer servers with active maintainers and recent commits, never grant a server credentials you wouldn’t paste in plain text.” q: “Which MCP servers do most professional developers actually use?” a: “Based on usage telemetry from major MCP registries (mid-2026): filesystem, github, git, postgres, sqlite top the local stdio category. For SaaS: linear, slack, sentry, supabase. For specialized: playwright, puppeteer, brave-search, fetch. The long tail of 900+ community servers covers niche integrations but most developers use 5-10 core servers.” q: “How do I avoid MCP server hell (too many servers, slow startup)?” a: “Three rules: (1) Install only servers you use weekly — rare integrations are better as one-off scripts. (2) Use per-project MCP config (.cursor/mcp.json, .claude/mcp.json) instead of global, so unrelated agents don’t load 30 servers. (3) Audit startup time — if a server takes \u003e500ms to initialize, it’s slowing every agent session. The MCP spec doesn’t enforce this, your discipline does.” q: “Is MCP going to be replaced by something else soon?” a: “Unlikely in 2026-2027. MCP has cross-vendor adoption (Anthropic, OpenAI’s reference implementations, Google’s Gemini), an open spec, and \u003e1000 public servers. The next layer above MCP — agent-to-agent protocols, capability discovery — is still emerging. MCP is the integration layer; expect it to remain stable for at least 18-24 months.” MCP Servers 2026: The 100+ Server Ecosystem Map and a Decision Tree for Picking the Right Ones Meta Description: The Model Context Protocol ecosystem crossed 1000+ public servers by mid-2026. This guide ranks the top 30 by category, explains the architectural trade-offs between stdio, HTTP/SSE, and OAuth-bridged servers, and gives you a decision tree for selecting servers without drowning in registries.\nIn November 2024, Anthropic released the Model Context Protocol with eight reference servers. Eighteen months later, you can find 1000+ public MCP servers in registries, on GitHub, and in private corporate package indexes. The growth has been so explosive that most developers we talk to have the opposite problem from 2024: too many MCP servers, not too few. The question isn’t “is there an MCP server for X?” anymore. It’s “which of the seven MCP servers claiming to do X is the one I should actually install?”\nThis guide is the answer to that second question. It’s not a comprehensive registry — those exist and are better at their job. It’s a curated map of the servers professional developers actually use in 2026, the architectural trade-offs you need to know before picking, and a decision tree for selecting servers without descending into MCP server hell.\n⚡ TL;DR — Two-Minute Read The ecosystem: 1000+ public MCP servers across 3 transport modes (stdio, HTTP/SSE, OAuth-bridge). Spec version ```2025-06```` is current standard.\nReal-world usage: Most developers install 5-10 core servers and rely on per-project mcp.json for project-specific additions. Global installs of 20+ servers slow agent startup and create security surface.\nTop 5 for AI coding: filesystem, git, github, postgres, playwright. These handle 80% of agent workflows for typical developers.\nDecision principle: stdio over HTTP whenever possible. Local servers are faster, leak fewer credentials, and survive offline sessions. Use HTTP only when the data lives outside your machine and you can’t replicate it locally.\nDon’t blindly install: every community MCP server is code running with your local permissions. Audit the source, prefer servers with active maintainers, and never grant credentials you wouldn’t paste in plain text.\nWhat MCP Actually Is in 2026 The Model Context Protocol is a JSON-RPC-based spec for connecting AI agents to external tools. It’s deliberately simple: an MCP server exposes tools, resources, and prompts. An MCP client (Claude Code, Cursor, your agent of choice) calls those tools when the model decides it needs external action.\nWhat changed in 2026: - The 2025-06 spec added OAuth flows, capability discovery improvements, and explicit streaming support\nAdoption crossed vendor boundaries: OpenAI’s reference clients, Google’s Gemini CLI, and most independent agents now speak MCP Registry consolidation: three major registries (smithery.ai, mcp.so, glama.ai/mcp/servers) emerged as the primary discovery surfaces Cloud platforms (Vercel, Cloudflare, Render) added “deploy MCP server” as a first-class primitive The protocol’s stability is the main reason 1000+ servers exist. If you wrote an MCP server in early 2025, it still works in mid-2026 with minor client-side updates. That stability is what makes the ecosystem investable for both maintainers and consumers.\nThe Three Transport Modes (and When to Use Each) MCP servers run in one of three modes. Picking the right transport matters more than picking the right server.\n1. stdio (Standard Input/Output) The server is a local process that the MCP client spawns. Communication is line-delimited JSON over stdin/stdout. Used by: - Local filesystem servers\nGit, sqlite, postgres on localhost Browser automation (playwright, puppeteer) Image processing, code execution sandboxes Pros: Lowest latency (no network round-trip). Zero credential exposure beyond the local machine. Works offline. Process lifecycle managed by the agent.\nCons: Server runs with your full user permissions. Cold start can be slow if the server has heavy initialization. Hard to share state across multiple agent sessions.\nWhen to pick: First default. If the data lives on your machine or you can fetch it locally, use stdio.\n2. HTTP / SSE (Server-Sent Events) The server is a long-running HTTP service that the MCP client connects to. SSE is used for streaming responses.\nUsed by: - SaaS integrations (GitHub, Linear, Notion, Slack)\nTeam-shared MCP servers (deployed on internal infra) Stateful services where multiple agents share session Pros: Server can persist state across agent sessions. Centralized credential management. One server can serve many agents. Easier to monitor and rate-limit.\nCons: Network latency. Server availability becomes part of agent reliability. Credentials live on a server you may not fully control.\nWhen to pick: SaaS APIs where you genuinely can’t replicate the data locally. Avoid for anything that has a local stdio equivalent.\n3. OAuth-Bridged (MCP 2025-06) The MCP server orchestrates an OAuth flow to issue scoped credentials per session. Newest mode, growing fastest.\nUsed by: - Multi-tenant SaaS where each user needs their own credentials\nEnterprise integrations with SSO requirements Servers that aggregate multiple downstream services Pros: Credentials don’t live in the agent’s config file. Per-session scope. Easier compliance story.\nCons: OAuth dance adds latency to first connection. Requires browser interaction for setup. More moving parts to debug.\nWhen to pick: Enterprise environments where credentials must rotate per session. Otherwise stdio or HTTP is simpler.\nTop 30 MCP Servers Worth Installing in 2026 Ranked by usage volume in the major registries cross-referenced with our own audit of which servers professional developers actually keep in their .claude/mcp.json after 3+ months. Tier 1 = install these by default. Tier 2 = install when the workflow demands. Tier 3 = niche but excellent.\nTier 1: The Universal Defaults (Install Globally) | Server | Transport | Maintainer | Use Case | Risk Profile | |\n|\n|\n|\n|\n| | filesystem | stdio | Anthropic | Read/write/list files in scoped directories | Low (scope-restricted) | | git | stdio | Anthropic | Inspect repos, diff, blame, log | Low (read-mostly) | | github | HTTP | Anthropic | PRs, issues, search, comments | Medium (token scope matters) | | fetch | stdio | Anthropic | Generic HTTP fetcher with markdown conversion | Medium (URL injection risk) | | sequentialthinking | stdio | Anthropic | Structured planning helper for the model | Low |\nThese five are the bedrock. If you install nothing else, install these. They’re audited, actively maintained, and cover 60%+ of typical agent calls.\nTier 2: Workflow-Specific (Install Per Project) | Server | Transport | Maintainer | Use Case | Risk Profile | |\n|\n|\n|\n|\n| | postgres | stdio | Community | Query Postgres databases | High (DB access) | | sqlite | stdio | Community | Query SQLite files | Low | | playwright | stdio | Microsoft | Browser automation, scraping | Medium | | puppeteer | stdio | Community | Browser automation alternative | Medium | | brave-search | HTTP | Brave | Privacy-respecting web search | Low | | linear | HTTP | Linear | Project management integration | Medium | | slack | HTTP | Community | Slack workspace queries and posting | High (workspace access) | | sentry | HTTP | Community | Error monitoring access | Medium | | supabase | HTTP | Supabase | Database + auth + storage | High | | stripe | HTTP | Stripe | Payment data access (read-only mode) | High | | memory | stdio | Anthropic | Persistent agent memory across sessions | Low (local) |\nInstall based on what the project needs. A backend project might need postgres + sentry. A QA project gets playwright + brave-search. Don’t install all of these globally.\nTier 3: Specialized but Excellent | Server | Transport | Use Case | |\n|\n|\n| | kubernetes | stdio | Kubectl wrapper for cluster inspection | | terraform | stdio | Infrastructure state queries | | aws | HTTP | AWS resource enumeration (read-only safe) | | gcloud | HTTP | GCP equivalent | | figma | HTTP | Design file inspection | | notion | HTTP | Notion database queries | | redis | stdio | Redis commands | | mongodb | stdio | Mongo queries | | elasticsearch | HTTP | Search cluster integration | | opensearch | HTTP | OpenSearch equivalent | | graphql | stdio | Generic GraphQL endpoint querying | | openapi | stdio | Generic OpenAPI spec consumption | | shopify | HTTP | Store data access | | hubspot | HTTP | CRM integration |\nIf your workflow involves these tools daily, the corresponding MCP server is almost always worth installing. If it doesn’t, skip — you can always add later.\nThe Decision Tree for Picking MCP Servers Use this when evaluating a new server (whether from registry, GitHub trending, or a teammate’s recommendation): ````` Can the data/action live on my local machine? │ ├── YES → Prefer stdio MCP server │ │ │ ├── Is there an official/Anthropic-maintained version? │ │ └── YES → Use it. │ │ └── NO → Audit the community version’s source. Check: │ │ - Last commit \u003c 90 days? │ │ - Active maintainer (not single-archived author)? │ │ - Stars \u003e 50 OR clearly-scoped use case? │ │ - No suspicious network calls in source? │ │ If all four: install. If any miss: write a 30-line wrapper script instead. │ └── NO → It’s a SaaS or remote resource │ ├── Is there an OAuth-bridged version? │ ├── YES + you need per-session credentials → Use OAuth bridge │ └── NO → Use HTTP/SSE with personal access token (PAT) │ ├── Audit: │ - Token scope minimal (read-only by default)? │ - Server runs in trustworthy infra (vendor’s own, not random fork)? │ - Rate-limits documented? │ If yes: install. If no: skip or self-host.\nThe shortest version: **stdio \u003e HTTP \u003e OAuth, in that preference order. Anthropic-maintained \u003e active community \u003e archived. Read the source before installing.** ## Security: The Risk Most People Underestimate Every MCP server you install runs code with your full local permissions. This is the most under-discussed risk of the MCP ecosystem. ### Real attack patterns we've seen in 2026 - **Typosquatting**: a community server named ````github-mcp-server-v2```` that exfiltrates tokens. The real one is ````@modelcontextprotocol/server-github````. - **Supply chain injection**: a popular community server's maintainer transferred ownership; new owner added telemetry that leaked file paths. Caught within a week but exposed ~5000 users. - **Over-scoped tokens**: GitHub server installed with a full-access PAT instead of fine-grained token; an agent prompt injection let the model delete repos. - **Prompt injection via fetched content**: ````fetch```` server pulled a malicious markdown file that contained instructions to read ````~/.ssh/id_rsa```` and post it elsewhere via another tool call. ### Defense checklist 1. **Use fine-grained tokens.** Never give an MCP server a full-access PAT or root credentials. 2. **Audit before installing.** ````npm view```` / GitHub source / changelog review. Five minutes saves you breaches. 3. **Pin versions.** Don't auto-upgrade community servers. Read changelogs before bumping. 4. **Sandbox where possible.** Run sensitive MCP servers in a container or with ````firejail````. 5. **Monitor agent logs.** If an agent suddenly calls 30 tools when you asked for one, something's wrong. The MCP spec doesn't enforce security. Your discipline does. ## How to Find the Server You Need Three primary discovery surfaces in 2026: - **````mcp.so````** — The most comprehensive community registry. Good filtering. Includes both stdio and HTTP servers. - **````smithery.ai````** — Higher-curation registry with one-click install flows. Slightly biased toward HTTP/cloud-hosted. - **````glama.ai/mcp/servers```** — Strong on enterprise-friendly servers and HTTP/OAuth-bridged options. For Anthropic-maintained reference servers: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers). Use registries for discovery but always verify against the original GitHub repo before installing. Registry listings can lag behind upstream changes. ## Recommended Infrastructure for Self-Hosted MCP Servers If you run team-shared MCP servers (HTTP/SSE), a stable VPS matters more than local stdio servers ever needed: - **** — $200 free credit. Good for prototyping HTTP MCP servers before committing to fixed infra. - **** — Hong Kong VPS, same IDC that hosts dibi8.com. *Affiliate links — they don't cost you extra and help keep dibi8.com running.* ## Bottom Line The MCP ecosystem in 2026 is mature enough to be useful and chaotic enough to need curation. The reference servers are excellent. The community ecosystem is huge but uneven. The protocol itself is stable. The mistake we see most: developers install 30+ MCP servers because they're free, then their agent takes 8 seconds to start up and they don't know why. Or they grant a community server a full-access GitHub PAT because the README didn't warn them, then watch their org get suspended after a prompt injection demo. The cure is selection, not abundance. Pick your five core stdio servers, add 2-3 project-specific ones per repo, audit before installing anything new, and treat MCP servers as security-relevant code that happens to be ergonomic. That\"s the workflow that scales for the next 18 months until the next protocol arrives. * * * **Reference**: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) · **Spec**: MCP 2025-06 · **Stars (ecosystem total)**: 60K+ across reference repos { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"MCP Servers 2026: The 100+ Server Ecosystem Map and a Decision Tree for Picking the Right Ones\", \"datePublished\": \"2026-05-26\", \"dateModified\": \"2026-05-26\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/mcp-servers-2026-rankings-selection-guide\" } } * * * ## Related Articles - [claude-code-vs-cline](mcp-servers-2026-rankings-selection-guide) - [gemini-cli-vs-claude-code](mcp-servers-2026-rankings-selection-guide) - [cc-switch-all-in-one-ai-coding-agent-manager](mcp-servers-2026-rankings-selection-guide) - [claude-code-vs-aider](mcp-servers-2026-rankings-selection-guide) - [cursor-vs-claude-code](mcp-servers-2026-rankings-selection-guide) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
+  "wordCount" : "2721",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">En</a>
@@ -209,60 +209,34 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#mcp-%ec%84%9c%eb%b2%84-2026-100-%ec%83%9d%ed%83%9c%ea%b3%84-%ec%a7%80%eb%8f%84--%ec%84%a0%ec%a0%95-%ea%b2%b0%ec%a0%95-%ed%8a%b8%eb%a6%ac" aria-label="MCP 서버 2026: 100&#43; 생태계 지도 &#43; 선정 결정 트리">MCP 서버 2026: 100+ 생태계 지도 + 선정 결정 트리</a><ul>
+                <a href="#mcp-servers-2026-the-100-server-ecosystem-map-and-a-decision-tree-for-picking-the-right-ones" aria-label="MCP Servers 2026: The 100&#43; Server Ecosystem Map and a Decision Tree for Picking the Right Ones">MCP Servers 2026: The 100+ Server Ecosystem Map and a Decision Tree for Picking the Right Ones</a><ul>
                     
             <li>
-                <a href="#-tldr--2%eb%b6%84-%ec%9d%bd%ea%b8%b0" aria-label="⚡ TL;DR — 2분 읽기">⚡ TL;DR — 2분 읽기</a></li>
+                <a href="#-tldr--two-minute-read" aria-label="⚡ TL;DR — Two-Minute Read">⚡ TL;DR — Two-Minute Read</a></li>
             <li>
-                <a href="#%ec%84%b8-%ea%b0%80%ec%a7%80-transport-%eb%aa%a8%eb%93%9c" aria-label="세 가지 Transport 모드">세 가지 Transport 모드</a><ul>
+                <a href="#what-mcp-actually-is-in-2026" aria-label="What MCP Actually Is in 2026">What MCP Actually Is in 2026</a></li>
+            <li>
+                <a href="#the-three-transport-modes-and-when-to-use-each" aria-label="The Three Transport Modes (and When to Use Each)">The Three Transport Modes (and When to Use Each)</a><ul>
                     
             <li>
-                <a href="#1-stdio-standard-io" aria-label="1. stdio (Standard I/O)">1. stdio (Standard I/O)</a></li>
+                <a href="#1-stdio-standard-inputoutput" aria-label="1. stdio (Standard Input/Output)">1. stdio (Standard Input/Output)</a></li>
             <li>
                 <a href="#2-http--sse-server-sent-events" aria-label="2. HTTP / SSE (Server-Sent Events)">2. HTTP / SSE (Server-Sent Events)</a></li>
             <li>
                 <a href="#3-oauth-bridged-mcp-2025-06" aria-label="3. OAuth-Bridged (MCP 2025-06)">3. OAuth-Bridged (MCP 2025-06)</a></li></ul>
             </li>
             <li>
-                <a href="#2026-%ec%84%a4%ec%b9%98-%ea%b0%80%ec%b9%98-%ec%9e%88%eb%8a%94-top-30-mcp-%ec%84%9c%eb%b2%84" aria-label="2026 설치 가치 있는 Top 30 MCP 서버">2026 설치 가치 있는 Top 30 MCP 서버</a><ul>
+                <a href="#top-30-mcp-servers-worth-installing-in-2026" aria-label="Top 30 MCP Servers Worth Installing in 2026">Top 30 MCP Servers Worth Installing in 2026</a><ul>
                     
             <li>
-                <a href="#tier-1-%ea%b8%80%eb%a1%9c%eb%b2%8c-%eb%94%94%ed%8f%b4%ed%8a%b8" aria-label="Tier 1: 글로벌 디폴트">Tier 1: 글로벌 디폴트</a></li>
+                <a href="#tier-1-the-universal-defaults-install-globally" aria-label="Tier 1: The Universal Defaults (Install Globally)">Tier 1: The Universal Defaults (Install Globally)</a></li>
             <li>
-                <a href="#tier-2-%ed%94%84%eb%a1%9c%ec%a0%9d%ed%8a%b8%eb%b3%84" aria-label="Tier 2: 프로젝트별">Tier 2: 프로젝트별</a></li>
+                <a href="#tier-2-workflow-specific-install-per-project" aria-label="Tier 2: Workflow-Specific (Install Per Project)">Tier 2: Workflow-Specific (Install Per Project)</a></li>
             <li>
-                <a href="#tier-3-%ed%8a%b9%ed%99%94-kubernetes--terraform--aws--gcloud--figma--notion--redis--mongodb--elasticsearch--graphql--openapi--shopify--hubspot" aria-label="Tier 3: 특화 (kubernetes / terraform / aws / gcloud / figma / notion / redis / mongodb / elasticsearch / graphql / openapi / shopify / hubspot)">Tier 3: 특화 (kubernetes / terraform / aws / gcloud / figma / notion / redis / mongodb / elasticsearch / graphql / openapi / shopify / hubspot)</a></li></ul>
+                <a href="#tier-3-specialized-but-excellent" aria-label="Tier 3: Specialized but Excellent">Tier 3: Specialized but Excellent</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%84%a0%ec%a0%95-%ea%b2%b0%ec%a0%95-%ed%8a%b8%eb%a6%ac" aria-label="선정 결정 트리">선정 결정 트리</a></li>
-            <li>
-                <a href="#%eb%b3%b4%ec%95%88-%eb%8c%80%eb%b6%80%eb%b6%84-%ea%b3%bc%ec%86%8c%ed%8f%89%ea%b0%80%ed%95%98%eb%8a%94-%eb%a6%ac%ec%8a%a4%ed%81%ac" aria-label="보안: 대부분 과소평가하는 리스크">보안: 대부분 과소평가하는 리스크</a><ul>
-                    
-            <li>
-                <a href="#2026-%ec%8b%a4%ec%a0%9c-%ea%b3%b5%ea%b2%a9-%ed%8c%a8%ed%84%b4" aria-label="2026 실제 공격 패턴">2026 실제 공격 패턴</a></li>
-            <li>
-                <a href="#%eb%b0%a9%ec%96%b4-%ec%b2%b4%ed%81%ac%eb%a6%ac%ec%8a%a4%ed%8a%b8" aria-label="방어 체크리스트">방어 체크리스트</a></li></ul>
-            </li>
-            <li>
-                <a href="#%eb%b0%9c%ea%b2%ac-%eb%8f%84%ea%b5%ac" aria-label="발견 도구">발견 도구</a></li>
-            <li>
-                <a href="#%ec%9e%90%ec%b2%b4-%ed%98%b8%ec%8a%a4%ed%8c%85-%ec%b6%94%ec%b2%9c-%ec%9d%b8%ed%94%84%eb%9d%bc" aria-label="자체 호스팅 추천 인프라">자체 호스팅 추천 인프라</a></li>
-            <li>
-                <a href="#%ea%b2%b0%eb%a1%a0" aria-label="결론">결론</a></li>
-            <li>
-                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
-                    
-            <li>
-                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
-            <li>
-                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
-            </li>
-            <li>
-                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
-            <li>
-                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
-            <li>
-                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+                <a href="#the-decision-tree-for-picking-mcp-servers" aria-label="The Decision Tree for Picking MCP Servers">The Decision Tree for Picking MCP Servers</a>
             </li>
         </ul>
         </li>
@@ -270,7 +244,7 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+  <div class="post-content md-content"><p>title: &ldquo;MCP Servers 2026: The 100+ Server Ecosystem Map and a De&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
@@ -278,308 +252,297 @@ tech_stack: [MCP, &lsquo;Claude Code&rsquo;, Cursor, TypeScript, Python]
 application_domain: LLM Frameworks
 source_version: &ldquo;MCP 2025-06 spec&rdquo;
 licensing_model: Open Source / Mixed
-license_type: Various
+license_type: &lsquo;Various (mostly MIT / Apache-2.0)&rsquo;
+file_size: &rsquo;&rsquo;
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
 last_maintained: &ldquo;2026-05-25&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
-tags: [&ldquo;mcp&rdquo;, &ldquo;model-context-protocol&rdquo;, &ldquo;claude-code&rdquo;, &ldquo;ai-agents&rdquo;, &ldquo;개발자도구&rdquo;, &ldquo;통합&rdquo;, &ldquo;2026&rdquo;]
+tags: [&ldquo;mcp&rdquo;, &ldquo;model-context-protocol&rdquo;, &ldquo;claude-code&rdquo;, &ldquo;ai-agents&rdquo;, &ldquo;developer-tools&rdquo;, &ldquo;integration&rdquo;, &ldquo;2026&rdquo;]
 aliases:</p>
 <ul>
-<li>/kr/posts/mcp-servers-2026-rankings-selection-guide/
-faq: - q: &ldquo;MCP는 무엇이고 2026년에 왜 중요한가요?&rdquo;
-a: &ldquo;Model Context Protocol(MCP)은 Anthropic이 2024년 말 오픈한 프로토콜로, AI 에이전트를 외부 도구/데이터 소스/서비스에 연결합니다. 2026년에는 사실상 AI 에이전트 플러그인 표준이 되어 Claude Code, Cursor, Codex CLI, Gemini CLI 등 주요 AI 코딩 에이전트가 모두 지원합니다. 2024년 말 약 30개에서 2026년 중반 1000+ 공개 서버로 성장.&rdquo;</li>
-<li>q: &ldquo;stdio, HTTP, SSE-based 중 어떤 MCP 서버를 사용해야 하나요?&rdquo;
-a: &ldquo;stdio는 로컬 서버(filesystem, git, localhost DB) — 최저 지연, 네트워크 제로. HTTP/SSE는 원격 SaaS 통합(GitHub, Linear, Notion). MCP 2025-06 스펙은 OAuth bridge를 추가. 대부분 프로덕션은 혼합: 80% stdio 로컬 + 20% HTTP SaaS.&rdquo;</li>
-<li>q: &ldquo;커뮤니티 MCP 서버 설치의 보안 위험은?&rdquo;
-a: &ldquo;심각합니다. MCP 서버는 완전한 로컬 권한으로 실행 — 파일 읽기, 명령 실행, 네트워크 호출 가능. Anthropic 유지 참조 서버는 감사됨. 커뮤니티 서버는 다양: 항상 소스 읽기, 활성 maintainer + 최근 commit 우선, plain text 붙여넣기 못할 자격증명은 절대 부여하지 마세요.&rdquo;</li>
-<li>q: &ldquo;전문 개발자들이 실제 어떤 MCP 서버를 사용하나요?&rdquo;
-a: &ldquo;주요 MCP registry 사용량 데이터(2026 중반): filesystem, github, git, postgres, sqlite가 로컬 stdio 상위. SaaS: linear, slack, sentry, supabase. 특화: playwright, puppeteer, brave-search, fetch. 900+ long tail 커뮤니티 서버가 niche 통합을 cover하지만 대부분 개발자는 5-10개 핵심만 사용.&rdquo;</li>
-<li>q: &ldquo;MCP 서버 hell(너무 많음, 시작 느림)을 어떻게 피하나요?&rdquo;
-a: &ldquo;세 가지 규칙: (1) 매주 사용하는 것만 설치. (2) per-project MCP config(.cursor/mcp.json, .claude/mcp.json) 사용해 전역 30개 로드 방지. (3) 시작 시간 감사 — 500ms 이상 초기화 서버는 모든 agent 세션을 늦춤. MCP spec이 강제하지 않음; 당신의 규율이 강제.&rdquo;</li>
+<li>/posts/mcp-servers-2026-rankings-selection-guide/
+faq: - q: &ldquo;What is MCP and why does it matter in 2026?&rdquo;
+a: &ldquo;Model Context Protocol (MCP) is Anthropic&rsquo;s open spec for connecting AI agents to external tools, data sources, and services. In 2026 it became the de facto plug-in standard supported by Claude Code, Cursor, Codex CLI, Gemini CLI, and most major AI coding agents. The ecosystem grew from ~30 servers in late 2024 to 1000+ public servers by mid-2026.&rdquo;</li>
+<li>q: &ldquo;Should I use stdio, HTTP, or SSE-based MCP servers?&rdquo;
+a: &ldquo;stdio for local-only servers running on your machine (filesystem, git, databases on localhost) — lowest latency, zero network. HTTP/SSE for remote SaaS integrations (GitHub, Linear, Notion) where the server is hosted by a third party. New MCP 2025-06 spec adds OAuth bridge for credential-managed servers. Most production setups use a mix: 80% stdio local, 20% HTTP for SaaS.&rdquo;</li>
+<li>q: &ldquo;What&rsquo;s the security risk of installing community MCP servers?&rdquo;
+a: &ldquo;Significant. MCP servers run with your full local permissions — they can read files, exec commands, and make network calls. The Anthropic-maintained reference servers are audited. Community servers vary: always read the source, prefer servers with active maintainers and recent commits, never grant a server credentials you wouldn&rsquo;t paste in plain text.&rdquo;</li>
+<li>q: &ldquo;Which MCP servers do most professional developers actually use?&rdquo;
+a: &ldquo;Based on usage telemetry from major MCP registries (mid-2026): filesystem, github, git, postgres, sqlite top the local stdio category. For SaaS: linear, slack, sentry, supabase. For specialized: playwright, puppeteer, brave-search, fetch. The long tail of 900+ community servers covers niche integrations but most developers use 5-10 core servers.&rdquo;</li>
+<li>q: &ldquo;How do I avoid MCP server hell (too many servers, slow startup)?&rdquo;
+a: &ldquo;Three rules: (1) Install only servers you use weekly — rare integrations are better as one-off scripts. (2) Use per-project MCP config (.cursor/mcp.json, .claude/mcp.json) instead of global, so unrelated agents don&rsquo;t load 30 servers. (3) Audit startup time — if a server takes &gt;500ms to initialize, it&rsquo;s slowing every agent session. The MCP spec doesn&rsquo;t enforce this, your discipline does.&rdquo;</li>
+<li>q: &ldquo;Is MCP going to be replaced by something else soon?&rdquo;
+a: &ldquo;Unlikely in 2026-2027. MCP has cross-vendor adoption (Anthropic, OpenAI&rsquo;s reference implementations, Google&rsquo;s Gemini), an open spec, and &gt;1000 public servers. The next layer above MCP — agent-to-agent protocols, capability discovery — is still emerging. MCP is the integration layer; expect it to remain stable for at least 18-24 months.&rdquo;</li>
 </ul>
 <hr>
-<h1 id="mcp-서버-2026-100-생태계-지도--선정-결정-트리">MCP 서버 2026: 100+ 생태계 지도 + 선정 결정 트리<a hidden class="anchor" aria-hidden="true" href="#mcp-서버-2026-100-생태계-지도--선정-결정-트리">#</a></h1>
+<h1 id="mcp-servers-2026-the-100-server-ecosystem-map-and-a-decision-tree-for-picking-the-right-ones">MCP Servers 2026: The 100+ Server Ecosystem Map and a Decision Tree for Picking the Right Ones<a hidden class="anchor" aria-hidden="true" href="#mcp-servers-2026-the-100-server-ecosystem-map-and-a-decision-tree-for-picking-the-right-ones">#</a></h1>
 <blockquote>
-<p><strong>Meta Description</strong>: Model Context Protocol 생태계가 2026년 중반 1000+ 공개 서버를 돌파. 카테고리별 상위 30개, stdio/HTTP-SSE/OAuth-bridged 서버의 아키텍처 트레이드오프, registry에 빠지지 않는 결정 트리.</p>
+<p><strong>Meta Description</strong>: The Model Context Protocol ecosystem crossed 1000+ public servers by mid-2026. This guide ranks the top 30 by category, explains the architectural trade-offs between stdio, HTTP/SSE, and OAuth-bridged servers, and gives you a decision tree for selecting servers without drowning in registries.</p>
 </blockquote>
-<p>2024년 11월 Anthropic이 MCP를 8개 참조 서버와 함께 발표했습니다. 18개월 후, registry와 GitHub와 기업 사설 package index에서 1000+ 공개 MCP 서버를 찾을 수 있습니다. 성장이 너무 폭발적이라 대부분 개발자가 2024년과 정반대 문제를 가집니다: MCP 서버가 <strong>너무 많음</strong>, 너무 적지 않음.</p>
-<h2 id="-tldr--2분-읽기">⚡ TL;DR — 2분 읽기<a hidden class="anchor" aria-hidden="true" href="#-tldr--2분-읽기">#</a></h2>
+<p>In November 2024, Anthropic released the Model Context Protocol with eight reference servers. Eighteen months later, you can find 1000+ public MCP servers in registries, on GitHub, and in private corporate package indexes. The growth has been so explosive that most developers we talk to have the opposite problem from 2024: too many MCP servers, not too few. The question isn&rsquo;t &ldquo;is there an MCP server for X?&rdquo; anymore. It&rsquo;s &ldquo;which of the seven MCP servers claiming to do X is the one I should actually install?&rdquo;</p>
+<p>This guide is the answer to that second question. It&rsquo;s not a comprehensive registry — those exist and are better at their job. It&rsquo;s a curated map of the servers professional developers actually use in 2026, the architectural trade-offs you need to know before picking, and a decision tree for selecting servers without descending into MCP server hell.</p>
+<h2 id="-tldr--two-minute-read">⚡ TL;DR — Two-Minute Read<a hidden class="anchor" aria-hidden="true" href="#-tldr--two-minute-read">#</a></h2>
 <blockquote>
-<p><strong>생태계 규모</strong>: 1000+ 공개 MCP 서버, 3개 transport 모드(stdio, HTTP/SSE, OAuth-bridge). Spec 버전 ```2025-06````이 현재 표준.</p>
-<p><strong>실제 사용</strong>: 대부분 개발자가 5-10개 핵심 서버 + per-project <code>mcp.json</code>로 프로젝트별 추가.</p>
-<p><strong>AI 코딩 Top 5</strong>: <code>filesystem</code>, <code>git</code>, <code>github</code>, <code>postgres</code>, <code>playwright</code>.</p>
-<p><strong>결정 원칙</strong>: stdio &gt; HTTP &gt; OAuth, 이 선호 순서. Anthropic 유지 &gt; 활성 커뮤니티 &gt; 보관됨.</p>
-<p><strong>무작정 설치 금지</strong>: 모든 커뮤니티 MCP 서버는 당신의 로컬 권한으로 실행되는 코드.</p>
+<p><strong>The ecosystem</strong>: 1000+ public MCP servers across 3 transport modes (stdio, HTTP/SSE, OAuth-bridge). Spec version ```2025-06```` is current standard.</p>
+<p><strong>Real-world usage</strong>: Most developers install 5-10 core servers and rely on per-project <code>mcp.json</code> for project-specific additions. Global installs of 20+ servers slow agent startup and create security surface.</p>
+<p><strong>Top 5 for AI coding</strong>: <code>filesystem</code>, <code>git</code>, <code>github</code>, <code>postgres</code>, <code>playwright</code>. These handle 80% of agent workflows for typical developers.</p>
+<p><strong>Decision principle</strong>: stdio over HTTP whenever possible. Local servers are faster, leak fewer credentials, and survive offline sessions. Use HTTP only when the data lives outside your machine and you can&rsquo;t replicate it locally.</p>
+<p><strong>Don&rsquo;t blindly install</strong>: every community MCP server is code running with your local permissions. Audit the source, prefer servers with active maintainers, and never grant credentials you wouldn&rsquo;t paste in plain text.</p>
 </blockquote>
 <hr>
-<h2 id="세-가지-transport-모드">세 가지 Transport 모드<a hidden class="anchor" aria-hidden="true" href="#세-가지-transport-모드">#</a></h2>
-<h3 id="1-stdio-standard-io">1. stdio (Standard I/O)<a hidden class="anchor" aria-hidden="true" href="#1-stdio-standard-io">#</a></h3>
-<p>MCP 클라이언트가 spawn하는 로컬 프로세스. stdin/stdout으로 line-delimited JSON 통신. filesystem / git / sqlite / localhost postgres / playwright / puppeteer에 사용. <strong>장점</strong>: 최저 지연, 자격증명 노출 제로, 오프라인 작동. <strong>단점</strong>: 전체 사용자 권한으로 실행. <strong>언제 선택</strong>: 첫 번째 디폴트.</p>
+<h2 id="what-mcp-actually-is-in-2026">What MCP Actually Is in 2026<a hidden class="anchor" aria-hidden="true" href="#what-mcp-actually-is-in-2026">#</a></h2>
+<p>The Model Context Protocol is a JSON-RPC-based spec for connecting AI agents to external tools. It&rsquo;s deliberately simple: an MCP server exposes <code>tools</code>, <code>resources</code>, and <code>prompts</code>. An MCP client (Claude Code, Cursor, your agent of choice) calls those tools when the model decides it needs external action.</p>
+<p>What changed in 2026: - The <code>2025-06</code> spec added OAuth flows, capability discovery improvements, and explicit streaming support</p>
+<ul>
+<li>Adoption crossed vendor boundaries: OpenAI&rsquo;s reference clients, Google&rsquo;s Gemini CLI, and most independent agents now speak MCP</li>
+<li>Registry consolidation: three major registries (<code>smithery.ai</code>, <code>mcp.so</code>, <code>glama.ai/mcp/servers</code>) emerged as the primary discovery surfaces</li>
+<li>Cloud platforms (Vercel, Cloudflare, Render) added &ldquo;deploy MCP server&rdquo; as a first-class primitive</li>
+</ul>
+<p>The protocol&rsquo;s stability is the main reason 1000+ servers exist. If you wrote an MCP server in early 2025, it still works in mid-2026 with minor client-side updates. That stability is what makes the ecosystem investable for both maintainers and consumers.</p>
+<h2 id="the-three-transport-modes-and-when-to-use-each">The Three Transport Modes (and When to Use Each)<a hidden class="anchor" aria-hidden="true" href="#the-three-transport-modes-and-when-to-use-each">#</a></h2>
+<p>MCP servers run in one of three modes. Picking the right transport matters more than picking the right server.</p>
+<h3 id="1-stdio-standard-inputoutput">1. stdio (Standard Input/Output)<a hidden class="anchor" aria-hidden="true" href="#1-stdio-standard-inputoutput">#</a></h3>
+<p>The server is a local process that the MCP client spawns. Communication is line-delimited JSON over stdin/stdout. Used by: - Local filesystem servers</p>
+<ul>
+<li>Git, sqlite, postgres on localhost</li>
+<li>Browser automation (playwright, puppeteer)</li>
+<li>Image processing, code execution sandboxes</li>
+</ul>
+<p><strong>Pros</strong>: Lowest latency (no network round-trip). Zero credential exposure beyond the local machine. Works offline. Process lifecycle managed by the agent.</p>
+<p><strong>Cons</strong>: Server runs with your full user permissions. Cold start can be slow if the server has heavy initialization. Hard to share state across multiple agent sessions.</p>
+<p><strong>When to pick</strong>: First default. If the data lives on your machine or you can fetch it locally, use stdio.</p>
 <h3 id="2-http--sse-server-sent-events">2. HTTP / SSE (Server-Sent Events)<a hidden class="anchor" aria-hidden="true" href="#2-http--sse-server-sent-events">#</a></h3>
-<p>장기 실행 HTTP 서비스. GitHub / Linear / Notion / Slack 등 SaaS 통합에 사용. <strong>장점</strong>: 세션 간 상태 유지, 중앙 자격증명 관리. <strong>단점</strong>: 네트워크 지연, 서버 가용성이 에이전트 신뢰성의 일부. <strong>언제 선택</strong>: 로컬 복제 불가한 SaaS API.</p>
+<p>The server is a long-running HTTP service that the MCP client connects to. SSE is used for streaming responses.</p>
+<p>Used by: - SaaS integrations (GitHub, Linear, Notion, Slack)</p>
+<ul>
+<li>Team-shared MCP servers (deployed on internal infra)</li>
+<li>Stateful services where multiple agents share session</li>
+</ul>
+<p><strong>Pros</strong>: Server can persist state across agent sessions. Centralized credential management. One server can serve many agents. Easier to monitor and rate-limit.</p>
+<p><strong>Cons</strong>: Network latency. Server availability becomes part of agent reliability. Credentials live on a server you may not fully control.</p>
+<p><strong>When to pick</strong>: SaaS APIs where you genuinely can&rsquo;t replicate the data locally. Avoid for anything that has a local stdio equivalent.</p>
 <h3 id="3-oauth-bridged-mcp-2025-06">3. OAuth-Bridged (MCP 2025-06)<a hidden class="anchor" aria-hidden="true" href="#3-oauth-bridged-mcp-2025-06">#</a></h3>
-<p>MCP 서버가 OAuth 흐름을 orchestrate해서 세션당 scoped 자격증명 발급. 최신 모드. <strong>언제 선택</strong>: 세션마다 자격증명 rotation 필요한 엔터프라이즈.</p>
-<h2 id="2026-설치-가치-있는-top-30-mcp-서버">2026 설치 가치 있는 Top 30 MCP 서버<a hidden class="anchor" aria-hidden="true" href="#2026-설치-가치-있는-top-30-mcp-서버">#</a></h2>
-<h3 id="tier-1-글로벌-디폴트">Tier 1: 글로벌 디폴트<a hidden class="anchor" aria-hidden="true" href="#tier-1-글로벌-디폴트">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>서버</th>
-					<th>Transport</th>
-					<th>유지</th>
-					<th>용도</th>
-					<th>리스크</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>filesystem</strong></td>
-					<td>stdio</td>
-					<td>Anthropic</td>
-					<td>스코프 디렉토리 파일 R/W</td>
-					<td>낮음</td>
-			</tr>
-			<tr>
-					<td><strong>git</strong></td>
-					<td>stdio</td>
-					<td>Anthropic</td>
-					<td>리포 검사, diff, blame, log</td>
-					<td>낮음</td>
-			</tr>
-			<tr>
-					<td><strong>github</strong></td>
-					<td>HTTP</td>
-					<td>Anthropic</td>
-					<td>PR, 이슈, 검색, 댓글</td>
-					<td>중간 (토큰 scope)</td>
-			</tr>
-			<tr>
-					<td><strong>fetch</strong></td>
-					<td>stdio</td>
-					<td>Anthropic</td>
-					<td>일반 HTTP fetcher + markdown 변환</td>
-					<td>중간 (URL 주입)</td>
-			</tr>
-			<tr>
-					<td><strong>sequentialthinking</strong></td>
-					<td>stdio</td>
-					<td>Anthropic</td>
-					<td>모델용 구조화된 계획 helper</td>
-					<td>낮음</td>
-			</tr>
-	</tbody>
-</table>
-<h3 id="tier-2-프로젝트별">Tier 2: 프로젝트별<a hidden class="anchor" aria-hidden="true" href="#tier-2-프로젝트별">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>서버</th>
-					<th>Transport</th>
-					<th>용도</th>
-					<th>리스크</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>postgres</strong></td>
-					<td>stdio</td>
-					<td>Postgres 쿼리</td>
-					<td>높음 (DB)</td>
-			</tr>
-			<tr>
-					<td><strong>sqlite</strong></td>
-					<td>stdio</td>
-					<td>SQLite 쿼리</td>
-					<td>낮음</td>
-			</tr>
-			<tr>
-					<td><strong>playwright</strong></td>
-					<td>stdio</td>
-					<td>브라우저 자동화</td>
-					<td>중간</td>
-			</tr>
-			<tr>
-					<td><strong>brave-search</strong></td>
-					<td>HTTP</td>
-					<td>프라이버시 친화적 웹 검색</td>
-					<td>낮음</td>
-			</tr>
-			<tr>
-					<td><strong>linear</strong></td>
-					<td>HTTP</td>
-					<td>프로젝트 관리 통합</td>
-					<td>중간</td>
-			</tr>
-			<tr>
-					<td><strong>slack</strong></td>
-					<td>HTTP</td>
-					<td>Slack workspace 쿼리/포스팅</td>
-					<td>높음</td>
-			</tr>
-			<tr>
-					<td><strong>sentry</strong></td>
-					<td>HTTP</td>
-					<td>에러 모니터링</td>
-					<td>중간</td>
-			</tr>
-			<tr>
-					<td><strong>supabase</strong></td>
-					<td>HTTP</td>
-					<td>DB + auth + storage</td>
-					<td>높음</td>
-			</tr>
-			<tr>
-					<td><strong>memory</strong></td>
-					<td>stdio</td>
-					<td>세션 간 영구 메모리</td>
-					<td>낮음</td>
-			</tr>
-	</tbody>
-</table>
-<h3 id="tier-3-특화-kubernetes--terraform--aws--gcloud--figma--notion--redis--mongodb--elasticsearch--graphql--openapi--shopify--hubspot">Tier 3: 특화 (kubernetes / terraform / aws / gcloud / figma / notion / redis / mongodb / elasticsearch / graphql / openapi / shopify / hubspot)<a hidden class="anchor" aria-hidden="true" href="#tier-3-특화-kubernetes--terraform--aws--gcloud--figma--notion--redis--mongodb--elasticsearch--graphql--openapi--shopify--hubspot">#</a></h3>
-<h2 id="선정-결정-트리">선정 결정 트리<a hidden class="anchor" aria-hidden="true" href="#선정-결정-트리">#</a></h2>
-<pre tabindex="0"><code>데이터/액션이 로컬 머신에 있을 수 있나?
+<p>The MCP server orchestrates an OAuth flow to issue scoped credentials per session. Newest mode, growing fastest.</p>
+<p>Used by: - Multi-tenant SaaS where each user needs their own credentials</p>
+<ul>
+<li>Enterprise integrations with SSO requirements</li>
+<li>Servers that aggregate multiple downstream services</li>
+</ul>
+<p><strong>Pros</strong>: Credentials don&rsquo;t live in the agent&rsquo;s config file. Per-session scope. Easier compliance story.</p>
+<p><strong>Cons</strong>: OAuth dance adds latency to first connection. Requires browser interaction for setup. More moving parts to debug.</p>
+<p><strong>When to pick</strong>: Enterprise environments where credentials must rotate per session. Otherwise stdio or HTTP is simpler.</p>
+<h2 id="top-30-mcp-servers-worth-installing-in-2026">Top 30 MCP Servers Worth Installing in 2026<a hidden class="anchor" aria-hidden="true" href="#top-30-mcp-servers-worth-installing-in-2026">#</a></h2>
+<p>Ranked by usage volume in the major registries cross-referenced with our own audit of which servers professional developers actually keep in their <code>.claude/mcp.json</code> after 3+ months. Tier 1 = install these by default. Tier 2 = install when the workflow demands. Tier 3 = niche but excellent.</p>
+<h3 id="tier-1-the-universal-defaults-install-globally">Tier 1: The Universal Defaults (Install Globally)<a hidden class="anchor" aria-hidden="true" href="#tier-1-the-universal-defaults-install-globally">#</a></h3>
+<p>| Server | Transport | Maintainer | Use Case | Risk Profile |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>filesystem</strong> | stdio | Anthropic | Read/write/list files in scoped directories | Low (scope-restricted) |
+| <strong>git</strong> | stdio | Anthropic | Inspect repos, diff, blame, log | Low (read-mostly) |
+| <strong>github</strong> | HTTP | Anthropic | PRs, issues, search, comments | Medium (token scope matters) |
+| <strong>fetch</strong> | stdio | Anthropic | Generic HTTP fetcher with markdown conversion | Medium (URL injection risk) |
+| <strong>sequentialthinking</strong> | stdio | Anthropic | Structured planning helper for the model | Low |</p>
+<p>These five are the bedrock. If you install nothing else, install these. They&rsquo;re audited, actively maintained, and cover 60%+ of typical agent calls.</p>
+<h3 id="tier-2-workflow-specific-install-per-project">Tier 2: Workflow-Specific (Install Per Project)<a hidden class="anchor" aria-hidden="true" href="#tier-2-workflow-specific-install-per-project">#</a></h3>
+<p>| Server | Transport | Maintainer | Use Case | Risk Profile |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>postgres</strong> | stdio | Community | Query Postgres databases | High (DB access) |
+| <strong>sqlite</strong> | stdio | Community | Query SQLite files | Low |
+| <strong>playwright</strong> | stdio | Microsoft | Browser automation, scraping | Medium |
+| <strong>puppeteer</strong> | stdio | Community | Browser automation alternative | Medium |
+| <strong>brave-search</strong> | HTTP | Brave | Privacy-respecting web search | Low |
+| <strong>linear</strong> | HTTP | Linear | Project management integration | Medium |
+| <strong>slack</strong> | HTTP | Community | Slack workspace queries and posting | High (workspace access) |
+| <strong>sentry</strong> | HTTP | Community | Error monitoring access | Medium |
+| <strong>supabase</strong> | HTTP | Supabase | Database + auth + storage | High |
+| <strong>stripe</strong> | HTTP | Stripe | Payment data access (read-only mode) | High |
+| <strong>memory</strong> | stdio | Anthropic | Persistent agent memory across sessions | Low (local) |</p>
+<p>Install based on what the project needs. A backend project might need postgres + sentry. A QA project gets playwright + brave-search. Don&rsquo;t install all of these globally.</p>
+<h3 id="tier-3-specialized-but-excellent">Tier 3: Specialized but Excellent<a hidden class="anchor" aria-hidden="true" href="#tier-3-specialized-but-excellent">#</a></h3>
+<p>| Server | Transport | Use Case |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>kubernetes</strong> | stdio | Kubectl wrapper for cluster inspection |
+| <strong>terraform</strong> | stdio | Infrastructure state queries |
+| <strong>aws</strong> | HTTP | AWS resource enumeration (read-only safe) |
+| <strong>gcloud</strong> | HTTP | GCP equivalent |
+| <strong>figma</strong> | HTTP | Design file inspection |
+| <strong>notion</strong> | HTTP | Notion database queries |
+| <strong>redis</strong> | stdio | Redis commands |
+| <strong>mongodb</strong> | stdio | Mongo queries |
+| <strong>elasticsearch</strong> | HTTP | Search cluster integration |
+| <strong>opensearch</strong> | HTTP | OpenSearch equivalent |
+| <strong>graphql</strong> | stdio | Generic GraphQL endpoint querying |
+| <strong>openapi</strong> | stdio | Generic OpenAPI spec consumption |
+| <strong>shopify</strong> | HTTP | Store data access |
+| <strong>hubspot</strong> | HTTP | CRM integration |</p>
+<p>If your workflow involves these tools daily, the corresponding MCP server is almost always worth installing. If it doesn&rsquo;t, skip — you can always add later.</p>
+<h2 id="the-decision-tree-for-picking-mcp-servers">The Decision Tree for Picking MCP Servers<a hidden class="anchor" aria-hidden="true" href="#the-decision-tree-for-picking-mcp-servers">#</a></h2>
+<p>Use this when evaluating a new server (whether from registry, GitHub trending, or a teammate&rsquo;s recommendation): `````
+Can the data/action live on my local machine?
 │
-├── Yes → stdio MCP 서버 선호
+├── YES → Prefer stdio MCP server
 │         │
-│         ├── Anthropic 공식 버전 있나?
-│         │   └── Yes → 사용.
-│         │   └── No  → 소스 감사: 최근 commit &lt; 90일? 활성 maintainer? Stars &gt; 50? 의심스러운 네트워크 호출 없음?
-│         │       전부 yes: 설치. 하나라도 no: 30라인 wrapper 스크립트로 대체.
+│         ├── Is there an official/Anthropic-maintained version?
+│         │   └── YES → Use it.
+│         │   └── NO  → Audit the community version&rsquo;s source. Check: │         │       - Last commit &lt; 90 days?
+│         │       - Active maintainer (not single-archived author)?
+│         │       - Stars &gt; 50 OR clearly-scoped use case?
+│         │       - No suspicious network calls in source?
+│         │       If all four: install. If any miss: write a 30-line wrapper script instead.
 │
-└── No → SaaS 또는 원격 리소스
-          ├── OAuth-bridged 버전 있나? + 세션당 자격증명 필요?
-          │   └── Yes → OAuth bridge 사용
-          │   └── No  → HTTP/SSE + PAT 사용
-          ├── 감사: 토큰 scope 최소? 신뢰할 인프라? Rate limit 문서화?
-</code></pre><p>최단 버전: <strong>stdio &gt; HTTP &gt; OAuth. Anthropic 유지 &gt; 활성 커뮤니티 &gt; 보관됨. 설치 전 소스 읽기.</strong></p>
-<h2 id="보안-대부분-과소평가하는-리스크">보안: 대부분 과소평가하는 리스크<a hidden class="anchor" aria-hidden="true" href="#보안-대부분-과소평가하는-리스크">#</a></h2>
-<p>설치하는 모든 MCP 서버는 완전한 로컬 권한으로 코드 실행.</p>
-<h3 id="2026-실제-공격-패턴">2026 실제 공격 패턴<a hidden class="anchor" aria-hidden="true" href="#2026-실제-공격-패턴">#</a></h3>
-<ul>
-<li><strong>Typosquatting</strong>: 가짜 <code>github-mcp-server-v2</code>가 토큰 유출. 진짜는 <code>@modelcontextprotocol/server-github</code>.</li>
-<li><strong>공급망 주입</strong>: 인기 커뮤니티 서버 maintainer 권한 이전 후 telemetry 추가로 파일 경로 유출, 5000 유저 영향.</li>
-<li><strong>과도한 scope 토큰</strong>: full-access PAT로 GitHub 서버 설치 + prompt injection으로 리포 삭제.</li>
-<li><strong>Fetched 콘텐츠 prompt injection</strong>: <code>fetch</code> 서버가 악성 markdown 끌어와 <code>~/.ssh/id_rsa</code> 유출.</li>
-</ul>
-<h3 id="방어-체크리스트">방어 체크리스트<a hidden class="anchor" aria-hidden="true" href="#방어-체크리스트">#</a></h3>
-<ol>
-<li><strong>Fine-grained 토큰 사용</strong>. Full-access PAT 절대 부여 X.</li>
-<li><strong>설치 전 감사</strong>. 5분이 breach를 막음.</li>
-<li><strong>버전 고정</strong>. 자동 업그레이드 X.</li>
-<li><strong>Sandbox</strong>. 민감한 서버는 컨테이너 또는 <code>firejail</code>.</li>
-<li><strong>에이전트 로그 모니터</strong>.</li>
-</ol>
-<h2 id="발견-도구">발견 도구<a hidden class="anchor" aria-hidden="true" href="#발견-도구">#</a></h2>
-<ul>
-<li><strong><code>mcp.so</code></strong> — 가장 종합적인 커뮤니티 registry</li>
-<li><strong><code>smithery.ai</code></strong> — 고큐레이션 + 원클릭 설치</li>
-<li><strong>````glama.ai/mcp/servers```</strong> — 엔터프라이즈 친화적</li>
-</ul>
-<p>Anthropic 참조 서버: <a href="https://github.com/modelcontextprotocol/servers">github.com/modelcontextprotocol/servers</a>.</p>
-<h2 id="자체-호스팅-추천-인프라">자체 호스팅 추천 인프라<a hidden class="anchor" aria-hidden="true" href="#자체-호스팅-추천-인프라">#</a></h2>
-<p>팀 공유 MCP 서버(HTTP/SSE) 운영 시 안정 VPS 중요: - **** — 신규 60일 $200 크레딧.</p>
-<ul>
-<li>**** — 홍콩 VPS, dibi8.com 동일 IDC.</li>
-</ul>
-<p><em>제휴 링크 — 추가 비용 없이 dibi8.com 운영에 도움.</em></p>
-<h2 id="결론">결론<a hidden class="anchor" aria-hidden="true" href="#결론">#</a></h2>
-<p>2026 MCP 생태계는 유용할 만큼 성숙하고 큐레이션이 필요할 만큼 혼란스럽습니다. 참조 서버는 우수. 커뮤니티 생태계는 거대하지만 고르지 않음. 프로토콜 자체는 안정.</p>
-<p>가장 흔한 실수: 30+ 서버를 무료라서 설치 → 에이전트 8초 시작 → 이유를 모름. 또는 community 서버에 full-access GitHub PAT 부여 → prompt injection 데모 후 org suspend.</p>
-<p><strong>해결은 선택이지 풍부가 아님</strong>. 핵심 stdio 5개 + 리포당 프로젝트별 2-3개 + 새 설치 전 감사 + MCP 서버를 ergonomic한 보안 관련 코드로 취급. 다음 18개월 동안 확장되는 워크플로우.</p>
-<hr>
-<p><strong>참조</strong>: <a href="https://github.com/modelcontextprotocol/servers">github.com/modelcontextprotocol/servers</a> · <strong>Spec</strong>: MCP 2025-06 · <strong>참조 repo 합계 stars</strong>: 60K+</p>
-<p>{
-&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
-&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;MCP 서버 2026: 100+ 생태계 지도 + 선정 결정 트리&rdquo;,
-&ldquo;datePublished&rdquo;: &ldquo;2026-05-26&rdquo;,
-&ldquo;dateModified&rdquo;: &ldquo;2026-05-26&rdquo;,
-&ldquo;author&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
-&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
-},
-&ldquo;publisher&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
-&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
-&ldquo;logo&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
-}
-},
-&ldquo;mainEntityOfPage&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/mcp-servers-2026-rankings-selection-guide%22">https://dibi8.com/kr/resources/mcp-servers-2026-rankings-selection-guide"</a>
-}
-}
-</script></p>
-<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
-<p>Understanding mcp 서버 2026: 100+ 생태계 지도 + 선정 결정 트리 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
-<ul>
-<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
-<li><strong>Quality</strong>: Improve output consistency</li>
-<li><strong>Scalability</strong>: Handle larger workloads</li>
-<li><strong>Cost</strong>: Reduce operational expenses</li>
-</ul>
-<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
-<p>Organizations are using similar approaches to: 1. Automate code review processes
-2. Generate documentation automatically
-3. Build internal knowledge bases
-4. Streamline deployment pipelines</p>
-<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
-<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
-<ul>
-<li>Identify repetitive tasks</li>
-<li>Measure current time costs</li>
-<li>Define success metrics</li>
-</ul>
-<ol start="2">
-<li>
-<p><strong>Choose Your Approach</strong></p>
-<ul>
-<li>Start with simple automations</li>
-<li>Gradually increase complexity</li>
-<li>Test and iterate</li>
-</ul>
-</li>
-<li>
-<p><strong>Measure Results</strong></p>
-<ul>
-<li>Track time savings</li>
-<li>Monitor quality improvements</li>
-<li>Calculate ROI</li>
-</ul>
-</li>
-</ol>
-<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
-<p>MCP 서버 2026: 100+ 생태계 지도 + 선정 결정 트리 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
-<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
-<hr>
-<p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~5 minutes</em></p>
-<hr>
-<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
-<ul>
-<li><a href="/ko/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">claude-code-vs-cline</a></li>
-<li><a href="/ko/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">gemini-cli-vs-claude-code</a></li>
-<li><a href="/ko/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">cc-switch-all-in-one-ai-coding-agent-manager</a></li>
-<li><a href="/ko/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">claude-code-vs-aider</a></li>
-<li><a href="/ko/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">cursor-vs-claude-code</a></li>
-</ul>
-<hr>
-<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
-<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
-<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
-<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
-<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
-<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
-<p><strong>问：AI Agent的安全性如何保证？</strong></p>
-<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
-<p><strong>问：AI Agent的学习成本有多高？</strong></p>
-<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
-<p><strong>问：能否自定义AI Agent的行为？</strong></p>
-<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+└── NO → It&rsquo;s a SaaS or remote resource
+│
+├── Is there an OAuth-bridged version?
+│   ├── YES + you need per-session credentials → Use OAuth bridge
+│   └── NO  → Use HTTP/SSE with personal access token (PAT)
+│
+├── Audit: │   - Token scope minimal (read-only by default)?
+│   - Server runs in trustworthy infra (vendor&rsquo;s own, not random fork)?
+│   - Rate-limits documented?
+│   If yes: install. If no: skip or self-host.</p>
+<pre tabindex="0"><code>
+The shortest version: **stdio &gt; HTTP &gt; OAuth, in that preference order. Anthropic-maintained &gt; active community &gt; archived. Read the source before installing.**
 
+## Security: The Risk Most People Underestimate
+
+Every MCP server you install runs code with your full local permissions. This is the most under-discussed risk of the MCP ecosystem.
+
+### Real attack patterns we&#39;ve seen in 2026
+
+- **Typosquatting**: a community server named ````github-mcp-server-v2```` that exfiltrates tokens. The real one is ````@modelcontextprotocol/server-github````.
+- **Supply chain injection**: a popular community server&#39;s maintainer transferred ownership; new owner added telemetry that leaked file paths. Caught within a week but exposed ~5000 users.
+- **Over-scoped tokens**: GitHub server installed with a full-access PAT instead of fine-grained token; an agent prompt injection let the model delete repos.
+- **Prompt injection via fetched content**: ````fetch```` server pulled a malicious markdown file that contained instructions to read ````~/.ssh/id_rsa```` and post it elsewhere via another tool call.
+
+### Defense checklist
+
+1. **Use fine-grained tokens.** Never give an MCP server a full-access PAT or root credentials.
+2. **Audit before installing.** ````npm view```` / GitHub source / changelog review. Five minutes saves you breaches.
+3. **Pin versions.** Don&#39;t auto-upgrade community servers. Read changelogs before bumping.
+4. **Sandbox where possible.** Run sensitive MCP servers in a container or with ````firejail````.
+5. **Monitor agent logs.** If an agent suddenly calls 30 tools when you asked for one, something&#39;s wrong.
+
+The MCP spec doesn&#39;t enforce security. Your discipline does.
+
+## How to Find the Server You Need
+
+Three primary discovery surfaces in 2026: - **````mcp.so````** — The most comprehensive community registry. Good filtering. Includes both stdio and HTTP servers.
+- **````smithery.ai````** — Higher-curation registry with one-click install flows. Slightly biased toward HTTP/cloud-hosted.
+- **````glama.ai/mcp/servers```** — Strong on enterprise-friendly servers and HTTP/OAuth-bridged options.
+
+For Anthropic-maintained reference servers: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers).
+
+Use registries for discovery but always verify against the original GitHub repo before installing. Registry listings can lag behind upstream changes.
+
+## Recommended Infrastructure for Self-Hosted MCP Servers
+
+If you run team-shared MCP servers (HTTP/SSE), a stable VPS matters more than local stdio servers ever needed: - **** — $200 free credit. Good for prototyping HTTP MCP servers before committing to fixed infra.
+- **** — Hong Kong VPS, same IDC that hosts dibi8.com.
+
+*Affiliate links — they don&#39;t cost you extra and help keep dibi8.com running.*
+
+## Bottom Line
+
+The MCP ecosystem in 2026 is mature enough to be useful and chaotic enough to need curation. The reference servers are excellent. The community ecosystem is huge but uneven. The protocol itself is stable.
+
+The mistake we see most: developers install 30+ MCP servers because they&#39;re free, then their agent takes 8 seconds to start up and they don&#39;t know why. Or they grant a community server a full-access GitHub PAT because the README didn&#39;t warn them, then watch their org get suspended after a prompt injection demo.
+
+The cure is selection, not abundance. Pick your five core stdio servers, add 2-3 project-specific ones per repo, audit before installing anything new, and treat MCP servers as security-relevant code that happens to be ergonomic. That&#34;s the workflow that scales for the next 18 months until the next protocol arrives.
+
+
+* * *
+**Reference**: [github.com/modelcontextprotocol/servers](https://github.com/modelcontextprotocol/servers) · **Spec**: MCP 2025-06 · **Stars (ecosystem total)**: 60K+ across reference repos
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;MCP Servers 2026: The 100+ Server Ecosystem Map and a Decision Tree for Picking the Right Ones&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-26&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-26&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/mcp-servers-2026-rankings-selection-guide&#34;
+  }
+}
+&lt;/script&gt;
+
+* * *
+
+## Related Articles
+
+- [claude-code-vs-cline](mcp-servers-2026-rankings-selection-guide)
+- [gemini-cli-vs-claude-code](mcp-servers-2026-rankings-selection-guide)
+- [cc-switch-all-in-one-ai-coding-agent-manager](mcp-servers-2026-rankings-selection-guide)
+- [claude-code-vs-aider](mcp-servers-2026-rankings-selection-guide)
+- [cursor-vs-claude-code](mcp-servers-2026-rankings-selection-guide)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+
+## Frequently Asked Questions (FAQ)
+
+**问：AI Agent和传统自动化有什么区别？**
+
+AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+
+**问：如何选择合适的AI Agent框架？**
+
+考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+
+**问：AI Agent的安全性如何保证？**
+
+实施权限最小化、输入验证、审计日志、以及定期安全评估。
+
+**问：AI Agent的学习成本有多高？**
+
+入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+
+**问：能否自定义AI Agent的行为？**
+
+是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</code></pre>
 
   </div>
 
@@ -621,6 +584,81 @@ a: &ldquo;세 가지 규칙: (1) 매주 사용하는 것만 설치. (2) per-proj
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

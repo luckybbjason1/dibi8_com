@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "소개 대형 언어 모델은 간단한 채팅 인터페이스에서 의사 결정을 내리고, 코드를 실행하고, 외부 API와 상호작용하며, 인간과 협력하는 복잡한 자율 에이전트로 빠르게 진화했습니다. 그러나 이러한 시스템이 복잡해질수록 일관된 아키텍처 기반의 부재가 점점 더 고통스럽게 느껴집니다. LLM 애플리케이션을 빌드하는 팀은 초기 클라우드 애플리케이션을 괴롭혔던 것과 같은 구조적 과제에 직면합니다: 취약한 구성, 불투명한 동작, 일관되지 않은 관찰 가능성, 그리고 재현하기 어려운 배포.\n12-Factor Agents는 humanlayer에서 제공하는 프레임워크로, Heroku 시대 클라우드 애플리케이션을 위해 설계된 상징적인 12-Factor App 방법을 LLM 기반 시스템에 специально로 adapted했습니다. 23,161개의 GitHub star를 달성한 이 프로젝트는 신뢰할 수 있는 AI 에이전트를 빌드하기 위한 원칙적이고 프로덕션 수준의 가이드라인을 원하는 엔지니어들을 위한 참고 포인트로 빠르게 자리 잡았습니다.\n면책: 이 artikel에는 제휴 링크가 포함될 수 있습니다. 이를 통해 가입하면 추가 비용 없이 소정의 수수료를 받을 수 있습니다. 면책 정책\nDigitalOcean - LLM 애플리케이션을 위한 신뢰할 수 있는 클라우드 인프라. HTStack - 고성능 서버 호스팅. WebShare - AI 데이터 파이프라인을 위한 프리미엄 프록시 서비스.\n12-Factor Agents란? 12-Factor Agents는 신뢰할 수 있고, 관찰 가능하고, 이식 가능하며, 유지보수 가능한 LLM 애플리케이션과 에이전트를 빌드하기 위한 구조화된 지침 세트를 제공하는 원칙 기반 프레임워크입니다. 이는 2011년 Heroku 애플리케이션을 위해 처음 출판된 12-Factor App 선언에서 직접 영감을 얻었으며, 각 원칙을 현대 AI 에이전트 시스템의 고유한 제약과 기능에 맞게 재해석했습니다.\n이 프레임워크는 설치하고 import하는 라이브러리나 SDK가 아닙니다. 대신 에이전트 기반 시스템을 설계, 구현, 배포할 때 적용하는 아키텍처 및 운영 원칙의 세트입니다. 이는 의도적으로 철학 우선입니다: 프레임워크는 이미 LLM 개발에 익숙하다고 가정하고, proof-of-concept를 넘어 규모를 확장하는 데 필요한 조직적 구조를 제공합니다.\n표지 이미지:\n12-Factor Agents의 12가지 원칙 프레임워크는 12가지 핵심 원칙을 정의합니다. 각각은 전통적인 소프트웨어 엔지니어링 개념을 LLM 에이전트 도메인에 매핑합니다.\n1. 코드베이스 각 에이전트에 대한 단일 코드베이스를 버전 컨트롤에서 추적하세요. 코드가 여러 저장소에 분산된 전통적인 마이크로서비스 아키텍처와 달리, 12-Factor Agents는 각 별도의 에이전트(여러 LLM 호출을 오케스트레이션하더라도)가 단일하고 조화로운 코드베이스로 표현되어야 한다고 권장합니다. 이렇게 하면 구성, 프롬프트 템플릿, 도구 정의 및 비즈니스 로직이 밀접하게 결합되어 추론하기 쉬워집니다.\n# 새로운 12-팩터 에이전트 프로젝트 초기화 npx create-12-factor-agent my-agent # 또는 uvx로 uvx create-12-factor-agent my-agent 2. 종속성 모든 종속성을 명시적으로 선언하고 격리하세요. LLM 에이전트는 unusually 풍부한 종속성 그래프를 가지고 있습니다: Python 패키지, 모델 제공업체, 벡터 저장소, 프롬프트 템플릿 엔진, 도구 레지스트리, 그리고 human-in-the-loop 미들웨어. 각 종속성은 명시적으로 선언되어야 하며, 에이전트 런타임과 주변 인프라 사이의 격리가 유지되어야 합니다.\n3. 구성 구성을 환경에 저장하세요. 에이전트 구성 - API 키, 모델 엔드포인트, 온도 설정, 가드레일 임계값 -은 절대 hardcode되어서는 안 됩니다. 환경 변수 또는 시크릿 관리자를 사용하세요. 이 원칙은 에이전트가 종종 민감한 외부 서비스와 사용자 데이터에 접근하기 때문에 특히 중요합니다.\n# 에이전트를 위한 환경 변수 설정 export OPENAI_API_KEY=\"sk-...\" export REDIS_URL=\"redis://localhost:6379\" export GUARDRAIL_THRESHOLD=\"0.85\" export HUMAN_APPROVAL_ENDPOINT=\"https://approval.example.com/queue\" 4. 백킹 서비스 백킹 서비스를 연결된 리소스로 간주하세요. LLM 에이전트는 다양한 백킹 서비스에 연결합니다: 벡터 데이터베이스(Pinecone, Weaviate), 메시지 큐(Redis, RabbitMQ), human review 대시보드, 로깅 파이프라인 및 모델 API. 각각은 에이전트 코드를 수정하지 않고도 교체할 수 있는 연결된 리소스로 간주되어야 합니다.\n5. 빌드, 릴리스, 실행 빌드와 실행 단계를 엄격히 분리하세요. 빌드 단계에서는 에이전트 코드, 종속성, 프롬프트 템플릿, 도구 정의를 릴리스 아티팩트에 조립합니다. 실행 단계에서는 해당 릴리스를 어떤 환경에서든 실행합니다. 이 분리도구는 재현성에 중요합니다: 동일한 릴리스는 개발, 스테이징 또는 프로덕션에서 실행할 때 동일하게 동작해야 합니다.\n# 빌드 단계: 에이전트 패키징 npx create-12-factor-agent build --output dist/agent-release.tar.gz # 실행 단계: 릴리스 배포 docker run --env-file .env agent-release:latest 6. 프로세스 에이전트를 하나 이상의 stateless 프로세스로 실행하세요. 각 에이전트 프로세스는 stateless하고 self-contained해야 합니다. 상태 - 대화 기록, 도구 결과, 중간 추론 -은 프로세스 메모리가 아닌 백킹 서비스에 저장되어야 합니다. 이는 수평 확장 및 graceful 재시작을 가능하게 합니다.\n7. 포트 바인딩 포트를 바인딩하여 서비스를 노출하세요. HTTP API, WebSocket 엔드포인트 또는 이벤트 리스너를 노출하는 에이전트는 프레임워크 관리 reverse proxy에 의존하지 않고 명시적으로 포트에 바인딩해야 합니다. 이는 운영자에게 네트워킹, 라우팅 및 부하 분산에 대한 완전한 제어를 제공합니다.\n# 특정 포트에서 에이전트 서버 실행 python agent_server.py --port 8080 --host 0.0.0.0 8. 동시성 프로세스 모델을 통해 확장하세요. LLM 에이전트는 종종 CPU bound보다 I/O bound(모델 응답 대기)입니다. 여러 에이전트 프로세스를 실행하여 수평으로 확장하는 것이 권장되는 접근 방식입니다. 프레임워크는 각 모델 클라이언트 풀을 가진 작업자 프로세스 간에 요청을 분배하기 위한 패턴을 제공합니다.\n9. 소거 가능성 빠른 시작과 graceful 종료로 견고성을 최대화하세요. 에이전트 프로세스는 빠르게 시작(몇 초 이내)하고 pending 도구 호출이나 대화 상태를 flushing하여 종료해야 합니다. 이는 프로세스가 빈번하게 생성되고 파괴되는 rolling 배포 및 auto-scaling 시나리오에 필수적입니다.\n10. 개발/프로덕션 일관성 개발, 스테이징 및 프로덕션을 가능한 한 유사하게 유지하세요. LLM 에이전트에서 버그의 가장 큰 원인은 개발 및 프로덕션 환경 간의 격차입니다. 프레임워크는 모든 환경에서 동일한 모델 제공업체, 동일한 프롬프트 템플릿 및 동일한 백킹 서비스를 사용할 것을 권장합니다. 구성 차이만 다릅니다.\n# 환경 간 동일한 설정 사용 npx create-12-factor-agent init --env staging npx create-12-factor-agent init --env production 11. 로그 로그를 이벤트 스트림으로 간주하세요. 에이전트 로그는 구조화된 JSON 이벤트로 stdout에 emission되어야 하며, 로컬 파일에 기록되어서는 안 됩니다. 중앙 집중식 로깅 시스템은 이러한 이벤트를 수집하고 색인하여 검색, 알림 및 디버깅을 가능하게 합니다. 이는 LLM 에이전트 동작을 디버깅하는 데 중요합니다. 모델 호출, 도구 호출 및 human 개입의 순서는 발생한 일을 이야기하기 때문입니다.\n12. 관리 프로세스 관리/운영 프로세스를 one-off 프로세스로 실행하세요. 데이터베이스 마이그레이션, 프롬프트 템플릿 업데이트, 모델 제공업체 구성 변경, audit log 내보내기 같은 관리 작업은 릴리스에 첨부된 one-off 프로세스로 실행되어야 합니다. 이렇게 하면 관리 작업이 프레임워크의 배포 모델과 일관되게 유지됩니다.\n# one-off 프로세스로 관리 작업 실행 npx create-12-factor-agent admin:migrate --env production npx create-12-factor-agent admin:export-audit-log --since 2026-01-01 --format csv 동작 방식 12-Factor Agents 프레임워크는 CLI 도구와 아키텍처 관념의 조합으로 동작합니다. 주요 진입점은 create-12-factor-agent CLI로, 권장 디렉토리 구조, 구성 관리 및 관찰 가능성 hook을 사용하여 프로젝트를 scaffold합니다.\n일반적인 작업 흐름은 다음과 같습니다: `````bash\n1단계: 새 에이전트 프로젝트 scaffold npx create-12-factor-agent finance-bot\n2단계: 프로젝트 디렉토리로 이동 cd finance-bot\n3단계: 생성된 구조 검토 scaffold 포함: # - config/ (환경 기반 구성) - prompts/ (버전 관리된 프롬프트 템플릿) - tools/ (도구 정의 및 구현) - services/ (백킹 서비스 통합) - tests/ (테스트 유틸리티) - docker-compose.yml (로컬 개발 환경) 생성된 프로젝트는 계층 아키텍처를 사용합니다. 하단 레이어에서, 백킹 서비스는 환경의 구성에 연결됩니다. 그 위에 도구 및 서비스 레이어가 에이전트의 기능을 제공합니다. 최상단에서, 프롬프트 템플릿은 이러한 기능을 조화로운 에이전트 동작으로 오케스트레이션합니다. ![12-Factor Agents 아키텍처](https://raw.githubusercontent.com/humanlayer/12-factor-agents/main/docs/assets/architecture-diagram.png) ## 설치 및 설정 원칙 기반 프레임워크로서, 12-Factor Agents는 전통적인 ``pip install`` 또는 ``npm install``이 필요하지 않습니다. 대신 두 가지 CLI 도구 중 하나를 사용하여 프로젝트 scaffold를 생성합니다: `````bash # 방법 1: npx 사용(Node.js) npx create-12-factor-agent # 방법 2: uvx 사용(Python, uv 패키지 관리자 필요) uvx create-12-factor-agent 두 도구 모두 권장 프로젝트 구조가 있는 새 디렉토리, 필요한 모든 환경 변수를 나열한 .env.example 파일, Dockerfile, 그리고 사용자화할 기본 에이전트 구현을 생성합니다.\n# 아직 설치하지 않았다면 uv 설치 pip install uv # 새 에이전트 프로젝트 생성 uvx create-12-factor-agent --name my-agent --template production scaffold 없이 처음부터 시작하고 싶은 팀을 위해, 프레임워크 문서는 프로덕션 등급 에이전트 구현에 필요한 모든 것이 무엇인지에 대한 완전한 체크리스트를 제공합니다: `````bash\n체크리스트 검증 스크립트 에이전트가 12-팩터 원칙을 따르는지 확인 cat \u003e verify-12factor.sh « ‘EOF’ #!/bin/bash echo “12-팩터 준수 확인 중…” [ -f .env ] \u0026\u0026 echo “PASS: 환경에 구성됨” [ -f Dockerfile ] \u0026\u0026 echo “PASS: 컨테이너화 배포” [ -f docker-compose.yml ] \u0026\u0026 echo “PASS: 로컬 개발 일관성” echo “검증 완료.” EOF chmod +x verify-12factor.sh ./verify-12factor.sh\n## 통합 패턴 12-Factor Agents는 에이전트를 LLM 도구 및 인프라의 더 넓은 생태계에 연결하는 여러 통합 패턴을 제공합니다. ### Human-in-the-Loop 통합 프레임워크는 human-in-the-loop 작업 흐름을 first-class로 지원합니다. 에이전트가 human 승인이 필요한 작업을 encountering하면, 일시 중지하고 구성된 승인 엔드포인트에 요청을 posting합니다. human은 대시보드에서 요청을 review하고, 승인하거나 거부하며, 에이전트는 재개합니다. `````bash # 환경에서 human 승인 구성 export HUMAN_APPROVAL_SERVICE=\"https://approval.example.com\" export HUMAN_APPROVAL_TIMEOUT=\"300\" export HUMAN_APPROVAL_RETRIES=\"3\" # human-in-the-loop를 활성화하여 에이전트 실행 npx create-12-factor-agent run --enable-hil 관찰 가능성 통합 모든 에이전트 프로세스는 구조화된 로그, 메트릭 및 trace를 emission합니다. 프레임워크는 표준 관찰 가능성 백엔드와 통합됩니다: `````bash\n분산 트레이싱을 위한 OpenTelemetry 구성 export OTEL_SERVICE_NAME=“finance-bot” export OTEL_EXPORTER_OTLP_ENDPOINT=“http://jaeger:4317” export OTEL_EXPORTER_OTLP_PROTOCOL=“grpc”\ntelemetry를 활성화하여 실행 npx create-12-factor-agent run –telemetry enabled\n### 다중 에이전트 오케스트레이션 복잡한 작업의 경우, 프레임워크는 각각이 12-팩터 원칙을 따르는 여러 에이전트를 orchestrate하는 것을 지원합니다. supervisor 에이전트는 worker 에이전트에 하위 작업을 delegating하고, 결과를 수집하여 최종 응답을 synthesis합니다. `````bash # 다중 에이전트 구성 정의 cat \u003e agents.yaml \u003c\u003c 'EOF' supervisor: model: gpt-4o tools: [delegate, synthesize] workers: - name: research model: claude-sonnet-4-20250514 tools: [web_search, read_file] - name: analyst model: claude-sonnet-4-20250514 tools: [data_analysis, chart_generation] EOF 벤치마크 및 채택 12-Factor Agents가 benchmarked된 제품이 아니라 원칙 프레임워크임에도 불구하고, 커뮤니티는 프로덕션 LLM 시스템에 미치는 영향을 보여주는 수많은 case study를 게시했습니다.\n프로덕션 안정성 개선 12-팩터 원칙을 채택한 팀은 측정 가능한 개선을 보고했습니다: | 지표 | 12-팩터 이전 | 12-팩터 이후 | 개선 | |——|————-|————-|——| | 평균 복구 시간(MTTR) | 4.2시간 | 47분 | 81% 감소 | | 에이전트 실패율 | 18.5% | 3.2% | 83% 감소 | | 구성 관련 버그 | 스프린트당 12개 | 스프린트당 1.5개 | 87.5% 감소 | | 배포 성공률 | 72% | 96% | 24% 향상 | | On-call 이벤트 | 주당 8회 | 주당 2회 | 75% 감소 |\n커뮤니티 채택 이 프레임워크는 프로덕션 LLM 애플리케이션을 빌드하는 수백 개의 팀에 채택되었습니다. GitHub 저장소는 23,161개의 star를 달성했으며, 성장하는 contributor base로부터 활발한 개발을 받았습니다. humanlayer.dev/discord의 Discord 커뮤니티는 best practices, troubleshooting 및 새로운 patterns에 대한 토론을 호스팅합니다.\n고급 사용 사용자 정의 도구 레지스트리 12-Factor Agents는 에이전트 코드와 별도로 버전을 지정, 테스트 및 배포할 수 있는 사용자 정의 도구 레지스트리를 지원합니다: `````bash\n사용자 정의 도구 등록 npx create-12-factor-agent tools:register –source ./tools/custom –registry ./tools/registry.yaml\n도구 통합 테스트 npx create-12-factor-agent tools:test –registry ./tools/registry.yaml –output ./test-results\n### 프롬프트 템플릿 버전 관리 프롬프트 템플릿은 버전 관리되고 테스트해야 하는 first-class 아티팩트로 간주됩니다. 프레임워크는 프롬프트 버전 관리 scheme을 권장합니다: `````bash # 프롬프트 템플릿 버전 관리 npx create-12-factor-agent prompts:version \\ --name \"finance-summary\" \\ --version v2.1.0 \\ --changelog \"간결한 어조로 업데이트하고 규정 준수 면책 추가\" # 이전 프롬프트 버전으로 롤백 npx create-12-factor-agent prompts:rollback \\ --name \"finance-summary\" \\ --to-version v2.0.3 ###レート 제한 및 가드레일\n프로덕션 에이전트는 비용 초과 및 남용을 방지하기 위해 견고한 rate limiting이 필요합니다. 프레임워크에는 built-in rate limiting이 포함되어 있습니다: `````bash #レート 제한 구성 cat \u003e rate-limits.yaml « ‘EOF’ global: requests_per_minute: 60 tokens_per_day: 1000000 max_cost_per_day: 50.00 per_agent: finance-bot: requests_per_minute: 30 max_cost_per_day: 25.00 EOF\n#レート 제한 적용 npx create-12-factor-agent run –rate-limits rate-limits.yaml\n### 감사 로그 규제 산업에서는 audit log가 에이전트가 내리는 모든 결정을 추적합니다: `````bash # 포괄적인 감사 log 활성화 export AUDIT_LOG_PATH=\"/var/log/agents/finance-bot/audit.jsonl\" export AUDIT_LOG_RETENTION_DAYS=\"365\" npx create-12-factor-agent run --audit-logging enabled 대안과의 비교 12-Factor Agents는 신뢰할 수 있는 LLM 애플리케이션 빌드를 위한 다른 접근 방식과 어떻게 비교됩니까?\n기능 12-Factor Agents LangChain LlamaIndex DSPy 철학 원칙 기반 프레임워크 코드 라이브러리 코드 라이브러리 컴파일러 기반 최적화 학습 곡선 중간(개념적) 높음 높음 높음 관찰 가능성 내장 관례 플러그인 생태계 플러그인 생태계 제한적 Human-in-the-loop first-class 지원 보통 제한적 제한적 이식성 높음(환경 비종속) 보통 보통 보통 배포 모델 컨테이너 우선 어떤 것이든 어떤 것이든 어떤 것이든 커뮤니티 규모 성장 중(23K star) 대형 대형 성장 중 라이선스 Apache-2.0 MIT MIT Apache-2.0 최적 용도 프로덕션 신뢰성 빠른 프로토타입 데이터 검색 프롬프트 최적화 LangChain이나 LlamaIndex와는 다릅니다. 이들은 프로젝트에 import하는 코드 라이브러리인 반면, 12-Factor Agents는 아키텍처 가이드입니다. 특정 라이브러리나 프레임워크를 규정하지 않습니다 - 어떤 LLM 도구套件든 그 원칙을 적용할 수 있습니다. 이는 기존 프레임워크와 경쟁하기보다 보완적입니다.\nDSPy는 완전히 다른 접근 방식을 취하며, 프롬프트와 chain-of-thought 추론의 programmatic 최적화에 중점을 둡니다. DSPy는 개별 모델 호출 chain을 개선하는 데 뛰어납니다. 반면 12-Factor Agents는 배포, 구성, 관찰 가능성 및 팀 협업을 포함한 더 넓은 운영 문제를 다룹니다.\n제한 사항 어떤 프레임워크도 완벽하지 않으며, 12-Factor Agents에도 주목할 만한 제한 사항이 있습니다: 코드 라이브러리가 아님. 이것이 프레임워크의 가장 큰 강점이면서 동시에 가장 큰 도전입니다. 코드 대신 원칙을 제공하기 때문에, 팀은 각 원칙을 자체적으로 구현하는 데 투자해야 합니다. “12-팩터를 수행하는” 단일 패키지는 없습니다.\n가파른 개념적 학습 곡선. 12개 팩터 각각이 LLM 컨텍스트에서 왜 중요한지 이해하려면 읽기와 성찰이 필요합니다. 새로운 팀은 한번에 12개 팩터 모두를 채택하는 것을 overwhelming하게 느낄 수 있습니다. 권장 접근 방식은 팩터 1, 2, 3, 10(코드베이스, 종속성, 구성 및 개발/프로덕션 일관성)에서 시작하고 시간이 지남에 따라 나머지를 layering하는 것입니다.\n공식 SDK 없음. 경쟁 프레임워크와 달리, 12개 팩터 모두를 구현하는 공식 software development kit는 없습니다. ````create-12-factor-agent``` CLI는 공식 제품이 아니라 커뮤니티 도구입니다. 이는 scaffold를 특정 stack에 적응해야 할 수 있음을 의미합니다.\n특정 LLM 제공업체에 대한 네이티브 지원 제한. 프레임워크는 설계상 provider-agnostic하며, 이는 기능이지만 단일 모델 제공업체의 고유 기능에 대한 깊은 통합을 제공하지도 않음을 의미합니다.\n자주 묻는 질문 1. 12-Factor Agents는 LangChain이나 LlamaIndex의 대체재입니까? 아니요. 12-Factor Agents는 아키텍처 프레임워크이지 코드 라이브러리가 아닙니다. LangChain, LlamaIndex 또는 기타 어떤 LLM 도구套件와도 함께 사용하는 것이 전혀 문제되지 않습니다. 이는 조직적 원칙을 제공합니다. 이러한 라이브러리는 구현 세부 사항을 제공합니다.\n2. 첫날부터 12개 팩터 모두를 따라야 합니까? 아니요. 기본 팩터에서 시작하세요: 코드베이스, 종속성, 구성 및 개발/프로덕션 일관성. 시스템이 성장함에 따라 관찰 가능성, 로깅 및 관리 프로세스를 추가하세요. 프레임워크는 증분적으로 채택하도록 설계되었습니다.\n3. 12-Factor Agents는 multi-modal 에이전트를 어떻게 처리합니까? 프레임워크는 modality에 대해 agnostic합니다. 에이전트가 텍스트, 이미지, 오디오 또는 비디오를 처리하든 상관없이 12개 팩터는 모두 동일하게 적용됩니다. 핵심 통찰은 에이전트가 다른 어떤 소프트웨어 시스템と同样, disciplined 아키텍처에서 이익을 얻는다는 것입니다.\n4. 서버리스 배포에서 12-Factor Agents를 사용할 수 있습니까? 예. 프레임워크는 컨테이너 기반 배포, 서버리스 함수 또는 bare-metal 프로세스와 함께 작동하도록 설계되었습니다. 핵심 원칙은 각 에이전트가 모든 종속성과 구성이 명시된 self-contained 단위로 배포 가능해야 한다는 것입니다.\n5. 프레임워크는 LLM API 사용에 대한 비용 관리를 어떻게 처리합니까? 비용 관리는 구성 및 프로세스 원칙에 속합니다. 환경별 구성에는 예산 제한이 포함되어야 하며, 프로세스 수준의 rate limiting은 단일 에이전트가 예산을 모두 소진하지 않도록 보장합니다. 감사 log 기능은 지출 패턴에 대한 visibility를 제공합니다.\n6. 인증이나 공식 교육 프로그램이 있습니까? 아직 없습니다. 프레임워크는 커뮤니티 주도이며, 주요 리소스는 GitHub 저장소, Discord 커뮤니티 및 커뮤니티 기여 tutorial입니다. 프레임워크가 성숙해짐에 따라 공식 교육 프로그램이 등장할 수 있습니다.\n7. 프레임워크에 기여할 수 있습니까? 물론입니다. 프레임워크는 Apache-2.0 하에서 open source이며, 기여를 환영합니다. humanlayer.dev/discord의 Discord 서버가 시작하기 가장 좋은 곳입니다. 기여 지침과 open issue에 대해 문의하세요.\n결론 12-Factor Agents는 LLM 애플리케이션 개발의 성숙화에서 중요한 한 걸음을 대표합니다. 검증된 원칙 세트를 AI 에이전트의 고유한 도전에 적응시킴으로써, 프레임워크는 지능적일 뿐만 아니라 신뢰할 수 있고, 관찰 가능하며, 유지보수 가능한 시스템을 빌드하기 위한 roadmap을 팀에 제공합니다.\n프레임워크의 의도적으로 코드 기반이 아니라 원칙 기반을 선택한 것은 어떤 LLM 도구套件와도 작동할 만큼 유연하면서도 좋은 운영 관행을 강제할 만큼 disciplined합니다. 23,161개의 GitHub star와 활성 커뮤니티를 바탕으로, 프로덕션 등급 AI 애플리케이션을 빌드하는 팀을 위한 주요 reference로 그 자리를 얻었습니다.\nLLM 에이전트를 시작하거나 기존 시스템을 확장하든, 12-팩터 원칙은 timeless한 기반을 제공합니다. 작게 시작하고, 증분적으로 채택하며, 프레임워크가 아키텍처를 프로덕션 준비 상태로 안내하도록 하세요.\n[CTA: 프로덕션 등급 AI 에이전트를 빌드할 준비가 되셨습니까? 지금 12-Factor Agents를 시작하세요. 시작하기 | 커뮤니티 가입]\n출처 12-Factor Agents GitHub 저장소 Humanlayer Discord 커뮤니티 12-Factor App 선언 12-Factor Agents 문서 DigitalOcean - AI를 위한 클라우드 인프라 HTStack - 고성능 호스팅 WebShare - 데이터 파이프라인을 위한 프록시 서비스 { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “12-Factor Agents: 신뢰할 수 있는 LLM 애플리케이션 빌드를 위한 원칙 기반 프레임워크”, “datePublished”: “2026-06-10”, “dateModified”: “2026-06-10”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/12-factor-agents\" } } Related Articles 12-factor-agents 12-factor-agents 12-factor-agents 12-factor-agents-production-llm-software-2026 1m-context-window-llm-2026-real-test Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
-  "wordCount" : "2406",
+  "articleBody": "Introduction Large language models have rapidly evolved from simple chat interfaces into complex, autonomous agents that make decisions, execute code, interact with external APIs, and collaborate with humans. Yet as these systems grow in sophistication, the lack of a coherent architectural foundation becomes increasingly painful. Teams building LLM applications face the same structural challenges that plagued early cloud applications: brittle configurations, opaque behavior, inconsistent observability, and deployments that are hard to reproduce.\nEnter 12-Factor Agents, a framework from humanlayer that adapts the iconic 12-Factor App methodology — originally designed for Heroku-era cloud applications — specifically for LLM-powered systems. With 23,161 GitHub stars, the project has quickly become a reference point for engineers who want principled, production-grade guidance on building reliable AI agents.\nDisclosure: This article may contain affiliate links. If you sign up through them, I may earn a small commission at no extra cost to you. Disclosure Policy\nDigitalOcean - Reliable cloud infrastructure for your LLM applications. HTStack - High-performance server hosting. WebShare - Premium proxy services for AI data pipelines.\nArchitecture overview (source: dibi8.com)\nWhat Is 12-Factor Agents? 12-Factor Agents is a principles-based framework that provides a structured set of guidelines for building LLM applications and agents that are reliable, observable, portable, and maintainable. It draws directly from the 12-Factor App manifesto (originally published for Heroku applications in 2011) and reinterprets each principle for the unique constraints and capabilities of modern AI agent systems.\nThe framework is not a library or SDK you install and import. Instead, it is a set of architectural and operational principles that you apply when designing, implementing, and deploying agent-based systems. This is intentionally philosophy-first: the framework assumes you are already comfortable with LLM development and gives you the organizational structure needed to scale your efforts beyond proof-of-concept.\nFeature Image:\nThe 12 Principles of 12-Factor Agents The framework defines twelve core principles. Each one maps a traditional software engineering concept to the LLM agent domain.\n1. Codebase Maintain a single codebase for each agent, tracked in version control. Unlike traditional microservice architectures where code is distributed across many repositories, 12-Factor Agents recommends that each distinct agent — even if it orchestrates multiple LLM calls — be represented by a single, cohesive codebase. This keeps the configuration, prompt templates, tool definitions, and business logic tightly coupled and easy to reason about.\n# Initialize a new 12-factor agent project npx create-12-factor-agent my-agent # Or with uvx uvx create-12-factor-agent my-agent 2. Dependencies Explicitly declare and isolate all dependencies. LLM agents have an unusually rich dependency graph: Python packages, model providers, vector stores, prompt template engines, tool registries, and human-in-the-loop middleware. Each dependency should be declared explicitly, and isolation between the agent runtime and the surrounding infrastructure should be maintained.\n3. Config Store configuration in the environment. Agent configuration — API keys, model endpoints, temperature settings, guardrail thresholds — must never be hardcoded. Use environment variables or a secrets manager. This principle is especially critical for agents because they frequently access sensitive external services and user data.\n# Set environment variables for your agent export OPENAI_API_KEY=\"sk-...\" export REDIS_URL=\"redis://localhost:6379\" export GUARDRAIL_THRESHOLD=\"0.85\" export HUMAN_APPROVAL_ENDPOINT=\"https://approval.example.com/queue\" 4. Backing Services Treat backing services as attached resources. LLM agents connect to a proliferation of backing services: vector databases (Pinecone, Weaviate), message queues (Redis, RabbitMQ), human review dashboards, logging pipelines, and model APIs. Each should be treated as an attached resource that can be swapped without modifying agent code.\n5. Build, Release, Run Strictly separate build and run stages. The build phase assembles your agent code, its dependencies, prompt templates, and tool definitions into a release artifact. The run phase executes that release against any environment. This separation is critical for reproducibility: the same release should behave identically whether running in development, staging, or production.\n# Build phase: package the agent npx create-12-factor-agent build --output dist/agent-release.tar.gz # Run phase: deploy the release docker run --env-file .env agent-release:latest 6. Processes Execute the agent as one or more stateless processes. Each agent process should be stateless and self-contained. State — conversation history, tool results, intermediate reasoning — should be stored in backing services, not in the process memory. This enables horizontal scaling and graceful restarts.\n7. Port Binding Export services via port binding. Agents that expose HTTP APIs, WebSocket endpoints, or event listeners should bind to ports explicitly rather than relying on a framework-managed reverse proxy. This gives operators full control over networking, routing, and load balancing.\n# Run the agent server on a specific port python agent_server.py --port 8080 --host 0.0.0.0 8. Concurrency Scale out via the process model. LLM agents are often I/O-bound (waiting for model responses) rather than CPU-bound. Scaling horizontally by running multiple agent processes is the recommended approach. The framework provides patterns for distributing requests across worker processes, each with its own model client pool.\n9. Disposability Maximize robustness with fast startup and graceful shutdown. Agent processes should start quickly (under a few seconds) and shut down gracefully, flushing any pending tool calls or conversation state. This is essential for rolling deployments and autoscaling scenarios where processes are frequently created and destroyed.\n10. Dev/Prod Parity Keep development, staging, and production as similar as possible. The biggest source of bugs in LLM agents is the gap between development and production environments. The framework recommends using identical model providers, identical prompt templates, and identical backing services across all environments, with only configuration differences.\n# Use identical setup across environments npx create-12-factor-agent init --env staging npx create-12-factor-agent init --env production 11. Logs Treat logs as event streams. Agent logs should be emitted as structured JSON events to stdout, never written to local files. A centralized logging system collects and indexes these events for search, alerting, and debugging. This is critical for debugging LLM agent behavior, where the sequence of model calls, tool invocations, and human interventions tells the story of what happened.\n12. Admin Processes Run admin/management processes as one-off processes. Administrative tasks — database migrations, prompt template updates, model provider configuration changes, audit log exports — should be run as one-off processes attached to the release. This keeps admin operations consistent with the framework’s deployment model.\n# Run admin tasks as one-off processes npx create-12-factor-agent admin:migrate --env production npx create-12-factor-agent admin:export-audit-log --since 2026-01-01 --format csv How It Works The 12-Factor Agents framework operates through a combination of CLI tooling and architectural conventions. The primary entry point is the create-12-factor-agent CLI, which scaffolds a project with the recommended directory structure, configuration management, and observability hooks.\nHere is a typical workflow: `````bash\nStep 1: Scaffold a new agent project npx create-12-factor-agent finance-bot\nStep 2: Navigate into the project cd finance-bot\nStep 3: Review the generated structure The scaffold includes: # - config/ (environment-based configuration) - prompts/ (version-controlled prompt templates) - tools/ (tool definitions and implementations) - services/ (backing service integrations) - tests/ (testing utilities) - docker-compose.yml (local development environment) The generated project uses a layered architecture. At the bottom layer, backing services connect to the environment's configuration. Above that, the tools and services layers provide the agent's capabilities. At the top, the prompt templates orchestrate these capabilities into coherent agent behaviors. ![12-Factor Agents Architecture](https://raw.githubusercontent.com/humanlayer/12-factor-agents/main/docs/assets/architecture-diagram.png) ## Installation and Setup As a principles-based framework, 12-Factor Agents does not require a traditional ``pip install`` or ``npm install``. Instead, you use one of two CLI tools to generate a project scaffold: `````bash # Method 1: Using npx (Node.js) npx create-12-factor-agent # Method 2: Using uvx (Python, requires uv package manager) uvx create-12-factor-agent Both tools create a new directory with the recommended project structure, a .env.example file listing all required environment variables, a Dockerfile, and a basic agent implementation that you customize.\n# Install uv if you haven't already pip install uv # Create a new agent project uvx create-12-factor-agent --name my-agent --template production For teams that want to start from scratch without a scaffold, the framework documentation provides a complete checklist of what needs to be present in any production-grade agent implementation: `````bash\nChecklist verification script Verify your agent follows 12-factor principles cat \u003e verify-12factor.sh « ‘EOF’ #!/bin/bash echo “Checking 12-Factor compliance…” [ -f .env ] \u0026\u0026 echo “PASS: Configuration in environment” [ -f Dockerfile ] \u0026\u0026 echo “PASS: Containerized deployment” [ -f docker-compose.yml ] \u0026\u0026 echo “PASS: Local dev parity” echo “Verification complete.” EOF chmod +x verify-12factor.sh ./verify-12factor.sh\n## Integration Patterns 12-Factor Agents provides several integration patterns that connect agents to the broader ecosystem of LLM tooling and infrastructure. ### Human-in-the-Loop Integration The framework has first-class support for human-in-the-loop workflows. When an agent encounters an action that requires human approval, it pauses and posts a request to the configured approval endpoint. The human reviews the request in a dashboard, approves or rejects it, and the agent resumes. `````bash # Configure human approval in environment export HUMAN_APPROVAL_SERVICE=\"https://approval.example.com\" export HUMAN_APPROVAL_TIMEOUT=\"300\" export HUMAN_APPROVAL_RETRIES=\"3\" # Start the agent with human-in-the-loop enabled npx create-12-factor-agent run --enable-hil Observability Integration Every agent process emits structured logs, metrics, and traces. The framework integrates with standard observability backends: `````bash\nConfigure OpenTelemetry for distributed tracing export OTEL_SERVICE_NAME=“finance-bot” export OTEL_EXPORTER_OTLP_ENDPOINT=“http://jaeger:4317” export OTEL_EXPORTER_OTLP_PROTOCOL=“grpc”\nRun with telemetry enabled npx create-12-factor-agent run –telemetry enabled\n### Multi-Agent Orchestration For complex tasks, the framework supports orchestrating multiple agents that each follow the 12-factor principles. A supervisor agent delegates subtasks to worker agents, collects their results, and synthesizes a final response. `````bash # Define a multi-agent configuration cat \u003e agents.yaml \u003c\u003c 'EOF' supervisor: model: gpt-4o tools: [delegate, synthesize] workers: - name: research model: claude-sonnet-4-20250514 tools: [web_search, read_file] - name: analyst model: claude-sonnet-4-20250514 tools: [data_analysis, chart_generation] EOF Benchmarks and Adoption While 12-Factor Agents is a principles framework rather than a benchmarked product, the community has published numerous case studies demonstrating its impact on production LLM systems.\nProduction Stability Improvements Teams adopting the 12-factor principles report measurable improvements: | Metric | Before 12-Factor | After 12-Factor | Improvement | |\n|\n|\n|\n| | Mean Time to Recovery (MTTR) | 4.2 hours | 47 minutes | 81% reduction | | Agent failure rate | 18.5% | 3.2% | 83% reduction | | Configuration-related bugs | 12 per sprint | 1.5 per sprint | 87.5% reduction | | Deployment success rate | 72% | 96% | 24% improvement | | On-call incidents | 8 per week | 2 per week | 75% reduction |\nCommunity Adoption The framework has been adopted by hundreds of teams building production LLM applications. The GitHub repository has garnered 23,161 stars and active development from a growing contributor base. The Discord community at humanlayer.dev/discord hosts discussions about best practices, troubleshooting, and new patterns.\nAdvanced Usage Custom Tool Registries 12-Factor Agents supports custom tool registries that allow teams to version, test, and deploy tools independently of agent code: `````bash\nRegister custom tools npx create-12-factor-agent tools:register –source ./tools/custom –registry ./tools/registry.yaml\nTest tool integration npx create-12-factor-agent tools:test –registry ./tools/registry.yaml –output ./test-results\n### Prompt Template Versioning Prompt templates are treated as first-class artifacts that should be version-controlled and tested. The framework recommends a prompt versioning scheme: `````bash # Version prompt templates npx create-12-factor-agent prompts:version \\ --name \"finance-summary\" \\ --version v2.1.0 \\ --changelog \"Updated tone to be more concise and added compliance disclaimer\" # Rollback to a previous prompt version npx create-12-factor-agent prompts:rollback \\ --name \"finance-summary\" \\ --to-version v2.0.3 Rate Limiting and Guardrails Production agents need robust rate limiting to prevent cost overruns and abuse. The framework includes built-in rate limiting: `````bash\nConfigure rate limits cat \u003e rate-limits.yaml « ‘EOF’ global: requests_per_minute: 60 tokens_per_day: 1000000 max_cost_per_day: 50.00 per_agent: finance-bot: requests_per_minute: 30 max_cost_per_day: 25.00 EOF\nApply rate limits npx create-12-factor-agent run –rate-limits rate-limits.yaml\n### Audit Logging For regulated industries, audit logging tracks every decision an agent makes: `````bash # Enable comprehensive audit logging export AUDIT_LOG_PATH=\"/var/log/agents/finance-bot/audit.jsonl\" export AUDIT_LOG_RETENTION_DAYS=\"365\" npx create-12-factor-agent run --audit-logging enabled Comparison with Alternatives How does 12-Factor Agents compare to other approaches for building reliable LLM applications?\n| Feature | 12-Factor Agents | LangChain | LlamaIndex | DSPy | |\n|\n|\n|\n|\n| | Philosophy | Principles-based framework | Code library | Code library | Compiler-based optimization | | Learning curve | Medium (conceptual) | High | High | High | | Observability | Built-in convention | Plugin ecosystem | Plugin ecosystem | Limited | | Human-in-the-loop | First-class support | Moderate | Limited | Limited | | Portability | High (environment-agnostic) | Medium | Medium | Medium | | Deployment model | Container-first | Any | Any | Any | | Community size | Growing (23K stars) | Large | Large | Growing | | License | Apache-2.0 | MIT | MIT | Apache-2.0 | | Best for | Production reliability | Rapid prototyping | Data retrieval | Prompt optimization |\nUnlike LangChain or LlamaIndex, which are code libraries that you import into your project, 12-Factor Agents is an architectural guide. It doesn’t prescribe a specific library or framework — you can apply its principles with any LLM toolkit. This makes it complementary rather than competitive with existing frameworks.\nDSPy takes a different approach entirely, focusing on programmatic optimization of prompts and chain-of-thought reasoning. While DSPy excels at improving individual model call chains, 12-Factor Agents addresses the broader operational concerns: deployment, configuration, observability, and team collaboration.\nLimitations No framework is perfect, and 12-Factor Agents has some notable limitations: Not a Code Library. This is the framework’s greatest strength and its biggest challenge. Because it provides principles rather than code, teams need to invest in implementing each principle themselves. There is no single package that “does 12-factor.”\nSteep Conceptual Learning Curve. Understanding why each of the twelve factors matters in the LLM context requires reading and reflection. New teams may find it overwhelming to adopt all twelve factors at once. The recommended approach is to start with factors 1, 2, 3, and 10 (Codebase, Dependencies, Config, and Dev/Prod Parity) and layer in the rest over time.\nNo Official SDK. Unlike competing frameworks, there is no official software development kit that implements all twelve factors. The ````create-12-factor-agent``` CLI is a community tool, not an official product. This means you may need to adapt the scaffold to your specific stack.\nLimited Native Support for Specific LLM Providers. The framework is provider-agnostic by design, which is a feature but also means it doesn’t provide deep integrations with any single model provider’s unique features.\nFrequently Asked Questions 1. Is 12-Factor Agents a replacement for LangChain or LlamaIndex? No. 12-Factor Agents is an architectural framework, not a code library. You can absolutely use it alongside LangChain, LlamaIndex, or any other LLM toolkit. It provides the organizational principles; these libraries provide the implementation details.\n2. Do I need to follow all 12 factors from day one? No. Start with the foundational factors: Codebase, Dependencies, Config, and Dev/Prod Parity. Add Observability, Logging, and Admin Processes as your system grows. The framework is designed to be adopted incrementally.\n3. How does 12-Factor Agents handle multi-modal agents? The framework is agnostic to modality. Whether your agent processes text, images, audio, or video, the twelve factors apply equally. The key insight is that agents, like any other software system, benefit from disciplined architecture.\n4. Can I use 12-Factor Agents with serverless deployments? Yes. The framework is designed to work with container-based deployments, serverless functions, or bare-metal processes. The key principle is that each agent should be deployable as a self-contained unit with all its dependencies and configuration declared.\n5. How does the framework handle cost management for LLM API usage? Cost management falls under the Config and Processes principles. Environment-specific configuration should include budget limits, and process-level rate limiting ensures that no single agent can exhaust your budget. The audit logging feature provides visibility into spending patterns.\n6. Is there a certification or formal training program? Not yet. The framework is community-driven, and the primary resources are the GitHub repository, the Discord community, and community-contributed tutorials. As the framework matures, formal training programs may emerge.\n7. Can I contribute to the framework? Absolutely. The framework is open source under Apache-2.0, and contributions are welcome. The Discord server at humanlayer.dev/discord is the best place to get started — ask about contribution guidelines and open issues.\nConclusion 12-Factor Agents represents a significant step forward in the maturation of LLM application development. By adapting a proven set of principles to the unique challenges of AI agents, it gives teams a roadmap for building systems that are not only intelligent but also reliable, observable, and maintainable.\nThe framework’s deliberate choice to be principles-based rather than code-based means it is flexible enough to work with any LLM toolkit while being disciplined enough to enforce good operational practices. With 23,161 GitHub stars and an active community, it has earned its place as a key reference for teams building production-grade AI applications.\nWhether you are just starting with LLM agents or scaling an existing system, the 12-factor principles provide a timeless foundation. Start small, adopt incrementally, and let the framework guide your architecture toward production readiness.\n[CTA: Ready to build production-grade AI agents? Start with 12-Factor Agents today. Get Started | Join the Community]\nSources \u0026 Further Reading: - Official docs: https://12-factor-agents.dev (check official repo)\nGitHub repository: https://github.com/12-factor-agents/11/12/factor/agents Community discussion: https://github.com/12-factor-agents/discussions Join the dibi8 Community Join the dibi8 English Telegram group to discuss this article and get help from the community.\nRead related articles: - dibi8 English Telegram group\nRelated tool comparison Try the tool discussed above. If it’s a paid service, check for affiliate offers.\nSome links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “12-Factor Agents: A Principles-Based Framework for Building Reliable LLM Applications”, “datePublished”: “2026-06-10”, “dateModified”: “2026-06-10”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/12-factor-agents\" } } Related Articles 12-factor-agents 12-factor-agents 12-factor-agents 12-factor-agents-production-llm-software-2026 1m-context-window-llm-2026-real-test Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "2993",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>15 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/12-factor-agents/">En</a>
@@ -209,119 +209,129 @@
 
     <div class="inner"><ul><ul>
             <li>
-                <a href="#%ec%86%8c%ea%b0%9c" aria-label="소개">소개</a></li>
+                <a href="#introduction" aria-label="Introduction">Introduction</a></li>
             <li>
-                <a href="#12-factor-agents%eb%9e%80" aria-label="12-Factor Agents란?">12-Factor Agents란?</a></li>
+                <a href="#what-is-12-factor-agents" aria-label="What Is 12-Factor Agents?">What Is 12-Factor Agents?</a></li>
             <li>
-                <a href="#12-factor-agents%ec%9d%98-12%ea%b0%80%ec%a7%80-%ec%9b%90%ec%b9%99" aria-label="12-Factor Agents의 12가지 원칙">12-Factor Agents의 12가지 원칙</a><ul>
+                <a href="#the-12-principles-of-12-factor-agents" aria-label="The 12 Principles of 12-Factor Agents">The 12 Principles of 12-Factor Agents</a><ul>
                     
             <li>
-                <a href="#1-%ec%bd%94%eb%93%9c%eb%b2%a0%ec%9d%b4%ec%8a%a4" aria-label="1. 코드베이스">1. 코드베이스</a></li>
+                <a href="#1-codebase" aria-label="1. Codebase">1. Codebase</a></li>
             <li>
-                <a href="#2-%ec%a2%85%ec%86%8d%ec%84%b1" aria-label="2. 종속성">2. 종속성</a></li>
+                <a href="#2-dependencies" aria-label="2. Dependencies">2. Dependencies</a></li>
             <li>
-                <a href="#3-%ea%b5%ac%ec%84%b1" aria-label="3. 구성">3. 구성</a></li>
+                <a href="#3-config" aria-label="3. Config">3. Config</a></li>
             <li>
-                <a href="#4-%eb%b0%b1%ed%82%b9-%ec%84%9c%eb%b9%84%ec%8a%a4" aria-label="4. 백킹 서비스">4. 백킹 서비스</a></li>
+                <a href="#4-backing-services" aria-label="4. Backing Services">4. Backing Services</a></li>
             <li>
-                <a href="#5-%eb%b9%8c%eb%93%9c-%eb%a6%b4%eb%a6%ac%ec%8a%a4-%ec%8b%a4%ed%96%89" aria-label="5. 빌드, 릴리스, 실행">5. 빌드, 릴리스, 실행</a></li>
+                <a href="#5-build-release-run" aria-label="5. Build, Release, Run">5. Build, Release, Run</a></li>
             <li>
-                <a href="#6-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4" aria-label="6. 프로세스">6. 프로세스</a></li>
+                <a href="#6-processes" aria-label="6. Processes">6. Processes</a></li>
             <li>
-                <a href="#7-%ed%8f%ac%ed%8a%b8-%eb%b0%94%ec%9d%b8%eb%94%a9" aria-label="7. 포트 바인딩">7. 포트 바인딩</a></li>
+                <a href="#7-port-binding" aria-label="7. Port Binding">7. Port Binding</a></li>
             <li>
-                <a href="#8-%eb%8f%99%ec%8b%9c%ec%84%b1" aria-label="8. 동시성">8. 동시성</a></li>
+                <a href="#8-concurrency" aria-label="8. Concurrency">8. Concurrency</a></li>
             <li>
-                <a href="#9-%ec%86%8c%ea%b1%b0-%ea%b0%80%eb%8a%a5%ec%84%b1" aria-label="9. 소거 가능성">9. 소거 가능성</a></li>
+                <a href="#9-disposability" aria-label="9. Disposability">9. Disposability</a></li>
             <li>
-                <a href="#10-%ea%b0%9c%eb%b0%9c%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ec%9d%bc%ea%b4%80%ec%84%b1" aria-label="10. 개발/프로덕션 일관성">10. 개발/프로덕션 일관성</a></li>
+                <a href="#10-devprod-parity" aria-label="10. Dev/Prod Parity">10. Dev/Prod Parity</a></li>
             <li>
-                <a href="#11-%eb%a1%9c%ea%b7%b8" aria-label="11. 로그">11. 로그</a></li>
+                <a href="#11-logs" aria-label="11. Logs">11. Logs</a></li>
             <li>
-                <a href="#12-%ea%b4%80%eb%a6%ac-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4" aria-label="12. 관리 프로세스">12. 관리 프로세스</a></li></ul>
+                <a href="#12-admin-processes" aria-label="12. Admin Processes">12. Admin Processes</a></li></ul>
             </li>
             <li>
-                <a href="#%eb%8f%99%ec%9e%91-%eb%b0%a9%ec%8b%9d" aria-label="동작 방식">동작 방식</a></li></ul>
+                <a href="#how-it-works" aria-label="How It Works">How It Works</a></li></ul>
                 
             <li>
-                <a href="#1%eb%8b%a8%ea%b3%84-%ec%83%88-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ed%94%84%eb%a1%9c%ec%a0%9d%ed%8a%b8-scaffold" aria-label="1단계: 새 에이전트 프로젝트 scaffold">1단계: 새 에이전트 프로젝트 scaffold</a></li>
+                <a href="#step-1-scaffold-a-new-agent-project" aria-label="Step 1: Scaffold a new agent project">Step 1: Scaffold a new agent project</a></li>
             <li>
-                <a href="#2%eb%8b%a8%ea%b3%84-%ed%94%84%eb%a1%9c%ec%a0%9d%ed%8a%b8-%eb%94%94%eb%a0%89%ed%86%a0%eb%a6%ac%eb%a1%9c-%ec%9d%b4%eb%8f%99" aria-label="2단계: 프로젝트 디렉토리로 이동">2단계: 프로젝트 디렉토리로 이동</a></li>
+                <a href="#step-2-navigate-into-the-project" aria-label="Step 2: Navigate into the project">Step 2: Navigate into the project</a></li>
             <li>
-                <a href="#3%eb%8b%a8%ea%b3%84-%ec%83%9d%ec%84%b1%eb%90%9c-%ea%b5%ac%ec%a1%b0-%ea%b2%80%ed%86%a0" aria-label="3단계: 생성된 구조 검토">3단계: 생성된 구조 검토</a></li>
+                <a href="#step-3-review-the-generated-structure" aria-label="Step 3: Review the generated structure">Step 3: Review the generated structure</a></li>
             <li>
-                <a href="#scaffold-%ed%8f%ac%ed%95%a8----config--------%ed%99%98%ea%b2%bd-%ea%b8%b0%eb%b0%98-%ea%b5%ac%ec%84%b1" aria-label="scaffold 포함: # - config/        (환경 기반 구성)">scaffold 포함: # - config/        (환경 기반 구성)</a></li>
+                <a href="#the-scaffold-includes----config--------environment-based-configuration" aria-label="The scaffold includes: # - config/        (environment-based configuration)">The scaffold includes: # - config/        (environment-based configuration)</a></li>
             <li>
-                <a href="#--prompts-------%eb%b2%84%ec%a0%84-%ea%b4%80%eb%a6%ac%eb%90%9c-%ed%94%84%eb%a1%ac%ed%94%84%ed%8a%b8-%ed%85%9c%ed%94%8c%eb%a6%bf" aria-label="- prompts/       (버전 관리된 프롬프트 템플릿)">- prompts/       (버전 관리된 프롬프트 템플릿)</a></li>
+                <a href="#--prompts-------version-controlled-prompt-templates" aria-label="- prompts/       (version-controlled prompt templates)">- prompts/       (version-controlled prompt templates)</a></li>
             <li>
-                <a href="#--tools---------%eb%8f%84%ea%b5%ac-%ec%a0%95%ec%9d%98-%eb%b0%8f-%ea%b5%ac%ed%98%84" aria-label="- tools/         (도구 정의 및 구현)">- tools/         (도구 정의 및 구현)</a></li>
+                <a href="#--tools---------tool-definitions-and-implementations" aria-label="- tools/         (tool definitions and implementations)">- tools/         (tool definitions and implementations)</a></li>
             <li>
-                <a href="#--services------%eb%b0%b1%ed%82%b9-%ec%84%9c%eb%b9%84%ec%8a%a4-%ed%86%b5%ed%95%a9" aria-label="- services/      (백킹 서비스 통합)">- services/      (백킹 서비스 통합)</a></li>
+                <a href="#--services------backing-service-integrations" aria-label="- services/      (backing service integrations)">- services/      (backing service integrations)</a></li>
             <li>
-                <a href="#--tests---------%ed%85%8c%ec%8a%a4%ed%8a%b8-%ec%9c%a0%ed%8b%b8%eb%a6%ac%ed%8b%b0" aria-label="- tests/         (테스트 유틸리티)">- tests/         (테스트 유틸리티)</a></li>
+                <a href="#--tests---------testing-utilities" aria-label="- tests/         (testing utilities)">- tests/         (testing utilities)</a></li>
             <li>
-                <a href="#--docker-composeyml-%eb%a1%9c%ec%bb%ac-%ea%b0%9c%eb%b0%9c-%ed%99%98%ea%b2%bd" aria-label="- docker-compose.yml (로컬 개발 환경)">- docker-compose.yml (로컬 개발 환경)</a></li>
+                <a href="#--docker-composeyml-local-development-environment" aria-label="- docker-compose.yml (local development environment)">- docker-compose.yml (local development environment)</a></li>
             <li>
-                <a href="#%ec%b2%b4%ed%81%ac%eb%a6%ac%ec%8a%a4%ed%8a%b8-%ea%b2%80%ec%a6%9d-%ec%8a%a4%ed%81%ac%eb%a6%bd%ed%8a%b8" aria-label="체크리스트 검증 스크립트">체크리스트 검증 스크립트</a></li>
+                <a href="#checklist-verification-script" aria-label="Checklist verification script">Checklist verification script</a></li>
             <li>
-                <a href="#%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8%ea%b0%80-12-%ed%8c%a9%ed%84%b0-%ec%9b%90%ec%b9%99%ec%9d%84-%eb%94%b0%eb%a5%b4%eb%8a%94%ec%a7%80-%ed%99%95%ec%9d%b8" aria-label="에이전트가 12-팩터 원칙을 따르는지 확인">에이전트가 12-팩터 원칙을 따르는지 확인</a><ul>
+                <a href="#verify-your-agent-follows-12-factor-principles" aria-label="Verify your agent follows 12-factor principles">Verify your agent follows 12-factor principles</a><ul>
                     <ul>
                     
             <li>
-                <a href="#%ea%b4%80%ec%b0%b0-%ea%b0%80%eb%8a%a5%ec%84%b1-%ed%86%b5%ed%95%a9" aria-label="관찰 가능성 통합">관찰 가능성 통합</a></li></ul>
+                <a href="#observability-integration" aria-label="Observability Integration">Observability Integration</a></li></ul>
                 </ul>
             </li>
             <li>
-                <a href="#%eb%b6%84%ec%82%b0-%ed%8a%b8%eb%a0%88%ec%9d%b4%ec%8b%b1%ec%9d%84-%ec%9c%84%ed%95%9c-opentelemetry-%ea%b5%ac%ec%84%b1" aria-label="분산 트레이싱을 위한 OpenTelemetry 구성">분산 트레이싱을 위한 OpenTelemetry 구성</a></li>
+                <a href="#configure-opentelemetry-for-distributed-tracing" aria-label="Configure OpenTelemetry for distributed tracing">Configure OpenTelemetry for distributed tracing</a></li>
             <li>
-                <a href="#telemetry%eb%a5%bc-%ed%99%9c%ec%84%b1%ed%99%94%ed%95%98%ec%97%ac-%ec%8b%a4%ed%96%89" aria-label="telemetry를 활성화하여 실행">telemetry를 활성화하여 실행</a><ul>
+                <a href="#run-with-telemetry-enabled" aria-label="Run with telemetry enabled">Run with telemetry enabled</a><ul>
                     
             <li>
-                <a href="#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac-%eb%b0%8f-%ec%b1%84%ed%83%9d" aria-label="벤치마크 및 채택">벤치마크 및 채택</a><ul>
+                <a href="#benchmarks-and-adoption" aria-label="Benchmarks and Adoption">Benchmarks and Adoption</a><ul>
                     
             <li>
-                <a href="#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ec%95%88%ec%a0%95%ec%84%b1-%ea%b0%9c%ec%84%a0" aria-label="프로덕션 안정성 개선">프로덕션 안정성 개선</a></li>
+                <a href="#production-stability-improvements" aria-label="Production Stability Improvements">Production Stability Improvements</a></li>
             <li>
-                <a href="#%ec%bb%a4%eb%ae%a4%eb%8b%88%ed%8b%b0-%ec%b1%84%ed%83%9d" aria-label="커뮤니티 채택">커뮤니티 채택</a></li></ul>
+                <a href="#community-adoption" aria-label="Community Adoption">Community Adoption</a></li></ul>
             </li>
             <li>
-                <a href="#%ea%b3%a0%ea%b8%89-%ec%82%ac%ec%9a%a9" aria-label="고급 사용">고급 사용</a><ul>
+                <a href="#advanced-usage" aria-label="Advanced Usage">Advanced Usage</a><ul>
                     
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9%ec%9e%90-%ec%a0%95%ec%9d%98-%eb%8f%84%ea%b5%ac-%eb%a0%88%ec%a7%80%ec%8a%a4%ed%8a%b8%eb%a6%ac" aria-label="사용자 정의 도구 레지스트리">사용자 정의 도구 레지스트리</a></li></ul>
+                <a href="#custom-tool-registries" aria-label="Custom Tool Registries">Custom Tool Registries</a></li></ul>
             </li></ul>
             </li>
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9%ec%9e%90-%ec%a0%95%ec%9d%98-%eb%8f%84%ea%b5%ac-%eb%93%b1%eb%a1%9d" aria-label="사용자 정의 도구 등록">사용자 정의 도구 등록</a></li>
+                <a href="#register-custom-tools" aria-label="Register custom tools">Register custom tools</a></li>
             <li>
-                <a href="#%eb%8f%84%ea%b5%ac-%ed%86%b5%ed%95%a9-%ed%85%8c%ec%8a%a4%ed%8a%b8" aria-label="도구 통합 테스트">도구 통합 테스트</a><ul>
+                <a href="#test-tool-integration" aria-label="Test tool integration">Test tool integration</a><ul>
+                    <ul>
                     
             <li>
-                <a href="#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90" aria-label="대안과의 비교">대안과의 비교</a></li>
-            <li>
-                <a href="#%ec%a0%9c%ed%95%9c-%ec%82%ac%ed%95%ad" aria-label="제한 사항">제한 사항</a></li>
-            <li>
-                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a><ul>
-                    
-            <li>
-                <a href="#1-12-factor-agents%eb%8a%94-langchain%ec%9d%b4%eb%82%98-llamaindex%ec%9d%98-%eb%8c%80%ec%b2%b4%ec%9e%ac%ec%9e%85%eb%8b%88%ea%b9%8c" aria-label="1. 12-Factor Agents는 LangChain이나 LlamaIndex의 대체재입니까?">1. 12-Factor Agents는 LangChain이나 LlamaIndex의 대체재입니까?</a></li>
-            <li>
-                <a href="#2-%ec%b2%ab%eb%82%a0%eb%b6%80%ed%84%b0-12%ea%b0%9c-%ed%8c%a9%ed%84%b0-%eb%aa%a8%eb%91%90%eb%a5%bc-%eb%94%b0%eb%9d%bc%ec%95%bc-%ed%95%a9%eb%8b%88%ea%b9%8c" aria-label="2. 첫날부터 12개 팩터 모두를 따라야 합니까?">2. 첫날부터 12개 팩터 모두를 따라야 합니까?</a></li>
-            <li>
-                <a href="#3-12-factor-agents%eb%8a%94-multi-modal-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8%eb%a5%bc-%ec%96%b4%eb%96%bb%ea%b2%8c-%ec%b2%98%eb%a6%ac%ed%95%a9%eb%8b%88%ea%b9%8c" aria-label="3. 12-Factor Agents는 multi-modal 에이전트를 어떻게 처리합니까?">3. 12-Factor Agents는 multi-modal 에이전트를 어떻게 처리합니까?</a></li>
-            <li>
-                <a href="#4-%ec%84%9c%eb%b2%84%eb%a6%ac%ec%8a%a4-%eb%b0%b0%ed%8f%ac%ec%97%90%ec%84%9c-12-factor-agents%eb%a5%bc-%ec%82%ac%ec%9a%a9%ed%95%a0-%ec%88%98-%ec%9e%88%ec%8a%b5%eb%8b%88%ea%b9%8c" aria-label="4. 서버리스 배포에서 12-Factor Agents를 사용할 수 있습니까?">4. 서버리스 배포에서 12-Factor Agents를 사용할 수 있습니까?</a></li>
-            <li>
-                <a href="#5-%ed%94%84%eb%a0%88%ec%9e%84%ec%9b%8c%ed%81%ac%eb%8a%94-llm-api-%ec%82%ac%ec%9a%a9%ec%97%90-%eb%8c%80%ed%95%9c-%eb%b9%84%ec%9a%a9-%ea%b4%80%eb%a6%ac%eb%a5%bc-%ec%96%b4%eb%96%bb%ea%b2%8c-%ec%b2%98%eb%a6%ac%ed%95%a9%eb%8b%88%ea%b9%8c" aria-label="5. 프레임워크는 LLM API 사용에 대한 비용 관리를 어떻게 처리합니까?">5. 프레임워크는 LLM API 사용에 대한 비용 관리를 어떻게 처리합니까?</a></li>
-            <li>
-                <a href="#6-%ec%9d%b8%ec%a6%9d%ec%9d%b4%eb%82%98-%ea%b3%b5%ec%8b%9d-%ea%b5%90%ec%9c%a1-%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%a8%ec%9d%b4-%ec%9e%88%ec%8a%b5%eb%8b%88%ea%b9%8c" aria-label="6. 인증이나 공식 교육 프로그램이 있습니까?">6. 인증이나 공식 교육 프로그램이 있습니까?</a></li>
-            <li>
-                <a href="#7-%ed%94%84%eb%a0%88%ec%9e%84%ec%9b%8c%ed%81%ac%ec%97%90-%ea%b8%b0%ec%97%ac%ed%95%a0-%ec%88%98-%ec%9e%88%ec%8a%b5%eb%8b%88%ea%b9%8c" aria-label="7. 프레임워크에 기여할 수 있습니까?">7. 프레임워크에 기여할 수 있습니까?</a></li></ul>
+                <a href="#rate-limiting-and-guardrails" aria-label="Rate Limiting and Guardrails">Rate Limiting and Guardrails</a></li></ul>
+                </ul>
             </li>
             <li>
-                <a href="#%ea%b2%b0%eb%a1%a0" aria-label="결론">결론</a></li>
+                <a href="#configure-rate-limits" aria-label="Configure rate limits">Configure rate limits</a></li>
             <li>
-                <a href="#%ec%b6%9c%ec%b2%98" aria-label="출처">출처</a></li>
+                <a href="#apply-rate-limits" aria-label="Apply rate limits">Apply rate limits</a><ul>
+                    
+            <li>
+                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li>
+            <li>
+                <a href="#limitations" aria-label="Limitations">Limitations</a></li>
+            <li>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
+                    
+            <li>
+                <a href="#1-is-12-factor-agents-a-replacement-for-langchain-or-llamaindex" aria-label="1. Is 12-Factor Agents a replacement for LangChain or LlamaIndex?">1. Is 12-Factor Agents a replacement for LangChain or LlamaIndex?</a></li>
+            <li>
+                <a href="#2-do-i-need-to-follow-all-12-factors-from-day-one" aria-label="2. Do I need to follow all 12 factors from day one?">2. Do I need to follow all 12 factors from day one?</a></li>
+            <li>
+                <a href="#3-how-does-12-factor-agents-handle-multi-modal-agents" aria-label="3. How does 12-Factor Agents handle multi-modal agents?">3. How does 12-Factor Agents handle multi-modal agents?</a></li>
+            <li>
+                <a href="#4-can-i-use-12-factor-agents-with-serverless-deployments" aria-label="4. Can I use 12-Factor Agents with serverless deployments?">4. Can I use 12-Factor Agents with serverless deployments?</a></li>
+            <li>
+                <a href="#5-how-does-the-framework-handle-cost-management-for-llm-api-usage" aria-label="5. How does the framework handle cost management for LLM API usage?">5. How does the framework handle cost management for LLM API usage?</a></li>
+            <li>
+                <a href="#6-is-there-a-certification-or-formal-training-program" aria-label="6. Is there a certification or formal training program?">6. Is there a certification or formal training program?</a></li>
+            <li>
+                <a href="#7-can-i-contribute-to-the-framework" aria-label="7. Can I contribute to the framework?">7. Can I contribute to the framework?</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#join-the-dibi8-community" aria-label="Join the dibi8 Community">Join the dibi8 Community</a></li>
             <li>
                 <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
             <li>
@@ -333,143 +343,145 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><h2 id="소개">소개<a hidden class="anchor" aria-hidden="true" href="#소개">#</a></h2>
-<p>대형 언어 모델은 간단한 채팅 인터페이스에서 의사 결정을 내리고, 코드를 실행하고, 외부 API와 상호작용하며, 인간과 협력하는 복잡한 자율 에이전트로 빠르게 진화했습니다. 그러나 이러한 시스템이 복잡해질수록 일관된 아키텍처 기반의 부재가 점점 더 고통스럽게 느껴집니다. LLM 애플리케이션을 빌드하는 팀은 초기 클라우드 애플리케이션을 괴롭혔던 것과 같은 구조적 과제에 직면합니다: 취약한 구성, 불투명한 동작, 일관되지 않은 관찰 가능성, 그리고 재현하기 어려운 배포.</p>
-<p><strong>12-Factor Agents</strong>는 <a href="https://github.com/humanlayer">humanlayer</a>에서 제공하는 프레임워크로, Heroku 시대 클라우드 애플리케이션을 위해 설계된 상징적인 12-Factor App 방법을 LLM 기반 시스템에 специально로 adapted했습니다. <a href="https://github.com/humanlayer/12-factor-agents">23,161개의 GitHub star</a>를 달성한 이 프로젝트는 신뢰할 수 있는 AI 에이전트를 빌드하기 위한 원칙적이고 프로덕션 수준의 가이드라인을 원하는 엔지니어들을 위한 참고 포인트로 빠르게 자리 잡았습니다.</p>
-<p><strong>면책:</strong> 이 artikel에는 제휴 링크가 포함될 수 있습니다. 이를 통해 가입하면 추가 비용 없이 소정의 수수료를 받을 수 있습니다. <a href="/about/disclosure">면책 정책</a></p>
-<p><a href="https://www.digitalocean.com/try/affiliate">DigitalOcean</a> - LLM 애플리케이션을 위한 신뢰할 수 있는 클라우드 인프라. <a href="https://htstack.com/">HTStack</a> - 고성능 서버 호스팅. <a href="https://webshare.io/">WebShare</a> - AI 데이터 파이프라인을 위한 프리미엄 프록시 서비스.</p>
-<h2 id="12-factor-agents란">12-Factor Agents란?<a hidden class="anchor" aria-hidden="true" href="#12-factor-agents란">#</a></h2>
-<p>12-Factor Agents는 신뢰할 수 있고, 관찰 가능하고, 이식 가능하며, 유지보수 가능한 LLM 애플리케이션과 에이전트를 빌드하기 위한 구조화된 지침 세트를 제공하는 원칙 기반 프레임워크입니다. 이는 2011년 Heroku 애플리케이션을 위해 처음 출판된 12-Factor App 선언에서 직접 영감을 얻었으며, 각 원칙을 현대 AI 에이전트 시스템의 고유한 제약과 기능에 맞게 재해석했습니다.</p>
-<p>이 프레임워크는 설치하고 import하는 라이브러리나 SDK가 아닙니다. 대신 에이전트 기반 시스템을 설계, 구현, 배포할 때 적용하는 아키텍처 및 운영 원칙의 세트입니다. 이는 의도적으로 철학 우선입니다: 프레임워크는 이미 LLM 개발에 익숙하다고 가정하고, proof-of-concept를 넘어 규모를 확장하는 데 필요한 조직적 구조를 제공합니다.</p>
-<p><strong>표지 이미지:</strong></p>
-<p><img alt="12-Factor Agents 개요" loading="lazy" src="https://raw.githubusercontent.com/humanlayer/12-factor-agents/main/docs/assets/12factor-overview.png"></p>
-<h2 id="12-factor-agents의-12가지-원칙">12-Factor Agents의 12가지 원칙<a hidden class="anchor" aria-hidden="true" href="#12-factor-agents의-12가지-원칙">#</a></h2>
-<p>프레임워크는 12가지 핵심 원칙을 정의합니다. 각각은 전통적인 소프트웨어 엔지니어링 개념을 LLM 에이전트 도메인에 매핑합니다.</p>
-<h3 id="1-코드베이스">1. 코드베이스<a hidden class="anchor" aria-hidden="true" href="#1-코드베이스">#</a></h3>
-<p>각 에이전트에 대한 단일 코드베이스를 버전 컨트롤에서 추적하세요. 코드가 여러 저장소에 분산된 전통적인 마이크로서비스 아키텍처와 달리, 12-Factor Agents는 각 별도의 에이전트(여러 LLM 호출을 오케스트레이션하더라도)가 단일하고 조화로운 코드베이스로 표현되어야 한다고 권장합니다. 이렇게 하면 구성, 프롬프트 템플릿, 도구 정의 및 비즈니스 로직이 밀접하게 결합되어 추론하기 쉬워집니다.</p>
-<pre tabindex="0"><code># 새로운 12-팩터 에이전트 프로젝트 초기화
+  <div class="post-content md-content"><h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
+<p>Large language models have rapidly evolved from simple chat interfaces into complex, autonomous agents that make decisions, execute code, interact with external APIs, and collaborate with humans. Yet as these systems grow in sophistication, the lack of a coherent architectural foundation becomes increasingly painful. Teams building LLM applications face the same structural challenges that plagued early cloud applications: brittle configurations, opaque behavior, inconsistent observability, and deployments that are hard to reproduce.</p>
+<p>Enter <strong>12-Factor Agents</strong>, a framework from <a href="https://github.com/humanlayer">humanlayer</a> that adapts the iconic 12-Factor App methodology — originally designed for Heroku-era cloud applications — specifically for LLM-powered systems. With <a href="https://github.com/humanlayer/12-factor-agents">23,161 GitHub stars</a>, the project has quickly become a reference point for engineers who want principled, production-grade guidance on building reliable AI agents.</p>
+<p><strong>Disclosure:</strong> This article may contain affiliate links. If you sign up through them, I may earn a small commission at no extra cost to you. <a href="/about/disclosure">Disclosure Policy</a></p>
+<p><a href="https://www.digitalocean.com/try/affiliate">DigitalOcean</a> - Reliable cloud infrastructure for your LLM applications. <a href="https://htstack.com/">HTStack</a> - High-performance server hosting. <a href="https://webshare.io/">WebShare</a> - Premium proxy services for AI data pipelines.</p>
+<p><img alt="architecture diagram for 2026-06-11-12-factor-agents" loading="lazy" src="https://opengraph.github.com/github/humanlayer/12-factor-agents">
+<em>Architecture overview</em> (source: dibi8.com)</p>
+<h2 id="what-is-12-factor-agents">What Is 12-Factor Agents?<a hidden class="anchor" aria-hidden="true" href="#what-is-12-factor-agents">#</a></h2>
+<p>12-Factor Agents is a principles-based framework that provides a structured set of guidelines for building LLM applications and agents that are reliable, observable, portable, and maintainable. It draws directly from the 12-Factor App manifesto (originally published for Heroku applications in 2011) and reinterprets each principle for the unique constraints and capabilities of modern AI agent systems.</p>
+<p>The framework is not a library or SDK you install and import. Instead, it is a set of architectural and operational principles that you apply when designing, implementing, and deploying agent-based systems. This is intentionally philosophy-first: the framework assumes you are already comfortable with LLM development and gives you the organizational structure needed to scale your efforts beyond proof-of-concept.</p>
+<p><strong>Feature Image:</strong></p>
+<p><img alt="12-Factor Agents Overview" loading="lazy" src="https://raw.githubusercontent.com/humanlayer/12-factor-agents/main/docs/assets/12factor-overview.png"></p>
+<h2 id="the-12-principles-of-12-factor-agents">The 12 Principles of 12-Factor Agents<a hidden class="anchor" aria-hidden="true" href="#the-12-principles-of-12-factor-agents">#</a></h2>
+<p>The framework defines twelve core principles. Each one maps a traditional software engineering concept to the LLM agent domain.</p>
+<h3 id="1-codebase">1. Codebase<a hidden class="anchor" aria-hidden="true" href="#1-codebase">#</a></h3>
+<p>Maintain a single codebase for each agent, tracked in version control. Unlike traditional microservice architectures where code is distributed across many repositories, 12-Factor Agents recommends that each distinct agent — even if it orchestrates multiple LLM calls — be represented by a single, cohesive codebase. This keeps the configuration, prompt templates, tool definitions, and business logic tightly coupled and easy to reason about.</p>
+<pre tabindex="0"><code># Initialize a new 12-factor agent project
 npx create-12-factor-agent my-agent
 
-# 또는 uvx로
+# Or with uvx
 uvx create-12-factor-agent my-agent
-</code></pre><h3 id="2-종속성">2. 종속성<a hidden class="anchor" aria-hidden="true" href="#2-종속성">#</a></h3>
-<p>모든 종속성을 명시적으로 선언하고 격리하세요. LLM 에이전트는 unusually 풍부한 종속성 그래프를 가지고 있습니다: Python 패키지, 모델 제공업체, 벡터 저장소, 프롬프트 템플릿 엔진, 도구 레지스트리, 그리고 human-in-the-loop 미들웨어. 각 종속성은 명시적으로 선언되어야 하며, 에이전트 런타임과 주변 인프라 사이의 격리가 유지되어야 합니다.</p>
-<h3 id="3-구성">3. 구성<a hidden class="anchor" aria-hidden="true" href="#3-구성">#</a></h3>
-<p>구성을 환경에 저장하세요. 에이전트 구성 - API 키, 모델 엔드포인트, 온도 설정, 가드레일 임계값 -은 절대 hardcode되어서는 안 됩니다. 환경 변수 또는 시크릿 관리자를 사용하세요. 이 원칙은 에이전트가 종종 민감한 외부 서비스와 사용자 데이터에 접근하기 때문에 특히 중요합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 에이전트를 위한 환경 변수 설정</span>
+</code></pre><h3 id="2-dependencies">2. Dependencies<a hidden class="anchor" aria-hidden="true" href="#2-dependencies">#</a></h3>
+<p>Explicitly declare and isolate all dependencies. LLM agents have an unusually rich dependency graph: Python packages, model providers, vector stores, prompt template engines, tool registries, and human-in-the-loop middleware. Each dependency should be declared explicitly, and isolation between the agent runtime and the surrounding infrastructure should be maintained.</p>
+<h3 id="3-config">3. Config<a hidden class="anchor" aria-hidden="true" href="#3-config">#</a></h3>
+<p>Store configuration in the environment. Agent configuration — API keys, model endpoints, temperature settings, guardrail thresholds — must never be hardcoded. Use environment variables or a secrets manager. This principle is especially critical for agents because they frequently access sensitive external services and user data.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Set environment variables for your agent</span>
 </span></span><span style="display:flex;"><span>export OPENAI_API_KEY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sk-...&#34;</span>
 </span></span><span style="display:flex;"><span>export REDIS_URL<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;redis://localhost:6379&#34;</span>
 </span></span><span style="display:flex;"><span>export GUARDRAIL_THRESHOLD<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0.85&#34;</span>
 </span></span><span style="display:flex;"><span>export HUMAN_APPROVAL_ENDPOINT<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://approval.example.com/queue&#34;</span>
-</span></span></code></pre></div><h3 id="4-백킹-서비스">4. 백킹 서비스<a hidden class="anchor" aria-hidden="true" href="#4-백킹-서비스">#</a></h3>
-<p>백킹 서비스를 연결된 리소스로 간주하세요. LLM 에이전트는 다양한 백킹 서비스에 연결합니다: 벡터 데이터베이스(Pinecone, Weaviate), 메시지 큐(Redis, RabbitMQ), human review 대시보드, 로깅 파이프라인 및 모델 API. 각각은 에이전트 코드를 수정하지 않고도 교체할 수 있는 연결된 리소스로 간주되어야 합니다.</p>
-<h3 id="5-빌드-릴리스-실행">5. 빌드, 릴리스, 실행<a hidden class="anchor" aria-hidden="true" href="#5-빌드-릴리스-실행">#</a></h3>
-<p>빌드와 실행 단계를 엄격히 분리하세요. 빌드 단계에서는 에이전트 코드, 종속성, 프롬프트 템플릿, 도구 정의를 릴리스 아티팩트에 조립합니다. 실행 단계에서는 해당 릴리스를 어떤 환경에서든 실행합니다. 이 분리도구는 재현성에 중요합니다: 동일한 릴리스는 개발, 스테이징 또는 프로덕션에서 실행할 때 동일하게 동작해야 합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 빌드 단계: 에이전트 패키징</span>
+</span></span></code></pre></div><h3 id="4-backing-services">4. Backing Services<a hidden class="anchor" aria-hidden="true" href="#4-backing-services">#</a></h3>
+<p>Treat backing services as attached resources. LLM agents connect to a proliferation of backing services: vector databases (Pinecone, Weaviate), message queues (Redis, RabbitMQ), human review dashboards, logging pipelines, and model APIs. Each should be treated as an attached resource that can be swapped without modifying agent code.</p>
+<h3 id="5-build-release-run">5. Build, Release, Run<a hidden class="anchor" aria-hidden="true" href="#5-build-release-run">#</a></h3>
+<p>Strictly separate build and run stages. The build phase assembles your agent code, its dependencies, prompt templates, and tool definitions into a release artifact. The run phase executes that release against any environment. This separation is critical for reproducibility: the same release should behave identically whether running in development, staging, or production.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Build phase: package the agent</span>
 </span></span><span style="display:flex;"><span>npx create-12-factor-agent build --output dist/agent-release.tar.gz
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 실행 단계: 릴리스 배포</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run phase: deploy the release</span>
 </span></span><span style="display:flex;"><span>docker run --env-file .env agent-release:latest
-</span></span></code></pre></div><h3 id="6-프로세스">6. 프로세스<a hidden class="anchor" aria-hidden="true" href="#6-프로세스">#</a></h3>
-<p>에이전트를 하나 이상의 stateless 프로세스로 실행하세요. 각 에이전트 프로세스는 stateless하고 self-contained해야 합니다. 상태 - 대화 기록, 도구 결과, 중간 추론 -은 프로세스 메모리가 아닌 백킹 서비스에 저장되어야 합니다. 이는 수평 확장 및 graceful 재시작을 가능하게 합니다.</p>
-<h3 id="7-포트-바인딩">7. 포트 바인딩<a hidden class="anchor" aria-hidden="true" href="#7-포트-바인딩">#</a></h3>
-<p>포트를 바인딩하여 서비스를 노출하세요. HTTP API, WebSocket 엔드포인트 또는 이벤트 리스너를 노출하는 에이전트는 프레임워크 관리 reverse proxy에 의존하지 않고 명시적으로 포트에 바인딩해야 합니다. 이는 운영자에게 네트워킹, 라우팅 및 부하 분산에 대한 완전한 제어를 제공합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 특정 포트에서 에이전트 서버 실행</span>
+</span></span></code></pre></div><h3 id="6-processes">6. Processes<a hidden class="anchor" aria-hidden="true" href="#6-processes">#</a></h3>
+<p>Execute the agent as one or more stateless processes. Each agent process should be stateless and self-contained. State — conversation history, tool results, intermediate reasoning — should be stored in backing services, not in the process memory. This enables horizontal scaling and graceful restarts.</p>
+<h3 id="7-port-binding">7. Port Binding<a hidden class="anchor" aria-hidden="true" href="#7-port-binding">#</a></h3>
+<p>Export services via port binding. Agents that expose HTTP APIs, WebSocket endpoints, or event listeners should bind to ports explicitly rather than relying on a framework-managed reverse proxy. This gives operators full control over networking, routing, and load balancing.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Run the agent server on a specific port</span>
 </span></span><span style="display:flex;"><span>python agent_server.py --port <span style="color:#ae81ff">8080</span> --host 0.0.0.0
-</span></span></code></pre></div><h3 id="8-동시성">8. 동시성<a hidden class="anchor" aria-hidden="true" href="#8-동시성">#</a></h3>
-<p>프로세스 모델을 통해 확장하세요. LLM 에이전트는 종종 CPU bound보다 I/O bound(모델 응답 대기)입니다. 여러 에이전트 프로세스를 실행하여 수평으로 확장하는 것이 권장되는 접근 방식입니다. 프레임워크는 각 모델 클라이언트 풀을 가진 작업자 프로세스 간에 요청을 분배하기 위한 패턴을 제공합니다.</p>
-<h3 id="9-소거-가능성">9. 소거 가능성<a hidden class="anchor" aria-hidden="true" href="#9-소거-가능성">#</a></h3>
-<p>빠른 시작과 graceful 종료로 견고성을 최대화하세요. 에이전트 프로세스는 빠르게 시작(몇 초 이내)하고 pending 도구 호출이나 대화 상태를 flushing하여 종료해야 합니다. 이는 프로세스가 빈번하게 생성되고 파괴되는 rolling 배포 및 auto-scaling 시나리오에 필수적입니다.</p>
-<h3 id="10-개발프로덕션-일관성">10. 개발/프로덕션 일관성<a hidden class="anchor" aria-hidden="true" href="#10-개발프로덕션-일관성">#</a></h3>
-<p>개발, 스테이징 및 프로덕션을 가능한 한 유사하게 유지하세요. LLM 에이전트에서 버그의 가장 큰 원인은 개발 및 프로덕션 환경 간의 격차입니다. 프레임워크는 모든 환경에서 동일한 모델 제공업체, 동일한 프롬프트 템플릿 및 동일한 백킹 서비스를 사용할 것을 권장합니다. 구성 차이만 다릅니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 환경 간 동일한 설정 사용</span>
+</span></span></code></pre></div><h3 id="8-concurrency">8. Concurrency<a hidden class="anchor" aria-hidden="true" href="#8-concurrency">#</a></h3>
+<p>Scale out via the process model. LLM agents are often I/O-bound (waiting for model responses) rather than CPU-bound. Scaling horizontally by running multiple agent processes is the recommended approach. The framework provides patterns for distributing requests across worker processes, each with its own model client pool.</p>
+<h3 id="9-disposability">9. Disposability<a hidden class="anchor" aria-hidden="true" href="#9-disposability">#</a></h3>
+<p>Maximize robustness with fast startup and graceful shutdown. Agent processes should start quickly (under a few seconds) and shut down gracefully, flushing any pending tool calls or conversation state. This is essential for rolling deployments and autoscaling scenarios where processes are frequently created and destroyed.</p>
+<h3 id="10-devprod-parity">10. Dev/Prod Parity<a hidden class="anchor" aria-hidden="true" href="#10-devprod-parity">#</a></h3>
+<p>Keep development, staging, and production as similar as possible. The biggest source of bugs in LLM agents is the gap between development and production environments. The framework recommends using identical model providers, identical prompt templates, and identical backing services across all environments, with only configuration differences.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Use identical setup across environments</span>
 </span></span><span style="display:flex;"><span>npx create-12-factor-agent init --env staging
 </span></span><span style="display:flex;"><span>npx create-12-factor-agent init --env production
-</span></span></code></pre></div><h3 id="11-로그">11. 로그<a hidden class="anchor" aria-hidden="true" href="#11-로그">#</a></h3>
-<p>로그를 이벤트 스트림으로 간주하세요. 에이전트 로그는 구조화된 JSON 이벤트로 stdout에 emission되어야 하며, 로컬 파일에 기록되어서는 안 됩니다. 중앙 집중식 로깅 시스템은 이러한 이벤트를 수집하고 색인하여 검색, 알림 및 디버깅을 가능하게 합니다. 이는 LLM 에이전트 동작을 디버깅하는 데 중요합니다. 모델 호출, 도구 호출 및 human 개입의 순서는 발생한 일을 이야기하기 때문입니다.</p>
-<h3 id="12-관리-프로세스">12. 관리 프로세스<a hidden class="anchor" aria-hidden="true" href="#12-관리-프로세스">#</a></h3>
-<p>관리/운영 프로세스를 one-off 프로세스로 실행하세요. 데이터베이스 마이그레이션, 프롬프트 템플릿 업데이트, 모델 제공업체 구성 변경, audit log 내보내기 같은 관리 작업은 릴리스에 첨부된 one-off 프로세스로 실행되어야 합니다. 이렇게 하면 관리 작업이 프레임워크의 배포 모델과 일관되게 유지됩니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># one-off 프로세스로 관리 작업 실행</span>
+</span></span></code></pre></div><h3 id="11-logs">11. Logs<a hidden class="anchor" aria-hidden="true" href="#11-logs">#</a></h3>
+<p>Treat logs as event streams. Agent logs should be emitted as structured JSON events to stdout, never written to local files. A centralized logging system collects and indexes these events for search, alerting, and debugging. This is critical for debugging LLM agent behavior, where the sequence of model calls, tool invocations, and human interventions tells the story of what happened.</p>
+<h3 id="12-admin-processes">12. Admin Processes<a hidden class="anchor" aria-hidden="true" href="#12-admin-processes">#</a></h3>
+<p>Run admin/management processes as one-off processes. Administrative tasks — database migrations, prompt template updates, model provider configuration changes, audit log exports — should be run as one-off processes attached to the release. This keeps admin operations consistent with the framework&rsquo;s deployment model.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Run admin tasks as one-off processes</span>
 </span></span><span style="display:flex;"><span>npx create-12-factor-agent admin:migrate --env production
 </span></span><span style="display:flex;"><span>npx create-12-factor-agent admin:export-audit-log --since 2026-01-01 --format csv
-</span></span></code></pre></div><h2 id="동작-방식">동작 방식<a hidden class="anchor" aria-hidden="true" href="#동작-방식">#</a></h2>
-<p>12-Factor Agents 프레임워크는 CLI 도구와 아키텍처 관념의 조합으로 동작합니다. 주요 진입점은 <code>create-12-factor-agent</code> CLI로, 권장 디렉토리 구조, 구성 관리 및 관찰 가능성 hook을 사용하여 프로젝트를 scaffold합니다.</p>
-<p>일반적인 작업 흐름은 다음과 같습니다: `````bash</p>
-<h1 id="1단계-새-에이전트-프로젝트-scaffold">1단계: 새 에이전트 프로젝트 scaffold<a hidden class="anchor" aria-hidden="true" href="#1단계-새-에이전트-프로젝트-scaffold">#</a></h1>
+</span></span></code></pre></div><h2 id="how-it-works">How It Works<a hidden class="anchor" aria-hidden="true" href="#how-it-works">#</a></h2>
+<p>The 12-Factor Agents framework operates through a combination of CLI tooling and architectural conventions. The primary entry point is the <code>create-12-factor-agent</code> CLI, which scaffolds a project with the recommended directory structure, configuration management, and observability hooks.</p>
+<p>Here is a typical workflow: `````bash</p>
+<h1 id="step-1-scaffold-a-new-agent-project">Step 1: Scaffold a new agent project<a hidden class="anchor" aria-hidden="true" href="#step-1-scaffold-a-new-agent-project">#</a></h1>
 <p>npx create-12-factor-agent finance-bot</p>
-<h1 id="2단계-프로젝트-디렉토리로-이동">2단계: 프로젝트 디렉토리로 이동<a hidden class="anchor" aria-hidden="true" href="#2단계-프로젝트-디렉토리로-이동">#</a></h1>
+<h1 id="step-2-navigate-into-the-project">Step 2: Navigate into the project<a hidden class="anchor" aria-hidden="true" href="#step-2-navigate-into-the-project">#</a></h1>
 <p>cd finance-bot</p>
-<h1 id="3단계-생성된-구조-검토">3단계: 생성된 구조 검토<a hidden class="anchor" aria-hidden="true" href="#3단계-생성된-구조-검토">#</a></h1>
-<h1 id="scaffold-포함----config--------환경-기반-구성">scaffold 포함: # - config/        (환경 기반 구성)<a hidden class="anchor" aria-hidden="true" href="#scaffold-포함----config--------환경-기반-구성">#</a></h1>
-<h1 id="--prompts-------버전-관리된-프롬프트-템플릿">- prompts/       (버전 관리된 프롬프트 템플릿)<a hidden class="anchor" aria-hidden="true" href="#--prompts-------버전-관리된-프롬프트-템플릿">#</a></h1>
-<h1 id="--tools---------도구-정의-및-구현">- tools/         (도구 정의 및 구현)<a hidden class="anchor" aria-hidden="true" href="#--tools---------도구-정의-및-구현">#</a></h1>
-<h1 id="--services------백킹-서비스-통합">- services/      (백킹 서비스 통합)<a hidden class="anchor" aria-hidden="true" href="#--services------백킹-서비스-통합">#</a></h1>
-<h1 id="--tests---------테스트-유틸리티">- tests/         (테스트 유틸리티)<a hidden class="anchor" aria-hidden="true" href="#--tests---------테스트-유틸리티">#</a></h1>
-<h1 id="--docker-composeyml-로컬-개발-환경">- docker-compose.yml (로컬 개발 환경)<a hidden class="anchor" aria-hidden="true" href="#--docker-composeyml-로컬-개발-환경">#</a></h1>
+<h1 id="step-3-review-the-generated-structure">Step 3: Review the generated structure<a hidden class="anchor" aria-hidden="true" href="#step-3-review-the-generated-structure">#</a></h1>
+<h1 id="the-scaffold-includes----config--------environment-based-configuration">The scaffold includes: # - config/        (environment-based configuration)<a hidden class="anchor" aria-hidden="true" href="#the-scaffold-includes----config--------environment-based-configuration">#</a></h1>
+<h1 id="--prompts-------version-controlled-prompt-templates">- prompts/       (version-controlled prompt templates)<a hidden class="anchor" aria-hidden="true" href="#--prompts-------version-controlled-prompt-templates">#</a></h1>
+<h1 id="--tools---------tool-definitions-and-implementations">- tools/         (tool definitions and implementations)<a hidden class="anchor" aria-hidden="true" href="#--tools---------tool-definitions-and-implementations">#</a></h1>
+<h1 id="--services------backing-service-integrations">- services/      (backing service integrations)<a hidden class="anchor" aria-hidden="true" href="#--services------backing-service-integrations">#</a></h1>
+<h1 id="--tests---------testing-utilities">- tests/         (testing utilities)<a hidden class="anchor" aria-hidden="true" href="#--tests---------testing-utilities">#</a></h1>
+<h1 id="--docker-composeyml-local-development-environment">- docker-compose.yml (local development environment)<a hidden class="anchor" aria-hidden="true" href="#--docker-composeyml-local-development-environment">#</a></h1>
 <pre tabindex="0"><code>
-생성된 프로젝트는 계층 아키텍처를 사용합니다. 하단 레이어에서, 백킹 서비스는 환경의 구성에 연결됩니다. 그 위에 도구 및 서비스 레이어가 에이전트의 기능을 제공합니다. 최상단에서, 프롬프트 템플릿은 이러한 기능을 조화로운 에이전트 동작으로 오케스트레이션합니다.
+The generated project uses a layered architecture. At the bottom layer, backing services connect to the environment&#39;s configuration. Above that, the tools and services layers provide the agent&#39;s capabilities. At the top, the prompt templates orchestrate these capabilities into coherent agent behaviors.
 
-![12-Factor Agents 아키텍처](https://raw.githubusercontent.com/humanlayer/12-factor-agents/main/docs/assets/architecture-diagram.png)
+![12-Factor Agents Architecture](https://raw.githubusercontent.com/humanlayer/12-factor-agents/main/docs/assets/architecture-diagram.png)
 
-## 설치 및 설정
+## Installation and Setup
 
-원칙 기반 프레임워크로서, 12-Factor Agents는 전통적인 ``pip install`` 또는 ``npm install``이 필요하지 않습니다. 대신 두 가지 CLI 도구 중 하나를 사용하여 프로젝트 scaffold를 생성합니다: `````bash
-# 방법 1: npx 사용(Node.js)
+As a principles-based framework, 12-Factor Agents does not require a traditional ``pip install`` or ``npm install``. Instead, you use one of two CLI tools to generate a project scaffold: `````bash
+# Method 1: Using npx (Node.js)
 npx create-12-factor-agent
 
-# 방법 2: uvx 사용(Python, uv 패키지 관리자 필요)
+# Method 2: Using uvx (Python, requires uv package manager)
 uvx create-12-factor-agent
-</code></pre><p>두 도구 모두 권장 프로젝트 구조가 있는 새 디렉토리, 필요한 모든 환경 변수를 나열한 <code>.env.example</code> 파일, Dockerfile, 그리고 사용자화할 기본 에이전트 구현을 생성합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 아직 설치하지 않았다면 uv 설치</span>
+</code></pre><p>Both tools create a new directory with the recommended project structure, a <code>.env.example</code> file listing all required environment variables, a Dockerfile, and a basic agent implementation that you customize.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install uv if you haven&#39;t already</span>
 </span></span><span style="display:flex;"><span>pip install uv
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 새 에이전트 프로젝트 생성</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a new agent project</span>
 </span></span><span style="display:flex;"><span>uvx create-12-factor-agent --name my-agent --template production
-</span></span></code></pre></div><p>scaffold 없이 처음부터 시작하고 싶은 팀을 위해, 프레임워크 문서는 프로덕션 등급 에이전트 구현에 필요한 모든 것이 무엇인지에 대한 완전한 체크리스트를 제공합니다: `````bash</p>
-<h1 id="체크리스트-검증-스크립트">체크리스트 검증 스크립트<a hidden class="anchor" aria-hidden="true" href="#체크리스트-검증-스크립트">#</a></h1>
-<h1 id="에이전트가-12-팩터-원칙을-따르는지-확인">에이전트가 12-팩터 원칙을 따르는지 확인<a hidden class="anchor" aria-hidden="true" href="#에이전트가-12-팩터-원칙을-따르는지-확인">#</a></h1>
+</span></span></code></pre></div><p>For teams that want to start from scratch without a scaffold, the framework documentation provides a complete checklist of what needs to be present in any production-grade agent implementation: `````bash</p>
+<h1 id="checklist-verification-script">Checklist verification script<a hidden class="anchor" aria-hidden="true" href="#checklist-verification-script">#</a></h1>
+<h1 id="verify-your-agent-follows-12-factor-principles">Verify your agent follows 12-factor principles<a hidden class="anchor" aria-hidden="true" href="#verify-your-agent-follows-12-factor-principles">#</a></h1>
 <p>cat &gt; verify-12factor.sh &laquo; &lsquo;EOF&rsquo;
 #!/bin/bash
-echo &ldquo;12-팩터 준수 확인 중&hellip;&rdquo;
-[ -f .env ] &amp;&amp; echo &ldquo;PASS: 환경에 구성됨&rdquo;
-[ -f Dockerfile ] &amp;&amp; echo &ldquo;PASS: 컨테이너화 배포&rdquo;
-[ -f docker-compose.yml ] &amp;&amp; echo &ldquo;PASS: 로컬 개발 일관성&rdquo;
-echo &ldquo;검증 완료.&rdquo;
+echo &ldquo;Checking 12-Factor compliance&hellip;&rdquo;
+[ -f .env ] &amp;&amp; echo &ldquo;PASS: Configuration in environment&rdquo;
+[ -f Dockerfile ] &amp;&amp; echo &ldquo;PASS: Containerized deployment&rdquo;
+[ -f docker-compose.yml ] &amp;&amp; echo &ldquo;PASS: Local dev parity&rdquo;
+echo &ldquo;Verification complete.&rdquo;
 EOF
 chmod +x verify-12factor.sh
 ./verify-12factor.sh</p>
 <pre tabindex="0"><code>
-## 통합 패턴
+## Integration Patterns
 
-12-Factor Agents는 에이전트를 LLM 도구 및 인프라의 더 넓은 생태계에 연결하는 여러 통합 패턴을 제공합니다.
+12-Factor Agents provides several integration patterns that connect agents to the broader ecosystem of LLM tooling and infrastructure.
 
-### Human-in-the-Loop 통합
+### Human-in-the-Loop Integration
 
-프레임워크는 human-in-the-loop 작업 흐름을 first-class로 지원합니다. 에이전트가 human 승인이 필요한 작업을 encountering하면, 일시 중지하고 구성된 승인 엔드포인트에 요청을 posting합니다. human은 대시보드에서 요청을 review하고, 승인하거나 거부하며, 에이전트는 재개합니다.
+The framework has first-class support for human-in-the-loop workflows. When an agent encounters an action that requires human approval, it pauses and posts a request to the configured approval endpoint. The human reviews the request in a dashboard, approves or rejects it, and the agent resumes.
 
 `````bash
-# 환경에서 human 승인 구성
+# Configure human approval in environment
 export HUMAN_APPROVAL_SERVICE=&#34;https://approval.example.com&#34;
 export HUMAN_APPROVAL_TIMEOUT=&#34;300&#34;
 export HUMAN_APPROVAL_RETRIES=&#34;3&#34;
 
-# human-in-the-loop를 활성화하여 에이전트 실행
+# Start the agent with human-in-the-loop enabled
 npx create-12-factor-agent run --enable-hil
-</code></pre><h3 id="관찰-가능성-통합">관찰 가능성 통합<a hidden class="anchor" aria-hidden="true" href="#관찰-가능성-통합">#</a></h3>
-<p>모든 에이전트 프로세스는 구조화된 로그, 메트릭 및 trace를 emission합니다. 프레임워크는 표준 관찰 가능성 백엔드와 통합됩니다: `````bash</p>
-<h1 id="분산-트레이싱을-위한-opentelemetry-구성">분산 트레이싱을 위한 OpenTelemetry 구성<a hidden class="anchor" aria-hidden="true" href="#분산-트레이싱을-위한-opentelemetry-구성">#</a></h1>
+</code></pre><h3 id="observability-integration">Observability Integration<a hidden class="anchor" aria-hidden="true" href="#observability-integration">#</a></h3>
+<p>Every agent process emits structured logs, metrics, and traces. The framework integrates with standard observability backends: `````bash</p>
+<h1 id="configure-opentelemetry-for-distributed-tracing">Configure OpenTelemetry for distributed tracing<a hidden class="anchor" aria-hidden="true" href="#configure-opentelemetry-for-distributed-tracing">#</a></h1>
 <p>export OTEL_SERVICE_NAME=&ldquo;finance-bot&rdquo;
 export OTEL_EXPORTER_OTLP_ENDPOINT=&ldquo;http://jaeger:4317&rdquo;
 export OTEL_EXPORTER_OTLP_PROTOCOL=&ldquo;grpc&rdquo;</p>
-<h1 id="telemetry를-활성화하여-실행">telemetry를 활성화하여 실행<a hidden class="anchor" aria-hidden="true" href="#telemetry를-활성화하여-실행">#</a></h1>
+<h1 id="run-with-telemetry-enabled">Run with telemetry enabled<a hidden class="anchor" aria-hidden="true" href="#run-with-telemetry-enabled">#</a></h1>
 <p>npx create-12-factor-agent run &ndash;telemetry enabled</p>
 <pre tabindex="0"><code>
-### 다중 에이전트 오케스트레이션
+### Multi-Agent Orchestration
 
-복잡한 작업의 경우, 프레임워크는 각각이 12-팩터 원칙을 따르는 여러 에이전트를 orchestrate하는 것을 지원합니다. supervisor 에이전트는 worker 에이전트에 하위 작업을 delegating하고, 결과를 수집하여 최종 응답을 synthesis합니다.
+For complex tasks, the framework supports orchestrating multiple agents that each follow the 12-factor principles. A supervisor agent delegates subtasks to worker agents, collects their results, and synthesizes a final response.
 
 `````bash
-# 다중 에이전트 구성 정의
+# Define a multi-agent configuration
 cat &gt; agents.yaml &lt;&lt; &#39;EOF&#39;
 supervisor: model: gpt-4o
   tools: [delegate, synthesize]
@@ -480,183 +492,141 @@ workers: - name: research
     model: claude-sonnet-4-20250514
     tools: [data_analysis, chart_generation]
 EOF
-</code></pre><h2 id="벤치마크-및-채택">벤치마크 및 채택<a hidden class="anchor" aria-hidden="true" href="#벤치마크-및-채택">#</a></h2>
-<p>12-Factor Agents가 benchmarked된 제품이 아니라 원칙 프레임워크임에도 불구하고, 커뮤니티는 프로덕션 LLM 시스템에 미치는 영향을 보여주는 수많은 case study를 게시했습니다.</p>
-<h3 id="프로덕션-안정성-개선">프로덕션 안정성 개선<a hidden class="anchor" aria-hidden="true" href="#프로덕션-안정성-개선">#</a></h3>
-<p>12-팩터 원칙을 채택한 팀은 측정 가능한 개선을 보고했습니다: | 지표 | 12-팩터 이전 | 12-팩터 이후 | 개선 |
-|&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;&mdash;-|&mdash;&mdash;|
-| 평균 복구 시간(MTTR) | 4.2시간 | 47분 | 81% 감소 |
-| 에이전트 실패율 | 18.5% | 3.2% | 83% 감소 |
-| 구성 관련 버그 | 스프린트당 12개 | 스프린트당 1.5개 | 87.5% 감소 |
-| 배포 성공률 | 72% | 96% | 24% 향상 |
-| On-call 이벤트 | 주당 8회 | 주당 2회 | 75% 감소 |</p>
-<h3 id="커뮤니티-채택">커뮤니티 채택<a hidden class="anchor" aria-hidden="true" href="#커뮤니티-채택">#</a></h3>
-<p>이 프레임워크는 프로덕션 LLM 애플리케이션을 빌드하는 수백 개의 팀에 채택되었습니다. GitHub 저장소는 <a href="https://github.com/humanlayer/12-factor-agents">23,161개의 star</a>를 달성했으며, 성장하는 contributor base로부터 활발한 개발을 받았습니다. <a href="https://humanlayer.dev/discord">humanlayer.dev/discord</a>의 Discord 커뮤니티는 best practices, troubleshooting 및 새로운 patterns에 대한 토론을 호스팅합니다.</p>
-<h2 id="고급-사용">고급 사용<a hidden class="anchor" aria-hidden="true" href="#고급-사용">#</a></h2>
-<h3 id="사용자-정의-도구-레지스트리">사용자 정의 도구 레지스트리<a hidden class="anchor" aria-hidden="true" href="#사용자-정의-도구-레지스트리">#</a></h3>
-<p>12-Factor Agents는 에이전트 코드와 별도로 버전을 지정, 테스트 및 배포할 수 있는 사용자 정의 도구 레지스트리를 지원합니다: `````bash</p>
-<h1 id="사용자-정의-도구-등록">사용자 정의 도구 등록<a hidden class="anchor" aria-hidden="true" href="#사용자-정의-도구-등록">#</a></h1>
+</code></pre><h2 id="benchmarks-and-adoption">Benchmarks and Adoption<a hidden class="anchor" aria-hidden="true" href="#benchmarks-and-adoption">#</a></h2>
+<p>While 12-Factor Agents is a principles framework rather than a benchmarked product, the community has published numerous case studies demonstrating its impact on production LLM systems.</p>
+<h3 id="production-stability-improvements">Production Stability Improvements<a hidden class="anchor" aria-hidden="true" href="#production-stability-improvements">#</a></h3>
+<p>Teams adopting the 12-factor principles report measurable improvements: | Metric | Before 12-Factor | After 12-Factor | Improvement |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Mean Time to Recovery (MTTR) | 4.2 hours | 47 minutes | 81% reduction |
+| Agent failure rate | 18.5% | 3.2% | 83% reduction |
+| Configuration-related bugs | 12 per sprint | 1.5 per sprint | 87.5% reduction |
+| Deployment success rate | 72% | 96% | 24% improvement |
+| On-call incidents | 8 per week | 2 per week | 75% reduction |</p>
+<h3 id="community-adoption">Community Adoption<a hidden class="anchor" aria-hidden="true" href="#community-adoption">#</a></h3>
+<p>The framework has been adopted by hundreds of teams building production LLM applications. The GitHub repository has garnered <a href="https://github.com/humanlayer/12-factor-agents">23,161 stars</a> and active development from a growing contributor base. The Discord community at <a href="https://humanlayer.dev/discord">humanlayer.dev/discord</a> hosts discussions about best practices, troubleshooting, and new patterns.</p>
+<h2 id="advanced-usage">Advanced Usage<a hidden class="anchor" aria-hidden="true" href="#advanced-usage">#</a></h2>
+<h3 id="custom-tool-registries">Custom Tool Registries<a hidden class="anchor" aria-hidden="true" href="#custom-tool-registries">#</a></h3>
+<p>12-Factor Agents supports custom tool registries that allow teams to version, test, and deploy tools independently of agent code: `````bash</p>
+<h1 id="register-custom-tools">Register custom tools<a hidden class="anchor" aria-hidden="true" href="#register-custom-tools">#</a></h1>
 <p>npx create-12-factor-agent tools:register <br>
 &ndash;source ./tools/custom <br>
 &ndash;registry ./tools/registry.yaml</p>
-<h1 id="도구-통합-테스트">도구 통합 테스트<a hidden class="anchor" aria-hidden="true" href="#도구-통합-테스트">#</a></h1>
+<h1 id="test-tool-integration">Test tool integration<a hidden class="anchor" aria-hidden="true" href="#test-tool-integration">#</a></h1>
 <p>npx create-12-factor-agent tools:test <br>
 &ndash;registry ./tools/registry.yaml <br>
 &ndash;output ./test-results</p>
 <pre tabindex="0"><code>
-### 프롬프트 템플릿 버전 관리
+### Prompt Template Versioning
 
-프롬프트 템플릿은 버전 관리되고 테스트해야 하는 first-class 아티팩트로 간주됩니다. 프레임워크는 프롬프트 버전 관리 scheme을 권장합니다: `````bash
-# 프롬프트 템플릿 버전 관리
+Prompt templates are treated as first-class artifacts that should be version-controlled and tested. The framework recommends a prompt versioning scheme: `````bash
+# Version prompt templates
 npx create-12-factor-agent prompts:version \
   --name &#34;finance-summary&#34; \
   --version v2.1.0 \
-  --changelog &#34;간결한 어조로 업데이트하고 규정 준수 면책 추가&#34;
+  --changelog &#34;Updated tone to be more concise and added compliance disclaimer&#34;
 
-# 이전 프롬프트 버전으로 롤백
+# Rollback to a previous prompt version
 npx create-12-factor-agent prompts:rollback \
   --name &#34;finance-summary&#34; \
   --to-version v2.0.3
-</code></pre><p>###レート 제한 및 가드레일</p>
-<p>프로덕션 에이전트는 비용 초과 및 남용을 방지하기 위해 견고한 rate limiting이 필요합니다. 프레임워크에는 built-in rate limiting이 포함되어 있습니다: `````bash
-#レート 제한 구성
-cat &gt; rate-limits.yaml &laquo; &lsquo;EOF&rsquo;
+</code></pre><h3 id="rate-limiting-and-guardrails">Rate Limiting and Guardrails<a hidden class="anchor" aria-hidden="true" href="#rate-limiting-and-guardrails">#</a></h3>
+<p>Production agents need robust rate limiting to prevent cost overruns and abuse. The framework includes built-in rate limiting: `````bash</p>
+<h1 id="configure-rate-limits">Configure rate limits<a hidden class="anchor" aria-hidden="true" href="#configure-rate-limits">#</a></h1>
+<p>cat &gt; rate-limits.yaml &laquo; &lsquo;EOF&rsquo;
 global: requests_per_minute: 60
 tokens_per_day: 1000000
 max_cost_per_day: 50.00
 per_agent: finance-bot: requests_per_minute: 30
 max_cost_per_day: 25.00
 EOF</p>
-<p>#レート 제한 적용
-npx create-12-factor-agent run &ndash;rate-limits rate-limits.yaml</p>
+<h1 id="apply-rate-limits">Apply rate limits<a hidden class="anchor" aria-hidden="true" href="#apply-rate-limits">#</a></h1>
+<p>npx create-12-factor-agent run &ndash;rate-limits rate-limits.yaml</p>
 <pre tabindex="0"><code>
-### 감사 로그
+### Audit Logging
 
-규제 산업에서는 audit log가 에이전트가 내리는 모든 결정을 추적합니다: `````bash
-# 포괄적인 감사 log 활성화
+For regulated industries, audit logging tracks every decision an agent makes: `````bash
+# Enable comprehensive audit logging
 export AUDIT_LOG_PATH=&#34;/var/log/agents/finance-bot/audit.jsonl&#34;
 export AUDIT_LOG_RETENTION_DAYS=&#34;365&#34;
 
 npx create-12-factor-agent run --audit-logging enabled
-</code></pre><h2 id="대안과의-비교">대안과의 비교<a hidden class="anchor" aria-hidden="true" href="#대안과의-비교">#</a></h2>
-<p>12-Factor Agents는 신뢰할 수 있는 LLM 애플리케이션 빌드를 위한 다른 접근 방식과 어떻게 비교됩니까?</p>
-<table>
-	<thead>
-			<tr>
-					<th>기능</th>
-					<th>12-Factor Agents</th>
-					<th>LangChain</th>
-					<th>LlamaIndex</th>
-					<th>DSPy</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>철학</td>
-					<td>원칙 기반 프레임워크</td>
-					<td>코드 라이브러리</td>
-					<td>코드 라이브러리</td>
-					<td>컴파일러 기반 최적화</td>
-			</tr>
-			<tr>
-					<td>학습 곡선</td>
-					<td>중간(개념적)</td>
-					<td>높음</td>
-					<td>높음</td>
-					<td>높음</td>
-			</tr>
-			<tr>
-					<td>관찰 가능성</td>
-					<td>내장 관례</td>
-					<td>플러그인 생태계</td>
-					<td>플러그인 생태계</td>
-					<td>제한적</td>
-			</tr>
-			<tr>
-					<td>Human-in-the-loop</td>
-					<td>first-class 지원</td>
-					<td>보통</td>
-					<td>제한적</td>
-					<td>제한적</td>
-			</tr>
-			<tr>
-					<td>이식성</td>
-					<td>높음(환경 비종속)</td>
-					<td>보통</td>
-					<td>보통</td>
-					<td>보통</td>
-			</tr>
-			<tr>
-					<td>배포 모델</td>
-					<td>컨테이너 우선</td>
-					<td>어떤 것이든</td>
-					<td>어떤 것이든</td>
-					<td>어떤 것이든</td>
-			</tr>
-			<tr>
-					<td>커뮤니티 규모</td>
-					<td>성장 중(23K star)</td>
-					<td>대형</td>
-					<td>대형</td>
-					<td>성장 중</td>
-			</tr>
-			<tr>
-					<td>라이선스</td>
-					<td>Apache-2.0</td>
-					<td>MIT</td>
-					<td>MIT</td>
-					<td>Apache-2.0</td>
-			</tr>
-			<tr>
-					<td>최적 용도</td>
-					<td>프로덕션 신뢰성</td>
-					<td>빠른 프로토타입</td>
-					<td>데이터 검색</td>
-					<td>프롬프트 최적화</td>
-			</tr>
-	</tbody>
-</table>
-<p>LangChain이나 LlamaIndex와는 다릅니다. 이들은 프로젝트에 import하는 코드 라이브러리인 반면, 12-Factor Agents는 아키텍처 가이드입니다. 특정 라이브러리나 프레임워크를 규정하지 않습니다 - 어떤 LLM 도구套件든 그 원칙을 적용할 수 있습니다. 이는 기존 프레임워크와 경쟁하기보다 보완적입니다.</p>
-<p>DSPy는 완전히 다른 접근 방식을 취하며, 프롬프트와 chain-of-thought 추론의 programmatic 최적화에 중점을 둡니다. DSPy는 개별 모델 호출 chain을 개선하는 데 뛰어납니다. 반면 12-Factor Agents는 배포, 구성, 관찰 가능성 및 팀 협업을 포함한 더 넓은 운영 문제를 다룹니다.</p>
-<h2 id="제한-사항">제한 사항<a hidden class="anchor" aria-hidden="true" href="#제한-사항">#</a></h2>
-<p>어떤 프레임워크도 완벽하지 않으며, 12-Factor Agents에도 주목할 만한 제한 사항이 있습니다: <strong>코드 라이브러리가 아님.</strong> 이것이 프레임워크의 가장 큰 강점이면서 동시에 가장 큰 도전입니다. 코드 대신 원칙을 제공하기 때문에, 팀은 각 원칙을 자체적으로 구현하는 데 투자해야 합니다. &ldquo;12-팩터를 수행하는&rdquo; 단일 패키지는 없습니다.</p>
-<p><strong>가파른 개념적 학습 곡선.</strong> 12개 팩터 각각이 LLM 컨텍스트에서 왜 중요한지 이해하려면 읽기와 성찰이 필요합니다. 새로운 팀은 한번에 12개 팩터 모두를 채택하는 것을 overwhelming하게 느낄 수 있습니다. 권장 접근 방식은 팩터 1, 2, 3, 10(코드베이스, 종속성, 구성 및 개발/프로덕션 일관성)에서 시작하고 시간이 지남에 따라 나머지를 layering하는 것입니다.</p>
-<p><strong>공식 SDK 없음.</strong> 경쟁 프레임워크와 달리, 12개 팩터 모두를 구현하는 공식 software development kit는 없습니다. ````create-12-factor-agent``` CLI는 공식 제품이 아니라 커뮤니티 도구입니다. 이는 scaffold를 특정 stack에 적응해야 할 수 있음을 의미합니다.</p>
-<p><strong>특정 LLM 제공업체에 대한 네이티브 지원 제한.</strong> 프레임워크는 설계상 provider-agnostic하며, 이는 기능이지만 단일 모델 제공업체의 고유 기능에 대한 깊은 통합을 제공하지도 않음을 의미합니다.</p>
-<h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
-<h3 id="1-12-factor-agents는-langchain이나-llamaindex의-대체재입니까">1. 12-Factor Agents는 LangChain이나 LlamaIndex의 대체재입니까?<a hidden class="anchor" aria-hidden="true" href="#1-12-factor-agents는-langchain이나-llamaindex의-대체재입니까">#</a></h3>
-<p>아니요. 12-Factor Agents는 아키텍처 프레임워크이지 코드 라이브러리가 아닙니다. LangChain, LlamaIndex 또는 기타 어떤 LLM 도구套件와도 함께 사용하는 것이 전혀 문제되지 않습니다. 이는 조직적 원칙을 제공합니다. 이러한 라이브러리는 구현 세부 사항을 제공합니다.</p>
-<h3 id="2-첫날부터-12개-팩터-모두를-따라야-합니까">2. 첫날부터 12개 팩터 모두를 따라야 합니까?<a hidden class="anchor" aria-hidden="true" href="#2-첫날부터-12개-팩터-모두를-따라야-합니까">#</a></h3>
-<p>아니요. 기본 팩터에서 시작하세요: 코드베이스, 종속성, 구성 및 개발/프로덕션 일관성. 시스템이 성장함에 따라 관찰 가능성, 로깅 및 관리 프로세스를 추가하세요. 프레임워크는 증분적으로 채택하도록 설계되었습니다.</p>
-<h3 id="3-12-factor-agents는-multi-modal-에이전트를-어떻게-처리합니까">3. 12-Factor Agents는 multi-modal 에이전트를 어떻게 처리합니까?<a hidden class="anchor" aria-hidden="true" href="#3-12-factor-agents는-multi-modal-에이전트를-어떻게-처리합니까">#</a></h3>
-<p>프레임워크는 modality에 대해 agnostic합니다. 에이전트가 텍스트, 이미지, 오디오 또는 비디오를 처리하든 상관없이 12개 팩터는 모두 동일하게 적용됩니다. 핵심 통찰은 에이전트가 다른 어떤 소프트웨어 시스템と同样, disciplined 아키텍처에서 이익을 얻는다는 것입니다.</p>
-<h3 id="4-서버리스-배포에서-12-factor-agents를-사용할-수-있습니까">4. 서버리스 배포에서 12-Factor Agents를 사용할 수 있습니까?<a hidden class="anchor" aria-hidden="true" href="#4-서버리스-배포에서-12-factor-agents를-사용할-수-있습니까">#</a></h3>
-<p>예. 프레임워크는 컨테이너 기반 배포, 서버리스 함수 또는 bare-metal 프로세스와 함께 작동하도록 설계되었습니다. 핵심 원칙은 각 에이전트가 모든 종속성과 구성이 명시된 self-contained 단위로 배포 가능해야 한다는 것입니다.</p>
-<h3 id="5-프레임워크는-llm-api-사용에-대한-비용-관리를-어떻게-처리합니까">5. 프레임워크는 LLM API 사용에 대한 비용 관리를 어떻게 처리합니까?<a hidden class="anchor" aria-hidden="true" href="#5-프레임워크는-llm-api-사용에-대한-비용-관리를-어떻게-처리합니까">#</a></h3>
-<p>비용 관리는 구성 및 프로세스 원칙에 속합니다. 환경별 구성에는 예산 제한이 포함되어야 하며, 프로세스 수준의 rate limiting은 단일 에이전트가 예산을 모두 소진하지 않도록 보장합니다. 감사 log 기능은 지출 패턴에 대한 visibility를 제공합니다.</p>
-<h3 id="6-인증이나-공식-교육-프로그램이-있습니까">6. 인증이나 공식 교육 프로그램이 있습니까?<a hidden class="anchor" aria-hidden="true" href="#6-인증이나-공식-교육-프로그램이-있습니까">#</a></h3>
-<p>아직 없습니다. 프레임워크는 커뮤니티 주도이며, 주요 리소스는 GitHub 저장소, Discord 커뮤니티 및 커뮤니티 기여 tutorial입니다. 프레임워크가 성숙해짐에 따라 공식 교육 프로그램이 등장할 수 있습니다.</p>
-<h3 id="7-프레임워크에-기여할-수-있습니까">7. 프레임워크에 기여할 수 있습니까?<a hidden class="anchor" aria-hidden="true" href="#7-프레임워크에-기여할-수-있습니까">#</a></h3>
-<p>물론입니다. 프레임워크는 Apache-2.0 하에서 open source이며, 기여를 환영합니다. <a href="https://humanlayer.dev/discord">humanlayer.dev/discord</a>의 Discord 서버가 시작하기 가장 좋은 곳입니다. 기여 지침과 open issue에 대해 문의하세요.</p>
-<h2 id="결론">결론<a hidden class="anchor" aria-hidden="true" href="#결론">#</a></h2>
-<p>12-Factor Agents는 LLM 애플리케이션 개발의 성숙화에서 중요한 한 걸음을 대표합니다. 검증된 원칙 세트를 AI 에이전트의 고유한 도전에 적응시킴으로써, 프레임워크는 지능적일 뿐만 아니라 신뢰할 수 있고, 관찰 가능하며, 유지보수 가능한 시스템을 빌드하기 위한 roadmap을 팀에 제공합니다.</p>
-<p>프레임워크의 의도적으로 코드 기반이 아니라 원칙 기반을 선택한 것은 어떤 LLM 도구套件와도 작동할 만큼 유연하면서도 좋은 운영 관행을 강제할 만큼 disciplined합니다. <a href="https://github.com/humanlayer/12-factor-agents">23,161개의 GitHub star</a>와 활성 커뮤니티를 바탕으로, 프로덕션 등급 AI 애플리케이션을 빌드하는 팀을 위한 주요 reference로 그 자리를 얻었습니다.</p>
-<p>LLM 에이전트를 시작하거나 기존 시스템을 확장하든, 12-팩터 원칙은 timeless한 기반을 제공합니다. 작게 시작하고, 증분적으로 채택하며, 프레임워크가 아키텍처를 프로덕션 준비 상태로 안내하도록 하세요.</p>
-<p>[CTA: 프로덕션 등급 AI 에이전트를 빌드할 준비가 되셨습니까? 지금 12-Factor Agents를 시작하세요. <a href="https://github.com/humanlayer/12-factor-agents">시작하기</a> | <a href="https://humanlayer.dev/discord">커뮤니티 가입</a>]</p>
-<h2 id="출처">출처<a hidden class="anchor" aria-hidden="true" href="#출처">#</a></h2>
-<ol>
-<li><a href="https://github.com/humanlayer/12-factor-agents">12-Factor Agents GitHub 저장소</a></li>
-<li><a href="https://humanlayer.dev/discord">Humanlayer Discord 커뮤니티</a></li>
-<li><a href="https://12factor.net/">12-Factor App 선언</a></li>
-<li><a href="https://github.com/humanlayer/12-factor-agents/blob/main/README.md">12-Factor Agents 문서</a></li>
-<li><a href="https://www.digitalocean.com/try/affiliate">DigitalOcean - AI를 위한 클라우드 인프라</a></li>
-<li><a href="https://htstack.com/">HTStack - 고성능 호스팅</a></li>
-<li><a href="https://webshare.io/">WebShare - 데이터 파이프라인을 위한 프록시 서비스</a></li>
-</ol>
+</code></pre><h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
+<p>How does 12-Factor Agents compare to other approaches for building reliable LLM applications?</p>
+<p>| Feature | 12-Factor Agents | LangChain | LlamaIndex | DSPy |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Philosophy | Principles-based framework | Code library | Code library | Compiler-based optimization |
+| Learning curve | Medium (conceptual) | High | High | High |
+| Observability | Built-in convention | Plugin ecosystem | Plugin ecosystem | Limited |
+| Human-in-the-loop | First-class support | Moderate | Limited | Limited |
+| Portability | High (environment-agnostic) | Medium | Medium | Medium |
+| Deployment model | Container-first | Any | Any | Any |
+| Community size | Growing (23K stars) | Large | Large | Growing |
+| License | Apache-2.0 | MIT | MIT | Apache-2.0 |
+| Best for | Production reliability | Rapid prototyping | Data retrieval | Prompt optimization |</p>
+<p>Unlike LangChain or LlamaIndex, which are code libraries that you import into your project, 12-Factor Agents is an architectural guide. It doesn&rsquo;t prescribe a specific library or framework — you can apply its principles with any LLM toolkit. This makes it complementary rather than competitive with existing frameworks.</p>
+<p>DSPy takes a different approach entirely, focusing on programmatic optimization of prompts and chain-of-thought reasoning. While DSPy excels at improving individual model call chains, 12-Factor Agents addresses the broader operational concerns: deployment, configuration, observability, and team collaboration.</p>
+<h2 id="limitations">Limitations<a hidden class="anchor" aria-hidden="true" href="#limitations">#</a></h2>
+<p>No framework is perfect, and 12-Factor Agents has some notable limitations: <strong>Not a Code Library.</strong> This is the framework&rsquo;s greatest strength and its biggest challenge. Because it provides principles rather than code, teams need to invest in implementing each principle themselves. There is no single package that &ldquo;does 12-factor.&rdquo;</p>
+<p><strong>Steep Conceptual Learning Curve.</strong> Understanding why each of the twelve factors matters in the LLM context requires reading and reflection. New teams may find it overwhelming to adopt all twelve factors at once. The recommended approach is to start with factors 1, 2, 3, and 10 (Codebase, Dependencies, Config, and Dev/Prod Parity) and layer in the rest over time.</p>
+<p><strong>No Official SDK.</strong> Unlike competing frameworks, there is no official software development kit that implements all twelve factors. The ````create-12-factor-agent``` CLI is a community tool, not an official product. This means you may need to adapt the scaffold to your specific stack.</p>
+<p><strong>Limited Native Support for Specific LLM Providers.</strong> The framework is provider-agnostic by design, which is a feature but also means it doesn&rsquo;t provide deep integrations with any single model provider&rsquo;s unique features.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<h3 id="1-is-12-factor-agents-a-replacement-for-langchain-or-llamaindex">1. Is 12-Factor Agents a replacement for LangChain or LlamaIndex?<a hidden class="anchor" aria-hidden="true" href="#1-is-12-factor-agents-a-replacement-for-langchain-or-llamaindex">#</a></h3>
+<p>No. 12-Factor Agents is an architectural framework, not a code library. You can absolutely use it alongside LangChain, LlamaIndex, or any other LLM toolkit. It provides the organizational principles; these libraries provide the implementation details.</p>
+<h3 id="2-do-i-need-to-follow-all-12-factors-from-day-one">2. Do I need to follow all 12 factors from day one?<a hidden class="anchor" aria-hidden="true" href="#2-do-i-need-to-follow-all-12-factors-from-day-one">#</a></h3>
+<p>No. Start with the foundational factors: Codebase, Dependencies, Config, and Dev/Prod Parity. Add Observability, Logging, and Admin Processes as your system grows. The framework is designed to be adopted incrementally.</p>
+<h3 id="3-how-does-12-factor-agents-handle-multi-modal-agents">3. How does 12-Factor Agents handle multi-modal agents?<a hidden class="anchor" aria-hidden="true" href="#3-how-does-12-factor-agents-handle-multi-modal-agents">#</a></h3>
+<p>The framework is agnostic to modality. Whether your agent processes text, images, audio, or video, the twelve factors apply equally. The key insight is that agents, like any other software system, benefit from disciplined architecture.</p>
+<h3 id="4-can-i-use-12-factor-agents-with-serverless-deployments">4. Can I use 12-Factor Agents with serverless deployments?<a hidden class="anchor" aria-hidden="true" href="#4-can-i-use-12-factor-agents-with-serverless-deployments">#</a></h3>
+<p>Yes. The framework is designed to work with container-based deployments, serverless functions, or bare-metal processes. The key principle is that each agent should be deployable as a self-contained unit with all its dependencies and configuration declared.</p>
+<h3 id="5-how-does-the-framework-handle-cost-management-for-llm-api-usage">5. How does the framework handle cost management for LLM API usage?<a hidden class="anchor" aria-hidden="true" href="#5-how-does-the-framework-handle-cost-management-for-llm-api-usage">#</a></h3>
+<p>Cost management falls under the Config and Processes principles. Environment-specific configuration should include budget limits, and process-level rate limiting ensures that no single agent can exhaust your budget. The audit logging feature provides visibility into spending patterns.</p>
+<h3 id="6-is-there-a-certification-or-formal-training-program">6. Is there a certification or formal training program?<a hidden class="anchor" aria-hidden="true" href="#6-is-there-a-certification-or-formal-training-program">#</a></h3>
+<p>Not yet. The framework is community-driven, and the primary resources are the GitHub repository, the Discord community, and community-contributed tutorials. As the framework matures, formal training programs may emerge.</p>
+<h3 id="7-can-i-contribute-to-the-framework">7. Can I contribute to the framework?<a hidden class="anchor" aria-hidden="true" href="#7-can-i-contribute-to-the-framework">#</a></h3>
+<p>Absolutely. The framework is open source under Apache-2.0, and contributions are welcome. The Discord server at <a href="https://humanlayer.dev/discord">humanlayer.dev/discord</a> is the best place to get started — ask about contribution guidelines and open issues.</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>12-Factor Agents represents a significant step forward in the maturation of LLM application development. By adapting a proven set of principles to the unique challenges of AI agents, it gives teams a roadmap for building systems that are not only intelligent but also reliable, observable, and maintainable.</p>
+<p>The framework&rsquo;s deliberate choice to be principles-based rather than code-based means it is flexible enough to work with any LLM toolkit while being disciplined enough to enforce good operational practices. With <a href="https://github.com/humanlayer/12-factor-agents">23,161 GitHub stars</a> and an active community, it has earned its place as a key reference for teams building production-grade AI applications.</p>
+<p>Whether you are just starting with LLM agents or scaling an existing system, the 12-factor principles provide a timeless foundation. Start small, adopt incrementally, and let the framework guide your architecture toward production readiness.</p>
+<p>[CTA: Ready to build production-grade AI agents? Start with 12-Factor Agents today. <a href="https://github.com/humanlayer/12-factor-agents">Get Started</a> | <a href="https://humanlayer.dev/discord">Join the Community</a>]</p>
+<hr>
+<p><strong>Sources &amp; Further Reading</strong>: - Official docs: <a href="https://12-factor-agents.dev">https://12-factor-agents.dev</a> (check official repo)</p>
+<ul>
+<li>GitHub repository: <a href="https://github.com/12-factor-agents/11/12/factor/agents">https://github.com/12-factor-agents/11/12/factor/agents</a></li>
+<li>Community discussion: <a href="https://github.com/12-factor-agents/discussions">https://github.com/12-factor-agents/discussions</a></li>
+</ul>
+<h2 id="join-the-dibi8-community">Join the dibi8 Community<a hidden class="anchor" aria-hidden="true" href="#join-the-dibi8-community">#</a></h2>
+<p>Join the <a href="https://t.me/DIBI8_Group/2">dibi8 English Telegram group</a> to discuss this article and get help from the community.</p>
+<p>Read related articles: - <a href="dibi8-internal-link">dibi8 English Telegram group</a></p>
+<ul>
+<li><a href="dibi8-internal-link">Related tool comparison</a></li>
+</ul>
+<p>Try the tool discussed above. If it&rsquo;s a paid service, check for affiliate offers.</p>
+<hr>
+<p><em>Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.</em></p>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;12-Factor Agents: 신뢰할 수 있는 LLM 애플리케이션 빌드를 위한 원칙 기반 프레임워크&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;12-Factor Agents: A Principles-Based Framework for Building Reliable LLM Applications&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-06-10&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-06-10&rdquo;,
 &ldquo;author&rdquo;: {
@@ -673,7 +643,7 @@ npx create-12-factor-agent run --audit-logging enabled
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/12-factor-agents%22">https://dibi8.com/kr/resources/12-factor-agents"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/12-factor-agents%22">https://dibi8.com/resources/12-factor-agents"</a>
 }
 }
 </script></p>
@@ -741,6 +711,81 @@ npx create-12-factor-agent run --audit-logging enabled
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

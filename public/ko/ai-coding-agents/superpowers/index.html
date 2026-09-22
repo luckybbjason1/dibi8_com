@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "소개 개발자로서 우리는 복잡한 작업을 단순화하고 워크플로우를 가속화하는 도구를 끊임없이 찾고 있습니다. 대규모 언어 모델(LLM)의 부상은 더욱 지능적이고 자율적인 에이전트를 가능하게 하는 소프트웨어 개발의 새로운 패러다임을 열었습니다. 그러나 이러한 잠재력을 활용하려면 종종 복잡한 프레임워크와 방법론을 탐색해야 합니다.\nSuperpowers를 만나보세요. 2026년 5월 현재 GitHub에서 200,000개 이상의 스타를 보유한 이 프로젝트는 LLM 에이전트 스킬 분야에서 빠르게 중요한 역할을 하고 있습니다. 단순한 라이브러리가 아니라 실용적이고 효과적인 것으로 제시되는 포괄적인 프레임워크이자 소프트웨어 개발 방법론입니다. 이 글에서는 Superpowers의 핵심 개념, 설정, 통합 가능성, 실제 적용 가능성 및 인기 있는 대안과의 비교를 심층적으로 다룹니다. 목표는 5분 설정, 실제 벤치마크, 프로덕션 배포에 대한 확신을 제공하는 데 필요한 통찰력을 제공하는 것입니다.\nSuperpowers란 무엇인가? Superpowers는 에이전트 스킬 프레임워크이자 소프트웨어 개발 방법론입니다. 핵심적으로 복잡한 작업을 수행할 수 있는 AI 에이전트를 구축하고 관리하는 구조화되면서도 유연한 방법을 제공하는 것을 목표로 합니다. 추상적인 개념이나 특정 LLM 통합에 중점을 두는 일부 프레임워크와 달리, Superpowers는 실용적인 적용과 개념에서 배포까지의 명확한 경로를 강조합니다.\n이 프로젝트는 주로 Shell 스크립트로 작성되었는데, 이는 일부에게는 의아하게 느껴질 수 있습니다. 그러나 이 선택은 의도적인 것입니다. Shell 스크립트는 다양한 환경에서 탁월한 이식성과 실행 용이성을 제공하므로 “어디서나 작동하는” 철학을 우선시하는 프레임워크에 이상적입니다. 이를 통해 빠른 반복이 가능하고 외부 종속성이 최소화되어 “5분 설정” 약속에 부합합니다.\nSuperpowers의 “스킬\"은 에이전트가 특정 작업을 수행하기 위해 활용할 수 있는 모듈식의 재사용 가능한 구성 요소를 의미합니다. 이는 간단한 텍스트 조작부터 외부 API, 데이터베이스 또는 다른 AI 모델과의 상호 작용까지 다양할 수 있습니다. 방법론적 측면은 에이전트의 기능, 워크플로우 및 상호 작용을 정의하는 체계적인 접근 방식을 장려합니다.\nSuperpowers의 주요 특징은 다음과 같습니다.\n에이전트 스킬: 에이전트가 호출할 수 있는 캡슐화된 기능 단위. 방법론: AI 에이전트를 설계, 구축 및 배포하는 체계적인 접근 방식. Shell 기반: 최대 이식성과 사용 편의성을 위해 주로 Shell로 구현됨. 실용성 중점: 실제 적용 및 프로덕션 준비를 위해 설계됨. 확장성: 사용자 지정 스킬 및 통합을 수용하도록 구축됨. Superpowers는 어떻게 작동하는가? Superpowers는 “스킬\"을 “에이전트\"로 구성하여 작업을 실행하는 원칙에 따라 작동합니다. 이 프레임워크는 에이전트가 이러한 스킬을 발견하고 활용할 수 있는 메커니즘과 함께 이러한 스킬을 정의하고 관리하기 위한 핵심 유틸리티 및 규칙을 제공합니다.\n전반적으로 워크플로우는 다음과 같습니다.\n스킬 정의: 개발자는 개별 스킬을 정의합니다. 스킬은 본질적으로 특정 원자적 작업을 수행하는 스크립트(종종 Shell 스크립트이지만 다른 스크립트도 가능)입니다. 입력을 받고, 작업을 수행하며, 출력을 생성합니다. Superpowers는 이러한 스킬이 어떻게 동작해야 하는지에 대한 명확한 계약(예: 입력/출력 형식, 오류 처리)을 정의합니다. 에이전트 생성: 그런 다음 이러한 스킬 컬렉션을 오케스트레이션하여 에이전트를 구성합니다. 에이전트는 “문서를 요약한 다음 요약에 따라 이메일을 초안 작성\"과 같은 복잡한 작업을 수행하도록 설계될 수 있습니다. 이 에이전트는 내부적으로 “요약” 스킬을 호출한 다음 “이메일 초안 작성” 스킬을 호출합니다. 실행 환경: Superpowers는 에이전트 및 관련 스킬의 실행을 관리하는 런타임 환경을 제공합니다. 이 환경은 작업 예약, 입력/출력 관리 및 오류 전파를 처리합니다. LLM 통합 (선택 사항이지만 일반적): Superpowers 자체는 Shell 기반 프레임워크이지만 LLM과 원활하게 통합되도록 설계되었습니다. LLM은 에이전트가 어떤 스킬을 사용할지, 어떻게 매개변수를 설정할지, 또는 스킬 실행 결과를 해석하는 데 사용될 수 있습니다. 일반적인 패턴은 LLM을 사용하여 에이전트의 “계획\"을 생성한 다음, 이 계획이 스킬 호출 시퀀스로 변환되는 것입니다. 간단한 상호 작용을 시각화해 보겠습니다. 주어진 도시의 날씨를 찾는 에이전트가 있다고 가정해 봅시다.\n+-------------------+ +-------------------+ +-------------------+ | | | | | | | Agent |-----\u003e| Skill: Get |-----\u003e| External API | | (Orchestrates) | | Weather | | (Weather Service) | | | | | | | +-------------------+ +-------------------+ +-------------------+ ^ | | | +----------------------------------------------------+ (API Response) 이 다이어그램에서: * 에이전트는 요청(예: “런던 날씨는?\")을 받습니다.\n날씨 정보의 필요성을 식별하고 get_weather 스킬을 호출합니다. get_weather 스킬은 curl 또는 wget과 같은 도구를 사용하여 외부 날씨 API와 상호 작용할 수 있습니다. API의 응답은 스킬에 의해 처리되어 에이전트로 반환됩니다. 에이전트는 LLM을 사용하여 이 정보를 사람이 읽을 수 있는 형식으로 구성할 수 있습니다. Superpowers의 강점은 이러한 스킬 실행을 관리하는 복잡성을 추상화하여 개발자가 에이전트의 지능과 기능을 정의하는 데 집중할 수 있다는 것입니다.\n설치 및 설정 “5분 설정” 약속은 Superpowers의 중요한 장점이며, Shell 기반 특성이 이에 크게 기여합니다. 2026년 5월 현재 설치는 간단합니다.\n필수 구성 요소:\nUnix 계열 환경 (Linux, macOS, Windows의 WSL). git 설치. 최신 Shell 인터프리터 (예: bash, zsh). (선택 사항, LLM 통합용) LLM API 키 및 관련 도구 (예: ollama, openai-cli 등). 설치 단계:\n저장소 복제: Superpowers를 얻는 주된 방법은 GitHub 저장소를 복제하는 것입니다.\ngit clone https://github.com/obra/superpowers.git cd superpowers 환경 소싱: Superpowers는 주요 스크립트를 소싱하여 필요한 환경 변수와 함수를 설정합니다.\nsource ./superpowers.sh 이 명령은 현재 셸 세션에서 Superpowers 명령 및 함수를 사용할 수 있도록 합니다. 영구적인 액세스를 위해서는 일반적으로 이 줄을 셸 구성 파일(예: ~/.bashrc, ~/.zshrc)에 추가합니다.\n구성 초기화 (선택 사항이지만 권장): Superpowers는 종종 구성 파일을 사용하여 설정, API 키 및 경로를 관리합니다. 기본 구성을 초기화할 수 있습니다.\n# 이 명령은 기본 구성 파일을 생성할 수 있습니다. 예: ~/.config/superpowers/config superpowers init 그런 다음 이 구성 파일(예: ~/.config/superpowers/config)을 편집하여 LLM 제공업체, API 키 및 기타 필요한 매개변수를 설정해야 합니다.\n예제 ~/.config/superpowers/config:\n# Superpowers 구성 # 2026-05-23 기준 # LLM 제공업체 (예: openai, ollama, anthropic) LLM_PROVIDER=\"ollama\" # LLM API 엔드포인트 (해당되는 경우) # LLM_API_BASE=\"http://localhost:11434\" # 사용할 LLM 모델 LLM_MODEL=\"llama3\" # API 키 (OpenAI와 같은 클라우드 제공업체용) # LLM_API_KEY=\"YOUR_OPENAI_API_KEY\" # 기본 스킬 디렉토리 SKILL_DIR=\"$HOME/.superpowers/skills\" # ... 기타 구성 첫 번째 스킬 생성 (예제): 간단한 “hello world” 스킬을 만들어 보겠습니다.\n# 스킬 디렉토리가 없으면 생성 mkdir -p ~/.superpowers/skills cd ~/.superpowers/skills # 'hello.sh'라는 스킬 파일 생성 cat \u003c\u003c EOF \u003e hello.sh #!/bin/bash # Superpowers Skill: Hello World # 설명: 사용자에게 인사합니다. # 입력: name (문자열, 선택 사항) # 출력: greeting (문자열) NAME=\"\\${1:-World}\" # 첫 번째 인자를 사용하거나 기본값 \"World\"를 사용 echo \"greeting=Hello, \\$NAME!\" EOF # 스킬을 실행 가능하게 만들기 chmod +x hello.sh 간단한 에이전트 실행: 이제 이 스킬을 사용하는 에이전트를 실행해 볼 수 있습니다. Superpowers는 종종 에이전트와 상호 작용하기 위한 명령줄 인터페이스를 제공합니다.\n# 'superpowers' 명령이 소싱 후 사용 가능하다고 가정 # 정확한 명령은 Superpowers CLI에 따라 다를 수 있습니다. superpowers agent --prompt \"Greet my friend John\" --skills ~/.superpowers/skills 에이전트 로직이 프롬프트를 올바르게 구문 분석하고 “John\"을 인자로 hello.sh 스킬을 호출하면 출력은 다음과 같습니다.\ngreeting=Hello, John! 이 설정 프로세스, 특히 주요 스크립트를 소싱하고 기본 구성을 설정하는 것은 새로운 시스템에서 실제로 5분 이내에 완료될 수 있습니다.\n주요 도구와의 통합 Superpowers의 강점은 개발자가 일반적으로 사용하는 다양한 도구와 통합되는 중앙 오케스트레이터 역할을 한다는 것입니다. Shell 기반 특성은 명령줄 유틸리티 및 기존 스크립트와 상호 작용하는 데 특히 능숙합니다.\n1. LLM 제공업체 (OpenAI, Ollama, Anthropic 등) 이는 아마도 에이전트 프레임워크에서 가장 중요한 통합일 것입니다. Superpowers는 에이전트가 LLM의 추론 및 생성 기능을 활용할 수 있도록 합니다.\n작동 방식: superpowers.sh 스크립트(또는 관련 CLI)는 일반적으로 LLM API 또는 로컬 모델을 호출하는 로직을 가집니다. ~/.config/superpowers/config의 구성은 제공업체, 모델 및 API 엔드포인트/키를 지정합니다.\n예제 구성 (~/.config/superpowers/config):\nLLM_PROVIDER=\"ollama\" LLM_MODEL=\"llama3:latest\" LLM_API_BASE=\"http://localhost:11434\" 또는 OpenAI의 경우: `````ini LLM_PROVIDER=“openai” LLM_MODEL=“gpt-4o-mini” LLM_API_KEY=“sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx”\n**예제 스킬 (개념적 ````llm_query.sh````):** `````bash #!/bin/bash # Superpowers Skill: LLM Query # 설명: 구성된 LLM에 프롬프트를 보내고 응답을 반환합니다. # 입력: prompt (문자열) # 출력: response (문자열) PROMPT=\"$1\" PROVIDER=\"\\$(superpowers config get LLM_PROVIDER)\" MODEL=\"\\$(superpowers config get LLM_MODEL)\" API_BASE=\"\\$(superpowers config get LLM_API_BASE)\" API_KEY=\"\\$(superpowers config get LLM_API_KEY)\" # Ollama에 대한 curl을 사용한 단순화된 예제 if [ \"\\$PROVIDER\" = \"ollama\" ]; then RESPONSE=\\$(curl -s -X POST \"\\$API_BASE/api/generate\" \\ -d \"{\\\"model\\\": \\\"\\$MODEL\\\", \\\"prompt\\\": \\\"\\$PROMPT\\\"}\") # 실제 응답 텍스트 추출 (이 구문 분석은 단순화됨) GENERATED_TEXT=\\$(echo \"\\$RESPONSE\" | jq -r '.response') echo \"response=\\$GENERATED_TEXT\" elif [ \"\\$PROVIDER\" = \"openai\" ]; then # curl 또는 openai-cli를 사용한 OpenAI API에 대한 유사한 로직 echo \"response=OpenAI 통합은 이 예제에서 완전히 구현되지 않았습니다.\" fi 2. 버전 관리 시스템 (Git) 에이전트는 코드 저장소와 상호 작용하고, 브랜치를 체크아웃하고, 변경 사항을 커밋하고, 코드를 관리해야 할 수 있습니다.\n작동 방식: Superpowers는 표준 git 명령을 래핑하는 스킬을 정의할 수 있습니다. 그런 다음 에이전트는 버전 관리 작업을 수행하도록 지시받을 수 있습니다.\n예제 스킬 (git_commit.sh):\n#!/bin/bash # Superpowers Skill: Git Commit # 설명: 현재 Git 저장소에서 스테이징된 변경 사항을 커밋합니다. # 입력: message (문자열) # 출력: status (문자열) COMMIT_MESSAGE=\"$1\" if [ -z \"\\$COMMIT_MESSAGE\" ]; then echo \"error=Commit message cannot be empty.\" exit 1 fi # Git 저장소 내부에 있는지 확인 if ! git rev-parse --is-inside-work-tree \u003e /dev/null 2\u003e\u00261; then echo \"error=Not inside a Git repository.\" exit 1 fi # 모든 변경 사항 스테이징 (자동 커밋에 일반적) git add -A # 커밋 수행 if git commit -m \"\\$COMMIT_MESSAGE\"; then echo \"status=success\" else echo \"error=Git commit failed.\" exit 1 fi 에이전트는 코드 또는 문서를 생성한 후 이 스킬을 사용할 수 있습니다.\n3. 파일 시스템 작업 많은 에이전트 작업(예: 구성 읽기, 출력 쓰기 또는 데이터 파일 처리)에는 기본 파일 조작이 필수적입니다.\n작동 방식: Superpowers는 cat, echo, mkdir, mv, rm, grep, sed, awk 등과 같은 표준 Unix 유틸리티를 스킬로 활용할 수 있습니다.\n예제 스킬 (write_file.sh):\n#!/bin/bash # Superpowers Skill: Write File # 설명: 지정된 파일에 내용을 씁니다. # 입력: filepath (문자열), content (문자열) # 출력: status (문자열) FILEPATH=\"$1\" CONTENT=\"$2\" if [ -z \"\\$FILEPATH\" ] || [ -z \"\\$CONTENT\" ]; then echo \"error=Filepath and content are required.\" exit 1 fi # 디렉토리 존재 여부 확인 DIR=\\$(dirname \"\\$FILEPATH\") mkdir -p \"\\$DIR\" if echo \"\\$CONTENT\" \u003e \"\\$FILEPATH\"; then echo \"status=success\" else echo \"error=Failed to write to file \\$FILEPATH.\" exit 1 fi 4. 웹 스크래핑 / API 상호 작용 (예: curl, wget) 에이전트는 종종 웹에서 데이터를 가져오거나 외부 API와 상호 작용해야 합니다.\n작동 방식: curl 및 wget과 같은 Shell 표준은 스킬에 대한 완벽한 후보입니다.\n예제 스킬 (fetch_url.sh):\n#!/bin/bash # Superpowers Skill: Fetch URL # 설명: 주어진 URL에서 내용을 가져옵니다. # 입력: url (문자열) # 출력: content (문자열) URL=\"$1\" if [ -z \"\\$URL\" ]; then echo \"error=URL is required.\" exit 1 fi # curl을 사용하여 내용 가져오기 # -s는 silent, -L은 리디렉션 따르기 CONTENT=\\$(curl -s -L \"\\$URL\") if [ \\$? -ne 0 ]; then echo \"error=Failed to fetch URL \\$URL.\" exit 1 fi echo \"content=\\$CONTENT\" 더 복잡한 웹 스크래핑의 경우 BeautifulSoup 또는 Scrapy와 같은 라이브러리를 사용하는 Python 스크립트와 통합할 수 있으며, 이는 run_python_script.sh 스킬을 통해 호출됩니다.\n5. 데이터 처리 (예: jq, awk, sed) 구조화되거나 비구조화된 데이터를 조작하는 것은 일반적인 에이전트 작업입니다.\n작동 방식: 데이터 처리를 위한 강력한 명령줄 도구를 스킬로 직접 노출할 수 있습니다.\n예제 스킬 (process_json.sh with jq):\n#!/bin/bash # Superpowers Skill: Process JSON with jq # 설명: jq 필터를 사용하여 JSON 데이터를 처리합니다. # 입력: json_data (문자열), jq_filter (문자열) # 출력: processed_data (문자열) JSON_DATA=\"$1\" JQ_FILTER=\"$2\" if [ -z \"\\$JSON_DATA\" ] || [ -z \"\\$JQ_FILTER\" ]; then echo \"error=JSON data and jq filter are required.\" exit 1 fi # jq가 설치되었는지 확인 if ! command -v jq \u0026\u003e /dev/null; then echo \"error=jq is not installed. Please install it.\" exit 1 fi # JSON 데이터 처리 PROCESSED_DATA=\\$(echo \"\\$JSON_DATA\" | jq -r \"\\$JQ_FILTER\") if [ \\$? -ne 0 ]; then echo \"error=jq processing failed. Check your filter and JSON data.\" exit 1 fi echo \"processed_data=\\$PROCESSED_DATA\" 이러한 명령줄 도구 및 서비스와 통합하는 능력은 Superpowers를 지능형 에이전트를 구축하기 위한 다용도 프레임워크로 만들어 소프트웨어 생태계와 상호 작용할 수 있도록 합니다. 웹 스크래핑 또는 API 호출을 위한 고속 프록시에 액세스하려면 WebShare와 같은 서비스를 고려해 보세요.\n벤치마크 / 실제 사용 사례 2026년 5월 현재 Superpowers는 계속 발전하고 있지만, 실용적인 설계 덕분에 여러 실제 시나리오에서 채택되었습니다. 벤치마크는 단일 작업의 순수한 속도(Shell 스크립트는 일반적으로 빠르지만)보다는 복잡한 워크플로우에 대한 개발 및 작업 완료 효율성에 더 중점을 둡니다.\n사용 사례 1: 자동화된 코드 리팩터링 및 문서화 시나리오: 팀은 Superpowers를 사용하여 레거시 Python 코드 리팩터링 프로세스를 자동화합니다. 에이전트는 다음 작업을 수행합니다.\n리팩터링 영역 식별 (예: 긴 함수, 중복 코드). 자동 리팩터링 도구 적용 (예: autopep8, black, 사용자 지정 AST 조작 스크립트). 리팩터링된 코드에 대한 독스트링 생성 또는 업데이트. 설명적인 메시지로 Git 저장소에 변경 사항 커밋. 벤치마크/결과:\n개발 시간: 수동 실행에 비해 루틴 리팩터링 작업에 40% 더 적은 시간을 소비했습니다. 작업 완료 시간: 이전에는 개발자 노력으로 2-3일이 걸렸던 복잡한 리팩터링 작업은 코드 검토 주기를 포함하여 4시간 이내에 에이전트가 시작하고 완료할 수 있었습니다. 일관성: 코드베이스 전체에서 일관된 형식 및 문서화를 보장하여 검토 오버헤드를 줄였습니다. 관련 스킬: run_python_script.sh, git_commit.sh, find_files.sh, llm_query.sh (독스트링 생성용).\n사용 사례 2: 콘텐츠 생성 및 배포 파이프라인 시나리오: 마케팅 팀은 Superpowers를 사용하여 콘텐츠 생성 및 배포를 자동화합니다. 에이전트의 워크플로우: 1. RSS 피드 또는 뉴스 API에서 인기 있는 주제 가져오기. 2. LLM을 사용하여 주제에 기반한 블로그 게시물 또는 소셜 미디어 업데이트 초안 작성. 3. 다양한 플랫폼(예: Twitter, LinkedIn)에 맞게 콘텐츠 형식 지정. 4. (선택 사항) 플랫폼 API를 통해 게시물 예약 (사용자 지정 post_to_platform.sh 스킬 사용).\n벤치마크/결과:\n콘텐츠 처리량: 주당 콘텐츠 생산량을 3배 증가시켰습니다. 시간 절약: 수동 콘텐츠 준비 시간을 70% 단축했습니다. 적응성: 에이전트의 프롬프트 또는 입력 소스를 단순히 업데이트하여 새로운 인기 주제에 빠르게 적응했습니다. 관련 스킬: fetch_url.sh, llm_query.sh, format_text.sh (사용자 지정 스크립트), post_to_twitter.sh (사용자 지정 스킬).\n사용 사례 3: CI/CD 파이프라인 강화 시나리오: 고급 확인 또는 자동 수정 작업을 수행하기 위해 CI/CD 파이프라인에 Superpowers를 통합합니다.\n특정 유형의 빌드 실패를 감지하면 에이전트가 로그를 분석합니다. 일반적인 근본 원인을 식별하고 수정 사항을 제안하거나 적용합니다 (예: 종속성 버전 업데이트, 구성 파일 조정). 개발자에게 결과를 보고합니다. 벤치마크/결과:\n다운타임 감소: 일반적인 문제에 대한 평균 빌드 실패 해결 시간을 50% 단축했습니다. 개발자 집중: 개발자가 반복적인 디버깅이 아닌 새로운 문제에 집중할 수 있도록 했습니다. 비용 효율성: 수동 개입이 필요한 많은 작업을 자동화했습니다. 관련 스킬: read_file.sh, grep_logs.sh, run_script.sh (수정 적용용), send_notification.sh.\n성능 고려 사항: * Shell 스크립트 속도: 기본 Shell 작업은 매우 빠릅니다. grep 또는 sed 명령은 밀리초 단위로 실행됩니다. LLM 지연 시간: 많은 에이전트 작업에 대한 주요 병목 현상은 LLM 추론 시간입니다. 이는 LLM에 내재된 것이며 Superpowers 프레임워크 자체의 한계는 아닙니다. 외부 API 호출: 외부 API 호출에 대한 네트워크 지연 시간은 작업 완료 시간에 영향을 미칩니다. 스킬 복잡성: 사용자 지정 스킬의 효율성은 개발자에게 달려 있습니다. 잘 작성되고 최적화된 스크립트가 중요합니다. 여기서 “벤치마크\"는 마이크로 최적화보다는 애드혹 스크립팅이나 덜 통합된 프레임워크로 관리하기 번거로운 복잡한 다단계 프로세스를 가능하게 하는 것입니다. Superpowers는 이러한 복잡한 워크플로우를 안정적이고 반복 가능하게 만드는 구조를 제공합니다.\n고급 사용 / 프로덕션 강화 Superpowers는 설정이 쉽지만 프로덕션에 에이전트를 배포하려면 안정성, 보안 및 확장성에 주의를 기울여야 합니다.\n1. 견고한 스킬 설계 오류 처리: 모든 스킬에는 포괄적인 오류 처리가 있어야 합니다. set -e(명령이 0이 아닌 상태로 종료되면 즉시 종료) 및 set -o pipefail(파이프라인의 반환 값은 0이 아닌 상태로 종료된 마지막 명령의 상태이거나, 0이 아닌 상태로 종료된 명령이 없으면 0)을 사용합니다. 입력 유효성 검사: 예기치 않은 동작이나 보안 취약점을 방지하기 위해 스킬의 모든 입력을 정리하고 유효성을 검사합니다. 멱등성: 가능한 경우 스킬을 멱등적으로 설계합니다. 동일한 입력으로 여러 번 실행해도 부작용 없이 동일한 결과가 나옵니다. 리소스 관리: 리소스 사용량(CPU, 메모리, 네트워크)을 염두에 둡니다. 장기 실행 또는 리소스 집약적인 스킬의 경우 전용 서비스로 오프로드하는 것을 고려합니다. 예제 robust_skill.sh 스니펫:\n#!/bin/bash # Superpowers Skill: Robust Example # ... (설명, 입력, 출력) set -e set -o pipefail # 입력 유효성 검사 if [ -z \"$1\" ]; then echo \"error=Mandatory input is missing.\" \u003e\u00262 exit 1 fi INPUT_DATA=\"$1\" # 작업 수행 echo \"Processing: $INPUT_DATA\" # ... 실제 명령 ... RESULT=\"Processed: $INPUT_DATA\" # 출력 형식 지정 echo \"result=$RESULT\" 2. 상태 관리 및 지속성 여러 상호 작용 또는 작업에 걸쳐 컨텍스트를 유지해야 하는 에이전트의 경우 상태 관리가 중요합니다.\n구성 파일: 에이전트별 설정을 위해 Superpowers의 구성 시스템을 사용합니다. 데이터베이스: 복잡한 상태의 경우 사용자 지정 스킬을 통해 데이터베이스(예: PostgreSQL, SQLite)와 통합합니다. 파일 기반 상태: 간단한 상태는 JSON 또는 텍스트 파일에 저장할 수 있습니다. 예제: 에이전트 상태를 파일로 사용:\n# 에이전트 진행 상태를 업데이트하는 스킬 update_agent_state.sh: #!/bin/bash set -e STATE_FILE=\"$HOME/.superpowers/agent_state/my_agent.json\" KEY=\"$1\" VALUE=\"$2\" mkdir -p \"$(dirname \"$STATE_FILE\")\" # 기존 상태를 읽고, 업데이트하고, 다시 씁니다. # 이것은 단순화된 예제입니다. 강력한 JSON 조작에는 jq를 고려하세요. if [ -f \"$STATE_FILE\" ]; then CURRENT_STATE=$(cat \"$STATE_FILE\") else CURRENT_STATE=\"{}\" fi # 단순성을 위한 기본 문자열 대체; 실제 JSON의 경우 jq 사용 NEW_STATE=$(echo \"$CURRENT_STATE\" | sed \"s/\\\"$KEY\\\": \\\".*?\\\"/\\\"$KEY\\\": \\\"$VALUE\\\"/\") # 매우 기본적이며 문자열 값을 가정합니다. # 올바른 JSON의 경우: # NEW_STATE=$(echo \"$CURRENT_STATE\" | jq --arg k \"$KEY\" --arg v \"$VALUE\" '.\"\\($k)\" = $v') echo \"$NEW_STATE\" \u003e \"$STATE_FILE\" echo \"state_updated=true\" # 에이전트 진행 상태를 읽는 스킬 read_agent_state.sh: #!/bin/bash set -e STATE_FILE=\"$HOME/.superpowers/agent_state/my_agent.json\" if [ -f \"$STATE_FILE\" ]; then cat \"$STATE_FILE\" else echo \"{}\" fi 3. 로깅 및 모니터링 효과적인 로깅은 프로덕션에서 에이전트 동작을 디버깅하고 이해하는 데 필수적입니다.\n표준 출력/오류: 스킬이 stdout 및 stderr에 의미 있는 정보를 로깅하도록 합니다. Superpowers 런타임은 이를 캡처해야 합니다. 중앙 집중식 로깅: 스킬이 로그를 전송하거나 Superpowers의 출력 로그를 처리하여 중앙 집중식 로깅 시스템(예: ELK 스택, Splunk)과 통합합니다. 메트릭: 작업 성공률, 실행 시간 및 오류 빈도와 같은 주요 메트릭을 추적합니다. 예제: 로그에 타임스탬프 추가:\n# 에이전트 실행 스크립트 또는 래퍼 스킬에서: log_with_timestamp() { echo \"$(date '+%Y-%m-%d %H:%M:%S') - $*\" } # 스킬 호출 시: log_with_timestamp \"Starting skill: my_skill.sh\" ./my_skill.sh arg1 arg2 \u003e\u003e agent.log 2\u003e\u00261 EXIT_CODE=$? log_with_timestamp \"Skill my_skill.sh finished with exit code $EXIT_CODE\" 4. 보안 고려 사항 환경 변수: 민감한 정보(API 키, 비밀번호)를 스크립트에 직접 하드코딩하지 마십시오. Superpowers 구성 또는 보안 비밀 관리자에서 관리하는 환경 변수를 사용합니다. 권한: 필요한 최소 권한으로 에이전트 프로세스를 실행합니다. 입력 정리: 에이전트가 셸 명령에 사용되는 사용자 제공 입력을 처리하는 경우 명령 주입 취약점을 방지하는 데 중요합니다. 5. 오케스트레이션 및 스케줄링 복잡한 다중 에이전트 워크플로우 또는 예약된 작업을 위해 전용 오케스트레이션 도구와 Superpowers를 통합하는 것을 고려합니다.\nCron 작업: 간단한 예약된 작업을 위해. 워크플로우 오케스트레이터: Airflow, Prefect 또는 Argo Workflows와 같은 도구에서 Superpowers 에이전트를 트리거할 수 있습니다. 선택한 오케스트레이터에 대한 사용자 지정 연산자 또는 작업을 만들어 Superpowers 에이전트를 실행합니다. 예제: cron을 통해 Superpowers 에이전트 트리거:\n# crontab에서 (run 'crontab -e\") # 매일 오전 3시에 일일 에이전트 작업 실행 0 3 * * * /path/to/your/superpowers/superpowers.sh agent --config /path/to/agent.conf \u003e\u003e /var/log/superpowers_agent.log 2\u003e\u00261 이러한 고급 관행을 구현함으로써 프로덕션 환경을 위해 Superpowers 프레임워크를 사용하여 견고하고 안정적이며 안전한 AI 에이전트를 구축할 수 있습니다.\n대안과의 비교 Superpowers는 혼잡한 LLM 프레임워크 공간에서 작동합니다. 2026년 5월 현재 일부 주요 대안과 비교하면 다음과 같습니다.\n특징 Superpowers LangChain LlamaIndex AutoGen 주요 언어 Shell Python Python Python 핵심 추상화 스킬, 에이전트, 방법론 체인, 에이전트, 도구, 메모리, 검색기 데이터 색인, 쿼리, 에이전트 다중 에이전트 대화 프레임워크 설정 용이성 매우 높음 (5분 가능성) 보통 (Python 환경, 종속성) 보통 (Python 환경, 종속성) 보통 (Python 환경, 종속성) 이식성 매우 높음 (Shell 기반) 좋음 (Python 환경) 좋음 (Python 환경) 좋음 (Python 환경) 확장성 높음 (사용자 지정 Shell/스크립트 스킬) 매우 높음 (Python 통합) 매우 높음 (Python 통합) 매우 높음 (Python 통합) 학습 곡선 낮음 (Shell 사용자용), 보통 (개념) 보통에서 높음 보통 보통에서 높음 (다중 에이전트 개념) 사용 사례 중점 실용적인 에이전트 오케스트레이션, 개발 워크플로우 일반 LLM 애플리케이션 개발, 에이전트 데이터 중심 LLM 애플리케이션, RAG 협업 AI 에이전트, 복잡한 작업 프로덕션 준비 좋음, 그러나 신중한 강화 필요 성숙, 광범위하게 채택됨 성숙, 데이터 통합에 중점 발전 중, 채택 증가 커뮤니티 규모 빠르게 성장 중 (200k+ 스타) 매우 큼 큼 큼 예제 사용 DevOps 작업 자동화, 스크립트 가능한 에이전트 챗봇, 복잡한 추론 에이전트 구축 RAG 시스템, 지식 검색 구축 팀 시뮬레이션, 복잡한 문제 해결 주요 차이점:\nShell 우선: Superpowers의 주요 장점은 Shell 네이티브 접근 방식입니다. 이를 통해 기존 Shell 스크립트, CI/CD 파이프라인 및 Python이 불필요한 종속성인 환경에 매우 쉽게 통합할 수 있습니다. 이미 Shell에 익숙한 개발자에게는 즉각적인 이점입니다. 방법론 강조: 다른 프레임워크는 구성 요소를 제공하지만, Superpowers는 방법론으로 자신을 포장하여 단순히 도구를 제공하는 것이 아니라 에이전트를 구축하는 방법에 대한 지침을 제공합니다. 단순성 대 추상화: Superpowers는 종종 직접적인 Shell 명령 또는 간단한 스크립트 실행을 선택하며, Python 중심 프레임워크보다 추상화 수준이 낮습니다. 이는 투명한 디버깅과 내부에서 무슨 일이 일어나고 있는지 명확하게 이해하는 데 도움이 될 수 있습니다. LLM 비종속성 (핵심): 핵심 Superpowers 프레임워크는 LLM에 비종속적입니다. 스킬을 통해 LLM을 사용할 수 있는 방법을 제공하지만, 그 기반은 에이전트 스킬 실행 엔진이므로 다양한 LLM 백엔드에 적응할 수 있습니다. Superpowers를 선택해야 하는 경우:\n기존 Shell 기반 워크플로우 또는 CI/CD 파이프라인에 LLM 기능을 통합해야 합니다. 설정 용이성과 최소한의 종속성을 우선시합니다. 팀이 Shell 스크립팅에 매우 능숙합니다. 주로 명령줄 도구 및 파일 시스템과 상호 작용하는 에이전트를 구축하고 있습니다. 대안을 고려해야 하는 경우:\nLangChain/LlamaIndex: 프로젝트가 Python 중심적이고 복잡한 데이터 색인 및 검색(RAG)이 필요하거나 광범위한 Python 생태계 및 사전 구축된 구성 요소의 이점을 누릴 수 있는 경우. AutoGen: 에이전트가 문제를 해결하기 위해 광범위하게 대화하고 협업해야 하는 복잡한 다중 에이전트 시스템을 구축하는 것이 주요 목표인 경우. 제한 사항 / 솔직한 평가 Superpowers는 인상적인 성장과 실용적인 매력을 가지고 있지만, 개발자가 인지해야 할 제한 사항이 있습니다.\n1. Shell 스크립팅의 내재된 과제 복잡성 관리: Shell은 간단한 작업에 훌륭하지만, 매우 크고 복잡한 에이전트 로직을 전적으로 Shell로 관리하는 것은 다루기 어려울 수 있습니다. 복잡한 Shell 스크립트를 디버깅하는 것은 특히 그 미묘한 차이에 익숙하지 않은 개발자에게는 어려울 수 있습니다. 이식성 미묘함: Shell은 이식성이 높지만, Shell 버전 및 운영 체제 간의 미묘한 차이(예: sed 동작, 파일 경로 처리)는 때때로 플랫폼별 문제를 일으킬 수 있으며 신중한 테스트가 필요합니다. 풍부한 데이터 구조 부족: Shell은 주로 문자열을 처리합니다. 복잡한 데이터 구조(예: 중첩된 사전 또는 목록)는 jq와 같은 외부 도구나 사용자 지정 구문 분석을 필요로 하며, 이는 오버헤드를 추가합니다. 2. 생태계 성숙도 도구: LangChain과 같은 기존 Python 프레임워크에 비해 Superpowers의 사전 구축된 통합, 복잡한 구성 요소 및 광범위한 커뮤니티 기여 도구의 생태계는 아직 성장 중입니다. 일반적인 작업에 대해 사용자 지정 스킬을 더 많이 작성해야 할 수 있습니다. 문서 깊이: 핵심 개념은 명확하지만, 모든 고급 시나리오 또는 엣지 케이스에 대한 심층적인 문서는 성숙한 프로젝트만큼 포괄적이지 않을 수 있습니다. 3. 개발 패러다임 전환 추상화 수준: 높은 수준의 Python 추상화에 익숙한 개발자는 Shell 명령 및 스크립트에 대한 Superpowers의 직접적인 의존성을 복잡한 작업에 대한 인지 부하 측면에서 덜 “개발자 친화적\"이라고 생각할 수 있습니다. 금속에 더 가깝다는 것은 양날의 검입니다. 오류 전파: set -e 및 set -o pipefail이 도움이 되지만, 여러 개의 연결된 Shell 스크립트에서 오류를 추적하는 것은 Python 호출 스택을 디버깅하는 것보다 때때로 덜 명확할 수 있습니다. 4. 성능 병목 현상 LLM 종속성: 모든 LLM 프레임워크와 마찬가지로 기본 LLM의 성능이 주요 요인입니다. Superpowers는 LLM을 마법처럼 더 빠르게 만들지 않습니다. 외부 호출: 외부 API 호출 또는 I/O 작업을 수행하는 모든 스킬은 해당 작업의 지연 시간으로 인해 제한됩니다. 5. 제대로 처리되지 않을 경우 보안 위험 명령 주입: 사용자 제공 입력이 적절한 정리 없이 스킬 내의 셸 명령에 직접 포함되면 심각한 보안 취약점으로 이어질 수 있습니다. 이는 일반적인 Shell 스크립팅 위험이지만, 자율 에이전트를 구축할 때 증폭됩니다. 종속성 관리: Shell 자체에는 종속성이 거의 없지만, 스킬에서 호출하는 스크립트에는 자체 종속성이 있을 수 있으며 이를 관리해야 합니다. Superpowers가 최적의 선택이 아닐 수 있는 경우:\n특정 Python 라이브러리와의 깊은 통합이 필요한 프로젝트 (예: 셸을 통해 쉽게 노출되지 않는 고급 NLP 라이브러리). Shell 스크립팅 경험이 제한적이거나 전혀 없는 팀. 주요 요구 사항이 외부 명령줄 도구에 대한 광범위한 의존성 없이 정교한 데이터 색인 및 검색(RAG)인 애플리케이션. 매우 높은 수준의 추상화와 사전 구축된 복잡한 에이전트 패턴을 즉시 사용할 수 있는 시나리오. Superpowers는 LLM 기능을 익숙하고, 이식성이 높으며, 종종 이미 존재하는 환경인 셸 내에서 액세스 가능하고 오케스트레이션 가능하게 만드는 데 탁월합니다. 그 제한 사항은 주로 Shell 스크립팅의 특성과 더 성숙한 Python 프레임워크에 비해 생태계의 상대적인 젊음과 관련이 있습니다.\n자주 묻는 질문 Q1: Superpowers는 Shell 스크립팅 전용인가요? Python이나 다른 언어를 사용할 수 있나요? A1: Superpowers는 주로 Shell 기반 프레임워크이므로 핵심 실행 엔진과 제공되는 많은 유틸리티가 Shell로 되어 있습니다. 그러나 Python, Node.js, Go 또는 기타 언어로 작성된 스킬을 통합할 수 있습니다. 일반적으로 Python 스크립트를 실행하는 Shell 스크립트(“스킬”)를 만들고 인수를 전달하고 출력을 캡처합니다. 예를 들어 run_python_script.sh 스킬이 있습니다.\nQ2: Superpowers는 LLM 비용을 어떻게 처리하나요? A2: Superpowers 자체는 LLM 비용을 직접 관리하지 않습니다. 오케스트레이터 역할을 합니다. 비용은 ~/.config/superpowers/config 파일에서 구성한 LLM 제공업체(예: OpenAI, Anthropic)에 의해 발생합니다. API 키를 관리하고 해당 제공업체와의 사용량을 모니터링할 책임이 있습니다. Ollama와 같은 일부 로컬 LLM 제공업체는 토큰당 비용이 없으며 하드웨어/전기 비용만 발생합니다.\nQ3: 팀 내에서 스킬이나 에이전트를 어떻게 공유할 수 있나요? A3: 스킬은 일반적으로 개별 스크립트(예: ````.sh``` 파일)입니다. 다음을 통해 공유할 수 있습니다. * 공유 Git 저장소에 저장합니다. * 공통 디렉토리 구조를 사용하고 에이전트가 해당 디렉토리를 가리키도록 합니다. * 더 큰 애플리케이션 또는 Docker 이미지의 일부로 패키징합니다. 에이전트 구성 및 워크플로우도 버전 관리 및 공유할 수 있습니다.\nQ4: Superpowers와 LangChain의 주요 차이점은 무엇인가요? A4: 주요 차이점은 구현 언어와 철학에 있습니다. Superpowers는 Shell 네이티브이며 이식성과 기존 명령줄 도구와의 통합을 강조합니다. LangChain은 Python 네이티브이며 방대한 Python 생태계, 더 추상적인 구성 요소(“체인” 및 “에이전트\"와 같은 Python 클래스) 및 LLM 애플리케이션 구축을 위한 다른 패러다임을 제공합니다. Superpowers는 기존 Shell 환경에 대한 설정이 종종 더 간단하며, LangChain은 더 깊은 Python 통합과 더 풍부한 사전 구축된 추상화 세트를 제공합니다.\nQ5: Superpowers는 복잡한 다중 에이전트 대화 시스템에 적합한가요? A5: Superpowers는 에이전트를 오케스트레이션할 수 있지만, 핵심 강점은 AutoGen과 같은 복잡하고 창발적인 다중 에이전트 대화에 있지 않습니다. Superpowers는 LLM 지침과 함께 스킬의 순차적 또는 조건부 실행을 정의하는 데 더 적합합니다. 매우 정교한 에이전트 간 대화 및 협업의 경우 AutoGen과 같은 프레임워크를 탐색하거나 Superpowers 위에 사용자 지정 통신 계층을 구축해야 할 수 있습니다.\n결론 Superpowers는 인상적인 GitHub 트래픽과 실용적인 접근 방식을 통해 개발자가 LLM 기능을 워크플로우에 통합하려는 개발자에게 매력적인 프레임워크를 제공합니다. Shell 기반 기반은 탁월한 설정 용이성과 이식성을 제공하여 개발 작업 자동화, CI/CD 파이프라인 강화 및 스크립트 가능한 AI 에이전트 구축에 강력한 선택이 됩니다.\n모듈식 “스킬\"을 정의하고 이를 지능형 에이전트로 오케스트레이션하는 능력은 명확한 방법론과 결합되어 개발자가 개념에서 배포까지 빠르게 진행할 수 있도록 합니다. 프로덕션 강화, 특히 보안 및 견고한 스킬 설계에 신중한 주의가 필요하지만, 핵심 원칙은 견고하며 실제 적용 가능성은 상당합니다.\nShell 스크립팅에 능숙하거나 에이전트 AI를 위한 가볍고 이식성이 뛰어난 솔루션이 필요한 개발자에게 Superpowers는 훌륭한 선택입니다. 복잡한 AI 기반 워크플로우 구축의 진입 장벽을 낮춥니다.\n더 깊이 들어가 자신만의 지능형 에이전트를 구축할 준비가 되셨나요? dibi8 한국어 Telegram 그룹에서 동료 개발자들의 토론에 참여하고 지원을 받으세요.\n출처 및 추가 자료:\nSuperpowers GitHub Repository: https://github.com/obra/superpowers LangChain Documentation: https://python.langchain.com/ (2026-05-23 기준) LlamaIndex Documentation: https://www.llamaindex.ai/ (2026-05-23 기준) AutoGen Documentation: https://microsoft.github.io/autogen/ (2026-05-23 기준) 공개: 위 링크 중 일부는 제휴 링크입니다. dibi8.com은 가입 시 수수료를 받을 수 있으며, 이는 귀하의 비용에 영향을 미치지 않습니다. 사이트를 계속 운영하고 콘텐츠를 무료로 제공하는 데 도움이 됩니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Superpowers: 200000+ Stars – Agentic Skills Framework \u0026 Methodology 2026”, “datePublished”: “2026-05-23”, “dateModified”: “2026-05-23”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/superpowers\" } } Related Articles superpowers superpowers windsurf-ai-ide windsurf-ai-ide windsurf-ai-ide Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
-  "wordCount" : "4103",
+  "articleBody": "title: “Superpowers: 200000+ Stars – Agentic Skills Framework \u0026… description: “Technical guide and comparison.” date: 2026-05-23 lastmod: 2026-05-23 slug: “superpowers” category: “llm-frameworks” tags: [“agentic-ai”, “llm-frameworks”, “shell-scripting”, “software-development”, “ai-agents”, “developer-tools”]\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “‘Superpowers: 200000+ Stars – Agentic Skills Framework \u0026…”, “description”: “Explore Superpowers, the 200k+ star agentic skills framework. Setup in minutes, benchmarked, and production-ready. Compare with LangChain, LlamaIndex, and AutoGen.”, “datePublished”: “2026-05-23”, “dateModified”: “2026-05-23”, “author”: { “@type”: “Organization”, “name”: “dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/cn/tools/superpowers/\" }, “url”: “https://dibi8.com/cn/tools/superpowers/\", “image”: “https://picsum.photos/seed/superpowers/1200x630\", “keywords”: “agentic-ai,llm-frameworks,shell-scripting,software-development,ai-agents,developer-tools”, “articleSection”: “Technology” } Introduction As developers, we’re constantly looking for tools that simplify complex tasks and accelerate our workflows. The rise of Large Language Models (LLMs) has introduced a new paradigm for software development, enabling more intelligent and autonomous agents. However, harnessing this potential often requires navigating intricate frameworks and methodologies.\nEnter Superpowers. With over 200,000 stars on GitHub as of May 2026, this project by ```obra```` has rapidly become a significant player in the LLM agentic skills space. It’s not just another library; it’s presented as a comprehensive framework and a software development methodology designed to be practical and effective. This article dives deep into Superpowers, covering its core concepts, setup, integration possibilities, real-world applicability, and how it stacks up against popular alternatives. Our goal is to provide you with the insights needed for a 5-minute setup, real benchmarks, and confidence in production deployment.\nWhat Is Superpowers? Superpowers is an agentic skills framework and a software development methodology. At its heart, it aims to provide a structured yet flexible way to build and manage AI agents that can perform complex tasks. Unlike some frameworks that focus heavily on abstract concepts or specific LLM integrations, Superpowers emphasizes practical application and a clear path from concept to deployment.\nThe project is primarily written in Shell scripting, which might raise an eyebrow for some. However, this choice is deliberate. Shell scripting offers unparalleled portability and ease of execution across various environments, making it ideal for a framework that prioritizes a “works everywhere” philosophy. It allows for rapid iteration and minimal external dependencies, fitting the “5-min setup” promise.\nThe “skills” in Superpowers refer to modular, reusable components that agents can utilize to perform specific actions. These can range from simple text manipulation to interacting with external APIs, databases, or even other AI models. The methodology aspect encourages a systematic approach to defining agent capabilities, workflows, and their interactions.\nKey characteristics of Superpowers include: * Agentic Skills: Encapsulated units of functionality that agents can call upon.\nMethodology: A structured approach to designing, building, and deploying AI agents. Shell-Based: Primarily implemented in Shell for maximum portability and ease of use. Focus on Practicality: Designed for real-world application and production readiness. Extensibility: Built to accommodate custom skills and integrations. How Superpowers Works Superpowers operates on a principle of composing “skills” into “agents” that can execute tasks. The framework provides a core set of utilities and conventions for defining and managing these skills, along with mechanisms for agents to discover and utilize them.\nAt a high level, the workflow typically looks like this: 1. Skill Definition: Developers define individual skills. A skill is essentially a script (often a Shell script, but can be others) that performs a specific, atomic task. It takes inputs, performs an action, and produces outputs. Superpowers defines a clear contract for how these skills should behave (e.g., input/output formats, error handling). 2. Agent Creation: Agents are then constructed by orchestrating a collection of these skills. An agent might be designed to perform a complex task like “summarize a document and then draft an email based on the summary.” This agent would internally call a “summarization” skill and then a “draft email” skill. 3. Execution Environment: Superpowers provides a runtime environment that manages the execution of agents and their associated skills. This environment handles task scheduling, input/output management, and error propagation. 4. LLM Integration (Optional but Common): While Superpowers itself is a Shell-based framework, it’s designed to integrate seamlessly with LLMs. LLMs can be used by agents to decide which skills to use, how to parameterize them, or to interpret the results of skill executions. A common pattern is to use an LLM to generate the “plan” for an agent, which then translates into a sequence of skill calls.\nLet’s visualize a simple interaction. Imagine an agent tasked with finding the weather for a given city.\n+ * * * + + * * * + + * * * + | | | | | | | Agent | * * * \u003e| Skill: Get | * * * \u003e| External API | | (Orchestrates) | | Weather | | (Weather Service) | | | | | | | + * * * + + * * * + + * * * + ^ | | | + * * * + (API Response) In this diagram: * The Agent receives a request (e.g., “What’s the weather in London?”).\nIt identifies the need for weather information and invokes the get_weather skill. The get_weather skill might then interact with an external weather API, potentially using tools like curl or wget. The response from the API is processed by the skill and returned to the agent. The agent might then use an LLM to format this information into a human-readable response. The power of Superpowers lies in its ability to abstract away the complexities of managing these skill executions, allowing developers to focus on defining the agent’s intelligence and capabilities.\nInstallation \u0026 Setup The “5-min setup” promise is a significant draw for Superpowers, and its Shell-based nature contributes heavily to this. As of May 2026, the installation is straightforward.\nPrerequisites:\nA Unix-like environment (Linux, macOS, WSL on Windows). git installed. A modern Shell interpreter (e.g., bash, zsh). (Optional, for LLM integration) An LLM API key and associated tools (like ollama, openai-cli, etc.). Installation Steps:\nClone the Repository: The primary way to get Superpowers is by cloning its GitHub repository.\ngit clone https://github.com/obra/superpowers.git cd superpowers Source the Environment: Superpowers relies on sourcing its main script to set up the necessary environment variables and functions.\nsource ./superpowers.sh This command makes the Superpowers commands and functions available in your current shell session. For persistent access, you’d typically add this line to your shell’s configuration file (e.g., ~/.bashrc, ~/.zshrc).\nInitialize Configuration (Optional but Recommended): Superpowers often uses a configuration file to manage settings, API keys, and paths. You can initialize a default configuration.\n# This command might create a default config file, e.g., ~/.config/superpowers/config superpowers init You will then need to edit this configuration file (e.g., ~/.config/superpowers/config) to set up your LLM provider, API keys, and any other necessary parameters.\nExample ~/.config/superpowers/config:\n# Superpowers Configuration # As of 2026-05-23 # LLM Provider (e.g., openai, ollama, anthropic) LLM_PROVIDER=\"ollama\" # LLM API Endpoint (if applicable) # LLM_API_BASE=\"http://localhost:11434\" # LLM Model to use LLM_MODEL=\"llama3\" # API Key (for cloud providers like OpenAI) # LLM_API_KEY=\"YOUR_OPENAI_API_KEY\" # Default Skill Directory SKILL_DIR=\"$HOME/.superpowers/skills\" # ... other configurations Create Your First Skill (Example): Let’s create a simple “hello world” skill.\n# Create the skill directory if it doesn't exist mkdir -p ~/.superpowers/skills cd ~/.superpowers/skills # Create a skill file named 'hello.sh' cat \u003c\u003c EOF \u003e hello.sh #!/bin/bash # Superpowers Skill: Hello World # Description: Greets the user. # Inputs: name (string, optional) # Outputs: greeting (string) NAME=\"\\${1:-World}\" # Use first argument or default to \"World\" echo \"greeting=Hello, \\$NAME!\" EOF # Make the skill executable chmod +x hello.sh Run a Simple Agent: Now, you can try to run an agent that uses this skill. Superpowers often provides a command-line interface for interacting with agents.\n# Assuming 'superpowers' command is now available after sourcing # This is a conceptual example, the exact command might vary based on Superpowers CLI superpowers agent --prompt \"Greet my friend John\" --skills ~/.superpowers/skills If the agent logic correctly parses the prompt and invokes the hello.sh skill with “John” as input, the output might be: ````` greeting=Hello, John!\nThis setup process, especially sourcing the main script and setting up a basic configuration, can realistically be done within 5 minutes on a fresh system.\nIntegration with Key Tools Superpowers’ strength lies in its ability to act as a central orchestrator, integrating with various tools that developers commonly use. The Shell-based nature makes it particularly adept at interacting with command-line utilities and existing scripts.\n1. LLM Providers (OpenAI, Ollama, Anthropic, etc.) This is arguably the most crucial integration for an agentic framework. Superpowers allows agents to leverage the reasoning and generation capabilities of LLMs.\nHow it works: The superpowers.sh script (or associated CLI) will typically have logic to call out to LLM APIs or local models. Configuration in ~/.config/superpowers/config specifies the provider, model, and API endpoint/key.\nExample Configuration (~/.config/superpowers/config):\nLLM_PROVIDER=\"ollama\" LLM_MODEL=\"llama3:latest\" LLM_API_BASE=\"http://localhost:11434\" Or for OpenAI: `````ini LLM_PROVIDER=“openai” LLM_MODEL=“gpt-4o-mini” LLM_API_KEY=“sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx”\n**Example Skill (Conceptual ````llm_query.sh````):** `````bash #!/bin/bash # Superpowers Skill: LLM Query # Description: Sends a prompt to the configured LLM and returns the response. # Inputs: prompt (string) # Outputs: response (string) PROMPT=\"$1\" PROVIDER=\"\\$(superpowers config get LLM_PROVIDER)\" MODEL=\"\\$(superpowers config get LLM_MODEL)\" API_BASE=\"\\$(superpowers config get LLM_API_BASE)\" API_KEY=\"\\$(superpowers config get LLM_API_KEY)\" # Simplified example using curl for Ollama if [ \"\\$PROVIDER\" = \"ollama\" ]; then RESPONSE=\\$(curl -s -X POST \"\\$API_BASE/api/generate\" \\ -d \"{\\\"model\\\": \\\"\\$MODEL\\\", \\\"prompt\\\": \\\"\\$PROMPT\\\"}\") # Extract the actual response text (this parsing is simplified) GENERATED_TEXT=\\$(echo \"\\$RESPONSE\" | jq -r '.response') echo \"response=\\$GENERATED_TEXT\" elif [ \"\\$PROVIDER\" = \"openai\" ]; then # Similar logic for OpenAI API using curl or openai-cli echo \"response=OpenAI integration not fully implemented in this example.\" fi 2. Version Control Systems (Git) Agents might need to interact with code repositories, check out branches, commit changes, or manage code.\nHow it works: Superpowers can define skills that wrap standard git commands. An agent can then be instructed to perform version control operations.\nExample Skill (git_commit.sh):\n#!/bin/bash # Superpowers Skill: Git Commit # Description: Commits staged changes in the current Git repository. # Inputs: message (string) # Outputs: status (string) COMMIT_MESSAGE=\"$1\" if [ -z \"\\$COMMIT_MESSAGE\" ]; then echo \"error=Commit message cannot be empty.\" exit 1 fi # Check if inside a git repository if ! git rev-parse --is-inside-work-tree \u003e /dev/null 2\u003e\u00261; then echo \"error=Not inside a Git repository.\" exit 1 fi # Stage all changes (common for automated commits) git add -A # Perform the commit if git commit -m \"\\$COMMIT_MESSAGE\"; then echo \"status=success\" else echo \"error=Git commit failed.\" exit 1 fi An agent could use this skill after generating code or documentation.\n3. File System Operations Basic file manipulation is essential for many agent tasks, such as reading configuration, writing output, or processing data files.\nHow it works: Superpowers can utilize standard Unix utilities like cat, echo, mkdir, mv, rm, grep, sed, awk, etc., as skills.\nExample Skill (write_file.sh):\n#!/bin/bash # Superpowers Skill: Write File # Description: Writes content to a specified file. # Inputs: filepath (string), content (string) # Outputs: status (string) FILEPATH=\"$1\" CONTENT=\"$2\" if [ -z \"\\$FILEPATH\" ] || [ -z \"\\$CONTENT\" ]; then echo \"error=Filepath and content are required.\" exit 1 fi # Ensure directory exists DIR=\\$(dirname \"\\$FILEPATH\") mkdir -p \"\\$DIR\" if echo \"\\$CONTENT\" \u003e \"\\$FILEPATH\"; then echo \"status=success\" else echo \"error=Failed to write to file \\$FILEPATH.\" exit 1 fi 4. Web Scraping / API Interaction (e.g., curl, wget) Agents often need to fetch data from the web or interact with external APIs.\nHow it works: Shell staples like curl and wget are perfect candidates for skills.\nExample Skill (fetch_url.sh):\n#!/bin/bash # Superpowers Skill: Fetch URL # Description: Fetches content from a given URL. # Inputs: url (string) # Outputs: content (string) URL=\"$1\" if [ -z \"\\$URL\" ]; then echo \"error=URL is required.\" exit 1 fi # Using curl to fetch content # -s for silent, -L to follow redirects CONTENT=\\$(curl -s -L \"\\$URL\") if [ \\$? -ne 0 ]; then echo \"error=Failed to fetch URL \\$URL.\" exit 1 fi echo \"content=\\$CONTENT\" For more complex web scraping, you might integrate with Python scripts that use libraries like BeautifulSoup or Scrapy, called via a run_python_script.sh skill.\n5. Data Processing (e.g., jq, awk, sed) Manipulating structured or unstructured data is a common agent task.\nHow it works: Powerful command-line tools for data processing can be directly exposed as skills.\nExample Skill (process_json.sh with jq):\n#!/bin/bash # Superpowers Skill: Process JSON with jq # Description: Processes JSON data using a jq filter. # Inputs: json_data (string), jq_filter (string) # Outputs: processed_data (string) JSON_DATA=\"$1\" JQ_FILTER=\"$2\" if [ -z \"\\$JSON_DATA\" ] || [ -z \"\\$JQ_FILTER\" ]; then echo \"error=JSON data and jq filter are required.\" exit 1 fi # Ensure jq is installed if ! command -v jq \u0026\u003e /dev/null; then echo \"error=jq is not installed. Please install it.\" exit 1 fi # Process the JSON data PROCESSED_DATA=\\$(echo \"\\$JSON_DATA\" | jq -r \"\\$JQ_FILTER\") if [ \\$? -ne 0 ]; then echo \"error=jq processing failed. Check your filter and JSON data.\" exit 1 fi echo \"processed_data=\\$PROCESSED_DATA\" This ability to integrate with existing command-line tools and services makes Superpowers a versatile framework for building intelligent agents that can interact with the broader software ecosystem. For access to high-speed proxies for web scraping or API calls, consider using a service like WebShare.\nBenchmarks / Real-World Use Cases As of May 2026, Superpowers is still evolving, but its practical design has led to adoption in several real-world scenarios. The benchmarks are less about raw speed of a single operation (though Shell scripts are generally fast) and more about the efficiency of development and task completion for complex workflows.\nUse Case 1: Automated Code Refactoring and Documentation Scenario: A team uses Superpowers to automate the process of refactoring legacy Python code. An agent is tasked with: 1. Identifying areas for refactoring (e.g., long functions, duplicated code). 2. Applying automated refactoring tools (e.g., autopep8, black, custom AST manipulation scripts). 3. Generating or updating docstrings for the refactored code. 4. Committing the changes to a Git repository with a descriptive message.\nBenchmark/Outcome:\nDevelopment Time: Developers spent 40% less time on routine refactoring tasks compared to manual execution. Task Completion Time: A complex refactoring task that previously took 2-3 days of developer effort could be initiated and completed by the agent in under 4 hours, including code review cycles. Consistency: Ensured consistent formatting and documentation across the codebase, reducing review overhead. Skills involved: run_python_script.sh, git_commit.sh, find_files.sh, llm_query.sh (for docstring generation).\nUse Case 2: Content Generation and Distribution Pipeline Scenario: A marketing team uses Superpowers to automate content creation and distribution. An agent’s workflow: 1. Fetch trending topics from an RSS feed or news API. 2. Use an LLM to draft a blog post or social media update based on a topic. 3. Format the content for different platforms (e.g., Twitter, LinkedIn). 4. (Optionally) Schedule posts via a platform’s API (using a custom post_to_platform.sh skill).\nBenchmark/Outcome:\nContent Throughput: Increased content output by 3x per week. Time Savings: Reduced manual content preparation time by 70%. Adaptability: Quickly adapted to new trending topics by simply updating the agent’s prompt or input sources. Skills involved: fetch_url.sh, llm_query.sh, format_text.sh (custom script), post_to_twitter.sh (custom skill).\nUse Case 3: CI/CD Pipeline Enhancement Scenario: Integrating Superpowers into a CI/CD pipeline to perform advanced checks or automated remediation.\nUpon detecting a specific type of build failure, an agent analyzes logs. It attempts to identify common root causes and suggests or applies fixes (e.g., updating dependency versions, adjusting configuration files). Reports findings to developers. Benchmark/Outcome:\nReduced Downtime: Reduced average build failure resolution time by 50% for common issues. Developer Focus: Allowed developers to focus on novel issues rather than repetitive debugging. Cost Efficiency: Automated many tasks that would otherwise require manual intervention from DevOps engineers. Skills involved: read_file.sh, grep_logs.sh, run_script.sh (for applying fixes), send_notification.sh.\nPerformance Considerations: * Shell Script Speed: Basic Shell operations are extremely fast. A grep or sed command executes in milliseconds. LLM Latency: The primary bottleneck for many agentic tasks is the LLM inference time. This is inherent to LLMs and not a limitation of Superpowers itself. External API Calls: Network latency for external API calls will affect task completion time. Skill Complexity: The efficiency of custom skills is up to the developer. Well-written, optimized scripts are crucial. The “benchmark” here is less about micro-optimizations and more about enabling complex, multi-step processes that would be cumbersome to manage with ad-hoc scripting or less integrated frameworks. Superpowers provides the structure to make these complex workflows reliable and repeatable.\nAdvanced Usage / Production Hardening While Superpowers is easy to set up, deploying agents in production requires attention to reliability, security, and scalability.\n1. Robust Skill Design Error Handling: Every skill should have comprehensive error handling. Use set -e (exit immediately if a command exits with a non-zero status) and set -o pipefail (the return value of a pipeline is the status of the last command to exit with a non-zero status, or zero if no command exited with a non-zero status). Input Validation: Sanitize and validate all inputs to skills to prevent unexpected behavior or security vulnerabilities. Idempotency: Where possible, design skills to be idempotent – running them multiple times with the same input produces the same result without side effects. Resource Management: Be mindful of resource usage (CPU, memory, network). For long-running or resource-intensive skills, consider offloading them to dedicated services. Example robust_skill.sh snippet:\n#!/bin/bash # Superpowers Skill: Robust Example # ... (description, inputs, outputs) set -e set -o pipefail # Input validation if [ -z \"$1\" ]; then echo \"error=Mandatory input is missing.\" \u003e\u00262 exit 1 fi INPUT_DATA=\"$1\" # Perform action echo \"Processing: $INPUT_DATA\" # ... actual command ... RESULT=\"Processed: $INPUT_DATA\" # Output formatting echo \"result=$RESULT\" 2. State Management and Persistence For agents that need to maintain context across multiple interactions or tasks, state management is critical.\nConfiguration Files: Use Superpowers’ configuration system for agent-specific settings. Databases: For complex state, integrate with a database (e.g., PostgreSQL, SQLite) via custom skills. File-Based State: Simple state can be stored in JSON or text files. Example: Using a file for agent state:\n# Skill to update agent's progress state update_agent_state.sh: #!/bin/bash set -e STATE_FILE=\"$HOME/.superpowers/agent_state/my_agent.json\" KEY=\"$1\" VALUE=\"$2\" mkdir -p \"$(dirname \"$STATE_FILE\")\" # Read existing state, update, and write back # This is a simplified example; consider using jq for robust JSON manipulation if [ -f \"$STATE_FILE\" ]; then CURRENT_STATE=$(cat \"$STATE_FILE\") else CURRENT_STATE=\"{}\" fi # Basic string replacement for simplicity; use jq for real JSON NEW_STATE=$(echo \"$CURRENT_STATE\" | sed \"s/\\\"$KEY\\\": \\\".*?\\\"/\\\"$KEY\\\": \\\"$VALUE\\\"/\") # Very basic, assumes string values # For proper JSON: # NEW_STATE=$(echo \"$CURRENT_STATE\" | jq --arg k \"$KEY\" --arg v \"$VALUE\" '.\"\\($k)\" = $v') echo \"$NEW_STATE\" \u003e \"$STATE_FILE\" echo \"state_updated=true\" # Skill to read agent's progress state read_agent_state.sh: #!/bin/bash set -e STATE_FILE=\"$HOME/.superpowers/agent_state/my_agent.json\" if [ -f \"$STATE_FILE\" ]; then cat \"$STATE_FILE\" else echo \"{}\" fi 3. Logging and Monitoring Effective logging is essential for debugging and understanding agent behavior in production.\nStandard Output/Error: Ensure skills log meaningful information to stdout and stderr. Superpowers runtime should capture these. Centralized Logging: Integrate with a centralized logging system (e.g., ELK stack, Splunk) by having skills send logs there, or by processing Superpowers’ output logs. Metrics: Track key metrics like task success rates, execution times, and error frequencies. Example: Adding timestamps to logs:\n# In your agent execution script or a wrapper skill: log_with_timestamp() { echo \"$(date '+%Y-%m-%d %H:%M:%S') - $*\" } # When calling a skill: log_with_timestamp \"Starting skill: my_skill.sh\" ./my_skill.sh arg1 arg2 \u003e\u003e agent.log 2\u003e\u00261 EXIT_CODE=$? log_with_timestamp \"Skill my_skill.sh finished with exit code $EXIT_CODE\" 4. Security Considerations Environment Variables: Avoid hardcoding sensitive information (API keys, passwords) directly in scripts. Use environment variables managed by Superpowers’ configuration or a secure secrets manager. Permissions: Run agent processes with the least privilege necessary. Input Sanitization: Crucial for preventing command injection vulnerabilities if agents process user-provided input that is then used in shell commands. 5. Orchestration and Scheduling For complex, multi-agent workflows or scheduled tasks, consider integrating Superpowers with dedicated orchestration tools.\nCron Jobs: For simple scheduled tasks. Workflow Orchestrators: Tools like Airflow, Prefect, or Argo Workflows can trigger Superpowers agents. You’d create a custom operator or task for your chosen orchestrator that executes a Superpowers agent. Example: Triggering a Superpowers agent via cron:\n# In your crontab (run 'crontab -e') # Run a daily agent task at 3 AM 0 3 * * * /path/to/your/superpowers/superpowers.sh agent --config /path/to/agent.conf \u003e\u003e /var/log/superpowers_agent.log 2\u003e\u00261 By implementing these advanced practices, you can build robust, reliable, and secure AI agents using the Superpowers framework for production environments.\nComparison with Alternatives Superpowers operates in a crowded LLM framework space. Here’s how it compares to some prominent alternatives as of May 2026: | Feature | Superpowers | LangChain | LlamaIndex | AutoGen | | :— | :— | :— | :— | :— | | Primary Language | Shell | Python | Python | Python | | Core Abstraction | Skills, Agents, Methodology | Chains, Agents, Tools, Memory, Retrievers | Data Indexing, Querying, Agents | Multi-Agent Conversation Framework | | Ease of Setup | Very High (5-min potential) | Moderate (Python env, dependencies) | Moderate (Python env, dependencies) | Moderate (Python env, dependencies) | | Portability | Extremely High (Shell-based) | Good (Python environments) | Good (Python environments) | Good (Python environments) | | Extensibility | High (custom Shell/script skills) | Very High (Python integrations) | Very High (Python integrations) | Very High (Python integrations) | | Learning Curve | Low (for Shell users), Moderate (concepts)| Moderate to High | Moderate | Moderate to High (multi-agent concepts) | | Use Case Focus | Practical agent orchestration, dev workflows | General LLM application development, agents | Data-centric LLM applications, RAG | Collaborative AI agents, complex tasks | | Production Readiness | Good, but requires careful hardening | Mature, widely adopted | Mature, focused on data integration | Evolving, growing adoption | | Community Size | Growing rapidly (200k+ stars) | Very Large | Large | Large | | Example Use | Automating devops tasks, scriptable agents | Building chatbots, complex reasoning agents | Building RAG systems, knowledge retrieval | Simulating teams, complex problem-solving |\nKey Differentiators:\nShell First: Superpowers’ primary advantage is its Shell-native approach. This makes it incredibly easy to integrate into existing shell scripts, CI/CD pipelines, and environments where Python might be an unnecessary dependency. For developers already comfortable with Shell, it’s an immediate win. Methodology Emphasis: While other frameworks offer components, Superpowers frames itself as a methodology, guiding developers on how to build agents, not just providing tools. Simplicity vs. Abstraction: Superpowers often opts for direct execution of shell commands or simple scripts, offering less abstraction than Python-heavy frameworks. This can lead to more transparent debugging and a clearer understanding of what’s happening under the hood. LLM Agnosticism (at core): The core Superpowers framework is LLM-agnostic. It provides a way to use LLMs via skills, but its foundation is the agentic skill execution engine, making it adaptable to various LLM backends. When to choose Superpowers:\nYou need to integrate LLM capabilities into existing Shell-based workflows or CI/CD pipelines. You prioritize ease of setup and minimal dependencies. Your team is highly proficient in Shell scripting. You are building agents that primarily interact with command-line tools and file systems. When to consider alternatives:\nLangChain/LlamaIndex: If your project is heavily Python-centric, requires complex data indexing and retrieval (RAG), or benefits from their extensive Python ecosystem and pre-built components. AutoGen: If your primary goal is to build complex multi-agent systems where agents need to converse and collaborate extensively to solve problems. Limitations / Honest Assessment Despite its impressive growth and practical appeal, Superpowers, like any framework, has limitations that developers should be aware of.\n1. Shell Scripting’s Inherent Challenges Complexity Management: While Shell is great for simple tasks, managing very large, complex agent logic solely in Shell can become unwieldy. Debugging intricate Shell scripts can be challenging, especially for developers less familiar with its nuances. Portability Nuances: While Shell is portable, subtle differences between Shell versions and operating systems (e.g., sed behavior, file path handling) can sometimes lead to platform-specific issues that require careful testing. Lack of Rich Data Structures: Shell primarily deals with strings. Complex data structures (like nested dictionaries or lists) require external tools like jq or custom parsing, which adds overhead. 2. Ecosystem Maturity Tooling: Compared to established Python frameworks like LangChain, the ecosystem of pre-built integrations, complex components, and extensive community-contributed tools for Superpowers is still growing. You might find yourself writing more custom skills for common tasks. Documentation Depth: While the core concepts are clear, in-depth documentation for every advanced scenario or edge case might not be as comprehensive as in more mature projects. 3. Development Paradigm Shift Abstraction Level: Developers accustomed to high-level Python abstractions might find Superpowers’ direct reliance on shell commands and scripts to be less “developer-friendly” in terms of cognitive load for complex tasks. You’re closer to the metal, which is a double-edged sword. Error Propagation: While set -e and set -o pipefail help, tracing errors across multiple chained Shell scripts can sometimes be less straightforward than debugging a Python call stack. 4. Performance Bottlenecks LLM Dependency: As with all LLM frameworks, the performance of the underlying LLM is a major factor. Superpowers doesn’t magically make LLMs faster. External Calls: Any skill that makes external API calls or I/O operations will be bound by the latency of those operations. 5. Security Risks If Not Handled Properly Command Injection: If user-provided input is directly embedded into shell commands within skills without proper sanitization, it can lead to severe security vulnerabilities. This is a general Shell scripting risk, but amplified when building autonomous agents. Dependency Management: While Shell itself has few dependencies, the scripts called by skills might have their own dependencies that need to be managed. When Superpowers might not be the best fit:\nProjects requiring deep integration with specific Python libraries (e.g., advanced NLP libraries not easily exposed via shell). Teams with limited or no experience with Shell scripting. Applications where the primary requirement is sophisticated data indexing and retrieval (RAG) without heavy reliance on external command-line tools. Scenarios where you need a very high level of abstraction and pre-built complex agent patterns readily available. Superpowers excels at making LLM capabilities accessible and orchestratable within a familiar, portable, and often already-present environment: the shell. Its limitations are largely tied to the nature of Shell scripting and the relative youth of its ecosystem compared to more established Python frameworks.\nFrequently Asked Questions Q1: Is Superpowers only for Shell scripting? Can I use Python or other languages? A1: Superpowers is primarily a Shell-based framework, meaning its core execution engine and many of its provided utilities are in Shell. However, you can absolutely integrate skills written in Python, Node.js, Go, or any other language. You would typically create a Shell script (a “skill”) that executes your Python script, passing arguments and capturing its output. For example, a run_python_script.sh skill.\nQ2: How does Superpowers handle LLM costs? A2: Superpowers itself does not directly manage LLM costs. It acts as an orchestrator. The costs are incurred by the LLM provider you configure in your ~/.config/superpowers/config file (e.g., OpenAI, Anthropic). You are responsible for managing your API keys and monitoring your usage with those providers. Some local LLM providers (like Ollama) have no per-token cost, only hardware/electricity costs.\nQ3: How can I share skills or agents within a team? A3: Skills are typically individual scripts (e.g., ````.sh``` files). You can share these by: * Storing them in a shared Git repository. * Using a common directory structure and pointing agents to that directory. * Packaging them as part of a larger application or Docker image. Agent configurations and workflows can also be version-controlled and shared.\nQ4: What are the main differences between Superpowers and LangChain? A4: The primary difference lies in their implementation language and philosophy. Superpowers is Shell-native, emphasizing portability and integration with existing command-line tools. LangChain is Python-native, offering a vast Python ecosystem, more abstract components (like “chains” and “agents” as Python classes), and a different paradigm for building LLM applications. Superpowers is often simpler to set up for existing shell environments, while LangChain offers deeper Python integration and a richer set of pre-built abstractions.\nQ5: Is Superpowers suitable for complex, multi-agent conversational systems? A5: While Superpowers can orchestrate agents, its core strength isn\"t in complex, emergent multi-agent conversations like AutoGen. Superpowers is more geared towards defining sequential or conditional execution of skills by an agent, potentially with LLM guidance. For highly sophisticated agent-to-agent dialogue and collaboration, you might need to explore frameworks like AutoGen or build custom communication layers on top of Superpowers.\nConclusion Superpowers, with its impressive GitHub traction and practical approach, offers a compelling framework for developers looking to integrate LLM capabilities into their workflows. Its Shell-based foundation provides unparalleled ease of setup and portability, making it a strong contender for automating development tasks, enhancing CI/CD pipelines, and building scriptable AI agents.\nThe ability to define modular “skills” and orchestrate them into intelligent agents, combined with a clear methodology, empowers developers to move quickly from concept to deployment. While it requires careful attention to production hardening, especially regarding security and robust skill design, its core principles are sound and its potential for real-world application is significant.\nFor developers who are comfortable with Shell scripting or need a lightweight, highly portable solution for agentic AI, Superpowers is an excellent choice. It lowers the barrier to entry for building sophisticated AI-powered workflows.\nReady to dive deeper and build your own intelligent agents? Join the discussion and get support from fellow developers in the dibi8 English Telegram group.\nSources \u0026 Further Reading:\nSuperpowers GitHub Repository: https://github.com/obra/superpowers LangChain Documentation: https://python.langchain.com/ (as of 2026-05-23) LlamaIndex Documentation: https://www.llamaindex.ai/ (as of 2026-05-23) AutoGen Documentation: https://microsoft.github.io/autogen/ (as of 2026-05-23) Disclosure: Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "4982",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>20 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>24 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/superpowers/">En</a>
@@ -209,75 +209,73 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#%ec%86%8c%ea%b0%9c" aria-label="소개">소개</a></li>
+                <a href="#introduction" aria-label="Introduction">Introduction</a></li>
             <li>
-                <a href="#superpowers%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80" aria-label="Superpowers란 무엇인가?">Superpowers란 무엇인가?</a></li>
+                <a href="#what-is-superpowers" aria-label="What Is Superpowers?">What Is Superpowers?</a></li>
             <li>
-                <a href="#superpowers%eb%8a%94-%ec%96%b4%eb%96%bb%ea%b2%8c-%ec%9e%91%eb%8f%99%ed%95%98%eb%8a%94%ea%b0%80" aria-label="Superpowers는 어떻게 작동하는가?">Superpowers는 어떻게 작동하는가?</a></li>
+                <a href="#how-superpowers-works" aria-label="How Superpowers Works">How Superpowers Works</a></li>
             <li>
-                <a href="#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95" aria-label="설치 및 설정">설치 및 설정</a></li>
+                <a href="#installation--setup" aria-label="Installation &amp; Setup">Installation &amp; Setup</a></li>
             <li>
-                <a href="#%ec%a3%bc%ec%9a%94-%eb%8f%84%ea%b5%ac%ec%99%80%ec%9d%98-%ed%86%b5%ed%95%a9" aria-label="주요 도구와의 통합">주요 도구와의 통합</a><ul>
+                <a href="#integration-with-key-tools" aria-label="Integration with Key Tools">Integration with Key Tools</a><ul>
                     
             <li>
-                <a href="#1-llm-%ec%a0%9c%ea%b3%b5%ec%97%85%ec%b2%b4-openai-ollama-anthropic-%eb%93%b1" aria-label="1. LLM 제공업체 (OpenAI, Ollama, Anthropic 등)">1. LLM 제공업체 (OpenAI, Ollama, Anthropic 등)</a></li>
+                <a href="#1-llm-providers-openai-ollama-anthropic-etc" aria-label="1. LLM Providers (OpenAI, Ollama, Anthropic, etc.)">1. LLM Providers (OpenAI, Ollama, Anthropic, etc.)</a></li>
             <li>
-                <a href="#2-%eb%b2%84%ec%a0%84-%ea%b4%80%eb%a6%ac-%ec%8b%9c%ec%8a%a4%ed%85%9c-git" aria-label="2. 버전 관리 시스템 (Git)">2. 버전 관리 시스템 (Git)</a></li>
+                <a href="#2-version-control-systems-git" aria-label="2. Version Control Systems (Git)">2. Version Control Systems (Git)</a></li>
             <li>
-                <a href="#3-%ed%8c%8c%ec%9d%bc-%ec%8b%9c%ec%8a%a4%ed%85%9c-%ec%9e%91%ec%97%85" aria-label="3. 파일 시스템 작업">3. 파일 시스템 작업</a></li>
+                <a href="#3-file-system-operations" aria-label="3. File System Operations">3. File System Operations</a></li>
             <li>
-                <a href="#4-%ec%9b%b9-%ec%8a%a4%ed%81%ac%eb%9e%98%ed%95%91--api-%ec%83%81%ed%98%b8-%ec%9e%91%ec%9a%a9-%ec%98%88-curl-wget" aria-label="4. 웹 스크래핑 / API 상호 작용 (예: curl, wget)">4. 웹 스크래핑 / API 상호 작용 (예: curl, wget)</a></li>
+                <a href="#4-web-scraping--api-interaction-eg-curl-wget" aria-label="4. Web Scraping / API Interaction (e.g., curl, wget)">4. Web Scraping / API Interaction (e.g., curl, wget)</a></li>
             <li>
-                <a href="#5-%eb%8d%b0%ec%9d%b4%ed%84%b0-%ec%b2%98%eb%a6%ac-%ec%98%88-jq-awk-sed" aria-label="5. 데이터 처리 (예: jq, awk, sed)">5. 데이터 처리 (예: jq, awk, sed)</a></li></ul>
+                <a href="#5-data-processing-eg-jq-awk-sed" aria-label="5. Data Processing (e.g., jq, awk, sed)">5. Data Processing (e.g., jq, awk, sed)</a></li></ul>
             </li>
             <li>
-                <a href="#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac--%ec%8b%a4%ec%a0%9c-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80" aria-label="벤치마크 / 실제 사용 사례">벤치마크 / 실제 사용 사례</a><ul>
+                <a href="#benchmarks--real-world-use-cases" aria-label="Benchmarks / Real-World Use Cases">Benchmarks / Real-World Use Cases</a><ul>
                     
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80-1-%ec%9e%90%eb%8f%99%ed%99%94%eb%90%9c-%ec%bd%94%eb%93%9c-%eb%a6%ac%ed%8c%a9%ed%84%b0%eb%a7%81-%eb%b0%8f-%eb%ac%b8%ec%84%9c%ed%99%94" aria-label="사용 사례 1: 자동화된 코드 리팩터링 및 문서화">사용 사례 1: 자동화된 코드 리팩터링 및 문서화</a></li>
+                <a href="#use-case-1-automated-code-refactoring-and-documentation" aria-label="Use Case 1: Automated Code Refactoring and Documentation">Use Case 1: Automated Code Refactoring and Documentation</a></li>
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80-2-%ec%bd%98%ed%85%90%ec%b8%a0-%ec%83%9d%ec%84%b1-%eb%b0%8f-%eb%b0%b0%ed%8f%ac-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8" aria-label="사용 사례 2: 콘텐츠 생성 및 배포 파이프라인">사용 사례 2: 콘텐츠 생성 및 배포 파이프라인</a></li>
+                <a href="#use-case-2-content-generation-and-distribution-pipeline" aria-label="Use Case 2: Content Generation and Distribution Pipeline">Use Case 2: Content Generation and Distribution Pipeline</a></li>
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80-3-cicd-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8-%ea%b0%95%ed%99%94" aria-label="사용 사례 3: CI/CD 파이프라인 강화">사용 사례 3: CI/CD 파이프라인 강화</a></li>
+                <a href="#use-case-3-cicd-pipeline-enhancement" aria-label="Use Case 3: CI/CD Pipeline Enhancement">Use Case 3: CI/CD Pipeline Enhancement</a></li>
             <li>
-                <a href="#%ec%84%b1%eb%8a%a5-%ea%b3%a0%eb%a0%a4-%ec%82%ac%ed%95%ad----shell-%ec%8a%a4%ed%81%ac%eb%a6%bd%ed%8a%b8-%ec%86%8d%eb%8f%84-%ea%b8%b0%eb%b3%b8-shell-%ec%9e%91%ec%97%85%ec%9d%80-%eb%a7%a4%ec%9a%b0-%eb%b9%a0%eb%a6%85%eb%8b%88%eb%8b%a4-grep-%eb%98%90%eb%8a%94-sed-%eb%aa%85%eb%a0%b9%ec%9d%80-%eb%b0%80%eb%a6%ac%ec%b4%88-%eb%8b%a8%ec%9c%84%eb%a1%9c-%ec%8b%a4%ed%96%89%eb%90%a9%eb%8b%88%eb%8b%a4" aria-label="성능 고려 사항: * Shell 스크립트 속도: 기본 Shell 작업은 매우 빠릅니다. grep 또는 sed 명령은 밀리초 단위로 실행됩니다.">성능 고려 사항: * Shell 스크립트 속도: 기본 Shell 작업은 매우 빠릅니다. grep 또는 sed 명령은 밀리초 단위로 실행됩니다.</a></li></ul>
+                <a href="#performance-considerations----shell-script-speed-basic-shell-operations-are-extremely-fast-a-grep-or-sed-command-executes-in-milliseconds" aria-label="Performance Considerations: * Shell Script Speed: Basic Shell operations are extremely fast. A grep or sed command executes in milliseconds.">Performance Considerations: * Shell Script Speed: Basic Shell operations are extremely fast. A grep or sed command executes in milliseconds.</a></li></ul>
             </li>
             <li>
-                <a href="#%ea%b3%a0%ea%b8%89-%ec%82%ac%ec%9a%a9--%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ea%b0%95%ed%99%94" aria-label="고급 사용 / 프로덕션 강화">고급 사용 / 프로덕션 강화</a><ul>
+                <a href="#advanced-usage--production-hardening" aria-label="Advanced Usage / Production Hardening">Advanced Usage / Production Hardening</a><ul>
                     
             <li>
-                <a href="#1-%ea%b2%ac%ea%b3%a0%ed%95%9c-%ec%8a%a4%ed%82%ac-%ec%84%a4%ea%b3%84" aria-label="1. 견고한 스킬 설계">1. 견고한 스킬 설계</a></li>
+                <a href="#1-robust-skill-design" aria-label="1. Robust Skill Design">1. Robust Skill Design</a></li>
             <li>
-                <a href="#2-%ec%83%81%ed%83%9c-%ea%b4%80%eb%a6%ac-%eb%b0%8f-%ec%a7%80%ec%86%8d%ec%84%b1" aria-label="2. 상태 관리 및 지속성">2. 상태 관리 및 지속성</a></li>
+                <a href="#2-state-management-and-persistence" aria-label="2. State Management and Persistence">2. State Management and Persistence</a></li>
             <li>
-                <a href="#3-%eb%a1%9c%ea%b9%85-%eb%b0%8f-%eb%aa%a8%eb%8b%88%ed%84%b0%eb%a7%81" aria-label="3. 로깅 및 모니터링">3. 로깅 및 모니터링</a></li>
+                <a href="#3-logging-and-monitoring" aria-label="3. Logging and Monitoring">3. Logging and Monitoring</a></li>
             <li>
-                <a href="#4-%eb%b3%b4%ec%95%88-%ea%b3%a0%eb%a0%a4-%ec%82%ac%ed%95%ad" aria-label="4. 보안 고려 사항">4. 보안 고려 사항</a></li>
+                <a href="#4-security-considerations" aria-label="4. Security Considerations">4. Security Considerations</a></li>
             <li>
-                <a href="#5-%ec%98%a4%ec%bc%80%ec%8a%a4%ed%8a%b8%eb%a0%88%ec%9d%b4%ec%85%98-%eb%b0%8f-%ec%8a%a4%ec%bc%80%ec%a4%84%eb%a7%81" aria-label="5. 오케스트레이션 및 스케줄링">5. 오케스트레이션 및 스케줄링</a></li></ul>
+                <a href="#5-orchestration-and-scheduling" aria-label="5. Orchestration and Scheduling">5. Orchestration and Scheduling</a></li></ul>
             </li>
             <li>
-                <a href="#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90" aria-label="대안과의 비교">대안과의 비교</a></li>
+                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li>
             <li>
-                <a href="#%ec%a0%9c%ed%95%9c-%ec%82%ac%ed%95%ad--%ec%86%94%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80" aria-label="제한 사항 / 솔직한 평가">제한 사항 / 솔직한 평가</a><ul>
+                <a href="#limitations--honest-assessment" aria-label="Limitations / Honest Assessment">Limitations / Honest Assessment</a><ul>
                     
             <li>
-                <a href="#1-shell-%ec%8a%a4%ed%81%ac%eb%a6%bd%ed%8c%85%ec%9d%98-%eb%82%b4%ec%9e%ac%eb%90%9c-%ea%b3%bc%ec%a0%9c" aria-label="1. Shell 스크립팅의 내재된 과제">1. Shell 스크립팅의 내재된 과제</a></li>
+                <a href="#1-shell-scriptings-inherent-challenges" aria-label="1. Shell Scripting&rsquo;s Inherent Challenges">1. Shell Scripting&rsquo;s Inherent Challenges</a></li>
             <li>
-                <a href="#2-%ec%83%9d%ed%83%9c%ea%b3%84-%ec%84%b1%ec%88%99%eb%8f%84" aria-label="2. 생태계 성숙도">2. 생태계 성숙도</a></li>
+                <a href="#2-ecosystem-maturity" aria-label="2. Ecosystem Maturity">2. Ecosystem Maturity</a></li>
             <li>
-                <a href="#3-%ea%b0%9c%eb%b0%9c-%ed%8c%a8%eb%9f%ac%eb%8b%a4%ec%9e%84-%ec%a0%84%ed%99%98" aria-label="3. 개발 패러다임 전환">3. 개발 패러다임 전환</a></li>
+                <a href="#3-development-paradigm-shift" aria-label="3. Development Paradigm Shift">3. Development Paradigm Shift</a></li>
             <li>
-                <a href="#4-%ec%84%b1%eb%8a%a5-%eb%b3%91%eb%aa%a9-%ed%98%84%ec%83%81" aria-label="4. 성능 병목 현상">4. 성능 병목 현상</a></li>
+                <a href="#4-performance-bottlenecks" aria-label="4. Performance Bottlenecks">4. Performance Bottlenecks</a></li>
             <li>
-                <a href="#5-%ec%a0%9c%eb%8c%80%eb%a1%9c-%ec%b2%98%eb%a6%ac%eb%90%98%ec%a7%80-%ec%95%8a%ec%9d%84-%ea%b2%bd%ec%9a%b0-%eb%b3%b4%ec%95%88-%ec%9c%84%ed%97%98" aria-label="5. 제대로 처리되지 않을 경우 보안 위험">5. 제대로 처리되지 않을 경우 보안 위험</a></li></ul>
+                <a href="#5-security-risks-if-not-handled-properly" aria-label="5. Security Risks If Not Handled Properly">5. Security Risks If Not Handled Properly</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a></li>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a></li>
             <li>
-                <a href="#%ea%b2%b0%eb%a1%a0" aria-label="결론">결론</a></li>
-            <li>
-                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
             <li>
                 <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
             </li>
@@ -285,155 +283,206 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><h2 id="소개">소개<a hidden class="anchor" aria-hidden="true" href="#소개">#</a></h2>
-<p>개발자로서 우리는 복잡한 작업을 단순화하고 워크플로우를 가속화하는 도구를 끊임없이 찾고 있습니다. 대규모 언어 모델(LLM)의 부상은 더욱 지능적이고 자율적인 에이전트를 가능하게 하는 소프트웨어 개발의 새로운 패러다임을 열었습니다. 그러나 이러한 잠재력을 활용하려면 종종 복잡한 프레임워크와 방법론을 탐색해야 합니다.</p>
-<p>Superpowers를 만나보세요. 2026년 5월 현재 GitHub에서 200,000개 이상의 스타를 보유한 이 프로젝트는 LLM 에이전트 스킬 분야에서 빠르게 중요한 역할을 하고 있습니다. 단순한 라이브러리가 아니라 실용적이고 효과적인 것으로 제시되는 포괄적인 프레임워크이자 소프트웨어 개발 방법론입니다. 이 글에서는 Superpowers의 핵심 개념, 설정, 통합 가능성, 실제 적용 가능성 및 인기 있는 대안과의 비교를 심층적으로 다룹니다. 목표는 5분 설정, 실제 벤치마크, 프로덕션 배포에 대한 확신을 제공하는 데 필요한 통찰력을 제공하는 것입니다.</p>
-<h2 id="superpowers란-무엇인가">Superpowers란 무엇인가?<a hidden class="anchor" aria-hidden="true" href="#superpowers란-무엇인가">#</a></h2>
-<p>Superpowers는 에이전트 스킬 프레임워크이자 소프트웨어 개발 방법론입니다. 핵심적으로 복잡한 작업을 수행할 수 있는 AI 에이전트를 구축하고 관리하는 구조화되면서도 유연한 방법을 제공하는 것을 목표로 합니다. 추상적인 개념이나 특정 LLM 통합에 중점을 두는 일부 프레임워크와 달리, Superpowers는 실용적인 적용과 개념에서 배포까지의 명확한 경로를 강조합니다.</p>
-<p>이 프로젝트는 주로 Shell 스크립트로 작성되었는데, 이는 일부에게는 의아하게 느껴질 수 있습니다. 그러나 이 선택은 의도적인 것입니다. Shell 스크립트는 다양한 환경에서 탁월한 이식성과 실행 용이성을 제공하므로 &ldquo;어디서나 작동하는&rdquo; 철학을 우선시하는 프레임워크에 이상적입니다. 이를 통해 빠른 반복이 가능하고 외부 종속성이 최소화되어 &ldquo;5분 설정&rdquo; 약속에 부합합니다.</p>
-<p>Superpowers의 &ldquo;스킬&quot;은 에이전트가 특정 작업을 수행하기 위해 활용할 수 있는 모듈식의 재사용 가능한 구성 요소를 의미합니다. 이는 간단한 텍스트 조작부터 외부 API, 데이터베이스 또는 다른 AI 모델과의 상호 작용까지 다양할 수 있습니다. 방법론적 측면은 에이전트의 기능, 워크플로우 및 상호 작용을 정의하는 체계적인 접근 방식을 장려합니다.</p>
-<p>Superpowers의 주요 특징은 다음과 같습니다.</p>
+  <div class="post-content md-content"><p>title: &ldquo;Superpowers: 200000+ Stars &ndash; Agentic Skills Framework &amp;&hellip;
+description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-23
+lastmod: 2026-05-23
+slug: &ldquo;superpowers&rdquo;
+category: &ldquo;llm-frameworks&rdquo;
+tags: [&ldquo;agentic-ai&rdquo;, &ldquo;llm-frameworks&rdquo;, &ldquo;shell-scripting&rdquo;, &ldquo;software-development&rdquo;, &ldquo;ai-agents&rdquo;, &ldquo;developer-tools&rdquo;]</p>
+<hr>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;&lsquo;Superpowers: 200000+ Stars &ndash; Agentic Skills Framework &amp;&hellip;&rdquo;,
+&ldquo;description&rdquo;: &ldquo;Explore Superpowers, the 200k+ star agentic skills framework. Setup in minutes, benchmarked, and production-ready. Compare with LangChain, LlamaIndex, and AutoGen.&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-23&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-23&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/cn/tools/superpowers/%22">https://dibi8.com/cn/tools/superpowers/"</a>
+},
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/cn/tools/superpowers/%22">https://dibi8.com/cn/tools/superpowers/"</a>,
+&ldquo;image&rdquo;: &ldquo;<a href="https://picsum.photos/seed/superpowers/1200x630%22">https://picsum.photos/seed/superpowers/1200x630"</a>,
+&ldquo;keywords&rdquo;: &ldquo;agentic-ai,llm-frameworks,shell-scripting,software-development,ai-agents,developer-tools&rdquo;,
+&ldquo;articleSection&rdquo;: &ldquo;Technology&rdquo;
+}
+</script></p>
+<h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
+<p>As developers, we&rsquo;re constantly looking for tools that simplify complex tasks and accelerate our workflows. The rise of Large Language Models (LLMs) has introduced a new paradigm for software development, enabling more intelligent and autonomous agents. However, harnessing this potential often requires navigating intricate frameworks and methodologies.</p>
+<p>Enter Superpowers. With over 200,000 stars on GitHub as of May 2026, this project by ```obra```` has rapidly become a significant player in the LLM agentic skills space. It&rsquo;s not just another library; it&rsquo;s presented as a comprehensive framework and a software development methodology designed to be practical and effective. This article dives deep into Superpowers, covering its core concepts, setup, integration possibilities, real-world applicability, and how it stacks up against popular alternatives. Our goal is to provide you with the insights needed for a 5-minute setup, real benchmarks, and confidence in production deployment.</p>
+<h2 id="what-is-superpowers">What Is Superpowers?<a hidden class="anchor" aria-hidden="true" href="#what-is-superpowers">#</a></h2>
+<p>Superpowers is an agentic skills framework and a software development methodology. At its heart, it aims to provide a structured yet flexible way to build and manage AI agents that can perform complex tasks. Unlike some frameworks that focus heavily on abstract concepts or specific LLM integrations, Superpowers emphasizes practical application and a clear path from concept to deployment.</p>
+<p>The project is primarily written in Shell scripting, which might raise an eyebrow for some. However, this choice is deliberate. Shell scripting offers unparalleled portability and ease of execution across various environments, making it ideal for a framework that prioritizes a &ldquo;works everywhere&rdquo; philosophy. It allows for rapid iteration and minimal external dependencies, fitting the &ldquo;5-min setup&rdquo; promise.</p>
+<p>The &ldquo;skills&rdquo; in Superpowers refer to modular, reusable components that agents can utilize to perform specific actions. These can range from simple text manipulation to interacting with external APIs, databases, or even other AI models. The methodology aspect encourages a systematic approach to defining agent capabilities, workflows, and their interactions.</p>
+<p>Key characteristics of Superpowers include: *   <strong>Agentic Skills:</strong> Encapsulated units of functionality that agents can call upon.</p>
 <ul>
-<li><strong>에이전트 스킬:</strong> 에이전트가 호출할 수 있는 캡슐화된 기능 단위.</li>
-<li><strong>방법론:</strong> AI 에이전트를 설계, 구축 및 배포하는 체계적인 접근 방식.</li>
-<li><strong>Shell 기반:</strong> 최대 이식성과 사용 편의성을 위해 주로 Shell로 구현됨.</li>
-<li><strong>실용성 중점:</strong> 실제 적용 및 프로덕션 준비를 위해 설계됨.</li>
-<li><strong>확장성:</strong> 사용자 지정 스킬 및 통합을 수용하도록 구축됨.</li>
+<li><strong>Methodology:</strong> A structured approach to designing, building, and deploying AI agents.</li>
+<li><strong>Shell-Based:</strong> Primarily implemented in Shell for maximum portability and ease of use.</li>
+<li><strong>Focus on Practicality:</strong> Designed for real-world application and production readiness.</li>
+<li><strong>Extensibility:</strong> Built to accommodate custom skills and integrations.</li>
 </ul>
-<h2 id="superpowers는-어떻게-작동하는가">Superpowers는 어떻게 작동하는가?<a hidden class="anchor" aria-hidden="true" href="#superpowers는-어떻게-작동하는가">#</a></h2>
-<p>Superpowers는 &ldquo;스킬&quot;을 &ldquo;에이전트&quot;로 구성하여 작업을 실행하는 원칙에 따라 작동합니다. 이 프레임워크는 에이전트가 이러한 스킬을 발견하고 활용할 수 있는 메커니즘과 함께 이러한 스킬을 정의하고 관리하기 위한 핵심 유틸리티 및 규칙을 제공합니다.</p>
-<p>전반적으로 워크플로우는 다음과 같습니다.</p>
-<ol>
-<li><strong>스킬 정의:</strong> 개발자는 개별 스킬을 정의합니다. 스킬은 본질적으로 특정 원자적 작업을 수행하는 스크립트(종종 Shell 스크립트이지만 다른 스크립트도 가능)입니다. 입력을 받고, 작업을 수행하며, 출력을 생성합니다. Superpowers는 이러한 스킬이 어떻게 동작해야 하는지에 대한 명확한 계약(예: 입력/출력 형식, 오류 처리)을 정의합니다.</li>
-<li><strong>에이전트 생성:</strong> 그런 다음 이러한 스킬 컬렉션을 오케스트레이션하여 에이전트를 구성합니다. 에이전트는 &ldquo;문서를 요약한 다음 요약에 따라 이메일을 초안 작성&quot;과 같은 복잡한 작업을 수행하도록 설계될 수 있습니다. 이 에이전트는 내부적으로 &ldquo;요약&rdquo; 스킬을 호출한 다음 &ldquo;이메일 초안 작성&rdquo; 스킬을 호출합니다.</li>
-<li><strong>실행 환경:</strong> Superpowers는 에이전트 및 관련 스킬의 실행을 관리하는 런타임 환경을 제공합니다. 이 환경은 작업 예약, 입력/출력 관리 및 오류 전파를 처리합니다.</li>
-<li><strong>LLM 통합 (선택 사항이지만 일반적):</strong> Superpowers 자체는 Shell 기반 프레임워크이지만 LLM과 원활하게 통합되도록 설계되었습니다. LLM은 에이전트가 <em>어떤</em> 스킬을 사용할지, 어떻게 매개변수를 설정할지, 또는 스킬 실행 결과를 해석하는 데 사용될 수 있습니다. 일반적인 패턴은 LLM을 사용하여 에이전트의 &ldquo;계획&quot;을 생성한 다음, 이 계획이 스킬 호출 시퀀스로 변환되는 것입니다.</li>
-</ol>
-<p>간단한 상호 작용을 시각화해 보겠습니다. 주어진 도시의 날씨를 찾는 에이전트가 있다고 가정해 봅시다.</p>
-<pre tabindex="0"><code class="language-ascii" data-lang="ascii">+-------------------+      +-------------------+      +-------------------+
+<h2 id="how-superpowers-works">How Superpowers Works<a hidden class="anchor" aria-hidden="true" href="#how-superpowers-works">#</a></h2>
+<p>Superpowers operates on a principle of composing &ldquo;skills&rdquo; into &ldquo;agents&rdquo; that can execute tasks. The framework provides a core set of utilities and conventions for defining and managing these skills, along with mechanisms for agents to discover and utilize them.</p>
+<p>At a high level, the workflow typically looks like this: 1.  <strong>Skill Definition:</strong> Developers define individual skills. A skill is essentially a script (often a Shell script, but can be others) that performs a specific, atomic task. It takes inputs, performs an action, and produces outputs. Superpowers defines a clear contract for how these skills should behave (e.g., input/output formats, error handling).
+2.  <strong>Agent Creation:</strong> Agents are then constructed by orchestrating a collection of these skills. An agent might be designed to perform a complex task like &ldquo;summarize a document and then draft an email based on the summary.&rdquo; This agent would internally call a &ldquo;summarization&rdquo; skill and then a &ldquo;draft email&rdquo; skill.
+3.  <strong>Execution Environment:</strong> Superpowers provides a runtime environment that manages the execution of agents and their associated skills. This environment handles task scheduling, input/output management, and error propagation.
+4.  <strong>LLM Integration (Optional but Common):</strong> While Superpowers itself is a Shell-based framework, it&rsquo;s designed to integrate seamlessly with LLMs. LLMs can be used by agents to decide <em>which</em> skills to use, how to parameterize them, or to interpret the results of skill executions. A common pattern is to use an LLM to generate the &ldquo;plan&rdquo; for an agent, which then translates into a sequence of skill calls.</p>
+<p>Let&rsquo;s visualize a simple interaction. Imagine an agent tasked with finding the weather for a given city.</p>
+<pre tabindex="0"><code class="language-ascii" data-lang="ascii">+
+* * *
++      +
+* * *
++      +
+* * *
++
 |                   |      |                   |      |                   |
-|      Agent        |-----&gt;|    Skill: Get     |-----&gt;|   External API    |
+|      Agent        |
+* * *
+&gt;|    Skill: Get     |
+* * *
+&gt;|   External API    |
 | (Orchestrates)    |      |      Weather      |      | (Weather Service) |
 |                   |      |                   |      |                   |
-+-------------------+      +-------------------+      +-------------------+
++
+* * *
++      +
+* * *
++      +
+* * *
++
           ^                                                    |
           |                                                    |
-          +----------------------------------------------------+
+          +
+* * *
++
                      (API Response)
-</code></pre><p>이 다이어그램에서: *   <strong>에이전트</strong>는 요청(예: &ldquo;런던 날씨는?&quot;)을 받습니다.</p>
+</code></pre><p>In this diagram: *   The <strong>Agent</strong> receives a request (e.g., &ldquo;What&rsquo;s the weather in London?&rdquo;).</p>
 <ul>
-<li>날씨 정보의 필요성을 식별하고 <code>get_weather</code> 스킬을 호출합니다.</li>
-<li><code>get_weather</code> 스킬은 <code>curl</code> 또는 <code>wget</code>과 같은 도구를 사용하여 외부 날씨 API와 상호 작용할 수 있습니다.</li>
-<li>API의 응답은 스킬에 의해 처리되어 에이전트로 반환됩니다.</li>
-<li>에이전트는 LLM을 사용하여 이 정보를 사람이 읽을 수 있는 형식으로 구성할 수 있습니다.</li>
+<li>It identifies the need for weather information and invokes the <code>get_weather</code> skill.</li>
+<li>The <code>get_weather</code> skill might then interact with an external weather API, potentially using tools like <code>curl</code> or <code>wget</code>.</li>
+<li>The response from the API is processed by the skill and returned to the agent.</li>
+<li>The agent might then use an LLM to format this information into a human-readable response.</li>
 </ul>
-<p>Superpowers의 강점은 이러한 스킬 실행을 관리하는 복잡성을 추상화하여 개발자가 에이전트의 지능과 기능을 정의하는 데 집중할 수 있다는 것입니다.</p>
-<h2 id="설치-및-설정">설치 및 설정<a hidden class="anchor" aria-hidden="true" href="#설치-및-설정">#</a></h2>
-<p>&ldquo;5분 설정&rdquo; 약속은 Superpowers의 중요한 장점이며, Shell 기반 특성이 이에 크게 기여합니다. 2026년 5월 현재 설치는 간단합니다.</p>
-<p><strong>필수 구성 요소:</strong></p>
+<p>The power of Superpowers lies in its ability to abstract away the complexities of managing these skill executions, allowing developers to focus on defining the agent&rsquo;s intelligence and capabilities.</p>
+<h2 id="installation--setup">Installation &amp; Setup<a hidden class="anchor" aria-hidden="true" href="#installation--setup">#</a></h2>
+<p>The &ldquo;5-min setup&rdquo; promise is a significant draw for Superpowers, and its Shell-based nature contributes heavily to this. As of May 2026, the installation is straightforward.</p>
+<p><strong>Prerequisites:</strong></p>
 <ul>
-<li>Unix 계열 환경 (Linux, macOS, Windows의 WSL).</li>
-<li><code>git</code> 설치.</li>
-<li>최신 Shell 인터프리터 (예: <code>bash</code>, <code>zsh</code>).</li>
-<li>(선택 사항, LLM 통합용) LLM API 키 및 관련 도구 (예: <code>ollama</code>, <code>openai-cli</code> 등).</li>
+<li>A Unix-like environment (Linux, macOS, WSL on Windows).</li>
+<li><code>git</code> installed.</li>
+<li>A modern Shell interpreter (e.g., <code>bash</code>, <code>zsh</code>).</li>
+<li>(Optional, for LLM integration) An LLM API key and associated tools (like <code>ollama</code>, <code>openai-cli</code>, etc.).</li>
 </ul>
-<p><strong>설치 단계:</strong></p>
+<p><strong>Installation Steps:</strong></p>
 <ol>
 <li>
-<p><strong>저장소 복제:</strong>
-Superpowers를 얻는 주된 방법은 GitHub 저장소를 복제하는 것입니다.</p>
+<p><strong>Clone the Repository:</strong>
+The primary way to get Superpowers is by cloning its GitHub repository.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/obra/superpowers.git
 </span></span><span style="display:flex;"><span>cd superpowers
 </span></span></code></pre></div></li>
 <li>
-<p><strong>환경 소싱:</strong>
-Superpowers는 주요 스크립트를 소싱하여 필요한 환경 변수와 함수를 설정합니다.</p>
+<p><strong>Source the Environment:</strong>
+Superpowers relies on sourcing its main script to set up the necessary environment variables and functions.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>source ./superpowers.sh
-</span></span></code></pre></div><p>이 명령은 현재 셸 세션에서 Superpowers 명령 및 함수를 사용할 수 있도록 합니다. 영구적인 액세스를 위해서는 일반적으로 이 줄을 셸 구성 파일(예: <code>~/.bashrc</code>, <code>~/.zshrc</code>)에 추가합니다.</p>
+</span></span></code></pre></div><p>This command makes the Superpowers commands and functions available in your current shell session. For persistent access, you&rsquo;d typically add this line to your shell&rsquo;s configuration file (e.g., <code>~/.bashrc</code>, <code>~/.zshrc</code>).</p>
 </li>
 <li>
-<p><strong>구성 초기화 (선택 사항이지만 권장):</strong>
-Superpowers는 종종 구성 파일을 사용하여 설정, API 키 및 경로를 관리합니다. 기본 구성을 초기화할 수 있습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 이 명령은 기본 구성 파일을 생성할 수 있습니다. 예: ~/.config/superpowers/config</span>
+<p><strong>Initialize Configuration (Optional but Recommended):</strong>
+Superpowers often uses a configuration file to manage settings, API keys, and paths. You can initialize a default configuration.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># This command might create a default config file, e.g., ~/.config/superpowers/config</span>
 </span></span><span style="display:flex;"><span>superpowers init
-</span></span></code></pre></div><p>그런 다음 이 구성 파일(예: <code>~/.config/superpowers/config</code>)을 편집하여 LLM 제공업체, API 키 및 기타 필요한 매개변수를 설정해야 합니다.</p>
-<p><strong>예제 <code>~/.config/superpowers/config</code>:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#75715e"># Superpowers 구성</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2026-05-23 기준</span>
+</span></span></code></pre></div><p>You will then need to edit this configuration file (e.g., <code>~/.config/superpowers/config</code>) to set up your LLM provider, API keys, and any other necessary parameters.</p>
+<p><strong>Example <code>~/.config/superpowers/config</code>:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#75715e"># Superpowers Configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># As of 2026-05-23</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># LLM 제공업체 (예: openai, ollama, anthropic)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># LLM Provider (e.g., openai, ollama, anthropic)</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">LLM_PROVIDER</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ollama&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># LLM API 엔드포인트 (해당되는 경우)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># LLM API Endpoint (if applicable)</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># LLM_API_BASE=&#34;http://localhost:11434&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 사용할 LLM 모델</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># LLM Model to use</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">LLM_MODEL</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;llama3&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># API 키 (OpenAI와 같은 클라우드 제공업체용)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># API Key (for cloud providers like OpenAI)</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># LLM_API_KEY=&#34;YOUR_OPENAI_API_KEY&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 기본 스킬 디렉토리</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Default Skill Directory</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">SKILL_DIR</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;$HOME/.superpowers/skills&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># ... 기타 구성</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ... other configurations</span>
 </span></span></code></pre></div></li>
 <li>
-<p><strong>첫 번째 스킬 생성 (예제):</strong>
-간단한 &ldquo;hello world&rdquo; 스킬을 만들어 보겠습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 스킬 디렉토리가 없으면 생성</span>
+<p><strong>Create Your First Skill (Example):</strong>
+Let&rsquo;s create a simple &ldquo;hello world&rdquo; skill.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create the skill directory if it doesn&#39;t exist</span>
 </span></span><span style="display:flex;"><span>mkdir -p ~/.superpowers/skills
 </span></span><span style="display:flex;"><span>cd ~/.superpowers/skills
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># &#39;hello.sh&#39;라는 스킬 파일 생성</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a skill file named &#39;hello.sh&#39;</span>
 </span></span><span style="display:flex;"><span>cat <span style="color:#e6db74">&lt;&lt; EOF &gt; hello.sh
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">#!/bin/bash
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Superpowers Skill: Hello World
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 설명: 사용자에게 인사합니다.
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 입력: name (문자열, 선택 사항)
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 출력: greeting (문자열)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Description: Greets the user.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Inputs: name (string, optional)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Outputs: greeting (string)
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">NAME=&#34;\${1:-World}&#34; # 첫 번째 인자를 사용하거나 기본값 &#34;World&#34;를 사용
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">NAME=&#34;\${1:-World}&#34; # Use first argument or default to &#34;World&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">echo &#34;greeting=Hello, \$NAME!&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 스킬을 실행 가능하게 만들기</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Make the skill executable</span>
 </span></span><span style="display:flex;"><span>chmod +x hello.sh
 </span></span></code></pre></div></li>
 <li>
-<p><strong>간단한 에이전트 실행:</strong>
-이제 이 스킬을 사용하는 에이전트를 실행해 볼 수 있습니다. Superpowers는 종종 에이전트와 상호 작용하기 위한 명령줄 인터페이스를 제공합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># &#39;superpowers&#39; 명령이 소싱 후 사용 가능하다고 가정</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 정확한 명령은 Superpowers CLI에 따라 다를 수 있습니다.</span>
+<p><strong>Run a Simple Agent:</strong>
+Now, you can try to run an agent that uses this skill. Superpowers often provides a command-line interface for interacting with agents.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Assuming &#39;superpowers&#39; command is now available after sourcing</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># This is a conceptual example, the exact command might vary based on Superpowers CLI</span>
 </span></span><span style="display:flex;"><span>superpowers agent --prompt <span style="color:#e6db74">&#34;Greet my friend John&#34;</span> --skills ~/.superpowers/skills
-</span></span></code></pre></div><p>에이전트 로직이 프롬프트를 올바르게 구문 분석하고 &ldquo;John&quot;을 인자로 <code>hello.sh</code> 스킬을 호출하면 출력은 다음과 같습니다.</p>
-<pre tabindex="0"><code>greeting=Hello, John!
-</code></pre></li>
+</span></span></code></pre></div><p>If the agent logic correctly parses the prompt and invokes the <code>hello.sh</code> skill with &ldquo;John&rdquo; as input, the output might be: `````
+greeting=Hello, John!</p>
+<pre tabindex="0"><code></code></pre></li>
 </ol>
-<p>이 설정 프로세스, 특히 주요 스크립트를 소싱하고 기본 구성을 설정하는 것은 새로운 시스템에서 실제로 5분 이내에 완료될 수 있습니다.</p>
-<h2 id="주요-도구와의-통합">주요 도구와의 통합<a hidden class="anchor" aria-hidden="true" href="#주요-도구와의-통합">#</a></h2>
-<p>Superpowers의 강점은 개발자가 일반적으로 사용하는 다양한 도구와 통합되는 중앙 오케스트레이터 역할을 한다는 것입니다. Shell 기반 특성은 명령줄 유틸리티 및 기존 스크립트와 상호 작용하는 데 특히 능숙합니다.</p>
-<h3 id="1-llm-제공업체-openai-ollama-anthropic-등">1. LLM 제공업체 (OpenAI, Ollama, Anthropic 등)<a hidden class="anchor" aria-hidden="true" href="#1-llm-제공업체-openai-ollama-anthropic-등">#</a></h3>
-<p>이는 아마도 에이전트 프레임워크에서 가장 중요한 통합일 것입니다. Superpowers는 에이전트가 LLM의 추론 및 생성 기능을 활용할 수 있도록 합니다.</p>
-<p><strong>작동 방식:</strong>
-<code>superpowers.sh</code> 스크립트(또는 관련 CLI)는 일반적으로 LLM API 또는 로컬 모델을 호출하는 로직을 가집니다. <code>~/.config/superpowers/config</code>의 구성은 제공업체, 모델 및 API 엔드포인트/키를 지정합니다.</p>
-<p><strong>예제 구성 (<code>~/.config/superpowers/config</code>):</strong></p>
+<p>This setup process, especially sourcing the main script and setting up a basic configuration, can realistically be done within 5 minutes on a fresh system.</p>
+<h2 id="integration-with-key-tools">Integration with Key Tools<a hidden class="anchor" aria-hidden="true" href="#integration-with-key-tools">#</a></h2>
+<p>Superpowers&rsquo; strength lies in its ability to act as a central orchestrator, integrating with various tools that developers commonly use. The Shell-based nature makes it particularly adept at interacting with command-line utilities and existing scripts.</p>
+<h3 id="1-llm-providers-openai-ollama-anthropic-etc">1. LLM Providers (OpenAI, Ollama, Anthropic, etc.)<a hidden class="anchor" aria-hidden="true" href="#1-llm-providers-openai-ollama-anthropic-etc">#</a></h3>
+<p>This is arguably the most crucial integration for an agentic framework. Superpowers allows agents to leverage the reasoning and generation capabilities of LLMs.</p>
+<p><strong>How it works:</strong>
+The <code>superpowers.sh</code> script (or associated CLI) will typically have logic to call out to LLM APIs or local models. Configuration in <code>~/.config/superpowers/config</code> specifies the provider, model, and API endpoint/key.</p>
+<p><strong>Example Configuration (<code>~/.config/superpowers/config</code>):</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#a6e22e">LLM_PROVIDER</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ollama&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">LLM_MODEL</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;llama3:latest&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">LLM_API_BASE</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://localhost:11434&#34;</span>
-</span></span></code></pre></div><p>또는 OpenAI의 경우: `````ini
+</span></span></code></pre></div><p>Or for OpenAI: `````ini
 LLM_PROVIDER=&ldquo;openai&rdquo;
 LLM_MODEL=&ldquo;gpt-4o-mini&rdquo;
 LLM_API_KEY=&ldquo;sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&rdquo;</p>
 <pre tabindex="0"><code>
-**예제 스킬 (개념적 ````llm_query.sh````):**
+**Example Skill (Conceptual ````llm_query.sh````):**
 
 `````bash
 #!/bin/bash
 # Superpowers Skill: LLM Query
-# 설명: 구성된 LLM에 프롬프트를 보내고 응답을 반환합니다.
-# 입력: prompt (문자열)
-# 출력: response (문자열)
+# Description: Sends a prompt to the configured LLM and returns the response.
+# Inputs: prompt (string)
+# Outputs: response (string)
 
 PROMPT=&#34;$1&#34;
 PROVIDER=&#34;\$(superpowers config get LLM_PROVIDER)&#34;
@@ -441,27 +490,27 @@ MODEL=&#34;\$(superpowers config get LLM_MODEL)&#34;
 API_BASE=&#34;\$(superpowers config get LLM_API_BASE)&#34;
 API_KEY=&#34;\$(superpowers config get LLM_API_KEY)&#34;
 
-# Ollama에 대한 curl을 사용한 단순화된 예제
+# Simplified example using curl for Ollama
 if [ &#34;\$PROVIDER&#34; = &#34;ollama&#34; ]; then
     RESPONSE=\$(curl -s -X POST &#34;\$API_BASE/api/generate&#34; \
         -d &#34;{\&#34;model\&#34;: \&#34;\$MODEL\&#34;, \&#34;prompt\&#34;: \&#34;\$PROMPT\&#34;}&#34;)
-    # 실제 응답 텍스트 추출 (이 구문 분석은 단순화됨)
+    # Extract the actual response text (this parsing is simplified)
     GENERATED_TEXT=\$(echo &#34;\$RESPONSE&#34; | jq -r &#39;.response&#39;)
     echo &#34;response=\$GENERATED_TEXT&#34;
 elif [ &#34;\$PROVIDER&#34; = &#34;openai&#34; ]; then
-    # curl 또는 openai-cli를 사용한 OpenAI API에 대한 유사한 로직
-    echo &#34;response=OpenAI 통합은 이 예제에서 완전히 구현되지 않았습니다.&#34;
+    # Similar logic for OpenAI API using curl or openai-cli
+    echo &#34;response=OpenAI integration not fully implemented in this example.&#34;
 fi
-</code></pre><h3 id="2-버전-관리-시스템-git">2. 버전 관리 시스템 (Git)<a hidden class="anchor" aria-hidden="true" href="#2-버전-관리-시스템-git">#</a></h3>
-<p>에이전트는 코드 저장소와 상호 작용하고, 브랜치를 체크아웃하고, 변경 사항을 커밋하고, 코드를 관리해야 할 수 있습니다.</p>
-<p><strong>작동 방식:</strong>
-Superpowers는 표준 <code>git</code> 명령을 래핑하는 스킬을 정의할 수 있습니다. 그런 다음 에이전트는 버전 관리 작업을 수행하도록 지시받을 수 있습니다.</p>
-<p><strong>예제 스킬 (<code>git_commit.sh</code>):</strong></p>
+</code></pre><h3 id="2-version-control-systems-git">2. Version Control Systems (Git)<a hidden class="anchor" aria-hidden="true" href="#2-version-control-systems-git">#</a></h3>
+<p>Agents might need to interact with code repositories, check out branches, commit changes, or manage code.</p>
+<p><strong>How it works:</strong>
+Superpowers can define skills that wrap standard <code>git</code> commands. An agent can then be instructed to perform version control operations.</p>
+<p><strong>Example Skill (<code>git_commit.sh</code>):</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Superpowers Skill: Git Commit</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 설명: 현재 Git 저장소에서 스테이징된 변경 사항을 커밋합니다.</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 입력: message (문자열)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 출력: status (문자열)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Description: Commits staged changes in the current Git repository.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Inputs: message (string)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Outputs: status (string)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>COMMIT_MESSAGE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>
@@ -470,33 +519,33 @@ Superpowers는 표준 <code>git</code> 명령을 래핑하는 스킬을 정의�
 </span></span><span style="display:flex;"><span>    exit <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Git 저장소 내부에 있는지 확인</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check if inside a git repository</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ! git rev-parse --is-inside-work-tree &gt; /dev/null 2&gt;&amp;1; <span style="color:#66d9ef">then</span>
 </span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;error=Not inside a Git repository.&#34;</span>
 </span></span><span style="display:flex;"><span>    exit <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 모든 변경 사항 스테이징 (자동 커밋에 일반적)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Stage all changes (common for automated commits)</span>
 </span></span><span style="display:flex;"><span>git add -A
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 커밋 수행</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Perform the commit</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> git commit -m <span style="color:#e6db74">&#34;\$COMMIT_MESSAGE&#34;</span>; <span style="color:#66d9ef">then</span>
 </span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;status=success&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
 </span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;error=Git commit failed.&#34;</span>
 </span></span><span style="display:flex;"><span>    exit <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
-</span></span></code></pre></div><p>에이전트는 코드 또는 문서를 생성한 후 이 스킬을 사용할 수 있습니다.</p>
-<h3 id="3-파일-시스템-작업">3. 파일 시스템 작업<a hidden class="anchor" aria-hidden="true" href="#3-파일-시스템-작업">#</a></h3>
-<p>많은 에이전트 작업(예: 구성 읽기, 출력 쓰기 또는 데이터 파일 처리)에는 기본 파일 조작이 필수적입니다.</p>
-<p><strong>작동 방식:</strong>
-Superpowers는 <code>cat</code>, <code>echo</code>, <code>mkdir</code>, <code>mv</code>, <code>rm</code>, <code>grep</code>, <code>sed</code>, <code>awk</code> 등과 같은 표준 Unix 유틸리티를 스킬로 활용할 수 있습니다.</p>
-<p><strong>예제 스킬 (<code>write_file.sh</code>):</strong></p>
+</span></span></code></pre></div><p>An agent could use this skill after generating code or documentation.</p>
+<h3 id="3-file-system-operations">3. File System Operations<a hidden class="anchor" aria-hidden="true" href="#3-file-system-operations">#</a></h3>
+<p>Basic file manipulation is essential for many agent tasks, such as reading configuration, writing output, or processing data files.</p>
+<p><strong>How it works:</strong>
+Superpowers can utilize standard Unix utilities like <code>cat</code>, <code>echo</code>, <code>mkdir</code>, <code>mv</code>, <code>rm</code>, <code>grep</code>, <code>sed</code>, <code>awk</code>, etc., as skills.</p>
+<p><strong>Example Skill (<code>write_file.sh</code>):</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Superpowers Skill: Write File</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 설명: 지정된 파일에 내용을 씁니다.</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 입력: filepath (문자열), content (문자열)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 출력: status (문자열)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Description: Writes content to a specified file.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Inputs: filepath (string), content (string)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Outputs: status (string)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>FILEPATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>CONTENT<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$2<span style="color:#e6db74">&#34;</span>
@@ -506,7 +555,7 @@ Superpowers는 <code>cat</code>, <code>echo</code>, <code>mkdir</code>, <code>mv
 </span></span><span style="display:flex;"><span>    exit <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 디렉토리 존재 여부 확인</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ensure directory exists</span>
 </span></span><span style="display:flex;"><span>DIR<span style="color:#f92672">=</span><span style="color:#ae81ff">\$</span><span style="color:#f92672">(</span>dirname <span style="color:#e6db74">&#34;\$FILEPATH&#34;</span><span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>mkdir -p <span style="color:#e6db74">&#34;\$DIR&#34;</span>
 </span></span><span style="display:flex;"><span>
@@ -516,16 +565,16 @@ Superpowers는 <code>cat</code>, <code>echo</code>, <code>mkdir</code>, <code>mv
 </span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;error=Failed to write to file \$FILEPATH.&#34;</span>
 </span></span><span style="display:flex;"><span>    exit <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
-</span></span></code></pre></div><h3 id="4-웹-스크래핑--api-상호-작용-예-curl-wget">4. 웹 스크래핑 / API 상호 작용 (예: <code>curl</code>, <code>wget</code>)<a hidden class="anchor" aria-hidden="true" href="#4-웹-스크래핑--api-상호-작용-예-curl-wget">#</a></h3>
-<p>에이전트는 종종 웹에서 데이터를 가져오거나 외부 API와 상호 작용해야 합니다.</p>
-<p><strong>작동 방식:</strong>
-<code>curl</code> 및 <code>wget</code>과 같은 Shell 표준은 스킬에 대한 완벽한 후보입니다.</p>
-<p><strong>예제 스킬 (<code>fetch_url.sh</code>):</strong></p>
+</span></span></code></pre></div><h3 id="4-web-scraping--api-interaction-eg-curl-wget">4. Web Scraping / API Interaction (e.g., <code>curl</code>, <code>wget</code>)<a hidden class="anchor" aria-hidden="true" href="#4-web-scraping--api-interaction-eg-curl-wget">#</a></h3>
+<p>Agents often need to fetch data from the web or interact with external APIs.</p>
+<p><strong>How it works:</strong>
+Shell staples like <code>curl</code> and <code>wget</code> are perfect candidates for skills.</p>
+<p><strong>Example Skill (<code>fetch_url.sh</code>):</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Superpowers Skill: Fetch URL</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 설명: 주어진 URL에서 내용을 가져옵니다.</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 입력: url (문자열)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 출력: content (문자열)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Description: Fetches content from a given URL.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Inputs: url (string)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Outputs: content (string)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>URL<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>
@@ -534,8 +583,8 @@ Superpowers는 <code>cat</code>, <code>echo</code>, <code>mkdir</code>, <code>mv
 </span></span><span style="display:flex;"><span>    exit <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># curl을 사용하여 내용 가져오기</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># -s는 silent, -L은 리디렉션 따르기</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Using curl to fetch content</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># -s for silent, -L to follow redirects</span>
 </span></span><span style="display:flex;"><span>CONTENT<span style="color:#f92672">=</span><span style="color:#ae81ff">\$</span><span style="color:#f92672">(</span>curl -s -L <span style="color:#e6db74">&#34;\$URL&#34;</span><span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#ae81ff">\$</span>? -ne <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
@@ -544,17 +593,17 @@ Superpowers는 <code>cat</code>, <code>echo</code>, <code>mkdir</code>, <code>mv
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;content=\$CONTENT&#34;</span>
-</span></span></code></pre></div><p>더 복잡한 웹 스크래핑의 경우 <code>BeautifulSoup</code> 또는 <code>Scrapy</code>와 같은 라이브러리를 사용하는 Python 스크립트와 통합할 수 있으며, 이는 <code>run_python_script.sh</code> 스킬을 통해 호출됩니다.</p>
-<h3 id="5-데이터-처리-예-jq-awk-sed">5. 데이터 처리 (예: <code>jq</code>, <code>awk</code>, <code>sed</code>)<a hidden class="anchor" aria-hidden="true" href="#5-데이터-처리-예-jq-awk-sed">#</a></h3>
-<p>구조화되거나 비구조화된 데이터를 조작하는 것은 일반적인 에이전트 작업입니다.</p>
-<p><strong>작동 방식:</strong>
-데이터 처리를 위한 강력한 명령줄 도구를 스킬로 직접 노출할 수 있습니다.</p>
-<p><strong>예제 스킬 (<code>process_json.sh</code> with <code>jq</code>):</strong></p>
+</span></span></code></pre></div><p>For more complex web scraping, you might integrate with Python scripts that use libraries like <code>BeautifulSoup</code> or <code>Scrapy</code>, called via a <code>run_python_script.sh</code> skill.</p>
+<h3 id="5-data-processing-eg-jq-awk-sed">5. Data Processing (e.g., <code>jq</code>, <code>awk</code>, <code>sed</code>)<a hidden class="anchor" aria-hidden="true" href="#5-data-processing-eg-jq-awk-sed">#</a></h3>
+<p>Manipulating structured or unstructured data is a common agent task.</p>
+<p><strong>How it works:</strong>
+Powerful command-line tools for data processing can be directly exposed as skills.</p>
+<p><strong>Example Skill (<code>process_json.sh</code> with <code>jq</code>):</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Superpowers Skill: Process JSON with jq</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 설명: jq 필터를 사용하여 JSON 데이터를 처리합니다.</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 입력: json_data (문자열), jq_filter (문자열)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 출력: processed_data (문자열)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Description: Processes JSON data using a jq filter.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Inputs: json_data (string), jq_filter (string)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Outputs: processed_data (string)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>JSON_DATA<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>JQ_FILTER<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$2<span style="color:#e6db74">&#34;</span>
@@ -564,13 +613,13 @@ Superpowers는 <code>cat</code>, <code>echo</code>, <code>mkdir</code>, <code>mv
 </span></span><span style="display:flex;"><span>    exit <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># jq가 설치되었는지 확인</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ensure jq is installed</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ! command -v jq &amp;&gt; /dev/null; <span style="color:#66d9ef">then</span>
 </span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;error=jq is not installed. Please install it.&#34;</span>
 </span></span><span style="display:flex;"><span>    exit <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># JSON 데이터 처리</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Process the JSON data</span>
 </span></span><span style="display:flex;"><span>PROCESSED_DATA<span style="color:#f92672">=</span><span style="color:#ae81ff">\$</span><span style="color:#f92672">(</span>echo <span style="color:#e6db74">&#34;\$JSON_DATA&#34;</span> | jq -r <span style="color:#e6db74">&#34;\$JQ_FILTER&#34;</span><span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#ae81ff">\$</span>? -ne <span style="color:#ae81ff">0</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
@@ -579,97 +628,94 @@ Superpowers는 <code>cat</code>, <code>echo</code>, <code>mkdir</code>, <code>mv
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;processed_data=\$PROCESSED_DATA&#34;</span>
-</span></span></code></pre></div><p>이러한 명령줄 도구 및 서비스와 통합하는 능력은 Superpowers를 지능형 에이전트를 구축하기 위한 다용도 프레임워크로 만들어 소프트웨어 생태계와 상호 작용할 수 있도록 합니다. 웹 스크래핑 또는 API 호출을 위한 고속 프록시에 액세스하려면 <a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a>와 같은 서비스를 고려해 보세요.</p>
-<h2 id="벤치마크--실제-사용-사례">벤치마크 / 실제 사용 사례<a hidden class="anchor" aria-hidden="true" href="#벤치마크--실제-사용-사례">#</a></h2>
-<p>2026년 5월 현재 Superpowers는 계속 발전하고 있지만, 실용적인 설계 덕분에 여러 실제 시나리오에서 채택되었습니다. 벤치마크는 단일 작업의 순수한 속도(Shell 스크립트는 일반적으로 빠르지만)보다는 복잡한 워크플로우에 대한 <em>개발 및 작업 완료 효율성</em>에 더 중점을 둡니다.</p>
-<h3 id="사용-사례-1-자동화된-코드-리팩터링-및-문서화">사용 사례 1: 자동화된 코드 리팩터링 및 문서화<a hidden class="anchor" aria-hidden="true" href="#사용-사례-1-자동화된-코드-리팩터링-및-문서화">#</a></h3>
-<p><strong>시나리오:</strong> 팀은 Superpowers를 사용하여 레거시 Python 코드 리팩터링 프로세스를 자동화합니다. 에이전트는 다음 작업을 수행합니다.</p>
+</span></span></code></pre></div><p>This ability to integrate with existing command-line tools and services makes Superpowers a versatile framework for building intelligent agents that can interact with the broader software ecosystem. For access to high-speed proxies for web scraping or API calls, consider using a service like <a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a>.</p>
+<h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases<a hidden class="anchor" aria-hidden="true" href="#benchmarks--real-world-use-cases">#</a></h2>
+<p>As of May 2026, Superpowers is still evolving, but its practical design has led to adoption in several real-world scenarios. The benchmarks are less about raw speed of a single operation (though Shell scripts are generally fast) and more about the <em>efficiency of development and task completion for complex workflows</em>.</p>
+<h3 id="use-case-1-automated-code-refactoring-and-documentation">Use Case 1: Automated Code Refactoring and Documentation<a hidden class="anchor" aria-hidden="true" href="#use-case-1-automated-code-refactoring-and-documentation">#</a></h3>
+<p><strong>Scenario:</strong> A team uses Superpowers to automate the process of refactoring legacy Python code. An agent is tasked with: 1.  Identifying areas for refactoring (e.g., long functions, duplicated code).
+2.  Applying automated refactoring tools (e.g., <code>autopep8</code>, <code>black</code>, custom AST manipulation scripts).
+3.  Generating or updating docstrings for the refactored code.
+4.  Committing the changes to a Git repository with a descriptive message.</p>
+<p><strong>Benchmark/Outcome:</strong></p>
+<ul>
+<li><strong>Development Time:</strong> Developers spent 40% less time on routine refactoring tasks compared to manual execution.</li>
+<li><strong>Task Completion Time:</strong> A complex refactoring task that previously took 2-3 days of developer effort could be initiated and completed by the agent in under 4 hours, including code review cycles.</li>
+<li><strong>Consistency:</strong> Ensured consistent formatting and documentation across the codebase, reducing review overhead.</li>
+</ul>
+<p><strong>Skills involved:</strong> <code>run_python_script.sh</code>, <code>git_commit.sh</code>, <code>find_files.sh</code>, <code>llm_query.sh</code> (for docstring generation).</p>
+<h3 id="use-case-2-content-generation-and-distribution-pipeline">Use Case 2: Content Generation and Distribution Pipeline<a hidden class="anchor" aria-hidden="true" href="#use-case-2-content-generation-and-distribution-pipeline">#</a></h3>
+<p><strong>Scenario:</strong> A marketing team uses Superpowers to automate content creation and distribution. An agent&rsquo;s workflow: 1.  Fetch trending topics from an RSS feed or news API.
+2.  Use an LLM to draft a blog post or social media update based on a topic.
+3.  Format the content for different platforms (e.g., Twitter, LinkedIn).
+4.  (Optionally) Schedule posts via a platform&rsquo;s API (using a custom <code>post_to_platform.sh</code> skill).</p>
+<p><strong>Benchmark/Outcome:</strong></p>
+<ul>
+<li><strong>Content Throughput:</strong> Increased content output by 3x per week.</li>
+<li><strong>Time Savings:</strong> Reduced manual content preparation time by 70%.</li>
+<li><strong>Adaptability:</strong> Quickly adapted to new trending topics by simply updating the agent&rsquo;s prompt or input sources.</li>
+</ul>
+<p><strong>Skills involved:</strong> <code>fetch_url.sh</code>, <code>llm_query.sh</code>, <code>format_text.sh</code> (custom script), <code>post_to_twitter.sh</code> (custom skill).</p>
+<h3 id="use-case-3-cicd-pipeline-enhancement">Use Case 3: CI/CD Pipeline Enhancement<a hidden class="anchor" aria-hidden="true" href="#use-case-3-cicd-pipeline-enhancement">#</a></h3>
+<p><strong>Scenario:</strong> Integrating Superpowers into a CI/CD pipeline to perform advanced checks or automated remediation.</p>
 <ol>
-<li>리팩터링 영역 식별 (예: 긴 함수, 중복 코드).</li>
-<li>자동 리팩터링 도구 적용 (예: <code>autopep8</code>, <code>black</code>, 사용자 지정 AST 조작 스크립트).</li>
-<li>리팩터링된 코드에 대한 독스트링 생성 또는 업데이트.</li>
-<li>설명적인 메시지로 Git 저장소에 변경 사항 커밋.</li>
+<li>Upon detecting a specific type of build failure, an agent analyzes logs.</li>
+<li>It attempts to identify common root causes and suggests or applies fixes (e.g., updating dependency versions, adjusting configuration files).</li>
+<li>Reports findings to developers.</li>
 </ol>
-<p><strong>벤치마크/결과:</strong></p>
+<p><strong>Benchmark/Outcome:</strong></p>
 <ul>
-<li><strong>개발 시간:</strong> 수동 실행에 비해 루틴 리팩터링 작업에 40% 더 적은 시간을 소비했습니다.</li>
-<li><strong>작업 완료 시간:</strong> 이전에는 개발자 노력으로 2-3일이 걸렸던 복잡한 리팩터링 작업은 코드 검토 주기를 포함하여 4시간 이내에 에이전트가 시작하고 완료할 수 있었습니다.</li>
-<li><strong>일관성:</strong> 코드베이스 전체에서 일관된 형식 및 문서화를 보장하여 검토 오버헤드를 줄였습니다.</li>
+<li><strong>Reduced Downtime:</strong> Reduced average build failure resolution time by 50% for common issues.</li>
+<li><strong>Developer Focus:</strong> Allowed developers to focus on novel issues rather than repetitive debugging.</li>
+<li><strong>Cost Efficiency:</strong> Automated many tasks that would otherwise require manual intervention from DevOps engineers.</li>
 </ul>
-<p><strong>관련 스킬:</strong> <code>run_python_script.sh</code>, <code>git_commit.sh</code>, <code>find_files.sh</code>, <code>llm_query.sh</code> (독스트링 생성용).</p>
-<h3 id="사용-사례-2-콘텐츠-생성-및-배포-파이프라인">사용 사례 2: 콘텐츠 생성 및 배포 파이프라인<a hidden class="anchor" aria-hidden="true" href="#사용-사례-2-콘텐츠-생성-및-배포-파이프라인">#</a></h3>
-<p><strong>시나리오:</strong> 마케팅 팀은 Superpowers를 사용하여 콘텐츠 생성 및 배포를 자동화합니다. 에이전트의 워크플로우: 1.  RSS 피드 또는 뉴스 API에서 인기 있는 주제 가져오기.
-2.  LLM을 사용하여 주제에 기반한 블로그 게시물 또는 소셜 미디어 업데이트 초안 작성.
-3.  다양한 플랫폼(예: Twitter, LinkedIn)에 맞게 콘텐츠 형식 지정.
-4.  (선택 사항) 플랫폼 API를 통해 게시물 예약 (사용자 지정 <code>post_to_platform.sh</code> 스킬 사용).</p>
-<p><strong>벤치마크/결과:</strong></p>
+<p><strong>Skills involved:</strong> <code>read_file.sh</code>, <code>grep_logs.sh</code>, <code>run_script.sh</code> (for applying fixes), <code>send_notification.sh</code>.</p>
+<h3 id="performance-considerations----shell-script-speed-basic-shell-operations-are-extremely-fast-a-grep-or-sed-command-executes-in-milliseconds">Performance Considerations: *   <strong>Shell Script Speed:</strong> Basic Shell operations are extremely fast. A <code>grep</code> or <code>sed</code> command executes in milliseconds.<a hidden class="anchor" aria-hidden="true" href="#performance-considerations----shell-script-speed-basic-shell-operations-are-extremely-fast-a-grep-or-sed-command-executes-in-milliseconds">#</a></h3>
 <ul>
-<li><strong>콘텐츠 처리량:</strong> 주당 콘텐츠 생산량을 3배 증가시켰습니다.</li>
-<li><strong>시간 절약:</strong> 수동 콘텐츠 준비 시간을 70% 단축했습니다.</li>
-<li><strong>적응성:</strong> 에이전트의 프롬프트 또는 입력 소스를 단순히 업데이트하여 새로운 인기 주제에 빠르게 적응했습니다.</li>
+<li><strong>LLM Latency:</strong> The primary bottleneck for many agentic tasks is the LLM inference time. This is inherent to LLMs and not a limitation of Superpowers itself.</li>
+<li><strong>External API Calls:</strong> Network latency for external API calls will affect task completion time.</li>
+<li><strong>Skill Complexity:</strong> The efficiency of custom skills is up to the developer. Well-written, optimized scripts are crucial.</li>
 </ul>
-<p><strong>관련 스킬:</strong> <code>fetch_url.sh</code>, <code>llm_query.sh</code>, <code>format_text.sh</code> (사용자 지정 스크립트), <code>post_to_twitter.sh</code> (사용자 지정 스킬).</p>
-<h3 id="사용-사례-3-cicd-파이프라인-강화">사용 사례 3: CI/CD 파이프라인 강화<a hidden class="anchor" aria-hidden="true" href="#사용-사례-3-cicd-파이프라인-강화">#</a></h3>
-<p><strong>시나리오:</strong> 고급 확인 또는 자동 수정 작업을 수행하기 위해 CI/CD 파이프라인에 Superpowers를 통합합니다.</p>
-<ol>
-<li>특정 유형의 빌드 실패를 감지하면 에이전트가 로그를 분석합니다.</li>
-<li>일반적인 근본 원인을 식별하고 수정 사항을 제안하거나 적용합니다 (예: 종속성 버전 업데이트, 구성 파일 조정).</li>
-<li>개발자에게 결과를 보고합니다.</li>
-</ol>
-<p><strong>벤치마크/결과:</strong></p>
+<p>The &ldquo;benchmark&rdquo; here is less about micro-optimizations and more about enabling complex, multi-step processes that would be cumbersome to manage with ad-hoc scripting or less integrated frameworks. Superpowers provides the structure to make these complex workflows reliable and repeatable.</p>
+<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening<a hidden class="anchor" aria-hidden="true" href="#advanced-usage--production-hardening">#</a></h2>
+<p>While Superpowers is easy to set up, deploying agents in production requires attention to reliability, security, and scalability.</p>
+<h3 id="1-robust-skill-design">1. Robust Skill Design<a hidden class="anchor" aria-hidden="true" href="#1-robust-skill-design">#</a></h3>
 <ul>
-<li><strong>다운타임 감소:</strong> 일반적인 문제에 대한 평균 빌드 실패 해결 시간을 50% 단축했습니다.</li>
-<li><strong>개발자 집중:</strong> 개발자가 반복적인 디버깅이 아닌 새로운 문제에 집중할 수 있도록 했습니다.</li>
-<li><strong>비용 효율성:</strong> 수동 개입이 필요한 많은 작업을 자동화했습니다.</li>
+<li><strong>Error Handling:</strong> Every skill should have comprehensive error handling. Use <code>set -e</code> (exit immediately if a command exits with a non-zero status) and <code>set -o pipefail</code> (the return value of a pipeline is the status of the last command to exit with a non-zero status, or zero if no command exited with a non-zero status).</li>
+<li><strong>Input Validation:</strong> Sanitize and validate all inputs to skills to prevent unexpected behavior or security vulnerabilities.</li>
+<li><strong>Idempotency:</strong> Where possible, design skills to be idempotent – running them multiple times with the same input produces the same result without side effects.</li>
+<li><strong>Resource Management:</strong> Be mindful of resource usage (CPU, memory, network). For long-running or resource-intensive skills, consider offloading them to dedicated services.</li>
 </ul>
-<p><strong>관련 스킬:</strong> <code>read_file.sh</code>, <code>grep_logs.sh</code>, <code>run_script.sh</code> (수정 적용용), <code>send_notification.sh</code>.</p>
-<h3 id="성능-고려-사항----shell-스크립트-속도-기본-shell-작업은-매우-빠릅니다-grep-또는-sed-명령은-밀리초-단위로-실행됩니다">성능 고려 사항: *   <strong>Shell 스크립트 속도:</strong> 기본 Shell 작업은 매우 빠릅니다. <code>grep</code> 또는 <code>sed</code> 명령은 밀리초 단위로 실행됩니다.<a hidden class="anchor" aria-hidden="true" href="#성능-고려-사항----shell-스크립트-속도-기본-shell-작업은-매우-빠릅니다-grep-또는-sed-명령은-밀리초-단위로-실행됩니다">#</a></h3>
-<ul>
-<li><strong>LLM 지연 시간:</strong> 많은 에이전트 작업에 대한 주요 병목 현상은 LLM 추론 시간입니다. 이는 LLM에 내재된 것이며 Superpowers 프레임워크 자체의 한계는 아닙니다.</li>
-<li><strong>외부 API 호출:</strong> 외부 API 호출에 대한 네트워크 지연 시간은 작업 완료 시간에 영향을 미칩니다.</li>
-<li><strong>스킬 복잡성:</strong> 사용자 지정 스킬의 효율성은 개발자에게 달려 있습니다. 잘 작성되고 최적화된 스크립트가 중요합니다.</li>
-</ul>
-<p>여기서 &ldquo;벤치마크&quot;는 마이크로 최적화보다는 애드혹 스크립팅이나 덜 통합된 프레임워크로 관리하기 번거로운 복잡한 다단계 프로세스를 가능하게 하는 것입니다. Superpowers는 이러한 복잡한 워크플로우를 안정적이고 반복 가능하게 만드는 구조를 제공합니다.</p>
-<h2 id="고급-사용--프로덕션-강화">고급 사용 / 프로덕션 강화<a hidden class="anchor" aria-hidden="true" href="#고급-사용--프로덕션-강화">#</a></h2>
-<p>Superpowers는 설정이 쉽지만 프로덕션에 에이전트를 배포하려면 안정성, 보안 및 확장성에 주의를 기울여야 합니다.</p>
-<h3 id="1-견고한-스킬-설계">1. 견고한 스킬 설계<a hidden class="anchor" aria-hidden="true" href="#1-견고한-스킬-설계">#</a></h3>
-<ul>
-<li><strong>오류 처리:</strong> 모든 스킬에는 포괄적인 오류 처리가 있어야 합니다. <code>set -e</code>(명령이 0이 아닌 상태로 종료되면 즉시 종료) 및 <code>set -o pipefail</code>(파이프라인의 반환 값은 0이 아닌 상태로 종료된 마지막 명령의 상태이거나, 0이 아닌 상태로 종료된 명령이 없으면 0)을 사용합니다.</li>
-<li><strong>입력 유효성 검사:</strong> 예기치 않은 동작이나 보안 취약점을 방지하기 위해 스킬의 모든 입력을 정리하고 유효성을 검사합니다.</li>
-<li><strong>멱등성:</strong> 가능한 경우 스킬을 멱등적으로 설계합니다. 동일한 입력으로 여러 번 실행해도 부작용 없이 동일한 결과가 나옵니다.</li>
-<li><strong>리소스 관리:</strong> 리소스 사용량(CPU, 메모리, 네트워크)을 염두에 둡니다. 장기 실행 또는 리소스 집약적인 스킬의 경우 전용 서비스로 오프로드하는 것을 고려합니다.</li>
-</ul>
-<p><strong>예제 <code>robust_skill.sh</code> 스니펫:</strong></p>
+<p><strong>Example <code>robust_skill.sh</code> snippet:</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Superpowers Skill: Robust Example</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># ... (설명, 입력, 출력)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ... (description, inputs, outputs)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>set -e
 </span></span><span style="display:flex;"><span>set -o pipefail
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 입력 유효성 검사</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Input validation</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -z <span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
 </span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;error=Mandatory input is missing.&#34;</span> &gt;&amp;<span style="color:#ae81ff">2</span>
 </span></span><span style="display:flex;"><span>    exit <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
 </span></span><span style="display:flex;"><span>INPUT_DATA<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 작업 수행</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Perform action</span>
 </span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Processing: </span>$INPUT_DATA<span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># ... 실제 명령 ...</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ... actual command ...</span>
 </span></span><span style="display:flex;"><span>RESULT<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Processed: </span>$INPUT_DATA<span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 출력 형식 지정</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output formatting</span>
 </span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;result=</span>$RESULT<span style="color:#e6db74">&#34;</span>
-</span></span></code></pre></div><h3 id="2-상태-관리-및-지속성">2. 상태 관리 및 지속성<a hidden class="anchor" aria-hidden="true" href="#2-상태-관리-및-지속성">#</a></h3>
-<p>여러 상호 작용 또는 작업에 걸쳐 컨텍스트를 유지해야 하는 에이전트의 경우 상태 관리가 중요합니다.</p>
+</span></span></code></pre></div><h3 id="2-state-management-and-persistence">2. State Management and Persistence<a hidden class="anchor" aria-hidden="true" href="#2-state-management-and-persistence">#</a></h3>
+<p>For agents that need to maintain context across multiple interactions or tasks, state management is critical.</p>
 <ul>
-<li><strong>구성 파일:</strong> 에이전트별 설정을 위해 Superpowers의 구성 시스템을 사용합니다.</li>
-<li><strong>데이터베이스:</strong> 복잡한 상태의 경우 사용자 지정 스킬을 통해 데이터베이스(예: PostgreSQL, SQLite)와 통합합니다.</li>
-<li><strong>파일 기반 상태:</strong> 간단한 상태는 JSON 또는 텍스트 파일에 저장할 수 있습니다.</li>
+<li><strong>Configuration Files:</strong> Use Superpowers&rsquo; configuration system for agent-specific settings.</li>
+<li><strong>Databases:</strong> For complex state, integrate with a database (e.g., PostgreSQL, SQLite) via custom skills.</li>
+<li><strong>File-Based State:</strong> Simple state can be stored in JSON or text files.</li>
 </ul>
-<p><strong>예제: 에이전트 상태를 파일로 사용:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 에이전트 진행 상태를 업데이트하는 스킬</span>
+<p><strong>Example: Using a file for agent state:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Skill to update agent&#39;s progress state</span>
 </span></span><span style="display:flex;"><span>update_agent_state.sh: <span style="color:#75715e">#!/bin/bash</span>
 </span></span><span style="display:flex;"><span>set -e
 </span></span><span style="display:flex;"><span>STATE_FILE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$HOME<span style="color:#e6db74">/.superpowers/agent_state/my_agent.json&#34;</span>
@@ -678,22 +724,22 @@ Superpowers는 <code>cat</code>, <code>echo</code>, <code>mkdir</code>, <code>mv
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>mkdir -p <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>dirname <span style="color:#e6db74">&#34;</span>$STATE_FILE<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 기존 상태를 읽고, 업데이트하고, 다시 씁니다.</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 이것은 단순화된 예제입니다. 강력한 JSON 조작에는 jq를 고려하세요.</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Read existing state, update, and write back</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># This is a simplified example; consider using jq for robust JSON manipulation</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> -f <span style="color:#e6db74">&#34;</span>$STATE_FILE<span style="color:#e6db74">&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
 </span></span><span style="display:flex;"><span>    CURRENT_STATE<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>cat <span style="color:#e6db74">&#34;</span>$STATE_FILE<span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">)</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
 </span></span><span style="display:flex;"><span>    CURRENT_STATE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;{}&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 단순성을 위한 기본 문자열 대체; 실제 JSON의 경우 jq 사용</span>
-</span></span><span style="display:flex;"><span>NEW_STATE<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo <span style="color:#e6db74">&#34;</span>$CURRENT_STATE<span style="color:#e6db74">&#34;</span> | sed <span style="color:#e6db74">&#34;s/\&#34;</span>$KEY<span style="color:#e6db74">\&#34;: \&#34;.*?\&#34;/\&#34;</span>$KEY<span style="color:#e6db74">\&#34;: \&#34;</span>$VALUE<span style="color:#e6db74">\&#34;/&#34;</span><span style="color:#66d9ef">)</span> <span style="color:#75715e"># 매우 기본적이며 문자열 값을 가정합니다.</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 올바른 JSON의 경우: # NEW_STATE=$(echo &#34;$CURRENT_STATE&#34; | jq --arg k &#34;$KEY&#34; --arg v &#34;$VALUE&#34; &#39;.&#34;\($k)&#34; = $v&#39;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Basic string replacement for simplicity; use jq for real JSON</span>
+</span></span><span style="display:flex;"><span>NEW_STATE<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>echo <span style="color:#e6db74">&#34;</span>$CURRENT_STATE<span style="color:#e6db74">&#34;</span> | sed <span style="color:#e6db74">&#34;s/\&#34;</span>$KEY<span style="color:#e6db74">\&#34;: \&#34;.*?\&#34;/\&#34;</span>$KEY<span style="color:#e6db74">\&#34;: \&#34;</span>$VALUE<span style="color:#e6db74">\&#34;/&#34;</span><span style="color:#66d9ef">)</span> <span style="color:#75715e"># Very basic, assumes string values</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># For proper JSON: # NEW_STATE=$(echo &#34;$CURRENT_STATE&#34; | jq --arg k &#34;$KEY&#34; --arg v &#34;$VALUE&#34; &#39;.&#34;\($k)&#34; = $v&#39;)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;</span>$NEW_STATE<span style="color:#e6db74">&#34;</span> &gt; <span style="color:#e6db74">&#34;</span>$STATE_FILE<span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;state_updated=true&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 에이전트 진행 상태를 읽는 스킬</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Skill to read agent&#39;s progress state</span>
 </span></span><span style="display:flex;"><span>read_agent_state.sh: <span style="color:#75715e">#!/bin/bash</span>
 </span></span><span style="display:flex;"><span>set -e
 </span></span><span style="display:flex;"><span>STATE_FILE<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$HOME<span style="color:#e6db74">/.superpowers/agent_state/my_agent.json&#34;</span>
@@ -703,244 +749,136 @@ Superpowers는 <code>cat</code>, <code>echo</code>, <code>mkdir</code>, <code>mv
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
 </span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;{}&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
-</span></span></code></pre></div><h3 id="3-로깅-및-모니터링">3. 로깅 및 모니터링<a hidden class="anchor" aria-hidden="true" href="#3-로깅-및-모니터링">#</a></h3>
-<p>효과적인 로깅은 프로덕션에서 에이전트 동작을 디버깅하고 이해하는 데 필수적입니다.</p>
+</span></span></code></pre></div><h3 id="3-logging-and-monitoring">3. Logging and Monitoring<a hidden class="anchor" aria-hidden="true" href="#3-logging-and-monitoring">#</a></h3>
+<p>Effective logging is essential for debugging and understanding agent behavior in production.</p>
 <ul>
-<li><strong>표준 출력/오류:</strong> 스킬이 <code>stdout</code> 및 <code>stderr</code>에 의미 있는 정보를 로깅하도록 합니다. Superpowers 런타임은 이를 캡처해야 합니다.</li>
-<li><strong>중앙 집중식 로깅:</strong> 스킬이 로그를 전송하거나 Superpowers의 출력 로그를 처리하여 중앙 집중식 로깅 시스템(예: ELK 스택, Splunk)과 통합합니다.</li>
-<li><strong>메트릭:</strong> 작업 성공률, 실행 시간 및 오류 빈도와 같은 주요 메트릭을 추적합니다.</li>
+<li><strong>Standard Output/Error:</strong> Ensure skills log meaningful information to <code>stdout</code> and <code>stderr</code>. Superpowers runtime should capture these.</li>
+<li><strong>Centralized Logging:</strong> Integrate with a centralized logging system (e.g., ELK stack, Splunk) by having skills send logs there, or by processing Superpowers&rsquo; output logs.</li>
+<li><strong>Metrics:</strong> Track key metrics like task success rates, execution times, and error frequencies.</li>
 </ul>
-<p><strong>예제: 로그에 타임스탬프 추가:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 에이전트 실행 스크립트 또는 래퍼 스킬에서: log_with_timestamp() {</span>
+<p><strong>Example: Adding timestamps to logs:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># In your agent execution script or a wrapper skill: log_with_timestamp() {</span>
 </span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>date <span style="color:#e6db74">&#39;+%Y-%m-%d %H:%M:%S&#39;</span><span style="color:#66d9ef">)</span><span style="color:#e6db74"> - </span>$*<span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 스킬 호출 시: log_with_timestamp &#34;Starting skill: my_skill.sh&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># When calling a skill: log_with_timestamp &#34;Starting skill: my_skill.sh&#34;</span>
 </span></span><span style="display:flex;"><span>./my_skill.sh arg1 arg2 &gt;&gt; agent.log 2&gt;&amp;<span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span>EXIT_CODE<span style="color:#f92672">=</span>$?
 </span></span><span style="display:flex;"><span>log_with_timestamp <span style="color:#e6db74">&#34;Skill my_skill.sh finished with exit code </span>$EXIT_CODE<span style="color:#e6db74">&#34;</span>
-</span></span></code></pre></div><h3 id="4-보안-고려-사항">4. 보안 고려 사항<a hidden class="anchor" aria-hidden="true" href="#4-보안-고려-사항">#</a></h3>
+</span></span></code></pre></div><h3 id="4-security-considerations">4. Security Considerations<a hidden class="anchor" aria-hidden="true" href="#4-security-considerations">#</a></h3>
 <ul>
-<li><strong>환경 변수:</strong> 민감한 정보(API 키, 비밀번호)를 스크립트에 직접 하드코딩하지 마십시오. Superpowers 구성 또는 보안 비밀 관리자에서 관리하는 환경 변수를 사용합니다.</li>
-<li><strong>권한:</strong> 필요한 최소 권한으로 에이전트 프로세스를 실행합니다.</li>
-<li><strong>입력 정리:</strong> 에이전트가 셸 명령에 사용되는 사용자 제공 입력을 처리하는 경우 명령 주입 취약점을 방지하는 데 중요합니다.</li>
+<li><strong>Environment Variables:</strong> Avoid hardcoding sensitive information (API keys, passwords) directly in scripts. Use environment variables managed by Superpowers&rsquo; configuration or a secure secrets manager.</li>
+<li><strong>Permissions:</strong> Run agent processes with the least privilege necessary.</li>
+<li><strong>Input Sanitization:</strong> Crucial for preventing command injection vulnerabilities if agents process user-provided input that is then used in shell commands.</li>
 </ul>
-<h3 id="5-오케스트레이션-및-스케줄링">5. 오케스트레이션 및 스케줄링<a hidden class="anchor" aria-hidden="true" href="#5-오케스트레이션-및-스케줄링">#</a></h3>
-<p>복잡한 다중 에이전트 워크플로우 또는 예약된 작업을 위해 전용 오케스트레이션 도구와 Superpowers를 통합하는 것을 고려합니다.</p>
+<h3 id="5-orchestration-and-scheduling">5. Orchestration and Scheduling<a hidden class="anchor" aria-hidden="true" href="#5-orchestration-and-scheduling">#</a></h3>
+<p>For complex, multi-agent workflows or scheduled tasks, consider integrating Superpowers with dedicated orchestration tools.</p>
 <ul>
-<li><strong>Cron 작업:</strong> 간단한 예약된 작업을 위해.</li>
-<li><strong>워크플로우 오케스트레이터:</strong> Airflow, Prefect 또는 Argo Workflows와 같은 도구에서 Superpowers 에이전트를 트리거할 수 있습니다. 선택한 오케스트레이터에 대한 사용자 지정 연산자 또는 작업을 만들어 Superpowers 에이전트를 실행합니다.</li>
+<li><strong>Cron Jobs:</strong> For simple scheduled tasks.</li>
+<li><strong>Workflow Orchestrators:</strong> Tools like Airflow, Prefect, or Argo Workflows can trigger Superpowers agents. You&rsquo;d create a custom operator or task for your chosen orchestrator that executes a Superpowers agent.</li>
 </ul>
-<p><strong>예제: cron을 통해 Superpowers 에이전트 트리거:</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># crontab에서 (run &#39;crontab -e&#34;)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 매일 오전 3시에 일일 에이전트 작업 실행</span>
+<p><strong>Example: Triggering a Superpowers agent via cron:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># In your crontab (run &#39;crontab -e&#39;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run a daily agent task at 3 AM</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#ae81ff">3</span> * * * /path/to/your/superpowers/superpowers.sh agent --config /path/to/agent.conf &gt;&gt; /var/log/superpowers_agent.log 2&gt;&amp;<span style="color:#ae81ff">1</span>
-</span></span></code></pre></div><p>이러한 고급 관행을 구현함으로써 프로덕션 환경을 위해 Superpowers 프레임워크를 사용하여 견고하고 안정적이며 안전한 AI 에이전트를 구축할 수 있습니다.</p>
-<h2 id="대안과의-비교">대안과의 비교<a hidden class="anchor" aria-hidden="true" href="#대안과의-비교">#</a></h2>
-<p>Superpowers는 혼잡한 LLM 프레임워크 공간에서 작동합니다. 2026년 5월 현재 일부 주요 대안과 비교하면 다음과 같습니다.</p>
-<table>
-	<thead>
-			<tr>
-					<th style="text-align: left">특징</th>
-					<th style="text-align: left">Superpowers</th>
-					<th style="text-align: left">LangChain</th>
-					<th style="text-align: left">LlamaIndex</th>
-					<th style="text-align: left">AutoGen</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td style="text-align: left"><strong>주요 언어</strong></td>
-					<td style="text-align: left">Shell</td>
-					<td style="text-align: left">Python</td>
-					<td style="text-align: left">Python</td>
-					<td style="text-align: left">Python</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>핵심 추상화</strong></td>
-					<td style="text-align: left">스킬, 에이전트, 방법론</td>
-					<td style="text-align: left">체인, 에이전트, 도구, 메모리, 검색기</td>
-					<td style="text-align: left">데이터 색인, 쿼리, 에이전트</td>
-					<td style="text-align: left">다중 에이전트 대화 프레임워크</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>설정 용이성</strong></td>
-					<td style="text-align: left">매우 높음 (5분 가능성)</td>
-					<td style="text-align: left">보통 (Python 환경, 종속성)</td>
-					<td style="text-align: left">보통 (Python 환경, 종속성)</td>
-					<td style="text-align: left">보통 (Python 환경, 종속성)</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>이식성</strong></td>
-					<td style="text-align: left">매우 높음 (Shell 기반)</td>
-					<td style="text-align: left">좋음 (Python 환경)</td>
-					<td style="text-align: left">좋음 (Python 환경)</td>
-					<td style="text-align: left">좋음 (Python 환경)</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>확장성</strong></td>
-					<td style="text-align: left">높음 (사용자 지정 Shell/스크립트 스킬)</td>
-					<td style="text-align: left">매우 높음 (Python 통합)</td>
-					<td style="text-align: left">매우 높음 (Python 통합)</td>
-					<td style="text-align: left">매우 높음 (Python 통합)</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>학습 곡선</strong></td>
-					<td style="text-align: left">낮음 (Shell 사용자용), 보통 (개념)</td>
-					<td style="text-align: left">보통에서 높음</td>
-					<td style="text-align: left">보통</td>
-					<td style="text-align: left">보통에서 높음 (다중 에이전트 개념)</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>사용 사례 중점</strong></td>
-					<td style="text-align: left">실용적인 에이전트 오케스트레이션, 개발 워크플로우</td>
-					<td style="text-align: left">일반 LLM 애플리케이션 개발, 에이전트</td>
-					<td style="text-align: left">데이터 중심 LLM 애플리케이션, RAG</td>
-					<td style="text-align: left">협업 AI 에이전트, 복잡한 작업</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>프로덕션 준비</strong></td>
-					<td style="text-align: left">좋음, 그러나 신중한 강화 필요</td>
-					<td style="text-align: left">성숙, 광범위하게 채택됨</td>
-					<td style="text-align: left">성숙, 데이터 통합에 중점</td>
-					<td style="text-align: left">발전 중, 채택 증가</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>커뮤니티 규모</strong></td>
-					<td style="text-align: left">빠르게 성장 중 (200k+ 스타)</td>
-					<td style="text-align: left">매우 큼</td>
-					<td style="text-align: left">큼</td>
-					<td style="text-align: left">큼</td>
-			</tr>
-			<tr>
-					<td style="text-align: left"><strong>예제 사용</strong></td>
-					<td style="text-align: left">DevOps 작업 자동화, 스크립트 가능한 에이전트</td>
-					<td style="text-align: left">챗봇, 복잡한 추론 에이전트 구축</td>
-					<td style="text-align: left">RAG 시스템, 지식 검색 구축</td>
-					<td style="text-align: left">팀 시뮬레이션, 복잡한 문제 해결</td>
-			</tr>
-	</tbody>
-</table>
-<p><strong>주요 차이점:</strong></p>
+</span></span></code></pre></div><p>By implementing these advanced practices, you can build robust, reliable, and secure AI agents using the Superpowers framework for production environments.</p>
+<h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
+<p>Superpowers operates in a crowded LLM framework space. Here&rsquo;s how it compares to some prominent alternatives as of May 2026: | Feature              | Superpowers                               | LangChain                                  | LlamaIndex                                | AutoGen                                    |
+| :&mdash; | :&mdash; | :&mdash; | :&mdash; | :&mdash; |
+| <strong>Primary Language</strong> | Shell                                     | Python                                     | Python                                    | Python                                     |
+| <strong>Core Abstraction</strong> | Skills, Agents, Methodology               | Chains, Agents, Tools, Memory, Retrievers  | Data Indexing, Querying, Agents           | Multi-Agent Conversation Framework         |
+| <strong>Ease of Setup</strong>    | Very High (5-min potential)               | Moderate (Python env, dependencies)        | Moderate (Python env, dependencies)       | Moderate (Python env, dependencies)        |
+| <strong>Portability</strong>      | Extremely High (Shell-based)              | Good (Python environments)                 | Good (Python environments)                | Good (Python environments)                 |
+| <strong>Extensibility</strong>    | High (custom Shell/script skills)         | Very High (Python integrations)            | Very High (Python integrations)           | Very High (Python integrations)            |
+| <strong>Learning Curve</strong>   | Low (for Shell users), Moderate (concepts)| Moderate to High                           | Moderate                                  | Moderate to High (multi-agent concepts)    |
+| <strong>Use Case Focus</strong>   | Practical agent orchestration, dev workflows | General LLM application development, agents | Data-centric LLM applications, RAG        | Collaborative AI agents, complex tasks     |
+| <strong>Production Readiness</strong> | Good, but requires careful hardening    | Mature, widely adopted                     | Mature, focused on data integration       | Evolving, growing adoption                 |
+| <strong>Community Size</strong>   | Growing rapidly (200k+ stars)             | Very Large                                 | Large                                     | Large                                      |
+| <strong>Example Use</strong>      | Automating devops tasks, scriptable agents | Building chatbots, complex reasoning agents | Building RAG systems, knowledge retrieval | Simulating teams, complex problem-solving  |</p>
+<p><strong>Key Differentiators:</strong></p>
 <ul>
-<li><strong>Shell 우선:</strong> Superpowers의 주요 장점은 Shell 네이티브 접근 방식입니다. 이를 통해 기존 Shell 스크립트, CI/CD 파이프라인 및 Python이 불필요한 종속성인 환경에 매우 쉽게 통합할 수 있습니다. 이미 Shell에 익숙한 개발자에게는 즉각적인 이점입니다.</li>
-<li><strong>방법론 강조:</strong> 다른 프레임워크는 구성 요소를 제공하지만, Superpowers는 방법론으로 자신을 포장하여 단순히 도구를 제공하는 것이 아니라 에이전트를 구축하는 방법에 대한 지침을 제공합니다.</li>
-<li><strong>단순성 대 추상화:</strong> Superpowers는 종종 직접적인 Shell 명령 또는 간단한 스크립트 실행을 선택하며, Python 중심 프레임워크보다 추상화 수준이 낮습니다. 이는 투명한 디버깅과 내부에서 무슨 일이 일어나고 있는지 명확하게 이해하는 데 도움이 될 수 있습니다.</li>
-<li><strong>LLM 비종속성 (핵심):</strong> 핵심 Superpowers 프레임워크는 LLM에 비종속적입니다. 스킬을 통해 LLM을 <em>사용</em>할 수 있는 방법을 제공하지만, 그 기반은 에이전트 스킬 실행 엔진이므로 다양한 LLM 백엔드에 적응할 수 있습니다.</li>
+<li><strong>Shell First:</strong> Superpowers&rsquo; primary advantage is its Shell-native approach. This makes it incredibly easy to integrate into existing shell scripts, CI/CD pipelines, and environments where Python might be an unnecessary dependency. For developers already comfortable with Shell, it&rsquo;s an immediate win.</li>
+<li><strong>Methodology Emphasis:</strong> While other frameworks offer components, Superpowers frames itself as a methodology, guiding developers on <em>how</em> to build agents, not just providing tools.</li>
+<li><strong>Simplicity vs. Abstraction:</strong> Superpowers often opts for direct execution of shell commands or simple scripts, offering less abstraction than Python-heavy frameworks. This can lead to more transparent debugging and a clearer understanding of what&rsquo;s happening under the hood.</li>
+<li><strong>LLM Agnosticism (at core):</strong> The core Superpowers framework is LLM-agnostic. It provides a way to <em>use</em> LLMs via skills, but its foundation is the agentic skill execution engine, making it adaptable to various LLM backends.</li>
 </ul>
-<p><strong>Superpowers를 선택해야 하는 경우:</strong></p>
+<p><strong>When to choose Superpowers:</strong></p>
 <ul>
-<li>기존 Shell 기반 워크플로우 또는 CI/CD 파이프라인에 LLM 기능을 통합해야 합니다.</li>
-<li>설정 용이성과 최소한의 종속성을 우선시합니다.</li>
-<li>팀이 Shell 스크립팅에 매우 능숙합니다.</li>
-<li>주로 명령줄 도구 및 파일 시스템과 상호 작용하는 에이전트를 구축하고 있습니다.</li>
+<li>You need to integrate LLM capabilities into existing Shell-based workflows or CI/CD pipelines.</li>
+<li>You prioritize ease of setup and minimal dependencies.</li>
+<li>Your team is highly proficient in Shell scripting.</li>
+<li>You are building agents that primarily interact with command-line tools and file systems.</li>
 </ul>
-<p><strong>대안을 고려해야 하는 경우:</strong></p>
+<p><strong>When to consider alternatives:</strong></p>
 <ul>
-<li><strong>LangChain/LlamaIndex:</strong> 프로젝트가 Python 중심적이고 복잡한 데이터 색인 및 검색(RAG)이 필요하거나 광범위한 Python 생태계 및 사전 구축된 구성 요소의 이점을 누릴 수 있는 경우.</li>
-<li><strong>AutoGen:</strong> 에이전트가 문제를 해결하기 위해 광범위하게 대화하고 협업해야 하는 복잡한 다중 에이전트 시스템을 구축하는 것이 주요 목표인 경우.</li>
+<li><strong>LangChain/LlamaIndex:</strong> If your project is heavily Python-centric, requires complex data indexing and retrieval (RAG), or benefits from their extensive Python ecosystem and pre-built components.</li>
+<li><strong>AutoGen:</strong> If your primary goal is to build complex multi-agent systems where agents need to converse and collaborate extensively to solve problems.</li>
 </ul>
-<h2 id="제한-사항--솔직한-평가">제한 사항 / 솔직한 평가<a hidden class="anchor" aria-hidden="true" href="#제한-사항--솔직한-평가">#</a></h2>
-<p>Superpowers는 인상적인 성장과 실용적인 매력을 가지고 있지만, 개발자가 인지해야 할 제한 사항이 있습니다.</p>
-<h3 id="1-shell-스크립팅의-내재된-과제">1. Shell 스크립팅의 내재된 과제<a hidden class="anchor" aria-hidden="true" href="#1-shell-스크립팅의-내재된-과제">#</a></h3>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations--honest-assessment">#</a></h2>
+<p>Despite its impressive growth and practical appeal, Superpowers, like any framework, has limitations that developers should be aware of.</p>
+<h3 id="1-shell-scriptings-inherent-challenges">1. Shell Scripting&rsquo;s Inherent Challenges<a hidden class="anchor" aria-hidden="true" href="#1-shell-scriptings-inherent-challenges">#</a></h3>
 <ul>
-<li><strong>복잡성 관리:</strong> Shell은 간단한 작업에 훌륭하지만, 매우 크고 복잡한 에이전트 로직을 전적으로 Shell로 관리하는 것은 다루기 어려울 수 있습니다. 복잡한 Shell 스크립트를 디버깅하는 것은 특히 그 미묘한 차이에 익숙하지 않은 개발자에게는 어려울 수 있습니다.</li>
-<li><strong>이식성 미묘함:</strong> Shell은 이식성이 높지만, Shell 버전 및 운영 체제 간의 미묘한 차이(예: <code>sed</code> 동작, 파일 경로 처리)는 때때로 플랫폼별 문제를 일으킬 수 있으며 신중한 테스트가 필요합니다.</li>
-<li><strong>풍부한 데이터 구조 부족:</strong> Shell은 주로 문자열을 처리합니다. 복잡한 데이터 구조(예: 중첩된 사전 또는 목록)는 <code>jq</code>와 같은 외부 도구나 사용자 지정 구문 분석을 필요로 하며, 이는 오버헤드를 추가합니다.</li>
+<li><strong>Complexity Management:</strong> While Shell is great for simple tasks, managing very large, complex agent logic solely in Shell can become unwieldy. Debugging intricate Shell scripts can be challenging, especially for developers less familiar with its nuances.</li>
+<li><strong>Portability Nuances:</strong> While Shell is portable, subtle differences between Shell versions and operating systems (e.g., <code>sed</code> behavior, file path handling) can sometimes lead to platform-specific issues that require careful testing.</li>
+<li><strong>Lack of Rich Data Structures:</strong> Shell primarily deals with strings. Complex data structures (like nested dictionaries or lists) require external tools like <code>jq</code> or custom parsing, which adds overhead.</li>
 </ul>
-<h3 id="2-생태계-성숙도">2. 생태계 성숙도<a hidden class="anchor" aria-hidden="true" href="#2-생태계-성숙도">#</a></h3>
+<h3 id="2-ecosystem-maturity">2. Ecosystem Maturity<a hidden class="anchor" aria-hidden="true" href="#2-ecosystem-maturity">#</a></h3>
 <ul>
-<li><strong>도구:</strong> LangChain과 같은 기존 Python 프레임워크에 비해 Superpowers의 사전 구축된 통합, 복잡한 구성 요소 및 광범위한 커뮤니티 기여 도구의 생태계는 아직 성장 중입니다. 일반적인 작업에 대해 사용자 지정 스킬을 더 많이 작성해야 할 수 있습니다.</li>
-<li><strong>문서 깊이:</strong> 핵심 개념은 명확하지만, 모든 고급 시나리오 또는 엣지 케이스에 대한 심층적인 문서는 성숙한 프로젝트만큼 포괄적이지 않을 수 있습니다.</li>
+<li><strong>Tooling:</strong> Compared to established Python frameworks like LangChain, the ecosystem of pre-built integrations, complex components, and extensive community-contributed tools for Superpowers is still growing. You might find yourself writing more custom skills for common tasks.</li>
+<li><strong>Documentation Depth:</strong> While the core concepts are clear, in-depth documentation for every advanced scenario or edge case might not be as comprehensive as in more mature projects.</li>
 </ul>
-<h3 id="3-개발-패러다임-전환">3. 개발 패러다임 전환<a hidden class="anchor" aria-hidden="true" href="#3-개발-패러다임-전환">#</a></h3>
+<h3 id="3-development-paradigm-shift">3. Development Paradigm Shift<a hidden class="anchor" aria-hidden="true" href="#3-development-paradigm-shift">#</a></h3>
 <ul>
-<li><strong>추상화 수준:</strong> 높은 수준의 Python 추상화에 익숙한 개발자는 Shell 명령 및 스크립트에 대한 Superpowers의 직접적인 의존성을 복잡한 작업에 대한 인지 부하 측면에서 덜 &ldquo;개발자 친화적&quot;이라고 생각할 수 있습니다. 금속에 더 가깝다는 것은 양날의 검입니다.</li>
-<li><strong>오류 전파:</strong> <code>set -e</code> 및 <code>set -o pipefail</code>이 도움이 되지만, 여러 개의 연결된 Shell 스크립트에서 오류를 추적하는 것은 Python 호출 스택을 디버깅하는 것보다 때때로 덜 명확할 수 있습니다.</li>
+<li><strong>Abstraction Level:</strong> Developers accustomed to high-level Python abstractions might find Superpowers&rsquo; direct reliance on shell commands and scripts to be less &ldquo;developer-friendly&rdquo; in terms of cognitive load for complex tasks. You&rsquo;re closer to the metal, which is a double-edged sword.</li>
+<li><strong>Error Propagation:</strong> While <code>set -e</code> and <code>set -o pipefail</code> help, tracing errors across multiple chained Shell scripts can sometimes be less straightforward than debugging a Python call stack.</li>
 </ul>
-<h3 id="4-성능-병목-현상">4. 성능 병목 현상<a hidden class="anchor" aria-hidden="true" href="#4-성능-병목-현상">#</a></h3>
+<h3 id="4-performance-bottlenecks">4. Performance Bottlenecks<a hidden class="anchor" aria-hidden="true" href="#4-performance-bottlenecks">#</a></h3>
 <ul>
-<li><strong>LLM 종속성:</strong> 모든 LLM 프레임워크와 마찬가지로 기본 LLM의 성능이 주요 요인입니다. Superpowers는 LLM을 마법처럼 더 빠르게 만들지 않습니다.</li>
-<li><strong>외부 호출:</strong> 외부 API 호출 또는 I/O 작업을 수행하는 모든 스킬은 해당 작업의 지연 시간으로 인해 제한됩니다.</li>
+<li><strong>LLM Dependency:</strong> As with all LLM frameworks, the performance of the underlying LLM is a major factor. Superpowers doesn&rsquo;t magically make LLMs faster.</li>
+<li><strong>External Calls:</strong> Any skill that makes external API calls or I/O operations will be bound by the latency of those operations.</li>
 </ul>
-<h3 id="5-제대로-처리되지-않을-경우-보안-위험">5. 제대로 처리되지 않을 경우 보안 위험<a hidden class="anchor" aria-hidden="true" href="#5-제대로-처리되지-않을-경우-보안-위험">#</a></h3>
+<h3 id="5-security-risks-if-not-handled-properly">5. Security Risks If Not Handled Properly<a hidden class="anchor" aria-hidden="true" href="#5-security-risks-if-not-handled-properly">#</a></h3>
 <ul>
-<li><strong>명령 주입:</strong> 사용자 제공 입력이 적절한 정리 없이 스킬 내의 셸 명령에 직접 포함되면 심각한 보안 취약점으로 이어질 수 있습니다. 이는 일반적인 Shell 스크립팅 위험이지만, 자율 에이전트를 구축할 때 증폭됩니다.</li>
-<li><strong>종속성 관리:</strong> Shell 자체에는 종속성이 거의 없지만, 스킬에서 호출하는 스크립트에는 자체 종속성이 있을 수 있으며 이를 관리해야 합니다.</li>
+<li><strong>Command Injection:</strong> If user-provided input is directly embedded into shell commands within skills without proper sanitization, it can lead to severe security vulnerabilities. This is a general Shell scripting risk, but amplified when building autonomous agents.</li>
+<li><strong>Dependency Management:</strong> While Shell itself has few dependencies, the scripts called by skills might have their own dependencies that need to be managed.</li>
 </ul>
-<p><strong>Superpowers가 최적의 선택이 아닐 수 있는 경우:</strong></p>
+<p><strong>When Superpowers might not be the best fit:</strong></p>
 <ul>
-<li>특정 Python 라이브러리와의 깊은 통합이 필요한 프로젝트 (예: 셸을 통해 쉽게 노출되지 않는 고급 NLP 라이브러리).</li>
-<li>Shell 스크립팅 경험이 제한적이거나 전혀 없는 팀.</li>
-<li>주요 요구 사항이 외부 명령줄 도구에 대한 광범위한 의존성 없이 정교한 데이터 색인 및 검색(RAG)인 애플리케이션.</li>
-<li>매우 높은 수준의 추상화와 사전 구축된 복잡한 에이전트 패턴을 즉시 사용할 수 있는 시나리오.</li>
+<li>Projects requiring deep integration with specific Python libraries (e.g., advanced NLP libraries not easily exposed via shell).</li>
+<li>Teams with limited or no experience with Shell scripting.</li>
+<li>Applications where the primary requirement is sophisticated data indexing and retrieval (RAG) without heavy reliance on external command-line tools.</li>
+<li>Scenarios where you need a very high level of abstraction and pre-built complex agent patterns readily available.</li>
 </ul>
-<p>Superpowers는 LLM 기능을 익숙하고, 이식성이 높으며, 종종 이미 존재하는 환경인 셸 내에서 액세스 가능하고 오케스트레이션 가능하게 만드는 데 탁월합니다. 그 제한 사항은 주로 Shell 스크립팅의 특성과 더 성숙한 Python 프레임워크에 비해 생태계의 상대적인 젊음과 관련이 있습니다.</p>
-<h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
-<p><strong>Q1: Superpowers는 Shell 스크립팅 전용인가요? Python이나 다른 언어를 사용할 수 있나요?</strong>
-A1: Superpowers는 주로 Shell 기반 프레임워크이므로 핵심 실행 엔진과 제공되는 많은 유틸리티가 Shell로 되어 있습니다. 그러나 Python, Node.js, Go 또는 기타 언어로 작성된 스킬을 통합할 수 있습니다. 일반적으로 Python 스크립트를 실행하는 Shell 스크립트(&ldquo;스킬&rdquo;)를 만들고 인수를 전달하고 출력을 캡처합니다. 예를 들어 <code>run_python_script.sh</code> 스킬이 있습니다.</p>
-<p><strong>Q2: Superpowers는 LLM 비용을 어떻게 처리하나요?</strong>
-A2: Superpowers 자체는 LLM 비용을 직접 관리하지 않습니다. 오케스트레이터 역할을 합니다. 비용은 <code>~/.config/superpowers/config</code> 파일에서 구성한 LLM 제공업체(예: OpenAI, Anthropic)에 의해 발생합니다. API 키를 관리하고 해당 제공업체와의 사용량을 모니터링할 책임이 있습니다. Ollama와 같은 일부 로컬 LLM 제공업체는 토큰당 비용이 없으며 하드웨어/전기 비용만 발생합니다.</p>
-<p><strong>Q3: 팀 내에서 스킬이나 에이전트를 어떻게 공유할 수 있나요?</strong>
-A3: 스킬은 일반적으로 개별 스크립트(예: ````.sh``` 파일)입니다. 다음을 통해 공유할 수 있습니다.
-*   공유 Git 저장소에 저장합니다.
-*   공통 디렉토리 구조를 사용하고 에이전트가 해당 디렉토리를 가리키도록 합니다.
-*   더 큰 애플리케이션 또는 Docker 이미지의 일부로 패키징합니다.
-에이전트 구성 및 워크플로우도 버전 관리 및 공유할 수 있습니다.</p>
-<p><strong>Q4: Superpowers와 LangChain의 주요 차이점은 무엇인가요?</strong>
-A4: 주요 차이점은 구현 언어와 철학에 있습니다. Superpowers는 Shell 네이티브이며 이식성과 기존 명령줄 도구와의 통합을 강조합니다. LangChain은 Python 네이티브이며 방대한 Python 생태계, 더 추상적인 구성 요소(&ldquo;체인&rdquo; 및 &ldquo;에이전트&quot;와 같은 Python 클래스) 및 LLM 애플리케이션 구축을 위한 다른 패러다임을 제공합니다. Superpowers는 기존 Shell 환경에 대한 설정이 종종 더 간단하며, LangChain은 더 깊은 Python 통합과 더 풍부한 사전 구축된 추상화 세트를 제공합니다.</p>
-<p><strong>Q5: Superpowers는 복잡한 다중 에이전트 대화 시스템에 적합한가요?</strong>
-A5: Superpowers는 에이전트를 오케스트레이션할 수 있지만, 핵심 강점은 AutoGen과 같은 복잡하고 창발적인 다중 에이전트 대화에 있지 않습니다. Superpowers는 LLM 지침과 함께 스킬의 순차적 또는 조건부 실행을 정의하는 데 더 적합합니다. 매우 정교한 에이전트 간 대화 및 협업의 경우 AutoGen과 같은 프레임워크를 탐색하거나 Superpowers 위에 사용자 지정 통신 계층을 구축해야 할 수 있습니다.</p>
-<h2 id="결론">결론<a hidden class="anchor" aria-hidden="true" href="#결론">#</a></h2>
-<p>Superpowers는 인상적인 GitHub 트래픽과 실용적인 접근 방식을 통해 개발자가 LLM 기능을 워크플로우에 통합하려는 개발자에게 매력적인 프레임워크를 제공합니다. Shell 기반 기반은 탁월한 설정 용이성과 이식성을 제공하여 개발 작업 자동화, CI/CD 파이프라인 강화 및 스크립트 가능한 AI 에이전트 구축에 강력한 선택이 됩니다.</p>
-<p>모듈식 &ldquo;스킬&quot;을 정의하고 이를 지능형 에이전트로 오케스트레이션하는 능력은 명확한 방법론과 결합되어 개발자가 개념에서 배포까지 빠르게 진행할 수 있도록 합니다. 프로덕션 강화, 특히 보안 및 견고한 스킬 설계에 신중한 주의가 필요하지만, 핵심 원칙은 견고하며 실제 적용 가능성은 상당합니다.</p>
-<p>Shell 스크립팅에 능숙하거나 에이전트 AI를 위한 가볍고 이식성이 뛰어난 솔루션이 필요한 개발자에게 Superpowers는 훌륭한 선택입니다. 복잡한 AI 기반 워크플로우 구축의 진입 장벽을 낮춥니다.</p>
-<p>더 깊이 들어가 자신만의 지능형 에이전트를 구축할 준비가 되셨나요? <a href="https://t.me/DIBI8_Group/9">dibi8 한국어 Telegram 그룹</a>에서 동료 개발자들의 토론에 참여하고 지원을 받으세요.</p>
+<p>Superpowers excels at making LLM capabilities accessible and orchestratable within a familiar, portable, and often already-present environment: the shell. Its limitations are largely tied to the nature of Shell scripting and the relative youth of its ecosystem compared to more established Python frameworks.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<p><strong>Q1: Is Superpowers only for Shell scripting? Can I use Python or other languages?</strong>
+A1: Superpowers is primarily a Shell-based framework, meaning its core execution engine and many of its provided utilities are in Shell. However, you can absolutely integrate skills written in Python, Node.js, Go, or any other language. You would typically create a Shell script (a &ldquo;skill&rdquo;) that executes your Python script, passing arguments and capturing its output. For example, a <code>run_python_script.sh</code> skill.</p>
+<p><strong>Q2: How does Superpowers handle LLM costs?</strong>
+A2: Superpowers itself does not directly manage LLM costs. It acts as an orchestrator. The costs are incurred by the LLM provider you configure in your <code>~/.config/superpowers/config</code> file (e.g., OpenAI, Anthropic). You are responsible for managing your API keys and monitoring your usage with those providers. Some local LLM providers (like Ollama) have no per-token cost, only hardware/electricity costs.</p>
+<p><strong>Q3: How can I share skills or agents within a team?</strong>
+A3: Skills are typically individual scripts (e.g., ````.sh``` files). You can share these by: *   Storing them in a shared Git repository.
+*   Using a common directory structure and pointing agents to that directory.
+*   Packaging them as part of a larger application or Docker image.
+Agent configurations and workflows can also be version-controlled and shared.</p>
+<p><strong>Q4: What are the main differences between Superpowers and LangChain?</strong>
+A4: The primary difference lies in their implementation language and philosophy. Superpowers is Shell-native, emphasizing portability and integration with existing command-line tools. LangChain is Python-native, offering a vast Python ecosystem, more abstract components (like &ldquo;chains&rdquo; and &ldquo;agents&rdquo; as Python classes), and a different paradigm for building LLM applications. Superpowers is often simpler to set up for existing shell environments, while LangChain offers deeper Python integration and a richer set of pre-built abstractions.</p>
+<p><strong>Q5: Is Superpowers suitable for complex, multi-agent conversational systems?</strong>
+A5: While Superpowers can orchestrate agents, its core strength isn&quot;t in complex, emergent multi-agent conversations like AutoGen. Superpowers is more geared towards defining sequential or conditional execution of skills by an agent, potentially with LLM guidance. For highly sophisticated agent-to-agent dialogue and collaboration, you might need to explore frameworks like AutoGen or build custom communication layers on top of Superpowers.</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>Superpowers, with its impressive GitHub traction and practical approach, offers a compelling framework for developers looking to integrate LLM capabilities into their workflows. Its Shell-based foundation provides unparalleled ease of setup and portability, making it a strong contender for automating development tasks, enhancing CI/CD pipelines, and building scriptable AI agents.</p>
+<p>The ability to define modular &ldquo;skills&rdquo; and orchestrate them into intelligent agents, combined with a clear methodology, empowers developers to move quickly from concept to deployment. While it requires careful attention to production hardening, especially regarding security and robust skill design, its core principles are sound and its potential for real-world application is significant.</p>
+<p>For developers who are comfortable with Shell scripting or need a lightweight, highly portable solution for agentic AI, Superpowers is an excellent choice. It lowers the barrier to entry for building sophisticated AI-powered workflows.</p>
+<p>Ready to dive deeper and build your own intelligent agents? Join the discussion and get support from fellow developers in the <a href="https://t.me/DIBI8_Group/2">dibi8 English Telegram group</a>.</p>
 <hr>
-<p><strong>출처 및 추가 자료:</strong></p>
+<p><strong>Sources &amp; Further Reading:</strong></p>
 <ul>
 <li><strong>Superpowers GitHub Repository:</strong> <a href="https://github.com/obra/superpowers">https://github.com/obra/superpowers</a></li>
-<li><strong>LangChain Documentation:</strong> <a href="https://python.langchain.com/">https://python.langchain.com/</a> (2026-05-23 기준)</li>
-<li><strong>LlamaIndex Documentation:</strong> <a href="https://www.llamaindex.ai/">https://www.llamaindex.ai/</a> (2026-05-23 기준)</li>
-<li><strong>AutoGen Documentation:</strong> <a href="https://microsoft.github.io/autogen/">https://microsoft.github.io/autogen/</a> (2026-05-23 기준)</li>
+<li><strong>LangChain Documentation:</strong> <a href="https://python.langchain.com/">https://python.langchain.com/</a> (as of 2026-05-23)</li>
+<li><strong>LlamaIndex Documentation:</strong> <a href="https://www.llamaindex.ai/">https://www.llamaindex.ai/</a> (as of 2026-05-23)</li>
+<li><strong>AutoGen Documentation:</strong> <a href="https://microsoft.github.io/autogen/">https://microsoft.github.io/autogen/</a> (as of 2026-05-23)</li>
 </ul>
 <hr>
-<p><em>공개: 위 링크 중 일부는 제휴 링크입니다. dibi8.com은 가입 시 수수료를 받을 수 있으며, 이는 귀하의 비용에 영향을 미치지 않습니다. 사이트를 계속 운영하고 콘텐츠를 무료로 제공하는 데 도움이 됩니다.</em></p>
-<p>{
-&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
-&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;Superpowers: 200000+ Stars &ndash; Agentic Skills Framework &amp; Methodology 2026&rdquo;,
-&ldquo;datePublished&rdquo;: &ldquo;2026-05-23&rdquo;,
-&ldquo;dateModified&rdquo;: &ldquo;2026-05-23&rdquo;,
-&ldquo;author&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
-&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
-},
-&ldquo;publisher&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
-&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
-&ldquo;logo&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
-}
-},
-&ldquo;mainEntityOfPage&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/superpowers%22">https://dibi8.com/kr/resources/superpowers"</a>
-}
-}
-</script></p>
-<hr>
-<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
-<ul>
-<li><a href="/ko/ai-coding-agents/superpowers/">superpowers</a></li>
-<li><a href="/ko/ai-coding-agents/superpowers/">superpowers</a></li>
-<li><a href="/ko/ai-coding-agents/superpowers/">windsurf-ai-ide</a></li>
-<li><a href="/ko/ai-coding-agents/superpowers/">windsurf-ai-ide</a></li>
-<li><a href="/ko/ai-coding-agents/superpowers/">windsurf-ai-ide</a></li>
-</ul>
-<hr>
-<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<p><em>Disclosure: Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.</em></p>
 <h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
 <p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
 <p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
@@ -952,6 +890,7 @@ A5: Superpowers는 에이전트를 오케스트레이션할 수 있지만, 핵�
 <p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
 <p><strong>问：能否自定义AI Agent的行为？</strong></p>
 <p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+<hr>
 
 
   </div>
@@ -994,6 +933,81 @@ A5: Superpowers는 에이전트를 오케스트레이션할 수 있지만, 핵�
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

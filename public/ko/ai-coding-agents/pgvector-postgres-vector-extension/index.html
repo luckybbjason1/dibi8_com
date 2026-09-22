@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "소개: 데모를 죽인 47초 쿼리 2025년 3월이었다. 한 AI 스타트업 창업자가 잠재적 엔터프라이즈 고객 앞에서 RAG 데모를 실행하고 있었다. 질문은 단순했다: “귀사 제품은 무엇을 하나요?” PostgreSQL 데이터베이스의 200만 문서에 대한 벡터 검색은 47초가 소요되었다. 고객은 첫 결과가 나타나기 전에 방을 나갔다.\n문제는 PostgreSQL이 아니었다. ```vector컬럼에 **HNSW 인덱스**가 없는 것이 문제였다.CREATE INDEX … USING hnsw````를 추가한 후, 동일한 쿼리는 3.2 밀리초로 떨어졌다 — 14,000배 향상이다. 데이터베이스 마이그레이션 없이, 새 인프라 없이, 단 하나의 SQL 문장으로.\n이것이 pgvector 0.8.2의 힘이다 — 세계에서 가장 신뢰받는 관계형 데이터베이스를 고성능 벡터 데이터베이스로 변환하는 오픈소스 PostgreSQL 확장이다. 15,000+ GitHub Stars를 보유하고 Supabase, Neon, AWS RDS, Google Cloud SQL에서 네이티브 지원되는 pgvector는 **1000만 벡터 이하로 유지되는 AI 에이전트 워크로드의 70%**에 대한 실용적인 선택이다.\n이 가이드는 모든 것을 다룬다: PostgreSQL 18 설치, HNSW 튜닝, halfvec 양자화, 필터링된 하이브리드 검색, 프로덕션 RAG 통합.\npgvector란 무엇인가? — PostgreSQL 낶部的 벡터 pgvector는 데이터베이스 낶部에 벡터 데이터 타입, 근사 최근접 이웃(ANN) 인덱스, 거리 함수를 추가하는 PostgreSQL용 오픈소스 확장이다. PostgreSQL 옆에 별도의 벡터 데이터베이스를 실행하는 대신, 임베딩을 관계형 데이터와 동일한 테이블에 저장하고 표준 SQL로 쿼리한다.\n핵심 수치 (2026년 5월):\n지표 수치 현재 버전 0.8.2 PostgreSQL 호환성 14 ~ 18 GitHub Stars 15,000+ 최대 벡터 차원 16,000 ANN 리콜 (HNSW) ~95% 인덱스 타입 HNSW, IVFFlat 라이선스 PostgreSQL (오픈소스) 독립형 벡터 데이터베이스와 달리, pgvector는 PostgreSQL이 제공하는 모든 것을 상속받는다: ACID 트랜잭션, 행 수준 보안, JSONB 메타데이터, 전문 검색, 그리고 수십 년의 운영 도구. 문서, 사용자 권한, 감사 로그, 벡터 임베딩이 모두 하나의 데이터베이스에 있을 때, 이중 쓰기 문제가 완전히 제거된다.\npgvector 작동 방식: 인덱스 타입과 쿼리 계획 pgvector는 서로 다른 트레이드오프를 가진 두 ANN 인덱스 타입을 지원한다: ### HNSW (Hierarchical Navigable Small World)\n대부분의 워크로드에 대한 기본 선택이다. HNSW는 각 레이어가 이전 레이어의 부분집합인 다층 그래프를 구축한다. 쿼리 순회는 최상위 레이어에서 시작하여 가장 밀집된 그래프에 도달할 때까지 탐욕적으로 아래로 이동한다.\n적합: ~5000만 벡터 이하의 데이터셋에서 높은 리콜, 낮은 지연 시간 쿼리. 빌드 시간: IVFFlat보다 느림 (pgvector 0.8.2에서 단일 스레드). 쿼리 파라미터: hnsw.ef_search가 리콜 대 지연 시간 트레이드오프를 제어한다.\nIVFFlat (Inverted File with Flat Index) k-means를 사용하여 벡터를 클러스터(리스트)로 분할한다. 쿼리 시 가장 가까운 클러스터만 스캔한다.\n적합: 더 빠른 인덱스 빌드, 메모리 제한 환경. 트레이드오프: 동일한 지연 시간 예산에서 HNSW보다 낮은 리콜. 쿼리 파라미터: ivfflat.probes가 스캔할 클러스터 수를 제어한다.\n-- HNSW 인덱스 (대부분의 워크로드에 권장) CREATE INDEX ON documents USING hnsw (embedding vector_l2_ops) WITH (m = 16, ef_construction = 64); -- IVFFlat 인덱스 (빌드가 더 빠르지만 리콜이 낮음) CREATE INDEX ON documents USING ivfflat (embedding vector_l2_ops) WITH (lists = 100); 거리 연산자 pgvector는 세 가지 거리 연산자를 제공한다: | 연산자 | 설명 | 사용 사례 | |———-|————-|———-| | \u003c-\u003e | 유클리드 (L2) 거리 | 일반 유사성 (기본값) | | \u003c#\u003e | 음수 내적 | OpenAI 임베딩 | | \u003c=\u003e | 코사인 거리 | 의미적 유사성 (정규화된 벡터) |\n-- L2 거리 (작을수록 더 유사) SELECT id, embedding \u003c-\u003e query_vec AS distance FROM documents ORDER BY distance LIMIT 10; -- 코사인 거리 (정규화된 임베딩용) SELECT id, embedding \u003c=\u003e query_vec AS distance FROM documents ORDER BY distance LIMIT 10; 설치 및 설정: 5분 이내 옵션 A: Docker (가장 빠름) docker run -d \\ --name pgvector-demo \\ -e POSTGRES_PASSWORD=mysecretpassword \\ -e POSTGRES_DB=vectordb \\ -p 5432:5432 \\ pgvector/pgvector:0.8.2-pg18 # 확인 docker exec pgvector-demo psql -U postgres -d vectordb -c \"SELECT * FROM pg_extension WHERE extname = vector;\" 옵션 B: 기존 PostgreSQL # 빌드 종속성 설치 (Ubuntu/Debian) sudo apt-get install postgresql-server-dev-18 build-essential git # pgvector 클론 및 빌드 git clone --branch v0.8.2 https://github.com/pgvector/pgvector.git cd pgvector make sudo make install # 데이터베이스에서 확장 활성화 psql -U postgres -d mydb -c \"CREATE EXTENSION IF NOT EXISTS vector;\" 옵션 C: Supabase (관리형) -- pgvector는 Supabase에 사전 설치되어 있음. 활성화만 하면 됨: CREATE EXTENSION IF NOT EXISTS vector; -- 버전 확인 SELECT extversion FROM pg_extension WHERE extname = vector; -- 반환: 0.8.2 옵션 D: AWS RDS / Google Cloud SQL -- RDS PostgreSQL 18에서 pgvector는 확장으로 사용 가능 CREATE EXTENSION IF NOT EXISTS vector; -- 필요시 사용 가능한 확장 확인 SELECT * FROM pg_available_extensions WHERE name = vector; 설치 확인 -- pgvector 버전 확인 SELECT extversion FROM pg_extension WHERE extname = vector; -- 예상: 0.8.2 -- 벡터 타입 테스트 SELECT '[1,2,3]'::vector(3) \u003c-\u003e '[4,5,6]'::vector(3) AS l2_distance; -- 예상: ~5.196 핵심 작업: 테이블 생성, 삽입 및 쿼리 벡터 테이블 생성 -- 벡터 컬럼이 있는 테이블 생성 (1536 차원 = OpenAI 임베딩) CREATE TABLE documents ( id BIGSERIAL PRIMARY KEY, title VARCHAR(512) NOT NULL, content TEXT, embedding vector(1536), metadata JSONB DEFAULT '{}', created_at TIMESTAMPTZ DEFAULT NOW(), tenant_id INTEGER NOT NULL DEFAULT 0 ); -- 일반적인 필터 컬럼에 인덱스 추가 CREATE INDEX idx_docs_tenant ON documents(tenant_id); CREATE INDEX idx_docs_created ON documents(created_at); 벡터 삽입 -- 임베딩이 있는 단일 문서 삽입 INSERT INTO documents (title, content, embedding, metadata, tenant_id) VALUES ( 'Introduction to pgvector', 'pgvector adds vector support to PostgreSQL...', ARRAY_FILL(0.0::real, ARRAY[1536])::vector(1536), -- 플레이스홀더 '{\"author\": \"dibi8\", \"category\": \"database\"}', 1 ); -- 실제 OpenAI 임베딩으로 삽입 (Python에서) -- 전체 예제는 아래 RAG 통합 섹션 참조 # Python에서 벡터 일괄 삽입 import psycopg2 import numpy as np conn = psycopg2.connect(\"dbname=vectordb user=postgres password=mysecretpassword host=localhost\") cur = conn.cursor() -- 샘플로 1만 개의 랜덤 벡터 생성 batch_size = 10000 titles = [f\"document_{i}\" for i in range(batch_size)] contents = [f\"Content for document {i}\" for i in range(batch_size)] embeddings = np.random.randn(batch_size, 1536).astype(np.float32) tenant_ids = [i % 10 for i in range(batch_size)] # 일괄 삽입을 위해 executemany 사용 args = [(titles[i], contents[i], embeddings[i].tolist(), tenant_ids[i]) for i in range(batch_size)] cur.executemany( \"INSERT INTO documents (title, content, embedding, tenant_id) VALUES (%s, %s, %s::vector, %s)\", args ) conn.commit() print(f\"{batch_size}개 문서 삽입 완료\") HNSW 인덱스 구축 (프로덕션 튜닝) -- 병렬 인덱스 빌드용 파라미터 설정 SET maintenance_work_mem = 8GB; SET max_parallel_maintenance_workers = 4; -- 튜닝된 파라미터로 HNSW 인덱스 구축 CREATE INDEX idx_docs_embedding_hnsw ON documents USING hnsw (embedding vector_l2_ops) WITH ( m = 16, -- 레이어별 연결 수 (기본값: 16) ef_construction = 128 -- 동적 후보 목록 크기 (기본값: 64) ); -- 인덱스 크기 확인 SELECT pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw)); -- 일반적: 1536 차원의 10만 벡터에 대해 ~450 MB 벡터 유사성 검색 -- 기본 ANN 검색 SELECT id, title, embedding \u003c-\u003e $1::vector AS distance FROM documents ORDER BY embedding \u003c-\u003e $1::vector LIMIT 10; -- 필터링된 벡터 검색 (가장 일반적인 프로덕션 패턴) SELECT id, title, embedding \u003c-\u003e $1::vector AS distance FROM documents WHERE tenant_id = 42 AND created_at \u003e NOW() - INTERVAL '30 days' AND metadata-\u003e\u003ecategory = tech ORDER BY embedding \u003c-\u003e $1::vector LIMIT 20; 하이브리드 검색: 벡터 + 전문 -- 먼저 전문 검색을 위해 pg_trgm 활성화 CREATE EXTENSION IF NOT EXISTS pg_trgm; -- 벡터 유사성 + 텍스트 관련성 결합 SELECT d.id, d.title, d.embedding \u003c-\u003e $1::vector AS vec_distance, similarity(d.title, $2) AS text_similarity FROM documents d WHERE d.title % $2 -- trigram 유사성 필터 ORDER BY (d.embedding \u003c-\u003e $1::vector) * 0.7 + (1 - similarity(d.title, $2)) * 0.3 LIMIT 10; 성능 튜닝: 47초에서 3밀리초로 HNSW용 GUC 파라미터 -- 리콜 대 지연 시간을 위한 ef_search 튜닝 -- 높을수록 = 리콜이 더 좋지만 쿼리가 더 느림 SET hnsw.ef_search = 100; -- 기본값은 40; 프로덕션에서는 64-128이 일반적 -- 실제 쿼리 계획 확인 EXPLAIN (ANALYZE, BUFFERS) SELECT id, title, embedding \u003c-\u003e $1::vector AS distance FROM documents ORDER BY embedding \u003c-\u003e $1::vector LIMIT 10; -- 표시되어야 함: Index Scan using idx_docs_embedding_hnsw 반정밀도 양자화 (halfvec) pgvector 0.8.2는 최소한의 리콜 손실로 50% 스토리지 절감을 위한 halfvec 타입을 지원한다: `````sql – 양자화된 스토리지를 위한 halfvec 컬럼 추가 ALTER TABLE documents ADD COLUMN embedding_half halfvec(1536);\n– 전체 정밀도에서 변환 UPDATE documents SET embedding_half = embedding::halfvec;\n– halfvec에 HNSW 인덱스 생성 CREATE INDEX idx_docs_embedding_half_hnsw ON documents USING hnsw (embedding_half halfvec_l2_ops);\n– halfvec을 사용한 쿼리 (거의 동일한 결과) SELECT id, title, embedding_half \u003c-\u003e $1::halfvec AS distance FROM documents ORDER BY embedding_half \u003c-\u003e $1::halfvec LIMIT 10;\n– 공간 절약 확인 SELECT pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw)) AS full_size, pg_size_pretty(pg_relation_size(idx_docs_embedding_half_hnsw)) AS half_size; – half_size는 일반적으로 full_size의 ~45-50%\n### 연결 풀링 (Pgbouncer) `````ini ; pgvector 워크로드를 위한 pgbouncer.ini [databases] vectordb = host=localhost port=5432 dbname=vectordb [pgbouncer] pool_mode = transaction max_client_conn = 10000 default_pool_size = 50 reserve_pool_size = 10 벤치마크 비교: 튜닝 전후 구성 쿼리 지연 시간 (p99) Recall@10 인덱스 크기 빌드 시간 인덱스 없음 (순차 스캔) 47,000 ms 1.00 N/A N/A HNSW 기본값 (m=16, ef_construction=64) 4.2 ms 0.91 450 MB 45s HNSW 튜닝 (m=24, ef_construction=128) 3.8 ms 0.95 680 MB 82s HNSW + halfvec 3.2 ms 0.94 310 MB 38s IVFFlat (lists=100) 8.1 ms 0.87 220 MB 12s LangChain 및 LlamaIndex와의 RAG 통합 LangChain + pgvector pip install langchain-postgres==0.0.13 langchain-openai==0.3.0 from langchain_postgres import PGVector from langchain_openai import OpenAIEmbeddings embeddings = OpenAIEmbeddings(model=\"text-embedding-3-large\") vector_store = PGVector( connection=\"postgresql://postgres:mysecretpassword@localhost:5432/vectordb\", embeddings=embeddings, collection_name=\"documents\", use_jsonb=True, ) # 문서 추가 from langchain_core.documents import Document docs = [ Document(page_content=\"pgvector turns PostgreSQL into a vector database\", metadata={\"source\": \"blog\"}), Document(page_content=\"HNSW indexes provide fast ANN search\", metadata={\"source\": \"docs\"}), ] vector_store.add_documents(docs) # 필터가 있는 유사성 검색 results = vector_store.similarity_search( \"vector database for RAG\", k=5, filter={\"source\": \"blog\"} ) for doc in results: print(f\"Content: {doc.page_content}\") LlamaIndex + pgvector pip install llama-index-vector-stores-postgres==0.4.2 from llama_index.vector_stores.postgres import PGVectorStore from llama_index.core import VectorStoreIndex, SimpleDirectoryReader from llama_index.embeddings.openai import OpenAIEmbedding vector_store = PGVectorStore.from_params( host=\"localhost\", port=5432, database=\"vectordb\", user=\"postgres\", password=\"mysecretpassword\", table_name=\"llama_index_docs\", embed_dim=1536, hnsw_kwargs={ \"hnsw_m\": 16, \"hnsw_ef_construction\": 128, \"hnsw_ef_search\": 100, \"hnsw_dist_method\": \"vector_l2_ops\", }, ) # 문서 로드 documents = SimpleDirectoryReader(\"./data\").load_data() index = VectorStoreIndex.from_documents(documents, vector_store=vector_store) # 쿼리 query_engine = index.as_query_engine() response = query_engine.query(\"How does pgvector work?\") print(response) 직접 RAG 파이프라인 (프레임워크 없음) import psycopg2 from openai import OpenAI import numpy as np client = OpenAI() conn = psycopg2.connect(\"dbname=vectordb user=postgres password=mysecretpassword host=localhost\") def get_embedding(text: str) -\u003e list[float]: resp = client.embeddings.create( model=\"text-embedding-3-large\", input=text, dimensions=1536 ) return resp.data[0].embedding def retrieve_documents(query: str, top_k: int = 5, tenant_id: int = 1): query_vec = get_embedding(query) cur = conn.cursor() cur.execute(\"\"\" SELECT title, content, embedding \u003c=\u003e %s::vector AS distance FROM documents WHERE tenant_id = %s ORDER BY embedding \u003c=\u003e %s::vector LIMIT %s \"\"\", (query_vec, tenant_id, query_vec, top_k)) return cur.fetchall() # 전체 RAG 파이프라인 def rag_query(user_question: str) -\u003e str: docs = retrieve_documents(user_question, top_k=5) context = \"\\n\\n\".join([f\"Title: {d[0]}\\n{d[1]}\" for d in docs]) response = client.chat.completions.create( model=\"gpt-4o\", messages=[ {\"role\": \"system\", \"content\": \"Answer based on the provided context.\"}, {\"role\": \"user\", \"content\": f\"Context:\\n{context}\\n\\nQuestion: {user_question}\"} ] ) return response.choices[0].message.content print(rag_query(\"What is pgvector used for?\")) 프로덕션 강화 다중 테넌트를 위한 행 수준 보안 -- RLS 활성화 ALTER TABLE documents ENABLE ROW LEVEL SECURITY; -- 정책: 테넌트는 자신의 문서만 볼 수 있음 CREATE POLICY tenant_isolation ON documents USING (tenant_id = current_setting('app.current_tenant')::INTEGER); -- 세션별 테넌트 설정 SET app.current_tenant = 42; -- 이제 모든 쿼리가 자동으로 테넌트별로 필터링됨 SELECT * FROM documents; -- 테넌트 42의 문서만 표시 쿼리 성능 모니터링 -- 느린 벡터 쿼리 추적 CREATE EXTENSION IF NOT EXISTS pg_stat_statements; -- 지연 시간별 상위 벡터 쿼리 찾기 SELECT query, mean_exec_time, calls FROM pg_stat_statements WHERE query LIKE '%\u003c-\u003e%' ORDER BY mean_exec_time DESC LIMIT 10; # postgresql.conf에서 pg_stat_statements 활성화 shared_preload_libraries = pg_stat_statements pg_stat_statements.track = all pg_stat_statements.max = 10000 pg_dump를 사용한 백업 (벡터 포함) # 벡터 데이터를 포함한 전체 백업 pg_dump -h localhost -U postgres -d vectordb -Fc \u003e vectordb_backup.dump # 복원 pg_restore -h localhost -U postgres -d vectordb_restore vectordb_backup.dump # 벡터는 텍스트 배열로 백업되고 정확하게 복원됨 높은 QPS를 위한 연결 모범 사례 # 프로덕션 워크로드를 위한 연결 풀링 사용 from psycopg2 import pool conn_pool = pool.ThreadedConnectionPool( minconn=5, maxconn=50, host=\"localhost\", database=\"vectordb\", user=\"postgres\", password=\"mysecretpassword\" ) def search_with_pool(query_vec, limit=10): conn = conn_pool.getconn() try: cur = conn.cursor() cur.execute( \"SELECT id, title FROM documents ORDER BY embedding \u003c-\u003e %s::vector LIMIT %s\", (query_vec, limit) ) return cur.fetchall() finally: conn_pool.putconn(conn) 대안과의 비교 기능 pgvector 0.8.2 Pinecone Weaviate 1.25 Qdrant 1.11 Milvus 2.5 오픈소스 PostgreSQL 라이선스 아니오 BSD-3 Apache-2.0 Apache-2.0 최대 규모 ~5000만 벡터 무제한 200M/노드 500M/노드 10B+ p99 지연 시간 25-40 ms 28 ms 19 ms 12 ms 8 ms (GPU) ACID 준수 전체 아니오 부분 아니오 아니오 SQL 인터페이스 네이티브 아니오 GraphQL 아니오 아니오 (gRPC) 관리형 옵션 Supabase/Neon/RDS 네이티브 Weaviate Cloud Qdrant Cloud Zilliz Cloud 하이브리드 검색 FTS + vector 네이티브 최고 BM42 네이티브 셀프 호스팅 비용 $0 (기존 PG 사용) N/A $320/M/월 $280/M/월 $400/M/월 설정 복잡성 확장 설치 API 키 클러스터 바이너리 Kubernetes GPU 인덱싱 아니오 아니오 아니오 아니오 (1.12 예정) 예 pgvector를 선택해야 할 때:\n이미 애플리케이션 데이터용 PostgreSQL을 실행 중이다. 벡터 데이터셋이 5000만 벡터 이하로 유지된다. 단일 시스템에서 ACID 트랜잭션과 벡터 검색이 하드 요구사항이다. 팀이 SQL을 알고 새로운 쿼리 언어를 배우고 싶어하지 않는다. 가능한 한 낮은 인프라 비용을 원한다 (별도의 데이터베이스 없음). 전용 벡터 데이터베이스를 선택해야 할 때:\nPinecone: 제로 운영, 관리형 전용 선호. Weaviate: 네이티브 하이브리드 검색 (BM25 + 벡터)이 중요. Qdrant: 원시 지연이 최우선, p99 \u003c 12ms 필요. Milvus: 10억 규모, GPU 가속, Kubernetes 네이티브. 한계: 정직한 평가 단일 노드만: pgvector는 단일 PostgreSQL 인스턴스 낶部에서 실행된다. 네이티브 분산 모드가 없다. 사용 가능한 RAM을 초과하는 데이터셋의 경우 성능이 크게 저하된다. 5000만 벡터 이상에서는 전용 벡터 데이터베이스를 고려하라.\nHNSW 빌드는 단일 스레드: pgvector 0.8.2 기준, HNSW 인덱스 빌드는 하나의 CPU 코어만 사용한다. 1000만 벡터의 경우 20-30분이 소요될 수 있다. max_parallel_maintenance_workers 설정은 HNSW 빌드를 가속화하지 않는다.\n쿼리 지연 시간이 더 높음: 25-40ms의 p99 지연 시간은 대부분의 RAG 애플리케이션에서 수용 가능하다 (LLM 추론이 1-5초로 지배하기 때문이지만), Qdrant (~12ms)나 Milvus GPU (~8ms)와 같은 전용 벡터 데이터베이스보다 느리다.\n네이티브 희소 벡터 없음: Weaviate나 Qdrant와 달리, pgvector는 하이브리드 키워드+의미 검색을 위한 일급 희소 벡터 지원이 없다. PostgreSQL의 전문 검색과 수동으로 결합해야 한다.\n공유 리소스에 대한 메모리 압력: 벡터 인덱스는 OLTP 쿼리를 서비스할 수 있는 상당한 RAM을 소비한다. 공유 PostgreSQL 인스턴스에서 사용 가능한 메모리의 인덱스 크기의 2-3배를 계획하라.\n자주 묻는 질문 pgvector는 얼마나 많은 벡터를 처리할 수 있나요? 적절히 크기가 조정된 PostgreSQL 인스턴스 (64GB+ RAM, 빠른 NVMe 스토리지)에서 pgvector는 5000만 벡터를 편안하게 처리한다. 1억 벡터에서는 운영 마찰이 증가한다 — 쿼리가 느려지고 인덱스 유지보수가 비싸진다. 1억 이상의 데이터셋의 경우 Milvus나 Qdrant가 더 나은 선택이다. 1000만 벡터 (1536 차원)의 단일 HNSW 인덱스는 약 45 GB의 디스크를 차지한다.\npgvector에 어떤 PostgreSQL 버전이 필요한가요? pgvector 0.8.2는 PostgreSQL 14 ~ 18을 지원한다. 프로덕션 배포에는 PostgreSQL 18을 사용하라 — 벡터 워크로드에 도움이 되는 병렬 쿼리 실행 최적화가 포함되어 있다. 관리형 플랫폼에서 Supabase, Neon, AWS RDS, Google Cloud SQL은 모두 최신 PostgreSQL 버전에서 pgvector를 지원한다.\nHNSW와 IVFFlat 인덱스 사이에서 어떻게 선택하나요? 기본적으로 HNSW를 사용하라. 더 나은 리콜 (~95%)과 더 낮은 쿼리 지연 시간을 제공한다. 다음 경우에만 IVFFlat을 사용하라: (a) 인덱스 빌드 시간이 중요, (b) 심각한 메모리 제약, 또는 (c) 벡터가 거의 변경되지 않음. 대부분의 RAG 애플리케이션에서 m=16 및 ef_construction=64를 가진 HNSW가 올바른 시작점이다.\npgvector를 관리형 PostgreSQL 서비스와 함께 사용할 수 있나요? 예. pgvector는 다음에서 사용 가능하다: - Supabase — 사전 설치됨, CREATE EXTENSION vector;만 실행하면 됨\nNeon — 모든 플랜에서 지원, 묶티어 포함 AWS RDS — PostgreSQL 15+에서 사용 가능 Google Cloud SQL — PostgreSQL 15+에서 사용 가능 Azure Database for PostgreSQL — 벡터 확장 지원 인프라 변경이 필요 없다 — 이는 표준 PostgreSQL 확장이다.\npgvector는 필터링된 벡터 검색을 지원하나요? 예, 그리고 이것이 pgvector가 전용 벡터 데이터베이스보다 뛰어난 부분이다. 벡터 데이터가 PostgreSQL에 있기 때문에 벡터 유사성과 함께 모든 SQL WHERE 절을 적용할 수 있다: `````sql SELECT title, embedding \u003c-\u003e $1::vector AS distance FROM documents WHERE tenant_id = 42 AND created_at \u003e NOW() - INTERVAL ‘7 days’ AND metadata @\u003e ‘{“status”: “published”}\" ORDER BY embedding \u003c-\u003e $1::vector LIMIT 10;\nPostgreSQL의 플래너는 HNSW 순회 중 ````WHERE```` 술어를 푸시다운하여 이를 최적화한다. ### 내 워크로드에 맞게 HNSW를 어떻게 튜닝하나요? 두 가지 핵심 파라미터: - ````ef_construction```` (기본값 64): 높을수록 = 인덱스 품질이 더 좋지만 빌드가 더 느림. 프로덕션 RAG의 경우 **128-256** 사용. - ````ef_search```` (기본값 40): 높을수록 = 리콜이 더 좋지만 쿼리가 더 느림. 리콜을 벤치마크하고 **64-100**으로 설정. `````sql -- ef_search 값 벤치마크 SET hnsw.ef_search = 64; EXPLAIN ANALYZE SELECT ... ORDER BY embedding \u003c-\u003e $1 LIMIT 10; SET hnsw.ef_search = 128; EXPLAIN ANALYZE SELECT ... ORDER BY embedding \u003c-\u003e $1 LIMIT 10; 결론: 실용적인 선택 pgvector 0.8.2는 이미 PostgreSQL을 실행 중인 팀을 위한 가장 실용적인 벡터 데이터베이스이다. 이미 운영 중인 데이터베이스를 벡터 검색 엔진으로 전환함으로써 인프라 복잡성을 제거한다. **1000만 벡터 이하로 유지되는 AI 워크로드의 70%**에 대해 튜닝된 HNSW 인덱스를 가진 pgvector는 10ms 미만의 쿼리, ACID 준수, SQL의 전체 기능을 제공한다 — 스택에 새 시스템을 추가하지 않고도.\n다음 단계:\n기존 PostgreSQL 인스턴스에서 pgvector 활성화 (````CREATE EXTENSION vector;```). 문서 테이블에 벡터 컬럼과 HNSW 인덱스 추가. 임베딩을 로드하고 이 가이드의 튜닝 벤치마크 실행. 프로덕션 RAG를 위해 LangChain이나 LlamaIndex와 통합. Telegram 커뮤니티에 가입하여 pgvector 성능 수치를 공유하고 동료 엔지니어로부터 도움을 받아라.\n출처 및 추가 자료 pgvector GitHub 저장소 — https://github.com/pgvector/pgvector (15,000+ Stars) pgvector 문서 — https://github.com/pgvector/pgvector?tab=readme-ov-file#pgvector PostgreSQL 18 릴리스 노트 — https://www.postgresql.org/docs/18/release-18.html Supabase Vector 문서 — https://supabase.com/docs/guides/ai HNSW 논문 (Malkov \u0026 Yashunin, 2018) — https://arxiv.org/abs/1603.09320 pgvector HNSW 프로덕션 튜닝 튜토리얼 2026 — https://nerdleveltech.com/pgvector-hnsw-postgres-18-production-tuning-tutorial 2026 벡터 데이터베이스 벤치마크 — https://iotdigitaltwinplm.com/vector-database-benchmarks-2026/ 추천 호스팅 및 인프라 위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - DigitalOcean — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.\nHTStack — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC. 제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.\n제휴 공개 이 문서에는 클라우드 호스팅을 위한 DigitalOcean 및 관리형 PostgreSQL을 위한 Supabase 제휴 링크가 포함되어 있다. 우리 링크를 통해 가입하면 추가 비용 없이 커미션을 받는다. 우리는 자체 프로덕션 환경에서 사용하는 서비스만 추천한다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “pgvector 2026: PostgreSQL을 고성능 벡터 데이터베이스로 전환 — 설치, 튜닝 및 RAG 통합 가이드”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/pgvector-postgres-vector-extension\" } } Related Articles alpaca-trading-api-stock-broker appwrite-backend-as-service arize-ai-observability-llm cognee-ai-memory-platform flowise Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n",
-  "wordCount" : "2825",
+  "articleBody": "title: “pgvector 2026: Turn PostgreSQL into a High-Performance V… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Data Science source_version: ’' licensing_model: Open Source license_type: PostgreSQL License file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“data-science”] tags: [“pgvector”, “postgresql”, “vector-database”, “hnsw”, “ann”, “rag”, “similarity-search”, “full-text-search”] aliases:\n/posts/pgvector-postgres-vector-extension/- Introduction: The 47-Second Query That Killed a Demo It was March 2025. An AI startup founder stood in front of a potential enterprise client, running a RAG demo. The question was simple: “What does our product do?” The vector search against 2 million documents in their PostgreSQL database took 47 seconds to return. The client left the room before the first result appeared.\nThe problem wasn’t PostgreSQL. It was a missing HNSW index on the ```vectorcolumn. After addingCREATE INDEX … USING hnsw````, the same query dropped to 3.2 milliseconds — a 14,000x improvement. No database migration, no new infrastructure, just one SQL statement.\nThis is the power of pgvector 0.8.2, the open-source PostgreSQL extension that transforms the world’s most trusted relational database into a high-performance vector database. With 15,000+ GitHub stars and native support on Supabase, Neon, AWS RDS, and Google Cloud SQL, pgvector is the pragmatic choice for the 70% of AI-agent workloads that stay under 10 million vectors.\nThis guide covers everything: installation on PostgreSQL 18, HNSW tuning, halfvec quantization, filtered hybrid search, and production RAG integration.\nWhat Is pgvector? — Vectors Inside PostgreSQL pgvector is an open-source extension for PostgreSQL that adds vector data types, approximate nearest neighbor (ANN) indexes, and distance functions directly inside the database. Instead of running a separate vector database alongside PostgreSQL, you store embeddings in the same tables as your relational data and query them with standard SQL.\nKey stats (May 2026):\n| Metric | Value | |\n|\n| | Current version | 0.8.2 | | PostgreSQL compatibility | 14 through 18 | | GitHub stars | 15,000+ | | Max vector dimensions | 16,000 | | ANN recall (HNSW) | ~95% | | Index types | HNSW, IVFFlat | | License | PostgreSQL (open source) |\nUnlike standalone vector databases, pgvector inherits everything PostgreSQL offers: ACID transactions, row-level security, JSONB metadata, full-text search, and decades of operational tooling. When your documents, user permissions, audit logs, and vector embeddings all live in one database, you eliminate the dual-write problem entirely.\nHow pgvector Works: Index Types and Query Planning pgvector supports two ANN index types, each with distinct trade-offs: ### HNSW (Hierarchical Navigable Small World)\nThe default choice for most workloads. HNSW builds a multi-layer graph where each layer is a subset of the previous one. Query traversal starts at the top layer and greedily navigates down until reaching the densest graph at the bottom.\nBest for: High-recall, low-latency queries on datasets up to ~50M vectors. Build time: Slower than IVFFlat (single-threaded in pgvector 0.8.2). Query parameters: hnsw.ef_search controls recall vs. latency trade-off.\nIVFFlat (Inverted File with Flat Index) Partitions vectors into clusters (lists) using k-means. At query time, only the closest clusters are scanned.\nBest for: Faster index builds, memory-constrained environments. Trade-off: Lower recall than HNSW at the same latency budget. Query parameters: ivfflat.probes controls how many clusters to scan.\n-- HNSW index (recommended for most workloads) CREATE INDEX ON documents USING hnsw (embedding vector_l2_ops) WITH (m = 16, ef_construction = 64); -- IVFFlat index (faster builds, lower recall) CREATE INDEX ON documents USING ivfflat (embedding vector_l2_ops) WITH (lists = 100); Distance Operators pgvector provides three distance operators: | Operator | Description | Use case | |\n|\n|\n| | \u003c-\u003e | Euclidean (L2) distance | General similarity (default) | | \u003c#\u003e | Negative inner product | OpenAI embeddings | | \u003c=\u003e | Cosine distance | Semantic similarity (normalized vectors) |\n-- L2 distance (smaller = more similar) SELECT id, embedding \u003c-\u003e query_vec AS distance FROM documents ORDER BY distance LIMIT 10; -- Cosine distance (for normalized embeddings) SELECT id, embedding \u003c=\u003e query_vec AS distance FROM documents ORDER BY distance LIMIT 10; Installation \u0026 Setup: Under 5 Minutes Option A: Docker (Fastest) docker run -d \\ --name pgvector-demo \\ -e POSTGRES_PASSWORD=mysecretpassword \\ -e POSTGRES_DB=vectordb \\ -p 5432:5432 \\ pgvector/pgvector:0.8.2-pg18 # Verify docker exec pgvector-demo psql -U postgres -d vectordb -c \"SELECT * FROM pg_extension WHERE extname = vector;\" Option B: Existing PostgreSQL # Install build dependencies (Ubuntu/Debian) sudo apt-get install postgresql-server-dev-18 build-essential git # Clone and build pgvector git clone --branch v0.8.2 https://github.com/pgvector/pgvector.git cd pgvector make sudo make install # Enable extension in database psql -U postgres -d mydb -c \"CREATE EXTENSION IF NOT EXISTS vector;\" Option C: Supabase (Managed) -- pgvector is pre-installed on Supabase. Just enable it: CREATE EXTENSION IF NOT EXISTS vector; -- Verify version SELECT extversion FROM pg_extension WHERE extname = vector; -- Returns: 0.8.2 Option D: AWS RDS / Google Cloud SQL -- On RDS PostgreSQL 18, pgvector is available as an extension CREATE EXTENSION IF NOT EXISTS vector; -- Check available extensions if needed SELECT * FROM pg_available_extensions WHERE name = vector; Verify Installation -- Check pgvector version SELECT extversion FROM pg_extension WHERE extname = vector; -- Expected: 0.8.2 -- Test vector type SELECT '[1,2,3]'::vector(3) \u003c-\u003e '[4,5,6]'::vector(3) AS l2_distance; -- Expected: ~5.196 Core Operations: Creating Tables, Inserting, and Querying Creating a Vector Table -- Create table with vector column (1536 dimensions = OpenAI embeddings) CREATE TABLE documents ( id BIGSERIAL PRIMARY KEY, title VARCHAR(512) NOT NULL, content TEXT, embedding vector(1536), metadata JSONB DEFAULT '{}', created_at TIMESTAMPTZ DEFAULT NOW(), tenant_id INTEGER NOT NULL DEFAULT 0 ); -- Add index for common filter columns CREATE INDEX idx_docs_tenant ON documents(tenant_id); CREATE INDEX idx_docs_created ON documents(created_at); Inserting Vectors -- Insert a single document with embedding INSERT INTO documents (title, content, embedding, metadata, tenant_id) VALUES ( 'Introduction to pgvector', 'pgvector adds vector support to PostgreSQL...', ARRAY_FILL(0.0::real, ARRAY[1536])::vector(1536), -- placeholder '{\"author\": \"dibi8\", \"category\": \"database\"}', 1 ); -- Insert with actual OpenAI embedding (from Python) -- See RAG Integration section below for full example # Batch insert vectors from Python import psycopg2 import numpy as np conn = psycopg2.connect(\"dbname=vectordb user=postgres password=mysecretpassword host=localhost\") cur = conn.cursor() # Generate 10K random vectors as sample batch_size = 10000 titles = [f\"document_{i}\" for i in range(batch_size)] contents = [f\"Content for document {i}\" for i in range(batch_size)] embeddings = np.random.randn(batch_size, 1536).astype(np.float32) tenant_ids = [i % 10 for i in range(batch_size)] # Use executemany for batch insert args = [(titles[i], contents[i], embeddings[i].tolist(), tenant_ids[i]) for i in range(batch_size)] cur.executemany( \"INSERT INTO documents (title, content, embedding, tenant_id) VALUES (%s, %s, %s::vector, %s)\", args ) conn.commit() print(f\"Inserted {batch_size} documents\") Building the HNSW Index (Production Tuning) -- Set parameters for parallel index build SET maintenance_work_mem = 8GB; SET max_parallel_maintenance_workers = 4; -- Build HNSW index with tuned parameters CREATE INDEX idx_docs_embedding_hnsw ON documents USING hnsw (embedding vector_l2_ops) WITH ( m = 16, -- Number of connections per layer (default: 16) ef_construction = 128 -- Size of dynamic candidate list (default: 64) ); -- Check index size SELECT pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw)); -- Typical: ~450 MB for 100K vectors of 1536 dimensions Vector Similarity Search -- Basic ANN search SELECT id, title, embedding \u003c-\u003e $1::vector AS distance FROM documents ORDER BY embedding \u003c-\u003e $1::vector LIMIT 10; -- Filtered vector search (most common production pattern) SELECT id, title, embedding \u003c-\u003e $1::vector AS distance FROM documents WHERE tenant_id = 42 AND created_at \u003e NOW() - INTERVAL '30 days' AND metadata-\u003e\u003ecategory = tech ORDER BY embedding \u003c-\u003e $1::vector LIMIT 20; Hybrid Search: Vector + Full-Text -- First, enable pg_trgm for text search CREATE EXTENSION IF NOT EXISTS pg_trgm; -- Combined vector similarity + text relevance SELECT d.id, d.title, d.embedding \u003c-\u003e $1::vector AS vec_distance, similarity(d.title, $2) AS text_similarity FROM documents d WHERE d.title % $2 -- trigram similarity filter ORDER BY (d.embedding \u003c-\u003e $1::vector) * 0.7 + (1 - similarity(d.title, $2)) * 0.3 LIMIT 10; Performance Tuning: From 47 Seconds to 3 Milliseconds GUC Parameters for HNSW -- Tune ef_search for recall vs. latency -- Higher = better recall, slower queries SET hnsw.ef_search = 100; -- Default is 40; 64-128 is typical for production -- Check actual query plan EXPLAIN (ANALYZE, BUFFERS) SELECT id, title, embedding \u003c-\u003e $1::vector AS distance FROM documents ORDER BY embedding \u003c-\u003e $1::vector LIMIT 10; -- Look for: Index Scan using idx_docs_embedding_hnsw Half-Precision Quantization (halfvec) pgvector 0.8.2 supports halfvec type for 50% storage reduction with minimal recall loss: `````sql – Add halfvec column for quantized storage ALTER TABLE documents ADD COLUMN embedding_half halfvec(1536);\n– Convert from full-precision UPDATE documents SET embedding_half = embedding::halfvec;\n– Create HNSW index on halfvec CREATE INDEX idx_docs_embedding_half_hnsw ON documents USING hnsw (embedding_half halfvec_l2_ops);\n– Query using halfvec (nearly identical results) SELECT id, title, embedding_half \u003c-\u003e $1::halfvec AS distance FROM documents ORDER BY embedding_half \u003c-\u003e $1::halfvec LIMIT 10;\n– Check space savings SELECT pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw)) AS full_size, pg_size_pretty(pg_relation_size(idx_docs_embedding_half_hnsw)) AS half_size; – half_size is typically ~45-50% of full_size\n### Connection Pooling (Pgbouncer) `````ini ; pgbouncer.ini for pgvector workloads [databases] vectordb = host=localhost port=5432 dbname=vectordb [pgbouncer] pool_mode = transaction max_client_conn = 10000 default_pool_size = 50 reserve_pool_size = 10 Benchmark Comparison: Before and After Tuning | Configuration | Query Latency (p99) | Recall@10 | Index Size | Build Time | |\n|\n|\n|\n|\n| | No index (seq scan) | 47,000 ms | 1.00 | N/A | N/A | | HNSW defaults (m=16, ef_construction=64) | 4.2 ms | 0.91 | 450 MB | 45s | | HNSW tuned (m=24, ef_construction=128) | 3.8 ms | 0.95 | 680 MB | 82s | | HNSW + halfvec | 3.2 ms | 0.94 | 310 MB | 38s | | IVFFlat (lists=100) | 8.1 ms | 0.87 | 220 MB | 12s |\nRAG Integration with LangChain and LlamaIndex LangChain + pgvector pip install langchain-postgres==0.0.13 langchain-openai==0.3.0 from langchain_postgres import PGVector from langchain_openai import OpenAIEmbeddings embeddings = OpenAIEmbeddings(model=\"text-embedding-3-large\") vector_store = PGVector( connection=\"postgresql://postgres:mysecretpassword@localhost:5432/vectordb\", embeddings=embeddings, collection_name=\"documents\", use_jsonb=True, ) # Add documents from langchain_core.documents import Document docs = [ Document(page_content=\"pgvector turns PostgreSQL into a vector database\", metadata={\"source\": \"blog\"}), Document(page_content=\"HNSW indexes provide fast ANN search\", metadata={\"source\": \"docs\"}), ] vector_store.add_documents(docs) # Similarity search with filter results = vector_store.similarity_search( \"vector database for RAG\", k=5, filter={\"source\": \"blog\"} ) for doc in results: print(f\"Content: {doc.page_content}\") LlamaIndex + pgvector pip install llama-index-vector-stores-postgres==0.4.2 from llama_index.vector_stores.postgres import PGVectorStore from llama_index.core import VectorStoreIndex, SimpleDirectoryReader from llama_index.embeddings.openai import OpenAIEmbedding vector_store = PGVectorStore.from_params( host=\"localhost\", port=5432, database=\"vectordb\", user=\"postgres\", password=\"mysecretpassword\", table_name=\"llama_index_docs\", embed_dim=1536, hnsw_kwargs={ \"hnsw_m\": 16, \"hnsw_ef_construction\": 128, \"hnsw_ef_search\": 100, \"hnsw_dist_method\": \"vector_l2_ops\", }, ) # Load documents documents = SimpleDirectoryReader(\"./data\").load_data() index = VectorStoreIndex.from_documents(documents, vector_store=vector_store) # Query query_engine = index.as_query_engine() response = query_engine.query(\"How does pgvector work?\") print(response) Direct RAG Pipeline (No Framework) import psycopg2 from openai import OpenAI import numpy as np client = OpenAI() conn = psycopg2.connect(\"dbname=vectordb user=postgres password=mysecretpassword host=localhost\") def get_embedding(text: str) -\u003e list[float]: resp = client.embeddings.create( model=\"text-embedding-3-large\", input=text, dimensions=1536 ) return resp.data[0].embedding def retrieve_documents(query: str, top_k: int = 5, tenant_id: int = 1): query_vec = get_embedding(query) cur = conn.cursor() cur.execute(\"\"\" SELECT title, content, embedding \u003c=\u003e %s::vector AS distance FROM documents WHERE tenant_id = %s ORDER BY embedding \u003c=\u003e %s::vector LIMIT %s \"\"\", (query_vec, tenant_id, query_vec, top_k)) return cur.fetchall() # Full RAG pipeline def rag_query(user_question: str) -\u003e str: docs = retrieve_documents(user_question, top_k=5) context = \"\\n\\n\".join([f\"Title: {d[0]}\\n{d[1]}\" for d in docs]) response = client.chat.completions.create( model=\"gpt-4o\", messages=[ {\"role\": \"system\", \"content\": \"Answer based on the provided context.\"}, {\"role\": \"user\", \"content\": f\"Context:\\n{context}\\n\\nQuestion: {user_question}\"} ] ) return response.choices[0].message.content print(rag_query(\"What is pgvector used for?\")) Production Hardening Row-Level Security for Multi-Tenancy -- Enable RLS ALTER TABLE documents ENABLE ROW LEVEL SECURITY; -- Policy: tenants can only see their own documents CREATE POLICY tenant_isolation ON documents USING (tenant_id = current_setting('app.current_tenant')::INTEGER); -- Set tenant per session SET app.current_tenant = 42; -- Now all queries automatically filter by tenant SELECT * FROM documents; -- Only tenant 42's documents visible Monitoring Query Performance -- Track slow vector queries CREATE EXTENSION IF NOT EXISTS pg_stat_statements; -- Find top vector queries by latency SELECT query, mean_exec_time, calls FROM pg_stat_statements WHERE query LIKE '%\u003c-\u003e%' ORDER BY mean_exec_time DESC LIMIT 10; # Enable pg_stat_statements in postgresql.conf shared_preload_libraries = pg_stat_statements pg_stat_statements.track = all pg_stat_statements.max = 10000 Backup with pg_dump (Vectors Included) # Full backup including vector data pg_dump -h localhost -U postgres -d vectordb -Fc \u003e vectordb_backup.dump # Restore pg_restore -h localhost -U postgres -d vectordb_restore vectordb_backup.dump # Vectors are backed up as text arrays and restored correctly Connection Best Practices for High QPS # Use connection pooling for production workloads from psycopg2 import pool conn_pool = pool.ThreadedConnectionPool( minconn=5, maxconn=50, host=\"localhost\", database=\"vectordb\", user=\"postgres\", password=\"mysecretpassword\" ) def search_with_pool(query_vec, limit=10): conn = conn_pool.getconn() try: cur = conn.cursor() cur.execute( \"SELECT id, title FROM documents ORDER BY embedding \u003c-\u003e %s::vector LIMIT %s\", (query_vec, limit) ) return cur.fetchall() finally: conn_pool.putconn(conn) Comparison with Alternatives | Feature | pgvector 0.8.2 | Pinecone | Weaviate 1.25 | Qdrant 1.11 | Milvus 2.5 | |\n|\n|\n|\n|\n|\n| | Open Source | PostgreSQL License | No | BSD-3 | Apache-2.0 | Apache-2.0 | | Max Scale | ~50M vectors | Unlimited | 200M/node | 500M/node | 10B+ | | p99 Latency | 25-40 ms | 28 ms | 19 ms | 12 ms | 8 ms (GPU) | | ACID Compliant | Full | No | Partial | No | No | | SQL Interface | Native | No | GraphQL | No | No (gRPC) | | Managed Option | Supabase/Neon/RDS | Native | Weaviate Cloud | Qdrant Cloud | Zilliz Cloud | | Hybrid Search | FTS + vector | Native | Best | BM42 | Native | | Self-Host Cost | $0 (use existing PG) | N/A | $320/M/mo | $280/M/mo | $400/M/mo | | Setup Complexity | Extension install | API key | Cluster | Binary | Kubernetes | | GPU Indexing | No | No | No | No (1.12 soon) | Yes |\nWhen to choose pgvector:\nYou already run PostgreSQL for your application data. Your vector dataset stays under 50 million vectors. ACID transactions and vector search in a single system is a hard requirement. Your team knows SQL and doesn’t want to learn a new query language. You want the lowest possible infrastructure cost (no separate database). When to choose a dedicated vector database:\nPinecone: Zero-ops, managed-only preference. Weaviate: Native hybrid search (BM25 + vector) is critical. Qdrant: Raw latency is paramount, \u003c12ms p99 required. Milvus: Billion-scale, GPU-accelerated, Kubernetes-native. Limitations: Honest Assessment Single-node only: pgvector runs inside a single PostgreSQL instance. There is no native distributed mode. For datasets exceeding available RAM, performance degrades significantly. At \u003e50M vectors, consider a dedicated vector database.\nHNSW build is single-threaded: As of pgvector 0.8.2, HNSW index builds use only one CPU core. For 10M vectors, this can take 20-30 minutes. The max_parallel_maintenance_workers setting does not accelerate HNSW builds.\nQuery latency is higher: p99 latency of 25-40ms is acceptable for most RAG applications (where LLM inference dominates at 1-5 seconds), but it is slower than dedicated vector databases like Qdrant (~12ms) or Milvus GPU (~8ms).\nNo native sparse vectors: Unlike Weaviate or Qdrant, pgvector does not have first-class sparse vector support for hybrid keyword+semantic search. You must combine with PostgreSQL’s full-text search manually.\nMemory pressure on shared resources: Vector indexes consume significant RAM that could otherwise serve OLTP queries. On a shared PostgreSQL instance, plan for 2-3x the index size in available memory.\nFrequently Asked Questions How many vectors can pgvector handle? pgvector comfortably handles up to 50 million vectors on a properly sized PostgreSQL instance (64GB+ RAM, fast NVMe storage). At 100M vectors, operational friction increases — queries slow and index maintenance becomes expensive. For datasets beyond 100M, Milvus or Qdrant are better choices. A single HNSW index of 10M vectors (1536 dimensions) occupies approximately 45 GB on disk.\nWhat PostgreSQL version do I need for pgvector? pgvector 0.8.2 supports PostgreSQL 14 through 18. For production deployments, use PostgreSQL 18 — it includes optimizations for parallel query execution that benefit vector workloads. On managed platforms, Supabase, Neon, AWS RDS, and Google Cloud SQL all support pgvector on their latest PostgreSQL versions.\nHow do I choose between HNSW and IVFFlat indexes? Use HNSW as the default. It provides better recall (~95%) and lower query latency. Use IVFFlat only when: (a) index build time is critical, (b) you have severe memory constraints, or (c) your vectors rarely change. For most RAG applications, HNSW with m=16 and ef_construction=64 is the right starting point.\nCan I use pgvector with managed PostgreSQL services? Yes. pgvector is available on: - Supabase — pre-installed, just run CREATE EXTENSION vector;\nNeon — supported on all plans, including free tier AWS RDS — available on PostgreSQL 15+ Google Cloud SQL — available on PostgreSQL 15+ Azure Database for PostgreSQL — supported with vector extension No infrastructure changes are needed — it is a standard PostgreSQL extension.\nDoes pgvector support filtered vector search? Yes, and this is where pgvector excels over dedicated vector databases. Because vector data lives in PostgreSQL, you can apply any SQL WHERE clause alongside vector similarity: `````sql SELECT title, embedding \u003c-\u003e $1::vector AS distance FROM documents WHERE tenant_id = 42 AND created_at \u003e NOW() - INTERVAL ‘7 days’ AND metadata @\u003e ‘{“status”: “published”}’ ORDER BY embedding \u003c-\u003e $1::vector LIMIT 10;\nPostgreSQL's planner optimizes this by pushing down the ````WHERE```` predicates during HNSW traversal. ### How do I tune HNSW for my workload? The two key parameters are: - ````ef_construction```` (default 64): Higher = better index quality, slower builds. For production RAG, use **128-256**. - ````ef_search```` (default 40): Higher = better recall, slower queries. Benchmark your recall and set to **64-100**. `````sql -- Benchmark ef_search values SET hnsw.ef_search = 64; EXPLAIN ANALYZE SELECT ... ORDER BY embedding \u003c-\u003e $1 LIMIT 10; SET hnsw.ef_search = 128; EXPLAIN ANALYZE SELECT ... ORDER BY embedding \u003c-\u003e $1 LIMIT 10; Conclusion: The Pragmatic Choice pgvector 0.8.2 is the most pragmatic vector database for teams already running PostgreSQL. It eliminates infrastructure complexity by turning the database you already operate into a vector search engine. For the 70% of AI workloads that stay under 10 million vectors, pgvector with a tuned HNSW index delivers sub-10ms queries, ACID compliance, and the full power of SQL — all without adding a new system to your stack.\nNext steps:\nEnable pgvector on your existing PostgreSQL instance (````CREATE EXTENSION vector;```). Add a vector column and HNSW index to your documents table. Load your embeddings and run the tuning benchmarks from this guide. Integrate with LangChain or LlamaIndex for production RAG. Join our Telegram community to share your pgvector performance numbers and get help from fellow engineers.\nSources \u0026 Further Reading pgvector GitHub Repository — https://github.com/pgvector/pgvector (15,000+ stars) pgvector Documentation — https://github.com/pgvector/pgvector?tab=readme-ov-file#pgvector PostgreSQL 18 Release Notes — https://www.postgresql.org/docs/18/release-18.html Supabase Vector Docs — https://supabase.com/docs/guides/ai HNSW Paper (Malkov \u0026 Yashunin, 2018) — https://arxiv.org/abs/1603.09320 pgvector HNSW Production Tuning Tutorial 2026 — https://nerdleveltech.com/pgvector-hnsw-postgres-18-production-tuning-tutorial Vector Database Benchmarks 2026 — https://iotdigitaltwinplm.com/vector-database-benchmarks-2026/ Recommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.\nAffiliate Disclosure This article contains affiliate links to DigitalOcean for cloud hosting and Supabase for managed PostgreSQL. If you sign up through our links, we receive a commission at no extra cost to you. We only recommend services we use in our own production environments.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “pgvector 2026: Turn PostgreSQL into a High-Performance Vector Database — Setup, Tuning \u0026 RAG Integration Guide”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/pgvector-postgres-vector-extension\" } } Related Articles alpaca-trading-api-stock-broker appwrite-backend-as-service arize-ai-observability-llm cognee-ai-memory-platform flowise Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n",
+  "wordCount" : "3321",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>14 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>16 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/pgvector-postgres-vector-extension/">En</a>
@@ -209,103 +209,103 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#%ec%86%8c%ea%b0%9c-%eb%8d%b0%eb%aa%a8%eb%a5%bc-%ec%a3%bd%ec%9d%b8-47%ec%b4%88-%ec%bf%bc%eb%a6%ac" aria-label="소개: 데모를 죽인 47초 쿼리">소개: 데모를 죽인 47초 쿼리</a></li>
+                <a href="#introduction-the-47-second-query-that-killed-a-demo" aria-label="Introduction: The 47-Second Query That Killed a Demo">Introduction: The 47-Second Query That Killed a Demo</a></li>
             <li>
-                <a href="#pgvector%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80--postgresql-%eb%82%b6%e9%83%a8%e7%9a%84-%eb%b2%a1%ed%84%b0" aria-label="pgvector란 무엇인가? — PostgreSQL 낶部的 벡터">pgvector란 무엇인가? — PostgreSQL 낶部的 벡터</a></li>
+                <a href="#what-is-pgvector--vectors-inside-postgresql" aria-label="What Is pgvector? — Vectors Inside PostgreSQL">What Is pgvector? — Vectors Inside PostgreSQL</a></li>
             <li>
-                <a href="#pgvector-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d-%ec%9d%b8%eb%8d%b1%ec%8a%a4-%ed%83%80%ec%9e%85%ea%b3%bc-%ec%bf%bc%eb%a6%ac-%ea%b3%84%ed%9a%8d" aria-label="pgvector 작동 방식: 인덱스 타입과 쿼리 계획">pgvector 작동 방식: 인덱스 타입과 쿼리 계획</a><ul>
+                <a href="#how-pgvector-works-index-types-and-query-planning" aria-label="How pgvector Works: Index Types and Query Planning">How pgvector Works: Index Types and Query Planning</a><ul>
                     
             <li>
                 <a href="#ivfflat-inverted-file-with-flat-index" aria-label="IVFFlat (Inverted File with Flat Index)">IVFFlat (Inverted File with Flat Index)</a></li>
             <li>
-                <a href="#%ea%b1%b0%eb%a6%ac-%ec%97%b0%ec%82%b0%ec%9e%90" aria-label="거리 연산자">거리 연산자</a></li></ul>
+                <a href="#distance-operators" aria-label="Distance Operators">Distance Operators</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95-5%eb%b6%84-%ec%9d%b4%eb%82%b4" aria-label="설치 및 설정: 5분 이내">설치 및 설정: 5분 이내</a><ul>
+                <a href="#installation--setup-under-5-minutes" aria-label="Installation &amp; Setup: Under 5 Minutes">Installation &amp; Setup: Under 5 Minutes</a><ul>
                     
             <li>
-                <a href="#%ec%98%b5%ec%85%98-a-docker-%ea%b0%80%ec%9e%a5-%eb%b9%a0%eb%a6%84" aria-label="옵션 A: Docker (가장 빠름)">옵션 A: Docker (가장 빠름)</a></li>
+                <a href="#option-a-docker-fastest" aria-label="Option A: Docker (Fastest)">Option A: Docker (Fastest)</a></li>
             <li>
-                <a href="#%ec%98%b5%ec%85%98-b-%ea%b8%b0%ec%a1%b4-postgresql" aria-label="옵션 B: 기존 PostgreSQL">옵션 B: 기존 PostgreSQL</a></li>
+                <a href="#option-b-existing-postgresql" aria-label="Option B: Existing PostgreSQL">Option B: Existing PostgreSQL</a></li>
             <li>
-                <a href="#%ec%98%b5%ec%85%98-c-supabase-%ea%b4%80%eb%a6%ac%ed%98%95" aria-label="옵션 C: Supabase (관리형)">옵션 C: Supabase (관리형)</a></li>
+                <a href="#option-c-supabase-managed" aria-label="Option C: Supabase (Managed)">Option C: Supabase (Managed)</a></li>
             <li>
-                <a href="#%ec%98%b5%ec%85%98-d-aws-rds--google-cloud-sql" aria-label="옵션 D: AWS RDS / Google Cloud SQL">옵션 D: AWS RDS / Google Cloud SQL</a></li>
+                <a href="#option-d-aws-rds--google-cloud-sql" aria-label="Option D: AWS RDS / Google Cloud SQL">Option D: AWS RDS / Google Cloud SQL</a></li>
             <li>
-                <a href="#%ec%84%a4%ec%b9%98-%ed%99%95%ec%9d%b8" aria-label="설치 확인">설치 확인</a></li></ul>
+                <a href="#verify-installation" aria-label="Verify Installation">Verify Installation</a></li></ul>
             </li>
             <li>
-                <a href="#%ed%95%b5%ec%8b%ac-%ec%9e%91%ec%97%85-%ed%85%8c%ec%9d%b4%eb%b8%94-%ec%83%9d%ec%84%b1-%ec%82%bd%ec%9e%85-%eb%b0%8f-%ec%bf%bc%eb%a6%ac" aria-label="핵심 작업: 테이블 생성, 삽입 및 쿼리">핵심 작업: 테이블 생성, 삽입 및 쿼리</a><ul>
+                <a href="#core-operations-creating-tables-inserting-and-querying" aria-label="Core Operations: Creating Tables, Inserting, and Querying">Core Operations: Creating Tables, Inserting, and Querying</a><ul>
                     
             <li>
-                <a href="#%eb%b2%a1%ed%84%b0-%ed%85%8c%ec%9d%b4%eb%b8%94-%ec%83%9d%ec%84%b1" aria-label="벡터 테이블 생성">벡터 테이블 생성</a></li>
+                <a href="#creating-a-vector-table" aria-label="Creating a Vector Table">Creating a Vector Table</a></li>
             <li>
-                <a href="#%eb%b2%a1%ed%84%b0-%ec%82%bd%ec%9e%85" aria-label="벡터 삽입">벡터 삽입</a></li>
+                <a href="#inserting-vectors" aria-label="Inserting Vectors">Inserting Vectors</a></li>
             <li>
-                <a href="#hnsw-%ec%9d%b8%eb%8d%b1%ec%8a%a4-%ea%b5%ac%ec%b6%95-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ed%8a%9c%eb%8b%9d" aria-label="HNSW 인덱스 구축 (프로덕션 튜닝)">HNSW 인덱스 구축 (프로덕션 튜닝)</a></li>
+                <a href="#building-the-hnsw-index-production-tuning" aria-label="Building the HNSW Index (Production Tuning)">Building the HNSW Index (Production Tuning)</a></li>
             <li>
-                <a href="#%eb%b2%a1%ed%84%b0-%ec%9c%a0%ec%82%ac%ec%84%b1-%ea%b2%80%ec%83%89" aria-label="벡터 유사성 검색">벡터 유사성 검색</a></li>
+                <a href="#vector-similarity-search" aria-label="Vector Similarity Search">Vector Similarity Search</a></li>
             <li>
-                <a href="#%ed%95%98%ec%9d%b4%eb%b8%8c%eb%a6%ac%eb%93%9c-%ea%b2%80%ec%83%89-%eb%b2%a1%ed%84%b0--%ec%a0%84%eb%ac%b8" aria-label="하이브리드 검색: 벡터 &#43; 전문">하이브리드 검색: 벡터 + 전문</a></li></ul>
+                <a href="#hybrid-search-vector--full-text" aria-label="Hybrid Search: Vector &#43; Full-Text">Hybrid Search: Vector + Full-Text</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%84%b1%eb%8a%a5-%ed%8a%9c%eb%8b%9d-47%ec%b4%88%ec%97%90%ec%84%9c-3%eb%b0%80%eb%a6%ac%ec%b4%88%eb%a1%9c" aria-label="성능 튜닝: 47초에서 3밀리초로">성능 튜닝: 47초에서 3밀리초로</a><ul>
+                <a href="#performance-tuning-from-47-seconds-to-3-milliseconds" aria-label="Performance Tuning: From 47 Seconds to 3 Milliseconds">Performance Tuning: From 47 Seconds to 3 Milliseconds</a><ul>
                     
             <li>
-                <a href="#hnsw%ec%9a%a9-guc-%ed%8c%8c%eb%9d%bc%eb%af%b8%ed%84%b0" aria-label="HNSW용 GUC 파라미터">HNSW용 GUC 파라미터</a></li>
+                <a href="#guc-parameters-for-hnsw" aria-label="GUC Parameters for HNSW">GUC Parameters for HNSW</a></li>
             <li>
-                <a href="#%eb%b0%98%ec%a0%95%eb%b0%80%eb%8f%84-%ec%96%91%ec%9e%90%ed%99%94-halfvec" aria-label="반정밀도 양자화 (halfvec)">반정밀도 양자화 (halfvec)</a></li>
+                <a href="#half-precision-quantization-halfvec" aria-label="Half-Precision Quantization (halfvec)">Half-Precision Quantization (halfvec)</a></li>
             <li>
-                <a href="#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac-%eb%b9%84%ea%b5%90-%ed%8a%9c%eb%8b%9d-%ec%a0%84%ed%9b%84" aria-label="벤치마크 비교: 튜닝 전후">벤치마크 비교: 튜닝 전후</a></li></ul>
+                <a href="#benchmark-comparison-before-and-after-tuning" aria-label="Benchmark Comparison: Before and After Tuning">Benchmark Comparison: Before and After Tuning</a></li></ul>
             </li>
             <li>
-                <a href="#langchain-%eb%b0%8f-llamaindex%ec%99%80%ec%9d%98-rag-%ed%86%b5%ed%95%a9" aria-label="LangChain 및 LlamaIndex와의 RAG 통합">LangChain 및 LlamaIndex와의 RAG 통합</a><ul>
+                <a href="#rag-integration-with-langchain-and-llamaindex" aria-label="RAG Integration with LangChain and LlamaIndex">RAG Integration with LangChain and LlamaIndex</a><ul>
                     
             <li>
                 <a href="#langchain--pgvector" aria-label="LangChain &#43; pgvector">LangChain + pgvector</a></li>
             <li>
                 <a href="#llamaindex--pgvector" aria-label="LlamaIndex &#43; pgvector">LlamaIndex + pgvector</a></li>
             <li>
-                <a href="#%ec%a7%81%ec%a0%91-rag-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8-%ed%94%84%eb%a0%88%ec%9e%84%ec%9b%8c%ed%81%ac-%ec%97%86%ec%9d%8c" aria-label="직접 RAG 파이프라인 (프레임워크 없음)">직접 RAG 파이프라인 (프레임워크 없음)</a></li></ul>
+                <a href="#direct-rag-pipeline-no-framework" aria-label="Direct RAG Pipeline (No Framework)">Direct RAG Pipeline (No Framework)</a></li></ul>
             </li>
             <li>
-                <a href="#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ea%b0%95%ed%99%94" aria-label="프로덕션 강화">프로덕션 강화</a><ul>
+                <a href="#production-hardening" aria-label="Production Hardening">Production Hardening</a><ul>
                     
             <li>
-                <a href="#%eb%8b%a4%ec%a4%91-%ed%85%8c%eb%84%8c%ed%8a%b8%eb%a5%bc-%ec%9c%84%ed%95%9c-%ed%96%89-%ec%88%98%ec%a4%80-%eb%b3%b4%ec%95%88" aria-label="다중 테넌트를 위한 행 수준 보안">다중 테넌트를 위한 행 수준 보안</a></li>
+                <a href="#row-level-security-for-multi-tenancy" aria-label="Row-Level Security for Multi-Tenancy">Row-Level Security for Multi-Tenancy</a></li>
             <li>
-                <a href="#%ec%bf%bc%eb%a6%ac-%ec%84%b1%eb%8a%a5-%eb%aa%a8%eb%8b%88%ed%84%b0%eb%a7%81" aria-label="쿼리 성능 모니터링">쿼리 성능 모니터링</a></li>
+                <a href="#monitoring-query-performance" aria-label="Monitoring Query Performance">Monitoring Query Performance</a></li>
             <li>
-                <a href="#pg_dump%eb%a5%bc-%ec%82%ac%ec%9a%a9%ed%95%9c-%eb%b0%b1%ec%97%85-%eb%b2%a1%ed%84%b0-%ed%8f%ac%ed%95%a8" aria-label="pg_dump를 사용한 백업 (벡터 포함)">pg_dump를 사용한 백업 (벡터 포함)</a></li>
+                <a href="#backup-with-pg_dump-vectors-included" aria-label="Backup with pg_dump (Vectors Included)">Backup with pg_dump (Vectors Included)</a></li>
             <li>
-                <a href="#%eb%86%92%ec%9d%80-qps%eb%a5%bc-%ec%9c%84%ed%95%9c-%ec%97%b0%ea%b2%b0-%eb%aa%a8%eb%b2%94-%ec%82%ac%eb%a1%80" aria-label="높은 QPS를 위한 연결 모범 사례">높은 QPS를 위한 연결 모범 사례</a></li></ul>
+                <a href="#connection-best-practices-for-high-qps" aria-label="Connection Best Practices for High QPS">Connection Best Practices for High QPS</a></li></ul>
             </li>
             <li>
-                <a href="#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90" aria-label="대안과의 비교">대안과의 비교</a></li>
+                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li>
             <li>
-                <a href="#%ed%95%9c%ea%b3%84-%ec%a0%95%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80" aria-label="한계: 정직한 평가">한계: 정직한 평가</a></li>
+                <a href="#limitations-honest-assessment" aria-label="Limitations: Honest Assessment">Limitations: Honest Assessment</a></li>
             <li>
-                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a><ul>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
                     
             <li>
-                <a href="#pgvector%eb%8a%94-%ec%96%bc%eb%a7%88%eb%82%98-%eb%a7%8e%ec%9d%80-%eb%b2%a1%ed%84%b0%eb%a5%bc-%ec%b2%98%eb%a6%ac%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98%ec%9a%94" aria-label="pgvector는 얼마나 많은 벡터를 처리할 수 있나요?">pgvector는 얼마나 많은 벡터를 처리할 수 있나요?</a></li>
+                <a href="#how-many-vectors-can-pgvector-handle" aria-label="How many vectors can pgvector handle?">How many vectors can pgvector handle?</a></li>
             <li>
-                <a href="#pgvector%ec%97%90-%ec%96%b4%eb%96%a4-postgresql-%eb%b2%84%ec%a0%84%ec%9d%b4-%ed%95%84%ec%9a%94%ed%95%9c%ea%b0%80%ec%9a%94" aria-label="pgvector에 어떤 PostgreSQL 버전이 필요한가요?">pgvector에 어떤 PostgreSQL 버전이 필요한가요?</a></li>
+                <a href="#what-postgresql-version-do-i-need-for-pgvector" aria-label="What PostgreSQL version do I need for pgvector?">What PostgreSQL version do I need for pgvector?</a></li>
             <li>
-                <a href="#hnsw%ec%99%80-ivfflat-%ec%9d%b8%eb%8d%b1%ec%8a%a4-%ec%82%ac%ec%9d%b4%ec%97%90%ec%84%9c-%ec%96%b4%eb%96%bb%ea%b2%8c-%ec%84%a0%ed%83%9d%ed%95%98%eb%82%98%ec%9a%94" aria-label="HNSW와 IVFFlat 인덱스 사이에서 어떻게 선택하나요?">HNSW와 IVFFlat 인덱스 사이에서 어떻게 선택하나요?</a></li>
+                <a href="#how-do-i-choose-between-hnsw-and-ivfflat-indexes" aria-label="How do I choose between HNSW and IVFFlat indexes?">How do I choose between HNSW and IVFFlat indexes?</a></li>
             <li>
-                <a href="#pgvector%eb%a5%bc-%ea%b4%80%eb%a6%ac%ed%98%95-postgresql-%ec%84%9c%eb%b9%84%ec%8a%a4%ec%99%80-%ed%95%a8%ea%bb%98-%ec%82%ac%ec%9a%a9%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98%ec%9a%94" aria-label="pgvector를 관리형 PostgreSQL 서비스와 함께 사용할 수 있나요?">pgvector를 관리형 PostgreSQL 서비스와 함께 사용할 수 있나요?</a></li>
+                <a href="#can-i-use-pgvector-with-managed-postgresql-services" aria-label="Can I use pgvector with managed PostgreSQL services?">Can I use pgvector with managed PostgreSQL services?</a></li>
             <li>
-                <a href="#pgvector%eb%8a%94-%ed%95%84%ed%84%b0%eb%a7%81%eb%90%9c-%eb%b2%a1%ed%84%b0-%ea%b2%80%ec%83%89%ec%9d%84-%ec%a7%80%ec%9b%90%ed%95%98%eb%82%98%ec%9a%94" aria-label="pgvector는 필터링된 벡터 검색을 지원하나요?">pgvector는 필터링된 벡터 검색을 지원하나요?</a></li></ul>
+                <a href="#does-pgvector-support-filtered-vector-search" aria-label="Does pgvector support filtered vector search?">Does pgvector support filtered vector search?</a></li></ul>
             </li>
             <li>
-                <a href="#%ea%b2%b0%eb%a1%a0-%ec%8b%a4%ec%9a%a9%ec%a0%81%ec%9d%b8-%ec%84%a0%ed%83%9d" aria-label="결론: 실용적인 선택">결론: 실용적인 선택</a></li>
+                <a href="#conclusion-the-pragmatic-choice" aria-label="Conclusion: The Pragmatic Choice">Conclusion: The Pragmatic Choice</a></li>
             <li>
-                <a href="#%ec%b6%9c%ec%b2%98-%eb%b0%8f-%ec%b6%94%ea%b0%80-%ec%9e%90%eb%a3%8c" aria-label="출처 및 추가 자료">출처 및 추가 자료</a></li>
+                <a href="#sources--further-reading" aria-label="Sources &amp; Further Reading">Sources &amp; Further Reading</a></li>
             <li>
-                <a href="#%ec%b6%94%ec%b2%9c-%ed%98%b8%ec%8a%a4%ed%8c%85-%eb%b0%8f-%ec%9d%b8%ed%94%84%eb%9d%bc" aria-label="추천 호스팅 및 인프라">추천 호스팅 및 인프라</a></li>
+                <a href="#recommended-hosting--infrastructure" aria-label="Recommended Hosting &amp; Infrastructure">Recommended Hosting &amp; Infrastructure</a></li>
             <li>
-                <a href="#%ec%a0%9c%ed%9c%b4-%ea%b3%b5%ea%b0%9c" aria-label="제휴 공개">제휴 공개</a></li>
+                <a href="#affiliate-disclosure" aria-label="Affiliate Disclosure">Affiliate Disclosure</a></li>
             <li>
                 <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
             <li>
@@ -315,88 +315,91 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><h2 id="소개-데모를-죽인-47초-쿼리">소개: 데모를 죽인 47초 쿼리<a hidden class="anchor" aria-hidden="true" href="#소개-데모를-죽인-47초-쿼리">#</a></h2>
-<p>2025년 3월이었다. 한 AI 스타트업 창업자가 잠재적 엔터프라이즈 고객 앞에서 RAG 데모를 실행하고 있었다. 질문은 단순했다: <em>&ldquo;귀사 제품은 무엇을 하나요?&rdquo;</em> PostgreSQL 데이터베이스의 200만 문서에 대한 벡터 검색은 <strong>47초</strong>가 소요되었다. 고객은 첫 결과가 나타나기 전에 방을 나갔다.</p>
-<p>문제는 PostgreSQL이 아니었다. ```vector<code>컬럼에 **HNSW 인덱스**가 없는 것이 문제였다.</code>CREATE INDEX &hellip; USING hnsw````를 추가한 후, 동일한 쿼리는 <strong>3.2 밀리초</strong>로 떨어졌다 — <strong>14,000배 향상</strong>이다. 데이터베이스 마이그레이션 없이, 새 인프라 없이, 단 하나의 SQL 문장으로.</p>
-<p>이것이 <strong>pgvector 0.8.2</strong>의 힘이다 — 세계에서 가장 신뢰받는 관계형 데이터베이스를 고성능 벡터 데이터베이스로 변환하는 오픈소스 PostgreSQL 확장이다. <strong>15,000+ GitHub Stars</strong>를 보유하고 Supabase, Neon, AWS RDS, Google Cloud SQL에서 네이티브 지원되는 pgvector는 **1000만 벡터 이하로 유지되는 AI 에이전트 워크로드의 70%**에 대한 실용적인 선택이다.</p>
-<p>이 가이드는 모든 것을 다룬다: PostgreSQL 18 설치, HNSW 튜닝, <code>halfvec</code> 양자화, 필터링된 하이브리드 검색, 프로덕션 RAG 통합.</p>
-<h2 id="pgvector란-무엇인가--postgresql-낶部的-벡터">pgvector란 무엇인가? — PostgreSQL 낶部的 벡터<a hidden class="anchor" aria-hidden="true" href="#pgvector란-무엇인가--postgresql-낶部的-벡터">#</a></h2>
-<p><strong>pgvector</strong>는 데이터베이스 낶部에 벡터 데이터 타입, 근사 최근접 이웃(ANN) 인덱스, 거리 함수를 추가하는 PostgreSQL용 오픈소스 확장이다. PostgreSQL 옆에 별도의 벡터 데이터베이스를 실행하는 대신, 임베딩을 관계형 데이터와 동일한 테이블에 저장하고 표준 SQL로 쿼리한다.</p>
-<p><strong>핵심 수치 (2026년 5월):</strong></p>
-<table>
-	<thead>
-			<tr>
-					<th>지표</th>
-					<th>수치</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>현재 버전</td>
-					<td><strong>0.8.2</strong></td>
-			</tr>
-			<tr>
-					<td>PostgreSQL 호환성</td>
-					<td><strong>14 ~ 18</strong></td>
-			</tr>
-			<tr>
-					<td>GitHub Stars</td>
-					<td><strong>15,000+</strong></td>
-			</tr>
-			<tr>
-					<td>최대 벡터 차원</td>
-					<td><strong>16,000</strong></td>
-			</tr>
-			<tr>
-					<td>ANN 리콜 (HNSW)</td>
-					<td><strong>~95%</strong></td>
-			</tr>
-			<tr>
-					<td>인덱스 타입</td>
-					<td><strong>HNSW, IVFFlat</strong></td>
-			</tr>
-			<tr>
-					<td>라이선스</td>
-					<td>PostgreSQL (오픈소스)</td>
-			</tr>
-	</tbody>
-</table>
-<p>독립형 벡터 데이터베이스와 달리, pgvector는 PostgreSQL이 제공하는 모든 것을 상속받는다: <strong>ACID 트랜잭션</strong>, <strong>행 수준 보안</strong>, <strong>JSONB 메타데이터</strong>, <strong>전문 검색</strong>, 그리고 수십 년의 운영 도구. 문서, 사용자 권한, 감사 로그, 벡터 임베딩이 모두 하나의 데이터베이스에 있을 때, 이중 쓰기 문제가 완전히 제거된다.</p>
-<h2 id="pgvector-작동-방식-인덱스-타입과-쿼리-계획">pgvector 작동 방식: 인덱스 타입과 쿼리 계획<a hidden class="anchor" aria-hidden="true" href="#pgvector-작동-방식-인덱스-타입과-쿼리-계획">#</a></h2>
-<p>pgvector는 서로 다른 트레이드오프를 가진 두 ANN 인덱스 타입을 지원한다: ### HNSW (Hierarchical Navigable Small World)</p>
-<p>대부분의 워크로드에 대한 기본 선택이다. HNSW는 각 레이어가 이전 레이어의 부분집합인 다층 그래프를 구축한다. 쿼리 순회는 최상위 레이어에서 시작하여 가장 밀집된 그래프에 도달할 때까지 탐욕적으로 아래로 이동한다.</p>
-<p><strong>적합:</strong> ~5000만 벡터 이하의 데이터셋에서 높은 리콜, 낮은 지연 시간 쿼리.
-<strong>빌드 시간:</strong> IVFFlat보다 느림 (pgvector 0.8.2에서 단일 스레드).
-<strong>쿼리 파라미터:</strong> <code>hnsw.ef_search</code>가 리콜 대 지연 시간 트레이드오프를 제어한다.</p>
+  <div class="post-content md-content"><p>title: &ldquo;pgvector 2026: Turn PostgreSQL into a High-Performance V&hellip;
+description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Data Science
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: PostgreSQL License
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;data-science&rdquo;]
+tags: [&ldquo;pgvector&rdquo;, &ldquo;postgresql&rdquo;, &ldquo;vector-database&rdquo;, &ldquo;hnsw&rdquo;, &ldquo;ann&rdquo;, &ldquo;rag&rdquo;, &ldquo;similarity-search&rdquo;, &ldquo;full-text-search&rdquo;]
+aliases:</p>
+<ul>
+<li>/posts/pgvector-postgres-vector-extension/-</li>
+</ul>
+<hr>
+<h2 id="introduction-the-47-second-query-that-killed-a-demo">Introduction: The 47-Second Query That Killed a Demo<a hidden class="anchor" aria-hidden="true" href="#introduction-the-47-second-query-that-killed-a-demo">#</a></h2>
+<p>It was March 2025. An AI startup founder stood in front of a potential enterprise client, running a RAG demo. The question was simple: <em>&ldquo;What does our product do?&rdquo;</em> The vector search against 2 million documents in their PostgreSQL database took <strong>47 seconds</strong> to return. The client left the room before the first result appeared.</p>
+<p>The problem wasn&rsquo;t PostgreSQL. It was a missing <strong>HNSW index</strong> on the ```vector<code>column. After adding</code>CREATE INDEX &hellip; USING hnsw````, the same query dropped to <strong>3.2 milliseconds</strong> — a <strong>14,000x improvement</strong>. No database migration, no new infrastructure, just one SQL statement.</p>
+<p>This is the power of <strong>pgvector 0.8.2</strong>, the open-source PostgreSQL extension that transforms the world&rsquo;s most trusted relational database into a high-performance vector database. With <strong>15,000+ GitHub stars</strong> and native support on Supabase, Neon, AWS RDS, and Google Cloud SQL, pgvector is the pragmatic choice for the <strong>70% of AI-agent workloads</strong> that stay under 10 million vectors.</p>
+<p>This guide covers everything: installation on PostgreSQL 18, HNSW tuning, <code>halfvec</code> quantization, filtered hybrid search, and production RAG integration.</p>
+<h2 id="what-is-pgvector--vectors-inside-postgresql">What Is pgvector? — Vectors Inside PostgreSQL<a hidden class="anchor" aria-hidden="true" href="#what-is-pgvector--vectors-inside-postgresql">#</a></h2>
+<p><strong>pgvector</strong> is an open-source extension for PostgreSQL that adds vector data types, approximate nearest neighbor (ANN) indexes, and distance functions directly inside the database. Instead of running a separate vector database alongside PostgreSQL, you store embeddings in the same tables as your relational data and query them with standard SQL.</p>
+<p><strong>Key stats (May 2026):</strong></p>
+<p>| Metric | Value |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Current version | <strong>0.8.2</strong> |
+| PostgreSQL compatibility | <strong>14 through 18</strong> |
+| GitHub stars | <strong>15,000+</strong> |
+| Max vector dimensions | <strong>16,000</strong> |
+| ANN recall (HNSW) | <strong>~95%</strong> |
+| Index types | <strong>HNSW, IVFFlat</strong> |
+| License | PostgreSQL (open source) |</p>
+<p>Unlike standalone vector databases, pgvector inherits everything PostgreSQL offers: <strong>ACID transactions</strong>, <strong>row-level security</strong>, <strong>JSONB metadata</strong>, <strong>full-text search</strong>, and decades of operational tooling. When your documents, user permissions, audit logs, and vector embeddings all live in one database, you eliminate the dual-write problem entirely.</p>
+<h2 id="how-pgvector-works-index-types-and-query-planning">How pgvector Works: Index Types and Query Planning<a hidden class="anchor" aria-hidden="true" href="#how-pgvector-works-index-types-and-query-planning">#</a></h2>
+<p>pgvector supports two ANN index types, each with distinct trade-offs: ### HNSW (Hierarchical Navigable Small World)</p>
+<p>The default choice for most workloads. HNSW builds a multi-layer graph where each layer is a subset of the previous one. Query traversal starts at the top layer and greedily navigates down until reaching the densest graph at the bottom.</p>
+<p><strong>Best for:</strong> High-recall, low-latency queries on datasets up to ~50M vectors.
+<strong>Build time:</strong> Slower than IVFFlat (single-threaded in pgvector 0.8.2).
+<strong>Query parameters:</strong> <code>hnsw.ef_search</code> controls recall vs. latency trade-off.</p>
 <h3 id="ivfflat-inverted-file-with-flat-index">IVFFlat (Inverted File with Flat Index)<a hidden class="anchor" aria-hidden="true" href="#ivfflat-inverted-file-with-flat-index">#</a></h3>
-<p>k-means를 사용하여 벡터를 클러스터(리스트)로 분할한다. 쿼리 시 가장 가까운 클러스터만 스캔한다.</p>
-<p><strong>적합:</strong> 더 빠른 인덱스 빌드, 메모리 제한 환경.
-<strong>트레이드오프:</strong> 동일한 지연 시간 예산에서 HNSW보다 낮은 리콜.
-<strong>쿼리 파라미터:</strong> <code>ivfflat.probes</code>가 스캔할 클러스터 수를 제어한다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- HNSW 인덱스 (대부분의 워크로드에 권장)
+<p>Partitions vectors into clusters (lists) using k-means. At query time, only the closest clusters are scanned.</p>
+<p><strong>Best for:</strong> Faster index builds, memory-constrained environments.
+<strong>Trade-off:</strong> Lower recall than HNSW at the same latency budget.
+<strong>Query parameters:</strong> <code>ivfflat.probes</code> controls how many clusters to scan.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- HNSW index (recommended for most workloads)
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> <span style="color:#66d9ef">ON</span> documents
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">USING</span> hnsw (embedding vector_l2_ops)
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">WITH</span> (m <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>, ef_construction <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- IVFFlat 인덱스 (빌드가 더 빠르지만 리콜이 낮음)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- IVFFlat index (faster builds, lower recall)
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> <span style="color:#66d9ef">ON</span> documents
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">USING</span> ivfflat (embedding vector_l2_ops)
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">WITH</span> (lists <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>);
-</span></span></code></pre></div><h3 id="거리-연산자">거리 연산자<a hidden class="anchor" aria-hidden="true" href="#거리-연산자">#</a></h3>
-<p>pgvector는 세 가지 거리 연산자를 제공한다: | 연산자 | 설명 | 사용 사례 |
-|&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;-|
-| <code>&lt;-&gt;</code> | 유클리드 (L2) 거리 | 일반 유사성 (기본값) |
-| <code>&lt;#&gt;</code> | 음수 내적 | OpenAI 임베딩 |
-| <code>&lt;=&gt;</code> | 코사인 거리 | 의미적 유사성 (정규화된 벡터) |</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- L2 거리 (작을수록 더 유사)
+</span></span></code></pre></div><h3 id="distance-operators">Distance Operators<a hidden class="anchor" aria-hidden="true" href="#distance-operators">#</a></h3>
+<p>pgvector provides three distance operators: | Operator | Description | Use case |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <code>&lt;-&gt;</code> | Euclidean (L2) distance | General similarity (default) |
+| <code>&lt;#&gt;</code> | Negative inner product | OpenAI embeddings |
+| <code>&lt;=&gt;</code> | Cosine distance | Semantic similarity (normalized vectors) |</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- L2 distance (smaller = more similar)
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> id, embedding <span style="color:#f92672">&lt;-&gt;</span> query_vec <span style="color:#66d9ef">AS</span> distance
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> documents <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> distance <span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">10</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 코사인 거리 (정규화된 임베딩용)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Cosine distance (for normalized embeddings)
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> id, embedding <span style="color:#f92672">&lt;=&gt;</span> query_vec <span style="color:#66d9ef">AS</span> distance
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> documents <span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> distance <span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">10</span>;
-</span></span></code></pre></div><h2 id="설치-및-설정-5분-이내">설치 및 설정: 5분 이내<a hidden class="anchor" aria-hidden="true" href="#설치-및-설정-5분-이내">#</a></h2>
-<h3 id="옵션-a-docker-가장-빠름">옵션 A: Docker (가장 빠름)<a hidden class="anchor" aria-hidden="true" href="#옵션-a-docker-가장-빠름">#</a></h3>
+</span></span></code></pre></div><h2 id="installation--setup-under-5-minutes">Installation &amp; Setup: Under 5 Minutes<a hidden class="anchor" aria-hidden="true" href="#installation--setup-under-5-minutes">#</a></h2>
+<h3 id="option-a-docker-fastest">Option A: Docker (Fastest)<a hidden class="anchor" aria-hidden="true" href="#option-a-docker-fastest">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --name pgvector-demo <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -e POSTGRES_PASSWORD<span style="color:#f92672">=</span>mysecretpassword <span style="color:#ae81ff">\
@@ -404,43 +407,43 @@
 </span></span></span><span style="display:flex;"><span>  -p 5432:5432 <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  pgvector/pgvector:0.8.2-pg18
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 확인</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify</span>
 </span></span><span style="display:flex;"><span>docker exec pgvector-demo psql -U postgres -d vectordb -c <span style="color:#e6db74">&#34;SELECT * FROM pg_extension WHERE extname = vector;&#34;</span>
-</span></span></code></pre></div><h3 id="옵션-b-기존-postgresql">옵션 B: 기존 PostgreSQL<a hidden class="anchor" aria-hidden="true" href="#옵션-b-기존-postgresql">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 빌드 종속성 설치 (Ubuntu/Debian)</span>
+</span></span></code></pre></div><h3 id="option-b-existing-postgresql">Option B: Existing PostgreSQL<a hidden class="anchor" aria-hidden="true" href="#option-b-existing-postgresql">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install build dependencies (Ubuntu/Debian)</span>
 </span></span><span style="display:flex;"><span>sudo apt-get install postgresql-server-dev-18 build-essential git
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># pgvector 클론 및 빌드</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Clone and build pgvector</span>
 </span></span><span style="display:flex;"><span>git clone --branch v0.8.2 https://github.com/pgvector/pgvector.git
 </span></span><span style="display:flex;"><span>cd pgvector
 </span></span><span style="display:flex;"><span>make
 </span></span><span style="display:flex;"><span>sudo make install
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 데이터베이스에서 확장 활성화</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Enable extension in database</span>
 </span></span><span style="display:flex;"><span>psql -U postgres -d mydb -c <span style="color:#e6db74">&#34;CREATE EXTENSION IF NOT EXISTS vector;&#34;</span>
-</span></span></code></pre></div><h3 id="옵션-c-supabase-관리형">옵션 C: Supabase (관리형)<a hidden class="anchor" aria-hidden="true" href="#옵션-c-supabase-관리형">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- pgvector는 Supabase에 사전 설치되어 있음. 활성화만 하면 됨: CREATE EXTENSION IF NOT EXISTS vector;
+</span></span></code></pre></div><h3 id="option-c-supabase-managed">Option C: Supabase (Managed)<a hidden class="anchor" aria-hidden="true" href="#option-c-supabase-managed">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- pgvector is pre-installed on Supabase. Just enable it: CREATE EXTENSION IF NOT EXISTS vector;
 </span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 버전 확인
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Verify version
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> extversion <span style="color:#66d9ef">FROM</span> pg_extension <span style="color:#66d9ef">WHERE</span> extname <span style="color:#f92672">=</span> vector;
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 반환: 0.8.2
-</span></span></span></code></pre></div><h3 id="옵션-d-aws-rds--google-cloud-sql">옵션 D: AWS RDS / Google Cloud SQL<a hidden class="anchor" aria-hidden="true" href="#옵션-d-aws-rds--google-cloud-sql">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- RDS PostgreSQL 18에서 pgvector는 확장으로 사용 가능
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Returns: 0.8.2
+</span></span></span></code></pre></div><h3 id="option-d-aws-rds--google-cloud-sql">Option D: AWS RDS / Google Cloud SQL<a hidden class="anchor" aria-hidden="true" href="#option-d-aws-rds--google-cloud-sql">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- On RDS PostgreSQL 18, pgvector is available as an extension
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> EXTENSION <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> vector;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 필요시 사용 가능한 확장 확인
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Check available extensions if needed
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> pg_available_extensions <span style="color:#66d9ef">WHERE</span> name <span style="color:#f92672">=</span> vector;
-</span></span></code></pre></div><h3 id="설치-확인">설치 확인<a hidden class="anchor" aria-hidden="true" href="#설치-확인">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- pgvector 버전 확인
+</span></span></code></pre></div><h3 id="verify-installation">Verify Installation<a hidden class="anchor" aria-hidden="true" href="#verify-installation">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Check pgvector version
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> extversion <span style="color:#66d9ef">FROM</span> pg_extension <span style="color:#66d9ef">WHERE</span> extname <span style="color:#f92672">=</span> vector;
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 예상: 0.8.2
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Expected: 0.8.2
 </span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 벡터 타입 테스트
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Test vector type
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#e6db74">&#39;[1,2,3]&#39;</span>::vector(<span style="color:#ae81ff">3</span>) <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#e6db74">&#39;[4,5,6]&#39;</span>::vector(<span style="color:#ae81ff">3</span>) <span style="color:#66d9ef">AS</span> l2_distance;
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 예상: ~5.196
-</span></span></span></code></pre></div><h2 id="핵심-작업-테이블-생성-삽입-및-쿼리">핵심 작업: 테이블 생성, 삽입 및 쿼리<a hidden class="anchor" aria-hidden="true" href="#핵심-작업-테이블-생성-삽입-및-쿼리">#</a></h2>
-<h3 id="벡터-테이블-생성">벡터 테이블 생성<a hidden class="anchor" aria-hidden="true" href="#벡터-테이블-생성">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 벡터 컬럼이 있는 테이블 생성 (1536 차원 = OpenAI 임베딩)
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Expected: ~5.196
+</span></span></span></code></pre></div><h2 id="core-operations-creating-tables-inserting-and-querying">Core Operations: Creating Tables, Inserting, and Querying<a hidden class="anchor" aria-hidden="true" href="#core-operations-creating-tables-inserting-and-querying">#</a></h2>
+<h3 id="creating-a-vector-table">Creating a Vector Table<a hidden class="anchor" aria-hidden="true" href="#creating-a-vector-table">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Create table with vector column (1536 dimensions = OpenAI embeddings)
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> documents (
 </span></span><span style="display:flex;"><span>    id          BIGSERIAL <span style="color:#66d9ef">PRIMARY</span> <span style="color:#66d9ef">KEY</span>,
 </span></span><span style="display:flex;"><span>    title       VARCHAR(<span style="color:#ae81ff">512</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
@@ -451,67 +454,67 @@
 </span></span><span style="display:flex;"><span>    tenant_id   INTEGER <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span> <span style="color:#66d9ef">DEFAULT</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 일반적인 필터 컬럼에 인덱스 추가
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Add index for common filter columns
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_docs_tenant <span style="color:#66d9ef">ON</span> documents(tenant_id);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_docs_created <span style="color:#66d9ef">ON</span> documents(created_at);
-</span></span></code></pre></div><h3 id="벡터-삽입">벡터 삽입<a hidden class="anchor" aria-hidden="true" href="#벡터-삽입">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 임베딩이 있는 단일 문서 삽입
+</span></span></code></pre></div><h3 id="inserting-vectors">Inserting Vectors<a hidden class="anchor" aria-hidden="true" href="#inserting-vectors">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Insert a single document with embedding
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> documents (title, content, embedding, metadata, tenant_id)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">VALUES</span> (
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;Introduction to pgvector&#39;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;pgvector adds vector support to PostgreSQL...&#39;</span>,
-</span></span><span style="display:flex;"><span>    ARRAY_FILL(<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">0</span>::real, ARRAY[<span style="color:#ae81ff">1536</span>])::vector(<span style="color:#ae81ff">1536</span>),  <span style="color:#75715e">-- 플레이스홀더
+</span></span><span style="display:flex;"><span>    ARRAY_FILL(<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">0</span>::real, ARRAY[<span style="color:#ae81ff">1536</span>])::vector(<span style="color:#ae81ff">1536</span>),  <span style="color:#75715e">-- placeholder
 </span></span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;{&#34;author&#34;: &#34;dibi8&#34;, &#34;category&#34;: &#34;database&#34;}&#39;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span>);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 실제 OpenAI 임베딩으로 삽입 (Python에서)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- 전체 예제는 아래 RAG 통합 섹션 참조
-</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Python에서 벡터 일괄 삽입</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Insert with actual OpenAI embedding (from Python)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- See RAG Integration section below for full example
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Batch insert vectors from Python</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> psycopg2
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>conn <span style="color:#f92672">=</span> psycopg2<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;dbname=vectordb user=postgres password=mysecretpassword host=localhost&#34;</span>)
 </span></span><span style="display:flex;"><span>cur <span style="color:#f92672">=</span> conn<span style="color:#f92672">.</span>cursor()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">--</span> 샘플로 <span style="color:#ae81ff">1</span>만 개의 랜덤 벡터 생성
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate 10K random vectors as sample</span>
 </span></span><span style="display:flex;"><span>batch_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000</span>
 </span></span><span style="display:flex;"><span>titles <span style="color:#f92672">=</span> [<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;document_</span><span style="color:#e6db74">{</span>i<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(batch_size)]
 </span></span><span style="display:flex;"><span>contents <span style="color:#f92672">=</span> [<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Content for document </span><span style="color:#e6db74">{</span>i<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(batch_size)]
 </span></span><span style="display:flex;"><span>embeddings <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(batch_size, <span style="color:#ae81ff">1536</span>)<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>float32)
 </span></span><span style="display:flex;"><span>tenant_ids <span style="color:#f92672">=</span> [i <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span> <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(batch_size)]
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 일괄 삽입을 위해 executemany 사용</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use executemany for batch insert</span>
 </span></span><span style="display:flex;"><span>args <span style="color:#f92672">=</span> [(titles[i], contents[i], embeddings[i]<span style="color:#f92672">.</span>tolist(), tenant_ids[i]) <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(batch_size)]
 </span></span><span style="display:flex;"><span>cur<span style="color:#f92672">.</span>executemany(
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;INSERT INTO documents (title, content, embedding, tenant_id) VALUES (</span><span style="color:#e6db74">%s</span><span style="color:#e6db74">, </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">, </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">::vector, </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">)&#34;</span>,
 </span></span><span style="display:flex;"><span>    args
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>conn<span style="color:#f92672">.</span>commit()
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>batch_size<span style="color:#e6db74">}</span><span style="color:#e6db74">개 문서 삽입 완료&#34;</span>)
-</span></span></code></pre></div><h3 id="hnsw-인덱스-구축-프로덕션-튜닝">HNSW 인덱스 구축 (프로덕션 튜닝)<a hidden class="anchor" aria-hidden="true" href="#hnsw-인덱스-구축-프로덕션-튜닝">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 병렬 인덱스 빌드용 파라미터 설정
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Inserted </span><span style="color:#e6db74">{</span>batch_size<span style="color:#e6db74">}</span><span style="color:#e6db74"> documents&#34;</span>)
+</span></span></code></pre></div><h3 id="building-the-hnsw-index-production-tuning">Building the HNSW Index (Production Tuning)<a hidden class="anchor" aria-hidden="true" href="#building-the-hnsw-index-production-tuning">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Set parameters for parallel index build
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SET</span> maintenance_work_mem <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>GB;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">SET</span> max_parallel_maintenance_workers <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 튜닝된 파라미터로 HNSW 인덱스 구축
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Build HNSW index with tuned parameters
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">INDEX</span> idx_docs_embedding_hnsw <span style="color:#66d9ef">ON</span> documents
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">USING</span> hnsw (embedding vector_l2_ops)
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">WITH</span> (
-</span></span><span style="display:flex;"><span>    m <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>,              <span style="color:#75715e">-- 레이어별 연결 수 (기본값: 16)
-</span></span></span><span style="display:flex;"><span>    ef_construction <span style="color:#f92672">=</span> <span style="color:#ae81ff">128</span>  <span style="color:#75715e">-- 동적 후보 목록 크기 (기본값: 64)
+</span></span><span style="display:flex;"><span>    m <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>,              <span style="color:#75715e">-- Number of connections per layer (default: 16)
+</span></span></span><span style="display:flex;"><span>    ef_construction <span style="color:#f92672">=</span> <span style="color:#ae81ff">128</span>  <span style="color:#75715e">-- Size of dynamic candidate list (default: 64)
 </span></span></span><span style="display:flex;"><span>  );
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 인덱스 크기 확인
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Check index size
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw));
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 일반적: 1536 차원의 10만 벡터에 대해 ~450 MB
-</span></span></span></code></pre></div><h3 id="벡터-유사성-검색">벡터 유사성 검색<a hidden class="anchor" aria-hidden="true" href="#벡터-유사성-검색">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 기본 ANN 검색
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Typical: ~450 MB for 100K vectors of 1536 dimensions
+</span></span></span></code></pre></div><h3 id="vector-similarity-search">Vector Similarity Search<a hidden class="anchor" aria-hidden="true" href="#vector-similarity-search">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Basic ANN search
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> id, title, embedding <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>::vector <span style="color:#66d9ef">AS</span> distance
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> documents
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> embedding <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>::vector
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">10</span>;
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 필터링된 벡터 검색 (가장 일반적인 프로덕션 패턴)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Filtered vector search (most common production pattern)
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> id, title, embedding <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>::vector <span style="color:#66d9ef">AS</span> distance
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> documents
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> tenant_id <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>
@@ -519,58 +522,58 @@
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">AND</span> metadata<span style="color:#f92672">-&gt;&gt;</span>category <span style="color:#f92672">=</span> tech
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> embedding <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>::vector
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">20</span>;
-</span></span></code></pre></div><h3 id="하이브리드-검색-벡터--전문">하이브리드 검색: 벡터 + 전문<a hidden class="anchor" aria-hidden="true" href="#하이브리드-검색-벡터--전문">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 먼저 전문 검색을 위해 pg_trgm 활성화
+</span></span></code></pre></div><h3 id="hybrid-search-vector--full-text">Hybrid Search: Vector + Full-Text<a hidden class="anchor" aria-hidden="true" href="#hybrid-search-vector--full-text">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- First, enable pg_trgm for text search
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> EXTENSION <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> pg_trgm;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 벡터 유사성 + 텍스트 관련성 결합
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Combined vector similarity + text relevance
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span>
 </span></span><span style="display:flex;"><span>    d.id,
 </span></span><span style="display:flex;"><span>    d.title,
 </span></span><span style="display:flex;"><span>    d.embedding <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>::vector <span style="color:#66d9ef">AS</span> vec_distance,
 </span></span><span style="display:flex;"><span>    similarity(d.title, <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">2</span>) <span style="color:#66d9ef">AS</span> text_similarity
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> documents d
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> d.title <span style="color:#f92672">%</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">2</span>  <span style="color:#75715e">-- trigram 유사성 필터
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> d.title <span style="color:#f92672">%</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">2</span>  <span style="color:#75715e">-- trigram similarity filter
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span>
 </span></span><span style="display:flex;"><span>    (d.embedding <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>::vector) <span style="color:#f92672">*</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">7</span> <span style="color:#f92672">+</span> (<span style="color:#ae81ff">1</span> <span style="color:#f92672">-</span> similarity(d.title, <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">2</span>)) <span style="color:#f92672">*</span> <span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">3</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">10</span>;
-</span></span></code></pre></div><h2 id="성능-튜닝-47초에서-3밀리초로">성능 튜닝: 47초에서 3밀리초로<a hidden class="anchor" aria-hidden="true" href="#성능-튜닝-47초에서-3밀리초로">#</a></h2>
-<h3 id="hnsw용-guc-파라미터">HNSW용 GUC 파라미터<a hidden class="anchor" aria-hidden="true" href="#hnsw용-guc-파라미터">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 리콜 대 지연 시간을 위한 ef_search 튜닝
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- 높을수록 = 리콜이 더 좋지만 쿼리가 더 느림
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SET</span> hnsw.ef_search <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;  <span style="color:#75715e">-- 기본값은 40; 프로덕션에서는 64-128이 일반적
+</span></span></code></pre></div><h2 id="performance-tuning-from-47-seconds-to-3-milliseconds">Performance Tuning: From 47 Seconds to 3 Milliseconds<a hidden class="anchor" aria-hidden="true" href="#performance-tuning-from-47-seconds-to-3-milliseconds">#</a></h2>
+<h3 id="guc-parameters-for-hnsw">GUC Parameters for HNSW<a hidden class="anchor" aria-hidden="true" href="#guc-parameters-for-hnsw">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Tune ef_search for recall vs. latency
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">-- Higher = better recall, slower queries
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SET</span> hnsw.ef_search <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>;  <span style="color:#75715e">-- Default is 40; 64-128 is typical for production
 </span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 실제 쿼리 계획 확인
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Check actual query plan
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">EXPLAIN</span> (<span style="color:#66d9ef">ANALYZE</span>, BUFFERS)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> id, title, embedding <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>::vector <span style="color:#66d9ef">AS</span> distance
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> documents
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> embedding <span style="color:#f92672">&lt;-&gt;</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">1</span>::vector
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">10</span>;
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 표시되어야 함: Index Scan using idx_docs_embedding_hnsw
-</span></span></span></code></pre></div><h3 id="반정밀도-양자화-halfvec">반정밀도 양자화 (halfvec)<a hidden class="anchor" aria-hidden="true" href="#반정밀도-양자화-halfvec">#</a></h3>
-<p>pgvector 0.8.2는 최소한의 리콜 손실로 <strong>50% 스토리지 절감</strong>을 위한 <code>halfvec</code> 타입을 지원한다: `````sql
-&ndash; 양자화된 스토리지를 위한 halfvec 컬럼 추가
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Look for: Index Scan using idx_docs_embedding_hnsw
+</span></span></span></code></pre></div><h3 id="half-precision-quantization-halfvec">Half-Precision Quantization (halfvec)<a hidden class="anchor" aria-hidden="true" href="#half-precision-quantization-halfvec">#</a></h3>
+<p>pgvector 0.8.2 supports <code>halfvec</code> type for <strong>50% storage reduction</strong> with minimal recall loss: `````sql
+&ndash; Add halfvec column for quantized storage
 ALTER TABLE documents ADD COLUMN embedding_half halfvec(1536);</p>
-<p>&ndash; 전체 정밀도에서 변환
+<p>&ndash; Convert from full-precision
 UPDATE documents SET embedding_half = embedding::halfvec;</p>
-<p>&ndash; halfvec에 HNSW 인덱스 생성
+<p>&ndash; Create HNSW index on halfvec
 CREATE INDEX idx_docs_embedding_half_hnsw ON documents
 USING hnsw (embedding_half halfvec_l2_ops);</p>
-<p>&ndash; halfvec을 사용한 쿼리 (거의 동일한 결과)
+<p>&ndash; Query using halfvec (nearly identical results)
 SELECT id, title, embedding_half &lt;-&gt; $1::halfvec AS distance
 FROM documents
 ORDER BY embedding_half &lt;-&gt; $1::halfvec
 LIMIT 10;</p>
-<p>&ndash; 공간 절약 확인
+<p>&ndash; Check space savings
 SELECT
 pg_size_pretty(pg_relation_size(idx_docs_embedding_hnsw)) AS full_size,
 pg_size_pretty(pg_relation_size(idx_docs_embedding_half_hnsw)) AS half_size;
-&ndash; half_size는 일반적으로 full_size의 ~45-50%</p>
+&ndash; half_size is typically ~45-50% of full_size</p>
 <pre tabindex="0"><code>
-### 연결 풀링 (Pgbouncer)
+### Connection Pooling (Pgbouncer)
 
 `````ini
-; pgvector 워크로드를 위한 pgbouncer.ini
+; pgbouncer.ini for pgvector workloads
 [databases]
 vectordb = host=localhost port=5432 dbname=vectordb
 
@@ -579,56 +582,25 @@ pool_mode = transaction
 max_client_conn = 10000
 default_pool_size = 50
 reserve_pool_size = 10
-</code></pre><h3 id="벤치마크-비교-튜닝-전후">벤치마크 비교: 튜닝 전후<a hidden class="anchor" aria-hidden="true" href="#벤치마크-비교-튜닝-전후">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>구성</th>
-					<th>쿼리 지연 시간 (p99)</th>
-					<th>Recall@10</th>
-					<th>인덱스 크기</th>
-					<th>빌드 시간</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>인덱스 없음 (순차 스캔)</td>
-					<td>47,000 ms</td>
-					<td>1.00</td>
-					<td>N/A</td>
-					<td>N/A</td>
-			</tr>
-			<tr>
-					<td>HNSW 기본값 (m=16, ef_construction=64)</td>
-					<td>4.2 ms</td>
-					<td>0.91</td>
-					<td>450 MB</td>
-					<td>45s</td>
-			</tr>
-			<tr>
-					<td>HNSW 튜닝 (m=24, ef_construction=128)</td>
-					<td>3.8 ms</td>
-					<td>0.95</td>
-					<td>680 MB</td>
-					<td>82s</td>
-			</tr>
-			<tr>
-					<td>HNSW + halfvec</td>
-					<td>3.2 ms</td>
-					<td>0.94</td>
-					<td>310 MB</td>
-					<td>38s</td>
-			</tr>
-			<tr>
-					<td>IVFFlat (lists=100)</td>
-					<td>8.1 ms</td>
-					<td>0.87</td>
-					<td>220 MB</td>
-					<td>12s</td>
-			</tr>
-	</tbody>
-</table>
-<h2 id="langchain-및-llamaindex와의-rag-통합">LangChain 및 LlamaIndex와의 RAG 통합<a hidden class="anchor" aria-hidden="true" href="#langchain-및-llamaindex와의-rag-통합">#</a></h2>
+</code></pre><h3 id="benchmark-comparison-before-and-after-tuning">Benchmark Comparison: Before and After Tuning<a hidden class="anchor" aria-hidden="true" href="#benchmark-comparison-before-and-after-tuning">#</a></h3>
+<p>| Configuration | Query Latency (p99) | Recall@10 | Index Size | Build Time |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| No index (seq scan) | 47,000 ms | 1.00 | N/A | N/A |
+| HNSW defaults (m=16, ef_construction=64) | 4.2 ms | 0.91 | 450 MB | 45s |
+| HNSW tuned (m=24, ef_construction=128) | 3.8 ms | 0.95 | 680 MB | 82s |
+| HNSW + halfvec | 3.2 ms | 0.94 | 310 MB | 38s |
+| IVFFlat (lists=100) | 8.1 ms | 0.87 | 220 MB | 12s |</p>
+<h2 id="rag-integration-with-langchain-and-llamaindex">RAG Integration with LangChain and LlamaIndex<a hidden class="anchor" aria-hidden="true" href="#rag-integration-with-langchain-and-llamaindex">#</a></h2>
 <h3 id="langchain--pgvector">LangChain + pgvector<a hidden class="anchor" aria-hidden="true" href="#langchain--pgvector">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install langchain-postgres<span style="color:#f92672">==</span>0.0.13 langchain-openai<span style="color:#f92672">==</span>0.3.0
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_postgres <span style="color:#f92672">import</span> PGVector
@@ -643,7 +615,7 @@ reserve_pool_size = 10
 </span></span><span style="display:flex;"><span>    use_jsonb<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 문서 추가</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add documents</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.documents <span style="color:#f92672">import</span> Document
 </span></span><span style="display:flex;"><span>docs <span style="color:#f92672">=</span> [
 </span></span><span style="display:flex;"><span>    Document(page_content<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pgvector turns PostgreSQL into a vector database&#34;</span>, metadata<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;source&#34;</span>: <span style="color:#e6db74">&#34;blog&#34;</span>}),
@@ -651,7 +623,7 @@ reserve_pool_size = 10
 </span></span><span style="display:flex;"><span>]
 </span></span><span style="display:flex;"><span>vector_store<span style="color:#f92672">.</span>add_documents(docs)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 필터가 있는 유사성 검색</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Similarity search with filter</span>
 </span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> vector_store<span style="color:#f92672">.</span>similarity_search(
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;vector database for RAG&#34;</span>,
 </span></span><span style="display:flex;"><span>    k<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>,
@@ -680,15 +652,15 @@ reserve_pool_size = 10
 </span></span><span style="display:flex;"><span>    },
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 문서 로드</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load documents</span>
 </span></span><span style="display:flex;"><span>documents <span style="color:#f92672">=</span> SimpleDirectoryReader(<span style="color:#e6db74">&#34;./data&#34;</span>)<span style="color:#f92672">.</span>load_data()
 </span></span><span style="display:flex;"><span>index <span style="color:#f92672">=</span> VectorStoreIndex<span style="color:#f92672">.</span>from_documents(documents, vector_store<span style="color:#f92672">=</span>vector_store)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 쿼리</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Query</span>
 </span></span><span style="display:flex;"><span>query_engine <span style="color:#f92672">=</span> index<span style="color:#f92672">.</span>as_query_engine()
 </span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> query_engine<span style="color:#f92672">.</span>query(<span style="color:#e6db74">&#34;How does pgvector work?&#34;</span>)
 </span></span><span style="display:flex;"><span>print(response)
-</span></span></code></pre></div><h3 id="직접-rag-파이프라인-프레임워크-없음">직접 RAG 파이프라인 (프레임워크 없음)<a hidden class="anchor" aria-hidden="true" href="#직접-rag-파이프라인-프레임워크-없음">#</a></h3>
+</span></span></code></pre></div><h3 id="direct-rag-pipeline-no-framework">Direct RAG Pipeline (No Framework)<a hidden class="anchor" aria-hidden="true" href="#direct-rag-pipeline-no-framework">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> psycopg2
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> openai <span style="color:#f92672">import</span> OpenAI
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
@@ -712,7 +684,7 @@ reserve_pool_size = 10
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>, (query_vec, tenant_id, query_vec, top_k))
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> cur<span style="color:#f92672">.</span>fetchall()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 전체 RAG 파이프라인</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Full RAG pipeline</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">rag_query</span>(user_question: str) <span style="color:#f92672">-&gt;</span> str: docs <span style="color:#f92672">=</span> retrieve_documents(user_question, top_k<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
 </span></span><span style="display:flex;"><span>    context <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>join([<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Title: </span><span style="color:#e6db74">{</span>d[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">{</span>d[<span style="color:#ae81ff">1</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#66d9ef">for</span> d <span style="color:#f92672">in</span> docs])
 </span></span><span style="display:flex;"><span>    
@@ -726,44 +698,44 @@ reserve_pool_size = 10
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> response<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>message<span style="color:#f92672">.</span>content
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>print(rag_query(<span style="color:#e6db74">&#34;What is pgvector used for?&#34;</span>))
-</span></span></code></pre></div><h2 id="프로덕션-강화">프로덕션 강화<a hidden class="anchor" aria-hidden="true" href="#프로덕션-강화">#</a></h2>
-<h3 id="다중-테넌트를-위한-행-수준-보안">다중 테넌트를 위한 행 수준 보안<a hidden class="anchor" aria-hidden="true" href="#다중-테넌트를-위한-행-수준-보안">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- RLS 활성화
+</span></span></code></pre></div><h2 id="production-hardening">Production Hardening<a hidden class="anchor" aria-hidden="true" href="#production-hardening">#</a></h2>
+<h3 id="row-level-security-for-multi-tenancy">Row-Level Security for Multi-Tenancy<a hidden class="anchor" aria-hidden="true" href="#row-level-security-for-multi-tenancy">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Enable RLS
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">ALTER</span> <span style="color:#66d9ef">TABLE</span> documents ENABLE <span style="color:#66d9ef">ROW</span> <span style="color:#66d9ef">LEVEL</span> <span style="color:#66d9ef">SECURITY</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 정책: 테넌트는 자신의 문서만 볼 수 있음
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Policy: tenants can only see their own documents
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> POLICY tenant_isolation <span style="color:#66d9ef">ON</span> documents
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">USING</span> (tenant_id <span style="color:#f92672">=</span> current_setting(<span style="color:#e6db74">&#39;app.current_tenant&#39;</span>)::INTEGER);
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 세션별 테넌트 설정
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Set tenant per session
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SET</span> app.current_tenant <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 이제 모든 쿼리가 자동으로 테넌트별로 필터링됨
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> documents;  <span style="color:#75715e">-- 테넌트 42의 문서만 표시
-</span></span></span></code></pre></div><h3 id="쿼리-성능-모니터링">쿼리 성능 모니터링<a hidden class="anchor" aria-hidden="true" href="#쿼리-성능-모니터링">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- 느린 벡터 쿼리 추적
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Now all queries automatically filter by tenant
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">FROM</span> documents;  <span style="color:#75715e">-- Only tenant 42&#39;s documents visible
+</span></span></span></code></pre></div><h3 id="monitoring-query-performance">Monitoring Query Performance<a hidden class="anchor" aria-hidden="true" href="#monitoring-query-performance">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#75715e">-- Track slow vector queries
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CREATE</span> EXTENSION <span style="color:#66d9ef">IF</span> <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">EXISTS</span> pg_stat_statements;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">-- 지연 시간별 상위 벡터 쿼리 찾기
+</span></span><span style="display:flex;"><span><span style="color:#75715e">-- Find top vector queries by latency
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> query, mean_exec_time, calls
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> pg_stat_statements
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">WHERE</span> query <span style="color:#66d9ef">LIKE</span> <span style="color:#e6db74">&#39;%&lt;-&gt;%&#39;</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> mean_exec_time <span style="color:#66d9ef">DESC</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">LIMIT</span> <span style="color:#ae81ff">10</span>;
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># postgresql.conf에서 pg_stat_statements 활성화</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Enable pg_stat_statements in postgresql.conf</span>
 </span></span><span style="display:flex;"><span>shared_preload_libraries <span style="color:#f92672">=</span> pg_stat_statements
 </span></span><span style="display:flex;"><span>pg_stat_statements.track <span style="color:#f92672">=</span> all
 </span></span><span style="display:flex;"><span>pg_stat_statements.max <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000</span>
-</span></span></code></pre></div><h3 id="pg_dump를-사용한-백업-벡터-포함">pg_dump를 사용한 백업 (벡터 포함)<a hidden class="anchor" aria-hidden="true" href="#pg_dump를-사용한-백업-벡터-포함">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 벡터 데이터를 포함한 전체 백업</span>
+</span></span></code></pre></div><h3 id="backup-with-pg_dump-vectors-included">Backup with pg_dump (Vectors Included)<a hidden class="anchor" aria-hidden="true" href="#backup-with-pg_dump-vectors-included">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Full backup including vector data</span>
 </span></span><span style="display:flex;"><span>pg_dump -h localhost -U postgres -d vectordb -Fc &gt; vectordb_backup.dump
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 복원</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Restore</span>
 </span></span><span style="display:flex;"><span>pg_restore -h localhost -U postgres -d vectordb_restore vectordb_backup.dump
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 벡터는 텍스트 배열로 백업되고 정확하게 복원됨</span>
-</span></span></code></pre></div><h3 id="높은-qps를-위한-연결-모범-사례">높은 QPS를 위한 연결 모범 사례<a hidden class="anchor" aria-hidden="true" href="#높은-qps를-위한-연결-모범-사례">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 프로덕션 워크로드를 위한 연결 풀링 사용</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Vectors are backed up as text arrays and restored correctly</span>
+</span></span></code></pre></div><h3 id="connection-best-practices-for-high-qps">Connection Best Practices for High QPS<a hidden class="anchor" aria-hidden="true" href="#connection-best-practices-for-high-qps">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Use connection pooling for production workloads</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> psycopg2 <span style="color:#f92672">import</span> pool
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>conn_pool <span style="color:#f92672">=</span> pool<span style="color:#f92672">.</span>ThreadedConnectionPool(
@@ -783,194 +755,124 @@ reserve_pool_size = 10
 </span></span><span style="display:flex;"><span>        )
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> cur<span style="color:#f92672">.</span>fetchall()
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">finally</span>: conn_pool<span style="color:#f92672">.</span>putconn(conn)
-</span></span></code></pre></div><h2 id="대안과의-비교">대안과의 비교<a hidden class="anchor" aria-hidden="true" href="#대안과의-비교">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>기능</th>
-					<th>pgvector 0.8.2</th>
-					<th>Pinecone</th>
-					<th>Weaviate 1.25</th>
-					<th>Qdrant 1.11</th>
-					<th>Milvus 2.5</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>오픈소스</strong></td>
-					<td>PostgreSQL 라이선스</td>
-					<td>아니오</td>
-					<td>BSD-3</td>
-					<td>Apache-2.0</td>
-					<td>Apache-2.0</td>
-			</tr>
-			<tr>
-					<td><strong>최대 규모</strong></td>
-					<td>~5000만 벡터</td>
-					<td>무제한</td>
-					<td>200M/노드</td>
-					<td>500M/노드</td>
-					<td><strong>10B+</strong></td>
-			</tr>
-			<tr>
-					<td><strong>p99 지연 시간</strong></td>
-					<td>25-40 ms</td>
-					<td>28 ms</td>
-					<td>19 ms</td>
-					<td><strong>12 ms</strong></td>
-					<td>8 ms (GPU)</td>
-			</tr>
-			<tr>
-					<td><strong>ACID 준수</strong></td>
-					<td><strong>전체</strong></td>
-					<td>아니오</td>
-					<td>부분</td>
-					<td>아니오</td>
-					<td>아니오</td>
-			</tr>
-			<tr>
-					<td><strong>SQL 인터페이스</strong></td>
-					<td><strong>네이티브</strong></td>
-					<td>아니오</td>
-					<td>GraphQL</td>
-					<td>아니오</td>
-					<td>아니오 (gRPC)</td>
-			</tr>
-			<tr>
-					<td><strong>관리형 옵션</strong></td>
-					<td>Supabase/Neon/RDS</td>
-					<td>네이티브</td>
-					<td>Weaviate Cloud</td>
-					<td>Qdrant Cloud</td>
-					<td>Zilliz Cloud</td>
-			</tr>
-			<tr>
-					<td><strong>하이브리드 검색</strong></td>
-					<td>FTS + vector</td>
-					<td>네이티브</td>
-					<td><strong>최고</strong></td>
-					<td>BM42</td>
-					<td>네이티브</td>
-			</tr>
-			<tr>
-					<td><strong>셀프 호스팅 비용</strong></td>
-					<td><strong>$0 (기존 PG 사용)</strong></td>
-					<td>N/A</td>
-					<td>$320/M/월</td>
-					<td>$280/M/월</td>
-					<td>$400/M/월</td>
-			</tr>
-			<tr>
-					<td><strong>설정 복잡성</strong></td>
-					<td><strong>확장 설치</strong></td>
-					<td>API 키</td>
-					<td>클러스터</td>
-					<td>바이너리</td>
-					<td>Kubernetes</td>
-			</tr>
-			<tr>
-					<td><strong>GPU 인덱싱</strong></td>
-					<td>아니오</td>
-					<td>아니오</td>
-					<td>아니오</td>
-					<td>아니오 (1.12 예정)</td>
-					<td><strong>예</strong></td>
-			</tr>
-	</tbody>
-</table>
-<p><strong>pgvector를 선택해야 할 때:</strong></p>
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
+<p>| Feature | pgvector 0.8.2 | Pinecone | Weaviate 1.25 | Qdrant 1.11 | Milvus 2.5 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Open Source</strong> | PostgreSQL License | No | BSD-3 | Apache-2.0 | Apache-2.0 |
+| <strong>Max Scale</strong> | ~50M vectors | Unlimited | 200M/node | 500M/node | <strong>10B+</strong> |
+| <strong>p99 Latency</strong> | 25-40 ms | 28 ms | 19 ms | <strong>12 ms</strong> | 8 ms (GPU) |
+| <strong>ACID Compliant</strong> | <strong>Full</strong> | No | Partial | No | No |
+| <strong>SQL Interface</strong> | <strong>Native</strong> | No | GraphQL | No | No (gRPC) |
+| <strong>Managed Option</strong> | Supabase/Neon/RDS | Native | Weaviate Cloud | Qdrant Cloud | Zilliz Cloud |
+| <strong>Hybrid Search</strong> | FTS + vector | Native | <strong>Best</strong> | BM42 | Native |
+| <strong>Self-Host Cost</strong> | <strong>$0 (use existing PG)</strong> | N/A | $320/M/mo | $280/M/mo | $400/M/mo |
+| <strong>Setup Complexity</strong> | <strong>Extension install</strong> | API key | Cluster | Binary | Kubernetes |
+| <strong>GPU Indexing</strong> | No | No | No | No (1.12 soon) | <strong>Yes</strong> |</p>
+<p><strong>When to choose pgvector:</strong></p>
 <ul>
-<li>이미 애플리케이션 데이터용 PostgreSQL을 실행 중이다.</li>
-<li>벡터 데이터셋이 <strong>5000만 벡터 이하</strong>로 유지된다.</li>
-<li>단일 시스템에서 ACID 트랜잭션과 벡터 검색이 하드 요구사항이다.</li>
-<li>팀이 SQL을 알고 새로운 쿼리 언어를 배우고 싶어하지 않는다.</li>
-<li>가능한 한 낮은 인프라 비용을 원한다 (별도의 데이터베이스 없음).</li>
+<li>You already run PostgreSQL for your application data.</li>
+<li>Your vector dataset stays under <strong>50 million vectors</strong>.</li>
+<li>ACID transactions and vector search in a single system is a hard requirement.</li>
+<li>Your team knows SQL and doesn&rsquo;t want to learn a new query language.</li>
+<li>You want the lowest possible infrastructure cost (no separate database).</li>
 </ul>
-<p><strong>전용 벡터 데이터베이스를 선택해야 할 때:</strong></p>
+<p><strong>When to choose a dedicated vector database:</strong></p>
 <ul>
-<li><strong>Pinecone</strong>: 제로 운영, 관리형 전용 선호.</li>
-<li><strong>Weaviate</strong>: 네이티브 하이브리드 검색 (BM25 + 벡터)이 중요.</li>
-<li><strong>Qdrant</strong>: 원시 지연이 최우선, p99 &lt; 12ms 필요.</li>
-<li><strong><a href="dibi8-internal-link">Milvus</a></strong>: 10억 규모, GPU 가속, Kubernetes 네이티브.</li>
+<li><strong>Pinecone</strong>: Zero-ops, managed-only preference.</li>
+<li><strong>Weaviate</strong>: Native hybrid search (BM25 + vector) is critical.</li>
+<li><strong>Qdrant</strong>: Raw latency is paramount, &lt;12ms p99 required.</li>
+<li><strong><a href="dibi8-internal-link">Milvus</a></strong>: Billion-scale, GPU-accelerated, Kubernetes-native.</li>
 </ul>
-<h2 id="한계-정직한-평가">한계: 정직한 평가<a hidden class="anchor" aria-hidden="true" href="#한계-정직한-평가">#</a></h2>
-<p><strong>단일 노드만:</strong> pgvector는 단일 PostgreSQL 인스턴스 낶部에서 실행된다. 네이티브 분산 모드가 없다. 사용 가능한 RAM을 초과하는 데이터셋의 경우 성능이 크게 저하된다. 5000만 벡터 이상에서는 전용 벡터 데이터베이스를 고려하라.</p>
-<p><strong>HNSW 빌드는 단일 스레드:</strong> pgvector 0.8.2 기준, HNSW 인덱스 빌드는 하나의 CPU 코어만 사용한다. 1000만 벡터의 경우 <strong>20-30분</strong>이 소요될 수 있다. <code>max_parallel_maintenance_workers</code> 설정은 HNSW 빌드를 가속화하지 않는다.</p>
-<p><strong>쿼리 지연 시간이 더 높음:</strong> 25-40ms의 p99 지연 시간은 대부분의 RAG 애플리케이션에서 수용 가능하다 (LLM 추론이 1-5초로 지배하기 때문이지만), Qdrant (~12ms)나 Milvus GPU (~8ms)와 같은 전용 벡터 데이터베이스보다 느리다.</p>
-<p><strong>네이티브 희소 벡터 없음:</strong> Weaviate나 Qdrant와 달리, pgvector는 하이브리드 키워드+의미 검색을 위한 일급 희소 벡터 지원이 없다. PostgreSQL의 전문 검색과 수동으로 결합해야 한다.</p>
-<p><strong>공유 리소스에 대한 메모리 압력:</strong> 벡터 인덱스는 OLTP 쿼리를 서비스할 수 있는 상당한 RAM을 소비한다. 공유 PostgreSQL 인스턴스에서 사용 가능한 메모리의 <strong>인덱스 크기의 2-3배</strong>를 계획하라.</p>
-<h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
-<h3 id="pgvector는-얼마나-많은-벡터를-처리할-수-있나요">pgvector는 얼마나 많은 벡터를 처리할 수 있나요?<a hidden class="anchor" aria-hidden="true" href="#pgvector는-얼마나-많은-벡터를-처리할-수-있나요">#</a></h3>
-<p>적절히 크기가 조정된 PostgreSQL 인스턴스 (64GB+ RAM, 빠른 NVMe 스토리지)에서 pgvector는 <strong>5000만 벡터</strong>를 편안하게 처리한다. 1억 벡터에서는 운영 마찰이 증가한다 — 쿼리가 느려지고 인덱스 유지보수가 비싸진다. 1억 이상의 데이터셋의 경우 <a href="dibi8-internal-link">Milvus</a>나 Qdrant가 더 나은 선택이다. 1000만 벡터 (1536 차원)의 단일 HNSW 인덱스는 약 <strong>45 GB</strong>의 디스크를 차지한다.</p>
-<h3 id="pgvector에-어떤-postgresql-버전이-필요한가요">pgvector에 어떤 PostgreSQL 버전이 필요한가요?<a hidden class="anchor" aria-hidden="true" href="#pgvector에-어떤-postgresql-버전이-필요한가요">#</a></h3>
-<p>pgvector 0.8.2는 <strong>PostgreSQL 14 ~ 18</strong>을 지원한다. 프로덕션 배포에는 <strong>PostgreSQL 18</strong>을 사용하라 — 벡터 워크로드에 도움이 되는 병렬 쿼리 실행 최적화가 포함되어 있다. 관리형 플랫폼에서 Supabase, Neon, AWS RDS, Google Cloud SQL은 모두 최신 PostgreSQL 버전에서 pgvector를 지원한다.</p>
-<h3 id="hnsw와-ivfflat-인덱스-사이에서-어떻게-선택하나요">HNSW와 IVFFlat 인덱스 사이에서 어떻게 선택하나요?<a hidden class="anchor" aria-hidden="true" href="#hnsw와-ivfflat-인덱스-사이에서-어떻게-선택하나요">#</a></h3>
-<p>기본적으로 <strong>HNSW</strong>를 사용하라. 더 나은 리콜 (~95%)과 더 낮은 쿼리 지연 시간을 제공한다. 다음 경우에만 <strong>IVFFlat</strong>을 사용하라: (a) 인덱스 빌드 시간이 중요, (b) 심각한 메모리 제약, 또는 (c) 벡터가 거의 변경되지 않음. 대부분의 RAG 애플리케이션에서 <code>m=16</code> 및 <code>ef_construction=64</code>를 가진 HNSW가 올바른 시작점이다.</p>
-<h3 id="pgvector를-관리형-postgresql-서비스와-함께-사용할-수-있나요">pgvector를 관리형 PostgreSQL 서비스와 함께 사용할 수 있나요?<a hidden class="anchor" aria-hidden="true" href="#pgvector를-관리형-postgresql-서비스와-함께-사용할-수-있나요">#</a></h3>
-<p>예. pgvector는 다음에서 사용 가능하다: - <strong>Supabase</strong> — 사전 설치됨, <code>CREATE EXTENSION vector;</code>만 실행하면 됨</p>
+<h2 id="limitations-honest-assessment">Limitations: Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations-honest-assessment">#</a></h2>
+<p><strong>Single-node only:</strong> pgvector runs inside a single PostgreSQL instance. There is no native distributed mode. For datasets exceeding available RAM, performance degrades significantly. At &gt;50M vectors, consider a dedicated vector database.</p>
+<p><strong>HNSW build is single-threaded:</strong> As of pgvector 0.8.2, HNSW index builds use only one CPU core. For 10M vectors, this can take <strong>20-30 minutes</strong>. The <code>max_parallel_maintenance_workers</code> setting does not accelerate HNSW builds.</p>
+<p><strong>Query latency is higher:</strong> p99 latency of 25-40ms is acceptable for most RAG applications (where LLM inference dominates at 1-5 seconds), but it is slower than dedicated vector databases like Qdrant (~12ms) or Milvus GPU (~8ms).</p>
+<p><strong>No native sparse vectors:</strong> Unlike Weaviate or Qdrant, pgvector does not have first-class sparse vector support for hybrid keyword+semantic search. You must combine with PostgreSQL&rsquo;s full-text search manually.</p>
+<p><strong>Memory pressure on shared resources:</strong> Vector indexes consume significant RAM that could otherwise serve OLTP queries. On a shared PostgreSQL instance, plan for <strong>2-3x the index size</strong> in available memory.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<h3 id="how-many-vectors-can-pgvector-handle">How many vectors can pgvector handle?<a hidden class="anchor" aria-hidden="true" href="#how-many-vectors-can-pgvector-handle">#</a></h3>
+<p>pgvector comfortably handles up to <strong>50 million vectors</strong> on a properly sized PostgreSQL instance (64GB+ RAM, fast NVMe storage). At 100M vectors, operational friction increases — queries slow and index maintenance becomes expensive. For datasets beyond 100M, <a href="dibi8-internal-link">Milvus</a> or Qdrant are better choices. A single HNSW index of 10M vectors (1536 dimensions) occupies approximately <strong>45 GB</strong> on disk.</p>
+<h3 id="what-postgresql-version-do-i-need-for-pgvector">What PostgreSQL version do I need for pgvector?<a hidden class="anchor" aria-hidden="true" href="#what-postgresql-version-do-i-need-for-pgvector">#</a></h3>
+<p>pgvector 0.8.2 supports <strong>PostgreSQL 14 through 18</strong>. For production deployments, use <strong>PostgreSQL 18</strong> — it includes optimizations for parallel query execution that benefit vector workloads. On managed platforms, Supabase, Neon, AWS RDS, and Google Cloud SQL all support pgvector on their latest PostgreSQL versions.</p>
+<h3 id="how-do-i-choose-between-hnsw-and-ivfflat-indexes">How do I choose between HNSW and IVFFlat indexes?<a hidden class="anchor" aria-hidden="true" href="#how-do-i-choose-between-hnsw-and-ivfflat-indexes">#</a></h3>
+<p>Use <strong>HNSW</strong> as the default. It provides better recall (~95%) and lower query latency. Use <strong>IVFFlat</strong> only when: (a) index build time is critical, (b) you have severe memory constraints, or (c) your vectors rarely change. For most RAG applications, HNSW with <code>m=16</code> and <code>ef_construction=64</code> is the right starting point.</p>
+<h3 id="can-i-use-pgvector-with-managed-postgresql-services">Can I use pgvector with managed PostgreSQL services?<a hidden class="anchor" aria-hidden="true" href="#can-i-use-pgvector-with-managed-postgresql-services">#</a></h3>
+<p>Yes. pgvector is available on: - <strong>Supabase</strong> — pre-installed, just run <code>CREATE EXTENSION vector;</code></p>
 <ul>
-<li><strong>Neon</strong> — 모든 플랜에서 지원, 묶티어 포함</li>
-<li><strong>AWS RDS</strong> — PostgreSQL 15+에서 사용 가능</li>
-<li><strong>Google Cloud SQL</strong> — PostgreSQL 15+에서 사용 가능</li>
-<li><strong>Azure Database for PostgreSQL</strong> — 벡터 확장 지원</li>
+<li><strong>Neon</strong> — supported on all plans, including free tier</li>
+<li><strong>AWS RDS</strong> — available on PostgreSQL 15+</li>
+<li><strong>Google Cloud SQL</strong> — available on PostgreSQL 15+</li>
+<li><strong>Azure Database for PostgreSQL</strong> — supported with vector extension</li>
 </ul>
-<p>인프라 변경이 필요 없다 — 이는 표준 PostgreSQL 확장이다.</p>
-<h3 id="pgvector는-필터링된-벡터-검색을-지원하나요">pgvector는 필터링된 벡터 검색을 지원하나요?<a hidden class="anchor" aria-hidden="true" href="#pgvector는-필터링된-벡터-검색을-지원하나요">#</a></h3>
-<p>예, 그리고 이것이 pgvector가 전용 벡터 데이터베이스보다 뛰어난 부분이다. 벡터 데이터가 PostgreSQL에 있기 때문에 벡터 유사성과 함께 모든 SQL <code>WHERE</code> 절을 적용할 수 있다: `````sql
+<p>No infrastructure changes are needed — it is a standard PostgreSQL extension.</p>
+<h3 id="does-pgvector-support-filtered-vector-search">Does pgvector support filtered vector search?<a hidden class="anchor" aria-hidden="true" href="#does-pgvector-support-filtered-vector-search">#</a></h3>
+<p>Yes, and this is where pgvector excels over dedicated vector databases. Because vector data lives in PostgreSQL, you can apply any SQL <code>WHERE</code> clause alongside vector similarity: `````sql
 SELECT title, embedding &lt;-&gt; $1::vector AS distance
 FROM documents
 WHERE tenant_id = 42
 AND created_at &gt; NOW() - INTERVAL &lsquo;7 days&rsquo;
-AND metadata @&gt; &lsquo;{&ldquo;status&rdquo;: &ldquo;published&rdquo;}&quot;
+AND metadata @&gt; &lsquo;{&ldquo;status&rdquo;: &ldquo;published&rdquo;}&rsquo;
 ORDER BY embedding &lt;-&gt; $1::vector
 LIMIT 10;</p>
 <pre tabindex="0"><code>
-PostgreSQL의 플래너는 HNSW 순회 중 ````WHERE```` 술어를 푸시다운하여 이를 최적화한다.
+PostgreSQL&#39;s planner optimizes this by pushing down the ````WHERE```` predicates during HNSW traversal.
 
-### 내 워크로드에 맞게 HNSW를 어떻게 튜닝하나요?
+### How do I tune HNSW for my workload?
 
-두 가지 핵심 파라미터: - ````ef_construction```` (기본값 64): 높을수록 = 인덱스 품질이 더 좋지만 빌드가 더 느림. 프로덕션 RAG의 경우 **128-256** 사용.
-- ````ef_search```` (기본값 40): 높을수록 = 리콜이 더 좋지만 쿼리가 더 느림. 리콜을 벤치마크하고 **64-100**으로 설정.
+The two key parameters are: - ````ef_construction```` (default 64): Higher = better index quality, slower builds. For production RAG, use **128-256**.
+- ````ef_search```` (default 40): Higher = better recall, slower queries. Benchmark your recall and set to **64-100**.
 
 `````sql
--- ef_search 값 벤치마크
+-- Benchmark ef_search values
 SET hnsw.ef_search = 64;
 EXPLAIN ANALYZE SELECT ... ORDER BY embedding &lt;-&gt; $1 LIMIT 10;
 
 SET hnsw.ef_search = 128;
 EXPLAIN ANALYZE SELECT ... ORDER BY embedding &lt;-&gt; $1 LIMIT 10;
-</code></pre><h2 id="결론-실용적인-선택">결론: 실용적인 선택<a hidden class="anchor" aria-hidden="true" href="#결론-실용적인-선택">#</a></h2>
-<p>pgvector 0.8.2는 이미 PostgreSQL을 실행 중인 팀을 위한 가장 실용적인 벡터 데이터베이스이다. 이미 운영 중인 데이터베이스를 벡터 검색 엔진으로 전환함으로써 인프라 복잡성을 제거한다. **1000만 벡터 이하로 유지되는 AI 워크로드의 70%**에 대해 튜닝된 HNSW 인덱스를 가진 pgvector는 10ms 미만의 쿼리, ACID 준수, SQL의 전체 기능을 제공한다 — 스택에 새 시스템을 추가하지 않고도.</p>
-<p><strong>다음 단계:</strong></p>
+</code></pre><h2 id="conclusion-the-pragmatic-choice">Conclusion: The Pragmatic Choice<a hidden class="anchor" aria-hidden="true" href="#conclusion-the-pragmatic-choice">#</a></h2>
+<p>pgvector 0.8.2 is the most pragmatic vector database for teams already running PostgreSQL. It eliminates infrastructure complexity by turning the database you already operate into a vector search engine. For the <strong>70% of AI workloads</strong> that stay under 10 million vectors, pgvector with a tuned HNSW index delivers sub-10ms queries, ACID compliance, and the full power of SQL — all without adding a new system to your stack.</p>
+<p><strong>Next steps:</strong></p>
 <ol>
-<li>기존 PostgreSQL 인스턴스에서 pgvector 활성화 (````CREATE EXTENSION vector;```).</li>
-<li>문서 테이블에 벡터 컬럼과 HNSW 인덱스 추가.</li>
-<li>임베딩을 로드하고 이 가이드의 튜닝 벤치마크 실행.</li>
-<li>프로덕션 RAG를 위해 LangChain이나 LlamaIndex와 통합.</li>
+<li>Enable pgvector on your existing PostgreSQL instance (````CREATE EXTENSION vector;```).</li>
+<li>Add a vector column and HNSW index to your documents table.</li>
+<li>Load your embeddings and run the tuning benchmarks from this guide.</li>
+<li>Integrate with LangChain or LlamaIndex for production RAG.</li>
 </ol>
-<p><a href="https://t.me/dibi8en">Telegram 커뮤니티</a>에 가입하여 pgvector 성능 수치를 공유하고 동료 엔지니어로부터 도움을 받아라.</p>
-<h2 id="출처-및-추가-자료">출처 및 추가 자료<a hidden class="anchor" aria-hidden="true" href="#출처-및-추가-자료">#</a></h2>
+<p>Join our <a href="https://t.me/dibi8en">Telegram community</a> to share your pgvector performance numbers and get help from fellow engineers.</p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading<a hidden class="anchor" aria-hidden="true" href="#sources--further-reading">#</a></h2>
 <ol>
-<li>pgvector GitHub 저장소 — <a href="https://github.com/pgvector/pgvector">https://github.com/pgvector/pgvector</a> (15,000+ Stars)</li>
-<li>pgvector 문서 — <a href="https://github.com/pgvector/pgvector?tab=readme-ov-file#pgvector">https://github.com/pgvector/pgvector?tab=readme-ov-file#pgvector</a></li>
-<li>PostgreSQL 18 릴리스 노트 — <a href="https://www.postgresql.org/docs/18/release-18.html">https://www.postgresql.org/docs/18/release-18.html</a></li>
-<li>Supabase Vector 문서 — <a href="https://supabase.com/docs/guides/ai">https://supabase.com/docs/guides/ai</a></li>
-<li>HNSW 논문 (Malkov &amp; Yashunin, 2018) — <a href="https://arxiv.org/abs/1603.09320">https://arxiv.org/abs/1603.09320</a></li>
-<li>pgvector HNSW 프로덕션 튜닝 튜토리얼 2026 — <a href="https://nerdleveltech.com/pgvector-hnsw-postgres-18-production-tuning-tutorial">https://nerdleveltech.com/pgvector-hnsw-postgres-18-production-tuning-tutorial</a></li>
-<li>2026 벡터 데이터베이스 벤치마크 — <a href="https://iotdigitaltwinplm.com/vector-database-benchmarks-2026/">https://iotdigitaltwinplm.com/vector-database-benchmarks-2026/</a></li>
+<li>pgvector GitHub Repository — <a href="https://github.com/pgvector/pgvector">https://github.com/pgvector/pgvector</a> (15,000+ stars)</li>
+<li>pgvector Documentation — <a href="https://github.com/pgvector/pgvector?tab=readme-ov-file#pgvector">https://github.com/pgvector/pgvector?tab=readme-ov-file#pgvector</a></li>
+<li>PostgreSQL 18 Release Notes — <a href="https://www.postgresql.org/docs/18/release-18.html">https://www.postgresql.org/docs/18/release-18.html</a></li>
+<li>Supabase Vector Docs — <a href="https://supabase.com/docs/guides/ai">https://supabase.com/docs/guides/ai</a></li>
+<li>HNSW Paper (Malkov &amp; Yashunin, 2018) — <a href="https://arxiv.org/abs/1603.09320">https://arxiv.org/abs/1603.09320</a></li>
+<li>pgvector HNSW Production Tuning Tutorial 2026 — <a href="https://nerdleveltech.com/pgvector-hnsw-postgres-18-production-tuning-tutorial">https://nerdleveltech.com/pgvector-hnsw-postgres-18-production-tuning-tutorial</a></li>
+<li>Vector Database Benchmarks 2026 — <a href="https://iotdigitaltwinplm.com/vector-database-benchmarks-2026/">https://iotdigitaltwinplm.com/vector-database-benchmarks-2026/</a></li>
 </ol>
-<h2 id="추천-호스팅-및-인프라">추천 호스팅 및 인프라<a hidden class="anchor" aria-hidden="true" href="#추천-호스팅-및-인프라">#</a></h2>
-<p>위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.</p>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-hosting--infrastructure">#</a></h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
 <ul>
-<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.</li>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
 </ul>
-<p><em>제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.</em></p>
-<h2 id="제휴-공개">제휴 공개<a hidden class="anchor" aria-hidden="true" href="#제휴-공개">#</a></h2>
-<p>이 문서에는 클라우드 호스팅을 위한 <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> 및 관리형 PostgreSQL을 위한 <a href="https://supabase.com">Supabase</a> 제휴 링크가 포함되어 있다. 우리 링크를 통해 가입하면 추가 비용 없이 커미션을 받는다. 우리는 자체 프로덕션 환경에서 사용하는 서비스만 추천한다.</p>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="affiliate-disclosure">Affiliate Disclosure<a hidden class="anchor" aria-hidden="true" href="#affiliate-disclosure">#</a></h2>
+<p>This article contains affiliate links to <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> for cloud hosting and <a href="https://supabase.com">Supabase</a> for managed PostgreSQL. If you sign up through our links, we receive a commission at no extra cost to you. We only recommend services we use in our own production environments.</p>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;pgvector 2026: PostgreSQL을 고성능 벡터 데이터베이스로 전환 — 설치, 튜닝 및 RAG 통합 가이드&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;pgvector 2026: Turn PostgreSQL into a High-Performance Vector Database — Setup, Tuning &amp; RAG Integration Guide&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;author&rdquo;: {
@@ -987,7 +889,7 @@ EXPLAIN ANALYZE SELECT ... ORDER BY embedding &lt;-&gt; $1 LIMIT 10;
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/pgvector-postgres-vector-extension%22">https://dibi8.com/kr/resources/pgvector-postgres-vector-extension"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/pgvector-postgres-vector-extension%22">https://dibi8.com/resources/pgvector-postgres-vector-extension"</a>
 }
 }
 </script></p>
@@ -1055,6 +957,81 @@ EXPLAIN ANALYZE SELECT ... ORDER BY embedding &lt;-&gt; $1 LIMIT 10;
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

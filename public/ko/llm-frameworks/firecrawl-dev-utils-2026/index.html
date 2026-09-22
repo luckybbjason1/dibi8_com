@@ -81,8 +81,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-02T00:00:00+08:00 lastmod: 2026-06-02T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: AGPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-06-02” draft: false categories: [“dev-utils”] tags: [\"] aliases:\n/posts/firecrawl-dev-utils-2026/ faqs: - q: ‘Firecrawl은 어떻게 설치하나요?’ a: ‘공식 SDK 중 하나를 설치하면 됩니다. Node.js: bash npm install firecrawl Python: bash pip install firecrawl-py 그런 다음 firecrawl.dev\"에서 받은 API 키로 클라이언트를 생성하세요.’ q: ‘TypeScript 외의 언어로도 Firecrawl을 쓸 수 있나요?’ a: ‘네. Firecrawl은 HTTP API이므로 어떤 언어든 호출할 수 있습니다. Node.js와 Python용 공식 SDK가 있으며, 그 외 언어에서는 임의의 HTTP 클라이언트로 REST 엔드포인트를 직접 호출할 수 있습니다.’ q: ‘반드시 호스팅형 API를 써야 하나요, 아니면 셀프 호스팅할 수 있나요?’ a: ‘둘 다 지원합니다. api.firecrawl.dev의 호스팅형 API가 가장 빠른 시작 방법이지만, 프로젝트 자체가 오픈소스이고 Docker Compose 설정을 함께 제공하므로 전체를 자체 서버에서 돌릴 수 있습니다.’ q: ‘scrape, crawl, map의 차이는 무엇인가요?’ a: ‘scrape는 단일 URL을 처리합니다. crawl은 링크를 따라가 사이트 전체를 비동기로 스크래핑합니다. map은 콘텐츠를 스크래핑하지 않고 사이트의 URL 목록만 반환합니다 — 크롤링 계획에 유용합니다.’ q: ‘Firecrawl은 무료인가요? 라이선스는 무엇인가요?’ a: ‘소스 코드는 AGPL-3.0로 무료이며 오픈소스이고, 공식 SDK와 UI 컴포넌트는 MIT입니다. 호스팅형 클라우드 API는 무료 티어와 더 높은 사용량을 위한 유료 요금제를 제공합니다. 셀프 호스팅하는 경우 실행에 드는 인프라 비용은 직접 부담합니다.’ Firecrawl: 어떤 웹사이트든 LLM이 바로 쓸 데이터로 (127K Stars) — 2026 실전 가이드 들어가며 웹 페이지를 LLM에 넣어 본 적이 있다면 그 고통을 알 것입니다. 원시 HTML은 내비게이션 바, 광고, 스크립트, 깨진 레이아웃으로 가득 차 토큰을 낭비하고 모델을 혼란스럽게 만듭니다. Firecrawl은 바로 이 문제를 해결합니다. 임의의 URL — 혹은 웹사이트 전체 — 을 받아 LLM이 바로 쓸 수 있는 깔끔한 마크다운, 구조화 JSON, 또는 스크린샷으로 돌려주는 오픈소스 웹 데이터 API입니다. GitHub stars 127,000개가 넘는 이 도구는 웹을 AI 앱이 실제로 쓸 수 있는 데이터로 바꾸는 작업에서 가장 인기 있는 도구 중 하나가 되었습니다. 이 가이드에서는 Firecrawl이 무엇을 하는지, 어떻게 설치하는지, 실제로 동작하는 코드, 셀프 호스팅, 그리고 흔한 대안들과의 비교를 살펴봅니다.\nfirecrawl overview (source: firecrawl/firecrawl repo, via dibi8 analysis)\nFirecrawl이란? Firecrawl은 웹사이트를 대규모로 검색·스크래핑·크롤링하기 위한 웹 데이터 API로, 명확하게 LLM이 바로 쓸 수 있는 출력을 만들어 내는 것을 목표로 합니다. 원시 HTML을 그대로 돌려주는 대신, 까다로운 부분 — JavaScript 렌더링, 프록시, 안티봇 대응, 콘텐츠 정리 — 을 알아서 처리하고 마크다운이나 구조화 JSON을 건네줍니다.\n제공 방식은 두 가지입니다. 호스팅형 클라우드 API(주소 ```api.firecrawl.dev````, 가입 후 API 키 발급)와 Docker로 직접 셀프 호스팅할 수 있는 완전 오픈소스 버전입니다. 핵심 코드는 AGPL-3.0 라이선스이고, 공식 SDK와 UI 컴포넌트는 MIT 라이선스입니다. GitHub stars 127,000개 이상에 Firecrawl 팀의 활발한 유지보수까지 더해져, 프로덕션 AI 데이터 파이프라인을 위한 든든한 선택지입니다.\nFirecrawl의 동작 방식 Firecrawl은 각각 하나의 일만 처리하는 소수의 엔드포인트를 제공합니다. Bearer API 키(fc-... 형식)로 인증한 뒤, 필요한 것을 호출하면 됩니다: 1. Scrape(스크래핑) — 단일 URL을 마크다운, HTML, 스크린샷, 또는 구조화 JSON으로 변환합니다. Firecrawl이 JavaScript를 렌더링하고 군더더기를 제거해 줍니다.\nCrawl(크롤링) — URL 하나만 주면 Firecrawl이 robots.txt를 준수하면서 사이트 내 도달 가능한 모든 페이지를 찾아 스크래핑합니다. 크롤링은 비동기로 진행됩니다. 작업을 시작한 뒤 결과를 폴링합니다.\nMap(매핑) — 사이트의 모든 URL을 즉시 반환합니다. 크롤링 계획을 세우거나 사이트맵을 만들 때 유용합니다.\nSearch(검색) — 웹에 질의해 단순 링크가 아니라 결과 페이지의 전체 콘텐츠를 받아 옵니다.\nInteract \u0026 Extract(상호작용 및 추출) — 스크래핑 전에 페이지에서 동작(클릭, 스크롤, 입력)을 수행하고, 직접 정의한 스키마에 맞춰 구조화 데이터를 뽑아냅니다.\nNode SDK로 가장 간단한 스크래핑을 하면 이렇게 됩니다: `````typescript import { Firecrawl } from firecrawl;\nconst app = new Firecrawl({ apiKey: ‘fc-YOUR_API_KEY’ });\nconst doc = await app.scrape(‘https://example.com’, { formats: [markdown], });\nconsole.log(doc.markdown);\nFirecrawl은 큰 커뮤니티가 뒷받침하는 성숙한 오픈소스 프로젝트이며, 이는 GitHub의 127k+ stars 수에서 잘 드러납니다. ![firecrawl architecture, via dibi8.com](https://raw.githubusercontent.com/firecrawl/firecrawl/main/img/firecrawl_logo.png) *firecrawl architecture (source: firecrawl/firecrawl repo, via dibi8 analysis)* ## 설치 및 설정 대부분의 사용자에게 가장 빠른 길은 호스팅형 API입니다. [firecrawl.dev](https://firecrawl.dev)에서 가입하고 API 키를 받은 뒤 SDK를 설치하세요. 직접 셀프 호스팅하려면 항상 켜져 있는 서버가 필요합니다 — [DigitalOcean](https://m.do.co/c/eca87ac14ee0)에서 하나 띄우거나(신규 계정 무료 체험 크레딧 제공), 저지연 홍콩 VPS인 [HTStack](https://my.htstack.com/aff.php?aff=27187)을 선택하세요(dibi8.com을 호스팅하는 바로 그 IDC입니다). ### Node.js SDK `````bash npm install firecrawl import { Firecrawl } from firecrawl; const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' }); Python SDK pip install firecrawl-py from firecrawl import Firecrawl app = Firecrawl(api_key=\"fc-YOUR_API_KEY\") Docker로 셀프 호스팅하기 Firecrawl을 자체 인프라에서 돌리고 싶다면, 저장소를 클론하고 함께 제공되는 Docker Compose 설정을 사용하세요: `````bash git clone https://github.com/firecrawl/firecrawl.git cd firecrawl docker compose up\n이렇게 하면 API와 워커가 함께 뜹니다. API는 기본적으로 ``3002`` 포트를 수신하므로 ``http://localhost:3002``로 접근할 수 있습니다. SDK를 셀프 호스팅 인스턴스로 향하게 하려면 API 주소만 설정하면 됩니다: `````typescript const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY', apiUrl: 'http://localhost:3002', }); 구성 셀프 호스팅은 환경 변수로 구성합니다. 제공된 템플릿을 복사해 편집하세요: `````bash cp apps/api/.env.example apps/api/.env\n흔히 설정하는 키로는 ````PORT````, ````NUM_WORKERS_PER_QUEUE````, 그리고 프록시·렌더링용 선택 통합 항목이 있습니다. 전체 목록은 저장소의 셀프 호스팅 가이드를 참고하세요. 호스팅형 API를 쓰면 이 모든 과정을 건너뛸 수 있습니다 — 반드시 설정해야 할 것은 API 키뿐입니다. ## 핵심 사용법 아래는 Node SDK를 사용한, 호스팅형 API에 대한 가장 일반적인 작업들입니다. Python SDK도 메서드가 일대일로 대응됩니다. ### 단일 페이지 스크래핑 `````typescript import { Firecrawl } from firecrawl; const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' }); const doc = await app.scrape('https://example.com', { formats: [markdown, html], }); console.log(doc.markdown); 사이트 전체 크롤링 crawl은 도달 가능한 모든 페이지를 찾아 스크래핑합니다. 페이지 수에 상한을 두거나 탐색 깊이를 제한할 수 있습니다: `````typescript const result = await app.crawl(‘https://example.com’, { limit: 100, scrapeOptions: { formats: [markdown] }, });\nfor (const page of result.data) { console.log(page.metadata?.sourceURL, page.markdown?.slice(0, 80)); }\n### 구조화 데이터 추출 JSON 스키마를 전달하면 Firecrawl은 원시 텍스트 대신 타입이 지정된 데이터를 반환합니다 — 제목, 가격 등 고정된 필드를 뽑아낼 때 이상적입니다: `````typescript const doc = await app.scrape('https://example.com', { formats: [{ type: json, schema: { type: object, properties: { title: { type: string }, description: \"Technical guide and comparison.\" }, }, }], }); console.log(doc.json); 자세한 내용은 공식 문서를 확인하세요.\n통합 Firecrawl은 본질적으로 얇은 SDK를 곁들인 HTTP API에 불과하므로 거의 모든 스택에 녹아듭니다 — Next.js, Express, Python 데이터 파이프라인, 혹은 Firecrawl이 문서 로더 역할을 하는 LangChain / LlamaIndex RAG 앱까지.\n서버 라우트에서 사용하기 전형적인 패턴은 스크래핑을 자신의 엔드포인트 뒤에 감싸는 것입니다: `````typescript import { Firecrawl } from firecrawl;\nconst app = new Firecrawl({ apiKey: process.env.FIRECRAWL_API_KEY });\nexport async function scrapeHandler(url: string) { const doc = await app.scrape(url, { formats: [markdown] }); return doc.markdown; }\n### CI/CD에서 예약 크롤링 실행 반복 작업이라면 GitHub Actions, GitLab CI, 또는 임의의 스케줄러에서 Firecrawl을 실행하세요. 다음은 push마다 한 페이지를 스크래핑해 마크다운으로 저장하는 간단한 GitHub Actions 워크플로입니다: `````yaml name: Firecrawl Scraper on: push: branches: [ main ] jobs: scrape: runs-on: ubuntu-latest steps: - name: Checkout code uses: actions/checkout@v4 - name: Set up Node.js uses: actions/setup-node@v4 with: node-version: 20 - name: Install dependencies run: npm install firecrawl - name: Run scraper env: FIRECRAWL_API_KEY: $ run: node scrape.js \u003e output.json 이렇게 하면 스크래핑 작업이 자동화되고 재현 가능해지며, API 키는 코드가 아니라 저장소 secrets에 보관됩니다.\n요약 Firecrawl의 API 우선 설계는 기존 프로젝트에 쉽게 추가할 수 있게 해 줍니다. RAG 파이프라인에 데이터를 공급하든, 일정에 맞춰 데이터셋을 갱신하든, 코드 몇 줄이면 끝납니다.\n벤치마크와 실제 활용 Firecrawl은 다양한 프로덕션 시나리오에서 쓰입니다. 아래 수치는 팀들이 돌리는 워크로드의 유형을 보여주기 위한 예시이며, 공식 벤더 벤치마크가 아닙니다.\n실제 사용 사례 RAG와 AI 검색에 데이터 공급 많은 팀이 Firecrawl을 검색 증강 생성(RAG)의 데이터 수집 계층으로 사용합니다. 문서 사이트나 지식 베이스를 크롤링해 깔끔한 마크다운을 얻고, 청크로 나눈 뒤 임베딩합니다. LLM이 바로 쓸 수 있는 출력 덕분에 원시 HTML 스크래핑에 으레 필요한 전처리의 대부분이 사라집니다.\n경쟁사 및 이커머스 모니터링 팀들은 일정에 맞춰 상품·가격 페이지를 크롤링해 카탈로그와 가격 비교 데이터를 최신으로 유지합니다. JavaScript 렌더링 덕분에 단일 페이지 애플리케이션(SPA) 형태의 매장도 별도 브라우저 자동화를 작성하지 않고 처리됩니다.\n대규모 SEO 및 콘텐츠 감사 에이전시는 대형 사이트를 크롤링해 페이지를 집계하고, 깨진 링크를 찾고, 오래된 콘텐츠를 표시합니다. 여기서는 map 엔드포인트가 유용합니다 — 더 깊은 크롤링에 착수하기 전에 전체 URL 목록을 먼저 확보할 수 있습니다.\n성능 참고 호스팅형 API의 처리량은 요금제의 동시성 한도, 그리고 대상 사이트 자체의 속도 제한과 안티봇 대응에 따라 달라집니다. 셀프 호스팅은 NUM_WORKERS_PER_QUEUE로 동시성을 조절할 수 있게 해 주지만, 그 대신 프록시와 렌더링 인프라를 직접 떠안아야 합니다. 경험칙으로, 크롤링 작업은 100밀리초 미만의 실시간 요청 계층으로 다루기보다 ‘분당 페이지 수’ 단위로 계획하세요.\nfirecrawl contributors (source: firecrawl/firecrawl repo, via dibi8 analysis)\n대안과의 비교 관련 오픈소스 도구 글도 함께 참고하세요.\nFirecrawl이 무엇이고 무엇이 아닌지를 분명히 해 두면 도움이 됩니다. Firecrawl은 LLM이 쓸 수 있는 출력에 초점을 둔 매니지드(또는 셀프 호스팅 가능) 웹 데이터 API입니다. Puppeteer는 브라우저 자동화 라이브러리, Scrapy는 Python 크롤링 프레임워크, Axios는 범용 HTTP 클라이언트입니다. ‘웹에서 데이터를 가져온다’는 점에서는 겹치지만, 서로 다른 계층에 자리합니다.\n특성 firecrawl/firecrawl Puppeteer Scrapy Axios Stars 127,747 ~90k ~55k ~107k 유형 웹 데이터 API 브라우저 자동화 라이브러리 크롤링 프레임워크 HTTP 클라이언트 언어 TypeScript JavaScript Python JavaScript 라이선스 AGPL-3.0 (SDK는 MIT) Apache-2.0 BSD-3-Clause MIT JS 렌더링 내장 예 (그 자체가 브라우저) 추가 구성 필요 없음 LLM 친화 출력 마크다운/JSON 내장 직접 구현 직접 구현 직접 구현 호스팅 옵션 있음 (클라우드 API) 없음 없음 없음 셀프 호스팅 있음 (Docker) 해당 없음 (라이브러리) 해당 없음 (라이브러리) 해당 없음 (라이브러리) 최적 용도 웹 → LLM 데이터 파이프라인 스크립트 기반 브라우저 작업 맞춤형 대규모 크롤링 단순 HTTP 호출 목표가 ‘최소한의 배관 작업으로 LLM에 줄 깔끔한 데이터’를 얻는 것이라면 Firecrawl이 단연 돋보입니다. 렌더링, 정리, 크롤링을 하나의 API 뒤에서 처리합니다. Puppeteer는 실제 브라우저를 완전히 통제하게 해 주지만 정리·큐잉·확장은 모두 직접 만들어야 합니다. Scrapy는 Python에 익숙하고 spider를 작성할 의향이 있다면 대규모 맞춤형 크롤링에 탁월합니다. Axios는 그저 HTTP 클라이언트입니다 — API를 호출하기엔 좋지만 렌더링도 추출도 하지 않습니다.\n최소한의 접착 코드로 ‘LLM이 쓸 수 있는 웹 데이터’를 원하는 개발자라면, 이 넷 중 Firecrawl이 가장 직접적인 선택지입니다.\n한계와 솔직한 평가 Firecrawl은 강력하지만 모든 작업에 맞는 것은 아닙니다: 1. 실시간 저지연 계층이 아닙니다: 크롤링은 결과를 폴링해야 하는 비동기 작업으로 실행되며, 단일 스크래핑조차 렌더링과 정리를 거칩니다. 모든 요청에서 100밀리초 미만이 필요하다면 앞단에 캐시를 두거나 아키텍처를 재고하세요.\n안티 스크래핑은 여전히 어렵습니다: Firecrawl은 다수의 안티봇 대응을 처리하고 프록시 옵션을 제공하지만, 강력한 보호나 공격적인 속도 제한을 둔 사이트를 확실히 우회하는 도구는 없습니다. 일부 대상은 차단하거나 throttling할 것을 예상하고, 각 사이트의 서비스 약관을 존중하세요.\n핵심은 AGPL-3.0: 호스팅형 API와 MIT 라이선스 SDK는 비공개 소스 앱에도 문제가 없지만, 셀프 호스팅하면서 AGPL-3.0 핵심을 수정하면 카피레프트 조항이 적용됩니다. fork한 핵심 위에 구축하기 전에 팀과 함께 라이선스를 검토하세요.\n호스팅 요금제의 비용과 할당량: 클라우드 API는 사용량 기반 과금입니다. 대규모 크롤링은 크레딧을 빠르게 소모하므로, 초대용량이라면 호스팅 비용을 셀프 호스팅의 운영 비용과 비교해야 합니다.\n컴플라이언스는 여전히 당신의 몫: Firecrawl은 스크래핑을 쉽게 만들어 주지만, 무엇을 스크래핑해도 되는지는 판단해 주지 않습니다. ````robots.txt```, 서비스 약관, 데이터 보호 규정을 준수하는 것은 당신의 책임입니다.\n이러한 트레이드오프 때문에, Firecrawl을 도입하기 전에 사용 사례를 신중히 평가할 가치가 있습니다.\n맺음말 Firecrawl은 열린 웹을 ‘LLM이 실제로 쓸 수 있는 데이터\"로 바꾸는 가장 실용적인 방법 중 하나로, GitHub stars 127k+와 활발한 팀이 뒷받침합니다. API 우선 설계 — scrape, crawl, map, search, extract — 덕분에 호스팅형 클라우드를 쓰든 Docker로 셀프 호스팅하든, 코드 몇 줄이면 URL 하나에서 깔끔한 마크다운까지 갈 수 있습니다. 자연스러운 다음 단계는 API 키를 받아, 관심 있는 페이지에 스크래핑을 한 번 돌려 정리된 출력을 직접 눈으로 확인하는 것입니다.\n대규모 스크래핑에는 회전형 프록시가 필요합니다 — WebShare가 업계 표준 선택지입니다.\n오픈소스 AI 도구 소식을 가장 먼저 받으려면 dibi8 영어 Telegram 그룹에 참여하세요. 다음 읽을거리: dibi8의 관련 가이드. 출처 및 더 읽을거리: - GitHub 저장소: https://github.com/firecrawl/firecrawl\n공식 문서: https://docs.firecrawl.dev 위 링크 중 일부는 제휴(affiliate) 링크입니다. 이를 통해 가입하시면 추가 비용 없이 dibi8.com이 일정 수수료를 받을 수 있습니다. 사이트 운영과 무료 콘텐츠 유지에 도움이 됩니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Firecrawl: 어떤 웹사이트든 LLM이 바로 쓸 데이터로 (127K Stars) — 2026 실전 가이드”, “datePublished”: “2026-06-02”, “dateModified”: “2026-06-02”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/firecrawl-dev-utils-2026\" } } ",
-  "wordCount" : "1871",
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-02T00:00:00+08:00 lastmod: 2026-06-02T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: AGPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-06-02” draft: false categories: [“dev-utils”] tags: [\"] aliases:\n/posts/firecrawl-dev-utils-2026/ faqs: - q: ‘Tôi cài Firecrawl như thế nào?’ a: ‘Hãy cài một trong các SDK chính thức. Với Node.js: bash npm install firecrawl Với Python: bash pip install firecrawl-py Sau đó tạo một client bằng API key lấy từ firecrawl.dev\".’ q: ‘Tôi có thể dùng Firecrawl với các ngôn ngữ khác ngoài TypeScript không?’ a: ‘Có. Firecrawl là một HTTP API, nên bất kỳ ngôn ngữ nào cũng có thể gọi nó. Có SDK chính thức cho Node.js và Python, và với các ngôn ngữ khác bạn có thể gọi trực tiếp các endpoint REST bằng một HTTP client bất kỳ.’ q: ‘Tôi bắt buộc phải dùng API được lưu trữ, hay có thể self-host?’ a: ‘Cả hai đều được hỗ trợ. API được lưu trữ tại api.firecrawl.dev là cách bắt đầu nhanh nhất, nhưng bản thân dự án là mã nguồn mở và đi kèm cấu hình Docker Compose, nên bạn có thể chạy toàn bộ trên máy chủ của riêng mình.’ q: ‘Sự khác biệt giữa scrape, crawl và map là gì?’ a: ‘scrape xử lý một URL. crawl đi theo các liên kết để scrape toàn bộ một website một cách bất đồng bộ. map chỉ trả về danh sách URL trên một site mà không scrape nội dung của chúng — hữu ích để lập kế hoạch crawl.’ q: ‘Firecrawl có miễn phí không, và giấy phép của nó là gì?’ a: ‘Mã nguồn miễn phí và mở theo AGPL-3.0, còn các SDK chính thức và thành phần UI theo MIT. API đám mây được lưu trữ có một bậc miễn phí cùng các gói trả phí cho mức dùng cao hơn. Nếu self-host, bạn tự chịu chi phí hạ tầng để vận hành.’ Firecrawl: Biến mọi website thành dữ liệu sẵn sàng cho LLM (127K Stars) — Hướng dẫn thực chiến 2026 Giới thiệu Nếu bạn từng thử đưa các trang web vào LLM, bạn hiểu nỗi khổ này: HTML thô đầy thanh điều hướng, quảng cáo, script và bố cục vỡ, vừa lãng phí token vừa làm rối mô hình. Firecrawl giải quyết đúng vấn đề đó. Đây là một API dữ liệu web mã nguồn mở, nhận bất kỳ URL nào — hoặc cả một website — và trả về Markdown sạch, JSON có cấu trúc, hoặc ảnh chụp màn hình, sẵn sàng cho LLM. Với hơn 127.000 sao trên GitHub, nó đã trở thành một trong những công cụ phổ biến nhất để biến web thành dữ liệu mà ứng dụng AI của bạn có thể dùng được thật sự. Hướng dẫn này sẽ đưa bạn qua: Firecrawl làm được gì, cách cài đặt, code chạy thực tế, self-host, và cách nó so với các lựa chọn thay thế quen thuộc.\nfirecrawl overview (source: firecrawl/firecrawl repo, via dibi8 analysis)\nFirecrawl là gì? Firecrawl là một API dữ liệu web để tìm kiếm, scrape và crawl website ở quy mô lớn, với mục tiêu rõ ràng là tạo ra đầu ra sẵn sàng cho LLM. Thay vì trả về HTML thô, nó xử lý những phần khó nhằn — render JavaScript, proxy, cơ chế chống bot và làm sạch nội dung — rồi đưa cho bạn Markdown hoặc JSON có cấu trúc.\nNó được cung cấp theo hai cách: một API đám mây được lưu trữ tại ```api.firecrawl.dev```` (bạn đăng ký để lấy API key), và một phiên bản mã nguồn mở hoàn toàn mà bạn có thể tự lưu trữ (self-host) bằng Docker. Phần lõi phát hành theo giấy phép AGPL-3.0, còn các SDK chính thức và thành phần UI dùng giấy phép MIT. Với hơn 127.000 sao GitHub và được đội ngũ Firecrawl bảo trì tích cực, đây là một lựa chọn đáng tin cậy cho các pipeline dữ liệu AI ở môi trường sản xuất.\nFirecrawl hoạt động thế nào Firecrawl phơi bày một nhóm nhỏ các endpoint, mỗi cái giải quyết đúng một việc. Bạn xác thực bằng Bearer API key (định dạng fc-...) và gọi cái mình cần: 1. Scrape — Chuyển một URL đơn lẻ thành Markdown, HTML, ảnh chụp màn hình, hoặc JSON có cấu trúc. Firecrawl render JavaScript và loại bỏ phần thừa giúp bạn.\nCrawl — Chỉ cần đưa một URL, Firecrawl sẽ khám phá và scrape mọi trang truy cập được trên website, đồng thời tôn trọng robots.txt. Crawl chạy bất đồng bộ: bạn khởi động một tác vụ rồi poll để lấy kết quả.\nMap — Trả về ngay lập tức tất cả URL trên một website, hữu ích để lập kế hoạch crawl hoặc dựng sitemap.\nSearch — Truy vấn web và nhận về toàn bộ nội dung trang của các kết quả, chứ không chỉ là liên kết.\nInteract \u0026 Extract — Thực hiện hành động trên trang (click, cuộn, gõ) trước khi scrape, và rút trích dữ liệu có cấu trúc theo schema bạn định nghĩa.\nMột lần scrape tối giản với Node SDK trông như sau: `````typescript import { Firecrawl } from firecrawl;\nconst app = new Firecrawl({ apiKey: ‘fc-YOUR_API_KEY’ });\nconst doc = await app.scrape(‘https://example.com’, { formats: [markdown], });\nconsole.log(doc.markdown);\nFirecrawl là một dự án mã nguồn mở trưởng thành với một cộng đồng lớn phía sau, điều này được phản ánh qua con số 127k+ sao trên GitHub. ![firecrawl architecture, via dibi8.com](https://raw.githubusercontent.com/firecrawl/firecrawl/main/img/firecrawl_logo.png) *firecrawl architecture (source: firecrawl/firecrawl repo, via dibi8 analysis)* ## Cài đặt và thiết lập Với hầu hết người dùng, con đường nhanh nhất là dùng API được lưu trữ: đăng ký tại [firecrawl.dev](https://firecrawl.dev), lấy API key, rồi cài một SDK. Nếu muốn self-host, bạn sẽ cần một máy luôn bật — khởi tạo một máy trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) (tài khoản mới có tín dụng dùng thử miễn phí), hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187) cho VPS Hong Kong độ trễ thấp (cùng IDC đang host dibi8.com). ### Node.js SDK `````bash npm install firecrawl import { Firecrawl } from firecrawl; const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' }); Python SDK pip install firecrawl-py from firecrawl import Firecrawl app = Firecrawl(api_key=\"fc-YOUR_API_KEY\") Self-host bằng Docker Nếu bạn thích chạy Firecrawl trên hạ tầng của riêng mình, hãy clone repo và dùng cấu hình Docker Compose đi kèm: `````bash git clone https://github.com/firecrawl/firecrawl.git cd firecrawl docker compose up\nLệnh này khởi chạy API và các worker của nó. Theo mặc định, API lắng nghe ở cổng ``3002``, nên bạn có thể truy cập qua ``http://localhost:3002``. Để trỏ SDK tới instance self-host, chỉ cần đặt URL của API: `````typescript const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY', apiUrl: 'http://localhost:3002', }); Cấu hình Self-host được cấu hình thông qua biến môi trường. Sao chép mẫu được cung cấp và chỉnh sửa: `````bash cp apps/api/.env.example apps/api/.env\nCác khóa thường đặt gồm ````PORT````, ````NUM_WORKERS_PER_QUEUE````, và các tích hợp tùy chọn cho proxy và render. Xem hướng dẫn self-host trong repo để có danh sách đầy đủ. Với API được lưu trữ, bạn bỏ qua tất cả những thứ này — thiết lập bắt buộc duy nhất là API key. ## Cách dùng cốt lõi Dưới đây là các thao tác phổ biến nhất với API được lưu trữ, dùng Node SDK. Python SDK có các phương thức tương ứng một-một. ### Scrape một trang đơn lẻ `````typescript import { Firecrawl } from firecrawl; const app = new Firecrawl({ apiKey: 'fc-YOUR_API_KEY' }); const doc = await app.scrape('https://example.com', { formats: [markdown, html], }); console.log(doc.markdown); Crawl toàn bộ website crawl khám phá và scrape mọi trang truy cập được. Bạn có thể giới hạn số trang và giới hạn độ sâu: `````typescript const result = await app.crawl(‘https://example.com’, { limit: 100, scrapeOptions: { formats: [markdown] }, });\nfor (const page of result.data) { console.log(page.metadata?.sourceURL, page.markdown?.slice(0, 80)); }\n### Rút trích dữ liệu có cấu trúc Truyền vào một JSON schema và Firecrawl trả về dữ liệu có kiểu thay vì văn bản thô — lý tưởng để lấy tiêu đề, giá, hay bất kỳ trường cố định nào: `````typescript const doc = await app.scrape('https://example.com\", { formats: [{ type: json, schema: { type: object, properties: { title: { type: string }, description: \"Technical guide and comparison.\" }, }, }], }); console.log(doc.json); Để biết chi tiết đầy đủ, hãy xem tài liệu chính thức.\nTích hợp Vì Firecrawl về cơ bản chỉ là một HTTP API với các SDK mỏng, nó hòa nhập vào hầu như mọi stack — Next.js, Express, một pipeline dữ liệu Python, hay một ứng dụng RAG dùng LangChain / LlamaIndex nơi nó đóng vai trò document loader.\nDùng trong một route phía server Một mẫu điển hình là bọc thao tác scrape sau endpoint của chính bạn: `````typescript import { Firecrawl } from firecrawl;\nconst app = new Firecrawl({ apiKey: process.env.FIRECRAWL_API_KEY });\nexport async function scrapeHandler(url: string) { const doc = await app.scrape(url, { formats: [markdown] }); return doc.markdown; }\n### Chạy crawl theo lịch trong CI/CD Với các tác vụ định kỳ, hãy chạy Firecrawl từ GitHub Actions, GitLab CI, hoặc bất kỳ trình lập lịch nào. Dưới đây là một workflow GitHub Actions đơn giản, scrape một trang ở mỗi lần push và lưu Markdown: `````yaml name: Firecrawl Scraper on: push: branches: [ main ] jobs: scrape: runs-on: ubuntu-latest steps: - name: Checkout code uses: actions/checkout@v4 - name: Set up Node.js uses: actions/setup-node@v4 with: node-version: 20 - name: Install dependencies run: npm install firecrawl - name: Run scraper env: FIRECRAWL_API_KEY: $ run: node scrape.js \u003e output.json Cách này giữ cho các tác vụ scrape được tự động hóa và có thể tái lập, với API key được lưu trong secrets của repo thay vì viết cứng trong code.\nTóm lại Thiết kế ưu tiên API của Firecrawl giúp dễ dàng thêm nó vào một dự án sẵn có. Dù bạn đang cấp dữ liệu cho một pipeline RAG hay làm mới một tập dữ liệu theo lịch, chỉ vài dòng code là xong.\nBenchmark và thực tế sử dụng Firecrawl được dùng trong nhiều kịch bản sản xuất khác nhau. Các con số dưới đây mang tính minh họa cho loại khối lượng công việc mà các đội thường chạy, không phải benchmark chính thức từ nhà cung cấp.\nCác trường hợp sử dụng thực tế Cấp dữ liệu cho RAG và tìm kiếm AI Nhiều đội dùng Firecrawl làm tầng nạp dữ liệu cho retrieval-augmented generation (RAG): crawl một site tài liệu hoặc cơ sở tri thức, lấy Markdown sạch, chia chunk rồi embed. Đầu ra sẵn sàng cho LLM loại bỏ phần lớn công đoạn tiền xử lý mà việc scrape HTML thô thường đòi hỏi.\nGiám sát đối thủ và thương mại điện tử Các đội crawl trang sản phẩm và giá theo lịch để giữ danh mục và dữ liệu so giá luôn cập nhật. Nhờ render JavaScript, các gian hàng dạng single-page app (SPA) vẫn hoạt động mà không cần viết tự động hóa trình duyệt riêng.\nKiểm toán SEO và nội dung quy mô lớn Các agency chạy crawl trên các site lớn để kiểm kê trang, phát hiện liên kết hỏng, và đánh dấu nội dung lỗi thời. Endpoint map rất tiện ở đây — lấy danh sách URL đầy đủ trước khi bắt tay vào một lần crawl sâu hơn.\nLưu ý về hiệu năng Thông lượng trên API được lưu trữ phụ thuộc vào giới hạn đồng thời của gói bạn dùng, cũng như vào cơ chế giới hạn tốc độ và chống bot của chính site đích. Self-host cho phép bạn tinh chỉnh độ đồng thời bằng NUM_WORKERS_PER_QUEUE, nhưng khi đó bạn phải tự gánh hạ tầng proxy và render. Một quy tắc kinh nghiệm: hãy lập kế hoạch cho các tác vụ crawl theo đơn vị số-trang-mỗi-phút, thay vì xem Firecrawl như một tầng request thời gian thực dưới 100 mili-giây.\nfirecrawl contributors (source: firecrawl/firecrawl repo, via dibi8 analysis)\nSo sánh với các lựa chọn thay thế Xem thêm bài các công cụ mã nguồn mở liên quan của chúng tôi.\nSẽ hữu ích khi nói rõ Firecrawl là gì và không là gì. Firecrawl là một API dữ liệu web được quản lý (hoặc có thể self-host), tập trung vào đầu ra sẵn sàng cho LLM. Puppeteer là một thư viện tự động hóa trình duyệt, Scrapy là một framework crawl bằng Python, còn Axios là một HTTP client thông dụng. Chúng có giao nhau ở chỗ “lấy dữ liệu từ web”, nhưng nằm ở các tầng khác nhau.\nTính năng firecrawl/firecrawl Puppeteer Scrapy Axios Stars 127,747 ~90k ~55k ~107k Loại API dữ liệu web Thư viện tự động hóa trình duyệt Framework crawl HTTP client Ngôn ngữ TypeScript JavaScript Python JavaScript Giấy phép AGPL-3.0 (SDK là MIT) Apache-2.0 BSD-3-Clause MIT Render JS Tích hợp sẵn Có (nó chính là trình duyệt) Cần thêm thành phần Không Đầu ra cho LLM Sẵn Markdown / JSON Tự làm Tự làm Tự làm Tùy chọn host Có (API đám mây) Không Không Không Self-host Có (Docker) Không áp dụng (thư viện) Không áp dụng (thư viện) Không áp dụng (thư viện) Hợp nhất cho Pipeline web → dữ liệu LLM Tác vụ trình duyệt bằng script Crawl lớn tùy biến Gọi HTTP đơn giản Firecrawl nổi bật khi mục tiêu của bạn là dữ liệu sạch cho LLM với ít công ghép nối nhất: nó xử lý render, làm sạch và crawl phía sau một API duy nhất. Puppeteer cho bạn toàn quyền kiểm soát một trình duyệt thật, nhưng bạn phải tự dựng mọi thứ (làm sạch, xếp hàng, mở rộng). Scrapy tuyệt vời cho các lần crawl lớn, tùy biến nếu bạn thoải mái với Python và sẵn lòng viết spider. Axios chỉ là một HTTP client — ổn để gọi một API, nhưng không render cũng không rút trích.\nVới các lập trình viên muốn có dữ liệu web sẵn sàng cho LLM với lượng code keo nối ít nhất, Firecrawl là lựa chọn trực tiếp nhất trong bốn cái.\nHạn chế và đánh giá thẳng thắn Firecrawl là một công cụ mạnh, nhưng không phải lựa chọn phù hợp cho mọi việc: 1. Không phải tầng thời gian thực, độ trễ thấp: Crawl chạy như các tác vụ bất đồng bộ mà bạn phải poll để lấy kết quả, và ngay cả một lần scrape đơn lẻ cũng liên quan đến render và làm sạch. Nếu bạn cần phản hồi dưới 100 mili-giây cho mọi request, hãy đặt một lớp cache phía trước hoặc xem lại kiến trúc.\nChống scraping vẫn là chuyện khó: Firecrawl xử lý nhiều cơ chế chống bot và cung cấp tùy chọn proxy, nhưng không công cụ nào vượt qua được một cách đáng tin các site có bảo vệ nghiêm ngặt hoặc giới hạn tốc độ gắt gao. Hãy lường trước việc một số đích đến sẽ chặn hoặc throttle bạn, và tôn trọng điều khoản dịch vụ của từng site.\nPhần lõi theo AGPL-3.0: API được lưu trữ và các SDK giấy phép MIT thì ổn cho ứng dụng nguồn đóng, nhưng nếu bạn self-host và sửa đổi phần lõi AGPL-3.0, các điều khoản copyleft sẽ áp dụng. Hãy cùng đội ngũ rà soát giấy phép trước khi xây dựng trên một bản fork của phần lõi.\nChi phí và hạn mức của gói được lưu trữ: API đám mây tính phí theo mức dùng. Các lần crawl lớn tiêu tốn tín dụng rất nhanh, nên với khối lượng rất cao, bạn nên so sánh hóa đơn của bản được lưu trữ với chi phí vận hành của self-host.\nTuân thủ vẫn là việc của bạn: Firecrawl giúp việc scrape trở nên dễ dàng, nhưng nó không quyết định bạn được phép scrape gì. Tôn trọng ````robots.txt```, điều khoản dịch vụ và các quy định bảo vệ dữ liệu là trách nhiệm của bạn.\nChính những đánh đổi này khiến việc đánh giá kỹ trường hợp sử dụng của bạn trước khi áp dụng Firecrawl là điều đáng làm.\nKết luận Firecrawl là một trong những cách thực dụng nhất để biến web mở thành dữ liệu mà LLM thật sự dùng được, với hơn 127k sao GitHub và một đội ngũ năng động phía sau. Thiết kế ưu tiên API của nó — scrape, crawl, map, search, extract — nghĩa là bạn có thể đi từ một URL đến Markdown sạch chỉ trong vài dòng, dù dùng đám mây được lưu trữ hay self-host bằng Docker. Bước tiếp theo tự nhiên là lấy một API key, chạy một lần scrape trên một trang bạn quan tâm, và tận mắt thấy phần đầu ra đã được làm sạch.\nViệc scrape quy mô lớn cần proxy xoay vòng — WebShare là lựa chọn tiêu chuẩn.\nTham gia nhóm Telegram tiếng Anh của dibi8 để nhận tin về các công cụ AI mã nguồn mở. Đọc tiếp: các hướng dẫn liên quan trên dibi8. Nguồn \u0026 Đọc thêm: - Kho GitHub: https://github.com/firecrawl/firecrawl\nTài liệu chính thức: https://docs.firecrawl.dev Một số liên kết ở trên là liên kết tiếp thị (affiliate). dibi8.com có thể nhận hoa hồng nếu bạn đăng ký, mà bạn không tốn thêm chi phí nào. Điều này giúp duy trì hoạt động của trang và giữ cho nội dung miễn phí.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Firecrawl: Biến mọi website thành dữ liệu sẵn sàng cho LLM (127K Stars) — Hướng dẫn thực chiến 2026”, “datePublished”: “2026-06-02”, “dateModified”: “2026-06-02”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/firecrawl-dev-utils-2026\" } } ",
+  "wordCount" : "2966",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -186,7 +186,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>14 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/vi/llm-frameworks/firecrawl-dev-utils-2026/">Vi</a>
@@ -201,54 +201,54 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#firecrawl-%ec%96%b4%eb%96%a4-%ec%9b%b9%ec%82%ac%ec%9d%b4%ed%8a%b8%eb%93%a0-llm%ec%9d%b4-%eb%b0%94%eb%a1%9c-%ec%93%b8-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%a1%9c-127k-stars--2026-%ec%8b%a4%ec%a0%84-%ea%b0%80%ec%9d%b4%eb%93%9c" aria-label="Firecrawl: 어떤 웹사이트든 LLM이 바로 쓸 데이터로 (127K Stars) — 2026 실전 가이드">Firecrawl: 어떤 웹사이트든 LLM이 바로 쓸 데이터로 (127K Stars) — 2026 실전 가이드</a><ul>
+                <a href="#firecrawl-bi%e1%ba%bfn-m%e1%bb%8di-website-th%c3%a0nh-d%e1%bb%af-li%e1%bb%87u-s%e1%ba%b5n-s%c3%a0ng-cho-llm-127k-stars--h%c6%b0%e1%bb%9bng-d%e1%ba%abn-th%e1%bb%b1c-chi%e1%ba%bfn-2026" aria-label="Firecrawl: Biến mọi website thành dữ liệu sẵn sàng cho LLM (127K Stars) — Hướng dẫn thực chiến 2026">Firecrawl: Biến mọi website thành dữ liệu sẵn sàng cho LLM (127K Stars) — Hướng dẫn thực chiến 2026</a><ul>
                     
             <li>
-                <a href="#%eb%93%a4%ec%96%b4%ea%b0%80%eb%a9%b0" aria-label="들어가며">들어가며</a></li>
+                <a href="#gi%e1%bb%9bi-thi%e1%bb%87u" aria-label="Giới thiệu">Giới thiệu</a></li>
             <li>
-                <a href="#firecrawl%ec%9d%b4%eb%9e%80" aria-label="Firecrawl이란?">Firecrawl이란?</a></li>
+                <a href="#firecrawl-l%c3%a0-g%c3%ac" aria-label="Firecrawl là gì?">Firecrawl là gì?</a></li>
             <li>
-                <a href="#firecrawl%ec%9d%98-%eb%8f%99%ec%9e%91-%eb%b0%a9%ec%8b%9d" aria-label="Firecrawl의 동작 방식">Firecrawl의 동작 방식</a><ul>
+                <a href="#firecrawl-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-th%e1%ba%bf-n%c3%a0o" aria-label="Firecrawl hoạt động thế nào">Firecrawl hoạt động thế nào</a><ul>
                     
             <li>
                 <a href="#python-sdk" aria-label="Python SDK">Python SDK</a></li>
             <li>
-                <a href="#docker%eb%a1%9c-%ec%85%80%ed%94%84-%ed%98%b8%ec%8a%a4%ed%8c%85%ed%95%98%ea%b8%b0" aria-label="Docker로 셀프 호스팅하기">Docker로 셀프 호스팅하기</a></li>
+                <a href="#self-host-b%e1%ba%b1ng-docker" aria-label="Self-host bằng Docker">Self-host bằng Docker</a></li>
             <li>
-                <a href="#%ea%b5%ac%ec%84%b1" aria-label="구성">구성</a></li>
+                <a href="#c%e1%ba%a5u-h%c3%acnh" aria-label="Cấu hình">Cấu hình</a></li>
             <li>
-                <a href="#%ec%82%ac%ec%9d%b4%ed%8a%b8-%ec%a0%84%ec%b2%b4-%ed%81%ac%eb%a1%a4%eb%a7%81" aria-label="사이트 전체 크롤링">사이트 전체 크롤링</a></li></ul>
+                <a href="#crawl-to%c3%a0n-b%e1%bb%99-website" aria-label="Crawl toàn bộ website">Crawl toàn bộ website</a></li></ul>
             </li>
             <li>
-                <a href="#%ed%86%b5%ed%95%a9" aria-label="통합">통합</a><ul>
+                <a href="#t%c3%adch-h%e1%bb%a3p" aria-label="Tích hợp">Tích hợp</a><ul>
                     
             <li>
-                <a href="#%ec%84%9c%eb%b2%84-%eb%9d%bc%ec%9a%b0%ed%8a%b8%ec%97%90%ec%84%9c-%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0" aria-label="서버 라우트에서 사용하기">서버 라우트에서 사용하기</a></li>
+                <a href="#d%c3%b9ng-trong-m%e1%bb%99t-route-ph%c3%ada-server" aria-label="Dùng trong một route phía server">Dùng trong một route phía server</a></li>
             <li>
-                <a href="#%ec%9a%94%ec%95%bd" aria-label="요약">요약</a></li></ul>
+                <a href="#t%c3%b3m-l%e1%ba%a1i" aria-label="Tóm lại">Tóm lại</a></li></ul>
             </li>
             <li>
-                <a href="#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac%ec%99%80-%ec%8b%a4%ec%a0%9c-%ed%99%9c%ec%9a%a9" aria-label="벤치마크와 실제 활용">벤치마크와 실제 활용</a><ul>
+                <a href="#benchmark-v%c3%a0-th%e1%bb%b1c-t%e1%ba%bf-s%e1%bb%ad-d%e1%bb%a5ng" aria-label="Benchmark và thực tế sử dụng">Benchmark và thực tế sử dụng</a><ul>
                     
             <li>
-                <a href="#%ec%8b%a4%ec%a0%9c-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80" aria-label="실제 사용 사례">실제 사용 사례</a><ul>
+                <a href="#c%c3%a1c-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Các trường hợp sử dụng thực tế">Các trường hợp sử dụng thực tế</a><ul>
                     
             <li>
-                <a href="#rag%ec%99%80-ai-%ea%b2%80%ec%83%89%ec%97%90-%eb%8d%b0%ec%9d%b4%ed%84%b0-%ea%b3%b5%ea%b8%89" aria-label="RAG와 AI 검색에 데이터 공급">RAG와 AI 검색에 데이터 공급</a></li>
+                <a href="#c%e1%ba%a5p-d%e1%bb%af-li%e1%bb%87u-cho-rag-v%c3%a0-t%c3%acm-ki%e1%ba%bfm-ai" aria-label="Cấp dữ liệu cho RAG và tìm kiếm AI">Cấp dữ liệu cho RAG và tìm kiếm AI</a></li>
             <li>
-                <a href="#%ea%b2%bd%ec%9f%81%ec%82%ac-%eb%b0%8f-%ec%9d%b4%ec%bb%a4%eb%a8%b8%ec%8a%a4-%eb%aa%a8%eb%8b%88%ed%84%b0%eb%a7%81" aria-label="경쟁사 및 이커머스 모니터링">경쟁사 및 이커머스 모니터링</a></li>
+                <a href="#gi%c3%a1m-s%c3%a1t-%c4%91%e1%bb%91i-th%e1%bb%a7-v%c3%a0-th%c6%b0%c6%a1ng-m%e1%ba%a1i-%c4%91i%e1%bb%87n-t%e1%bb%ad" aria-label="Giám sát đối thủ và thương mại điện tử">Giám sát đối thủ và thương mại điện tử</a></li>
             <li>
-                <a href="#%eb%8c%80%ea%b7%9c%eb%aa%a8-seo-%eb%b0%8f-%ec%bd%98%ed%85%90%ec%b8%a0-%ea%b0%90%ec%82%ac" aria-label="대규모 SEO 및 콘텐츠 감사">대규모 SEO 및 콘텐츠 감사</a></li></ul>
+                <a href="#ki%e1%bb%83m-to%c3%a1n-seo-v%c3%a0-n%e1%bb%99i-dung-quy-m%c3%b4-l%e1%bb%9bn" aria-label="Kiểm toán SEO và nội dung quy mô lớn">Kiểm toán SEO và nội dung quy mô lớn</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%84%b1%eb%8a%a5-%ec%b0%b8%ea%b3%a0" aria-label="성능 참고">성능 참고</a></li></ul>
+                <a href="#l%c6%b0u-%c3%bd-v%e1%bb%81-hi%e1%bb%87u-n%c4%83ng" aria-label="Lưu ý về hiệu năng">Lưu ý về hiệu năng</a></li></ul>
             </li>
             <li>
-                <a href="#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90" aria-label="대안과의 비교">대안과의 비교</a></li>
+                <a href="#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-l%e1%bb%b1a-ch%e1%bb%8dn-thay-th%e1%ba%bf" aria-label="So sánh với các lựa chọn thay thế">So sánh với các lựa chọn thay thế</a></li>
             <li>
-                <a href="#%ed%95%9c%ea%b3%84%ec%99%80-%ec%86%94%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80" aria-label="한계와 솔직한 평가">한계와 솔직한 평가</a></li>
+                <a href="#h%e1%ba%a1n-ch%e1%ba%bf-v%c3%a0-%c4%91%c3%a1nh-gi%c3%a1-th%e1%ba%b3ng-th%e1%ba%afn" aria-label="Hạn chế và đánh giá thẳng thắn">Hạn chế và đánh giá thẳng thắn</a></li>
             <li>
-                <a href="#%eb%a7%ba%ec%9d%8c%eb%a7%90" aria-label="맺음말">맺음말</a>
+                <a href="#k%e1%ba%bft-lu%e1%ba%adn" aria-label="Kết luận">Kết luận</a>
             </li>
         </ul>
         </li>
@@ -276,43 +276,43 @@ tags: [&quot;]
 aliases:</p>
 <ul>
 <li>/posts/firecrawl-dev-utils-2026/
-faqs: - q: &lsquo;Firecrawl은 어떻게 설치하나요?&rsquo;
-a: &lsquo;공식 SDK 중 하나를 설치하면 됩니다. Node.js: <code>bash npm install firecrawl </code> Python: <code>bash pip install firecrawl-py </code> 그런 다음 <a href="https://firecrawl.dev">firecrawl.dev&quot;</a>에서 받은 API 키로 클라이언트를 생성하세요.&rsquo;</li>
-<li>q: &lsquo;TypeScript 외의 언어로도 Firecrawl을 쓸 수 있나요?&rsquo;
-a: &lsquo;네. Firecrawl은 HTTP API이므로 어떤 언어든 호출할 수 있습니다. Node.js와 Python용 공식 SDK가 있으며, 그 외 언어에서는 임의의 HTTP 클라이언트로 REST 엔드포인트를 직접 호출할 수 있습니다.&rsquo;</li>
-<li>q: &lsquo;반드시 호스팅형 API를 써야 하나요, 아니면 셀프 호스팅할 수 있나요?&rsquo;
-a: &lsquo;둘 다 지원합니다. <code>api.firecrawl.dev</code>의 호스팅형 API가 가장 빠른 시작 방법이지만, 프로젝트 자체가 오픈소스이고 Docker Compose 설정을 함께 제공하므로 전체를 자체 서버에서 돌릴 수 있습니다.&rsquo;</li>
-<li>q: &lsquo;scrape, crawl, map의 차이는 무엇인가요?&rsquo;
-a: &lsquo;<code>scrape</code>는 단일 URL을 처리합니다. <code>crawl</code>은 링크를 따라가 사이트 전체를 비동기로 스크래핑합니다. <code>map</code>은 콘텐츠를 스크래핑하지 않고 사이트의 URL 목록만 반환합니다 — 크롤링 계획에 유용합니다.&rsquo;</li>
-<li>q: &lsquo;Firecrawl은 무료인가요? 라이선스는 무엇인가요?&rsquo;
-a: &lsquo;소스 코드는 AGPL-3.0로 무료이며 오픈소스이고, 공식 SDK와 UI 컴포넌트는 MIT입니다. 호스팅형 클라우드 API는 무료 티어와 더 높은 사용량을 위한 유료 요금제를 제공합니다. 셀프 호스팅하는 경우 실행에 드는 인프라 비용은 직접 부담합니다.&rsquo;</li>
+faqs: - q: &lsquo;Tôi cài Firecrawl như thế nào?&rsquo;
+a: &lsquo;Hãy cài một trong các SDK chính thức. Với Node.js: <code>bash npm install firecrawl </code> Với Python: <code>bash pip install firecrawl-py </code> Sau đó tạo một client bằng API key lấy từ <a href="https://firecrawl.dev">firecrawl.dev&quot;</a>.&rsquo;</li>
+<li>q: &lsquo;Tôi có thể dùng Firecrawl với các ngôn ngữ khác ngoài TypeScript không?&rsquo;
+a: &lsquo;Có. Firecrawl là một HTTP API, nên bất kỳ ngôn ngữ nào cũng có thể gọi nó. Có SDK chính thức cho Node.js và Python, và với các ngôn ngữ khác bạn có thể gọi trực tiếp các endpoint REST bằng một HTTP client bất kỳ.&rsquo;</li>
+<li>q: &lsquo;Tôi bắt buộc phải dùng API được lưu trữ, hay có thể self-host?&rsquo;
+a: &lsquo;Cả hai đều được hỗ trợ. API được lưu trữ tại <code>api.firecrawl.dev</code> là cách bắt đầu nhanh nhất, nhưng bản thân dự án là mã nguồn mở và đi kèm cấu hình Docker Compose, nên bạn có thể chạy toàn bộ trên máy chủ của riêng mình.&rsquo;</li>
+<li>q: &lsquo;Sự khác biệt giữa scrape, crawl và map là gì?&rsquo;
+a: &lsquo;<code>scrape</code> xử lý một URL. <code>crawl</code> đi theo các liên kết để scrape toàn bộ một website một cách bất đồng bộ. <code>map</code> chỉ trả về danh sách URL trên một site mà không scrape nội dung của chúng — hữu ích để lập kế hoạch crawl.&rsquo;</li>
+<li>q: &lsquo;Firecrawl có miễn phí không, và giấy phép của nó là gì?&rsquo;
+a: &lsquo;Mã nguồn miễn phí và mở theo AGPL-3.0, còn các SDK chính thức và thành phần UI theo MIT. API đám mây được lưu trữ có một bậc miễn phí cùng các gói trả phí cho mức dùng cao hơn. Nếu self-host, bạn tự chịu chi phí hạ tầng để vận hành.&rsquo;</li>
 </ul>
 <hr>
-<h1 id="firecrawl-어떤-웹사이트든-llm이-바로-쓸-데이터로-127k-stars--2026-실전-가이드">Firecrawl: 어떤 웹사이트든 LLM이 바로 쓸 데이터로 (127K Stars) — 2026 실전 가이드<a hidden class="anchor" aria-hidden="true" href="#firecrawl-어떤-웹사이트든-llm이-바로-쓸-데이터로-127k-stars--2026-실전-가이드">#</a></h1>
-<h2 id="들어가며">들어가며<a hidden class="anchor" aria-hidden="true" href="#들어가며">#</a></h2>
-<p>웹 페이지를 LLM에 넣어 본 적이 있다면 그 고통을 알 것입니다. 원시 HTML은 내비게이션 바, 광고, 스크립트, 깨진 레이아웃으로 가득 차 토큰을 낭비하고 모델을 혼란스럽게 만듭니다. <strong>Firecrawl</strong>은 바로 이 문제를 해결합니다. 임의의 URL — 혹은 웹사이트 전체 — 을 받아 LLM이 바로 쓸 수 있는 깔끔한 마크다운, 구조화 JSON, 또는 스크린샷으로 돌려주는 오픈소스 웹 데이터 API입니다. GitHub stars 127,000개가 넘는 이 도구는 웹을 AI 앱이 실제로 쓸 수 있는 데이터로 바꾸는 작업에서 가장 인기 있는 도구 중 하나가 되었습니다. 이 가이드에서는 Firecrawl이 무엇을 하는지, 어떻게 설치하는지, 실제로 동작하는 코드, 셀프 호스팅, 그리고 흔한 대안들과의 비교를 살펴봅니다.</p>
+<h1 id="firecrawl-biến-mọi-website-thành-dữ-liệu-sẵn-sàng-cho-llm-127k-stars--hướng-dẫn-thực-chiến-2026">Firecrawl: Biến mọi website thành dữ liệu sẵn sàng cho LLM (127K Stars) — Hướng dẫn thực chiến 2026<a hidden class="anchor" aria-hidden="true" href="#firecrawl-biến-mọi-website-thành-dữ-liệu-sẵn-sàng-cho-llm-127k-stars--hướng-dẫn-thực-chiến-2026">#</a></h1>
+<h2 id="giới-thiệu">Giới thiệu<a hidden class="anchor" aria-hidden="true" href="#giới-thiệu">#</a></h2>
+<p>Nếu bạn từng thử đưa các trang web vào LLM, bạn hiểu nỗi khổ này: HTML thô đầy thanh điều hướng, quảng cáo, script và bố cục vỡ, vừa lãng phí token vừa làm rối mô hình. <strong>Firecrawl</strong> giải quyết đúng vấn đề đó. Đây là một API dữ liệu web mã nguồn mở, nhận bất kỳ URL nào — hoặc cả một website — và trả về Markdown sạch, JSON có cấu trúc, hoặc ảnh chụp màn hình, sẵn sàng cho LLM. Với hơn 127.000 sao trên GitHub, nó đã trở thành một trong những công cụ phổ biến nhất để biến web thành dữ liệu mà ứng dụng AI của bạn có thể dùng được thật sự. Hướng dẫn này sẽ đưa bạn qua: Firecrawl làm được gì, cách cài đặt, code chạy thực tế, self-host, và cách nó so với các lựa chọn thay thế quen thuộc.</p>
 <p><img alt="firecrawl overview, via dibi8.com" loading="lazy" src="https://raw.githubusercontent.com/firecrawl/firecrawl/main/img/open-source-cloud.png"></p>
 <p><em>firecrawl overview (source: firecrawl/firecrawl repo, via dibi8 analysis)</em></p>
-<h2 id="firecrawl이란">Firecrawl이란?<a hidden class="anchor" aria-hidden="true" href="#firecrawl이란">#</a></h2>
-<p>Firecrawl은 웹사이트를 대규모로 검색·스크래핑·크롤링하기 위한 웹 데이터 API로, 명확하게 LLM이 바로 쓸 수 있는 출력을 만들어 내는 것을 목표로 합니다. 원시 HTML을 그대로 돌려주는 대신, 까다로운 부분 — JavaScript 렌더링, 프록시, 안티봇 대응, 콘텐츠 정리 — 을 알아서 처리하고 마크다운이나 구조화 JSON을 건네줍니다.</p>
-<p>제공 방식은 두 가지입니다. 호스팅형 클라우드 API(주소 ```api.firecrawl.dev````, 가입 후 API 키 발급)와 Docker로 직접 셀프 호스팅할 수 있는 완전 오픈소스 버전입니다. 핵심 코드는 AGPL-3.0 라이선스이고, 공식 SDK와 UI 컴포넌트는 MIT 라이선스입니다. GitHub stars 127,000개 이상에 Firecrawl 팀의 활발한 유지보수까지 더해져, 프로덕션 AI 데이터 파이프라인을 위한 든든한 선택지입니다.</p>
-<h2 id="firecrawl의-동작-방식">Firecrawl의 동작 방식<a hidden class="anchor" aria-hidden="true" href="#firecrawl의-동작-방식">#</a></h2>
-<p>Firecrawl은 각각 하나의 일만 처리하는 소수의 엔드포인트를 제공합니다. Bearer API 키(<code>fc-...</code> 형식)로 인증한 뒤, 필요한 것을 호출하면 됩니다: 1. <strong>Scrape(스크래핑)</strong> — 단일 URL을 마크다운, HTML, 스크린샷, 또는 구조화 JSON으로 변환합니다. Firecrawl이 JavaScript를 렌더링하고 군더더기를 제거해 줍니다.</p>
+<h2 id="firecrawl-là-gì">Firecrawl là gì?<a hidden class="anchor" aria-hidden="true" href="#firecrawl-là-gì">#</a></h2>
+<p>Firecrawl là một API dữ liệu web để tìm kiếm, scrape và crawl website ở quy mô lớn, với mục tiêu rõ ràng là tạo ra đầu ra sẵn sàng cho LLM. Thay vì trả về HTML thô, nó xử lý những phần khó nhằn — render JavaScript, proxy, cơ chế chống bot và làm sạch nội dung — rồi đưa cho bạn Markdown hoặc JSON có cấu trúc.</p>
+<p>Nó được cung cấp theo hai cách: một API đám mây được lưu trữ tại ```api.firecrawl.dev```` (bạn đăng ký để lấy API key), và một phiên bản mã nguồn mở hoàn toàn mà bạn có thể tự lưu trữ (self-host) bằng Docker. Phần lõi phát hành theo giấy phép AGPL-3.0, còn các SDK chính thức và thành phần UI dùng giấy phép MIT. Với hơn 127.000 sao GitHub và được đội ngũ Firecrawl bảo trì tích cực, đây là một lựa chọn đáng tin cậy cho các pipeline dữ liệu AI ở môi trường sản xuất.</p>
+<h2 id="firecrawl-hoạt-động-thế-nào">Firecrawl hoạt động thế nào<a hidden class="anchor" aria-hidden="true" href="#firecrawl-hoạt-động-thế-nào">#</a></h2>
+<p>Firecrawl phơi bày một nhóm nhỏ các endpoint, mỗi cái giải quyết đúng một việc. Bạn xác thực bằng Bearer API key (định dạng <code>fc-...</code>) và gọi cái mình cần: 1. <strong>Scrape</strong> — Chuyển một URL đơn lẻ thành Markdown, HTML, ảnh chụp màn hình, hoặc JSON có cấu trúc. Firecrawl render JavaScript và loại bỏ phần thừa giúp bạn.</p>
 <ol start="2">
 <li>
-<p><strong>Crawl(크롤링)</strong> — URL 하나만 주면 Firecrawl이 <code>robots.txt</code>를 준수하면서 사이트 내 도달 가능한 모든 페이지를 찾아 스크래핑합니다. 크롤링은 비동기로 진행됩니다. 작업을 시작한 뒤 결과를 폴링합니다.</p>
+<p><strong>Crawl</strong> — Chỉ cần đưa một URL, Firecrawl sẽ khám phá và scrape mọi trang truy cập được trên website, đồng thời tôn trọng <code>robots.txt</code>. Crawl chạy bất đồng bộ: bạn khởi động một tác vụ rồi poll để lấy kết quả.</p>
 </li>
 <li>
-<p><strong>Map(매핑)</strong> — 사이트의 모든 URL을 즉시 반환합니다. 크롤링 계획을 세우거나 사이트맵을 만들 때 유용합니다.</p>
+<p><strong>Map</strong> — Trả về ngay lập tức tất cả URL trên một website, hữu ích để lập kế hoạch crawl hoặc dựng sitemap.</p>
 </li>
 <li>
-<p><strong>Search(검색)</strong> — 웹에 질의해 단순 링크가 아니라 결과 페이지의 전체 콘텐츠를 받아 옵니다.</p>
+<p><strong>Search</strong> — Truy vấn web và nhận về toàn bộ nội dung trang của các kết quả, chứ không chỉ là liên kết.</p>
 </li>
 <li>
-<p><strong>Interact &amp; Extract(상호작용 및 추출)</strong> — 스크래핑 전에 페이지에서 동작(클릭, 스크롤, 입력)을 수행하고, 직접 정의한 스키마에 맞춰 구조화 데이터를 뽑아냅니다.</p>
+<p><strong>Interact &amp; Extract</strong> — Thực hiện hành động trên trang (click, cuộn, gõ) trước khi scrape, và rút trích dữ liệu có cấu trúc theo schema bạn định nghĩa.</p>
 </li>
 </ol>
-<p>Node SDK로 가장 간단한 스크래핑을 하면 이렇게 됩니다: `````typescript
+<p>Một lần scrape tối giản với Node SDK trông như sau: `````typescript
 import { Firecrawl } from firecrawl;</p>
 <p>const app = new Firecrawl({ apiKey: &lsquo;fc-YOUR_API_KEY&rsquo; });</p>
 <p>const doc = await app.scrape(&lsquo;<a href="https://example.com">https://example.com</a>&rsquo;, {
@@ -320,15 +320,15 @@ formats: [markdown],
 });</p>
 <p>console.log(doc.markdown);</p>
 <pre tabindex="0"><code>
-Firecrawl은 큰 커뮤니티가 뒷받침하는 성숙한 오픈소스 프로젝트이며, 이는 GitHub의 127k+ stars 수에서 잘 드러납니다.
+Firecrawl là một dự án mã nguồn mở trưởng thành với một cộng đồng lớn phía sau, điều này được phản ánh qua con số 127k+ sao trên GitHub.
 
 ![firecrawl architecture, via dibi8.com](https://raw.githubusercontent.com/firecrawl/firecrawl/main/img/firecrawl_logo.png)
 
 *firecrawl architecture (source: firecrawl/firecrawl repo, via dibi8 analysis)*
 
-## 설치 및 설정
+## Cài đặt và thiết lập
 
-대부분의 사용자에게 가장 빠른 길은 호스팅형 API입니다. [firecrawl.dev](https://firecrawl.dev)에서 가입하고 API 키를 받은 뒤 SDK를 설치하세요. 직접 셀프 호스팅하려면 항상 켜져 있는 서버가 필요합니다 — [DigitalOcean](https://m.do.co/c/eca87ac14ee0)에서 하나 띄우거나(신규 계정 무료 체험 크레딧 제공), 저지연 홍콩 VPS인 [HTStack](https://my.htstack.com/aff.php?aff=27187)을 선택하세요(dibi8.com을 호스팅하는 바로 그 IDC입니다).
+Với hầu hết người dùng, con đường nhanh nhất là dùng API được lưu trữ: đăng ký tại [firecrawl.dev](https://firecrawl.dev), lấy API key, rồi cài một SDK. Nếu muốn self-host, bạn sẽ cần một máy luôn bật — khởi tạo một máy trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) (tài khoản mới có tín dụng dùng thử miễn phí), hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187) cho VPS Hong Kong độ trễ thấp (cùng IDC đang host dibi8.com).
 
 ### Node.js SDK
 
@@ -342,28 +342,28 @@ npm install firecrawl
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> firecrawl <span style="color:#f92672">import</span> Firecrawl
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> Firecrawl(api_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fc-YOUR_API_KEY&#34;</span>)
-</span></span></code></pre></div><h3 id="docker로-셀프-호스팅하기">Docker로 셀프 호스팅하기<a hidden class="anchor" aria-hidden="true" href="#docker로-셀프-호스팅하기">#</a></h3>
-<p>Firecrawl을 자체 인프라에서 돌리고 싶다면, 저장소를 클론하고 함께 제공되는 Docker Compose 설정을 사용하세요: `````bash
+</span></span></code></pre></div><h3 id="self-host-bằng-docker">Self-host bằng Docker<a hidden class="anchor" aria-hidden="true" href="#self-host-bằng-docker">#</a></h3>
+<p>Nếu bạn thích chạy Firecrawl trên hạ tầng của riêng mình, hãy clone repo và dùng cấu hình Docker Compose đi kèm: `````bash
 git clone <a href="https://github.com/firecrawl/firecrawl.git">https://github.com/firecrawl/firecrawl.git</a>
 cd firecrawl
 docker compose up</p>
 <pre tabindex="0"><code>
-이렇게 하면 API와 워커가 함께 뜹니다. API는 기본적으로 ``3002`` 포트를 수신하므로 ``http://localhost:3002``로 접근할 수 있습니다. SDK를 셀프 호스팅 인스턴스로 향하게 하려면 API 주소만 설정하면 됩니다: `````typescript
+Lệnh này khởi chạy API và các worker của nó. Theo mặc định, API lắng nghe ở cổng ``3002``, nên bạn có thể truy cập qua ``http://localhost:3002``. Để trỏ SDK tới instance self-host, chỉ cần đặt URL của API: `````typescript
 const app = new Firecrawl({
   apiKey: &#39;fc-YOUR_API_KEY&#39;,
   apiUrl: &#39;http://localhost:3002&#39;,
 });
-</code></pre><h3 id="구성">구성<a hidden class="anchor" aria-hidden="true" href="#구성">#</a></h3>
-<p>셀프 호스팅은 환경 변수로 구성합니다. 제공된 템플릿을 복사해 편집하세요: `````bash
+</code></pre><h3 id="cấu-hình">Cấu hình<a hidden class="anchor" aria-hidden="true" href="#cấu-hình">#</a></h3>
+<p>Self-host được cấu hình thông qua biến môi trường. Sao chép mẫu được cung cấp và chỉnh sửa: `````bash
 cp apps/api/.env.example apps/api/.env</p>
 <pre tabindex="0"><code>
-흔히 설정하는 키로는 ````PORT````, ````NUM_WORKERS_PER_QUEUE````, 그리고 프록시·렌더링용 선택 통합 항목이 있습니다. 전체 목록은 저장소의 셀프 호스팅 가이드를 참고하세요. 호스팅형 API를 쓰면 이 모든 과정을 건너뛸 수 있습니다 — 반드시 설정해야 할 것은 API 키뿐입니다.
+Các khóa thường đặt gồm ````PORT````, ````NUM_WORKERS_PER_QUEUE````, và các tích hợp tùy chọn cho proxy và render. Xem hướng dẫn self-host trong repo để có danh sách đầy đủ. Với API được lưu trữ, bạn bỏ qua tất cả những thứ này — thiết lập bắt buộc duy nhất là API key.
 
-## 핵심 사용법
+## Cách dùng cốt lõi
 
-아래는 Node SDK를 사용한, 호스팅형 API에 대한 가장 일반적인 작업들입니다. Python SDK도 메서드가 일대일로 대응됩니다.
+Dưới đây là các thao tác phổ biến nhất với API được lưu trữ, dùng Node SDK. Python SDK có các phương thức tương ứng một-một.
 
-### 단일 페이지 스크래핑
+### Scrape một trang đơn lẻ
 
 `````typescript
 import { Firecrawl } from firecrawl;
@@ -375,8 +375,8 @@ const doc = await app.scrape(&#39;https://example.com&#39;, {
 });
 
 console.log(doc.markdown);
-</code></pre><h3 id="사이트-전체-크롤링">사이트 전체 크롤링<a hidden class="anchor" aria-hidden="true" href="#사이트-전체-크롤링">#</a></h3>
-<p><code>crawl</code>은 도달 가능한 모든 페이지를 찾아 스크래핑합니다. 페이지 수에 상한을 두거나 탐색 깊이를 제한할 수 있습니다: `````typescript
+</code></pre><h3 id="crawl-toàn-bộ-website">Crawl toàn bộ website<a hidden class="anchor" aria-hidden="true" href="#crawl-toàn-bộ-website">#</a></h3>
+<p><code>crawl</code> khám phá và scrape mọi trang truy cập được. Bạn có thể giới hạn số trang và giới hạn độ sâu: `````typescript
 const result = await app.crawl(&lsquo;<a href="https://example.com">https://example.com</a>&rsquo;, {
 limit: 100,
 scrapeOptions: { formats: [markdown] },
@@ -385,10 +385,10 @@ scrapeOptions: { formats: [markdown] },
 console.log(page.metadata?.sourceURL, page.markdown?.slice(0, 80));
 }</p>
 <pre tabindex="0"><code>
-### 구조화 데이터 추출
+### Rút trích dữ liệu có cấu trúc
 
-JSON 스키마를 전달하면 Firecrawl은 원시 텍스트 대신 타입이 지정된 데이터를 반환합니다 — 제목, 가격 등 고정된 필드를 뽑아낼 때 이상적입니다: `````typescript
-const doc = await app.scrape(&#39;https://example.com&#39;, {
+Truyền vào một JSON schema và Firecrawl trả về dữ liệu có kiểu thay vì văn bản thô — lý tưởng để lấy tiêu đề, giá, hay bất kỳ trường cố định nào: `````typescript
+const doc = await app.scrape(&#39;https://example.com&#34;, {
   formats: [{
     type: json,
     schema: {
@@ -402,11 +402,11 @@ const doc = await app.scrape(&#39;https://example.com&#39;, {
 });
 
 console.log(doc.json);
-</code></pre><p>자세한 내용은 <a href="https://docs.firecrawl.dev">공식 문서</a>를 확인하세요.</p>
-<h2 id="통합">통합<a hidden class="anchor" aria-hidden="true" href="#통합">#</a></h2>
-<p>Firecrawl은 본질적으로 얇은 SDK를 곁들인 HTTP API에 불과하므로 거의 모든 스택에 녹아듭니다 — Next.js, Express, Python 데이터 파이프라인, 혹은 Firecrawl이 문서 로더 역할을 하는 LangChain / LlamaIndex RAG 앱까지.</p>
-<h3 id="서버-라우트에서-사용하기">서버 라우트에서 사용하기<a hidden class="anchor" aria-hidden="true" href="#서버-라우트에서-사용하기">#</a></h3>
-<p>전형적인 패턴은 스크래핑을 자신의 엔드포인트 뒤에 감싸는 것입니다: `````typescript
+</code></pre><p>Để biết chi tiết đầy đủ, hãy xem <a href="https://docs.firecrawl.dev">tài liệu chính thức</a>.</p>
+<h2 id="tích-hợp">Tích hợp<a hidden class="anchor" aria-hidden="true" href="#tích-hợp">#</a></h2>
+<p>Vì Firecrawl về cơ bản chỉ là một HTTP API với các SDK mỏng, nó hòa nhập vào hầu như mọi stack — Next.js, Express, một pipeline dữ liệu Python, hay một ứng dụng RAG dùng LangChain / LlamaIndex nơi nó đóng vai trò document loader.</p>
+<h3 id="dùng-trong-một-route-phía-server">Dùng trong một route phía server<a hidden class="anchor" aria-hidden="true" href="#dùng-trong-một-route-phía-server">#</a></h3>
+<p>Một mẫu điển hình là bọc thao tác scrape sau endpoint của chính bạn: `````typescript
 import { Firecrawl } from firecrawl;</p>
 <p>const app = new Firecrawl({ apiKey: process.env.FIRECRAWL_API_KEY });</p>
 <p>export async function scrapeHandler(url: string) {
@@ -414,9 +414,9 @@ const doc = await app.scrape(url, { formats: [markdown] });
 return doc.markdown;
 }</p>
 <pre tabindex="0"><code>
-### CI/CD에서 예약 크롤링 실행
+### Chạy crawl theo lịch trong CI/CD
 
-반복 작업이라면 GitHub Actions, GitLab CI, 또는 임의의 스케줄러에서 Firecrawl을 실행하세요. 다음은 push마다 한 페이지를 스크래핑해 마크다운으로 저장하는 간단한 GitHub Actions 워크플로입니다: `````yaml
+Với các tác vụ định kỳ, hãy chạy Firecrawl từ GitHub Actions, GitLab CI, hoặc bất kỳ trình lập lịch nào. Dưới đây là một workflow GitHub Actions đơn giản, scrape một trang ở mỗi lần push và lưu Markdown: `````yaml
 name: Firecrawl Scraper
 
 on: push: branches: [ main ]
@@ -435,29 +435,29 @@ jobs: scrape: runs-on: ubuntu-latest
       - name: Run scraper
         env: FIRECRAWL_API_KEY: $
         run: node scrape.js &gt; output.json
-</code></pre><p>이렇게 하면 스크래핑 작업이 자동화되고 재현 가능해지며, API 키는 코드가 아니라 저장소 secrets에 보관됩니다.</p>
-<h3 id="요약">요약<a hidden class="anchor" aria-hidden="true" href="#요약">#</a></h3>
-<p>Firecrawl의 API 우선 설계는 기존 프로젝트에 쉽게 추가할 수 있게 해 줍니다. RAG 파이프라인에 데이터를 공급하든, 일정에 맞춰 데이터셋을 갱신하든, 코드 몇 줄이면 끝납니다.</p>
-<h2 id="벤치마크와-실제-활용">벤치마크와 실제 활용<a hidden class="anchor" aria-hidden="true" href="#벤치마크와-실제-활용">#</a></h2>
-<p>Firecrawl은 다양한 프로덕션 시나리오에서 쓰입니다. 아래 수치는 팀들이 돌리는 워크로드의 유형을 보여주기 위한 예시이며, 공식 벤더 벤치마크가 아닙니다.</p>
-<h3 id="실제-사용-사례">실제 사용 사례<a hidden class="anchor" aria-hidden="true" href="#실제-사용-사례">#</a></h3>
-<h4 id="rag와-ai-검색에-데이터-공급">RAG와 AI 검색에 데이터 공급<a hidden class="anchor" aria-hidden="true" href="#rag와-ai-검색에-데이터-공급">#</a></h4>
-<p>많은 팀이 Firecrawl을 검색 증강 생성(RAG)의 데이터 수집 계층으로 사용합니다. 문서 사이트나 지식 베이스를 크롤링해 깔끔한 마크다운을 얻고, 청크로 나눈 뒤 임베딩합니다. LLM이 바로 쓸 수 있는 출력 덕분에 원시 HTML 스크래핑에 으레 필요한 전처리의 대부분이 사라집니다.</p>
-<h4 id="경쟁사-및-이커머스-모니터링">경쟁사 및 이커머스 모니터링<a hidden class="anchor" aria-hidden="true" href="#경쟁사-및-이커머스-모니터링">#</a></h4>
-<p>팀들은 일정에 맞춰 상품·가격 페이지를 크롤링해 카탈로그와 가격 비교 데이터를 최신으로 유지합니다. JavaScript 렌더링 덕분에 단일 페이지 애플리케이션(SPA) 형태의 매장도 별도 브라우저 자동화를 작성하지 않고 처리됩니다.</p>
-<h4 id="대규모-seo-및-콘텐츠-감사">대규모 SEO 및 콘텐츠 감사<a hidden class="anchor" aria-hidden="true" href="#대규모-seo-및-콘텐츠-감사">#</a></h4>
-<p>에이전시는 대형 사이트를 크롤링해 페이지를 집계하고, 깨진 링크를 찾고, 오래된 콘텐츠를 표시합니다. 여기서는 <code>map</code> 엔드포인트가 유용합니다 — 더 깊은 크롤링에 착수하기 전에 전체 URL 목록을 먼저 확보할 수 있습니다.</p>
-<h3 id="성능-참고">성능 참고<a hidden class="anchor" aria-hidden="true" href="#성능-참고">#</a></h3>
-<p>호스팅형 API의 처리량은 요금제의 동시성 한도, 그리고 대상 사이트 자체의 속도 제한과 안티봇 대응에 따라 달라집니다. 셀프 호스팅은 <code>NUM_WORKERS_PER_QUEUE</code>로 동시성을 조절할 수 있게 해 주지만, 그 대신 프록시와 렌더링 인프라를 직접 떠안아야 합니다. 경험칙으로, 크롤링 작업은 100밀리초 미만의 실시간 요청 계층으로 다루기보다 &lsquo;분당 페이지 수&rsquo; 단위로 계획하세요.</p>
+</code></pre><p>Cách này giữ cho các tác vụ scrape được tự động hóa và có thể tái lập, với API key được lưu trong secrets của repo thay vì viết cứng trong code.</p>
+<h3 id="tóm-lại">Tóm lại<a hidden class="anchor" aria-hidden="true" href="#tóm-lại">#</a></h3>
+<p>Thiết kế ưu tiên API của Firecrawl giúp dễ dàng thêm nó vào một dự án sẵn có. Dù bạn đang cấp dữ liệu cho một pipeline RAG hay làm mới một tập dữ liệu theo lịch, chỉ vài dòng code là xong.</p>
+<h2 id="benchmark-và-thực-tế-sử-dụng">Benchmark và thực tế sử dụng<a hidden class="anchor" aria-hidden="true" href="#benchmark-và-thực-tế-sử-dụng">#</a></h2>
+<p>Firecrawl được dùng trong nhiều kịch bản sản xuất khác nhau. Các con số dưới đây mang tính minh họa cho loại khối lượng công việc mà các đội thường chạy, không phải benchmark chính thức từ nhà cung cấp.</p>
+<h3 id="các-trường-hợp-sử-dụng-thực-tế">Các trường hợp sử dụng thực tế<a hidden class="anchor" aria-hidden="true" href="#các-trường-hợp-sử-dụng-thực-tế">#</a></h3>
+<h4 id="cấp-dữ-liệu-cho-rag-và-tìm-kiếm-ai">Cấp dữ liệu cho RAG và tìm kiếm AI<a hidden class="anchor" aria-hidden="true" href="#cấp-dữ-liệu-cho-rag-và-tìm-kiếm-ai">#</a></h4>
+<p>Nhiều đội dùng Firecrawl làm tầng nạp dữ liệu cho retrieval-augmented generation (RAG): crawl một site tài liệu hoặc cơ sở tri thức, lấy Markdown sạch, chia chunk rồi embed. Đầu ra sẵn sàng cho LLM loại bỏ phần lớn công đoạn tiền xử lý mà việc scrape HTML thô thường đòi hỏi.</p>
+<h4 id="giám-sát-đối-thủ-và-thương-mại-điện-tử">Giám sát đối thủ và thương mại điện tử<a hidden class="anchor" aria-hidden="true" href="#giám-sát-đối-thủ-và-thương-mại-điện-tử">#</a></h4>
+<p>Các đội crawl trang sản phẩm và giá theo lịch để giữ danh mục và dữ liệu so giá luôn cập nhật. Nhờ render JavaScript, các gian hàng dạng single-page app (SPA) vẫn hoạt động mà không cần viết tự động hóa trình duyệt riêng.</p>
+<h4 id="kiểm-toán-seo-và-nội-dung-quy-mô-lớn">Kiểm toán SEO và nội dung quy mô lớn<a hidden class="anchor" aria-hidden="true" href="#kiểm-toán-seo-và-nội-dung-quy-mô-lớn">#</a></h4>
+<p>Các agency chạy crawl trên các site lớn để kiểm kê trang, phát hiện liên kết hỏng, và đánh dấu nội dung lỗi thời. Endpoint <code>map</code> rất tiện ở đây — lấy danh sách URL đầy đủ trước khi bắt tay vào một lần crawl sâu hơn.</p>
+<h3 id="lưu-ý-về-hiệu-năng">Lưu ý về hiệu năng<a hidden class="anchor" aria-hidden="true" href="#lưu-ý-về-hiệu-năng">#</a></h3>
+<p>Thông lượng trên API được lưu trữ phụ thuộc vào giới hạn đồng thời của gói bạn dùng, cũng như vào cơ chế giới hạn tốc độ và chống bot của chính site đích. Self-host cho phép bạn tinh chỉnh độ đồng thời bằng <code>NUM_WORKERS_PER_QUEUE</code>, nhưng khi đó bạn phải tự gánh hạ tầng proxy và render. Một quy tắc kinh nghiệm: hãy lập kế hoạch cho các tác vụ crawl theo đơn vị số-trang-mỗi-phút, thay vì xem Firecrawl như một tầng request thời gian thực dưới 100 mili-giây.</p>
 <p><img alt="firecrawl contributors, via dibi8.com" loading="lazy" src="https://contrib.rocks/image?repo=firecrawl/firecrawl"></p>
 <p><em>firecrawl contributors (source: firecrawl/firecrawl repo, via dibi8 analysis)</em></p>
-<h2 id="대안과의-비교">대안과의 비교<a hidden class="anchor" aria-hidden="true" href="#대안과의-비교">#</a></h2>
-<p><a href="dibi8-internal-link">관련 오픈소스 도구</a> 글도 함께 참고하세요.</p>
-<p>Firecrawl이 무엇이고 무엇이 아닌지를 분명히 해 두면 도움이 됩니다. Firecrawl은 LLM이 쓸 수 있는 출력에 초점을 둔 매니지드(또는 셀프 호스팅 가능) 웹 데이터 API입니다. Puppeteer는 브라우저 자동화 라이브러리, Scrapy는 Python 크롤링 프레임워크, Axios는 범용 HTTP 클라이언트입니다. &lsquo;웹에서 데이터를 가져온다&rsquo;는 점에서는 겹치지만, 서로 다른 계층에 자리합니다.</p>
+<h2 id="so-sánh-với-các-lựa-chọn-thay-thế">So sánh với các lựa chọn thay thế<a hidden class="anchor" aria-hidden="true" href="#so-sánh-với-các-lựa-chọn-thay-thế">#</a></h2>
+<p>Xem thêm bài <a href="dibi8-internal-link">các công cụ mã nguồn mở liên quan</a> của chúng tôi.</p>
+<p>Sẽ hữu ích khi nói rõ Firecrawl là gì và không là gì. Firecrawl là một API dữ liệu web được quản lý (hoặc có thể self-host), tập trung vào đầu ra sẵn sàng cho LLM. Puppeteer là một thư viện tự động hóa trình duyệt, Scrapy là một framework crawl bằng Python, còn Axios là một HTTP client thông dụng. Chúng có giao nhau ở chỗ &ldquo;lấy dữ liệu từ web&rdquo;, nhưng nằm ở các tầng khác nhau.</p>
 <table>
 	<thead>
 			<tr>
-					<th>특성</th>
+					<th>Tính năng</th>
 					<th>firecrawl/firecrawl</th>
 					<th>Puppeteer</th>
 					<th>Scrapy</th>
@@ -473,99 +473,99 @@ jobs: scrape: runs-on: ubuntu-latest
 					<td>~107k</td>
 			</tr>
 			<tr>
-					<td><strong>유형</strong></td>
-					<td>웹 데이터 API</td>
-					<td>브라우저 자동화 라이브러리</td>
-					<td>크롤링 프레임워크</td>
-					<td>HTTP 클라이언트</td>
+					<td><strong>Loại</strong></td>
+					<td>API dữ liệu web</td>
+					<td>Thư viện tự động hóa trình duyệt</td>
+					<td>Framework crawl</td>
+					<td>HTTP client</td>
 			</tr>
 			<tr>
-					<td><strong>언어</strong></td>
+					<td><strong>Ngôn ngữ</strong></td>
 					<td>TypeScript</td>
 					<td>JavaScript</td>
 					<td>Python</td>
 					<td>JavaScript</td>
 			</tr>
 			<tr>
-					<td><strong>라이선스</strong></td>
-					<td>AGPL-3.0 (SDK는 MIT)</td>
+					<td><strong>Giấy phép</strong></td>
+					<td>AGPL-3.0 (SDK là MIT)</td>
 					<td>Apache-2.0</td>
 					<td>BSD-3-Clause</td>
 					<td>MIT</td>
 			</tr>
 			<tr>
-					<td><strong>JS 렌더링</strong></td>
-					<td>내장</td>
-					<td>예 (그 자체가 브라우저)</td>
-					<td>추가 구성 필요</td>
-					<td>없음</td>
+					<td><strong>Render JS</strong></td>
+					<td>Tích hợp sẵn</td>
+					<td>Có (nó chính là trình duyệt)</td>
+					<td>Cần thêm thành phần</td>
+					<td>Không</td>
 			</tr>
 			<tr>
-					<td><strong>LLM 친화 출력</strong></td>
-					<td>마크다운/JSON 내장</td>
-					<td>직접 구현</td>
-					<td>직접 구현</td>
-					<td>직접 구현</td>
+					<td><strong>Đầu ra cho LLM</strong></td>
+					<td>Sẵn Markdown / JSON</td>
+					<td>Tự làm</td>
+					<td>Tự làm</td>
+					<td>Tự làm</td>
 			</tr>
 			<tr>
-					<td><strong>호스팅 옵션</strong></td>
-					<td>있음 (클라우드 API)</td>
-					<td>없음</td>
-					<td>없음</td>
-					<td>없음</td>
+					<td><strong>Tùy chọn host</strong></td>
+					<td>Có (API đám mây)</td>
+					<td>Không</td>
+					<td>Không</td>
+					<td>Không</td>
 			</tr>
 			<tr>
-					<td><strong>셀프 호스팅</strong></td>
-					<td>있음 (Docker)</td>
-					<td>해당 없음 (라이브러리)</td>
-					<td>해당 없음 (라이브러리)</td>
-					<td>해당 없음 (라이브러리)</td>
+					<td><strong>Self-host</strong></td>
+					<td>Có (Docker)</td>
+					<td>Không áp dụng (thư viện)</td>
+					<td>Không áp dụng (thư viện)</td>
+					<td>Không áp dụng (thư viện)</td>
 			</tr>
 			<tr>
-					<td><strong>최적 용도</strong></td>
-					<td>웹 → LLM 데이터 파이프라인</td>
-					<td>스크립트 기반 브라우저 작업</td>
-					<td>맞춤형 대규모 크롤링</td>
-					<td>단순 HTTP 호출</td>
+					<td><strong>Hợp nhất cho</strong></td>
+					<td>Pipeline web → dữ liệu LLM</td>
+					<td>Tác vụ trình duyệt bằng script</td>
+					<td>Crawl lớn tùy biến</td>
+					<td>Gọi HTTP đơn giản</td>
 			</tr>
 	</tbody>
 </table>
-<p>목표가 &lsquo;최소한의 배관 작업으로 LLM에 줄 깔끔한 데이터&rsquo;를 얻는 것이라면 Firecrawl이 단연 돋보입니다. 렌더링, 정리, 크롤링을 하나의 API 뒤에서 처리합니다. Puppeteer는 실제 브라우저를 완전히 통제하게 해 주지만 정리·큐잉·확장은 모두 직접 만들어야 합니다. Scrapy는 Python에 익숙하고 spider를 작성할 의향이 있다면 대규모 맞춤형 크롤링에 탁월합니다. Axios는 그저 HTTP 클라이언트입니다 — API를 호출하기엔 좋지만 렌더링도 추출도 하지 않습니다.</p>
-<p>최소한의 접착 코드로 &lsquo;LLM이 쓸 수 있는 웹 데이터&rsquo;를 원하는 개발자라면, 이 넷 중 Firecrawl이 가장 직접적인 선택지입니다.</p>
-<h2 id="한계와-솔직한-평가">한계와 솔직한 평가<a hidden class="anchor" aria-hidden="true" href="#한계와-솔직한-평가">#</a></h2>
-<p>Firecrawl은 강력하지만 모든 작업에 맞는 것은 아닙니다: 1. <strong>실시간 저지연 계층이 아닙니다</strong>: 크롤링은 결과를 폴링해야 하는 비동기 작업으로 실행되며, 단일 스크래핑조차 렌더링과 정리를 거칩니다. 모든 요청에서 100밀리초 미만이 필요하다면 앞단에 캐시를 두거나 아키텍처를 재고하세요.</p>
+<p>Firecrawl nổi bật khi mục tiêu của bạn là <em>dữ liệu sạch cho LLM</em> với ít công ghép nối nhất: nó xử lý render, làm sạch và crawl phía sau một API duy nhất. Puppeteer cho bạn toàn quyền kiểm soát một trình duyệt thật, nhưng bạn phải tự dựng mọi thứ (làm sạch, xếp hàng, mở rộng). Scrapy tuyệt vời cho các lần crawl lớn, tùy biến nếu bạn thoải mái với Python và sẵn lòng viết spider. Axios chỉ là một HTTP client — ổn để gọi một API, nhưng không render cũng không rút trích.</p>
+<p>Với các lập trình viên muốn có dữ liệu web sẵn sàng cho LLM với lượng code keo nối ít nhất, Firecrawl là lựa chọn trực tiếp nhất trong bốn cái.</p>
+<h2 id="hạn-chế-và-đánh-giá-thẳng-thắn">Hạn chế và đánh giá thẳng thắn<a hidden class="anchor" aria-hidden="true" href="#hạn-chế-và-đánh-giá-thẳng-thắn">#</a></h2>
+<p>Firecrawl là một công cụ mạnh, nhưng không phải lựa chọn phù hợp cho mọi việc: 1. <strong>Không phải tầng thời gian thực, độ trễ thấp</strong>: Crawl chạy như các tác vụ bất đồng bộ mà bạn phải poll để lấy kết quả, và ngay cả một lần scrape đơn lẻ cũng liên quan đến render và làm sạch. Nếu bạn cần phản hồi dưới 100 mili-giây cho mọi request, hãy đặt một lớp cache phía trước hoặc xem lại kiến trúc.</p>
 <ol start="2">
 <li>
-<p><strong>안티 스크래핑은 여전히 어렵습니다</strong>: Firecrawl은 다수의 안티봇 대응을 처리하고 프록시 옵션을 제공하지만, 강력한 보호나 공격적인 속도 제한을 둔 사이트를 확실히 우회하는 도구는 없습니다. 일부 대상은 차단하거나 throttling할 것을 예상하고, 각 사이트의 서비스 약관을 존중하세요.</p>
+<p><strong>Chống scraping vẫn là chuyện khó</strong>: Firecrawl xử lý nhiều cơ chế chống bot và cung cấp tùy chọn proxy, nhưng không công cụ nào vượt qua được một cách đáng tin các site có bảo vệ nghiêm ngặt hoặc giới hạn tốc độ gắt gao. Hãy lường trước việc một số đích đến sẽ chặn hoặc throttle bạn, và tôn trọng điều khoản dịch vụ của từng site.</p>
 </li>
 <li>
-<p><strong>핵심은 AGPL-3.0</strong>: 호스팅형 API와 MIT 라이선스 SDK는 비공개 소스 앱에도 문제가 없지만, 셀프 호스팅하면서 AGPL-3.0 핵심을 수정하면 카피레프트 조항이 적용됩니다. fork한 핵심 위에 구축하기 전에 팀과 함께 라이선스를 검토하세요.</p>
+<p><strong>Phần lõi theo AGPL-3.0</strong>: API được lưu trữ và các SDK giấy phép MIT thì ổn cho ứng dụng nguồn đóng, nhưng nếu bạn self-host và sửa đổi phần lõi AGPL-3.0, các điều khoản copyleft sẽ áp dụng. Hãy cùng đội ngũ rà soát giấy phép trước khi xây dựng trên một bản fork của phần lõi.</p>
 </li>
 <li>
-<p><strong>호스팅 요금제의 비용과 할당량</strong>: 클라우드 API는 사용량 기반 과금입니다. 대규모 크롤링은 크레딧을 빠르게 소모하므로, 초대용량이라면 호스팅 비용을 셀프 호스팅의 운영 비용과 비교해야 합니다.</p>
+<p><strong>Chi phí và hạn mức của gói được lưu trữ</strong>: API đám mây tính phí theo mức dùng. Các lần crawl lớn tiêu tốn tín dụng rất nhanh, nên với khối lượng rất cao, bạn nên so sánh hóa đơn của bản được lưu trữ với chi phí vận hành của self-host.</p>
 </li>
 <li>
-<p><strong>컴플라이언스는 여전히 당신의 몫</strong>: Firecrawl은 스크래핑을 쉽게 만들어 주지만, 무엇을 스크래핑해도 되는지는 판단해 주지 않습니다. ````robots.txt```, 서비스 약관, 데이터 보호 규정을 준수하는 것은 당신의 책임입니다.</p>
+<p><strong>Tuân thủ vẫn là việc của bạn</strong>: Firecrawl giúp việc scrape trở nên dễ dàng, nhưng nó không quyết định bạn được phép scrape gì. Tôn trọng ````robots.txt```, điều khoản dịch vụ và các quy định bảo vệ dữ liệu là trách nhiệm của bạn.</p>
 </li>
 </ol>
-<p>이러한 트레이드오프 때문에, Firecrawl을 도입하기 전에 사용 사례를 신중히 평가할 가치가 있습니다.</p>
-<h2 id="맺음말">맺음말<a hidden class="anchor" aria-hidden="true" href="#맺음말">#</a></h2>
-<p>Firecrawl은 열린 웹을 &lsquo;LLM이 실제로 쓸 수 있는 데이터&quot;로 바꾸는 가장 실용적인 방법 중 하나로, GitHub stars 127k+와 활발한 팀이 뒷받침합니다. API 우선 설계 — scrape, crawl, map, search, extract — 덕분에 호스팅형 클라우드를 쓰든 Docker로 셀프 호스팅하든, 코드 몇 줄이면 URL 하나에서 깔끔한 마크다운까지 갈 수 있습니다. 자연스러운 다음 단계는 API 키를 받아, 관심 있는 페이지에 스크래핑을 한 번 돌려 정리된 출력을 직접 눈으로 확인하는 것입니다.</p>
-<p>대규모 스크래핑에는 회전형 프록시가 필요합니다 — <a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a>가 업계 표준 선택지입니다.</p>
+<p>Chính những đánh đổi này khiến việc đánh giá kỹ trường hợp sử dụng của bạn trước khi áp dụng Firecrawl là điều đáng làm.</p>
+<h2 id="kết-luận">Kết luận<a hidden class="anchor" aria-hidden="true" href="#kết-luận">#</a></h2>
+<p>Firecrawl là một trong những cách thực dụng nhất để biến web mở thành dữ liệu mà LLM thật sự dùng được, với hơn 127k sao GitHub và một đội ngũ năng động phía sau. Thiết kế ưu tiên API của nó — scrape, crawl, map, search, extract — nghĩa là bạn có thể đi từ một URL đến Markdown sạch chỉ trong vài dòng, dù dùng đám mây được lưu trữ hay self-host bằng Docker. Bước tiếp theo tự nhiên là lấy một API key, chạy một lần scrape trên một trang bạn quan tâm, và tận mắt thấy phần đầu ra đã được làm sạch.</p>
+<p>Việc scrape quy mô lớn cần proxy xoay vòng — <a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a> là lựa chọn tiêu chuẩn.</p>
 <ul>
-<li>오픈소스 AI 도구 소식을 가장 먼저 받으려면 <a href="https://t.me/DIBI8_Group/2">dibi8 영어 Telegram 그룹</a>에 참여하세요.</li>
-<li>다음 읽을거리: <a href="dibi8-internal-link">dibi8의 관련 가이드</a>.</li>
+<li>Tham gia <a href="https://t.me/DIBI8_Group/2">nhóm Telegram tiếng Anh của dibi8</a> để nhận tin về các công cụ AI mã nguồn mở.</li>
+<li>Đọc tiếp: <a href="dibi8-internal-link">các hướng dẫn liên quan trên dibi8</a>.</li>
 </ul>
 <hr>
-<p><strong>출처 및 더 읽을거리</strong>: - GitHub 저장소: <a href="https://github.com/firecrawl/firecrawl">https://github.com/firecrawl/firecrawl</a></p>
+<p><strong>Nguồn &amp; Đọc thêm</strong>: - Kho GitHub: <a href="https://github.com/firecrawl/firecrawl">https://github.com/firecrawl/firecrawl</a></p>
 <ul>
-<li>공식 문서: <a href="https://docs.firecrawl.dev">https://docs.firecrawl.dev</a></li>
+<li>Tài liệu chính thức: <a href="https://docs.firecrawl.dev">https://docs.firecrawl.dev</a></li>
 </ul>
-<p><em>위 링크 중 일부는 제휴(affiliate) 링크입니다. 이를 통해 가입하시면 추가 비용 없이 dibi8.com이 일정 수수료를 받을 수 있습니다. 사이트 운영과 무료 콘텐츠 유지에 도움이 됩니다.</em></p>
+<p><em>Một số liên kết ở trên là liên kết tiếp thị (affiliate). dibi8.com có thể nhận hoa hồng nếu bạn đăng ký, mà bạn không tốn thêm chi phí nào. Điều này giúp duy trì hoạt động của trang và giữ cho nội dung miễn phí.</em></p>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;Firecrawl: 어떤 웹사이트든 LLM이 바로 쓸 데이터로 (127K Stars) — 2026 실전 가이드&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Firecrawl: Biến mọi website thành dữ liệu sẵn sàng cho LLM (127K Stars) — Hướng dẫn thực chiến 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-06-02&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-06-02&rdquo;,
 &ldquo;author&rdquo;: {
@@ -582,7 +582,7 @@ jobs: scrape: runs-on: ubuntu-latest
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/firecrawl-dev-utils-2026%22">https://dibi8.com/kr/resources/firecrawl-dev-utils-2026"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/vi/resources/firecrawl-dev-utils-2026%22">https://dibi8.com/vi/resources/firecrawl-dev-utils-2026"</a>
 }
 }
 </script></p>
@@ -618,6 +618,81 @@ jobs: scrape: runs-on: ubuntu-latest
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

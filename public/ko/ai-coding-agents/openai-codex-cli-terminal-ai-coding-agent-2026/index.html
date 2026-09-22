@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "{\u003c/* resource-info */\u003e}\n1. OpenAI Codex CLI란 무엇이며 왜 2026년 개발자들이 전환하는가 2025년과 2026년 사이 개발자 도구 환경은 극적으로 변했다. 정적 코드 자동 완성(GitHub Copilot)에서 대화형 코딩(ChatGPT, Cursor)을 거쳐 이제는 터미널 네이티브 자율 에이전트—터미널 안에서 살며 코드베이스 전체를 이해하고 실제 엔지니어링 작업을 수행하는 AI 시스템으로 진화했다.\nOpenAI Codex CLI는 이 변화의 중심에 있다. GitHub Star 83,000개 이상과 AI 개발자 도구 카테고리에서 가장 빠른 성장세 중 하나를 보이는 이 도구는 단순한 챗봇 래퍼가 아니다. Rust로 구축된 오픈소스 코딩 에이전트로, 파일을 읽고, 코드를 편집하고, 셸 명령을 실행하고, 테스트를 돌리고, 코드 리뷰를 수행하며, 장시간 실행되는 작업을 클라우드 샌드박스에 위임할 수 있다.\n이전 세대 도구와의 차별점: - ChatGPT 구독자에게는 추가 비용 없음 — Plus($20/월) 또는 Pro($200/월)를 이미 결제 중이라면 Codex CLI 사용은 포함된다. 별도 API 과금 없음\n완전 오픈소스(Apache-2.0) — 포크, 감사, 확장 모두 자유. 원래 TypeScript 베이스에서 Rust로 재작성되어 1초 미만의 콜드 스타트 제공 4가지 진입점, 하나의 상태 공유 — VS Code에서 작업을 시작하고 잠자는 동안 클라우드 에이전트에 넘겨준 뒤 다음 날 아침 GitHub에서 PR 머지 멀티 에이전트 동시성 — 최대 6개의 병렬 서브 에이전트를 별도 역할로 실행: 탐색자, 작업자, 리뷰어, 테스터 MCP 네이티브 — 데이터베이스, API, 문서 시스템, 관측 가능성 플랫폼 연결을 위한 일급 Model Context Protocol 지원 엔터프라이즈급 샌드박싱 — Linux Landlock과 macOS Seatbelt로 파일 시스템 접근 제한; 네트워크 송신은 옵트인; 모든 동작은 감사 가능 브라우저 탭에서 스니펫을 복사 붙여넣기 하고 있다면, 이 도구는 소프트웨어 작성 방식을 근본적으로 재편할 것이다.\n2. 제로에서 프로덕션까지 5분 이내 설치 사전 요구사항 Node.js 18+(npm 경로용) 또는 Homebrew가 설치된 macOS(네이티브 Rust 바이너리, Node 의존성 없음) ChatGPT Plus, Pro, Business, Enterprise 구독 — 또는 — OpenAI API 키 세 가지 설치 경로 옵션 A: npm(크로스 플랫폼)\nnpm install -g @openai/codex codex --version 옵션 B: Homebrew(macOS 네이티브 바이너리)\nbrew update brew install --cask codex codex --version 옵션 C: 원라인 설치 스크립트\ncurl -sSL https://releases.openai.com/codex/install.sh | bash 인증 codex login 기본 브라우저가 OpenAI 인증 흐름을 연다. ChatGPT 계정으로 로그인하고 OAuth 요청을 승인한 뒤 터미널로 돌아오면 된다. API 키 관리 불필요. 별도 과금 대시보드 불필요. 사용량은 ChatGPT 플랜 할당량에 카운트된다.\nAPI 키 모드가 필요한 팀(공유 구독이 부족한 엔터프라이즈 환경에서 흔함): `````bash export OPENAI_API_KEY=“sk-…” codex\n또는 ``~/.codex/config.toml``에 영구 저장: `````toml preferred_auth_method = \"apikey\" 첫 작업: 표준 스모크 테스트 아무 리포지토리로 이동해서 범위가 정해진 작업을 발급한다: `````bash cd ~/projects/your-repo codex “src/utils/date.ts의 parseDate 함수에 대한 단위 테스트를 추가하라. 유효한 입력, 경계 케이스, 잘못된 형식을 모두 다뤄라. 테스트 스위트를 실행하고 모든 테스트가 통과하는지 확인하라.”\nCodex가 다음을 수행한다: 1. 리포지토리를 스캔해 테스트 프레임워크(Jest, Vitest, Mocha, pytest 등)를 식별 2. ````parseDate```` 구현 읽기 3. 의미 있는 케이스로 테스트 파일 생성 4. 테스트 실행 5. diff를 제시하고 디스크에 쓰기 전 승인 요청 * * * ## 3. 사고방식의 전환: 코드 타이핑에서 에이전트 지휘로 Codex CLI를 사용할 때 가장 중요한 적응은 자기 인식의 변화다. 더 이상 모든 세미콜론을 타이핑하는 사람이 아니다. **AI 팀원에게 작업을 위임하는 엔지니어링 리더**가 되는 것이다—그리고 그 팀원은 컨텍스트, 제약, 명확한 수락 기준을 필요로 한다. ### 4요소 프롬프트 구조 | 요소 | 목적 | 예시 | |---|---|---| | **목표** | 무엇을 만들거나 수정할 것인가 | \"JWT 기반 인증 미들웨어 구현\" | | **컨텍스트** | 어떤 파일, 프레임워크, 규약이 중요한가 | \"Go + Gin 사용. DB 연결은 db/conn.go. 기존 에러 처리 패턴 따라라.\" | | **제약** | 위반해서는 안 되는 규칙 | \"기존 REST API 계약을 깨지 마라. 모든 신규 함수는 단위 테스트가 있어야 한다.\" | | **검증** | 작업 완료를 어떻게 증명할 것인가 | \"````go test ./...```` 실행. 모든 테스트 통과. 로그인과 갱신 흐름 검증용 curl 명령 제공.\" | **약한 프롬프트:** \"로그인 함수 작성해줘.\" **강한 프롬프트:** \u003e \"이 Go/Gin 프로젝트에 사용자 인증 시스템 구축: \u003e 1. JWT 토큰을 사용하는 등록/로그인 REST 엔드포인트 \u003e 2. db/schema.sql의 기존 컨벤션과 일치하는 MySQL 사용자 테이블 스키마 \u003e 3. 서버를 실행하고 등록과 로그인을 엔드-투-엔드로 검증할 curl 명령 제공.\" Codex는 패키지 구조를 스캐폴딩하고, 핸들러를 작성하고, 데이터베이스 레이어를 연결하고, 의존성을 설치하고, 서버를 시작하고, 동작하는 curl 명령을 건네준다. ### 세 가지 신뢰 수준별 승인 모드 | 모드 | 파일 읽기 | 파일 편집 | 명령 실행 | 사용 시점 | |---|---|---|---|---| | **Auto(기본)** | 자동 허용 | 승인 필요 | 승인 필요 | 일상 개발; 안전한 기본값 | | **Read Only** | 자동 허용 | 금지 | 금지 | 코드베이스 탐색, 온보딩, 감사 | | **Full Access** | 자동 허용 | 자동 허용 | 자동 허용 | CI/CD 컨테이너, 격리 VM, 신뢰 가능한 자동화 | 실행 플래그: `````bash codex --sandbox read-only # 순수 분석; 변경 위험 제로 codex --sandbox workspace-write # 파일 편집 가능; 신뢰할 수 없는 명령은 여전히 승인 필요 codex --full-auto # 승인 자동화; 샌드박스는 여전히 활성 codex --yolo # 샌드박스와 승인 모두 비활성화. 격리 환경 전용. 중대한 안전 주의: --yolo(긴 형식: --dangerously-bypass-approvals-and-sandbox)는 일회용 컨테이너, CI 러너, 샌드박스 VM 전용이다. 로컬 워크스테이션의 프로덕션 리포지토리에는 절대 실행하지 마라.\n4. AGENTS.md: 코드 품질을 결정하는 하나의 파일 Codex CLI는 모든 작업 전에 AGENTS.md 파일을 자동으로 탐지하고 읽는다. 이것을 새 인간 엔지니어에게 줄 온보딩 문서처럼 생각하라—단지 새 팀원은 그것을 밀리초 안에 읽고 완벽한 회상력으로 따른다.\n프로덕션 준비 AGENTS.md 템플릿 # AGENTS.md — AI 엔지니어링 보조 가이드 ## 리포지토리 레이아웃 - ````src/```` — 비즈니스 로직; 모든 핸들러, 서비스, 도메인 모델 - ````tests/```` — ````src/````의 미러 구조; 소스 파일마다 한 개의 테스트 파일 - ````migrations/```` — Alembic 관리 DB 마이그레이션; 절대 수동 편집 금지 ## 기술 스택 및 표준 - 런타임: Python 3.11+ - 웹 프레임워크: 비동기 라우트 핸들러를 사용하는 FastAPI - 포맷팅: Black(라인 길이 100) + isort - 타입 힌트: 모든 함수 시그니처와 공개 클래스 속성에 필수 ## 테스트 요구사항 - 명령: ````pytest tests/```` - 커버리지 임계값: 신규 기능 85% - 비동기 테스트: ````@pytest.mark.asyncio````와 함께 ````pytest-asyncio```` 사용 필수 ## Git \u0026 CI - 커밋 형식: ````[Type] 짧은 설명```` — Type ∈ {Feat, Fix, Refactor, Docs, Test} - ````main````에 직접 푸시 금지; 모든 변경은 최소 1명 리뷰가 있는 PR을 통해 - 머지 전 검사: lint → typecheck → test → build 모노레포용 계층형 설정 전역 규약을 위해 루트 레벨 AGENTS.md를 배치하라. 서브디렉토리(예: src/ml/, src/api/) 안에 모듈별 규칙을 위한 중첩 AGENTS.md 파일을 추가하라. Codex는 근접 기반 우선순위로 설정을 머지한다—더 가까운 파일이 먼 파일을 오버라이드한다.\n5. 멀티 에이전트 병렬 개발: 한 인간, 여러 AI 팀원 2026년 4월 이후 Codex CLI는 Subagents—단일 기능에서 서로 차단하지 않고 협업하는 동시 실행 특화 에이전트—를 도입했다.\n표준 에이전트 역할 역할 책임 트리거 Explorer 리포지토리 구조 매핑, 의존성 식별, 관련 파일 위치 파악 복잡한 작업에 자동 첨부 Worker 코드 변경 구현, 파일 생성, 로직 수정 기본 주 에이전트 Reviewer 정확성, 보안, 스타일 준수에 대한 변경 감사 /review 또는 머지 전 훅 Tester 테스트 케이스 생성, 커버리지 검증, 보고된 버그 재현 프롬프트에서 명시적으로 요청 실전 병렬 워크플로우 이커머스 백엔드에 “로열티 할인” 기능을 추가한다고 상상해보라. 작업을 순차로 진행하는 대신 세 표면으로 병렬화한다: 터미널 1 — 구현(CLI):\ncodex \"pricing.py에 ````loyalty_discount(price, customer_tier)````를 추가하라. 등급: bronze(0%), silver(5%), gold(10%). 알 수 없는 등급은 ValueError로 거부하라. 다른 함수는 수정하지 마라.\" 클라우드 2 — 테스트 생성(chatgpt.com/codex):\n“test_pricing.py에 loyalty_discount용 망라 테스트 생성. 각 등급, 알 수 없는 등급, 음수 가격, 0 가격, 소수 가격 커버. pricing.py 수정 금지—함수가 존재한다고 가정.”\nVS Code 3 — 문서화(IDE 확장):\n“README.md에 loyalty_discount 문서화 섹션 추가: 시그니처, 등급 표, 사용 예시 1개.”\n세 작업이 동시에 진행된다. 구현이 도착하면 테스트가 검증하고, 문서는 이미 라이브 상태다. 순차 단계 간 인간 대기 시간 없음.\n6. MCP와 Skills: 코드 너머로 Codex 확장하기 Model Context Protocol(MCP) 통합 MCP는 2026년 AI 도구의 보편 어댑터가 되었다. Codex CLI는 일급 MCP 지원을 탑재해 다음과의 직접 연결을 가능하게 한다: - PostgreSQL / MySQL / Redis — 스키마와 샘플 데이터를 코드 생성용 컨텍스트로 조회\nStripe / Twilio / SendGrid API — OpenAPI 스펙을 읽어 타입 지정된 SDK 호출 생성 Notion / Confluence / 내부 위키 — 비즈니스 규칙과 기능 사양을 코딩 세션에 끌어옴 Datadog / Sentry / CloudWatch — 에러 트레이스를 수집해 프로덕션 인시던트 자동 진단/패치 명령 레퍼런스: `````bash codex /mcp # 구성된 MCP 서버와 도구 나열 codex /apps # 사용 가능한 앱 커넥터 탐색/활성화\n### Skills 카탈로그: 재사용 가능한 워크플로우 자동화 반복되는 프롬프트 패턴은 **Skills**—공유 가능하고 버전 관리되는 명령어 세트—로 캡슐화되어야 한다. `````bash $skill-creator # 새 스킬 작성용 대화형 마법사 Skills는 개방형 Agent Skills 표준을 따르므로 Codex CLI, Claude Code, GitHub Copilot 간 이식 가능하다. 전형적인 스킬 응용: - 로컬라이제이션 PR 생성(문자열 추출 → 번역 → PR 오픈)\n보안 감사 체크리스트(SQL 인젝션, XSS, 시크릿 누출 스캔) 커밋 이력에서 릴리스 노트 초안 작성 마이그레이션 스크립트(Python 2→3, Flask→FastAPI, JavaScript→TypeScript) 7. 보안 아키텍처: 엔터프라이즈가 Codex CLI를 승인하는 이유 개발자 채택은 전투의 절반일 뿐이다; 엔터프라이즈 보안 팀이 게이트키퍼다. Codex CLI는 다층 방어 모델로 그들의 우려를 해결한다: | 계층 | 기술 | 보호 대상 | |—|—|—| | 파일시스템 샌드박스 | Linux Landlock / macOS Seatbelt | 지정된 워크스페이스 트리로 파일 접근 제한 | | 네트워크 송신 제어 | 기본 거부; 명령당 옵트인 | 무단 엔드포인트로의 우발적 데이터 유출 방지 | | 승인 게이팅 | 3단계 모드 정책 엔진 | 휴먼 인 더 루프 또는 정책 기반 자동 승인 | | 감사 트레일 | 로컬 SQLite DB | 모든 파일 읽기, 편집, 명령 실행에 타임스탬프와 diff 가능 | | 환경 변수 필터링 | 설정 가능한 허용/거부 리스트 | 시크릿(API 키, 비밀번호)이 로깅되거나 전송되는 것 차단 |\n규제 산업을 위한 추가 엔터프라이즈 제어: - Hook Engine: 컴플라이언스 스캔을 위한 제출 전 프롬프트 인터셉트; 실행 후 테스트 자동 트리거\nRBAC 워크스페이스: 다른 승인 임계값을 가진 관리자/사용자 스코프 분리 Context Compaction: 장시간 세션 이력 자동 압축으로 컨텍스트 윈도우에 민감 데이터가 남는 것 방지 8. 모델 선택: GPT-5.3-Codex vs GPT-5.3-Codex-Spark Codex CLI는 기본적으로 OpenAI의 코딩 최적화 플래그십 모델 gpt-5.3-codex를 사용한다. 두 번째 변형 Spark는 2026년 초 지연 민감 워크플로우용으로 도입되었다.\n모델 강점 이상적 사용 사례 가용성 gpt-5.3-codex 깊은 추론, 아키텍처 설계, 다중 파일 리팩토링, 코드 리뷰 복잡한 마이그레이션, 버그 고고학, 보안 감사 모든 ChatGPT 유료 등급 gpt-5.3-codex-spark 1,000+ 토큰/초; 100ms 미만 첫 토큰 지연 라이브 페어 프로그래밍, 빠른 UI 이터레이션, 인터랙티브 디버깅 ChatGPT Pro 전용(리서치 프리뷰) Spark는 Cerebras WSE-3 웨이퍼 스케일 칩과 공동 엔지니어링되었다—NVIDIA 실리콘이 아닌 곳에서 운영되는 첫 OpenAI 프로덕션 모델이다. 기본적으로 타깃 편집을 최소화하고 테스트 자동 실행하지 않으므로 자율 장기 작업보다는 빠듯한 피드백 루프에 적합하다.\n런타임 모델 전환: `````bash codex -m gpt-5.3-codex codex -m gpt-5.3-codex-spark /model # 세션 중 대화형 모델 메뉴\n작업 유형별 추론 노력 조정: `````toml # ~/.codex/config.toml model_reasoning_effort = \"high\" # 아키텍처, 디버깅, 감사 model_reasoning_effort = \"medium\" # 일상 코딩, 테스트, 리팩토링(기본) model_reasoning_effort = \"low\" # 포맷팅, 이름 변경, 단순 쿼리 9. Codex CLI vs Claude Code: 편향 없는 결정 프레임워크 두 도구는 2026년 터미널 AI 코딩 공간을 지배한다. 올바른 선택은 기존 구독, 코드베이스 규모, 워크플로우 선호에 달려 있다.\n차원 Codex CLI Claude Code 가격 ChatGPT Plus/Pro/Business와 번들 별도 Anthropic 구독(Pro $20/월, Max 등급 $100–200/월) 라이선스 Apache-2.0, 완전 오픈소스 클로즈드 소스; API 접근만 컨텍스트 윈도우 1M 토큰(공시) 1M+ 토큰(10만+ 파일 리포에서 입증된 우위) 생태계 MCP + OpenAI 플랫폼 + GitHub 네이티브 Skills 프레임워크 + Superpowers + MCP 대형 모노레포 처리 양호 동급 최강 엔터프라이즈 기능 클라우드 위임, GitHub 앱, 훅 엔진 깊은 감사 트레일, 멀티 모달 입력(스크린샷/PDF) 온보딩 마찰 더 낮음(기존 ChatGPT 사용자 제로 코스트) 더 높음(신규 벤더 관계 필요) 내 권장:\n이미 ChatGPT Plus를 결제 중이라면 Codex CLI로 시작하라. 일상 엔지니어링 작업의 80–90%를 추가 비용 없이 커버한다. 50,000개 이상의 파일이 있는 리포지토리를 정기적으로 다루거나, 멀티 모달 컨텍스트(UI 스크린샷, PDF 사양)가 필요하거나, 가장 깊은 코드 리뷰 엄격성이 필요할 때 Claude Code 추가. 둘 다 사용하라. 많은 시니어 엔지니어는 빠른 프로토타이핑과 신속 수정에 Codex를, 대규모 리팩토링과 아키텍처 변경에 Claude를 사용한다. 도구가 당신을 섬기는 것이지 당신이 도구를 섬기는 것이 아니다. 10. 오늘 복사해서 쓸 수 있는 검증된 프롬프트 템플릿 10개 1. 신규 개발자 온보딩 codex \"이 프로젝트의 아키텍처를 설명하고, 주요 모듈의 의존성 그래프를 매핑하고, 새 팀원이 먼저 읽어야 할 세 파일을 알려달라\" 2. 데드 코드 제거 codex \"src/에서 사용되지 않는 import와 도달 불가 함수를 모두 찾아 제거하고 테스트 스위트가 여전히 통과하는지 확인하라\" 3. 의존성 현대화 codex \"React를 18에서 19로 업그레이드하라. 모든 브레이킹 체인지를 처리하고, 테스트 스위트를 실행하고, 실패를 수정하고, CHANGELOG.md의 마이그레이션 노트를 업데이트하라\" 4. 데이터베이스 쿼리 최적화 codex \"api/routes.py에서 N+1 쿼리 패턴을 분석하라. 이거 로딩(joinload 또는 selectinload)으로 교체하라. 전/후 벤치마크 수치 제공.\" 5. 보안 취약점 스캔 codex \"모든 API 엔드포인트에 대해 인증 누락이나 입력 검증 누락 감사. 발견된 각 취약점에 대해 수정과 회귀 테스트 제공.\" 6. 문서 생성 codex \"모든 공개 함수에 Google 스타일 docstring 생성하고 README.md의 API 레퍼런스 섹션 업데이트\" 7. 크로스 언어 포팅 codex \"scripts/data_processor.py를 동등한 TypeScript로 번역. 모든 로직, 에러 처리, async 동작 보존.\" 8. CI/CD 파이프라인 생성 codex \"GitHub Actions 워크플로우 생성: PR에서 lint + test + typecheck; main 머지에서 Docker 이미지 빌드 및 GHCR 푸시\" 9. 프로덕션 인시던트 진단 codex \"이 에러 로그가 방금 Sentry에 떴다. 근본 원인을 설명하고, 문제 코드를 찾고, 최소 수정 제안: [스택 트레이스 붙여넣기]\" 10. 커밋 전 셀프 리뷰 codex /review --uncommitted 11. 30-60-90일 마스터리 로드맵 1–30일: 기본 습관 구축 3개 이상의 다른 프로젝트에 Codex CLI 설치 각 프로젝트용 v1 AGENTS.md 작성 Auto와 Read-Only 모드로 15+ 엔드-투-엔드 작업 완료 ````/review```를 커밋 전 의식에 통합 코드베이스에서 잘 작동하는 5개 프롬프트 패턴 문서화 31–60일: 툴킷 확장 3개 MCP 서버 구성(데이터베이스, API 문서, 모니터링) 첫 커스텀 Skill 작성하고 팀과 공유 멀티 에이전트 병렬 작업 실행(CLI + 클라우드 조합) 전형적인 5개 작업에 대해 gpt-5.3-codex와 spark 벤치마크 AGENTS.md 규약에 대한 내부 팀 가이드라인 게시 61–90일: 팀과 자동화로 확장 자동화된 머지 전 코드 리뷰용 CI/CD 훅 배포 버전 제어가 있는 팀 전체 Skills 리포지토리 유지 시간대를 가로지르는 야간 작업에 Codex Cloud 사용 생산성 메트릭 측정(시간-PR, 버그 회귀율, 테스트 커버리지) Claude Code가 보조 도구로 측정 가능한 가치를 추가하는지 평가 12. 자주 묻는 질문 Q: Codex CLI는 실제로 무료인가? A: 도구는 오픈소스고 설치는 무료다. AI 추론은 OpenAI 모델이 필요하다. ChatGPT 구독자는 포함된 할당량 사용; API 키 사용자는 토큰당 지불(2026년 5월 기준 codex-mini-latest 입력 $1.50/1M, 출력 $6.00/1M).\nQ: ChatGPT 구독 없이 사용할 수 있는가? A: 가능, API 키 통해. 다만 Plus 구독자는 월 $5 프로모션 API 크레딧, Pro 구독자는 $50을 받는다. 30일 후 만료.\nQ: 내 코드가 OpenAI 모델 훈련에 사용되는가? A: Data Controls에서 옵트아웃하면 아니다. Codex CLI는 기본적으로 로컬에서 동작한다. 클라우드 샌드박스 작업은 완료 후 파괴되는 격리 환경에서 실행된다.\nQ: 어떤 언어가 가장 잘 지원되는가? A: Python과 JavaScript/TypeScript가 일급. Go, Rust, Java, C/C++, Ruby, PHP도 잘 지원된다. 틈새 언어는 프롬프트에서 더 명시적인 컨텍스트가 필요할 수 있다.\nQ: Windows가 지원되는가? A: CLI는 WSL2를 통해 Windows에서 동작. 네이티브 Windows 데스크톱 앱은 2026년 4월 출시.\n결론: 터미널이 새로운 IDE다 2026년 가장 생산적인 개발자는 가장 빨리 타이핑하는 사람이 아니다. 가장 효과적으로 위임하는 사람이다. OpenAI Codex CLI는 이 위임 우선 패러다임으로의 가장 접근 가능한 진입점이다: 오픈소스이고, 수백만이 이미 가진 구독에 번들되고, 분기 리뷰가 시대에 뒤떨어진 느낌이 들 만큼 빠르게 개선되고 있다.\n오늘 설치하라. 잠자기 전에 하나의 실제 작업을 발급하라. 내일 아침이면 수동 타이핑으로 몇 시간이 걸렸을 백로그 항목을 이미 완료했을지도 모른다.\n바이브 코딩의 시대는 다가오는 것이 아니다. 이미 와 있다. 그리고 Codex CLI는 합류 초대장이다.\n더 읽을거리:\nOpenAI Codex CLI GitHub 공식 OpenAI Codex 문서 AGENTS.md 모범 사례 가이드 Model Context Protocol 명세 마지막 업데이트: 2026년 5월 17일. Codex CLI는 빠른 반복 중; 현재 기능은 공식 문서와 대조 확인 권장.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “OpenAI Codex CLI 완벽 가이드 2026: 터미널 네이티브 AI 코딩 에이전트 (설치, 멀티 에이전트 워크플로우, MCP, 보안 종합 안내)”, “datePublished”: “2026-05-17”, “dateModified”: “2026-05-17”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/openai-codex-cli-terminal-ai-coding-agent-2026\" } } Frequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
-  "wordCount" : "2480",
+  "articleBody": "{\u003c/* resource-info */\u003e}\nWhat Is OpenAI Codex CLI and Why Developers Are Switching in 2026 The developer tooling landscape has shifted dramatically between 2025 and 2026. We have moved from static code completion (GitHub Copilot) to conversational coding (ChatGPT, Cursor) and now to terminal-native autonomous agents—AI systems that live inside your terminal, understand your entire codebase, and execute real engineering tasks.\nOpenAI Codex CLI sits at the center of this shift. With 83,000+ GitHub stars and one of the fastest growth trajectories in the AI developer tools category, it is not merely a chatbot wrapper. It is an open-source, Rust-built coding agent that reads files, edits code, runs shell commands, executes tests, performs code reviews, and delegates long-running tasks to cloud sandboxes.\nHere is what distinguishes Codex CLI from earlier-generation tools: - Zero marginal cost for ChatGPT subscribers — If you already pay for Plus ($20/month) or Pro ($200/month), Codex CLI usage is bundled. No separate API billing.\nFully open source (Apache-2.0) — Fork it, audit it, extend it. The Rust rewrite from the original TypeScript base delivers sub-second cold starts. Four entry points, one shared state — Start a task in VS Code, hand it off to the cloud agent while you sleep, and merge the PR from GitHub the next morning. Multi-agent concurrency — Run up to 6 parallel sub-agents with distinct roles: explorer, worker, reviewer, tester. MCP-native — First-class Model Context Protocol support for connecting databases, APIs, documentation systems, and observability platforms. Enterprise-grade sandboxing — Linux Landlock and macOS Seatbelt restrict filesystem access; network egress is opt-in; every action is auditable. If you are still copy-pasting snippets from a browser tab, this tool will fundamentally restructure how you write software.\nZero-to-Production Installation in Under Five Minutes Prerequisites Node.js 18+ (for the npm path) Or macOS with Homebrew (native Rust binary, no Node dependency) A ChatGPT Plus, Pro, Business, or Enterprise subscription — OR — an OpenAI API key Three Install Paths Option A: npm (cross-platform)\nnpm install -g @openai/codex codex --version Option B: Homebrew (macOS native binary)\nbrew update brew install --cask codex codex --version Option C: One-line installer\ncurl -sSL https://releases.openai.com/codex/install.sh | bash Authentication codex login Your default browser opens the OpenAI authorization flow. Sign in with your ChatGPT account, approve the OAuth request, and return to the terminal. No API key management. No separate billing dashboard. Your usage counts against your ChatGPT plan quota.\nFor teams requiring API-key mode (common in enterprise environments where shared subscriptions are insufficient): `````bash export OPENAI_API_KEY=“sk-…” codex\nOr persist it in ``~/.codex/config.toml``: `````toml preferred_auth_method = \"apikey\" First Task: The Canonical Smoke Test Navigate to any repository and issue a bounded task: `````bash cd ~/projects/your-repo codex “Add a unit test for the parseDate function in src/utils/date.ts. Cover valid inputs, edge cases, and invalid formats. Run the test suite and confirm all tests pass.”\nWatch Codex: 1. Scan the repository to identify the test framework (Jest, Vitest, Mocha, pytest, etc.) 2. Read the implementation of ````parseDate```` 3. Generate a test file with meaningful cases 4. Execute the tests 5. Present a diff and ask for approval before writing to disk * * * ## The Mental Model Shift: From Typing Code to Directing Agents The single most important adaptation when using Codex CLI is changing your self-conception. You are no longer the person who types every semicolon. You are the **engineering lead who delegates tasks to an AI teammate**—and that teammate needs context, constraints, and clear acceptance criteria. ### The Four-Element Prompt Structure | Element | Purpose | Example | | * * * | * * * | * * * | | **Objective** | What to build or modify | \"Implement JWT-based auth middleware\" | | **Context** | Which files, frameworks, or conventions matter | \"Use Go + Gin. Database connection is in db/conn.go. Follow existing error handling patterns.\" | | **Constraints** | Rules that must not be violated | \"Do not break the existing REST API contract. Every new function must have unit tests.\" | | **Verification** | How to prove the task is complete | \"Run ````go test ./...````. All tests pass. Provide curl commands to test login and refresh flows.\" | **Weak prompt:** \"Write a login function.\" **Strong prompt:** \u003e \"Build a user authentication system for this Go/Gin project: \u003e 1. Registration and login REST endpoints with JWT tokens \u003e 2. MySQL user table schema matching the existing conventions in db/schema.sql \u003e 3. Run the server and give me curl commands to verify registration and login end-to-end.\" Codex will scaffold the package structure, write the handlers, wire the database layer, install dependencies, start the server, and hand you working curl commands. ### Three Approval Modes for Different Trust Levels | Mode | File Read | File Edit | Command Execution | When to Use | | * * * | * * * | * * * | * * * | * * * | | **Auto (default)** | Auto-allowed | Requires approval | Requires approval | Daily development; safe default | | **Read Only** | Auto-allowed | Prohibited | Prohibited | Codebase exploration, onboarding, audits | | **Full Access** | Auto-allowed | Auto-allowed | Auto-allowed | CI/CD containers, isolated VMs, trusted automation | Launch flags: `````bash codex --sandbox read-only # Pure analysis; zero mutation risk codex --sandbox workspace-write # Can edit files; untrusted commands still require approval codex --full-auto # Automates approvals; sandbox still active codex --yolo # Disables sandbox AND approvals. Isolated environments ONLY. Critical safety note: --yolo (long form: --dangerously-bypass-approvals-and-sandbox) is intended exclusively for throwaway containers, CI runners, and sandboxed VMs. Never run it against a production repository on your local workstation.\nAGENTS.md: The Single File That Determines Code Quality Codex CLI automatically discovers and reads AGENTS.md files before every task. Think of this as the onboarding document you would give a new human engineer—except your new teammate reads it in milliseconds and follows it with perfect recall.\nA Production-Ready AGENTS.md Template # AGENTS.md — AI Engineering Assistant Guide ## Repository Layout - ````src/```` — Business logic; all handlers, services, and domain models - ````tests/```` — Mirror structure of ````src/````; one test file per source file - ````migrations/```` — Alembic-managed database migrations; never edit by hand ## Technology Stack \u0026 Standards - Runtime: Python 3.11+ - Web Framework: FastAPI with async route handlers - Formatting: Black (line length 100) + isort - Type Hints: Required on every function signature and public class attribute ## Testing Requirements - Command: ````pytest tests/```` - Coverage threshold: 85% for new features - Async tests: Must use ````pytest-asyncio```` with ````@pytest.mark.asyncio```` ## Git \u0026 CI - Commit format: ````[Type] Short description```` — Type ∈ {Feat, Fix, Refactor, Docs, Test} - No direct pushes to ````main````; all changes through PR with at least one review - Pre-merge checks: lint → typecheck → test → build Hierarchical Configuration for Monorepos Place root-level AGENTS.md for global conventions. Add nested AGENTS.md files inside subdirectories (e.g., src/ml/, src/api/) for module-specific rules. Codex merges configurations with proximity-based precedence—closer files override distant ones.\nMulti-Agent Parallel Development: One Human, Multiple AI Teammates The post-April-2026 Codex CLI introduces Subagents—concurrently running specialized agents that collaborate on a single feature without blocking each other.\nStandard Agent Roles | Role | Responsibility | Trigger | |\n|\n|\n| | Explorer | Map repository structure, identify dependencies, locate relevant files | Auto-attached to complex tasks | | Worker | Implement code changes, create files, modify logic | Default primary agent | | Reviewer | Audit changes for correctness, security, and style compliance | /review or pre-merge hook | | Tester | Generate test cases, validate coverage, reproduce reported bugs | Explicitly requested in prompt |\nReal-World Parallel Workflow Imagine adding a “loyalty discount” feature to an e-commerce backend. Instead of sequencing work, you parallelize it across three surfaces: Terminal 1 — Implementation (CLI):\ncodex \"Add ````loyalty_discount(price, customer_tier)```` to pricing.py. Tiers: bronze(0%), silver(5%), gold(10%). Reject unknown tiers with ValueError. Do not modify any other function.\" Cloud 2 — Test Generation (chatgpt.com/codex):\n“Generate exhaustive tests in test_pricing.py for loyalty_discount covering each tier, unknown tier, negative price, zero price, and decimal prices. Do not modify pricing.py—assume the function will exist.”\nVS Code 3 — Documentation (IDE extension):\n“Add a section to README.md documenting loyalty_discount: signature, tier table, and one usage example.”\nAll three tasks proceed simultaneously. When the implementation lands, tests validate it, and documentation is already live. No human waiting time between sequential stages.\nMCP \u0026 Skills: Extending Codex Beyond Code Model Context Protocol (MCP) Integrations MCP has become the universal adapter for AI tools in 2026. Codex CLI ships with first-class MCP support, enabling direct connections to: - PostgreSQL / MySQL / Redis — Query schema and sample data as context for code generation\nStripe / Twilio / SendGrid APIs — Read OpenAPI specs to generate typed SDK calls Notion / Confluence / Internal Wikis — Pull business rules and feature specifications into the coding session Datadog / Sentry / CloudWatch — Ingest error traces to auto-diagnose and patch production incidents Command references: `````bash codex /mcp # List configured MCP servers and tools codex /apps # Browse and activate available app connectors\n### Skills Catalog: Reusable Workflow Automation Recurring prompt patterns should be encapsulated as **Skills**—shareable, versioned instruction sets. `````bash $skill-creator # Interactive wizard for authoring new skills Skills follow the open Agent Skills standard, making them portable across Codex CLI, Claude Code, and GitHub Copilot. Typical skill applications: - Localization PR generation (extract strings → translate → open PR)\nSecurity audit checklists (scan for SQL injection, XSS, secrets leakage) Release note drafting from commit history Migration scripts (Python 2→3, Flask→FastAPI, JavaScript→TypeScript) Security Architecture: Why Enterprises Are Approving Codex CLI Developer adoption is only half the battle; enterprise security teams are the gatekeepers. Codex CLI addresses their concerns with a defense-in-depth model: | Layer | Technology | What It Protects | |\n|\n|\n| | Filesystem sandbox | Linux Landlock / macOS Seatbelt | Restricts file access to designated workspace trees | | Network egress control | Default deny; opt-in per command | Prevents accidental data exfiltration to unauthorized endpoints | | Approval gating | Three-mode policy engine | Human-in-the-loop or policy-driven auto-approval | | Audit trail | Local SQLite database | Every file read, edit, and command execution is timestamped and diffable | | Environment variable filtering | Configurable allowlists/denylists | Blocks secrets (API keys, passwords) from being logged or transmitted |\nFor regulated industries, additional enterprise controls include: - Hook Engine: Intercept prompts pre-submission for compliance scanning; auto-trigger post-execution tests\nRBAC Workspaces: Separate admin and user scopes with different approval thresholds Context Compaction: Automatically compress long-running session history to prevent sensitive data from lingering in context windows Model Selection: GPT-5.3-Codex vs. GPT-5.3-Codex-Spark Codex CLI defaults to gpt-5.3-codex, OpenAI\"s flagship coding-optimized model. A second variant, Spark, was introduced in early 2026 for latency-critical workflows.\n| Model | Strength | Ideal Use Case | Availability | |\n|\n|\n|\n| | gpt-5.3-codex | Deep reasoning, architecture design, multi-file refactoring, code review | Complex migrations, bug archaeology, security audits | All ChatGPT paid tiers | | gpt-5.3-codex-spark | 1,000+ tokens/second; sub-100ms first-token latency | Live pair programming, rapid UI iteration, interactive debugging | ChatGPT Pro only (research preview) |\nSpark is co-engineered with Cerebras on the WSE-3 wafer-scale chip—the first production OpenAI model not running on NVIDIA silicon. It minimizes target edits by default and does not auto-run tests, so it is best for tight feedback loops rather than autonomous long-horizon tasks.\nSwitch models on the fly: `````bash codex -m gpt-5.3-codex codex -m gpt-5.3-codex-spark /model # Interactive model menu during session\nTune reasoning effort per task type: `````toml # ~/.codex/config.toml model_reasoning_effort = \"high\" # Architecture, debugging, audits model_reasoning_effort = \"medium\" # Daily coding, tests, refactors (default) model_reasoning_effort = \"low\" # Formatting, renaming, simple queries Codex CLI vs. Claude Code: An Unbiased Decision Framework Both tools dominate the terminal AI coding space in 2026. The right choice depends on your existing subscriptions, codebase scale, and workflow preferences.\n| Dimension | Codex CLI | Claude Code | |\n|\n|\n| | Pricing | Bundled with ChatGPT Plus/Pro/Business | Separate Anthropic subscription (Pro $20/mo, Max tiers $100–200/mo) | | License | Apache-2.0, fully open source | Closed source; API access only | | Context window | 1M tokens (advertised) | 1M+ tokens (demonstrably stronger on 100k+ file repos) | | Ecosystem | MCP + OpenAI platform + GitHub native | Skills framework + Superpowers + MCP | | Large monorepo handling | Good | Best-in-class | | Enterprise features | Cloud delegation, GitHub app, hook engine | Deep audit trails, multi-modal inputs (screenshots/PDFs) | | Onboarding friction | Lower (zero cost for existing ChatGPT users) | Higher (requires new vendor relationship) |\nMy recommendation:\nStart with Codex CLI if you already pay for ChatGPT Plus. It covers 80–90% of daily engineering tasks at zero incremental cost. Add Claude Code when you regularly work with repositories exceeding 50,000 files, need multi-modal context (UI screenshots, PDF specifications), or require the deepest-available code review rigor. Use both. Many senior engineers run Codex for rapid prototyping and quick fixes, then switch to Claude for large-scale refactoring and architectural changes. Tools serve you; you do not serve tools. Ten Battle-Tested Prompt Templates You Can Copy Today 1. New-developer onboarding codex \"Explain the architecture of this project, map the dependency graph of major modules, and tell me which three files a new team member should read first\" 2. Dead-code elimination codex \"Find all unused imports and unreachable functions in src/, remove them, and ensure the test suite still passes\" 3. Dependency modernization codex \"Upgrade React from 18 to 19. Handle all breaking changes, run the test suite, fix any failures, and update the migration notes in CHANGELOG.md\" 4. Database query optimization codex \"Analyze api/routes.py for N+1 query patterns. Replace them with eager loading (joinload or selectinload). Provide before/after benchmark numbers.\" 5. Security vulnerability scan codex \"Audit every API endpoint for missing authentication or input validation. For each vulnerability found, provide a fix and a regression test.\" 6. Documentation generation codex \"Generate Google-style docstrings for all public functions and update the API Reference section in README.md\" 7. Cross-language port codex \"Translate scripts/data_processor.py into equivalent TypeScript. Preserve all logic, error handling, and async behavior.\" 8. CI/CD pipeline creation codex \"Create a GitHub Actions workflow: lint + test + typecheck on PR; build Docker image and push to GHCR on merge to main\" 9. Production incident diagnosis codex \"This error log just hit Sentry. Explain the root cause, locate the offending code, and propose a minimal fix: [paste stack trace]\" 10. Pre-commit self-review codex /review --uncommitted 30-60-90 Day Mastery Roadmap Days 1–30: Build Fundamental Habits Install Codex CLI in 3+ distinct projects Author a v1 AGENTS.md for each project Complete 15+ end-to-end tasks using Auto and Read-Only modes Integrate ````/review``` into your pre-commit ritual Document 5 prompt patterns that work well for your codebase Days 31–60: Expand Your Toolkit Configure 3 MCP servers (database, API docs, monitoring) Author your first custom Skill and share it with your team Execute one multi-agent parallel task (CLI + Cloud combination) Benchmark gpt-5.3-codex against spark on 5 typical tasks Publish internal team guidelines for AGENTS.md conventions Days 61–90: Scale to Team and Automation Deploy CI/CD hooks for automated pre-merge code review Maintain a team-wide Skills repository with version control Use Codex Cloud for overnight tasks across time zones Measure productivity metrics (time-to-PR, bug regression rate, test coverage) Evaluate whether Claude Code adds measurable value as a secondary tool Frequently Asked Questions Q: Is Codex CLI actually free? A: The tool is open source and free to install. The AI inference requires an OpenAI model. ChatGPT subscribers use included quota; API-key users pay per token ($1.50/1M input, $6.00/1M output for codex-mini-latest as of May 2026).\nQ: Can I use it without a ChatGPT subscription? A: Yes, via API key. However, Plus subscribers receive $5 in promotional API credits monthly; Pro subscribers receive $50. These expire after 30 days.\nQ: Will my code be used to train OpenAI models? A: No, if you opt out in Data Controls. Codex CLI operates locally by default. Cloud sandbox tasks run in isolated environments that are destroyed after completion.\nQ: Which languages are best supported? A: Python and JavaScript/TypeScript are first-class. Go, Rust, Java, C/C++, Ruby, and PHP are well supported. Niche languages may require more explicit context in prompts.\nQ: Is Windows supported? A: CLI runs on Windows via WSL2. A native Windows desktop application launched in April 2026.\nConclusion: The Terminal Is Your New IDE In 2026, the most productive developers are not those who type the fastest. They are those who delegate most effectively. OpenAI Codex CLI is the most accessible entry point into this delegation-first paradigm: it is open source, bundled with a subscription millions already have, and improving at a pace that makes quarterly reviews feel outdated.\nInstall it today. Issue one real task before bedtime. By tomorrow morning, you may have already crossed a task off your backlog that would have taken hours of manual typing.\nThe era of vibe coding is not coming. It is here. And Codex CLI is your invitation to join.\nFurther Reading:\nOpenAI Codex CLI on GitHub Official OpenAI Codex Documentation AGENTS.md Best Practices Guide Model Context Protocol Specification Last updated: May 17, 2026. Codex CLI is under rapid iteration; verify current capabilities against the official documentation.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “OpenAI Codex CLI: The Definitive 2026 Guide to Terminal-Native AI Coding Agents (Install, Multi-Agent Workflows, MCP \u0026 Security)”, “datePublished”: “2026-05-17”, “dateModified”: “2026-05-17”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/openai-codex-cli-terminal-ai-coding-agent-2026\" } } Frequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "2975",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>14 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/openai-codex-cli-terminal-ai-coding-agent-2026/">En</a>
@@ -209,85 +209,85 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#1-openai-codex-cli%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b4%eb%a9%b0-%ec%99%9c-2026%eb%85%84-%ea%b0%9c%eb%b0%9c%ec%9e%90%eb%93%a4%ec%9d%b4-%ec%a0%84%ed%99%98%ed%95%98%eb%8a%94%ea%b0%80" aria-label="1. OpenAI Codex CLI란 무엇이며 왜 2026년 개발자들이 전환하는가">1. OpenAI Codex CLI란 무엇이며 왜 2026년 개발자들이 전환하는가</a></li>
+                <a href="#what-is-openai-codex-cli-and-why-developers-are-switching-in-2026" aria-label="What Is OpenAI Codex CLI and Why Developers Are Switching in 2026">What Is OpenAI Codex CLI and Why Developers Are Switching in 2026</a></li>
             <li>
-                <a href="#2-%ec%a0%9c%eb%a1%9c%ec%97%90%ec%84%9c-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98%ea%b9%8c%ec%a7%80-5%eb%b6%84-%ec%9d%b4%eb%82%b4-%ec%84%a4%ec%b9%98" aria-label="2. 제로에서 프로덕션까지 5분 이내 설치">2. 제로에서 프로덕션까지 5분 이내 설치</a><ul>
+                <a href="#zero-to-production-installation-in-under-five-minutes" aria-label="Zero-to-Production Installation in Under Five Minutes">Zero-to-Production Installation in Under Five Minutes</a><ul>
                     
             <li>
-                <a href="#%ec%82%ac%ec%a0%84-%ec%9a%94%ea%b5%ac%ec%82%ac%ed%95%ad" aria-label="사전 요구사항">사전 요구사항</a></li>
+                <a href="#prerequisites" aria-label="Prerequisites">Prerequisites</a></li>
             <li>
-                <a href="#%ec%84%b8-%ea%b0%80%ec%a7%80-%ec%84%a4%ec%b9%98-%ea%b2%bd%eb%a1%9c" aria-label="세 가지 설치 경로">세 가지 설치 경로</a></li>
+                <a href="#three-install-paths" aria-label="Three Install Paths">Three Install Paths</a></li>
             <li>
-                <a href="#%ec%9d%b8%ec%a6%9d" aria-label="인증">인증</a></li>
+                <a href="#authentication" aria-label="Authentication">Authentication</a></li>
             <li>
-                <a href="#%ec%b2%ab-%ec%9e%91%ec%97%85-%ed%91%9c%ec%a4%80-%ec%8a%a4%eb%aa%a8%ed%81%ac-%ed%85%8c%ec%8a%a4%ed%8a%b8" aria-label="첫 작업: 표준 스모크 테스트">첫 작업: 표준 스모크 테스트</a></li></ul>
+                <a href="#first-task-the-canonical-smoke-test" aria-label="First Task: The Canonical Smoke Test">First Task: The Canonical Smoke Test</a></li></ul>
             </li>
             <li>
-                <a href="#4-agentsmd-%ec%bd%94%eb%93%9c-%ed%92%88%ec%a7%88%ec%9d%84-%ea%b2%b0%ec%a0%95%ed%95%98%eb%8a%94-%ed%95%98%eb%82%98%ec%9d%98-%ed%8c%8c%ec%9d%bc" aria-label="4. AGENTS.md: 코드 품질을 결정하는 하나의 파일">4. AGENTS.md: 코드 품질을 결정하는 하나의 파일</a><ul>
+                <a href="#agentsmd-the-single-file-that-determines-code-quality" aria-label="AGENTS.md: The Single File That Determines Code Quality">AGENTS.md: The Single File That Determines Code Quality</a><ul>
                     
             <li>
-                <a href="#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ec%a4%80%eb%b9%84-agentsmd-%ed%85%9c%ed%94%8c%eb%a6%bf" aria-label="프로덕션 준비 AGENTS.md 템플릿">프로덕션 준비 AGENTS.md 템플릿</a></li>
+                <a href="#a-production-ready-agentsmd-template" aria-label="A Production-Ready AGENTS.md Template">A Production-Ready AGENTS.md Template</a></li>
             <li>
-                <a href="#%eb%aa%a8%eb%85%b8%eb%a0%88%ed%8f%ac%ec%9a%a9-%ea%b3%84%ec%b8%b5%ed%98%95-%ec%84%a4%ec%a0%95" aria-label="모노레포용 계층형 설정">모노레포용 계층형 설정</a></li></ul>
+                <a href="#hierarchical-configuration-for-monorepos" aria-label="Hierarchical Configuration for Monorepos">Hierarchical Configuration for Monorepos</a></li></ul>
             </li>
             <li>
-                <a href="#5-%eb%a9%80%ed%8b%b0-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%eb%b3%91%eb%a0%ac-%ea%b0%9c%eb%b0%9c-%ed%95%9c-%ec%9d%b8%ea%b0%84-%ec%97%ac%eb%9f%ac-ai-%ed%8c%80%ec%9b%90" aria-label="5. 멀티 에이전트 병렬 개발: 한 인간, 여러 AI 팀원">5. 멀티 에이전트 병렬 개발: 한 인간, 여러 AI 팀원</a><ul>
+                <a href="#multi-agent-parallel-development-one-human-multiple-ai-teammates" aria-label="Multi-Agent Parallel Development: One Human, Multiple AI Teammates">Multi-Agent Parallel Development: One Human, Multiple AI Teammates</a><ul>
                     
             <li>
-                <a href="#%ed%91%9c%ec%a4%80-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ec%97%ad%ed%95%a0" aria-label="표준 에이전트 역할">표준 에이전트 역할</a></li>
+                <a href="#standard-agent-roles" aria-label="Standard Agent Roles">Standard Agent Roles</a></li>
             <li>
-                <a href="#%ec%8b%a4%ec%a0%84-%eb%b3%91%eb%a0%ac-%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0" aria-label="실전 병렬 워크플로우">실전 병렬 워크플로우</a></li></ul>
+                <a href="#real-world-parallel-workflow" aria-label="Real-World Parallel Workflow">Real-World Parallel Workflow</a></li></ul>
             </li>
             <li>
-                <a href="#6-mcp%ec%99%80-skills-%ec%bd%94%eb%93%9c-%eb%84%88%eb%a8%b8%eb%a1%9c-codex-%ed%99%95%ec%9e%a5%ed%95%98%ea%b8%b0" aria-label="6. MCP와 Skills: 코드 너머로 Codex 확장하기">6. MCP와 Skills: 코드 너머로 Codex 확장하기</a><ul>
+                <a href="#mcp--skills-extending-codex-beyond-code" aria-label="MCP &amp; Skills: Extending Codex Beyond Code">MCP &amp; Skills: Extending Codex Beyond Code</a><ul>
                     
             <li>
-                <a href="#model-context-protocolmcp-%ed%86%b5%ed%95%a9" aria-label="Model Context Protocol(MCP) 통합">Model Context Protocol(MCP) 통합</a></li></ul>
+                <a href="#model-context-protocol-mcp-integrations" aria-label="Model Context Protocol (MCP) Integrations">Model Context Protocol (MCP) Integrations</a></li></ul>
             </li>
             <li>
-                <a href="#7-%eb%b3%b4%ec%95%88-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98-%ec%97%94%ed%84%b0%ed%94%84%eb%9d%bc%ec%9d%b4%ec%a6%88%ea%b0%80-codex-cli%eb%a5%bc-%ec%8a%b9%ec%9d%b8%ed%95%98%eb%8a%94-%ec%9d%b4%ec%9c%a0" aria-label="7. 보안 아키텍처: 엔터프라이즈가 Codex CLI를 승인하는 이유">7. 보안 아키텍처: 엔터프라이즈가 Codex CLI를 승인하는 이유</a></li>
+                <a href="#security-architecture-why-enterprises-are-approving-codex-cli" aria-label="Security Architecture: Why Enterprises Are Approving Codex CLI">Security Architecture: Why Enterprises Are Approving Codex CLI</a></li>
             <li>
-                <a href="#8-%eb%aa%a8%eb%8d%b8-%ec%84%a0%ed%83%9d-gpt-53-codex-vs-gpt-53-codex-spark" aria-label="8. 모델 선택: GPT-5.3-Codex vs GPT-5.3-Codex-Spark">8. 모델 선택: GPT-5.3-Codex vs GPT-5.3-Codex-Spark</a></li>
+                <a href="#model-selection-gpt-53-codex-vs-gpt-53-codex-spark" aria-label="Model Selection: GPT-5.3-Codex vs. GPT-5.3-Codex-Spark">Model Selection: GPT-5.3-Codex vs. GPT-5.3-Codex-Spark</a></li>
             <li>
-                <a href="#9-codex-cli-vs-claude-code-%ed%8e%b8%ed%96%a5-%ec%97%86%eb%8a%94-%ea%b2%b0%ec%a0%95-%ed%94%84%eb%a0%88%ec%9e%84%ec%9b%8c%ed%81%ac" aria-label="9. Codex CLI vs Claude Code: 편향 없는 결정 프레임워크">9. Codex CLI vs Claude Code: 편향 없는 결정 프레임워크</a></li>
+                <a href="#codex-cli-vs-claude-code-an-unbiased-decision-framework" aria-label="Codex CLI vs. Claude Code: An Unbiased Decision Framework">Codex CLI vs. Claude Code: An Unbiased Decision Framework</a></li>
             <li>
-                <a href="#10-%ec%98%a4%eb%8a%98-%eb%b3%b5%ec%82%ac%ed%95%b4%ec%84%9c-%ec%93%b8-%ec%88%98-%ec%9e%88%eb%8a%94-%ea%b2%80%ec%a6%9d%eb%90%9c-%ed%94%84%eb%a1%ac%ed%94%84%ed%8a%b8-%ed%85%9c%ed%94%8c%eb%a6%bf-10%ea%b0%9c" aria-label="10. 오늘 복사해서 쓸 수 있는 검증된 프롬프트 템플릿 10개">10. 오늘 복사해서 쓸 수 있는 검증된 프롬프트 템플릿 10개</a><ul>
+                <a href="#ten-battle-tested-prompt-templates-you-can-copy-today" aria-label="Ten Battle-Tested Prompt Templates You Can Copy Today">Ten Battle-Tested Prompt Templates You Can Copy Today</a><ul>
                     
             <li>
-                <a href="#1-%ec%8b%a0%ea%b7%9c-%ea%b0%9c%eb%b0%9c%ec%9e%90-%ec%98%a8%eb%b3%b4%eb%94%a9" aria-label="1. 신규 개발자 온보딩">1. 신규 개발자 온보딩</a></li>
+                <a href="#1-new-developer-onboarding" aria-label="1. New-developer onboarding">1. New-developer onboarding</a></li>
             <li>
-                <a href="#2-%eb%8d%b0%eb%93%9c-%ec%bd%94%eb%93%9c-%ec%a0%9c%ea%b1%b0" aria-label="2. 데드 코드 제거">2. 데드 코드 제거</a></li>
+                <a href="#2-dead-code-elimination" aria-label="2. Dead-code elimination">2. Dead-code elimination</a></li>
             <li>
-                <a href="#3-%ec%9d%98%ec%a1%b4%ec%84%b1-%ed%98%84%eb%8c%80%ed%99%94" aria-label="3. 의존성 현대화">3. 의존성 현대화</a></li>
+                <a href="#3-dependency-modernization" aria-label="3. Dependency modernization">3. Dependency modernization</a></li>
             <li>
-                <a href="#4-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4-%ec%bf%bc%eb%a6%ac-%ec%b5%9c%ec%a0%81%ed%99%94" aria-label="4. 데이터베이스 쿼리 최적화">4. 데이터베이스 쿼리 최적화</a></li>
+                <a href="#4-database-query-optimization" aria-label="4. Database query optimization">4. Database query optimization</a></li>
             <li>
-                <a href="#5-%eb%b3%b4%ec%95%88-%ec%b7%a8%ec%95%bd%ec%a0%90-%ec%8a%a4%ec%ba%94" aria-label="5. 보안 취약점 스캔">5. 보안 취약점 스캔</a></li>
+                <a href="#5-security-vulnerability-scan" aria-label="5. Security vulnerability scan">5. Security vulnerability scan</a></li>
             <li>
-                <a href="#6-%eb%ac%b8%ec%84%9c-%ec%83%9d%ec%84%b1" aria-label="6. 문서 생성">6. 문서 생성</a></li>
+                <a href="#6-documentation-generation" aria-label="6. Documentation generation">6. Documentation generation</a></li>
             <li>
-                <a href="#7-%ed%81%ac%eb%a1%9c%ec%8a%a4-%ec%96%b8%ec%96%b4-%ed%8f%ac%ed%8c%85" aria-label="7. 크로스 언어 포팅">7. 크로스 언어 포팅</a></li>
+                <a href="#7-cross-language-port" aria-label="7. Cross-language port">7. Cross-language port</a></li>
             <li>
-                <a href="#8-cicd-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8-%ec%83%9d%ec%84%b1" aria-label="8. CI/CD 파이프라인 생성">8. CI/CD 파이프라인 생성</a></li>
+                <a href="#8-cicd-pipeline-creation" aria-label="8. CI/CD pipeline creation">8. CI/CD pipeline creation</a></li>
             <li>
-                <a href="#9-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ec%9d%b8%ec%8b%9c%eb%8d%98%ed%8a%b8-%ec%a7%84%eb%8b%a8" aria-label="9. 프로덕션 인시던트 진단">9. 프로덕션 인시던트 진단</a></li>
+                <a href="#9-production-incident-diagnosis" aria-label="9. Production incident diagnosis">9. Production incident diagnosis</a></li>
             <li>
-                <a href="#10-%ec%bb%a4%eb%b0%8b-%ec%a0%84-%ec%85%80%ed%94%84-%eb%a6%ac%eb%b7%b0" aria-label="10. 커밋 전 셀프 리뷰">10. 커밋 전 셀프 리뷰</a></li></ul>
+                <a href="#10-pre-commit-self-review" aria-label="10. Pre-commit self-review">10. Pre-commit self-review</a></li></ul>
             </li>
             <li>
-                <a href="#11-30-60-90%ec%9d%bc-%eb%a7%88%ec%8a%a4%ed%84%b0%eb%a6%ac-%eb%a1%9c%eb%93%9c%eb%a7%b5" aria-label="11. 30-60-90일 마스터리 로드맵">11. 30-60-90일 마스터리 로드맵</a><ul>
+                <a href="#30-60-90-day-mastery-roadmap" aria-label="30-60-90 Day Mastery Roadmap">30-60-90 Day Mastery Roadmap</a><ul>
                     
             <li>
-                <a href="#130%ec%9d%bc-%ea%b8%b0%eb%b3%b8-%ec%8a%b5%ea%b4%80-%ea%b5%ac%ec%b6%95" aria-label="1–30일: 기본 습관 구축">1–30일: 기본 습관 구축</a></li>
+                <a href="#days-130-build-fundamental-habits" aria-label="Days 1–30: Build Fundamental Habits">Days 1–30: Build Fundamental Habits</a></li>
             <li>
-                <a href="#3160%ec%9d%bc-%ed%88%b4%ed%82%b7-%ed%99%95%ec%9e%a5" aria-label="31–60일: 툴킷 확장">31–60일: 툴킷 확장</a></li>
+                <a href="#days-3160-expand-your-toolkit" aria-label="Days 31–60: Expand Your Toolkit">Days 31–60: Expand Your Toolkit</a></li>
             <li>
-                <a href="#6190%ec%9d%bc-%ed%8c%80%ea%b3%bc-%ec%9e%90%eb%8f%99%ed%99%94%eb%a1%9c-%ed%99%95%ec%9e%a5" aria-label="61–90일: 팀과 자동화로 확장">61–90일: 팀과 자동화로 확장</a></li></ul>
+                <a href="#days-6190-scale-to-team-and-automation" aria-label="Days 61–90: Scale to Team and Automation">Days 61–90: Scale to Team and Automation</a></li></ul>
             </li>
             <li>
-                <a href="#12-%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="12. 자주 묻는 질문">12. 자주 묻는 질문</a></li>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a></li>
             <li>
-                <a href="#%ea%b2%b0%eb%a1%a0-%ed%84%b0%eb%af%b8%eb%84%90%ec%9d%b4-%ec%83%88%eb%a1%9c%ec%9a%b4-ide%eb%8b%a4" aria-label="결론: 터미널이 새로운 IDE다">결론: 터미널이 새로운 IDE다</a></li>
+                <a href="#conclusion-the-terminal-is-your-new-ide" aria-label="Conclusion: The Terminal Is Your New IDE">Conclusion: The Terminal Is Your New IDE</a></li>
             <li>
                 <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
             </li>
@@ -296,380 +296,340 @@
 </details>
 
   <div class="post-content md-content"><p>{&lt;/* resource-info */&gt;}</p>
-<h2 id="1-openai-codex-cli란-무엇이며-왜-2026년-개발자들이-전환하는가">1. OpenAI Codex CLI란 무엇이며 왜 2026년 개발자들이 전환하는가<a hidden class="anchor" aria-hidden="true" href="#1-openai-codex-cli란-무엇이며-왜-2026년-개발자들이-전환하는가">#</a></h2>
-<p>2025년과 2026년 사이 개발자 도구 환경은 극적으로 변했다. 정적 코드 자동 완성(GitHub Copilot)에서 대화형 코딩(ChatGPT, Cursor)을 거쳐 이제는 <strong>터미널 네이티브 자율 에이전트</strong>—터미널 안에서 살며 코드베이스 전체를 이해하고 실제 엔지니어링 작업을 수행하는 AI 시스템으로 진화했다.</p>
-<p>OpenAI Codex CLI는 이 변화의 중심에 있다. <strong>GitHub Star 83,000개 이상</strong>과 AI 개발자 도구 카테고리에서 가장 빠른 성장세 중 하나를 보이는 이 도구는 단순한 챗봇 래퍼가 아니다. Rust로 구축된 오픈소스 코딩 에이전트로, 파일을 읽고, 코드를 편집하고, 셸 명령을 실행하고, 테스트를 돌리고, 코드 리뷰를 수행하며, 장시간 실행되는 작업을 클라우드 샌드박스에 위임할 수 있다.</p>
-<p>이전 세대 도구와의 차별점: - <strong>ChatGPT 구독자에게는 추가 비용 없음</strong> — Plus($20/월) 또는 Pro($200/월)를 이미 결제 중이라면 Codex CLI 사용은 포함된다. 별도 API 과금 없음</p>
+<h2 id="what-is-openai-codex-cli-and-why-developers-are-switching-in-2026">What Is OpenAI Codex CLI and Why Developers Are Switching in 2026<a hidden class="anchor" aria-hidden="true" href="#what-is-openai-codex-cli-and-why-developers-are-switching-in-2026">#</a></h2>
+<p>The developer tooling landscape has shifted dramatically between 2025 and 2026. We have moved from static code completion (GitHub Copilot) to conversational coding (ChatGPT, Cursor) and now to <strong>terminal-native autonomous agents</strong>—AI systems that live inside your terminal, understand your entire codebase, and execute real engineering tasks.</p>
+<p>OpenAI Codex CLI sits at the center of this shift. With <strong>83,000+ GitHub stars</strong> and one of the fastest growth trajectories in the AI developer tools category, it is not merely a chatbot wrapper. It is an open-source, Rust-built coding agent that reads files, edits code, runs shell commands, executes tests, performs code reviews, and delegates long-running tasks to cloud sandboxes.</p>
+<p>Here is what distinguishes Codex CLI from earlier-generation tools: - <strong>Zero marginal cost for ChatGPT subscribers</strong> — If you already pay for Plus ($20/month) or Pro ($200/month), Codex CLI usage is bundled. No separate API billing.</p>
 <ul>
-<li><strong>완전 오픈소스(Apache-2.0)</strong> — 포크, 감사, 확장 모두 자유. 원래 TypeScript 베이스에서 Rust로 재작성되어 1초 미만의 콜드 스타트 제공</li>
-<li><strong>4가지 진입점, 하나의 상태 공유</strong> — VS Code에서 작업을 시작하고 잠자는 동안 클라우드 에이전트에 넘겨준 뒤 다음 날 아침 GitHub에서 PR 머지</li>
-<li><strong>멀티 에이전트 동시성</strong> — 최대 6개의 병렬 서브 에이전트를 별도 역할로 실행: 탐색자, 작업자, 리뷰어, 테스터</li>
-<li><strong>MCP 네이티브</strong> — 데이터베이스, API, 문서 시스템, 관측 가능성 플랫폼 연결을 위한 일급 Model Context Protocol 지원</li>
-<li><strong>엔터프라이즈급 샌드박싱</strong> — Linux Landlock과 macOS Seatbelt로 파일 시스템 접근 제한; 네트워크 송신은 옵트인; 모든 동작은 감사 가능</li>
+<li><strong>Fully open source (Apache-2.0)</strong> — Fork it, audit it, extend it. The Rust rewrite from the original TypeScript base delivers sub-second cold starts.</li>
+<li><strong>Four entry points, one shared state</strong> — Start a task in VS Code, hand it off to the cloud agent while you sleep, and merge the PR from GitHub the next morning.</li>
+<li><strong>Multi-agent concurrency</strong> — Run up to 6 parallel sub-agents with distinct roles: explorer, worker, reviewer, tester.</li>
+<li><strong>MCP-native</strong> — First-class Model Context Protocol support for connecting databases, APIs, documentation systems, and observability platforms.</li>
+<li><strong>Enterprise-grade sandboxing</strong> — Linux Landlock and macOS Seatbelt restrict filesystem access; network egress is opt-in; every action is auditable.</li>
 </ul>
-<p>브라우저 탭에서 스니펫을 복사 붙여넣기 하고 있다면, 이 도구는 소프트웨어 작성 방식을 근본적으로 재편할 것이다.</p>
+<p>If you are still copy-pasting snippets from a browser tab, this tool will fundamentally restructure how you write software.</p>
 <hr>
-<h2 id="2-제로에서-프로덕션까지-5분-이내-설치">2. 제로에서 프로덕션까지 5분 이내 설치<a hidden class="anchor" aria-hidden="true" href="#2-제로에서-프로덕션까지-5분-이내-설치">#</a></h2>
-<h3 id="사전-요구사항">사전 요구사항<a hidden class="anchor" aria-hidden="true" href="#사전-요구사항">#</a></h3>
+<h2 id="zero-to-production-installation-in-under-five-minutes">Zero-to-Production Installation in Under Five Minutes<a hidden class="anchor" aria-hidden="true" href="#zero-to-production-installation-in-under-five-minutes">#</a></h2>
+<h3 id="prerequisites">Prerequisites<a hidden class="anchor" aria-hidden="true" href="#prerequisites">#</a></h3>
 <ul>
-<li>Node.js 18+(npm 경로용)</li>
-<li>또는 Homebrew가 설치된 macOS(네이티브 Rust 바이너리, Node 의존성 없음)</li>
-<li>ChatGPT Plus, Pro, Business, Enterprise 구독 — 또는 — OpenAI API 키</li>
+<li>Node.js 18+ (for the npm path)</li>
+<li>Or macOS with Homebrew (native Rust binary, no Node dependency)</li>
+<li>A ChatGPT Plus, Pro, Business, or Enterprise subscription — OR — an OpenAI API key</li>
 </ul>
-<h3 id="세-가지-설치-경로">세 가지 설치 경로<a hidden class="anchor" aria-hidden="true" href="#세-가지-설치-경로">#</a></h3>
-<p><strong>옵션 A: npm(크로스 플랫폼)</strong></p>
+<h3 id="three-install-paths">Three Install Paths<a hidden class="anchor" aria-hidden="true" href="#three-install-paths">#</a></h3>
+<p><strong>Option A: npm (cross-platform)</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install -g @openai/codex
 </span></span><span style="display:flex;"><span>codex --version
-</span></span></code></pre></div><p><strong>옵션 B: Homebrew(macOS 네이티브 바이너리)</strong></p>
+</span></span></code></pre></div><p><strong>Option B: Homebrew (macOS native binary)</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew update
 </span></span><span style="display:flex;"><span>brew install --cask codex
 </span></span><span style="display:flex;"><span>codex --version
-</span></span></code></pre></div><p><strong>옵션 C: 원라인 설치 스크립트</strong></p>
+</span></span></code></pre></div><p><strong>Option C: One-line installer</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -sSL https://releases.openai.com/codex/install.sh | bash
-</span></span></code></pre></div><h3 id="인증">인증<a hidden class="anchor" aria-hidden="true" href="#인증">#</a></h3>
+</span></span></code></pre></div><h3 id="authentication">Authentication<a hidden class="anchor" aria-hidden="true" href="#authentication">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex login
-</span></span></code></pre></div><p>기본 브라우저가 OpenAI 인증 흐름을 연다. ChatGPT 계정으로 로그인하고 OAuth 요청을 승인한 뒤 터미널로 돌아오면 된다. API 키 관리 불필요. 별도 과금 대시보드 불필요. 사용량은 ChatGPT 플랜 할당량에 카운트된다.</p>
-<p>API 키 모드가 필요한 팀(공유 구독이 부족한 엔터프라이즈 환경에서 흔함): `````bash
+</span></span></code></pre></div><p>Your default browser opens the OpenAI authorization flow. Sign in with your ChatGPT account, approve the OAuth request, and return to the terminal. No API key management. No separate billing dashboard. Your usage counts against your ChatGPT plan quota.</p>
+<p>For teams requiring API-key mode (common in enterprise environments where shared subscriptions are insufficient): `````bash
 export OPENAI_API_KEY=&ldquo;sk-&hellip;&rdquo;
 codex</p>
 <pre tabindex="0"><code>
-또는 ``~/.codex/config.toml``에 영구 저장: `````toml
+Or persist it in ``~/.codex/config.toml``: `````toml
 preferred_auth_method = &#34;apikey&#34;
-</code></pre><h3 id="첫-작업-표준-스모크-테스트">첫 작업: 표준 스모크 테스트<a hidden class="anchor" aria-hidden="true" href="#첫-작업-표준-스모크-테스트">#</a></h3>
-<p>아무 리포지토리로 이동해서 범위가 정해진 작업을 발급한다: `````bash
+</code></pre><h3 id="first-task-the-canonical-smoke-test">First Task: The Canonical Smoke Test<a hidden class="anchor" aria-hidden="true" href="#first-task-the-canonical-smoke-test">#</a></h3>
+<p>Navigate to any repository and issue a bounded task: `````bash
 cd ~/projects/your-repo
-codex &ldquo;src/utils/date.ts의 parseDate 함수에 대한 단위 테스트를 추가하라. 유효한 입력, 경계 케이스, 잘못된 형식을 모두 다뤄라. 테스트 스위트를 실행하고 모든 테스트가 통과하는지 확인하라.&rdquo;</p>
+codex &ldquo;Add a unit test for the parseDate function in src/utils/date.ts. Cover valid inputs, edge cases, and invalid formats. Run the test suite and confirm all tests pass.&rdquo;</p>
 <pre tabindex="0"><code>
-Codex가 다음을 수행한다: 1. 리포지토리를 스캔해 테스트 프레임워크(Jest, Vitest, Mocha, pytest 등)를 식별
-2. ````parseDate```` 구현 읽기
-3. 의미 있는 케이스로 테스트 파일 생성
-4. 테스트 실행
-5. diff를 제시하고 디스크에 쓰기 전 승인 요청
+Watch Codex: 1. Scan the repository to identify the test framework (Jest, Vitest, Mocha, pytest, etc.)
+2. Read the implementation of ````parseDate````
+3. Generate a test file with meaningful cases
+4. Execute the tests
+5. Present a diff and ask for approval before writing to disk
+
 
 * * *
+## The Mental Model Shift: From Typing Code to Directing Agents
 
-## 3. 사고방식의 전환: 코드 타이핑에서 에이전트 지휘로
+The single most important adaptation when using Codex CLI is changing your self-conception. You are no longer the person who types every semicolon. You are the **engineering lead who delegates tasks to an AI teammate**—and that teammate needs context, constraints, and clear acceptance criteria.
 
-Codex CLI를 사용할 때 가장 중요한 적응은 자기 인식의 변화다. 더 이상 모든 세미콜론을 타이핑하는 사람이 아니다. **AI 팀원에게 작업을 위임하는 엔지니어링 리더**가 되는 것이다—그리고 그 팀원은 컨텍스트, 제약, 명확한 수락 기준을 필요로 한다.
+### The Four-Element Prompt Structure
 
-### 4요소 프롬프트 구조
+| Element | Purpose | Example |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| **Objective** | What to build or modify | &#34;Implement JWT-based auth middleware&#34; |
+| **Context** | Which files, frameworks, or conventions matter | &#34;Use Go + Gin. Database connection is in db/conn.go. Follow existing error handling patterns.&#34; |
+| **Constraints** | Rules that must not be violated | &#34;Do not break the existing REST API contract. Every new function must have unit tests.&#34; |
+| **Verification** | How to prove the task is complete | &#34;Run ````go test ./...````. All tests pass. Provide curl commands to test login and refresh flows.&#34; |
 
-| 요소 | 목적 | 예시 |
-|---|---|---|
-| **목표** | 무엇을 만들거나 수정할 것인가 | &#34;JWT 기반 인증 미들웨어 구현&#34; |
-| **컨텍스트** | 어떤 파일, 프레임워크, 규약이 중요한가 | &#34;Go + Gin 사용. DB 연결은 db/conn.go. 기존 에러 처리 패턴 따라라.&#34; |
-| **제약** | 위반해서는 안 되는 규칙 | &#34;기존 REST API 계약을 깨지 마라. 모든 신규 함수는 단위 테스트가 있어야 한다.&#34; |
-| **검증** | 작업 완료를 어떻게 증명할 것인가 | &#34;````go test ./...```` 실행. 모든 테스트 통과. 로그인과 갱신 흐름 검증용 curl 명령 제공.&#34; |
+**Weak prompt:** &#34;Write a login function.&#34;
 
-**약한 프롬프트:** &#34;로그인 함수 작성해줘.&#34;
+**Strong prompt:**
 
-**강한 프롬프트:**
+&gt; &#34;Build a user authentication system for this Go/Gin project: &gt; 1. Registration and login REST endpoints with JWT tokens
+&gt; 2. MySQL user table schema matching the existing conventions in db/schema.sql
+&gt; 3. Run the server and give me curl commands to verify registration and login end-to-end.&#34;
 
-&gt; &#34;이 Go/Gin 프로젝트에 사용자 인증 시스템 구축: &gt; 1. JWT 토큰을 사용하는 등록/로그인 REST 엔드포인트
-&gt; 2. db/schema.sql의 기존 컨벤션과 일치하는 MySQL 사용자 테이블 스키마
-&gt; 3. 서버를 실행하고 등록과 로그인을 엔드-투-엔드로 검증할 curl 명령 제공.&#34;
+Codex will scaffold the package structure, write the handlers, wire the database layer, install dependencies, start the server, and hand you working curl commands.
 
-Codex는 패키지 구조를 스캐폴딩하고, 핸들러를 작성하고, 데이터베이스 레이어를 연결하고, 의존성을 설치하고, 서버를 시작하고, 동작하는 curl 명령을 건네준다.
+### Three Approval Modes for Different Trust Levels
 
-### 세 가지 신뢰 수준별 승인 모드
+| Mode | File Read | File Edit | Command Execution | When to Use |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| **Auto (default)** | Auto-allowed | Requires approval | Requires approval | Daily development; safe default |
+| **Read Only** | Auto-allowed | Prohibited | Prohibited | Codebase exploration, onboarding, audits |
+| **Full Access** | Auto-allowed | Auto-allowed | Auto-allowed | CI/CD containers, isolated VMs, trusted automation |
 
-| 모드 | 파일 읽기 | 파일 편집 | 명령 실행 | 사용 시점 |
-|---|---|---|---|---|
-| **Auto(기본)** | 자동 허용 | 승인 필요 | 승인 필요 | 일상 개발; 안전한 기본값 |
-| **Read Only** | 자동 허용 | 금지 | 금지 | 코드베이스 탐색, 온보딩, 감사 |
-| **Full Access** | 자동 허용 | 자동 허용 | 자동 허용 | CI/CD 컨테이너, 격리 VM, 신뢰 가능한 자동화 |
-
-실행 플래그: `````bash
-codex --sandbox read-only              # 순수 분석; 변경 위험 제로
-codex --sandbox workspace-write        # 파일 편집 가능; 신뢰할 수 없는 명령은 여전히 승인 필요
-codex --full-auto                      # 승인 자동화; 샌드박스는 여전히 활성
-codex --yolo                           # 샌드박스와 승인 모두 비활성화. 격리 환경 전용.
-</code></pre><p><strong>중대한 안전 주의:</strong> <code>--yolo</code>(긴 형식: <code>--dangerously-bypass-approvals-and-sandbox</code>)는 일회용 컨테이너, CI 러너, 샌드박스 VM 전용이다. 로컬 워크스테이션의 프로덕션 리포지토리에는 절대 실행하지 마라.</p>
+Launch flags: `````bash
+codex --sandbox read-only              # Pure analysis; zero mutation risk
+codex --sandbox workspace-write        # Can edit files; untrusted commands still require approval
+codex --full-auto                      # Automates approvals; sandbox still active
+codex --yolo                           # Disables sandbox AND approvals. Isolated environments ONLY.
+</code></pre><p><strong>Critical safety note:</strong> <code>--yolo</code> (long form: <code>--dangerously-bypass-approvals-and-sandbox</code>) is intended exclusively for throwaway containers, CI runners, and sandboxed VMs. Never run it against a production repository on your local workstation.</p>
 <hr>
-<h2 id="4-agentsmd-코드-품질을-결정하는-하나의-파일">4. AGENTS.md: 코드 품질을 결정하는 하나의 파일<a hidden class="anchor" aria-hidden="true" href="#4-agentsmd-코드-품질을-결정하는-하나의-파일">#</a></h2>
-<p>Codex CLI는 모든 작업 전에 <code>AGENTS.md</code> 파일을 자동으로 탐지하고 읽는다. 이것을 새 인간 엔지니어에게 줄 온보딩 문서처럼 생각하라—단지 새 팀원은 그것을 밀리초 안에 읽고 완벽한 회상력으로 따른다.</p>
-<h3 id="프로덕션-준비-agentsmd-템플릿">프로덕션 준비 AGENTS.md 템플릿<a hidden class="anchor" aria-hidden="true" href="#프로덕션-준비-agentsmd-템플릿">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span># AGENTS.md — AI 엔지니어링 보조 가이드
+<h2 id="agentsmd-the-single-file-that-determines-code-quality">AGENTS.md: The Single File That Determines Code Quality<a hidden class="anchor" aria-hidden="true" href="#agentsmd-the-single-file-that-determines-code-quality">#</a></h2>
+<p>Codex CLI automatically discovers and reads <code>AGENTS.md</code> files before every task. Think of this as the onboarding document you would give a new human engineer—except your new teammate reads it in milliseconds and follows it with perfect recall.</p>
+<h3 id="a-production-ready-agentsmd-template">A Production-Ready AGENTS.md Template<a hidden class="anchor" aria-hidden="true" href="#a-production-ready-agentsmd-template">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span># AGENTS.md — AI Engineering Assistant Guide
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## 리포지토리 레이아웃
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> ```<span style="color:#e6db74">`src/`</span>``` — 비즈니스 로직; 모든 핸들러, 서비스, 도메인 모델
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> ```<span style="color:#e6db74">`tests/`</span>``<span style="color:#e6db74">` — `</span>``<span style="color:#e6db74">`src/`</span>```의 미러 구조; 소스 파일마다 한 개의 테스트 파일
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> ```<span style="color:#e6db74">`migrations/`</span>``` — Alembic 관리 DB 마이그레이션; 절대 수동 편집 금지
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Repository Layout
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> ```<span style="color:#e6db74">`src/`</span>``` — Business logic; all handlers, services, and domain models
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> ```<span style="color:#e6db74">`tests/`</span>``<span style="color:#e6db74">` — Mirror structure of `</span>``<span style="color:#e6db74">`src/`</span>```; one test file per source file
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> ```<span style="color:#e6db74">`migrations/`</span>``` — Alembic-managed database migrations; never edit by hand
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## 기술 스택 및 표준
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 런타임: Python 3.11+
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 웹 프레임워크: 비동기 라우트 핸들러를 사용하는 FastAPI
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 포맷팅: Black(라인 길이 100) + isort
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 타입 힌트: 모든 함수 시그니처와 공개 클래스 속성에 필수
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Technology Stack &amp; Standards
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Runtime: Python 3.11+
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Web Framework: FastAPI with async route handlers
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Formatting: Black (line length 100) + isort
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Type Hints: Required on every function signature and public class attribute
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## 테스트 요구사항
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 명령: ```<span style="color:#e6db74">`pytest tests/`</span>```
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 커버리지 임계값: 신규 기능 85%
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 비동기 테스트: ```<span style="color:#e6db74">`@pytest.mark.asyncio`</span>``<span style="color:#e6db74">`와 함께 `</span>``<span style="color:#e6db74">`pytest-asyncio`</span>``` 사용 필수
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Testing Requirements
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Command: ```<span style="color:#e6db74">`pytest tests/`</span>```
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Coverage threshold: 85% for new features
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Async tests: Must use ```<span style="color:#e6db74">`pytest-asyncio`</span>``<span style="color:#e6db74">` with `</span>``<span style="color:#e6db74">`@pytest.mark.asyncio`</span>```
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">## Git &amp; CI
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 커밋 형식: ```<span style="color:#e6db74">`[Type] 짧은 설명`</span>``` — Type ∈ {Feat, Fix, Refactor, Docs, Test}
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> ```<span style="color:#e6db74">`main`</span>```에 직접 푸시 금지; 모든 변경은 최소 1명 리뷰가 있는 PR을 통해
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 머지 전 검사: lint → typecheck → test → build
-</span></span></code></pre></div><h3 id="모노레포용-계층형-설정">모노레포용 계층형 설정<a hidden class="anchor" aria-hidden="true" href="#모노레포용-계층형-설정">#</a></h3>
-<p>전역 규약을 위해 루트 레벨 <code>AGENTS.md</code>를 배치하라. 서브디렉토리(예: <code>src/ml/</code>, <code>src/api/</code>) 안에 모듈별 규칙을 위한 중첩 <code>AGENTS.md</code> 파일을 추가하라. Codex는 근접 기반 우선순위로 설정을 머지한다—더 가까운 파일이 먼 파일을 오버라이드한다.</p>
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Commit format: ```<span style="color:#e6db74">`[Type] Short description`</span>``` — Type ∈ {Feat, Fix, Refactor, Docs, Test}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> No direct pushes to ```<span style="color:#e6db74">`main`</span>```; all changes through PR with at least one review
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Pre-merge checks: lint → typecheck → test → build
+</span></span></code></pre></div><h3 id="hierarchical-configuration-for-monorepos">Hierarchical Configuration for Monorepos<a hidden class="anchor" aria-hidden="true" href="#hierarchical-configuration-for-monorepos">#</a></h3>
+<p>Place root-level <code>AGENTS.md</code> for global conventions. Add nested <code>AGENTS.md</code> files inside subdirectories (e.g., <code>src/ml/</code>, <code>src/api/</code>) for module-specific rules. Codex merges configurations with proximity-based precedence—closer files override distant ones.</p>
 <hr>
-<h2 id="5-멀티-에이전트-병렬-개발-한-인간-여러-ai-팀원">5. 멀티 에이전트 병렬 개발: 한 인간, 여러 AI 팀원<a hidden class="anchor" aria-hidden="true" href="#5-멀티-에이전트-병렬-개발-한-인간-여러-ai-팀원">#</a></h2>
-<p>2026년 4월 이후 Codex CLI는 <strong>Subagents</strong>—단일 기능에서 서로 차단하지 않고 협업하는 동시 실행 특화 에이전트—를 도입했다.</p>
-<h3 id="표준-에이전트-역할">표준 에이전트 역할<a hidden class="anchor" aria-hidden="true" href="#표준-에이전트-역할">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>역할</th>
-					<th>책임</th>
-					<th>트리거</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>Explorer</strong></td>
-					<td>리포지토리 구조 매핑, 의존성 식별, 관련 파일 위치 파악</td>
-					<td>복잡한 작업에 자동 첨부</td>
-			</tr>
-			<tr>
-					<td><strong>Worker</strong></td>
-					<td>코드 변경 구현, 파일 생성, 로직 수정</td>
-					<td>기본 주 에이전트</td>
-			</tr>
-			<tr>
-					<td><strong>Reviewer</strong></td>
-					<td>정확성, 보안, 스타일 준수에 대한 변경 감사</td>
-					<td><code>/review</code> 또는 머지 전 훅</td>
-			</tr>
-			<tr>
-					<td><strong>Tester</strong></td>
-					<td>테스트 케이스 생성, 커버리지 검증, 보고된 버그 재현</td>
-					<td>프롬프트에서 명시적으로 요청</td>
-			</tr>
-	</tbody>
-</table>
-<h3 id="실전-병렬-워크플로우">실전 병렬 워크플로우<a hidden class="anchor" aria-hidden="true" href="#실전-병렬-워크플로우">#</a></h3>
-<p>이커머스 백엔드에 &ldquo;로열티 할인&rdquo; 기능을 추가한다고 상상해보라. 작업을 순차로 진행하는 대신 세 표면으로 병렬화한다: <strong>터미널 1 — 구현(CLI):</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;pricing.py에 ````loyalty_discount(price, customer_tier)````를 추가하라. 등급: bronze(0%), silver(5%), gold(10%). 알 수 없는 등급은 ValueError로 거부하라. 다른 함수는 수정하지 마라.&#34;</span>
-</span></span></code></pre></div><p><strong>클라우드 2 — 테스트 생성(chatgpt.com/codex):</strong></p>
-<blockquote>
-<p>&ldquo;test_pricing.py에 loyalty_discount용 망라 테스트 생성. 각 등급, 알 수 없는 등급, 음수 가격, 0 가격, 소수 가격 커버. pricing.py 수정 금지—함수가 존재한다고 가정.&rdquo;</p>
-</blockquote>
-<p><strong>VS Code 3 — 문서화(IDE 확장):</strong></p>
-<blockquote>
-<p>&ldquo;README.md에 loyalty_discount 문서화 섹션 추가: 시그니처, 등급 표, 사용 예시 1개.&rdquo;</p>
-</blockquote>
-<p>세 작업이 동시에 진행된다. 구현이 도착하면 테스트가 검증하고, 문서는 이미 라이브 상태다. 순차 단계 간 인간 대기 시간 없음.</p>
+<h2 id="multi-agent-parallel-development-one-human-multiple-ai-teammates">Multi-Agent Parallel Development: One Human, Multiple AI Teammates<a hidden class="anchor" aria-hidden="true" href="#multi-agent-parallel-development-one-human-multiple-ai-teammates">#</a></h2>
+<p>The post-April-2026 Codex CLI introduces <strong>Subagents</strong>—concurrently running specialized agents that collaborate on a single feature without blocking each other.</p>
+<h3 id="standard-agent-roles">Standard Agent Roles<a hidden class="anchor" aria-hidden="true" href="#standard-agent-roles">#</a></h3>
+<p>| Role | Responsibility | Trigger |
+|</p>
 <hr>
-<h2 id="6-mcp와-skills-코드-너머로-codex-확장하기">6. MCP와 Skills: 코드 너머로 Codex 확장하기<a hidden class="anchor" aria-hidden="true" href="#6-mcp와-skills-코드-너머로-codex-확장하기">#</a></h2>
-<h3 id="model-context-protocolmcp-통합">Model Context Protocol(MCP) 통합<a hidden class="anchor" aria-hidden="true" href="#model-context-protocolmcp-통합">#</a></h3>
-<p>MCP는 2026년 AI 도구의 보편 어댑터가 되었다. Codex CLI는 일급 MCP 지원을 탑재해 다음과의 직접 연결을 가능하게 한다: - <strong>PostgreSQL / MySQL / Redis</strong> — 스키마와 샘플 데이터를 코드 생성용 컨텍스트로 조회</p>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Explorer</strong> | Map repository structure, identify dependencies, locate relevant files | Auto-attached to complex tasks |
+| <strong>Worker</strong> | Implement code changes, create files, modify logic | Default primary agent |
+| <strong>Reviewer</strong> | Audit changes for correctness, security, and style compliance | <code>/review</code> or pre-merge hook |
+| <strong>Tester</strong> | Generate test cases, validate coverage, reproduce reported bugs | Explicitly requested in prompt |</p>
+<h3 id="real-world-parallel-workflow">Real-World Parallel Workflow<a hidden class="anchor" aria-hidden="true" href="#real-world-parallel-workflow">#</a></h3>
+<p>Imagine adding a &ldquo;loyalty discount&rdquo; feature to an e-commerce backend. Instead of sequencing work, you parallelize it across three surfaces: <strong>Terminal 1 — Implementation (CLI):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;Add ````loyalty_discount(price, customer_tier)```` to pricing.py. Tiers: bronze(0%), silver(5%), gold(10%). Reject unknown tiers with ValueError. Do not modify any other function.&#34;</span>
+</span></span></code></pre></div><p><strong>Cloud 2 — Test Generation (chatgpt.com/codex):</strong></p>
+<blockquote>
+<p>&ldquo;Generate exhaustive tests in test_pricing.py for loyalty_discount covering each tier, unknown tier, negative price, zero price, and decimal prices. Do not modify pricing.py—assume the function will exist.&rdquo;</p>
+</blockquote>
+<p><strong>VS Code 3 — Documentation (IDE extension):</strong></p>
+<blockquote>
+<p>&ldquo;Add a section to README.md documenting loyalty_discount: signature, tier table, and one usage example.&rdquo;</p>
+</blockquote>
+<p>All three tasks proceed simultaneously. When the implementation lands, tests validate it, and documentation is already live. No human waiting time between sequential stages.</p>
+<hr>
+<h2 id="mcp--skills-extending-codex-beyond-code">MCP &amp; Skills: Extending Codex Beyond Code<a hidden class="anchor" aria-hidden="true" href="#mcp--skills-extending-codex-beyond-code">#</a></h2>
+<h3 id="model-context-protocol-mcp-integrations">Model Context Protocol (MCP) Integrations<a hidden class="anchor" aria-hidden="true" href="#model-context-protocol-mcp-integrations">#</a></h3>
+<p>MCP has become the universal adapter for AI tools in 2026. Codex CLI ships with first-class MCP support, enabling direct connections to: - <strong>PostgreSQL / MySQL / Redis</strong> — Query schema and sample data as context for code generation</p>
 <ul>
-<li><strong>Stripe / Twilio / SendGrid API</strong> — OpenAPI 스펙을 읽어 타입 지정된 SDK 호출 생성</li>
-<li><strong>Notion / Confluence / 내부 위키</strong> — 비즈니스 규칙과 기능 사양을 코딩 세션에 끌어옴</li>
-<li><strong>Datadog / Sentry / CloudWatch</strong> — 에러 트레이스를 수집해 프로덕션 인시던트 자동 진단/패치</li>
+<li><strong>Stripe / Twilio / SendGrid APIs</strong> — Read OpenAPI specs to generate typed SDK calls</li>
+<li><strong>Notion / Confluence / Internal Wikis</strong> — Pull business rules and feature specifications into the coding session</li>
+<li><strong>Datadog / Sentry / CloudWatch</strong> — Ingest error traces to auto-diagnose and patch production incidents</li>
 </ul>
-<p>명령 레퍼런스: `````bash
-codex /mcp          # 구성된 MCP 서버와 도구 나열
-codex /apps         # 사용 가능한 앱 커넥터 탐색/활성화</p>
+<p>Command references: `````bash
+codex /mcp          # List configured MCP servers and tools
+codex /apps         # Browse and activate available app connectors</p>
 <pre tabindex="0"><code>
-### Skills 카탈로그: 재사용 가능한 워크플로우 자동화
+### Skills Catalog: Reusable Workflow Automation
 
-반복되는 프롬프트 패턴은 **Skills**—공유 가능하고 버전 관리되는 명령어 세트—로 캡슐화되어야 한다.
+Recurring prompt patterns should be encapsulated as **Skills**—shareable, versioned instruction sets.
 
 `````bash
-$skill-creator      # 새 스킬 작성용 대화형 마법사
-</code></pre><p>Skills는 개방형 Agent Skills 표준을 따르므로 Codex CLI, Claude Code, GitHub Copilot 간 이식 가능하다. 전형적인 스킬 응용: - 로컬라이제이션 PR 생성(문자열 추출 → 번역 → PR 오픈)</p>
+$skill-creator      # Interactive wizard for authoring new skills
+</code></pre><p>Skills follow the open Agent Skills standard, making them portable across Codex CLI, Claude Code, and GitHub Copilot. Typical skill applications: - Localization PR generation (extract strings → translate → open PR)</p>
 <ul>
-<li>보안 감사 체크리스트(SQL 인젝션, XSS, 시크릿 누출 스캔)</li>
-<li>커밋 이력에서 릴리스 노트 초안 작성</li>
-<li>마이그레이션 스크립트(Python 2→3, Flask→FastAPI, JavaScript→TypeScript)</li>
+<li>Security audit checklists (scan for SQL injection, XSS, secrets leakage)</li>
+<li>Release note drafting from commit history</li>
+<li>Migration scripts (Python 2→3, Flask→FastAPI, JavaScript→TypeScript)</li>
 </ul>
 <hr>
-<h2 id="7-보안-아키텍처-엔터프라이즈가-codex-cli를-승인하는-이유">7. 보안 아키텍처: 엔터프라이즈가 Codex CLI를 승인하는 이유<a hidden class="anchor" aria-hidden="true" href="#7-보안-아키텍처-엔터프라이즈가-codex-cli를-승인하는-이유">#</a></h2>
-<p>개발자 채택은 전투의 절반일 뿐이다; 엔터프라이즈 보안 팀이 게이트키퍼다. Codex CLI는 다층 방어 모델로 그들의 우려를 해결한다: | 계층 | 기술 | 보호 대상 |
-|&mdash;|&mdash;|&mdash;|
-| <strong>파일시스템 샌드박스</strong> | Linux Landlock / macOS Seatbelt | 지정된 워크스페이스 트리로 파일 접근 제한 |
-| <strong>네트워크 송신 제어</strong> | 기본 거부; 명령당 옵트인 | 무단 엔드포인트로의 우발적 데이터 유출 방지 |
-| <strong>승인 게이팅</strong> | 3단계 모드 정책 엔진 | 휴먼 인 더 루프 또는 정책 기반 자동 승인 |
-| <strong>감사 트레일</strong> | 로컬 SQLite DB | 모든 파일 읽기, 편집, 명령 실행에 타임스탬프와 diff 가능 |
-| <strong>환경 변수 필터링</strong> | 설정 가능한 허용/거부 리스트 | 시크릿(API 키, 비밀번호)이 로깅되거나 전송되는 것 차단 |</p>
-<p>규제 산업을 위한 추가 엔터프라이즈 제어: - <strong>Hook Engine</strong>: 컴플라이언스 스캔을 위한 제출 전 프롬프트 인터셉트; 실행 후 테스트 자동 트리거</p>
+<h2 id="security-architecture-why-enterprises-are-approving-codex-cli">Security Architecture: Why Enterprises Are Approving Codex CLI<a hidden class="anchor" aria-hidden="true" href="#security-architecture-why-enterprises-are-approving-codex-cli">#</a></h2>
+<p>Developer adoption is only half the battle; enterprise security teams are the gatekeepers. Codex CLI addresses their concerns with a defense-in-depth model: | Layer | Technology | What It Protects |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Filesystem sandbox</strong> | Linux Landlock / macOS Seatbelt | Restricts file access to designated workspace trees |
+| <strong>Network egress control</strong> | Default deny; opt-in per command | Prevents accidental data exfiltration to unauthorized endpoints |
+| <strong>Approval gating</strong> | Three-mode policy engine | Human-in-the-loop or policy-driven auto-approval |
+| <strong>Audit trail</strong> | Local SQLite database | Every file read, edit, and command execution is timestamped and diffable |
+| <strong>Environment variable filtering</strong> | Configurable allowlists/denylists | Blocks secrets (API keys, passwords) from being logged or transmitted |</p>
+<p>For regulated industries, additional enterprise controls include: - <strong>Hook Engine</strong>: Intercept prompts pre-submission for compliance scanning; auto-trigger post-execution tests</p>
 <ul>
-<li><strong>RBAC 워크스페이스</strong>: 다른 승인 임계값을 가진 관리자/사용자 스코프 분리</li>
-<li><strong>Context Compaction</strong>: 장시간 세션 이력 자동 압축으로 컨텍스트 윈도우에 민감 데이터가 남는 것 방지</li>
+<li><strong>RBAC Workspaces</strong>: Separate admin and user scopes with different approval thresholds</li>
+<li><strong>Context Compaction</strong>: Automatically compress long-running session history to prevent sensitive data from lingering in context windows</li>
 </ul>
 <hr>
-<h2 id="8-모델-선택-gpt-53-codex-vs-gpt-53-codex-spark">8. 모델 선택: GPT-5.3-Codex vs GPT-5.3-Codex-Spark<a hidden class="anchor" aria-hidden="true" href="#8-모델-선택-gpt-53-codex-vs-gpt-53-codex-spark">#</a></h2>
-<p>Codex CLI는 기본적으로 OpenAI의 코딩 최적화 플래그십 모델 <code>gpt-5.3-codex</code>를 사용한다. 두 번째 변형 <strong>Spark</strong>는 2026년 초 지연 민감 워크플로우용으로 도입되었다.</p>
-<table>
-	<thead>
-			<tr>
-					<th>모델</th>
-					<th>강점</th>
-					<th>이상적 사용 사례</th>
-					<th>가용성</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>gpt-5.3-codex</strong></td>
-					<td>깊은 추론, 아키텍처 설계, 다중 파일 리팩토링, 코드 리뷰</td>
-					<td>복잡한 마이그레이션, 버그 고고학, 보안 감사</td>
-					<td>모든 ChatGPT 유료 등급</td>
-			</tr>
-			<tr>
-					<td><strong>gpt-5.3-codex-spark</strong></td>
-					<td>1,000+ 토큰/초; 100ms 미만 첫 토큰 지연</td>
-					<td>라이브 페어 프로그래밍, 빠른 UI 이터레이션, 인터랙티브 디버깅</td>
-					<td>ChatGPT Pro 전용(리서치 프리뷰)</td>
-			</tr>
-	</tbody>
-</table>
-<p>Spark는 Cerebras WSE-3 웨이퍼 스케일 칩과 공동 엔지니어링되었다—NVIDIA 실리콘이 아닌 곳에서 운영되는 첫 OpenAI 프로덕션 모델이다. 기본적으로 타깃 편집을 최소화하고 테스트 자동 실행하지 않으므로 자율 장기 작업보다는 빠듯한 피드백 루프에 적합하다.</p>
-<p>런타임 모델 전환: `````bash
+<h2 id="model-selection-gpt-53-codex-vs-gpt-53-codex-spark">Model Selection: GPT-5.3-Codex vs. GPT-5.3-Codex-Spark<a hidden class="anchor" aria-hidden="true" href="#model-selection-gpt-53-codex-vs-gpt-53-codex-spark">#</a></h2>
+<p>Codex CLI defaults to <code>gpt-5.3-codex</code>, OpenAI&quot;s flagship coding-optimized model. A second variant, <strong>Spark</strong>, was introduced in early 2026 for latency-critical workflows.</p>
+<p>| Model | Strength | Ideal Use Case | Availability |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>gpt-5.3-codex</strong> | Deep reasoning, architecture design, multi-file refactoring, code review | Complex migrations, bug archaeology, security audits | All ChatGPT paid tiers |
+| <strong>gpt-5.3-codex-spark</strong> | 1,000+ tokens/second; sub-100ms first-token latency | Live pair programming, rapid UI iteration, interactive debugging | ChatGPT Pro only (research preview) |</p>
+<p>Spark is co-engineered with Cerebras on the WSE-3 wafer-scale chip—the first production OpenAI model not running on NVIDIA silicon. It minimizes target edits by default and does not auto-run tests, so it is best for tight feedback loops rather than autonomous long-horizon tasks.</p>
+<p>Switch models on the fly: `````bash
 codex -m gpt-5.3-codex
 codex -m gpt-5.3-codex-spark
-/model                    # 세션 중 대화형 모델 메뉴</p>
+/model                    # Interactive model menu during session</p>
 <pre tabindex="0"><code>
-작업 유형별 추론 노력 조정: `````toml
+Tune reasoning effort per task type: `````toml
 # ~/.codex/config.toml
-model_reasoning_effort = &#34;high&#34;      # 아키텍처, 디버깅, 감사
-model_reasoning_effort = &#34;medium&#34;    # 일상 코딩, 테스트, 리팩토링(기본)
-model_reasoning_effort = &#34;low&#34;       # 포맷팅, 이름 변경, 단순 쿼리
+model_reasoning_effort = &#34;high&#34;      # Architecture, debugging, audits
+model_reasoning_effort = &#34;medium&#34;    # Daily coding, tests, refactors (default)
+model_reasoning_effort = &#34;low&#34;       # Formatting, renaming, simple queries
 </code></pre><hr>
-<h2 id="9-codex-cli-vs-claude-code-편향-없는-결정-프레임워크">9. Codex CLI vs Claude Code: 편향 없는 결정 프레임워크<a hidden class="anchor" aria-hidden="true" href="#9-codex-cli-vs-claude-code-편향-없는-결정-프레임워크">#</a></h2>
-<p>두 도구는 2026년 터미널 AI 코딩 공간을 지배한다. 올바른 선택은 기존 구독, 코드베이스 규모, 워크플로우 선호에 달려 있다.</p>
-<table>
-	<thead>
-			<tr>
-					<th>차원</th>
-					<th>Codex CLI</th>
-					<th>Claude Code</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>가격</strong></td>
-					<td>ChatGPT Plus/Pro/Business와 번들</td>
-					<td>별도 Anthropic 구독(Pro $20/월, Max 등급 $100–200/월)</td>
-			</tr>
-			<tr>
-					<td><strong>라이선스</strong></td>
-					<td>Apache-2.0, 완전 오픈소스</td>
-					<td>클로즈드 소스; API 접근만</td>
-			</tr>
-			<tr>
-					<td><strong>컨텍스트 윈도우</strong></td>
-					<td>1M 토큰(공시)</td>
-					<td>1M+ 토큰(10만+ 파일 리포에서 입증된 우위)</td>
-			</tr>
-			<tr>
-					<td><strong>생태계</strong></td>
-					<td>MCP + OpenAI 플랫폼 + GitHub 네이티브</td>
-					<td>Skills 프레임워크 + Superpowers + MCP</td>
-			</tr>
-			<tr>
-					<td><strong>대형 모노레포 처리</strong></td>
-					<td>양호</td>
-					<td>동급 최강</td>
-			</tr>
-			<tr>
-					<td><strong>엔터프라이즈 기능</strong></td>
-					<td>클라우드 위임, GitHub 앱, 훅 엔진</td>
-					<td>깊은 감사 트레일, 멀티 모달 입력(스크린샷/PDF)</td>
-			</tr>
-			<tr>
-					<td><strong>온보딩 마찰</strong></td>
-					<td>더 낮음(기존 ChatGPT 사용자 제로 코스트)</td>
-					<td>더 높음(신규 벤더 관계 필요)</td>
-			</tr>
-	</tbody>
-</table>
-<p><strong>내 권장:</strong></p>
+<h2 id="codex-cli-vs-claude-code-an-unbiased-decision-framework">Codex CLI vs. Claude Code: An Unbiased Decision Framework<a hidden class="anchor" aria-hidden="true" href="#codex-cli-vs-claude-code-an-unbiased-decision-framework">#</a></h2>
+<p>Both tools dominate the terminal AI coding space in 2026. The right choice depends on your existing subscriptions, codebase scale, and workflow preferences.</p>
+<p>| Dimension | Codex CLI | Claude Code |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Pricing</strong> | Bundled with ChatGPT Plus/Pro/Business | Separate Anthropic subscription (Pro $20/mo, Max tiers $100–200/mo) |
+| <strong>License</strong> | Apache-2.0, fully open source | Closed source; API access only |
+| <strong>Context window</strong> | 1M tokens (advertised) | 1M+ tokens (demonstrably stronger on 100k+ file repos) |
+| <strong>Ecosystem</strong> | MCP + OpenAI platform + GitHub native | Skills framework + Superpowers + MCP |
+| <strong>Large monorepo handling</strong> | Good | Best-in-class |
+| <strong>Enterprise features</strong> | Cloud delegation, GitHub app, hook engine | Deep audit trails, multi-modal inputs (screenshots/PDFs) |
+| <strong>Onboarding friction</strong> | Lower (zero cost for existing ChatGPT users) | Higher (requires new vendor relationship) |</p>
+<p><strong>My recommendation:</strong></p>
 <ul>
-<li>이미 ChatGPT Plus를 결제 중이라면 <strong>Codex CLI로 시작하라</strong>. 일상 엔지니어링 작업의 80–90%를 추가 비용 없이 커버한다.</li>
-<li>50,000개 이상의 파일이 있는 리포지토리를 정기적으로 다루거나, 멀티 모달 컨텍스트(UI 스크린샷, PDF 사양)가 필요하거나, 가장 깊은 코드 리뷰 엄격성이 필요할 때 <strong>Claude Code 추가</strong>.</li>
-<li><strong>둘 다 사용하라.</strong> 많은 시니어 엔지니어는 빠른 프로토타이핑과 신속 수정에 Codex를, 대규모 리팩토링과 아키텍처 변경에 Claude를 사용한다. 도구가 당신을 섬기는 것이지 당신이 도구를 섬기는 것이 아니다.</li>
+<li><strong>Start with Codex CLI</strong> if you already pay for ChatGPT Plus. It covers 80–90% of daily engineering tasks at zero incremental cost.</li>
+<li><strong>Add Claude Code</strong> when you regularly work with repositories exceeding 50,000 files, need multi-modal context (UI screenshots, PDF specifications), or require the deepest-available code review rigor.</li>
+<li><strong>Use both.</strong> Many senior engineers run Codex for rapid prototyping and quick fixes, then switch to Claude for large-scale refactoring and architectural changes. Tools serve you; you do not serve tools.</li>
 </ul>
 <hr>
-<h2 id="10-오늘-복사해서-쓸-수-있는-검증된-프롬프트-템플릿-10개">10. 오늘 복사해서 쓸 수 있는 검증된 프롬프트 템플릿 10개<a hidden class="anchor" aria-hidden="true" href="#10-오늘-복사해서-쓸-수-있는-검증된-프롬프트-템플릿-10개">#</a></h2>
-<h3 id="1-신규-개발자-온보딩">1. 신규 개발자 온보딩<a hidden class="anchor" aria-hidden="true" href="#1-신규-개발자-온보딩">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;이 프로젝트의 아키텍처를 설명하고, 주요 모듈의 의존성 그래프를 매핑하고, 새 팀원이 먼저 읽어야 할 세 파일을 알려달라&#34;</span>
-</span></span></code></pre></div><h3 id="2-데드-코드-제거">2. 데드 코드 제거<a hidden class="anchor" aria-hidden="true" href="#2-데드-코드-제거">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;src/에서 사용되지 않는 import와 도달 불가 함수를 모두 찾아 제거하고 테스트 스위트가 여전히 통과하는지 확인하라&#34;</span>
-</span></span></code></pre></div><h3 id="3-의존성-현대화">3. 의존성 현대화<a hidden class="anchor" aria-hidden="true" href="#3-의존성-현대화">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;React를 18에서 19로 업그레이드하라. 모든 브레이킹 체인지를 처리하고, 테스트 스위트를 실행하고, 실패를 수정하고, CHANGELOG.md의 마이그레이션 노트를 업데이트하라&#34;</span>
-</span></span></code></pre></div><h3 id="4-데이터베이스-쿼리-최적화">4. 데이터베이스 쿼리 최적화<a hidden class="anchor" aria-hidden="true" href="#4-데이터베이스-쿼리-최적화">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;api/routes.py에서 N+1 쿼리 패턴을 분석하라. 이거 로딩(joinload 또는 selectinload)으로 교체하라. 전/후 벤치마크 수치 제공.&#34;</span>
-</span></span></code></pre></div><h3 id="5-보안-취약점-스캔">5. 보안 취약점 스캔<a hidden class="anchor" aria-hidden="true" href="#5-보안-취약점-스캔">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;모든 API 엔드포인트에 대해 인증 누락이나 입력 검증 누락 감사. 발견된 각 취약점에 대해 수정과 회귀 테스트 제공.&#34;</span>
-</span></span></code></pre></div><h3 id="6-문서-생성">6. 문서 생성<a hidden class="anchor" aria-hidden="true" href="#6-문서-생성">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;모든 공개 함수에 Google 스타일 docstring 생성하고 README.md의 API 레퍼런스 섹션 업데이트&#34;</span>
-</span></span></code></pre></div><h3 id="7-크로스-언어-포팅">7. 크로스 언어 포팅<a hidden class="anchor" aria-hidden="true" href="#7-크로스-언어-포팅">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;scripts/data_processor.py를 동등한 TypeScript로 번역. 모든 로직, 에러 처리, async 동작 보존.&#34;</span>
-</span></span></code></pre></div><h3 id="8-cicd-파이프라인-생성">8. CI/CD 파이프라인 생성<a hidden class="anchor" aria-hidden="true" href="#8-cicd-파이프라인-생성">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;GitHub Actions 워크플로우 생성: PR에서 lint + test + typecheck; main 머지에서 Docker 이미지 빌드 및 GHCR 푸시&#34;</span>
-</span></span></code></pre></div><h3 id="9-프로덕션-인시던트-진단">9. 프로덕션 인시던트 진단<a hidden class="anchor" aria-hidden="true" href="#9-프로덕션-인시던트-진단">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;이 에러 로그가 방금 Sentry에 떴다. 근본 원인을 설명하고, 문제 코드를 찾고, 최소 수정 제안: [스택 트레이스 붙여넣기]&#34;</span>
-</span></span></code></pre></div><h3 id="10-커밋-전-셀프-리뷰">10. 커밋 전 셀프 리뷰<a hidden class="anchor" aria-hidden="true" href="#10-커밋-전-셀프-리뷰">#</a></h3>
+<h2 id="ten-battle-tested-prompt-templates-you-can-copy-today">Ten Battle-Tested Prompt Templates You Can Copy Today<a hidden class="anchor" aria-hidden="true" href="#ten-battle-tested-prompt-templates-you-can-copy-today">#</a></h2>
+<h3 id="1-new-developer-onboarding">1. New-developer onboarding<a hidden class="anchor" aria-hidden="true" href="#1-new-developer-onboarding">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;Explain the architecture of this project, map the dependency graph of major modules, and tell me which three files a new team member should read first&#34;</span>
+</span></span></code></pre></div><h3 id="2-dead-code-elimination">2. Dead-code elimination<a hidden class="anchor" aria-hidden="true" href="#2-dead-code-elimination">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;Find all unused imports and unreachable functions in src/, remove them, and ensure the test suite still passes&#34;</span>
+</span></span></code></pre></div><h3 id="3-dependency-modernization">3. Dependency modernization<a hidden class="anchor" aria-hidden="true" href="#3-dependency-modernization">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;Upgrade React from 18 to 19. Handle all breaking changes, run the test suite, fix any failures, and update the migration notes in CHANGELOG.md&#34;</span>
+</span></span></code></pre></div><h3 id="4-database-query-optimization">4. Database query optimization<a hidden class="anchor" aria-hidden="true" href="#4-database-query-optimization">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;Analyze api/routes.py for N+1 query patterns. Replace them with eager loading (joinload or selectinload). Provide before/after benchmark numbers.&#34;</span>
+</span></span></code></pre></div><h3 id="5-security-vulnerability-scan">5. Security vulnerability scan<a hidden class="anchor" aria-hidden="true" href="#5-security-vulnerability-scan">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;Audit every API endpoint for missing authentication or input validation. For each vulnerability found, provide a fix and a regression test.&#34;</span>
+</span></span></code></pre></div><h3 id="6-documentation-generation">6. Documentation generation<a hidden class="anchor" aria-hidden="true" href="#6-documentation-generation">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;Generate Google-style docstrings for all public functions and update the API Reference section in README.md&#34;</span>
+</span></span></code></pre></div><h3 id="7-cross-language-port">7. Cross-language port<a hidden class="anchor" aria-hidden="true" href="#7-cross-language-port">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;Translate scripts/data_processor.py into equivalent TypeScript. Preserve all logic, error handling, and async behavior.&#34;</span>
+</span></span></code></pre></div><h3 id="8-cicd-pipeline-creation">8. CI/CD pipeline creation<a hidden class="anchor" aria-hidden="true" href="#8-cicd-pipeline-creation">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;Create a GitHub Actions workflow: lint + test + typecheck on PR; build Docker image and push to GHCR on merge to main&#34;</span>
+</span></span></code></pre></div><h3 id="9-production-incident-diagnosis">9. Production incident diagnosis<a hidden class="anchor" aria-hidden="true" href="#9-production-incident-diagnosis">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;This error log just hit Sentry. Explain the root cause, locate the offending code, and propose a minimal fix: [paste stack trace]&#34;</span>
+</span></span></code></pre></div><h3 id="10-pre-commit-self-review">10. Pre-commit self-review<a hidden class="anchor" aria-hidden="true" href="#10-pre-commit-self-review">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex /review --uncommitted
 </span></span></code></pre></div><hr>
-<h2 id="11-30-60-90일-마스터리-로드맵">11. 30-60-90일 마스터리 로드맵<a hidden class="anchor" aria-hidden="true" href="#11-30-60-90일-마스터리-로드맵">#</a></h2>
-<h3 id="130일-기본-습관-구축">1–30일: 기본 습관 구축<a hidden class="anchor" aria-hidden="true" href="#130일-기본-습관-구축">#</a></h3>
+<h2 id="30-60-90-day-mastery-roadmap">30-60-90 Day Mastery Roadmap<a hidden class="anchor" aria-hidden="true" href="#30-60-90-day-mastery-roadmap">#</a></h2>
+<h3 id="days-130-build-fundamental-habits">Days 1–30: Build Fundamental Habits<a hidden class="anchor" aria-hidden="true" href="#days-130-build-fundamental-habits">#</a></h3>
 <ul>
-<li><input disabled="" type="checkbox"> 3개 이상의 다른 프로젝트에 Codex CLI 설치</li>
-<li><input disabled="" type="checkbox"> 각 프로젝트용 v1 AGENTS.md 작성</li>
-<li><input disabled="" type="checkbox"> Auto와 Read-Only 모드로 15+ 엔드-투-엔드 작업 완료</li>
-<li><input disabled="" type="checkbox"> ````/review```를 커밋 전 의식에 통합</li>
-<li><input disabled="" type="checkbox"> 코드베이스에서 잘 작동하는 5개 프롬프트 패턴 문서화</li>
+<li><input disabled="" type="checkbox"> Install Codex CLI in 3+ distinct projects</li>
+<li><input disabled="" type="checkbox"> Author a v1 AGENTS.md for each project</li>
+<li><input disabled="" type="checkbox"> Complete 15+ end-to-end tasks using Auto and Read-Only modes</li>
+<li><input disabled="" type="checkbox"> Integrate ````/review``` into your pre-commit ritual</li>
+<li><input disabled="" type="checkbox"> Document 5 prompt patterns that work well for your codebase</li>
 </ul>
-<h3 id="3160일-툴킷-확장">31–60일: 툴킷 확장<a hidden class="anchor" aria-hidden="true" href="#3160일-툴킷-확장">#</a></h3>
+<h3 id="days-3160-expand-your-toolkit">Days 31–60: Expand Your Toolkit<a hidden class="anchor" aria-hidden="true" href="#days-3160-expand-your-toolkit">#</a></h3>
 <ul>
-<li><input disabled="" type="checkbox"> 3개 MCP 서버 구성(데이터베이스, API 문서, 모니터링)</li>
-<li><input disabled="" type="checkbox"> 첫 커스텀 Skill 작성하고 팀과 공유</li>
-<li><input disabled="" type="checkbox"> 멀티 에이전트 병렬 작업 실행(CLI + 클라우드 조합)</li>
-<li><input disabled="" type="checkbox"> 전형적인 5개 작업에 대해 gpt-5.3-codex와 spark 벤치마크</li>
-<li><input disabled="" type="checkbox"> AGENTS.md 규약에 대한 내부 팀 가이드라인 게시</li>
+<li><input disabled="" type="checkbox"> Configure 3 MCP servers (database, API docs, monitoring)</li>
+<li><input disabled="" type="checkbox"> Author your first custom Skill and share it with your team</li>
+<li><input disabled="" type="checkbox"> Execute one multi-agent parallel task (CLI + Cloud combination)</li>
+<li><input disabled="" type="checkbox"> Benchmark gpt-5.3-codex against spark on 5 typical tasks</li>
+<li><input disabled="" type="checkbox"> Publish internal team guidelines for AGENTS.md conventions</li>
 </ul>
-<h3 id="6190일-팀과-자동화로-확장">61–90일: 팀과 자동화로 확장<a hidden class="anchor" aria-hidden="true" href="#6190일-팀과-자동화로-확장">#</a></h3>
+<h3 id="days-6190-scale-to-team-and-automation">Days 61–90: Scale to Team and Automation<a hidden class="anchor" aria-hidden="true" href="#days-6190-scale-to-team-and-automation">#</a></h3>
 <ul>
-<li><input disabled="" type="checkbox"> 자동화된 머지 전 코드 리뷰용 CI/CD 훅 배포</li>
-<li><input disabled="" type="checkbox"> 버전 제어가 있는 팀 전체 Skills 리포지토리 유지</li>
-<li><input disabled="" type="checkbox"> 시간대를 가로지르는 야간 작업에 Codex Cloud 사용</li>
-<li><input disabled="" type="checkbox"> 생산성 메트릭 측정(시간-PR, 버그 회귀율, 테스트 커버리지)</li>
-<li><input disabled="" type="checkbox"> Claude Code가 보조 도구로 측정 가능한 가치를 추가하는지 평가</li>
+<li><input disabled="" type="checkbox"> Deploy CI/CD hooks for automated pre-merge code review</li>
+<li><input disabled="" type="checkbox"> Maintain a team-wide Skills repository with version control</li>
+<li><input disabled="" type="checkbox"> Use Codex Cloud for overnight tasks across time zones</li>
+<li><input disabled="" type="checkbox"> Measure productivity metrics (time-to-PR, bug regression rate, test coverage)</li>
+<li><input disabled="" type="checkbox"> Evaluate whether Claude Code adds measurable value as a secondary tool</li>
 </ul>
 <hr>
-<h2 id="12-자주-묻는-질문">12. 자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#12-자주-묻는-질문">#</a></h2>
-<p><strong>Q: Codex CLI는 실제로 무료인가?</strong>
-A: 도구는 오픈소스고 설치는 무료다. AI 추론은 OpenAI 모델이 필요하다. ChatGPT 구독자는 포함된 할당량 사용; API 키 사용자는 토큰당 지불(2026년 5월 기준 codex-mini-latest 입력 $1.50/1M, 출력 $6.00/1M).</p>
-<p><strong>Q: ChatGPT 구독 없이 사용할 수 있는가?</strong>
-A: 가능, API 키 통해. 다만 Plus 구독자는 월 $5 프로모션 API 크레딧, Pro 구독자는 $50을 받는다. 30일 후 만료.</p>
-<p><strong>Q: 내 코드가 OpenAI 모델 훈련에 사용되는가?</strong>
-A: Data Controls에서 옵트아웃하면 아니다. Codex CLI는 기본적으로 로컬에서 동작한다. 클라우드 샌드박스 작업은 완료 후 파괴되는 격리 환경에서 실행된다.</p>
-<p><strong>Q: 어떤 언어가 가장 잘 지원되는가?</strong>
-A: Python과 JavaScript/TypeScript가 일급. Go, Rust, Java, C/C++, Ruby, PHP도 잘 지원된다. 틈새 언어는 프롬프트에서 더 명시적인 컨텍스트가 필요할 수 있다.</p>
-<p><strong>Q: Windows가 지원되는가?</strong>
-A: CLI는 WSL2를 통해 Windows에서 동작. 네이티브 Windows 데스크톱 앱은 2026년 4월 출시.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<p><strong>Q: Is Codex CLI actually free?</strong>
+A: The tool is open source and free to install. The AI inference requires an OpenAI model. ChatGPT subscribers use included quota; API-key users pay per token ($1.50/1M input, $6.00/1M output for codex-mini-latest as of May 2026).</p>
+<p><strong>Q: Can I use it without a ChatGPT subscription?</strong>
+A: Yes, via API key. However, Plus subscribers receive $5 in promotional API credits monthly; Pro subscribers receive $50. These expire after 30 days.</p>
+<p><strong>Q: Will my code be used to train OpenAI models?</strong>
+A: No, if you opt out in Data Controls. Codex CLI operates locally by default. Cloud sandbox tasks run in isolated environments that are destroyed after completion.</p>
+<p><strong>Q: Which languages are best supported?</strong>
+A: Python and JavaScript/TypeScript are first-class. Go, Rust, Java, C/C++, Ruby, and PHP are well supported. Niche languages may require more explicit context in prompts.</p>
+<p><strong>Q: Is Windows supported?</strong>
+A: CLI runs on Windows via WSL2. A native Windows desktop application launched in April 2026.</p>
 <hr>
-<h2 id="결론-터미널이-새로운-ide다">결론: 터미널이 새로운 IDE다<a hidden class="anchor" aria-hidden="true" href="#결론-터미널이-새로운-ide다">#</a></h2>
-<p>2026년 가장 생산적인 개발자는 가장 빨리 타이핑하는 사람이 아니다. <strong>가장 효과적으로 위임하는 사람</strong>이다. OpenAI Codex CLI는 이 위임 우선 패러다임으로의 가장 접근 가능한 진입점이다: 오픈소스이고, 수백만이 이미 가진 구독에 번들되고, 분기 리뷰가 시대에 뒤떨어진 느낌이 들 만큼 빠르게 개선되고 있다.</p>
-<p>오늘 설치하라. 잠자기 전에 하나의 실제 작업을 발급하라. 내일 아침이면 수동 타이핑으로 몇 시간이 걸렸을 백로그 항목을 이미 완료했을지도 모른다.</p>
-<p>바이브 코딩의 시대는 다가오는 것이 아니다. 이미 와 있다. 그리고 Codex CLI는 합류 초대장이다.</p>
+<h2 id="conclusion-the-terminal-is-your-new-ide">Conclusion: The Terminal Is Your New IDE<a hidden class="anchor" aria-hidden="true" href="#conclusion-the-terminal-is-your-new-ide">#</a></h2>
+<p>In 2026, the most productive developers are not those who type the fastest. They are those who <strong>delegate most effectively</strong>. OpenAI Codex CLI is the most accessible entry point into this delegation-first paradigm: it is open source, bundled with a subscription millions already have, and improving at a pace that makes quarterly reviews feel outdated.</p>
+<p>Install it today. Issue one real task before bedtime. By tomorrow morning, you may have already crossed a task off your backlog that would have taken hours of manual typing.</p>
+<p>The era of vibe coding is not coming. It is here. And Codex CLI is your invitation to join.</p>
 <hr>
-<p><strong>더 읽을거리:</strong></p>
+<p><strong>Further Reading:</strong></p>
 <ul>
-<li><a href="https://github.com/openai/codex">OpenAI Codex CLI GitHub</a></li>
-<li><a href="https://platform.openai.com/docs/guides/codex">공식 OpenAI Codex 문서</a></li>
-<li><a href="https://openai.com/index/codex-agents-md-guide">AGENTS.md 모범 사례 가이드</a></li>
-<li><a href="https://modelcontextprotocol.io">Model Context Protocol 명세</a></li>
+<li><a href="https://github.com/openai/codex">OpenAI Codex CLI on GitHub</a></li>
+<li><a href="https://platform.openai.com/docs/guides/codex">Official OpenAI Codex Documentation</a></li>
+<li><a href="https://openai.com/index/codex-agents-md-guide">AGENTS.md Best Practices Guide</a></li>
+<li><a href="https://modelcontextprotocol.io">Model Context Protocol Specification</a></li>
 </ul>
-<p><em>마지막 업데이트: 2026년 5월 17일. Codex CLI는 빠른 반복 중; 현재 기능은 공식 문서와 대조 확인 권장.</em></p>
+<p><em>Last updated: May 17, 2026. Codex CLI is under rapid iteration; verify current capabilities against the official documentation.</em></p>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;OpenAI Codex CLI 완벽 가이드 2026: 터미널 네이티브 AI 코딩 에이전트 (설치, 멀티 에이전트 워크플로우, MCP, 보안 종합 안내)&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;OpenAI Codex CLI: The Definitive 2026 Guide to Terminal-Native AI Coding Agents (Install, Multi-Agent Workflows, MCP &amp; Security)&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-17&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-17&rdquo;,
 &ldquo;author&rdquo;: {
@@ -686,7 +646,7 @@ A: CLI는 WSL2를 통해 Windows에서 동작. 네이티브 Windows 데스크톱
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/openai-codex-cli-terminal-ai-coding-agent-2026%22">https://dibi8.com/kr/resources/openai-codex-cli-terminal-ai-coding-agent-2026"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/openai-codex-cli-terminal-ai-coding-agent-2026%22">https://dibi8.com/resources/openai-codex-cli-terminal-ai-coding-agent-2026"</a>
 }
 }
 </script></p>
@@ -743,6 +703,81 @@ A: CLI는 WSL2를 통해 Windows에서 동작. 네이티브 Windows 데스크톱
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

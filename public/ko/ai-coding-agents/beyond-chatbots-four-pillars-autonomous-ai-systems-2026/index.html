@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: “46.6 MB” file_md5: \"\" download_url: “https://github.com/LearningCircuit/local-deep-research\" backup_url: \"” last_maintained: “2026-05-16” draft: false aliases:\n/kr/posts/beyond-chatbots-four-pillars-autonomous-ai-systems-2026/ faqs: - q: ‘Local Deep Research란 무엇이며 정확도는 얼마나 되나요?’ a: ‘Local Deep Research는 LearningCircuit가 개발한 오픈소스 AI 연구 도구로, arXiv, PubMed, Semantic Scholar, SearXNG, Tavily, Brave Search 같은 소스 전반에 걸쳐 반복적인 연구 루프를 실행합니다. SimpleQA 벤치마크에서 약 95%의 정확도를 보고하며, 데이터는 사용자별로 분리된 SQLCipher 암호화 SQLite 데이터베이스(AES-256)에 저장되고 텔레메트리는 전혀 없습니다.’ q: ‘InsForge는 무엇에 사용되나요?’ a: ‘InsForge는 agentic coding을 위해 만들어진 올인원 오픈소스 백엔드 플랫폼으로, 인증, PostgREST 자동 API 생성을 갖춘 PostgreSQL 데이터베이스, S3 호환 스토리지, edge functions, 모델 게이트웨이, 사이트 배포를 제공합니다. MCP server와 CLI 및 skills를 모두 노출하여 AI 에이전트가 자체 백엔드를 처음부터 끝까지 프로비저닝하고 배포할 수 있게 합니다. Apache 2.0 라이선스로 배포됩니다.’ q: ‘Addy Osmani의 Agent Skills에 있는 일곱 개의 슬래시 명령어는 무엇인가요?’ a: ‘Agent Skills는 일곱 개의 명령어를 개발 라이프사이클에 매핑합니다: /spec(요구사항 정의), /plan(원자적 작업으로 분할), /build(점진적 전달), /test(증거로서의 테스트), /review(코드 건강성 개선), /code-simplify(영리함보다 명료함), /ship(점진적 배포). Skills는 작업 컨텍스트에 따라 자동으로 활성화됩니다.’ q: ‘AI 코딩을 위한 Karpathy에서 영감을 받은 네 가지 행동 원칙은 무엇인가요?’ a: ‘CLAUDE.md 파일에 내장된 네 가지 원칙은 다음과 같습니다: 코딩 전에 생각하기(가정을 명시하고 단정하기 전에 묻기), 단순함 우선(최소 실행 가능 솔루션 구축), 외과적 변경(꼭 필요한 것만 건드리고 기존 스타일에 맞추기), 목표 주도 실행(성공 기준을 사전에 정의). 이들은 LLM의 과신에 대한 인지적 안전장치 역할을 합니다.’ q: ‘자율 AI 시스템의 네 가지 기둥은 어떻게 함께 작동하나요?’ a: ‘에이전트는 먼저 Local Deep Research를 사용해 검증되고 인용이 포함된 보고서를 생성하고, 그다음 MCP tool calls를 통해 InsForge로 전체 백엔드(데이터베이스, edge functions, 스토리지, 인증)를 프로비저닝하며, Agent Skills의 spec-to-ship 워크플로를 따라 프런트엔드를 구축하고, 그 전 과정에 걸쳐 Karpathy에서 영감을 받은 행동 가드레일을 적용하여 과도한 엔지니어링과 잘못된 가정을 방지합니다. 각 기둥은 자율 개발에서 발생하는 고유한 실패 모드를 다룹니다.’ 챗봇을 넘어: 2026년 자율 AI 시스템의 4가지 기둥 {\u003c/* resource-info */\u003e}\nThe Evolution: From Chatbot to Autonomous System 우리는 중요한 전환점에 서 있습니다. In 2024, we celebrated chatbots that could answer questions. In 2025, we marveled at agents that could browse the web. Now in mid-2026, something fundamentally different has emerged: 자율 AI 시스템 that combine 심층 연구, 인프라 구성, 코드 생성, and 품질 보증 into a 단일 통합 워크플로우.\nThis isn’t 점진적 개선. It’s 아키텍처 진화. And four open-source projects reveal the pattern.\nPillar 1: Deep Research — The Intelligence Layer Local Deep Research by LearningCircuit 대부분의 AI 도구는 답변만 제공합니다. Local Deep Research gives you verified knowledge.\n독보적인 이유는 다음과 같습니다: - 20+ 연구 전략 including a LangGraph agent mode that autonomously decides which search engine to use, when to dig deeper, and when to synthesize\n~95% SimpleQA 벤치마크 정확도 — 상용 시스템과 경쟁력 있는 수준 프라이버시 우선 아키텍처: SQLCipher-암호화된 SQLite 데이터베이스 (AES-256), 텔레메트리, 분석, 추적 없음 다중 소스 인텔리전스: arXiv, PubMed, Semantic Scholar, SearXNG, Tavily, Brave Search — 각 소스가 색인되고 교차 참조됨 무지식 암호화: User data isolated per-database, 서버 관리자도 내용을 읽을 수 없음 The architecture is instructive: ```` User Query -\u003e Strategy Selector -\u003e Question Generator -\u003e Parallel Search (academic + web + documents) -\u003e Analysis Loop -\u003e Report Synthesis -\u003e Multi-format Export\nWhat's novel is the **iterative research loop**. Instead of one-shot query-response, the system generates sub-questions, searches across diverse sources, analyzes results, and iterates until confidence thresholds are met. This mimics how human experts actually do research: hypothesize, investigate, evaluate, refine. The security model deserves special mention. Every user gets an isolated SQLCipher database. The encryption uses Signal-level AES-256 security. No password recovery means true zero-knowledge. Docker images are signed with Cosign and include SLSA provenance attestations. For developers who care about supply chain security, this is 엔터프라이즈급 보안. ## Pillar 2: Infrastructure — The Platform Layer ### [InsForge](https://github.com/InsForge/InsForge) by InsForge An AI agent that can research deeply still needs somewhere to deploy its work. Enter InsForge: 에이전트 코딩을 위해 특별히 설계된 올인원 오픈소스 백엔드 플랫폼. Think of it as Firebase meets Vercel meets Render — but built for AI agents to operate directly. Core capabilities: - **Authentication**: Email/password + OAuth (Google, GitHub) with session management - **Database**: PostgreSQL with PostgREST auto-API generation - **Storage**: S3-compatible file storage for documents, media, assets - **Edge Functions**: Serverless code deployment with automatic scaling - **Model Gateway**: OpenAI-compatible API routing across multiple LLM providers - **Compute**: Long-running container services (private preview) - **Site Deployment**: Full site build and deployment pipeline The key innovation is **이중 인터페이스 지원**: 1. **MCP 서버** — Self-hostable interface exposing InsForge operations as standardized tools that any MCP-compatible agent (Claude Code, Cursor, Gemini CLI) can call 2. **CLI + Skills** — Cloud-native command-line interface paired with executable skill definitions This means an AI agent doesn't just generate code — it can provision its own database schema, configure authentication, deploy edge functions, set up storage buckets, and even route its own API calls through the model gateway. End-to-end autonomy. The SDK is elegantly simple: `````javascript import { createClient } from '@insforge/sdk'; const client = createClient({ baseUrl: 'https://your-app.region.insforge.app', anonKey: 'your-anon-key-here' }); Everything from database CRUD to auth flows to AI operations is available through this unified client. For a coding agent, this reduces what would normally require a DevOps engineer to a single API call.\nVercel supports this project through their OSS program, indicating strong industry validation. Licensed under Apache 2.0.\nPillar 3: Engineering Discipline — The Quality Layer Agent Skills by Addy Osmani 규율 없는 순수 능력은 지저분하고 유지보수 불가능한 코드를 낳습니다. This is where Addy Osmani’s Agent Skills come in — production-grade engineering workflows packaged so AI agents follow senior-engineer standards consistently.\nThe core insight: 스킬은 시니어 엔지니어가 개발 전 과정에서 사용하는 의사결정 패턴을 인코딩합니다. Not specific code — the judgment behind when and why to make certain decisions.\nThe seven-slash-command framework maps to the complete development lifecycle: ||Command|Phase|Principle|| ||———|——-|———–|| ||/spec|Define|Spec before code — requirements first|| ||/plan|Plan|Small, atomic tasks — break down complexity|| ||/build|Build|One slice at a time — incremental delivery|| ||/test|Verify|Tests are proof — not decoration|| ||/review|Review|Improve code health — continuous refinement|| ||/code-simplify|Simplify|Clarity over cleverness — readability wins|| ||/ship|Ship|Faster is safer — ship incrementally||\nBut the real magic is context-aware auto-discovery. When designing an API, the api-and-interface-design skill activates automatically. Building UI? frontend-ui-engineering triggers. The agent understands its task and loads the appropriate expertise.\nThis transforms AI coding from “write code that happens to work” to “follow proven engineering workflows that produce maintainable results.”\nPillar 4: Behavioral Guardrails — The Wisdom Layer Karpathy-Inspired Skills 기반 행동에 결함이 있으면 최고의 엔지니어링 프레임워크도 실패합니다. Andrej Karpathy identified LLM 코딩 실패의 패턴: \u003e “The models make wrong assumptions on your behalf and just run along with them without checking. They don’t manage their confusion, don’t seek clarifications, don’t surface inconsistencies, don’t present tradeoffs, don’t push back when they should.”\nThis project distills Karpathy’s observations into four behavioral principles embedded in a CLAUDE.md file: 1. Think Before Coding — State assumptions explicitly. Present multiple interpretations. Push back when simpler approaches exist. Stop when confused. Ask before assuming.\n2. Simplicity First — Minimum viable solution. No speculative features. No abstractions for single-use code. If 200 lines could be 50, rewrite it. The test: “Would a senior engineer say this is overcomplicated?”\n3. Surgical Changes — Touch only what you must. Don’t refactor things that aren’t broken. Match existing style. Remove only the dead code YOUR changes created — never pre-existing orphan code unless asked.\n4. Goal-Driven Execution — Define success criteria upfront. Transform “add validation” into “write tests for invalid inputs, then make them pass.” Strong criteria enable independent looping; weak criteria require constant clarification.\nThese aren’t technical solutions — they’re 인지적 안전장치. They address the LLM의 근본적 약점: 능력을 가장한 과도한 자신감.\nHow These Four Layers Work Together The breakthrough moment comes when you connect all four pillars into a single workflow: 1. Research (Local Deep Research): An agent receives a complex query — “Build a trading dashboard for prediction markets.” It conducts 심층 연구 across financial APIs, market structures, and UI patterns, producing a verified report with citations.\nPlatform (InsForge): The agent provisions the entire backend — PostgreSQL for market data, edge functions for real-time updates, storage for historical charts, auth for user accounts, model gateway for analysis APIs. All via MCP tool calls.\nEngineering (Agent Skills): The agent builds the frontend following the /spec → /plan → /build → /test → /review → /ship workflow. Context-aware skills activate as needed — frontend-ui-engineering for the dashboard, data-visualization for charting, api-integration for real-time websockets.\nWisdom (Karpathy Skills): Throughout this process, the behavioral guardrails prevent classic LLM mistakes — no overengineered abstractions, no touching unrelated code, explicit assumption-stating before every architectural decision, verifiable success criteria instead of vague “make it work” targets.\nThe result? An agent that doesn’t just “write code” but operates with the judgment, discipline, and verification standards of a senior full-stack team.\nWhy This Matters for Developers Three years ago, the question was “Can AI write code?” Today, it’s “Can AI build production systems end-to-end?”\nThe answer is becoming clear: not yet fully autonomously, but dangerously close.\nEach pillar addresses a specific failure mode: - Without 심층 연구 → agents build on outdated or incorrect information\nWithout proper infrastructure → agents generate code with no deployment path Without engineering discipline → agents produce unmaintainable spaghetti Without behavioral guardrails → agents overconfidently implement wrong solutions Together, these four open-source projects form the first complete stack for genuine AI-assisted development.\nGetting Started All four projects are open-source and free: - Local Deep Research: pip install local-deep-research or Docker Compose\nInsForge: npm install @insforge/sdk (cloud) or self-hosted MCP server Agent Skills: Claude Code marketplace plugin or .cursor/rules/ Karpathy Skills: Single ````CLAUDE.md``` file merge You don’t need to adopt all four simultaneously. Start with what addresses your biggest gap. But once you experience the synergy — research informing architecture, architecture guiding implementation, implementation disciplined by skills, all guided by wisdom — it’s hard to go back to doing it alone.\nThe future of software development isn’t humans replacing AI or AI replacing humans. It’s humans orchestrating AI systems that combine deep intelligence, robust infrastructure, engineering discipline, and practical wisdom. And those systems are already here.\n추천 도구 오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.\n추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.\n추천 도구 안정적인 Claude / OpenAI API 액세스가 필요? 이 분야 프로젝트는 결국 Anthropic / OpenAI 레이트 리밋이나 가격 벽에 부딪힙니다.\n**** — Claude / OpenAI / DeepSeek API 프록시. 키 하나로 여러 최상위 모델 액세스, 공식 가격의 ~30%; 에이전트 프롬프트 이터레이션이나 직접 API 액세스 제한 지역에서 특히 유용. 제휴 링크 — 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “챗봇을 넘어: 2026년 자율 AI 시스템의 4가지 기둥”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/beyond-chatbots-four-pillars-autonomous-ai-systems-2026\" } } Frequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
-  "wordCount" : "1839",
+  "articleBody": "title: “Beyond Chatbots: The 4 Pillars of Autonomous AI Systems …” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Docker\nGo JavaScript application_domain: “Llm Frameworks” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: “46.6 MB” file_md5: \"\" download_url: “https://github.com/LearningCircuit/local-deep-research\" backup_url: \"” last_maintained: “2026-05-16” draft: false aliases: /posts/beyond-chatbots-four-pillars-autonomous-ai-systems-2026/ faqs: - q: ‘What is Local Deep Research and how accurate is it?’ a: ‘Local Deep Research is an open-source AI research tool by LearningCircuit that runs an iterative research loop across sources like arXiv, PubMed, Semantic Scholar, SearXNG, Tavily, and Brave Search. It reports roughly 95% accuracy on the SimpleQA benchmark and stores data in a per-user SQLCipher-encrypted SQLite database (AES-256) with no telemetry.’ q: ‘What is InsForge used for?’ a: ‘InsForge is an all-in-one open-source backend platform built for agentic coding, providing authentication, a PostgreSQL database with PostgREST auto-API generation, S3-compatible storage, edge functions, a model gateway, and site deployment. It exposes both an MCP server and a CLI plus skills, letting an AI agent provision and deploy its own backend end-to-end. It is licensed under Apache 2.0.’ q: ‘What are the seven slash commands in Addy Osmani’’s Agent Skills?’ a: ‘Agent Skills maps seven commands to the development lifecycle: /spec (define requirements), /plan (break into atomic tasks), /build (incremental delivery), /test (tests as proof), /review (improve code health), /code-simplify (clarity over cleverness), and /ship (ship incrementally). Skills auto-activate based on the task context.’ q: ‘What are the four Karpathy-inspired behavioral principles for AI coding?’ a: ‘The four principles, embedded in a CLAUDE.md file, are: Think Before Coding (state assumptions and ask before assuming), Simplicity First (build the minimum viable solution), Surgical Changes (touch only what you must and match existing style), and Goal-Driven Execution (define clear success criteria upfront). They act as cognitive safeguards against LLM overconfidence.’ q: ‘How do the four pillars of autonomous AI systems work together?’ a: ‘An agent first uses Local Deep Research to produce a verified, cited report, then uses InsForge to provision the full backend (database, edge functions, storage, auth) via MCP tool calls, builds the frontend following Agent Skills’’ spec-to-ship workflow, and applies Karpathy-inspired behavioral guardrails throughout to prevent overengineering and wrong assumptions. Each pillar addresses a distinct failure mode in autonomous development.’ Beyond Chatbots: The 4 Pillars of Autonomous AI Systems in 2026 {\u003c/* resource-info */\u003e}\nThe Evolution: From Chatbot to Autonomous System We’re at a critical inflection point. In 2024, we celebrated chatbots that could answer questions. In 2025, we marveled at agents that could browse the web. Now in mid-2026, something fundamentally different has emerged: autonomous AI systems that combine deep research, infrastructure provisioning, code generation, and quality assurance into a single coherent workflow.\nThis isn’t incremental improvement. It’s architectural evolution. And four open-source projects reveal the pattern.\nPillar 1: Deep Research — The Intelligence Layer Local Deep Research by LearningCircuit Most AI tools give you answers. Local Deep Research gives you verified knowledge.\nHere’s what makes it remarkable: - 20+ research strategies including a LangGraph agent mode that autonomously decides which search engine to use, when to dig deeper, and when to synthesize\n~95% accuracy on SimpleQA benchmark — competitive with commercial systems Privacy-first architecture: SQLCipher-encrypted SQLite database (AES-256), no telemetry, no analytics, no tracking Multi-source intelligence: arXiv, PubMed, Semantic Scholar, SearXNG, Tavily, Brave Search — each indexed and cross-referenced Zero-knowledge encryption: User data isolated per-database, server admins cannot read your content The architecture is instructive: ```` User Query -\u003e Strategy Selector -\u003e Question Generator -\u003e Parallel Search (academic + web + documents) -\u003e Analysis Loop -\u003e Report Synthesis -\u003e Multi-format Export\nWhat's novel is the **iterative research loop**. Instead of one-shot query-response, the system generates sub-questions, searches across diverse sources, analyzes results, and iterates until confidence thresholds are met. This mimics how human experts actually do research: hypothesize, investigate, evaluate, refine. The security model deserves special mention. Every user gets an isolated SQLCipher database. The encryption uses Signal-level AES-256 security. No password recovery means true zero-knowledge. Docker images are signed with Cosign and include SLSA provenance attestations. For developers who care about supply chain security, this is enterprise-grade. ## Pillar 2: Infrastructure — The Platform Layer ### [InsForge](https://github.com/InsForge/InsForge) by InsForge An AI agent that can research deeply still needs somewhere to deploy its work. Enter InsForge: the all-in-one open-source backend platform designed specifically for agentic coding. Think of it as Firebase meets Vercel meets Render — but built for AI agents to operate directly. Core capabilities: - **Authentication**: Email/password + OAuth (Google, GitHub) with session management - **Database**: PostgreSQL with PostgREST auto-API generation - **Storage**: S3-compatible file storage for documents, media, assets - **Edge Functions**: Serverless code deployment with automatic scaling - **Model Gateway**: OpenAI-compatible API routing across multiple LLM providers - **Compute**: Long-running container services (private preview) - **Site Deployment**: Full site build and deployment pipeline The key innovation is **dual interface support**: 1. **MCP Server** — Self-hostable interface exposing InsForge operations as standardized tools that any MCP-compatible agent (Claude Code, Cursor, Gemini CLI) can call 2. **CLI + Skills** — Cloud-native command-line interface paired with executable skill definitions This means an AI agent doesn't just generate code — it can provision its own database schema, configure authentication, deploy edge functions, set up storage buckets, and even route its own API calls through the model gateway. End-to-end autonomy. The SDK is elegantly simple: `````javascript import { createClient } from '@insforge/sdk'; const client = createClient({ baseUrl: 'https://your-app.region.insforge.app', anonKey: 'your-anon-key-here' }); Everything from database CRUD to auth flows to AI operations is available through this unified client. For a coding agent, this reduces what would normally require a DevOps engineer to a single API call.\nVercel supports this project through their OSS program, indicating strong industry validation. Licensed under Apache 2.0.\nPillar 3: Engineering Discipline — The Quality Layer Agent Skills by Addy Osmani Raw capability without discipline produces messy, unmaintainable code. This is where Addy Osmani’s Agent Skills come in — production-grade engineering workflows packaged so AI agents follow senior-engineer standards consistently.\nThe core insight: skills encode the decision patterns that senior engineers use throughout development. Not specific code — the judgment behind when and why to make certain decisions.\nThe seven-slash-command framework maps to the complete development lifecycle: | Command | Phase | Principle | |\n|\n|\n| | /spec | Define | Spec before code — requirements first | | /plan | Plan | Small, atomic tasks — break down complexity | | /build | Build | One slice at a time — incremental delivery | | /test | Verify | Tests are proof — not decoration | | /review | Review | Improve code health — continuous refinement | | /code-simplify | Simplify | Clarity over cleverness — readability wins | | /ship | Ship | Faster is safer — ship incrementally |\nBut the real magic is context-aware auto-discovery. When designing an API, the api-and-interface-design skill activates automatically. Building UI? frontend-ui-engineering triggers. The agent understands its task and loads the appropriate expertise.\nThis transforms AI coding from “write code that happens to work” to “follow proven engineering workflows that produce maintainable results.”\nPillar 4: Behavioral Guardrails — The Wisdom Layer Karpathy-Inspired Skills Even the best engineering frameworks fail if the underlying behavior is flawed. Andrej Karpathy identified a pattern in LLM coding failures: \u003e “The models make wrong assumptions on your behalf and just run along with them without checking. They don’t manage their confusion, don’t seek clarifications, don’t surface inconsistencies, don’t present tradeoffs, don’t push back when they should.”\nThis project distills Karpathy’s observations into four behavioral principles embedded in a CLAUDE.md file: 1. Think Before Coding — State assumptions explicitly. Present multiple interpretations. Push back when simpler approaches exist. Stop when confused. Ask before assuming.\n2. Simplicity First — Minimum viable solution. No speculative features. No abstractions for single-use code. If 200 lines could be 50, rewrite it. The test: “Would a senior engineer say this is overcomplicated?”\n3. Surgical Changes — Touch only what you must. Don’t refactor things that aren’t broken. Match existing style. Remove only the dead code YOUR changes created — never pre-existing orphan code unless asked.\n4. Goal-Driven Execution — Define success criteria upfront. Transform “add validation” into “write tests for invalid inputs, then make them pass.” Strong criteria enable independent looping; weak criteria require constant clarification.\nThese aren’t technical solutions — they’re cognitive safeguards. They address the fundamental weakness of LLMs: overconfidence masked as competence.\nHow These Four Layers Work Together The breakthrough moment comes when you connect all four pillars into a single workflow: 1. Research (Local Deep Research): An agent receives a complex query — “Build a trading dashboard for prediction markets.” It conducts deep research across financial APIs, market structures, and UI patterns, producing a verified report with citations.\nPlatform (InsForge): The agent provisions the entire backend — PostgreSQL for market data, edge functions for real-time updates, storage for historical charts, auth for user accounts, model gateway for analysis APIs. All via MCP tool calls.\nEngineering (Agent Skills): The agent builds the frontend following the /spec → /plan → /build → /test → /review → /ship workflow. Context-aware skills activate as needed — frontend-ui-engineering for the dashboard, data-visualization for charting, api-integration for real-time websockets.\nWisdom (Karpathy Skills): Throughout this process, the behavioral guardrails prevent classic LLM mistakes — no overengineered abstractions, no touching unrelated code, explicit assumption-stating before every architectural decision, verifiable success criteria instead of vague “make it work” targets.\nThe result? An agent that doesn’t just “write code” but operates with the judgment, discipline, and verification standards of a senior full-stack team.\nWhy This Matters for Developers Three years ago, the question was “Can AI write code?” Today, it’s “Can AI build production systems end-to-end?”\nThe answer is becoming clear: not yet fully autonomously, but dangerously close.\nEach pillar addresses a specific failure mode: - Without deep research → agents build on outdated or incorrect information\nWithout proper infrastructure → agents generate code with no deployment path Without engineering discipline → agents produce unmaintainable spaghetti Without behavioral guardrails → agents overconfidently implement wrong solutions Together, these four open-source projects form the first complete stack for genuine AI-assisted development.\nGetting Started All four projects are open-source and free: - Local Deep Research: pip install local-deep-research or Docker Compose\nInsForge: npm install @insforge/sdk (cloud) or self-hosted MCP server Agent Skills: Claude Code marketplace plugin or .cursor/rules/ Karpathy Skills: Single ````CLAUDE.md``` file merge You don’t need to adopt all four simultaneously. Start with what addresses your biggest gap. But once you experience the synergy — research informing architecture, architecture guiding implementation, implementation disciplined by skills, all guided by wisdom — it’s hard to go back to doing it alone.\nThe future of software development isn’t humans replacing AI or AI replacing humans. It’s humans orchestrating AI systems that combine deep intelligence, robust infrastructure, engineering discipline, and practical wisdom. And those systems are already here.\nRecommended Tools For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.\nAffiliate link — supports dibi8.com at no cost to you.\nRecommended Tools Need stable Claude or OpenAI API access? Most projects in this space eventually hit the Anthropic/OpenAI rate limit or pricing wall.\n**** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when iterating on agent prompts or when direct API access is restricted in your region. Affiliate link — supports dibi8.com at no extra cost to you.\nReferences \u0026 Sources Local Deep Research InsForge Agent Skills (Addy Osmani) Karpathy-Inspired Skills { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Beyond Chatbots: The 4 Pillars of Autonomous AI Systems in 2026”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/beyond-chatbots-four-pillars-autonomous-ai-systems-2026\" } } Frequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "2011",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/beyond-chatbots-four-pillars-autonomous-ai-systems-2026/">En</a>
@@ -209,7 +209,7 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#%ec%b1%97%eb%b4%87%ec%9d%84-%eb%84%98%ec%96%b4-2026%eb%85%84-%ec%9e%90%ec%9c%a8-ai-%ec%8b%9c%ec%8a%a4%ed%85%9c%ec%9d%98-4%ea%b0%80%ec%a7%80-%ea%b8%b0%eb%91%a5" aria-label="챗봇을 넘어: 2026년 자율 AI 시스템의 4가지 기둥">챗봇을 넘어: 2026년 자율 AI 시스템의 4가지 기둥</a><ul>
+                <a href="#beyond-chatbots-the-4-pillars-of-autonomous-ai-systems-in-2026" aria-label="Beyond Chatbots: The 4 Pillars of Autonomous AI Systems in 2026">Beyond Chatbots: The 4 Pillars of Autonomous AI Systems in 2026</a><ul>
                     
             <li>
                 <a href="#the-evolution-from-chatbot-to-autonomous-system" aria-label="The Evolution: From Chatbot to Autonomous System">The Evolution: From Chatbot to Autonomous System</a></li>
@@ -238,9 +238,11 @@
             <li>
                 <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li>
             <li>
-                <a href="#%ec%b6%94%ec%b2%9c-%eb%8f%84%ea%b5%ac" aria-label="추천 도구">추천 도구</a></li>
+                <a href="#recommended-tools" aria-label="Recommended Tools">Recommended Tools</a></li>
             <li>
-                <a href="#%ec%b6%94%ec%b2%9c-%eb%8f%84%ea%b5%ac-1" aria-label="추천 도구">추천 도구</a></li>
+                <a href="#recommended-tools-1" aria-label="Recommended Tools">Recommended Tools</a></li>
+            <li>
+                <a href="#references--sources" aria-label="References &amp; Sources">References &amp; Sources</a></li>
             <li>
                 <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
             </li>
@@ -250,8 +252,15 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+  <div class="post-content md-content"><p>title: &ldquo;Beyond Chatbots: The 4 Pillars of Autonomous AI Systems &hellip;&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
+tech_stack: - Docker</p>
+<ul>
+<li>Go</li>
+<li>JavaScript
+application_domain: &ldquo;Llm Frameworks&rdquo;
 source_version: &quot;&quot;
 licensing_model: &ldquo;Open Source&rdquo;
 license_type: &ldquo;MIT&rdquo;
@@ -261,35 +270,34 @@ download_url: &ldquo;<a href="https://github.com/LearningCircuit/local-deep-rese
 backup_url: &quot;&rdquo;
 last_maintained: &ldquo;2026-05-16&rdquo;
 draft: false
-aliases:</p>
-<ul>
-<li>/kr/posts/beyond-chatbots-four-pillars-autonomous-ai-systems-2026/
-faqs: - q: &lsquo;Local Deep Research란 무엇이며 정확도는 얼마나 되나요?&rsquo;
-a: &lsquo;Local Deep Research는 LearningCircuit가 개발한 오픈소스 AI 연구 도구로, arXiv, PubMed, Semantic Scholar, SearXNG, Tavily, Brave Search 같은 소스 전반에 걸쳐 반복적인 연구 루프를 실행합니다. SimpleQA 벤치마크에서 약 95%의 정확도를 보고하며, 데이터는 사용자별로 분리된 SQLCipher 암호화 SQLite 데이터베이스(AES-256)에 저장되고 텔레메트리는 전혀 없습니다.&rsquo;</li>
-<li>q: &lsquo;InsForge는 무엇에 사용되나요?&rsquo;
-a: &lsquo;InsForge는 agentic coding을 위해 만들어진 올인원 오픈소스 백엔드 플랫폼으로, 인증, PostgREST 자동 API 생성을 갖춘 PostgreSQL 데이터베이스, S3 호환 스토리지, edge functions, 모델 게이트웨이, 사이트 배포를 제공합니다. MCP server와 CLI 및 skills를 모두 노출하여 AI 에이전트가 자체 백엔드를 처음부터 끝까지 프로비저닝하고 배포할 수 있게 합니다. Apache 2.0 라이선스로 배포됩니다.&rsquo;</li>
-<li>q: &lsquo;Addy Osmani의 Agent Skills에 있는 일곱 개의 슬래시 명령어는 무엇인가요?&rsquo;
-a: &lsquo;Agent Skills는 일곱 개의 명령어를 개발 라이프사이클에 매핑합니다: /spec(요구사항 정의), /plan(원자적 작업으로 분할), /build(점진적 전달), /test(증거로서의 테스트), /review(코드 건강성 개선), /code-simplify(영리함보다 명료함), /ship(점진적 배포). Skills는 작업 컨텍스트에 따라 자동으로 활성화됩니다.&rsquo;</li>
-<li>q: &lsquo;AI 코딩을 위한 Karpathy에서 영감을 받은 네 가지 행동 원칙은 무엇인가요?&rsquo;
-a: &lsquo;CLAUDE.md 파일에 내장된 네 가지 원칙은 다음과 같습니다: 코딩 전에 생각하기(가정을 명시하고 단정하기 전에 묻기), 단순함 우선(최소 실행 가능 솔루션 구축), 외과적 변경(꼭 필요한 것만 건드리고 기존 스타일에 맞추기), 목표 주도 실행(성공 기준을 사전에 정의). 이들은 LLM의 과신에 대한 인지적 안전장치 역할을 합니다.&rsquo;</li>
-<li>q: &lsquo;자율 AI 시스템의 네 가지 기둥은 어떻게 함께 작동하나요?&rsquo;
-a: &lsquo;에이전트는 먼저 Local Deep Research를 사용해 검증되고 인용이 포함된 보고서를 생성하고, 그다음 MCP tool calls를 통해 InsForge로 전체 백엔드(데이터베이스, edge functions, 스토리지, 인증)를 프로비저닝하며, Agent Skills의 spec-to-ship 워크플로를 따라 프런트엔드를 구축하고, 그 전 과정에 걸쳐 Karpathy에서 영감을 받은 행동 가드레일을 적용하여 과도한 엔지니어링과 잘못된 가정을 방지합니다. 각 기둥은 자율 개발에서 발생하는 고유한 실패 모드를 다룹니다.&rsquo;</li>
+aliases:</li>
+<li>/posts/beyond-chatbots-four-pillars-autonomous-ai-systems-2026/
+faqs: - q: &lsquo;What is Local Deep Research and how accurate is it?&rsquo;
+a: &lsquo;Local Deep Research is an open-source AI research tool by LearningCircuit that runs an iterative research loop across sources like arXiv, PubMed, Semantic Scholar, SearXNG, Tavily, and Brave Search. It reports roughly 95% accuracy on the SimpleQA benchmark and stores data in a per-user SQLCipher-encrypted SQLite database (AES-256) with no telemetry.&rsquo;</li>
+<li>q: &lsquo;What is InsForge used for?&rsquo;
+a: &lsquo;InsForge is an all-in-one open-source backend platform built for agentic coding, providing authentication, a PostgreSQL database with PostgREST auto-API generation, S3-compatible storage, edge functions, a model gateway, and site deployment. It exposes both an MCP server and a CLI plus skills, letting an AI agent provision and deploy its own backend end-to-end. It is licensed under Apache 2.0.&rsquo;</li>
+<li>q: &lsquo;What are the seven slash commands in Addy Osmani&rsquo;&rsquo;s Agent Skills?&rsquo;
+a: &lsquo;Agent Skills maps seven commands to the development lifecycle: /spec (define requirements), /plan (break into atomic tasks), /build (incremental delivery), /test (tests as proof), /review (improve code health), /code-simplify (clarity over cleverness), and /ship (ship incrementally). Skills auto-activate based on the task context.&rsquo;</li>
+<li>q: &lsquo;What are the four Karpathy-inspired behavioral principles for AI coding?&rsquo;
+a: &lsquo;The four principles, embedded in a CLAUDE.md file, are: Think Before Coding (state assumptions and ask before assuming), Simplicity First (build the minimum viable solution), Surgical Changes (touch only what you must and match existing style), and Goal-Driven Execution (define clear success criteria upfront). They act as cognitive safeguards against LLM overconfidence.&rsquo;</li>
+<li>q: &lsquo;How do the four pillars of autonomous AI systems work together?&rsquo;
+a: &lsquo;An agent first uses Local Deep Research to produce a verified, cited report, then uses InsForge to provision the full backend (database, edge functions, storage, auth) via MCP tool calls, builds the frontend following Agent Skills&rsquo;&rsquo; spec-to-ship workflow, and applies Karpathy-inspired behavioral guardrails throughout to prevent overengineering and wrong assumptions. Each pillar addresses a distinct failure mode in autonomous development.&rsquo;</li>
 </ul>
 <hr>
-<h1 id="챗봇을-넘어-2026년-자율-ai-시스템의-4가지-기둥">챗봇을 넘어: 2026년 자율 AI 시스템의 4가지 기둥<a hidden class="anchor" aria-hidden="true" href="#챗봇을-넘어-2026년-자율-ai-시스템의-4가지-기둥">#</a></h1>
+<h1 id="beyond-chatbots-the-4-pillars-of-autonomous-ai-systems-in-2026">Beyond Chatbots: The 4 Pillars of Autonomous AI Systems in 2026<a hidden class="anchor" aria-hidden="true" href="#beyond-chatbots-the-4-pillars-of-autonomous-ai-systems-in-2026">#</a></h1>
 <p>{&lt;/* resource-info */&gt;}</p>
 <h2 id="the-evolution-from-chatbot-to-autonomous-system">The Evolution: From Chatbot to Autonomous System<a hidden class="anchor" aria-hidden="true" href="#the-evolution-from-chatbot-to-autonomous-system">#</a></h2>
-<p>우리는 중요한 전환점에 서 있습니다. In 2024, we celebrated chatbots that could answer questions. In 2025, we marveled at agents that could browse the web. Now in mid-2026, something fundamentally different has emerged: <strong>자율 AI 시스템 that combine 심층 연구, 인프라 구성, 코드 생성, and 품질 보증 into a 단일 통합 워크플로우.</strong></p>
-<p>This isn&rsquo;t 점진적 개선. It&rsquo;s 아키텍처 진화. And four open-source projects reveal the pattern.</p>
+<p>We&rsquo;re at a critical inflection point. In 2024, we celebrated chatbots that could answer questions. In 2025, we marveled at agents that could browse the web. Now in mid-2026, something fundamentally different has emerged: <strong>autonomous AI systems that combine deep research, infrastructure provisioning, code generation, and quality assurance into a single coherent workflow.</strong></p>
+<p>This isn&rsquo;t incremental improvement. It&rsquo;s architectural evolution. And four open-source projects reveal the pattern.</p>
 <h2 id="pillar-1-deep-research--the-intelligence-layer">Pillar 1: Deep Research — The Intelligence Layer<a hidden class="anchor" aria-hidden="true" href="#pillar-1-deep-research--the-intelligence-layer">#</a></h2>
 <h3 id="local-deep-research-by-learningcircuit"><a href="https://github.com/LearningCircuit/local-deep-research">Local Deep Research</a> by LearningCircuit<a hidden class="anchor" aria-hidden="true" href="#local-deep-research-by-learningcircuit">#</a></h3>
-<p>대부분의 AI 도구는 답변만 제공합니다. Local Deep Research gives you <em>verified knowledge</em>.</p>
-<p>독보적인 이유는 다음과 같습니다: - <strong>20+ 연구 전략</strong> including a LangGraph agent mode that autonomously decides which search engine to use, when to dig deeper, and when to synthesize</p>
+<p>Most AI tools give you answers. Local Deep Research gives you <em>verified knowledge</em>.</p>
+<p>Here&rsquo;s what makes it remarkable: - <strong>20+ research strategies</strong> including a LangGraph agent mode that autonomously decides which search engine to use, when to dig deeper, and when to synthesize</p>
 <ul>
-<li><strong>~95% SimpleQA 벤치마크 정확도</strong> — 상용 시스템과 경쟁력 있는 수준</li>
-<li><strong>프라이버시 우선 아키텍처</strong>: SQLCipher-암호화된 SQLite 데이터베이스 (AES-256), 텔레메트리, 분석, 추적 없음</li>
-<li><strong>다중 소스 인텔리전스</strong>: arXiv, PubMed, Semantic Scholar, SearXNG, Tavily, Brave Search — 각 소스가 색인되고 교차 참조됨</li>
-<li><strong>무지식 암호화</strong>: User data isolated per-database, 서버 관리자도 내용을 읽을 수 없음</li>
+<li><strong>~95% accuracy on SimpleQA benchmark</strong> — competitive with commercial systems</li>
+<li><strong>Privacy-first architecture</strong>: SQLCipher-encrypted SQLite database (AES-256), no telemetry, no analytics, no tracking</li>
+<li><strong>Multi-source intelligence</strong>: arXiv, PubMed, Semantic Scholar, SearXNG, Tavily, Brave Search — each indexed and cross-referenced</li>
+<li><strong>Zero-knowledge encryption</strong>: User data isolated per-database, server admins cannot read your content</li>
 </ul>
 <p>The architecture is instructive: ````
 User Query -&gt; Strategy Selector -&gt; Question Generator
@@ -298,13 +306,13 @@ User Query -&gt; Strategy Selector -&gt; Question Generator
 <pre tabindex="0"><code>
 What&#39;s novel is the **iterative research loop**. Instead of one-shot query-response, the system generates sub-questions, searches across diverse sources, analyzes results, and iterates until confidence thresholds are met. This mimics how human experts actually do research: hypothesize, investigate, evaluate, refine.
 
-The security model deserves special mention. Every user gets an isolated SQLCipher database. The encryption uses Signal-level AES-256 security. No password recovery means true zero-knowledge. Docker images are signed with Cosign and include SLSA provenance attestations. For developers who care about supply chain security, this is 엔터프라이즈급 보안.
+The security model deserves special mention. Every user gets an isolated SQLCipher database. The encryption uses Signal-level AES-256 security. No password recovery means true zero-knowledge. Docker images are signed with Cosign and include SLSA provenance attestations. For developers who care about supply chain security, this is enterprise-grade.
 
 ## Pillar 2: Infrastructure — The Platform Layer
 
 ### [InsForge](https://github.com/InsForge/InsForge) by InsForge
 
-An AI agent that can research deeply still needs somewhere to deploy its work. Enter InsForge: 에이전트 코딩을 위해 특별히 설계된 올인원 오픈소스 백엔드 플랫폼.
+An AI agent that can research deeply still needs somewhere to deploy its work. Enter InsForge: the all-in-one open-source backend platform designed specifically for agentic coding.
 
 Think of it as Firebase meets Vercel meets Render — but built for AI agents to operate directly.
 
@@ -316,7 +324,7 @@ Core capabilities: - **Authentication**: Email/password + OAuth (Google, GitHub)
 - **Compute**: Long-running container services (private preview)
 - **Site Deployment**: Full site build and deployment pipeline
 
-The key innovation is **이중 인터페이스 지원**: 1. **MCP 서버** — Self-hostable interface exposing InsForge operations as standardized tools that any MCP-compatible agent (Claude Code, Cursor, Gemini CLI) can call
+The key innovation is **dual interface support**: 1. **MCP Server** — Self-hostable interface exposing InsForge operations as standardized tools that any MCP-compatible agent (Claude Code, Cursor, Gemini CLI) can call
 2. **CLI + Skills** — Cloud-native command-line interface paired with executable skill definitions
 
 This means an AI agent doesn&#39;t just generate code — it can provision its own database schema, configure authentication, deploy edge functions, set up storage buckets, and even route its own API calls through the model gateway. End-to-end autonomy.
@@ -332,29 +340,35 @@ const client = createClient({
 <p>Vercel supports this project through their OSS program, indicating strong industry validation. Licensed under Apache 2.0.</p>
 <h2 id="pillar-3-engineering-discipline--the-quality-layer">Pillar 3: Engineering Discipline — The Quality Layer<a hidden class="anchor" aria-hidden="true" href="#pillar-3-engineering-discipline--the-quality-layer">#</a></h2>
 <h3 id="agent-skills-by-addy-osmani"><a href="https://github.com/addyosmani/agent-skills">Agent Skills</a> by Addy Osmani<a hidden class="anchor" aria-hidden="true" href="#agent-skills-by-addy-osmani">#</a></h3>
-<p>규율 없는 순수 능력은 지저분하고 유지보수 불가능한 코드를 낳습니다. This is where Addy Osmani&rsquo;s Agent Skills come in — production-grade engineering workflows packaged so AI agents follow senior-engineer standards consistently.</p>
-<p>The core insight: <strong>스킬은 시니어 엔지니어가 개발 전 과정에서 사용하는 의사결정 패턴을 인코딩합니다</strong>. Not specific code — the <em>judgment</em> behind when and why to make certain decisions.</p>
-<p>The seven-slash-command framework maps to the complete development lifecycle: ||Command|Phase|Principle||
-||&mdash;&mdash;&mdash;|&mdash;&mdash;-|&mdash;&mdash;&mdash;&ndash;||
-||<code>/spec</code>|Define|Spec before code — requirements first||
-||<code>/plan</code>|Plan|Small, atomic tasks — break down complexity||
-||<code>/build</code>|Build|One slice at a time — incremental delivery||
-||<code>/test</code>|Verify|Tests are proof — not decoration||
-||<code>/review</code>|Review|Improve code health — continuous refinement||
-||<code>/code-simplify</code>|Simplify|Clarity over cleverness — readability wins||
-||<code>/ship</code>|Ship|Faster is safer — ship incrementally||</p>
+<p>Raw capability without discipline produces messy, unmaintainable code. This is where Addy Osmani&rsquo;s Agent Skills come in — production-grade engineering workflows packaged so AI agents follow senior-engineer standards consistently.</p>
+<p>The core insight: <strong>skills encode the decision patterns that senior engineers use throughout development</strong>. Not specific code — the <em>judgment</em> behind when and why to make certain decisions.</p>
+<p>The seven-slash-command framework maps to the complete development lifecycle: | Command | Phase | Principle |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <code>/spec</code> | Define | Spec before code — requirements first |
+| <code>/plan</code> | Plan | Small, atomic tasks — break down complexity |
+| <code>/build</code> | Build | One slice at a time — incremental delivery |
+| <code>/test</code> | Verify | Tests are proof — not decoration |
+| <code>/review</code> | Review | Improve code health — continuous refinement |
+| <code>/code-simplify</code> | Simplify | Clarity over cleverness — readability wins |
+| <code>/ship</code> | Ship | Faster is safer — ship incrementally |</p>
 <p>But the real magic is <strong>context-aware auto-discovery</strong>. When designing an API, the <code>api-and-interface-design</code> skill activates automatically. Building UI? <code>frontend-ui-engineering</code> triggers. The agent understands its task and loads the appropriate expertise.</p>
 <p>This transforms AI coding from &ldquo;write code that happens to work&rdquo; to &ldquo;follow proven engineering workflows that produce maintainable results.&rdquo;</p>
 <h2 id="pillar-4-behavioral-guardrails--the-wisdom-layer">Pillar 4: Behavioral Guardrails — The Wisdom Layer<a hidden class="anchor" aria-hidden="true" href="#pillar-4-behavioral-guardrails--the-wisdom-layer">#</a></h2>
 <h3 id="karpathy-inspired-skills"><a href="https://github.com/forrestchang/andrej-karpathy-skills">Karpathy-Inspired Skills</a><a hidden class="anchor" aria-hidden="true" href="#karpathy-inspired-skills">#</a></h3>
-<p>기반 행동에 결함이 있으면 최고의 엔지니어링 프레임워크도 실패합니다. Andrej Karpathy identified LLM 코딩 실패의 패턴: &gt; &ldquo;The models make wrong assumptions on your behalf and just run along with them without checking. They don&rsquo;t manage their confusion, don&rsquo;t seek clarifications, don&rsquo;t surface inconsistencies, don&rsquo;t present tradeoffs, don&rsquo;t push back when they should.&rdquo;</p>
+<p>Even the best engineering frameworks fail if the underlying behavior is flawed. Andrej Karpathy identified a pattern in LLM coding failures: &gt; &ldquo;The models make wrong assumptions on your behalf and just run along with them without checking. They don&rsquo;t manage their confusion, don&rsquo;t seek clarifications, don&rsquo;t surface inconsistencies, don&rsquo;t present tradeoffs, don&rsquo;t push back when they should.&rdquo;</p>
 <p>This project distills Karpathy&rsquo;s observations into four behavioral principles embedded in a <code>CLAUDE.md</code> file: <strong>1. Think Before Coding</strong> — State assumptions explicitly. Present multiple interpretations. Push back when simpler approaches exist. Stop when confused. Ask before assuming.</p>
 <p><strong>2. Simplicity First</strong> — Minimum viable solution. No speculative features. No abstractions for single-use code. If 200 lines could be 50, rewrite it. The test: &ldquo;Would a senior engineer say this is overcomplicated?&rdquo;</p>
 <p><strong>3. Surgical Changes</strong> — Touch only what you must. Don&rsquo;t refactor things that aren&rsquo;t broken. Match existing style. Remove only the dead code YOUR changes created — never pre-existing orphan code unless asked.</p>
 <p><strong>4. Goal-Driven Execution</strong> — Define success criteria upfront. Transform &ldquo;add validation&rdquo; into &ldquo;write tests for invalid inputs, then make them pass.&rdquo; Strong criteria enable independent looping; weak criteria require constant clarification.</p>
-<p>These aren&rsquo;t technical solutions — they&rsquo;re 인지적 안전장치. They address the LLM의 근본적 약점: 능력을 가장한 과도한 자신감.</p>
+<p>These aren&rsquo;t technical solutions — they&rsquo;re cognitive safeguards. They address the fundamental weakness of LLMs: overconfidence masked as competence.</p>
 <h2 id="how-these-four-layers-work-together">How These Four Layers Work Together<a hidden class="anchor" aria-hidden="true" href="#how-these-four-layers-work-together">#</a></h2>
-<p>The breakthrough moment comes when you connect all four pillars into a single workflow: 1. <strong>Research</strong> (Local Deep Research): An agent receives a complex query — &ldquo;Build a trading dashboard for prediction markets.&rdquo; It conducts 심층 연구 across financial APIs, market structures, and UI patterns, producing a verified report with citations.</p>
+<p>The breakthrough moment comes when you connect all four pillars into a single workflow: 1. <strong>Research</strong> (Local Deep Research): An agent receives a complex query — &ldquo;Build a trading dashboard for prediction markets.&rdquo; It conducts deep research across financial APIs, market structures, and UI patterns, producing a verified report with citations.</p>
 <ol start="2">
 <li>
 <p><strong>Platform</strong> (InsForge): The agent provisions the entire backend — PostgreSQL for market data, edge functions for real-time updates, storage for historical charts, auth for user accounts, model gateway for analysis APIs. All via MCP tool calls.</p>
@@ -370,7 +384,7 @@ const client = createClient({
 <h2 id="why-this-matters-for-developers">Why This Matters for Developers<a hidden class="anchor" aria-hidden="true" href="#why-this-matters-for-developers">#</a></h2>
 <p>Three years ago, the question was &ldquo;Can AI write code?&rdquo; Today, it&rsquo;s &ldquo;Can AI build production systems end-to-end?&rdquo;</p>
 <p>The answer is becoming clear: <strong>not yet fully autonomously, but dangerously close.</strong></p>
-<p>Each pillar addresses a specific failure mode: - Without 심층 연구 → agents build on outdated or incorrect information</p>
+<p>Each pillar addresses a specific failure mode: - Without deep research → agents build on outdated or incorrect information</p>
 <ul>
 <li>Without proper infrastructure → agents generate code with no deployment path</li>
 <li>Without engineering discipline → agents produce unmaintainable spaghetti</li>
@@ -387,19 +401,26 @@ const client = createClient({
 <p>You don&rsquo;t need to adopt all four simultaneously. Start with what addresses your biggest gap. But once you experience the synergy — research informing architecture, architecture guiding implementation, implementation disciplined by skills, all guided by wisdom — it&rsquo;s hard to go back to doing it alone.</p>
 <p>The future of software development isn&rsquo;t humans replacing AI or AI replacing humans. It&rsquo;s humans orchestrating AI systems that combine deep intelligence, robust infrastructure, engineering discipline, and practical wisdom. And those systems are already here.</p>
 <hr>
-<h2 id="추천-도구">추천 도구<a hidden class="anchor" aria-hidden="true" href="#추천-도구">#</a></h2>
-<p>오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.</p>
-<p><em>추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.</em></p>
-<h2 id="추천-도구-1">추천 도구<a hidden class="anchor" aria-hidden="true" href="#추천-도구-1">#</a></h2>
-<p><strong>안정적인 Claude / OpenAI API 액세스가 필요?</strong> 이 분야 프로젝트는 결국 Anthropic / OpenAI 레이트 리밋이나 가격 벽에 부딪힙니다.</p>
+<h2 id="recommended-tools">Recommended Tools<a hidden class="anchor" aria-hidden="true" href="#recommended-tools">#</a></h2>
+<p>For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.</p>
+<p><em>Affiliate link — supports dibi8.com at no cost to you.</em></p>
+<h2 id="recommended-tools-1">Recommended Tools<a hidden class="anchor" aria-hidden="true" href="#recommended-tools-1">#</a></h2>
+<p><strong>Need stable Claude or OpenAI API access?</strong> Most projects in this space eventually hit the Anthropic/OpenAI rate limit or pricing wall.</p>
 <ul>
-<li>**** — Claude / OpenAI / DeepSeek API 프록시. 키 하나로 여러 최상위 모델 액세스, 공식 가격의 ~30%; 에이전트 프롬프트 이터레이션이나 직접 API 액세스 제한 지역에서 특히 유용.</li>
+<li>**** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when iterating on agent prompts or when direct API access is restricted in your region.</li>
 </ul>
-<p><em>제휴 링크 — 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.</em></p>
+<p><em>Affiliate link — supports dibi8.com at no extra cost to you.</em></p>
+<h2 id="references--sources">References &amp; Sources<a hidden class="anchor" aria-hidden="true" href="#references--sources">#</a></h2>
+<ul>
+<li><a href="https://github.com/LearningCircuit/local-deep-research">Local Deep Research</a></li>
+<li><a href="https://github.com/InsForge/InsForge">InsForge</a></li>
+<li><a href="https://github.com/addyosmani/agent-skills">Agent Skills (Addy Osmani)</a></li>
+<li><a href="https://github.com/forrestchang/andrej-karpathy-skills">Karpathy-Inspired Skills</a></li>
+</ul>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;챗봇을 넘어: 2026년 자율 AI 시스템의 4가지 기둥&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Beyond Chatbots: The 4 Pillars of Autonomous AI Systems in 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-15&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-15&rdquo;,
 &ldquo;author&rdquo;: {
@@ -416,7 +437,7 @@ const client = createClient({
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/beyond-chatbots-four-pillars-autonomous-ai-systems-2026%22">https://dibi8.com/kr/resources/beyond-chatbots-four-pillars-autonomous-ai-systems-2026"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/beyond-chatbots-four-pillars-autonomous-ai-systems-2026%22">https://dibi8.com/resources/beyond-chatbots-four-pillars-autonomous-ai-systems-2026"</a>
 }
 }
 </script></p>
@@ -431,6 +452,7 @@ const client = createClient({
 <p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
 <p><strong>问：能否自定义AI Agent的行为？</strong></p>
 <p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+<hr>
 
 
   </div>
@@ -473,6 +495,81 @@ const client = createClient({
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

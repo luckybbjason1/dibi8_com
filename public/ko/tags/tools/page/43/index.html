@@ -134,14 +134,14 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-25T00:00:00&#43;08:00 lastmod: 2026-05-25T00:00:00&#43;08:00 tech_stack: [ComfyUI, ‘Stable Diffusion’, Python, CUDA] application_domain: AI 도구 source_version: “ComfyUI 2026.05” licensing_model: 오픈 소스 license_type: ‘GPL-3.0’ last_maintained: “2026-05-25” draft: false categories: [“ai-tools”] tags: [“comfyui”, “stable-diffusion”, “image-generation”, “workflows”, “2026”] aliases:
-/kr/posts/comfyui-workflow-2026-5-production-templates/ faq: - q: “2026년에 ComfyUI가 Stable Diffusion WebUI보다 나은가요?” a: “워크플로 자동화와 프로덕션 용도라면: 단연코 예. ComfyUI의 노드 기반 그래프는 복잡한 다단계 파이프라인(업스케일 → 인페인트 → ControlNet → 재렌더)을 손쉽게 만들어줍니다. SD WebUI는 일회성 생성에 더 간편합니다. 대부분의 프로 AI 아티스트는 둘 다 사용합니다.” q: “어떤 하드웨어가 필요한가요?” a: “최소: 8GB VRAM(RTX 3060, RTX 4060) — 적당한 품질의 SDXL용. 쾌적: 16GB&#43; VRAM(RTX 4080, 4090) — SDXL &#43; Flux 모델 &#43; LoRA 스택용. 프로덕션: H100 / 멀티 GPU — 배치 워크플로용.” q: “2026년에 가장 먼저 받아야 할 모델은?” a: “세 가지 우선순위: (1) SDXL base &#43; refiner(여전히 주력), (2) Flux.1 Schnell(더 빠르고 프로토타이핑에 좋음), (3) Stable Diffusion 3.5 Large(최고 수준의 사진 사실감). 거기에 본인 스타일에 맞는 LoRA 2-3개를 더하세요. 명확한 이유가 생기기 전까지는 Civitai의 수십 개 캐릭터 LoRA는 건너뛰세요.” q: “ComfyUI를 처음부터 배우는 데 얼마나 걸리나요?” a: “워크플로 로드 &#43; 생성: 30분. 직접 워크플로 구축: 1-2일. 프로덕션용 노드 마스터: 2-3주. 학습 곡선은 초반에 가파르지만 보상이 큽니다 — 워크플로는 재사용·공유·재현이 가능합니다.” ComfyUI 워크플로 2026: 셋업 &#43; 프로덕션 템플릿 5종 Meta Description: 2026년 ComfyUI는 10.6만 스타를 돌파. 셋업 가이드 &#43; 곧바로 투입 가능한 워크플로 템플릿 5종(텍스트→이미지, 인페인트, 업스케일, 비디오, 캐릭터 일관성).
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Ai Tools source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“demucs”, “tach-nguon-nhac”, “ai-audio”, “tach-stem”, “pytorch”, “docker”, “ma-nguon-mo”] aliases:
+/vi/posts/demucs/ Việc tách một bản phối hoàn chỉnh thành các track nhạc cụ riêng lẻ — vocal, trống, bass, và các nhạc cụ khác — từng đòi hỏi file đa track gốc từ phòng thu. Điều đó đã thay đổi khi các mô hình học sâu học được cách “unmix” audio đã hoàn thiện. Ngày nay, nhạc sĩ, producer và developer sử dụng các công cụ này để tạo track karaoke, tách sample, chuẩn bị remix, và xây dựng pipeline chuyển đổi giọng nói. Trong các lựa chọn mã nguồn mở, một mô hình thống trị cuộc trò chuyện: Demucs, kiến trúc hybrid transformer của Meta với hơn 10,000 sao trên GitHub và benchmark hàng đầu trên tập dữ liệu MUSDB18-HQ.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>5 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/comfyui-workflow-2026-5-production-templates/"></a>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>18 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/demucs/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -150,14 +150,15 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Ai Tools source_version: ’&#39; licensing_model: Open Source license_type: MPL-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“coqui tts”, “텍스트-음성-변환”, “음성-복제”, “xtts”, “vits”, “딥러닝”, “docker”, “python”] aliases:
-/kr/posts/coqui-tts/ 소개 프로덕션용 TTS(Text-to-Speech) 엔진을 선택하는 것은 지뢰밭을 걷는 것과 같다. 대부분의 데모는 데스크톱 GPU에서 훌륭하게 들리지만, 동시 요청이 발생하면 물러서고, Docker 이미지가 10GB로 팽창하거나, 영어에서 중국어로 전환하는 순간 실패한다. 이 coqui tts tutorial은 프로덕션 수준 text to speech setup을 단계별로 안내하고, ChatTTS, MeloTTS, Bark와의 tts benchmark를 비교하며, 하루 5000개 이상 요청을 처리하는 데 사용한 설정 파일을 공유한다. 다국어 고객 서비스 시스템을 위해 여섯 가지 오픈소스 TTS 프레임워크를 평가한 결과, Coqui TTS가 모든 기준을 충족하는 유일한 툴킷으로 부상했다: Fairseq을 통한 1100개 이상 언어 지원, XTTS v2로 200ms 미만의 스트리밍, 그리고 실제로 30초 이내에 시작하는 coqui tts docker 이미지. 이 글에서는 coqui tts vs chattts 성능 차이에 대한 실제 데이터도 제공한다.
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-18T00:00:00&#43;08:00 lastmod: 2026-05-18T00:00:00&#43;08:00 tech_stack: [] application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-18” draft: false categories: [“dev-utils”] tags: [“api gateway”, “kong”, “nginx”, “traefik”, “apigee”, “microservices”, “devops”] aliases:
+/vi/posts/developer-api-gateway-tools/ {&lt;/* resource-info */&gt;}
+Trong kiến trúc microservices hiện đạI, API Gateway đóng vai trò cổng vào trung tâm cho tất cả các yêu cầu từ client đến backend services. Thay vì gọI trực tiếp đến từng service riêng lẻ, client chỉ cần giao tiếp vớI API Gateway — nơI xử lý routing, xác thực, rate limiting, logging và nhiều chức năng cross-cutting khác.
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/coqui-tts/"></a>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/developer-api-gateway-tools/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -166,17 +167,14 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “CoW Protocol 2026: The MEV-Protected DEX Aggregator Savi… description: “Technical guide and comparison.” date: 2026-05-20T00:00:00&#43;08:00 lastmod: 2026-05-20T00:00:00&#43;08:00 tech_stack: [] application_domain: Ai Trading source_version: ’&#39; licensing_model: Open Source license_type: GPL-3.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-20” draft: false categories: [“ai-trading”] tags: [“cow protocol”, “mev protection”, “dex aggregator”, “batch auction”, “sandwich attack”, “coincidence of wants”, “solver”, “defi trading”, “gasless orders”, “anti-mev”] aliases:
-/posts/cow-protocol-mev-protection/- Date: 2026-05-19
-Category: AI Trading
-Tags: CoW Protocol, MEV protection, DEX aggregator, batch auction, sandwich attack, DeFi, solver
-Read Time: 18 minutes
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: AGPL-3.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“docmost”, “thay thế notion”, “wiki”, “cộng tác thờói gian thực”, “tự host”, “tài liệu”, “postgresql”, “docker”, “mã nguồn mở”, “tài liệu nhóm”] aliases:
+/vi/posts/docmost-team-docs-collaboration/ Giới thiệu: Tại sao đội của bạn cần phương án thay thế Notion tự host Notion đã thay đổi cách đội ngũ nghĩ về tài liệu. Trình chỉnh sửa dựa trên khối, cộng tác thờói gian thực và hệ thống phân cấp sạch sẽ đã khiến nó trở thành lựa chọn mặc định cho các startup và đội ngũ công nghệ. Nhưng có một chi phí vượt quá mức giá $10/ngườó/tháng: dữ liệu của bạn nằm trên máy chủ của ngườó khác. Đối với các đội ngũ xử lý IP nhạy cảm, ngành được quản lý, hoặc bất kỳ ai đơn giản tin rằng tài liệu của họ nên ở trên cơ sở hạ tầng mà họ kiểm soát, mô hình chỉ-cloud của Notion là điều không thể chấp nhận.
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>20 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/cow-protocol-mev-protection/"></a>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/docmost-team-docs-collaboration/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -193,6 +191,22 @@ Read Time: 18 minutes
 
 <span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>16 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/dvc-data-version-control-ml/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> Tuyên bố tiếp thị liên kết: Bài viết này chứa các liên kết tiếp thị đến Binance và Minara. Chúng tôi có thể nhận được hoa hồng khi bạn đăng ký qua các liên kết này — không phát sinh chi phí thêm cho bạn.
+EigenLayer là gì và tại sao nó quan trọng? EigenLayer là đổi mới quan trọng nhất trong nền kinh tế staking của Ethereum kể từ khi chuyển sang proof-of-stake. Được ra mắt như một giao thức restaking trên Ethereum mainnet, EigenLayer cho phép các staker ETH tái sử dụng ETH đã stake của họ để bảo mật các dịch vụ phi tập trung bổ sung — được gọi là Dịch vụ Xác thực Chủ động (AVS) — vượt ra ngoài sự đồng thuận của Ethereum. Tính đến tháng 5 năm 2026, EigenLayer đã vượt quá 20 tỷ USD Tổng Giá trị Khóa (TVL), trở thành một trong các giao thức DeFi lớn nhất theo vốn được bảo mật.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>16 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/eigenlayer-restaking-defi/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -218,13 +232,12 @@ What Is FastChat? FastChat is an open platform developed by the Large Model Syst
   </header>
   <div class="entry-content">
     <p>{&lt;/* resource-info */&gt;}
-머신러닝 모델의 성능은 데이터의 질과 특성(Feature)의 표현력에 크게 좌우됩니다. 업계 전문가들은 ML 프로젝트 시간의 60~80%를 데이터 준비와 특성 엔지니어링에 소비한다고 추정합니다. 자동화 특성 엔지니어링(Automated Feature Engineering, AFE)은 이러한 병목 현상을 해결하기 위해 등장한 기술로, 도메인 전문성 없이도 고품질 특성을 자동 생성합니다. 본 가이드에서는 2024년 기준 가장 널리 사용되는 3대 도구를 심층 분석합니다.
-특성 엔지니어링이 ML 파이프라인의 병목 현상인 이유 수동 특성 엔지니어링은 네 가지 근본적 문제를 안고 있습니다. 첫째, 도메인 전문성 의존입니다. 금융, 의료, 제조업 등 분야별로 특성 설계 방식이 달라 전문가의 지식이 필수적입니다. 둘째, 반복적 코드 작성입니다. 유사한 변환 로직(집계, 비율, 이동 평균)을 프로젝트마다 처음부터 작성해야 합니다. 셋째, 재사용성 부재입니다. 한 프로젝트에서 개발한 특성 생성 로직을 다른 프로젝트에 바로 적용하기 어렵습니다. 넷째, 오류 발생 가능성입니다. 수작업 특성 설계에서 데이터 누수(Leakage)나 시간 기준 위반이 빈번하게 발생합니다.
+Feature engineering is the process of transforming raw data into variables that machine learning models can use effectively. It is also the most time-consuming, expertise-dependent phase of a typical ML pipeline. A Forbes survey from 2016 found that data scientists spend 80% of their time on data preparation — much of it on feature engineering. Nearly a decade later, despite advances in AutoML, manual feature creation remains a bottleneck.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/feature-engineering-tools-automation/"></a>
 </article>
 
@@ -235,12 +248,12 @@ What Is FastChat? FastChat is an open platform developed by the Large Model Syst
   </header>
   <div class="entry-content">
     <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-02T00:00:00&#43;08:00 lastmod: 2026-06-02T00:00:00&#43;08:00 tech_stack: [] application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: AGPL-3.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-06-02” draft: false categories: [“dev-utils”] tags: [&#34;] aliases:
-/posts/firecrawl-dev-utils-2026/ faqs: - q: ‘Firecrawl은 어떻게 설치하나요?’ a: ‘공식 SDK 중 하나를 설치하면 됩니다. Node.js: bash npm install firecrawl Python: bash pip install firecrawl-py 그런 다음 firecrawl.dev&#34;에서 받은 API 키로 클라이언트를 생성하세요.’ q: ‘TypeScript 외의 언어로도 Firecrawl을 쓸 수 있나요?’ a: ‘네. Firecrawl은 HTTP API이므로 어떤 언어든 호출할 수 있습니다. Node.js와 Python용 공식 SDK가 있으며, 그 외 언어에서는 임의의 HTTP 클라이언트로 REST 엔드포인트를 직접 호출할 수 있습니다.’ q: ‘반드시 호스팅형 API를 써야 하나요, 아니면 셀프 호스팅할 수 있나요?’ a: ‘둘 다 지원합니다. api.firecrawl.dev의 호스팅형 API가 가장 빠른 시작 방법이지만, 프로젝트 자체가 오픈소스이고 Docker Compose 설정을 함께 제공하므로 전체를 자체 서버에서 돌릴 수 있습니다.’ q: ‘scrape, crawl, map의 차이는 무엇인가요?’ a: ‘scrape는 단일 URL을 처리합니다. crawl은 링크를 따라가 사이트 전체를 비동기로 스크래핑합니다. map은 콘텐츠를 스크래핑하지 않고 사이트의 URL 목록만 반환합니다 — 크롤링 계획에 유용합니다.’ q: ‘Firecrawl은 무료인가요? 라이선스는 무엇인가요?’ a: ‘소스 코드는 AGPL-3.0로 무료이며 오픈소스이고, 공식 SDK와 UI 컴포넌트는 MIT입니다. 호스팅형 클라우드 API는 무료 티어와 더 높은 사용량을 위한 유료 요금제를 제공합니다. 셀프 호스팅하는 경우 실행에 드는 인프라 비용은 직접 부담합니다.’ Firecrawl: 어떤 웹사이트든 LLM이 바로 쓸 데이터로 (127K Stars) — 2026 실전 가이드 들어가며 웹 페이지를 LLM에 넣어 본 적이 있다면 그 고통을 알 것입니다. 원시 HTML은 내비게이션 바, 광고, 스크립트, 깨진 레이아웃으로 가득 차 토큰을 낭비하고 모델을 혼란스럽게 만듭니다. Firecrawl은 바로 이 문제를 해결합니다. 임의의 URL — 혹은 웹사이트 전체 — 을 받아 LLM이 바로 쓸 수 있는 깔끔한 마크다운, 구조화 JSON, 또는 스크린샷으로 돌려주는 오픈소스 웹 데이터 API입니다. GitHub stars 127,000개가 넘는 이 도구는 웹을 AI 앱이 실제로 쓸 수 있는 데이터로 바꾸는 작업에서 가장 인기 있는 도구 중 하나가 되었습니다. 이 가이드에서는 Firecrawl이 무엇을 하는지, 어떻게 설치하는지, 실제로 동작하는 코드, 셀프 호스팅, 그리고 흔한 대안들과의 비교를 살펴봅니다.
+/posts/firecrawl-dev-utils-2026/ faqs: - q: ‘Tôi cài Firecrawl như thế nào?’ a: ‘Hãy cài một trong các SDK chính thức. Với Node.js: bash npm install firecrawl Với Python: bash pip install firecrawl-py Sau đó tạo một client bằng API key lấy từ firecrawl.dev&#34;.’ q: ‘Tôi có thể dùng Firecrawl với các ngôn ngữ khác ngoài TypeScript không?’ a: ‘Có. Firecrawl là một HTTP API, nên bất kỳ ngôn ngữ nào cũng có thể gọi nó. Có SDK chính thức cho Node.js và Python, và với các ngôn ngữ khác bạn có thể gọi trực tiếp các endpoint REST bằng một HTTP client bất kỳ.’ q: ‘Tôi bắt buộc phải dùng API được lưu trữ, hay có thể self-host?’ a: ‘Cả hai đều được hỗ trợ. API được lưu trữ tại api.firecrawl.dev là cách bắt đầu nhanh nhất, nhưng bản thân dự án là mã nguồn mở và đi kèm cấu hình Docker Compose, nên bạn có thể chạy toàn bộ trên máy chủ của riêng mình.’ q: ‘Sự khác biệt giữa scrape, crawl và map là gì?’ a: ‘scrape xử lý một URL. crawl đi theo các liên kết để scrape toàn bộ một website một cách bất đồng bộ. map chỉ trả về danh sách URL trên một site mà không scrape nội dung của chúng — hữu ích để lập kế hoạch crawl.’ q: ‘Firecrawl có miễn phí không, và giấy phép của nó là gì?’ a: ‘Mã nguồn miễn phí và mở theo AGPL-3.0, còn các SDK chính thức và thành phần UI theo MIT. API đám mây được lưu trữ có một bậc miễn phí cùng các gói trả phí cho mức dùng cao hơn. Nếu self-host, bạn tự chịu chi phí hạ tầng để vận hành.’ Firecrawl: Biến mọi website thành dữ liệu sẵn sàng cho LLM (127K Stars) — Hướng dẫn thực chiến 2026 Giới thiệu Nếu bạn từng thử đưa các trang web vào LLM, bạn hiểu nỗi khổ này: HTML thô đầy thanh điều hướng, quảng cáo, script và bố cục vỡ, vừa lãng phí token vừa làm rối mô hình. Firecrawl giải quyết đúng vấn đề đó. Đây là một API dữ liệu web mã nguồn mở, nhận bất kỳ URL nào — hoặc cả một website — và trả về Markdown sạch, JSON có cấu trúc, hoặc ảnh chụp màn hình, sẵn sàng cho LLM. Với hơn 127.000 sao trên GitHub, nó đã trở thành một trong những công cụ phổ biến nhất để biến web thành dữ liệu mà ứng dụng AI của bạn có thể dùng được thật sự. Hướng dẫn này sẽ đưa bạn qua: Firecrawl làm được gì, cách cài đặt, code chạy thực tế, self-host, và cách nó so với các lựa chọn thay thế quen thuộc.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>14 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/firecrawl-dev-utils-2026/"></a>
 </article>
 
@@ -258,21 +271,6 @@ What Is FastChat? FastChat is an open platform developed by the Large Model Syst
 
 <span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>19 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/freqtrade-ai-trading-strategies/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Tool Guide
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Freqtrade: Python 기반 암호화폐 트레이딩 봇 51,300 스타 — 백테스트, 최적화, 배포 — 2026 실전 가이드 ┌──────────────────────────────────────────────────────┐ │ Freqtrade 트레이딩 엔진 │ │ │ │ ┌─────────────┐ ┌─────────────┐ ┌────────────┐ │ │ │ 백테스트 │ │ Hyperopt │ │ 라이브 트레이│ │ │ │ 엔진 │ │ 최적화 │ │ 거래소 │ │ │ └──────┬──────┘ └──────┬──────┘ └──────┬─────┘ │ │ │ │ │ │ │ ┌──────▼────────────────▼─────────────────▼──────┐ │ │ │ 전략 레이어 (Python) │ │ │ │ define_buy_signal() │ define_sell_signal() │ │ │ │ define_protections() │ populate_indicators() │ │ │ └───────────────────────────────────────────────┘ │ └──────────────────────────────────────────────────────┘ Freqtrade 아키텍처: 백테스트 → 최적화 → 배포
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -319,6 +317,81 @@ What Is JAX? JAX is a Python library that combines NumPy-like array operations w
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

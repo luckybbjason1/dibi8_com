@@ -98,7 +98,7 @@
                 </a>
             </li>
             <li>
-                <a href="https://dibi8.com/ko/" title="🛠 Tools">
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
                     <span>🛠 Tools</span>
                 </a>
             </li>
@@ -130,27 +130,20 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">LangChain vs LlamaIndex vs LangGraph 2026: 完整対比特指南
+    <h2 class="entry-hint-parent">LangChain vs LlamaIndex vs LangGraph 2026: 완전 비교 가이드
     </h2>
   </header>
   <div class="entry-content">
-    <p>LangChain vs LlamaIndex vs LangGraph 2026: 完整対比特指南 2026年、AIコーディングツールエコシステムは劇的に変容しました。単純な自動補完から始まり、現在はLangChain、LlamaIndex、LangGraphという3つの異なるLLMフレームワークの生態系へと進化しました。
-この包括的なガイドは、各ツールの実際の違い、ベンチマーク、価格、ユースケースを分析し、ワークフローに最適なツールを選ぶお手伝いをします。
-三大パラダイム 各ツールはAI支援開発に対する根本的に異なるアプローチを表しています：
-LangChain：汎用アプリケーションフレームワーク LangChainは最も包括的なLLMフレームワークで、複数のコンポーネントを持つ複雑なAIアプリケーションの構築に焦点を当てています。
-主な機能：
-200&#43;のツールやサービスとの統合 チェーンとエージェントパターン メモリと会話管理 マルチモーダルサポート 本番対応ツール LlamaIndex：データとRAGフレームワーク LlamaIndex（旧GPT Index）は、LLMを独自のデータに接続することに特化しています。
-主な機能：
-強力なデータコネクタ 深いRAG（検索強化生成） 多様なインデックス構造 柔軟なクエリエンジン エージェント機能 LangGraph：ワークフローグラフフレームワーク LangGraphはLangChainの上に構築されていますが、ステートフルでグラフベースのワークフローに焦点を当てています。
-主な機能：
-ステートフルワークフロー グラフベースのオーケストレーション ヒューインザループ承認 複雑な分岐ロジック 本番デプロイメント 詳細比較 アーキテクチャと設計 特性 LangChain LlamaIndex LangGraph ポジショニング 汎用目的 データ駆動 ワークフロー駆動 複雑さ 中程度 低-中程度 高 学習曲線 簡単 とても簡単 難しい 柔軟性 高い 中程度 とても高い 拡張性 とても高い 高い 高い RAGパフォーマンス LangChain RAG：
-from langchain.vectorstores import Chroma from langchain.embeddings import OpenAIEmbeddings from langchain.document_loaders import TextLoader from langchain.text_splitter import CharacterTextSplitter from langchain.chains import RetrievalQA # ドキュメントをロードして分割 loader = TextLoader(&#34;documents.txt&#34;) documents = loader.load() text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=200) texts = text_splitter.split_documents(documents) # ベクトルストアを作成 embeddings = OpenAIEmbeddings() docsearch = Chroma.from_documents(texts, embeddings) # QAチェーンを作成 qa = RetrievalQA.from_chain_type(llm=OpenAI(), chain_type=&#34;stuff&#34;, retriever=docsearch.as_retriever()) response = qa.run(&#34;主なテーマは何ですか？&#34;) LlamaIndex RAG：
+    <p>LangChain vs LlamaIndex vs LangGraph 2026: 완전 비교 가이드 2026년, AI 코딩 도구 생태계는 극적으로 변화했습니다. 단순한 자동 완성에서 시작해, 현재는 LangChain, LlamaIndex, LangGraph라는 세 가지 서로 다른 LLM 프레임워크 생태계로 진화했습니다.
+이 포괄적인 가이드는 각 도구의 실제 차이점, 벤치마크, 가격, 사용 사례를 분석하여 워크플로우에 최적의 도구를 선택하는 데 도움을 드립니다.
+3대 패러다임 각 도구는 AI 지원 개발에 대한 근본적으로 다른 접근 방식을 나타냅니다:
+LangChain: 범용 애플리케이션 프레임워크 LangChain은 가장 포괄적인 LLM 프레임워크로, 여러 구성 요소를 가진 복잡한 AI 애플리케이션 구축에 중점을 둡니다.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>4 분</span></footer>
-  <a class="entry-link" aria-label="post link to LangChain vs LlamaIndex vs LangGraph 2026: 完整対比特指南" href="https://dibi8.com/ko/langchain-vs-llamaindex-vs-langgraph/"></a>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span></footer>
+  <a class="entry-link" aria-label="post link to LangChain vs LlamaIndex vs LangGraph 2026: 완전 비교 가이드" href="https://dibi8.com/ko/langchain-vs-llamaindex-vs-langgraph/"></a>
 </article>
     </main>
     
@@ -172,6 +165,81 @@ from langchain.vectorstores import Chroma from langchain.embeddings import OpenA
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

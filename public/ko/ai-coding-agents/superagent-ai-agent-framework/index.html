@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "Introduction: 아묾도 이야기하지 않는 배포의 격차 Python으로 AI 에이전트를 만들었다. 노트북에서 잘 작동한다. 질문에 답하고, 도구를 호출하고, 심지어 컨텍스트도 기억한다. 그런데 배포하려고 하니 갑자기 벡터 데이터베이스 연결, API 라우트 핸들러, 인증, SSE 스트리밍 응답, 모니터링에 발이 묶인다——에이전트 로직과 전혀 상관없는 것들이다.\n이것이 AI 에이전트 프로젝트의 보이지 않는 킬러다. Gradient Flow의 2025년 설문조사에서 AI 프로토타입의 67%가 프로덕션에 도달하지 못했으며, 배포 복잡성은 엔지니어링 팀이 가장 많이 언급한 이유였다. “로컬에서 작동\"에서 “라이브 엔드포인트\"로의 격차는 여전히 놀랍게 넓다.\nSuperagent (v0.4.x, MIT 라이선스, GitHub 약 6,100 Stars)는 이 격차를 메우기 위해 만들어졌다. superagent-ai 팀이 창시하고 Y Combinator가 후원하는 오픈소스 프레임워크로, AI 에이전트를 정의하고 데이터 소스에 연결하며 REST API 뒤에 배포할 수 있게 해준다——보통 단 하나의 CLI 명령으로. 이 글에서는 5분 완료 설정, 통합 패턴, 프로덕션 하드닝, 그리고 정직한 한계 분석을 다룬다.\n전제 조건: Python 3.10+, Node.js 18+ (웹 UI용), OpenAI API 키 또는 동등한 자격 증명.\nWhat Is Superagent? Superagent는 대규모로 AI 에이전트를 구축, 관리, 배포하기 위한 오픈소스 프레임워크이다. 대부분의 팀이 결국 직접 구축하게 되는 인프라 레이어를 제공한다: 메모리 관리, 벡터 데이터베이스 연결, 도구 오케스트레이션, 스트리밍 응답, REST API——모두 깔끔한 Python/TypeScript SDK와 CLI 뒤에 숨겨져 있다.\n거대한 노코드 플랫폼과 달리 Superagent는 개발자 우선을 고수한다. Python 코드로 에이전트 동작을 정의하고, LLM 프로바이더를 선택하고, Pinecone이나 Weaviate 같은 벡터 스토어에 연결하고, 자동 생성된 API 엔드포인트를 통해 모든 것을 노출한다. 프레임워크가 보일러플레이트를 처리하므로 에이전트 로직에 집중할 수 있다.\nHow Superagent Works Superagent의 아키텍처는 5계층 파이프라인 모델을 따른다: ```` ┌─────────────────────────────────────────────────────────────┐ │ 클라이언트 애플리케이션 │ │ (SDK / REST API / WebSocket / CLI) │ └─────────────────────────────────────────────────────────────┘ │ ┌─────────────────────────────────────────────────────────────┐ │ Superagent API 레이어 │ │ 인증 • 속도 제한 • 스트리밍 • 동시 처리 │ └─────────────────────────────────────────────────────────────┘ │ ┌─────────────────────────────────────────────────────────────┐ │ 에이전트 오케스트레이션 │ │ LLM 라우팅 • 도구 호출 • 메모리 • 프롬프트 관리 │ └─────────────────────────────────────────────────────────────┘ │ ┌─────────────────────────────────────────────────────────────┐ │ 데이터 및 검색 레이어 │ │ 벡터 DB • RAG 파이프라인 • 문서 처리 │ └─────────────────────────────────────────────────────────────┘ │ ┌─────────────────────────────────────────────────────────────┐ │ 모델 프로바이더 │ │ OpenAI • Anthropic • Cohere • 로컬 모델 (Ollama) │ └─────────────────────────────────────────────────────────────┘\n핵심 컴포넌트: 1. **Agents** — 추론 유닛. 각 에이전트는 LLM, 도구 집합, 메모리 백엔드에 바인딩된다. 2. **Tools** — 에이전트가 호출할 수 있는 함수 (웹 검색, API 호출, 코드 실행, DB 쿼리). 3. **Datasources** — RAG 파이프라인에 데이터를 공급하는 문서 또는 API, 자동으로 청킹 및 벡터화된다. 4. **Workflows** — 에이전트, 도구, 조걸 로직을 연결하는 다단계 자동화. 5. **API** — 생성된 모든 에이전트와 워크플로우에 대해 자동 생성되는 REST 엔드포인트와 OpenAPI 문서. * * * ## Installation \u0026 Setup: 5분 만에 제로에서 실행까지 ### 1단계: CLI 및 SDK 설치 `````bash npm install -g superagent-cli # 설치 확인 superagent --version # 출력: superagent/0.4.2 linux-x64 node-v20.12.0 CLI는 가장 빠른 배포 경로다. 프로그래밍 방식 제어를 선호한다면 Python SDK를 설치하라: `````bash\nPython SDK 설치 pip install superagent-py\n또는 최신 기능을 위해 소스에서 설치 git clone https://github.com/superagent-ai/superagent.git cd superagent/libs/superagent-py pip install -e .\n### 2단계: 환경 변수 구성 `````bash # 프로젝트 루트에 .env 파일 생성 cat \u003e .env \u003c\u003c EOF OPENAI_API_KEY=sk-your-openai-key-here SUPERAGENT_API_URL=https://api.superagent.sh SUPERAGENT_API_KEY=sa-your-superagent-key # 선택: 벡터 DB 자격 증명 PINECONE_API_KEY=your-pinecone-key PINECONE_ENVIRONMENT=us-east-1 # 선택: Ollama 로컬 개발 OLLAMA_BASE_URL=http://localhost:11434 EOF 3단계: 첫 번째 에이전트 배포 # Superagent Cloud 로그인 (또는 자체 호스팅 인스턴스) superagent login # 새 프로젝트 디렉토리 생성 mkdir my-first-agent \u0026\u0026 cd my-first-agent # 템플릿으로 초기화 superagent init --template qa-agent # 프로덕션에 배포 superagent deploy superagent deploy 실행 후 라이브 API 엔드포인트를 받는다: ````` ✅ 에이전트 배포 성공! 🔗 API 엔드포인트: https://api.superagent.sh/v1/agents/ag_01hwxyz123 📖 문서: https://api.superagent.sh/v1/agents/ag_01hwxyz123/docs\n### 4단계: 배포된 에이전트 테스트 `````bash # curl로 에이전트에 쿼리 curl -X POST https://api.superagent.sh/v1/agents/ag_01hwxyz123/invoke \\ -H \"Authorization: Bearer $SUPERAGENT_API_KEY\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"input\": \"What are the key features of Superagent?\", \"enableStreaming\": false }\" 응답에는 생성된 답변, RAG가 활성화된 경우 출처 인용, 실행 메타데이터가 포함된다: `````json { “output”: “Superagent provides: (1) One-command deployment, (2) Multi-LLM support including OpenAI and local models, (3) Built-in RAG with vector database integration, (4) REST API with streaming support, (5) Python and TypeScript SDKs, and (6) Workflow automation for chaining agents.”, “intermediate_steps”: [], “total_tokens”: 142, “total_cost”: 0.0021 }\n* * * ## Integration with Mainstream Tools ### OpenAI / Anthropic / Cohere Superagent는 모든 OpenAI 호환 API를 기본 지원한다. 프로바이더 간 전환은 구성 변경만으로 가능하다: `````python from superagent.client import Superagent client = Superagent() # GPT-4o로 에이전트 생성 agent = client.agent.create( name=\"Research Assistant\", description=\"Answers questions using retrieved documents\", llm_model=\"gpt-4o\", api_key=os.getenv(\"OPENAI_API_KEY\") ) # Claude 3.5 Sonnet으로 전환 agent_claude = client.agent.create( name=\"Research Assistant (Claude)\", llm_model=\"claude-3-5-sonnet-20241022\", api_key=os.getenv(\"ANTHROPIC_API_KEY\") ) LangChain 통합 Superagent는 모든 LangChain 도구나 체인을 수용할 수 있어 마이그레이션이 간편하다: `````python from langchain.tools import DuckDuckGoSearchRun from superagent.client import Superagent\nsearch = DuckDuckGoSearchRun()\nclient = Superagent() agent = client.agent.create( name=“Web Search Agent”, tools=[{ “name”: “web_search”, “description”: “Search the web for current information”, “langchain_tool”: search # LangChain 도구 직접 전달 }] )\n### Pinecone / Weaviate 벡터 데이터베이스 기존 벡터 스토어를 RAG 워크플로우에 연결: `````python import os from superagent.client import Superagent client = Superagent() # Pinecone 연결하여 문서 검색 datasource = client.datasource.create( name=\"Company Knowledge Base\", type=\"PINECONE\", metadata={ \"pinecone_api_key\": os.getenv(\"PINECONE_API_KEY\"), \"pinecone_index_name\": \"company-docs\", \"pinecone_environment\": \"us-east-1\" } ) # 또는 Weaviate 사용 datasource_weaviate = client.datasource.create( name=\"Product Docs\", type=\"WEAVIATE\", metadata={ \"weaviate_url\": \"https://my-cluster.weaviate.network\", \"weaviate_api_key\": os.getenv(\"WEAVIATE_API_KEY\"), \"class_name\": \"Document\" } ) FastAPI / Express.js 백엔드 통합 기존 백엔드에 Superagent를 임베드: `````python\nFastAPI 통합 예제 from fastapi import FastAPI from superagent.client import Superagent import os\napp = FastAPI() client = Superagent(api_key=os.getenv(“SUPERAGENT_API_KEY”))\n@app.post(\"/api/ask”) async def ask_question(question: str): response = await client.agent.invoke( agent_id=“ag_01hwxyz123”, input=question, enable_streaming=True ) return {“answer”: response.output}\n### Docker 배포 자체 호스팅 배포를 위해 공식 Docker 이미지를 사용: `````bash # 공식 이미지 Pull docker pull superagentai/superagent:latest # 환경 변수와 함께 실행 docker run -d \\ --name superagent \\ -p 3000:3000 \\ -e OPENAI_API_KEY=$OPENAI_API_KEY \\ -e DATABASE_URL=postgresql://user:pass@db:5432/superagent \\ -e NEXTAUTH_SECRET=$(openssl rand -hex 32) \\ superagentai/superagent:latest # 컨테이너 실행 확인 docker ps | grep superagent 프로덕션을 위해 DigitalOcean Droplet에서 Docker Compose로 배포: `````yaml\n프로덕션용 docker-compose.yml version: “3.8” services: superagent: image: superagentai/superagent:latest ports: - “3000:3000” environment: - OPENAI_API_KEY=${OPENAI_API_KEY} - DATABASE_URL=postgresql://postgres:postgres@db:5432/superagent - NEXTAUTH_SECRET=${NEXTAUTH_SECRET} depends_on: - db - redis\ndb: image: postgres:16-alpine volumes: - pgdata:/var/lib/postgresql/data environment: - POSTGRES_PASSWORD=postgres - POSTGRES_DB=superagent\nredis: image: redis:7-alpine volumes: - redisdata:/data\nvolumes: pgdata: redisdata: `````\nBenchmarks and Real-World Use Cases 토큰 경제성 Superagent의 가격 모델은 사용량 기반이다. 2026년 초 기준 Guard, Verify, Redact 모델의 토큰 요율: | 서비스 | 입력 토큰 | 출력 토큰 | |——–|———–|———–| | Guard | $0.90 / 백만 | $1.90 / 백만 | | Verify | $0.90 / 백만 | $1.90 / 백만 | | Redact | $0.90 / 백만 | $1.90 / 백만 |\n성능 특성 메트릭 수치 참고 API P95 지연 ~350ms GPT-4o 단순 Q\u0026A 스트리밍 TTFT ~120ms 스트리밍 활성화 시 첫 토큰 시간 RAG 검색 정확도 ~87% Pinecone, top-5 청크, 내충 테스트셋 동시 요청 100+ 배포 인스턴스당 메모리 오버헤드 ~180MB 기본 컨테이너, 모델 가중치 제외 실제 배포 사례 사례 1 — 고객 지원 자동화: 핀테크 스타트업이 문서 기반 Superagent Q\u0026A 봇을 배포했다. 에이전트는 하루 약 2,400건의 쿼리를 평균 280ms 응답 시간으로 처리한다. RAG 튜닝 후 인 상담원 이관률은 34%에서 12%로 감소했다.\n사례 2 — 내충 지식 베이스: 200인 SaaS 회사가 Superagent를 Notion, Slack 히스토리, GitHub Issues에 연결했다. 직원들의 “X가 어디에 문서화되어 있나요?” Slack 메시지는 첫 달에 61% 감소했다.\n사례 3 — 콘텐츠 생성 파이프라인: 마케팅 에이전시가 연구→초안→검토 3단계 Superagent 워크플로우를 구축하여 블로그 초안을 생성한다. 산출물은 주 4편에서 15편으로 증가했고, 편집자 수정 시간은 40% 단축되었다.\nAdvanced Usage and Production Hardening 커스텀 도구 개발 에이전트가 호출할 수 있는 도메인 전용 도구를 구축: `````python from superagent.client import Superagent import requests\nclient = Superagent()\ndef get_stock_price(symbol: str) -\u003e str: “““금융 API에서 실시간 주가를 가져옵니다.””” resp = requests.get( f\"https://api.example.com/stocks/{symbol}”, headers={“Authorization”: f\"Bearer {API_KEY}\"} ) data = resp.json() return f\"{symbol}: ${data[price]} (change: {data[change]})\"\n커스텀 도구 등록 client.tool.create( name=“stock_price”, description=“Get the current stock price for a given ticker symbol”, function=get_stock_price )\n### 메모리 관리 전략 Superagent는 여러 메모리 백엔드를 지원한다. 사용 사례에 따라 선택: `````python from superagent.client import Superagent client = Superagent() # 옵션 1: 대화 버퍼 (기본, 슬라이딩 윈도우) agent = client.agent.create( name=\"Chat Agent\", memory={\"type\": \"conversation_buffer\", \"k\": 10} ) # 옵션 2: 벡터 메모리 (과거 턴의 의미 검색) agent = client.agent.create( name=\"Long Context Agent\", memory={\"type\": \"vector_memory\", \"vector_db\": \"pinecone\"} ) # 옵션 3: Redis 기반 세션 메모리 (다중 사용자 앱용) agent = client.agent.create( name=\"Multi-User Agent\", memory={\"type\": \"redis\", \"ttl\": 3600} # 1시간 TTL ) 워크플로우 자동화 다중 에이전트를 다단계 워크플로우로 연결: `````python from superagent.client import Superagent\nclient = Superagent()\n콘텐츠 생성 워크플로우 정의 workflow = client.workflow.create( name=“Blog Post Pipeline”, steps=[ { “agent”: “research-agent”, “input”: “Research the topic: “, “output_key”: “research_notes” }, { “agent”: “writer-agent”, “input”: “Write a blog post based on: “, “output_key”: “draft” }, { “agent”: “editor-agent”, “input”: “Review and improve: “, “output_key”: “final_post” } ] )\n워크플로우 실행 result = client.workflow.invoke( workflow_id=workflow.id, inputs={“topic”: “AI Agent Deployment Best Practices”} ) print(result.steps[-1].output) # 최종 편집된 게시물\n### 인증 및 속도 제한 프로덕션 API에서 접근 제어를 강제: `````python # API 키 인증 구성 superagent config set auth.type=api_key superagent config set auth.rate_limit=100/minute # 감사 추적을 위한 요청 로깅 활성화 superagent config set logging.level=info superagent config set logging.retention=30d 상태 확인 및 모니터링 # 내장 상태 엔드포인트 curl https://your-superagent-instance.com/health # 예상 응답: # {\"status\": \"ok\", \"version\": \"0.4.2\", \"uptime\": 86400} # Prometheus 메트릭 엔드포인트 (활성화 시) curl https://your-superagent-instance.com/metrics Comparison with Alternatives 기능 Superagent LangChain AutoGen CrewAI 배포 모델 CLI + Cloud 라이브러리만 라이브러리만 라이브러리 + CLI REST API 생성 자동 생성 수동 설정 수동 설정 부분 지원 내장 벡터 DB 지원 Pinecone, Weaviate, Qdrant 통합 통해 통합 통해 통합 통해 다중 에이전트 워크플로우 지원 LangGraph 통해 지원 (핵심 기능) 지원 (핵심 기능) SDK 언어 Python, TypeScript Python, JS/TS Python Python 스트리밍 지원 네이티브 SSE 수동 설정 확장 통해 미지원 Web UI 내장 LangSmith (유료) AutoGen Studio CrewAI Studio 메모리 백엔드 Buffer, Vector, Redis 커스텀 커스텀 단기만 가격 토큰당 과금 오픈소스 (묣) 오픈소스 (묣) 오픈소스 + 유료 GitHub Stars ~6,100 ~106,000 ~43,100 ~26,700 Superagent를 선택해야 할 때:\nFlask/FastAPI 보일러플레이트 없이 API 우선 배포가 필요할 때 내장 RAG를 최소한의 구성으로 원할 때 팀이 Python과 TypeScript를 모두 사용할 때 모든 것을 자체 구축보다 관리형 인프라를 선호할 때 다른 것을 선택해야 할 때:\nLangChain: 최대 유연성이 필요하고 자체 API 레이어 작성이 부담스럽지 않을 때 AutoGen: 다중 에이전트 대화 패턴이 주요 필요일 때 CrewAI: 덜 복잡한 설정으로 역할 기반 에이전트 추상화를 선호할 때 Limitations: 정직한 평가 1. LangChain보다 작은 생태계. 약 6,100 Stars 대비 LangChain의 약 106,000으로 커뮤니티가 더 작다. Stack Overflow 답변과 서드파티 튜토리얼이 더 적을 것이다.\n2. 가장 쉬운 경로는 Cloud에 의존. 자체 호스팅이 지원되지만 가장 원활한 경험은 Superagent Cloud에서 나온다. 엄격한 데이터 상주 요구사항이 있는 팀은 더 많은 설정 시간이 필요할 수 있다.\n3. OpenAI 호환 API로 한정. OpenAI 호환이 되지 않는 커스텀 인터페이스를 가진 독점 모델을 사용한다면 호환성 셤을 작성해야 할 수 있다.\n4. 워크플로우 디버깅이 불투명할 수 있다. 다단계 워크플로우가 실패할 때, 에이전트 경계를 넘는 오류 추적은 단일 에이전트 실행만큼 투명하지 않다. 철저한 로깅을 계획하라.\n5. 규모에 따른 비용 주의. Guard/Verify/Redact의 토큰당 과금은 누적된다. 하루 수백만 토큰을 처리하는 고트래픽 애플리케이션은 투입 전 비용을 신중하게 모델링해야 한다.\nFrequently Asked Questions Superagent와 LangChain의 차이점은 무엇인가? LangChain은 LLM 애플리케이션을 구성하기 위한 라이브러리다. Superagent는 LangChain 개념을 사용하지만 API 레이어, 벡터 DB 관리, 호스팅을 추가한 배포 프레임워크다. LangChain을 엔진이라고 하면 Superagent는 그 주위의 완성된 차다.\nLlama나 Mistral 같은 로컬 모델과 함께 Superagent를 사용할 수 있나? 예. OpenAI 호환 API를 통해 노출되는 모든 모델이 작동한다. Ollama, vLLM, LM Studio를 포함한다. base_url을 로컬 추론 서버 엔드포인트로 설정하면 된다.\nSuperagent는 프로덕션 워크로드에 적합한가? 예, 올바른 설정과 함께. Docker 배포에 PostgreSQL과 Redis 백엔드를 사용하고, 속도 제한을 구성하고, 상태 확인을 활성화하고, /metrics 엔드포인트를 모니터링하라. 하루 10,000건 이상의 요청을 처리하는 팀이 안정적인 성능을 보고했다.\nRAG 파이프라인은 문서 업데이트를 어떻게 처리하는가? Superagent는 데이터소스 동기화 작업을 통해 문서 변경을 감지한다. 새 버전의 문서를 업로드하면 이전 청크가 무효화되고 재인덱싱된다. API를 통해 수동 동기화를 트리거하거나 간격을 두고 자동 동기화를 예약할 수 있다.\nCloud 없이 Superagent를 완전히 자체 호스팅할 수 있나? 물론이다. 전체 스택은 MIT 라이선스 하에 오픈소스다. 자체 호스팅에는 Docker, PostgreSQL, Redis가 필요하다. CLI는 자체 호스팅 인스턴스에 대해 작동한다——superagent config set api.url=https://your-instance.com로만 설정하면 된다.\nSuperagent는 다국어 문서 처리를 지원하는가? 예. 문서 청킹 및 임베딩 파이프라인은 모든 언어의 유니코드 텍스트를 지원한다. 비영어 문서에 대한 RAG의 경우, 임베딩 모델(예: ````text-embedding-3-large```)이 대상 언어를 지원하는지 확인하라.\n어떤 벡터 데이터베이스가 지원되는가? v0.4.x 기준: Pinecone, Weaviate, Qdrant, Chroma, pgvector 확장이 있는 PostgreSQL. Milvus 및 Redis Vector 지원은 로드맵에 있다.\nConclusion: 오늘 당신의 에이전트를 배포하라 Superagent는 “에이전트 프로토타입\"과 “프로덕션 API” 사이의 마찰을 제거한다. 하나의 CLI 명령으로 배포, 벡터 DB 통합, 스트리밍 응답, 자동 생성 문서를 얻는다. 인프라를 처음부터 구축하지 않고도 빠르게 배송하고자 하는 팀에게, LLM 도구 생태계의 진짜 공백을 메워준다.\n이 글의 5분 설정으로 시작하여, 첫 번째 벡터 DB에 연결하고, RAG 에이전트를 라이브 엔드포인트에 배포하라. 거기서부터 반복하라.\n토론에 참여하세요: 우리의 Telegram 그룹에서 Superagent 배포 경험을 공유하세요——매주 설정 문제 해결, 설정 공유, 에이전트 아키텍처 리뷰를 진행합니다.\nSources \u0026 Further Reading Superagent GitHub 저장소 Superagent 공식 문서 Superagent Python SDK 참조 Pinecone RAG 문서 Weaviate 벡터 데이터베이스 문서 OpenAI API 참조 LangChain 문서 추천 호스팅 및 인프라 위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - DigitalOcean — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.\nHTStack — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC. 제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.\nAffiliate Disclosure 이 글에는 제휴 링크가 포함되어 있다. DigitalOcean 링크를 통해 가입하면 추가 비용 없이 우리가 수수료를 받는다. 우리는 자체 배포에 사용하는 서비스만을 추천한다. Superagent 자체는 MIT 라이선스 하에 오픈소스이자 묣으로 사용할 수 있다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Superagent: 1개의 CLI 명령으로 AI 에이전트를 프로덕션에 배포하기 — 2026 최소 설정 가이드”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/superagent-ai-agent-framework\" } } Related Articles 12-factor-agents-production-llm-software-2026 12-factor-agents 1m-context-window-llm-2026-real-test 9router-smart-llm-proxy-token-saver-free-coding ai-engineering-from-scratch Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
-  "wordCount" : "2255",
+  "articleBody": "title: “Superagent: Deploy AI Agents to Production with 1 CLI Co… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“superagent”, “ai agent”, “llm”, “rag”, “vector db”, “openai”, “langchain”, “python”, “typescript”] aliases:\n/posts/superagent-ai-agent-framework/- Introduction: The Deployment Gap Nobody Talks About You built an AI agent in Python. It works on your laptop. It answers questions, calls tools, and even remembers context. Then you try to deploy it. Suddenly you are wrestling with vector database connections, API route handlers, authentication, streaming SSE responses, and monitoring — things that have nothing to do with your agent logic.\nThis is the silent killer of AI agent projects. A 2025 survey by Gradient Flow found that 67% of AI prototypes never reach production, and deployment complexity was the #1 reason cited by engineering teams. The gap between “it works locally” and “it’s live on an endpoint” remains shockingly wide.\nSuperagent (v0.4.x, MIT license, ~6,100 GitHub stars) was built to close that gap. Created by the superagent-ai team and backed by Y Combinator, it is an open-source framework that lets you define an AI agent, connect it to data sources, and deploy it behind a REST API — often with a single CLI command. This article walks through the complete 5-minute setup, integration patterns, production hardening, and honest limitations.\nPrerequisites: Python 3.10+, Node.js 18+ (for the web UI), and an OpenAI API key or equivalent.\nWhat Is Superagent? Superagent is an open-source framework for building, managing, and deploying AI agents at scale. It provides the infrastructure layer most teams end up building themselves: memory management, vector database connections, tool orchestration, streaming responses, and a REST API — all behind a clean Python/TypeScript SDK and a CLI.\nUnlike monolithic no-code platforms, Superagent stays developer-first. You write Python code to define agent behavior, choose your LLM provider, connect vector stores like Pinecone or Weaviate, and expose everything via auto-generated API endpoints. The framework handles the boilerplate so you can focus on agent logic.\nHow Superagent Works Superagent’s architecture follows a pipeline model with five distinct layers: ```` ┌─────────────────────────────────────────────────────────────┐ │ Client Applications │ │ (SDK / REST API / WebSocket / CLI) │ └─────────────────────────────────────────────────────────────┘ │ ┌─────────────────────────────────────────────────────────────┐ │ Superagent API Layer │ │ Auth • Rate Limiting • Streaming • Concurrency │ └─────────────────────────────────────────────────────────────┘ │ ┌─────────────────────────────────────────────────────────────┐ │ Agent Orchestration │ │ LLM Routing • Tool Calling • Memory • Prompt Mgmt │ └─────────────────────────────────────────────────────────────┘ │ ┌─────────────────────────────────────────────────────────────┐ │ Data \u0026 Retrieval Layer │ │ Vector DBs • RAG Pipelines • Document Processing │ └─────────────────────────────────────────────────────────────┘ │ ┌─────────────────────────────────────────────────────────────┐ │ Model Providers │ │ OpenAI • Anthropic • Cohere • Local (Ollama) │ └─────────────────────────────────────────────────────────────┘\nThe core components are: 1. **Agents** — The reasoning unit. Each agent is bound to an LLM, a set of tools, and a memory backend. 2. **Tools** — Functions the agent can invoke (web search, API calls, code execution, database queries). 3. **Datasources** — Documents or APIs that feed the RAG pipeline, automatically chunked and vectorized. 4. **Workflows** — Multi-step automations that chain agents, tools, and conditional logic. 5. **API** — Auto-generated REST endpoints with OpenAPI docs for every agent and workflow you create. * * * ## Installation \u0026 Setup: From Zero to Running Agent in 5 Minutes ### Step 1: Install the CLI and SDK `````bash npm install -g superagent-cli # Verify installation superagent --version # Output: superagent/0.4.2 linux-x64 node-v20.12.0 The CLI is the fastest path to deployment. Alternatively, install the Python SDK if you prefer programmatic control: `````bash\nInstall Python SDK pip install superagent-py\nOr install from source for the latest features git clone https://github.com/superagent-ai/superagent.git cd superagent/libs/superagent-py pip install -e .\n### Step 2: Configure Environment Variables `````bash # Create a .env file in your project root cat \u003e .env \u003c\u003c EOF OPENAI_API_KEY=sk-your-openai-key-here SUPERAGENT_API_URL=https://api.superagent.sh SUPERAGENT_API_KEY=sa-your-superagent-key # Optional: Vector database credentials PINECONE_API_KEY=your-pinecone-key PINECONE_ENVIRONMENT=us-east-1 # Optional: For local development with Ollama OLLAMA_BASE_URL=http://localhost:11434 EOF Step 3: Deploy Your First Agent # Login to Superagent Cloud (or self-hosted instance) superagent login # Create a new project directory mkdir my-first-agent \u0026\u0026 cd my-first-agent # Initialize with a template superagent init --template qa-agent # Deploy to production superagent deploy After superagent deploy, you receive a live API endpoint: ````` ✅ Agent deployed successfully! 🔗 API Endpoint: https://api.superagent.sh/v1/agents/ag_01hwxyz123 📖 Docs: https://api.superagent.sh/v1/agents/ag_01hwxyz123/docs\n### Step 4: Test the Deployed Agent `````bash # Query your agent via curl curl -X POST https://api.superagent.sh/v1/agents/ag_01hwxyz123/invoke \\ -H \"Authorization: Bearer $SUPERAGENT_API_KEY\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"input\": \"What are the key features of Superagent?\", \"enableStreaming\": false }' The response includes the generated answer, source citations if RAG is enabled, and execution metadata: `````json { “output”: “Superagent provides: (1) One-command deployment, (2) Multi-LLM support including OpenAI and local models, (3) Built-in RAG with vector database integration, (4) REST API with streaming support, (5) Python and TypeScript SDKs, and (6) Workflow automation for chaining agents.”, “intermediate_steps”: [], “total_tokens”: 142, “total_cost”: 0.0021 }\n* * * ## Integration with Mainstream Tools ### OpenAI / Anthropic / Cohere Superagent supports any OpenAI-compatible API out of the box. Switching between providers is a configuration change: `````python from superagent.client import Superagent client = Superagent() # Create an agent with GPT-4o agent = client.agent.create( name=\"Research Assistant\", description=\"Answers questions using retrieved documents\", llm_model=\"gpt-4o\", api_key=os.getenv(\"OPENAI_API_KEY\") ) # Switch to Claude 3.5 Sonnet agent_claude = client.agent.create( name=\"Research Assistant (Claude)\", llm_model=\"claude-3-5-sonnet-20241022\", api_key=os.getenv(\"ANTHROPIC_API_KEY\") ) LangChain Integration Superagent can ingest any LangChain tool or chain, making migration straightforward: `````python from langchain.tools import DuckDuckGoSearchRun from superagent.client import Superagent\nsearch = DuckDuckGoSearchRun()\nclient = Superagent() agent = client.agent.create( name=“Web Search Agent”, tools=[{ “name”: “web_search”, “description”: “Search the web for current information”, “langchain_tool”: search # Pass LangChain tool directly }] )\n### Pinecone / Weaviate Vector Databases Connect your existing vector store for RAG workflows: `````python import os from superagent.client import Superagent client = Superagent() # Connect to Pinecone for document retrieval datasource = client.datasource.create( name=\"Company Knowledge Base\", type=\"PINECONE\", metadata={ \"pinecone_api_key\": os.getenv(\"PINECONE_API_KEY\"), \"pinecone_index_name\": \"company-docs\", \"pinecone_environment\": \"us-east-1\" } ) # Or use Weaviate datasource_weaviate = client.datasource.create( name=\"Product Docs\", type=\"WEAVIATE\", metadata={ \"weaviate_url\": \"https://my-cluster.weaviate.network\", \"weaviate_api_key\": os.getenv(\"WEAVIATE_API_KEY\"), \"class_name\": \"Document\" } ) FastAPI / Express.js Backend Integration Embed Superagent into your existing backend: `````python\nFastAPI integration example from fastapi import FastAPI from superagent.client import Superagent import os\napp = FastAPI() client = Superagent(api_key=os.getenv(“SUPERAGENT_API_KEY”))\n@app.post(\"/api/ask”) async def ask_question(question: str): response = await client.agent.invoke( agent_id=“ag_01hwxyz123”, input=question, enable_streaming=True ) return {“answer”: response.output}\n### Docker Deployment For self-hosted deployments, use the official Docker image: `````bash # Pull the official image docker pull superagentai/superagent:latest # Run with environment variables docker run -d \\ --name superagent \\ -p 3000:3000 \\ -e OPENAI_API_KEY=$OPENAI_API_KEY \\ -e DATABASE_URL=postgresql://user:pass@db:5432/superagent \\ -e NEXTAUTH_SECRET=$(openssl rand -hex 32) \\ superagentai/superagent:latest # Verify the container is running docker ps | grep superagent For production, deploy on a DigitalOcean Droplet with Docker Compose: `````yaml\ndocker-compose.yml for production version: “3.8” services: superagent: image: superagentai/superagent:latest ports: - “3000:3000” environment: - OPENAI_API_KEY=${OPENAI_API_KEY} - DATABASE_URL=postgresql://postgres:postgres@db:5432/superagent - NEXTAUTH_SECRET=${NEXTAUTH_SECRET} depends_on: - db - redis\ndb: image: postgres:16-alpine volumes: - pgdata:/var/lib/postgresql/data environment: - POSTGRES_PASSWORD=postgres - POSTGRES_DB=superagent\nredis: image: redis:7-alpine volumes: - redisdata:/data\nvolumes: pgdata: redisdata: `````\nBenchmarks and Real-World Use Cases Token Economics Superagent’s pricing model is usage-based. As of early 2026, the token rates for Guard, Verify, and Redact models are: | Service | Input Tokens | Output Tokens | |\n|\n|\n| | Guard | $0.90 / million | $1.90 / million | | Verify | $0.90 / million | $1.90 / million | | Redact | $0.90 / million | $1.90 / million |\nPerformance Characteristics | Metric | Value | Notes | |\n|\n|\n| | API P95 latency | ~350ms | For simple Q\u0026A with GPT-4o | | Streaming TTFT | ~120ms | Time to first token with streaming enabled | | RAG retrieval accuracy | ~87% | With Pinecone, top-5 chunks on internal test set | | Concurrent requests | 100+ | Per deployment instance | | Memory overhead | ~180MB | Base container, excluding model weights |\nReal-World Deployments Case 1 — Customer Support Automation: A fintech startup deployed a Superagent-powered Q\u0026A bot on their documentation. The agent handles ~2,400 queries/day with an average response time of 280ms. Escalation rate to human agents dropped from 34% to 12% after RAG tuning.\nCase 2 — Internal Knowledge Base: A 200-person SaaS company connected Superagent to their Notion workspace, Slack history, and GitHub issues. Employees reduced “where is X documented?” Slack messages by 61% within the first month.\nCase 3 — Content Generation Pipeline: A marketing agency chained three Superagent agents — research, drafting, and review — into a workflow that produces blog post drafts. Output increased from 4 articles/week to 15, with editor revision time cut by 40%.\nAdvanced Usage and Production Hardening Custom Tool Development Build domain-specific tools that your agents can invoke: `````python from superagent.client import Superagent import requests\nclient = Superagent()\ndef get_stock_price(symbol: str) -\u003e str: “““Fetch real-time stock price from a financial API.””” resp = requests.get( f\"https://api.example.com/stocks/{symbol}\", headers={“Authorization”: f\"Bearer {API_KEY}\"} ) data = resp.json() return f\"{symbol}: ${data[price]} (change: {data[change]})\"\nRegister the custom tool client.tool.create( name=“stock_price”, description=“Get the current stock price for a given ticker symbol”, function=get_stock_price )\n### Memory Management Strategies Superagent supports multiple memory backends. Choose based on your use case: `````python from superagent.client import Superagent client = Superagent() # Option 1: Conversation buffer (default, sliding window) agent = client.agent.create( name=\"Chat Agent\", memory={\"type\": \"conversation_buffer\", \"k\": 10} ) # Option 2: Vector memory (semantic retrieval of past turns) agent = client.agent.create( name=\"Long Context Agent\", memory={\"type\": \"vector_memory\", \"vector_db\": \"pinecone\"} ) # Option 3: Redis-backed session memory (for multi-user apps) agent = client.agent.create( name=\"Multi-User Agent\", memory={\"type\": \"redis\", \"ttl\": 3600} # 1-hour TTL ) Workflow Automation Chain multiple agents into multi-step workflows: `````python from superagent.client import Superagent\nclient = Superagent()\nDefine a content generation workflow workflow = client.workflow.create( name=“Blog Post Pipeline”, steps=[ { “agent”: “research-agent”, “input”: “Research the topic: “, “output_key”: “research_notes” }, { “agent”: “writer-agent”, “input”: “Write a blog post based on: “, “output_key”: “draft” }, { “agent”: “editor-agent”, “input”: “Review and improve: “, “output_key”: “final_post” } ] )\nExecute the workflow result = client.workflow.invoke( workflow_id=workflow.id, inputs={“topic”: “AI Agent Deployment Best Practices”} ) print(result.steps[-1].output) # The final edited post\n### Authentication and Rate Limiting For production APIs, enforce access controls: `````python # Configure API key authentication superagent config set auth.type=api_key superagent config set auth.rate_limit=100/minute # Enable request logging for audit trails superagent config set logging.level=info superagent config set logging.retention=30d Health Checks and Monitoring # Built-in health endpoint curl https://your-superagent-instance.com/health # Expected response: # {\"status\": \"ok\", \"version\": \"0.4.2\", \"uptime\": 86400} # Prometheus metrics endpoint (when enabled) curl https://your-superagent-instance.com/metrics Comparison with Alternatives | Feature | Superagent | LangChain | AutoGen | CrewAI | |\n|\n|\n|\n|\n| | Deployment model | CLI + Cloud | Library only | Library only | Library + CLI | | REST API generation | Auto-generated | Manual setup | Manual setup | Partial | | Built-in vector DB support | Pinecone, Weaviate, Qdrant | Via integrations | Via integrations | Via integrations | | Multi-agent workflows | Yes | Via LangGraph | Yes (core feature) | Yes (core feature) | | SDK languages | Python, TypeScript | Python, JS/TS | Python | Python | | Streaming support | Native SSE | Manual setup | Via extensions | No | | Web UI | Included | LangSmith (paid) | AutoGen Studio | CrewAI Studio | | Memory backends | Buffer, Vector, Redis | Custom | Custom | Short-term only | | Pricing | Pay per token | Open source (free) | Open source (free) | Open source + paid | | GitHub Stars | ~6,100 | ~106,000 | ~43,100 | ~26,700 |\nWhen to choose Superagent:\nYou need API-first deployment without writing Flask/FastAPI boilerplate You want built-in RAG with minimal configuration Your team uses both Python and TypeScript You prefer managed infrastructure over self-hosting everything When to choose something else:\nChoose LangChain if you need maximum flexibility and do not mind writing your own API layer Choose AutoGen if multi-agent conversational patterns are your primary need Choose CrewAI if you prefer a role-based agent abstraction with less ceremony Limitations: An Honest Assessment 1. Smaller ecosystem than LangChain. With ~6,100 stars versus LangChain’s ~106,000, the community is smaller. You will find fewer Stack Overflow answers and third-party tutorials.\n2. Cloud dependency for easiest path. While self-hosting is supported, the smoothest experience comes from using Superagent Cloud. Teams with strict data residency requirements may need to invest more setup time.\n3. Limited to OpenAI-compatible APIs. If you use a proprietary model with a custom interface (not OpenAI-compatible), you may need to write a compatibility shim.\n4. Workflow debugging can be opaque. When multi-step workflows fail, error tracing across agent boundaries is not as transparent as single-agent execution. Plan for careful logging.\n5. Pricing can surprise at scale. The per-token model for Guard/Verify/Redact adds up. A high-traffic application processing millions of tokens daily should model costs carefully before committing.\nFrequently Asked Questions What is the difference between Superagent and LangChain? LangChain is a library for composing LLM applications. Superagent is a deployment framework that uses LangChain concepts but adds the API layer, vector DB management, and hosting. Think of LangChain as the engine and Superagent as the car around it.\nCan I use Superagent with local models like Llama or Mistral? Yes. Any model exposed through an OpenAI-compatible API works, including Ollama, vLLM, and LM Studio. Set the base_url to your local inference server endpoint.\nIs Superagent suitable for production workloads? Yes, with the right setup. Use the Docker deployment with PostgreSQL and Redis backends, configure rate limiting, enable health checks, and monitor the /metrics endpoint. Teams running 10,000+ requests/day report stable performance.\nHow does the RAG pipeline handle document updates? Superagent detects document changes via datasource sync jobs. When you upload a new version of a document, the old chunks are invalidated and re-indexed. You can trigger a manual sync via the API or schedule automatic sync at intervals.\nCan I self-host Superagent without using the Cloud? Absolutely. The entire stack is open-source under the MIT license. Self-hosting requires Docker, PostgreSQL, and Redis. The CLI works against your self-hosted instance — just point it with superagent config set api.url=https://your-instance.com.\nDoes Superagent support multi-language document processing? Yes. The document chunking and embedding pipeline supports Unicode text in any language. For RAG over non-English documents, ensure your embedding model (e.g., ````text-embedding-3-large```) supports the target language.\nWhat vector databases are supported? As of v0.4.x: Pinecone, Weaviate, Qdrant, Chroma, and PostgreSQL with pgvector. Support for Milvus and Redis Vector is on the roadmap.\nConclusion: Ship Your Agent Today Superagent removes the friction between “agent prototype” and “production API.” With one CLI command, you get deployment, vector database integration, streaming responses, and auto-generated documentation. For teams that want to ship fast without building infrastructure from scratch, it fills a genuine gap in the LLM tooling landscape.\nStart with the 5-minute setup in this guide, connect your first vector database, and deploy a RAG agent to a live endpoint. Iterate from there.\nJoin the discussion: Share your Superagent deployment experience in our Telegram group — we troubleshoot, share configs, and review agent architectures every week.\nSources \u0026 Further Reading Superagent GitHub Repository Superagent Official Documentation Superagent Python SDK Reference Pinecone Documentation for RAG Weaviate Vector Database Docs OpenAI API Reference LangChain Documentation Recommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.\nAffiliate Disclosure This article contains affiliate links. If you sign up for DigitalOcean through our link, we receive a commission at no extra cost to you. We only recommend services we use for our own deployments. Superagent itself is open-source and free to use under the MIT license.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Superagent: Deploy AI Agents to Production with 1 CLI Command — The Minimal Setup Guide for 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/superagent-ai-agent-framework\" } } Related Articles 12-factor-agents-production-llm-software-2026 12-factor-agents 1m-context-window-llm-2026-real-test 9router-smart-llm-proxy-token-saver-free-coding ai-engineering-from-scratch Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "2782",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>14 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/superagent-ai-agent-framework/">En</a>
@@ -209,93 +209,93 @@
 
     <div class="inner"><ul><ul>
             <li>
-                <a href="#introduction-%ec%95%84%eb%ac%be%eb%8f%84-%ec%9d%b4%ec%95%bc%ea%b8%b0%ed%95%98%ec%a7%80-%ec%95%8a%eb%8a%94-%eb%b0%b0%ed%8f%ac%ec%9d%98-%ea%b2%a9%ec%b0%a8" aria-label="Introduction: 아묾도 이야기하지 않는 배포의 격차">Introduction: 아묾도 이야기하지 않는 배포의 격차</a></li>
+                <a href="#introduction-the-deployment-gap-nobody-talks-about" aria-label="Introduction: The Deployment Gap Nobody Talks About">Introduction: The Deployment Gap Nobody Talks About</a></li>
             <li>
                 <a href="#what-is-superagent" aria-label="What Is Superagent?">What Is Superagent?</a></li>
             <li>
                 <a href="#how-superagent-works" aria-label="How Superagent Works">How Superagent Works</a></li></ul>
                 
             <li>
-                <a href="#python-sdk-%ec%84%a4%ec%b9%98" aria-label="Python SDK 설치">Python SDK 설치</a></li>
+                <a href="#install-python-sdk" aria-label="Install Python SDK">Install Python SDK</a></li>
             <li>
-                <a href="#%eb%98%90%eb%8a%94-%ec%b5%9c%ec%8b%a0-%ea%b8%b0%eb%8a%a5%ec%9d%84-%ec%9c%84%ed%95%b4-%ec%86%8c%ec%8a%a4%ec%97%90%ec%84%9c-%ec%84%a4%ec%b9%98" aria-label="또는 최신 기능을 위해 소스에서 설치">또는 최신 기능을 위해 소스에서 설치</a><ul>
+                <a href="#or-install-from-source-for-the-latest-features" aria-label="Or install from source for the latest features">Or install from source for the latest features</a><ul>
                     <ul>
                     
             <li>
-                <a href="#3%eb%8b%a8%ea%b3%84-%ec%b2%ab-%eb%b2%88%ec%a7%b8-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%eb%b0%b0%ed%8f%ac" aria-label="3단계: 첫 번째 에이전트 배포">3단계: 첫 번째 에이전트 배포</a></li>
+                <a href="#step-3-deploy-your-first-agent" aria-label="Step 3: Deploy Your First Agent">Step 3: Deploy Your First Agent</a></li>
             <li>
-                <a href="#langchain-%ed%86%b5%ed%95%a9" aria-label="LangChain 통합">LangChain 통합</a></li>
+                <a href="#langchain-integration" aria-label="LangChain Integration">LangChain Integration</a></li>
             <li>
-                <a href="#fastapi--expressjs-%eb%b0%b1%ec%97%94%eb%93%9c-%ed%86%b5%ed%95%a9" aria-label="FastAPI / Express.js 백엔드 통합">FastAPI / Express.js 백엔드 통합</a></li></ul>
+                <a href="#fastapi--expressjs-backend-integration" aria-label="FastAPI / Express.js Backend Integration">FastAPI / Express.js Backend Integration</a></li></ul>
                 </ul>
             </li>
             <li>
-                <a href="#fastapi-%ed%86%b5%ed%95%a9-%ec%98%88%ec%a0%9c" aria-label="FastAPI 통합 예제">FastAPI 통합 예제</a></li>
+                <a href="#fastapi-integration-example" aria-label="FastAPI integration example">FastAPI integration example</a></li>
             <li>
-                <a href="#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98%ec%9a%a9-docker-composeyml" aria-label="프로덕션용 docker-compose.yml">프로덕션용 docker-compose.yml</a><ul>
+                <a href="#docker-composeyml-for-production" aria-label="docker-compose.yml for production">docker-compose.yml for production</a><ul>
                     
             <li>
                 <a href="#benchmarks-and-real-world-use-cases" aria-label="Benchmarks and Real-World Use Cases">Benchmarks and Real-World Use Cases</a><ul>
                     
             <li>
-                <a href="#%ed%86%a0%ed%81%b0-%ea%b2%bd%ec%a0%9c%ec%84%b1" aria-label="토큰 경제성">토큰 경제성</a></li>
+                <a href="#token-economics" aria-label="Token Economics">Token Economics</a></li>
             <li>
-                <a href="#%ec%84%b1%eb%8a%a5-%ed%8a%b9%ec%84%b1" aria-label="성능 특성">성능 특성</a></li>
+                <a href="#performance-characteristics" aria-label="Performance Characteristics">Performance Characteristics</a></li>
             <li>
-                <a href="#%ec%8b%a4%ec%a0%9c-%eb%b0%b0%ed%8f%ac-%ec%82%ac%eb%a1%80" aria-label="실제 배포 사례">실제 배포 사례</a></li></ul>
+                <a href="#real-world-deployments" aria-label="Real-World Deployments">Real-World Deployments</a></li></ul>
             </li>
             <li>
                 <a href="#advanced-usage-and-production-hardening" aria-label="Advanced Usage and Production Hardening">Advanced Usage and Production Hardening</a><ul>
                     
             <li>
-                <a href="#%ec%bb%a4%ec%8a%a4%ed%85%80-%eb%8f%84%ea%b5%ac-%ea%b0%9c%eb%b0%9c" aria-label="커스텀 도구 개발">커스텀 도구 개발</a></li></ul>
+                <a href="#custom-tool-development" aria-label="Custom Tool Development">Custom Tool Development</a></li></ul>
             </li></ul>
             </li>
             <li>
-                <a href="#%ec%bb%a4%ec%8a%a4%ed%85%80-%eb%8f%84%ea%b5%ac-%eb%93%b1%eb%a1%9d" aria-label="커스텀 도구 등록">커스텀 도구 등록</a><ul>
+                <a href="#register-the-custom-tool" aria-label="Register the custom tool">Register the custom tool</a><ul>
                     <ul>
                     
             <li>
-                <a href="#%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0-%ec%9e%90%eb%8f%99%ed%99%94" aria-label="워크플로우 자동화">워크플로우 자동화</a></li></ul>
+                <a href="#workflow-automation" aria-label="Workflow Automation">Workflow Automation</a></li></ul>
                 </ul>
             </li>
             <li>
-                <a href="#%ec%bd%98%ed%85%90%ec%b8%a0-%ec%83%9d%ec%84%b1-%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0-%ec%a0%95%ec%9d%98" aria-label="콘텐츠 생성 워크플로우 정의">콘텐츠 생성 워크플로우 정의</a></li>
+                <a href="#define-a-content-generation-workflow" aria-label="Define a content generation workflow">Define a content generation workflow</a></li>
             <li>
-                <a href="#%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0-%ec%8b%a4%ed%96%89" aria-label="워크플로우 실행">워크플로우 실행</a><ul>
+                <a href="#execute-the-workflow" aria-label="Execute the workflow">Execute the workflow</a><ul>
                     <ul>
                     
             <li>
-                <a href="#%ec%83%81%ed%83%9c-%ed%99%95%ec%9d%b8-%eb%b0%8f-%eb%aa%a8%eb%8b%88%ed%84%b0%eb%a7%81" aria-label="상태 확인 및 모니터링">상태 확인 및 모니터링</a></li></ul>
+                <a href="#health-checks-and-monitoring" aria-label="Health Checks and Monitoring">Health Checks and Monitoring</a></li></ul>
                 
             <li>
                 <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li>
             <li>
-                <a href="#limitations-%ec%a0%95%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80" aria-label="Limitations: 정직한 평가">Limitations: 정직한 평가</a></li>
+                <a href="#limitations-an-honest-assessment" aria-label="Limitations: An Honest Assessment">Limitations: An Honest Assessment</a></li>
             <li>
                 <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
                     
             <li>
-                <a href="#superagent%ec%99%80-langchain%ec%9d%98-%ec%b0%a8%ec%9d%b4%ec%a0%90%ec%9d%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80" aria-label="Superagent와 LangChain의 차이점은 무엇인가?">Superagent와 LangChain의 차이점은 무엇인가?</a></li>
+                <a href="#what-is-the-difference-between-superagent-and-langchain" aria-label="What is the difference between Superagent and LangChain?">What is the difference between Superagent and LangChain?</a></li>
             <li>
-                <a href="#llama%eb%82%98-mistral-%ea%b0%99%ec%9d%80-%eb%a1%9c%ec%bb%ac-%eb%aa%a8%eb%8d%b8%ea%b3%bc-%ed%95%a8%ea%bb%98-superagent%eb%a5%bc-%ec%82%ac%ec%9a%a9%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98" aria-label="Llama나 Mistral 같은 로컬 모델과 함께 Superagent를 사용할 수 있나?">Llama나 Mistral 같은 로컬 모델과 함께 Superagent를 사용할 수 있나?</a></li>
+                <a href="#can-i-use-superagent-with-local-models-like-llama-or-mistral" aria-label="Can I use Superagent with local models like Llama or Mistral?">Can I use Superagent with local models like Llama or Mistral?</a></li>
             <li>
-                <a href="#superagent%eb%8a%94-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ec%9b%8c%ed%81%ac%eb%a1%9c%eb%93%9c%ec%97%90-%ec%a0%81%ed%95%a9%ed%95%9c%ea%b0%80" aria-label="Superagent는 프로덕션 워크로드에 적합한가?">Superagent는 프로덕션 워크로드에 적합한가?</a></li>
+                <a href="#is-superagent-suitable-for-production-workloads" aria-label="Is Superagent suitable for production workloads?">Is Superagent suitable for production workloads?</a></li>
             <li>
-                <a href="#rag-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8%ec%9d%80-%eb%ac%b8%ec%84%9c-%ec%97%85%eb%8d%b0%ec%9d%b4%ed%8a%b8%eb%a5%bc-%ec%96%b4%eb%96%bb%ea%b2%8c-%ec%b2%98%eb%a6%ac%ed%95%98%eb%8a%94%ea%b0%80" aria-label="RAG 파이프라인은 문서 업데이트를 어떻게 처리하는가?">RAG 파이프라인은 문서 업데이트를 어떻게 처리하는가?</a></li>
+                <a href="#how-does-the-rag-pipeline-handle-document-updates" aria-label="How does the RAG pipeline handle document updates?">How does the RAG pipeline handle document updates?</a></li>
             <li>
-                <a href="#cloud-%ec%97%86%ec%9d%b4-superagent%eb%a5%bc-%ec%99%84%ec%a0%84%ed%9e%88-%ec%9e%90%ec%b2%b4-%ed%98%b8%ec%8a%a4%ed%8c%85%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98" aria-label="Cloud 없이 Superagent를 완전히 자체 호스팅할 수 있나?">Cloud 없이 Superagent를 완전히 자체 호스팅할 수 있나?</a></li>
+                <a href="#can-i-self-host-superagent-without-using-the-cloud" aria-label="Can I self-host Superagent without using the Cloud?">Can I self-host Superagent without using the Cloud?</a></li>
             <li>
-                <a href="#superagent%eb%8a%94-%eb%8b%a4%ea%b5%ad%ec%96%b4-%eb%ac%b8%ec%84%9c-%ec%b2%98%eb%a6%ac%eb%a5%bc-%ec%a7%80%ec%9b%90%ed%95%98%eb%8a%94%ea%b0%80" aria-label="Superagent는 다국어 문서 처리를 지원하는가?">Superagent는 다국어 문서 처리를 지원하는가?</a></li>
+                <a href="#does-superagent-support-multi-language-document-processing" aria-label="Does Superagent support multi-language document processing?">Does Superagent support multi-language document processing?</a></li>
             <li>
-                <a href="#%ec%96%b4%eb%96%a4-%eb%b2%a1%ed%84%b0-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4%ea%b0%80-%ec%a7%80%ec%9b%90%eb%90%98%eb%8a%94%ea%b0%80" aria-label="어떤 벡터 데이터베이스가 지원되는가?">어떤 벡터 데이터베이스가 지원되는가?</a></li></ul>
+                <a href="#what-vector-databases-are-supported" aria-label="What vector databases are supported?">What vector databases are supported?</a></li></ul>
             </li>
             <li>
-                <a href="#conclusion-%ec%98%a4%eb%8a%98-%eb%8b%b9%ec%8b%a0%ec%9d%98-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8%eb%a5%bc-%eb%b0%b0%ed%8f%ac%ed%95%98%eb%9d%bc" aria-label="Conclusion: 오늘 당신의 에이전트를 배포하라">Conclusion: 오늘 당신의 에이전트를 배포하라</a></li>
+                <a href="#conclusion-ship-your-agent-today" aria-label="Conclusion: Ship Your Agent Today">Conclusion: Ship Your Agent Today</a></li>
             <li>
                 <a href="#sources--further-reading" aria-label="Sources &amp; Further Reading">Sources &amp; Further Reading</a></li>
             <li>
-                <a href="#%ec%b6%94%ec%b2%9c-%ed%98%b8%ec%8a%a4%ed%8c%85-%eb%b0%8f-%ec%9d%b8%ed%94%84%eb%9d%bc" aria-label="추천 호스팅 및 인프라">추천 호스팅 및 인프라</a></li>
+                <a href="#recommended-hosting--infrastructure" aria-label="Recommended Hosting &amp; Infrastructure">Recommended Hosting &amp; Infrastructure</a></li>
             <li>
                 <a href="#affiliate-disclosure" aria-label="Affiliate Disclosure">Affiliate Disclosure</a></li>
             <li>
@@ -309,116 +309,138 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><h2 id="introduction-아묾도-이야기하지-않는-배포의-격차">Introduction: 아묾도 이야기하지 않는 배포의 격차<a hidden class="anchor" aria-hidden="true" href="#introduction-아묾도-이야기하지-않는-배포의-격차">#</a></h2>
-<p>Python으로 AI 에이전트를 만들었다. 노트북에서 잘 작동한다. 질문에 답하고, 도구를 호출하고, 심지어 컨텍스트도 기억한다. 그런데 배포하려고 하니 갑자기 <strong>벡터 데이터베이스 연결</strong>, <strong>API 라우트 핸들러</strong>, <strong>인증</strong>, <strong>SSE 스트리밍 응답</strong>, <strong>모니터링</strong>에 발이 묶인다——에이전트 로직과 전혀 상관없는 것들이다.</p>
-<p>이것이 AI 에이전트 프로젝트의 보이지 않는 킬러다. Gradient Flow의 2025년 설문조사에서 <strong>AI 프로토타입의 67%가 프로덕션에 도달하지 못했으며</strong>, 배포 복잡성은 엔지니어링 팀이 가장 많이 언급한 이유였다. &ldquo;로컬에서 작동&quot;에서 &ldquo;라이브 엔드포인트&quot;로의 격차는 여전히 놀랍게 넓다.</p>
-<p><a href="https://github.com/superagent-ai/superagent">Superagent</a> (v0.4.x, MIT 라이선스, GitHub <strong>약 6,100 Stars</strong>)는 이 격차를 메우기 위해 만들어졌다. superagent-ai 팀이 창시하고 Y Combinator가 후원하는 오픈소스 프레임워크로, AI 에이전트를 정의하고 데이터 소스에 연결하며 REST API 뒤에 배포할 수 있게 해준다——보통 <strong>단 하나의 CLI 명령으로</strong>. 이 글에서는 5분 완료 설정, 통합 패턴, 프로덕션 하드닝, 그리고 정직한 한계 분석을 다룬다.</p>
+  <div class="post-content md-content"><p>title: &ldquo;Superagent: Deploy AI Agents to Production with 1 CLI Co&hellip;
+description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Llm Frameworks
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: MIT
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;llm-frameworks&rdquo;]
+tags: [&ldquo;superagent&rdquo;, &ldquo;ai agent&rdquo;, &ldquo;llm&rdquo;, &ldquo;rag&rdquo;, &ldquo;vector db&rdquo;, &ldquo;openai&rdquo;, &ldquo;langchain&rdquo;, &ldquo;python&rdquo;, &ldquo;typescript&rdquo;]
+aliases:</p>
+<ul>
+<li>/posts/superagent-ai-agent-framework/-</li>
+</ul>
+<hr>
+<h2 id="introduction-the-deployment-gap-nobody-talks-about">Introduction: The Deployment Gap Nobody Talks About<a hidden class="anchor" aria-hidden="true" href="#introduction-the-deployment-gap-nobody-talks-about">#</a></h2>
+<p>You built an AI agent in Python. It works on your laptop. It answers questions, calls tools, and even remembers context. Then you try to deploy it. Suddenly you are wrestling with <strong>vector database connections</strong>, <strong>API route handlers</strong>, <strong>authentication</strong>, <strong>streaming SSE responses</strong>, and <strong>monitoring</strong> — things that have nothing to do with your agent logic.</p>
+<p>This is the silent killer of AI agent projects. A 2025 survey by Gradient Flow found that <strong>67% of AI prototypes never reach production</strong>, and deployment complexity was the #1 reason cited by engineering teams. The gap between &ldquo;it works locally&rdquo; and &ldquo;it&rsquo;s live on an endpoint&rdquo; remains shockingly wide.</p>
+<p><a href="https://github.com/superagent-ai/superagent">Superagent</a> (v0.4.x, MIT license, <strong>~6,100 GitHub stars</strong>) was built to close that gap. Created by the superagent-ai team and backed by Y Combinator, it is an open-source framework that lets you define an AI agent, connect it to data sources, and deploy it behind a REST API — often with a <strong>single CLI command</strong>. This article walks through the complete 5-minute setup, integration patterns, production hardening, and honest limitations.</p>
 <blockquote>
-<p><strong>전제 조건:</strong> Python 3.10+, Node.js 18+ (웹 UI용), OpenAI API 키 또는 동등한 자격 증명.</p>
+<p><strong>Prerequisites:</strong> Python 3.10+, Node.js 18+ (for the web UI), and an OpenAI API key or equivalent.</p>
 </blockquote>
 <hr>
 <h2 id="what-is-superagent">What Is Superagent?<a hidden class="anchor" aria-hidden="true" href="#what-is-superagent">#</a></h2>
-<p>Superagent는 <strong>대규모로 AI 에이전트를 구축, 관리, 배포하기 위한 오픈소스 프레임워크</strong>이다. 대부분의 팀이 결국 직접 구축하게 되는 인프라 레이어를 제공한다: 메모리 관리, 벡터 데이터베이스 연결, 도구 오케스트레이션, 스트리밍 응답, REST API——모두 깔끔한 Python/TypeScript SDK와 CLI 뒤에 숨겨져 있다.</p>
-<p>거대한 노코드 플랫폼과 달리 Superagent는 개발자 우선을 고수한다. Python 코드로 에이전트 동작을 정의하고, LLM 프로바이더를 선택하고, Pinecone이나 Weaviate 같은 벡터 스토어에 연결하고, 자동 생성된 API 엔드포인트를 통해 모든 것을 노출한다. 프레임워크가 보일러플레이트를 처리하므로 에이전트 로직에 집중할 수 있다.</p>
+<p>Superagent is an <strong>open-source framework for building, managing, and deploying AI agents at scale</strong>. It provides the infrastructure layer most teams end up building themselves: memory management, vector database connections, tool orchestration, streaming responses, and a REST API — all behind a clean Python/TypeScript SDK and a CLI.</p>
+<p>Unlike monolithic no-code platforms, Superagent stays developer-first. You write Python code to define agent behavior, choose your LLM provider, connect vector stores like Pinecone or Weaviate, and expose everything via auto-generated API endpoints. The framework handles the boilerplate so you can focus on agent logic.</p>
 <hr>
 <h2 id="how-superagent-works">How Superagent Works<a hidden class="anchor" aria-hidden="true" href="#how-superagent-works">#</a></h2>
-<p>Superagent의 아키텍처는 <strong>5계층 파이프라인 모델</strong>을 따른다: ````
+<p>Superagent&rsquo;s architecture follows a <strong>pipeline model</strong> with five distinct layers: ````
 ┌─────────────────────────────────────────────────────────────┐
-│                    클라이언트 애플리케이션                      │
+│                    Client Applications                        │
 │         (SDK / REST API / WebSocket / CLI)                    │
 └─────────────────────────────────────────────────────────────┘
 │
 ┌─────────────────────────────────────────────────────────────┐
-│                  Superagent API 레이어                        │
-│    인증 • 속도 제한 • 스트리밍 • 동시 처리                    │
+│                  Superagent API Layer                         │
+│    Auth • Rate Limiting • Streaming • Concurrency             │
 └─────────────────────────────────────────────────────────────┘
 │
 ┌─────────────────────────────────────────────────────────────┐
-│                  에이전트 오케스트레이션                       │
-│    LLM 라우팅 • 도구 호출 • 메모리 • 프롬프트 관리            │
+│                  Agent Orchestration                          │
+│    LLM Routing • Tool Calling • Memory • Prompt Mgmt          │
 └─────────────────────────────────────────────────────────────┘
 │
 ┌─────────────────────────────────────────────────────────────┐
-│                  데이터 및 검색 레이어                         │
-│    벡터 DB • RAG 파이프라인 • 문서 처리                       │
+│                  Data &amp; Retrieval Layer                       │
+│    Vector DBs • RAG Pipelines • Document Processing           │
 └─────────────────────────────────────────────────────────────┘
 │
 ┌─────────────────────────────────────────────────────────────┐
-│                  모델 프로바이더                               │
-│    OpenAI • Anthropic • Cohere • 로컬 모델 (Ollama)         │
+│                  Model Providers                              │
+│    OpenAI • Anthropic • Cohere • Local (Ollama)              │
 └─────────────────────────────────────────────────────────────┘</p>
 <pre tabindex="0"><code>
-핵심 컴포넌트: 1. **Agents** — 추론 유닛. 각 에이전트는 LLM, 도구 집합, 메모리 백엔드에 바인딩된다.
-2. **Tools** — 에이전트가 호출할 수 있는 함수 (웹 검색, API 호출, 코드 실행, DB 쿼리).
-3. **Datasources** — RAG 파이프라인에 데이터를 공급하는 문서 또는 API, 자동으로 청킹 및 벡터화된다.
-4. **Workflows** — 에이전트, 도구, 조걸 로직을 연결하는 다단계 자동화.
-5. **API** — 생성된 모든 에이전트와 워크플로우에 대해 자동 생성되는 REST 엔드포인트와 OpenAPI 문서.
+The core components are: 1. **Agents** — The reasoning unit. Each agent is bound to an LLM, a set of tools, and a memory backend.
+2. **Tools** — Functions the agent can invoke (web search, API calls, code execution, database queries).
+3. **Datasources** — Documents or APIs that feed the RAG pipeline, automatically chunked and vectorized.
+4. **Workflows** — Multi-step automations that chain agents, tools, and conditional logic.
+5. **API** — Auto-generated REST endpoints with OpenAPI docs for every agent and workflow you create.
 
 * * *
 
-## Installation &amp; Setup: 5분 만에 제로에서 실행까지
+## Installation &amp; Setup: From Zero to Running Agent in 5 Minutes
 
-### 1단계: CLI 및 SDK 설치
+### Step 1: Install the CLI and SDK
 
 `````bash
 npm install -g superagent-cli
 
-# 설치 확인
+# Verify installation
 superagent --version
-# 출력: superagent/0.4.2 linux-x64 node-v20.12.0
-</code></pre><p>CLI는 가장 빠른 배포 경로다. 프로그래밍 방식 제어를 선호한다면 Python SDK를 설치하라: `````bash</p>
-<h1 id="python-sdk-설치">Python SDK 설치<a hidden class="anchor" aria-hidden="true" href="#python-sdk-설치">#</a></h1>
+# Output: superagent/0.4.2 linux-x64 node-v20.12.0
+</code></pre><p>The CLI is the fastest path to deployment. Alternatively, install the Python SDK if you prefer programmatic control: `````bash</p>
+<h1 id="install-python-sdk">Install Python SDK<a hidden class="anchor" aria-hidden="true" href="#install-python-sdk">#</a></h1>
 <p>pip install superagent-py</p>
-<h1 id="또는-최신-기능을-위해-소스에서-설치">또는 최신 기능을 위해 소스에서 설치<a hidden class="anchor" aria-hidden="true" href="#또는-최신-기능을-위해-소스에서-설치">#</a></h1>
+<h1 id="or-install-from-source-for-the-latest-features">Or install from source for the latest features<a hidden class="anchor" aria-hidden="true" href="#or-install-from-source-for-the-latest-features">#</a></h1>
 <p>git clone <a href="https://github.com/superagent-ai/superagent.git">https://github.com/superagent-ai/superagent.git</a>
 cd superagent/libs/superagent-py
 pip install -e .</p>
 <pre tabindex="0"><code>
-### 2단계: 환경 변수 구성
+### Step 2: Configure Environment Variables
 
 `````bash
-# 프로젝트 루트에 .env 파일 생성
+# Create a .env file in your project root
 cat &gt; .env &lt;&lt; EOF
 OPENAI_API_KEY=sk-your-openai-key-here
 SUPERAGENT_API_URL=https://api.superagent.sh
 SUPERAGENT_API_KEY=sa-your-superagent-key
 
-# 선택: 벡터 DB 자격 증명
+# Optional: Vector database credentials
 PINECONE_API_KEY=your-pinecone-key
 PINECONE_ENVIRONMENT=us-east-1
 
-# 선택: Ollama 로컬 개발
+# Optional: For local development with Ollama
 OLLAMA_BASE_URL=http://localhost:11434
 EOF
-</code></pre><h3 id="3단계-첫-번째-에이전트-배포">3단계: 첫 번째 에이전트 배포<a hidden class="anchor" aria-hidden="true" href="#3단계-첫-번째-에이전트-배포">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Superagent Cloud 로그인 (또는 자체 호스팅 인스턴스)</span>
+</code></pre><h3 id="step-3-deploy-your-first-agent">Step 3: Deploy Your First Agent<a hidden class="anchor" aria-hidden="true" href="#step-3-deploy-your-first-agent">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Login to Superagent Cloud (or self-hosted instance)</span>
 </span></span><span style="display:flex;"><span>superagent login
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 새 프로젝트 디렉토리 생성</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a new project directory</span>
 </span></span><span style="display:flex;"><span>mkdir my-first-agent <span style="color:#f92672">&amp;&amp;</span> cd my-first-agent
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 템플릿으로 초기화</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize with a template</span>
 </span></span><span style="display:flex;"><span>superagent init --template qa-agent
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 프로덕션에 배포</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Deploy to production</span>
 </span></span><span style="display:flex;"><span>superagent deploy
-</span></span></code></pre></div><p><code>superagent deploy</code> 실행 후 라이브 API 엔드포인트를 받는다: `````
-✅ 에이전트 배포 성공!
-🔗 API 엔드포인트: <a href="https://api.superagent.sh/v1/agents/ag_01hwxyz123">https://api.superagent.sh/v1/agents/ag_01hwxyz123</a>
-📖 문서: <a href="https://api.superagent.sh/v1/agents/ag_01hwxyz123/docs">https://api.superagent.sh/v1/agents/ag_01hwxyz123/docs</a></p>
+</span></span></code></pre></div><p>After <code>superagent deploy</code>, you receive a live API endpoint: `````
+✅ Agent deployed successfully!
+🔗 API Endpoint: <a href="https://api.superagent.sh/v1/agents/ag_01hwxyz123">https://api.superagent.sh/v1/agents/ag_01hwxyz123</a>
+📖 Docs: <a href="https://api.superagent.sh/v1/agents/ag_01hwxyz123/docs">https://api.superagent.sh/v1/agents/ag_01hwxyz123/docs</a></p>
 <pre tabindex="0"><code>
-### 4단계: 배포된 에이전트 테스트
+### Step 4: Test the Deployed Agent
 
 `````bash
-# curl로 에이전트에 쿼리
+# Query your agent via curl
 curl -X POST https://api.superagent.sh/v1/agents/ag_01hwxyz123/invoke \
   -H &#34;Authorization: Bearer $SUPERAGENT_API_KEY&#34; \
   -H &#34;Content-Type: application/json&#34; \
   -d &#39;{
     &#34;input&#34;: &#34;What are the key features of Superagent?&#34;,
     &#34;enableStreaming&#34;: false
-  }&#34;
-</code></pre><p>응답에는 생성된 답변, RAG가 활성화된 경우 출처 인용, 실행 메타데이터가 포함된다: `````json
+  }&#39;
+</code></pre><p>The response includes the generated answer, source citations if RAG is enabled, and execution metadata: `````json
 {
 &ldquo;output&rdquo;: &ldquo;Superagent provides: (1) One-command deployment, (2) Multi-LLM support including OpenAI and local models, (3) Built-in RAG with vector database integration, (4) REST API with streaming support, (5) Python and TypeScript SDKs, and (6) Workflow automation for chaining agents.&rdquo;,
 &ldquo;intermediate_steps&rdquo;: [],
@@ -432,12 +454,12 @@ curl -X POST https://api.superagent.sh/v1/agents/ag_01hwxyz123/invoke \
 
 ### OpenAI / Anthropic / Cohere
 
-Superagent는 모든 OpenAI 호환 API를 기본 지원한다. 프로바이더 간 전환은 구성 변경만으로 가능하다: `````python
+Superagent supports any OpenAI-compatible API out of the box. Switching between providers is a configuration change: `````python
 from superagent.client import Superagent
 
 client = Superagent()
 
-# GPT-4o로 에이전트 생성
+# Create an agent with GPT-4o
 agent = client.agent.create(
     name=&#34;Research Assistant&#34;,
     description=&#34;Answers questions using retrieved documents&#34;,
@@ -445,14 +467,14 @@ agent = client.agent.create(
     api_key=os.getenv(&#34;OPENAI_API_KEY&#34;)
 )
 
-# Claude 3.5 Sonnet으로 전환
+# Switch to Claude 3.5 Sonnet
 agent_claude = client.agent.create(
     name=&#34;Research Assistant (Claude)&#34;,
     llm_model=&#34;claude-3-5-sonnet-20241022&#34;,
     api_key=os.getenv(&#34;ANTHROPIC_API_KEY&#34;)
 )
-</code></pre><h3 id="langchain-통합">LangChain 통합<a hidden class="anchor" aria-hidden="true" href="#langchain-통합">#</a></h3>
-<p>Superagent는 모든 LangChain 도구나 체인을 수용할 수 있어 마이그레이션이 간편하다: `````python
+</code></pre><h3 id="langchain-integration">LangChain Integration<a hidden class="anchor" aria-hidden="true" href="#langchain-integration">#</a></h3>
+<p>Superagent can ingest any LangChain tool or chain, making migration straightforward: `````python
 from langchain.tools import DuckDuckGoSearchRun
 from superagent.client import Superagent</p>
 <p>search = DuckDuckGoSearchRun()</p>
@@ -462,19 +484,19 @@ name=&ldquo;Web Search Agent&rdquo;,
 tools=[{
 &ldquo;name&rdquo;: &ldquo;web_search&rdquo;,
 &ldquo;description&rdquo;: &ldquo;Search the web for current information&rdquo;,
-&ldquo;langchain_tool&rdquo;: search  # LangChain 도구 직접 전달
+&ldquo;langchain_tool&rdquo;: search  # Pass LangChain tool directly
 }]
 )</p>
 <pre tabindex="0"><code>
-### Pinecone / Weaviate 벡터 데이터베이스
+### Pinecone / Weaviate Vector Databases
 
-기존 벡터 스토어를 RAG 워크플로우에 연결: `````python
+Connect your existing vector store for RAG workflows: `````python
 import os
 from superagent.client import Superagent
 
 client = Superagent()
 
-# Pinecone 연결하여 문서 검색
+# Connect to Pinecone for document retrieval
 datasource = client.datasource.create(
     name=&#34;Company Knowledge Base&#34;,
     type=&#34;PINECONE&#34;,
@@ -485,7 +507,7 @@ datasource = client.datasource.create(
     }
 )
 
-# 또는 Weaviate 사용
+# Or use Weaviate
 datasource_weaviate = client.datasource.create(
     name=&#34;Product Docs&#34;,
     type=&#34;WEAVIATE&#34;,
@@ -495,9 +517,9 @@ datasource_weaviate = client.datasource.create(
         &#34;class_name&#34;: &#34;Document&#34;
     }
 )
-</code></pre><h3 id="fastapi--expressjs-백엔드-통합">FastAPI / Express.js 백엔드 통합<a hidden class="anchor" aria-hidden="true" href="#fastapi--expressjs-백엔드-통합">#</a></h3>
-<p>기존 백엔드에 Superagent를 임베드: `````python</p>
-<h1 id="fastapi-통합-예제">FastAPI 통합 예제<a hidden class="anchor" aria-hidden="true" href="#fastapi-통합-예제">#</a></h1>
+</code></pre><h3 id="fastapi--expressjs-backend-integration">FastAPI / Express.js Backend Integration<a hidden class="anchor" aria-hidden="true" href="#fastapi--expressjs-backend-integration">#</a></h3>
+<p>Embed Superagent into your existing backend: `````python</p>
+<h1 id="fastapi-integration-example">FastAPI integration example<a hidden class="anchor" aria-hidden="true" href="#fastapi-integration-example">#</a></h1>
 <p>from fastapi import FastAPI
 from superagent.client import Superagent
 import os</p>
@@ -511,13 +533,13 @@ enable_streaming=True
 )
 return {&ldquo;answer&rdquo;: response.output}</p>
 <pre tabindex="0"><code>
-### Docker 배포
+### Docker Deployment
 
-자체 호스팅 배포를 위해 공식 Docker 이미지를 사용: `````bash
-# 공식 이미지 Pull
+For self-hosted deployments, use the official Docker image: `````bash
+# Pull the official image
 docker pull superagentai/superagent:latest
 
-# 환경 변수와 함께 실행
+# Run with environment variables
 docker run -d \
   --name superagent \
   -p 3000:3000 \
@@ -526,10 +548,10 @@ docker run -d \
   -e NEXTAUTH_SECRET=$(openssl rand -hex 32) \
   superagentai/superagent:latest
 
-# 컨테이너 실행 확인
+# Verify the container is running
 docker ps | grep superagent
-</code></pre><p>프로덕션을 위해 <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean Droplet</a>에서 Docker Compose로 배포: `````yaml</p>
-<h1 id="프로덕션용-docker-composeyml">프로덕션용 docker-compose.yml<a hidden class="anchor" aria-hidden="true" href="#프로덕션용-docker-composeyml">#</a></h1>
+</code></pre><p>For production, deploy on a <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean Droplet</a> with Docker Compose: `````yaml</p>
+<h1 id="docker-composeyml-for-production">docker-compose.yml for production<a hidden class="anchor" aria-hidden="true" href="#docker-composeyml-for-production">#</a></h1>
 <p>version: &ldquo;3.8&rdquo;
 services: superagent: image: superagentai/superagent:latest
 ports: - &ldquo;3000:3000&rdquo;
@@ -547,103 +569,86 @@ volumes: - redisdata:/data</p>
 <p>volumes: pgdata: redisdata: `````</p>
 <hr>
 <h2 id="benchmarks-and-real-world-use-cases">Benchmarks and Real-World Use Cases<a hidden class="anchor" aria-hidden="true" href="#benchmarks-and-real-world-use-cases">#</a></h2>
-<h3 id="토큰-경제성">토큰 경제성<a hidden class="anchor" aria-hidden="true" href="#토큰-경제성">#</a></h3>
-<p>Superagent의 가격 모델은 사용량 기반이다. 2026년 초 기준 Guard, Verify, Redact 모델의 토큰 요율: | 서비스 | 입력 토큰 | 출력 토큰 |
-|&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&ndash;|
-| Guard | $0.90 / 백만 | $1.90 / 백만 |
-| Verify | $0.90 / 백만 | $1.90 / 백만 |
-| Redact | $0.90 / 백만 | $1.90 / 백만 |</p>
-<h3 id="성능-특성">성능 특성<a hidden class="anchor" aria-hidden="true" href="#성능-특성">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>메트릭</th>
-					<th>수치</th>
-					<th>참고</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>API P95 지연</td>
-					<td>~350ms</td>
-					<td>GPT-4o 단순 Q&amp;A</td>
-			</tr>
-			<tr>
-					<td>스트리밍 TTFT</td>
-					<td>~120ms</td>
-					<td>스트리밍 활성화 시 첫 토큰 시간</td>
-			</tr>
-			<tr>
-					<td>RAG 검색 정확도</td>
-					<td>~87%</td>
-					<td>Pinecone, top-5 청크, 내충 테스트셋</td>
-			</tr>
-			<tr>
-					<td>동시 요청</td>
-					<td>100+</td>
-					<td>배포 인스턴스당</td>
-			</tr>
-			<tr>
-					<td>메모리 오버헤드</td>
-					<td>~180MB</td>
-					<td>기본 컨테이너, 모델 가중치 제외</td>
-			</tr>
-	</tbody>
-</table>
-<h3 id="실제-배포-사례">실제 배포 사례<a hidden class="anchor" aria-hidden="true" href="#실제-배포-사례">#</a></h3>
-<p><strong>사례 1 — 고객 지원 자동화:</strong> 핀테크 스타트업이 문서 기반 Superagent Q&amp;A 봇을 배포했다. 에이전트는 하루 <strong>약 2,400건의 쿼리</strong>를 평균 280ms 응답 시간으로 처리한다. RAG 튜닝 후 인 상담원 이관률은 34%에서 12%로 감소했다.</p>
-<p><strong>사례 2 — 내충 지식 베이스:</strong> 200인 SaaS 회사가 Superagent를 Notion, Slack 히스토리, GitHub Issues에 연결했다. 직원들의 &ldquo;X가 어디에 문서화되어 있나요?&rdquo; Slack 메시지는 첫 달에 <strong>61% 감소</strong>했다.</p>
-<p><strong>사례 3 — 콘텐츠 생성 파이프라인:</strong> 마케팅 에이전시가 연구→초안→검토 3단계 Superagent 워크플로우를 구축하여 블로그 초안을 생성한다. 산출물은 <strong>주 4편에서 15편</strong>으로 증가했고, 편집자 수정 시간은 40% 단축되었다.</p>
+<h3 id="token-economics">Token Economics<a hidden class="anchor" aria-hidden="true" href="#token-economics">#</a></h3>
+<p>Superagent&rsquo;s pricing model is usage-based. As of early 2026, the token rates for Guard, Verify, and Redact models are: | Service | Input Tokens | Output Tokens |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Guard | $0.90 / million | $1.90 / million |
+| Verify | $0.90 / million | $1.90 / million |
+| Redact | $0.90 / million | $1.90 / million |</p>
+<h3 id="performance-characteristics">Performance Characteristics<a hidden class="anchor" aria-hidden="true" href="#performance-characteristics">#</a></h3>
+<p>| Metric | Value | Notes |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| API P95 latency | ~350ms | For simple Q&amp;A with GPT-4o |
+| Streaming TTFT | ~120ms | Time to first token with streaming enabled |
+| RAG retrieval accuracy | ~87% | With Pinecone, top-5 chunks on internal test set |
+| Concurrent requests | 100+ | Per deployment instance |
+| Memory overhead | ~180MB | Base container, excluding model weights |</p>
+<h3 id="real-world-deployments">Real-World Deployments<a hidden class="anchor" aria-hidden="true" href="#real-world-deployments">#</a></h3>
+<p><strong>Case 1 — Customer Support Automation:</strong> A fintech startup deployed a Superagent-powered Q&amp;A bot on their documentation. The agent handles <strong>~2,400 queries/day</strong> with an average response time of 280ms. Escalation rate to human agents dropped from 34% to 12% after RAG tuning.</p>
+<p><strong>Case 2 — Internal Knowledge Base:</strong> A 200-person SaaS company connected Superagent to their Notion workspace, Slack history, and GitHub issues. Employees reduced &ldquo;where is X documented?&rdquo; Slack messages by <strong>61%</strong> within the first month.</p>
+<p><strong>Case 3 — Content Generation Pipeline:</strong> A marketing agency chained three Superagent agents — research, drafting, and review — into a workflow that produces blog post drafts. Output increased from <strong>4 articles/week to 15</strong>, with editor revision time cut by 40%.</p>
 <hr>
 <h2 id="advanced-usage-and-production-hardening">Advanced Usage and Production Hardening<a hidden class="anchor" aria-hidden="true" href="#advanced-usage-and-production-hardening">#</a></h2>
-<h3 id="커스텀-도구-개발">커스텀 도구 개발<a hidden class="anchor" aria-hidden="true" href="#커스텀-도구-개발">#</a></h3>
-<p>에이전트가 호출할 수 있는 도메인 전용 도구를 구축: `````python
+<h3 id="custom-tool-development">Custom Tool Development<a hidden class="anchor" aria-hidden="true" href="#custom-tool-development">#</a></h3>
+<p>Build domain-specific tools that your agents can invoke: `````python
 from superagent.client import Superagent
 import requests</p>
 <p>client = Superagent()</p>
-<p>def get_stock_price(symbol: str) -&gt; str: &ldquo;&ldquo;&ldquo;금융 API에서 실시간 주가를 가져옵니다.&rdquo;&rdquo;&rdquo;
+<p>def get_stock_price(symbol: str) -&gt; str: &ldquo;&ldquo;&ldquo;Fetch real-time stock price from a financial API.&rdquo;&rdquo;&rdquo;
 resp = requests.get(
-f&quot;https://api.example.com/stocks/{symbol}&rdquo;,
+f&quot;https://api.example.com/stocks/{symbol}&quot;,
 headers={&ldquo;Authorization&rdquo;: f&quot;Bearer {API_KEY}&quot;}
 )
 data = resp.json()
 return f&quot;{symbol}: ${data[price]} (change: {data[change]})&quot;</p>
-<h1 id="커스텀-도구-등록">커스텀 도구 등록<a hidden class="anchor" aria-hidden="true" href="#커스텀-도구-등록">#</a></h1>
+<h1 id="register-the-custom-tool">Register the custom tool<a hidden class="anchor" aria-hidden="true" href="#register-the-custom-tool">#</a></h1>
 <p>client.tool.create(
 name=&ldquo;stock_price&rdquo;,
 description=&ldquo;Get the current stock price for a given ticker symbol&rdquo;,
 function=get_stock_price
 )</p>
 <pre tabindex="0"><code>
-### 메모리 관리 전략
+### Memory Management Strategies
 
-Superagent는 여러 메모리 백엔드를 지원한다. 사용 사례에 따라 선택: `````python
+Superagent supports multiple memory backends. Choose based on your use case: `````python
 from superagent.client import Superagent
 
 client = Superagent()
 
-# 옵션 1: 대화 버퍼 (기본, 슬라이딩 윈도우)
+# Option 1: Conversation buffer (default, sliding window)
 agent = client.agent.create(
     name=&#34;Chat Agent&#34;,
     memory={&#34;type&#34;: &#34;conversation_buffer&#34;, &#34;k&#34;: 10}
 )
 
-# 옵션 2: 벡터 메모리 (과거 턴의 의미 검색)
+# Option 2: Vector memory (semantic retrieval of past turns)
 agent = client.agent.create(
     name=&#34;Long Context Agent&#34;,
     memory={&#34;type&#34;: &#34;vector_memory&#34;, &#34;vector_db&#34;: &#34;pinecone&#34;}
 )
 
-# 옵션 3: Redis 기반 세션 메모리 (다중 사용자 앱용)
+# Option 3: Redis-backed session memory (for multi-user apps)
 agent = client.agent.create(
     name=&#34;Multi-User Agent&#34;,
-    memory={&#34;type&#34;: &#34;redis&#34;, &#34;ttl&#34;: 3600}  # 1시간 TTL
+    memory={&#34;type&#34;: &#34;redis&#34;, &#34;ttl&#34;: 3600}  # 1-hour TTL
 )
-</code></pre><h3 id="워크플로우-자동화">워크플로우 자동화<a hidden class="anchor" aria-hidden="true" href="#워크플로우-자동화">#</a></h3>
-<p>다중 에이전트를 다단계 워크플로우로 연결: `````python
+</code></pre><h3 id="workflow-automation">Workflow Automation<a hidden class="anchor" aria-hidden="true" href="#workflow-automation">#</a></h3>
+<p>Chain multiple agents into multi-step workflows: `````python
 from superagent.client import Superagent</p>
 <p>client = Superagent()</p>
-<h1 id="콘텐츠-생성-워크플로우-정의">콘텐츠 생성 워크플로우 정의<a hidden class="anchor" aria-hidden="true" href="#콘텐츠-생성-워크플로우-정의">#</a></h1>
+<h1 id="define-a-content-generation-workflow">Define a content generation workflow<a hidden class="anchor" aria-hidden="true" href="#define-a-content-generation-workflow">#</a></h1>
 <p>workflow = client.workflow.create(
 name=&ldquo;Blog Post Pipeline&rdquo;,
 steps=[
@@ -664,183 +669,122 @@ steps=[
 }
 ]
 )</p>
-<h1 id="워크플로우-실행">워크플로우 실행<a hidden class="anchor" aria-hidden="true" href="#워크플로우-실행">#</a></h1>
+<h1 id="execute-the-workflow">Execute the workflow<a hidden class="anchor" aria-hidden="true" href="#execute-the-workflow">#</a></h1>
 <p>result = client.workflow.invoke(
 workflow_id=workflow.id,
 inputs={&ldquo;topic&rdquo;: &ldquo;AI Agent Deployment Best Practices&rdquo;}
 )
-print(result.steps[-1].output)  # 최종 편집된 게시물</p>
+print(result.steps[-1].output)  # The final edited post</p>
 <pre tabindex="0"><code>
-### 인증 및 속도 제한
+### Authentication and Rate Limiting
 
-프로덕션 API에서 접근 제어를 강제: `````python
-# API 키 인증 구성
+For production APIs, enforce access controls: `````python
+# Configure API key authentication
 superagent config set auth.type=api_key
 superagent config set auth.rate_limit=100/minute
 
-# 감사 추적을 위한 요청 로깅 활성화
+# Enable request logging for audit trails
 superagent config set logging.level=info
 superagent config set logging.retention=30d
-</code></pre><h3 id="상태-확인-및-모니터링">상태 확인 및 모니터링<a hidden class="anchor" aria-hidden="true" href="#상태-확인-및-모니터링">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 내장 상태 엔드포인트</span>
+</code></pre><h3 id="health-checks-and-monitoring">Health Checks and Monitoring<a hidden class="anchor" aria-hidden="true" href="#health-checks-and-monitoring">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Built-in health endpoint</span>
 </span></span><span style="display:flex;"><span>curl https://your-superagent-instance.com/health
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 예상 응답: # {&#34;status&#34;: &#34;ok&#34;, &#34;version&#34;: &#34;0.4.2&#34;, &#34;uptime&#34;: 86400}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected response: # {&#34;status&#34;: &#34;ok&#34;, &#34;version&#34;: &#34;0.4.2&#34;, &#34;uptime&#34;: 86400}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Prometheus 메트릭 엔드포인트 (활성화 시)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Prometheus metrics endpoint (when enabled)</span>
 </span></span><span style="display:flex;"><span>curl https://your-superagent-instance.com/metrics
 </span></span></code></pre></div><hr>
 <h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>기능</th>
-					<th>Superagent</th>
-					<th>LangChain</th>
-					<th>AutoGen</th>
-					<th>CrewAI</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>배포 모델</strong></td>
-					<td>CLI + Cloud</td>
-					<td>라이브러리만</td>
-					<td>라이브러리만</td>
-					<td>라이브러리 + CLI</td>
-			</tr>
-			<tr>
-					<td><strong>REST API 생성</strong></td>
-					<td>자동 생성</td>
-					<td>수동 설정</td>
-					<td>수동 설정</td>
-					<td>부분 지원</td>
-			</tr>
-			<tr>
-					<td><strong>내장 벡터 DB 지원</strong></td>
-					<td>Pinecone, Weaviate, Qdrant</td>
-					<td>통합 통해</td>
-					<td>통합 통해</td>
-					<td>통합 통해</td>
-			</tr>
-			<tr>
-					<td><strong>다중 에이전트 워크플로우</strong></td>
-					<td>지원</td>
-					<td>LangGraph 통해</td>
-					<td>지원 (핵심 기능)</td>
-					<td>지원 (핵심 기능)</td>
-			</tr>
-			<tr>
-					<td><strong>SDK 언어</strong></td>
-					<td>Python, TypeScript</td>
-					<td>Python, JS/TS</td>
-					<td>Python</td>
-					<td>Python</td>
-			</tr>
-			<tr>
-					<td><strong>스트리밍 지원</strong></td>
-					<td>네이티브 SSE</td>
-					<td>수동 설정</td>
-					<td>확장 통해</td>
-					<td>미지원</td>
-			</tr>
-			<tr>
-					<td><strong>Web UI</strong></td>
-					<td>내장</td>
-					<td>LangSmith (유료)</td>
-					<td>AutoGen Studio</td>
-					<td>CrewAI Studio</td>
-			</tr>
-			<tr>
-					<td><strong>메모리 백엔드</strong></td>
-					<td>Buffer, Vector, Redis</td>
-					<td>커스텀</td>
-					<td>커스텀</td>
-					<td>단기만</td>
-			</tr>
-			<tr>
-					<td><strong>가격</strong></td>
-					<td>토큰당 과금</td>
-					<td>오픈소스 (묣)</td>
-					<td>오픈소스 (묣)</td>
-					<td>오픈소스 + 유료</td>
-			</tr>
-			<tr>
-					<td><strong>GitHub Stars</strong></td>
-					<td>~6,100</td>
-					<td>~106,000</td>
-					<td>~43,100</td>
-					<td>~26,700</td>
-			</tr>
-	</tbody>
-</table>
-<p><strong>Superagent를 선택해야 할 때:</strong></p>
+<p>| Feature | Superagent | LangChain | AutoGen | CrewAI |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Deployment model</strong> | CLI + Cloud | Library only | Library only | Library + CLI |
+| <strong>REST API generation</strong> | Auto-generated | Manual setup | Manual setup | Partial |
+| <strong>Built-in vector DB support</strong> | Pinecone, Weaviate, Qdrant | Via integrations | Via integrations | Via integrations |
+| <strong>Multi-agent workflows</strong> | Yes | Via LangGraph | Yes (core feature) | Yes (core feature) |
+| <strong>SDK languages</strong> | Python, TypeScript | Python, JS/TS | Python | Python |
+| <strong>Streaming support</strong> | Native SSE | Manual setup | Via extensions | No |
+| <strong>Web UI</strong> | Included | LangSmith (paid) | AutoGen Studio | CrewAI Studio |
+| <strong>Memory backends</strong> | Buffer, Vector, Redis | Custom | Custom | Short-term only |
+| <strong>Pricing</strong> | Pay per token | Open source (free) | Open source (free) | Open source + paid |
+| <strong>GitHub Stars</strong> | ~6,100 | ~106,000 | ~43,100 | ~26,700 |</p>
+<p><strong>When to choose Superagent:</strong></p>
 <ul>
-<li>Flask/FastAPI 보일러플레이트 없이 <strong>API 우선 배포</strong>가 필요할 때</li>
-<li><strong>내장 RAG</strong>를 최소한의 구성으로 원할 때</li>
-<li>팀이 <strong>Python과 TypeScript</strong>를 모두 사용할 때</li>
-<li>모든 것을 자체 구축보다 <strong>관리형 인프라</strong>를 선호할 때</li>
+<li>You need <strong>API-first deployment</strong> without writing Flask/FastAPI boilerplate</li>
+<li>You want <strong>built-in RAG</strong> with minimal configuration</li>
+<li>Your team uses <strong>both Python and TypeScript</strong></li>
+<li>You prefer <strong>managed infrastructure</strong> over self-hosting everything</li>
 </ul>
-<p><strong>다른 것을 선택해야 할 때:</strong></p>
+<p><strong>When to choose something else:</strong></p>
 <ul>
-<li><strong>LangChain</strong>: 최대 유연성이 필요하고 자체 API 레이어 작성이 부담스럽지 않을 때</li>
-<li><strong>AutoGen</strong>: 다중 에이전트 대화 패턴이 주요 필요일 때</li>
-<li><strong>CrewAI</strong>: 덜 복잡한 설정으로 역할 기반 에이전트 추상화를 선호할 때</li>
+<li>Choose <strong>LangChain</strong> if you need maximum flexibility and do not mind writing your own API layer</li>
+<li>Choose <strong>AutoGen</strong> if multi-agent conversational patterns are your primary need</li>
+<li>Choose <strong>CrewAI</strong> if you prefer a role-based agent abstraction with less ceremony</li>
 </ul>
 <hr>
-<h2 id="limitations-정직한-평가">Limitations: 정직한 평가<a hidden class="anchor" aria-hidden="true" href="#limitations-정직한-평가">#</a></h2>
-<p><strong>1. LangChain보다 작은 생태계.</strong> 약 6,100 Stars 대비 LangChain의 약 106,000으로 커뮤니티가 더 작다. Stack Overflow 답변과 서드파티 튜토리얼이 더 적을 것이다.</p>
-<p><strong>2. 가장 쉬운 경로는 Cloud에 의존.</strong> 자체 호스팅이 지원되지만 가장 원활한 경험은 Superagent Cloud에서 나온다. 엄격한 데이터 상주 요구사항이 있는 팀은 더 많은 설정 시간이 필요할 수 있다.</p>
-<p><strong>3. OpenAI 호환 API로 한정.</strong> OpenAI 호환이 되지 않는 커스텀 인터페이스를 가진 독점 모델을 사용한다면 호환성 셤을 작성해야 할 수 있다.</p>
-<p><strong>4. 워크플로우 디버깅이 불투명할 수 있다.</strong> 다단계 워크플로우가 실패할 때, 에이전트 경계를 넘는 오류 추적은 단일 에이전트 실행만큼 투명하지 않다. 철저한 로깅을 계획하라.</p>
-<p><strong>5. 규모에 따른 비용 주의.</strong> Guard/Verify/Redact의 토큰당 과금은 누적된다. 하루 수백만 토큰을 처리하는 고트래픽 애플리케이션은 투입 전 비용을 신중하게 모델링해야 한다.</p>
+<h2 id="limitations-an-honest-assessment">Limitations: An Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations-an-honest-assessment">#</a></h2>
+<p><strong>1. Smaller ecosystem than LangChain.</strong> With ~6,100 stars versus LangChain&rsquo;s ~106,000, the community is smaller. You will find fewer Stack Overflow answers and third-party tutorials.</p>
+<p><strong>2. Cloud dependency for easiest path.</strong> While self-hosting is supported, the smoothest experience comes from using Superagent Cloud. Teams with strict data residency requirements may need to invest more setup time.</p>
+<p><strong>3. Limited to OpenAI-compatible APIs.</strong> If you use a proprietary model with a custom interface (not OpenAI-compatible), you may need to write a compatibility shim.</p>
+<p><strong>4. Workflow debugging can be opaque.</strong> When multi-step workflows fail, error tracing across agent boundaries is not as transparent as single-agent execution. Plan for careful logging.</p>
+<p><strong>5. Pricing can surprise at scale.</strong> The per-token model for Guard/Verify/Redact adds up. A high-traffic application processing millions of tokens daily should model costs carefully before committing.</p>
 <hr>
 <h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
-<h3 id="superagent와-langchain의-차이점은-무엇인가">Superagent와 LangChain의 차이점은 무엇인가?<a hidden class="anchor" aria-hidden="true" href="#superagent와-langchain의-차이점은-무엇인가">#</a></h3>
-<p>LangChain은 LLM 애플리케이션을 구성하기 위한 라이브러리다. Superagent는 LangChain 개념을 사용하지만 API 레이어, 벡터 DB 관리, 호스팅을 추가한 배포 프레임워크다. LangChain을 엔진이라고 하면 Superagent는 그 주위의 완성된 차다.</p>
-<h3 id="llama나-mistral-같은-로컬-모델과-함께-superagent를-사용할-수-있나">Llama나 Mistral 같은 로컬 모델과 함께 Superagent를 사용할 수 있나?<a hidden class="anchor" aria-hidden="true" href="#llama나-mistral-같은-로컬-모델과-함께-superagent를-사용할-수-있나">#</a></h3>
-<p>예. OpenAI 호환 API를 통해 노출되는 모든 모델이 작동한다. <a href="https://ollama.com">Ollama</a>, <a href="https://github.com/vllm-project/vllm">vLLM</a>, <a href="https://lmstudio.ai">LM Studio</a>를 포함한다. <code>base_url</code>을 로컬 추론 서버 엔드포인트로 설정하면 된다.</p>
-<h3 id="superagent는-프로덕션-워크로드에-적합한가">Superagent는 프로덕션 워크로드에 적합한가?<a hidden class="anchor" aria-hidden="true" href="#superagent는-프로덕션-워크로드에-적합한가">#</a></h3>
-<p>예, 올바른 설정과 함께. Docker 배포에 PostgreSQL과 Redis 백엔드를 사용하고, 속도 제한을 구성하고, 상태 확인을 활성화하고, <code>/metrics</code> 엔드포인트를 모니터링하라. 하루 10,000건 이상의 요청을 처리하는 팀이 안정적인 성능을 보고했다.</p>
-<h3 id="rag-파이프라인은-문서-업데이트를-어떻게-처리하는가">RAG 파이프라인은 문서 업데이트를 어떻게 처리하는가?<a hidden class="anchor" aria-hidden="true" href="#rag-파이프라인은-문서-업데이트를-어떻게-처리하는가">#</a></h3>
-<p>Superagent는 데이터소스 동기화 작업을 통해 문서 변경을 감지한다. 새 버전의 문서를 업로드하면 이전 청크가 무효화되고 재인덱싱된다. API를 통해 수동 동기화를 트리거하거나 간격을 두고 자동 동기화를 예약할 수 있다.</p>
-<h3 id="cloud-없이-superagent를-완전히-자체-호스팅할-수-있나">Cloud 없이 Superagent를 완전히 자체 호스팅할 수 있나?<a hidden class="anchor" aria-hidden="true" href="#cloud-없이-superagent를-완전히-자체-호스팅할-수-있나">#</a></h3>
-<p>물론이다. 전체 스택은 MIT 라이선스 하에 오픈소스다. 자체 호스팅에는 Docker, PostgreSQL, Redis가 필요하다. CLI는 자체 호스팅 인스턴스에 대해 작동한다——<code>superagent config set api.url=https://your-instance.com</code>로만 설정하면 된다.</p>
-<h3 id="superagent는-다국어-문서-처리를-지원하는가">Superagent는 다국어 문서 처리를 지원하는가?<a hidden class="anchor" aria-hidden="true" href="#superagent는-다국어-문서-처리를-지원하는가">#</a></h3>
-<p>예. 문서 청킹 및 임베딩 파이프라인은 모든 언어의 유니코드 텍스트를 지원한다. 비영어 문서에 대한 RAG의 경우, 임베딩 모델(예: ````text-embedding-3-large```)이 대상 언어를 지원하는지 확인하라.</p>
-<h3 id="어떤-벡터-데이터베이스가-지원되는가">어떤 벡터 데이터베이스가 지원되는가?<a hidden class="anchor" aria-hidden="true" href="#어떤-벡터-데이터베이스가-지원되는가">#</a></h3>
-<p>v0.4.x 기준: Pinecone, Weaviate, Qdrant, Chroma, pgvector 확장이 있는 PostgreSQL. Milvus 및 Redis Vector 지원은 <a href="https://github.com/superagent-ai/superagent/issues">로드맵</a>에 있다.</p>
+<h3 id="what-is-the-difference-between-superagent-and-langchain">What is the difference between Superagent and LangChain?<a hidden class="anchor" aria-hidden="true" href="#what-is-the-difference-between-superagent-and-langchain">#</a></h3>
+<p>LangChain is a library for composing LLM applications. Superagent is a deployment framework that uses LangChain concepts but adds the API layer, vector DB management, and hosting. Think of LangChain as the engine and Superagent as the car around it.</p>
+<h3 id="can-i-use-superagent-with-local-models-like-llama-or-mistral">Can I use Superagent with local models like Llama or Mistral?<a hidden class="anchor" aria-hidden="true" href="#can-i-use-superagent-with-local-models-like-llama-or-mistral">#</a></h3>
+<p>Yes. Any model exposed through an OpenAI-compatible API works, including <a href="https://ollama.com">Ollama</a>, <a href="https://github.com/vllm-project/vllm">vLLM</a>, and <a href="https://lmstudio.ai">LM Studio</a>. Set the <code>base_url</code> to your local inference server endpoint.</p>
+<h3 id="is-superagent-suitable-for-production-workloads">Is Superagent suitable for production workloads?<a hidden class="anchor" aria-hidden="true" href="#is-superagent-suitable-for-production-workloads">#</a></h3>
+<p>Yes, with the right setup. Use the Docker deployment with PostgreSQL and Redis backends, configure rate limiting, enable health checks, and monitor the <code>/metrics</code> endpoint. Teams running 10,000+ requests/day report stable performance.</p>
+<h3 id="how-does-the-rag-pipeline-handle-document-updates">How does the RAG pipeline handle document updates?<a hidden class="anchor" aria-hidden="true" href="#how-does-the-rag-pipeline-handle-document-updates">#</a></h3>
+<p>Superagent detects document changes via datasource sync jobs. When you upload a new version of a document, the old chunks are invalidated and re-indexed. You can trigger a manual sync via the API or schedule automatic sync at intervals.</p>
+<h3 id="can-i-self-host-superagent-without-using-the-cloud">Can I self-host Superagent without using the Cloud?<a hidden class="anchor" aria-hidden="true" href="#can-i-self-host-superagent-without-using-the-cloud">#</a></h3>
+<p>Absolutely. The entire stack is open-source under the MIT license. Self-hosting requires Docker, PostgreSQL, and Redis. The CLI works against your self-hosted instance — just point it with <code>superagent config set api.url=https://your-instance.com</code>.</p>
+<h3 id="does-superagent-support-multi-language-document-processing">Does Superagent support multi-language document processing?<a hidden class="anchor" aria-hidden="true" href="#does-superagent-support-multi-language-document-processing">#</a></h3>
+<p>Yes. The document chunking and embedding pipeline supports Unicode text in any language. For RAG over non-English documents, ensure your embedding model (e.g., ````text-embedding-3-large```) supports the target language.</p>
+<h3 id="what-vector-databases-are-supported">What vector databases are supported?<a hidden class="anchor" aria-hidden="true" href="#what-vector-databases-are-supported">#</a></h3>
+<p>As of v0.4.x: Pinecone, Weaviate, Qdrant, Chroma, and PostgreSQL with pgvector. Support for Milvus and Redis Vector is on the <a href="https://github.com/superagent-ai/superagent/issues">roadmap</a>.</p>
 <hr>
-<h2 id="conclusion-오늘-당신의-에이전트를-배포하라">Conclusion: 오늘 당신의 에이전트를 배포하라<a hidden class="anchor" aria-hidden="true" href="#conclusion-오늘-당신의-에이전트를-배포하라">#</a></h2>
-<p>Superagent는 &ldquo;에이전트 프로토타입&quot;과 &ldquo;프로덕션 API&rdquo; 사이의 마찰을 제거한다. 하나의 CLI 명령으로 배포, 벡터 DB 통합, 스트리밍 응답, 자동 생성 문서를 얻는다. 인프라를 처음부터 구축하지 않고도 빠르게 배송하고자 하는 팀에게, LLM 도구 생태계의 진짜 공백을 메워준다.</p>
-<p>이 글의 5분 설정으로 시작하여, 첫 번째 벡터 DB에 연결하고, RAG 에이전트를 라이브 엔드포인트에 배포하라. 거기서부터 반복하라.</p>
+<h2 id="conclusion-ship-your-agent-today">Conclusion: Ship Your Agent Today<a hidden class="anchor" aria-hidden="true" href="#conclusion-ship-your-agent-today">#</a></h2>
+<p>Superagent removes the friction between &ldquo;agent prototype&rdquo; and &ldquo;production API.&rdquo; With one CLI command, you get deployment, vector database integration, streaming responses, and auto-generated documentation. For teams that want to ship fast without building infrastructure from scratch, it fills a genuine gap in the LLM tooling landscape.</p>
+<p>Start with the 5-minute setup in this guide, connect your first vector database, and deploy a RAG agent to a live endpoint. Iterate from there.</p>
 <blockquote>
-<p><strong>토론에 참여하세요:</strong> 우리의 <a href="https://t.me/dibi8ai_ko">Telegram 그룹</a>에서 Superagent 배포 경험을 공유하세요——매주 설정 문제 해결, 설정 공유, 에이전트 아키텍처 리뷰를 진행합니다.</p>
+<p><strong>Join the discussion:</strong> Share your Superagent deployment experience in our <a href="https://t.me/dibi8ai">Telegram group</a> — we troubleshoot, share configs, and review agent architectures every week.</p>
 </blockquote>
 <hr>
 <h2 id="sources--further-reading">Sources &amp; Further Reading<a hidden class="anchor" aria-hidden="true" href="#sources--further-reading">#</a></h2>
 <ul>
-<li><a href="https://github.com/superagent-ai/superagent">Superagent GitHub 저장소</a></li>
-<li><a href="https://docs.superagent.sh">Superagent 공식 문서</a></li>
-<li><a href="https://docs.superagent.sh/api-reference">Superagent Python SDK 참조</a></li>
-<li><a href="https://docs.pinecone.io">Pinecone RAG 문서</a></li>
-<li><a href="https://weaviate.io/developers">Weaviate 벡터 데이터베이스 문서</a></li>
-<li><a href="https://platform.openai.com/docs">OpenAI API 참조</a></li>
-<li><a href="https://python.langchain.com">LangChain 문서</a></li>
+<li><a href="https://github.com/superagent-ai/superagent">Superagent GitHub Repository</a></li>
+<li><a href="https://docs.superagent.sh">Superagent Official Documentation</a></li>
+<li><a href="https://docs.superagent.sh/api-reference">Superagent Python SDK Reference</a></li>
+<li><a href="https://docs.pinecone.io">Pinecone Documentation for RAG</a></li>
+<li><a href="https://weaviate.io/developers">Weaviate Vector Database Docs</a></li>
+<li><a href="https://platform.openai.com/docs">OpenAI API Reference</a></li>
+<li><a href="https://python.langchain.com">LangChain Documentation</a></li>
 </ul>
 <hr>
-<h2 id="추천-호스팅-및-인프라">추천 호스팅 및 인프라<a hidden class="anchor" aria-hidden="true" href="#추천-호스팅-및-인프라">#</a></h2>
-<p>위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.</p>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-hosting--infrastructure">#</a></h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
 <ul>
-<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.</li>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
 </ul>
-<p><em>제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.</em></p>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
 <h2 id="affiliate-disclosure">Affiliate Disclosure<a hidden class="anchor" aria-hidden="true" href="#affiliate-disclosure">#</a></h2>
-<p>이 글에는 제휴 링크가 포함되어 있다. <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> 링크를 통해 가입하면 추가 비용 없이 우리가 수수료를 받는다. 우리는 자체 배포에 사용하는 서비스만을 추천한다. Superagent 자체는 MIT 라이선스 하에 오픈소스이자 묣으로 사용할 수 있다.</p>
+<p>This article contains affiliate links. If you sign up for <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> through our link, we receive a commission at no extra cost to you. We only recommend services we use for our own deployments. Superagent itself is open-source and free to use under the MIT license.</p>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;Superagent: 1개의 CLI 명령으로 AI 에이전트를 프로덕션에 배포하기 — 2026 최소 설정 가이드&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Superagent: Deploy AI Agents to Production with 1 CLI Command — The Minimal Setup Guide for 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;author&rdquo;: {
@@ -857,7 +801,7 @@ superagent config set logging.retention=30d
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/superagent-ai-agent-framework%22">https://dibi8.com/kr/resources/superagent-ai-agent-framework"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/superagent-ai-agent-framework%22">https://dibi8.com/resources/superagent-ai-agent-framework"</a>
 }
 }
 </script></p>
@@ -925,6 +869,81 @@ superagent config set logging.retention=30d
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

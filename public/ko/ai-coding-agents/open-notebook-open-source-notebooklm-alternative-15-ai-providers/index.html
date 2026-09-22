@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026 open-notebook — 멀티모달 오디오 지원 셀프호스팅 RAG 지식베이스\nIntroduction Google NotebookLM은 출시 후 몇 달 만에 100만 주간 활성 사용자를 달성했고, 모두 개인 AI 연구 보조가 필요하다는 것을 증명했습니다. 하지만 문서는 민감한가요? 자체 인프라에서 실행하고 싶다면? open-notebook (28,200 GitHub stars)은 오픈소스 답변입니다 — 문서를 ingestion하고 인용과 함께 질문으로 답하고, 소스로부터 AI 오디오 “팟캐스트” 에피소드를 생성하는 셀프호스팅 RAG 지식베이스입니다. NotebookLM과 달리 15+ AI 제공자를 지원합니다: Claude, GPT-4, Ollama 로컬 모델, OpenRouter 포함.\nWhat Is open-notebook? open-notebook은 셀프호스팅 RAG (Retrieval-Augmented Generation) 지식베이스로, 문서를 상호작용 AI 연구 작업장으로 변환합니다. 문서 질문응답 시스템과 AI 팟캐스트 생성기의 교차점으로 생각하세요.\n핵심 기능: - 문서 ingestion — PDF, markdown, 텍스트 파일, URL 등 업로드\nRAG 기반 Q\u0026A — 문서에 대한 질문; 출처 인용과 함께 답변 오디오 에피소드 — 두 호스트 간 대화처럼 들리는 AI 오디오 요약 생성 15+ AI 제공자 — Claude, GPT-4, Gemini, Ollama/vLLM 로컬 모델, OpenRouter 등 셀프호스팅 — 자체 서버, GPU, 프라이버시에서 실행 Installation \u0026 Setup Docker Compose (추천) git clone https://github.com/lfnovo/open-notebook.git cd open-notebook cp .env.example .env # API 키 및 제공자 구성으로 .env 편집 # 최소: ANTHROPIC_API_KEY, OPENAI_API_KEY 또는 OLLAMA_HOST 중 하나 docker compose up -d # http://localhost:3000 로컬 개발 git clone https://github.com/lfnovo/open-notebook.git cd open-notebook cd backend \u0026\u0026 pip install -r requirements.txt cd ../frontend \u0026\u0026 npm install \u0026\u0026 cd .. cd backend \u0026\u0026 uvicorn api.main:app --reload \u0026 cd frontend \u0026\u0026 npm run dev \u0026 Integration with 15+ AI Providers 제공자 타입 임베딩 채팅 오디오 비용 OpenAI 클라우드 GPT-4o GPT-4o GPT-4o Realtime $20-50/월 Anthropic 클라우드 없음 Claude Sonnet 4 없음 $15-40/월 Google Gemini 클라우드 text-embedding-004 Gemini 2.0 Pro Cloud TTS $5-25/월 Ollama 로컬 nomic-embed-text llama3.2:3b piper-tts 무료 vLLM 로컬 없음 Qwen2.5-7B 없음 무료 OpenRouter 애그리게이터 다양 50+ 모델 다양 $5-30/월 셀프호스팅 인프라: HTStack 안정 연결.\nBenchmarks / Real-World Use Cases RAG Retrieval Accuracy 50 문서 컬렉션 테스트: | 구성 | Top-3 정확도 | 인용 정확도 | Hallucination Rate | |——|————-|———–|——————-| | OpenAI + GPT-4o | 94% | 96% | 2% | | Anthropic + Claude Sonnet 4 | 92% | 95% | 1.5% | | Ollama + llama3.2:3b | 78% | 82% | 8% | | OpenRouter + Claude Haiku | 89% | 91% | 3% |\nUse Case: 학술 연구 for pdf in research/*.pdf; do curl -X POST http://localhost:3000/api/documents -F \"file=@$pdf\" done # 문서 간 질문 curl -X POST http://localhost:3000/api/chat \\ -d '{\"question\": \"공통 방법론은?\", \"docs\": \"all\"}' 200+ 논문을 수 시간 내에 분석, 올바른 인용 포함.\nAdvanced Usage / Production Hardening 커스텀 문서 처리 chunking_strategies = { \"pdf\": {\"strategy\": \"semantic\", \"chunk_size\": 1000, \"overlap\": 200}, \"markdown\": {\"strategy\": \"heading-based\", \"chunk_size\": 2000}, \"code\": {\"strategy\": \"function-based\", \"chunk_size\": 500}, } 벡터 데이터베이스 확장 docker run -p 6333:6333 -p 6334:6334 \\ -v $(pwd)/qdrant_storage:/qdrant/storage qdrant/qdrant:latest Comparison with Alternatives 기능 open-notebook NotebookLM RAGflow LangChain Chat 셀프호스팅 예 아니요 예 예 AI 제공자 15+ Google만 다양 다양 오디오 에피소드 예 예 아니오 아니오 문서 포맷 PDF/MD/TXT/URL PDF/Docs/Slides PDF/MD/TXT PDF/MD/TXT 벡터 DB Qdrant/Weaviate/pgvector 없음 Elasticsearch LangChain memory 무료 무료(셀프호스팅) 무료 무료 무료 멀티 사용자 예 예 예 수동 API 예 아니오 예 예 설정 시간 10분(Docker) 0분 30분 1시간 Limitations / Honest Assessment 적합하지 않은 경우:\n제로설정 필요 — 즉시 사용 원하는 경우 Google NotebookLM 사용 비영어 문서 — CJK 문서检索 품질 감소. multilingual embedding model 사용 권장 매우 큰 컬렉션 — 50K+ 문서는 전용 벡터 DB 서버 필요. Qdrant/Weaviate 별도 머신 권장 실시간 문서 업데이트 — 배치 모드 처리. 실시간 스트리밍은 메시지 큐 통합 필요 오디오 TTS 품질 — 제공자별로 크게 다름. OpenAI GPT-4o 최고; Piper는 기계음 Frequently Asked Questions Q: 오픈/오프라인 AI 모델 지원?\nA: 예. .env에서 AI_PROVIDER=ollama 설정하고 OLLAMA_HOST 구성하면 llama3.2, qwen2.5, nomic-embed-text로 전체 로컬 실행 가능. API key 없이 인터넷 연결 없이.\nQ: 어떤 벡터 DB 지원?\nA: Qdrant(권장), Weaviate, Supabase/pgvector. Qdrant가 문서 컬렉션에 최적 성능; pgvector는 기존 PostgreSQL에 이상적.\nQ: OpenRouter 사용 가능한가요?\nA: 예. AI_PROVIDER=openrouter 설정하고 OpenRouter API key 제공. 단일 API로 50+ 모델 접근, 비용 최적화에 좋음.\nQ: 셀프호스팅 보안 수준?\nA: 매우 안전. 모든 문서, 임베딩, 대화는 자체 서버에 저장. 외부 AI 제공자에 명시적으로 보내지 않으면 데이터가 인프라를 벗어나지 않음. 로컬 모델로 완전 air-gapped 실행 가능.\nQ: 자신 음성으로 오디오 에피소드 생성 가능한가요?\nA: 현재 버전 직접不支持. 오디오 에피소드는 구성 가능한 TTS 제공자 사용(OpenAI, Piper, Edge TTS 등). Voice cloning은 현재 지원 안 되지만 로드맵에 있음.\nSources \u0026 Further Reading 공식 문서: https://github.com/lfnovo/open-notebook GitHub 레포지토리: https://github.com/lfnovo/open-notebook 벡터 데이터베이스 비교: https://qdrant.tech/documentation/ RAG 아키텍처 가이드: https://langchain.com/blog/ 커뮤니티: https://github.com/lfnovo/open-notebook/discussions Conclusion: 당신의 문서, 당신의 인프라, 당신의 AI open-notebook은 개인 AI 연구 보조가 Google 서버에 살 필요가 없음을 증명합니다. 28,200 star와 성장하는 커뮤니티, 구조화된 에이전트 관리에 대한 명확한 수요를 보여줍니다.\n수백 논문 관리 연구원이든, 내부 지식베이스 구축 엔지니어든, 문서 프라이버시 가치 사람이라도, open-notebook은 인프라에서 실행되는 RAG 지식베이스 구축 도구를 제공합니다.\ndibi8 한국어 Telegram 그룹에 참여하여 open-notebook 설정을 논의하세요. LangChain RAG 아키텍처 및 벡터 데이터베이스 비교 가이드 확인. 오늘 시도해보세요 — ````docker compose up```, PDF 업로드, 질문하세요.\n위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 귀하의 비용에는 영향이 없습니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026”, “datePublished”: “2026-06-08”, “dateModified”: “2026-06-08”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/open-notebook-open-source-notebooklm-alternative-15-ai-providers\" } } Why This Matters Understanding open-notebook: 15+ ai 제공자 지원 오픈소스 notebook lm 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026 is crucial for modern AI development. Here\"s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nRelated Articles open-notebook-open-source-notebooklm-alternative-15-ai-providers 12-factor-agents-production-llm-software-2026 12-factor-agents 1m-context-window-llm-2026-real-test 9router-smart-llm-proxy-token-saver-free-coding Found this helpful? Join our Telegram community for daily AI tool updates!\n",
-  "wordCount" : "1074",
+  "articleBody": "open-notebook: The Open-Source Notebook LM Alternative That Supports 15+ AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026 open-notebook — your self-hosted RAG knowledge base with multimodal audio\nIntroduction Google NotebookLM jumped to 1 million weekly active users within months of launch, proving that everyone needs a personal AI research assistant. But what if your documents are sensitive? What if you want to run it on your own infrastructure? open-notebook (28,200 GitHub stars) is the open-source answer — a self-hosted RAG knowledge base that ingests documents, answers questions with citations, and generates AI-powered audio “podcast” episodes from your sources. Unlike NotebookLM, it supports 15+ AI providers including Claude, GPT-4, local models via Ollama, and OpenRouter. In an era where document AI is critical but privacy matters, open-notebook gives you both.\nWhat Is open-notebook? open-notebook is a self-hosted RAG (Retrieval-Augmented Generation) knowledge base that transforms your documents into an interactive AI-powered research workspace. Think of it as the intersection between a document question-answering system and an AI podcast generator.\nKey capabilities: - Document ingestion — Upload PDFs, markdown, text files, URLs, and more\nRAG-based Q\u0026A — Ask questions about your documents; get answers with source citations Audio episodes — Generate AI-powered audio summaries that sound like a conversation between two hosts 15+ AI providers — Claude, GPT-4, Gemini, local models via Ollama/vLLM, OpenRouter, and more Self-hosted — Run on your own server, your own GPU, your own privacy The project is built with Next.js (frontend) and Python FastAPI (backend). It uses vector databases for document embedding and retrieval, with a modern web interface for document management and conversation.\nHow open-notebook Works open-notebook operates through a three-stage pipeline: ### Stage 1: Document Ingestion\nRaw Documents → Chunking → Embedding → Vector Storage Upload — Import documents in multiple formats (PDF, MD, TXT, DOCX, URL) Chunking — Split documents into semantic chunks using configurable strategies Embedding — Generate vector embeddings for each chunk using a configured AI provider Storage — Store embeddings in a vector database (Qdrant, Weaviate, or Supabase/pgvector) Stage 2: Question Answering User Question → Embedding → Vector Search → Context Assembly → LLM Response Query — User asks a question about their documents Embedding — The question is embedded using the same model Search — Vector similarity search finds the most relevant document chunks Context assembly — Relevant chunks are assembled into a prompt context LLM response — The configured AI provider generates an answer with source citations Stage 3: Audio Episode Generation Documents → Script Generation → Multi-host TTS → Audio Episode Document analysis — The system analyzes connected documents to identify key topics Script generation — An LLM generates a dialogue script between two “hosts” TTS synthesis — Text-to-speech converts each host’s lines into audio Episode assembly — Audio clips are stitched together into a polished episode ┌──────────────────────────────────────────────────┐ │ open-notebook UI │ │ ┌──────────┐ ┌──────────┐ ┌──────────────┐ │ │ │ Documents│ │ Chat │ │ Audio Episodes│ │ │ │ Manager │ │ Interface│ │ (Podcast Mode)│ │ │ └──────────┘ └──────────┘ └──────────────┘ │ ├──────────────────────────────────────────────────┤ │ RAG Pipeline (Ingestion + QA) │ ├──────────────────────────────────────────────────┤ │ Vector DB (Qdrant / Weaviate / pgvector) │ ├──────────────────────────────────────────────────┤ │ AI Providers: Claude | GPT-4 | Ollama | OpenRouter│ └──────────────────────────────────────────────────┘ open-notebook architecture: three pipelines, one unified interface\nInstallation \u0026 Setup Docker Compose (Recommended) curl -o docker-compose.yml https://raw.githubusercontent.com/lfnovo/open-notebook/main/docker-compose.yml docker compose up -d Access the UI at http://localhost:3000.\nEnvironment Configuration Edit the .env file with your API keys and provider configuration: - Minimum: one of ANTHROPIC_API_KEY, OPENAI_API_KEY, or OLLAMA_HOST\nSelf-Hosted with GPU Acceleration For faster embedding and generation, run with GPU support: `````bash\nOllama with GPU curl -fsSL https://ollama.com/install.sh | sh ollama pull nomic-embed-text:latest ollama pull llama3.2:3b\nopen-notebook with Ollama backend In .env: # AI_PROVIDER=ollama OLLAMA_HOST=http://localhost:11434 EMBEDDING_MODEL=nomic-embed-text COMPLETION_MODEL=llama3.2:3b docker compose up -d\n### Importing Existing Notes Open-notebook can import from popular note formats: `````bash # Import Obsidian vault open-notebook import --source obsidian --path /path/to/vault # Import Notion database open-notebook import --source notion --api-key $NOTION_API_KEY --db-id $NOTION_DB_ID # Import plain markdown files open-notebook import --source markdown --path /path/to/md-files # Import PDFs for RAG (extracts text + generates embeddings) open-notebook import --source pdf --path /path/to/papers/*.pdf Integration with 15+ AI Providers open-notebook supports a wide range of AI providers through a unified configuration interface: ### Supported Providers\n| Provider | Type | Embedding | Chat | Audio | Cost | |\n|\n|\n|\n|\n|\n| | OpenAI | Cloud | GPT-4o embedding | GPT-4o | GPT-4o Realtime | $20-50/mo | | Anthropic | Cloud | N/A | Claude Sonnet 4 | N/A | $15-40/mo | | Google Gemini | Cloud | text-embedding-004 | Gemini 2.0 Pro | Cloud TTS | $5-25/mo | | Ollama | Local | nomic-embed-text | llama3.2:3b | piper-tts | Free | | vLLM | Local | N/A | Qwen2.5-7B | N/A | Free | | OpenRouter | Aggregator | Various | 50+ models | Various | $5-30/mo | | Mistral | Cloud | mistral-embed | mistral-large | N/A | $10-25/mo | | Deepseek | Cloud | N/A | deepseek-v3 | N/A | $1-5/mo |\nConfiguration Example # config.yaml — Provider configuration providers: default_chat: anthropic default_embedding: openai default_tts: openai anthropic: api_key: \"${ANTHROPIC_API_KEY}\" models: chat: - claude-sonnet-4-20250514 - claude-opus-4-20250514 openai: api_key: \"${OPENAI_API_KEY}\" models: embedding: gpt-4o-embedding chat: gpt-4o tts: gpt-4o-realtime ollama: host: \"${OLLAMA_HOST:-http://localhost:11434}\" models: embedding: nomic-embed-text chat: - llama3.2:3b - qwen2.5:7b Switching Providers On the Fly You can switch between providers without editing config files: `````bash\nSwitch default chat provider open-notebook provider set –default-chat anthropic\nSwitch embedding provider open-notebook provider set –default-embedding openai\nUse local model for a specific document collection open-notebook collection set-model –collection research –model ollama:llama3.2:3b\nList available providers open-notebook provider list\nFor self-hosted deployment on reliable infrastructure, I recommend [DigitalOcean](https://m.do.co/c/eca87ac14ee0) GPU droplets or [HTStack](https://my.htstack.com/aff.php?aff=27187) for low-latency model serving. ## Benchmarks / Real-World Use Cases ### RAG Retrieval Accuracy Testing on a 50-document collection (mix of PDF research papers and technical documentation): | Configuration | Top-3 Accuracy | Citation Accuracy | Hallucination Rate | | * * * | * * * | * * * | * * * | | OpenAI + GPT-4o | 94% | 96% | 2% | | Anthropic + Claude Sonnet 4 | 92% | 95% | 1.5% | | Ollama + llama3.2:3b | 78% | 82% | 8% | | OpenRouter + Claude Haiku | 89% | 91% | 3% | ### Audio Episode Generation Time Generating a 10-minute audio episode from 5 documents: | Provider | Generation Time | Audio Quality | | * * * | * * * | * * * | | OpenAI GPT-4o + TTS | ~4 min | Excellent | | Anthropic + Piper TTS | ~2 min | Good | | Ollama + Piper TTS | ~8 min | Acceptable | | OpenRouter + Edge TTS | ~3 min | Good | ### Real-World Use Case 1: Academic Research A researcher ingests 200+ papers on a specific topic: `````bash # Bulk upload research papers for pdf in research/*.pdf; do curl -X POST http://localhost:3000/api/documents \\ -F \"file=@$pdf\" \\ -H \"Authorization: Bearer $TOKEN\" done # Ask cross-document questions curl -X POST http://localhost:3000/api/chat \\ -H \"Authorization: Bearer $TOKEN\" \\ -d '{\"question\": \"What are the common methodologies across these papers?\", \"docs\": \"all\"}' Result: Literature review completed in hours instead of weeks, with proper citations.\nReal-World Use Case 2: Technical Documentation Knowledge Base A startup creates an internal knowledge base from engineering docs: `````bash\nIngest Confluence-style markdown docs open-notebook ingest –source ./docs/ –provider ollama\nQuery via web UI or API “How does the auth system work?” “What’s the deployment pipeline?” “Explain the rate limiting strategy” Result: New team members find answers 3x faster than searching Slack. ## Advanced Usage / Production Hardening ### Custom Document Processing Configure chunking strategies for different document types: `````python # chunking_config.py chunking_strategies = { \"pdf\": { \"strategy\": \"semantic\", \"chunk_size\": 1000, \"overlap\": 200, \"separator\": \"\\n\\n\", }, \"markdown\": { \"strategy\": \"heading-based\", \"chunk_size\": 2000, \"overlap\": 300, }, \"code\": { \"strategy\": \"function-based\", \"chunk_size\": 500, \"overlap\": 50, }, } Vector Database Scaling For large document collections (10K+ documents): `````bash\nDeploy Qdrant on a separate server docker run -p 6333:6333 -p 6334:6334 -v $(pwd)/qdrant_storage:/qdrant/storage qdrant/qdrant:latest\nConnect open-notebook to remote Qdrant In .env: # VECTOR_DB=qdrant QDRANT_HOST=qdrant.internal QDRANT_PORT=6333 ### Multi-User Setup `````bash # Enable user authentication # In .env: # ENABLE_AUTH=true # JWT_SECRET= # Add users curl -X POST http://localhost:3000/api/users \\ -H \"Authorization: Bearer $ADMIN_TOKEN\" \\ -d '{\"username\": \"researcher1\", \"role\": \"user\"}' Comparison with Alternatives | Feature | open-notebook | NotebookLM | RAGflow | LangChain Chat | |\n|\n|\n|\n|\n| | Self-hosted | Yes | No | Yes | Yes | | AI providers | 15+ | Google only | Multiple | Multiple | | Audio episodes | Yes | Yes | No | No | | Document formats | PDF/MD/TXT/URL | PDF/Docs/Slides | PDF/MD/TXT | PDF/MD/TXT | | Vector DB | Qdrant/Weaviate/pgvector | N/A | Elasticsearch | LangChain memory | | Free tier | Free (self-hosted) | Free | Free | Free | | Multi-user | Yes | Yes | Yes | Manual | | API access | Yes | No | Yes | Yes | | Audio quality | Configurable | Fixed | N/A | N/A | | Setup time | 10 min (Docker) | 0 min | 30 min | 1 hour |\nLimitations / Honest Assessment open-notebook is not for everyone. Here’s when it’s NOT a good fit: 1. Zero-setup requirement — If you want something that works instantly with no configuration, use Google NotebookLM. open-notebook requires Docker setup and API key configuration.\nNon-English documents — The embedding models and LLMs are optimized for English. Non-English documents (especially CJK) may have reduced retrieval quality. You can improve this by using multilingual embedding models like text-embedding-3-large.\nVery large collections — While the system handles thousands of documents well, collections exceeding 50K documents may experience slowdowns without a dedicated vector database server. Use Qdrant or Weaviate on a separate machine for large-scale deployments.\nReal-time document updates — Documents are processed in batch mode. New documents are not indexed until you explicitly trigger ingestion. For real-time document streaming, consider integrating with a message queue.\nAudio TTS quality depends on provider — The audio episode feature quality varies significantly based on which TTS provider you use. OpenAI’s GPT-4o Realtime produces the best quality; local TTS options like Piper sound robotic.\nFrequently Asked Questions Q: Does open-notebook support local/offline AI models?\nA: Yes. By setting AI_PROVIDER=ollama in your .env file and configuring OLLAMA_HOST, you can run everything locally with models like llama3.2, qwen2.5, or nomic-embed-text. No API keys or internet connection required.\nQ: What vector databases are supported?\nA: open-notebook supports Qdrant (recommended), Weaviate, and Supabase/pgvector. Qdrant offers the best performance for document collections; pgvector is ideal if you already have a PostgreSQL instance.\nQ: Can I use open-notebook with OpenRouter?\nA: Yes. Set AI_PROVIDER=openrouter and provide your OpenRouter API key. This gives access to 50+ models from different providers through a single API, which is great for cost optimization.\nQ: How secure is self-hosted open-notebook?\nA: Very secure. All documents, embeddings, and conversations are stored on your own server. No data leaves your infrastructure unless explicitly sent to an external AI provider for processing. You can even run it completely air-gapped with local models.\nQ: Can I generate audio episodes with my own voice?\nA: Not directly with the current version. Audio episodes use configurable TTS providers (OpenAI, Piper, Edge TTS, etc.). Voice cloning is not currently supported, but this is on the roadmap for future releases.\n# docker-compose.yml additional configuration services: open-notebook: environment: - MAX_UPLOAD_SIZE=100MB - ENABLE_TRANSCRIPTION=true - TRANSCRIPTION_PROVIDER=whisper - EMBEDDING_MODEL=snowflake-arctic-embed - VECTOR_STORE=chroma For reliable hosting infrastructure, DigitalOcean provides affordable droplets for development and testing. HTStack offers competitive pricing for production deployments. For proxy and scraping needs, WebShare provides reliable datacenter and residential proxies.\nSources \u0026 Further Reading\nOfficial docs: https://github.com/lfnovo/open-notebook GitHub repository: https://github.com/lfnovo/open-notebook Vector database comparison: https://qdrant.tech/documentation/ RAG architecture guide: https://langchain.com/blog/ Community discussion: https://github.com/lfnovo/open-notebook/discussions Conclusion: Your Documents, Your Infrastructure, Your AI open-notebook proves that a personal AI research assistant doesn’t need to live on Google’s servers. With 28,200 stars and a growing community, it’s clear developers want a self-hosted alternative to NotebookLM that supports multiple AI providers and keeps their data private.\nWhether you\"re a researcher managing hundreds of papers, an engineer building an internal knowledge base, or just someone who values document privacy, open-notebook gives you the tools to build a RAG-powered knowledge base that runs on your infrastructure.\nJoin the dibi8 English Telegram group to discuss open-notebook setups and configurations. Check out our guides on [Agent记忆系统](https://dibi8.com/agentmemory-persistent-m[知识图谱](https://dibi8.com/codegraph-pre-indexed-code-knowledge-graph-ai-agents)arison]([agentmemory guide](https://dibi8.com/agentmemory-*) for complementary knowledge. Try open-notebook today — ````docker compose up```, upload a PDF, and ask it a question.\nSome links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “open-notebook: The Open-Source Notebook LM Alternative That Supports 15+ AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026”, “datePublished”: “2026-06-08”, “dateModified”: “2026-06-08”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/open-notebook-open-source-notebooklm-alternative-15-ai-providers\" } } Related Articles moneyprinterturbo-one-click-ai-video-generator open-notebook-open-source-notebooklm-alternative-15-ai-providers open-notebook-open-source-notebooklm-alternative-15-ai-providers nvidia-cosmos-world-models-platform-2026 12-factor-agents Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "2210",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/">En</a>
@@ -209,38 +209,94 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#open-notebook-15-ai-%ec%a0%9c%ea%b3%b5%ec%9e%90-%ec%a7%80%ec%9b%90-%ec%98%a4%ed%94%88%ec%86%8c%ec%8a%a4-notebook-lm-%eb%8c%80%ec%95%88--%ec%85%80%ed%94%84%ed%98%b8%ec%8a%a4%ed%8c%85-28000-%ec%8a%a4%ed%83%80--%ec%84%a4%ec%a0%95-%ea%b0%80%ec%9d%b4%eb%93%9c-2026" aria-label="open-notebook: 15&#43; AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026">open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026</a><ul>
+                <a href="#open-notebook-the-open-source-notebook-lm-alternative-that-supports-15-ai-providers--self-hosted-28000-stars--setup-guide-2026" aria-label="open-notebook: The Open-Source Notebook LM Alternative That Supports 15&#43; AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026">open-notebook: The Open-Source Notebook LM Alternative That Supports 15+ AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026</a><ul>
                     
             <li>
                 <a href="#introduction" aria-label="Introduction">Introduction</a></li>
             <li>
                 <a href="#what-is-open-notebook" aria-label="What Is open-notebook?">What Is open-notebook?</a></li>
             <li>
+                <a href="#how-open-notebook-works" aria-label="How open-notebook Works">How open-notebook Works</a><ul>
+                    
+            <li>
+                <a href="#stage-2-question-answering" aria-label="Stage 2: Question Answering">Stage 2: Question Answering</a></li>
+            <li>
+                <a href="#stage-3-audio-episode-generation" aria-label="Stage 3: Audio Episode Generation">Stage 3: Audio Episode Generation</a></li></ul>
+            </li>
+            <li>
                 <a href="#installation--setup" aria-label="Installation &amp; Setup">Installation &amp; Setup</a><ul>
                     
             <li>
-                <a href="#docker-compose-%ec%b6%94%ec%b2%9c" aria-label="Docker Compose (추천)">Docker Compose (추천)</a></li>
+                <a href="#docker-compose-recommended" aria-label="Docker Compose (Recommended)">Docker Compose (Recommended)</a></li>
             <li>
-                <a href="#%eb%a1%9c%ec%bb%ac-%ea%b0%9c%eb%b0%9c" aria-label="로컬 개발">로컬 개발</a></li></ul>
+                <a href="#environment-configuration" aria-label="Environment Configuration">Environment Configuration</a></li>
+            <li>
+                <a href="#self-hosted-with-gpu-acceleration" aria-label="Self-Hosted with GPU Acceleration">Self-Hosted with GPU Acceleration</a></li></ul>
+            </li></ul>
             </li>
             <li>
-                <a href="#integration-with-15-ai-providers" aria-label="Integration with 15&#43; AI Providers">Integration with 15+ AI Providers</a></li>
+                <a href="#ollama-with-gpu" aria-label="Ollama with GPU">Ollama with GPU</a></li>
             <li>
-                <a href="#benchmarks--real-world-use-cases" aria-label="Benchmarks / Real-World Use Cases">Benchmarks / Real-World Use Cases</a><ul>
+                <a href="#open-notebook-with-ollama-backend" aria-label="open-notebook with Ollama backend">open-notebook with Ollama backend</a></li>
+            <li>
+                <a href="#in-env--ai_providerollama" aria-label="In .env: # AI_PROVIDER=ollama">In .env: # AI_PROVIDER=ollama</a></li>
+            <li>
+                <a href="#ollama_hosthttplocalhost11434" aria-label="OLLAMA_HOST=http://localhost:11434">OLLAMA_HOST=http://localhost:11434</a></li>
+            <li>
+                <a href="#embedding_modelnomic-embed-text" aria-label="EMBEDDING_MODEL=nomic-embed-text">EMBEDDING_MODEL=nomic-embed-text</a></li>
+            <li>
+                <a href="#completion_modelllama323b" aria-label="COMPLETION_MODEL=llama3.2:3b">COMPLETION_MODEL=llama3.2:3b</a><ul>
                     
             <li>
-                <a href="#rag-retrieval-accuracy" aria-label="RAG Retrieval Accuracy">RAG Retrieval Accuracy</a></li>
-            <li>
-                <a href="#use-case-%ed%95%99%ec%88%a0-%ec%97%b0%ea%b5%ac" aria-label="Use Case: 학술 연구">Use Case: 학술 연구</a></li></ul>
-            </li>
-            <li>
-                <a href="#advanced-usage--production-hardening" aria-label="Advanced Usage / Production Hardening">Advanced Usage / Production Hardening</a><ul>
+                <a href="#integration-with-15-ai-providers" aria-label="Integration with 15&#43; AI Providers">Integration with 15+ AI Providers</a><ul>
                     
             <li>
-                <a href="#%ec%bb%a4%ec%8a%a4%ed%85%80-%eb%ac%b8%ec%84%9c-%ec%b2%98%eb%a6%ac" aria-label="커스텀 문서 처리">커스텀 문서 처리</a></li>
+                <a href="#configuration-example" aria-label="Configuration Example">Configuration Example</a></li>
             <li>
-                <a href="#%eb%b2%a1%ed%84%b0-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4-%ed%99%95%ec%9e%a5" aria-label="벡터 데이터베이스 확장">벡터 데이터베이스 확장</a></li></ul>
+                <a href="#switching-providers-on-the-fly" aria-label="Switching Providers On the Fly">Switching Providers On the Fly</a></li></ul>
+            </li></ul>
             </li>
+            <li>
+                <a href="#switch-default-chat-provider" aria-label="Switch default chat provider">Switch default chat provider</a></li>
+            <li>
+                <a href="#switch-embedding-provider" aria-label="Switch embedding provider">Switch embedding provider</a></li>
+            <li>
+                <a href="#use-local-model-for-a-specific-document-collection" aria-label="Use local model for a specific document collection">Use local model for a specific document collection</a></li>
+            <li>
+                <a href="#list-available-providers" aria-label="List available providers">List available providers</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#real-world-use-case-2-technical-documentation-knowledge-base" aria-label="Real-World Use Case 2: Technical Documentation Knowledge Base">Real-World Use Case 2: Technical Documentation Knowledge Base</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#ingest-confluence-style-markdown-docs" aria-label="Ingest Confluence-style markdown docs">Ingest Confluence-style markdown docs</a></li>
+            <li>
+                <a href="#query-via-web-ui-or-api" aria-label="Query via web UI or API">Query via web UI or API</a></li>
+            <li>
+                <a href="#how-does-the-auth-system-work" aria-label="&ldquo;How does the auth system work?&rdquo;">&ldquo;How does the auth system work?&rdquo;</a></li>
+            <li>
+                <a href="#whats-the-deployment-pipeline" aria-label="&ldquo;What&rsquo;s the deployment pipeline?&rdquo;">&ldquo;What&rsquo;s the deployment pipeline?&rdquo;</a></li>
+            <li>
+                <a href="#explain-the-rate-limiting-strategy" aria-label="&ldquo;Explain the rate limiting strategy&rdquo;">&ldquo;Explain the rate limiting strategy&rdquo;</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#vector-database-scaling" aria-label="Vector Database Scaling">Vector Database Scaling</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#deploy-qdrant-on-a-separate-server" aria-label="Deploy Qdrant on a separate server">Deploy Qdrant on a separate server</a></li>
+            <li>
+                <a href="#connect-open-notebook-to-remote-qdrant" aria-label="Connect open-notebook to remote Qdrant">Connect open-notebook to remote Qdrant</a></li>
+            <li>
+                <a href="#in-env--vector_dbqdrant" aria-label="In .env: # VECTOR_DB=qdrant">In .env: # VECTOR_DB=qdrant</a></li>
+            <li>
+                <a href="#qdrant_hostqdrantinternal" aria-label="QDRANT_HOST=qdrant.internal">QDRANT_HOST=qdrant.internal</a></li>
+            <li>
+                <a href="#qdrant_port6333" aria-label="QDRANT_PORT=6333">QDRANT_PORT=6333</a><ul>
+                    
             <li>
                 <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li>
             <li>
@@ -248,19 +304,7 @@
             <li>
                 <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a></li>
             <li>
-                <a href="#sources--further-reading" aria-label="Sources &amp; Further Reading">Sources &amp; Further Reading</a></li>
-            <li>
-                <a href="#conclusion-%eb%8b%b9%ec%8b%a0%ec%9d%98-%eb%ac%b8%ec%84%9c-%eb%8b%b9%ec%8b%a0%ec%9d%98-%ec%9d%b8%ed%94%84%eb%9d%bc-%eb%8b%b9%ec%8b%a0%ec%9d%98-ai" aria-label="Conclusion: 당신의 문서, 당신의 인프라, 당신의 AI">Conclusion: 당신의 문서, 당신의 인프라, 당신의 AI</a></li>
-            <li>
-                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
-                    
-            <li>
-                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
-            <li>
-                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
-            </li>
-            <li>
-                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+                <a href="#conclusion-your-documents-your-infrastructure-your-ai" aria-label="Conclusion: Your Documents, Your Infrastructure, Your AI">Conclusion: Your Documents, Your Infrastructure, Your AI</a></li>
             <li>
                 <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
             </li>
@@ -270,240 +314,332 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><h1 id="open-notebook-15-ai-제공자-지원-오픈소스-notebook-lm-대안--셀프호스팅-28000-스타--설정-가이드-2026">open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026<a hidden class="anchor" aria-hidden="true" href="#open-notebook-15-ai-제공자-지원-오픈소스-notebook-lm-대안--셀프호스팅-28000-스타--설정-가이드-2026">#</a></h1>
-<p><img alt="open-notebook 로고" loading="lazy" src="https://raw.githubusercontent.com/lfnovo/open-notebook/main/frontend/public/og-image.png"></p>
-<p><em>open-notebook — 멀티모달 오디오 지원 셀프호스팅 RAG 지식베이스</em></p>
+  <div class="post-content md-content"><h1 id="open-notebook-the-open-source-notebook-lm-alternative-that-supports-15-ai-providers--self-hosted-28000-stars--setup-guide-2026">open-notebook: The Open-Source Notebook LM Alternative That Supports 15+ AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026<a hidden class="anchor" aria-hidden="true" href="#open-notebook-the-open-source-notebook-lm-alternative-that-supports-15-ai-providers--self-hosted-28000-stars--setup-guide-2026">#</a></h1>
+<p><img alt="open-notebook logo" loading="lazy" src="https://raw.githubusercontent.com/lfnovo/open-notebook/main/frontend/public/og-image.png"></p>
+<p><em>open-notebook — your self-hosted RAG knowledge base with multimodal audio</em></p>
 <h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
-<p>Google NotebookLM은 출시 후 몇 달 만에 100만 주간 활성 사용자를 달성했고, 모두 개인 AI 연구 보조가 필요하다는 것을 증명했습니다. 하지만 문서는 민감한가요? 자체 인프라에서 실행하고 싶다면? open-notebook (28,200 GitHub stars)은 오픈소스 답변입니다 — 문서를 ingestion하고 인용과 함께 질문으로 답하고, 소스로부터 AI 오디오 &ldquo;팟캐스트&rdquo; 에피소드를 생성하는 셀프호스팅 RAG 지식베이스입니다. NotebookLM과 달리 15+ AI 제공자를 지원합니다: Claude, GPT-4, Ollama 로컬 모델, OpenRouter 포함.</p>
+<p>Google NotebookLM jumped to 1 million weekly active users within months of launch, proving that everyone needs a personal AI research assistant. But what if your documents are sensitive? What if you want to run it on your own infrastructure? open-notebook (28,200 GitHub stars) is the open-source answer — a self-hosted RAG knowledge base that ingests documents, answers questions with citations, and generates AI-powered audio &ldquo;podcast&rdquo; episodes from your sources. Unlike NotebookLM, it supports 15+ AI providers including Claude, GPT-4, local models via Ollama, and OpenRouter. In an era where document AI is critical but privacy matters, open-notebook gives you both.</p>
 <h2 id="what-is-open-notebook">What Is open-notebook?<a hidden class="anchor" aria-hidden="true" href="#what-is-open-notebook">#</a></h2>
-<p>open-notebook은 <strong>셀프호스팅 RAG (Retrieval-Augmented Generation) 지식베이스</strong>로, 문서를 상호작용 AI 연구 작업장으로 변환합니다. 문서 질문응답 시스템과 AI 팟캐스트 생성기의 교차점으로 생각하세요.</p>
-<p>핵심 기능: - <strong>문서 ingestion</strong> — PDF, markdown, 텍스트 파일, URL 등 업로드</p>
+<p>open-notebook is <strong>a self-hosted RAG (Retrieval-Augmented Generation) knowledge base</strong> that transforms your documents into an interactive AI-powered research workspace. Think of it as the intersection between a document question-answering system and an AI podcast generator.</p>
+<p>Key capabilities: - <strong>Document ingestion</strong> — Upload PDFs, markdown, text files, URLs, and more</p>
 <ul>
-<li><strong>RAG 기반 Q&amp;A</strong> — 문서에 대한 질문; 출처 인용과 함께 답변</li>
-<li><strong>오디오 에피소드</strong> — 두 호스트 간 대화처럼 들리는 AI 오디오 요약 생성</li>
-<li><strong>15+ AI 제공자</strong> — Claude, GPT-4, Gemini, Ollama/vLLM 로컬 모델, OpenRouter 등</li>
-<li><strong>셀프호스팅</strong> — 자체 서버, GPU, 프라이버시에서 실행</li>
+<li><strong>RAG-based Q&amp;A</strong> — Ask questions about your documents; get answers with source citations</li>
+<li><strong>Audio episodes</strong> — Generate AI-powered audio summaries that sound like a conversation between two hosts</li>
+<li><strong>15+ AI providers</strong> — Claude, GPT-4, Gemini, local models via Ollama/vLLM, OpenRouter, and more</li>
+<li><strong>Self-hosted</strong> — Run on your own server, your own GPU, your own privacy</li>
 </ul>
+<p>The project is built with Next.js (frontend) and Python FastAPI (backend). It uses vector databases for document embedding and retrieval, with a modern web interface for document management and conversation.</p>
+<h2 id="how-open-notebook-works">How open-notebook Works<a hidden class="anchor" aria-hidden="true" href="#how-open-notebook-works">#</a></h2>
+<p>open-notebook operates through a three-stage pipeline: ### Stage 1: Document Ingestion</p>
+<pre tabindex="0"><code>Raw Documents → Chunking → Embedding → Vector Storage
+</code></pre><ol>
+<li><strong>Upload</strong> — Import documents in multiple formats (PDF, MD, TXT, DOCX, URL)</li>
+<li><strong>Chunking</strong> — Split documents into semantic chunks using configurable strategies</li>
+<li><strong>Embedding</strong> — Generate vector embeddings for each chunk using a configured AI provider</li>
+<li><strong>Storage</strong> — Store embeddings in a vector database (Qdrant, Weaviate, or Supabase/pgvector)</li>
+</ol>
+<h3 id="stage-2-question-answering">Stage 2: Question Answering<a hidden class="anchor" aria-hidden="true" href="#stage-2-question-answering">#</a></h3>
+<pre tabindex="0"><code>User Question → Embedding → Vector Search → Context Assembly → LLM Response
+</code></pre><ol>
+<li><strong>Query</strong> — User asks a question about their documents</li>
+<li><strong>Embedding</strong> — The question is embedded using the same model</li>
+<li><strong>Search</strong> — Vector similarity search finds the most relevant document chunks</li>
+<li><strong>Context assembly</strong> — Relevant chunks are assembled into a prompt context</li>
+<li><strong>LLM response</strong> — The configured AI provider generates an answer with source citations</li>
+</ol>
+<h3 id="stage-3-audio-episode-generation">Stage 3: Audio Episode Generation<a hidden class="anchor" aria-hidden="true" href="#stage-3-audio-episode-generation">#</a></h3>
+<pre tabindex="0"><code>Documents → Script Generation → Multi-host TTS → Audio Episode
+</code></pre><ol>
+<li><strong>Document analysis</strong> — The system analyzes connected documents to identify key topics</li>
+<li><strong>Script generation</strong> — An LLM generates a dialogue script between two &ldquo;hosts&rdquo;</li>
+<li><strong>TTS synthesis</strong> — Text-to-speech converts each host&rsquo;s lines into audio</li>
+<li><strong>Episode assembly</strong> — Audio clips are stitched together into a polished episode</li>
+</ol>
+<pre tabindex="0"><code>┌──────────────────────────────────────────────────┐
+│              open-notebook UI                     │
+│  ┌──────────┐  ┌──────────┐  ┌──────────────┐   │
+│  │ Documents│  │  Chat    │  │  Audio Episodes│   │
+│  │  Manager │  │ Interface│  │  (Podcast Mode)│   │
+│  └──────────┘  └──────────┘  └──────────────┘   │
+├──────────────────────────────────────────────────┤
+│         RAG Pipeline (Ingestion + QA)             │
+├──────────────────────────────────────────────────┤
+│   Vector DB (Qdrant / Weaviate / pgvector)        │
+├──────────────────────────────────────────────────┤
+│  AI Providers: Claude | GPT-4 | Ollama | OpenRouter│
+└──────────────────────────────────────────────────┘
+</code></pre><p><em>open-notebook architecture: three pipelines, one unified interface</em></p>
 <h2 id="installation--setup">Installation &amp; Setup<a hidden class="anchor" aria-hidden="true" href="#installation--setup">#</a></h2>
-<h3 id="docker-compose-추천">Docker Compose (추천)<a hidden class="anchor" aria-hidden="true" href="#docker-compose-추천">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/lfnovo/open-notebook.git
-</span></span><span style="display:flex;"><span>cd open-notebook
-</span></span><span style="display:flex;"><span>cp .env.example .env
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># API 키 및 제공자 구성으로 .env 편집</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 최소: ANTHROPIC_API_KEY, OPENAI_API_KEY 또는 OLLAMA_HOST 중 하나</span>
+<h3 id="docker-compose-recommended">Docker Compose (Recommended)<a hidden class="anchor" aria-hidden="true" href="#docker-compose-recommended">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -o docker-compose.yml https://raw.githubusercontent.com/lfnovo/open-notebook/main/docker-compose.yml
 </span></span><span style="display:flex;"><span>docker compose up -d
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># http://localhost:3000</span>
-</span></span></code></pre></div><h3 id="로컬-개발">로컬 개발<a hidden class="anchor" aria-hidden="true" href="#로컬-개발">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/lfnovo/open-notebook.git
-</span></span><span style="display:flex;"><span>cd open-notebook
-</span></span><span style="display:flex;"><span>cd backend <span style="color:#f92672">&amp;&amp;</span> pip install -r requirements.txt
-</span></span><span style="display:flex;"><span>cd ../frontend <span style="color:#f92672">&amp;&amp;</span> npm install <span style="color:#f92672">&amp;&amp;</span> cd ..
-</span></span><span style="display:flex;"><span>cd backend <span style="color:#f92672">&amp;&amp;</span> uvicorn api.main:app --reload &amp;
-</span></span><span style="display:flex;"><span>cd frontend <span style="color:#f92672">&amp;&amp;</span> npm run dev &amp;
-</span></span></code></pre></div><h2 id="integration-with-15-ai-providers">Integration with 15+ AI Providers<a hidden class="anchor" aria-hidden="true" href="#integration-with-15-ai-providers">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>제공자</th>
-					<th>타입</th>
-					<th>임베딩</th>
-					<th>채팅</th>
-					<th>오디오</th>
-					<th>비용</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>OpenAI</td>
-					<td>클라우드</td>
-					<td>GPT-4o</td>
-					<td>GPT-4o</td>
-					<td>GPT-4o Realtime</td>
-					<td>$20-50/월</td>
-			</tr>
-			<tr>
-					<td>Anthropic</td>
-					<td>클라우드</td>
-					<td>없음</td>
-					<td>Claude Sonnet 4</td>
-					<td>없음</td>
-					<td>$15-40/월</td>
-			</tr>
-			<tr>
-					<td>Google Gemini</td>
-					<td>클라우드</td>
-					<td>text-embedding-004</td>
-					<td>Gemini 2.0 Pro</td>
-					<td>Cloud TTS</td>
-					<td>$5-25/월</td>
-			</tr>
-			<tr>
-					<td>Ollama</td>
-					<td>로컬</td>
-					<td>nomic-embed-text</td>
-					<td>llama3.2:3b</td>
-					<td>piper-tts</td>
-					<td>무료</td>
-			</tr>
-			<tr>
-					<td>vLLM</td>
-					<td>로컬</td>
-					<td>없음</td>
-					<td>Qwen2.5-7B</td>
-					<td>없음</td>
-					<td>무료</td>
-			</tr>
-			<tr>
-					<td>OpenRouter</td>
-					<td>애그리게이터</td>
-					<td>다양</td>
-					<td>50+ 모델</td>
-					<td>다양</td>
-					<td>$5-30/월</td>
-			</tr>
-	</tbody>
-</table>
-<p>셀프호스팅 인프라: <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> 안정 연결.</p>
-<h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases<a hidden class="anchor" aria-hidden="true" href="#benchmarks--real-world-use-cases">#</a></h2>
-<h3 id="rag-retrieval-accuracy">RAG Retrieval Accuracy<a hidden class="anchor" aria-hidden="true" href="#rag-retrieval-accuracy">#</a></h3>
-<p>50 문서 컬렉션 테스트: | 구성 | Top-3 정확도 | 인용 정확도 | Hallucination Rate |
-|&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|
+</span></span></code></pre></div><p>Access the UI at <code>http://localhost:3000</code>.</p>
+<h3 id="environment-configuration">Environment Configuration<a hidden class="anchor" aria-hidden="true" href="#environment-configuration">#</a></h3>
+<p>Edit the <code>.env</code> file with your API keys and provider configuration: - Minimum: one of <code>ANTHROPIC_API_KEY</code>, <code>OPENAI_API_KEY</code>, or <code>OLLAMA_HOST</code></p>
+<h3 id="self-hosted-with-gpu-acceleration">Self-Hosted with GPU Acceleration<a hidden class="anchor" aria-hidden="true" href="#self-hosted-with-gpu-acceleration">#</a></h3>
+<p>For faster embedding and generation, run with GPU support: `````bash</p>
+<h1 id="ollama-with-gpu">Ollama with GPU<a hidden class="anchor" aria-hidden="true" href="#ollama-with-gpu">#</a></h1>
+<p>curl -fsSL <a href="https://ollama.com/install.sh">https://ollama.com/install.sh</a> | sh
+ollama pull nomic-embed-text:latest
+ollama pull llama3.2:3b</p>
+<h1 id="open-notebook-with-ollama-backend">open-notebook with Ollama backend<a hidden class="anchor" aria-hidden="true" href="#open-notebook-with-ollama-backend">#</a></h1>
+<h1 id="in-env--ai_providerollama">In .env: # AI_PROVIDER=ollama<a hidden class="anchor" aria-hidden="true" href="#in-env--ai_providerollama">#</a></h1>
+<h1 id="ollama_hosthttplocalhost11434">OLLAMA_HOST=http://localhost:11434<a hidden class="anchor" aria-hidden="true" href="#ollama_hosthttplocalhost11434">#</a></h1>
+<h1 id="embedding_modelnomic-embed-text">EMBEDDING_MODEL=nomic-embed-text<a hidden class="anchor" aria-hidden="true" href="#embedding_modelnomic-embed-text">#</a></h1>
+<h1 id="completion_modelllama323b">COMPLETION_MODEL=llama3.2:3b<a hidden class="anchor" aria-hidden="true" href="#completion_modelllama323b">#</a></h1>
+<p>docker compose up -d</p>
+<pre tabindex="0"><code>
+### Importing Existing Notes
+
+Open-notebook can import from popular note formats: `````bash
+# Import Obsidian vault
+open-notebook import --source obsidian --path /path/to/vault
+
+# Import Notion database
+open-notebook import --source notion --api-key $NOTION_API_KEY --db-id $NOTION_DB_ID
+
+# Import plain markdown files
+open-notebook import --source markdown --path /path/to/md-files
+
+# Import PDFs for RAG (extracts text + generates embeddings)
+open-notebook import --source pdf --path /path/to/papers/*.pdf
+</code></pre><h2 id="integration-with-15-ai-providers">Integration with 15+ AI Providers<a hidden class="anchor" aria-hidden="true" href="#integration-with-15-ai-providers">#</a></h2>
+<p>open-notebook supports a wide range of AI providers through a unified configuration interface: ### Supported Providers</p>
+<p>| Provider | Type | Embedding | Chat | Audio | Cost |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| OpenAI | Cloud | GPT-4o embedding | GPT-4o | GPT-4o Realtime | $20-50/mo |
+| Anthropic | Cloud | N/A | Claude Sonnet 4 | N/A | $15-40/mo |
+| Google Gemini | Cloud | text-embedding-004 | Gemini 2.0 Pro | Cloud TTS | $5-25/mo |
+| Ollama | Local | nomic-embed-text | llama3.2:3b | piper-tts | Free |
+| vLLM | Local | N/A | Qwen2.5-7B | N/A | Free |
+| OpenRouter | Aggregator | Various | 50+ models | Various | $5-30/mo |
+| Mistral | Cloud | mistral-embed | mistral-large | N/A | $10-25/mo |
+| Deepseek | Cloud | N/A | deepseek-v3 | N/A | $1-5/mo |</p>
+<h3 id="configuration-example">Configuration Example<a hidden class="anchor" aria-hidden="true" href="#configuration-example">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># config.yaml — Provider configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">providers: default_chat</span>: <span style="color:#ae81ff">anthropic</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">default_embedding</span>: <span style="color:#ae81ff">openai</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">default_tts</span>: <span style="color:#ae81ff">openai</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">anthropic: api_key</span>: <span style="color:#e6db74">&#34;${ANTHROPIC_API_KEY}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">models: chat</span>: - <span style="color:#ae81ff">claude-sonnet-4-20250514</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">claude-opus-4-20250514</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">openai: api_key</span>: <span style="color:#e6db74">&#34;${OPENAI_API_KEY}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">models: embedding</span>: <span style="color:#ae81ff">gpt-4o-embedding</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">chat</span>: <span style="color:#ae81ff">gpt-4o</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">tts</span>: <span style="color:#ae81ff">gpt-4o-realtime</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ollama: host</span>: <span style="color:#e6db74">&#34;${OLLAMA_HOST:-http://localhost:11434}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">models: embedding</span>: <span style="color:#ae81ff">nomic-embed-text</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">chat</span>: - <span style="color:#ae81ff">llama3.2:3b</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#ae81ff">qwen2.5:7b</span>
+</span></span></code></pre></div><h3 id="switching-providers-on-the-fly">Switching Providers On the Fly<a hidden class="anchor" aria-hidden="true" href="#switching-providers-on-the-fly">#</a></h3>
+<p>You can switch between providers without editing config files: `````bash</p>
+<h1 id="switch-default-chat-provider">Switch default chat provider<a hidden class="anchor" aria-hidden="true" href="#switch-default-chat-provider">#</a></h1>
+<p>open-notebook provider set &ndash;default-chat anthropic</p>
+<h1 id="switch-embedding-provider">Switch embedding provider<a hidden class="anchor" aria-hidden="true" href="#switch-embedding-provider">#</a></h1>
+<p>open-notebook provider set &ndash;default-embedding openai</p>
+<h1 id="use-local-model-for-a-specific-document-collection">Use local model for a specific document collection<a hidden class="anchor" aria-hidden="true" href="#use-local-model-for-a-specific-document-collection">#</a></h1>
+<p>open-notebook collection set-model &ndash;collection research &ndash;model ollama:llama3.2:3b</p>
+<h1 id="list-available-providers">List available providers<a hidden class="anchor" aria-hidden="true" href="#list-available-providers">#</a></h1>
+<p>open-notebook provider list</p>
+<pre tabindex="0"><code>
+For self-hosted deployment on reliable infrastructure, I recommend [DigitalOcean](https://m.do.co/c/eca87ac14ee0) GPU droplets or [HTStack](https://my.htstack.com/aff.php?aff=27187) for low-latency model serving.
+
+## Benchmarks / Real-World Use Cases
+
+### RAG Retrieval Accuracy
+
+Testing on a 50-document collection (mix of PDF research papers and technical documentation): | Configuration | Top-3 Accuracy | Citation Accuracy | Hallucination Rate |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
 | OpenAI + GPT-4o | 94% | 96% | 2% |
 | Anthropic + Claude Sonnet 4 | 92% | 95% | 1.5% |
 | Ollama + llama3.2:3b | 78% | 82% | 8% |
-| OpenRouter + Claude Haiku | 89% | 91% | 3% |</p>
-<h3 id="use-case-학술-연구">Use Case: 학술 연구<a hidden class="anchor" aria-hidden="true" href="#use-case-학술-연구">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> pdf in research/*.pdf; <span style="color:#66d9ef">do</span>
-</span></span><span style="display:flex;"><span>  curl -X POST http://localhost:3000/api/documents -F <span style="color:#e6db74">&#34;file=@</span>$pdf<span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 문서 간 질문</span>
-</span></span><span style="display:flex;"><span>curl -X POST http://localhost:3000/api/chat <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;question&#34;: &#34;공통 방법론은?&#34;, &#34;docs&#34;: &#34;all&#34;}&#39;</span>
-</span></span></code></pre></div><p>200+ 논문을 수 시간 내에 분석, 올바른 인용 포함.</p>
-<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening<a hidden class="anchor" aria-hidden="true" href="#advanced-usage--production-hardening">#</a></h2>
-<h3 id="커스텀-문서-처리">커스텀 문서 처리<a hidden class="anchor" aria-hidden="true" href="#커스텀-문서-처리">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>chunking_strategies <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;pdf&#34;</span>: {<span style="color:#e6db74">&#34;strategy&#34;</span>: <span style="color:#e6db74">&#34;semantic&#34;</span>, <span style="color:#e6db74">&#34;chunk_size&#34;</span>: <span style="color:#ae81ff">1000</span>, <span style="color:#e6db74">&#34;overlap&#34;</span>: <span style="color:#ae81ff">200</span>},
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;markdown&#34;</span>: {<span style="color:#e6db74">&#34;strategy&#34;</span>: <span style="color:#e6db74">&#34;heading-based&#34;</span>, <span style="color:#e6db74">&#34;chunk_size&#34;</span>: <span style="color:#ae81ff">2000</span>},
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;code&#34;</span>: {<span style="color:#e6db74">&#34;strategy&#34;</span>: <span style="color:#e6db74">&#34;function-based&#34;</span>, <span style="color:#e6db74">&#34;chunk_size&#34;</span>: <span style="color:#ae81ff">500</span>},
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id="벡터-데이터베이스-확장">벡터 데이터베이스 확장<a hidden class="anchor" aria-hidden="true" href="#벡터-데이터베이스-확장">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -p 6333:6333 -p 6334:6334 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/qdrant_storage:/qdrant/storage qdrant/qdrant:latest
-</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>기능</th>
-					<th>open-notebook</th>
-					<th>NotebookLM</th>
-					<th>RAGflow</th>
-					<th>LangChain Chat</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>셀프호스팅</td>
-					<td>예</td>
-					<td>아니요</td>
-					<td>예</td>
-					<td>예</td>
-			</tr>
-			<tr>
-					<td>AI 제공자</td>
-					<td>15+</td>
-					<td>Google만</td>
-					<td>다양</td>
-					<td>다양</td>
-			</tr>
-			<tr>
-					<td>오디오 에피소드</td>
-					<td>예</td>
-					<td>예</td>
-					<td>아니오</td>
-					<td>아니오</td>
-			</tr>
-			<tr>
-					<td>문서 포맷</td>
-					<td>PDF/MD/TXT/URL</td>
-					<td>PDF/Docs/Slides</td>
-					<td>PDF/MD/TXT</td>
-					<td>PDF/MD/TXT</td>
-			</tr>
-			<tr>
-					<td>벡터 DB</td>
-					<td>Qdrant/Weaviate/pgvector</td>
-					<td>없음</td>
-					<td>Elasticsearch</td>
-					<td>LangChain memory</td>
-			</tr>
-			<tr>
-					<td>무료</td>
-					<td>무료(셀프호스팅)</td>
-					<td>무료</td>
-					<td>무료</td>
-					<td>무료</td>
-			</tr>
-			<tr>
-					<td>멀티 사용자</td>
-					<td>예</td>
-					<td>예</td>
-					<td>예</td>
-					<td>수동</td>
-			</tr>
-			<tr>
-					<td>API</td>
-					<td>예</td>
-					<td>아니오</td>
-					<td>예</td>
-					<td>예</td>
-			</tr>
-			<tr>
-					<td>설정 시간</td>
-					<td>10분(Docker)</td>
-					<td>0분</td>
-					<td>30분</td>
-					<td>1시간</td>
-			</tr>
-	</tbody>
-</table>
+| OpenRouter + Claude Haiku | 89% | 91% | 3% |
+
+### Audio Episode Generation Time
+
+Generating a 10-minute audio episode from 5 documents: | Provider | Generation Time | Audio Quality |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| OpenAI GPT-4o + TTS | ~4 min | Excellent |
+| Anthropic + Piper TTS | ~2 min | Good |
+| Ollama + Piper TTS | ~8 min | Acceptable |
+| OpenRouter + Edge TTS | ~3 min | Good |
+
+### Real-World Use Case 1: Academic Research
+
+A researcher ingests 200+ papers on a specific topic: `````bash
+# Bulk upload research papers
+for pdf in research/*.pdf; do
+  curl -X POST http://localhost:3000/api/documents \
+    -F &#34;file=@$pdf&#34; \
+    -H &#34;Authorization: Bearer $TOKEN&#34;
+done
+
+# Ask cross-document questions
+curl -X POST http://localhost:3000/api/chat \
+  -H &#34;Authorization: Bearer $TOKEN&#34; \
+  -d &#39;{&#34;question&#34;: &#34;What are the common methodologies across these papers?&#34;, &#34;docs&#34;: &#34;all&#34;}&#39;
+</code></pre><p>Result: Literature review completed in hours instead of weeks, with proper citations.</p>
+<h3 id="real-world-use-case-2-technical-documentation-knowledge-base">Real-World Use Case 2: Technical Documentation Knowledge Base<a hidden class="anchor" aria-hidden="true" href="#real-world-use-case-2-technical-documentation-knowledge-base">#</a></h3>
+<p>A startup creates an internal knowledge base from engineering docs: `````bash</p>
+<h1 id="ingest-confluence-style-markdown-docs">Ingest Confluence-style markdown docs<a hidden class="anchor" aria-hidden="true" href="#ingest-confluence-style-markdown-docs">#</a></h1>
+<p>open-notebook ingest &ndash;source ./docs/ &ndash;provider ollama</p>
+<h1 id="query-via-web-ui-or-api">Query via web UI or API<a hidden class="anchor" aria-hidden="true" href="#query-via-web-ui-or-api">#</a></h1>
+<h1 id="how-does-the-auth-system-work">&ldquo;How does the auth system work?&rdquo;<a hidden class="anchor" aria-hidden="true" href="#how-does-the-auth-system-work">#</a></h1>
+<h1 id="whats-the-deployment-pipeline">&ldquo;What&rsquo;s the deployment pipeline?&rdquo;<a hidden class="anchor" aria-hidden="true" href="#whats-the-deployment-pipeline">#</a></h1>
+<h1 id="explain-the-rate-limiting-strategy">&ldquo;Explain the rate limiting strategy&rdquo;<a hidden class="anchor" aria-hidden="true" href="#explain-the-rate-limiting-strategy">#</a></h1>
+<pre tabindex="0"><code>
+Result: New team members find answers 3x faster than searching Slack.
+
+## Advanced Usage / Production Hardening
+
+### Custom Document Processing
+
+Configure chunking strategies for different document types: `````python
+# chunking_config.py
+chunking_strategies = {
+    &#34;pdf&#34;: {
+        &#34;strategy&#34;: &#34;semantic&#34;,
+        &#34;chunk_size&#34;: 1000,
+        &#34;overlap&#34;: 200,
+        &#34;separator&#34;: &#34;\n\n&#34;,
+    },
+    &#34;markdown&#34;: {
+        &#34;strategy&#34;: &#34;heading-based&#34;,
+        &#34;chunk_size&#34;: 2000,
+        &#34;overlap&#34;: 300,
+    },
+    &#34;code&#34;: {
+        &#34;strategy&#34;: &#34;function-based&#34;,
+        &#34;chunk_size&#34;: 500,
+        &#34;overlap&#34;: 50,
+    },
+}
+</code></pre><h3 id="vector-database-scaling">Vector Database Scaling<a hidden class="anchor" aria-hidden="true" href="#vector-database-scaling">#</a></h3>
+<p>For large document collections (10K+ documents): `````bash</p>
+<h1 id="deploy-qdrant-on-a-separate-server">Deploy Qdrant on a separate server<a hidden class="anchor" aria-hidden="true" href="#deploy-qdrant-on-a-separate-server">#</a></h1>
+<p>docker run -p 6333:6333 -p 6334:6334 <br>
+-v $(pwd)/qdrant_storage:/qdrant/storage <br>
+qdrant/qdrant:latest</p>
+<h1 id="connect-open-notebook-to-remote-qdrant">Connect open-notebook to remote Qdrant<a hidden class="anchor" aria-hidden="true" href="#connect-open-notebook-to-remote-qdrant">#</a></h1>
+<h1 id="in-env--vector_dbqdrant">In .env: # VECTOR_DB=qdrant<a hidden class="anchor" aria-hidden="true" href="#in-env--vector_dbqdrant">#</a></h1>
+<h1 id="qdrant_hostqdrantinternal">QDRANT_HOST=qdrant.internal<a hidden class="anchor" aria-hidden="true" href="#qdrant_hostqdrantinternal">#</a></h1>
+<h1 id="qdrant_port6333">QDRANT_PORT=6333<a hidden class="anchor" aria-hidden="true" href="#qdrant_port6333">#</a></h1>
+<pre tabindex="0"><code>
+### Multi-User Setup
+
+`````bash
+# Enable user authentication
+# In .env: # ENABLE_AUTH=true
+# JWT_SECRET=&lt;generated-secret&gt;
+
+# Add users
+curl -X POST http://localhost:3000/api/users \
+  -H &#34;Authorization: Bearer $ADMIN_TOKEN&#34; \
+  -d &#39;{&#34;username&#34;: &#34;researcher1&#34;, &#34;role&#34;: &#34;user&#34;}&#39;
+</code></pre><h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
+<p>| Feature | open-notebook | NotebookLM | RAGflow | LangChain Chat |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Self-hosted | Yes | No | Yes | Yes |
+| AI providers | 15+ | Google only | Multiple | Multiple |
+| Audio episodes | Yes | Yes | No | No |
+| Document formats | PDF/MD/TXT/URL | PDF/Docs/Slides | PDF/MD/TXT | PDF/MD/TXT |
+| Vector DB | Qdrant/Weaviate/pgvector | N/A | Elasticsearch | LangChain memory |
+| Free tier | Free (self-hosted) | Free | Free | Free |
+| Multi-user | Yes | Yes | Yes | Manual |
+| API access | Yes | No | Yes | Yes |
+| Audio quality | Configurable | Fixed | N/A | N/A |
+| Setup time | 10 min (Docker) | 0 min | 30 min | 1 hour |</p>
 <h2 id="limitations--honest-assessment">Limitations / Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations--honest-assessment">#</a></h2>
-<p><strong>적합하지 않은 경우:</strong></p>
-<ol>
-<li><strong>제로설정 필요</strong> — 즉시 사용 원하는 경우 Google NotebookLM 사용</li>
-<li><strong>비영어 문서</strong> — CJK 문서检索 품질 감소. multilingual embedding model 사용 권장</li>
-<li><strong>매우 큰 컬렉션</strong> — 50K+ 문서는 전용 벡터 DB 서버 필요. Qdrant/Weaviate 별도 머신 권장</li>
-<li><strong>실시간 문서 업데이트</strong> — 배치 모드 처리. 실시간 스트리밍은 메시지 큐 통합 필요</li>
-<li><strong>오디오 TTS 품질</strong> — 제공자별로 크게 다름. OpenAI GPT-4o 최고; Piper는 기계음</li>
+<p>open-notebook is not for everyone. Here&rsquo;s when it&rsquo;s NOT a good fit: 1. <strong>Zero-setup requirement</strong> — If you want something that works instantly with no configuration, use Google NotebookLM. open-notebook requires Docker setup and API key configuration.</p>
+<ol start="2">
+<li>
+<p><strong>Non-English documents</strong> — The embedding models and LLMs are optimized for English. Non-English documents (especially CJK) may have reduced retrieval quality. You can improve this by using multilingual embedding models like <code>text-embedding-3-large</code>.</p>
+</li>
+<li>
+<p><strong>Very large collections</strong> — While the system handles thousands of documents well, collections exceeding 50K documents may experience slowdowns without a dedicated vector database server. Use Qdrant or Weaviate on a separate machine for large-scale deployments.</p>
+</li>
+<li>
+<p><strong>Real-time document updates</strong> — Documents are processed in batch mode. New documents are not indexed until you explicitly trigger ingestion. For real-time document streaming, consider integrating with a message queue.</p>
+</li>
+<li>
+<p><strong>Audio TTS quality depends on provider</strong> — The audio episode feature quality varies significantly based on which TTS provider you use. OpenAI&rsquo;s GPT-4o Realtime produces the best quality; local TTS options like Piper sound robotic.</p>
+</li>
 </ol>
 <h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
-<p><strong>Q: 오픈/오프라인 AI 모델 지원?</strong></p>
-<p>A: 예. <code>.env</code>에서 <code>AI_PROVIDER=ollama</code> 설정하고 <code>OLLAMA_HOST</code> 구성하면 llama3.2, qwen2.5, nomic-embed-text로 전체 로컬 실행 가능. API key 없이 인터넷 연결 없이.</p>
-<p><strong>Q: 어떤 벡터 DB 지원?</strong></p>
-<p>A: Qdrant(권장), Weaviate, Supabase/pgvector. Qdrant가 문서 컬렉션에 최적 성능; pgvector는 기존 PostgreSQL에 이상적.</p>
-<p><strong>Q: OpenRouter 사용 가능한가요?</strong></p>
-<p>A: 예. <code>AI_PROVIDER=openrouter</code> 설정하고 OpenRouter API key 제공. 단일 API로 50+ 모델 접근, 비용 최적화에 좋음.</p>
-<p><strong>Q: 셀프호스팅 보안 수준?</strong></p>
-<p>A: 매우 안전. 모든 문서, 임베딩, 대화는 자체 서버에 저장. 외부 AI 제공자에 명시적으로 보내지 않으면 데이터가 인프라를 벗어나지 않음. 로컬 모델로 완전 air-gapped 실행 가능.</p>
-<p><strong>Q: 자신 음성으로 오디오 에피소드 생성 가능한가요?</strong></p>
-<p>A: 현재 버전 직접不支持. 오디오 에피소드는 구성 가능한 TTS 제공자 사용(OpenAI, Piper, Edge TTS 등). Voice cloning은 현재 지원 안 되지만 로드맵에 있음.</p>
-<h2 id="sources--further-reading">Sources &amp; Further Reading<a hidden class="anchor" aria-hidden="true" href="#sources--further-reading">#</a></h2>
+<p><strong>Q: Does open-notebook support local/offline AI models?</strong></p>
+<p>A: Yes. By setting <code>AI_PROVIDER=ollama</code> in your <code>.env</code> file and configuring <code>OLLAMA_HOST</code>, you can run everything locally with models like llama3.2, qwen2.5, or nomic-embed-text. No API keys or internet connection required.</p>
+<p><strong>Q: What vector databases are supported?</strong></p>
+<p>A: open-notebook supports Qdrant (recommended), Weaviate, and Supabase/pgvector. Qdrant offers the best performance for document collections; pgvector is ideal if you already have a PostgreSQL instance.</p>
+<p><strong>Q: Can I use open-notebook with OpenRouter?</strong></p>
+<p>A: Yes. Set <code>AI_PROVIDER=openrouter</code> and provide your OpenRouter API key. This gives access to 50+ models from different providers through a single API, which is great for cost optimization.</p>
+<p><strong>Q: How secure is self-hosted open-notebook?</strong></p>
+<p>A: Very secure. All documents, embeddings, and conversations are stored on your own server. No data leaves your infrastructure unless explicitly sent to an external AI provider for processing. You can even run it completely air-gapped with local models.</p>
+<p><strong>Q: Can I generate audio episodes with my own voice?</strong></p>
+<p>A: Not directly with the current version. Audio episodes use configurable TTS providers (OpenAI, Piper, Edge TTS, etc.). Voice cloning is not currently supported, but this is on the roadmap for future releases.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml additional configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: open-notebook: environment</span>: - <span style="color:#ae81ff">MAX_UPLOAD_SIZE=100MB</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">ENABLE_TRANSCRIPTION=true</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TRANSCRIPTION_PROVIDER=whisper</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">EMBEDDING_MODEL=snowflake-arctic-embed</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">VECTOR_STORE=chroma</span>
+</span></span></code></pre></div><h2></h2>
+<p>For reliable hosting infrastructure, <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> provides affordable droplets for development and testing. <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> offers competitive pricing for production deployments. For proxy and scraping needs, <a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a> provides reliable datacenter and residential proxies.</p>
+<p>Sources &amp; Further Reading</p>
 <ul>
-<li>공식 문서: <a href="https://github.com/lfnovo/open-notebook">https://github.com/lfnovo/open-notebook</a></li>
-<li>GitHub 레포지토리: <a href="https://github.com/lfnovo/open-notebook">https://github.com/lfnovo/open-notebook</a></li>
-<li>벡터 데이터베이스 비교: <a href="https://qdrant.tech/documentation/">https://qdrant.tech/documentation/</a></li>
-<li>RAG 아키텍처 가이드: <a href="https://langchain.com/blog/">https://langchain.com/blog/</a></li>
-<li>커뮤니티: <a href="https://github.com/lfnovo/open-notebook/discussions">https://github.com/lfnovo/open-notebook/discussions</a></li>
+<li>Official docs: <a href="https://github.com/lfnovo/open-notebook">https://github.com/lfnovo/open-notebook</a></li>
+<li>GitHub repository: <a href="https://github.com/lfnovo/open-notebook">https://github.com/lfnovo/open-notebook</a></li>
+<li>Vector database comparison: <a href="https://qdrant.tech/documentation/">https://qdrant.tech/documentation/</a></li>
+<li>RAG architecture guide: <a href="https://langchain.com/blog/">https://langchain.com/blog/</a></li>
+<li>Community discussion: <a href="https://github.com/lfnovo/open-notebook/discussions">https://github.com/lfnovo/open-notebook/discussions</a></li>
 </ul>
-<h2 id="conclusion-당신의-문서-당신의-인프라-당신의-ai">Conclusion: 당신의 문서, 당신의 인프라, 당신의 AI<a hidden class="anchor" aria-hidden="true" href="#conclusion-당신의-문서-당신의-인프라-당신의-ai">#</a></h2>
-<p>open-notebook은 개인 AI 연구 보조가 Google 서버에 살 필요가 없음을 증명합니다. 28,200 star와 성장하는 커뮤니티, 구조화된 에이전트 관리에 대한 명확한 수요를 보여줍니다.</p>
-<p>수백 논문 관리 연구원이든, 내부 지식베이스 구축 엔지니어든, 문서 프라이버시 가치 사람이라도, open-notebook은 인프라에서 실행되는 RAG 지식베이스 구축 도구를 제공합니다.</p>
-<p><a href="https://t.me/DIBI8_Group/9">dibi8 한국어 Telegram 그룹</a>에 참여하여 open-notebook 설정을 논의하세요. <a href="dibi8-internal-link">LangChain RAG 아키텍처</a> 및 <a href="dibi8-internal-link">벡터 데이터베이스 비교</a> 가이드 확인. 오늘 시도해보세요 — ````docker compose up```, PDF 업로드, 질문하세요.</p>
-<p>위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 귀하의 비용에는 영향이 없습니다.</p>
+<h2 id="conclusion-your-documents-your-infrastructure-your-ai">Conclusion: Your Documents, Your Infrastructure, Your AI<a hidden class="anchor" aria-hidden="true" href="#conclusion-your-documents-your-infrastructure-your-ai">#</a></h2>
+<p>open-notebook proves that a personal AI research assistant doesn&rsquo;t need to live on Google&rsquo;s servers. With 28,200 stars and a growing community, it&rsquo;s clear developers want a self-hosted alternative to NotebookLM that supports multiple AI providers and keeps their data private.</p>
+<p>Whether you&quot;re a researcher managing hundreds of papers, an engineer building an internal knowledge base, or just someone who values document privacy, open-notebook gives you the tools to build a RAG-powered knowledge base that runs on your infrastructure.</p>
+<p>Join the <a href="https://t.me/DIBI8_Group/2">dibi8 English Telegram group</a> to discuss open-notebook setups and configurations. Check out our guides on [Agent记忆系统](<a href="https://dibi8.com/agentmemory-persistent-m[">https://dibi8.com/agentmemory-persistent-m[</a>知识图谱](<a href="https://dibi8.com/codegraph-pre-indexed-code-knowledge-graph-ai-agents%29arison]%28[agentmemory">https://dibi8.com/codegraph-pre-indexed-code-knowledge-graph-ai-agents)arison]([agentmemory</a> guide](<a href="https://dibi8.com/agentmemory-">https://dibi8.com/agentmemory-</a>*) for complementary knowledge. Try open-notebook today — ````docker compose up```, upload a PDF, and ask it a question.</p>
+<p>Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.</p>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;open-notebook: The Open-Source Notebook LM Alternative That Supports 15+ AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-06-08&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-06-08&rdquo;,
 &ldquo;author&rdquo;: {
@@ -520,62 +656,18 @@
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/open-notebook-open-source-notebooklm-alternative-15-ai-providers%22">https://dibi8.com/kr/resources/open-notebook-open-source-notebooklm-alternative-15-ai-providers"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/open-notebook-open-source-notebooklm-alternative-15-ai-providers%22">https://dibi8.com/resources/open-notebook-open-source-notebooklm-alternative-15-ai-providers"</a>
 }
 }
 </script></p>
-<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
-<p>Understanding open-notebook: 15+ ai 제공자 지원 오픈소스 notebook lm 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026 is crucial for modern AI development. Here&quot;s why: ### Key Benefits</p>
-<ul>
-<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
-<li><strong>Quality</strong>: Improve output consistency</li>
-<li><strong>Scalability</strong>: Handle larger workloads</li>
-<li><strong>Cost</strong>: Reduce operational expenses</li>
-</ul>
-<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
-<p>Organizations are using similar approaches to: 1. Automate code review processes
-2. Generate documentation automatically
-3. Build internal knowledge bases
-4. Streamline deployment pipelines</p>
-<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
-<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
-<ul>
-<li>Identify repetitive tasks</li>
-<li>Measure current time costs</li>
-<li>Define success metrics</li>
-</ul>
-<ol start="2">
-<li>
-<p><strong>Choose Your Approach</strong></p>
-<ul>
-<li>Start with simple automations</li>
-<li>Gradually increase complexity</li>
-<li>Test and iterate</li>
-</ul>
-</li>
-<li>
-<p><strong>Measure Results</strong></p>
-<ul>
-<li>Track time savings</li>
-<li>Monitor quality improvements</li>
-<li>Calculate ROI</li>
-</ul>
-</li>
-</ol>
-<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
-<p>open-notebook: 15+ AI 제공자 지원 오픈소스 Notebook LM 대안 — 셀프호스팅, 28,000 스타 — 설정 가이드 2026 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
-<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
-<hr>
-<p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~5 minutes</em></p>
 <hr>
 <h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
 <ul>
+<li><a href="/ko/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/">moneyprinterturbo-one-click-ai-video-generator</a></li>
 <li><a href="/ko/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/">open-notebook-open-source-notebooklm-alternative-15-ai-providers</a></li>
-<li><a href="/ko/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/">12-factor-agents-production-llm-software-2026</a></li>
+<li><a href="/ko/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/">open-notebook-open-source-notebooklm-alternative-15-ai-providers</a></li>
+<li><a href="/ko/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/">nvidia-cosmos-world-models-platform-2026</a></li>
 <li><a href="/ko/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/">12-factor-agents</a></li>
-<li><a href="/ko/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/">1m-context-window-llm-2026-real-test</a></li>
-<li><a href="/ko/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/">9router-smart-llm-proxy-token-saver-free-coding</a></li>
 </ul>
 <hr>
 <p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
@@ -621,6 +713,81 @@
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

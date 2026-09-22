@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/mcp-tools/stable-diffusion-webui/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/mcp-tools/stable-diffusion-webui/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-tools/stable-diffusion-webui/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/mcp-tools/stable-diffusion-webui/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="mcp-tools">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "MCP Tools - dibi8",
+      "item": "https://dibi8.com/ko/mcp-tools/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/mcp-tools/stable-diffusion-webui/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: AGPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“stable-diffusion”, “automatic1111”, “tạo-ảnh”, “ai-webui”, “controlnet”, “lora”, “docker”, “gpu”] aliases:\n/vi/posts/stable-diffusion-webui/ Stable Diffusion WebUI do AUTOMATIC1111 phát triển vẫn là giao diện mã nguồn mở được sử dụng rộng rãi nhất cho việc tạo ảnh AI cục bộ. Với 159,000+ GitHub stars, nó tích lũy được cộng đồng lớn hơn bất kỳ giao diện cạnh tranh nào. Nếu bạn đang xây dựng pipeline tạo ảnh AI cục bộ, việc hiểu cách cài đặt, cấu hình và mở rộng công cụ này là kỹ năng thiết yếu.\nHướng dẫn này sẽ đi qua toàn bộ quá trình cài đặt Stable Diffusion WebUI trên Windows, Linux và Docker. Bạn sẽ tìm thấy lệnh thực tế cho từng nền tảng, cấu hình mở rộng cho ControlNet và LoRA, mẹo tối ưu production và benchmark hiệu suất trên GPU phổ thông.\nGiao diện txt2img mặc định của Stable Diffusion WebUI v1.10.1\nStable Diffusion WebUI Là Gì? Stable Diffusion WebUI là giao diện dựa trên trình duyệt để chạy các mô hình Stable Diffusion cục bộ. Nó bao bọc pipeline suy luận bên dưới trong ứng dụng web dạng tab có thể truy cập tại ```http://localhost:7860````, cung cấp điều khiển cho txt2img, img2img, inpainting, upscaling, model merging và training LoRA/DreamBooth —— tất cả mà không cần viết code.\nDự án được duy trì bởi AUTOMATIC1111 theo giấy phép AGPL-3.0. Phiên bản v1.10.1 (phát hành đầu 2025) đã cải thiện quá trình tinh chỉnh SDXL, tối ưu quản lý bộ nhớ cho GPU 8GB và thêm hỗ trợ native cho suy luận SD3 Medium. Hệ sinh thái mở rộng bao gồm hơn 1,000 plugin cộng đồng.\nStable Diffusion WebUI Hoạt Động Như Thế Nào? Kiến trúc theo mẫu Python backend module hóa + Gradio frontend: Kiến trúc: Gradio frontend giao tiếp với Python backend module qua HTTP cục bộ\nTrình duyệt ngườI dùng (Gradio UI) | v Gradio Server (cổng 7860) --- API Endpoints (/sdapi/v1/) | v Python Backend (modules/) |-- Model Loader (safetensors/ckpt) |-- Sampling (Euler, DPM++, etc.) |-- VAE Encode/Decode |-- Post-processing (GFPGAN, CodeFormer) | v PyTorch + CUDA --- GPU (VRAM: 4-24GB) Các khái niệm quan trọng cần hiểu trước khi cài đặt: - Checkpoint: File mô hình chính (.safetensors hoặc .ckpt) chứa trọng số diffusion đã huấn luyện. Mô hình SD 1.5 khoảng 4GB; SDXL khoảng 6-7GB.\nVAE: Xử lý bước encode/decode giữa không gian pixel và latent. VAE không khớp sẽ tạo ra đầu ra mờ hoặc xỉn màu. Sampler: Thuật toán khử nhiễu dần dần. DPM++ 2M Karras là lựa chọn được khuyến nghị nhiều nhất. CFG Scale: Điều khiển mức độ tuân thủ prompt. Giá trị 7-9 phù hợp với hầu hết trường hợp. Extensions: Plugin Python được tải tại runtime. ControlNet và Adetailer là phổ biến nhất. Cài Đặt \u0026 Thiết Lập Yêu Cầu Hệ Thống Thành phần Tối thiểu Khuyến nghị GPU NVIDIA 4GB VRAM NVIDIA RTX 3060 12GB+ RAM 8GB 16GB Lưu trữ 20GB SSD 100GB SSD (cho models) OS Windows 10 / Ubuntu 20.04 Windows 11 / Ubuntu 22.04 Python 3.10.6 3.10.11 Cài Đặt Windows (Tự động) :: Tải sd.webui.zip từ trang releases :: Giải nén tại C:\\stable-diffusion-webui :: Chạy updater trước cd C:\\stable-diffusion-webui update.bat :: KhởI chạy WebUI run.bat Tham số dòng lệnh Windows Chỉnh sửa webui-user.bat: `````batch @echo off\nset PYTHON=python set GIT=git set VENV_DIR=venv set COMMANDLINE_ARGS=–xformers –autolaunch –update-check\n:: Tùy chọn tối ưu VRAM (chọn MỘT): :: set COMMANDLINE_ARGS=–medvram \u0026:: GPU 8GB :: set COMMANDLINE_ARGS=–lowvram \u0026:: GPU 4GB\n:: set COMMANDLINE_ARGS=–normalvram \u0026:: GPU 12GB+\n:: RTX 40-series thêm –xformers để tăng 20-30% tốc độ\ncall webui.bat\n### Cài Đặt Linux (Thủ công) `````bash # Cài dependencies (Ubuntu/Debian) sudo apt update \u0026\u0026 sudo apt install -y wget git python3 python3-venv libgl1 libglib2.0-0 # Clone repository git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git cd stable-diffusion-webui # Tạo môi trường ảo và cài đặt python3 -m venv venv source venv/bin/activate pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 pip install -r requirements.txt # KhởI chạy ./webui.sh --xformers --listen Cài Đặt Docker (Khuyến nghị cho Production) # Dockerfile.stable-diffusion-webui FROM nvidia/cuda:12.1.1-devel-ubuntu22.04 ENV DEBIAN_FRONTEND=noninteractive RUN apt-get update \u0026\u0026 apt-get install -y \\ python3 python3-pip python3-venv git wget \\ libgl1 libglib2.0-0 libsm6 libxext6 \\ \u0026\u0026 rm -rf /var/lib/apt/lists/* RUN useradd -m -s /bin/bash sduser WORKDIR /home/sduser RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git WORKDIR /home/sduser/stable-diffusion-webui RUN python3 -m venv venv \u0026\u0026 \\ . venv/bin/activate \u0026\u0026 \\ pip install --no-cache-dir torch torchvision torchaudio \\ --index-url https://download.pytorch.org/whl/cu121 \u0026\u0026 \\ pip install -r requirements.txt RUN chown -R sduser:sduser /home/sduser USER sduser EXPOSE 7860 ENTRYPOINT [\"bash\", \"-c\", \\\". venv/bin/activate \u0026\u0026 python3 launch.py --listen --api --xformers\"] Build và chạy: `````bash\nBuild image docker build -f Dockerfile.stable-diffusion-webui -t sd-webui:latest .\nChạy với GPU và persistent model docker run -d –name stable-diffusion-webui –gpus all -p 7860:7860 -v $(pwd)/models:/home/sduser/stable-diffusion-webui/models/Stable-diffusion -v $(pwd)/outputs:/home/sduser/stable-diffusion-webui/outputs -v $(pwd)/extensions:/home/sduser/stable-diffusion-webui/extensions -e NVIDIA_VISIBLE_DEVICES=all sd-webui:latest\nDocker Compose: `````yaml # docker-compose.yml version: '3.8\" services: stable-diffusion-webui: build: context: . dockerfile: Dockerfile.stable-diffusion-webui container_name: sd-webui runtime: nvidia ports: - \"7860:7860\" volumes: - ./models:/home/sduser/stable-diffusion-webui/models/Stable-diffusion - ./outputs:/home/sduser/stable-diffusion-webui/outputs - ./extensions:/home/sduser/stable-diffusion-webui/extensions - ./vae:/home/sduser/stable-diffusion-webui/models/VAE environment: - NVIDIA_VISIBLE_DEVICES=all deploy: resources: reservations: devices: - driver: nvidia count: all capabilities: [gpu] restart: unless-stopped Triển khai: `````bash docker-compose up -d\n### Cài Đặt trên Cloud GPU với Hostinger Nếu phần cứng cục bộ không đủ mạnh, [Hostinger VPS](https://www.hostinger.vn/vps-hosting) cung cấp máy chủ ảo với hiệu suất cao phù hợp cho việc chạy Stable Diffusion WebUI. Hostinger có giá cả cạnh tranh và hỗ trợ khách hàng bằng tiếng Việt. `````bash # Trên Hostinger VPS (Ubuntu 22.04) sudo apt update \u0026\u0026 sudo apt install -y git wget # Clone và cấu hình git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git cd stable-diffusion-webui # Cài đặt với CUDA 12 python3 -m venv venv source venv/bin/activate pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121 pip install -r requirements.txt # KhởI chạy python3 launch.py --listen --port 7860 --xformers --gradio-auth admin:matkhau123 Tuyên bố: Liên kết Hostinger là liên kết affiliate. Chúng tôi có thể nhận hoa hồng nếu bạn đăng ký qua các liên kết này —— không phát sinh chi phí thêm cho bạn và giúp hỗ trợ nội dung mã nguồn mở của chúng tôi.\nTích Hợp với ControlNet, LoRA và Công Cụ Phổ Biến Cài Đặt ControlNet ControlNet cho phép tạo ảnh có kiểm soát cấu trúc: Panel mở rộng ControlNet trong tab txt2img của WebUI\n# Cài qua tab Extensions (khuyến nghị) # 1. Mở WebUI → Extensions → Available # 2. Click \"Load from\" # 3. Tìm \"ControlNet\" # 4. Click Install # 5. Restart UI # Hoặc cài thủ công: cd extensions git clone https://github.com/Mikubill/sd-webui-controlnet.git Tải models ControlNet: `````bash\nModels ControlNet cơ bản (SD 1.5) wget -P models/ControlNet/ https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth wget -P models/ControlNet/ https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1p_sd15_depth.pth wget -P models/ControlNet/ https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_canny.pth\nModels ControlNet SDXL wget -P models/ControlNet/ https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/diffusers_xl_canny_mid.safetensors\n### Tích Hợp LoRA `````bash # Tải LoRA vào thư mục models/Lora/ wget -P models/Lora/ \"https://civitai.com/api/download/models/12345\" Sử dụng LoRA trong prompt: ````` lora:add-detail-xl:1.0, masterpiece, best quality, portrait of a warrior lora:epiCRealismHelper:0.6, photorealistic, 8k uhd\nCú pháp: ````````, weight từ 0.0 đến 1.0. ### Cầu Nối ComfyUI `````bash git clone https://github.com/comfyanonymous/ComfyUI.git cd ComfyUI pip install -r requirements.txt # Chia sẻ thư mục models ln -s /path/to/stable-diffusion-webui/models/Stable-diffusion models/checkpoints ln -s /path/to/stable-diffusion-webui/models/Lora models/loras python main.py --port 8188 Danh Sách Extensions Thiết Yếu cd extensions # Adetailer - sửa mặt/tay tự động git clone https://github.com/Bing-su/adetailer.git # Ultimate SD Upscale git clone https://github.com/Coyote-A/ultimate-upscale-for-automatic1111.git # Tiled VAE - giảm VRAM git clone https://github.com/pkuliyi2015/multidiffusion-upscaler-for-automatic1111.git # Tag Autocomplete git clone https://github.com/DominikDoom/a1111-sd-webui-tagcomplete.git # System Info + Benchmark git clone https://github.com/vladmandic/sd-extension-system-info.git Benchmark / Use Case Thực Tế So Sánh Hiệu Suất GPU GPU VRAM SD 1.5 512x512 SDXL 1024x1024 SDXL + ControlNet RTX 4060 Ti 16GB 16 GB ~4.2s ~12.0s ~16.5s RTX 3090 24 GB ~2.4s ~5.6s ~9.2s RTX 4090 24 GB ~1.1s ~3.2s ~4.8s RTX 5090 32 GB ~0.8s ~2.2s ~3.5s VRAM Theo Workflow Workflow VRAM (RTX 4090) Ghi chú txt2img SD 1.5 @ 512x512 ~4.5 GB Chạy được trên mọi GPU hiện đại txt2img SDXL @ 1024x1024 ~8.0 GB Cần 8GB+ VRAM SDXL + 1x ControlNet ~12.5 GB Dùng --medvram cho card 8GB SDXL + Hi-Res Fix 2x ~14.0 GB Khuyến nghị Tiled VAE Tham Số Tối Ưu Bộ Nhớ # GPU 4GB: python3 launch.py --lowvram --precision full --no-half --xformers # GPU 6-8GB: python3 launch.py --medvram --xformers --opt-split-attention # GPU 12GB+: python3 launch.py --xformers --opt-sdp-attention # GPU 24GB: python3 launch.py --xformers --opt-sdp-attention --no-half-vae Sử Dụng Nâng Cao / Tối Ưu Production Tích Hợp API import requests import base64 url = \"http://localhost:7860/sdapi/v1/txt2img\" payload = { \"prompt\": \"masterpiece, best quality, portrait of a cyberpunk samurai\", \"negative_prompt\": \"blurry, low quality, deformed\", \"steps\": 25, \"cfg_scale\": 7.0, \"width\": 1024, \"height\": 1024, \"sampler_name\": \"DPM++ 2M Karras\", \"batch_size\": 1, \"seed\": -1 } response = requests.post(url, json=payload) result = response.json() for i, img_data in enumerate(result[images]): with open(f\"output_{i}.png\", \"wb\") as f: f.write(base64.b64decode(img_data)) Script Xử Lý Hàng Loạt import requests import csv import base64 API_URL = \"http://localhost:7860/sdapi/v1/txt2img\" def generate_image(prompt, filename, width=1024, height=1024): payload = { \"prompt\": prompt, \"negative_prompt\": \"blurry, low quality\", \"steps\": 25, \"cfg_scale\": 7.0, \"width\": width, \"height\": height, \"sampler_name\": \"DPM++ 2M Karras\" } response = requests.post(API_URL, json=payload) result = response.json() with open(filename, \"wb\") as f: f.write(base64.b64decode(result[images][0])) return filename with open(\"prompts.csv\", \"r\") as f: reader = csv.DictReader(f) for i, row in enumerate(reader): generate_image(row[prompt], f\"output_{i:04d}.png\") Bảo Mật Production # 1. Bật xác thực python3 launch.py --listen --gradio-auth admin:matkhau_manh # 2. Nginx reverse proxy + HTTPS server { listen 443 ssl http2; server_name sd.example.com; ssl_certificate /etc/letsencrypt/live/sd.example.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/sd.example.com/privkey.pem; location / { proxy_pass http://127.0.0.1:7860; proxy_http_version 1.1; proxy_set_header Host $host; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \"upgrade\"; } } # 3. Firewall sudo ufw default deny incoming sudo ufw allow ssh sudo ufw allow 443/tcp sudo ufw enable So Sánh với Các Lựa Chọn Khác Tính năng Stable Diffusion WebUI ComfyUI InvokeAI Fooocus Loại UI Tab-based web Node-based graph Web app + canvas Single-page GitHub Stars 159,000+ 75,000+ 25,000+ 42,000+ Hệ sinh thái 1,000+ extensions 1,500+ nodes ~100 nodes Limited Độ khó học Trung bình Cao Trung bình Thấp ControlNet Xuất sắc Rộng rãi Built-in Cơ bản LoRA Đầy đủ Đầy đủ Built-in Cơ bản VRAM tối thiểu (SDXL) 4GB 4GB 6GB 4GB Xử lý hàng loạt Built-in Queue Queue Thủ công API REST đầy đủ REST + WebSocket REST Không Phù hợp cho Đa dụng Power user Nghệ sĩ NgườI mới Hạn Chế / Đánh Giá Trung Thực Stable Diffusion WebUI không phải công cụ phù hợp với mọi trường hợp: 1. VRAM cao hơn đối thủ: Giao diện Gradio thêm ~500MB-1GB VRAM so với ComfyUI.\nKhông phải lựa chọn nhanh nhất: ComfyUI nhanh hơn 10-20% trên cùng phần cứng.\nHỗ trợ Flux hạn chế: Chạy Flux cần fork Forge hoặc cấu hình thủ công.\nXung đột extensions: Với 1,000+ extensions, tình trạng không tương thích là phổ biến.\nKhông lý tưởng cho video: Dù có AnimateDiff, WebUI về cơ bản được thiết kế cho ảnh tĩnh.\nThiết kế single-user: Không có hỗ trợ multi-user tích hợp.\nCâu Hỏi Thường Gặp Cần GPU gì để chạy Stable Diffusion WebUI? GPU NVIDIA tối thiểu 4GB VRAM cho SD 1.5 ở 512x512. SDXL 1024x1024 cần 8GB VRAM thực tế. 12GB VRAM (RTX 3060, RTX 4060 Ti) thoải mái cho SDXL. Chuyên nghiệp với ControlNet khuyến nghị 24GB (RTX 3090/4090).\nCách cập nhật Stable Diffusion WebUI? Chạy git pull trong thư mục cài đặt, sau đó restart. Windows: double-click update.bat. Nếu extensions bị lỗi sau update, xóa thư mục venv để buộc cài lại dependencies.\nCó thể chạy không có GPU NVIDIA không? Có, nhưng hạn chế. GPU AMD hoạt động trên Linux qua ROCm. Apple Silicon Mac chạy qua MPS backend nhưng chậm hơn 3-5 lần. Chế độ CPU-only với --use-cpu all mất 5-10 phút cho một ảnh 512x512.\nTại sao ảnh tạo ra lại đen hoặc xanh lá? Vấn đề half-precision trên một số GPU/driver. Thêm --precision full --no-half. Riêng lỗi NaN ở VAE dùng --no-half-vae.\nCách khắc phục lỗi “CUDA out of memory”? Bật xFormers --xformers (giảm 20-30% VRAM). GPU 8GB dùng --medvram, 4-6GB dùng --lowvram. Cài Tiled VAE. Dùng model FP8/NF4 quantized giảm 50% VRAM.\nExpose WebUI ra internet có an toàn không? Không —— nếu không có bảo mật bổ sung. --listen expose UI không cần auth. Luôn kết hợp --gradio-auth với HTTPS reverse proxy và firewall.\nKết Luận Stable Diffusion WebUI của AUTOMATIC1111 vẫn là điểm khởi đầu thực tế nhất cho việc tạo ảnh AI cục bộ vào 2026. 159,000+ GitHub stars không chỉ là độ phổ biến —— nó đại diện cho hệ sinh thái mở rộng, cơ sở kiến thức và cơ sở hạ tầng hỗ trợ cộng đồng mà không đối thủ nào sánh bằng.\nCác bước hành động:\nXác nhận GPU có 8GB+ VRAM, cài WebUI bằng installer tự động hoặc Docker Cài ControlNet + 4 models cốt lõi Tải 2-3 checkpoint SDXL chất lượng và 5-10 LoRA adapter Cấu hình ````–xformers``` và flag VRAM phù hợp Thiết lập nginx reverse proxy nếu deploy ngoài localhost Thảo luận hoặc nhận trợ giúp trong nhóm Telegram: t.me/dibi8opensource\nTuyên bố: Bài viết chứa liên kết affiliate Hostinger. Chúng tôi có thể nhận hoa hồng khi bạn đăng ký —— không phát sinh chi phí thêm. Mọi đề xuất đều dựa trên thử nghiệm thực tế.\nHosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nNguồn \u0026 Tài Liệu Tham Khảo AUTOMATIC1111/stable-diffusion-webui GitHub Wiki Chính Thức — Cài trên NVIDIA GPU ControlNet Extension ComfyUI InvokeAI Hostinger VPS Civitai — Model \u0026 LoRA Hugging Face { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Stable Diffusion WebUI: 159K+ Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/stable-diffusion-webui\" } } Related Articles stable-diffusion-complete-guide comfyui-workflows-complete-guide comfyui-workflows-complete-guide comfyui-workflows-complete-guide modal-serverless-gpu-compute Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "2398",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/mcp-tools/stable-diffusion-webui/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/mcp-tools/">MCP Tools - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span>&nbsp;|&nbsp;<span>번역:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/vi/mcp-tools/stable-diffusion-webui/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#stable-diffusion-webui-l%c3%a0-g%c3%ac" aria-label="Stable Diffusion WebUI Là Gì?">Stable Diffusion WebUI Là Gì?</a></li>
+            <li>
+                <a href="#stable-diffusion-webui-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="Stable Diffusion WebUI Hoạt Động Như Thế Nào?">Stable Diffusion WebUI Hoạt Động Như Thế Nào?</a></li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp" aria-label="Cài Đặt &amp; Thiết Lập">Cài Đặt &amp; Thiết Lập</a><ul>
+                    
+            <li>
+                <a href="#y%c3%aau-c%e1%ba%a7u-h%e1%bb%87-th%e1%bb%91ng" aria-label="Yêu Cầu Hệ Thống">Yêu Cầu Hệ Thống</a></li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-windows-t%e1%bb%b1-%c4%91%e1%bb%99ng" aria-label="Cài Đặt Windows (Tự động)">Cài Đặt Windows (Tự động)</a></li>
+            <li>
+                <a href="#tham-s%e1%bb%91-d%c3%b2ng-l%e1%bb%87nh-windows" aria-label="Tham số dòng lệnh Windows">Tham số dòng lệnh Windows</a></li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-docker-khuy%e1%ba%bfn-ngh%e1%bb%8b-cho-production" aria-label="Cài Đặt Docker (Khuyến nghị cho Production)">Cài Đặt Docker (Khuyến nghị cho Production)</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#build-image" aria-label="Build image">Build image</a></li>
+            <li>
+                <a href="#ch%e1%ba%a1y-v%e1%bb%9bi-gpu-v%c3%a0-persistent-model" aria-label="Chạy với GPU và persistent model">Chạy với GPU và persistent model</a><ul>
+                    
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-controlnet-lora-v%c3%a0-c%c3%b4ng-c%e1%bb%a5-ph%e1%bb%95-bi%e1%ba%bfn" aria-label="Tích Hợp với ControlNet, LoRA và Công Cụ Phổ Biến">Tích Hợp với ControlNet, LoRA và Công Cụ Phổ Biến</a><ul>
+                    
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-controlnet" aria-label="Cài Đặt ControlNet">Cài Đặt ControlNet</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#models-controlnet-c%c6%a1-b%e1%ba%a3n-sd-15" aria-label="Models ControlNet cơ bản (SD 1.5)">Models ControlNet cơ bản (SD 1.5)</a></li>
+            <li>
+                <a href="#models-controlnet-sdxl" aria-label="Models ControlNet SDXL">Models ControlNet SDXL</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#danh-s%c3%a1ch-extensions-thi%e1%ba%bft-y%e1%ba%bfu" aria-label="Danh Sách Extensions Thiết Yếu">Danh Sách Extensions Thiết Yếu</a></li></ul>
+                
+            <li>
+                <a href="#benchmark--use-case-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Benchmark / Use Case Thực Tế">Benchmark / Use Case Thực Tế</a><ul>
+                    
+            <li>
+                <a href="#so-s%c3%a1nh-hi%e1%bb%87u-su%e1%ba%a5t-gpu" aria-label="So Sánh Hiệu Suất GPU">So Sánh Hiệu Suất GPU</a></li>
+            <li>
+                <a href="#vram-theo-workflow" aria-label="VRAM Theo Workflow">VRAM Theo Workflow</a></li>
+            <li>
+                <a href="#tham-s%e1%bb%91-t%e1%bb%91i-%c6%b0u-b%e1%bb%99-nh%e1%bb%9b" aria-label="Tham Số Tối Ưu Bộ Nhớ">Tham Số Tối Ưu Bộ Nhớ</a></li></ul>
+            </li>
+            <li>
+                <a href="#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao--t%e1%bb%91i-%c6%b0u-production" aria-label="Sử Dụng Nâng Cao / Tối Ưu Production">Sử Dụng Nâng Cao / Tối Ưu Production</a><ul>
+                    
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-api" aria-label="Tích Hợp API">Tích Hợp API</a></li>
+            <li>
+                <a href="#script-x%e1%bb%ad-l%c3%bd-h%c3%a0ng-lo%e1%ba%a1t" aria-label="Script Xử Lý Hàng Loạt">Script Xử Lý Hàng Loạt</a></li>
+            <li>
+                <a href="#b%e1%ba%a3o-m%e1%ba%adt-production" aria-label="Bảo Mật Production">Bảo Mật Production</a></li></ul>
+            </li>
+            <li>
+                <a href="#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-l%e1%bb%b1a-ch%e1%bb%8dn-kh%c3%a1c" aria-label="So Sánh với Các Lựa Chọn Khác">So Sánh với Các Lựa Chọn Khác</a></li>
+            <li>
+                <a href="#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-trung-th%e1%bb%b1c" aria-label="Hạn Chế / Đánh Giá Trung Thực">Hạn Chế / Đánh Giá Trung Thực</a></li>
+            <li>
+                <a href="#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p" aria-label="Câu Hỏi Thường Gặp">Câu Hỏi Thường Gặp</a><ul>
+                    
+            <li>
+                <a href="#c%e1%ba%a7n-gpu-g%c3%ac-%c4%91%e1%bb%83-ch%e1%ba%a1y-stable-diffusion-webui" aria-label="Cần GPU gì để chạy Stable Diffusion WebUI?">Cần GPU gì để chạy Stable Diffusion WebUI?</a></li>
+            <li>
+                <a href="#c%c3%a1ch-c%e1%ba%adp-nh%e1%ba%adt-stable-diffusion-webui" aria-label="Cách cập nhật Stable Diffusion WebUI?">Cách cập nhật Stable Diffusion WebUI?</a></li>
+            <li>
+                <a href="#c%c3%b3-th%e1%bb%83-ch%e1%ba%a1y-kh%c3%b4ng-c%c3%b3-gpu-nvidia-kh%c3%b4ng" aria-label="Có thể chạy không có GPU NVIDIA không?">Có thể chạy không có GPU NVIDIA không?</a></li>
+            <li>
+                <a href="#t%e1%ba%a1i-sao-%e1%ba%a3nh-t%e1%ba%a1o-ra-l%e1%ba%a1i-%c4%91en-ho%e1%ba%b7c-xanh-l%c3%a1" aria-label="Tại sao ảnh tạo ra lại đen hoặc xanh lá?">Tại sao ảnh tạo ra lại đen hoặc xanh lá?</a></li>
+            <li>
+                <a href="#c%c3%a1ch-kh%e1%ba%afc-ph%e1%bb%a5c-l%e1%bb%97i-cuda-out-of-memory" aria-label="Cách khắc phục lỗi &ldquo;CUDA out of memory&rdquo;?">Cách khắc phục lỗi &ldquo;CUDA out of memory&rdquo;?</a></li>
+            <li>
+                <a href="#expose-webui-ra-internet-c%c3%b3-an-to%c3%a0n-kh%c3%b4ng" aria-label="Expose WebUI ra internet có an toàn không?">Expose WebUI ra internet có an toàn không?</a></li></ul>
+            </li>
+            <li>
+                <a href="#k%e1%ba%bft-lu%e1%ba%adn" aria-label="Kết Luận">Kết Luận</a></li>
+            <li>
+                <a href="#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t" aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li>
+            <li>
+                <a href="#ngu%e1%bb%93n--t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o" aria-label="Nguồn &amp; Tài Liệu Tham Khảo">Nguồn &amp; Tài Liệu Tham Khảo</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Ai Tools
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: AGPL-3.0
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;ai-tools&rdquo;]
+tags: [&ldquo;stable-diffusion&rdquo;, &ldquo;automatic1111&rdquo;, &ldquo;tạo-ảnh&rdquo;, &ldquo;ai-webui&rdquo;, &ldquo;controlnet&rdquo;, &ldquo;lora&rdquo;, &ldquo;docker&rdquo;, &ldquo;gpu&rdquo;]
+aliases:</p>
+<ul>
+<li>/vi/posts/stable-diffusion-webui/</li>
+</ul>
+<hr>
+<p>Stable Diffusion WebUI do AUTOMATIC1111 phát triển vẫn là giao diện mã nguồn mở được sử dụng rộng rãi nhất cho việc tạo ảnh AI cục bộ. Với <strong>159,000+ GitHub stars</strong>, nó tích lũy được cộng đồng lớn hơn bất kỳ giao diện cạnh tranh nào. Nếu bạn đang xây dựng pipeline tạo ảnh AI cục bộ, việc hiểu cách cài đặt, cấu hình và mở rộng công cụ này là kỹ năng thiết yếu.</p>
+<p>Hướng dẫn này sẽ đi qua toàn bộ quá trình cài đặt Stable Diffusion WebUI trên Windows, Linux và Docker. Bạn sẽ tìm thấy lệnh thực tế cho từng nền tảng, cấu hình mở rộng cho ControlNet và LoRA, mẹo tối ưu production và benchmark hiệu suất trên GPU phổ thông.</p>
+<p><img alt="Giao diện Stable Diffusion WebUI" loading="lazy" src="https://raw.githubusercontent.com/AUTOMATIC1111/stable-diffusion-webui/master/screenshot.png">
+<em>Giao diện txt2img mặc định của Stable Diffusion WebUI v1.10.1</em></p>
+<h2 id="stable-diffusion-webui-là-gì">Stable Diffusion WebUI Là Gì?<a hidden class="anchor" aria-hidden="true" href="#stable-diffusion-webui-là-gì">#</a></h2>
+<p>Stable Diffusion WebUI là giao diện dựa trên trình duyệt để chạy các mô hình Stable Diffusion cục bộ. Nó bao bọc pipeline suy luận bên dưới trong ứng dụng web dạng tab có thể truy cập tại ```http://localhost:7860````, cung cấp điều khiển cho txt2img, img2img, inpainting, upscaling, model merging và training LoRA/DreamBooth —— tất cả mà không cần viết code.</p>
+<p>Dự án được duy trì bởi AUTOMATIC1111 theo giấy phép AGPL-3.0. Phiên bản v1.10.1 (phát hành đầu 2025) đã cải thiện quá trình tinh chỉnh SDXL, tối ưu quản lý bộ nhớ cho GPU 8GB và thêm hỗ trợ native cho suy luận SD3 Medium. Hệ sinh thái mở rộng bao gồm hơn 1,000 plugin cộng đồng.</p>
+<h2 id="stable-diffusion-webui-hoạt-động-như-thế-nào">Stable Diffusion WebUI Hoạt Động Như Thế Nào?<a hidden class="anchor" aria-hidden="true" href="#stable-diffusion-webui-hoạt-động-như-thế-nào">#</a></h2>
+<p>Kiến trúc theo mẫu Python backend module hóa + Gradio frontend: <img alt="WebUI Architecture Flow" loading="lazy" src="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/images/webui_arch.png">
+<em>Kiến trúc: Gradio frontend giao tiếp với Python backend module qua HTTP cục bộ</em></p>
+<pre tabindex="0"><code>Trình duyệt ngườI dùng (Gradio UI)
+    |
+    v
+Gradio Server (cổng 7860) --- API Endpoints (/sdapi/v1/)
+    |
+    v
+Python Backend (modules/)
+    |-- Model Loader (safetensors/ckpt)
+    |-- Sampling (Euler, DPM++, etc.)
+    |-- VAE Encode/Decode
+    |-- Post-processing (GFPGAN, CodeFormer)
+    |
+    v
+PyTorch + CUDA --- GPU (VRAM: 4-24GB)
+</code></pre><p>Các khái niệm quan trọng cần hiểu trước khi cài đặt: - <strong>Checkpoint</strong>: File mô hình chính (<code>.safetensors</code> hoặc <code>.ckpt</code>) chứa trọng số diffusion đã huấn luyện. Mô hình SD 1.5 khoảng 4GB; SDXL khoảng 6-7GB.</p>
+<ul>
+<li><strong>VAE</strong>: Xử lý bước encode/decode giữa không gian pixel và latent. VAE không khớp sẽ tạo ra đầu ra mờ hoặc xỉn màu.</li>
+<li><strong>Sampler</strong>: Thuật toán khử nhiễu dần dần. DPM++ 2M Karras là lựa chọn được khuyến nghị nhiều nhất.</li>
+<li><strong>CFG Scale</strong>: Điều khiển mức độ tuân thủ prompt. Giá trị 7-9 phù hợp với hầu hết trường hợp.</li>
+<li><strong>Extensions</strong>: Plugin Python được tải tại runtime. ControlNet và Adetailer là phổ biến nhất.</li>
+</ul>
+<h2 id="cài-đặt--thiết-lập">Cài Đặt &amp; Thiết Lập<a hidden class="anchor" aria-hidden="true" href="#cài-đặt--thiết-lập">#</a></h2>
+<h3 id="yêu-cầu-hệ-thống">Yêu Cầu Hệ Thống<a hidden class="anchor" aria-hidden="true" href="#yêu-cầu-hệ-thống">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Thành phần</th>
+					<th>Tối thiểu</th>
+					<th>Khuyến nghị</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>GPU</td>
+					<td>NVIDIA 4GB VRAM</td>
+					<td>NVIDIA RTX 3060 12GB+</td>
+			</tr>
+			<tr>
+					<td>RAM</td>
+					<td>8GB</td>
+					<td>16GB</td>
+			</tr>
+			<tr>
+					<td>Lưu trữ</td>
+					<td>20GB SSD</td>
+					<td>100GB SSD (cho models)</td>
+			</tr>
+			<tr>
+					<td>OS</td>
+					<td>Windows 10 / Ubuntu 20.04</td>
+					<td>Windows 11 / Ubuntu 22.04</td>
+			</tr>
+			<tr>
+					<td>Python</td>
+					<td>3.10.6</td>
+					<td>3.10.11</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="cài-đặt-windows-tự-động">Cài Đặt Windows (Tự động)<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-windows-tự-động">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-batch" data-lang="batch"><span style="display:flex;"><span>:<span style="color:#75715e">: Tải sd.webui.zip từ trang releases</span>
+</span></span><span style="display:flex;"><span>:<span style="color:#75715e">: Giải nén tại C:\stable-diffusion-webui</span>
+</span></span><span style="display:flex;"><span>:<span style="color:#75715e">: Chạy updater trước</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">cd</span> C:\stable-diffusion-webui
+</span></span><span style="display:flex;"><span>update.bat
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>:<span style="color:#75715e">: KhởI chạy WebUI</span>
+</span></span><span style="display:flex;"><span>run.bat
+</span></span></code></pre></div><h3 id="tham-số-dòng-lệnh-windows">Tham số dòng lệnh Windows<a hidden class="anchor" aria-hidden="true" href="#tham-số-dòng-lệnh-windows">#</a></h3>
+<p>Chỉnh sửa <code>webui-user.bat</code>: `````batch
+@echo off</p>
+<p>set PYTHON=python
+set GIT=git
+set VENV_DIR=venv
+set COMMANDLINE_ARGS=&ndash;xformers &ndash;autolaunch &ndash;update-check</p>
+<p>:: Tùy chọn tối ưu VRAM (chọn MỘT): :: set COMMANDLINE_ARGS=&ndash;medvram    &amp;:: GPU 8GB
+:: set COMMANDLINE_ARGS=&ndash;lowvram    &amp;:: GPU 4GB<br>
+:: set COMMANDLINE_ARGS=&ndash;normalvram &amp;:: GPU 12GB+</p>
+<p>:: RTX 40-series thêm &ndash;xformers để tăng 20-30% tốc độ</p>
+<p>call webui.bat</p>
+<pre tabindex="0"><code>
+### Cài Đặt Linux (Thủ công)
+
+`````bash
+# Cài dependencies (Ubuntu/Debian)
+sudo apt update &amp;&amp; sudo apt install -y wget git python3 python3-venv libgl1 libglib2.0-0
+
+# Clone repository
+git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
+cd stable-diffusion-webui
+
+# Tạo môi trường ảo và cài đặt
+python3 -m venv venv
+source venv/bin/activate
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+pip install -r requirements.txt
+
+# KhởI chạy
+./webui.sh --xformers --listen
+</code></pre><h3 id="cài-đặt-docker-khuyến-nghị-cho-production">Cài Đặt Docker (Khuyến nghị cho Production)<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-docker-khuyến-nghị-cho-production">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Dockerfile.stable-diffusion-webui</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">nvidia/cuda:12.1.1-devel-ubuntu22.04</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">ENV</span> DEBIAN_FRONTEND<span style="color:#f92672">=</span>noninteractive
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    python3 python3-pip python3-venv git wget <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    libgl1 libglib2.0-0 libsm6 libxext6 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    <span style="color:#f92672">&amp;&amp;</span> rm -rf /var/lib/apt/lists/*<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> useradd -m -s /bin/bash sduser<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/home/sduser</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/home/sduser/stable-diffusion-webui</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> python3 -m venv venv <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    . venv/bin/activate <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    pip install --no-cache-dir torch torchvision torchaudio <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --index-url https://download.pytorch.org/whl/cu121 <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    pip install -r requirements.txt<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> chown -R sduser:sduser /home/sduser<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">USER</span> <span style="color:#e6db74">sduser</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">EXPOSE</span> <span style="color:#e6db74">7860</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;bash&#34;</span>, <span style="color:#e6db74">&#34;-c&#34;</span>, <span style="color:#960050;background-color:#1e0010">\</span><span style="color:#e6db74">&#34;. venv/bin/activate &amp;&amp; python3 launch.py --listen --api --xformers&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>Build và chạy: `````bash</p>
+<h1 id="build-image">Build image<a hidden class="anchor" aria-hidden="true" href="#build-image">#</a></h1>
+<p>docker build -f Dockerfile.stable-diffusion-webui -t sd-webui:latest .</p>
+<h1 id="chạy-với-gpu-và-persistent-model">Chạy với GPU và persistent model<a hidden class="anchor" aria-hidden="true" href="#chạy-với-gpu-và-persistent-model">#</a></h1>
+<p>docker run -d <br>
+&ndash;name stable-diffusion-webui <br>
+&ndash;gpus all <br>
+-p 7860:7860 <br>
+-v $(pwd)/models:/home/sduser/stable-diffusion-webui/models/Stable-diffusion <br>
+-v $(pwd)/outputs:/home/sduser/stable-diffusion-webui/outputs <br>
+-v $(pwd)/extensions:/home/sduser/stable-diffusion-webui/extensions <br>
+-e NVIDIA_VISIBLE_DEVICES=all <br>
+sd-webui:latest</p>
+<pre tabindex="0"><code>
+Docker Compose: `````yaml
+# docker-compose.yml
+version: &#39;3.8&#34;
+
+services: stable-diffusion-webui: build: context: .
+      dockerfile: Dockerfile.stable-diffusion-webui
+    container_name: sd-webui
+    runtime: nvidia
+    ports: - &#34;7860:7860&#34;
+    volumes: - ./models:/home/sduser/stable-diffusion-webui/models/Stable-diffusion
+      - ./outputs:/home/sduser/stable-diffusion-webui/outputs
+      - ./extensions:/home/sduser/stable-diffusion-webui/extensions
+      - ./vae:/home/sduser/stable-diffusion-webui/models/VAE
+    environment: - NVIDIA_VISIBLE_DEVICES=all
+    deploy: resources: reservations: devices: - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    restart: unless-stopped
+</code></pre><p>Triển khai: `````bash
+docker-compose up -d</p>
+<pre tabindex="0"><code>
+### Cài Đặt trên Cloud GPU với Hostinger
+
+Nếu phần cứng cục bộ không đủ mạnh, [Hostinger VPS](https://www.hostinger.vn/vps-hosting) cung cấp máy chủ ảo với hiệu suất cao phù hợp cho việc chạy Stable Diffusion WebUI. Hostinger có giá cả cạnh tranh và hỗ trợ khách hàng bằng tiếng Việt.
+
+`````bash
+# Trên Hostinger VPS (Ubuntu 22.04)
+sudo apt update &amp;&amp; sudo apt install -y git wget
+
+# Clone và cấu hình
+git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git
+cd stable-diffusion-webui
+
+# Cài đặt với CUDA 12
+python3 -m venv venv
+source venv/bin/activate
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+pip install -r requirements.txt
+
+# KhởI chạy
+python3 launch.py --listen --port 7860 --xformers --gradio-auth admin:matkhau123
+</code></pre><p><em>Tuyên bố: Liên kết Hostinger là liên kết affiliate. Chúng tôi có thể nhận hoa hồng nếu bạn đăng ký qua các liên kết này —— không phát sinh chi phí thêm cho bạn và giúp hỗ trợ nội dung mã nguồn mở của chúng tôi.</em></p>
+<h2 id="tích-hợp-với-controlnet-lora-và-công-cụ-phổ-biến">Tích Hợp với ControlNet, LoRA và Công Cụ Phổ Biến<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-với-controlnet-lora-và-công-cụ-phổ-biến">#</a></h2>
+<h3 id="cài-đặt-controlnet">Cài Đặt ControlNet<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-controlnet">#</a></h3>
+<p>ControlNet cho phép tạo ảnh có kiểm soát cấu trúc: <img alt="Giao diện ControlNet" loading="lazy" src="https://github.com/Mikubill/sd-webui-controlnet/wiki/images/controlnet_ui.png">
+<em>Panel mở rộng ControlNet trong tab txt2img của WebUI</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Cài qua tab Extensions (khuyến nghị)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1. Mở WebUI → Extensions → Available</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Click &#34;Load from&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Tìm &#34;ControlNet&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. Click Install</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 5. Restart UI</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hoặc cài thủ công: cd extensions</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/Mikubill/sd-webui-controlnet.git
+</span></span></code></pre></div><p>Tải models ControlNet: `````bash</p>
+<h1 id="models-controlnet-cơ-bản-sd-15">Models ControlNet cơ bản (SD 1.5)<a hidden class="anchor" aria-hidden="true" href="#models-controlnet-cơ-bản-sd-15">#</a></h1>
+<p>wget -P models/ControlNet/ <a href="https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth">https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_openpose.pth</a>
+wget -P models/ControlNet/ <a href="https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1p_sd15_depth.pth">https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11f1p_sd15_depth.pth</a>
+wget -P models/ControlNet/ <a href="https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_canny.pth">https://huggingface.co/lllyasviel/ControlNet-v1-1/resolve/main/control_v11p_sd15_canny.pth</a></p>
+<h1 id="models-controlnet-sdxl">Models ControlNet SDXL<a hidden class="anchor" aria-hidden="true" href="#models-controlnet-sdxl">#</a></h1>
+<p>wget -P models/ControlNet/ <a href="https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/diffusers_xl_canny_mid.safetensors">https://huggingface.co/lllyasviel/sd_control_collection/resolve/main/diffusers_xl_canny_mid.safetensors</a></p>
+<pre tabindex="0"><code>
+### Tích Hợp LoRA
+
+`````bash
+# Tải LoRA vào thư mục models/Lora/
+wget -P models/Lora/ &#34;https://civitai.com/api/download/models/12345&#34;
+</code></pre><p>Sử dụng LoRA trong prompt: `````
+<a href="#ZgotmplZ">lora:add-detail-xl:1.0</a>, masterpiece, best quality, portrait of a warrior
+<a href="#ZgotmplZ">lora:epiCRealismHelper:0.6</a>, photorealistic, 8k uhd</p>
+<pre tabindex="0"><code>
+Cú pháp: ````&lt;lora:filename:weight&gt;````, weight từ 0.0 đến 1.0.
+
+### Cầu Nối ComfyUI
+
+`````bash
+git clone https://github.com/comfyanonymous/ComfyUI.git
+cd ComfyUI
+pip install -r requirements.txt
+
+# Chia sẻ thư mục models
+ln -s /path/to/stable-diffusion-webui/models/Stable-diffusion models/checkpoints
+ln -s /path/to/stable-diffusion-webui/models/Lora models/loras
+
+python main.py --port 8188
+</code></pre><h3 id="danh-sách-extensions-thiết-yếu">Danh Sách Extensions Thiết Yếu<a hidden class="anchor" aria-hidden="true" href="#danh-sách-extensions-thiết-yếu">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd extensions
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Adetailer - sửa mặt/tay tự động</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/Bing-su/adetailer.git
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ultimate SD Upscale</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/Coyote-A/ultimate-upscale-for-automatic1111.git
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tiled VAE - giảm VRAM</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/pkuliyi2015/multidiffusion-upscaler-for-automatic1111.git
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tag Autocomplete</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/DominikDoom/a1111-sd-webui-tagcomplete.git
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># System Info + Benchmark</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/vladmandic/sd-extension-system-info.git
+</span></span></code></pre></div><h2 id="benchmark--use-case-thực-tế">Benchmark / Use Case Thực Tế<a hidden class="anchor" aria-hidden="true" href="#benchmark--use-case-thực-tế">#</a></h2>
+<h3 id="so-sánh-hiệu-suất-gpu">So Sánh Hiệu Suất GPU<a hidden class="anchor" aria-hidden="true" href="#so-sánh-hiệu-suất-gpu">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>GPU</th>
+					<th>VRAM</th>
+					<th>SD 1.5 512x512</th>
+					<th>SDXL 1024x1024</th>
+					<th>SDXL + ControlNet</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>RTX 4060 Ti 16GB</td>
+					<td>16 GB</td>
+					<td>~4.2s</td>
+					<td>~12.0s</td>
+					<td>~16.5s</td>
+			</tr>
+			<tr>
+					<td>RTX 3090</td>
+					<td>24 GB</td>
+					<td>~2.4s</td>
+					<td>~5.6s</td>
+					<td>~9.2s</td>
+			</tr>
+			<tr>
+					<td>RTX 4090</td>
+					<td>24 GB</td>
+					<td>~1.1s</td>
+					<td>~3.2s</td>
+					<td>~4.8s</td>
+			</tr>
+			<tr>
+					<td>RTX 5090</td>
+					<td>32 GB</td>
+					<td>~0.8s</td>
+					<td>~2.2s</td>
+					<td>~3.5s</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="vram-theo-workflow">VRAM Theo Workflow<a hidden class="anchor" aria-hidden="true" href="#vram-theo-workflow">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Workflow</th>
+					<th>VRAM (RTX 4090)</th>
+					<th>Ghi chú</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>txt2img SD 1.5 @ 512x512</td>
+					<td>~4.5 GB</td>
+					<td>Chạy được trên mọi GPU hiện đại</td>
+			</tr>
+			<tr>
+					<td>txt2img SDXL @ 1024x1024</td>
+					<td>~8.0 GB</td>
+					<td>Cần 8GB+ VRAM</td>
+			</tr>
+			<tr>
+					<td>SDXL + 1x ControlNet</td>
+					<td>~12.5 GB</td>
+					<td>Dùng <code>--medvram</code> cho card 8GB</td>
+			</tr>
+			<tr>
+					<td>SDXL + Hi-Res Fix 2x</td>
+					<td>~14.0 GB</td>
+					<td>Khuyến nghị Tiled VAE</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="tham-số-tối-ưu-bộ-nhớ">Tham Số Tối Ưu Bộ Nhớ<a hidden class="anchor" aria-hidden="true" href="#tham-số-tối-ưu-bộ-nhớ">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># GPU 4GB: python3 launch.py --lowvram --precision full --no-half --xformers</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># GPU 6-8GB: python3 launch.py --medvram --xformers --opt-split-attention</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># GPU 12GB+: python3 launch.py --xformers --opt-sdp-attention</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># GPU 24GB: python3 launch.py --xformers --opt-sdp-attention --no-half-vae</span>
+</span></span></code></pre></div><h2 id="sử-dụng-nâng-cao--tối-ưu-production">Sử Dụng Nâng Cao / Tối Ưu Production<a hidden class="anchor" aria-hidden="true" href="#sử-dụng-nâng-cao--tối-ưu-production">#</a></h2>
+<h3 id="tích-hợp-api">Tích Hợp API<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-api">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> base64
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://localhost:7860/sdapi/v1/txt2img&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>payload <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;prompt&#34;</span>: <span style="color:#e6db74">&#34;masterpiece, best quality, portrait of a cyberpunk samurai&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;negative_prompt&#34;</span>: <span style="color:#e6db74">&#34;blurry, low quality, deformed&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;steps&#34;</span>: <span style="color:#ae81ff">25</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;cfg_scale&#34;</span>: <span style="color:#ae81ff">7.0</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;width&#34;</span>: <span style="color:#ae81ff">1024</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;height&#34;</span>: <span style="color:#ae81ff">1024</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;sampler_name&#34;</span>: <span style="color:#e6db74">&#34;DPM++ 2M Karras&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;batch_size&#34;</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;seed&#34;</span>: <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(url, json<span style="color:#f92672">=</span>payload)
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>json()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i, img_data <span style="color:#f92672">in</span> enumerate(result[images]): <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;output_</span><span style="color:#e6db74">{</span>i<span style="color:#e6db74">}</span><span style="color:#e6db74">.png&#34;</span>, <span style="color:#e6db74">&#34;wb&#34;</span>) <span style="color:#66d9ef">as</span> f: f<span style="color:#f92672">.</span>write(base64<span style="color:#f92672">.</span>b64decode(img_data))
+</span></span></code></pre></div><h3 id="script-xử-lý-hàng-loạt">Script Xử Lý Hàng Loạt<a hidden class="anchor" aria-hidden="true" href="#script-xử-lý-hàng-loạt">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> csv
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> base64
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>API_URL <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://localhost:7860/sdapi/v1/txt2img&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate_image</span>(prompt, filename, width<span style="color:#f92672">=</span><span style="color:#ae81ff">1024</span>, height<span style="color:#f92672">=</span><span style="color:#ae81ff">1024</span>): payload <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;prompt&#34;</span>: prompt,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;negative_prompt&#34;</span>: <span style="color:#e6db74">&#34;blurry, low quality&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;steps&#34;</span>: <span style="color:#ae81ff">25</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;cfg_scale&#34;</span>: <span style="color:#ae81ff">7.0</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;width&#34;</span>: width,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;height&#34;</span>: height,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;sampler_name&#34;</span>: <span style="color:#e6db74">&#34;DPM++ 2M Karras&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(API_URL, json<span style="color:#f92672">=</span>payload)
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>json()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> open(filename, <span style="color:#e6db74">&#34;wb&#34;</span>) <span style="color:#66d9ef">as</span> f: f<span style="color:#f92672">.</span>write(base64<span style="color:#f92672">.</span>b64decode(result[images][<span style="color:#ae81ff">0</span>]))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> filename
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#34;prompts.csv&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>) <span style="color:#66d9ef">as</span> f: reader <span style="color:#f92672">=</span> csv<span style="color:#f92672">.</span>DictReader(f)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i, row <span style="color:#f92672">in</span> enumerate(reader): generate_image(row[prompt], <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;output_</span><span style="color:#e6db74">{</span>i<span style="color:#e6db74">:</span><span style="color:#e6db74">04d</span><span style="color:#e6db74">}</span><span style="color:#e6db74">.png&#34;</span>)
+</span></span></code></pre></div><h3 id="bảo-mật-production">Bảo Mật Production<a hidden class="anchor" aria-hidden="true" href="#bảo-mật-production">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 1. Bật xác thực</span>
+</span></span><span style="display:flex;"><span>python3 launch.py --listen --gradio-auth admin:matkhau_manh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Nginx reverse proxy + HTTPS</span>
+</span></span><span style="display:flex;"><span>server <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    listen <span style="color:#ae81ff">443</span> ssl http2;
+</span></span><span style="display:flex;"><span>    server_name sd.example.com;
+</span></span><span style="display:flex;"><span>    ssl_certificate /etc/letsencrypt/live/sd.example.com/fullchain.pem;
+</span></span><span style="display:flex;"><span>    ssl_certificate_key /etc/letsencrypt/live/sd.example.com/privkey.pem;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    location / <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        proxy_pass http://127.0.0.1:7860;
+</span></span><span style="display:flex;"><span>        proxy_http_version 1.1;
+</span></span><span style="display:flex;"><span>        proxy_set_header Host $host;
+</span></span><span style="display:flex;"><span>        proxy_set_header Upgrade $http_upgrade;
+</span></span><span style="display:flex;"><span>        proxy_set_header Connection <span style="color:#e6db74">&#34;upgrade&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Firewall</span>
+</span></span><span style="display:flex;"><span>sudo ufw default deny incoming
+</span></span><span style="display:flex;"><span>sudo ufw allow ssh
+</span></span><span style="display:flex;"><span>sudo ufw allow 443/tcp
+</span></span><span style="display:flex;"><span>sudo ufw enable
+</span></span></code></pre></div><h2 id="so-sánh-với-các-lựa-chọn-khác">So Sánh với Các Lựa Chọn Khác<a hidden class="anchor" aria-hidden="true" href="#so-sánh-với-các-lựa-chọn-khác">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>Tính năng</th>
+					<th>Stable Diffusion WebUI</th>
+					<th>ComfyUI</th>
+					<th>InvokeAI</th>
+					<th>Fooocus</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Loại UI</strong></td>
+					<td>Tab-based web</td>
+					<td>Node-based graph</td>
+					<td>Web app + canvas</td>
+					<td>Single-page</td>
+			</tr>
+			<tr>
+					<td><strong>GitHub Stars</strong></td>
+					<td>159,000+</td>
+					<td>75,000+</td>
+					<td>25,000+</td>
+					<td>42,000+</td>
+			</tr>
+			<tr>
+					<td><strong>Hệ sinh thái</strong></td>
+					<td>1,000+ extensions</td>
+					<td>1,500+ nodes</td>
+					<td>~100 nodes</td>
+					<td>Limited</td>
+			</tr>
+			<tr>
+					<td><strong>Độ khó học</strong></td>
+					<td>Trung bình</td>
+					<td>Cao</td>
+					<td>Trung bình</td>
+					<td>Thấp</td>
+			</tr>
+			<tr>
+					<td><strong>ControlNet</strong></td>
+					<td>Xuất sắc</td>
+					<td>Rộng rãi</td>
+					<td>Built-in</td>
+					<td>Cơ bản</td>
+			</tr>
+			<tr>
+					<td><strong>LoRA</strong></td>
+					<td>Đầy đủ</td>
+					<td>Đầy đủ</td>
+					<td>Built-in</td>
+					<td>Cơ bản</td>
+			</tr>
+			<tr>
+					<td><strong>VRAM tối thiểu (SDXL)</strong></td>
+					<td>4GB</td>
+					<td>4GB</td>
+					<td>6GB</td>
+					<td>4GB</td>
+			</tr>
+			<tr>
+					<td><strong>Xử lý hàng loạt</strong></td>
+					<td>Built-in</td>
+					<td>Queue</td>
+					<td>Queue</td>
+					<td>Thủ công</td>
+			</tr>
+			<tr>
+					<td><strong>API</strong></td>
+					<td>REST đầy đủ</td>
+					<td>REST + WebSocket</td>
+					<td>REST</td>
+					<td>Không</td>
+			</tr>
+			<tr>
+					<td><strong>Phù hợp cho</strong></td>
+					<td>Đa dụng</td>
+					<td>Power user</td>
+					<td>Nghệ sĩ</td>
+					<td>NgườI mới</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="hạn-chế--đánh-giá-trung-thực">Hạn Chế / Đánh Giá Trung Thực<a hidden class="anchor" aria-hidden="true" href="#hạn-chế--đánh-giá-trung-thực">#</a></h2>
+<p>Stable Diffusion WebUI không phải công cụ phù hợp với mọi trường hợp: 1. <strong>VRAM cao hơn đối thủ</strong>: Giao diện Gradio thêm ~500MB-1GB VRAM so với ComfyUI.</p>
+<ol start="2">
+<li>
+<p><strong>Không phải lựa chọn nhanh nhất</strong>: ComfyUI nhanh hơn 10-20% trên cùng phần cứng.</p>
+</li>
+<li>
+<p><strong>Hỗ trợ Flux hạn chế</strong>: Chạy Flux cần fork Forge hoặc cấu hình thủ công.</p>
+</li>
+<li>
+<p><strong>Xung đột extensions</strong>: Với 1,000+ extensions, tình trạng không tương thích là phổ biến.</p>
+</li>
+<li>
+<p><strong>Không lý tưởng cho video</strong>: Dù có AnimateDiff, WebUI về cơ bản được thiết kế cho ảnh tĩnh.</p>
+</li>
+<li>
+<p><strong>Thiết kế single-user</strong>: Không có hỗ trợ multi-user tích hợp.</p>
+</li>
+</ol>
+<h2 id="câu-hỏi-thường-gặp">Câu Hỏi Thường Gặp<a hidden class="anchor" aria-hidden="true" href="#câu-hỏi-thường-gặp">#</a></h2>
+<h3 id="cần-gpu-gì-để-chạy-stable-diffusion-webui">Cần GPU gì để chạy Stable Diffusion WebUI?<a hidden class="anchor" aria-hidden="true" href="#cần-gpu-gì-để-chạy-stable-diffusion-webui">#</a></h3>
+<p>GPU NVIDIA tối thiểu 4GB VRAM cho SD 1.5 ở 512x512. SDXL 1024x1024 cần 8GB VRAM thực tế. 12GB VRAM (RTX 3060, RTX 4060 Ti) thoải mái cho SDXL. Chuyên nghiệp với ControlNet khuyến nghị 24GB (RTX 3090/4090).</p>
+<h3 id="cách-cập-nhật-stable-diffusion-webui">Cách cập nhật Stable Diffusion WebUI?<a hidden class="anchor" aria-hidden="true" href="#cách-cập-nhật-stable-diffusion-webui">#</a></h3>
+<p>Chạy <code>git pull</code> trong thư mục cài đặt, sau đó restart. Windows: double-click <code>update.bat</code>. Nếu extensions bị lỗi sau update, xóa thư mục <code>venv</code> để buộc cài lại dependencies.</p>
+<h3 id="có-thể-chạy-không-có-gpu-nvidia-không">Có thể chạy không có GPU NVIDIA không?<a hidden class="anchor" aria-hidden="true" href="#có-thể-chạy-không-có-gpu-nvidia-không">#</a></h3>
+<p>Có, nhưng hạn chế. GPU AMD hoạt động trên Linux qua ROCm. Apple Silicon Mac chạy qua MPS backend nhưng chậm hơn 3-5 lần. Chế độ CPU-only với <code>--use-cpu all</code> mất 5-10 phút cho một ảnh 512x512.</p>
+<h3 id="tại-sao-ảnh-tạo-ra-lại-đen-hoặc-xanh-lá">Tại sao ảnh tạo ra lại đen hoặc xanh lá?<a hidden class="anchor" aria-hidden="true" href="#tại-sao-ảnh-tạo-ra-lại-đen-hoặc-xanh-lá">#</a></h3>
+<p>Vấn đề half-precision trên một số GPU/driver. Thêm <code>--precision full --no-half</code>. Riêng lỗi NaN ở VAE dùng <code>--no-half-vae</code>.</p>
+<h3 id="cách-khắc-phục-lỗi-cuda-out-of-memory">Cách khắc phục lỗi &ldquo;CUDA out of memory&rdquo;?<a hidden class="anchor" aria-hidden="true" href="#cách-khắc-phục-lỗi-cuda-out-of-memory">#</a></h3>
+<p>Bật xFormers <code>--xformers</code> (giảm 20-30% VRAM). GPU 8GB dùng <code>--medvram</code>, 4-6GB dùng <code>--lowvram</code>. Cài Tiled VAE. Dùng model FP8/NF4 quantized giảm 50% VRAM.</p>
+<h3 id="expose-webui-ra-internet-có-an-toàn-không">Expose WebUI ra internet có an toàn không?<a hidden class="anchor" aria-hidden="true" href="#expose-webui-ra-internet-có-an-toàn-không">#</a></h3>
+<p>Không —— nếu không có bảo mật bổ sung. <code>--listen</code> expose UI không cần auth. Luôn kết hợp <code>--gradio-auth</code> với HTTPS reverse proxy và firewall.</p>
+<h2 id="kết-luận">Kết Luận<a hidden class="anchor" aria-hidden="true" href="#kết-luận">#</a></h2>
+<p>Stable Diffusion WebUI của AUTOMATIC1111 vẫn là điểm khởi đầu thực tế nhất cho việc tạo ảnh AI cục bộ vào 2026. 159,000+ GitHub stars không chỉ là độ phổ biến —— nó đại diện cho hệ sinh thái mở rộng, cơ sở kiến thức và cơ sở hạ tầng hỗ trợ cộng đồng mà không đối thủ nào sánh bằng.</p>
+<p><strong>Các bước hành động:</strong></p>
+<ol>
+<li>Xác nhận GPU có 8GB+ VRAM, cài WebUI bằng installer tự động hoặc Docker</li>
+<li>Cài ControlNet + 4 models cốt lõi</li>
+<li>Tải 2-3 checkpoint SDXL chất lượng và 5-10 LoRA adapter</li>
+<li>Cấu hình ````&ndash;xformers``` và flag VRAM phù hợp</li>
+<li>Thiết lập nginx reverse proxy nếu deploy ngoài localhost</li>
+</ol>
+<p><strong>Thảo luận hoặc nhận trợ giúp trong nhóm Telegram:</strong> <a href="https://t.me/dibi8opensource">t.me/dibi8opensource</a></p>
+<p><em>Tuyên bố: Bài viết chứa liên kết affiliate Hostinger. Chúng tôi có thể nhận hoa hồng khi bạn đăng ký —— không phát sinh chi phí thêm. Mọi đề xuất đều dựa trên thử nghiệm thực tế.</em></p>
+<h2 id="hosting-và-hạ-tầng-được-đề-xuất">Hosting Và Hạ Tầng Được Đề Xuất<a hidden class="anchor" aria-hidden="true" href="#hosting-và-hạ-tầng-được-đề-xuất">#</a></h2>
+<p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li>
+</ul>
+<p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p>
+<h2 id="nguồn--tài-liệu-tham-khảo">Nguồn &amp; Tài Liệu Tham Khảo<a hidden class="anchor" aria-hidden="true" href="#nguồn--tài-liệu-tham-khảo">#</a></h2>
+<ul>
+<li><a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui">AUTOMATIC1111/stable-diffusion-webui GitHub</a></li>
+<li><a href="https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki/Install-and-Run-on-NVidia-GPUs">Wiki Chính Thức — Cài trên NVIDIA GPU</a></li>
+<li><a href="https://github.com/Mikubill/sd-webui-controlnet">ControlNet Extension</a></li>
+<li><a href="https://github.com/comfyanonymous/ComfyUI">ComfyUI</a></li>
+<li><a href="https://github.com/invoke-ai/InvokeAI">InvokeAI</a></li>
+<li><a href="https://www.hostinger.vn/vps-hosting">Hostinger VPS</a></li>
+<li><a href="https://civitai.com">Civitai — Model &amp; LoRA</a></li>
+<li><a href="https://huggingface.co/models?pipeline_tag=text-to-image">Hugging Face</a></li>
+</ul>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Stable Diffusion WebUI: 159K+ Stars — Hướng Dẫn Cài Đặt Đầy Đủ 2026&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/vi/resources/stable-diffusion-webui%22">https://dibi8.com/vi/resources/stable-diffusion-webui"</a>
+}
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/ko/mcp-tools/stable-diffusion-webui/">stable-diffusion-complete-guide</a></li>
+<li><a href="/ko/mcp-tools/stable-diffusion-webui/">comfyui-workflows-complete-guide</a></li>
+<li><a href="/ko/mcp-tools/stable-diffusion-webui/">comfyui-workflows-complete-guide</a></li>
+<li><a href="/ko/mcp-tools/stable-diffusion-webui/">comfyui-workflows-complete-guide</a></li>
+<li><a href="/ko/mcp-tools/stable-diffusion-webui/">modal-serverless-gpu-compute</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

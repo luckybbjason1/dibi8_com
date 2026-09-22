@@ -132,95 +132,13 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>소개: 데이터 웨어하우스가 페타바이트에 질식할 때 2024년, 싱가포르의 한 중견 핀테크 기업은 Snowflake 청구서가 월 $47,000에 달하는 것을 목격했다 — S3 데이터 레이크에 대한 임시 분석 쿼리 비용만. 12명 엔지니어로 구성된 데이터 팀은 실제 쿼리 작성보다 비용 최적화에 더 많은 시간을 쏟았다. 2025년 3월, 그들은 세 대의 베어 메탈 서버에서 자체 호스팅 Trino 클러스터로 마이그레이션했다. 쿼리 비용은 82% 감소했다. 상위 20개 대시보드의 쿼리 지연 시간은 평균 4.2초에서 1.1초로 개선되었다.
-이것은 고유한 사례가 아니다. 2026년 5월 기준으로 Trino(구 PrestoSQL)는 Netflix, Airbnb, Uber, Lyft, Goldman Sachs의 분석을 지원하고 있다. ```trinodb```` 조직 하에 약 11,000개의 GitHub Star를 보유하고 있으며, 2026년 초에 버전 **464&#43;**가 릴리스되었다. Trino는 기가바이트에서 페타바이트에 이르는 모든 크기의 데이터 소스에 대해 인터랙티브 분석 쿼리를 실행하도록 설계된 분산 SQL 쿼리 엔진이다.
+    <p>title: “Unstructured.io: The Data Preprocessing Pipeline Convert… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Data Science source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“data-science”] tags: [“unstructured”, “document-parsing”, “llm”, “rag”, “data-preprocessing”, “pdf”, “chunking”, “open-source”] aliases:
+/posts/unstructured-data-preprocessing-llm/- Introduction: The Dirty Secret Behind Every RAG Pipeline Your Retrieval-Augmented Generation (RAG) pipeline is only as good as the data you feed it. You can have the best embedding model, the most expensive vector database, and a state-of-the-art LLM — but if your source documents are raw PDFs with broken tables, scanned images with garbled OCR, or PowerPoint slides with invisible text boxes, your retrieval accuracy will suffer.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/trino-distributed-sql-query/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Tool Guide
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>
-소개 프로덕션에 배포되는 모든 컨테이너 이미지는 잠재적인 공격 표면입니다. Trivy는 컨테이너 이미지, 파일시스템, Kubernetes 클러스터 및 인프라스트럭처-어스-코드(IaC)에서 취약점, 오설정, 시크릿, 라이선스 문제를 스캔합니다. 60만 개 이상의 CVE를 데이터베이스에 보유하고 있으며 20개 이상의 패키지 포맷을 지원하여, 클라우드 네이티브 생태계에서 가장 널리 채택된 오픈소스 보안 스캐닝 도구 중 하나가 되었습니다.
-Trivy란? Trivy(일본어로 “맑은 눈”, “맑은 눈, 가득한 마음, 패하지 않는다&#34;는 말에서 유래)는 Aqua Security에서 제공하는 포괄적인 보안 스캐너로, 전체 소프트웨어 공급망을 커버합니다. 단순히 CVE 데이터베이스만 확인하는 기존 스캐너와 달리 Trivy는 오설정된 파일, 노출된 시크릿, 소프트웨어 라이선스도 탐지하여 애플리케이션 보안 팀을 위한 원스톱 솔루션이 됩니다.
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/trivy-production-security-scanner-2026/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Tool Guide
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>
-소개 RAG 애플리케이션은 추론 시간의 대부분을 벡터 검색이 결과를 반환하기를 기다리는 데 소비합니다. TurboVec은 Rust 레벨의 성능과 Python 편의성을 결합하여 TurboQuant라는 새로운 양자화 기술을 통해 최대 10 배 빠른 벡터 검색을 제공합니다. 10,500 개 이상의 GitHub stars 와 LangChain, LlamaIndex, Haystack, Agno 에 대한 드롭인 대체품을 갖추고 있어, 500ms 쿼리 지연 시간을 받아들이기를 거부하는 팀에게 기본 벡터 스토어가 되고 있습니다. 이 라이브러리는 적극적으로 유지 관리되고 있으며, 프로덕션 배포에서의 커뮤니티 피드백을 바탕으로 프레임워크 통합, 새로운 양자화 모드 및 성능 개선을 추가하는 정기적인 릴리스를 제공합니다.
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/turbovec-rust-vector-index-2026/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Tool Guide
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Introduction 새로운 코드베이스를 클론합니다. 200개의 파일에 걸쳐 50,000줄의 코드가 있습니다. VS Code를 열고 파일 트리를 바라봅니다. 어디서부터 시작해야 할까요?
-대부분의 개발자들은 먼저 ```grep을 사용합니다. 그 다음은 ripgrep````을 사용합니다. 그런 다음 가장 많이 참조되는 10개의 파일을 열고 아키텍처를 머릿속으로 맞춰보려고 합니다. 작은 프로젝트에는 효과가 있습니다. 하지만 규모가 있는 프로젝트에서는 매우 힘듭니다.
-Understand-Anything는 근본적으로 다른 일을 합니다. 그것은 모든 코드베이스를 대화형 지식 그래프로 변환합니다 — 파일, 클래스, 함수에 대한 노드; 의존성과 관계에 대한 엣지. 당신은 코드에 대해 탐색하고, 검색하고, 질문할 수 있습니다. 정규표현식으로가 아니라, 자연어로.
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/understand-anything-interactive-knowledge-graphs-codebases/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Tool Guide
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-21T00:00:00&#43;08:00 lastmod: 2026-05-21T00:00:00&#43;08:00 tech_stack: [Python, PyTorch, CUDA, Triton] application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-21” draft: false categories: [“llm-frameworks”] tags: [“unsloth”, “파인튜닝”, “lora”, “qlora”, “grpo”, “빠른 훈련”] aliases:
-/posts/unsloth-fast-llm-fine-tuning-2026/ Axolotl이 프로덕션 멀티 GPU 파인튜닝 프레임워크라면, Unsloth는 단일 GPU 속도 왕. PyTorch의 일반 autograd 대신 커스텀 Triton &#43; Python으로 LLM 훈련 커널 재작성으로, Unsloth는 HuggingFace TRL 베이스라인보다 모델 2× 빠르게 파인튜닝 70% 적은 VRAM으로.
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/unsloth-fast-llm-fine-tuning-2026/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Tool Guide
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Data Science source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“data-science”] tags: [“unstructured”, “문서파싱”, “llm”, “rag”, “데이터전처리”, “pdf”, “청킹”, “오픈소스”] aliases:
-/kr/posts/unstructured-data-preprocessing-llm/ 소개: 모든 RAG 파이프라인 뒤에 숨겨진 고통 Retrieval-Augmented Generation(RAG) 파이프라인의 품질은 입력 데이터의 품질에 전적으로 달려 있습니다. 최고의 임베딩 모델, 가장 비싼 벡터 데이터베이스, 최신 LLM을 가지고 있어도 — 소스 문서가 망가진 테이블이 있는 원시 PDF, OCR이 엉망인 스캔 이미지, 또는 보이지 않는 텍스트 상자가 있는 PowerPoint 슬라이드라면 검색 정확도는 떨어질 수밖에 없습니다.
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>15 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/unstructured-data-preprocessing-llm/"></a>
 </article>
 
@@ -230,13 +148,12 @@ Understand-Anything는 근본적으로 다른 일을 합니다. 그것은 모든
     </h2>
   </header>
   <div class="entry-content">
-    <p>데이터베이스와 자연어를 사용하여 상호작용하는 능력은 오랫동안 데이터 분석의 성배로 여겨져 왔습니다. 매일 무수한 시간이 비즈니스 질문을 SQL 쿼리로 번역하는 데 낭비됩니다 — 이 과정은 데이터베이스 스키마, 테이블 관계 및 SQL 구문에 대한 깊은 지식을 요구합니다. 2026년, 이 병목 현상은 Vanna AI 덕분에 빠르게 사라지고 있습니다. Vanna AI는 데이터베이스 스키마에서 학습하여 평범한 영어로 90% 이상의 정확도로 프로덕션 수준의 SQL을 생성하는 오픈소스 Python 라이브러리입니다.
-18,000개 이상의 GitHub 스타와 MIT 라이선스를 보유한 Vanna AI는 정확성과 데이터 프라이버시를 모두 요구하는 팀을 위한 선도적인 Text-to-SQL 솔루션으로 부상했습니다. SQL 생성을 또 다른 번역 작업으로 취급하는 범용 LLM 접근 방식과 달리, Vanna는 데이터베이스 쿼리를 위해 특별히 설계된 검색 증강 생성(RAG) 아키텍처를 사용합니다. 스키마를 학습하고, 비즈니스 로직을 이해하며, 실제로 실행되는 SQL을 생성합니다 — 검증되고, 최적화되며, 프로덕션에 바로 사용할 준비가 되어 있습니다.
+    <p>The ability to interact with databases using natural language has long been the holy grail of data analytics. Every day, countless hours are lost translating business questions into SQL queries — a process that requires deep knowledge of database schemas, table relationships, and SQL syntax. In 2026, this bottleneck is rapidly dissolving thanks to Vanna AI, an open-source Python library that trains on your database schema and generates production-ready SQL from plain English with over 90% accuracy.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>15 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/vanna-ai-sql-generation/"></a>
 </article>
 
@@ -246,13 +163,13 @@ Understand-Anything는 근본적으로 다른 일을 합니다. 그것은 모든
     </h2>
   </header>
   <div class="entry-content">
-    <p>Introduction: 대부분의 RAG 시스템이 프로덕션에서 실패하는 이유 데모는 봤다: 문서를 검색해 질문에 답하는 챗봇. 50개 PDF 토이 데이터셋에서는 잘 작동한다. 그런데 12개 언어의 50,000개 문서에 배포하면 모든 것이 물거품이 된다. 답변이 모호해지고, 출처가 틀리며, 할루시네이션이 스며들고, 지연이 감당할 수 없는 수준으로 치솟는다.
-이것이 RAG 프로덕션 절벽이다. Stanford HAI의 2025년 연구에서 엔터프라이즈 RAG 프로토타입의 78%가 10,000개 문서 이상으로 확장하면 정확도가 70% 아래로 떨어진다고 밝혔다. 원인은 익숙하다: 부실한 청킹 전략, 약한 임베딩 모델, 재순위화 부재, 할루시네이션 감지 없음, 거버넌스 부재.
+    <p>title: “Vectara 2026: The RAG-as-a-Service Platform with 90%&#43; An… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Data Science source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“data-science”] tags: [“vectara”, “rag”, “vector search”, “llm”, “embedding”, “boomerang”, “hhem”, “hallucination detection”, “enterprise ai”] aliases:
+/posts/vectara-rag-as-service-platform/- Introduction: Why Most RAG Systems Fail in Production You have seen the demo: a chatbot that answers questions by searching your documents. It works on a toy dataset of 50 PDFs. Then you deploy it on 50,000 documents across 12 languages, and everything falls apart. Answers become vague, sources are wrong, hallucinations creep in, and latency spikes to unacceptable levels.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>15 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/vectara-rag-as-service-platform/"></a>
 </article>
 
@@ -262,14 +179,14 @@ Understand-Anything는 근본적으로 다른 일을 합니다. 그것은 모든
     </h2>
   </header>
   <div class="entry-content">
-    <p>벡터 데이터베이스 비교 2025: Pinecone vs Weaviate vs Chroma vs Milvus {&lt;/* resource-info */&gt;}
-LLM 기반 애플리케이션에서 RAG(검색 증강 생성)는 필수 아키텍처로 자리 잡았습니다. RAG의 핵심인 벡터 데이터베이스 선택은 전체 시스템의 성능과 비용을 좌우합니다. 이 글에서는 2025년 현재 가장 인기 있는 4개 벡터 데이터베이스를 심층 비교합니다.
-벡터 데이터베이스란 왜 필요한가? 벡터 임베딩 개념 텍스트, 이미지, 오디오 등의 데이터를 고차원 숫자 배열(벡터)로 변환하는 과정을 임베딩이라 합니다. 예를 들어 “사과&#34;라는 단어는 768차원의 실수 배열로 표현됩니다. 이런 벡터는 의미적 유사성을 공간적 거리로 계산할 수 있게 해줍니다.
+    <p>{&lt;/* resource-info */&gt;}
+Choosing the right vector database is one of the most consequential decisions when building RAG applications, recommendation engines, or semantic search systems. The wrong choice leads to scaling bottlenecks, runaway costs, or integration headaches that surface months into a project.
+In 2025, four vector databases dominate the conversation: Pinecone, Weaviate, Chroma, and Milvus. Each serves different use cases, from rapid prototyping to billion-scale enterprise deployments. This guide compares them head-to-head across performance, pricing, deployment options, and ecosystem maturity.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>16 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/vector-database-comparison/"></a>
 </article>
 
@@ -279,14 +196,95 @@ LLM 기반 애플리케이션에서 RAG(검색 증강 생성)는 필수 아키�
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-25T00:00:00&#43;08:00 lastmod: 2026-05-25T00:00:00&#43;08:00 tech_stack: [Qdrant, Weaviate, Milvus, ‘Vector Search’, Embeddings] application_domain: LLM Frameworks source_version: “Qdrant 1.12 / Weaviate 1.27 / Milvus 2.5” licensing_model: Open Source license_type: ‘Apache-2.0’ last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“vector-database”, “qdrant”, “weaviate”, “milvus”, “rag”, “2026”] aliases:
-/kr/posts/vector-db-2026-qdrant-weaviate-milvus/ faq: - q: “2026년에 가장 좋은 벡터 DB는?” a: “개인 또는 소규모 팀 RAG에는 Qdrant(가장 단순하고 단일 노드에서 가장 빠름). 하이브리드 검색(벡터 &#43; 키워드 &#43; 필터)이 필요한 프로덕션에는 Weaviate. 십억 단위 워크로드에는 Milvus(수평 확장 최강). 2026년 기준 세 가지 모두 안정적입니다.” q: “언제 벡터 DB 대신 SQLite FTS5를 써야 하나요?” a: “문서 1만 개 이하에서는 SQLite 전체 텍스트 검색(FTS5)이 관련성 면에서 벡터 DB를 능가하는 경우가 많고 운영 복잡도가 10배 단순합니다. 문서가 5만 개를 넘거나 키워드가 아닌 의미적 유사성이 중요할 때만 벡터 DB의 복잡도가 정당화됩니다.” q: “pgvector는 어떤가요? Postgres만으로 충분할까요?” a: “이미 Postgres를 쓰고 있고 벡터 100만 개 이하라면 pgvector가 훌륭한 선택입니다. 그 이상에서는 성능이 떨어집니다. 신규 프로젝트거나 벡터 100만 개를 넘는다면 전용 벡터 DB가 유리합니다.” q: “하드웨어는 얼마나 필요한가요?” a: “100만 벡터 @ 768 차원: 약 3GB 메모리. 1000만 벡터: 약 30GB. 대부분의 프로덕션 워크로드는 32GB VM 한 대에서 충분히 돌아갑니다. 1억 벡터를 넘으면 샤딩 배포를 계획해야 합니다.” 2026 벡터 DB 선택 가이드: Qdrant vs Weaviate vs Milvus Meta Description: 500만 벡터로 세 가지를 모두 실측. 레이턴시, 처리량, 메모리, 설치 난이도. 언제 벡터 DB를 건너뛰고 SQLite FTS5를 써야 할지.
+    <p>title: “Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus (… description: “Technical guide and comparison.” date: 2026-05-25T00:00:00&#43;08:00 lastmod: 2026-05-25T00:00:00&#43;08:00 tech_stack: [Qdrant, Weaviate, Milvus, ‘Vector Search’, Embeddings] application_domain: LLM Frameworks source_version: “Qdrant 1.12 / Weaviate 1.27 / Milvus 2.5” licensing_model: Open Source license_type: ‘Apache-2.0’ last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“vector-database”, “qdrant”, “weaviate”, “milvus”, “rag”, “2026”] aliases:
+/posts/vector-db-2026-qdrant-weaviate-milvus/ faq: - q: “Which vector DB is best in 2026?” a: “Qdrant for solo / small team RAG (simplest, fastest single-node). Weaviate for production with hybrid search (vector &#43; keyword &#43; filters). Milvus for billion-scale workloads (best horizontal scaling). All three are solid in 2026.” q: “When should I skip vector DB and use SQLite FTS5?” a: “Under ~10K documents: SQLite full-text search (FTS5) often outperforms vector DB on relevance &#43; is 10x simpler ops. Vector DB justifies its complexity above ~50K documents or when semantic similarity (not keyword) matters.” q: “What about pgvector? Is Postgres enough?” a: “pgvector is great for ‘we already have Postgres’ situations up to ~1M vectors. Performance degrades above that. For new projects or &gt; 1M vectors, dedicated vector DB wins.” q: “How much hardware do I need?” a: “1M vectors @ 768 dimensions: ~3GB memory. 10M vectors: ~30GB. Most production workloads run comfortably on a single 32GB VM. Above 100M vectors, plan for sharded deployment.” Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus Meta Description: Tested all three on 5M vectors. Latency, throughput, memory, setup pain. When to skip vector DB for SQLite FTS5.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/vector-db-2026-qdrant-weaviate-milvus/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>TL;DR Vercel AI SDK is the most popular open-source framework for building AI-powered user interfaces in 2026, supporting 30k&#43; stars on GitHub. This comprehensive guide covers installation, streaming responses, tool calling, provider integration, and production deployment patterns for building chat interfaces, AI assistants, and generative UI applications.
+What Is Vercel AI SDK? Vercel AI SDK is a TypeScript library that provides a unified API for integrating large language models into web applications. It supports both server-side and client-side rendering, making it compatible with React Server Components, Next.js, SvelteKit, SolidStart, and Nuxt. The SDK handles streaming, error handling, and provider abstraction so you can switch between OpenAI, Anthropic, Google Gemini, and other providers without changing your application code.
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>5 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/vector-db-2026-qdrant-weaviate-milvus/"></a>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/vercel-ai-sdk-complete-guide/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>What Is Vercel AI SDK? Vercel AI SDK is an open-source library that abstracts the complexity of building AI applications. At its core, it provides three main capabilities: 1. Provider-agnostic API: Write code once, deploy to any LLM provider 2. Streaming-first architecture: Responses stream token-by-token to the frontend 3. Framework integration: Native support for React, Next.js, Vue, Svelte, and SolidJS
+Why Edge-First Matters for AI Apps Traditional AI apps follow this pattern: ```` User → Web Server → API Route → LLM Provider → Response
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/vercel-ai-sdk-edge-compute/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “Vibe Coding 2026: The Korean Developer Concept Explained… description: “Technical guide and comparison.” date: 2026-05-25T00:00:00&#43;08:00 lastmod: 2026-05-25T00:00:00&#43;08:00 tech_stack: [‘Claude Code’, Cursor, ‘AI-driven development’, ‘Natural language programming’] application_domain: Dev Utils source_version: “2026 Q2” licensing_model: Mixed license_type: ‘N/A (workflow)’ last_maintained: “2026-05-25” draft: false categories: [“dev-utils”] tags: [“vibe-coding”, “ai-coding”, “korea”, “workflow”, “2026”] aliases:
+/posts/vibe-coding-2026-korean-concept-explained/ faq: - q: “What is ‘vibe coding’?” a: “Korean developer term (바이브 코딩) for AI-first programming workflows where you describe what you want in natural language and AI generates the implementation. Coined ~2025 in Korean fintech (Toss, Kakao). Now spreading globally as a name for the approach Andrej Karpathy described in early 2025.” q: “How is it different from ‘just using AI coding tools’?” a: “Same tools, different mindset. Vibe coding emphasizes designing in natural language first (specs/intent), letting AI handle syntax/implementation. Traditional AI coding still treats AI as a typing accelerator. Vibe coding treats the AI as the implementor, with the human as the architect.” q: “Is vibe coding actually productive or is it just hype?” a: “Productive at certain task types: prototyping, scripting, glue code, configuration. Less productive for: novel algorithms, performance-critical code, complex architecture decisions. The Korean fintech adoption is real but selective — they vibe-code internal tools, not core payment infrastructure.” q: “Do I need to learn Korean to vibe code?” a: “No. The workflow is language-agnostic — you describe intent in whatever natural language you speak. The term originated in Korea but the practice works globally. English-speaking developers have been doing this since Cursor and Claude Code came out, just without a name.” Vibe Coding 2026: The Korean Concept Explained for the Rest of Us Meta Description: 바이브 코딩 is the Korean developer term for natural-language-first programming. Toss and Kakao engineers use it. What it means, the workflow, why it matters.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/vibe-coding-2026-korean-concept-explained/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Ai Tools source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“lip-sync”, “video-editing”, “talking-head”, “deepfake”, “ffmpeg”, “pytorch”, “gradio”, “ai-video”] aliases:
+/posts/video-retalking/- Introduction Dubbing a video in another language while keeping the lip movements synchronized has been a post-production nightmare for years. Manual frame-by-frame adjustments take hours per minute of footage, and the results rarely look natural. In 2022, researchers from Xidian University and Tencent AI Lab published VideoReTalking at SIGGRAPH Asia — a system that automates this by editing the lower face region of existing talking-head videos to match any input audio. With 7,200&#43; GitHub stars and a fully open-source Apache-2.0 license, it remains one of the most practical self-hosted lip-sync solutions available in 2026. This guide walks through a complete VideoReTalking tutorial: installation, inference, Gradio UI setup, TTS integration, and production deployment.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/video-retalking/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-23T00:00:00&#43;08:00 lastmod: 2026-05-23T00:00:00&#43;08:00 tech_stack: [] application_domain: AI Tools source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-20” draft: false categories: [“ai-tools”] tags: [“vimax”, “agentic-video”, “ai-video-generation”, “hkuds”, “multi-agent”, “veo”, “long-form-video”, “video-ai”, “open-source-video”, “rag-screenwriting”] aliases:
+/zh/posts/vimax-agentic-video-generation-multi-agent-2026/- 2025 年压垮 AI 视频的三道天花板 2024–2025 年间所有冲进消费者视野的 AI 视频生成工具——Sora、Runway Gen-3、Pika、Luma Dream Machine、OpenSora——共享三道同样的天花板：
+只能出短片。 5–10 秒是实际上限。再长一点，一致性就崩。 一致性灾难。 同一个角色换个镜头脸就变；同一个房间道具来回重排。单 prompt 流水线根本没有&#34;这是场景 1 里那只狗&#34;这种概念。 只有画面。 没有剧本、没有叙事弧线、没有同步音轨。你拿到的是会动的好看图片，不是一部片子。 做短视频片段，这些限制还能忍。一旦想用 AI 真的讲个故事——讲解视频、教育内容、品牌叙事——只要用户希望场景 2 在逻辑上接着场景 1，整条流水线就当场断掉。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>4 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/vimax-agentic-video-generation-multi-agent-2026/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
@@ -317,6 +315,81 @@ LLM 기반 애플리케이션에서 RAG(검색 증강 생성)는 필수 아키�
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

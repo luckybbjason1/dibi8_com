@@ -134,58 +134,12 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>NVIDIA Cosmos: 물리적 AI를 위한 오픈소스 월드 모델 (1만 스타) # NVIDIA Cosmos: 물리적 AI를 위한 오픈 소스 세계 모델(별 10,000개) 물리 방정식을 시뮬레이션하는 것이 아니라 세계 자체로부터 학습하여 물리적 세계가 어떻게 작동하는지 예측할 수 있다면 어떨까요? NVIDIA Cosmos는 바로 물리적 세계를 이해하고 생성하도록 훈련된 세계 모델의 오픈 소스 플랫폼입니다. 로봇이 움직이는 이미지를 생성할 뿐만 아니라 해당 동작의 물리학, 타이밍, 원인과 결과를 예측합니다. Cosmos 3는 언어, 이미지, 비디오, 오디오 및 액션 시퀀스를 동시에 처리하는 통합 MoT(Mixture-of-Transformers) 아키텍처를 기반으로 구축된 NVIDIA의 최신 모델 제품군입니다. 두 가지 런타임: Reasoner(세계 이해 및 계획용) 및 Generator(세계 시뮬레이션 및 합성 데이터 생성용). 모델 범위는 16B(Nano)부터 64B(Super) 매개변수까지이며 HuggingFace에서 사용할 수 있습니다. 이는 로봇, 자율주행차, 스마트 인프라 등 차세대 물리적 AI를 위한 인프라입니다. ## 엔비디아 코스모스란 무엇인가요? NVIDIA Cosmos는 물리적 AI 시스템 구축을 위해 설계된 세계 모델, 데이터 세트 및 도구로 구성된 개방형 플랫폼입니다. 이는 전통적인 AI가 할 수 있는 것 이상입니다. ````` 전통적인 AI: 코스모스: 입력 → 출력 → 입력 → 추론 → 출력 (이미지 입력, (물리학을 이해하고, 캡션 아웃) 미래를 예측하고, 작업 생성)
+    <p>Odysseus: Self-Hosted AI Workspace with 10&#43; Built-in Tools — 65,000 Stars — Full Setup Guide 2026 ┌──────────────────────────────────────────────────┐ │ Odysseus Architecture │ │ │ │ ┌─────────┐ ┌──────────┐ ┌─────────────────┐ │ │ │ Chat │ │ Agent │ │ Cookbook │ │ │ │ (API) │ │ (Tools) │ │ (Model Server)│ │ │ └────┬────┘ └────┬─────┘ └────────┬────────┘ │ │ │ │ │ │ │ ▼ ▼ ▼ │ │ ┌───────────────────────────────────────────────┐ │ │ │ Python Backend (FastAPI) │ │ │ │ ChromaDB │ SearXNG │ ntfy │ .env config │ │ │ └───────────────────────────────────────────────┘ │ │ │ │ │ │ │ ▼ ▼ ▼ │ │ ┌───────────────────────────────────────────────┐ │ │ Docker Compose Stack │ │ │ ┌────────┐ ┌──────────┐ ┌────────┐ ┌─────────┐ │ │ │ Odysseus│ │ChromaDB │ │SearXNG │ │ ntfy │ │ │ └────────┘ └──────────┘ └────────┘ └─────────┘ │ │ │ │ ┌───────────────────────────────────────────────┐ │ │ │ Frontend: Responsive Web UI (PWA) │ │ │ └───────────────────────────────────────────────┘ │ └──────────────────────────────────────────────────┘ Odysseus is a self-hosted AI workspace that brings together 10&#43; integrated tools into a single, privacy-first interface. Created by the developer known as pewdiepie-archdaemon, it has already surpassed 65,000 GitHub stars since its creation on May 31, 2026 — one of the fastest-growing AI projects in GitHub history.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>4 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/nvidia-cosmos-world-models-platform-2026/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Tool Guide
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Obscura：給 AI 代理的 Rust 無頭瀏覽器 — 14,000 顆星 — 30MB 記憶體、85ms 載入 — 2026 安裝指南 ┌───────────────────────────────────────────────────┐ │ Obscura Architecture │ │ │ │ ┌─────────────────────────────────────────────┐ │ │ │ CLI / Server Interface │ │ │ │ fetch │ serve │ scrape │ eval │ dump │ │ │ └──────────────────────┬──────────────────────┘ │ │ │ │ │ ┌──────────────┼──────────────┐ │ │ ▼ ▼ ▼ │ │ ┌────────────┐ ┌────────────┐ ┌──────────┐ │ │ │ fetch() │ │ serve() │ │ scrape() │ │ │ │ Single page │ │ CDP server │ │ Parallel │ │ │ └─────┬──────┘ └─────┬──────┘ └────┬─────┘ │ │ │ │ │ │ │ ▼ ▼ ▼ │ │ ┌─────────────────────────────────────────────┐ │ │ │ Rust Core Engine │ │ │ │ • V8 JavaScript engine │ │ │ │ • Chrome DevTools Protocol (CDP) │ │ │ │ • Stealth mode (anti-detection) │ │ │ │ • Tracker blocking │ │ │ └─────────────────────────────────────────────┘ │ │ │ │ ┌─────────────────────────────────────────────┐ │ │ │ Drop-in replacement for Chrome │ │ │ │ ✅ Puppeteer ✅ Playwright │ │ │ └─────────────────────────────────────────────┘ │ └───────────────────────────────────────────────────┘ Obscura 是一款以 Rust 編寫的無頭瀏覽器引擎，專門為網頁爬蟲和 AI 代理自動化而設計。僅需 30MB 記憶體使用和 85ms 頁面載入時間，它在效能上大幅超越無頭 Chrome，同時提供內建的反偵測功能。
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/obscura-rust-headless-browser-ai-agents-web-scraping/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Tool Guide
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-09T00:00:00&#43;08:00 lastmod: 2026-06-09T00:00:00&#43;08:00 tech_stack: [] application_domain: AI Tools source_version: “1.0” licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: “https://github.com/pewdiepie-archdaemon/odysseus&#34; backup_url: ’&#39; last_maintained: “2026-06-08” draft: false categories: [“ai-tools”] tags: [“odysseus”, “셀프호스팅 ai”, “ai 워크스페이스”, “로컬 llm”, “프라이버시”, “docker”, “오픈소스”, “chatgpt 대안”, “ollama”, “딥 리서치”] aliases:
-/kr/posts/odysseus-self-hosted-ai-workspace-2026/ faqs: - q: ‘Odysseus를 실행하려면 GPU가 필요한가요?’ a: ‘아니요. Odysseus 자체는 매우 가볍습니다. GPU는 Cookbook 기능으로 로컬 모델을 실행할 때만 필요합니다. OpenAI, Anthropic, OpenRouter 같은 원격 API나 별도 Ollama 인스턴스에 연결하면 로컬 GPU 없이도 모든 기능을 사용할 수 있습니다.’ q: ‘Odysseus와 Open WebUI의 차이점은 무엇인가요?’ a: ‘Open WebUI는 채팅과 Ollama 기반 RAG에 집중합니다. Odysseus는 여기에 MCP 도구 호출을 지원하는 AI 에이전트, 시각적 보고서를 생성하는 딥 리서치, AI 기반 이메일 클라이언트, CalDAV 캘린더, 알림 기능이 있는 메모, 그리고 VRAM을 자동 감지해 호환 모델을 추천하는 Cookbook을 추가합니다. 단순한 Ollama 프론트엔드라기보다는 셀프호스팅 ChatGPT Plus에 가깝습니다.’ q: ‘Odysseus가 지원하는 LLM 백엔드는 무엇인가요?’ a: ‘기본 지원: vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot. 설정에서 서버 URL과 API 키를 입력하면 바로 연결됩니다. Cookbook 기능은 감지된 VRAM에 맞는 GGUF, FP8, AWQ 모델을 자동으로 설치하고 실행합니다.’ q: ‘Odysseus를 인터넷에 공개해도 안전한가요?’ a: ‘기본 Docker Compose는 127.0.0.1에만 바인딩합니다. LAN 접근을 위해서는 .env에 APP_BIND=0.0.0.0을 설정하고 AUTH_ENABLED=true를 유지하세요. 공개 인터넷 노출 시에는 Nginx나 Caddy 같은 리버스 프록시와 TLS를 반드시 사용하세요. 공식 문서는 인증 없이 0.0.0.0으로 바인딩하지 말 것을 명시적으로 권고합니다.’ q: ‘모바일에서도 Odysseus를 사용할 수 있나요?’ a: ‘네. Odysseus는 PWA(프로그레시브 웹 앱)로 완전한 반응형 디자인을 지원합니다. iOS나 Android에서 “홈 화면에 추가&#34;하면 네이티브 앱에 가까운 경험을 얻을 수 있습니다. Cookbook과 에이전트 기능도 모바일에서 동작하지만, GPU 집약적인 로컬 모델 서빙은 데스크탑/서버 환경이 필요합니다.’ Odysseus: 9일 만에 깃허브 스타 63,000개 달성한 셀프호스팅 AI 워크스페이스 — 2026 설치 가이드 Odysseus는 2026년 5월 31일 깃허브에 공개된 후 6월 8일까지 63,000개의 스타를 달성했습니다. 하루 평균 약 7,000개의 스타가 증가한 셈으로, 2026년 가장 빠르게 성장한 오픈소스 AI 프로젝트 중 하나입니다. 핵심 아이디어는 명확합니다: 월 $20의 ChatGPT Plus 구독으로 얻을 수 있는 모든 것을 내 서버에서, 내 데이터로, MIT 라이선스로 실행하는 것입니다.
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/odysseus-self-hosted-ai-workspace-2026/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Tool Guide
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>Odysseus: Self-Hosted AI Workspace with 10&#43; Built-in Tools — 65,000 Stars — Full Setup Guide 2026 ┌──────────────────────────────────────────────────┐ │ Odysseus Architecture │ │ │ │ ┌─────────┐ ┌──────────┐ ┌─────────────────┐ │ │ │ Chat │ │ Agent │ │ Cookbook │ │ │ │ (API) │ │ (Tools) │ │ (Model Server)│ │ │ └────┬────┘ └────┬─────┘ └────────┬────────┘ │ │ │ │ │ │ │ ▼ ▼ ▼ │ │ ┌───────────────────────────────────────────────┐ │ │ │ Python Backend (FastAPI) │ │ │ │ ChromaDB │ SearXNG │ ntfy │ .env config │ │ │ └───────────────────────────────────────────────┘ │ │ │ │ │ │ │ ▼ ▼ ▼ │ │ ┌───────────────────────────────────────────────┐ │ │ Docker Compose Stack │ │ │ ┌────────┐ ┌──────────┐ ┌────────┐ ┌─────────┐ │ │ │ Odysseus│ │ChromaDB │ │SearXNG │ │ ntfy │ │ │ └────────┘ └──────────┘ └────────┘ └─────────┘ │ │ │ │ ┌───────────────────────────────────────────────┐ │ │ │ Frontend: Responsive Web UI (PWA) │ │ │ └───────────────────────────────────────────────┘ │ └──────────────────────────────────────────────────┘ Odysseus는 10개 이상의 통합 도구를 단일하고 프라이버시 중심 인터페이스로 통합하는 자체 호스팅 AI 워크스페이스입니다.
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/"></a>
 </article>
 
@@ -195,14 +149,14 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>TL;DR 오 마이 파이는 자동 설정, 사전 구성된 대시보드, 원클릭 서비스 배포로 라즈베리 파이를 완전히 구성된 스마트 기기로 변환합니다. 12,554 스타를 달성하며 GitHub에서 가장 인기 있는 라즈베리 파이 자동화 프레임워크입니다.
-TL;DR: 12,554 스타 — 라즈베리 파이 자동화 프로젝트 No.1입니다.
-오 마이 파이가 무엇인가요? 오 마이 파이는 라즈베리 파이 기기를 위한 자동 설정 프레임워크입니다. 네트워킹 수동 구성, 서비스 설치, 서비스 연결을 직접 하는 대신, 오 마이 파이는 빈 SD 카드부터 완전히 작동하는 스마트 기기까지 전 과정을 30분 이내에 처리합니다.
+    <p>TL;DR Oh My Pi turns any Raspberry Pi into a fully configured smart device with automated setup, pre-configured dashboards, and one-click service deployment. With 12,554 stars, it’s the most popular Raspberry Pi automation framework on GitHub.
+TL;DR: 12,554 stars — the #1 Raspberry Pi automation project.
+What Is Oh My Pi? Oh My Pi is an automated setup framework for Raspberry Pi devices. Instead of manually configuring networking, installing services, and wiring them together, Oh My Pi handles the entire process from bare SD card to fully operational smart device in under 30 minutes.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/oh-my-pi/"></a>
 </article>
 
@@ -212,13 +166,13 @@ TL;DR: 12,554 스타 — 라즈베리 파이 자동화 프로젝트 No.1입니�
     </h2>
   </header>
   <div class="entry-content">
-    <p>Oh My Zsh: 2026년 더 빠른 개발 워크플로우를 위한 7단계 하루에 1시간 이상 터미널에서 작업한다면, 쉘(Shell)은 당신에게 있어 세계와 소통하는 주요 인터페이스입니다. 오랫동안 ```bash가 기본값이었습니다. 작동은 했지만 지루했습니다. 그러다가 zsh가 등장했고, 문법 강조, 자동 제안, 더 현대적인 스크립팅 언어를 가져왔습니다. 하지만 처음부터 zsh````를 설정하는 것은 고통스럽습니다. 바로 Oh My Zsh가 그 해결책입니다.
-GitHub에서 187,000개 이상의 스타를 기록한 이 도구는 단순한 도구를 넘어 커뮤니티 표준이 되었습니다. 하지만 2026년 현재에도 여전히 관련성이 있을까요? 터미널 속도를 늦출까요? Starship과 같은 최신 Rust 기반 대안과 비교했을 때 어떨까요?
+    <p>Oh My Zsh: 7 Steps to a Faster Dev Workflow in 2026 If you spend more than an hour a day in a terminal, your shell is your primary interface with the world. For years, ```bashwas the default. It worked. It was boring. Thenzsharrived, bringing syntax highlighting, autosuggestions, and a more modern scripting language. But configuringzsh```` from scratch is a pain. Enter Oh My Zsh.
+With over 187,000 stars on GitHub, it’s not just a tool; it’s a community standard. But is it still relevant in 2026? Does it slow down your terminal? How does it stack up against modern Rust-based alternatives like Starship?
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>14 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ohmyzsh/"></a>
 </article>
 
@@ -229,13 +183,13 @@ GitHub에서 187,000개 이상의 스타를 기록한 이 도구는 단순한 �
   </header>
   <div class="entry-content">
     <p>{&lt;/* resource-info */&gt;}
-Ollama는 로컬 환경에서 대규모 언어 모델(LLM)을 가장 쉽게 실행할 수 있게 해주는 오픈소스 도구다. 2024년 초 출시 이후 GitHub Star 86,000개 이상을 기록하며, 개발자와 기업 모두에게 사실상의 로컬 LLM 실행 표준으로 자리잡았다. 이 가이드는 macOS, Windows, Linux 전 플랫폼 설치부터 모델 관리, API 통합, 프로덕션 배포까지 전 과정을 담는다.
-Ollama란 무엇인가? Ollama는 Go 언어로 작성된 경량 실행 환경으로, Llama, Mistral, Qwen 등 주요 오픈소스 LLM을 단일 명령어로 다운로드하고 실행할 수 있게 한다. 복잡한 CUDA 설정이나 Python 의존성 없이도 동작하며, REST API와 OpenAI 호환 엔드포인트를 기본 제공한다.
+Every request you send to OpenAI or Anthropic travels across the internet, hits someone else’s server, and potentially gets logged for training purposes. For many developers and organizations, that is unacceptable. Healthcare companies cannot send patient data to external APIs. Financial institutions face regulatory restrictions. Individual developers simply want control over their AI stack.
+Ollama solves this problem elegantly. Launched in 2023, Ollama has become the most popular way to run large language models locally — over 75,000 GitHub stars, support for 100&#43; model families, and a dead-simple CLI that lets you go from zero to a running LLM in under five minutes. This guide covers everything from installation to production deployment.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>16 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ollama-local-llm-guide/"></a>
 </article>
 
@@ -245,13 +199,13 @@ Ollama란 무엇인가? Ollama는 Go 언어로 작성된 경량 실행 환경으
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png&#34; } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/ollama-vs-lm-studio&#34; } } Why This Matters Understanding ollama vs lm studio 2026: 어떤 로컬 llm 러너가 더 좋은가? is crucial for modern AI development. Here’s why: ### Key Benefits
-Efficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines
+    <p>Ollama vs LM Studio in 2026: Which Local LLM Runner Wins? Quick Answer Ollama wins for developers who want a CLI-first, Docker-style local LLM runner that drops into scripts, pipelines, and headless servers. LM Studio wins for end-users and tinkerers who want a polished GUI, in-app model browser, and click-to-load chat experience on their desktop.
+Use Ollama if: You live in the terminal, want an OpenAI-compatible API on ```localhost:11434````, plan to self-host on a Linux VPS, or need to integrate local LLMs into Aider, Continue.dev, LangChain, or your own app.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>2 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ollama-vs-lm-studio/"></a>
 </article>
 
@@ -261,13 +215,13 @@ Efficiency: Save time on repetitive tasks Quality: Improve output consistency Sc
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“ollama”, “로컬-llm”, “llama.cpp”, “deepseek”, “mistral”, “docker”, “modelfile”, “오픈소스”] aliases:
-/kr/posts/ollama/ /kr/resources/llm-frameworks/ollama-local-llm-guide/ 대규모 언어 모델을 실행하는 것은 과거에 Python 환경, CUDA 드라이버, 수 GB의 의존성과 씨름하는 것을 의미했습니다. 2026년이 되면서 그 마찰은 사라졌습니다. Ollama는 단 하나의 명령으로 프로덕션급 LLM을 가져오고, 구성하고, 서빙할 수 있게 해줍니다 — PyTorch 설치, 수동 GPU 튜닝, 심지어 Docker까지 필요 없습니다. 137,000개 이상의 GitHub Star와 번성하는 통합 생태계를 보유한 Ollama는 운영적 부담 없이 로컬 추론을 원하는 개발자를 위한 기본 런타임이 되었습니다.
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“ollama”, “local-llm”, “llama.cpp”, “deepseek”, “mistral”, “docker”, “modelfile”, “open-source”] aliases:
+/posts/ollama/ /resources/llm-frameworks/ollama-local-llm-guide/- Running large language models used to mean wrestling with Python environments, CUDA drivers, and gigabytes of dependencies. In 2026, that friction is gone. Ollama lets you pull, configure, and serve production-grade LLMs with a single command — no PyTorch installation, no manual GPU tuning, no Docker mandatory. With 137,000&#43; GitHub stars and a thriving ecosystem of integrations, Ollama has become the default runtime for developers who want local inference without operational headaches.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>16 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ollama/"></a>
 </article>
 
@@ -277,14 +231,61 @@ Efficiency: Save time on repetitive tasks Quality: Improve output consistency Sc
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” source_version: &#34;&#34; licensing_model: “Open Source” license_type: “MIT” file_size: &#34;&#34; file_md5: &#34;&#34; download_url: &#34;&#34; backup_url: &#34;&#34; last_maintained: “2026-05-15” draft: false faqs: - q: ‘Open Codesign은 무료인가요? 사용 비용은 얼마인가요?’ a: ‘Open Codesign은 MIT 라이선스로 제공되는 무료 애플리케이션입니다. BYOK(Bring Your Own Key) 모델을 채택하고 있어, 월정액 구독료 없이 기존 공급자 계정을 통해 소비한 LLM 토큰 비용만 부담하면 됩니다.’
-q: ‘Open Codesign은 어떤 AI 모델을 지원하나요?’ a: ‘Anthropic(Claude), OpenAI(GPT-4o, Codex), Google Gemini, DeepSeek, OpenRouter, SiliconFlow, 그리고 Ollama를 통한 로컬 모델 등 다양한 공급자의 20개 이상 모델을 지원합니다. 동적 모델 선택기가 각 공급자의 실시간 모델 카탈로그를 쿼리하므로, 앱 업데이트 없이도 신규 모델이 자동으로 목록에 나타납니다.’ q: ‘Open Codesign은 오프라인에서도 사용할 수 있나요?’ a: ‘네. Open Codesign은 로컬 우선 방식으로, 모든 작업이 사용자의 기기에서 실행되며 각 디자인 세션은 로컬 디스크에 저장됩니다. 로컬 Ollama 모델과 함께 사용하면 완전한 오프라인 환경에서 동작하며, 백엔드 서버 의존성이 전혀 없습니다.’ q: ‘Open Codesign은 Claude Design, v0 by Vercel과 어떻게 다른가요?’ a: ‘Claude Design(Anthropic 전용, 클라우드 전용)과 v0 by Vercel(GPT-4o, 클라우드 전용, Vercel 최적화)과 달리, Open Codesign은 MIT 라이선스로 데스크톱에서 로컬 실행되며, BYOK를 통해 20개 이상의 모델을 지원하고, 프레임워크에 종속되지 않는 HTML, PDF, PPTX, ZIP, Markdown 형식으로 내보낼 수 있습니다.’ q: ‘Open Codesign의 DESIGN.md 파일은 무엇인가요?’ a: ‘DESIGN.md는 브랜드 컬러, 타이포그래피, 간격 토큰 등 디자인 시스템을 정의하는 마크다운 파일입니다. 워크스페이스에 이 파일을 두면 모든 생성 결과가 자동으로 해당 토큰을 상속받아, 모델이 대화가 진행되어도 브랜드 일관성을 유지할 수 있습니다.’ {&lt;/* resource-info */&gt;}
+    <p>title: “Open Codesign: The Open-Source Claude Design Alternative… description: “Technical guide and comparison.” Design. Multi-model AI design tool with BYOK, local-first architecture, and instant prototype generation from natural language prompts. date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - Go
+JavaScript Rust application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-15” draft: false aliases: /posts/open-codesign-claude-design-alternative/ faqs: - q: ‘Is Open Codesign free and what does it cost to use?’ a: ‘Open Codesign is a free MIT-licensed application. It uses a BYOK (Bring Your Own Key) model, so you only pay for the LLM tokens you consume through your existing provider accounts rather than a monthly subscription.’ q: ‘Which AI models does Open Codesign support?’ a: ‘It supports 20&#43; models across multiple providers including Anthropic (Claude), OpenAI (GPT-4o, Codex), Google Gemini, DeepSeek, OpenRouter, SiliconFlow, and local models via Ollama. A dynamic model picker queries each provider’’s live catalogue, so new models appear automatically without an app update.’ q: ‘Can Open Codesign work offline?’ a: ‘Yes. Open Codesign is local-first and runs entirely on your machine, with every design session stored locally on disk. When paired with a local Ollama model it operates fully offline, and there is no backend server dependency.’ q: ‘How does Open Codesign compare to Claude Design and v0 by Vercel?’ a: ‘Unlike Claude Design (Anthropic-only, cloud-only) and v0 by Vercel (GPT-4o, cloud-only, Vercel-optimized), Open Codesign is MIT-licensed, runs locally on the desktop, supports 20&#43; models via BYOK, and exports framework-agnostic HTML, PDF, PPTX, ZIP, and Markdown.’ q: ‘What is the DESIGN.md file in Open Codesign?’ a: ‘DESIGN.md is a markdown file where you define your design system, such as brand colors, typography, and spacing tokens. Placed in your workspace, every generation automatically inherits these tokens so the model maintains brand coherence instead of drifting across turns.’— {&lt;/* resource-info */&gt;}
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>16 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/open-codesign-claude-design-alternative/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “Vercel v0 Open Source Alternative: Build UIs Locally wit… description: “Technical guide and comparison.” draft: false aliases:
+/posts/open-codesign-vs-vercel-v0/ faqs: - q: ‘Is there a self-hosted, open-source alternative to Vercel v0?’ a: ‘Yes. Open Codesign is an open-source, self-hosted UI generator that offers a prompt-to-preview workflow similar to v0. You run the frontend locally and connect it to local LLMs or your own API keys, so it is not tied to Vercel’’s hosting ecosystem.’ q: ‘What is the best free alternative to v0 by Vercel?’ a: ‘Open Codesign is a leading free alternative. It gives the closest UX to v0’’s prompt-to-preview interface, costs $0 with unlimited generations, and is fully open source under an MIT license.’ q: ‘What does BYOM (Bring Your Own Model) mean in Open Codesign?’ a: ‘BYOM means Open Codesign acts as an orchestration layer rather than locking you to one provider’’s models. You can connect it to a locally hosted model such as DeepSeek Coder via Ollama, or use LM Studio or your own API keys, ensuring zero data leakage.’ q: ‘Can Open Codesign generate UIs fully offline?’ a: ‘Yes. Open Codesign is 100% offline capable when paired with a local LLM via Ollama or LM Studio. The agent renders generated UI locally in an isolated iframe, so you can iterate infinitely without sending prompts to a cloud service or burning API tokens.’ q: ‘Which frameworks can Open Codesign output compared to Vercel v0?’ a: ‘Open Codesign produces customizable output for React, Vue, Svelte, and raw HTML, whereas Vercel v0 is heavily biased toward Next.js and Tailwind.’— {&lt;/* resource-info */&gt;}
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>5 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/open-codesign-vs-vercel-v0/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “Open Design: The Ultimate Local-First AI Design Tool Rep…” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - Go
+JavaScript TypeScript application_domain: “Dev Utils” source_version: &#34;&#34; licensing_model: “Open Source” license_type: “MIT” file_size: &#34;&#34; file_md5: &#34;&#34; download_url: &#34;&#34; backup_url: &#34;&#34; last_maintained: “2026-05-15” draft: false aliases: /posts/open-design-local-first-ai-design-tool/ faqs: - q: ‘What is Open Design and how is it different from Claude Design?’ a: ‘Open Design is an open-source, local-first alternative to Anthropic’’s Claude Design that generates web prototypes, mobile and desktop interfaces, slides, images, videos, and interactive HyperFrames. Unlike the cloud-only, proprietary Claude Design, it runs entirely offline after setup, is MIT licensed and free, and keeps all data on your own machine.’ q: ‘Which AI coding assistants does Open Design work with?’ a: ‘Open Design integrates with nine-plus assistants rather than locking you to one provider: Claude Code, GitHub Copilot, Cursor, Gemini, Codex, OpenCode, Qwen, Hermes, and Kimi CLI. You configure API keys only for the providers you actually plan to use.’ q: ‘What export formats does Open Design support?’ a: ‘A single design can be rendered into HTML/CSS/JS web pages, print-ready PDF, native PPTX presentations, MP4 video, React or Vue components, importable Figma JSON, and PNG/SVG images. Native MP4 video export and HyperFrames are features Claude Design does not offer.’ q: ‘What are the system requirements to install Open Design?’ a: ‘You need Node.js 18.0 or higher, npm 9.0 or higher (or pnpm/yarn), and Git, plus at least 4GB of available RAM for AI model operations and 2GB of disk space for dependencies and cached models.’ q: ‘Does Open Design cost anything to use?’ a: ‘The tool itself is free and open-source under the MIT license, with no subscription or per-seat fees. The only cost is the AI provider API usage you consume, so you pay only for the actual calls you make to providers like Anthropic, OpenAI, or Google.’— {&lt;/* resource-info */&gt;}
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/open-design-local-first-ai-design-tool/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Characters — Run 10K&#43; Stars Open-Source AI Avatar Free TL;DR Open-LLM-VTuber is an open-source AI avatar platform with voice interaction, Live2D characters, and hands-free voice interruption. Works with any LLM — local or cloud. Zero setup, cross-platform. It brings AI companionship to life with voice-powered interactions that feel real. With 10K&#43; stars and support for 10&#43; LLM providers, it’s the most popular open-source AI avatar solution available.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/open-llm-vtuber-voice-powered-ai-avatar/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
@@ -315,6 +316,81 @@ q: ‘Open Codesign은 어떤 AI 모델을 지원하나요?’ a: ‘Anthropic(C
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

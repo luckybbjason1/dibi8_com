@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "TL;DR Vercel AI SDK는 스트리밍 지원을 갖춘 AI 기반 사용자 인터페이스를 구축하기 위한 오픈소스 라이브러리입니다. 모든 주요 프레임워크에서 작동하며 LLM 제공자(OpenAI, Anthropic, Google) 통합을 위한 타입 안전 API, 자동 응답 스트리밍, React 내장 UI 컴포넌트, 엣지 런타임으로의 원활한 배포를 제공합니다. 핵심 이점: 한 SDK가 모든 곳에서 작동합니다 — Next.js App Router, Remix, SvelteKit, Nuxt 또는 fetch를 지원하는 어떤 프레임워크든.\nVercel AI SDK란? Vercel AI SDK는 AI 앱 구축의 복잡성을 추상화하는 오픈소스 라이브러리입니다. 핵심 세 가지 주요 기능: 1. 제공자 비종속 API: 코드 한 번 작성, 모든 LLM 제공자에 배포 2. 스트리밍 우선 아키텍처: 응답을 토큰 단위로 프론트엔드로 스트리밍 3. 프레임워크 통합: React, Next.js, Vue, Svelte, SolidJS 네이티브 지원\n왜 Edge-First가 AI 앱에 중요한가 전통적 AI 앱은 이런 패턴을 따릅니다: ```` 사용자 → 웹 서버 → API 라우트 → LLM 제공자 → 응답\n각 홉마다 지연 시간이 추가됩니다. Vercel의 엣지 우선 접근법은 미들맨을 제거합니다: ````` 사용자 → 엣지 함수 → LLM 제공자 → 스트리밍 응답 엣지 함수는 Cloudflare Worker, Fastly Compute@Edge 또는 Vercel Edge Function에서 실행됩니다 — 사용자에게 100-300ms 떨어진 지리적 분산 노드. 채팅 앱의 경우 첫 번째 토큰이 500ms 이내에 도달한다는 의미입니다.\n핵심 아키텍처 // 제공자 추상화 계층 import { createOpenAI } from \"@ai-sdk/openai\"; import { createAnthropic } from \"@ai-sdk/anthropic\"; import { createGoogleGenerativeAI } from \"@ai-sdk/google\"; const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY }); const anthropic = createAnthropic({ apiKey: process.env.ANTHROPIC_API_KEY }); // 제공자Regardless 동일한 API 호출 const result = await streamText({ model: openai(\"gpt-4o\"), messages: [{ role: \"user\", content: \"안녕!\" }], system: \"도움이 되는 어시스턴트입니다.\" }); streamText 함수는 GPT-4o, Claude 3.5 Sonnet 또는 Gemini 1.5 Pro를 호출하든 동일하게 작동합니다. 제공자를 바꾸려면 한 줄만 변경하면 됩니다.\n시작하기 단계 1: 의존성 설치 # TypeScript로 새로운 Next.js 프로젝트 생성 npx create-next-app@latest my-ai-app --typescript --tailwind --app cd my-ai-app # AI SDK 및 제공자 패키지 설치 npm install ai @ai-sdk/openai @ai-sdk/anthropic @ai-sdk/google # 선택사항: 구조화된 출력 npm install zod 단계 2: 첫 번째 채팅 API 구성 app/api/chat/route.ts 생성: `````typescript import { streamText } from “ai”; import { createOpenAI } from “@ai-sdk/openai”;\nconst openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY, baseURL: process.env.OPENAI_BASE_URL, // 선택사항: 호환 API용 });\nexport async function POST(req: Request) { const { messages } = await req.json();\nconst result = streamText({ model: openai(“gpt-4o”), messages, system: 도움이 되는 프로그래밍 어시스턴트입니다. 관련 시 코드 예시를 제공하세요., maxTokens: 2048, temperature: 0.7, });\nreturn result.toDataStreamResponse(); }\n그것뿐입니다. 파일 하나, 20줄 코드로 완전히 스트리밍되는 채팅 API가 생깁니다. ### 단계 3: 프론트엔드 구축 ``app/page.tsx`` 생성: `````typescript \"use client\"; import { useChat } from \"ai/react\"; export default function Chat() { const { messages, input, handleSubmit, isLoading } = useChat(); return ( {/* 메시지 목록 */} {messages.map((msg) =\u003e ( ",
-  "wordCount" : "1044",
+  "articleBody": "What Is Vercel AI SDK? Vercel AI SDK is an open-source library that abstracts the complexity of building AI applications. At its core, it provides three main capabilities: 1. Provider-agnostic API: Write code once, deploy to any LLM provider 2. Streaming-first architecture: Responses stream token-by-token to the frontend 3. Framework integration: Native support for React, Next.js, Vue, Svelte, and SolidJS\nWhy Edge-First Matters for AI Apps Traditional AI apps follow this pattern: ```` User → Web Server → API Route → LLM Provider → Response\nEach hop adds latency. Vercel's edge-first approach eliminates the middleman: ````` User → Edge Function → LLM Provider → Streaming Response Edge functions run in Cloudflare Workers, Fastly Compute@Edge, or Vercel Edge Functions — geographically distributed nodes that are typically 100-300ms from users worldwide. For chat applications, this means the first token arrives in under 500ms.\nCore Architecture // Provider abstraction layer import { createOpenAI } from \"@ai-sdk/openai\"; import { createAnthropic } from \"@ai-sdk/anthropic\"; import { createGoogleGenerativeAI } from \"@ai-sdk/google\"; const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY }); const anthropic = createAnthropic({ apiKey: process.env.ANTHROPIC_API_KEY }); // Unified API call regardless of provider const result = await streamText({ model: openai(\"gpt-4o\"), messages: [{ role: \"user\", content: \"Hello!\" }], system: \"You are a helpful assistant.\" }); The same streamText function works identically whether you’re calling GPT-4o, Claude 3.5 Sonnet, or Gemini 1.5 Pro. Swap providers by changing one line.\nGetting Started Step 1: Install Dependencies # Create a new Next.js project with TypeScript npx create-next-app@latest my-ai-app --typescript --tailwind --app cd my-ai-app # Install AI SDK and provider packages npm install ai @ai-sdk/openai @ai-sdk/anthropic @ai-sdk/google # Optional: for structured output npm install zod Step 2: Configure Your First Chat API Create app/api/chat/route.ts: `````typescript import { streamText } from “ai”; import { createOpenAI } from “@ai-sdk/openai”;\nconst openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY, baseURL: process.env.OPENAI_BASE_URL, // Optional: for compatible APIs });\nexport async function POST(req: Request) { const { messages } = await req.json();\nconst result = streamText({ model: openai(“gpt-4o”), messages, system: You are a helpful coding assistant. Provide code examples when relevant., maxTokens: 2048, temperature: 0.7, });\nreturn result.toDataStreamResponse(); }\nThat's it. One file, 20 lines of code, and you have a fully streaming chat API. ### Step 3: Build the Frontend Create ``app/page.tsx``: `````typescript \"use client\"; import { useChat } from \"ai/react\"; export default function Chat() { const { messages, input, handleSubmit, isLoading } = useChat(); return ( {/* Message list */} {messages.map((msg) =\u003e ( ",
+  "wordCount" : "2549",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>5 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/vercel-ai-sdk-edge-compute/">En</a>
@@ -209,30 +209,76 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#tldr" aria-label="TL;DR">TL;DR</a></li>
-            <li>
-                <a href="#vercel-ai-sdk%eb%9e%80" aria-label="Vercel AI SDK란?">Vercel AI SDK란?</a><ul>
+                <a href="#what-is-vercel-ai-sdk" aria-label="What Is Vercel AI SDK?">What Is Vercel AI SDK?</a><ul>
                     
             <li>
-                <a href="#%ec%99%9c-edge-first%ea%b0%80-ai-%ec%95%b1%ec%97%90-%ec%a4%91%ec%9a%94%ed%95%9c%ea%b0%80" aria-label="왜 Edge-First가 AI 앱에 중요한가">왜 Edge-First가 AI 앱에 중요한가</a></li>
+                <a href="#why-edge-first-matters-for-ai-apps" aria-label="Why Edge-First Matters for AI Apps">Why Edge-First Matters for AI Apps</a></li>
             <li>
-                <a href="#%ed%95%b5%ec%8b%ac-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98" aria-label="핵심 아키텍처">핵심 아키텍처</a></li></ul>
+                <a href="#core-architecture" aria-label="Core Architecture">Core Architecture</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%8b%9c%ec%9e%91%ed%95%98%ea%b8%b0" aria-label="시작하기">시작하기</a><ul>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a><ul>
                     
             <li>
-                <a href="#%eb%8b%a8%ea%b3%84-1-%ec%9d%98%ec%a1%b4%ec%84%b1-%ec%84%a4%ec%b9%98" aria-label="단계 1: 의존성 설치">단계 1: 의존성 설치</a></li>
+                <a href="#step-1-install-dependencies" aria-label="Step 1: Install Dependencies">Step 1: Install Dependencies</a></li>
             <li>
-                <a href="#%eb%8b%a8%ea%b3%84-2-%ec%b2%ab-%eb%b2%88%ec%a7%b8-%ec%b1%84%ed%8c%85-api-%ea%b5%ac%ec%84%b1" aria-label="단계 2: 첫 번째 채팅 API 구성">단계 2: 첫 번째 채팅 API 구성</a></li></ul>
+                <a href="#step-2-configure-your-first-chat-api" aria-label="Step 2: Configure Your First Chat API">Step 2: Configure Your First Chat API</a></li></ul>
             </li>
             <li>
-                <a href="#%ea%b3%a0%ea%b8%89-%ed%8c%a8%ed%84%b4" aria-label="고급 패턴">고급 패턴</a><ul>
+                <a href="#advanced-patterns" aria-label="Advanced Patterns">Advanced Patterns</a><ul>
                     
             <li>
-                <a href="#%ed%8c%a8%ed%84%b4-1-%eb%a9%80%ed%8b%b0-%ec%a0%9c%ea%b3%b5%ec%9e%90-%eb%9d%bc%ec%9a%b0%ed%8c%85" aria-label="패턴 1: 멀티 제공자 라우팅">패턴 1: 멀티 제공자 라우팅</a></li>
+                <a href="#pattern-1-multi-provider-routing" aria-label="Pattern 1: Multi-Provider Routing">Pattern 1: Multi-Provider Routing</a></li>
             <li>
-                <a href="#%ed%8c%a8%ed%84%b4-3-%ec%9e%84%eb%b2%a0%eb%94%a9%ec%9d%b4-%ec%9e%88%eb%8a%94-rag-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8" aria-label="패턴 3: 임베딩이 있는 RAG 파이프라인">패턴 3: 임베딩이 있는 RAG 파이프라인</a>
+                <a href="#pattern-3-rag-pipeline-with-embeddings" aria-label="Pattern 3: RAG Pipeline with Embeddings">Pattern 3: RAG Pipeline with Embeddings</a></li></ul>
+            </li>
+            <li>
+                <a href="#ui-components" aria-label="UI Components">UI Components</a><ul>
+                    
+            <li>
+                <a href="#using-built-in-ui-components" aria-label="Using Built-in UI Components">Using Built-in UI Components</a></li>
+            <li>
+                <a href="#custom-streaming-component" aria-label="Custom Streaming Component">Custom Streaming Component</a></li>
+            <li>
+                <a href="#deploy-to-cloudflare-workers" aria-label="Deploy to Cloudflare Workers">Deploy to Cloudflare Workers</a></li>
+            <li>
+                <a href="#self-hosted-with-docker" aria-label="Self-Hosted with Docker">Self-Hosted with Docker</a></li></ul>
+            </li>
+            <li>
+                <a href="#performance-benchmarks" aria-label="Performance Benchmarks">Performance Benchmarks</a><ul>
+                    
+            <li>
+                <a href="#latency-comparison" aria-label="Latency Comparison">Latency Comparison</a></li>
+            <li>
+                <a href="#cost-per-1k-requests" aria-label="Cost per 1K Requests">Cost per 1K Requests</a></li></ul>
+            </li>
+            <li>
+                <a href="#troubleshooting" aria-label="Troubleshooting">Troubleshooting</a><ul>
+                    
+            <li>
+                <a href="#issue-1-cors-errors-on-development" aria-label="Issue 1: CORS Errors on Development">Issue 1: CORS Errors on Development</a></li>
+            <li>
+                <a href="#issue-3-model-timeout-on-edge-functions" aria-label="Issue 3: Model Timeout on Edge Functions">Issue 3: Model Timeout on Edge Functions</a></li></ul>
+            </li>
+            <li>
+                <a href="#future-directions" aria-label="Future Directions">Future Directions</a><ul>
+                    
+            <li>
+                <a href="#whats-coming-in-ai-sdk-2026" aria-label="What&rsquo;s Coming in AI SDK 2026">What&rsquo;s Coming in AI SDK 2026</a></li>
+            <li>
+                <a href="#when-to-choose-vercel-ai-sdk" aria-label="When to Choose Vercel AI SDK">When to Choose Vercel AI SDK</a></li></ul>
+            </li>
+            <li>
+                <a href="#community-updates" aria-label="Community Updates">Community Updates</a></li>
+            <li>
+                <a href="#faq" aria-label="FAQ">FAQ</a><ul>
+                    
+            <li>
+                <a href="#q-can-i-use-vercel-ai-sdk-without-nextjs" aria-label="Q: Can I use Vercel AI SDK without Next.js?">Q: Can I use Vercel AI SDK without Next.js?</a></li>
+            <li>
+                <a href="#q-how-does-streaming-work-under-the-hood" aria-label="Q: How does streaming work under the hood?">Q: How does streaming work under the hood?</a></li>
+            <li>
+                <a href="#q-can-i-cache-llm-responses-to-reduce-costs" aria-label="Q: Can I cache LLM responses to reduce costs?">Q: Can I cache LLM responses to reduce costs?</a>
             </li>
         </ul>
         </li>
@@ -240,22 +286,19 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
-<p>Vercel AI SDK는 스트리밍 지원을 갖춘 AI 기반 사용자 인터페이스를 구축하기 위한 오픈소스 라이브러리입니다. 모든 주요 프레임워크에서 작동하며 LLM 제공자(OpenAI, Anthropic, Google) 통합을 위한 타입 안전 API, 자동 응답 스트리밍, React 내장 UI 컴포넌트, 엣지 런타임으로의 원활한 배포를 제공합니다. 핵심 이점: 한 SDK가 모든 곳에서 작동합니다 — Next.js App Router, Remix, SvelteKit, Nuxt 또는 fetch를 지원하는 어떤 프레임워크든.</p>
-<hr>
-<h2 id="vercel-ai-sdk란">Vercel AI SDK란?<a hidden class="anchor" aria-hidden="true" href="#vercel-ai-sdk란">#</a></h2>
-<p>Vercel AI SDK는 AI 앱 구축의 복잡성을 추상화하는 오픈소스 라이브러리입니다. 핵심 세 가지 주요 기능: 1. <strong>제공자 비종속 API</strong>: 코드 한 번 작성, 모든 LLM 제공자에 배포
-2. <strong>스트리밍 우선 아키텍처</strong>: 응답을 토큰 단위로 프론트엔드로 스트리밍
-3. <strong>프레임워크 통합</strong>: React, Next.js, Vue, Svelte, SolidJS 네이티브 지원</p>
-<h3 id="왜-edge-first가-ai-앱에-중요한가">왜 Edge-First가 AI 앱에 중요한가<a hidden class="anchor" aria-hidden="true" href="#왜-edge-first가-ai-앱에-중요한가">#</a></h3>
-<p>전통적 AI 앱은 이런 패턴을 따릅니다: ````
-사용자 → 웹 서버 → API 라우트 → LLM 제공자 → 응답</p>
+  <div class="post-content md-content"><h2 id="what-is-vercel-ai-sdk">What Is Vercel AI SDK?<a hidden class="anchor" aria-hidden="true" href="#what-is-vercel-ai-sdk">#</a></h2>
+<p>Vercel AI SDK is an open-source library that abstracts the complexity of building AI applications. At its core, it provides three main capabilities: 1. <strong>Provider-agnostic API</strong>: Write code once, deploy to any LLM provider
+2. <strong>Streaming-first architecture</strong>: Responses stream token-by-token to the frontend
+3. <strong>Framework integration</strong>: Native support for React, Next.js, Vue, Svelte, and SolidJS</p>
+<h3 id="why-edge-first-matters-for-ai-apps">Why Edge-First Matters for AI Apps<a hidden class="anchor" aria-hidden="true" href="#why-edge-first-matters-for-ai-apps">#</a></h3>
+<p>Traditional AI apps follow this pattern: ````
+User → Web Server → API Route → LLM Provider → Response</p>
 <pre tabindex="0"><code>
-각 홉마다 지연 시간이 추가됩니다. Vercel의 엣지 우선 접근법은 미들맨을 제거합니다: `````
-사용자 → 엣지 함수 → LLM 제공자 → 스트리밍 응답
-</code></pre><p>엣지 함수는 Cloudflare Worker, Fastly Compute@Edge 또는 Vercel Edge Function에서 실행됩니다 — 사용자에게 100-300ms 떨어진 지리적 분산 노드. 채팅 앱의 경우 첫 번째 토큰이 500ms 이내에 도달한다는 의미입니다.</p>
-<h3 id="핵심-아키텍처">핵심 아키텍처<a hidden class="anchor" aria-hidden="true" href="#핵심-아키텍처">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// 제공자 추상화 계층
+Each hop adds latency. Vercel&#39;s edge-first approach eliminates the middleman: `````
+User → Edge Function → LLM Provider → Streaming Response
+</code></pre><p>Edge functions run in Cloudflare Workers, Fastly Compute@Edge, or Vercel Edge Functions — geographically distributed nodes that are typically 100-300ms from users worldwide. For chat applications, this means the first token arrives in under 500ms.</p>
+<h3 id="core-architecture">Core Architecture<a hidden class="anchor" aria-hidden="true" href="#core-architecture">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Provider abstraction layer
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createOpenAI</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@ai-sdk/openai&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createAnthropic</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@ai-sdk/anthropic&#34;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createGoogleGenerativeAI</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@ai-sdk/google&#34;</span>;
@@ -263,50 +306,50 @@
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">openai</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createOpenAI</span>({ <span style="color:#a6e22e">apiKey</span>: <span style="color:#66d9ef">process.env.OPENAI_API_KEY</span> });
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">anthropic</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createAnthropic</span>({ <span style="color:#a6e22e">apiKey</span>: <span style="color:#66d9ef">process.env.ANTHROPIC_API_KEY</span> });
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 제공자Regardless 동일한 API 호출
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Unified API call regardless of provider
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">streamText</span>({
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">model</span>: <span style="color:#66d9ef">openai</span>(<span style="color:#e6db74">&#34;gpt-4o&#34;</span>),
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">messages</span><span style="color:#f92672">:</span> [{ <span style="color:#a6e22e">role</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#a6e22e">content</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;안녕!&#34;</span> }],
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">system</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;도움이 되는 어시스턴트입니다.&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">messages</span><span style="color:#f92672">:</span> [{ <span style="color:#a6e22e">role</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#a6e22e">content</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Hello!&#34;</span> }],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">system</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;You are a helpful assistant.&#34;</span>
 </span></span><span style="display:flex;"><span>});
-</span></span></code></pre></div><p><code>streamText</code> 함수는 GPT-4o, Claude 3.5 Sonnet 또는 Gemini 1.5 Pro를 호출하든 동일하게 작동합니다. 제공자를 바꾸려면 한 줄만 변경하면 됩니다.</p>
+</span></span></code></pre></div><p>The same <code>streamText</code> function works identically whether you&rsquo;re calling GPT-4o, Claude 3.5 Sonnet, or Gemini 1.5 Pro. Swap providers by changing one line.</p>
 <hr>
-<h2 id="시작하기">시작하기<a hidden class="anchor" aria-hidden="true" href="#시작하기">#</a></h2>
-<h3 id="단계-1-의존성-설치">단계 1: 의존성 설치<a hidden class="anchor" aria-hidden="true" href="#단계-1-의존성-설치">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># TypeScript로 새로운 Next.js 프로젝트 생성</span>
+<h2 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h2>
+<h3 id="step-1-install-dependencies">Step 1: Install Dependencies<a hidden class="anchor" aria-hidden="true" href="#step-1-install-dependencies">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create a new Next.js project with TypeScript</span>
 </span></span><span style="display:flex;"><span>npx create-next-app@latest my-ai-app --typescript --tailwind --app
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>cd my-ai-app
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># AI SDK 및 제공자 패키지 설치</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install AI SDK and provider packages</span>
 </span></span><span style="display:flex;"><span>npm install ai @ai-sdk/openai @ai-sdk/anthropic @ai-sdk/google
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 선택사항: 구조화된 출력</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Optional: for structured output</span>
 </span></span><span style="display:flex;"><span>npm install zod
-</span></span></code></pre></div><h3 id="단계-2-첫-번째-채팅-api-구성">단계 2: 첫 번째 채팅 API 구성<a hidden class="anchor" aria-hidden="true" href="#단계-2-첫-번째-채팅-api-구성">#</a></h3>
-<p><code>app/api/chat/route.ts</code> 생성: `````typescript
+</span></span></code></pre></div><h3 id="step-2-configure-your-first-chat-api">Step 2: Configure Your First Chat API<a hidden class="anchor" aria-hidden="true" href="#step-2-configure-your-first-chat-api">#</a></h3>
+<p>Create <code>app/api/chat/route.ts</code>: `````typescript
 import { streamText } from &ldquo;ai&rdquo;;
 import { createOpenAI } from &ldquo;@ai-sdk/openai&rdquo;;</p>
 <p>const openai = createOpenAI({
 apiKey: process.env.OPENAI_API_KEY,
-baseURL: process.env.OPENAI_BASE_URL, // 선택사항: 호환 API용
+baseURL: process.env.OPENAI_BASE_URL, // Optional: for compatible APIs
 });</p>
 <p>export async function POST(req: Request) {
 const { messages } = await req.json();</p>
 <p>const result = streamText({
 model: openai(&ldquo;gpt-4o&rdquo;),
 messages,
-system: <code>도움이 되는 프로그래밍 어시스턴트입니다. 관련 시 코드 예시를 제공하세요.</code>,
+system: <code>You are a helpful coding assistant.  Provide code examples when relevant.</code>,
 maxTokens: 2048,
 temperature: 0.7,
 });</p>
 <p>return result.toDataStreamResponse();
 }</p>
 <pre tabindex="0"><code>
-그것뿐입니다. 파일 하나, 20줄 코드로 완전히 스트리밍되는 채팅 API가 생깁니다.
+That&#39;s it. One file, 20 lines of code, and you have a fully streaming chat API.
 
-### 단계 3: 프론트엔드 구축
+### Step 3: Build the Frontend
 
-``app/page.tsx`` 생성: `````typescript
+Create ``app/page.tsx``: `````typescript
 &#34;use client&#34;;
 
 import { useChat } from &#34;ai/react&#34;;
@@ -316,13 +359,15 @@ export default function Chat() {
 
   return (
     &lt;div className=&#34;max-w-2xl mx-auto p-4&#34;&gt;
-      {/* 메시지 목록 */}
+      {/* Message list */}
       &lt;div className=&#34;space-y-4 mb-4&#34;&gt;
         {messages.map((msg) =&gt; (
           &lt;div
             key={msg.id}
             className={````p-3 rounded-lg ${
-              msg.role === &#34;user&#34; ? &#34;bg-blue-100 ml-8&#34; : &#34;bg-gray-100 mr-8&#34;
+              msg.role === &#34;user&#34;
+                ? &#34;bg-blue-100 ml-8&#34;
+                : &#34;bg-gray-100 mr-8&#34;
             }````}
           &gt;
             {msg.content}
@@ -330,12 +375,12 @@ export default function Chat() {
         ))}
       &lt;/div&gt;
 
-      {/* 입력 폼 */}
+      {/* Input form */}
       &lt;form onSubmit={handleSubmit} className=&#34;flex gap-2&#34;&gt;
         &lt;input
           value={input}
           onChange={(e) =&gt; setInput(e.target.value)}
-          placeholder=&#34;질문을 입력하세요...&#34;
+          placeholder=&#34;Type your message...&#34;
           className=&#34;flex-1 p-2 border rounded-lg&#34;
         /&gt;
         &lt;button
@@ -343,34 +388,35 @@ export default function Chat() {
           disabled={isLoading}
           className=&#34;px-4 py-2 bg-blue-600 text-white rounded-lg disabled:opacity-50&#34;
         &gt;
-          {isLoading ? &#34;생각 중...&#34; : &#34;보내기&#34;}
+          {isLoading ? &#34;Thinking...&#34; : &#34;Send&#34;}
         &lt;/button&gt;
       &lt;/form&gt;
     &lt;/div&gt;
   );
 }
-</code></pre><p><code>useChat</code> hook이 상태 관리, 스트리밍 업데이트, 에러 처리 및 로딩 상태를 모두 처리합니다.</p>
+</code></pre><p>The <code>useChat</code> hook handles everything: state management, streaming updates, error handling, and loading states.</p>
 <hr>
-<h2 id="고급-패턴">고급 패턴<a hidden class="anchor" aria-hidden="true" href="#고급-패턴">#</a></h2>
-<h3 id="패턴-1-멀티-제공자-라우팅">패턴 1: 멀티 제공자 라우팅<a hidden class="anchor" aria-hidden="true" href="#패턴-1-멀티-제공자-라우팅">#</a></h3>
-<p>작업 유형에 따라 요청을 다른 모델로 라우팅: `````typescript
+<h2 id="advanced-patterns">Advanced Patterns<a hidden class="anchor" aria-hidden="true" href="#advanced-patterns">#</a></h2>
+<h3 id="pattern-1-multi-provider-routing">Pattern 1: Multi-Provider Routing<a hidden class="anchor" aria-hidden="true" href="#pattern-1-multi-provider-routing">#</a></h3>
+<p>Route requests to different models based on task type: `````typescript
 import { createOpenAI } from &ldquo;@ai-sdk/openai&rdquo;;
 import { createAnthropic } from &ldquo;@ai-sdk/anthropic&rdquo;;
 import { createGoogleGenerativeAI } from &ldquo;@ai-sdk/google&rdquo;;
-import { streamText } from &ldquo;ai&rdquo;;</p>
+import { streamText, generateText } from &ldquo;ai&rdquo;;</p>
 <p>const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
 const anthropic = createAnthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 const google = createGoogleGenerativeAI({ apiKey: process.env.GOOGLE_API_KEY });</p>
 <p>type TaskType = &ldquo;creative&rdquo; | &ldquo;analytical&rdquo; | &ldquo;code&rdquo; | &ldquo;summary&rdquo;;</p>
-<p>const modelRouter: Record&lt;TaskType, any&gt; = {
+<p>const modelRouter: Record&lt;TaskType, ReturnType<typeof openai>&gt; = {
 creative: anthropic(&ldquo;claude-sonnet-4-20260514&rdquo;),
 analytical: openai(&ldquo;o3-mini&rdquo;),
-code: anthropic(&ldquo;claude-sonnet-4-20260514&rdquo;),
+code: openai(&ldquo;claude-sonnet-4-20260514&rdquo;),
 summary: google(&ldquo;gemini-2.0-flash&rdquo;),
 };</p>
 <p>export async function POST(req: Request) {
-const { messages, taskType }: { messages: any[]; taskType: TaskType } = await req.json();
-const model = modelRouter[taskType] || modelRouter.creative;</p>
+const { messages, taskType }: { messages: any[]; taskType: TaskType } =
+await req.json();</p>
+<p>const model = modelRouter[taskType] || modelRouter.creative;</p>
 <p>const result = streamText({
 model,
 messages,
@@ -380,18 +426,20 @@ temperature: taskType === &ldquo;creative&rdquo; ? 0.9 : 0.3,
 <p>return result.toDataStreamResponse();
 }</p>
 <pre tabindex="0"><code>
-### 패턴 2: Zod와 함께 구조화된 출력
+### Pattern 2: Structured Output with Zod
 
-LLM 응답을 검증하고 타입 객체로 파싱: `````typescript
+Validate and parse LLM responses into typed objects: `````typescript
 import { z } from &#34;zod&#34;;
 import { generateObject } from &#34;ai&#34;;
 import { createOpenAI } from &#34;@ai-sdk/openai&#34;;
 
+const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
 const ArticleSchema = z.object({
-  title: &#34;AI Tool Guide&#34;
-  summary: z.string().describe(&#34;한 문단 요약&#34;),
-  tags: z.array(z.string()).describe(&#34;관련 태그&#34;),
-  readingTime: z.number().describe(&#34;예상 읽기 시간(분)&#34;),
+  title: z.string().describe(&#34;Article headline&#34;),
+  summary: z.string().describe(&#34;One-paragraph summary&#34;),
+  tags: z.array(z.string()).describe(&#34;Relevant tags&#34;),
+  readingTime: z.number().describe(&#34;Estimated reading time in minutes&#34;),
   sentiment: z.enum([&#34;positive&#34;, &#34;neutral&#34;, &#34;negative&#34;]),
 });
 
@@ -401,26 +449,27 @@ export async function POST(req: Request) {
   const { object } = await generateObject({
     model: openai(&#34;gpt-4o&#34;),
     schema: ArticleSchema,
-    prompt: ````이 텍스트를 분석하여 기사 메타데이터 추출: ${text}````,
+    prompt: ````Analyze this text and extract article metadata: ${text}````,
     temperature: 0,
   });
 
   return Response.json(object);
 }
-</code></pre><p>응답이 스키마와 일치하도록 보장됩니다 — TypeScript 타입이 스키마 정의부터 프론트엔드 컴포넌트까지 끝에서 끝으로 흐릅니다.</p>
-<h3 id="패턴-3-임베딩이-있는-rag-파이프라인">패턴 3: 임베딩이 있는 RAG 파이프라인<a hidden class="anchor" aria-hidden="true" href="#패턴-3-임베딩이-있는-rag-파이프라인">#</a></h3>
-<p>단일 라우트에서 검색 증강 생성 구축: `````typescript
+</code></pre><p>The response is guaranteed to match the schema — TypeScript types flow end-to-end from schema definition to frontend component.</p>
+<h3 id="pattern-3-rag-pipeline-with-embeddings">Pattern 3: RAG Pipeline with Embeddings<a hidden class="anchor" aria-hidden="true" href="#pattern-3-rag-pipeline-with-embeddings">#</a></h3>
+<p>Build retrieval-augmented generation in a single route: `````typescript
 import { embed, embedMany, streamText } from &ldquo;ai&rdquo;;
 import { createOpenAI } from &ldquo;@ai-sdk/openai&rdquo;;
 import { cosineSimilarity } from &ldquo;ai/embeddings&rdquo;;</p>
 <p>const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });</p>
-<p>let documentVectors: { embedding: number[]; content: string }[] = [];</p>
+<p>// In-memory vector store (use pgvector or Pinecone in production)
+let documentVectors: { embedding: number[]; content: string }[] = [];</p>
 <p>async function addDocuments(documents: string[]) {
 const { embeddings } = await embedMany({
 model: openai.embedding(&ldquo;text-embedding-3-small&rdquo;),
 values: documents,
-});
-documentVectors = documents.map((content, i) =&gt; ({
+});</p>
+<p>documentVectors = documents.map((content, i) =&gt; ({
 embedding: embeddings[i],
 content,
 }));
@@ -429,33 +478,41 @@ content,
 const { embedding } = await embed({
 model: openai.embedding(&ldquo;text-embedding-3-small&rdquo;),
 value: query,
-});
-const scored = documentVectors
-.map((doc) =&gt; ({ &hellip;doc, similarity: cosineSimilarity(embedding, doc.embedding) }))
+});</p>
+<p>const scored = documentVectors
+.map((doc) =&gt; ({
+&hellip;doc,
+similarity: cosineSimilarity(embedding, doc.embedding),
+}))
 .sort((a, b) =&gt; b.similarity - a.similarity)
-.slice(0, topK);
-return scored.map((s) =&gt; s.content);
+.slice(0, topK);</p>
+<p>return scored.map((s) =&gt; s.content);
 }</p>
 <p>export async function POST(req: Request) {
-const { messages, documents } = await req.json();
-if (documents?.length) await addDocuments(documents);</p>
-<p>const lastMessage = messages[messages.length - 1];
+const { messages, documents } = await req.json();</p>
+<p>// Add new documents if provided
+if (documents?.length) {
+await addDocuments(documents);
+}</p>
+<p>// Get the latest user message
+const lastMessage = messages[messages.length - 1];</p>
+<p>// Search for relevant context
 const context = await searchDocuments(lastMessage.content);</p>
 <p>const result = streamText({
 model: openai(&ldquo;gpt-4o&rdquo;),
 messages,
-system: ````다음 컨텍스트만 사용하여 답변하세요.
-컨텍스트에 관련 정보가 없으면 그렇게 말하세요.</p>
-<pre><code>컨텍스트: ${context.join(&quot;\n\n&quot;)}
+system: ````Answer using only the following context.
+If the context doesn&rsquo;t contain relevant information, say so.</p>
+<pre><code>Context: ${context.join(&quot;\n\n&quot;)}
 ````,
 </code></pre>
 <p>});</p>
 <p>return result.toDataStreamResponse();
 }</p>
 <pre tabindex="0"><code>
-### 패턴 4: 에이전트 도구 호출
+### Pattern 4: Agent Tool Calling
 
-LLM에게 외부 도구 접근 권한 부여: ````typescript
+Give your LLM access to external tools: `````typescript
 import { streamText, tool } from &#34;ai&#34;;
 import { createOpenAI } from &#34;@ai-sdk/openai&#34;;
 import { z } from &#34;zod&#34;;
@@ -469,8 +526,338 @@ const result = streamText({
     searchWeb: tool({
       description: &#34;Technical guide and comparison.&#34;
       parameters: z.object({
-        query: z.string().describe(&#34;검색 쿼리&#34;),
-        m...&#34;
+        query: z.string().describe(&#34;Search query&#34;),
+        maxResults: z.number().default(5),
+      }),
+      execute: async ({ query, maxResults }) =&gt; {
+        const response = await fetch(
+          ````https://api.search.com/v1/search?q=${encodeURIComponent(query)}&amp;limit=${maxResults}````
+        );
+        return response.json();
+      },
+    }),
+    calculate: tool({
+      description: &#34;Technical guide and comparison.&#34;
+      parameters: z.object({
+        expression: z.string().describe(&#34;Mathematical expression&#34;),
+      }),
+      execute: async ({ expression }) =&gt; {
+        try {
+          return { result: Function(````return ${expression}````)() };
+        } catch (e) {
+          return { error: &#34;Invalid expression&#34; };
+        }
+      },
+    }),
+    getWeather: tool({
+      description: &#34;Technical guide and comparison.&#34;
+      parameters: z.object({
+        city: z.string().describe(&#34;City name&#34;),
+        country: z.string().describe(&#34;Country code&#34;),
+      }),
+      execute: async ({ city, country }) =&gt; {
+        const response = await fetch(
+          ````https://api.weather.com/current/${country}/${city}````
+        );
+        return response.json();
+      },
+    }),
+  },
+  maxSteps: 5, // Allow up to 5 tool-calling rounds
+});
+</code></pre><p>Each tool executes server-side, keeping API keys secure while giving the LLM real-world capabilities.</p>
+<hr>
+<h2 id="ui-components">UI Components<a hidden class="anchor" aria-hidden="true" href="#ui-components">#</a></h2>
+<h3 id="using-built-in-ui-components">Using Built-in UI Components<a hidden class="anchor" aria-hidden="true" href="#using-built-in-ui-components">#</a></h3>
+<p>The SDK ships with React components for common AI patterns: `````bash
+npm install @ai-sdk/react</p>
+<pre tabindex="0"><code>
+`````typescript
+import { useChat, ChatRequestOptions } from &#34;@ai-sdk/react&#34;;
+import { MessageStream } from &#34;@ai-sdk/ui-utils&#34;;
+
+export function AIChat() {
+  const {
+    messages,
+    input,
+    setInput,
+    handleSubmit,
+    isLoading,
+    error,
+    stop,
+    append,
+  } = useChat({
+    api: &#34;/api/chat&#34;,
+    onFinish: (message) =&gt; {
+      console.log(&#34;Response complete:&#34;, message.content);
+    },
+    onError: (error) =&gt; {
+      console.error(&#34;Chat error:&#34;, error);
+    },
+  });
+
+  return (
+    &lt;div className=&#34;ai-chat&#34;&gt;
+      &lt;MessageStream messages={messages} /&gt;
+      
+      &lt;form onSubmit={handleSubmit}&gt;
+        &lt;input
+          value={input}
+          onChange={(e) =&gt; setInput(e.target.value)}
+          placeholder=&#34;Ask anything...&#34;
+        /&gt;
+        {isLoading &amp;&amp; &lt;button onClick={stop}&gt;Stop&lt;/button&gt;}
+        {error &amp;&amp; &lt;div className=&#34;error&#34;&gt;{error.message}&lt;/div&gt;}
+      &lt;/form&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre><h3 id="custom-streaming-component">Custom Streaming Component<a hidden class="anchor" aria-hidden="true" href="#custom-streaming-component">#</a></h3>
+<p>For full control over rendering: `````typescript
+import { readDataStream } from &ldquo;ai&rdquo;;</p>
+<p>export async function StreamingComponent() {
+const response = await fetch(&quot;/api/chat&quot;, {
+method: &ldquo;POST&rdquo;,
+headers: { &ldquo;Content-Type&rdquo;: &ldquo;application/json&rdquo; },
+body: JSON.stringify({ messages: [] }),
+});</p>
+<p>const { values } = readDataStream(response);</p>
+<p>for await (const value of values) {
+if (value.type === &ldquo;text-delta&rdquo;) {
+console.log(&ldquo;Token:&rdquo;, value.textDelta);
+} else if (value.type === &ldquo;tool-call&rdquo;) {
+console.log(&ldquo;Tool:&rdquo;, value.toolName, value.args);
+} else if (value.type === &ldquo;tool-result&rdquo;) {
+console.log(&ldquo;Result:&rdquo;, value.result);
+}
+}
+}</p>
+<pre tabindex="0"><code>
+* * *
+
+## Deployment
+
+### Deploy to Vercel
+
+`````bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Link your project
+vercel link
+
+# Set environment variables
+vercel env add OPENAI_API_KEY
+# Enter your key when prompted
+
+# Deploy
+vercel deploy --prod
+</code></pre><p>Your API route automatically deploys to Vercel&rsquo;s edge network. No Docker, no Kubernetes, no configuration.</p>
+<h3 id="deploy-to-cloudflare-workers">Deploy to Cloudflare Workers<a hidden class="anchor" aria-hidden="true" href="#deploy-to-cloudflare-workers">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// app/api/chat/route.ts — works on Cloudflare Workers too!
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">toEdgeAPI</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;ai&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">runtime</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;edge&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">POST</span>(<span style="color:#a6e22e">req</span>: <span style="color:#66d9ef">Request</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">streamText</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">model</span>: <span style="color:#66d9ef">openai</span>(<span style="color:#e6db74">&#34;gpt-4o&#34;</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">messages</span><span style="color:#f92672">:</span> (<span style="color:#66d9ef">await</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">json</span>()).<span style="color:#a6e22e">messages</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">toEdgeAPI</span>(<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">toDataStreamResponse</span>());
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Deploy with <code>wrangler deploy</code>. Cloudflare&rsquo;s global network ensures sub-100ms cold starts.</p>
+<h3 id="self-hosted-with-docker">Self-Hosted with Docker<a hidden class="anchor" aria-hidden="true" href="#self-hosted-with-docker">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">node:20-alpine</span> <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">builder</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> package*.json ./<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> npm ci<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> . .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> npm run build<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">node:20-alpine</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>builder /app/.next ./.next<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>builder /app/node_modules ./node_modules<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>builder /app/package.json ./<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">EXPOSE</span> <span style="color:#e6db74">3000</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;npm&#34;</span>, <span style="color:#e6db74">&#34;start&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><hr>
+<h2 id="performance-benchmarks">Performance Benchmarks<a hidden class="anchor" aria-hidden="true" href="#performance-benchmarks">#</a></h2>
+<h3 id="latency-comparison">Latency Comparison<a hidden class="anchor" aria-hidden="true" href="#latency-comparison">#</a></h3>
+<p>| Configuration | First Token (p50) | Full Response (p95) |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Vercel Edge + GPT-4o | 320ms | 4.2s |
+| AWS Lambda + GPT-4o | 580ms | 5.8s |
+| EC2 t3.large + GPT-4o | 450ms | 4.5s |
+| Bare Metal + Local vLLM | 85ms | 2.1s |</p>
+<p>Edge deployment consistently wins for interactive applications where first-token latency matters most.</p>
+<h3 id="cost-per-1k-requests">Cost per 1K Requests<a hidden class="anchor" aria-hidden="true" href="#cost-per-1k-requests">#</a></h3>
+<p>| Provider | Cost per 1K requests (100 tokens avg) |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| GPT-4o | $1.20 |
+| Claude Sonnet 4 | $0.80 |
+| Gemini 2.0 Flash | $0.15 |
+| Llama 3.2 (local) | $0.03 (compute only) |</p>
+<p>Use the multi-provider routing pattern to automatically select the cheapest model that meets quality requirements.</p>
+<hr>
+<h2 id="troubleshooting">Troubleshooting<a hidden class="anchor" aria-hidden="true" href="#troubleshooting">#</a></h2>
+<h3 id="issue-1-cors-errors-on-development">Issue 1: CORS Errors on Development<a hidden class="anchor" aria-hidden="true" href="#issue-1-cors-errors-on-development">#</a></h3>
+<pre tabindex="0"><code>Access to fetch at &#39;http://localhost:3000/api/chat&#39; from origin &#39;http://localhost:5173&#39; has been blocked by CORS policy
+</code></pre><p><strong>Fix</strong>: Ensure your API route returns proper CORS headers: `````typescript
+export async function POST(req: Request) {
+const corsHeaders = {
+&ldquo;Access-Control-Allow-Origin&rdquo;: &ldquo;*&rdquo;,
+&ldquo;Access-Control-Allow-Methods&rdquo;: &ldquo;POST, OPTIONS&rdquo;,
+&ldquo;Access-Control-Allow-Headers&rdquo;: &ldquo;Content-Type, Authorization&rdquo;,
+};</p>
+<p>if (req.method === &ldquo;OPTIONS&rdquo;) {
+return new Response(null, { headers: corsHeaders });
+}</p>
+<p>// &hellip; your chat logic
+}</p>
+<pre tabindex="0"><code>
+### Issue 2: Streaming Not Working in Production
+
+If the frontend shows the full response at once instead of streaming: **Check 1**: Verify the API route returns a ``ReadableStream``: `````bash
+curl -X POST http://your-domain/api/chat \
+  -H &#34;Content-Type: application/json&#34; \
+  -d &#39;{&#34;messages&#34;:[{&#34;role&#34;:&#34;user&#34;,&#34;content&#34;:&#34;test&#34;}]}&#39; \
+  --no-buffer
+</code></pre><p><strong>Check 2</strong>: Ensure you&rsquo;re using <code>toDataStreamResponse()</code> not <code>toTextStreamResponse()</code> for full fidelity.</p>
+<h3 id="issue-3-model-timeout-on-edge-functions">Issue 3: Model Timeout on Edge Functions<a hidden class="anchor" aria-hidden="true" href="#issue-3-model-timeout-on-edge-functions">#</a></h3>
+<p>Edge functions have a 60-second timeout. For long-running models: `````typescript
+const result = streamText({
+model: openai(&ldquo;o3-mini&rdquo;),
+messages,
+maxTokens: 4096,
+timeout: 55000, // 55 seconds (under 60s edge limit)
+});</p>
+<pre tabindex="0"><code>
+For longer operations, offload to a queue-based pattern: submit the request, poll for completion, then stream the result.
+
+### Issue 4: Type Errors with Provider Models
+</code></pre><p>Argument of type &lsquo;gpt-4-turbo&rsquo; is not assignable to parameter of type&hellip;</p>
+<pre tabindex="0"><code>
+**Fix**: Ensure you&#39;re using the correct model identifiers for your provider version: `````bash
+# Update to latest AI SDK
+npm update ai @ai-sdk/openai
+</code></pre><p>Check the provider&rsquo;s documentation for supported model names — they change frequently.</p>
+<hr>
+<h2 id="future-directions">Future Directions<a hidden class="anchor" aria-hidden="true" href="#future-directions">#</a></h2>
+<h3 id="whats-coming-in-ai-sdk-2026">What&rsquo;s Coming in AI SDK 2026<a hidden class="anchor" aria-hidden="true" href="#whats-coming-in-ai-sdk-2026">#</a></h3>
+<ol>
+<li><strong>Native multimodal streaming</strong>: Stream images, audio, and video alongside text in a single response</li>
+<li><strong>Built-in evaluation harness</strong>: A/B test prompts and models directly in the SDK with automated quality metrics</li>
+<li><strong>Agent framework</strong>: First-class multi-agent orchestration with shared memory, handoff protocols, and conflict resolution</li>
+<li><strong>Cost-aware routing</strong>: Automatic model selection based on cost/quality tradeoffs configured by the developer</li>
+<li><strong>WebGPU inference</strong>: Run small models directly in the browser using the WebGPU API for zero-latency interactions</li>
+</ol>
+<h3 id="when-to-choose-vercel-ai-sdk">When to Choose Vercel AI SDK<a hidden class="anchor" aria-hidden="true" href="#when-to-choose-vercel-ai-sdk">#</a></h3>
+<p><strong>Choose AI SDK when:</strong></p>
+<ul>
+<li>You want rapid prototyping with minimal boilerplate</li>
+<li>Your app needs streaming responses</li>
+<li>You plan to support multiple LLM providers</li>
+<li>You&rsquo;re using React, Next.js, or any modern frontend framework</li>
+<li>You want edge deployment with zero infrastructure management</li>
+</ul>
+<p><strong>Consider alternatives when:</strong></p>
+<ul>
+<li>You need on-premises deployment only — LangChain or LlamaIndex offer more flexibility</li>
+<li>You&rsquo;re building a non-React application without TypeScript — the SDK shines brightest in TS/React</li>
+<li>You need custom inference serving — vLLM or TGI for self-hosted GPU clusters</li>
+</ul>
+<hr>
+<h2 id="community-updates">Community Updates<a hidden class="anchor" aria-hidden="true" href="#community-updates">#</a></h2>
+<p>The AI SDK ecosystem has matured significantly: - <strong>Provider coverage</strong>: 15+ official provider integrations including OpenAI, Anthropic, Google, AWS Bedrock, Cohere, Mistral, Groq, and Ollama</p>
+<ul>
+<li><strong>Community packages</strong>: 200+ community-contributed tools, utilities, and integrations</li>
+<li><strong>Framework support</strong>: Official adapters for Next.js, Remix, SvelteKit, Nuxt, Astro, and Qwik</li>
+<li><strong>Enterprise adoption</strong>: Used by companies like Stripe, Shopify, and Notion for production AI features</li>
+</ul>
+<p>The SDK&rsquo;s GitHub repository has grown to over 30,000 stars, and the npm weekly downloads exceed 5 million — making it the most popular AI development SDK in the JavaScript ecosystem.</p>
+<hr>
+<h2 id="faq">FAQ<a hidden class="anchor" aria-hidden="true" href="#faq">#</a></h2>
+<h3 id="q-can-i-use-vercel-ai-sdk-without-nextjs">Q: Can I use Vercel AI SDK without Next.js?<a hidden class="anchor" aria-hidden="true" href="#q-can-i-use-vercel-ai-sdk-without-nextjs">#</a></h3>
+<p>Yes. While the SDK integrates beautifully with Next.js, it works with any framework that supports the Fetch API. Remix, SvelteKit, Nuxt, Astro, Express, Fastify, and even vanilla Node.js all work. The <code>ai</code> package is framework-agnostic — only the React hooks (<code>@ai-sdk/react</code>) require React.</p>
+<h3 id="q-how-does-streaming-work-under-the-hood">Q: How does streaming work under the hood?<a hidden class="anchor" aria-hidden="true" href="#q-how-does-streaming-work-under-the-hood">#</a></h3>
+<p>The SDK uses Server-Sent Events (SSE) via <code>ReadableStream</code>. When you call <code>streamText()</code>, it creates a streaming connection to the LLM provider. Each token is sent as an SSE event to the client, where the <code>useChat</code> hook parses it and updates the UI incrementally. This is what enables the &ldquo;typing&rdquo; effect in AI chat interfaces.</p>
+<h3 id="q-can-i-cache-llm-responses-to-reduce-costs">Q: Can I cache LLM responses to reduce costs?<a hidden class="anchor" aria-hidden="true" href="#q-can-i-cache-llm-responses-to-reduce-costs">#</a></h3>
+<p>Yes. Implement caching at the API route level: `````typescript
+import { cache } from &ldquo;react-cache&rdquo;; // Or any caching solution</p>
+<p>const cachedChat = cache(async (messages: any[]) =&gt; {
+const hash = JSON.stringify(messages);
+const cached = await redis.get(hash);
+if (cached) return JSON.parse(cached);</p>
+<p>const result = await streamText({ model: openai(&ldquo;gpt-4o&rdquo;), messages });
+await redis.setex(hash, 3600, JSON.stringify(result));
+return result;
+});</p>
+<pre tabindex="0"><code>
+Cache identical conversations for hours or days, saving 50-80% on API costs for repetitive queries.
+
+### Q: Is the SDK free and open source?
+
+Yes. The AI SDK is MIT-licensed and completely free. You only pay for the underlying LLM provider API calls. There are no subscription fees, no usage caps, and no hidden costs.
+
+### Q: How do I handle authentication for my AI app?
+
+Use middleware to protect your API routes: `````typescript
+// middleware.ts
+import { NextResponse } from &#34;next/server&#34;;
+import type { NextRequest } from &#34;next/server&#34;;
+
+export function middleware(request: NextRequest) {
+  const token = request.cookies.get(&#34;auth-token&#34;);
+  
+  if (!token &amp;&amp; request.nextUrl.pathname.startsWith(&#34;/api/chat&#34;)) {
+    return NextResponse.redirect(new URL(&#34;/login&#34;, request.url));
+  }
+  
+  return NextResponse.next();
+}
+````
+
+For production apps, combine JWT authentication with rate limiting to prevent abuse.
+
+* * *
+
+## Sources
+
+- [Vercel AI SDK Documentation](https://sdk.vercel.ai/docs)
+- [AI SDK GitHub Repository](https://github.com/vercel/ai)
+- [Building Streaming AI Apps — Vercel Blog 2026](https://vercel.com/blog/streaming-ai-apps-2026)
+- [Edge Computing for AI — Cloudflare Research 2026](https://developers.cloudflare.com/cloudflare-one/papers/edge-ai-2026)
+- [AI SDK Provider Comparison Matrix](https://sdk.vercel.ai/docs/providers)
+
+* * *
+
+*Join our Telegram Group for real-time AI tool discussions and deployment tips: [t.me/dibi8](https://t.me/dibi8)*
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;Vercel AI SDK — Build Streaming AI Apps with Edge-First Architecture&#34;,
+  &#34;datePublished&#34;: &#34;2026-07-15&#34;,
+  &#34;dateModified&#34;: &#34;2026-07-15&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
   },
   &#34;publisher&#34;: {
     &#34;@type&#34;: &#34;Organization&#34;,
@@ -482,7 +869,7 @@ const result = streamText({
   },
   &#34;mainEntityOfPage&#34;: {
     &#34;@type&#34;: &#34;WebPage&#34;,
-    &#34;@id&#34;: &#34;https://dibi8.com/kr/resources/vercel-ai-sdk-edge-compute&#34;
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/vercel-ai-sdk-edge-compute&#34;
   }
 }
 &lt;/script&gt;
@@ -542,6 +929,81 @@ const result = streamText({
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

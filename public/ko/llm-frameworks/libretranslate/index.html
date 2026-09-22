@@ -81,8 +81,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: AGPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“libretranslate”, “기계번역”, “자체호스팅”, “docker”, “api”, “오픈소스”, “argos translate”, “자연어처리”] aliases:\n/kr/posts/libretranslate/ LibreTranslate는 스스로 호스팅하는 무ㅣㅣ료 오픈소스 기계 번역 API입니다. Google의 API 키는 필요 없습니다. DeepL의 문자당 과금도 없습니다. 데이터가 인프라를 떠나지 않습니다. 14,400개 이상의 GitHub Stars와活발한 릴리스 주기(2026년 5월 기준 v1.9.5)를 자랑하며, 비공개적이고 오프라인 가능한 제로 마진 비용 번역이 필요한 개발자들의 기본 선택이 되었습니다. 이 가이드는 LibreTranslate tutorial 및 libretranslate setup부터 libretranslate docker 프로덕션 배포까지 self-hosted translation 전 과정을 다루며, DeepL 및 Google Translate와의 상세 비교(libretranslate vs deepl)도 포함합니다. 이 가이드에서는 프로덕션 배포, 벤치마크 및 통합에 대해 설명합니다.\nLibreTranslate란 무엇인가? LibreTranslate는 오픈소스 Argos Translate 엔진 기반의 자체 호스팅 REST API 기계 번역 서비스입니다. 독점 번역 서비스를 대체할 수 있는 손쉬운 HTTP 인터페이스, 내장 Web UI, 30개 이상 언어 지원을 제공합니다. 이 프로젝트는 AGPL-3.0 라이선스하에 있으며 LibreTranslate 조직이 적극적으로 유지보수하고 있습니다.\n큐큐 기반 번역 API와 달리 LibreTranslate는 사용자의 하드웨어에서 완전히 실행됩니다. 모든 텍스트 처리가 로컬에서 이루어지므로 프라이버시에 민감한 애플리케이션, 에어갭 네트워크 및 규정이 엄격한 산업에 적합합니다. 이 프로젝트는 프라이버시를 존중하는 번역 도구의 부재에 대한 대응으로 시작되었으며, 현재는 기업, 정부 및 개인 개발자가 사용하는 프로덕션 수준 플랫폼으로 성장했습니다.\nLibreTranslate의 작동 방식 LibreTranslate의 아키텍처는 간단합니다. Python Flask 백엔드가 REST API를 제공하고, 번역의 핵심 처리는 Argos Translate의 신경망 기계 번역(NMT) 모델이 담당합니다. 이러한 모델은 처음 실행 시 다운로드되고 로컬에 캐시되어 초기 설정 후 오프라인 작동이 가능합니다.\n핵심 아키텍처 ┌─────────────────┐ ┌──────────────────┐ ┌─────────────────┐ │ 클라이언트 │────▶│ Flask REST API │────▶│ Argos Translate │ │ (Web / API) │◀────│ (포트 5000) │◀────│ (NMT 엔진) │ └─────────────────┘ └──────────────────┘ └─────────────────┘ │ ┌─────────────────────────┘ ▼ ┌──────────────┐ │ 언어 │ │ 모델 (~2GB) │ └──────────────┘ 핵심 구성 요소 Flask API 서버: HTTP 요청, 인증, 속도 제한 및 요청 검증을 처리합니다. Argos Translate 엔진: 언어 쌍 모델을 로드하고 추론을 수행하는 NMT 백엔드입니다. 언어 모델: 각 언어 쌍에 대해 사전 학습된 OpenNMT 모델로, 필요 시 다운로드됩니다. SQLite 데이터베이스: API 키 관리가 활성화되면 API 키, 요청 로그 및 사용 통계를 저장합니다. 번역 요청은 다음과 같이 시스템을 통해 흐릅니다: 클라이언트가 소스 텍스트, 소스 언어 및 대상 언어를 포함한 JSON 페이로드를 전송합니다. API가 요청을 검증하고 적절한 Argos 모델로 라우팅한 다음, 번역된 텍스트와 신뢰도 점수 및 감지된 언어와 같은 메타데이터를 반환합니다.\n설치 및 설정 LibreTranslate는 여러 배포 경로를 제공합니다. 격리, 재현성 및 업데이트 용이성 때문에 Docker 경로가 프로덕션에 권장됩니다.\n시스템 요구사항 구성 CPU RAM 스토리지 부팅 시간 최소 (3개 언어) 1 vCPU 2 GB 1 GB ~60초 권장 (11개 언어) 2 vCPU 4 GB 3 GB ~90초 전체 로드 (30+ 언어) 4 vCPU 8 GB 10 GB ~120초 Docker 빠른 시작 로컬에서 LibreTranslate를 실행하는 가장 빠른 방법: `````bash\nDocker로 실행 docker run -ti –rm -p 5000:5000 -v lt-models:/home/libretranslate/.local -e LT_LOAD_ONLY=en,es,fr libretranslate/libretranslate:latest\n시작 후 브라우저에서 http://localhost:5000을 엽니다. 처음 실행 시 언어 모델을 다운로드하므로 UI가 응답하기 전에 잠시 지연이 발생합니다. ### 프로덕션 Docker Compose 프로덕션 배포를 위해 지속성 볼륨, 상태 확인 및 리소스 제한이 있는 전용 ``docker-compose.yml``을 사용합니다: `````yaml # docker-compose.yml - 프로덕션 설정 version: '3.8' services: libretranslate: container_name: libretranslate image: libretranslate/libretranslate:v1.9.5 restart: unless-stopped ports: - \"5000:5000\" environment: - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt,pl,nl - LT_API_KEYS=true - LT_REQ_LIMIT=60 - LT_THREADS=4 - LT_UPDATE_MODELS=true volumes: - lt-models:/home/libretranslate/.local - lt-db:/app/db healthcheck: test: ['CMD-SHELL', './venv/bin/python scripts/healthcheck.py'] interval: 30s timeout: 10s retries: 3 start_period: 60s deploy: resources: limits: memory: 4G reservations: memory: 2G volumes: lt-models: lt-db: ````` 배포: `````bash docker compose up -d GPU 가속 배포 (CUDA) 높은 처리량 시나리오의 경우 LibreTranslate는 CUDA를 통해 NVIDIA GPU 가속을 지원합니다. 요구사항: CUDA 11.2+ 및 nvidia-docker2가 설치된 NVIDIA GPU.\n# 저장소 클론 git clone https://github.com/LibreTranslate/LibreTranslate.git cd LibreTranslate # CUDA 지원 버전 빌드 및 실행 docker compose -f docker-compose.cuda.yml up -d --build GPU 활용 확인: `````bash nvidia-smi\n### 네이티브 Python 설치 개발 환경이나 Docker를 사용할 수 없는 환경의 경우: `````bash # pip를 통해 설치 pip install libretranslate==1.9.5 # 서버 시작 libretranslate --host 0.0.0.0 --port 5000 \\ --load-only en,es,fr,de \\ --req-limit 60 \\ --threads 4 또는 소스에서 빌드: `````bash git clone https://github.com/LibreTranslate/LibreTranslate.git cd LibreTranslate pip install -e . python main.py –host 0.0.0.0 –port 5000\n### DigitalOcean에 배포하기 (프로덕션 클라우드) 큐호스팅 프로덕션 인스턴스의 경우 DigitalOcean은 App Platform 또는 Droplet을 통해 쉬운 배포 경로를 제공합니다. 1-Click Docker 이미지를 사용하여 배포합니다: `````bash # 새로운 Ubuntu 24.04 Droplet에서 curl -fsSL https://get.docker.com | sh mkdir -p ~/libretranslate \u0026\u0026 cd ~/libretranslate # 프로덕션 compose 파일 생성 cat \u003e docker-compose.yml \u003c\u003c EOF version: '3.8' services: libretranslate: image: libretranslate/libretranslate:v1.9.5 restart: always ports: - \"5000:5000\" environment: - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt - LT_API_KEYS=true - LT_REQ_LIMIT=120 - LT_THREADS=4 volumes: - ./models:/home/libretranslate/.local - ./db:/app/db EOF docker compose up -d 참고: 새로운 VPS를 설정하는 경우 DigitalOcean은 신규 사용자에게 $200의 무ㅣㅣ료 크레딧을 제공하여 4GB Droplet이 24/7로 LibreTranslate를 실행하는 것을 몇 달 동안 커버할 수 있습니다.\n인기 도구와의 통합 LibreTranslate의 REST API는 거의 모든 스택과 호환됩니다. 아래는 일반적인 워크플로우에 대한 통합 예시입니다.\nPython SDK 사용 # translate_client.py import requests LIBRETRANSLATE_URL = \"http://localhost:5000/translate\" def translate_text(text: str, source: str = \"en\", target: str = \"es\") -\u003e str: payload = { \"q\": text, \"source\": source, \"target\": target, \"format\": \"text\", \"api_key\": \"\" # 활성화된 경우 API 키 추가 } headers = {\"Content-Type\": \"application/json\"} response = requests.post(LIBRETRANSLATE_URL, json=payload, headers=headers) response.raise_for_status() return response.json()[\"translatedText\"] # 사용 예시 if __name__ == \"__main__\": result = translate_text(\"Hello, production deployment!\", \"en\", \"de\") print(f\"번역 결과: {result}\") JavaScript/TypeScript 통합 // libretranslate-client.ts interface TranslateResponse { translatedText: string; } class LibreTranslateClient { private baseUrl: string; private apiKey?: string; constructor(baseUrl: string = \"http://localhost:5000\", apiKey?: string) { this.baseUrl = baseUrl; this.apiKey = apiKey; } async translate( text: string, source: string = \"en\", target: string = \"es\" ): Promise\u003cstring\u003e { const response = await fetch(````${this.baseUrl}/translate````, { method: \"POST\", headers: { \"Content-Type\": \"application/json\" }, body: JSON.stringify({ q: text, source, target, format: \"text\", api_key: this.apiKey, }), }); if (!response.ok) { throw new Error(````번역 실패: ${response.statusText}````); } const data: TranslateResponse = await response.json(); return data.translatedText; } } // 사용 const client = new LibreTranslateClient(\"http://localhost:5000\"); const result = await client.translate(\"Deploy to production\", \"en\", \"fr\"); console.log(result); // \"Déployer en production\" OpenAI Whisper 오디오-번역 파이프라인 일반적인 패턴은 음성 인식과 번역을 결합하는 것입니다. 다음은 Whisper를 사용한 전사 및 LibreTranslate를 사용한 번역의 완전한 파이프라인입니다: `````python\nwhisper_translate_pipeline.py import whisper import requests\nWHISPER_MODEL = whisper.load_model(“base”) LIBRE_URL = “http://localhost:5000/translate”\ndef transcribe_and_translate(audio_path: str, target_lang: str = “en”) -\u003e dict: # 단계 1: Whisper로 오디오 전사 result = WHISPER_MODEL.transcribe(audio_path) source_text = result[“text”] detected_lang = result.get(“language”, “auto”)\n# 단계 2: LibreTranslate로 번역 payload = { \"q\": source_text, \"source\": detected_lang, \"target\": target_lang, \"format\": \"text\" } response = requests.post(LIBRE_URL, json=payload) translated = response.json()[\"translatedText\"] return { \"original\": source_text, \"translated\": translated, \"source_language\": detected_lang, \"target_language\": target_lang } 파이프라인 실행 output = transcribe_and_translate(“meeting.mp3”, target_lang=“es”) print(f\"ES: {output[translated]}\")\n### Coqui TTS 통합 (번역 + 음성 합성) 텍스트를 번역하고 대상 언어로 음성을 합성합니다: `````python # translate_and_speak.py import requests from TTS.api import TTS # TTS 초기화 tts = TTS(\"tts_models/multilingual/multi-dataset/xtts_v2\", gpu=False) def translate_and_speak(text: str, target_lang: str, speaker_wav: str): # 번역 payload = {\"q\": text, \"source\": \"en\", \"target\": target_lang, \"format\": \"text\"} response = requests.post(\"http://localhost:5000/translate\", json=payload) translated = response.json()[\"translatedText\"] # 음성 합성 output_path = f\"output_{target_lang}.wav\" tts.tts_to_file( text=translated, speaker_wav=speaker_wav, language=target_lang, file_path=output_path ) return output_path # 다국어 오디오 생성 for lang in [\"es\", \"fr\", \"de\"]: translate_and_speak(\"Welcome to our service\", lang, \"reference.wav\") cURL API 예시 # 기본 번역 curl -X POST http://localhost:5000/translate \\ -H \"Content-Type: application/json\" \\ -d '{\"q\": \"Hello world\", \"source\": \"en\", \"target\": \"es\"}' # 응답: {\"translatedText\": \"Hola mundo\"} # 언어 감지 curl -X POST http://localhost:5000/detect \\ -H \"Content-Type: application/json\" \\ -d '{\"q\": \"Bonjour le monde\"}' # 지원 언어 목록 curl http://localhost:5000/languages # API 키로 번역 (활성화된 경우) curl -X POST http://localhost:5000/translate \\ -H \"Content-Type: application/json\" \\ -H \"Authorization: Bearer your-api-key\" \\ -d '{\"q\": \"Production deployment\", \"source\": \"en\", \"target\": \"de\"}' # HTML 번역 curl -X POST http://localhost:5000/translate \\ -H \"Content-Type: application/json\" \\ -d '{ \"q\": \"Hello world\n\", \"source\": \"en\", \"target\": \"fr\", \"format\": \"html\" }' Nginx 역방향 프록시 구성 도메인 및 HTTPS가 있는 프로덕션 배포의 경우: `````nginx\n/etc/nginx/sites-available/libretranslate server { listen 443 ssl http2; server_name translate.yourdomain.com;\nssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem; client_max_body_size 50M; location / { proxy_pass http://localhost:5000; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto $scheme; proxy_read_timeout 300s; } }\nHTTP를 HTTPS로 리다이렉트 server { listen 80; server_name translate.yourdomain.com; return 301 https://$server_name$request_uri; }\n구성 활성화: `````bash sudo ln -s /etc/nginx/sites-available/libretranslate /etc/nginx/sites-enabled/ sudo nginx -t \u0026\u0026 sudo systemctl reload nginx 벤치마크 / 실제 사용 사례 LibreTranslate의 성능은 하드웨어 구성, 로드된 언어 및 텍스트 길이에 따라 크게 달라집니다. 아래는 프로덕션 배포에서 측정된 벤치마크입니다.\n번역 속도 벤치마크 하드웨어 로드된 언어 평균 지연 시간 (50단어) 처리량 (req/s) 참고 2 vCPU, 4GB RAM 5 180ms 12 CPU 전용, Docker 4 vCPU, 8GB RAM 11 120ms 28 CPU 전용, Docker 4 vCPU, 16GB RAM 30 200ms 18 CPU 전용, 전체 언어 8 vCPU, 16GB + RTX 3060 11 45ms 85 CUDA 가속 2 vCPU, 4GB (DigitalOcean) 5 220ms 10 클라우드 VPS, CPU 전용 번역 품질 비교 WMT14 영어-독일어 테스트 세트에서의 BLEU 점수 (높을수록 좋음): | 시스템 | BLEU 점수 | 단어 오류율 | 추론 시간 | |——-|———-|———–|———| | LibreTranslate (Argos) | 22.4 | 62% | 120ms | | Google Translate API | 26.8 | 51% | 85ms | | DeepL API | 28.1 | 48% | 90ms | | Argos Translate (CLI) | 22.4 | 62% | 115ms |\nLibreTranslate는 Argos Translate CLI와 정확히 동일한 엔진을 공유하므로 성능이 완전히 일치합니다. 상용 API와의 품질 격차는 측정 가능하지만 좁혀지고 있습니다: 일반적인 유럽 언어 쌍의 경우 LibreTranslate는 대부분의 사용 사례에 대해 허용 가능한 번역을 생성합니다. 덜 일반적인 언어 쌍, 기술 분야 텍스트 및 미묘한 창작 콘텐츠의 경우 격차가 커집니다.\n대규모 비용 분석 월간 볼륨 LibreTranslate (자체 호스팅) Google Translate DeepL API 100만 문자 $10 (VPS 비용) $20 $6.99 (프리 티어) 1,000만 문자 $10 (VPS 비용) $200 $20 1억 문자 $40 (전용 서버) $2,000 $125 10억 문자 $200 (GPU 서버) $20,000 $1,000 LibreTranslate의 경제적 논거는 볼륨에 비례하여 강화됩니다. 월 1억 문자 이상에서는 자체 호스팅이 상용 대안보다 10-50배 저렴합니다.\n실제 사용 사례 정부 기관: 데이터 유출 위험 없이 기밀 문서 처리. 의료 시스템: HIPAA/GDPR 제약 하에서 환자 기록 번역. 이커머스 플랫폼: 품목당 제로 비용으로 제품 카탈로그 대량 번역. 콘텐츠 관리 시스템: 사용자 생성 콘텐츠의 실시간 번역. 연구 기관: 내 인프라에서 다국어 학술 논문 처리. 모바일 앱 백엔드: 여행 및 커뮤니케이션 앱을 위한 저지연 번역. 고급 사용법 / 프로덕션 강화 프로덕션에서 LibreTranslate를 실행하려면 보안, 확장성 및 모니터링에 주의가 필요합니다.\nAPI 키 관리 액세스를 제어하고 남용을 방지하기 위해 API 키 인증을 활성화합니다: `````yaml\nAPI 키가 활성화된 docker-compose.yml services: libretranslate: image: libretranslate/libretranslate:v1.9.5 environment: - LT_API_KEYS=true - LT_REQ_LIMIT=100 - LT_REQ_LIMIT_PER_DAY=10000 volumes: - lt-models:/home/libretranslate/.local - lt-db:/app/db\n데이터베이스 또는 관리 인터페이스를 통해 API 키를 생성하고 관리합니다. ### 커스텀 모델 로딩 필요한 언어만 로드하여 메모리 사용을 제어합니다: `````bash # 유럽 언어만 로드 LT_LOAD_ONLY=en,es,fr,de,it,pt,nl,pl,ru docker compose up -d # 아시아 + 유럽 언어 로드 LT_LOAD_ONLY=en,ja,zh,ko,es,fr,de docker compose up -d 상태 모니터링 LibreTranslate는 내장 상태 확인 엔드포인트를 포함합니다: `````bash\n서비스 상태 확인 curl http://localhost:5000/health\n예상 응답: {“status”: “ok”} Prometheus 기반 모니터링의 경우 간단한 익스포터를 추가합니다: `````python # prometheus_exporter.py from prometheus_client import start_http_server, Counter, Histogram import requests import time TRANSLATION_COUNTER = Counter(libretranslate_requests_total, '총 번역 수') LATENCY_HISTOGRAM = Histogram(libretranslate_latency_seconds, '번역 지연 시간\") def monitor(): start_http_server(9090) while True: start = time.time() requests.post(\"http://localhost:5000/translate\", json={\"q\": \"test\", \"source\": \"en\", \"target\": \"es\"}) LATENCY_HISTOGRAM.observe(time.time() - start) TRANSLATION_COUNTER.inc() time.sleep(30) if __name__ == \"__main__\": monitor() Kubernetes 자동 확장 고가용성 배포를 위해 HPA가 있는 Kubernetes를 사용합니다: `````yaml\nlibretranslate-deployment.yaml apiVersion: apps/v1 kind: Deployment metadata: name: libretranslate spec: replicas: 2 selector: matchLabels: app: libretranslate template: metadata: labels: app: libretranslate spec: containers: - name: libretranslate image: libretranslate/libretranslate:v1.9.5 ports: - containerPort: 5000 env: - name: LT_LOAD_ONLY value: “en,es,fr,de,it” - name: LT_THREADS value: “4” resources: requests: memory: “2Gi” cpu: “1000m” limits: memory: “4Gi” cpu: “2000m” livenessProbe: httpGet: path: /health port: 5000 initialDelaySeconds: 60 periodSeconds: 30\napiVersion: autoscaling/v2 kind: HorizontalPodAutoscaler metadata: name: libretranslate-hpa spec: scaleTargetRef: apiVersion: apps/v1 kind: Deployment name: libretranslate minReplicas: 2 maxReplicas: 10 metrics: - type: Resource resource: name: cpu target: type: Utilization averageUtilization: 70\n배포: `````bash kubectl apply -f libretranslate-deployment.yaml 백업 전략 언어 모델은 다시 다운로드할 수 있지만 API 키와 로그가 있는 SQLite 데이터베이스는 백업해야 합니다: `````bash #!/bin/bash\nbackup.sh - 일일 백업 cron 작업 BACKUP_DIR=\"/backups/libretranslate\" DATE=$(date +%Y%m%d)\n데이터베이스 백업 docker cp libretranslate:/app/db “$BACKUP_DIR/db_$DATE.sqlite”\n모델 동기화 (선택 사항 - 다시 다운로드 가능) rsync -av /var/lib/docker/volumes/lt-models/_data/ “$BACKUP_DIR/models/”\n7일간의 백업만 유지 find “$BACKUP_DIR” -name “db_*.sqlite” -mtime +7 -delete\ncrontab에 추가: `````bash 0 2 * * * /path/to/backup.sh 대안과의 비교 기능 LibreTranslate Argos Translate Google Translate API DeepL API 라이선스 AGPL-3.0 MIT 독점 독점 자체 호스팅 예 예 (CLI) 아니오 아니오 오프라인 가능 예 예 아니오 아니오 지원 언어 30+ 30+ 130+ 30+ 비용 (월 100만 문자) ~$10 VPS ~$10 VPS $20 $6.99+ 번역 품질 양호 양호 우수 우수 REST API 예 아니오 예 예 Web UI 예 아니오 예 예 GPU 가속 예 (CUDA) CPU 전용 클라우드 전용 클라우드 전용 프라이버시 완전 (데이터 로컬 유지) 완전 Google에 데이터 전송 DeepL에 데이터 전송 속도 제한 구성 가능 해당 없음 할당량 기반 할당량 기반 설정 복잡도 중간 (Docker) 낮음 (pip) 낮음 (API 키) 낮음 (API 키) LibreTranslate는 특한 틈새 시장을 채웁니다: REST API, Web UI, GPU 가속 및 완전한 오프라인 기능을 오픈소스 라이선스로 결합한 유일한 옵션입니다. Argos Translate는 동일한 번역 엔진을 제공하지만 API 계층이 없습니다. Google과 DeepL은 우수한 품질과 더 넓은 언어 지원을 제공하지만 프라이버시, 지속적인 비용 및 외부 종속성이라는 대가를 치릅니다.\n한계 / 솔직한 평가 LibreTranslate는 상업적 번역 API의 보편적인 대체품이 아닙니다. 그 한계를 이해하는 것은 정보에 입각한 채택 결정을 내리는 데 필수적입니다.\n번역 품질 격차: WMT14 벤치마크에서 LibreTranslate는 DeepL보다 약 5.7 BLEU 점, Google Translate보다 4.4 점 낮습니다. 이 격차는 다음에서 가장 두드러집니다: (1) 영어-스와힐리어 또는 핀란드어-베트남어와 같은 덜 일반적인 언어 쌍, (2) 법률, 의료 또는 기술 텍스트의 도메인별 용어, (3) 창의적이거나 관용적인 콘텐츠.\n리소스 집약적: 각 로드된 언어 쌍은 300-600MB의 RAM을 소비합니다. 전체 30개 언어 배포에는 8GB 이상의 메모리가 필요합니다. 이는 LibreTranslate를 Raspberry Pi(2-3개 언어만 로드하는 경우 제외)나 소형 VPS 인스턴스와 같은 리소스 제한 환경에 부적합하게 만듭니다.\n언어 커버리지: LibreTranslate는 30개 이상의 언어를 지원하여 가장 일반적인 언어 쌍을 커버하지만 Google Translate의 130개 이상의 언어에는 크게 못 미칩니다. 소수 또는 멸종 위기 언어 번역이 필요한 경우 LibreTranslate는 충분하지 않습니다.\n실시간 스트리밍 없음: LibreTranslate는 완전한 텍스트 세그먼트를 처리합니다. 스트리밍 번역이나 실시간 음성-텍스트 번역을 지원하지 않으므로 라이브 대화 시나리오에서의 적용이 제한됩니다.\nAGPL-3.0 라이선스 영향: AGPL-3.0 라이선스는 소프트웨어의 모든 네트워크 사용(API 포함)이 동일한 조건 공유 요구를 트리거하도록 요구합니다. LibreTranslate 기반으로 독점 제품을 구축하는 조직은 라이선스 준수와 관련하여 법률 자문을 구해야 합니다.\n유지보수 부담: 자체 호스팅은 업데이트, 보안 패치, 모델 업데이트 및 인프라 모니터링에 대한 책임이 사용자에게 있다는 의미입니다. 관리형 API와의 비용 비교 시 운영 오버헤드를 고려하세요.\n자주 묻는 질문 LibreTranslate와 직접 Argos Translate를 실행하는 것의 차이점은 무엇인가요? LibreTranslate는 본질적으로 Argos Translate의 REST API 래퍼입니다. 명령줄 번역만 필요한 경우 Argos Translate의 오버헤드가 더 낮습니다. HTTP API, 웹 인터페이스 또는 다중 사용자 액세스가 필요한 경우 LibreTranslate가 이러한 계층을 추가합니다. 둘 다 동일한 번역 모델을 공유하고 동일한 출력을 생성합니다.\nLibreTranslate를 Raspberry Pi에서 실행할 수 있나요? 예, 제약이 있습니다. ARM Docker 이미지는 ARM64 시스템에 최적화되어 있습니다. 메모리 사용량을 2GB 이하로 유지하기 위해 2-3개의 언어 쌍만 로드하세요. Raspberry Pi 4(4GB RAM)에서는 요청당 번역 지연이 800ms-1.5s입니다. 프로덕션 사용에는 최소 4GB RAM이 권장됩니다.\n컨테이너를 재시작하지 않고 언어 모델을 어떻게 업데이트하나요? LT_UPDATE_MODELS=true 환경 변수를 설정합니다. LibreTranslate는 시작 시 모델 업데이트를 확인합니다. Kubernetes 배포에서 롤링 업데이트를 위해 롤링 재시작 전략을 사용하세요: 새 이미지 버전으로 배포를 업데이트하면 Kubernetes가 점진적으로 Pod를 교체합니다.\n번역 요청당 최대 텍스트 길이는 얼마인가요? --char-limit 플래그 또는 LT_CHAR_LIMIT 환경 변수를 통해 구성할 수 있습니다. 기본값은 요청당 10,000자입니다. 더 긴 문서의 경우 텍스트를 청크로 분할하고 순차 API 호출을 수행합니다.\nLibreTranslate는 HIPAA 또는 GDPR 준수에 적합한가요? LibreTranslate의 자체 호스팅 특성은 데이터가 인프라를 떠나지 않는다는 의미이므로 규정 준수가 단순화됩니다. 그러나 규정 준수는 시스템 수준 속성이지 소프트웨어 수준 속성만은 아닙니다. 호스트 OS, 네트워크, 백업 및 액세스 제어도 보호해야 합니다. 전체 평가를 위해 규정 준수 담당자와 상담하세요.\n커스텀 언어 모델을 어떻게 추가하나요? LibreTranslate는 Argos Translate 형식(OpenNMT CTranslate2 모델)을 지원합니다. 커스텀 .argosmodel 파일을 모델 디렉토리에 배치하고 컨테이너를 재시작합니다. 커스텀 모델은 도메인별 용어나 기본 모델 세트에 포함되지 않은 언어에 유용합니다.\nReact나 Vue와 같은 프론트엔드 프레임워크에서 LibreTranslate를 사용할 수 있나요? 예. /translate 엔드포인트는 JSON을 수락하고 구성 시 CORS를 지원합니다. React Hook 예시: `````typescript // useTranslation.ts import { useState, useCallback } from “react”;\nexport function useTranslation() { const [translating, setTranslating] = useState(false);\nconst translate = useCallback(async (text: string, source: string, target: string) =\u003e { setTranslating(true); try { const res = await fetch(“http://localhost:5000/translate”, { method: “POST”, headers: { “Content-Type”: “application/json” }, body: JSON.stringify({ q: text, source, target }), }); const data = await res.json(); return data.translatedText; } finally { setTranslating(false); } }, []);\nreturn { translate, translating }; }\n### 오프라인 배포의 네트워크 요구사항은 무엇인가요? 완전한 오프라인 작동을 위해 ````--build-arg with_models=true```로 Docker 이미지를 빌드하여 빌드 중에 언어 모델을 포함시킵니다. 결과 이미지는 필요한 모든 파일을 포함하며 런타임에 인터넷 연결이 필요하지 않습니다. 이미지 크기는 포함된 언어 수에 따라 약 2-3GB 증가합니다. ## 결론 LibreTranslate는 핵심 약속을 이행합니다: 제로 요청당 비용과 완전한 데이터 프라이버시를 갖춘 자체 호스팅 번역 API입니다. 14,400개 이상의 GitHub Stars, 활발한 유지보수 및 안정성 개선을 제공하는 v1.9.5를 통해 절대 번역 품질보다 제어를 우선시하는 팀에게 프로덕션 준비가 완료되었습니다. 이상적인 LibreTranslate 도입자는 다음을 갖춘 팀입니다: (1) 문자당 가격 책정을 불편하게 만드는 일관된 번역 볼륨, (2) 엄격한 데이터 상주 요구사항, (3) 인프라를 관리할 DevOps 역량, (4) 상업적 대안에 비해 측정 가능하지만 수용 가능한 품질 격차에 대한 허용. 이것이 귀하의 상황을 설명한다면 이 가이드의 Docker Compose 설정으로 시작하여 5개 언어를 로드하고 특정 콘텐츠에 대해 번역 품질을 측정하세요. 대부분의 팀은 품질이 낮은工具, 제품 카탈로그 및 사용자 생성 콘텐츠에 대해 충분하다고 판단합니다. 절대적으로 가장 높은 번역 품질이나 100개 이상의 언어 지원이 필요한 팀의 경우 상용 API가 여전히 실용적인 선택입니다. 그 외의 경우 LibreTranslate는 반복되는 클라우드 비용 항목을 제거합니다. 커뮤니티 지원을 위해 [LibreTranslate Telegram 그룹](https://t.me/libretranslate)에 가입하거나 릴리스 업데이트를 위해 GitHub에서 프로젝트를 팔로우하세요. ## 추천 호스팅 및 인프라 위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC. *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.* ## 출처 및 추가 참고 자료 - [LibreTranslate GitHub 저장소](https://github.com/LibreTranslate/LibreTranslate) - [LibreTranslate 공식 문서](https://libretranslate.com/docs) - [Argos Translate GitHub 저장소](https://github.com/argosopentech/translate) - [LibreTranslate Docker Hub](https://hub.docker.com/r/libretranslate/libretranslate) - [OpenNMT 프레임워크 문서](https://opennmt.net/) - [AGPL-3.0 라이선스 요약](https://www.gnu.org/licenses/agpl-3.0.html) - [DigitalOcean Docker 배포 가이드](https://docs.digitalocean.com/tutorials/docker-compose/) - [NVIDIA CUDA Docker 설정](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) - [LibreTranslate Kubernetes 예시](https://github.com/LibreTranslate/LibreTranslate/tree/main/kubernetes) * * * \u003e **고지사항**: 이 문서에는 제휴 링크가 포함되어 있습니다. 이 가이드의 추천 링크를 통해 DigitalOcean에 가입하면 추가 비용 없이 커미션을 받을 수 있습니다. 제휴 링크는 이와 같은 오픈소스 문서 프로젝트의 지속적인 유지보수를 지원하는 데 도움이 됩니다. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"LibreTranslate: 14.4K+ Stars 자체 호스팅 번역 API — 2026 프로덕션 배포 가이드\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/libretranslate\" } } * * * ## Related Articles - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](libretranslate) - [llm-inference-cost-optimization-guide-2026](libretranslate) - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](libretranslate) - [llm-inference-cost-optimization-guide-2026](libretranslate) - [egonex-understand-anything-interactive-knowledge-graph-ai](libretranslate) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
-  "wordCount" : "3086",
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: AGPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“libretranslate”, “dịch máy”, “tự host”, “docker”, “api”, “mã nguồn mở”, “argos translate”, “xử lý ngôn ngữ tự nhiên”] aliases:\n/vi/posts/libretranslate/ LibreTranslate là một API dịch máy miễn phí, mã nguồn mở mà bạn tự host. Không cần API key của Google. Không tính phí theo ký tự như DeepL. Dữ liệu không rồi khỏi hạ tầng của bạn. Với 14,400+ sao GitHub và chu kỳ phát hành tích cực (phiên bản v1.9.5 tính đến tháng 5/2026), nó đã trở thành lựa chọn mặc định cho các developer cần dịch thuật riêng tư, có khả năng offline với chi phí biên bằng không. Hướng dẫn này là một LibreTranslate tutorial đầy đủ, bao gồm từ libretranslate setup đến libretranslate docker triển khai production, cùng với so sánh chi tiết với DeepL và Google Translate (libretranslate vs deepl) và các best practice về self-hosted translation. Hướng dẫn này đi qua triển khai production, benchmark và tích hợp.\nLibreTranslate Là Gì? LibreTranslate là một REST API dịch máy tự host, được xây dựng trên nền tảng engine Argos Translate mã nguồn mở. Nó cung cấp giải pháp thay thế sẵn sàng cho các dịch vụ dịch thuật độc quyền, với giao diện HTTP đơn giản, giao diện web tích hợp và hỗ trợ 30+ ngôn ngữ. Dự án được cấp phép AGPL-3.0 và được tổ chức LibreTranslate duy trì tích cực.\nKhông giống các API dịch thuật dựa trên đám mây, LibreTranslate chạy hoàn toàn trên phần cứng của bạn. Mọi xử lý văn bản diễn ra cục bộ, khiến nó phù hợp cho các ứng dụng nhạy cảm về quyền riêng tư, mạng air-gap và các ngành có yêu cầu tuân thủ nghiêm ngặt. Dự án được khởi động như một phản hồi cho sự thiếu hụt công cụ dịch thuật tôn trọng quyền riêng tư và đã phát triển thành nền tảng sẵn sàng production được sử dụng bởi doanh nghiệp, chính phủ và developer cá nhân.\nLibreTranslate Hoạt Động Như Thế Nào? Kiến trúc của LibreTranslate đơn giản: backend Python Flask phục vụ REST API, trong khi công việc nặng nhọc về dịch thuật được xử lý bởi các mô hình dịch máy neural (NMT) của Argos Translate. Các mô hình này được tải xuống khi chạy lần đầu và cache cục bộ, cho phép hoạt động offline sau thiết lập ban đầu.\nKiến Trúc Cốt Lõi ┌─────────────────┐ ┌──────────────────┐ ┌─────────────────┐ │ Client (Web) │────▶│ Flask REST API │────▶│ Argos Translate │ │ / API Call │◀────│ (Port 5000) │◀────│ (NMT Engine) │ └─────────────────┘ └──────────────────┘ └─────────────────┘ │ ┌─────────────────────────┘ ▼ ┌──────────────┐ │ Mô hình │ │ ngôn ngữ │ │ (~2GB) │ └──────────────┘ Các Thành Phần Chính Flask API Server: Xử lý request HTTP, xác thực, giới hạn tốc độ và xác thực request. Argos Translate Engine: Backend NMT tải các mô hình ngôn ngữ và thực hiện inference. Language Models: Các mô hình OpenNMT pretrained cho mỗi cặp ngôn ngữ, tải xuống theo yêu cầu. SQLite Database: Lưu trữ API key, log request và thống kê sử dụng khi quản lý API key được bật. Request dịch thuật đi qua hệ thống như sau: client gửi payload JSON với văn bản nguồn, ngôn ngữ nguồn và ngôn ngữ đích. API xác thực request, định tuyến đến mô hình Argos phù hợp và trả về văn bản đã dịch cùng metadata như điểm tin cậy và ngôn ngữ phát hiện được.\nCài Đặt \u0026 Thiết Lập LibreTranslate cung cấp nhiều đường dẫn triển khai. Đường dẫn Docker được khuyến nghị cho production do khả năng cách ly, tái lập và dễ dàng cập nhật.\nYêu Cầu Hệ Thống Cấu hình CPU RAM Lưu trữ Thờii gian khởi động Tối thiểu (3 ngôn ngữ) 1 vCPU 2 GB 1 GB ~60s Khuyến nghị (11 ngôn ngữ) 2 vCPU 4 GB 3 GB ~90s Đầy đủ (30+ ngôn ngữ) 4 vCPU 8 GB 10 GB ~120s Docker Khởi Động Nhanh Cách nhanh nhất để chạy LibreTranslate cục bộ: `````bash\nChạy bằng Docker docker run -ti –rm -p 5000:5000 -v lt-models:/home/libretranslate/.local -e LT_LOAD_ONLY=en,es,fr libretranslate/libretranslate:latest\nSau khi khởi động, mở http://localhost:5000 trong trình duyệt. Lần chạy đầu tiên tải các mô hình ngôn ngữ nên sẽ có độ trễ ngắn trước khi UI phản hồi. ### Docker Compose Production Để triển khai production, sử dụng ``docker-compose.yml`` với volume lâu dài, kiểm tra sức khỏe và giới hạn tài nguyên: `````yaml # docker-compose.yml - Cấu hình Production version: '3.8' services: libretranslate: container_name: libretranslate image: libretranslate/libretranslate:v1.9.5 restart: unless-stopped ports: - \"5000:5000\" environment: - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt,pl,nl - LT_API_KEYS=true - LT_REQ_LIMIT=60 - LT_THREADS=4 - LT_UPDATE_MODELS=true volumes: - lt-models:/home/libretranslate/.local - lt-db:/app/db healthcheck: test: ['CMD-SHELL', './venv/bin/python scripts/healthcheck.py'] interval: 30s timeout: 10s retries: 3 start_period: 60s deploy: resources: limits: memory: 4G reservations: memory: 2G volumes: lt-models: lt-db: ````` Triển khai: `````bash docker compose up -d Triển Khai Tăng Tốc GPU (CUDA) Cho các kịch bản thông lượng cao, LibreTranslate hỗ trợ tăng tốc GPU NVIDIA qua CUDA. Yêu cầu: GPU NVIDIA với CUDA 11.2+ và nvidia-docker2 đã cài đặt.\n# Clone repository git clone https://github.com/LibreTranslate/LibreTranslate.git cd LibreTranslate # Build và chạy phiên bản CUDA docker compose -f docker-compose.cuda.yml up -d --build Xác minh GPU đang sử dụng: `````bash nvidia-smi\n### Cài Đặt Python Native Cho môi trường phát triển hoặc môi trường không có Docker: `````bash # Cài đặt qua pip pip install libretranslate==1.9.5 # Khởi động server libretranslate --host 0.0.0.0 --port 5000 \\ --load-only en,es,fr,de \\ --req-limit 60 \\ --threads 4 Hoặc build từ source: `````bash git clone https://github.com/LibreTranslate/LibreTranslate.git cd LibreTranslate pip install -e . python main.py –host 0.0.0.0 –port 5000\n### Triển Khai trên DigitalOcean (Production Cloud) Cho instance production trên cloud, DigitalOcean cung cấp đường dẫn dễ dàng qua App Platform hoặc Droplets. Triển khai bằng Docker image 1-Click: `````bash # Trên Ubuntu 24.04 Droplet mới curl -fsSL https://get.docker.com | sh mkdir -p ~/libretranslate \u0026\u0026 cd ~/libretranslate # Tạo file compose production cat \u003e docker-compose.yml \u003c\u003c EOF version: '3.8' services: libretranslate: image: libretranslate/libretranslate:v1.9.5 restart: always ports: - \"5000:5000\" environment: - LT_LOAD_ONLY=en,es,fr,de,it,zh,ja,ru,pt - LT_API_KEYS=true - LT_REQ_LIMIT=120 - LT_THREADS=4 volumes: - ./models:/home/libretranslate/.local - ./db:/app/db EOF docker compose up -d Lưu ý: Nếu bạn đang thiết lập VPS mới, DigitalOcean cung cấp $200 tín dụng miễn phí cho ngườii dùng mới, đủ để chạy một Droplet 4GB với LibreTranslate 24/7 trong vài tháng.\nTích Hợp Với Các Công Cụ Phổ Biến REST API của LibreTranslate khiến nó tương thích với hầu hết mọi stack. Dưới đây là các ví dụ tích hợp cho các workflow phổ biến.\nSử Dụng Python SDK # translate_client.py import requests LIBRETRANSLATE_URL = \"http://localhost:5000/translate\" def translate_text(text: str, source: str = \"en\", target: str = \"es\") -\u003e str: payload = { \"q\": text, \"source\": source, \"target\": target, \"format\": \"text\", \"api_key\": \"\" # Thêm API key nếu đã bật } headers = {\"Content-Type\": \"application/json\"} response = requests.post(LIBRETRANSLATE_URL, json=payload, headers=headers) response.raise_for_status() return response.json()[\"translatedText\"] # Ví dụ sử dụng if __name__ == \"__main__\": result = translate_text(\"Hello, production deployment!\", \"en\", \"de\") print(f\"Đã dịch: {result}\") Tích Hợp JavaScript/TypeScript // libretranslate-client.ts interface TranslateResponse { translatedText: string; } class LibreTranslateClient { private baseUrl: string; private apiKey?: string; constructor(baseUrl: string = \"http://localhost:5000\", apiKey?: string) { this.baseUrl = baseUrl; this.apiKey = apiKey; } async translate( text: string, source: string = \"en\", target: string = \"es\" ): Promise\u003cstring\u003e { const response = await fetch(````${this.baseUrl}/translate````, { method: \"POST\", headers: { \"Content-Type\": \"application/json\" }, body: JSON.stringify({ q: text, source, target, format: \"text\", api_key: this.apiKey, }), }); if (!response.ok) { throw new Error(````Dịch thất bại: ${response.statusText}````); } const data: TranslateResponse = await response.json(); return data.translatedText; } } // Sử dụng const client = new LibreTranslateClient(\"http://localhost:5000\"); const result = await client.translate(\"Deploy to production\", \"en\", \"fr\"); console.log(result); // \"Déployer en production\" Pipeline OpenAI Whisper: Audio Sang Văn Bản Dịch Một pattern phổ biến là kết hợp nhận diện giọng nói với dịch thuật. Dưới đây là pipeline hoàn chỉnh sử dụng Whisper để phiên âm và LibreTranslate để dịch: `````python\nwhisper_translate_pipeline.py import whisper import requests\nWHISPER_MODEL = whisper.load_model(“base”) LIBRE_URL = “http://localhost:5000/translate”\ndef transcribe_and_translate(audio_path: str, target_lang: str = “en”) -\u003e dict: # Bước 1: Phiên âm audio bằng Whisper result = WHISPER_MODEL.transcribe(audio_path) source_text = result[“text”] detected_lang = result.get(“language”, “auto”)\n# Bước 2: Dịch bằng LibreTranslate payload = { \"q\": source_text, \"source\": detected_lang, \"target\": target_lang, \"format\": \"text\" } response = requests.post(LIBRE_URL, json=payload) translated = response.json()[\"translatedText\"] return { \"original\": source_text, \"translated\": translated, \"source_language\": detected_lang, \"target_language\": target_lang } Chạy pipeline output = transcribe_and_translate(“meeting.mp3”, target_lang=“es”) print(f\"ES: {output[translated]}\")\n### Tích Hợp Coqui TTS (Dịch + Tổng Hợp Giọng Nói) Dịch văn bản và tổng hợp giọng nói bằng ngôn ngữ đích: `````python # translate_and_speak.py import requests from TTS.api import TTS # Khởi tạo TTS tts = TTS(\"tts_models/multilingual/multi-dataset/xtts_v2\", gpu=False) def translate_and_speak(text: str, target_lang: str, speaker_wav: str): # Dịch payload = {\"q\": text, \"source\": \"en\", \"target\": target_lang, \"format\": \"text\"} response = requests.post(\"http://localhost:5000/translate\", json=payload) translated = response.json()[\"translatedText\"] # Tổng hợp giọng nói output_path = f\"output_{target_lang}.wav\" tts.tts_to_file( text=translated, speaker_wav=speaker_wav, language=target_lang, file_path=output_path ) return output_path # Tạo audio đa ngôn ngữ for lang in [\"es\", \"fr\", \"de\"]: translate_and_speak(\"Welcome to our service\", lang, \"reference.wav\") Ví Dụ API cURL # Dịch cơ bản curl -X POST http://localhost:5000/translate \\ -H \"Content-Type: application/json\" \\ -d '{\"q\": \"Hello world\", \"source\": \"en\", \"target\": \"es\"}' # Phản hồi: {\"translatedText\": \"Hola mundo\"} # Phát hiện ngôn ngữ curl -X POST http://localhost:5000/detect \\ -H \"Content-Type: application/json\" \\ -d '{\"q\": \"Bonjour le monde\"}' # Lấy danh sách ngôn ngữ hỗ trợ curl http://localhost:5000/languages # Dịch với API key (nếu đã bật) curl -X POST http://localhost:5000/translate \\ -H \"Content-Type: application/json\" \\ -H \"Authorization: Bearer your-api-key\" \\ -d '{\"q\": \"Production deployment\", \"source\": \"en\", \"target\": \"de\"}' # Dịch HTML curl -X POST http://localhost:5000/translate \\ -H \"Content-Type: application/json\" \\ -d '{ \"q\": \"Hello world\n\", \"source\": \"en\", \"target\": \"fr\", \"format\": \"html\" }' Cấu Hình Nginx Reverse Proxy Cho các triển khai production với domain và HTTPS: `````nginx\n/etc/nginx/sites-available/libretranslate server { listen 443 ssl http2; server_name translate.yourdomain.com;\nssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem; client_max_body_size 50M; location / { proxy_pass http://localhost:5000; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto $scheme; proxy_read_timeout 300s; } }\nChuyển hướng HTTP sang HTTPS server { listen 80; server_name translate.yourdomain.com; return 301 https://$server_name$request_uri; }\nKích hoạt cấu hình: `````bash sudo ln -s /etc/nginx/sites-available/libretranslate /etc/nginx/sites-enabled/ sudo nginx -t \u0026\u0026 sudo systemctl reload nginx Benchmark / Các Trường Hợp Sử Dụng Thực Tế Hiệu suất của LibreTranslate thay đổi đáng kể dựa trên cấu hình phần cứng, ngôn ngữ đã tải và độ dài văn bản. Dưới đây là các benchmark đo được từ các triển khai production.\nBenchmark Tốc Độ Dịch Thuật Phần cứng Ngôn ngữ đã tải Độ trễ TB (50 từ) Thông lượng (req/s) Ghi chú 2 vCPU, 4GB RAM 5 180ms 12 Chỉ CPU, Docker 4 vCPU, 8GB RAM 11 120ms 28 Chỉ CPU, Docker 4 vCPU, 16GB RAM 30 200ms 18 Chỉ CPU, đủ ngôn ngữ 8 vCPU, 16GB + RTX 3060 11 45ms 85 Tăng tốc CUDA 2 vCPU, 4GB (DigitalOcean) 5 220ms 10 Cloud VPS, chỉ CPU So Sánh Chất Lượng Dịch Thuật Điểm BLEU trên tập kiểm tra WMT14 Anh-Đức (càng cao càng tốt): | Hệ thống | Điểm BLEU | Tỷ lệ lỗi từ | Thờii gian inference | |———|———-|————-|———————| | LibreTranslate (Argos) | 22.4 | 62% | 120ms | | Google Translate API | 26.8 | 51% | 85ms | | DeepL API | 28.1 | 48% | 90ms | | Argos Translate (CLI) | 22.4 | 62% | 115ms |\nLibreTranslate khớp chính xác với hiệu suất Argos Translate CLI vì chúng chia sẻ cùng engine. Khoảng cách chất lượng với API thương mại là có thể đo lường được nhưng đang thu hẹp: với các cặp ngôn ngữ châu Âu phổ biến, LibreTranslate tạo ra bản dịch chấp nhận được cho hầu hết các trường hợp sử dụng. Khoảng cách mở rộng đối với các cặp ngôn ngữ ít phổ biến hơn, văn bản kỹ thuật và nội dung sáng tạo tinh tế.\nPhân Tích Chi Phí Quy Mô Lớn Khối lượng hàng tháng LibreTranslate (Tự host) Google Translate DeepL API 1 triệu ký tự $10 (chi phí VPS) $20 $6.99 (miễn phí tier) 10 triệu ký tự $10 (chi phí VPS) $200 $20 100 triệu ký tự $40 (server chuyên dụng) $2,000 $125 1 tỷ ký tự $200 (server GPU) $20,000 $1,000 Lý lẽ kinh tế cho LibreTranslate tăng cường theo tỷ lệ thuận với khối lượng. Ở mức 100 triệu+ ký tự mỗi tháng, tự host rẻ hơn 10-50 lần so với các giải pháp thương mại.\nCác Trường Hợp Sử Dụng Thực Tế Cơ quan chính phủ: Xử lý tài liệu mật mà không có rủi ro rò rỉ dữ liệu. Hệ thống y tế: Dịch hồ sơ bệnh nhân trong ràng buộc HIPAA/GDPR. Nền tảng thương mại điện tử: Dịch hàng loạt danh mục sản phẩm với chi phí bằng không cho mỗi mục. Hệ thống quản lý nội dung: Dịch thờii gian thực nội dung do ngườii dùng tạo. Các tổ chức nghiên cứu: Xử lý bài báo học thuật đa ngôn ngữ trên hạ tầng nội bộ. Backend ứng dụng di động: Dịch độ trễ thấp cho ứng dụng du lịch và giao tiếp. Sử Dụng Nâng Cao / Củng Cố Production Chạy LibreTranslate trong production đòi hỏi sự chú ý đến bảo mật, mở rộng và giám sát.\nQuản Lý API Key Bật xác thực API key để kiểm soát truy cập và ngăn chặn lạm dụng: `````yaml\ndocker-compose.yml với API keys services: libretranslate: image: libretranslate/libretranslate:v1.9.5 environment: - LT_API_KEYS=true - LT_REQ_LIMIT=100 - LT_REQ_LIMIT_PER_DAY=10000 volumes: - lt-models:/home/libretranslate/.local - lt-db:/app/db\nTạo và quản lý API key qua database hoặc giao diện quản trị. ### Tải Mô Hình Tùy Chỉnh Kiểm soát việc sử dụng bộ nhớ bằng cách chỉ tải các ngôn ngữ cần thiết: `````bash # Chỉ tải ngôn ngữ châu Âu LT_LOAD_ONLY=en,es,fr,de,it,pt,nl,pl,ru docker compose up -d # Tải ngôn ngữ châu Á + châu Âu LT_LOAD_ONLY=en,ja,zh,ko,es,fr,de docker compose up -d Giám Sát Sức Khỏe LibreTranslate bao gồm endpoint kiểm tra sức khỏe tích hợp: `````bash\nKiểm tra sức khỏe dịch vụ curl http://localhost:5000/health\nPhản hồi mong đợi: {“status”: “ok”} Cho giám sát dựa trên Prometheus, thêm một exporter đơn giản: `````python # prometheus_exporter.py from prometheus_client import start_http_server, Counter, Histogram import requests import time TRANSLATION_COUNTER = Counter(libretranslate_requests_total, 'Tổng số bản dịch') LATENCY_HISTOGRAM = Histogram(libretranslate_latency_seconds, 'Độ trễ dịch\") def monitor(): start_http_server(9090) while True: start = time.time() requests.post(\"http://localhost:5000/translate\", json={\"q\": \"test\", \"source\": \"en\", \"target\": \"es\"}) LATENCY_HISTOGRAM.observe(time.time() - start) TRANSLATION_COUNTER.inc() time.sleep(30) if __name__ == \"__main__\": monitor() Tự Động Mở Rộng Với Kubernetes Cho các triển khai high-availability, sử dụng Kubernetes với Horizontal Pod Autoscaler: `````yaml\nlibretranslate-deployment.yaml apiVersion: apps/v1 kind: Deployment metadata: name: libretranslate spec: replicas: 2 selector: matchLabels: app: libretranslate template: metadata: labels: app: libretranslate spec: containers: - name: libretranslate image: libretranslate/libretranslate:v1.9.5 ports: - containerPort: 5000 env: - name: LT_LOAD_ONLY value: “en,es,fr,de,it” - name: LT_THREADS value: “4” resources: requests: memory: “2Gi” cpu: “1000m” limits: memory: “4Gi” cpu: “2000m” livenessProbe: httpGet: path: /health port: 5000 initialDelaySeconds: 60 periodSeconds: 30\napiVersion: autoscaling/v2 kind: HorizontalPodAutoscaler metadata: name: libretranslate-hpa spec: scaleTargetRef: apiVersion: apps/v1 kind: Deployment name: libretranslate minReplicas: 2 maxReplicas: 10 metrics: - type: Resource resource: name: cpu target: type: Utilization averageUtilization: 70\nTriển khai: `````bash kubectl apply -f libretranslate-deployment.yaml Chiến Lược Sao Lưu Mô hình ngôn ngữ có thể tải lại, nhưng SQLite database chứa API key và log nên được sao lưu: `````bash #!/bin/bash\nbackup.sh - Cron job sao lưu hàng ngày BACKUP_DIR=\"/backups/libretranslate\" DATE=$(date +%Y%m%d)\nSao lưu database docker cp libretranslate:/app/db “$BACKUP_DIR/db_$DATE.sqlite”\nĐồng bộ mô hình (tùy chọn - có thể tải lại) rsync -av /var/lib/docker/volumes/lt-models/_data/ “$BACKUP_DIR/models/”\nChỉ giữ 7 ngày sao lưu find “$BACKUP_DIR” -name “db_*.sqlite” -mtime +7 -delete\nThêm vào crontab: `````bash 0 2 * * * /path/to/backup.sh So Sánh Với Các Giải Pháp Thay Thế Tính năng LibreTranslate Argos Translate Google Translate API DeepL API Giấy phép AGPL-3.0 MIT Độc quyền Độc quyền Tự host Có Có (CLI) Không Không Khả năng offline Có Có Không Không Ngôn ngữ hỗ trợ 30+ 30+ 130+ 30+ Chi phí (1M ký tự/tháng) ~$10 VPS ~$10 VPS $20 $6.99+ Chất lượng dịch Tốt Tốt Xuất sắc Xuất sắc REST API Có Không Có Có Web UI Có Không Có Có Tăng tốc GPU Có (CUDA) Chỉ CPU Chỉ cloud Chỉ cloud Quyền riêng tư Đầy đủ (dữ liệu ở local) Đầy đủ Dữ liệu gửi Google Dữ liệu gửi DeepL Giới hạn tốc độ Cấu hình được Không áp dụng Dựa trên quota Dựa trên quota Độ phức tạp thiết lập Trung bình (Docker) Thấp (pip) Thấp (API key) Thấp (API key) LibreTranslate lấp đầy một phân khúc cụ thể: nó là lựa chọn duy nhất kết hợp REST API, Web UI, tăng tốc GPU và khả năng offline hoàn toàn dưới giấy phép mã nguồn mở. Argos Translate cung cấp cùng engine dịch nhưng thiếu lớp API. Google và DeepL cung cấp chất lượng vượt trội và hỗ trợ ngôn ngữ rộng hơn, nhưng với chi phí là quyền riêng tư, phí định kỳ và phụ thuộc bên ngoài.\nHạn Chế / Đánh Giá Trung Thực LibreTranslate không phải là giải pháp thay thế phổ quát cho các API dịch thuật thương mại. Hiểu các hạn chế của nó là điều cần thiết để đưa ra quyết định áp dụng sáng suốt.\nKhoảng cách chất lượng dịch: Trên benchmark WMT14, LibreTranslate kém DeepL khoảng 5.7 điểm BLEU và kém Google Translate 4.4 điểm. Khoảng cách này rõ rệt nhất đối với: (1) các cặp ngôn ngữ ít phổ biến như Anh-Swahili hoặc Phần Lan-Việt, (2) thuật ngữ chuyên ngành trong lĩnh vực pháp lý, y tế hoặc kỹ thuật, và (3) nội dung sáng tạo hoặc thành ngữ.\nTốn tài nguyên: Mỗi cặp ngôn ngữ đã tải tiêu thụ 300-600MB RAM. Triển khai đầy đủ 30 ngôn ngữ yêu cầu 8GB+ bộ nhớ. Điều này khiến LibreTranslate không phù hợp cho môi trường hạn chế tài nguyên như Raspberry Pi (trừ khi chỉ tải 2-3 ngôn ngữ) hoặc VPS nhỏ.\nPhạm vi ngôn ngữ: Với 30+ ngôn ngữ, LibreTranslate bao phủ các cặp ngôn ngữ phổ biến nhất nhưng kém xa Google Translate với 130+ ngôn ngữ. Nếu trường hợp sử dụng của bạn yêu cầu dịch cho các ngôn ngữ thiểu số, LibreTranslate không đủ.\nKhông có streaming thờii gian thực: LibreTranslate xử lý các đoạn văn bản hoàn chỉnh. Nó không hỗ trợ dịch streaming hoặc dịch speech-to-text thờii gian thực, giới hạn khả năng áp dụng trong các tình huống hội thoại trực tiếp.\nTác động giấy phép AGPL-3.0: Giấy phép AGPL-3.0 yêu cầu bất kỳ sử dụng mạng nào của phần mềm (bao gồm qua API) kích hoạt yêu cầu share-alike. Các tổ chức xây dựng sản phẩm độc quyền trên LibreTranslate nên tham khảo ý kiến tư vấn pháp lý về tuân thủ giấy phép.\nGánh nặng bảo trì: Tự host có nghĩa là bạn chịu trách nhiệm cập nhật, bản vá bảo mật, cập nhật mô hình và giám sát hạ tầng. Cân nhắc chi phí vận hành khi so sánh với API được quản lý.\nCâu Hỏi Thường Gặp LibreTranslate so với chạy Argos Translate trực tiếp khác nhau thế nào? LibreTranslate về cơ bản là một wrapper REST API xung quanh Argos Translate. Nếu bạn chỉ cần dịch command-line, Argos Translate có overhead thấp hơn. Nếu bạn cần HTTP API, giao diện web hoặc truy cập đa ngườii dùng, LibreTranslate thêm các lớp đó. Cả hai chia sẻ cùng mô hình dịch và tạo ra cùng output.\nLibreTranslate có thể chạy trên Raspberry Pi không? Có, với hạn chế. Docker image ARM được tối ưu hóa cho hệ thống ARM64. Chỉ tải 2-3 cặp ngôn ngữ để giữ mức sử dụng bộ nhớ dưới 2GB. Mong đợi độ trễ dịch 800ms-1.5s mỗi request trên Raspberry Pi 4 với 4GB RAM. Cho sử dụng production, tối thiểu 4GB RAM được khuyến nghị.\nLàm thế nào cập nhật mô hình ngôn ngữ mà không restart container? Đặt biến môi trường LT_UPDATE_MODELS=true. LibreTranslate kiểm tra cập nhật mô hình khi khởi động. Cho rolling updates trong triển khai Kubernetes, sử dụng chiến lược restart dần: cập nhật deployment với phiên bản image mới và Kubernetes thay thế pod tăng dần.\nĐộ dài văn bản tối đa cho mỗi request dịch là bao nhiêu? Có thể cấu hình qua flag --char-limit hoặc biến môi trường LT_CHAR_LIMIT. Mặc định là 10,000 ký tự mỗi request. Cho tài liệu dài hơn, chia văn bản thành các chunk và thực hiện các API call tuần tự.\nLibreTranslate có phù hợp với tuân thủ HIPAA hoặc GDPR không? Bản chất tự host của LibreTranslate có nghĩa là dữ liệu không rồi khỏi hạ tầng của bạn, điều này đơn giản hóa việc tuân thủ. Tuy nhiên, tuân thủ là thuộc tính cấp hệ thống, không chỉ thuộc tính phần mềm. Bạn cũng phải bảo mật hệ điều hành host, mạng, sao lưu và kiểm soát truy cập. Tham khảo ý kiến chuyên viên tuân thủ của bạn để đánh giá đầy đủ.\nLàm thế nào thêm mô hình ngôn ngữ tùy chỉnh? LibreTranslate hỗ trợ mô hình ở định dạng Argos Translate (mô hình OpenNMT CTranslate2). Đặt file .argosmodel tùy chỉnh vào thư mục mô hình và restart container. Mô hình tùy chỉnh hữu ích cho thuật ngữ chuyên ngành hoặc ngôn ngữ không được mô hình mặc định hỗ trợ.\nTôi có thể dùng LibreTranslate với framework frontend như React hoặc Vue không? Có. Endpoint /translate chấp nhận JSON và hỗ trợ CORS khi được cấu hình. Ví dụ React hook: `````typescript // useTranslation.ts import { useState, useCallback } from “react”;\nexport function useTranslation() { const [translating, setTranslating] = useState(false);\nconst translate = useCallback(async (text: string, source: string, target: string) =\u003e { setTranslating(true); try { const res = await fetch(“http://localhost:5000/translate”, { method: “POST”, headers: { “Content-Type”: “application/json” }, body: JSON.stringify({ q: text, source, target }), }); const data = await res.json(); return data.translatedText; } finally { setTranslating(false); } }, []);\nreturn { translate, translating }; }\n### Yêu cầu mạng cho triển khai offline là gì? Cho hoạt động hoàn toàn offline, build Docker image với ````--build-arg with_models=true``` để nhúng mô hình ngôn ngữ trong quá trình build. Image kết quả chứa mọi file cần thiết và không cần kết nối internet khi chạy. Kích thước image tăng khoảng 2-3GB tùy thuộc số lượng ngôn ngữ bao gồm. ## Kết Luận LibreTranslate thực hiện đúng lờii hứa cốt lõi của nó: một API dịch thuật tự host với chi phí bằng không cho mỗi request và quyền riêng tư dữ liệu hoàn toàn. Với 14,400+ sao GitHub, bảo trì tích cực và v1.9.5 mang lại cải tiến ổn định, nó đã sẵn sàng production cho các team ưu tiên kiểm soát hơn chất lượng dịch thuật tuyệt đối. Ngườii áp dụng LibreTranslate lý tưởng là team có: (1) khối lượng dịch thuật ổn định khiến giá tính theo ký tự trở nên đau đớn, (2) yêu cầu lưu trữ dữ liệu nghiêm ngặt, (3) năng lực DevOps để quản lý hạ tầng, và (4) sự chấp nhận khoảng cách chất lượng có thể đo lường nhưng chấp nhận được. Nếu điều đó mô tả tình huống của bạn, hãy bắt đầu với thiết lập Docker Compose trong hướng dẫn này, tải 5 ngôn ngữ và đo lường chất lượng dịch thuật trên nội dung cụ thể của bạn. Hầu hết các team thấy chất lượng đủ tốt cho công cụ nội bộ, danh mục sản phẩm và nội dung do ngườii dùng tạo. Cho các team cần chất lượng dịch thuật cao nhất tuyệt đối hoặc hỗ trợ 100+ ngôn ngữ, API thương mại vẫn là lựa chọn thực tế. Cho những ngườii còn lại, LibreTranslate loại bỏ một khoản chi phí định kỳ khỏi hóa đơn cloud của bạn. Tham gia [nhóm Telegram LibreTranslate](https://t.me/libretranslate) để được hỗ trợ cộng đồng, hoặc theo dõi dự án trên GitHub để nhận cập nhật phiên bản. ## Hosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.* ## Nguồn \u0026 Tài Liệu Tham Khảo - [LibreTranslate GitHub Repository](https://github.com/LibreTranslate/LibreTranslate) - [LibreTranslate Official Documentation](https://libretranslate.com/docs) - [Argos Translate GitHub Repository](https://github.com/argosopentech/translate) - [LibreTranslate Docker Hub](https://hub.docker.com/r/libretranslate/libretranslate) - [OpenNMT Framework Documentation](https://opennmt.net/) - [AGPL-3.0 License Summary](https://www.gnu.org/licenses/agpl-3.0.html) - [DigitalOcean Docker Deployment Guide](https://docs.digitalocean.com/tutorials/docker-compose/) - [NVIDIA CUDA Docker Setup](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html) - [LibreTranslate Kubernetes Examples](https://github.com/LibreTranslate/LibreTranslate/tree/main/kubernetes) * * * \u003e **Tuyên bố**: Bài viết này chứa liên kết affiliate. Nếu bạn đăng ký DigitalOcean qua liên kết giớii thiệu trong hướng dẫn này, chúng tôi có thể nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Liên kết affiliate giúp hỗ trợ việc duy trì liên tục các dự án tài liệu mã nguồn mở như thế này. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"LibreTranslate: API Dịch Thuật Tự Host 14.4K+ Stars — Hướng Dẫn Triển Khai Production 2026\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/libretranslate\" } } * * * ## Related Articles - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](libretranslate) - [llm-inference-cost-optimization-guide-2026](libretranslate) - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](libretranslate) - [llm-inference-cost-optimization-guide-2026](libretranslate) - [hkuds-ai-trader](libretranslate) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
+  "wordCount" : "4317",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -186,7 +186,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>15 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>21 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/vi/llm-frameworks/libretranslate/">Vi</a>
@@ -201,94 +201,94 @@
 
     <div class="inner"><ul><ul>
             <li>
-                <a href="#libretranslate%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80" aria-label="LibreTranslate란 무엇인가?">LibreTranslate란 무엇인가?</a></li>
+                <a href="#libretranslate-l%c3%a0-g%c3%ac" aria-label="LibreTranslate Là Gì?">LibreTranslate Là Gì?</a></li>
             <li>
-                <a href="#libretranslate%ec%9d%98-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d" aria-label="LibreTranslate의 작동 방식">LibreTranslate의 작동 방식</a><ul>
+                <a href="#libretranslate-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="LibreTranslate Hoạt Động Như Thế Nào?">LibreTranslate Hoạt Động Như Thế Nào?</a><ul>
                     
             <li>
-                <a href="#%ed%95%b5%ec%8b%ac-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98" aria-label="핵심 아키텍처">핵심 아키텍처</a></li>
+                <a href="#ki%e1%ba%bfn-tr%c3%bac-c%e1%bb%91t-l%c3%b5i" aria-label="Kiến Trúc Cốt Lõi">Kiến Trúc Cốt Lõi</a></li>
             <li>
-                <a href="#%ed%95%b5%ec%8b%ac-%ea%b5%ac%ec%84%b1-%ec%9a%94%ec%86%8c" aria-label="핵심 구성 요소">핵심 구성 요소</a></li></ul>
+                <a href="#c%c3%a1c-th%c3%a0nh-ph%e1%ba%a7n-ch%c3%adnh" aria-label="Các Thành Phần Chính">Các Thành Phần Chính</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95" aria-label="설치 및 설정">설치 및 설정</a><ul>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp" aria-label="Cài Đặt &amp; Thiết Lập">Cài Đặt &amp; Thiết Lập</a><ul>
                     
             <li>
-                <a href="#%ec%8b%9c%ec%8a%a4%ed%85%9c-%ec%9a%94%ea%b5%ac%ec%82%ac%ed%95%ad" aria-label="시스템 요구사항">시스템 요구사항</a></li>
+                <a href="#y%c3%aau-c%e1%ba%a7u-h%e1%bb%87-th%e1%bb%91ng" aria-label="Yêu Cầu Hệ Thống">Yêu Cầu Hệ Thống</a></li>
             <li>
-                <a href="#docker-%eb%b9%a0%eb%a5%b8-%ec%8b%9c%ec%9e%91" aria-label="Docker 빠른 시작">Docker 빠른 시작</a></li></ul>
+                <a href="#docker-kh%e1%bb%9fi-%c4%91%e1%bb%99ng-nhanh" aria-label="Docker Khởi Động Nhanh">Docker Khởi Động Nhanh</a></li></ul>
             </li></ul>
                 
             <li>
-                <a href="#docker%eb%a1%9c-%ec%8b%a4%ed%96%89" aria-label="Docker로 실행">Docker로 실행</a><ul>
+                <a href="#ch%e1%ba%a1y-b%e1%ba%b1ng-docker" aria-label="Chạy bằng Docker">Chạy bằng Docker</a><ul>
                     <ul>
                     
             <li>
-                <a href="#gpu-%ea%b0%80%ec%86%8d-%eb%b0%b0%ed%8f%ac-cuda" aria-label="GPU 가속 배포 (CUDA)">GPU 가속 배포 (CUDA)</a></li></ul>
+                <a href="#tri%e1%bb%83n-khai-t%c4%83ng-t%e1%bb%91c-gpu-cuda" aria-label="Triển Khai Tăng Tốc GPU (CUDA)">Triển Khai Tăng Tốc GPU (CUDA)</a></li></ul>
                 
             <li>
-                <a href="#%ec%9d%b8%ea%b8%b0-%eb%8f%84%ea%b5%ac%ec%99%80%ec%9d%98-%ed%86%b5%ed%95%a9" aria-label="인기 도구와의 통합">인기 도구와의 통합</a><ul>
+                <a href="#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-c%c3%a1c-c%c3%b4ng-c%e1%bb%a5-ph%e1%bb%95-bi%e1%ba%bfn" aria-label="Tích Hợp Với Các Công Cụ Phổ Biến">Tích Hợp Với Các Công Cụ Phổ Biến</a><ul>
                     
             <li>
-                <a href="#python-sdk-%ec%82%ac%ec%9a%a9" aria-label="Python SDK 사용">Python SDK 사용</a></li>
+                <a href="#s%e1%bb%ad-d%e1%bb%a5ng-python-sdk" aria-label="Sử Dụng Python SDK">Sử Dụng Python SDK</a></li>
             <li>
-                <a href="#javascripttypescript-%ed%86%b5%ed%95%a9" aria-label="JavaScript/TypeScript 통합">JavaScript/TypeScript 통합</a></li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-javascripttypescript" aria-label="Tích Hợp JavaScript/TypeScript">Tích Hợp JavaScript/TypeScript</a></li>
             <li>
-                <a href="#openai-whisper-%ec%98%a4%eb%94%94%ec%98%a4-%eb%b2%88%ec%97%ad-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8" aria-label="OpenAI Whisper 오디오-번역 파이프라인">OpenAI Whisper 오디오-번역 파이프라인</a></li></ul>
+                <a href="#pipeline-openai-whisper-audio-sang-v%c4%83n-b%e1%ba%a3n-d%e1%bb%8bch" aria-label="Pipeline OpenAI Whisper: Audio Sang Văn Bản Dịch">Pipeline OpenAI Whisper: Audio Sang Văn Bản Dịch</a></li></ul>
             </li></ul>
             </li>
             <li>
                 <a href="#whisper_translate_pipelinepy" aria-label="whisper_translate_pipeline.py">whisper_translate_pipeline.py</a></li>
             <li>
-                <a href="#%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8-%ec%8b%a4%ed%96%89" aria-label="파이프라인 실행">파이프라인 실행</a><ul>
+                <a href="#ch%e1%ba%a1y-pipeline" aria-label="Chạy pipeline">Chạy pipeline</a><ul>
                     <ul>
                     
             <li>
-                <a href="#curl-api-%ec%98%88%ec%8b%9c" aria-label="cURL API 예시">cURL API 예시</a></li>
+                <a href="#v%c3%ad-d%e1%bb%a5-api-curl" aria-label="Ví Dụ API cURL">Ví Dụ API cURL</a></li>
             <li>
-                <a href="#nginx-%ec%97%ad%eb%b0%a9%ed%96%a5-%ed%94%84%eb%a1%9d%ec%8b%9c-%ea%b5%ac%ec%84%b1" aria-label="Nginx 역방향 프록시 구성">Nginx 역방향 프록시 구성</a></li></ul>
+                <a href="#c%e1%ba%a5u-h%c3%acnh-nginx-reverse-proxy" aria-label="Cấu Hình Nginx Reverse Proxy">Cấu Hình Nginx Reverse Proxy</a></li></ul>
                 </ul>
             </li>
             <li>
                 <a href="#etcnginxsites-availablelibretranslate" aria-label="/etc/nginx/sites-available/libretranslate">/etc/nginx/sites-available/libretranslate</a></li>
             <li>
-                <a href="#http%eb%a5%bc-https%eb%a1%9c-%eb%a6%ac%eb%8b%a4%ec%9d%b4%eb%a0%89%ed%8a%b8" aria-label="HTTP를 HTTPS로 리다이렉트">HTTP를 HTTPS로 리다이렉트</a><ul>
+                <a href="#chuy%e1%bb%83n-h%c6%b0%e1%bb%9bng-http-sang-https" aria-label="Chuyển hướng HTTP sang HTTPS">Chuyển hướng HTTP sang HTTPS</a><ul>
                     
             <li>
-                <a href="#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac--%ec%8b%a4%ec%a0%9c-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80" aria-label="벤치마크 / 실제 사용 사례">벤치마크 / 실제 사용 사례</a><ul>
+                <a href="#benchmark--c%c3%a1c-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Benchmark / Các Trường Hợp Sử Dụng Thực Tế">Benchmark / Các Trường Hợp Sử Dụng Thực Tế</a><ul>
                     
             <li>
-                <a href="#%eb%b2%88%ec%97%ad-%ec%86%8d%eb%8f%84-%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac" aria-label="번역 속도 벤치마크">번역 속도 벤치마크</a></li>
+                <a href="#benchmark-t%e1%bb%91c-%c4%91%e1%bb%99-d%e1%bb%8bch-thu%e1%ba%adt" aria-label="Benchmark Tốc Độ Dịch Thuật">Benchmark Tốc Độ Dịch Thuật</a></li>
             <li>
-                <a href="#%eb%b2%88%ec%97%ad-%ed%92%88%ec%a7%88-%eb%b9%84%ea%b5%90" aria-label="번역 품질 비교">번역 품질 비교</a></li>
+                <a href="#so-s%c3%a1nh-ch%e1%ba%a5t-l%c6%b0%e1%bb%a3ng-d%e1%bb%8bch-thu%e1%ba%adt" aria-label="So Sánh Chất Lượng Dịch Thuật">So Sánh Chất Lượng Dịch Thuật</a></li>
             <li>
-                <a href="#%eb%8c%80%ea%b7%9c%eb%aa%a8-%eb%b9%84%ec%9a%a9-%eb%b6%84%ec%84%9d" aria-label="대규모 비용 분석">대규모 비용 분석</a></li>
+                <a href="#ph%c3%a2n-t%c3%adch-chi-ph%c3%ad-quy-m%c3%b4-l%e1%bb%9bn" aria-label="Phân Tích Chi Phí Quy Mô Lớn">Phân Tích Chi Phí Quy Mô Lớn</a></li>
             <li>
-                <a href="#%ec%8b%a4%ec%a0%9c-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80" aria-label="실제 사용 사례">실제 사용 사례</a></li></ul>
+                <a href="#c%c3%a1c-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Các Trường Hợp Sử Dụng Thực Tế">Các Trường Hợp Sử Dụng Thực Tế</a></li></ul>
             </li>
             <li>
-                <a href="#%ea%b3%a0%ea%b8%89-%ec%82%ac%ec%9a%a9%eb%b2%95--%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ea%b0%95%ed%99%94" aria-label="고급 사용법 / 프로덕션 강화">고급 사용법 / 프로덕션 강화</a><ul>
+                <a href="#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao--c%e1%bb%a7ng-c%e1%bb%91-production" aria-label="Sử Dụng Nâng Cao / Củng Cố Production">Sử Dụng Nâng Cao / Củng Cố Production</a><ul>
                     
             <li>
-                <a href="#api-%ed%82%a4-%ea%b4%80%eb%a6%ac" aria-label="API 키 관리">API 키 관리</a></li></ul>
+                <a href="#qu%e1%ba%a3n-l%c3%bd-api-key" aria-label="Quản Lý API Key">Quản Lý API Key</a></li></ul>
             </li></ul>
             </li>
             <li>
-                <a href="#api-%ed%82%a4%ea%b0%80-%ed%99%9c%ec%84%b1%ed%99%94%eb%90%9c-docker-composeyml" aria-label="API 키가 활성화된 docker-compose.yml">API 키가 활성화된 docker-compose.yml</a><ul>
+                <a href="#docker-composeyml-v%e1%bb%9bi-api-keys" aria-label="docker-compose.yml với API keys">docker-compose.yml với API keys</a><ul>
                     <ul>
                     
             <li>
-                <a href="#%ec%83%81%ed%83%9c-%eb%aa%a8%eb%8b%88%ed%84%b0%eb%a7%81" aria-label="상태 모니터링">상태 모니터링</a></li></ul>
+                <a href="#gi%c3%a1m-s%c3%a1t-s%e1%bb%a9c-kh%e1%bb%8fe" aria-label="Giám Sát Sức Khỏe">Giám Sát Sức Khỏe</a></li></ul>
                 </ul>
             </li>
             <li>
-                <a href="#%ec%84%9c%eb%b9%84%ec%8a%a4-%ec%83%81%ed%83%9c-%ed%99%95%ec%9d%b8" aria-label="서비스 상태 확인">서비스 상태 확인</a></li>
+                <a href="#ki%e1%bb%83m-tra-s%e1%bb%a9c-kh%e1%bb%8fe-d%e1%bb%8bch-v%e1%bb%a5" aria-label="Kiểm tra sức khỏe dịch vụ">Kiểm tra sức khỏe dịch vụ</a></li>
             <li>
-                <a href="#%ec%98%88%ec%83%81-%ec%9d%91%eb%8b%b5-status-ok" aria-label="예상 응답: {&ldquo;status&rdquo;: &ldquo;ok&rdquo;}">예상 응답: {&ldquo;status&rdquo;: &ldquo;ok&rdquo;}</a><ul>
+                <a href="#ph%e1%ba%a3n-h%e1%bb%93i-mong-%c4%91%e1%bb%a3i-status-ok" aria-label="Phản hồi mong đợi: {&ldquo;status&rdquo;: &ldquo;ok&rdquo;}">Phản hồi mong đợi: {&ldquo;status&rdquo;: &ldquo;ok&rdquo;}</a><ul>
                     <ul>
                     
             <li>
-                <a href="#kubernetes-%ec%9e%90%eb%8f%99-%ed%99%95%ec%9e%a5" aria-label="Kubernetes 자동 확장">Kubernetes 자동 확장</a></li></ul>
+                <a href="#t%e1%bb%b1-%c4%91%e1%bb%99ng-m%e1%bb%9f-r%e1%bb%99ng-v%e1%bb%9bi-kubernetes" aria-label="Tự Động Mở Rộng Với Kubernetes">Tự Động Mở Rộng Với Kubernetes</a></li></ul>
                 </ul>
             </li>
             <li>
@@ -296,39 +296,39 @@
                     <ul>
                     
             <li>
-                <a href="#%eb%b0%b1%ec%97%85-%ec%a0%84%eb%9e%b5" aria-label="백업 전략">백업 전략</a></li></ul>
+                <a href="#chi%e1%ba%bfn-l%c6%b0%e1%bb%a3c-sao-l%c6%b0u" aria-label="Chiến Lược Sao Lưu">Chiến Lược Sao Lưu</a></li></ul>
                 </ul>
             </li>
             <li>
-                <a href="#backupsh---%ec%9d%bc%ec%9d%bc-%eb%b0%b1%ec%97%85-cron-%ec%9e%91%ec%97%85" aria-label="backup.sh - 일일 백업 cron 작업">backup.sh - 일일 백업 cron 작업</a></li>
+                <a href="#backupsh---cron-job-sao-l%c6%b0u-h%c3%a0ng-ng%c3%a0y" aria-label="backup.sh - Cron job sao lưu hàng ngày">backup.sh - Cron job sao lưu hàng ngày</a></li>
             <li>
-                <a href="#%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4-%eb%b0%b1%ec%97%85" aria-label="데이터베이스 백업">데이터베이스 백업</a></li>
+                <a href="#sao-l%c6%b0u-database" aria-label="Sao lưu database">Sao lưu database</a></li>
             <li>
-                <a href="#%eb%aa%a8%eb%8d%b8-%eb%8f%99%ea%b8%b0%ed%99%94-%ec%84%a0%ed%83%9d-%ec%82%ac%ed%95%ad---%eb%8b%a4%ec%8b%9c-%eb%8b%a4%ec%9a%b4%eb%a1%9c%eb%93%9c-%ea%b0%80%eb%8a%a5" aria-label="모델 동기화 (선택 사항 - 다시 다운로드 가능)">모델 동기화 (선택 사항 - 다시 다운로드 가능)</a></li>
+                <a href="#%c4%91%e1%bb%93ng-b%e1%bb%99-m%c3%b4-h%c3%acnh-t%c3%b9y-ch%e1%bb%8dn---c%c3%b3-th%e1%bb%83-t%e1%ba%a3i-l%e1%ba%a1i" aria-label="Đồng bộ mô hình (tùy chọn - có thể tải lại)">Đồng bộ mô hình (tùy chọn - có thể tải lại)</a></li>
             <li>
-                <a href="#7%ec%9d%bc%ea%b0%84%ec%9d%98-%eb%b0%b1%ec%97%85%eb%a7%8c-%ec%9c%a0%ec%a7%80" aria-label="7일간의 백업만 유지">7일간의 백업만 유지</a><ul>
+                <a href="#ch%e1%bb%89-gi%e1%bb%af-7-ng%c3%a0y-sao-l%c6%b0u" aria-label="Chỉ giữ 7 ngày sao lưu">Chỉ giữ 7 ngày sao lưu</a><ul>
                     
             <li>
-                <a href="#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90" aria-label="대안과의 비교">대안과의 비교</a></li>
+                <a href="#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-gi%e1%ba%a3i-ph%c3%a1p-thay-th%e1%ba%bf" aria-label="So Sánh Với Các Giải Pháp Thay Thế">So Sánh Với Các Giải Pháp Thay Thế</a></li>
             <li>
-                <a href="#%ed%95%9c%ea%b3%84--%ec%86%94%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80" aria-label="한계 / 솔직한 평가">한계 / 솔직한 평가</a></li>
+                <a href="#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-trung-th%e1%bb%b1c" aria-label="Hạn Chế / Đánh Giá Trung Thực">Hạn Chế / Đánh Giá Trung Thực</a></li>
             <li>
-                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a><ul>
+                <a href="#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p" aria-label="Câu Hỏi Thường Gặp">Câu Hỏi Thường Gặp</a><ul>
                     
             <li>
-                <a href="#libretranslate%ec%99%80-%ec%a7%81%ec%a0%91-argos-translate%eb%a5%bc-%ec%8b%a4%ed%96%89%ed%95%98%eb%8a%94-%ea%b2%83%ec%9d%98-%ec%b0%a8%ec%9d%b4%ec%a0%90%ec%9d%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80%ec%9a%94" aria-label="LibreTranslate와 직접 Argos Translate를 실행하는 것의 차이점은 무엇인가요?">LibreTranslate와 직접 Argos Translate를 실행하는 것의 차이점은 무엇인가요?</a></li>
+                <a href="#libretranslate-so-v%e1%bb%9bi-ch%e1%ba%a1y-argos-translate-tr%e1%bb%b1c-ti%e1%ba%bfp-kh%c3%a1c-nhau-th%e1%ba%bf-n%c3%a0o" aria-label="LibreTranslate so với chạy Argos Translate trực tiếp khác nhau thế nào?">LibreTranslate so với chạy Argos Translate trực tiếp khác nhau thế nào?</a></li>
             <li>
-                <a href="#libretranslate%eb%a5%bc-raspberry-pi%ec%97%90%ec%84%9c-%ec%8b%a4%ed%96%89%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98%ec%9a%94" aria-label="LibreTranslate를 Raspberry Pi에서 실행할 수 있나요?">LibreTranslate를 Raspberry Pi에서 실행할 수 있나요?</a></li>
+                <a href="#libretranslate-c%c3%b3-th%e1%bb%83-ch%e1%ba%a1y-tr%c3%aan-raspberry-pi-kh%c3%b4ng" aria-label="LibreTranslate có thể chạy trên Raspberry Pi không?">LibreTranslate có thể chạy trên Raspberry Pi không?</a></li>
             <li>
-                <a href="#%ec%bb%a8%ed%85%8c%ec%9d%b4%eb%84%88%eb%a5%bc-%ec%9e%ac%ec%8b%9c%ec%9e%91%ed%95%98%ec%a7%80-%ec%95%8a%ea%b3%a0-%ec%96%b8%ec%96%b4-%eb%aa%a8%eb%8d%b8%ec%9d%84-%ec%96%b4%eb%96%bb%ea%b2%8c-%ec%97%85%eb%8d%b0%ec%9d%b4%ed%8a%b8%ed%95%98%eb%82%98%ec%9a%94" aria-label="컨테이너를 재시작하지 않고 언어 모델을 어떻게 업데이트하나요?">컨테이너를 재시작하지 않고 언어 모델을 어떻게 업데이트하나요?</a></li>
+                <a href="#l%c3%a0m-th%e1%ba%bf-n%c3%a0o-c%e1%ba%adp-nh%e1%ba%adt-m%c3%b4-h%c3%acnh-ng%c3%b4n-ng%e1%bb%af-m%c3%a0-kh%c3%b4ng-restart-container" aria-label="Làm thế nào cập nhật mô hình ngôn ngữ mà không restart container?">Làm thế nào cập nhật mô hình ngôn ngữ mà không restart container?</a></li>
             <li>
-                <a href="#%eb%b2%88%ec%97%ad-%ec%9a%94%ec%b2%ad%eb%8b%b9-%ec%b5%9c%eb%8c%80-%ed%85%8d%ec%8a%a4%ed%8a%b8-%ea%b8%b8%ec%9d%b4%eb%8a%94-%ec%96%bc%eb%a7%88%ec%9d%b8%ea%b0%80%ec%9a%94" aria-label="번역 요청당 최대 텍스트 길이는 얼마인가요?">번역 요청당 최대 텍스트 길이는 얼마인가요?</a></li>
+                <a href="#%c4%91%e1%bb%99-d%c3%a0i-v%c4%83n-b%e1%ba%a3n-t%e1%bb%91i-%c4%91a-cho-m%e1%bb%97i-request-d%e1%bb%8bch-l%c3%a0-bao-nhi%c3%aau" aria-label="Độ dài văn bản tối đa cho mỗi request dịch là bao nhiêu?">Độ dài văn bản tối đa cho mỗi request dịch là bao nhiêu?</a></li>
             <li>
-                <a href="#libretranslate%eb%8a%94-hipaa-%eb%98%90%eb%8a%94-gdpr-%ec%a4%80%ec%88%98%ec%97%90-%ec%a0%81%ed%95%a9%ed%95%9c%ea%b0%80%ec%9a%94" aria-label="LibreTranslate는 HIPAA 또는 GDPR 준수에 적합한가요?">LibreTranslate는 HIPAA 또는 GDPR 준수에 적합한가요?</a></li>
+                <a href="#libretranslate-c%c3%b3-ph%c3%b9-h%e1%bb%a3p-v%e1%bb%9bi-tu%c3%a2n-th%e1%bb%a7-hipaa-ho%e1%ba%b7c-gdpr-kh%c3%b4ng" aria-label="LibreTranslate có phù hợp với tuân thủ HIPAA hoặc GDPR không?">LibreTranslate có phù hợp với tuân thủ HIPAA hoặc GDPR không?</a></li>
             <li>
-                <a href="#%ec%bb%a4%ec%8a%a4%ed%85%80-%ec%96%b8%ec%96%b4-%eb%aa%a8%eb%8d%b8%ec%9d%84-%ec%96%b4%eb%96%bb%ea%b2%8c-%ec%b6%94%ea%b0%80%ed%95%98%eb%82%98%ec%9a%94" aria-label="커스텀 언어 모델을 어떻게 추가하나요?">커스텀 언어 모델을 어떻게 추가하나요?</a></li>
+                <a href="#l%c3%a0m-th%e1%ba%bf-n%c3%a0o-th%c3%aam-m%c3%b4-h%c3%acnh-ng%c3%b4n-ng%e1%bb%af-t%c3%b9y-ch%e1%bb%89nh" aria-label="Làm thế nào thêm mô hình ngôn ngữ tùy chỉnh?">Làm thế nào thêm mô hình ngôn ngữ tùy chỉnh?</a></li>
             <li>
-                <a href="#react%eb%82%98-vue%ec%99%80-%ea%b0%99%ec%9d%80-%ed%94%84%eb%a1%a0%ed%8a%b8%ec%97%94%eb%93%9c-%ed%94%84%eb%a0%88%ec%9e%84%ec%9b%8c%ed%81%ac%ec%97%90%ec%84%9c-libretranslate%eb%a5%bc-%ec%82%ac%ec%9a%a9%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98%ec%9a%94" aria-label="React나 Vue와 같은 프론트엔드 프레임워크에서 LibreTranslate를 사용할 수 있나요?">React나 Vue와 같은 프론트엔드 프레임워크에서 LibreTranslate를 사용할 수 있나요?</a>
+                <a href="#t%c3%b4i-c%c3%b3-th%e1%bb%83-d%c3%b9ng-libretranslate-v%e1%bb%9bi-framework-frontend-nh%c6%b0-react-ho%e1%ba%b7c-vue-kh%c3%b4ng" aria-label="Tôi có thể dùng LibreTranslate với framework frontend như React hoặc Vue không?">Tôi có thể dùng LibreTranslate với framework frontend như React hoặc Vue không?</a>
             </li>
         </ul>
         </li>
@@ -354,91 +354,92 @@ backup_url: &rsquo;'
 last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;ai-tools&rdquo;]
-tags: [&ldquo;libretranslate&rdquo;, &ldquo;기계번역&rdquo;, &ldquo;자체호스팅&rdquo;, &ldquo;docker&rdquo;, &ldquo;api&rdquo;, &ldquo;오픈소스&rdquo;, &ldquo;argos translate&rdquo;, &ldquo;자연어처리&rdquo;]
+tags: [&ldquo;libretranslate&rdquo;, &ldquo;dịch máy&rdquo;, &ldquo;tự host&rdquo;, &ldquo;docker&rdquo;, &ldquo;api&rdquo;, &ldquo;mã nguồn mở&rdquo;, &ldquo;argos translate&rdquo;, &ldquo;xử lý ngôn ngữ tự nhiên&rdquo;]
 aliases:</p>
 <ul>
-<li>/kr/posts/libretranslate/</li>
+<li>/vi/posts/libretranslate/</li>
 </ul>
 <hr>
-<p>LibreTranslate는 스스로 호스팅하는 무ㅣㅣ료 오픈소스 기계 번역 API입니다. Google의 API 키는 필요 없습니다. DeepL의 문자당 과금도 없습니다. 데이터가 인프라를 떠나지 않습니다. 14,400개 이상의 GitHub Stars와活발한 릴리스 주기(2026년 5월 기준 v1.9.5)를 자랑하며, 비공개적이고 오프라인 가능한 제로 마진 비용 번역이 필요한 개발자들의 기본 선택이 되었습니다. 이 가이드는 LibreTranslate tutorial 및 libretranslate setup부터 libretranslate docker 프로덕션 배포까지 self-hosted translation 전 과정을 다루며, DeepL 및 Google Translate와의 상세 비교(libretranslate vs deepl)도 포함합니다. 이 가이드에서는 프로덕션 배포, 벤치마크 및 통합에 대해 설명합니다.</p>
+<p>LibreTranslate là một API dịch máy miễn phí, mã nguồn mở mà bạn tự host. Không cần API key của Google. Không tính phí theo ký tự như DeepL. Dữ liệu không rồi khỏi hạ tầng của bạn. Với 14,400+ sao GitHub và chu kỳ phát hành tích cực (phiên bản v1.9.5 tính đến tháng 5/2026), nó đã trở thành lựa chọn mặc định cho các developer cần dịch thuật riêng tư, có khả năng offline với chi phí biên bằng không. Hướng dẫn này là một LibreTranslate tutorial đầy đủ, bao gồm từ libretranslate setup đến libretranslate docker triển khai production, cùng với so sánh chi tiết với DeepL và Google Translate (libretranslate vs deepl) và các best practice về self-hosted translation. Hướng dẫn này đi qua triển khai production, benchmark và tích hợp.</p>
 <p><img alt="LibreTranslate Logo" loading="lazy" src="https://raw.githubusercontent.com/LibreTranslate/LibreTranslate/main/libretranslate/static/icon.svg"></p>
-<h2 id="libretranslate란-무엇인가">LibreTranslate란 무엇인가?<a hidden class="anchor" aria-hidden="true" href="#libretranslate란-무엇인가">#</a></h2>
-<p>LibreTranslate는 오픈소스 Argos Translate 엔진 기반의 자체 호스팅 REST API 기계 번역 서비스입니다. 독점 번역 서비스를 대체할 수 있는 손쉬운 HTTP 인터페이스, 내장 Web UI, 30개 이상 언어 지원을 제공합니다. 이 프로젝트는 AGPL-3.0 라이선스하에 있으며 LibreTranslate 조직이 적극적으로 유지보수하고 있습니다.</p>
-<p>큐큐 기반 번역 API와 달리 LibreTranslate는 사용자의 하드웨어에서 완전히 실행됩니다. 모든 텍스트 처리가 로컬에서 이루어지므로 프라이버시에 민감한 애플리케이션, 에어갭 네트워크 및 규정이 엄격한 산업에 적합합니다. 이 프로젝트는 프라이버시를 존중하는 번역 도구의 부재에 대한 대응으로 시작되었으며, 현재는 기업, 정부 및 개인 개발자가 사용하는 프로덕션 수준 플랫폼으로 성장했습니다.</p>
-<h2 id="libretranslate의-작동-방식">LibreTranslate의 작동 방식<a hidden class="anchor" aria-hidden="true" href="#libretranslate의-작동-방식">#</a></h2>
-<p>LibreTranslate의 아키텍처는 간단합니다. Python Flask 백엔드가 REST API를 제공하고, 번역의 핵심 처리는 Argos Translate의 신경망 기계 번역(NMT) 모델이 담당합니다. 이러한 모델은 처음 실행 시 다운로드되고 로컬에 캐시되어 초기 설정 후 오프라인 작동이 가능합니다.</p>
-<h3 id="핵심-아키텍처">핵심 아키텍처<a hidden class="anchor" aria-hidden="true" href="#핵심-아키텍처">#</a></h3>
-<p><img alt="LibreTranslate 아키텍처" loading="lazy" src="architecture.png"></p>
+<h2 id="libretranslate-là-gì">LibreTranslate Là Gì?<a hidden class="anchor" aria-hidden="true" href="#libretranslate-là-gì">#</a></h2>
+<p>LibreTranslate là một REST API dịch máy tự host, được xây dựng trên nền tảng engine Argos Translate mã nguồn mở. Nó cung cấp giải pháp thay thế sẵn sàng cho các dịch vụ dịch thuật độc quyền, với giao diện HTTP đơn giản, giao diện web tích hợp và hỗ trợ 30+ ngôn ngữ. Dự án được cấp phép AGPL-3.0 và được tổ chức LibreTranslate duy trì tích cực.</p>
+<p>Không giống các API dịch thuật dựa trên đám mây, LibreTranslate chạy hoàn toàn trên phần cứng của bạn. Mọi xử lý văn bản diễn ra cục bộ, khiến nó phù hợp cho các ứng dụng nhạy cảm về quyền riêng tư, mạng air-gap và các ngành có yêu cầu tuân thủ nghiêm ngặt. Dự án được khởi động như một phản hồi cho sự thiếu hụt công cụ dịch thuật tôn trọng quyền riêng tư và đã phát triển thành nền tảng sẵn sàng production được sử dụng bởi doanh nghiệp, chính phủ và developer cá nhân.</p>
+<h2 id="libretranslate-hoạt-động-như-thế-nào">LibreTranslate Hoạt Động Như Thế Nào?<a hidden class="anchor" aria-hidden="true" href="#libretranslate-hoạt-động-như-thế-nào">#</a></h2>
+<p>Kiến trúc của LibreTranslate đơn giản: backend Python Flask phục vụ REST API, trong khi công việc nặng nhọc về dịch thuật được xử lý bởi các mô hình dịch máy neural (NMT) của Argos Translate. Các mô hình này được tải xuống khi chạy lần đầu và cache cục bộ, cho phép hoạt động offline sau thiết lập ban đầu.</p>
+<h3 id="kiến-trúc-cốt-lõi">Kiến Trúc Cốt Lõi<a hidden class="anchor" aria-hidden="true" href="#kiến-trúc-cốt-lõi">#</a></h3>
+<p><img alt="Kiến trúc LibreTranslate" loading="lazy" src="architecture.png"></p>
 <pre tabindex="0"><code>┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
-│   클라이언트    │────▶│  Flask REST API  │────▶│ Argos Translate │
-│   (Web / API)   │◀────│    (포트 5000)   │◀────│   (NMT 엔진)    │
+│   Client (Web)  │────▶│  Flask REST API  │────▶│ Argos Translate │
+│   / API Call    │◀────│    (Port 5000)   │◀────│   (NMT Engine)  │
 └─────────────────┘     └──────────────────┘     └─────────────────┘
                                                         │
                               ┌─────────────────────────┘
                               ▼
                         ┌──────────────┐
-                        │   언어       │
-                        │ 모델 (~2GB)  │
+                        │   Mô hình    │
+                        │ ngôn ngữ     │
+                        │  (~2GB)      │
                         └──────────────┘
-</code></pre><h3 id="핵심-구성-요소">핵심 구성 요소<a hidden class="anchor" aria-hidden="true" href="#핵심-구성-요소">#</a></h3>
+</code></pre><h3 id="các-thành-phần-chính">Các Thành Phần Chính<a hidden class="anchor" aria-hidden="true" href="#các-thành-phần-chính">#</a></h3>
 <ul>
-<li><strong>Flask API 서버</strong>: HTTP 요청, 인증, 속도 제한 및 요청 검증을 처리합니다.</li>
-<li><strong>Argos Translate 엔진</strong>: 언어 쌍 모델을 로드하고 추론을 수행하는 NMT 백엔드입니다.</li>
-<li><strong>언어 모델</strong>: 각 언어 쌍에 대해 사전 학습된 OpenNMT 모델로, 필요 시 다운로드됩니다.</li>
-<li><strong>SQLite 데이터베이스</strong>: API 키 관리가 활성화되면 API 키, 요청 로그 및 사용 통계를 저장합니다.</li>
+<li><strong>Flask API Server</strong>: Xử lý request HTTP, xác thực, giới hạn tốc độ và xác thực request.</li>
+<li><strong>Argos Translate Engine</strong>: Backend NMT tải các mô hình ngôn ngữ và thực hiện inference.</li>
+<li><strong>Language Models</strong>: Các mô hình OpenNMT pretrained cho mỗi cặp ngôn ngữ, tải xuống theo yêu cầu.</li>
+<li><strong>SQLite Database</strong>: Lưu trữ API key, log request và thống kê sử dụng khi quản lý API key được bật.</li>
 </ul>
-<p>번역 요청은 다음과 같이 시스템을 통해 흐릅니다: 클라이언트가 소스 텍스트, 소스 언어 및 대상 언어를 포함한 JSON 페이로드를 전송합니다. API가 요청을 검증하고 적절한 Argos 모델로 라우팅한 다음, 번역된 텍스트와 신뢰도 점수 및 감지된 언어와 같은 메타데이터를 반환합니다.</p>
-<h2 id="설치-및-설정">설치 및 설정<a hidden class="anchor" aria-hidden="true" href="#설치-및-설정">#</a></h2>
-<p>LibreTranslate는 여러 배포 경로를 제공합니다. 격리, 재현성 및 업데이트 용이성 때문에 Docker 경로가 프로덕션에 권장됩니다.</p>
-<h3 id="시스템-요구사항">시스템 요구사항<a hidden class="anchor" aria-hidden="true" href="#시스템-요구사항">#</a></h3>
+<p>Request dịch thuật đi qua hệ thống như sau: client gửi payload JSON với văn bản nguồn, ngôn ngữ nguồn và ngôn ngữ đích. API xác thực request, định tuyến đến mô hình Argos phù hợp và trả về văn bản đã dịch cùng metadata như điểm tin cậy và ngôn ngữ phát hiện được.</p>
+<h2 id="cài-đặt--thiết-lập">Cài Đặt &amp; Thiết Lập<a hidden class="anchor" aria-hidden="true" href="#cài-đặt--thiết-lập">#</a></h2>
+<p>LibreTranslate cung cấp nhiều đường dẫn triển khai. Đường dẫn Docker được khuyến nghị cho production do khả năng cách ly, tái lập và dễ dàng cập nhật.</p>
+<h3 id="yêu-cầu-hệ-thống">Yêu Cầu Hệ Thống<a hidden class="anchor" aria-hidden="true" href="#yêu-cầu-hệ-thống">#</a></h3>
 <table>
 	<thead>
 			<tr>
-					<th>구성</th>
+					<th>Cấu hình</th>
 					<th>CPU</th>
 					<th>RAM</th>
-					<th>스토리지</th>
-					<th>부팅 시간</th>
+					<th>Lưu trữ</th>
+					<th>Thờii gian khởi động</th>
 			</tr>
 	</thead>
 	<tbody>
 			<tr>
-					<td>최소 (3개 언어)</td>
+					<td>Tối thiểu (3 ngôn ngữ)</td>
 					<td>1 vCPU</td>
 					<td>2 GB</td>
 					<td>1 GB</td>
-					<td>~60초</td>
+					<td>~60s</td>
 			</tr>
 			<tr>
-					<td>권장 (11개 언어)</td>
+					<td>Khuyến nghị (11 ngôn ngữ)</td>
 					<td>2 vCPU</td>
 					<td>4 GB</td>
 					<td>3 GB</td>
-					<td>~90초</td>
+					<td>~90s</td>
 			</tr>
 			<tr>
-					<td>전체 로드 (30+ 언어)</td>
+					<td>Đầy đủ (30+ ngôn ngữ)</td>
 					<td>4 vCPU</td>
 					<td>8 GB</td>
 					<td>10 GB</td>
-					<td>~120초</td>
+					<td>~120s</td>
 			</tr>
 	</tbody>
 </table>
-<h3 id="docker-빠른-시작">Docker 빠른 시작<a hidden class="anchor" aria-hidden="true" href="#docker-빠른-시작">#</a></h3>
-<p>로컬에서 LibreTranslate를 실행하는 가장 빠른 방법: `````bash</p>
-<h1 id="docker로-실행">Docker로 실행<a hidden class="anchor" aria-hidden="true" href="#docker로-실행">#</a></h1>
+<h3 id="docker-khởi-động-nhanh">Docker Khởi Động Nhanh<a hidden class="anchor" aria-hidden="true" href="#docker-khởi-động-nhanh">#</a></h3>
+<p>Cách nhanh nhất để chạy LibreTranslate cục bộ: `````bash</p>
+<h1 id="chạy-bằng-docker">Chạy bằng Docker<a hidden class="anchor" aria-hidden="true" href="#chạy-bằng-docker">#</a></h1>
 <p>docker run -ti &ndash;rm -p 5000:5000 <br>
 -v lt-models:/home/libretranslate/.local <br>
 -e LT_LOAD_ONLY=en,es,fr <br>
 libretranslate/libretranslate:latest</p>
 <pre tabindex="0"><code>
-시작 후 브라우저에서 http://localhost:5000을 엽니다. 처음 실행 시 언어 모델을 다운로드하므로 UI가 응답하기 전에 잠시 지연이 발생합니다.
+Sau khi khởi động, mở http://localhost:5000 trong trình duyệt. Lần chạy đầu tiên tải các mô hình ngôn ngữ nên sẽ có độ trễ ngắn trước khi UI phản hồi.
 
-### 프로덕션 Docker Compose
+### Docker Compose Production
 
-프로덕션 배포를 위해 지속성 볼륨, 상태 확인 및 리소스 제한이 있는 전용 ``docker-compose.yml``을 사용합니다: `````yaml
-# docker-compose.yml - 프로덕션 설정
+Để triển khai production, sử dụng ``docker-compose.yml`` với volume lâu dài, kiểm tra sức khỏe và giới hạn tài nguyên: `````yaml
+# docker-compose.yml - Cấu hình Production
 version: &#39;3.8&#39;
 
 services: libretranslate: container_name: libretranslate
@@ -462,44 +463,44 @@ services: libretranslate: container_name: libretranslate
 
 volumes: lt-models: lt-db: `````
 
-배포: `````bash
+Triển khai: `````bash
 docker compose up -d
-</code></pre><h3 id="gpu-가속-배포-cuda">GPU 가속 배포 (CUDA)<a hidden class="anchor" aria-hidden="true" href="#gpu-가속-배포-cuda">#</a></h3>
-<p>높은 처리량 시나리오의 경우 LibreTranslate는 CUDA를 통해 NVIDIA GPU 가속을 지원합니다. 요구사항: CUDA 11.2+ 및 nvidia-docker2가 설치된 NVIDIA GPU.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 저장소 클론</span>
+</code></pre><h3 id="triển-khai-tăng-tốc-gpu-cuda">Triển Khai Tăng Tốc GPU (CUDA)<a hidden class="anchor" aria-hidden="true" href="#triển-khai-tăng-tốc-gpu-cuda">#</a></h3>
+<p>Cho các kịch bản thông lượng cao, LibreTranslate hỗ trợ tăng tốc GPU NVIDIA qua CUDA. Yêu cầu: GPU NVIDIA với CUDA 11.2+ và nvidia-docker2 đã cài đặt.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone repository</span>
 </span></span><span style="display:flex;"><span>git clone https://github.com/LibreTranslate/LibreTranslate.git
 </span></span><span style="display:flex;"><span>cd LibreTranslate
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># CUDA 지원 버전 빌드 및 실행</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build và chạy phiên bản CUDA</span>
 </span></span><span style="display:flex;"><span>docker compose -f docker-compose.cuda.yml up -d --build
-</span></span></code></pre></div><p>GPU 활용 확인: `````bash
+</span></span></code></pre></div><p>Xác minh GPU đang sử dụng: `````bash
 nvidia-smi</p>
 <pre tabindex="0"><code>
-### 네이티브 Python 설치
+### Cài Đặt Python Native
 
-개발 환경이나 Docker를 사용할 수 없는 환경의 경우: `````bash
-# pip를 통해 설치
+Cho môi trường phát triển hoặc môi trường không có Docker: `````bash
+# Cài đặt qua pip
 pip install libretranslate==1.9.5
 
-# 서버 시작
+# Khởi động server
 libretranslate --host 0.0.0.0 --port 5000 \
   --load-only en,es,fr,de \
   --req-limit 60 \
   --threads 4
-</code></pre><p>또는 소스에서 빌드: `````bash
+</code></pre><p>Hoặc build từ source: `````bash
 git clone <a href="https://github.com/LibreTranslate/LibreTranslate.git">https://github.com/LibreTranslate/LibreTranslate.git</a>
 cd LibreTranslate
 pip install -e .
 python main.py &ndash;host 0.0.0.0 &ndash;port 5000</p>
 <pre tabindex="0"><code>
-### DigitalOcean에 배포하기 (프로덕션 클라우드)
+### Triển Khai trên DigitalOcean (Production Cloud)
 
-큐호스팅 프로덕션 인스턴스의 경우 DigitalOcean은 App Platform 또는 Droplet을 통해 쉬운 배포 경로를 제공합니다. 1-Click Docker 이미지를 사용하여 배포합니다: `````bash
-# 새로운 Ubuntu 24.04 Droplet에서
+Cho instance production trên cloud, DigitalOcean cung cấp đường dẫn dễ dàng qua App Platform hoặc Droplets. Triển khai bằng Docker image 1-Click: `````bash
+# Trên Ubuntu 24.04 Droplet mới
 curl -fsSL https://get.docker.com | sh
 mkdir -p ~/libretranslate &amp;&amp; cd ~/libretranslate
 
-# 프로덕션 compose 파일 생성
+# Tạo file compose production
 cat &gt; docker-compose.yml &lt;&lt; EOF
 version: &#39;3.8&#39;
 services: libretranslate: image: libretranslate/libretranslate:v1.9.5
@@ -515,11 +516,11 @@ EOF
 
 docker compose up -d
 </code></pre><blockquote>
-<p><strong>참고</strong>: 새로운 VPS를 설정하는 경우 <a href="https://www.digitalocean.com">DigitalOcean</a>은 신규 사용자에게 $200의 무ㅣㅣ료 크레딧을 제공하여 4GB Droplet이 24/7로 LibreTranslate를 실행하는 것을 몇 달 동안 커버할 수 있습니다.</p>
+<p><strong>Lưu ý</strong>: Nếu bạn đang thiết lập VPS mới, <a href="https://www.digitalocean.com">DigitalOcean</a> cung cấp $200 tín dụng miễn phí cho ngườii dùng mới, đủ để chạy một Droplet 4GB với LibreTranslate 24/7 trong vài tháng.</p>
 </blockquote>
-<h2 id="인기-도구와의-통합">인기 도구와의 통합<a hidden class="anchor" aria-hidden="true" href="#인기-도구와의-통합">#</a></h2>
-<p>LibreTranslate의 REST API는 거의 모든 스택과 호환됩니다. 아래는 일반적인 워크플로우에 대한 통합 예시입니다.</p>
-<h3 id="python-sdk-사용">Python SDK 사용<a hidden class="anchor" aria-hidden="true" href="#python-sdk-사용">#</a></h3>
+<h2 id="tích-hợp-với-các-công-cụ-phổ-biến">Tích Hợp Với Các Công Cụ Phổ Biến<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-với-các-công-cụ-phổ-biến">#</a></h2>
+<p>REST API của LibreTranslate khiến nó tương thích với hầu hết mọi stack. Dưới đây là các ví dụ tích hợp cho các workflow phổ biến.</p>
+<h3 id="sử-dụng-python-sdk">Sử Dụng Python SDK<a hidden class="anchor" aria-hidden="true" href="#sử-dụng-python-sdk">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># translate_client.py</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
 </span></span><span style="display:flex;"><span>
@@ -530,7 +531,7 @@ docker compose up -d
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;source&#34;</span>: source,
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;target&#34;</span>: target,
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;format&#34;</span>: <span style="color:#e6db74">&#34;text&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;api_key&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>  <span style="color:#75715e"># 활성화된 경우 API 키 추가</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;api_key&#34;</span>: <span style="color:#e6db74">&#34;&#34;</span>  <span style="color:#75715e"># Thêm API key nếu đã bật</span>
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    headers <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;Content-Type&#34;</span>: <span style="color:#e6db74">&#34;application/json&#34;</span>}
 </span></span><span style="display:flex;"><span>
@@ -538,10 +539,10 @@ docker compose up -d
 </span></span><span style="display:flex;"><span>    response<span style="color:#f92672">.</span>raise_for_status()
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> response<span style="color:#f92672">.</span>json()[<span style="color:#e6db74">&#34;translatedText&#34;</span>]
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 사용 예시</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ví dụ sử dụng</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>: result <span style="color:#f92672">=</span> translate_text(<span style="color:#e6db74">&#34;Hello, production deployment!&#34;</span>, <span style="color:#e6db74">&#34;en&#34;</span>, <span style="color:#e6db74">&#34;de&#34;</span>)
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;번역 결과: </span><span style="color:#e6db74">{</span>result<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</span></span></code></pre></div><h3 id="javascripttypescript-통합">JavaScript/TypeScript 통합<a hidden class="anchor" aria-hidden="true" href="#javascripttypescript-통합">#</a></h3>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Đã dịch: </span><span style="color:#e6db74">{</span>result<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="tích-hợp-javascripttypescript">Tích Hợp JavaScript/TypeScript<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-javascripttypescript">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// libretranslate-client.ts
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">TranslateResponse</span> {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">translatedText</span>: <span style="color:#66d9ef">string</span>;
@@ -574,7 +575,7 @@ docker compose up -d
 </span></span><span style="display:flex;"><span>    });
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">ok</span>) {
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">````</span><span style="color:#960050;background-color:#1e0010">번역</span> <span style="color:#a6e22e">실패</span>: <span style="color:#66d9ef">$</span>{<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">statusText</span>}<span style="color:#e6db74">````</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Error(<span style="color:#e6db74">````</span><span style="color:#a6e22e">Dịch</span> <span style="color:#a6e22e">thất</span> <span style="color:#a6e22e">bại</span>: <span style="color:#66d9ef">$</span>{<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">statusText</span>}<span style="color:#e6db74">````</span>);
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span>: <span style="color:#66d9ef">TranslateResponse</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">json</span>();
@@ -582,22 +583,22 @@ docker compose up -d
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 사용
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Sử dụng
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">LibreTranslateClient</span>(<span style="color:#e6db74">&#34;http://localhost:5000&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">translate</span>(<span style="color:#e6db74">&#34;Deploy to production&#34;</span>, <span style="color:#e6db74">&#34;en&#34;</span>, <span style="color:#e6db74">&#34;fr&#34;</span>);
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>); <span style="color:#75715e">// &#34;Déployer en production&#34;
-</span></span></span></code></pre></div><h3 id="openai-whisper-오디오-번역-파이프라인">OpenAI Whisper 오디오-번역 파이프라인<a hidden class="anchor" aria-hidden="true" href="#openai-whisper-오디오-번역-파이프라인">#</a></h3>
-<p>일반적인 패턴은 음성 인식과 번역을 결합하는 것입니다. 다음은 Whisper를 사용한 전사 및 LibreTranslate를 사용한 번역의 완전한 파이프라인입니다: `````python</p>
+</span></span></span></code></pre></div><h3 id="pipeline-openai-whisper-audio-sang-văn-bản-dịch">Pipeline OpenAI Whisper: Audio Sang Văn Bản Dịch<a hidden class="anchor" aria-hidden="true" href="#pipeline-openai-whisper-audio-sang-văn-bản-dịch">#</a></h3>
+<p>Một pattern phổ biến là kết hợp nhận diện giọng nói với dịch thuật. Dưới đây là pipeline hoàn chỉnh sử dụng Whisper để phiên âm và LibreTranslate để dịch: `````python</p>
 <h1 id="whisper_translate_pipelinepy">whisper_translate_pipeline.py<a hidden class="anchor" aria-hidden="true" href="#whisper_translate_pipelinepy">#</a></h1>
 <p>import whisper
 import requests</p>
 <p>WHISPER_MODEL = whisper.load_model(&ldquo;base&rdquo;)
 LIBRE_URL = &ldquo;http://localhost:5000/translate&rdquo;</p>
-<p>def transcribe_and_translate(audio_path: str, target_lang: str = &ldquo;en&rdquo;) -&gt; dict: # 단계 1: Whisper로 오디오 전사
+<p>def transcribe_and_translate(audio_path: str, target_lang: str = &ldquo;en&rdquo;) -&gt; dict: # Bước 1: Phiên âm audio bằng Whisper
 result = WHISPER_MODEL.transcribe(audio_path)
 source_text = result[&ldquo;text&rdquo;]
 detected_lang = result.get(&ldquo;language&rdquo;, &ldquo;auto&rdquo;)</p>
-<pre><code># 단계 2: LibreTranslate로 번역
+<pre><code># Bước 2: Dịch bằng LibreTranslate
 payload = {
     &quot;q&quot;: source_text,
     &quot;source&quot;: detected_lang,
@@ -614,26 +615,26 @@ return {
     &quot;target_language&quot;: target_lang
 }
 </code></pre>
-<h1 id="파이프라인-실행">파이프라인 실행<a hidden class="anchor" aria-hidden="true" href="#파이프라인-실행">#</a></h1>
+<h1 id="chạy-pipeline">Chạy pipeline<a hidden class="anchor" aria-hidden="true" href="#chạy-pipeline">#</a></h1>
 <p>output = transcribe_and_translate(&ldquo;meeting.mp3&rdquo;, target_lang=&ldquo;es&rdquo;)
 print(f&quot;ES: {output[translated]}&quot;)</p>
 <pre tabindex="0"><code>
-### Coqui TTS 통합 (번역 + 음성 합성)
+### Tích Hợp Coqui TTS (Dịch + Tổng Hợp Giọng Nói)
 
-텍스트를 번역하고 대상 언어로 음성을 합성합니다: `````python
+Dịch văn bản và tổng hợp giọng nói bằng ngôn ngữ đích: `````python
 # translate_and_speak.py
 import requests
 from TTS.api import TTS
 
-# TTS 초기화
+# Khởi tạo TTS
 tts = TTS(&#34;tts_models/multilingual/multi-dataset/xtts_v2&#34;, gpu=False)
 
-def translate_and_speak(text: str, target_lang: str, speaker_wav: str): # 번역
+def translate_and_speak(text: str, target_lang: str, speaker_wav: str): # Dịch
     payload = {&#34;q&#34;: text, &#34;source&#34;: &#34;en&#34;, &#34;target&#34;: target_lang, &#34;format&#34;: &#34;text&#34;}
     response = requests.post(&#34;http://localhost:5000/translate&#34;, json=payload)
     translated = response.json()[&#34;translatedText&#34;]
 
-    # 음성 합성
+    # Tổng hợp giọng nói
     output_path = f&#34;output_{target_lang}.wav&#34;
     tts.tts_to_file(
         text=translated,
@@ -643,31 +644,31 @@ def translate_and_speak(text: str, target_lang: str, speaker_wav: str): # 번역
     )
     return output_path
 
-# 다국어 오디오 생성
+# Tạo audio đa ngôn ngữ
 for lang in [&#34;es&#34;, &#34;fr&#34;, &#34;de&#34;]: translate_and_speak(&#34;Welcome to our service&#34;, lang, &#34;reference.wav&#34;)
-</code></pre><h3 id="curl-api-예시">cURL API 예시<a hidden class="anchor" aria-hidden="true" href="#curl-api-예시">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 기본 번역</span>
+</code></pre><h3 id="ví-dụ-api-curl">Ví Dụ API cURL<a hidden class="anchor" aria-hidden="true" href="#ví-dụ-api-curl">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Dịch cơ bản</span>
 </span></span><span style="display:flex;"><span>curl -X POST http://localhost:5000/translate <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;q&#34;: &#34;Hello world&#34;, &#34;source&#34;: &#34;en&#34;, &#34;target&#34;: &#34;es&#34;}&#39;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 응답: {&#34;translatedText&#34;: &#34;Hola mundo&#34;}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Phản hồi: {&#34;translatedText&#34;: &#34;Hola mundo&#34;}</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 언어 감지</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Phát hiện ngôn ngữ</span>
 </span></span><span style="display:flex;"><span>curl -X POST http://localhost:5000/detect <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;q&#34;: &#34;Bonjour le monde&#34;}&#39;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 지원 언어 목록</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Lấy danh sách ngôn ngữ hỗ trợ</span>
 </span></span><span style="display:flex;"><span>curl http://localhost:5000/languages
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># API 키로 번역 (활성화된 경우)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Dịch với API key (nếu đã bật)</span>
 </span></span><span style="display:flex;"><span>curl -X POST http://localhost:5000/translate <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer your-api-key&#34;</span> <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;q&#34;: &#34;Production deployment&#34;, &#34;source&#34;: &#34;en&#34;, &#34;target&#34;: &#34;de&#34;}&#39;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># HTML 번역</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Dịch HTML</span>
 </span></span><span style="display:flex;"><span>curl -X POST http://localhost:5000/translate <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
@@ -676,8 +677,8 @@ for lang in [&#34;es&#34;, &#34;fr&#34;, &#34;de&#34;]: translate_and_speak(&#34
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;target&#34;: &#34;fr&#34;,
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;format&#34;: &#34;html&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
-</span></span></code></pre></div><h3 id="nginx-역방향-프록시-구성">Nginx 역방향 프록시 구성<a hidden class="anchor" aria-hidden="true" href="#nginx-역방향-프록시-구성">#</a></h3>
-<p>도메인 및 HTTPS가 있는 프로덕션 배포의 경우: `````nginx</p>
+</span></span></code></pre></div><h3 id="cấu-hình-nginx-reverse-proxy">Cấu Hình Nginx Reverse Proxy<a hidden class="anchor" aria-hidden="true" href="#cấu-hình-nginx-reverse-proxy">#</a></h3>
+<p>Cho các triển khai production với domain và HTTPS: `````nginx</p>
 <h1 id="etcnginxsites-availablelibretranslate">/etc/nginx/sites-available/libretranslate<a hidden class="anchor" aria-hidden="true" href="#etcnginxsites-availablelibretranslate">#</a></h1>
 <p>server {
 listen 443 ssl http2;
@@ -697,28 +698,28 @@ location / {
 }
 </code></pre>
 <p>}</p>
-<h1 id="http를-https로-리다이렉트">HTTP를 HTTPS로 리다이렉트<a hidden class="anchor" aria-hidden="true" href="#http를-https로-리다이렉트">#</a></h1>
+<h1 id="chuyển-hướng-http-sang-https">Chuyển hướng HTTP sang HTTPS<a hidden class="anchor" aria-hidden="true" href="#chuyển-hướng-http-sang-https">#</a></h1>
 <p>server {
 listen 80;
 server_name translate.yourdomain.com;
 return 301 https://$server_name$request_uri;
 }</p>
 <pre tabindex="0"><code>
-구성 활성화: `````bash
+Kích hoạt cấu hình: `````bash
 sudo ln -s /etc/nginx/sites-available/libretranslate /etc/nginx/sites-enabled/
 sudo nginx -t &amp;&amp; sudo systemctl reload nginx
-</code></pre><h2 id="벤치마크--실제-사용-사례">벤치마크 / 실제 사용 사례<a hidden class="anchor" aria-hidden="true" href="#벤치마크--실제-사용-사례">#</a></h2>
-<p>LibreTranslate의 성능은 하드웨어 구성, 로드된 언어 및 텍스트 길이에 따라 크게 달라집니다. 아래는 프로덕션 배포에서 측정된 벤치마크입니다.</p>
-<p><img alt="번역 API 지연 시간 비교" loading="lazy" src="benchmark-chart.png"></p>
-<h3 id="번역-속도-벤치마크">번역 속도 벤치마크<a hidden class="anchor" aria-hidden="true" href="#번역-속도-벤치마크">#</a></h3>
+</code></pre><h2 id="benchmark--các-trường-hợp-sử-dụng-thực-tế">Benchmark / Các Trường Hợp Sử Dụng Thực Tế<a hidden class="anchor" aria-hidden="true" href="#benchmark--các-trường-hợp-sử-dụng-thực-tế">#</a></h2>
+<p>Hiệu suất của LibreTranslate thay đổi đáng kể dựa trên cấu hình phần cứng, ngôn ngữ đã tải và độ dài văn bản. Dưới đây là các benchmark đo được từ các triển khai production.</p>
+<p><img alt="So sánh độ trễ API dịch thuật" loading="lazy" src="benchmark-chart.png"></p>
+<h3 id="benchmark-tốc-độ-dịch-thuật">Benchmark Tốc Độ Dịch Thuật<a hidden class="anchor" aria-hidden="true" href="#benchmark-tốc-độ-dịch-thuật">#</a></h3>
 <table>
 	<thead>
 			<tr>
-					<th>하드웨어</th>
-					<th>로드된 언어</th>
-					<th>평균 지연 시간 (50단어)</th>
-					<th>처리량 (req/s)</th>
-					<th>참고</th>
+					<th>Phần cứng</th>
+					<th>Ngôn ngữ đã tải</th>
+					<th>Độ trễ TB (50 từ)</th>
+					<th>Thông lượng (req/s)</th>
+					<th>Ghi chú</th>
 			</tr>
 	</thead>
 	<tbody>
@@ -727,98 +728,98 @@ sudo nginx -t &amp;&amp; sudo systemctl reload nginx
 					<td>5</td>
 					<td>180ms</td>
 					<td>12</td>
-					<td>CPU 전용, Docker</td>
+					<td>Chỉ CPU, Docker</td>
 			</tr>
 			<tr>
 					<td>4 vCPU, 8GB RAM</td>
 					<td>11</td>
 					<td>120ms</td>
 					<td>28</td>
-					<td>CPU 전용, Docker</td>
+					<td>Chỉ CPU, Docker</td>
 			</tr>
 			<tr>
 					<td>4 vCPU, 16GB RAM</td>
 					<td>30</td>
 					<td>200ms</td>
 					<td>18</td>
-					<td>CPU 전용, 전체 언어</td>
+					<td>Chỉ CPU, đủ ngôn ngữ</td>
 			</tr>
 			<tr>
 					<td>8 vCPU, 16GB + RTX 3060</td>
 					<td>11</td>
 					<td>45ms</td>
 					<td>85</td>
-					<td>CUDA 가속</td>
+					<td>Tăng tốc CUDA</td>
 			</tr>
 			<tr>
 					<td>2 vCPU, 4GB (DigitalOcean)</td>
 					<td>5</td>
 					<td>220ms</td>
 					<td>10</td>
-					<td>클라우드 VPS, CPU 전용</td>
+					<td>Cloud VPS, chỉ CPU</td>
 			</tr>
 	</tbody>
 </table>
-<h3 id="번역-품질-비교">번역 품질 비교<a hidden class="anchor" aria-hidden="true" href="#번역-품질-비교">#</a></h3>
-<p>WMT14 영어-독일어 테스트 세트에서의 BLEU 점수 (높을수록 좋음): | 시스템 | BLEU 점수 | 단어 오류율 | 추론 시간 |
-|&mdash;&mdash;-|&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;|
+<h3 id="so-sánh-chất-lượng-dịch-thuật">So Sánh Chất Lượng Dịch Thuật<a hidden class="anchor" aria-hidden="true" href="#so-sánh-chất-lượng-dịch-thuật">#</a></h3>
+<p>Điểm BLEU trên tập kiểm tra WMT14 Anh-Đức (càng cao càng tốt): | Hệ thống | Điểm BLEU | Tỷ lệ lỗi từ | Thờii gian inference |
+|&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
 | LibreTranslate (Argos) | 22.4 | 62% | 120ms |
 | Google Translate API | 26.8 | 51% | 85ms |
 | DeepL API | 28.1 | 48% | 90ms |
 | Argos Translate (CLI) | 22.4 | 62% | 115ms |</p>
-<p>LibreTranslate는 Argos Translate CLI와 정확히 동일한 엔진을 공유하므로 성능이 완전히 일치합니다. 상용 API와의 품질 격차는 측정 가능하지만 좁혀지고 있습니다: 일반적인 유럽 언어 쌍의 경우 LibreTranslate는 대부분의 사용 사례에 대해 허용 가능한 번역을 생성합니다. 덜 일반적인 언어 쌍, 기술 분야 텍스트 및 미묘한 창작 콘텐츠의 경우 격차가 커집니다.</p>
-<h3 id="대규모-비용-분석">대규모 비용 분석<a hidden class="anchor" aria-hidden="true" href="#대규모-비용-분석">#</a></h3>
+<p>LibreTranslate khớp chính xác với hiệu suất Argos Translate CLI vì chúng chia sẻ cùng engine. Khoảng cách chất lượng với API thương mại là có thể đo lường được nhưng đang thu hẹp: với các cặp ngôn ngữ châu Âu phổ biến, LibreTranslate tạo ra bản dịch chấp nhận được cho hầu hết các trường hợp sử dụng. Khoảng cách mở rộng đối với các cặp ngôn ngữ ít phổ biến hơn, văn bản kỹ thuật và nội dung sáng tạo tinh tế.</p>
+<h3 id="phân-tích-chi-phí-quy-mô-lớn">Phân Tích Chi Phí Quy Mô Lớn<a hidden class="anchor" aria-hidden="true" href="#phân-tích-chi-phí-quy-mô-lớn">#</a></h3>
 <table>
 	<thead>
 			<tr>
-					<th>월간 볼륨</th>
-					<th>LibreTranslate (자체 호스팅)</th>
+					<th>Khối lượng hàng tháng</th>
+					<th>LibreTranslate (Tự host)</th>
 					<th>Google Translate</th>
 					<th>DeepL API</th>
 			</tr>
 	</thead>
 	<tbody>
 			<tr>
-					<td>100만 문자</td>
-					<td>$10 (VPS 비용)</td>
+					<td>1 triệu ký tự</td>
+					<td>$10 (chi phí VPS)</td>
 					<td>$20</td>
-					<td>$6.99 (프리 티어)</td>
+					<td>$6.99 (miễn phí tier)</td>
 			</tr>
 			<tr>
-					<td>1,000만 문자</td>
-					<td>$10 (VPS 비용)</td>
+					<td>10 triệu ký tự</td>
+					<td>$10 (chi phí VPS)</td>
 					<td>$200</td>
 					<td>$20</td>
 			</tr>
 			<tr>
-					<td>1억 문자</td>
-					<td>$40 (전용 서버)</td>
+					<td>100 triệu ký tự</td>
+					<td>$40 (server chuyên dụng)</td>
 					<td>$2,000</td>
 					<td>$125</td>
 			</tr>
 			<tr>
-					<td>10억 문자</td>
-					<td>$200 (GPU 서버)</td>
+					<td>1 tỷ ký tự</td>
+					<td>$200 (server GPU)</td>
 					<td>$20,000</td>
 					<td>$1,000</td>
 			</tr>
 	</tbody>
 </table>
-<p>LibreTranslate의 경제적 논거는 볼륨에 비례하여 강화됩니다. 월 1억 문자 이상에서는 자체 호스팅이 상용 대안보다 10-50배 저렴합니다.</p>
-<h3 id="실제-사용-사례">실제 사용 사례<a hidden class="anchor" aria-hidden="true" href="#실제-사용-사례">#</a></h3>
+<p>Lý lẽ kinh tế cho LibreTranslate tăng cường theo tỷ lệ thuận với khối lượng. Ở mức 100 triệu+ ký tự mỗi tháng, tự host rẻ hơn 10-50 lần so với các giải pháp thương mại.</p>
+<h3 id="các-trường-hợp-sử-dụng-thực-tế">Các Trường Hợp Sử Dụng Thực Tế<a hidden class="anchor" aria-hidden="true" href="#các-trường-hợp-sử-dụng-thực-tế">#</a></h3>
 <ul>
-<li><strong>정부 기관</strong>: 데이터 유출 위험 없이 기밀 문서 처리.</li>
-<li><strong>의료 시스템</strong>: HIPAA/GDPR 제약 하에서 환자 기록 번역.</li>
-<li><strong>이커머스 플랫폼</strong>: 품목당 제로 비용으로 제품 카탈로그 대량 번역.</li>
-<li><strong>콘텐츠 관리 시스템</strong>: 사용자 생성 콘텐츠의 실시간 번역.</li>
-<li><strong>연구 기관</strong>: 내 인프라에서 다국어 학술 논문 처리.</li>
-<li><strong>모바일 앱 백엔드</strong>: 여행 및 커뮤니케이션 앱을 위한 저지연 번역.</li>
+<li><strong>Cơ quan chính phủ</strong>: Xử lý tài liệu mật mà không có rủi ro rò rỉ dữ liệu.</li>
+<li><strong>Hệ thống y tế</strong>: Dịch hồ sơ bệnh nhân trong ràng buộc HIPAA/GDPR.</li>
+<li><strong>Nền tảng thương mại điện tử</strong>: Dịch hàng loạt danh mục sản phẩm với chi phí bằng không cho mỗi mục.</li>
+<li><strong>Hệ thống quản lý nội dung</strong>: Dịch thờii gian thực nội dung do ngườii dùng tạo.</li>
+<li><strong>Các tổ chức nghiên cứu</strong>: Xử lý bài báo học thuật đa ngôn ngữ trên hạ tầng nội bộ.</li>
+<li><strong>Backend ứng dụng di động</strong>: Dịch độ trễ thấp cho ứng dụng du lịch và giao tiếp.</li>
 </ul>
-<h2 id="고급-사용법--프로덕션-강화">고급 사용법 / 프로덕션 강화<a hidden class="anchor" aria-hidden="true" href="#고급-사용법--프로덕션-강화">#</a></h2>
-<p>프로덕션에서 LibreTranslate를 실행하려면 보안, 확장성 및 모니터링에 주의가 필요합니다.</p>
-<h3 id="api-키-관리">API 키 관리<a hidden class="anchor" aria-hidden="true" href="#api-키-관리">#</a></h3>
-<p>액세스를 제어하고 남용을 방지하기 위해 API 키 인증을 활성화합니다: `````yaml</p>
-<h1 id="api-키가-활성화된-docker-composeyml">API 키가 활성화된 docker-compose.yml<a hidden class="anchor" aria-hidden="true" href="#api-키가-활성화된-docker-composeyml">#</a></h1>
+<h2 id="sử-dụng-nâng-cao--củng-cố-production">Sử Dụng Nâng Cao / Củng Cố Production<a hidden class="anchor" aria-hidden="true" href="#sử-dụng-nâng-cao--củng-cố-production">#</a></h2>
+<p>Chạy LibreTranslate trong production đòi hỏi sự chú ý đến bảo mật, mở rộng và giám sát.</p>
+<h3 id="quản-lý-api-key">Quản Lý API Key<a hidden class="anchor" aria-hidden="true" href="#quản-lý-api-key">#</a></h3>
+<p>Bật xác thực API key để kiểm soát truy cập và ngăn chặn lạm dụng: `````yaml</p>
+<h1 id="docker-composeyml-với-api-keys">docker-compose.yml với API keys<a hidden class="anchor" aria-hidden="true" href="#docker-composeyml-với-api-keys">#</a></h1>
 <p>services: libretranslate: image: libretranslate/libretranslate:v1.9.5
 environment: - LT_API_KEYS=true
 - LT_REQ_LIMIT=100
@@ -826,30 +827,30 @@ environment: - LT_API_KEYS=true
 volumes: - lt-models:/home/libretranslate/.local
 - lt-db:/app/db</p>
 <pre tabindex="0"><code>
-데이터베이스 또는 관리 인터페이스를 통해 API 키를 생성하고 관리합니다.
+Tạo và quản lý API key qua database hoặc giao diện quản trị.
 
-### 커스텀 모델 로딩
+### Tải Mô Hình Tùy Chỉnh
 
-필요한 언어만 로드하여 메모리 사용을 제어합니다: `````bash
-# 유럽 언어만 로드
+Kiểm soát việc sử dụng bộ nhớ bằng cách chỉ tải các ngôn ngữ cần thiết: `````bash
+# Chỉ tải ngôn ngữ châu Âu
 LT_LOAD_ONLY=en,es,fr,de,it,pt,nl,pl,ru docker compose up -d
 
-# 아시아 + 유럽 언어 로드
+# Tải ngôn ngữ châu Á + châu Âu
 LT_LOAD_ONLY=en,ja,zh,ko,es,fr,de docker compose up -d
-</code></pre><h3 id="상태-모니터링">상태 모니터링<a hidden class="anchor" aria-hidden="true" href="#상태-모니터링">#</a></h3>
-<p>LibreTranslate는 내장 상태 확인 엔드포인트를 포함합니다: `````bash</p>
-<h1 id="서비스-상태-확인">서비스 상태 확인<a hidden class="anchor" aria-hidden="true" href="#서비스-상태-확인">#</a></h1>
+</code></pre><h3 id="giám-sát-sức-khỏe">Giám Sát Sức Khỏe<a hidden class="anchor" aria-hidden="true" href="#giám-sát-sức-khỏe">#</a></h3>
+<p>LibreTranslate bao gồm endpoint kiểm tra sức khỏe tích hợp: `````bash</p>
+<h1 id="kiểm-tra-sức-khỏe-dịch-vụ">Kiểm tra sức khỏe dịch vụ<a hidden class="anchor" aria-hidden="true" href="#kiểm-tra-sức-khỏe-dịch-vụ">#</a></h1>
 <p>curl http://localhost:5000/health</p>
-<h1 id="예상-응답-status-ok">예상 응답: {&ldquo;status&rdquo;: &ldquo;ok&rdquo;}<a hidden class="anchor" aria-hidden="true" href="#예상-응답-status-ok">#</a></h1>
+<h1 id="phản-hồi-mong-đợi-status-ok">Phản hồi mong đợi: {&ldquo;status&rdquo;: &ldquo;ok&rdquo;}<a hidden class="anchor" aria-hidden="true" href="#phản-hồi-mong-đợi-status-ok">#</a></h1>
 <pre tabindex="0"><code>
-Prometheus 기반 모니터링의 경우 간단한 익스포터를 추가합니다: `````python
+Cho giám sát dựa trên Prometheus, thêm một exporter đơn giản: `````python
 # prometheus_exporter.py
 from prometheus_client import start_http_server, Counter, Histogram
 import requests
 import time
 
-TRANSLATION_COUNTER = Counter(libretranslate_requests_total, &#39;총 번역 수&#39;)
-LATENCY_HISTOGRAM = Histogram(libretranslate_latency_seconds, &#39;번역 지연 시간&#34;)
+TRANSLATION_COUNTER = Counter(libretranslate_requests_total, &#39;Tổng số bản dịch&#39;)
+LATENCY_HISTOGRAM = Histogram(libretranslate_latency_seconds, &#39;Độ trễ dịch&#34;)
 
 def monitor(): start_http_server(9090)
     while True: start = time.time()
@@ -860,8 +861,8 @@ def monitor(): start_http_server(9090)
         time.sleep(30)
 
 if __name__ == &#34;__main__&#34;: monitor()
-</code></pre><h3 id="kubernetes-자동-확장">Kubernetes 자동 확장<a hidden class="anchor" aria-hidden="true" href="#kubernetes-자동-확장">#</a></h3>
-<p>고가용성 배포를 위해 HPA가 있는 Kubernetes를 사용합니다: `````yaml</p>
+</code></pre><h3 id="tự-động-mở-rộng-với-kubernetes">Tự Động Mở Rộng Với Kubernetes<a hidden class="anchor" aria-hidden="true" href="#tự-động-mở-rộng-với-kubernetes">#</a></h3>
+<p>Cho các triển khai high-availability, sử dụng Kubernetes với Horizontal Pod Autoscaler: `````yaml</p>
 <h1 id="libretranslate-deploymentyaml">libretranslate-deployment.yaml<a hidden class="anchor" aria-hidden="true" href="#libretranslate-deploymentyaml">#</a></h1>
 <p>apiVersion: apps/v1
 kind: Deployment
@@ -898,28 +899,28 @@ resource: name: cpu
 target: type: Utilization
 averageUtilization: 70</p>
 <pre tabindex="0"><code>
-배포: `````bash
+Triển khai: `````bash
 kubectl apply -f libretranslate-deployment.yaml
-</code></pre><h3 id="백업-전략">백업 전략<a hidden class="anchor" aria-hidden="true" href="#백업-전략">#</a></h3>
-<p>언어 모델은 다시 다운로드할 수 있지만 API 키와 로그가 있는 SQLite 데이터베이스는 백업해야 합니다: `````bash
+</code></pre><h3 id="chiến-lược-sao-lưu">Chiến Lược Sao Lưu<a hidden class="anchor" aria-hidden="true" href="#chiến-lược-sao-lưu">#</a></h3>
+<p>Mô hình ngôn ngữ có thể tải lại, nhưng SQLite database chứa API key và log nên được sao lưu: `````bash
 #!/bin/bash</p>
-<h1 id="backupsh---일일-백업-cron-작업">backup.sh - 일일 백업 cron 작업<a hidden class="anchor" aria-hidden="true" href="#backupsh---일일-백업-cron-작업">#</a></h1>
+<h1 id="backupsh---cron-job-sao-lưu-hàng-ngày">backup.sh - Cron job sao lưu hàng ngày<a hidden class="anchor" aria-hidden="true" href="#backupsh---cron-job-sao-lưu-hàng-ngày">#</a></h1>
 <p>BACKUP_DIR=&quot;/backups/libretranslate&quot;
 DATE=$(date +%Y%m%d)</p>
-<h1 id="데이터베이스-백업">데이터베이스 백업<a hidden class="anchor" aria-hidden="true" href="#데이터베이스-백업">#</a></h1>
+<h1 id="sao-lưu-database">Sao lưu database<a hidden class="anchor" aria-hidden="true" href="#sao-lưu-database">#</a></h1>
 <p>docker cp libretranslate:/app/db &ldquo;$BACKUP_DIR/db_$DATE.sqlite&rdquo;</p>
-<h1 id="모델-동기화-선택-사항---다시-다운로드-가능">모델 동기화 (선택 사항 - 다시 다운로드 가능)<a hidden class="anchor" aria-hidden="true" href="#모델-동기화-선택-사항---다시-다운로드-가능">#</a></h1>
+<h1 id="đồng-bộ-mô-hình-tùy-chọn---có-thể-tải-lại">Đồng bộ mô hình (tùy chọn - có thể tải lại)<a hidden class="anchor" aria-hidden="true" href="#đồng-bộ-mô-hình-tùy-chọn---có-thể-tải-lại">#</a></h1>
 <p>rsync -av /var/lib/docker/volumes/lt-models/_data/ &ldquo;$BACKUP_DIR/models/&rdquo;</p>
-<h1 id="7일간의-백업만-유지">7일간의 백업만 유지<a hidden class="anchor" aria-hidden="true" href="#7일간의-백업만-유지">#</a></h1>
+<h1 id="chỉ-giữ-7-ngày-sao-lưu">Chỉ giữ 7 ngày sao lưu<a hidden class="anchor" aria-hidden="true" href="#chỉ-giữ-7-ngày-sao-lưu">#</a></h1>
 <p>find &ldquo;$BACKUP_DIR&rdquo; -name &ldquo;db_*.sqlite&rdquo; -mtime +7 -delete</p>
 <pre tabindex="0"><code>
-crontab에 추가: `````bash
+Thêm vào crontab: `````bash
 0 2 * * * /path/to/backup.sh
-</code></pre><h2 id="대안과의-비교">대안과의 비교<a hidden class="anchor" aria-hidden="true" href="#대안과의-비교">#</a></h2>
+</code></pre><h2 id="so-sánh-với-các-giải-pháp-thay-thế">So Sánh Với Các Giải Pháp Thay Thế<a hidden class="anchor" aria-hidden="true" href="#so-sánh-với-các-giải-pháp-thay-thế">#</a></h2>
 <table>
 	<thead>
 			<tr>
-					<th>기능</th>
+					<th>Tính năng</th>
 					<th>LibreTranslate</th>
 					<th>Argos Translate</th>
 					<th>Google Translate API</th>
@@ -928,115 +929,115 @@ crontab에 추가: `````bash
 	</thead>
 	<tbody>
 			<tr>
-					<td><strong>라이선스</strong></td>
+					<td><strong>Giấy phép</strong></td>
 					<td>AGPL-3.0</td>
 					<td>MIT</td>
-					<td>독점</td>
-					<td>독점</td>
+					<td>Độc quyền</td>
+					<td>Độc quyền</td>
 			</tr>
 			<tr>
-					<td><strong>자체 호스팅</strong></td>
-					<td>예</td>
-					<td>예 (CLI)</td>
-					<td>아니오</td>
-					<td>아니오</td>
+					<td><strong>Tự host</strong></td>
+					<td>Có</td>
+					<td>Có (CLI)</td>
+					<td>Không</td>
+					<td>Không</td>
 			</tr>
 			<tr>
-					<td><strong>오프라인 가능</strong></td>
-					<td>예</td>
-					<td>예</td>
-					<td>아니오</td>
-					<td>아니오</td>
+					<td><strong>Khả năng offline</strong></td>
+					<td>Có</td>
+					<td>Có</td>
+					<td>Không</td>
+					<td>Không</td>
 			</tr>
 			<tr>
-					<td><strong>지원 언어</strong></td>
+					<td><strong>Ngôn ngữ hỗ trợ</strong></td>
 					<td>30+</td>
 					<td>30+</td>
 					<td>130+</td>
 					<td>30+</td>
 			</tr>
 			<tr>
-					<td><strong>비용 (월 100만 문자)</strong></td>
+					<td><strong>Chi phí (1M ký tự/tháng)</strong></td>
 					<td>~$10 VPS</td>
 					<td>~$10 VPS</td>
 					<td>$20</td>
 					<td>$6.99+</td>
 			</tr>
 			<tr>
-					<td><strong>번역 품질</strong></td>
-					<td>양호</td>
-					<td>양호</td>
-					<td>우수</td>
-					<td>우수</td>
+					<td><strong>Chất lượng dịch</strong></td>
+					<td>Tốt</td>
+					<td>Tốt</td>
+					<td>Xuất sắc</td>
+					<td>Xuất sắc</td>
 			</tr>
 			<tr>
 					<td><strong>REST API</strong></td>
-					<td>예</td>
-					<td>아니오</td>
-					<td>예</td>
-					<td>예</td>
+					<td>Có</td>
+					<td>Không</td>
+					<td>Có</td>
+					<td>Có</td>
 			</tr>
 			<tr>
 					<td><strong>Web UI</strong></td>
-					<td>예</td>
-					<td>아니오</td>
-					<td>예</td>
-					<td>예</td>
+					<td>Có</td>
+					<td>Không</td>
+					<td>Có</td>
+					<td>Có</td>
 			</tr>
 			<tr>
-					<td><strong>GPU 가속</strong></td>
-					<td>예 (CUDA)</td>
-					<td>CPU 전용</td>
-					<td>클라우드 전용</td>
-					<td>클라우드 전용</td>
+					<td><strong>Tăng tốc GPU</strong></td>
+					<td>Có (CUDA)</td>
+					<td>Chỉ CPU</td>
+					<td>Chỉ cloud</td>
+					<td>Chỉ cloud</td>
 			</tr>
 			<tr>
-					<td><strong>프라이버시</strong></td>
-					<td>완전 (데이터 로컬 유지)</td>
-					<td>완전</td>
-					<td>Google에 데이터 전송</td>
-					<td>DeepL에 데이터 전송</td>
+					<td><strong>Quyền riêng tư</strong></td>
+					<td>Đầy đủ (dữ liệu ở local)</td>
+					<td>Đầy đủ</td>
+					<td>Dữ liệu gửi Google</td>
+					<td>Dữ liệu gửi DeepL</td>
 			</tr>
 			<tr>
-					<td><strong>속도 제한</strong></td>
-					<td>구성 가능</td>
-					<td>해당 없음</td>
-					<td>할당량 기반</td>
-					<td>할당량 기반</td>
+					<td><strong>Giới hạn tốc độ</strong></td>
+					<td>Cấu hình được</td>
+					<td>Không áp dụng</td>
+					<td>Dựa trên quota</td>
+					<td>Dựa trên quota</td>
 			</tr>
 			<tr>
-					<td><strong>설정 복잡도</strong></td>
-					<td>중간 (Docker)</td>
-					<td>낮음 (pip)</td>
-					<td>낮음 (API 키)</td>
-					<td>낮음 (API 키)</td>
+					<td><strong>Độ phức tạp thiết lập</strong></td>
+					<td>Trung bình (Docker)</td>
+					<td>Thấp (pip)</td>
+					<td>Thấp (API key)</td>
+					<td>Thấp (API key)</td>
 			</tr>
 	</tbody>
 </table>
-<p>LibreTranslate는 특한 틈새 시장을 채웁니다: REST API, Web UI, GPU 가속 및 완전한 오프라인 기능을 오픈소스 라이선스로 결합한 유일한 옵션입니다. Argos Translate는 동일한 번역 엔진을 제공하지만 API 계층이 없습니다. Google과 DeepL은 우수한 품질과 더 넓은 언어 지원을 제공하지만 프라이버시, 지속적인 비용 및 외부 종속성이라는 대가를 치릅니다.</p>
-<h2 id="한계--솔직한-평가">한계 / 솔직한 평가<a hidden class="anchor" aria-hidden="true" href="#한계--솔직한-평가">#</a></h2>
-<p>LibreTranslate는 상업적 번역 API의 보편적인 대체품이 아닙니다. 그 한계를 이해하는 것은 정보에 입각한 채택 결정을 내리는 데 필수적입니다.</p>
-<p><strong>번역 품질 격차</strong>: WMT14 벤치마크에서 LibreTranslate는 DeepL보다 약 5.7 BLEU 점, Google Translate보다 4.4 점 낮습니다. 이 격차는 다음에서 가장 두드러집니다: (1) 영어-스와힐리어 또는 핀란드어-베트남어와 같은 덜 일반적인 언어 쌍, (2) 법률, 의료 또는 기술 텍스트의 도메인별 용어, (3) 창의적이거나 관용적인 콘텐츠.</p>
-<p><strong>리소스 집약적</strong>: 각 로드된 언어 쌍은 300-600MB의 RAM을 소비합니다. 전체 30개 언어 배포에는 8GB 이상의 메모리가 필요합니다. 이는 LibreTranslate를 Raspberry Pi(2-3개 언어만 로드하는 경우 제외)나 소형 VPS 인스턴스와 같은 리소스 제한 환경에 부적합하게 만듭니다.</p>
-<p><strong>언어 커버리지</strong>: LibreTranslate는 30개 이상의 언어를 지원하여 가장 일반적인 언어 쌍을 커버하지만 Google Translate의 130개 이상의 언어에는 크게 못 미칩니다. 소수 또는 멸종 위기 언어 번역이 필요한 경우 LibreTranslate는 충분하지 않습니다.</p>
-<p><strong>실시간 스트리밍 없음</strong>: LibreTranslate는 완전한 텍스트 세그먼트를 처리합니다. 스트리밍 번역이나 실시간 음성-텍스트 번역을 지원하지 않으므로 라이브 대화 시나리오에서의 적용이 제한됩니다.</p>
-<p><strong>AGPL-3.0 라이선스 영향</strong>: AGPL-3.0 라이선스는 소프트웨어의 모든 네트워크 사용(API 포함)이 동일한 조건 공유 요구를 트리거하도록 요구합니다. LibreTranslate 기반으로 독점 제품을 구축하는 조직은 라이선스 준수와 관련하여 법률 자문을 구해야 합니다.</p>
-<p><strong>유지보수 부담</strong>: 자체 호스팅은 업데이트, 보안 패치, 모델 업데이트 및 인프라 모니터링에 대한 책임이 사용자에게 있다는 의미입니다. 관리형 API와의 비용 비교 시 운영 오버헤드를 고려하세요.</p>
-<h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
-<h3 id="libretranslate와-직접-argos-translate를-실행하는-것의-차이점은-무엇인가요">LibreTranslate와 직접 Argos Translate를 실행하는 것의 차이점은 무엇인가요?<a hidden class="anchor" aria-hidden="true" href="#libretranslate와-직접-argos-translate를-실행하는-것의-차이점은-무엇인가요">#</a></h3>
-<p>LibreTranslate는 본질적으로 Argos Translate의 REST API 래퍼입니다. 명령줄 번역만 필요한 경우 Argos Translate의 오버헤드가 더 낮습니다. HTTP API, 웹 인터페이스 또는 다중 사용자 액세스가 필요한 경우 LibreTranslate가 이러한 계층을 추가합니다. 둘 다 동일한 번역 모델을 공유하고 동일한 출력을 생성합니다.</p>
-<h3 id="libretranslate를-raspberry-pi에서-실행할-수-있나요">LibreTranslate를 Raspberry Pi에서 실행할 수 있나요?<a hidden class="anchor" aria-hidden="true" href="#libretranslate를-raspberry-pi에서-실행할-수-있나요">#</a></h3>
-<p>예, 제약이 있습니다. ARM Docker 이미지는 ARM64 시스템에 최적화되어 있습니다. 메모리 사용량을 2GB 이하로 유지하기 위해 2-3개의 언어 쌍만 로드하세요. Raspberry Pi 4(4GB RAM)에서는 요청당 번역 지연이 800ms-1.5s입니다. 프로덕션 사용에는 최소 4GB RAM이 권장됩니다.</p>
-<h3 id="컨테이너를-재시작하지-않고-언어-모델을-어떻게-업데이트하나요">컨테이너를 재시작하지 않고 언어 모델을 어떻게 업데이트하나요?<a hidden class="anchor" aria-hidden="true" href="#컨테이너를-재시작하지-않고-언어-모델을-어떻게-업데이트하나요">#</a></h3>
-<p><code>LT_UPDATE_MODELS=true</code> 환경 변수를 설정합니다. LibreTranslate는 시작 시 모델 업데이트를 확인합니다. Kubernetes 배포에서 롤링 업데이트를 위해 롤링 재시작 전략을 사용하세요: 새 이미지 버전으로 배포를 업데이트하면 Kubernetes가 점진적으로 Pod를 교체합니다.</p>
-<h3 id="번역-요청당-최대-텍스트-길이는-얼마인가요">번역 요청당 최대 텍스트 길이는 얼마인가요?<a hidden class="anchor" aria-hidden="true" href="#번역-요청당-최대-텍스트-길이는-얼마인가요">#</a></h3>
-<p><code>--char-limit</code> 플래그 또는 <code>LT_CHAR_LIMIT</code> 환경 변수를 통해 구성할 수 있습니다. 기본값은 요청당 10,000자입니다. 더 긴 문서의 경우 텍스트를 청크로 분할하고 순차 API 호출을 수행합니다.</p>
-<h3 id="libretranslate는-hipaa-또는-gdpr-준수에-적합한가요">LibreTranslate는 HIPAA 또는 GDPR 준수에 적합한가요?<a hidden class="anchor" aria-hidden="true" href="#libretranslate는-hipaa-또는-gdpr-준수에-적합한가요">#</a></h3>
-<p>LibreTranslate의 자체 호스팅 특성은 데이터가 인프라를 떠나지 않는다는 의미이므로 규정 준수가 단순화됩니다. 그러나 규정 준수는 시스템 수준 속성이지 소프트웨어 수준 속성만은 아닙니다. 호스트 OS, 네트워크, 백업 및 액세스 제어도 보호해야 합니다. 전체 평가를 위해 규정 준수 담당자와 상담하세요.</p>
-<h3 id="커스텀-언어-모델을-어떻게-추가하나요">커스텀 언어 모델을 어떻게 추가하나요?<a hidden class="anchor" aria-hidden="true" href="#커스텀-언어-모델을-어떻게-추가하나요">#</a></h3>
-<p>LibreTranslate는 Argos Translate 형식(OpenNMT CTranslate2 모델)을 지원합니다. 커스텀 <code>.argosmodel</code> 파일을 모델 디렉토리에 배치하고 컨테이너를 재시작합니다. 커스텀 모델은 도메인별 용어나 기본 모델 세트에 포함되지 않은 언어에 유용합니다.</p>
-<h3 id="react나-vue와-같은-프론트엔드-프레임워크에서-libretranslate를-사용할-수-있나요">React나 Vue와 같은 프론트엔드 프레임워크에서 LibreTranslate를 사용할 수 있나요?<a hidden class="anchor" aria-hidden="true" href="#react나-vue와-같은-프론트엔드-프레임워크에서-libretranslate를-사용할-수-있나요">#</a></h3>
-<p>예. <code>/translate</code> 엔드포인트는 JSON을 수락하고 구성 시 CORS를 지원합니다. React Hook 예시: `````typescript
+<p>LibreTranslate lấp đầy một phân khúc cụ thể: nó là lựa chọn duy nhất kết hợp REST API, Web UI, tăng tốc GPU và khả năng offline hoàn toàn dưới giấy phép mã nguồn mở. Argos Translate cung cấp cùng engine dịch nhưng thiếu lớp API. Google và DeepL cung cấp chất lượng vượt trội và hỗ trợ ngôn ngữ rộng hơn, nhưng với chi phí là quyền riêng tư, phí định kỳ và phụ thuộc bên ngoài.</p>
+<h2 id="hạn-chế--đánh-giá-trung-thực">Hạn Chế / Đánh Giá Trung Thực<a hidden class="anchor" aria-hidden="true" href="#hạn-chế--đánh-giá-trung-thực">#</a></h2>
+<p>LibreTranslate không phải là giải pháp thay thế phổ quát cho các API dịch thuật thương mại. Hiểu các hạn chế của nó là điều cần thiết để đưa ra quyết định áp dụng sáng suốt.</p>
+<p><strong>Khoảng cách chất lượng dịch</strong>: Trên benchmark WMT14, LibreTranslate kém DeepL khoảng 5.7 điểm BLEU và kém Google Translate 4.4 điểm. Khoảng cách này rõ rệt nhất đối với: (1) các cặp ngôn ngữ ít phổ biến như Anh-Swahili hoặc Phần Lan-Việt, (2) thuật ngữ chuyên ngành trong lĩnh vực pháp lý, y tế hoặc kỹ thuật, và (3) nội dung sáng tạo hoặc thành ngữ.</p>
+<p><strong>Tốn tài nguyên</strong>: Mỗi cặp ngôn ngữ đã tải tiêu thụ 300-600MB RAM. Triển khai đầy đủ 30 ngôn ngữ yêu cầu 8GB+ bộ nhớ. Điều này khiến LibreTranslate không phù hợp cho môi trường hạn chế tài nguyên như Raspberry Pi (trừ khi chỉ tải 2-3 ngôn ngữ) hoặc VPS nhỏ.</p>
+<p><strong>Phạm vi ngôn ngữ</strong>: Với 30+ ngôn ngữ, LibreTranslate bao phủ các cặp ngôn ngữ phổ biến nhất nhưng kém xa Google Translate với 130+ ngôn ngữ. Nếu trường hợp sử dụng của bạn yêu cầu dịch cho các ngôn ngữ thiểu số, LibreTranslate không đủ.</p>
+<p><strong>Không có streaming thờii gian thực</strong>: LibreTranslate xử lý các đoạn văn bản hoàn chỉnh. Nó không hỗ trợ dịch streaming hoặc dịch speech-to-text thờii gian thực, giới hạn khả năng áp dụng trong các tình huống hội thoại trực tiếp.</p>
+<p><strong>Tác động giấy phép AGPL-3.0</strong>: Giấy phép AGPL-3.0 yêu cầu bất kỳ sử dụng mạng nào của phần mềm (bao gồm qua API) kích hoạt yêu cầu share-alike. Các tổ chức xây dựng sản phẩm độc quyền trên LibreTranslate nên tham khảo ý kiến tư vấn pháp lý về tuân thủ giấy phép.</p>
+<p><strong>Gánh nặng bảo trì</strong>: Tự host có nghĩa là bạn chịu trách nhiệm cập nhật, bản vá bảo mật, cập nhật mô hình và giám sát hạ tầng. Cân nhắc chi phí vận hành khi so sánh với API được quản lý.</p>
+<h2 id="câu-hỏi-thường-gặp">Câu Hỏi Thường Gặp<a hidden class="anchor" aria-hidden="true" href="#câu-hỏi-thường-gặp">#</a></h2>
+<h3 id="libretranslate-so-với-chạy-argos-translate-trực-tiếp-khác-nhau-thế-nào">LibreTranslate so với chạy Argos Translate trực tiếp khác nhau thế nào?<a hidden class="anchor" aria-hidden="true" href="#libretranslate-so-với-chạy-argos-translate-trực-tiếp-khác-nhau-thế-nào">#</a></h3>
+<p>LibreTranslate về cơ bản là một wrapper REST API xung quanh Argos Translate. Nếu bạn chỉ cần dịch command-line, Argos Translate có overhead thấp hơn. Nếu bạn cần HTTP API, giao diện web hoặc truy cập đa ngườii dùng, LibreTranslate thêm các lớp đó. Cả hai chia sẻ cùng mô hình dịch và tạo ra cùng output.</p>
+<h3 id="libretranslate-có-thể-chạy-trên-raspberry-pi-không">LibreTranslate có thể chạy trên Raspberry Pi không?<a hidden class="anchor" aria-hidden="true" href="#libretranslate-có-thể-chạy-trên-raspberry-pi-không">#</a></h3>
+<p>Có, với hạn chế. Docker image ARM được tối ưu hóa cho hệ thống ARM64. Chỉ tải 2-3 cặp ngôn ngữ để giữ mức sử dụng bộ nhớ dưới 2GB. Mong đợi độ trễ dịch 800ms-1.5s mỗi request trên Raspberry Pi 4 với 4GB RAM. Cho sử dụng production, tối thiểu 4GB RAM được khuyến nghị.</p>
+<h3 id="làm-thế-nào-cập-nhật-mô-hình-ngôn-ngữ-mà-không-restart-container">Làm thế nào cập nhật mô hình ngôn ngữ mà không restart container?<a hidden class="anchor" aria-hidden="true" href="#làm-thế-nào-cập-nhật-mô-hình-ngôn-ngữ-mà-không-restart-container">#</a></h3>
+<p>Đặt biến môi trường <code>LT_UPDATE_MODELS=true</code>. LibreTranslate kiểm tra cập nhật mô hình khi khởi động. Cho rolling updates trong triển khai Kubernetes, sử dụng chiến lược restart dần: cập nhật deployment với phiên bản image mới và Kubernetes thay thế pod tăng dần.</p>
+<h3 id="độ-dài-văn-bản-tối-đa-cho-mỗi-request-dịch-là-bao-nhiêu">Độ dài văn bản tối đa cho mỗi request dịch là bao nhiêu?<a hidden class="anchor" aria-hidden="true" href="#độ-dài-văn-bản-tối-đa-cho-mỗi-request-dịch-là-bao-nhiêu">#</a></h3>
+<p>Có thể cấu hình qua flag <code>--char-limit</code> hoặc biến môi trường <code>LT_CHAR_LIMIT</code>. Mặc định là 10,000 ký tự mỗi request. Cho tài liệu dài hơn, chia văn bản thành các chunk và thực hiện các API call tuần tự.</p>
+<h3 id="libretranslate-có-phù-hợp-với-tuân-thủ-hipaa-hoặc-gdpr-không">LibreTranslate có phù hợp với tuân thủ HIPAA hoặc GDPR không?<a hidden class="anchor" aria-hidden="true" href="#libretranslate-có-phù-hợp-với-tuân-thủ-hipaa-hoặc-gdpr-không">#</a></h3>
+<p>Bản chất tự host của LibreTranslate có nghĩa là dữ liệu không rồi khỏi hạ tầng của bạn, điều này đơn giản hóa việc tuân thủ. Tuy nhiên, tuân thủ là thuộc tính cấp hệ thống, không chỉ thuộc tính phần mềm. Bạn cũng phải bảo mật hệ điều hành host, mạng, sao lưu và kiểm soát truy cập. Tham khảo ý kiến chuyên viên tuân thủ của bạn để đánh giá đầy đủ.</p>
+<h3 id="làm-thế-nào-thêm-mô-hình-ngôn-ngữ-tùy-chỉnh">Làm thế nào thêm mô hình ngôn ngữ tùy chỉnh?<a hidden class="anchor" aria-hidden="true" href="#làm-thế-nào-thêm-mô-hình-ngôn-ngữ-tùy-chỉnh">#</a></h3>
+<p>LibreTranslate hỗ trợ mô hình ở định dạng Argos Translate (mô hình OpenNMT CTranslate2). Đặt file <code>.argosmodel</code> tùy chỉnh vào thư mục mô hình và restart container. Mô hình tùy chỉnh hữu ích cho thuật ngữ chuyên ngành hoặc ngôn ngữ không được mô hình mặc định hỗ trợ.</p>
+<h3 id="tôi-có-thể-dùng-libretranslate-với-framework-frontend-như-react-hoặc-vue-không">Tôi có thể dùng LibreTranslate với framework frontend như React hoặc Vue không?<a hidden class="anchor" aria-hidden="true" href="#tôi-có-thể-dùng-libretranslate-với-framework-frontend-như-react-hoặc-vue-không">#</a></h3>
+<p>Có. Endpoint <code>/translate</code> chấp nhận JSON và hỗ trợ CORS khi được cấu hình. Ví dụ React hook: `````typescript
 // useTranslation.ts
 import { useState, useCallback } from &ldquo;react&rdquo;;</p>
 <p>export function useTranslation() {
@@ -1058,52 +1059,52 @@ setTranslating(false);
 <p>return { translate, translating };
 }</p>
 <pre tabindex="0"><code>
-### 오프라인 배포의 네트워크 요구사항은 무엇인가요?
+### Yêu cầu mạng cho triển khai offline là gì?
 
-완전한 오프라인 작동을 위해 ````--build-arg with_models=true```로 Docker 이미지를 빌드하여 빌드 중에 언어 모델을 포함시킵니다. 결과 이미지는 필요한 모든 파일을 포함하며 런타임에 인터넷 연결이 필요하지 않습니다. 이미지 크기는 포함된 언어 수에 따라 약 2-3GB 증가합니다.
+Cho hoạt động hoàn toàn offline, build Docker image với ````--build-arg with_models=true``` để nhúng mô hình ngôn ngữ trong quá trình build. Image kết quả chứa mọi file cần thiết và không cần kết nối internet khi chạy. Kích thước image tăng khoảng 2-3GB tùy thuộc số lượng ngôn ngữ bao gồm.
 
-## 결론
+## Kết Luận
 
-LibreTranslate는 핵심 약속을 이행합니다: 제로 요청당 비용과 완전한 데이터 프라이버시를 갖춘 자체 호스팅 번역 API입니다. 14,400개 이상의 GitHub Stars, 활발한 유지보수 및 안정성 개선을 제공하는 v1.9.5를 통해 절대 번역 품질보다 제어를 우선시하는 팀에게 프로덕션 준비가 완료되었습니다.
+LibreTranslate thực hiện đúng lờii hứa cốt lõi của nó: một API dịch thuật tự host với chi phí bằng không cho mỗi request và quyền riêng tư dữ liệu hoàn toàn. Với 14,400+ sao GitHub, bảo trì tích cực và v1.9.5 mang lại cải tiến ổn định, nó đã sẵn sàng production cho các team ưu tiên kiểm soát hơn chất lượng dịch thuật tuyệt đối.
 
-이상적인 LibreTranslate 도입자는 다음을 갖춘 팀입니다: (1) 문자당 가격 책정을 불편하게 만드는 일관된 번역 볼륨, (2) 엄격한 데이터 상주 요구사항, (3) 인프라를 관리할 DevOps 역량, (4) 상업적 대안에 비해 측정 가능하지만 수용 가능한 품질 격차에 대한 허용.
+Ngườii áp dụng LibreTranslate lý tưởng là team có: (1) khối lượng dịch thuật ổn định khiến giá tính theo ký tự trở nên đau đớn, (2) yêu cầu lưu trữ dữ liệu nghiêm ngặt, (3) năng lực DevOps để quản lý hạ tầng, và (4) sự chấp nhận khoảng cách chất lượng có thể đo lường nhưng chấp nhận được.
 
-이것이 귀하의 상황을 설명한다면 이 가이드의 Docker Compose 설정으로 시작하여 5개 언어를 로드하고 특정 콘텐츠에 대해 번역 품질을 측정하세요. 대부분의 팀은 품질이 낮은工具, 제품 카탈로그 및 사용자 생성 콘텐츠에 대해 충분하다고 판단합니다.
+Nếu điều đó mô tả tình huống của bạn, hãy bắt đầu với thiết lập Docker Compose trong hướng dẫn này, tải 5 ngôn ngữ và đo lường chất lượng dịch thuật trên nội dung cụ thể của bạn. Hầu hết các team thấy chất lượng đủ tốt cho công cụ nội bộ, danh mục sản phẩm và nội dung do ngườii dùng tạo.
 
-절대적으로 가장 높은 번역 품질이나 100개 이상의 언어 지원이 필요한 팀의 경우 상용 API가 여전히 실용적인 선택입니다. 그 외의 경우 LibreTranslate는 반복되는 클라우드 비용 항목을 제거합니다.
+Cho các team cần chất lượng dịch thuật cao nhất tuyệt đối hoặc hỗ trợ 100+ ngôn ngữ, API thương mại vẫn là lựa chọn thực tế. Cho những ngườii còn lại, LibreTranslate loại bỏ một khoản chi phí định kỳ khỏi hóa đơn cloud của bạn.
 
-커뮤니티 지원을 위해 [LibreTranslate Telegram 그룹](https://t.me/libretranslate)에 가입하거나 릴리스 업데이트를 위해 GitHub에서 프로젝트를 팔로우하세요.
+Tham gia [nhóm Telegram LibreTranslate](https://t.me/libretranslate) để được hỗ trợ cộng đồng, hoặc theo dõi dự án trên GitHub để nhận cập nhật phiên bản.
 
 
 
-## 추천 호스팅 및 인프라
+## Hosting Và Hạ Tầng Được Đề Xuất
 
-위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
-- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
+Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.
+- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.
 
-*제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
+*Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.*
 
-## 출처 및 추가 참고 자료
+## Nguồn &amp; Tài Liệu Tham Khảo
 
-- [LibreTranslate GitHub 저장소](https://github.com/LibreTranslate/LibreTranslate)
-- [LibreTranslate 공식 문서](https://libretranslate.com/docs)
-- [Argos Translate GitHub 저장소](https://github.com/argosopentech/translate)
+- [LibreTranslate GitHub Repository](https://github.com/LibreTranslate/LibreTranslate)
+- [LibreTranslate Official Documentation](https://libretranslate.com/docs)
+- [Argos Translate GitHub Repository](https://github.com/argosopentech/translate)
 - [LibreTranslate Docker Hub](https://hub.docker.com/r/libretranslate/libretranslate)
-- [OpenNMT 프레임워크 문서](https://opennmt.net/)
-- [AGPL-3.0 라이선스 요약](https://www.gnu.org/licenses/agpl-3.0.html)
-- [DigitalOcean Docker 배포 가이드](https://docs.digitalocean.com/tutorials/docker-compose/)
-- [NVIDIA CUDA Docker 설정](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
-- [LibreTranslate Kubernetes 예시](https://github.com/LibreTranslate/LibreTranslate/tree/main/kubernetes)
+- [OpenNMT Framework Documentation](https://opennmt.net/)
+- [AGPL-3.0 License Summary](https://www.gnu.org/licenses/agpl-3.0.html)
+- [DigitalOcean Docker Deployment Guide](https://docs.digitalocean.com/tutorials/docker-compose/)
+- [NVIDIA CUDA Docker Setup](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
+- [LibreTranslate Kubernetes Examples](https://github.com/LibreTranslate/LibreTranslate/tree/main/kubernetes)
 
 * * *
 
-&gt; **고지사항**: 이 문서에는 제휴 링크가 포함되어 있습니다. 이 가이드의 추천 링크를 통해 DigitalOcean에 가입하면 추가 비용 없이 커미션을 받을 수 있습니다. 제휴 링크는 이와 같은 오픈소스 문서 프로젝트의 지속적인 유지보수를 지원하는 데 도움이 됩니다.
+&gt; **Tuyên bố**: Bài viết này chứa liên kết affiliate. Nếu bạn đăng ký DigitalOcean qua liên kết giớii thiệu trong hướng dẫn này, chúng tôi có thể nhận được hoa hồng mà không phát sinh chi phí thêm cho bạn. Liên kết affiliate giúp hỗ trợ việc duy trì liên tục các dự án tài liệu mã nguồn mở như thế này.
 
 
 {
   &#34;@context&#34;: &#34;https://schema.org&#34;,
   &#34;@type&#34;: &#34;Article&#34;,
-  &#34;headline&#34;: &#34;LibreTranslate: 14.4K+ Stars 자체 호스팅 번역 API — 2026 프로덕션 배포 가이드&#34;,
+  &#34;headline&#34;: &#34;LibreTranslate: API Dịch Thuật Tự Host 14.4K+ Stars — Hướng Dẫn Triển Khai Production 2026&#34;,
   &#34;datePublished&#34;: &#34;2026-05-19&#34;,
   &#34;dateModified&#34;: &#34;2026-05-19&#34;,
   &#34;author&#34;: {
@@ -1120,7 +1121,7 @@ LibreTranslate는 핵심 약속을 이행합니다: 제로 요청당 비용과 �
   },
   &#34;mainEntityOfPage&#34;: {
     &#34;@type&#34;: &#34;WebPage&#34;,
-    &#34;@id&#34;: &#34;https://dibi8.com/kr/resources/libretranslate&#34;
+    &#34;@id&#34;: &#34;https://dibi8.com/vi/resources/libretranslate&#34;
   }
 }
 &lt;/script&gt;
@@ -1133,7 +1134,7 @@ LibreTranslate는 핵심 약속을 이행합니다: 제로 요청당 비용과 �
 - [llm-inference-cost-optimization-guide-2026](libretranslate)
 - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](libretranslate)
 - [llm-inference-cost-optimization-guide-2026](libretranslate)
-- [egonex-understand-anything-interactive-knowledge-graph-ai](libretranslate)
+- [hkuds-ai-trader](libretranslate)
 
 * * *
 
@@ -1170,6 +1171,81 @@ LibreTranslate는 핵심 약속을 이행합니다: 제로 요청당 비용과 �
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“faster-whisper”, “음성-텍스트변환”, “ctranslate2”, “openai-whisper”, “음성인식”, “python”, “docker”, “asr”] aliases:\n/kr/posts/faster-whisper/ OpenAI의 Whisper는 2022년 음성-텍스트(STT) 분야를 바꿨지만, 원본 Python 구현은 하드웨어 성능을 충분히 활용하지 못했다. 13분짜리 오디오 파일의 경우 ```openai/whisper```` large-v2 모델을 Tesla V100 GPU에서 실행하면 4분 이상 소요된다 — 매일 수백 시간의 오디오를 처리하는 프로덕션 파이프라인에서는 받아들일 수 없는 수준이다. SYSTRAN의 faster-whisper는 CTranslate2를 활용해 Whisper 추론을 재구현하여 동일한 정확도로 최대 4배의 속도 향상을 달성하고 VRAM 사용량을 거의 70% 줄였다. GitHub 23,000+ stars를 보유한 faster-whisper는 Python 환경의 프로덕션 음성-텍스트 변환을 위한 사실상 표준 런타임이 되었다.\n이 가이드에서는 설치, 벤치마크, Docker 배포, WhisperX 및 whisper.cpp과의 통합을 포함하는 프로덕션급 faster whisper 튜토리얼을 제공한다. 모든 명령과 설정은 복사-붙여넣기로 즉시 사용 가능하다.\n그림 1: faster-whisper GitHub 저장소 — 23,000+ stars, SYSTRAN이 적극적으로 유지보수.\nfaster-whisper란? faster-whisper는 OpenAI의 Whisper 자동 음성 인식(ASR) 모델을 CTranslate2(Transformer 모델용 고성능 C++ 추론 엔진)로 재구현한 프로젝트이다. 원본 Whisper와 동일한 모델 가중치를 사용하지만 커스텀 CUDA 커널, INT8/FP16 양자화, 퓨즈드 어텐션 연산을 통해 훨씬 높은 처리량과 더 낮은 메모리 사용량을 제공한다.\nGuillaume Klein이 시작한 이 프로젝트는 현재 SYSTRAN이 MIT 라이선스 하에 유지보수하고 있다. tiny부터 large-v3까지 모든 Whisper 모델 크기를 CPU와 NVIDIA GPU 모두에서 지원하며, 첫 로드 시 Hugging Face Hub에서 자동으로 모델을 변환한다.\nfaster-whisper 작동 방식 PyTorch 추론을 CTranslate2의 최적화된 런타임으로 교체하는 아키텍처이다: 그림 2: CTranslate2 추론 엔진 — 커스텀 CUDA 커널과 양자화를 통해 faster-whisper의 속도 향상을 제공하는 C++ 백엔드.\n속도 향상을 가능하게 하는 핵심 기술 결정: - 가중치 양자화: INT8은 모델 메모리를 ~50% 줄이면서 무시할 수 있는 수준의 정확도 손실(\u003c 0.1% WER)만 발생시킨다.\n퓨즈드 커널: CTranslate2는 여러 GPU 연산을 단일 커널 실행으로 병합하여 디스패치 오버헤드를 줄인다. Flash Attention 지원: Ampere GPU(RTX 30xx+)에서 추가 메모리 대역폭 절약을 제공한다. 배치 추론: GPU에서 여러 오디오 청크를 병렬 처리하여 거의 선형적인 처리량 확장을 달성한다. Silero VAD 통합: 내장 음성 활동 감지가 무음 구간을 걸러내 불필요한 연산을 줄인다. 설치 및 설정 요구사항 Python 3.9+ GPU: CUDA 12.x와 cuDNN 9.x를 지원하는 NVIDIA GPU FFmpeg 설치 불필요(PyAV를 통해 내장) pip 설치(CPU) # 가상 환경 생성 python -m venv venv-whisper source venv-whisper/bin/activate # Linux/Mac # venv-whisper\\Scripts\\activate # Windows # faster-whisper 설치 pip install faster-whisper pip 설치(GPU 지원) # pip로 cuBLAS 및 cuDNN 설치(Linux 전용) pip install nvidia-cublas-cu12 nvidia-cudnn-cu12==9.* # 라이브러리 경로 설정 export LD_LIBRARY_PATH=$(python3 -c 'import os; import nvidia.cublas.lib; import nvidia.cudnn.lib; print(os.path.dirname(nvidia.cublas.lib.__file__) + \":\" + os.path.dirname(nvidia.cudnn.lib.__file__))\") # faster-whisper 설치 pip install faster-whisper Docker 설정 # 공식 NVIDIA CUDA 이미지 가져오기 docker run -it --rm --gpus all \\ -v $(pwd)/audio:/audio \\ nvidia/cuda:12.3.2-cudnn9-runtime-ubuntu22.04 \\ bash # 컨테이너 내에서 apt-get update \u0026\u0026 apt-get install -y python3-pip pip install faster-whisper 설치 확인 # verify_setup.py from faster_whisper import WhisperModel import torch print(f\"PyTorch CUDA 사용 가능: {torch.cuda.is_available()}\") print(f\"CUDA 장치 수: {torch.cuda.device_count()}\") model = WhisperModel(\"tiny\", device=\"cuda\", compute_type=\"float16\") print(f\"모델 로드 장치: {model.model.device}\") print(\"설치 확인 성공\") 첫 번째 전사 from faster_whisper import WhisperModel # 모델 로드(첫 실행 시 Hugging Face에서 자동 다운로드) model = WhisperModel(\"large-v3\", device=\"cuda\", compute_type=\"int8\") # 오디오 전사 segments, info = model.transcribe(\"audio.mp3\", beam_size=5) print(f\"감지된 언어: {info.language} \" f\"(확률: {info.language_probability:.2f})\") for segment in segments: print(f\"[{segment.start:.2f}s -\u003e {segment.end:.2f}s] {segment.text}\") 인기 도구와의 통합 WhisperX(화자 분리) WhisperX는 faster-whisper 위에 구축되어 단어 수준 타임스탬프와 화자 분리를 추가한다. 회의 전사를 위한 필수 도구이다.\npip install whisperx import whisperx import torch device = \"cuda\" if torch.cuda.is_available() else \"cpu\" audio_file = \"meeting.mp3\" # 1. faster-whisper 백엔드로 전사 model = whisperx.load_model(\"large-v3\", device, compute_type=\"int8\") audio = whisperx.load_audio(audio_file) result = model.transcribe(audio, batch_size=8) # 2. 단어 수준 타임스탬프 정렬 model_a, metadata = whisperx.load_align_model( language_code=result[\"language\"], device=device ) result = whisperx.align(result[\"segments\"], model_a, metadata, audio, device) # 3. 화자 분리(Hugging Face 토큰 필요) diarize_model = whisperx.DiarizationPipeline( use_auth_token=\"your_hf_token\", device=device ) diarize_segments = diarize_model(audio) result = whisperx.assign_word_speakers(diarize_segments, result) for segment in result[\"segments\"]: speaker = segment.get(\"speaker\", \"UNKNOWN\") print(f\"[{segment[start]:.2f}s -\u003e {segment[end]:.2f}s] \" f\"{speaker}: {segment[text]}\") whisper-asr-webservice(OpenAI 호환 API) OpenAI 호환 HTTP API로 faster-whisper를 노출한다: `````bash docker run -d –gpus all -p 9000:9000 -e ASR_MODEL=large-v3 -e ASR_ENGINE=faster_whisper -e COMPUTE_TYPE=int8 onerahming/openai-whisper-asr\n`````python import requests with open(\"audio.mp3\", \"rb\") as f: response = requests.post( \"http://localhost:9000/asr\", files={\"audio_file\": f}, data={\"language\": \"en\", \"output\": \"json\"} ) print(response.json()) Speaches(자체 호스팅 OpenAI 호환 서버) docker run -d --gpus all \\ -p 8000:8000 \\ -e WHISPER__MODEL=large-v3 \\ -e WHISPER__COMPUTE_TYPE=int8 \\ fedirz/speaches:latest-gpu from openai import OpenAI client = OpenAI(base_url=\"http://localhost:8000/v1\", api_key=\"dummy\") with open(\"audio.mp3\", \"rb\") as f: transcript = client.audio.transcriptions.create(model=\"large-v3\", file=f) print(transcript.text) LibreTranslate(번역 파이프라인) from faster_whisper import WhisperModel import requests model = WhisperModel(\"large-v3\", device=\"cuda\", compute_type=\"int8\") segments, info = model.transcribe(\"japanese_audio.mp3\", beam_size=5) japanese_text = \" \".join([s.text for s in segments]) response = requests.post(\"http://localhost:5000/translate\", json={ \"q\": japanese_text, \"source\": \"ja\", \"target\": \"en\" }) print(response.json()[\"translatedText\"]) 벤치마크 / 실제 사용 사례 그림 3: 공식 벤치마크 결과 — faster-whisper가 RTX 3070 Ti에서 배치 INT8 추론으로 openai/whisper보다 최대 8.9배 빠르다.\nGPU 벤치마크: 13분 오디오, large-v2 모델 구현체 정밀도 Beam Size 소요 시간 VRAM 사용량 openai/whisper fp16 5 2분 23초 4708 MB whisper.cpp (Flash Attention) fp16 5 1분 05초 4127 MB transformers (SDPA) fp16 5 1분 52초 4960 MB faster-whisper fp16 5 1분 03초 4525 MB faster-whisper (batch_size=8) fp16 5 17초 6090 MB faster-whisper int8 5 59초 2926 MB faster-whisper (batch_size=8) int8 5 16초 4500 MB NVIDIA RTX 3070 Ti 8GB, CUDA 12.4에서 실행.\nCPU 벤치마크: 13분 오디오, small 모델 구현체 정밀도 Beam Size 소요 시간 RAM 사용량 openai/whisper fp32 5 6분 58초 2335 MB whisper.cpp fp32 5 2분 05초 1049 MB whisper.cpp (OpenVINO) fp32 5 1분 45초 1642 MB faster-whisper int8 5 1분 42초 1477 MB faster-whisper (batch_size=8) int8 5 51초 3608 MB Intel Core i7-12700K, 8 스레드에서 실행.\n프로덕션 사용 사례 사용 사례 모델 하드웨어 성능 회의 전사(1시간 오디오) large-v3 int8 RTX 4070 ~3분 처리 팟캐스트 일괄 처리(100파일) large-v3 int8 batch=8 A100 40GB 100시간 기준 ~20분 실시간 자막 small int8 RTX 3060 ~200ms 지연 콜센터 분석 medium int8 CPU 8코어 ~2배 실시간 고급 사용법 / 프로덕션 강화 VAD 필터 사전 분할 from faster_whisper import WhisperModel model = WhisperModel(\"large-v3\", device=\"cuda\", compute_type=\"int8\") segments, info = model.transcribe( \"audio.mp3\", vad_filter=True, vad_parameters=dict( min_silence_duration_ms=500, speech_pad_ms=200, threshold=0.5 ), beam_size=5 ) 배치 추론으로 처리량 최대화 from faster_whisper import WhisperModel import glob, time model = WhisperModel(\"large-v3\", device=\"cuda\", compute_type=\"int8\") audio_files = glob.glob(\"podcasts/*.mp3\") start = time.time() for file_path in audio_files: segments, _ = model.transcribe(file_path, batch_size=8, beam_size=5) text = \" \".join([s.text for s in segments]) print(f\"{file_path}: {len(text)} 문자\") print(f\"총 소요: {time.time() - start:.1f}초, {len(audio_files)}개 파일\") 단어 수준 타임스탬프 segments, _ = model.transcribe(\"audio.mp3\", word_timestamps=True) for segment in segments: for word in segment.words: print(f\"[{word.start:.2f}s -\u003e {word.end:.2f}s] {word.word}\") 커스텀 모델 변환 pip install transformers[torch]\u003e=4.23 ct2-transformers-converter \\ --model openai/whisper-large-v3 \\ --output_dir whisper-large-v3-ct2 \\ --copy_files tokenizer.json preprocessor_config.json \\ --quantization float16 Prometheus로 모니터링 from faster_whisper import WhisperModel from prometheus_client import Counter, Histogram, start_http_server REQUEST_COUNT = Counter(\"transcription_requests_total\", \"총 요청 수\") REQUEST_DURATION = Histogram(\"transcription_duration_seconds\", \"요청 소요 시간\") model = WhisperModel(\"large-v3\", device=\"cuda\", compute_type=\"int8\") @REQUEST_DURATION.time() def transcribe(audio_path): REQUEST_COUNT.inc() return model.transcribe(audio_path, beam_size=5) start_http_server(8000) 우아한 오류 처리 from faster_whisper import WhisperModel def safe_transcribe(audio_path, device=\"cuda\"): compute_types = [\"int8\", \"int8_float16\", \"float16\", \"float32\"] for ct in compute_types: try: model = WhisperModel(\"large-v3\", device=device, compute_type=ct) segments, info = model.transcribe(audio_path, beam_size=5) return segments, info, ct except RuntimeError as e: print(f\"{ct} 실패: {e}, 재시도...\") continue raise RuntimeError(\"모든 컴퓨트 타입 실패\") 대안과의 비교 기능 faster-whisper OpenAI Whisper WhisperX whisper.cpp GPU 속도 (large-v3) ~12배 실시간 ~3배 실시간 ~12배 실시간 ~8배 실시간 VRAM (large-v3) ~2.5 GB (int8) ~11 GB (fp16) ~3 GB ~3 GB Python API 네이티브 네이티브 네이티브 래퍼만 화자 분리 없음 없음 내장 없음 단어 수준 타임스탬프 있음 없음 있음 (wav2vec2) 있음 Apple Silicon CPU만 CPU/GPU CPU만 Metal (가장 빠름) NVIDIA GPU CUDA (가장 빠름) CUDA CUDA CUDA AMD GPU 미지원 미지원 미지원 Vulkan/ROCm CPU 최적화 int8 SIMD 기본 int8 SIMD AVX2/NEON VAD 필터 내장 Silero 없음 내장 수동 조정 배치 추론 지원 미지원 지원 제한적 모델 양자화 int8/fp16/fp32 fp16/fp32 int8/fp16 q4/q5/fp16 라이선스 MIT MIT MIT MIT Stars (2026년 5월) 23,000+ 15,000+ 12,000+ 44,000+ 선택 가이드 faster-whisper: NVIDIA GPU 또는 CPU의 Python 파이프라인. 최고의 통합 생태계. 프로덕션 STT 서비스, 배치 처리, 실시간 Python 애플리케이션에 사용. OpenAI Whisper: 참조 구현이 필요한 연구 및 실험. 프로덕션 워크로드에는 피할 것. WhisperX: 화자 레이블이 필요한 회의 전사, 팟캐스트, 인터뷰. faster-whisper 기반. whisper.cpp: Apple Silicon, 임베디드 장치, 엣지 배포, 크로스 플랫폼 앱. Python 의존성 없음. 한계 / 솔직한 평가 faster-whisper는 모든 시나리오에 적합하지 않다. 다음은 사용하지 말아야 할 경우이다: 1. Apple Silicon GPU 가속: faster-whisper는 Metal 백엔드가 없다. M 시리즈 Mac에서는 large-v3를 약 3배 실시간으로 CPU만 실행한다. whisper.cpp의 Metal은 ~10배 실시간 — 3배 더 빠르다.\nAMD GPU 지원: CTranslate2는 GPU에서 CUDA만 지원한다. AMD GPU는 지원하지 않는다. Vulkan이나 ROCm을 지원하는 whisper.cpp를 대신 사용하라.\n극한의 엣지 장치: faster-whisper는 CPU에서 작동하지만 Python 런타임 오버헤드로 인해 라즈베리 파이 Zero나 마이크로컨트롤러에는 덜 적합하다. whisper.cpp는 1GB RAM 내에서 Python 없이 실행된다.\n화자 분리: faster-whisper는 전사만 출력한다. “누가 언제 말했는지” 식별은 WhisperX나 별도의 분리 파이프라인이 필요하다.\n초장시간 오디오 확장성: 30분 이상의 매우 긴 오디오의 경우 일부 CPU 제한 시나리오에서 whisper.cpp가 더 나은 확장 특성을 보일 수 있다. 특정 하드웨어에서 벤치마크하라.\n비 NVIDIA GPU 서버: AMD Instinct나 Intel Arc GPU를 사용하는 인프라의 경우 faster-whisper는 CPU로 폰백된다. 이는 CTranslate2의 하드웨어적 제한이다.\n자주 묻는 질문 faster-whisper를 실행하려면 어떤 하드웨어가 필요한가? GPU 추론에는 CUDA 12.x를 지원하는 NVIDIA GPU가 필요하다. INT8 양자화는 8GB VRAM 카드(RTX 3060, RTX 4060)에서도 원활히 실행된다. CPU 추론의 경우 small 모델 기준 4코어 이상과 8GB RAM이면 충분하다. CPU에서 large-v3는 INT8 기준 약 3GB RAM이 필요하다.\nDocker에서 faster-whisper를 어떻게 설치하나? cuDNN 9이 포함된 공식 NVIDIA CUDA 런타임 이미지를 사용하라. 위의 설치 및 설정 섹션에 전체 Dockerfile이 나와 있다. 핵심 요구사항은 nvidia/cuda:12.3.2-cudnn9-runtime-ubuntu22.04 베이스 이미지이다. --gpus all로 GPU를 노출하라.\n전사 정확도는 OpenAI Whisper와 동일한가? 그렇다. faster-whisper는 동일한 모델 가중치와 토크나이저를 사용한다. WER 차이는 0.1% 이내 — 실제로 구분 불가능하다. 모든 변화는 빔 서치 무작위성에서 비롯되지 추론 엔진 자체가 아니다.\n내 GPU에 최적인 compute_type은 무엇인가? 8GB GPU와 GTX 10xx 카드에는 int8을, 최신 GPU(RTX 30xx/40xx/50xx, A100, H100)에는 float16을 사용하라. Pascal 소비자 카드(GTX 1060/1070/1080)는 fp16 지원이 제한되어 int8을 사용해야 한다.\nfaster-whisper와 WhisperX의 차이점은 무엇인가? WhisperX는 faster-whisper 위에 구축되어 wav2vec2를 통한 화자 분리와 단어 수준 타임스탬프 정렬을 추가한다. 순수 전사에는 faster-whisper만으로 충분하다. 회의나 인터뷰에서 “누가 뭘 말했는지\"가 필요할 때 WhisperX를 사용하라.\nfaster-whisper를 실시간 스트리밍에 사용할 수 있나? Whisper-Streaming이나 WhisperLive와 통합하면 가능하다. faster-whisper 자체는 네이티브 스트리밍을 지원하지 않지만 낮은 지연 시간으로 스트리밍 서버의 백엔드로 이상적이다. GPU의 small 모델 기준 일반적인 종단 간 지연은 200-500ms이다.\n미세 조정된 Whisper 모델을 어떻게 변환하나? 고급 사용법 섹션에 표시된 ct2-transformers-converter CLI 도구를 사용하라. Hugging Face Hub의 모든 모델이나 Transformers와 호환되는 로컬 체크포인트를 변환할 수 있다. 변환 중 FP16과 INT8 양자화를 모두 지원한다.\nfaster-whisper는 모든 Whisper 모델 크기를 지원하나? 그렇다 — tiny, base, small, medium, large-v1, large-v2, large-v3를 모두 지원한다. distil-whisper 변형(distil-large-v3)도 지원되어 미미한 정확도 희생으로 훨씬 빠른 추론이 가능하다.\n결론 faster-whisper는 Python 환경에서 OpenAI Whisper의 프로덕션 런타임 선택이다. 참조 구현 대비 4배의 속도 향상, INT8 양자화를 통한 70% VRAM 절감, 그리고 WhisperX, speaches, whisper-asr-webservice를 포함한 성숙한 통합 생태계로 단일 파일 전사부터 수백 시간의 오디오 일괄 처리까지 모든 것을 처리한다.\n데이터가 분명하다: NVIDIA GPU와 Python을 사용한다면 faster-whisper가 기준선이다. 일반 용도는 int8 large-v3 모델로 시작하고, 실시간에는 small로 낮추고, 화자 레이블이 필요할 때 WhisperX를 통합하라.\n액션 아이템:\n````pip install faster-whisper```를 실행하고 위의 확인 스크립트를 실행하라. 저장소의 13분 테스트 오디오로 하드웨어를 벤치마크하라. 프로덕션 파이프라인을 위해 Docker 배포를 설정하라. dibi8.com Telegram 그룹에 가입하여 벤치마크 결과를 공유하고 프로덕션 지원을 받아라. 추천 호스팅 및 인프라 위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - DigitalOcean — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.\nHTStack — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC. 제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.\n출처 및 추가 자료 faster-whisper GitHub 저장소: https://github.com/SYSTRAN/faster-whisper CTranslate2 문서: https://opennmt.net/CTranslate2/ WhisperX(화자 분리): https://github.com/m-bain/whisperX whisper.cpp(C++ 포트): https://github.com/ggml-org/whisper.cpp OpenAI Whisper(참조 구현): https://github.com/openai/whisper Speaches(OpenAI 호환 서버): https://github.com/speaches-ai/speaches Whisper-Streaming(실시간): https://github.com/ufal/whisper_streaming PyAV(오디오 디코딩): https://github.com/PyAV-Org/PyAV Silero VAD: https://github.com/snakers4/silero-vad { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “faster-whisper: 23K+ Stars로 4배 빠른 음성-텍스트 변환 — 2026년 WhisperX, whisper.cpp과 벤치마크 비교”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/faster-whisper\" } } Related Articles voicebox-open-source-ai-voice-studio ray-distributed-ai-framework-complete-guide cleanlab-11k-star-ai-data-cleaning freqtrade-python-crypto-trading-bot-backtest-optimize-deploy agent-reach-internet-access-ai-agents Found this helpful? Join our Telegram community for daily AI tool updates!\n",
-  "wordCount" : "1967",
+  "articleBody": "title: “faster-whisper: 4x Faster Speech-to-Text with 23K+ Stars… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“faster-whisper”, “speech-to-text”, “ctranslate2”, “openai whisper”, “voice recognition”, “python”, “docker”, “asr”] aliases:\n/posts/faster-whisper/- OpenAI’s Whisper changed speech-to-text in 2022, but the original Python implementation left significant performance on the table. For a 13-minute audio file, ```openai/whisper```` with the large-v2 model takes over 4 minutes on a Tesla V100 GPU — unacceptable for production pipelines processing hundreds of hours daily. SYSTRAN’s faster-whisper reimplements Whisper inference using CTranslate2, delivering up to 4x speedup at identical accuracy while cutting VRAM usage by nearly 70%. With 23,000+ GitHub stars, it has become the de facto runtime for production speech-to-text in Python environments.\nThis guide provides a production-grade faster whisper tutorial covering installation, benchmarking, Docker deployment, and integration with WhisperX and whisper.cpp. Every command and config is copy-paste ready — a complete speech to text setup you can deploy today.\nFigure 1: faster-whisper GitHub repository — 23,000+ stars, actively maintained by SYSTRAN.\nHow faster-whisper Works The architecture replaces PyTorch inference with CTranslate2’s optimized runtime: Figure 2: CTranslate2 inference engine — the C++ backend powering faster-whisper’s speedup through custom CUDA kernels and quantization.\nWhat Is faster-whisper? faster-whisper is a reimplementation of OpenAI’s Whisper automatic speech recognition (ASR) model using CTranslate2, a high-performance C++ inference engine for Transformer models. It runs the same model weights as the original Whisper but delivers substantially higher throughput and lower memory usage through custom CUDA kernels, INT8/FP16 quantization, and fused attention operations.\nThe project started as a community effort by Guillaume Klein and is now maintained by SYSTRAN under the MIT license. It supports all Whisper model sizes (tiny through large-v3) on both CPU and NVIDIA GPU, with automatic model conversion from Hugging Face Hub on first load.\nHow faster-whisper Works The architecture replaces PyTorch inference with CTranslate2’s optimized runtime: ````` Audio Input (wav/mp3/flac) | v PyAV Audio Decoder (FFmpeg bundled, no external dependency) | v Mel Spectrogram Computation | v CTranslate2 Whisper Engine (C++ backend) |– Custom CUDA kernels for NVIDIA GPU |– INT8/FP16 quantized weights |– Fused self-attention + cross-attention |– SIMD-optimized CPU path (AVX2/NEON) | v Tokenizer (Hugging Face tokenizers) | v Transcription Segments (start, end, text, confidence)\nKey technical decisions that enable the speedup: - **Weight quantization**: INT8 reduces model memory by ~50% with negligible accuracy loss (\u003c 0.1% WER). - **Fused kernels**: CTranslate2 merges multiple GPU operations into single kernel launches, reducing dispatch overhead. - **Flash Attention support**: Available on Ampere GPUs (RTX 30xx+) for additional memory bandwidth savings. - **Batched inference**: Process multiple audio chunks in parallel on GPU for near-linear throughput scaling. - **Silero VAD integration**: Built-in voice activity detection skips silent segments, reducing wasted compute. ## Installation \u0026 Setup ### Requirements - Python 3.9+ - For GPU: NVIDIA GPU with CUDA 12.x and cuDNN 9.x - No FFmpeg installation required (bundled via PyAV) ### pip Install (CPU) `````bash # Create virtual environment python -m venv venv-whisper source venv-whisper/bin/activate # Linux/Mac # venv-whisper\\Scripts\\activate # Windows # Install faster-whisper pip install faster-whisper pip Install with GPU Support # Install cuBLAS and cuDNN via pip (Linux only) pip install nvidia-cublas-cu12 nvidia-cudnn-cu12==9.* # Set library path before running export LD_LIBRARY_PATH=$(python3 -c 'import os; import nvidia.cublas.lib; import nvidia.cudnn.lib; print(os.path.dirname(nvidia.cublas.lib.__file__) + \":\" + os.path.dirname(nvidia.cudnn.lib.__file__))') # Install faster-whisper pip install faster-whisper Docker Setup # Pull the official NVIDIA CUDA image with cuDNN docker run -it --rm --gpus all \\ -v $(pwd)/audio:/audio \\ nvidia/cuda:12.3.2-cudnn9-runtime-ubuntu22.04 \\ bash # Inside container apt-get update \u0026\u0026 apt-get install -y python3-pip pip install faster-whisper Verification # verify_setup.py from faster_whisper import WhisperModel import torch print(f\"PyTorch CUDA available: {torch.cuda.is_available()}\") print(f\"CUDA devices: {torch.cuda.device_count()}\") model = WhisperModel(\"tiny\", device=\"cuda\", compute_type=\"float16\") print(f\"Model loaded on: {model.model.device}\") print(\"Setup verified successfully\") python verify_setup.py First Transcription from faster_whisper import WhisperModel # Load model (auto-downloads from Hugging Face on first run) model = WhisperModel(\"large-v3\", device=\"cuda\", compute_type=\"int8\") # Transcribe audio file segments, info = model.transcribe(\"audio.mp3\", beam_size=5) print(f\"Detected language: {info.language} \" f\"(probability: {info.language_probability:.2f})\") for segment in segments: print(f\"[{segment.start:.2f}s -\u003e {segment.end:.2f}s] {segment.text}\") Integration with Popular Tools WhisperX (Speaker Diarization) WhisperX builds on faster-whisper to add word-level timestamps and speaker diarization. It is the go-to tool for meeting transcription.\npip install whisperx import whisperx import torch device = \"cuda\" if torch.cuda.is_available() else \"cpu\" audio_file = \"meeting.mp3\" # 1. Transcribe with faster-whisper backend model = whisperx.load_model(\"large-v3\", device, compute_type=\"int8\") audio = whisperx.load_audio(audio_file) result = model.transcribe(audio, batch_size=8) # 2. Align for word-level timestamps model_a, metadata = whisperx.load_align_model( language_code=result[\"language\"], device=device ) result = whisperx.align(result[\"segments\"], model_a, metadata, audio, device) # 3. Speaker diarization (requires Hugging Face token) diarize_model = whisperx.DiarizationPipeline( use_auth_token=\"your_hf_token\", device=device ) diarize_segments = diarize_model(audio) result = whisperx.assign_word_speakers(diarize_segments, result) for segment in result[\"segments\"]: speaker = segment.get(\"speaker\", \"UNKNOWN\") print(f\"[{segment[start]:.2f}s -\u003e {segment[end]:.2f}s] \" f\"{speaker}: {segment[text]}\") whisper-asr-webservice (OpenAI-Compatible API) Expose faster-whisper via an OpenAI-compatible HTTP API: `````bash docker run -d –gpus all -p 9000:9000 -e ASR_MODEL=large-v3 -e ASR_ENGINE=faster_whisper -e COMPUTE_TYPE=int8 onerahming/openai-whisper-asr\n`````python import requests with open(\"audio.mp3\", \"rb\") as f: response = requests.post( \"http://localhost:9000/asr\", files={\"audio_file\": f}, data={\"language\": \"en\", \"output\": \"json\"} ) print(response.json()) Speaches (Self-Hosted OpenAI-Compatible Server) Speaches is a modern, OpenAI-compatible server built on faster-whisper: `````bash docker run -d –gpus all -p 8000:8000 -e WHISPER__MODEL=large-v3 -e WHISPER__COMPUTE_TYPE=int8 fedirz/speaches:latest-gpu\n`````python from openai import OpenAI client = OpenAI( base_url=\"http://localhost:8000/v1\", api_key=\"dummy\" ) with open(\"audio.mp3\", \"rb\") as f: transcript = client.audio.transcriptions.create( model=\"large-v3\", file=f ) print(transcript.text) LibreTranslate (Translation Pipeline) Chain transcription with translation for multilingual workflows: `````python from faster_whisper import WhisperModel import requests\nTranscribe non-English audio model = WhisperModel(“large-v3”, device=“cuda”, compute_type=“int8”) segments, info = model.transcribe(“japanese_audio.mp3”, beam_size=5) japanese_text = \" “.join([s.text for s in segments])\nTranslate via LibreTranslate response = requests.post(“http://localhost:5000/translate”, json={ “q”: japanese_text, “source”: “ja”, “target”: “en” }) translation = response.json()[“translatedText”] print(f\"JA: {japanese_text}”) print(f\"EN: {translation}”)\n## Benchmarks / Real-World Use Cases All benchmarks below use official numbers from the faster-whisper repository — this is the definitive faster whisper benchmark reference. Two hardware configurations are tested: an NVIDIA RTX 3070 Ti 8GB for GPU benchmarks and an Intel Core i7-12700K for CPU benchmarks. ![Benchmark comparison chart](https://raw.githubusercontent.com/SYSTRAN/faster-whisper/master/benchmark/results.png) *Figure 3: Official benchmark results — faster-whisper achieves up to 8.9x speedup over openai/whisper with batched INT8 inference on RTX 3070 Ti.* ### GPU Benchmark: 13 Minutes of Audio, large-v2 Model | Implementation | Precision | Beam Size | Time | VRAM Usage | | * * * | * * * | * * * | * * * | * * * | | openai/whisper | fp16 | 5 | 2m 23s | 4708 MB | | whisper.cpp (Flash Attention) | fp16 | 5 | 1m 05s | 4127 MB | | transformers (SDPA) | fp16 | 5 | 1m 52s | 4960 MB | | **faster-whisper** | **fp16** | **5** | **1m 03s** | **4525 MB** | | **faster-whisper (batch_size=8)** | **fp16** | **5** | **17s** | **6090 MB** | | **faster-whisper** | **int8** | **5** | **59s** | **2926 MB** | | **faster-whisper (batch_size=8)** | **int8** | **5** | **16s** | **4500 MB** | *Executed with CUDA 12.4 on NVIDIA RTX 3070 Ti 8GB.* Key takeaways from the GPU benchmark: - **Single inference**: faster-whisper fp16 is **2.3x faster** than openai/whisper (1m03s vs 2m23s). - **Batched inference**: With ````batch_size=8````, faster-whisper processes the same audio in **17 seconds** — an **8.4x speedup** over the original. - **INT8 quantization**: Reduces VRAM from 4525 MB to 2926 MB (35% savings) with a minor 4-second penalty. - **Best throughput**: INT8 batched inference hits **16 seconds**, or **8.9x faster** than openai/whisper. ### CPU Benchmark: 13 Minutes of Audio, small Model | Implementation | Precision | Beam Size | Time | RAM Usage | | * * * | * * * | * * * | * * * | * * * | | openai/whisper | fp32 | 5 | 6m 58s | 2335 MB | | whisper.cpp | fp32 | 5 | 2m 05s | 1049 MB | | whisper.cpp (OpenVINO) | fp32 | 5 | 1m 45s | 1642 MB | | **faster-whisper** | **fp32** | **5** | **2m 37s** | **2257 MB** | | **faster-whisper (batch_size=8)** | **fp32** | **5** | **1m 06s** | **4230 MB** | | **faster-whisper** | **int8** | **5** | **1m 42s** | **1477 MB** | | **faster-whisper (batch_size=8)** | **int8** | **5** | **51s** | **3608 MB** | *Executed with 8 threads on Intel Core i7-12700K.* Key takeaways from the CPU benchmark: - **INT8 on CPU**: faster-whisper int8 is **4.1x faster** than openai/whisper (1m42s vs 6m58s). - **INT8 batched**: With ````batch_size=8````, faster-whisper finishes in **51 seconds** — **8.2x faster** than the original. - **Memory efficiency**: INT8 uses only 1477 MB RAM vs 2335 MB for openai/whisper (37% reduction). ### distil-whisper-large-v3 Benchmark | Implementation | Precision | Beam Size | Time | YT Commons WER | | * * * | * * * | * * * | * * * | * * * | | transformers (SDPA, batch_size=16) | fp16 | 5 | 46m 12s | 14.801 | | **faster-whisper (batch_size=16)** | **fp16** | **5** | **25m 50s** | **13.527** | *GPU: NVIDIA RTX 3070 Ti 8GB.* ### Production Use Cases | Use Case | Model | Hardware | Performance | | * * * | * * * | * * * | * * * | | **Meeting transcription** (1h audio) | large-v3 int8 | RTX 4070 | ~3 min processing | | **Podcast batch processing** (100 files) | large-v3 int8 batch=8 | A100 40GB | ~20 min for 100h | | **Real-time captions** | small int8 | RTX 3060 | ~200ms latency | | **Call center analytics** | medium int8 | CPU 8-core | ~2x real-time | | **Embedded device** | tiny int8 | ARM Cortex-A78 | ~0.5x real-time | ## Advanced Usage / Production Hardening ### VAD Filter for Pre-Segmentation Voice Activity Detection removes silent segments before transcription, reducing wasted compute: `````python from faster_whisper import WhisperModel model = WhisperModel(\"large-v3\", device=\"cuda\", compute_type=\"int8\") # Enable VAD filter with custom parameters segments, info = model.transcribe( \"audio.mp3\", vad_filter=True, vad_parameters=dict( min_silence_duration_ms=500, # Split on 500ms+ silence speech_pad_ms=200, # 200ms padding around speech threshold=0.5 # VAD confidence threshold ), beam_size=5 ) Batched Inference for Maximum Throughput from faster_whisper import WhisperModel import glob import time model = WhisperModel(\"large-v3\", device=\"cuda\", compute_type=\"int8\") # Process multiple files in a single batch call audio_files = glob.glob(\"podcasts/*.mp3\") start = time.time() for file_path in audio_files: segments, _ = model.transcribe(file_path, batch_size=8, beam_size=5) text = \" \".join([s.text for s in segments]) print(f\"{file_path}: {len(text)} chars\") elapsed = time.time() - start print(f\"Total time: {elapsed:.1f}s for {len(audio_files)} files\") Word-Level Timestamps segments, _ = model.transcribe(\"audio.mp3\", word_timestamps=True) for segment in segments: for word in segment.words: print(f\"[{word.start:.2f}s -\u003e {word.end:.2f}s] {word.word}\") Custom Model Conversion Convert fine-tuned Whisper models for use with faster-whisper: `````bash\nInstall conversion dependencies pip install transformers[torch]\u003e=4.23\nConvert a fine-tuned model ct2-transformers-converter –model openai/whisper-large-v3 –output_dir whisper-large-v3-ct2 –copy_files tokenizer.json preprocessor_config.json –quantization float16\n`````python # Load the converted model model = WhisperModel(\"whisper-large-v3-ct2\", device=\"cuda\") Monitoring with Prometheus from faster_whisper import WhisperModel from prometheus_client import Counter, Histogram, start_http_server import time REQUEST_COUNT = Counter(\"transcription_requests_total\", \"Total requests\") REQUEST_DURATION = Histogram(\"transcription_duration_seconds\", \"Request duration\") model = WhisperModel(\"large-v3\", device=\"cuda\", compute_type=\"int8\") @REQUEST_DURATION.time() def transcribe(audio_path): REQUEST_COUNT.inc() segments, info = model.transcribe(audio_path, beam_size=5) return segments, info # Expose metrics on port 8000 start_http_server(8000) Graceful Error Handling from faster_whisper import WhisperModel def safe_transcribe(audio_path, device=\"cuda\"): \"\"\"Transcribe with fallback on GPU errors.\"\"\" compute_types = [\"int8\", \"int8_float16\", \"float16\", \"float32\"] for compute_type in compute_types: try: model = WhisperModel( \"large-v3\", device=device, compute_type=compute_type ) segments, info = model.transcribe(audio_path, beam_size=5) return segments, info, compute_type except RuntimeError as e: print(f\"{compute_type} failed: {e}, retrying...\") continue raise RuntimeError(\"All compute types failed\") segments, info, used_type = safe_transcribe(\"audio.mp3\") print(f\"Used compute type: {used_type}\") Comparison with Alternatives | Feature | faster-whisper | OpenAI Whisper | WhisperX | whisper.cpp | |\n|\n|\n|\n|\n| | Speed (large-v3 GPU) | ~12x real-time | ~3x real-time | ~12x real-time | ~8x real-time | | VRAM (large-v3) | ~2.5 GB (int8) | ~11 GB (fp16) | ~3 GB | ~3 GB | | Python API | Native | Native | Native | Wrapper only | | Speaker diarization | No | No | Built-in | No | | Word-level timestamps | Yes | No | Yes (via wav2vec2) | Yes | | Apple Silicon | CPU only | CPU/GPU | CPU only | Metal (fastest) | | NVIDIA GPU | CUDA (fastest) | CUDA | CUDA | CUDA | | AMD GPU | No | No | No | Vulkan/ROCm | | CPU optimization | int8 SIMD | Basic | int8 SIMD | AVX2/NEON | | VAD filter | Built-in Silero | No | Built-in | Manual tuning | | Batch inference | Yes | No | Yes | Limited | | Model quantization | int8/fp16/fp32 | fp16/fp32 | int8/fp16 | q4/q5/fp16 | | License | MIT | MIT | MIT | MIT | | Stars (May 2026) | 23,000+ | 15,000+ | 12,000+ | 44,000+ |\nWhen to Choose Which faster-whisper: Python pipelines on NVIDIA GPU or CPU. Best integration ecosystem. Use for production STT services, batch processing, and real-time Python applications. OpenAI Whisper: Research and experimentation where you need the reference implementation. Avoid for production workloads. WhisperX: Meeting transcription, podcasts, and interviews where speaker labels are required. Built on faster-whisper. whisper.cpp: Apple Silicon, embedded devices, edge deployment, and cross-platform apps. No Python dependency. Limitations / Honest Assessment faster-whisper is not the right tool for every scenario. Here is what it is NOT good for: 1. Apple Silicon GPU acceleration: faster-whisper has no Metal backend. On M-series Macs, it runs CPU-only at roughly 3x real-time for large-v3. whisper.cpp with Metal achieves ~10x real-time — 3x faster.\nAMD GPU support: CTranslate2 only supports CUDA on GPU. AMD GPUs are not supported. Use whisper.cpp with Vulkan or ROCm instead.\nExtreme edge devices: While faster-whisper works on CPU, the Python runtime overhead makes it less suitable than whisper.cpp for Raspberry Pi Zero or microcontrollers. whisper.cpp fits in 1 GB RAM and runs without Python.\nSpeaker diarization: faster-whisper outputs transcription only. Identifying “who spoke when” requires WhisperX or a separate diarization pipeline.\nLong-form audio scaling: On very long audio (\u003e 30 minutes), whisper.cpp can show better scaling characteristics in some CPU-bound scenarios. Benchmark your specific hardware.\nNon-NVIDIA GPU servers: If your infrastructure runs on AMD Instinct or Intel Arc GPUs, faster-whisper will fall back to CPU. This is a hard limitation of CTranslate2.\nFrequently Asked Questions What hardware do I need to run faster-whisper? For GPU inference, any NVIDIA GPU with CUDA 12.x support works. INT8 quantization runs comfortably on 8 GB VRAM cards (RTX 3060, RTX 4060). For CPU inference, 4+ cores and 8 GB RAM are sufficient for the small model. The large-v3 model needs ~3 GB RAM with INT8 on CPU.\nHow do I install faster-whisper in Docker? Use the official NVIDIA CUDA runtime image with cuDNN 9. A complete faster whisper docker configuration is shown in the Installation \u0026 Setup section above. The key requirement is the nvidia/cuda:12.3.2-cudnn9-runtime-ubuntu22.04 base image. Run with --gpus all to expose the GPU.\nIs transcription accuracy identical to OpenAI Whisper? Yes. faster-whisper uses the same model weights and tokenizer. Word Error Rate (WER) differences are within 0.1% — indistinguishable in practice. Any variation comes from beam search randomness, not the inference engine.\nWhat is the best compute_type for my GPU? Use int8 for maximum VRAM savings (suitable for GTX 10xx cards and 8 GB GPUs). Use float16 for best speed on modern GPUs (RTX 30xx/40xx/50xx, A100, H100). Use int8_float16 as a middle ground. Pascal consumer cards (GTX 1060/1070/1080) should use int8 due to limited fp16 support.\nHow does faster-whisper compare to WhisperX? WhisperX builds on top of faster-whisper and adds speaker diarization + word-level timestamp alignment via wav2vec2. For pure transcription, faster-whisper is sufficient. Use WhisperX when you need “who said what” labels in meetings or interviews.\nCan I use faster-whisper for real-time streaming? Yes, via integration with Whisper-Streaming or WhisperLive. faster-whisper itself does not stream natively, but its low latency makes it ideal as a backend for streaming servers. Typical end-to-end latency is 200-500 ms for the small model on GPU.\nHow do I convert a fine-tuned Whisper model? Use the ct2-transformers-converter CLI tool (shown in Advanced Usage). Any model on Hugging Face Hub or local checkpoint compatible with Transformers can be converted. Both FP16 and INT8 quantization are supported during conversion.\nDoes faster-whisper support all Whisper model sizes? Yes — tiny, base, small, medium, large-v1, large-v2, and large-v3 are all supported. The distil-whisper variants (distil-large-v3) are also supported for even faster inference with a small accuracy trade-off.\nConclusion faster-whisper is the production runtime of choice for OpenAI Whisper in Python environments. With 4x speedup over the reference implementation, 70% VRAM reduction via INT8 quantization, and a mature ecosystem of integrations (WhisperX, speaches, whisper-asr-webservice), it handles everything from single-file transcription to batch-processing hundreds of hours of audio.\nThe data is clear: in any whisper vs faster whisper comparison, the performance advantage goes to the CTranslate2-based runtime. If you run NVIDIA GPUs and Python, faster-whisper is the baseline. Start with the int8 large-v3 model for general use, drop to small for real-time, and integrate WhisperX when you need speaker labels.\nAction items:\n````pip install faster-whisper``` and run the verification script above. Benchmark your hardware with the 13-minute test audio from the repo. Set up Docker deployment for your production pipeline. Join the dibi8.com Telegram group to share benchmarks and get help with production issues. Recommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.\nSources \u0026 Further Reading faster-whisper GitHub repository: https://github.com/SYSTRAN/faster-whisper CTranslate2 documentation: https://opennmt.net/CTranslate2/ WhisperX (speaker diarization): https://github.com/m-bain/whisperX whisper.cpp (C++ port): https://github.com/ggml-org/whisper.cpp OpenAI Whisper (reference implementation): https://github.com/openai/whisper Speaches (OpenAI-compatible server): https://github.com/speaches-ai/speaches Whisper-Streaming (real-time): https://github.com/ufal/whisper_streaming PyAV (audio decoding): https://github.com/PyAV-Org/PyAV Silero VAD: https://github.com/snakers4/silero-vad { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “faster-whisper: 4x Faster Speech-to-Text with 23K+ Stars — Benchmark vs WhisperX, whisper.cpp in 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/faster-whisper\" } } Related Articles ray-distributed-ai-framework-complete-guide cleanlab-11k-star-ai-data-cleaning freqtrade-python-crypto-trading-bot-backtest-optimize-deploy agent-reach-internet-access-ai-agents microsoft-markitdown-file-to-markdown-converter-cli Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "3082",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>15 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/faster-whisper/">En</a>
@@ -207,107 +207,105 @@
         <span class="title">목차</span>
     </summary>
 
-    <div class="inner"><ul>
+    <div class="inner"><ul><ul>
             <li>
-                <a href="#faster-whisper%eb%9e%80" aria-label="faster-whisper란?">faster-whisper란?</a></li>
+                <a href="#how-faster-whisper-works" aria-label="How faster-whisper Works">How faster-whisper Works</a></li>
             <li>
-                <a href="#faster-whisper-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d" aria-label="faster-whisper 작동 방식">faster-whisper 작동 방식</a></li>
+                <a href="#what-is-faster-whisper" aria-label="What Is faster-whisper?">What Is faster-whisper?</a></li>
             <li>
-                <a href="#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95" aria-label="설치 및 설정">설치 및 설정</a><ul>
+                <a href="#how-faster-whisper-works-1" aria-label="How faster-whisper Works">How faster-whisper Works</a><ul>
                     
             <li>
-                <a href="#%ec%9a%94%ea%b5%ac%ec%82%ac%ed%95%ad" aria-label="요구사항">요구사항</a></li>
+                <a href="#pip-install-with-gpu-support" aria-label="pip Install with GPU Support">pip Install with GPU Support</a></li>
             <li>
-                <a href="#pip-%ec%84%a4%ec%b9%98cpu" aria-label="pip 설치(CPU)">pip 설치(CPU)</a></li>
+                <a href="#docker-setup" aria-label="Docker Setup">Docker Setup</a></li>
             <li>
-                <a href="#pip-%ec%84%a4%ec%b9%98gpu-%ec%a7%80%ec%9b%90" aria-label="pip 설치(GPU 지원)">pip 설치(GPU 지원)</a></li>
+                <a href="#verification" aria-label="Verification">Verification</a></li>
             <li>
-                <a href="#docker-%ec%84%a4%ec%a0%95" aria-label="Docker 설정">Docker 설정</a></li>
-            <li>
-                <a href="#%ec%84%a4%ec%b9%98-%ed%99%95%ec%9d%b8" aria-label="설치 확인">설치 확인</a></li>
-            <li>
-                <a href="#%ec%b2%ab-%eb%b2%88%ec%a7%b8-%ec%a0%84%ec%82%ac" aria-label="첫 번째 전사">첫 번째 전사</a></li></ul>
+                <a href="#first-transcription" aria-label="First Transcription">First Transcription</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%9d%b8%ea%b8%b0-%eb%8f%84%ea%b5%ac%ec%99%80%ec%9d%98-%ed%86%b5%ed%95%a9" aria-label="인기 도구와의 통합">인기 도구와의 통합</a><ul>
+                <a href="#integration-with-popular-tools" aria-label="Integration with Popular Tools">Integration with Popular Tools</a><ul>
                     
             <li>
-                <a href="#whisperx%ed%99%94%ec%9e%90-%eb%b6%84%eb%a6%ac" aria-label="WhisperX(화자 분리)">WhisperX(화자 분리)</a></li>
+                <a href="#whisperx-speaker-diarization" aria-label="WhisperX (Speaker Diarization)">WhisperX (Speaker Diarization)</a></li>
             <li>
-                <a href="#whisper-asr-webserviceopenai-%ed%98%b8%ed%99%98-api" aria-label="whisper-asr-webservice(OpenAI 호환 API)">whisper-asr-webservice(OpenAI 호환 API)</a></li>
+                <a href="#whisper-asr-webservice-openai-compatible-api" aria-label="whisper-asr-webservice (OpenAI-Compatible API)">whisper-asr-webservice (OpenAI-Compatible API)</a></li>
             <li>
-                <a href="#speaches%ec%9e%90%ec%b2%b4-%ed%98%b8%ec%8a%a4%ed%8c%85-openai-%ed%98%b8%ed%99%98-%ec%84%9c%eb%b2%84" aria-label="Speaches(자체 호스팅 OpenAI 호환 서버)">Speaches(자체 호스팅 OpenAI 호환 서버)</a></li>
+                <a href="#speaches-self-hosted-openai-compatible-server" aria-label="Speaches (Self-Hosted OpenAI-Compatible Server)">Speaches (Self-Hosted OpenAI-Compatible Server)</a></li>
             <li>
-                <a href="#libretranslate%eb%b2%88%ec%97%ad-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8" aria-label="LibreTranslate(번역 파이프라인)">LibreTranslate(번역 파이프라인)</a></li></ul>
-            </li>
+                <a href="#libretranslate-translation-pipeline" aria-label="LibreTranslate (Translation Pipeline)">LibreTranslate (Translation Pipeline)</a></li></ul>
+            </li></ul>
+                
             <li>
-                <a href="#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac--%ec%8b%a4%ec%a0%9c-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80" aria-label="벤치마크 / 실제 사용 사례">벤치마크 / 실제 사용 사례</a><ul>
+                <a href="#transcribe-non-english-audio" aria-label="Transcribe non-English audio">Transcribe non-English audio</a></li>
+            <li>
+                <a href="#translate-via-libretranslate" aria-label="Translate via LibreTranslate">Translate via LibreTranslate</a><ul>
+                    <ul>
                     
             <li>
-                <a href="#gpu-%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac-13%eb%b6%84-%ec%98%a4%eb%94%94%ec%98%a4-large-v2-%eb%aa%a8%eb%8d%b8" aria-label="GPU 벤치마크: 13분 오디오, large-v2 모델">GPU 벤치마크: 13분 오디오, large-v2 모델</a></li>
+                <a href="#batched-inference-for-maximum-throughput" aria-label="Batched Inference for Maximum Throughput">Batched Inference for Maximum Throughput</a></li>
             <li>
-                <a href="#cpu-%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac-13%eb%b6%84-%ec%98%a4%eb%94%94%ec%98%a4-small-%eb%aa%a8%eb%8d%b8" aria-label="CPU 벤치마크: 13분 오디오, small 모델">CPU 벤치마크: 13분 오디오, small 모델</a></li>
+                <a href="#word-level-timestamps" aria-label="Word-Level Timestamps">Word-Level Timestamps</a></li>
             <li>
-                <a href="#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80" aria-label="프로덕션 사용 사례">프로덕션 사용 사례</a></li></ul>
+                <a href="#custom-model-conversion" aria-label="Custom Model Conversion">Custom Model Conversion</a></li></ul>
+                </ul>
             </li>
             <li>
-                <a href="#%ea%b3%a0%ea%b8%89-%ec%82%ac%ec%9a%a9%eb%b2%95--%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ea%b0%95%ed%99%94" aria-label="고급 사용법 / 프로덕션 강화">고급 사용법 / 프로덕션 강화</a><ul>
+                <a href="#install-conversion-dependencies" aria-label="Install conversion dependencies">Install conversion dependencies</a></li>
+            <li>
+                <a href="#convert-a-fine-tuned-model" aria-label="Convert a fine-tuned model">Convert a fine-tuned model</a><ul>
+                    <ul>
                     
             <li>
-                <a href="#vad-%ed%95%84%ed%84%b0-%ec%82%ac%ec%a0%84-%eb%b6%84%ed%95%a0" aria-label="VAD 필터 사전 분할">VAD 필터 사전 분할</a></li>
+                <a href="#monitoring-with-prometheus" aria-label="Monitoring with Prometheus">Monitoring with Prometheus</a></li>
             <li>
-                <a href="#%eb%b0%b0%ec%b9%98-%ec%b6%94%eb%a1%a0%ec%9c%bc%eb%a1%9c-%ec%b2%98%eb%a6%ac%eb%9f%89-%ec%b5%9c%eb%8c%80%ed%99%94" aria-label="배치 추론으로 처리량 최대화">배치 추론으로 처리량 최대화</a></li>
+                <a href="#graceful-error-handling" aria-label="Graceful Error Handling">Graceful Error Handling</a></li></ul>
+                
             <li>
-                <a href="#%eb%8b%a8%ec%96%b4-%ec%88%98%ec%a4%80-%ed%83%80%ec%9e%84%ec%8a%a4%ed%83%ac%ed%94%84" aria-label="단어 수준 타임스탬프">단어 수준 타임스탬프</a></li>
-            <li>
-                <a href="#%ec%bb%a4%ec%8a%a4%ed%85%80-%eb%aa%a8%eb%8d%b8-%eb%b3%80%ed%99%98" aria-label="커스텀 모델 변환">커스텀 모델 변환</a></li>
-            <li>
-                <a href="#prometheus%eb%a1%9c-%eb%aa%a8%eb%8b%88%ed%84%b0%eb%a7%81" aria-label="Prometheus로 모니터링">Prometheus로 모니터링</a></li>
-            <li>
-                <a href="#%ec%9a%b0%ec%95%84%ed%95%9c-%ec%98%a4%eb%a5%98-%ec%b2%98%eb%a6%ac" aria-label="우아한 오류 처리">우아한 오류 처리</a></li></ul>
-            </li>
-            <li>
-                <a href="#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90" aria-label="대안과의 비교">대안과의 비교</a><ul>
+                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a><ul>
                     
             <li>
-                <a href="#%ec%84%a0%ed%83%9d-%ea%b0%80%ec%9d%b4%eb%93%9c" aria-label="선택 가이드">선택 가이드</a></li></ul>
+                <a href="#when-to-choose-which" aria-label="When to Choose Which">When to Choose Which</a></li></ul>
             </li>
             <li>
-                <a href="#%ed%95%9c%ea%b3%84--%ec%86%94%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80" aria-label="한계 / 솔직한 평가">한계 / 솔직한 평가</a></li>
+                <a href="#limitations--honest-assessment" aria-label="Limitations / Honest Assessment">Limitations / Honest Assessment</a></li>
             <li>
-                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a><ul>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
                     
             <li>
-                <a href="#faster-whisper%eb%a5%bc-%ec%8b%a4%ed%96%89%ed%95%98%eb%a0%a4%eb%a9%b4-%ec%96%b4%eb%96%a4-%ed%95%98%eb%93%9c%ec%9b%a8%ec%96%b4%ea%b0%80-%ed%95%84%ec%9a%94%ed%95%9c%ea%b0%80" aria-label="faster-whisper를 실행하려면 어떤 하드웨어가 필요한가?">faster-whisper를 실행하려면 어떤 하드웨어가 필요한가?</a></li>
+                <a href="#what-hardware-do-i-need-to-run-faster-whisper" aria-label="What hardware do I need to run faster-whisper?">What hardware do I need to run faster-whisper?</a></li>
             <li>
-                <a href="#docker%ec%97%90%ec%84%9c-faster-whisper%eb%a5%bc-%ec%96%b4%eb%96%bb%ea%b2%8c-%ec%84%a4%ec%b9%98%ed%95%98%eb%82%98" aria-label="Docker에서 faster-whisper를 어떻게 설치하나?">Docker에서 faster-whisper를 어떻게 설치하나?</a></li>
+                <a href="#how-do-i-install-faster-whisper-in-docker" aria-label="How do I install faster-whisper in Docker?">How do I install faster-whisper in Docker?</a></li>
             <li>
-                <a href="#%ec%a0%84%ec%82%ac-%ec%a0%95%ed%99%95%eb%8f%84%eb%8a%94-openai-whisper%ec%99%80-%eb%8f%99%ec%9d%bc%ed%95%9c%ea%b0%80" aria-label="전사 정확도는 OpenAI Whisper와 동일한가?">전사 정확도는 OpenAI Whisper와 동일한가?</a></li>
+                <a href="#is-transcription-accuracy-identical-to-openai-whisper" aria-label="Is transcription accuracy identical to OpenAI Whisper?">Is transcription accuracy identical to OpenAI Whisper?</a></li>
             <li>
-                <a href="#%eb%82%b4-gpu%ec%97%90-%ec%b5%9c%ec%a0%81%ec%9d%b8-compute_type%ec%9d%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80" aria-label="내 GPU에 최적인 compute_type은 무엇인가?">내 GPU에 최적인 compute_type은 무엇인가?</a></li>
+                <a href="#what-is-the-best-compute_type-for-my-gpu" aria-label="What is the best compute_type for my GPU?">What is the best compute_type for my GPU?</a></li>
             <li>
-                <a href="#faster-whisper%ec%99%80-whisperx%ec%9d%98-%ec%b0%a8%ec%9d%b4%ec%a0%90%ec%9d%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80" aria-label="faster-whisper와 WhisperX의 차이점은 무엇인가?">faster-whisper와 WhisperX의 차이점은 무엇인가?</a></li>
+                <a href="#how-does-faster-whisper-compare-to-whisperx" aria-label="How does faster-whisper compare to WhisperX?">How does faster-whisper compare to WhisperX?</a></li>
             <li>
-                <a href="#faster-whisper%eb%a5%bc-%ec%8b%a4%ec%8b%9c%ea%b0%84-%ec%8a%a4%ed%8a%b8%eb%a6%ac%eb%b0%8d%ec%97%90-%ec%82%ac%ec%9a%a9%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98" aria-label="faster-whisper를 실시간 스트리밍에 사용할 수 있나?">faster-whisper를 실시간 스트리밍에 사용할 수 있나?</a></li>
+                <a href="#can-i-use-faster-whisper-for-real-time-streaming" aria-label="Can I use faster-whisper for real-time streaming?">Can I use faster-whisper for real-time streaming?</a></li>
             <li>
-                <a href="#%eb%af%b8%ec%84%b8-%ec%a1%b0%ec%a0%95%eb%90%9c-whisper-%eb%aa%a8%eb%8d%b8%ec%9d%84-%ec%96%b4%eb%96%bb%ea%b2%8c-%eb%b3%80%ed%99%98%ed%95%98%eb%82%98" aria-label="미세 조정된 Whisper 모델을 어떻게 변환하나?">미세 조정된 Whisper 모델을 어떻게 변환하나?</a></li>
+                <a href="#how-do-i-convert-a-fine-tuned-whisper-model" aria-label="How do I convert a fine-tuned Whisper model?">How do I convert a fine-tuned Whisper model?</a></li>
             <li>
-                <a href="#faster-whisper%eb%8a%94-%eb%aa%a8%eb%93%a0-whisper-%eb%aa%a8%eb%8d%b8-%ed%81%ac%ea%b8%b0%eb%a5%bc-%ec%a7%80%ec%9b%90%ed%95%98%eb%82%98" aria-label="faster-whisper는 모든 Whisper 모델 크기를 지원하나?">faster-whisper는 모든 Whisper 모델 크기를 지원하나?</a></li></ul>
+                <a href="#does-faster-whisper-support-all-whisper-model-sizes" aria-label="Does faster-whisper support all Whisper model sizes?">Does faster-whisper support all Whisper model sizes?</a></li></ul>
             </li>
             <li>
-                <a href="#%ea%b2%b0%eb%a1%a0" aria-label="결론">결론</a></li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
             <li>
-                <a href="#%ec%b6%94%ec%b2%9c-%ed%98%b8%ec%8a%a4%ed%8c%85-%eb%b0%8f-%ec%9d%b8%ed%94%84%eb%9d%bc" aria-label="추천 호스팅 및 인프라">추천 호스팅 및 인프라</a></li>
+                <a href="#recommended-hosting--infrastructure" aria-label="Recommended Hosting &amp; Infrastructure">Recommended Hosting &amp; Infrastructure</a></li>
             <li>
-                <a href="#%ec%b6%9c%ec%b2%98-%eb%b0%8f-%ec%b6%94%ea%b0%80-%ec%9e%90%eb%a3%8c" aria-label="출처 및 추가 자료">출처 및 추가 자료</a></li>
+                <a href="#sources--further-reading" aria-label="Sources &amp; Further Reading">Sources &amp; Further Reading</a></li>
             <li>
                 <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
             </li>
         </ul>
+        </li>
+        </ul>
     </div>
 </details>
 
-  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+  <div class="post-content md-content"><p>title: &ldquo;faster-whisper: 4x Faster Speech-to-Text with 23K+ Stars&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -323,90 +321,116 @@ backup_url: &rsquo;'
 last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;ai-tools&rdquo;]
-tags: [&ldquo;faster-whisper&rdquo;, &ldquo;음성-텍스트변환&rdquo;, &ldquo;ctranslate2&rdquo;, &ldquo;openai-whisper&rdquo;, &ldquo;음성인식&rdquo;, &ldquo;python&rdquo;, &ldquo;docker&rdquo;, &ldquo;asr&rdquo;]
+tags: [&ldquo;faster-whisper&rdquo;, &ldquo;speech-to-text&rdquo;, &ldquo;ctranslate2&rdquo;, &ldquo;openai whisper&rdquo;, &ldquo;voice recognition&rdquo;, &ldquo;python&rdquo;, &ldquo;docker&rdquo;, &ldquo;asr&rdquo;]
 aliases:</p>
 <ul>
-<li>/kr/posts/faster-whisper/</li>
+<li>/posts/faster-whisper/-</li>
 </ul>
 <hr>
-<p>OpenAI의 Whisper는 2022년 음성-텍스트(STT) 분야를 바꿨지만, 원본 Python 구현은 하드웨어 성능을 충분히 활용하지 못했다. 13분짜리 오디오 파일의 경우 ```openai/whisper```` large-v2 모델을 Tesla V100 GPU에서 실행하면 4분 이상 소요된다 — 매일 수백 시간의 오디오를 처리하는 프로덕션 파이프라인에서는 받아들일 수 없는 수준이다. SYSTRAN의 <strong>faster-whisper</strong>는 CTranslate2를 활용해 Whisper 추론을 재구현하여 동일한 정확도로 최대 4배의 속도 향상을 달성하고 VRAM 사용량을 거의 70% 줄였다. GitHub 23,000+ stars를 보유한 faster-whisper는 Python 환경의 프로덕션 음성-텍스트 변환을 위한 사실상 표준 런타임이 되었다.</p>
-<p>이 가이드에서는 설치, 벤치마크, Docker 배포, WhisperX 및 whisper.cpp과의 통합을 포함하는 프로덕션급 faster whisper 튜토리얼을 제공한다. 모든 명령과 설정은 복사-붙여넣기로 즉시 사용 가능하다.</p>
-<p><img alt="faster-whisper GitHub 저장소" loading="lazy" src="https://opengraph.githubassets.com/1/SYSTRAN/faster-whisper"></p>
-<p><em>그림 1: faster-whisper GitHub 저장소 — 23,000+ stars, SYSTRAN이 적극적으로 유지보수.</em></p>
-<h2 id="faster-whisper란">faster-whisper란?<a hidden class="anchor" aria-hidden="true" href="#faster-whisper란">#</a></h2>
-<p>faster-whisper는 OpenAI의 Whisper 자동 음성 인식(ASR) 모델을 CTranslate2(Transformer 모델용 고성능 C++ 추론 엔진)로 재구현한 프로젝트이다. 원본 Whisper와 동일한 모델 가중치를 사용하지만 커스텀 CUDA 커널, INT8/FP16 양자화, 퓨즈드 어텐션 연산을 통해 훨씬 높은 처리량과 더 낮은 메모리 사용량을 제공한다.</p>
-<p>Guillaume Klein이 시작한 이 프로젝트는 현재 SYSTRAN이 MIT 라이선스 하에 유지보수하고 있다. tiny부터 large-v3까지 모든 Whisper 모델 크기를 CPU와 NVIDIA GPU 모두에서 지원하며, 첫 로드 시 Hugging Face Hub에서 자동으로 모델을 변환한다.</p>
-<h2 id="faster-whisper-작동-방식">faster-whisper 작동 방식<a hidden class="anchor" aria-hidden="true" href="#faster-whisper-작동-방식">#</a></h2>
-<p>PyTorch 추론을 CTranslate2의 최적화된 런타임으로 교체하는 아키텍처이다: <img alt="CTranslate2 아키텍처" loading="lazy" src="https://opennmt.net/CTranslate2/_static/favicon.png"></p>
-<p><em>그림 2: CTranslate2 추론 엔진 — 커스텀 CUDA 커널과 양자화를 통해 faster-whisper의 속도 향상을 제공하는 C++ 백엔드.</em></p>
-<p>속도 향상을 가능하게 하는 핵심 기술 결정: - <strong>가중치 양자화</strong>: INT8은 모델 메모리를 ~50% 줄이면서 무시할 수 있는 수준의 정확도 손실(&lt; 0.1% WER)만 발생시킨다.</p>
-<ul>
-<li><strong>퓨즈드 커널</strong>: CTranslate2는 여러 GPU 연산을 단일 커널 실행으로 병합하여 디스패치 오버헤드를 줄인다.</li>
-<li><strong>Flash Attention 지원</strong>: Ampere GPU(RTX 30xx+)에서 추가 메모리 대역폭 절약을 제공한다.</li>
-<li><strong>배치 추론</strong>: GPU에서 여러 오디오 청크를 병렬 처리하여 거의 선형적인 처리량 확장을 달성한다.</li>
-<li><strong>Silero VAD 통합</strong>: 내장 음성 활동 감지가 무음 구간을 걸러내 불필요한 연산을 줄인다.</li>
-</ul>
-<h2 id="설치-및-설정">설치 및 설정<a hidden class="anchor" aria-hidden="true" href="#설치-및-설정">#</a></h2>
-<h3 id="요구사항">요구사항<a hidden class="anchor" aria-hidden="true" href="#요구사항">#</a></h3>
-<ul>
-<li>Python 3.9+</li>
-<li>GPU: CUDA 12.x와 cuDNN 9.x를 지원하는 NVIDIA GPU</li>
-<li>FFmpeg 설치 불필요(PyAV를 통해 내장)</li>
-</ul>
-<h3 id="pip-설치cpu">pip 설치(CPU)<a hidden class="anchor" aria-hidden="true" href="#pip-설치cpu">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 가상 환경 생성</span>
-</span></span><span style="display:flex;"><span>python -m venv venv-whisper
-</span></span><span style="display:flex;"><span>source venv-whisper/bin/activate  <span style="color:#75715e"># Linux/Mac</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># venv-whisper\Scripts\activate  # Windows</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># faster-whisper 설치</span>
-</span></span><span style="display:flex;"><span>pip install faster-whisper
-</span></span></code></pre></div><h3 id="pip-설치gpu-지원">pip 설치(GPU 지원)<a hidden class="anchor" aria-hidden="true" href="#pip-설치gpu-지원">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># pip로 cuBLAS 및 cuDNN 설치(Linux 전용)</span>
+<p>OpenAI&rsquo;s Whisper changed speech-to-text in 2022, but the original Python implementation left significant performance on the table. For a 13-minute audio file, ```openai/whisper```` with the large-v2 model takes over 4 minutes on a Tesla V100 GPU — unacceptable for production pipelines processing hundreds of hours daily. SYSTRAN&rsquo;s <strong>faster-whisper</strong> reimplements Whisper inference using CTranslate2, delivering up to 4x speedup at identical accuracy while cutting VRAM usage by nearly 70%. With 23,000+ GitHub stars, it has become the de facto runtime for production speech-to-text in Python environments.</p>
+<p>This guide provides a production-grade faster whisper tutorial covering installation, benchmarking, Docker deployment, and integration with WhisperX and whisper.cpp. Every command and config is copy-paste ready — a complete speech to text setup you can deploy today.</p>
+<p><img alt="faster-whisper GitHub repo" loading="lazy" src="https://opengraph.githubassets.com/1/SYSTRAN/faster-whisper"></p>
+<p><em>Figure 1: faster-whisper GitHub repository — 23,000+ stars, actively maintained by SYSTRAN.</em></p>
+<h2 id="how-faster-whisper-works">How faster-whisper Works<a hidden class="anchor" aria-hidden="true" href="#how-faster-whisper-works">#</a></h2>
+<p>The architecture replaces PyTorch inference with CTranslate2&rsquo;s optimized runtime: <img alt="CTranslate2 Architecture" loading="lazy" src="https://opennmt.net/CTranslate2/_static/favicon.png"></p>
+<p><em>Figure 2: CTranslate2 inference engine — the C++ backend powering faster-whisper&rsquo;s speedup through custom CUDA kernels and quantization.</em></p>
+<h2 id="what-is-faster-whisper">What Is faster-whisper?<a hidden class="anchor" aria-hidden="true" href="#what-is-faster-whisper">#</a></h2>
+<p>faster-whisper is a reimplementation of OpenAI&rsquo;s Whisper automatic speech recognition (ASR) model using CTranslate2, a high-performance C++ inference engine for Transformer models. It runs the same model weights as the original Whisper but delivers substantially higher throughput and lower memory usage through custom CUDA kernels, INT8/FP16 quantization, and fused attention operations.</p>
+<p>The project started as a community effort by Guillaume Klein and is now maintained by SYSTRAN under the MIT license. It supports all Whisper model sizes (tiny through large-v3) on both CPU and NVIDIA GPU, with automatic model conversion from Hugging Face Hub on first load.</p>
+<h2 id="how-faster-whisper-works-1">How faster-whisper Works<a hidden class="anchor" aria-hidden="true" href="#how-faster-whisper-works-1">#</a></h2>
+<p>The architecture replaces PyTorch inference with CTranslate2&rsquo;s optimized runtime: `````
+Audio Input (wav/mp3/flac)
+|
+v
+PyAV Audio Decoder (FFmpeg bundled, no external dependency)
+|
+v
+Mel Spectrogram Computation
+|
+v
+CTranslate2 Whisper Engine (C++ backend)
+|&ndash; Custom CUDA kernels for NVIDIA GPU
+|&ndash; INT8/FP16 quantized weights
+|&ndash; Fused self-attention + cross-attention
+|&ndash; SIMD-optimized CPU path (AVX2/NEON)
+|
+v
+Tokenizer (Hugging Face tokenizers)
+|
+v
+Transcription Segments (start, end, text, confidence)</p>
+<pre tabindex="0"><code>
+Key technical decisions that enable the speedup: - **Weight quantization**: INT8 reduces model memory by ~50% with negligible accuracy loss (&lt; 0.1% WER).
+- **Fused kernels**: CTranslate2 merges multiple GPU operations into single kernel launches, reducing dispatch overhead.
+- **Flash Attention support**: Available on Ampere GPUs (RTX 30xx+) for additional memory bandwidth savings.
+- **Batched inference**: Process multiple audio chunks in parallel on GPU for near-linear throughput scaling.
+- **Silero VAD integration**: Built-in voice activity detection skips silent segments, reducing wasted compute.
+
+## Installation &amp; Setup
+
+### Requirements
+
+- Python 3.9+
+- For GPU: NVIDIA GPU with CUDA 12.x and cuDNN 9.x
+- No FFmpeg installation required (bundled via PyAV)
+
+### pip Install (CPU)
+
+`````bash
+# Create virtual environment
+python -m venv venv-whisper
+source venv-whisper/bin/activate  # Linux/Mac
+# venv-whisper\Scripts\activate  # Windows
+
+# Install faster-whisper
+pip install faster-whisper
+</code></pre><h3 id="pip-install-with-gpu-support">pip Install with GPU Support<a hidden class="anchor" aria-hidden="true" href="#pip-install-with-gpu-support">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install cuBLAS and cuDNN via pip (Linux only)</span>
 </span></span><span style="display:flex;"><span>pip install nvidia-cublas-cu12 nvidia-cudnn-cu12<span style="color:#f92672">==</span>9.*
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 라이브러리 경로 설정</span>
-</span></span><span style="display:flex;"><span>export LD_LIBRARY_PATH<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>python3 -c <span style="color:#960050;background-color:#1e0010">&#39;</span>import os; import nvidia.cublas.lib; import nvidia.cudnn.lib; print<span style="color:#f92672">(</span>os.path.dirname<span style="color:#f92672">(</span>nvidia.cublas.lib.__file__<span style="color:#66d9ef">)</span> + <span style="color:#e6db74">&#34;:&#34;</span> + os.path.dirname<span style="color:#f92672">(</span>nvidia.cudnn.lib.__file__<span style="color:#f92672">))</span><span style="color:#e6db74">&#34;)
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># faster-whisper 설치
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">pip install faster-whisper
-</span></span></span></code></pre></div><h3 id="docker-설정">Docker 설정<a hidden class="anchor" aria-hidden="true" href="#docker-설정">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 공식 NVIDIA CUDA 이미지 가져오기</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set library path before running</span>
+</span></span><span style="display:flex;"><span>export LD_LIBRARY_PATH<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>python3 -c <span style="color:#e6db74">&#39;import os; import nvidia.cublas.lib; import nvidia.cudnn.lib; print(os.path.dirname(nvidia.cublas.lib.__file__) + &#34;:&#34; + os.path.dirname(nvidia.cudnn.lib.__file__))&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install faster-whisper</span>
+</span></span><span style="display:flex;"><span>pip install faster-whisper
+</span></span></code></pre></div><h3 id="docker-setup">Docker Setup<a hidden class="anchor" aria-hidden="true" href="#docker-setup">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Pull the official NVIDIA CUDA image with cuDNN</span>
 </span></span><span style="display:flex;"><span>docker run -it --rm --gpus all <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/audio:/audio <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  nvidia/cuda:12.3.2-cudnn9-runtime-ubuntu22.04 <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  bash
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 컨테이너 내에서</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Inside container</span>
 </span></span><span style="display:flex;"><span>apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y python3-pip
 </span></span><span style="display:flex;"><span>pip install faster-whisper
-</span></span></code></pre></div><h3 id="설치-확인">설치 확인<a hidden class="anchor" aria-hidden="true" href="#설치-확인">#</a></h3>
+</span></span></code></pre></div><h3 id="verification">Verification<a hidden class="anchor" aria-hidden="true" href="#verification">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># verify_setup.py</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> faster_whisper <span style="color:#f92672">import</span> WhisperModel
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;PyTorch CUDA 사용 가능: </span><span style="color:#e6db74">{</span>torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>is_available()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;CUDA 장치 수: </span><span style="color:#e6db74">{</span>torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>device_count()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;PyTorch CUDA available: </span><span style="color:#e6db74">{</span>torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>is_available()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;CUDA devices: </span><span style="color:#e6db74">{</span>torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>device_count()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> WhisperModel(<span style="color:#e6db74">&#34;tiny&#34;</span>, device<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cuda&#34;</span>, compute_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;float16&#34;</span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;모델 로드 장치: </span><span style="color:#e6db74">{</span>model<span style="color:#f92672">.</span>model<span style="color:#f92672">.</span>device<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;설치 확인 성공&#34;</span>)
-</span></span></code></pre></div><h3 id="첫-번째-전사">첫 번째 전사<a hidden class="anchor" aria-hidden="true" href="#첫-번째-전사">#</a></h3>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Model loaded on: </span><span style="color:#e6db74">{</span>model<span style="color:#f92672">.</span>model<span style="color:#f92672">.</span>device<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Setup verified successfully&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python verify_setup.py
+</span></span></code></pre></div><h3 id="first-transcription">First Transcription<a hidden class="anchor" aria-hidden="true" href="#first-transcription">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> faster_whisper <span style="color:#f92672">import</span> WhisperModel
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 모델 로드(첫 실행 시 Hugging Face에서 자동 다운로드)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load model (auto-downloads from Hugging Face on first run)</span>
 </span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> WhisperModel(<span style="color:#e6db74">&#34;large-v3&#34;</span>, device<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cuda&#34;</span>, compute_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;int8&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 오디오 전사</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Transcribe audio file</span>
 </span></span><span style="display:flex;"><span>segments, info <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>transcribe(<span style="color:#e6db74">&#34;audio.mp3&#34;</span>, beam_size<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;감지된 언어: </span><span style="color:#e6db74">{</span>info<span style="color:#f92672">.</span>language<span style="color:#e6db74">}</span><span style="color:#e6db74"> &#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;(확률: </span><span style="color:#e6db74">{</span>info<span style="color:#f92672">.</span>language_probability<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">)&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Detected language: </span><span style="color:#e6db74">{</span>info<span style="color:#f92672">.</span>language<span style="color:#e6db74">}</span><span style="color:#e6db74"> &#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;(probability: </span><span style="color:#e6db74">{</span>info<span style="color:#f92672">.</span>language_probability<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">)&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> segment <span style="color:#f92672">in</span> segments: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;[</span><span style="color:#e6db74">{</span>segment<span style="color:#f92672">.</span>start<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">s -&gt; </span><span style="color:#e6db74">{</span>segment<span style="color:#f92672">.</span>end<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">s] </span><span style="color:#e6db74">{</span>segment<span style="color:#f92672">.</span>text<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</span></span></code></pre></div><h2 id="인기-도구와의-통합">인기 도구와의 통합<a hidden class="anchor" aria-hidden="true" href="#인기-도구와의-통합">#</a></h2>
-<h3 id="whisperx화자-분리">WhisperX(화자 분리)<a hidden class="anchor" aria-hidden="true" href="#whisperx화자-분리">#</a></h3>
-<p>WhisperX는 faster-whisper 위에 구축되어 단어 수준 타임스탬프와 화자 분리를 추가한다. 회의 전사를 위한 필수 도구이다.</p>
+</span></span></code></pre></div><h2 id="integration-with-popular-tools">Integration with Popular Tools<a hidden class="anchor" aria-hidden="true" href="#integration-with-popular-tools">#</a></h2>
+<h3 id="whisperx-speaker-diarization">WhisperX (Speaker Diarization)<a hidden class="anchor" aria-hidden="true" href="#whisperx-speaker-diarization">#</a></h3>
+<p>WhisperX builds on faster-whisper to add word-level timestamps and speaker diarization. It is the go-to tool for meeting transcription.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install whisperx
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> whisperx
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
@@ -414,18 +438,18 @@ aliases:</p>
 </span></span><span style="display:flex;"><span>device <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;cuda&#34;</span> <span style="color:#66d9ef">if</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>is_available() <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;cpu&#34;</span>
 </span></span><span style="display:flex;"><span>audio_file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;meeting.mp3&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1. faster-whisper 백엔드로 전사</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1. Transcribe with faster-whisper backend</span>
 </span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>load_model(<span style="color:#e6db74">&#34;large-v3&#34;</span>, device, compute_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;int8&#34;</span>)
 </span></span><span style="display:flex;"><span>audio <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>load_audio(audio_file)
 </span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>transcribe(audio, batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. 단어 수준 타임스탬프 정렬</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Align for word-level timestamps</span>
 </span></span><span style="display:flex;"><span>model_a, metadata <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>load_align_model(
 </span></span><span style="display:flex;"><span>    language_code<span style="color:#f92672">=</span>result[<span style="color:#e6db74">&#34;language&#34;</span>], device<span style="color:#f92672">=</span>device
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>align(result[<span style="color:#e6db74">&#34;segments&#34;</span>], model_a, metadata, audio, device)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. 화자 분리(Hugging Face 토큰 필요)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Speaker diarization (requires Hugging Face token)</span>
 </span></span><span style="display:flex;"><span>diarize_model <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>DiarizationPipeline(
 </span></span><span style="display:flex;"><span>    use_auth_token<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your_hf_token&#34;</span>, device<span style="color:#f92672">=</span>device
 </span></span><span style="display:flex;"><span>)
@@ -435,8 +459,8 @@ aliases:</p>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> segment <span style="color:#f92672">in</span> result[<span style="color:#e6db74">&#34;segments&#34;</span>]: speaker <span style="color:#f92672">=</span> segment<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;speaker&#34;</span>, <span style="color:#e6db74">&#34;UNKNOWN&#34;</span>)
 </span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;[</span><span style="color:#e6db74">{</span>segment[start]<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">s -&gt; </span><span style="color:#e6db74">{</span>segment[end]<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">s] &#34;</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>speaker<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>segment[text]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</span></span></code></pre></div><h3 id="whisper-asr-webserviceopenai-호환-api">whisper-asr-webservice(OpenAI 호환 API)<a hidden class="anchor" aria-hidden="true" href="#whisper-asr-webserviceopenai-호환-api">#</a></h3>
-<p>OpenAI 호환 HTTP API로 faster-whisper를 노출한다: `````bash
+</span></span></code></pre></div><h3 id="whisper-asr-webservice-openai-compatible-api">whisper-asr-webservice (OpenAI-Compatible API)<a hidden class="anchor" aria-hidden="true" href="#whisper-asr-webservice-openai-compatible-api">#</a></h3>
+<p>Expose faster-whisper via an OpenAI-compatible HTTP API: `````bash
 docker run -d &ndash;gpus all <br>
 -p 9000:9000 <br>
 -e ASR_MODEL=large-v3 <br>
@@ -453,434 +477,338 @@ with open(&#34;audio.mp3&#34;, &#34;rb&#34;) as f: response = requests.post(
         data={&#34;language&#34;: &#34;en&#34;, &#34;output&#34;: &#34;json&#34;}
     )
 print(response.json())
-</code></pre><h3 id="speaches자체-호스팅-openai-호환-서버">Speaches(자체 호스팅 OpenAI 호환 서버)<a hidden class="anchor" aria-hidden="true" href="#speaches자체-호스팅-openai-호환-서버">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d --gpus all <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  -p 8000:8000 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  -e WHISPER__MODEL<span style="color:#f92672">=</span>large-v3 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  -e WHISPER__COMPUTE_TYPE<span style="color:#f92672">=</span>int8 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  fedirz/speaches:latest-gpu
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> openai <span style="color:#f92672">import</span> OpenAI
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> OpenAI(base_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://localhost:8000/v1&#34;</span>, api_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dummy&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#34;audio.mp3&#34;</span>, <span style="color:#e6db74">&#34;rb&#34;</span>) <span style="color:#66d9ef">as</span> f: transcript <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>audio<span style="color:#f92672">.</span>transcriptions<span style="color:#f92672">.</span>create(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;large-v3&#34;</span>, file<span style="color:#f92672">=</span>f)
-</span></span><span style="display:flex;"><span>print(transcript<span style="color:#f92672">.</span>text)
-</span></span></code></pre></div><h3 id="libretranslate번역-파이프라인">LibreTranslate(번역 파이프라인)<a hidden class="anchor" aria-hidden="true" href="#libretranslate번역-파이프라인">#</a></h3>
+</code></pre><h3 id="speaches-self-hosted-openai-compatible-server">Speaches (Self-Hosted OpenAI-Compatible Server)<a hidden class="anchor" aria-hidden="true" href="#speaches-self-hosted-openai-compatible-server">#</a></h3>
+<p>Speaches is a modern, OpenAI-compatible server built on faster-whisper: `````bash
+docker run -d &ndash;gpus all <br>
+-p 8000:8000 <br>
+-e WHISPER__MODEL=large-v3 <br>
+-e WHISPER__COMPUTE_TYPE=int8 <br>
+fedirz/speaches:latest-gpu</p>
+<pre tabindex="0"><code>
+`````python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url=&#34;http://localhost:8000/v1&#34;,
+    api_key=&#34;dummy&#34;
+)
+
+with open(&#34;audio.mp3&#34;, &#34;rb&#34;) as f: transcript = client.audio.transcriptions.create(
+        model=&#34;large-v3&#34;, file=f
+    )
+print(transcript.text)
+</code></pre><h3 id="libretranslate-translation-pipeline">LibreTranslate (Translation Pipeline)<a hidden class="anchor" aria-hidden="true" href="#libretranslate-translation-pipeline">#</a></h3>
+<p>Chain transcription with translation for multilingual workflows: `````python
+from faster_whisper import WhisperModel
+import requests</p>
+<h1 id="transcribe-non-english-audio">Transcribe non-English audio<a hidden class="anchor" aria-hidden="true" href="#transcribe-non-english-audio">#</a></h1>
+<p>model = WhisperModel(&ldquo;large-v3&rdquo;, device=&ldquo;cuda&rdquo;, compute_type=&ldquo;int8&rdquo;)
+segments, info = model.transcribe(&ldquo;japanese_audio.mp3&rdquo;, beam_size=5)
+japanese_text = &quot; &ldquo;.join([s.text for s in segments])</p>
+<h1 id="translate-via-libretranslate">Translate via LibreTranslate<a hidden class="anchor" aria-hidden="true" href="#translate-via-libretranslate">#</a></h1>
+<p>response = requests.post(&ldquo;http://localhost:5000/translate&rdquo;, json={
+&ldquo;q&rdquo;: japanese_text,
+&ldquo;source&rdquo;: &ldquo;ja&rdquo;,
+&ldquo;target&rdquo;: &ldquo;en&rdquo;
+})
+translation = response.json()[&ldquo;translatedText&rdquo;]
+print(f&quot;JA: {japanese_text}&rdquo;)
+print(f&quot;EN: {translation}&rdquo;)</p>
+<pre tabindex="0"><code>
+## Benchmarks / Real-World Use Cases
+
+All benchmarks below use official numbers from the faster-whisper repository — this is the definitive faster whisper benchmark reference. Two hardware configurations are tested: an NVIDIA RTX 3070 Ti 8GB for GPU benchmarks and an Intel Core i7-12700K for CPU benchmarks.
+
+![Benchmark comparison chart](https://raw.githubusercontent.com/SYSTRAN/faster-whisper/master/benchmark/results.png)
+
+*Figure 3: Official benchmark results — faster-whisper achieves up to 8.9x speedup over openai/whisper with batched INT8 inference on RTX 3070 Ti.*
+
+### GPU Benchmark: 13 Minutes of Audio, large-v2 Model
+
+| Implementation | Precision | Beam Size | Time | VRAM Usage |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| openai/whisper | fp16 | 5 | 2m 23s | 4708 MB |
+| whisper.cpp (Flash Attention) | fp16 | 5 | 1m 05s | 4127 MB |
+| transformers (SDPA) | fp16 | 5 | 1m 52s | 4960 MB |
+| **faster-whisper** | **fp16** | **5** | **1m 03s** | **4525 MB** |
+| **faster-whisper (batch_size=8)** | **fp16** | **5** | **17s** | **6090 MB** |
+| **faster-whisper** | **int8** | **5** | **59s** | **2926 MB** |
+| **faster-whisper (batch_size=8)** | **int8** | **5** | **16s** | **4500 MB** |
+
+*Executed with CUDA 12.4 on NVIDIA RTX 3070 Ti 8GB.*
+
+Key takeaways from the GPU benchmark: - **Single inference**: faster-whisper fp16 is **2.3x faster** than openai/whisper (1m03s vs 2m23s).
+- **Batched inference**: With ````batch_size=8````, faster-whisper processes the same audio in **17 seconds** — an **8.4x speedup** over the original.
+- **INT8 quantization**: Reduces VRAM from 4525 MB to 2926 MB (35% savings) with a minor 4-second penalty.
+- **Best throughput**: INT8 batched inference hits **16 seconds**, or **8.9x faster** than openai/whisper.
+
+### CPU Benchmark: 13 Minutes of Audio, small Model
+
+| Implementation | Precision | Beam Size | Time | RAM Usage |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| openai/whisper | fp32 | 5 | 6m 58s | 2335 MB |
+| whisper.cpp | fp32 | 5 | 2m 05s | 1049 MB |
+| whisper.cpp (OpenVINO) | fp32 | 5 | 1m 45s | 1642 MB |
+| **faster-whisper** | **fp32** | **5** | **2m 37s** | **2257 MB** |
+| **faster-whisper (batch_size=8)** | **fp32** | **5** | **1m 06s** | **4230 MB** |
+| **faster-whisper** | **int8** | **5** | **1m 42s** | **1477 MB** |
+| **faster-whisper (batch_size=8)** | **int8** | **5** | **51s** | **3608 MB** |
+
+*Executed with 8 threads on Intel Core i7-12700K.*
+
+Key takeaways from the CPU benchmark: - **INT8 on CPU**: faster-whisper int8 is **4.1x faster** than openai/whisper (1m42s vs 6m58s).
+- **INT8 batched**: With ````batch_size=8````, faster-whisper finishes in **51 seconds** — **8.2x faster** than the original.
+- **Memory efficiency**: INT8 uses only 1477 MB RAM vs 2335 MB for openai/whisper (37% reduction).
+
+### distil-whisper-large-v3 Benchmark
+
+| Implementation | Precision | Beam Size | Time | YT Commons WER |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| transformers (SDPA, batch_size=16) | fp16 | 5 | 46m 12s | 14.801 |
+| **faster-whisper (batch_size=16)** | **fp16** | **5** | **25m 50s** | **13.527** |
+
+*GPU: NVIDIA RTX 3070 Ti 8GB.*
+
+### Production Use Cases
+
+| Use Case | Model | Hardware | Performance |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| **Meeting transcription** (1h audio) | large-v3 int8 | RTX 4070 | ~3 min processing |
+| **Podcast batch processing** (100 files) | large-v3 int8 batch=8 | A100 40GB | ~20 min for 100h |
+| **Real-time captions** | small int8 | RTX 3060 | ~200ms latency |
+| **Call center analytics** | medium int8 | CPU 8-core | ~2x real-time |
+| **Embedded device** | tiny int8 | ARM Cortex-A78 | ~0.5x real-time |
+
+## Advanced Usage / Production Hardening
+
+### VAD Filter for Pre-Segmentation
+
+Voice Activity Detection removes silent segments before transcription, reducing wasted compute: `````python
+from faster_whisper import WhisperModel
+
+model = WhisperModel(&#34;large-v3&#34;, device=&#34;cuda&#34;, compute_type=&#34;int8&#34;)
+
+# Enable VAD filter with custom parameters
+segments, info = model.transcribe(
+    &#34;audio.mp3&#34;,
+    vad_filter=True,
+    vad_parameters=dict(
+        min_silence_duration_ms=500,   # Split on 500ms+ silence
+        speech_pad_ms=200,              # 200ms padding around speech
+        threshold=0.5                   # VAD confidence threshold
+    ),
+    beam_size=5
+)
+</code></pre><h3 id="batched-inference-for-maximum-throughput">Batched Inference for Maximum Throughput<a hidden class="anchor" aria-hidden="true" href="#batched-inference-for-maximum-throughput">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> faster_whisper <span style="color:#f92672">import</span> WhisperModel
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> WhisperModel(<span style="color:#e6db74">&#34;large-v3&#34;</span>, device<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cuda&#34;</span>, compute_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;int8&#34;</span>)
-</span></span><span style="display:flex;"><span>segments, info <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>transcribe(<span style="color:#e6db74">&#34;japanese_audio.mp3&#34;</span>, beam_size<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
-</span></span><span style="display:flex;"><span>japanese_text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">.</span>join([s<span style="color:#f92672">.</span>text <span style="color:#66d9ef">for</span> s <span style="color:#f92672">in</span> segments])
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(<span style="color:#e6db74">&#34;http://localhost:5000/translate&#34;</span>, json<span style="color:#f92672">=</span>{
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;q&#34;</span>: japanese_text, <span style="color:#e6db74">&#34;source&#34;</span>: <span style="color:#e6db74">&#34;ja&#34;</span>, <span style="color:#e6db74">&#34;target&#34;</span>: <span style="color:#e6db74">&#34;en&#34;</span>
-</span></span><span style="display:flex;"><span>})
-</span></span><span style="display:flex;"><span>print(response<span style="color:#f92672">.</span>json()[<span style="color:#e6db74">&#34;translatedText&#34;</span>])
-</span></span></code></pre></div><h2 id="벤치마크--실제-사용-사례">벤치마크 / 실제 사용 사례<a hidden class="anchor" aria-hidden="true" href="#벤치마크--실제-사용-사례">#</a></h2>
-<p><img alt="벤치마크 비교 차트" loading="lazy" src="https://raw.githubusercontent.com/SYSTRAN/faster-whisper/master/benchmark/results.png"></p>
-<p><em>그림 3: 공식 벤치마크 결과 — faster-whisper가 RTX 3070 Ti에서 배치 INT8 추론으로 openai/whisper보다 최대 8.9배 빠르다.</em></p>
-<h3 id="gpu-벤치마크-13분-오디오-large-v2-모델">GPU 벤치마크: 13분 오디오, large-v2 모델<a hidden class="anchor" aria-hidden="true" href="#gpu-벤치마크-13분-오디오-large-v2-모델">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>구현체</th>
-					<th>정밀도</th>
-					<th>Beam Size</th>
-					<th>소요 시간</th>
-					<th>VRAM 사용량</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>openai/whisper</td>
-					<td>fp16</td>
-					<td>5</td>
-					<td>2분 23초</td>
-					<td>4708 MB</td>
-			</tr>
-			<tr>
-					<td>whisper.cpp (Flash Attention)</td>
-					<td>fp16</td>
-					<td>5</td>
-					<td>1분 05초</td>
-					<td>4127 MB</td>
-			</tr>
-			<tr>
-					<td>transformers (SDPA)</td>
-					<td>fp16</td>
-					<td>5</td>
-					<td>1분 52초</td>
-					<td>4960 MB</td>
-			</tr>
-			<tr>
-					<td><strong>faster-whisper</strong></td>
-					<td><strong>fp16</strong></td>
-					<td><strong>5</strong></td>
-					<td><strong>1분 03초</strong></td>
-					<td><strong>4525 MB</strong></td>
-			</tr>
-			<tr>
-					<td><strong>faster-whisper (batch_size=8)</strong></td>
-					<td><strong>fp16</strong></td>
-					<td><strong>5</strong></td>
-					<td><strong>17초</strong></td>
-					<td><strong>6090 MB</strong></td>
-			</tr>
-			<tr>
-					<td><strong>faster-whisper</strong></td>
-					<td><strong>int8</strong></td>
-					<td><strong>5</strong></td>
-					<td><strong>59초</strong></td>
-					<td><strong>2926 MB</strong></td>
-			</tr>
-			<tr>
-					<td><strong>faster-whisper (batch_size=8)</strong></td>
-					<td><strong>int8</strong></td>
-					<td><strong>5</strong></td>
-					<td><strong>16초</strong></td>
-					<td><strong>4500 MB</strong></td>
-			</tr>
-	</tbody>
-</table>
-<p><em>NVIDIA RTX 3070 Ti 8GB, CUDA 12.4에서 실행.</em></p>
-<h3 id="cpu-벤치마크-13분-오디오-small-모델">CPU 벤치마크: 13분 오디오, small 모델<a hidden class="anchor" aria-hidden="true" href="#cpu-벤치마크-13분-오디오-small-모델">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>구현체</th>
-					<th>정밀도</th>
-					<th>Beam Size</th>
-					<th>소요 시간</th>
-					<th>RAM 사용량</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>openai/whisper</td>
-					<td>fp32</td>
-					<td>5</td>
-					<td>6분 58초</td>
-					<td>2335 MB</td>
-			</tr>
-			<tr>
-					<td>whisper.cpp</td>
-					<td>fp32</td>
-					<td>5</td>
-					<td>2분 05초</td>
-					<td>1049 MB</td>
-			</tr>
-			<tr>
-					<td>whisper.cpp (OpenVINO)</td>
-					<td>fp32</td>
-					<td>5</td>
-					<td>1분 45초</td>
-					<td>1642 MB</td>
-			</tr>
-			<tr>
-					<td><strong>faster-whisper</strong></td>
-					<td><strong>int8</strong></td>
-					<td><strong>5</strong></td>
-					<td><strong>1분 42초</strong></td>
-					<td><strong>1477 MB</strong></td>
-			</tr>
-			<tr>
-					<td><strong>faster-whisper (batch_size=8)</strong></td>
-					<td><strong>int8</strong></td>
-					<td><strong>5</strong></td>
-					<td><strong>51초</strong></td>
-					<td><strong>3608 MB</strong></td>
-			</tr>
-	</tbody>
-</table>
-<p><em>Intel Core i7-12700K, 8 스레드에서 실행.</em></p>
-<h3 id="프로덕션-사용-사례">프로덕션 사용 사례<a hidden class="anchor" aria-hidden="true" href="#프로덕션-사용-사례">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>사용 사례</th>
-					<th>모델</th>
-					<th>하드웨어</th>
-					<th>성능</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>회의 전사</strong>(1시간 오디오)</td>
-					<td>large-v3 int8</td>
-					<td>RTX 4070</td>
-					<td>~3분 처리</td>
-			</tr>
-			<tr>
-					<td><strong>팟캐스트 일괄 처리</strong>(100파일)</td>
-					<td>large-v3 int8 batch=8</td>
-					<td>A100 40GB</td>
-					<td>100시간 기준 ~20분</td>
-			</tr>
-			<tr>
-					<td><strong>실시간 자막</strong></td>
-					<td>small int8</td>
-					<td>RTX 3060</td>
-					<td>~200ms 지연</td>
-			</tr>
-			<tr>
-					<td><strong>콜센터 분석</strong></td>
-					<td>medium int8</td>
-					<td>CPU 8코어</td>
-					<td>~2배 실시간</td>
-			</tr>
-	</tbody>
-</table>
-<h2 id="고급-사용법--프로덕션-강화">고급 사용법 / 프로덕션 강화<a hidden class="anchor" aria-hidden="true" href="#고급-사용법--프로덕션-강화">#</a></h2>
-<h3 id="vad-필터-사전-분할">VAD 필터 사전 분할<a hidden class="anchor" aria-hidden="true" href="#vad-필터-사전-분할">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> faster_whisper <span style="color:#f92672">import</span> WhisperModel
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> glob
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> WhisperModel(<span style="color:#e6db74">&#34;large-v3&#34;</span>, device<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cuda&#34;</span>, compute_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;int8&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>segments, info <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>transcribe(
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;audio.mp3&#34;</span>,
-</span></span><span style="display:flex;"><span>    vad_filter<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
-</span></span><span style="display:flex;"><span>    vad_parameters<span style="color:#f92672">=</span>dict(
-</span></span><span style="display:flex;"><span>        min_silence_duration_ms<span style="color:#f92672">=</span><span style="color:#ae81ff">500</span>,
-</span></span><span style="display:flex;"><span>        speech_pad_ms<span style="color:#f92672">=</span><span style="color:#ae81ff">200</span>,
-</span></span><span style="display:flex;"><span>        threshold<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>
-</span></span><span style="display:flex;"><span>    ),
-</span></span><span style="display:flex;"><span>    beam_size<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>
-</span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><h3 id="배치-추론으로-처리량-최대화">배치 추론으로 처리량 최대화<a hidden class="anchor" aria-hidden="true" href="#배치-추론으로-처리량-최대화">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> faster_whisper <span style="color:#f92672">import</span> WhisperModel
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> glob<span style="color:#f92672">,</span> time
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> WhisperModel(<span style="color:#e6db74">&#34;large-v3&#34;</span>, device<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cuda&#34;</span>, compute_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;int8&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Process multiple files in a single batch call</span>
 </span></span><span style="display:flex;"><span>audio_files <span style="color:#f92672">=</span> glob<span style="color:#f92672">.</span>glob(<span style="color:#e6db74">&#34;podcasts/*.mp3&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>start <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> file_path <span style="color:#f92672">in</span> audio_files: segments, _ <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>transcribe(file_path, batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>, beam_size<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
 </span></span><span style="display:flex;"><span>    text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; &#34;</span><span style="color:#f92672">.</span>join([s<span style="color:#f92672">.</span>text <span style="color:#66d9ef">for</span> s <span style="color:#f92672">in</span> segments])
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>file_path<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>len(text)<span style="color:#e6db74">}</span><span style="color:#e6db74"> 문자&#34;</span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;총 소요: </span><span style="color:#e6db74">{</span>time<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> start<span style="color:#e6db74">:</span><span style="color:#e6db74">.1f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">초, </span><span style="color:#e6db74">{</span>len(audio_files)<span style="color:#e6db74">}</span><span style="color:#e6db74">개 파일&#34;</span>)
-</span></span></code></pre></div><h3 id="단어-수준-타임스탬프">단어 수준 타임스탬프<a hidden class="anchor" aria-hidden="true" href="#단어-수준-타임스탬프">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>segments, _ <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>transcribe(<span style="color:#e6db74">&#34;audio.mp3&#34;</span>, word_timestamps<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> segment <span style="color:#f92672">in</span> segments: <span style="color:#66d9ef">for</span> word <span style="color:#f92672">in</span> segment<span style="color:#f92672">.</span>words: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;[</span><span style="color:#e6db74">{</span>word<span style="color:#f92672">.</span>start<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">s -&gt; </span><span style="color:#e6db74">{</span>word<span style="color:#f92672">.</span>end<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">s] </span><span style="color:#e6db74">{</span>word<span style="color:#f92672">.</span>word<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</span></span></code></pre></div><h3 id="커스텀-모델-변환">커스텀 모델 변환<a hidden class="anchor" aria-hidden="true" href="#커스텀-모델-변환">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install transformers<span style="color:#f92672">[</span>torch<span style="color:#f92672">]</span>&gt;<span style="color:#f92672">=</span>4.23
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>file_path<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>len(text)<span style="color:#e6db74">}</span><span style="color:#e6db74"> chars&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>ct2-transformers-converter <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  --model openai/whisper-large-v3 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  --output_dir whisper-large-v3-ct2 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  --copy_files tokenizer.json preprocessor_config.json <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  --quantization float16
-</span></span></code></pre></div><h3 id="prometheus로-모니터링">Prometheus로 모니터링<a hidden class="anchor" aria-hidden="true" href="#prometheus로-모니터링">#</a></h3>
+</span></span><span style="display:flex;"><span>elapsed <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> start
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Total time: </span><span style="color:#e6db74">{</span>elapsed<span style="color:#e6db74">:</span><span style="color:#e6db74">.1f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">s for </span><span style="color:#e6db74">{</span>len(audio_files)<span style="color:#e6db74">}</span><span style="color:#e6db74"> files&#34;</span>)
+</span></span></code></pre></div><h3 id="word-level-timestamps">Word-Level Timestamps<a hidden class="anchor" aria-hidden="true" href="#word-level-timestamps">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>segments, _ <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>transcribe(<span style="color:#e6db74">&#34;audio.mp3&#34;</span>, word_timestamps<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> segment <span style="color:#f92672">in</span> segments: <span style="color:#66d9ef">for</span> word <span style="color:#f92672">in</span> segment<span style="color:#f92672">.</span>words: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;[</span><span style="color:#e6db74">{</span>word<span style="color:#f92672">.</span>start<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">s -&gt; </span><span style="color:#e6db74">{</span>word<span style="color:#f92672">.</span>end<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">s] </span><span style="color:#e6db74">{</span>word<span style="color:#f92672">.</span>word<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="custom-model-conversion">Custom Model Conversion<a hidden class="anchor" aria-hidden="true" href="#custom-model-conversion">#</a></h3>
+<p>Convert fine-tuned Whisper models for use with faster-whisper: `````bash</p>
+<h1 id="install-conversion-dependencies">Install conversion dependencies<a hidden class="anchor" aria-hidden="true" href="#install-conversion-dependencies">#</a></h1>
+<p>pip install transformers[torch]&gt;=4.23</p>
+<h1 id="convert-a-fine-tuned-model">Convert a fine-tuned model<a hidden class="anchor" aria-hidden="true" href="#convert-a-fine-tuned-model">#</a></h1>
+<p>ct2-transformers-converter <br>
+&ndash;model openai/whisper-large-v3 <br>
+&ndash;output_dir whisper-large-v3-ct2 <br>
+&ndash;copy_files tokenizer.json preprocessor_config.json <br>
+&ndash;quantization float16</p>
+<pre tabindex="0"><code>
+`````python
+# Load the converted model
+model = WhisperModel(&#34;whisper-large-v3-ct2&#34;, device=&#34;cuda&#34;)
+</code></pre><h3 id="monitoring-with-prometheus">Monitoring with Prometheus<a hidden class="anchor" aria-hidden="true" href="#monitoring-with-prometheus">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> faster_whisper <span style="color:#f92672">import</span> WhisperModel
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> prometheus_client <span style="color:#f92672">import</span> Counter, Histogram, start_http_server
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>REQUEST_COUNT <span style="color:#f92672">=</span> Counter(<span style="color:#e6db74">&#34;transcription_requests_total&#34;</span>, <span style="color:#e6db74">&#34;총 요청 수&#34;</span>)
-</span></span><span style="display:flex;"><span>REQUEST_DURATION <span style="color:#f92672">=</span> Histogram(<span style="color:#e6db74">&#34;transcription_duration_seconds&#34;</span>, <span style="color:#e6db74">&#34;요청 소요 시간&#34;</span>)
+</span></span><span style="display:flex;"><span>REQUEST_COUNT <span style="color:#f92672">=</span> Counter(<span style="color:#e6db74">&#34;transcription_requests_total&#34;</span>, <span style="color:#e6db74">&#34;Total requests&#34;</span>)
+</span></span><span style="display:flex;"><span>REQUEST_DURATION <span style="color:#f92672">=</span> Histogram(<span style="color:#e6db74">&#34;transcription_duration_seconds&#34;</span>, <span style="color:#e6db74">&#34;Request duration&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> WhisperModel(<span style="color:#e6db74">&#34;large-v3&#34;</span>, device<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cuda&#34;</span>, compute_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;int8&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@REQUEST_DURATION.time</span>()
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">transcribe</span>(audio_path): REQUEST_COUNT<span style="color:#f92672">.</span>inc()
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> model<span style="color:#f92672">.</span>transcribe(audio_path, beam_size<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>    segments, info <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>transcribe(audio_path, beam_size<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> segments, info
 </span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expose metrics on port 8000</span>
 </span></span><span style="display:flex;"><span>start_http_server(<span style="color:#ae81ff">8000</span>)
-</span></span></code></pre></div><h3 id="우아한-오류-처리">우아한 오류 처리<a hidden class="anchor" aria-hidden="true" href="#우아한-오류-처리">#</a></h3>
+</span></span></code></pre></div><h3 id="graceful-error-handling">Graceful Error Handling<a hidden class="anchor" aria-hidden="true" href="#graceful-error-handling">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> faster_whisper <span style="color:#f92672">import</span> WhisperModel
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">safe_transcribe</span>(audio_path, device<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cuda&#34;</span>): compute_types <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;int8&#34;</span>, <span style="color:#e6db74">&#34;int8_float16&#34;</span>, <span style="color:#e6db74">&#34;float16&#34;</span>, <span style="color:#e6db74">&#34;float32&#34;</span>]
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> ct <span style="color:#f92672">in</span> compute_types: <span style="color:#66d9ef">try</span>: model <span style="color:#f92672">=</span> WhisperModel(<span style="color:#e6db74">&#34;large-v3&#34;</span>, device<span style="color:#f92672">=</span>device, compute_type<span style="color:#f92672">=</span>ct)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">safe_transcribe</span>(audio_path, device<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cuda&#34;</span>): <span style="color:#e6db74">&#34;&#34;&#34;Transcribe with fallback on GPU errors.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    compute_types <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;int8&#34;</span>, <span style="color:#e6db74">&#34;int8_float16&#34;</span>, <span style="color:#e6db74">&#34;float16&#34;</span>, <span style="color:#e6db74">&#34;float32&#34;</span>]
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> compute_type <span style="color:#f92672">in</span> compute_types: <span style="color:#66d9ef">try</span>: model <span style="color:#f92672">=</span> WhisperModel(
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;large-v3&#34;</span>, device<span style="color:#f92672">=</span>device, compute_type<span style="color:#f92672">=</span>compute_type
+</span></span><span style="display:flex;"><span>            )
 </span></span><span style="display:flex;"><span>            segments, info <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>transcribe(audio_path, beam_size<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> segments, info, ct
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">RuntimeError</span> <span style="color:#66d9ef">as</span> e: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>ct<span style="color:#e6db74">}</span><span style="color:#e6db74"> 실패: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">, 재시도...&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> segments, info, compute_type
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">RuntimeError</span> <span style="color:#66d9ef">as</span> e: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>compute_type<span style="color:#e6db74">}</span><span style="color:#e6db74"> failed: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">, retrying...&#34;</span>)
 </span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">RuntimeError</span>(<span style="color:#e6db74">&#34;모든 컴퓨트 타입 실패&#34;</span>)
-</span></span></code></pre></div><h2 id="대안과의-비교">대안과의 비교<a hidden class="anchor" aria-hidden="true" href="#대안과의-비교">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>기능</th>
-					<th>faster-whisper</th>
-					<th>OpenAI Whisper</th>
-					<th>WhisperX</th>
-					<th>whisper.cpp</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>GPU 속도 (large-v3)</strong></td>
-					<td>~12배 실시간</td>
-					<td>~3배 실시간</td>
-					<td>~12배 실시간</td>
-					<td>~8배 실시간</td>
-			</tr>
-			<tr>
-					<td><strong>VRAM (large-v3)</strong></td>
-					<td>~2.5 GB (int8)</td>
-					<td>~11 GB (fp16)</td>
-					<td>~3 GB</td>
-					<td>~3 GB</td>
-			</tr>
-			<tr>
-					<td><strong>Python API</strong></td>
-					<td>네이티브</td>
-					<td>네이티브</td>
-					<td>네이티브</td>
-					<td>래퍼만</td>
-			</tr>
-			<tr>
-					<td><strong>화자 분리</strong></td>
-					<td>없음</td>
-					<td>없음</td>
-					<td>내장</td>
-					<td>없음</td>
-			</tr>
-			<tr>
-					<td><strong>단어 수준 타임스탬프</strong></td>
-					<td>있음</td>
-					<td>없음</td>
-					<td>있음 (wav2vec2)</td>
-					<td>있음</td>
-			</tr>
-			<tr>
-					<td><strong>Apple Silicon</strong></td>
-					<td>CPU만</td>
-					<td>CPU/GPU</td>
-					<td>CPU만</td>
-					<td>Metal (가장 빠름)</td>
-			</tr>
-			<tr>
-					<td><strong>NVIDIA GPU</strong></td>
-					<td>CUDA (가장 빠름)</td>
-					<td>CUDA</td>
-					<td>CUDA</td>
-					<td>CUDA</td>
-			</tr>
-			<tr>
-					<td><strong>AMD GPU</strong></td>
-					<td>미지원</td>
-					<td>미지원</td>
-					<td>미지원</td>
-					<td>Vulkan/ROCm</td>
-			</tr>
-			<tr>
-					<td><strong>CPU 최적화</strong></td>
-					<td>int8 SIMD</td>
-					<td>기본</td>
-					<td>int8 SIMD</td>
-					<td>AVX2/NEON</td>
-			</tr>
-			<tr>
-					<td><strong>VAD 필터</strong></td>
-					<td>내장 Silero</td>
-					<td>없음</td>
-					<td>내장</td>
-					<td>수동 조정</td>
-			</tr>
-			<tr>
-					<td><strong>배치 추론</strong></td>
-					<td>지원</td>
-					<td>미지원</td>
-					<td>지원</td>
-					<td>제한적</td>
-			</tr>
-			<tr>
-					<td><strong>모델 양자화</strong></td>
-					<td>int8/fp16/fp32</td>
-					<td>fp16/fp32</td>
-					<td>int8/fp16</td>
-					<td>q4/q5/fp16</td>
-			</tr>
-			<tr>
-					<td><strong>라이선스</strong></td>
-					<td>MIT</td>
-					<td>MIT</td>
-					<td>MIT</td>
-					<td>MIT</td>
-			</tr>
-			<tr>
-					<td><strong>Stars (2026년 5월)</strong></td>
-					<td>23,000+</td>
-					<td>15,000+</td>
-					<td>12,000+</td>
-					<td>44,000+</td>
-			</tr>
-	</tbody>
-</table>
-<h3 id="선택-가이드">선택 가이드<a hidden class="anchor" aria-hidden="true" href="#선택-가이드">#</a></h3>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">RuntimeError</span>(<span style="color:#e6db74">&#34;All compute types failed&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>segments, info, used_type <span style="color:#f92672">=</span> safe_transcribe(<span style="color:#e6db74">&#34;audio.mp3&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Used compute type: </span><span style="color:#e6db74">{</span>used_type<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
+<p>| Feature | faster-whisper | OpenAI Whisper | WhisperX | whisper.cpp |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Speed (large-v3 GPU)</strong> | ~12x real-time | ~3x real-time | ~12x real-time | ~8x real-time |
+| <strong>VRAM (large-v3)</strong> | ~2.5 GB (int8) | ~11 GB (fp16) | ~3 GB | ~3 GB |
+| <strong>Python API</strong> | Native | Native | Native | Wrapper only |
+| <strong>Speaker diarization</strong> | No | No | Built-in | No |
+| <strong>Word-level timestamps</strong> | Yes | No | Yes (via wav2vec2) | Yes |
+| <strong>Apple Silicon</strong> | CPU only | CPU/GPU | CPU only | Metal (fastest) |
+| <strong>NVIDIA GPU</strong> | CUDA (fastest) | CUDA | CUDA | CUDA |
+| <strong>AMD GPU</strong> | No | No | No | Vulkan/ROCm |
+| <strong>CPU optimization</strong> | int8 SIMD | Basic | int8 SIMD | AVX2/NEON |
+| <strong>VAD filter</strong> | Built-in Silero | No | Built-in | Manual tuning |
+| <strong>Batch inference</strong> | Yes | No | Yes | Limited |
+| <strong>Model quantization</strong> | int8/fp16/fp32 | fp16/fp32 | int8/fp16 | q4/q5/fp16 |
+| <strong>License</strong> | MIT | MIT | MIT | MIT |
+| <strong>Stars (May 2026)</strong> | 23,000+ | 15,000+ | 12,000+ | 44,000+ |</p>
+<h3 id="when-to-choose-which">When to Choose Which<a hidden class="anchor" aria-hidden="true" href="#when-to-choose-which">#</a></h3>
 <ul>
-<li><strong>faster-whisper</strong>: NVIDIA GPU 또는 CPU의 Python 파이프라인. 최고의 통합 생태계. 프로덕션 STT 서비스, 배치 처리, 실시간 Python 애플리케이션에 사용.</li>
-<li><strong>OpenAI Whisper</strong>: 참조 구현이 필요한 연구 및 실험. 프로덕션 워크로드에는 피할 것.</li>
-<li><strong>WhisperX</strong>: 화자 레이블이 필요한 회의 전사, 팟캐스트, 인터뷰. faster-whisper 기반.</li>
-<li><strong>whisper.cpp</strong>: Apple Silicon, 임베디드 장치, 엣지 배포, 크로스 플랫폼 앱. Python 의존성 없음.</li>
+<li><strong>faster-whisper</strong>: Python pipelines on NVIDIA GPU or CPU. Best integration ecosystem. Use for production STT services, batch processing, and real-time Python applications.</li>
+<li><strong>OpenAI Whisper</strong>: Research and experimentation where you need the reference implementation. Avoid for production workloads.</li>
+<li><strong>WhisperX</strong>: Meeting transcription, podcasts, and interviews where speaker labels are required. Built on faster-whisper.</li>
+<li><strong>whisper.cpp</strong>: Apple Silicon, embedded devices, edge deployment, and cross-platform apps. No Python dependency.</li>
 </ul>
-<h2 id="한계--솔직한-평가">한계 / 솔직한 평가<a hidden class="anchor" aria-hidden="true" href="#한계--솔직한-평가">#</a></h2>
-<p>faster-whisper는 모든 시나리오에 적합하지 않다. 다음은 사용하지 말아야 할 경우이다: 1. <strong>Apple Silicon GPU 가속</strong>: faster-whisper는 Metal 백엔드가 없다. M 시리즈 Mac에서는 large-v3를 약 3배 실시간으로 CPU만 실행한다. whisper.cpp의 Metal은 ~10배 실시간 — 3배 더 빠르다.</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations--honest-assessment">#</a></h2>
+<p>faster-whisper is not the right tool for every scenario. Here is what it is NOT good for: 1. <strong>Apple Silicon GPU acceleration</strong>: faster-whisper has no Metal backend. On M-series Macs, it runs CPU-only at roughly 3x real-time for large-v3. whisper.cpp with Metal achieves ~10x real-time — 3x faster.</p>
 <ol start="2">
 <li>
-<p><strong>AMD GPU 지원</strong>: CTranslate2는 GPU에서 CUDA만 지원한다. AMD GPU는 지원하지 않는다. Vulkan이나 ROCm을 지원하는 whisper.cpp를 대신 사용하라.</p>
+<p><strong>AMD GPU support</strong>: CTranslate2 only supports CUDA on GPU. AMD GPUs are not supported. Use whisper.cpp with Vulkan or ROCm instead.</p>
 </li>
 <li>
-<p><strong>극한의 엣지 장치</strong>: faster-whisper는 CPU에서 작동하지만 Python 런타임 오버헤드로 인해 라즈베리 파이 Zero나 마이크로컨트롤러에는 덜 적합하다. whisper.cpp는 1GB RAM 내에서 Python 없이 실행된다.</p>
+<p><strong>Extreme edge devices</strong>: While faster-whisper works on CPU, the Python runtime overhead makes it less suitable than whisper.cpp for Raspberry Pi Zero or microcontrollers. whisper.cpp fits in 1 GB RAM and runs without Python.</p>
 </li>
 <li>
-<p><strong>화자 분리</strong>: faster-whisper는 전사만 출력한다. &ldquo;누가 언제 말했는지&rdquo; 식별은 WhisperX나 별도의 분리 파이프라인이 필요하다.</p>
+<p><strong>Speaker diarization</strong>: faster-whisper outputs transcription only. Identifying &ldquo;who spoke when&rdquo; requires WhisperX or a separate diarization pipeline.</p>
 </li>
 <li>
-<p><strong>초장시간 오디오 확장성</strong>: 30분 이상의 매우 긴 오디오의 경우 일부 CPU 제한 시나리오에서 whisper.cpp가 더 나은 확장 특성을 보일 수 있다. 특정 하드웨어에서 벤치마크하라.</p>
+<p><strong>Long-form audio scaling</strong>: On very long audio (&gt; 30 minutes), whisper.cpp can show better scaling characteristics in some CPU-bound scenarios. Benchmark your specific hardware.</p>
 </li>
 <li>
-<p><strong>비 NVIDIA GPU 서버</strong>: AMD Instinct나 Intel Arc GPU를 사용하는 인프라의 경우 faster-whisper는 CPU로 폰백된다. 이는 CTranslate2의 하드웨어적 제한이다.</p>
+<p><strong>Non-NVIDIA GPU servers</strong>: If your infrastructure runs on AMD Instinct or Intel Arc GPUs, faster-whisper will fall back to CPU. This is a hard limitation of CTranslate2.</p>
 </li>
 </ol>
-<h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
-<h3 id="faster-whisper를-실행하려면-어떤-하드웨어가-필요한가">faster-whisper를 실행하려면 어떤 하드웨어가 필요한가?<a hidden class="anchor" aria-hidden="true" href="#faster-whisper를-실행하려면-어떤-하드웨어가-필요한가">#</a></h3>
-<p>GPU 추론에는 CUDA 12.x를 지원하는 NVIDIA GPU가 필요하다. INT8 양자화는 8GB VRAM 카드(RTX 3060, RTX 4060)에서도 원활히 실행된다. CPU 추론의 경우 small 모델 기준 4코어 이상과 8GB RAM이면 충분하다. CPU에서 large-v3는 INT8 기준 약 3GB RAM이 필요하다.</p>
-<h3 id="docker에서-faster-whisper를-어떻게-설치하나">Docker에서 faster-whisper를 어떻게 설치하나?<a hidden class="anchor" aria-hidden="true" href="#docker에서-faster-whisper를-어떻게-설치하나">#</a></h3>
-<p>cuDNN 9이 포함된 공식 NVIDIA CUDA 런타임 이미지를 사용하라. 위의 설치 및 설정 섹션에 전체 Dockerfile이 나와 있다. 핵심 요구사항은 <code>nvidia/cuda:12.3.2-cudnn9-runtime-ubuntu22.04</code> 베이스 이미지이다. <code>--gpus all</code>로 GPU를 노출하라.</p>
-<h3 id="전사-정확도는-openai-whisper와-동일한가">전사 정확도는 OpenAI Whisper와 동일한가?<a hidden class="anchor" aria-hidden="true" href="#전사-정확도는-openai-whisper와-동일한가">#</a></h3>
-<p>그렇다. faster-whisper는 동일한 모델 가중치와 토크나이저를 사용한다. WER 차이는 0.1% 이내 — 실제로 구분 불가능하다. 모든 변화는 빔 서치 무작위성에서 비롯되지 추론 엔진 자체가 아니다.</p>
-<h3 id="내-gpu에-최적인-compute_type은-무엇인가">내 GPU에 최적인 compute_type은 무엇인가?<a hidden class="anchor" aria-hidden="true" href="#내-gpu에-최적인-compute_type은-무엇인가">#</a></h3>
-<p>8GB GPU와 GTX 10xx 카드에는 <code>int8</code>을, 최신 GPU(RTX 30xx/40xx/50xx, A100, H100)에는 <code>float16</code>을 사용하라. Pascal 소비자 카드(GTX 1060/1070/1080)는 fp16 지원이 제한되어 <code>int8</code>을 사용해야 한다.</p>
-<h3 id="faster-whisper와-whisperx의-차이점은-무엇인가">faster-whisper와 WhisperX의 차이점은 무엇인가?<a hidden class="anchor" aria-hidden="true" href="#faster-whisper와-whisperx의-차이점은-무엇인가">#</a></h3>
-<p>WhisperX는 faster-whisper 위에 구축되어 wav2vec2를 통한 화자 분리와 단어 수준 타임스탬프 정렬을 추가한다. 순수 전사에는 faster-whisper만으로 충분하다. 회의나 인터뷰에서 &ldquo;누가 뭘 말했는지&quot;가 필요할 때 WhisperX를 사용하라.</p>
-<h3 id="faster-whisper를-실시간-스트리밍에-사용할-수-있나">faster-whisper를 실시간 스트리밍에 사용할 수 있나?<a hidden class="anchor" aria-hidden="true" href="#faster-whisper를-실시간-스트리밍에-사용할-수-있나">#</a></h3>
-<p>Whisper-Streaming이나 WhisperLive와 통합하면 가능하다. faster-whisper 자체는 네이티브 스트리밍을 지원하지 않지만 낮은 지연 시간으로 스트리밍 서버의 백엔드로 이상적이다. GPU의 small 모델 기준 일반적인 종단 간 지연은 200-500ms이다.</p>
-<h3 id="미세-조정된-whisper-모델을-어떻게-변환하나">미세 조정된 Whisper 모델을 어떻게 변환하나?<a hidden class="anchor" aria-hidden="true" href="#미세-조정된-whisper-모델을-어떻게-변환하나">#</a></h3>
-<p>고급 사용법 섹션에 표시된 <code>ct2-transformers-converter</code> CLI 도구를 사용하라. Hugging Face Hub의 모든 모델이나 Transformers와 호환되는 로컬 체크포인트를 변환할 수 있다. 변환 중 FP16과 INT8 양자화를 모두 지원한다.</p>
-<h3 id="faster-whisper는-모든-whisper-모델-크기를-지원하나">faster-whisper는 모든 Whisper 모델 크기를 지원하나?<a hidden class="anchor" aria-hidden="true" href="#faster-whisper는-모든-whisper-모델-크기를-지원하나">#</a></h3>
-<p>그렇다 — tiny, base, small, medium, large-v1, large-v2, large-v3를 모두 지원한다. distil-whisper 변형(distil-large-v3)도 지원되어 미미한 정확도 희생으로 훨씬 빠른 추론이 가능하다.</p>
-<h2 id="결론">결론<a hidden class="anchor" aria-hidden="true" href="#결론">#</a></h2>
-<p>faster-whisper는 Python 환경에서 OpenAI Whisper의 프로덕션 런타임 선택이다. 참조 구현 대비 4배의 속도 향상, INT8 양자화를 통한 70% VRAM 절감, 그리고 WhisperX, speaches, whisper-asr-webservice를 포함한 성숙한 통합 생태계로 단일 파일 전사부터 수백 시간의 오디오 일괄 처리까지 모든 것을 처리한다.</p>
-<p>데이터가 분명하다: NVIDIA GPU와 Python을 사용한다면 faster-whisper가 기준선이다. 일반 용도는 int8 large-v3 모델로 시작하고, 실시간에는 small로 낮추고, 화자 레이블이 필요할 때 WhisperX를 통합하라.</p>
-<p><strong>액션 아이템:</strong></p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<h3 id="what-hardware-do-i-need-to-run-faster-whisper">What hardware do I need to run faster-whisper?<a hidden class="anchor" aria-hidden="true" href="#what-hardware-do-i-need-to-run-faster-whisper">#</a></h3>
+<p>For GPU inference, any NVIDIA GPU with CUDA 12.x support works. INT8 quantization runs comfortably on 8 GB VRAM cards (RTX 3060, RTX 4060). For CPU inference, 4+ cores and 8 GB RAM are sufficient for the small model. The large-v3 model needs ~3 GB RAM with INT8 on CPU.</p>
+<h3 id="how-do-i-install-faster-whisper-in-docker">How do I install faster-whisper in Docker?<a hidden class="anchor" aria-hidden="true" href="#how-do-i-install-faster-whisper-in-docker">#</a></h3>
+<p>Use the official NVIDIA CUDA runtime image with cuDNN 9. A complete faster whisper docker configuration is shown in the Installation &amp; Setup section above. The key requirement is the <code>nvidia/cuda:12.3.2-cudnn9-runtime-ubuntu22.04</code> base image. Run with <code>--gpus all</code> to expose the GPU.</p>
+<h3 id="is-transcription-accuracy-identical-to-openai-whisper">Is transcription accuracy identical to OpenAI Whisper?<a hidden class="anchor" aria-hidden="true" href="#is-transcription-accuracy-identical-to-openai-whisper">#</a></h3>
+<p>Yes. faster-whisper uses the same model weights and tokenizer. Word Error Rate (WER) differences are within 0.1% — indistinguishable in practice. Any variation comes from beam search randomness, not the inference engine.</p>
+<h3 id="what-is-the-best-compute_type-for-my-gpu">What is the best compute_type for my GPU?<a hidden class="anchor" aria-hidden="true" href="#what-is-the-best-compute_type-for-my-gpu">#</a></h3>
+<p>Use <code>int8</code> for maximum VRAM savings (suitable for GTX 10xx cards and 8 GB GPUs). Use <code>float16</code> for best speed on modern GPUs (RTX 30xx/40xx/50xx, A100, H100). Use <code>int8_float16</code> as a middle ground. Pascal consumer cards (GTX 1060/1070/1080) should use <code>int8</code> due to limited fp16 support.</p>
+<h3 id="how-does-faster-whisper-compare-to-whisperx">How does faster-whisper compare to WhisperX?<a hidden class="anchor" aria-hidden="true" href="#how-does-faster-whisper-compare-to-whisperx">#</a></h3>
+<p>WhisperX builds on top of faster-whisper and adds speaker diarization + word-level timestamp alignment via wav2vec2. For pure transcription, faster-whisper is sufficient. Use WhisperX when you need &ldquo;who said what&rdquo; labels in meetings or interviews.</p>
+<h3 id="can-i-use-faster-whisper-for-real-time-streaming">Can I use faster-whisper for real-time streaming?<a hidden class="anchor" aria-hidden="true" href="#can-i-use-faster-whisper-for-real-time-streaming">#</a></h3>
+<p>Yes, via integration with Whisper-Streaming or WhisperLive. faster-whisper itself does not stream natively, but its low latency makes it ideal as a backend for streaming servers. Typical end-to-end latency is 200-500 ms for the small model on GPU.</p>
+<h3 id="how-do-i-convert-a-fine-tuned-whisper-model">How do I convert a fine-tuned Whisper model?<a hidden class="anchor" aria-hidden="true" href="#how-do-i-convert-a-fine-tuned-whisper-model">#</a></h3>
+<p>Use the <code>ct2-transformers-converter</code> CLI tool (shown in Advanced Usage). Any model on Hugging Face Hub or local checkpoint compatible with Transformers can be converted. Both FP16 and INT8 quantization are supported during conversion.</p>
+<h3 id="does-faster-whisper-support-all-whisper-model-sizes">Does faster-whisper support all Whisper model sizes?<a hidden class="anchor" aria-hidden="true" href="#does-faster-whisper-support-all-whisper-model-sizes">#</a></h3>
+<p>Yes — tiny, base, small, medium, large-v1, large-v2, and large-v3 are all supported. The distil-whisper variants (distil-large-v3) are also supported for even faster inference with a small accuracy trade-off.</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>faster-whisper is the production runtime of choice for OpenAI Whisper in Python environments. With 4x speedup over the reference implementation, 70% VRAM reduction via INT8 quantization, and a mature ecosystem of integrations (WhisperX, speaches, whisper-asr-webservice), it handles everything from single-file transcription to batch-processing hundreds of hours of audio.</p>
+<p>The data is clear: in any whisper vs faster whisper comparison, the performance advantage goes to the CTranslate2-based runtime. If you run NVIDIA GPUs and Python, faster-whisper is the baseline. Start with the int8 large-v3 model for general use, drop to small for real-time, and integrate WhisperX when you need speaker labels.</p>
+<p><strong>Action items:</strong></p>
 <ol>
-<li>````pip install faster-whisper```를 실행하고 위의 확인 스크립트를 실행하라.</li>
-<li>저장소의 13분 테스트 오디오로 하드웨어를 벤치마크하라.</li>
-<li>프로덕션 파이프라인을 위해 Docker 배포를 설정하라.</li>
-<li><a href="https://t.me/dibi8tech">dibi8.com Telegram 그룹</a>에 가입하여 벤치마크 결과를 공유하고 프로덕션 지원을 받아라.</li>
+<li>````pip install faster-whisper``` and run the verification script above.</li>
+<li>Benchmark your hardware with the 13-minute test audio from the repo.</li>
+<li>Set up Docker deployment for your production pipeline.</li>
+<li>Join the <a href="https://t.me/dibi8tech">dibi8.com Telegram group</a> to share benchmarks and get help with production issues.</li>
 </ol>
-<h2 id="추천-호스팅-및-인프라">추천 호스팅 및 인프라<a hidden class="anchor" aria-hidden="true" href="#추천-호스팅-및-인프라">#</a></h2>
-<p>위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.</p>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-hosting--infrastructure">#</a></h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
 <ul>
-<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.</li>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
 </ul>
-<p><em>제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.</em></p>
-<h2 id="출처-및-추가-자료">출처 및 추가 자료<a hidden class="anchor" aria-hidden="true" href="#출처-및-추가-자료">#</a></h2>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading<a hidden class="anchor" aria-hidden="true" href="#sources--further-reading">#</a></h2>
 <ul>
-<li>faster-whisper GitHub 저장소: <a href="https://github.com/SYSTRAN/faster-whisper">https://github.com/SYSTRAN/faster-whisper</a></li>
-<li>CTranslate2 문서: <a href="https://opennmt.net/CTranslate2/">https://opennmt.net/CTranslate2/</a></li>
-<li>WhisperX(화자 분리): <a href="https://github.com/m-bain/whisperX">https://github.com/m-bain/whisperX</a></li>
-<li>whisper.cpp(C++ 포트): <a href="https://github.com/ggml-org/whisper.cpp">https://github.com/ggml-org/whisper.cpp</a></li>
-<li>OpenAI Whisper(참조 구현): <a href="https://github.com/openai/whisper">https://github.com/openai/whisper</a></li>
-<li>Speaches(OpenAI 호환 서버): <a href="https://github.com/speaches-ai/speaches">https://github.com/speaches-ai/speaches</a></li>
-<li>Whisper-Streaming(실시간): <a href="https://github.com/ufal/whisper_streaming">https://github.com/ufal/whisper_streaming</a></li>
-<li>PyAV(오디오 디코딩): <a href="https://github.com/PyAV-Org/PyAV">https://github.com/PyAV-Org/PyAV</a></li>
+<li>faster-whisper GitHub repository: <a href="https://github.com/SYSTRAN/faster-whisper">https://github.com/SYSTRAN/faster-whisper</a></li>
+<li>CTranslate2 documentation: <a href="https://opennmt.net/CTranslate2/">https://opennmt.net/CTranslate2/</a></li>
+<li>WhisperX (speaker diarization): <a href="https://github.com/m-bain/whisperX">https://github.com/m-bain/whisperX</a></li>
+<li>whisper.cpp (C++ port): <a href="https://github.com/ggml-org/whisper.cpp">https://github.com/ggml-org/whisper.cpp</a></li>
+<li>OpenAI Whisper (reference implementation): <a href="https://github.com/openai/whisper">https://github.com/openai/whisper</a></li>
+<li>Speaches (OpenAI-compatible server): <a href="https://github.com/speaches-ai/speaches">https://github.com/speaches-ai/speaches</a></li>
+<li>Whisper-Streaming (real-time): <a href="https://github.com/ufal/whisper_streaming">https://github.com/ufal/whisper_streaming</a></li>
+<li>PyAV (audio decoding): <a href="https://github.com/PyAV-Org/PyAV">https://github.com/PyAV-Org/PyAV</a></li>
 <li>Silero VAD: <a href="https://github.com/snakers4/silero-vad">https://github.com/snakers4/silero-vad</a></li>
 </ul>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;faster-whisper: 23K+ Stars로 4배 빠른 음성-텍스트 변환 — 2026년 WhisperX, whisper.cpp과 벤치마크 비교&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;faster-whisper: 4x Faster Speech-to-Text with 23K+ Stars — Benchmark vs WhisperX, whisper.cpp in 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;author&rdquo;: {
@@ -897,18 +825,18 @@ print(response.json())
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/faster-whisper%22">https://dibi8.com/kr/resources/faster-whisper"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/faster-whisper%22">https://dibi8.com/resources/faster-whisper"</a>
 }
 }
 </script></p>
 <hr>
 <h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
 <ul>
-<li><a href="/ko/ai-coding-agents/faster-whisper/">voicebox-open-source-ai-voice-studio</a></li>
 <li><a href="/ko/ai-coding-agents/faster-whisper/">ray-distributed-ai-framework-complete-guide</a></li>
 <li><a href="/ko/ai-coding-agents/faster-whisper/">cleanlab-11k-star-ai-data-cleaning</a></li>
 <li><a href="/ko/ai-coding-agents/faster-whisper/">freqtrade-python-crypto-trading-bot-backtest-optimize-deploy</a></li>
 <li><a href="/ko/ai-coding-agents/faster-whisper/">agent-reach-internet-access-ai-agents</a></li>
+<li><a href="/ko/ai-coding-agents/faster-whisper/">microsoft-markitdown-file-to-markdown-converter-cli</a></li>
 </ul>
 <hr>
 <p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
@@ -954,6 +882,81 @@ print(response.json())
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

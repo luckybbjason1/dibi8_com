@@ -82,8 +82,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "Postman vs Insomnia vs Bruno: 2025년 최고의 API 테스트 도구 비교 {\u003c/* resource-info */\u003e}\nAPI는 현대 소프트웨어의 혈관입니다. REST, GraphQL, gRPC, WebSocket 등 다양한 프로토콜을 테스트할 수 있는 도구의 선택은 개발 효율성을 좌우합니다. 2025년 현재 API 클라이언트 시장은 Postman의 독주에서 Git 친화적 대안으로의 전환을 겪고 있습니다. 이 글에서는 Postman, Insomnia, Bruno를 7개 기준으로 심층 비교합니다.\n2025년 API 테스트 도구 시장의 변화 Postman은 2012년 출시 이후 2,500만 명의 개발자가 사용하는 업계 표준입니다. 하지만 2023년 강제 클라우드 계정 전환과 가격 인상 이후, 개발자 커뮤니티는 대안을 모색하기 시작했습니다. 특히 Git 버전 관리가 가능한 “코드로서의 API 컬렉션” 개념이 주목받으며 Bruno가 빠르게 성장했습니다. 2025년 1월 기준 Bruno의 GitHub Star 수는 30,000개를 돌파했습니다.\nPostman: 확립된 리더 Postman의 강점은 방대한 생태계와 엔터프라이즈 지원에 있습니다.\n주요 기능:\nCollections, Environments, Tests의 3단 구조 Postman Flows로 노드 기반 API 오케스트레이션 자동 API 문서 생성 및 게시 팀 Workspace와 실시간 협업 Mock Server와 모니터링 기능 20,000개 이상의 Public API 컬렉션 가격:\nFree: 최대 3인 팀, 기본 기능 Basic: $12/사용자/월, 무제한 컬렉션 Professional: $29/사용자/월, 고급 보안 Enterprise: $49/사용자/월, SSO, 감사 로그 단점:\n강제 클라우드 동기화 (로컬 전용 사용 불가) 2023년 이후 물리 기능 대폭 축소 RAM 사용량이 높은 Electron 기반 앱 Insomnia: 개발자 친화적 대안 2022년 Kong사에 인수된 Insomnia는 깔끔한 UI와 다중 프로토콜 지원으로 인기를 얻고 있습니다.\n주요 기능:\nREST, GraphQL, gRPC, WebSocket을 단일 도구에서 지원 깔끔하고 직관적인 사용자 인터페이스 환경 및 변수 관리 (폴리모픽 변수 지원) Plugin 생태계로 기능 확장 Kong Gateway와의 통합 Postman 대비 강점:\nUI가 30% 더 가볍고 반응 속도가 빠름 GraphQL의 스키마 탐색 기능이 우수 플러그인으로 커스터마이징 가능 단점:\n2024년 이후 Kong의 클라우드 전략으로 일부 기능이 유료화 팀 협업 기능이 Postman보다 제한적 테스트 자동화 기능은 Postman보다 부족 Bruno: Git 네이티브 혁명 Bruno은 2023년 출시된 신생 오픈소스 API 클라이언트로, “Git 친화적\"이라는 단 하나의 차별점으로 폭발적인 성장을 이뤘습니다.\n핵심 차별점:\n컬렉션이 ```.bru```` 텍스트 파일로 저장되어 Git diff 가능 오프라인 우선 설계, 클라우드 로그인 불필요 100% 오픈소스 (MIT 라이선스) JavaScript로 테스트 스크립트 작성 CLI bru 명령어로 CI/CD 통합 왜 Git 친화적인가?\nPostman의 컬렉션은 JSON 낸에 모든 정보를 담아 Git diff가 읽기 어렵습니다. 반면 Bruno의 .bru 파일은 다음과 같이 인간이 읽을 수 있는 형식입니다: ````` meta { name: Get Users type: http seq: 1 }\nget { url: /api/users body: none auth: bearer }\nheaders { Content-Type: application/json }\nPR에서 API 엔드포인트의 변경 사항을 코드 리뷰하듯 검토할 수 있습니다. ## 3종 비교표 | 기준 | Postman | Insomnia | Bruno | |------|---------|----------|-------| | 가격(개인) | 물리(제한) | 물리(제한) | 완전 물리 | | Git 통합 | 낯출 (낯동기화) | 보통 | 네이티브 (.bru 파일) | | 오프라인 | 불가 (강제 클라우드) | 가능 | 완전 지원 | | 프로토콜 | REST, GraphQL, gRPC, WS | REST, GraphQL, gRPC, WS | REST, GraphQL, WS | | CLI 도구 | Newman ($) | insomnia-cli | bru (기본 포함) | | 오픈소스 | X | X | O (MIT) | | 협업 | 우수 (Workspace) | 보통 | Git 기반 | | RAM 사용 | 높음 (Electron) | 중간 | 낮음 | | 문서화 | 우수 (자동 생성) | 보통 | 기본 제공 | | 테스트 스크립트 | JavaScript | JavaScript | JavaScript | ## Git 통합과 버전 관리: 왜 중요한가? API 스펙은 애플리케이션 코드만큼이나 중요한 자산입니다. Bruno의 철학은 \"API 컬렉션도 코드처럼 관리하자\"입니다. ````.bru```` 파일을 Git에 커밋하면: 1. PR에서 API 변경 사항을 코드 리뷰할 수 있음 2. 브랜치별로 다른 API 버전 관리 가능 3. CI/CD 파이프라인에서 API 테스트 자동화 4. 히스토리 추적 및 롤백 용이 Postman도 컬렉션을 JSON으로 낯출 수 있지만, 이는 workaround에 가깝습니다. Bruno는 이를 처음부터 설계에 반영했습니다. ## CLI와 자동화 기능 ### Bruno CLI Bruno의 CLI는 설치 즉시 사용 가능합니다: `````bash npm install -g @usebruno/cli bru run collection --env dev GitHub Actions와의 통합 예시: `````yaml\nname: Run API Tests run: | npm install -g @usebruno/cli bru run api-tests –env ci ### Newman (Postman CLI) Newman은 Postman의 CLI 도구로, 수년간 안정적으로 사용되어 왔습니다. 하지만 물리 사용자는 기본적으로 사용할 수 없습니다: `````bash npm install -g newman newman run collection.json -e environment.json Insomnia CLI Insomnia도 CLI를 제공하지만, 2024년 기준 기능이 Bruno나 Newman보다 제한적입니다.\n기타 주목할만한 API 테스트 도구 도구 특징 적합한 사용자 HTTPie Desktop 직관적인 HTTP 클라이언트 CLI HTTPie 팬 Hoppscotch 브라우저 기반, 오픈소스 가벼운 테스트 Thunder Client VS Code 확장, 초경량 VS Code 고수 REST Client 파일 기반 HTTP 요청 마크다운 애호가 워크플로우별 도구 추천 개인 개발자: Bruno 또는 Insomnia 큰 제약 없이 물리로 사용할 수 있습니다. Git 버전 관리가 중요하면 Bruno, 다중 프로토콜 지원이 중요하면 Insomnia를 선택하세요.\n협업 우선 팀: Postman 팀 Workspace, 실시간 동기화, 권한 관리가 필요한 경우 Postman이 여전히 최선입니다. 엔터프라이즈 환경에서의 안정성도 검증되었습니다.\nGit-First 팀: Bruno API 컬렉션을 코드처럼 PR로 리뷰하고, CI/CD에서 자동 테스트하는 워크플로우를 원한다면 Bruno이 유일한 선택지입니다.\nVS Code 사용자: Thunder Client 또는 REST Client 에디터 전환 없이 API 테스트를 하려면 Thunder Client 확장이 가장 편리합니다.\n마이그레이션 가이드: Postman에서 Bruno으로 낯출: Postman에서 Collection → Export → Collection v2.1 선택 변환: Bruno의 Import 기능으로 .json 파일 업로드 환경 변수: Postman Environment를 .env 파일로 변환 스크립트: Postman의 ````pm.*``` API를 Bruno의 JavaScript 문법으로 변환 2025년 3월 기준 Bruno의 Postman importer는 95% 이상의 컬렉션을 정확히 변환합니다. 복잡한 테스트 스크립트만 수동 수정이 필요합니다.\n결론 2025년 API 테스트 도구의 선택은 우선순위의 문제입니다. 강력한 협업과 생태계를 원한다면 Postman, 가벼운 멀티 프로토콜 지원을 원한다면 Insomnia, 코드로서의 API 관리를 원한다면 Bruno이 각각 최적의 답입니다.\nGit 네이티브 API 클라이언트의 부상은 개발자 커뮤니티가 “단순한 도구\"에서 “워크플로우의 일부\"로 API 테스트를 재정의하고 있음을 보여줍니다.\nFAQ Bruno이 Postman보다 더 나은가요?\n상황에 따라 다릅니다. Git 버전 관리와 오프라인 사용이 중요하면 Bruno이 우수합니다. 팀 협업, API 문서화, Mock Server 등의 기능이 필요하면 Postman이 더 적합합니다.\n최고의 물리 API 테스트 도구는 무엇인가요?\n2025년 기준 개인 사용자에게 가장 적합한 물리 도구는 Bruno입니다. 완전 물리이며 CLI, Git 통합, 오프라인 사용이 모두 지원됩니다. Insomnia의 물리 요금제도 좋은 대안입니다.\nAPI 테스트 도구를 오프라인에서 사용할 수 있나요?\nBruno은 완전한 오프라인 사용을 지원합니다. Postman은 2023년 이후 클라우드 계정 생성을 강제하며, Insomnia는 로컬 사용이 가능하지만 일부 기능은 인터넷 연결이 필요합니다.\nPostman에서 Bruno으로 어떻게 마이그레이션하나요?\nPostman에서 컬렉션을 v2.1 JSON으로 낯출한 뒤, Bruno의 Import 기능으로 불러오면 됩니다. 환경 변수와 테스트 스크립트는 수동 검증이 필요합니다.\nGraphQL과 gRPC를 동시에 지원하는 API 클라이언트는 무엇인가요?\nPostman과 Insomnia가 REST, GraphQL, gRPC, WebSocket을 모두 지원합니다. Bruno은 2025년 현재 gRPC 지원을 베타 단계에서 준비 중입니다.\n추천 인프라 위 도구들을 24/7 안정 운영하려면 인프라가 중요하다: - DigitalOcean — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.\nHTStack — 홍콩 VPS, 중국 본토 저지연. dibi8.com 자체 호스팅 IDC. 추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Postman vs Insomnia vs Bruno: 2025년 최고의 API 테스트 도구 비교”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/api-testing-tools-postman-vs-insomnia-vs-bruno\" } } Why This Matters Understanding postman vs insomnia vs bruno: 2025년 최고의 api 테스트 도구 비교 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Postman vs Insomnia vs Bruno: 2025년 최고의 API 테스트 도구 비교 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\n",
-  "wordCount" : "1260",
+  "articleBody": "{\u003c/* resource-info */\u003e}\nKiểm thử API là một phần không thể thiếu trong quy trình phát triển phần mềm hiện đại. Từ việc gỡ lỗi endpoint REST cho đến tự động hóa kiểm thử CI/CD, việc chọn đúng công cụ kiểm thử API có thể tăng đáng kể năng suất của nhóm phát triển. Năm 2025, bức tranh công cụ kiểm thử API đang thay đổi mạnh mẽ với sự trỗi dậy của các client thân thiện với Git và xu hướng “collections as code”.\nBối Cảnh Công Cụ Kiểm Thử API Năm 2025 Tại Sao Kiểm Thử API Quan Trọng trong Phát Triển Hiện Đại? Kiến trúc microservices và API-first đã trở thành tiêu chuẩn ngành. Theo báo cáo Postman State of the API 2024, 89% tổ chức coi API là trung tâm của chiến lược kỹ thuật số. Điều này đặt ra yêu cầu cao hơn cho công cụ kiểm thử: không chỉ gửi request đơn giản mà còn cần hỗ trợ tự động hóa, collaboration, và version control.\nSự Chuyển Dịch từ Thống Trị của Postman sang Các Lựa Chọn Đa Dạng Postman đã thống trị thị trường API client trong gần một thập kỷ. Tuy nhiên, việc chuyển sang mô hình cloud-only, thay đổi chính sách giá, và yêu cầu đăng nhập bắt buộc đã tạo cơ hội cho các alternative như Insomnia, Bruno, Hoppscotch, và Thunder Client phát triển.\nNhà Phát Triển Cần Gì từ API Client Ngày Nay? Theo khảo sát của Stack Overflow 2024, các yêu cầu hàng đầu bao gồm: hỗ trợ offline (78%), tích hợp Git (72%), giao diện nhẹ (68%), và CLI cho CI/CD (65%). Đây chính xác là những điểm mà các công cụ mới như Bruno đang tập trung.\nPostman: Ngườidẫn Đầu Đã Được Khẳng Định Các Tính Năng Cốt Lõi Postman vẫn là nền tảng kiểm thử API toàn diện nhất với hơn 25 triệu ngườidùng. Các tính năng nổi bật: - Collections: Tổ chức request thành collection có thể chia sẻ\nEnvironments: Quản lý biến môi trường (dev, staging, production) Tests: Viết test script bằng JavaScript Postman Flows: Tạo workflow kiểm thử trực quan API Documentation: Tự động tạo documentation từ collection Monitoring: Lên lịch chạy collection định kỳ Mock Servers: Tạo server giả lập cho API Hệ Sinh Thái và Tích Hợp Doanh Nghiệp Postman vượt trội ở khả năng tích hợp doanh nghiệp. Hỗ trợ SSO, role-based access control, audit logs, và API governance. Nền tảng Public API Network với hơn 100.000 API miễn phí cũng là tài nguyên quý giá cho developers.\nThay Đổi Giá và Lo Ngại Cloud-Only Năm 2023, Postman bắt buộc ngườidùng đăng nhập tài khoản để sử dụng, loại bỏ hoàn toàn chế độ offline. Điều này gây ra làn sóng phản đối từ cộng đồng. Gói miễn phí giới hạn 3 ngườidùng/collection, Basic $14/tháng, Professional $29/tháng, Enterprise $49/tháng.\nĐiểm Mạnh Hệ sinh thái phong phú nhất Tích hợp enterprise sâu rộng Hỗ trợ đầy đủ REST, GraphQL, gRPC, WebSocket Tài liệu học tập phong phú tại learning.postman.com Insomnia: Lựa Chọn Thân Thiện với Nhà Phát Triển Giao Diện Sạch và Workflow Đơn Giản Insomnia nổi tiếng với giao diện tối giản, tập trung vào trải nghiệm ngườidùng. Không giống Postman với hàng tá tab và menu, Insomnia thiết kế xoay quanh workflow: tạo request → chọn environment → gửi → xem kết quả.\nHỗ Trợ Đa Giao Thức Insomnia hỗ trợ đầy đủ các giao thức phổ biến: - REST/HTTP: Đầy đủ methods, headers, authentication\nGraphQL: Explorer tích hợp, tự động introspection gRPC: Hỗ trợ protobuf, server streaming WebSocket: Real-time testing với GUI MQTT: Hỗ trợ IoT protocols Sự Phát Triển Sau Khi Kong Mua Lại Insomnia được Kong Inc. mua lại năm 2019. Từ đó, Insomnia tích hợp chặt hơn với Kong Gateway và phát triển hệ sinh thái plugin. Tuy nhiên, một số ngườidùng lo ngại về việc Insomnia cũng đang hướng đến mô hình cloud-first.\nHệ Sinh Thái Plugin Insomnia hỗ trợ plugin system cho phép mở rộng tính năng. Các plugin phổ biến bao gồm: theme customizer, additional exporters, và integration với các dịch vụ bên thứ ba.\nGiá cả: Free (cơ bản), Individual $50/năm, Team $120/ngườidùng/năm.\nBruno: Cuộc Cách Mạng Git-Native Bruno Khác Biệt Như Thế Nào? Bruno là API client mới nhất trong ba công cụ, nhưng đang tạo nên làn sóng mạnh mẽ với triết lý “Git-first, offline-first”. Ra mắt năm 2023 bởi Anoop M D, Bruno đã đạt hơn 25.000 stars trên GitHub tính đến tháng 3 năm 2025.\nĐịnh Dạng Collection Thân Thiện với Git (Bru Files) Điểm độc đáo cốt lõi của Bruno là lưu collection dưới dạng plain text files có đuôi .bru. Mỗi request là một file riêng biệt, dễ dàng diff, review, và merge trong Git: ```` collections/ ├── Get Users.bru ├── Create User.bru ├── auth/ │ ├── Login.bru │ └── Logout.bru └── environments/ ├── local.bru └── production.bru\nKhác với Postman export JSON khổng lồ khó review, mỗi file ``.bru`` đơn giản và readable: `````bru meta { name: Get Users type: http seq: 1 } get { url: /api/users body: none auth: bearer } headers { Content-Type: application/json } auth:bearer { token: } Offline-First, Không Cloud Lock-in Bruno hoạt động hoàn toàn offline. Không cần tài khoản, không đồng bộ cloud, không tracking. Dữ liệu của bạn luôn nằm trên local disk — đây là lý do chính khiến nhiều developer chuyển sang Bruno.\nMã Nguồn Mở và CLI Support Bruno là open-source (MIT license) và cung cấp CLI (bru run) cho CI/CD. Bạn có thể chạy collection trong GitHub Actions, GitLab CI, hay bất kỳ pipeline nào: `````yaml\n.github/workflows/api-tests.yml name: Run API Tests run: npx @usebruno/cli run –env local ### Scripting với JavaScript Bruno hỗ trợ pre-request và post-response scripts bằng JavaScript, tương tự Postman nhưng với cú pháp đơn giản hơn: `````javascript // Pre-request script const token = bru.getEnvVar(\"authToken\"); req.setHeader(\"Authorization\", ````Bearer ${token}````); So Sánh Trực Tiếp: Postman vs Insomnia vs Bruno Tiêu chí Postman Insomnia Bruno Giá cá nhân Free (giới hạn) Free Miễn phí hoàn toàn Giá team $14-49/tháng $10/tháng $19/tháng (Golden Edition) Mã nguồn mở ❌ ❌ ✅ MIT License Offline ❌ Bắt buộc đăng nhập ✅ ✅ Hoàn toàn offline Git-friendly ⚠️ Export/import ⚠️ Export/import ✅ Native Bru files CLI/CI ✅ Newman ⚠️ Limited ✅ @usebruno/cli REST ✅ ✅ ✅ GraphQL ✅ ✅ ✅ gRPC ✅ ✅ ❌ WebSocket ✅ ✅ ✅ Platform Win/Mac/Linux Win/Mac/Linux Win/Mac/Linux Collection as Code ❌ ❌ ✅ API Documentation ✅ Tích hợp ⚠️ Plugin ❌ Mock Server ✅ ❌ ❌ Monitoring ✅ ❌ ❌ So Sánh Giá Chi Tiết Gói Postman Insomnia Bruno Free 3 users/collection Không giới hạn cơ bản Unlimited, tất cả tính năng Cá nhân $14/tháng $4/tháng Free Team $29/tháng $10/tháng $19/tháng Enterprise $49/tháng Custom Custom Các Công Cụ Kiểm Thử API Khác Đáng Chú Ý HTTPie Desktop HTTPie bắt đầu như CLI tool với syntax thân thiện (http GET example.com), nay đã có phiên bản Desktop. Phù hợp cho ngườithích giao diện sạch và CLI integration. Website: httpie.io\nHoppscotch Hoppscotch là API client hoàn toàn chạy trong trình duyệt, open-source, và hỗ trợ real-time collaboration. Đặc biệt hữu ích khi bạn không thể cài đặt phần mềm trên máy. Website: hoppscotch.io\nThunder Client Thunder Client là extension VS Code nhẹ nhất cho API testing. Không cần rờikhỏi editor, bạn có thể gửi request và xem response ngay trong VS Code. Phù hợp cho developer không muốn chuyển đổi giữa nhiều ứng dụng.\nPaw/RapidAPI Paw (nay là RapidAPI for Mac) là API client native cho macOS với giao diện visual editing đẹp mắt. Tuy nhiên, chỉ hỗ trợ macOS và có giá khá cao ($49.99).\nTích Hợp Git và Quản Lý Phiên Bản Tại Sao Collection Thân Thiện với Git Lại Quan Trọng? Trong phát triển phần mềm hiện đại, “everything as code” là xu hướng chính. API collections không ngoại lệ. Khi collection được lưu dưới dạng code, bạn có thể: - Code review: Review thay đổi API qua pull request\nVersion control: Theo dõi lịch sử thay đổi API CI/CD: Chạy kiểm thử API tự động trong pipeline Collaboration: Nhiều ngườicùng chỉnh sửa không conflict Cách Bruno Thực Hiện Collections as Code Bruno là công cụ duy nhất trong ba công cụ chính lưu collection dưới dạng plain text files. Mỗi request là một file .bru độc lập, dễ dàng diff trong Git và review qua pull request.\nWorkaround cho Postman và Insomnia Postman và Insomnia không có native Git integration. Workaround là export collection ra JSON rồi commit vào repo. Tuy nhiên, file JSON khó đọc khi diff và dễ gây conflict khi nhiều ngườicùng chỉnh sửa.\nCLI và Khả Năng Tự Động Hóa Bruno CLI cho CI/CD Pipelines Bruno CLI (@usebruno/cli) là một package npm cho phép chạy collection từ command line. Hỗ trợ reporters (junit, html), environment variables, và tích hợp dễ dàng với GitHub Actions.\nNewman (Postman CLI) cho Tự Động Hóa Kiểm Thử Newman là CLI của Postman, đã có từ lâu và rất ổn định. Hỗ trợ đầy đủ các tính năng của Postman collection và có hệ sinh thái reporters phong phú. Tuy nhiên, cần export collection từ Postman trước khi dùng với Newman.\nTích Hợp Kiểm Thử API trong GitHub Actions name: API Tests on: [push, pull_request] jobs: test: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Setup Bruno CLI run: npm install -g @usebruno/cli - name: Run API Tests run: bru run --env ci working-directory: ./api-tests Hướng Dẫn Chọn Công Cụ Phù Hợp với Workflow Lập Trình Viên Cá Nhân Bruno: Nếu bạn muốn Git-native, offline, miễn phí Insomnia: Nếu cần GraphQL/gRPC với giao diện đẹp Thunder Client: Nếu muốn test API ngay trong VS Code Nhóm Ưu Tiên Cộng Tác Postman: Vẫn là lựa chọn tốt nhất cho team collaboration, sharing collections, và API documentation Hoppscotch: Nếu team cần real-time collaboration trên web Team theo Hướng Git-First Bruno: Lựa chọn duy nhất với native Git integration Môi Trường Doanh Nghiệp Postman Enterprise: SSO, governance, enterprise support Bruno Golden Edition: Self-hostable, audit logs, on-premise Ngườidùng VS Code Thunder Client: Extension nhẹ, không rờikhỏi editor REST Client: File-based approach, lưu request trong ````.http``` files Hướng Dẫn Di Chuyển Giữa Các Công Cụ Export từ Postman sang Bruno Bruno hỗ trợ import trực tiếp Postman collection (JSON format). Quy trình: 1. Export collection từ Postman: Collection → Export → Collection v2.1 2. Trong Bruno: Create Collection → Import → Chọn file JSON 3. Review và điều chỉnh các script nếu cần\nChuyển Đổi Collections và Environments Các công cụ hỗ trợ import Postman collection: Bruno, Insomnia, và Hoppscotch. Tuy nhiên, post-response scripts có thể cần điều chỉnh do mỗi công cụ có syntax riêng.\nDuy Trì Test Scripts Trong Quá Trình Di Chuyển Cả Bruno và Insomnia đều hỗ trợ JavaScript scripting tương tự Postman. Tuy nhiên, Bruno sử dụng syntax đơn giản hơn. Nên test lại toàn bộ collection sau khi migrate.\nFAQ Bruno Có Tốt Hơn Postman Không? “Tốt hơn” phụ thuộc vào nhu cầu của bạn. Bruno vượt trội ở Git integration, offline-first, và mã nguồn mở. Postman vẫn mạnh hơn về ecosystem, collaboration features, API documentation, và mock servers. Nếu bạn cần Git-friendly workflow và không muốn cloud lock-in, Bruno tốt hơn. Nếu bạn cần enterprise features và team collaboration nâng cao, Postman vẫn là lựa chọn phù hợp.\nCông Cụ Kiểm Thử API Miễn Phí Tốt Nhất Là Gì? Cho cá nhân: Bruno (miễn phí hoàn toàn, không giới hạn) và Hoppscotch (web-based, open-source). Cho team nhỏ: Insomnia free tier. Nếu bạn cần CLI cho CI/CD, Bruno CLI miễn phí là lựa chọn tốt nhất.\nCó Thể Dùng Công Cụ Kiểm Thử API Offline Không? Bruno hoạt động hoàn toàn offline — không cần tài khoản, không cần internet. Insomnia cũng hoạt động offline nhưng có một số tính năng cloud. Postman yêu cầu đăng nhập tài khoản, dù có thể dùng offline sau khi đăng nhập. Thunder Client và REST Client hoàn toàn offline vì là VS Code extensions.\nLàm Thế Nào Để Chuyển từ Postman sang Bruno? Quy trình đơn giản: 1. Trong Postman, export collection (Collection → Export → v2.1) 2. Trong Bruno, click “Create Collection” → “Import Collection” 3. Chọn file JSON đã export 4. Kiểm tra lại các variables và scripts 5. Lưu collection vào thư mục đã được Git track\nLưu ý: Postman tests cần chuyển đổi sang Bruno script syntax. Xem tài liệu tại www.usebruno.com.\nCông Cụ Nào Hỗ Trợ GraphQL và gRPC? Cả Postman và Insomnia đều hỗ trợ đầy đủ REST, GraphQL, gRPC, và WebSocket. Bruno hỗ trợ REST, GraphQL, và WebSocket nhưng chưa hỗ trợ gRPC (tính đến tháng 3 năm 2025). Hoppscotch hỗ trợ tất cả các giao thức này. Nếu cần gRPC, Postman hoặc Insomnia là lựa chọn an toàn.\nKết Luận Lựa chọn công cụ kiểm thử API tốt nhất phụ thuộc vào ưu tiên của bạn. Postman vẫn là vua về tính năng toàn diện và ecosystem. Insomnia là lựa chọn cân bằng giữa tính năng và trải nghiệm ngườidùng. Bruno đại diện cho tương lai của API testing — Git-native, offline-first, và collections as code.\nXu hướng Git-native API clients đang ngày càng mạnh mẽ, phản ánh sự chuyển dịch rộng hơn trong ngành về “everything as code”. Dù bạn chọn công cụ nào, hãy đảm bảo nó phù hợp với workflow của team và có thể tích hợp vào CI/CD pipeline.\nTìm hiểu thêm tại postman.com, insomnia.rest, và usebruno.com.\nHạ Tầng Đề Xuất Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - DigitalOcean — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.\nHTStack — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây. Hostinger — VPS giá tốt cho thị trường Việt Nam. Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Postman vs Insomnia vs Bruno: Công Cụ Kiểm Thử API Tốt Nhất Năm 2025”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/api-testing-tools-postman-vs-insomnia-vs-bruno\" } } ",
+  "wordCount" : "2384",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -187,7 +187,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/zh/mcp-tools/api-testing-tools-postman-vs-insomnia-vs-bruno/">Zh</a>
@@ -203,54 +203,137 @@
         <span class="title">목차</span>
     </summary>
 
-    <div class="inner"><ul>
+    <div class="inner"><ul><ul>
             <li>
-                <a href="#postman-vs-insomnia-vs-bruno-2025%eb%85%84-%ec%b5%9c%ea%b3%a0%ec%9d%98-api-%ed%85%8c%ec%8a%a4%ed%8a%b8-%eb%8f%84%ea%b5%ac-%eb%b9%84%ea%b5%90" aria-label="Postman vs Insomnia vs Bruno: 2025년 최고의 API 테스트 도구 비교">Postman vs Insomnia vs Bruno: 2025년 최고의 API 테스트 도구 비교</a><ul>
+                <a href="#b%e1%bb%91i-c%e1%ba%a3nh-c%c3%b4ng-c%e1%bb%a5-ki%e1%bb%83m-th%e1%bb%ad-api-n%c4%83m-2025" aria-label="Bối Cảnh Công Cụ Kiểm Thử API Năm 2025">Bối Cảnh Công Cụ Kiểm Thử API Năm 2025</a><ul>
                     
             <li>
-                <a href="#2025%eb%85%84-api-%ed%85%8c%ec%8a%a4%ed%8a%b8-%eb%8f%84%ea%b5%ac-%ec%8b%9c%ec%9e%a5%ec%9d%98-%eb%b3%80%ed%99%94" aria-label="2025년 API 테스트 도구 시장의 변화">2025년 API 테스트 도구 시장의 변화</a></li>
+                <a href="#t%e1%ba%a1i-sao-ki%e1%bb%83m-th%e1%bb%ad-api-quan-tr%e1%bb%8dng-trong-ph%c3%a1t-tri%e1%bb%83n-hi%e1%bb%87n-%c4%91%e1%ba%a1i" aria-label="Tại Sao Kiểm Thử API Quan Trọng trong Phát Triển Hiện Đại?">Tại Sao Kiểm Thử API Quan Trọng trong Phát Triển Hiện Đại?</a></li>
             <li>
-                <a href="#postman-%ed%99%95%eb%a6%bd%eb%90%9c-%eb%a6%ac%eb%8d%94" aria-label="Postman: 확립된 리더">Postman: 확립된 리더</a></li>
+                <a href="#s%e1%bb%b1-chuy%e1%bb%83n-d%e1%bb%8bch-t%e1%bb%ab-th%e1%bb%91ng-tr%e1%bb%8b-c%e1%bb%a7a-postman-sang-c%c3%a1c-l%e1%bb%b1a-ch%e1%bb%8dn-%c4%91a-d%e1%ba%a1ng" aria-label="Sự Chuyển Dịch từ Thống Trị của Postman sang Các Lựa Chọn Đa Dạng">Sự Chuyển Dịch từ Thống Trị của Postman sang Các Lựa Chọn Đa Dạng</a></li>
             <li>
-                <a href="#insomnia-%ea%b0%9c%eb%b0%9c%ec%9e%90-%ec%b9%9c%ed%99%94%ec%a0%81-%eb%8c%80%ec%95%88" aria-label="Insomnia: 개발자 친화적 대안">Insomnia: 개발자 친화적 대안</a></li>
-            <li>
-                <a href="#bruno-git-%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c-%ed%98%81%eb%aa%85" aria-label="Bruno: Git 네이티브 혁명">Bruno: Git 네이티브 혁명</a><ul>
-                    
-            <li>
-                <a href="#insomnia-cli" aria-label="Insomnia CLI">Insomnia CLI</a></li></ul>
+                <a href="#nh%c3%a0-ph%c3%a1t-tri%e1%bb%83n-c%e1%ba%a7n-g%c3%ac-t%e1%bb%ab-api-client-ng%c3%a0y-nay" aria-label="Nhà Phát Triển Cần Gì từ API Client Ngày Nay?">Nhà Phát Triển Cần Gì từ API Client Ngày Nay?</a></li></ul>
             </li>
             <li>
-                <a href="#%ea%b8%b0%ed%83%80-%ec%a3%bc%eb%aa%a9%ed%95%a0%eb%a7%8c%ed%95%9c-api-%ed%85%8c%ec%8a%a4%ed%8a%b8-%eb%8f%84%ea%b5%ac" aria-label="기타 주목할만한 API 테스트 도구">기타 주목할만한 API 테스트 도구</a></li>
-            <li>
-                <a href="#%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0%eb%b3%84-%eb%8f%84%ea%b5%ac-%ec%b6%94%ec%b2%9c" aria-label="워크플로우별 도구 추천">워크플로우별 도구 추천</a><ul>
+                <a href="#postman-ng%c6%b0%e1%bb%9did%e1%ba%abn-%c4%91%e1%ba%a7u-%c4%91%c3%a3-%c4%91%c6%b0%e1%bb%a3c-kh%e1%ba%b3ng-%c4%91%e1%bb%8bnh" aria-label="Postman: Ngườidẫn Đầu Đã Được Khẳng Định">Postman: Ngườidẫn Đầu Đã Được Khẳng Định</a><ul>
                     
             <li>
-                <a href="#%ea%b0%9c%ec%9d%b8-%ea%b0%9c%eb%b0%9c%ec%9e%90-bruno-%eb%98%90%eb%8a%94-insomnia" aria-label="개인 개발자: Bruno 또는 Insomnia">개인 개발자: Bruno 또는 Insomnia</a></li>
+                <a href="#c%c3%a1c-t%c3%adnh-n%c4%83ng-c%e1%bb%91t-l%c3%b5i" aria-label="Các Tính Năng Cốt Lõi">Các Tính Năng Cốt Lõi</a></li>
             <li>
-                <a href="#%ed%98%91%ec%97%85-%ec%9a%b0%ec%84%a0-%ed%8c%80-postman" aria-label="협업 우선 팀: Postman">협업 우선 팀: Postman</a></li>
+                <a href="#h%e1%bb%87-sinh-th%c3%a1i-v%c3%a0-t%c3%adch-h%e1%bb%a3p-doanh-nghi%e1%bb%87p" aria-label="Hệ Sinh Thái và Tích Hợp Doanh Nghiệp">Hệ Sinh Thái và Tích Hợp Doanh Nghiệp</a></li>
             <li>
-                <a href="#git-first-%ed%8c%80-bruno" aria-label="Git-First 팀: Bruno">Git-First 팀: Bruno</a></li>
+                <a href="#thay-%c4%91%e1%bb%95i-gi%c3%a1-v%c3%a0-lo-ng%e1%ba%a1i-cloud-only" aria-label="Thay Đổi Giá và Lo Ngại Cloud-Only">Thay Đổi Giá và Lo Ngại Cloud-Only</a></li>
             <li>
-                <a href="#vs-code-%ec%82%ac%ec%9a%a9%ec%9e%90-thunder-client-%eb%98%90%eb%8a%94-rest-client" aria-label="VS Code 사용자: Thunder Client 또는 REST Client">VS Code 사용자: Thunder Client 또는 REST Client</a></li></ul>
+                <a href="#%c4%91i%e1%bb%83m-m%e1%ba%a1nh" aria-label="Điểm Mạnh">Điểm Mạnh</a></li></ul>
             </li>
             <li>
-                <a href="#%eb%a7%88%ec%9d%b4%ea%b7%b8%eb%a0%88%ec%9d%b4%ec%85%98-%ea%b0%80%ec%9d%b4%eb%93%9c-postman%ec%97%90%ec%84%9c-bruno%ec%9c%bc%eb%a1%9c" aria-label="마이그레이션 가이드: Postman에서 Bruno으로">마이그레이션 가이드: Postman에서 Bruno으로</a></li>
-            <li>
-                <a href="#%ea%b2%b0%eb%a1%a0" aria-label="결론">결론</a></li>
-            <li>
-                <a href="#faq" aria-label="FAQ">FAQ</a></li>
-            <li>
-                <a href="#%ec%b6%94%ec%b2%9c-%ec%9d%b8%ed%94%84%eb%9d%bc" aria-label="추천 인프라">추천 인프라</a></li>
-            <li>
-                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                <a href="#insomnia-l%e1%bb%b1a-ch%e1%bb%8dn-th%c3%a2n-thi%e1%bb%87n-v%e1%bb%9bi-nh%c3%a0-ph%c3%a1t-tri%e1%bb%83n" aria-label="Insomnia: Lựa Chọn Thân Thiện với Nhà Phát Triển">Insomnia: Lựa Chọn Thân Thiện với Nhà Phát Triển</a><ul>
                     
             <li>
-                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+                <a href="#giao-di%e1%bb%87n-s%e1%ba%a1ch-v%c3%a0-workflow-%c4%91%c6%a1n-gi%e1%ba%a3n" aria-label="Giao Diện Sạch và Workflow Đơn Giản">Giao Diện Sạch và Workflow Đơn Giản</a></li>
             <li>
-                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+                <a href="#h%e1%bb%97-tr%e1%bb%a3-%c4%91a-giao-th%e1%bb%a9c" aria-label="Hỗ Trợ Đa Giao Thức">Hỗ Trợ Đa Giao Thức</a></li>
+            <li>
+                <a href="#s%e1%bb%b1-ph%c3%a1t-tri%e1%bb%83n-sau-khi-kong-mua-l%e1%ba%a1i" aria-label="Sự Phát Triển Sau Khi Kong Mua Lại">Sự Phát Triển Sau Khi Kong Mua Lại</a></li>
+            <li>
+                <a href="#h%e1%bb%87-sinh-th%c3%a1i-plugin" aria-label="Hệ Sinh Thái Plugin">Hệ Sinh Thái Plugin</a></li></ul>
             </li>
             <li>
-                <a href="#conclusion" aria-label="Conclusion">Conclusion</a>
+                <a href="#bruno-cu%e1%bb%99c-c%c3%a1ch-m%e1%ba%a1ng-git-native" aria-label="Bruno: Cuộc Cách Mạng Git-Native">Bruno: Cuộc Cách Mạng Git-Native</a><ul>
+                    
+            <li>
+                <a href="#bruno-kh%c3%a1c-bi%e1%bb%87t-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="Bruno Khác Biệt Như Thế Nào?">Bruno Khác Biệt Như Thế Nào?</a></li>
+            <li>
+                <a href="#%c4%91%e1%bb%8bnh-d%e1%ba%a1ng-collection-th%c3%a2n-thi%e1%bb%87n-v%e1%bb%9bi-git-bru-files" aria-label="Định Dạng Collection Thân Thiện với Git (Bru Files)">Định Dạng Collection Thân Thiện với Git (Bru Files)</a></li>
+            <li>
+                <a href="#offline-first-kh%c3%b4ng-cloud-lock-in" aria-label="Offline-First, Không Cloud Lock-in">Offline-First, Không Cloud Lock-in</a></li>
+            <li>
+                <a href="#m%c3%a3-ngu%e1%bb%93n-m%e1%bb%9f-v%c3%a0-cli-support" aria-label="Mã Nguồn Mở và CLI Support">Mã Nguồn Mở và CLI Support</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#githubworkflowsapi-testsyml" aria-label=".github/workflows/api-tests.yml">.github/workflows/api-tests.yml</a><ul>
+                    
+            <li>
+                <a href="#so-s%c3%a1nh-tr%e1%bb%b1c-ti%e1%ba%bfp-postman-vs-insomnia-vs-bruno" aria-label="So Sánh Trực Tiếp: Postman vs Insomnia vs Bruno">So Sánh Trực Tiếp: Postman vs Insomnia vs Bruno</a><ul>
+                    
+            <li>
+                <a href="#so-s%c3%a1nh-gi%c3%a1-chi-ti%e1%ba%bft" aria-label="So Sánh Giá Chi Tiết">So Sánh Giá Chi Tiết</a></li></ul>
+            </li>
+            <li>
+                <a href="#c%c3%a1c-c%c3%b4ng-c%e1%bb%a5-ki%e1%bb%83m-th%e1%bb%ad-api-kh%c3%a1c-%c4%91%c3%a1ng-ch%c3%ba-%c3%bd" aria-label="Các Công Cụ Kiểm Thử API Khác Đáng Chú Ý">Các Công Cụ Kiểm Thử API Khác Đáng Chú Ý</a><ul>
+                    
+            <li>
+                <a href="#httpie-desktop" aria-label="HTTPie Desktop">HTTPie Desktop</a></li>
+            <li>
+                <a href="#hoppscotch" aria-label="Hoppscotch">Hoppscotch</a></li>
+            <li>
+                <a href="#thunder-client" aria-label="Thunder Client">Thunder Client</a></li>
+            <li>
+                <a href="#pawrapidapi" aria-label="Paw/RapidAPI">Paw/RapidAPI</a></li></ul>
+            </li>
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-git-v%c3%a0-qu%e1%ba%a3n-l%c3%bd-phi%c3%aan-b%e1%ba%a3n" aria-label="Tích Hợp Git và Quản Lý Phiên Bản">Tích Hợp Git và Quản Lý Phiên Bản</a><ul>
+                    
+            <li>
+                <a href="#t%e1%ba%a1i-sao-collection-th%c3%a2n-thi%e1%bb%87n-v%e1%bb%9bi-git-l%e1%ba%a1i-quan-tr%e1%bb%8dng" aria-label="Tại Sao Collection Thân Thiện với Git Lại Quan Trọng?">Tại Sao Collection Thân Thiện với Git Lại Quan Trọng?</a></li>
+            <li>
+                <a href="#c%c3%a1ch-bruno-th%e1%bb%b1c-hi%e1%bb%87n-collections-as-code" aria-label="Cách Bruno Thực Hiện Collections as Code">Cách Bruno Thực Hiện Collections as Code</a></li>
+            <li>
+                <a href="#workaround-cho-postman-v%c3%a0-insomnia" aria-label="Workaround cho Postman và Insomnia">Workaround cho Postman và Insomnia</a></li></ul>
+            </li>
+            <li>
+                <a href="#cli-v%c3%a0-kh%e1%ba%a3-n%c4%83ng-t%e1%bb%b1-%c4%91%e1%bb%99ng-h%c3%b3a" aria-label="CLI và Khả Năng Tự Động Hóa">CLI và Khả Năng Tự Động Hóa</a><ul>
+                    
+            <li>
+                <a href="#bruno-cli-cho-cicd-pipelines" aria-label="Bruno CLI cho CI/CD Pipelines">Bruno CLI cho CI/CD Pipelines</a></li>
+            <li>
+                <a href="#newman-postman-cli-cho-t%e1%bb%b1-%c4%91%e1%bb%99ng-h%c3%b3a-ki%e1%bb%83m-th%e1%bb%ad" aria-label="Newman (Postman CLI) cho Tự Động Hóa Kiểm Thử">Newman (Postman CLI) cho Tự Động Hóa Kiểm Thử</a></li>
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-ki%e1%bb%83m-th%e1%bb%ad-api-trong-github-actions" aria-label="Tích Hợp Kiểm Thử API trong GitHub Actions">Tích Hợp Kiểm Thử API trong GitHub Actions</a></li></ul>
+            </li>
+            <li>
+                <a href="#h%c6%b0%e1%bb%9bng-d%e1%ba%abn-ch%e1%bb%8dn-c%c3%b4ng-c%e1%bb%a5-ph%c3%b9-h%e1%bb%a3p-v%e1%bb%9bi-workflow" aria-label="Hướng Dẫn Chọn Công Cụ Phù Hợp với Workflow">Hướng Dẫn Chọn Công Cụ Phù Hợp với Workflow</a><ul>
+                    
+            <li>
+                <a href="#l%e1%ba%adp-tr%c3%acnh-vi%c3%aan-c%c3%a1-nh%c3%a2n" aria-label="Lập Trình Viên Cá Nhân">Lập Trình Viên Cá Nhân</a></li>
+            <li>
+                <a href="#nh%c3%b3m-%c6%b0u-ti%c3%aan-c%e1%bb%99ng-t%c3%a1c" aria-label="Nhóm Ưu Tiên Cộng Tác">Nhóm Ưu Tiên Cộng Tác</a></li>
+            <li>
+                <a href="#team-theo-h%c6%b0%e1%bb%9bng-git-first" aria-label="Team theo Hướng Git-First">Team theo Hướng Git-First</a></li>
+            <li>
+                <a href="#m%c3%b4i-tr%c6%b0%e1%bb%9dng-doanh-nghi%e1%bb%87p" aria-label="Môi Trường Doanh Nghiệp">Môi Trường Doanh Nghiệp</a></li>
+            <li>
+                <a href="#ng%c6%b0%e1%bb%9did%c3%b9ng-vs-code" aria-label="Ngườidùng VS Code">Ngườidùng VS Code</a></li></ul>
+            </li>
+            <li>
+                <a href="#h%c6%b0%e1%bb%9bng-d%e1%ba%abn-di-chuy%e1%bb%83n-gi%e1%bb%afa-c%c3%a1c-c%c3%b4ng-c%e1%bb%a5" aria-label="Hướng Dẫn Di Chuyển Giữa Các Công Cụ">Hướng Dẫn Di Chuyển Giữa Các Công Cụ</a><ul>
+                    
+            <li>
+                <a href="#export-t%e1%bb%ab-postman-sang-bruno" aria-label="Export từ Postman sang Bruno">Export từ Postman sang Bruno</a></li>
+            <li>
+                <a href="#chuy%e1%bb%83n-%c4%91%e1%bb%95i-collections-v%c3%a0-environments" aria-label="Chuyển Đổi Collections và Environments">Chuyển Đổi Collections và Environments</a></li>
+            <li>
+                <a href="#duy-tr%c3%ac-test-scripts-trong-qu%c3%a1-tr%c3%acnh-di-chuy%e1%bb%83n" aria-label="Duy Trì Test Scripts Trong Quá Trình Di Chuyển">Duy Trì Test Scripts Trong Quá Trình Di Chuyển</a></li></ul>
+            </li>
+            <li>
+                <a href="#faq" aria-label="FAQ">FAQ</a><ul>
+                    
+            <li>
+                <a href="#bruno-c%c3%b3-t%e1%bb%91t-h%c6%a1n-postman-kh%c3%b4ng" aria-label="Bruno Có Tốt Hơn Postman Không?">Bruno Có Tốt Hơn Postman Không?</a></li>
+            <li>
+                <a href="#c%c3%b4ng-c%e1%bb%a5-ki%e1%bb%83m-th%e1%bb%ad-api-mi%e1%bb%85n-ph%c3%ad-t%e1%bb%91t-nh%e1%ba%a5t-l%c3%a0-g%c3%ac" aria-label="Công Cụ Kiểm Thử API Miễn Phí Tốt Nhất Là Gì?">Công Cụ Kiểm Thử API Miễn Phí Tốt Nhất Là Gì?</a></li>
+            <li>
+                <a href="#c%c3%b3-th%e1%bb%83-d%c3%b9ng-c%c3%b4ng-c%e1%bb%a5-ki%e1%bb%83m-th%e1%bb%ad-api-offline-kh%c3%b4ng" aria-label="Có Thể Dùng Công Cụ Kiểm Thử API Offline Không?">Có Thể Dùng Công Cụ Kiểm Thử API Offline Không?</a></li>
+            <li>
+                <a href="#l%c3%a0m-th%e1%ba%bf-n%c3%a0o-%c4%91%e1%bb%83-chuy%e1%bb%83n-t%e1%bb%ab-postman-sang-bruno" aria-label="Làm Thế Nào Để Chuyển từ Postman sang Bruno?">Làm Thế Nào Để Chuyển từ Postman sang Bruno?</a></li>
+            <li>
+                <a href="#c%c3%b4ng-c%e1%bb%a5-n%c3%a0o-h%e1%bb%97-tr%e1%bb%a3-graphql-v%c3%a0-grpc" aria-label="Công Cụ Nào Hỗ Trợ GraphQL và gRPC?">Công Cụ Nào Hỗ Trợ GraphQL và gRPC?</a></li></ul>
+            </li>
+            <li>
+                <a href="#k%e1%ba%bft-lu%e1%ba%adn" aria-label="Kết Luận">Kết Luận</a></li>
+            <li>
+                <a href="#h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%e1%bb%81-xu%e1%ba%a5t" aria-label="Hạ Tầng Đề Xuất">Hạ Tầng Đề Xuất</a>
             </li>
         </ul>
         </li>
@@ -258,206 +341,347 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><h1 id="postman-vs-insomnia-vs-bruno-2025년-최고의-api-테스트-도구-비교">Postman vs Insomnia vs Bruno: 2025년 최고의 API 테스트 도구 비교<a hidden class="anchor" aria-hidden="true" href="#postman-vs-insomnia-vs-bruno-2025년-최고의-api-테스트-도구-비교">#</a></h1>
-<p>{&lt;/* resource-info */&gt;}</p>
-<p>API는 현대 소프트웨어의 혈관입니다. REST, GraphQL, gRPC, WebSocket 등 다양한 프로토콜을 테스트할 수 있는 도구의 선택은 개발 효율성을 좌우합니다. 2025년 현재 API 클라이언트 시장은 Postman의 독주에서 Git 친화적 대안으로의 전환을 겪고 있습니다. 이 글에서는 <a href="https://www.postman.com">Postman</a>, <a href="https://insomnia.rest">Insomnia</a>, <a href="https://www.usebruno.com">Bruno</a>를 7개 기준으로 심층 비교합니다.</p>
-<h2 id="2025년-api-테스트-도구-시장의-변화">2025년 API 테스트 도구 시장의 변화<a hidden class="anchor" aria-hidden="true" href="#2025년-api-테스트-도구-시장의-변화">#</a></h2>
-<p>Postman은 2012년 출시 이후 2,500만 명의 개발자가 사용하는 업계 표준입니다. 하지만 2023년 강제 클라우드 계정 전환과 가격 인상 이후, 개발자 커뮤니티는 대안을 모색하기 시작했습니다. 특히 Git 버전 관리가 가능한 &ldquo;코드로서의 API 컬렉션&rdquo; 개념이 주목받으며 Bruno가 빠르게 성장했습니다. 2025년 1월 기준 Bruno의 GitHub Star 수는 30,000개를 돌파했습니다.</p>
-<h2 id="postman-확립된-리더">Postman: 확립된 리더<a hidden class="anchor" aria-hidden="true" href="#postman-확립된-리더">#</a></h2>
-<p>Postman의 강점은 방대한 생태계와 엔터프라이즈 지원에 있습니다.</p>
-<p><strong>주요 기능:</strong></p>
+  <div class="post-content md-content"><p>{&lt;/* resource-info */&gt;}</p>
+<p>Kiểm thử API là một phần không thể thiếu trong quy trình phát triển phần mềm hiện đại. Từ việc gỡ lỗi endpoint REST cho đến tự động hóa kiểm thử CI/CD, việc chọn đúng công cụ kiểm thử API có thể tăng đáng kể năng suất của nhóm phát triển. Năm 2025, bức tranh công cụ kiểm thử API đang thay đổi mạnh mẽ với sự trỗi dậy của các client thân thiện với Git và xu hướng &ldquo;collections as code&rdquo;.</p>
+<h2 id="bối-cảnh-công-cụ-kiểm-thử-api-năm-2025">Bối Cảnh Công Cụ Kiểm Thử API Năm 2025<a hidden class="anchor" aria-hidden="true" href="#bối-cảnh-công-cụ-kiểm-thử-api-năm-2025">#</a></h2>
+<h3 id="tại-sao-kiểm-thử-api-quan-trọng-trong-phát-triển-hiện-đại">Tại Sao Kiểm Thử API Quan Trọng trong Phát Triển Hiện Đại?<a hidden class="anchor" aria-hidden="true" href="#tại-sao-kiểm-thử-api-quan-trọng-trong-phát-triển-hiện-đại">#</a></h3>
+<p>Kiến trúc microservices và API-first đã trở thành tiêu chuẩn ngành. Theo báo cáo Postman State of the API 2024, 89% tổ chức coi API là trung tâm của chiến lược kỹ thuật số. Điều này đặt ra yêu cầu cao hơn cho công cụ kiểm thử: không chỉ gửi request đơn giản mà còn cần hỗ trợ tự động hóa, collaboration, và version control.</p>
+<h3 id="sự-chuyển-dịch-từ-thống-trị-của-postman-sang-các-lựa-chọn-đa-dạng">Sự Chuyển Dịch từ Thống Trị của Postman sang Các Lựa Chọn Đa Dạng<a hidden class="anchor" aria-hidden="true" href="#sự-chuyển-dịch-từ-thống-trị-của-postman-sang-các-lựa-chọn-đa-dạng">#</a></h3>
+<p>Postman đã thống trị thị trường API client trong gần một thập kỷ. Tuy nhiên, việc chuyển sang mô hình cloud-only, thay đổi chính sách giá, và yêu cầu đăng nhập bắt buộc đã tạo cơ hội cho các alternative như Insomnia, Bruno, Hoppscotch, và Thunder Client phát triển.</p>
+<h3 id="nhà-phát-triển-cần-gì-từ-api-client-ngày-nay">Nhà Phát Triển Cần Gì từ API Client Ngày Nay?<a hidden class="anchor" aria-hidden="true" href="#nhà-phát-triển-cần-gì-từ-api-client-ngày-nay">#</a></h3>
+<p>Theo khảo sát của Stack Overflow 2024, các yêu cầu hàng đầu bao gồm: hỗ trợ offline (78%), tích hợp Git (72%), giao diện nhẹ (68%), và CLI cho CI/CD (65%). Đây chính xác là những điểm mà các công cụ mới như Bruno đang tập trung.</p>
+<h2 id="postman-ngườidẫn-đầu-đã-được-khẳng-định">Postman: Ngườidẫn Đầu Đã Được Khẳng Định<a hidden class="anchor" aria-hidden="true" href="#postman-ngườidẫn-đầu-đã-được-khẳng-định">#</a></h2>
+<h3 id="các-tính-năng-cốt-lõi">Các Tính Năng Cốt Lõi<a hidden class="anchor" aria-hidden="true" href="#các-tính-năng-cốt-lõi">#</a></h3>
+<p>Postman vẫn là nền tảng kiểm thử API toàn diện nhất với hơn 25 triệu ngườidùng. Các tính năng nổi bật: - <strong>Collections</strong>: Tổ chức request thành collection có thể chia sẻ</p>
 <ul>
-<li>Collections, Environments, Tests의 3단 구조</li>
-<li>Postman Flows로 노드 기반 API 오케스트레이션</li>
-<li>자동 API 문서 생성 및 게시</li>
-<li>팀 Workspace와 실시간 협업</li>
-<li>Mock Server와 모니터링 기능</li>
-<li>20,000개 이상의 Public API 컬렉션</li>
+<li><strong>Environments</strong>: Quản lý biến môi trường (dev, staging, production)</li>
+<li><strong>Tests</strong>: Viết test script bằng JavaScript</li>
+<li><strong>Postman Flows</strong>: Tạo workflow kiểm thử trực quan</li>
+<li><strong>API Documentation</strong>: Tự động tạo documentation từ collection</li>
+<li><strong>Monitoring</strong>: Lên lịch chạy collection định kỳ</li>
+<li><strong>Mock Servers</strong>: Tạo server giả lập cho API</li>
 </ul>
-<p><strong>가격:</strong></p>
+<h3 id="hệ-sinh-thái-và-tích-hợp-doanh-nghiệp">Hệ Sinh Thái và Tích Hợp Doanh Nghiệp<a hidden class="anchor" aria-hidden="true" href="#hệ-sinh-thái-và-tích-hợp-doanh-nghiệp">#</a></h3>
+<p>Postman vượt trội ở khả năng tích hợp doanh nghiệp. Hỗ trợ SSO, role-based access control, audit logs, và API governance. Nền tảng Public API Network với hơn 100.000 API miễn phí cũng là tài nguyên quý giá cho developers.</p>
+<h3 id="thay-đổi-giá-và-lo-ngại-cloud-only">Thay Đổi Giá và Lo Ngại Cloud-Only<a hidden class="anchor" aria-hidden="true" href="#thay-đổi-giá-và-lo-ngại-cloud-only">#</a></h3>
+<p>Năm 2023, Postman bắt buộc ngườidùng đăng nhập tài khoản để sử dụng, loại bỏ hoàn toàn chế độ offline. Điều này gây ra làn sóng phản đối từ cộng đồng. Gói miễn phí giới hạn 3 ngườidùng/collection, Basic $14/tháng, Professional $29/tháng, Enterprise $49/tháng.</p>
+<h3 id="điểm-mạnh">Điểm Mạnh<a hidden class="anchor" aria-hidden="true" href="#điểm-mạnh">#</a></h3>
 <ul>
-<li>Free: 최대 3인 팀, 기본 기능</li>
-<li>Basic: $12/사용자/월, 무제한 컬렉션</li>
-<li>Professional: $29/사용자/월, 고급 보안</li>
-<li>Enterprise: $49/사용자/월, SSO, 감사 로그</li>
+<li>Hệ sinh thái phong phú nhất</li>
+<li>Tích hợp enterprise sâu rộng</li>
+<li>Hỗ trợ đầy đủ REST, GraphQL, gRPC, WebSocket</li>
+<li>Tài liệu học tập phong phú tại <a href="https://learning.postman.com">learning.postman.com</a></li>
 </ul>
-<p><strong>단점:</strong></p>
+<h2 id="insomnia-lựa-chọn-thân-thiện-với-nhà-phát-triển">Insomnia: Lựa Chọn Thân Thiện với Nhà Phát Triển<a hidden class="anchor" aria-hidden="true" href="#insomnia-lựa-chọn-thân-thiện-với-nhà-phát-triển">#</a></h2>
+<h3 id="giao-diện-sạch-và-workflow-đơn-giản">Giao Diện Sạch và Workflow Đơn Giản<a hidden class="anchor" aria-hidden="true" href="#giao-diện-sạch-và-workflow-đơn-giản">#</a></h3>
+<p>Insomnia nổi tiếng với giao diện tối giản, tập trung vào trải nghiệm ngườidùng. Không giống Postman với hàng tá tab và menu, Insomnia thiết kế xoay quanh workflow: tạo request → chọn environment → gửi → xem kết quả.</p>
+<h3 id="hỗ-trợ-đa-giao-thức">Hỗ Trợ Đa Giao Thức<a hidden class="anchor" aria-hidden="true" href="#hỗ-trợ-đa-giao-thức">#</a></h3>
+<p>Insomnia hỗ trợ đầy đủ các giao thức phổ biến: - <strong>REST/HTTP</strong>: Đầy đủ methods, headers, authentication</p>
 <ul>
-<li>강제 클라우드 동기화 (로컬 전용 사용 불가)</li>
-<li>2023년 이후 물리 기능 대폭 축소</li>
-<li>RAM 사용량이 높은 Electron 기반 앱</li>
+<li><strong>GraphQL</strong>: Explorer tích hợp, tự động introspection</li>
+<li><strong>gRPC</strong>: Hỗ trợ protobuf, server streaming</li>
+<li><strong>WebSocket</strong>: Real-time testing với GUI</li>
+<li><strong>MQTT</strong>: Hỗ trợ IoT protocols</li>
 </ul>
-<h2 id="insomnia-개발자-친화적-대안">Insomnia: 개발자 친화적 대안<a hidden class="anchor" aria-hidden="true" href="#insomnia-개발자-친화적-대안">#</a></h2>
-<p>2022년 Kong사에 인수된 Insomnia는 깔끔한 UI와 다중 프로토콜 지원으로 인기를 얻고 있습니다.</p>
-<p><strong>주요 기능:</strong></p>
-<ul>
-<li>REST, GraphQL, gRPC, WebSocket을 단일 도구에서 지원</li>
-<li>깔끔하고 직관적인 사용자 인터페이스</li>
-<li>환경 및 변수 관리 (폴리모픽 변수 지원)</li>
-<li>Plugin 생태계로 기능 확장</li>
-<li>Kong Gateway와의 통합</li>
-</ul>
-<p><strong>Postman 대비 강점:</strong></p>
-<ul>
-<li>UI가 30% 더 가볍고 반응 속도가 빠름</li>
-<li>GraphQL의 스키마 탐색 기능이 우수</li>
-<li>플러그인으로 커스터마이징 가능</li>
-</ul>
-<p><strong>단점:</strong></p>
-<ul>
-<li>2024년 이후 Kong의 클라우드 전략으로 일부 기능이 유료화</li>
-<li>팀 협업 기능이 Postman보다 제한적</li>
-<li>테스트 자동화 기능은 Postman보다 부족</li>
-</ul>
-<h2 id="bruno-git-네이티브-혁명">Bruno: Git 네이티브 혁명<a hidden class="anchor" aria-hidden="true" href="#bruno-git-네이티브-혁명">#</a></h2>
-<p>Bruno은 2023년 출시된 신생 오픈소스 API 클라이언트로, &ldquo;Git 친화적&quot;이라는 단 하나의 차별점으로 폭발적인 성장을 이뤘습니다.</p>
-<p><strong>핵심 차별점:</strong></p>
-<ul>
-<li>컬렉션이 ```.bru```` 텍스트 파일로 저장되어 Git diff 가능</li>
-<li>오프라인 우선 설계, 클라우드 로그인 불필요</li>
-<li>100% 오픈소스 (MIT 라이선스)</li>
-<li>JavaScript로 테스트 스크립트 작성</li>
-<li>CLI <code>bru</code> 명령어로 CI/CD 통합</li>
-</ul>
-<p><strong>왜 Git 친화적인가?</strong></p>
-<p>Postman의 컬렉션은 JSON 낸에 모든 정보를 담아 Git diff가 읽기 어렵습니다. 반면 Bruno의 <code>.bru</code> 파일은 다음과 같이 인간이 읽을 수 있는 형식입니다: `````
-meta {
-name: Get Users
-type: http
-seq: 1
-}</p>
-<p>get {
-url: /api/users
-body: none
-auth: bearer
-}</p>
-<p>headers {
-Content-Type: application/json
-}</p>
+<h3 id="sự-phát-triển-sau-khi-kong-mua-lại">Sự Phát Triển Sau Khi Kong Mua Lại<a hidden class="anchor" aria-hidden="true" href="#sự-phát-triển-sau-khi-kong-mua-lại">#</a></h3>
+<p>Insomnia được Kong Inc. mua lại năm 2019. Từ đó, Insomnia tích hợp chặt hơn với Kong Gateway và phát triển hệ sinh thái plugin. Tuy nhiên, một số ngườidùng lo ngại về việc Insomnia cũng đang hướng đến mô hình cloud-first.</p>
+<h3 id="hệ-sinh-thái-plugin">Hệ Sinh Thái Plugin<a hidden class="anchor" aria-hidden="true" href="#hệ-sinh-thái-plugin">#</a></h3>
+<p>Insomnia hỗ trợ plugin system cho phép mở rộng tính năng. Các plugin phổ biến bao gồm: theme customizer, additional exporters, và integration với các dịch vụ bên thứ ba.</p>
+<p>Giá cả: Free (cơ bản), Individual $50/năm, Team $120/ngườidùng/năm.</p>
+<h2 id="bruno-cuộc-cách-mạng-git-native">Bruno: Cuộc Cách Mạng Git-Native<a hidden class="anchor" aria-hidden="true" href="#bruno-cuộc-cách-mạng-git-native">#</a></h2>
+<h3 id="bruno-khác-biệt-như-thế-nào">Bruno Khác Biệt Như Thế Nào?<a hidden class="anchor" aria-hidden="true" href="#bruno-khác-biệt-như-thế-nào">#</a></h3>
+<p>Bruno là API client mới nhất trong ba công cụ, nhưng đang tạo nên làn sóng mạnh mẽ với triết lý &ldquo;Git-first, offline-first&rdquo;. Ra mắt năm 2023 bởi Anoop M D, Bruno đã đạt hơn 25.000 stars trên GitHub tính đến tháng 3 năm 2025.</p>
+<h3 id="định-dạng-collection-thân-thiện-với-git-bru-files">Định Dạng Collection Thân Thiện với Git (Bru Files)<a hidden class="anchor" aria-hidden="true" href="#định-dạng-collection-thân-thiện-với-git-bru-files">#</a></h3>
+<p>Điểm độc đáo cốt lõi của Bruno là lưu collection dưới dạng plain text files có đuôi <code>.bru</code>. Mỗi request là một file riêng biệt, dễ dàng diff, review, và merge trong Git: ````
+collections/
+├── Get Users.bru
+├── Create User.bru
+├── auth/
+│   ├── Login.bru
+│   └── Logout.bru
+└── environments/
+├── local.bru
+└── production.bru</p>
 <pre tabindex="0"><code>
-PR에서 API 엔드포인트의 변경 사항을 코드 리뷰하듯 검토할 수 있습니다.
+Khác với Postman export JSON khổng lồ khó review, mỗi file ``.bru`` đơn giản và readable: `````bru
+meta {
+  name: Get Users
+  type: http
+  seq: 1
+}
 
-## 3종 비교표
+get {
+  url: /api/users
+  body: none
+  auth: bearer
+}
 
-| 기준 | Postman | Insomnia | Bruno |
-|------|---------|----------|-------|
-| 가격(개인) | 물리(제한) | 물리(제한) | 완전 물리 |
-| Git 통합 | 낯출 (낯동기화) | 보통 | 네이티브 (.bru 파일) |
-| 오프라인 | 불가 (강제 클라우드) | 가능 | 완전 지원 |
-| 프로토콜 | REST, GraphQL, gRPC, WS | REST, GraphQL, gRPC, WS | REST, GraphQL, WS |
-| CLI 도구 | Newman ($) | insomnia-cli | bru (기본 포함) |
-| 오픈소스 | X | X | O (MIT) |
-| 협업 | 우수 (Workspace) | 보통 | Git 기반 |
-| RAM 사용 | 높음 (Electron) | 중간 | 낮음 |
-| 문서화 | 우수 (자동 생성) | 보통 | 기본 제공 |
-| 테스트 스크립트 | JavaScript | JavaScript | JavaScript |
+headers {
+  Content-Type: application/json
+}
 
-## Git 통합과 버전 관리: 왜 중요한가?
-
-API 스펙은 애플리케이션 코드만큼이나 중요한 자산입니다. Bruno의 철학은 &#34;API 컬렉션도 코드처럼 관리하자&#34;입니다. ````.bru```` 파일을 Git에 커밋하면: 1. PR에서 API 변경 사항을 코드 리뷰할 수 있음
-2. 브랜치별로 다른 API 버전 관리 가능
-3. CI/CD 파이프라인에서 API 테스트 자동화
-4. 히스토리 추적 및 롤백 용이
-
-Postman도 컬렉션을 JSON으로 낯출 수 있지만, 이는 workaround에 가깝습니다. Bruno는 이를 처음부터 설계에 반영했습니다.
-
-## CLI와 자동화 기능
-
-### Bruno CLI
-
-Bruno의 CLI는 설치 즉시 사용 가능합니다: `````bash
-npm install -g @usebruno/cli
-bru run collection --env dev
-</code></pre><p>GitHub Actions와의 통합 예시: `````yaml</p>
+auth:bearer {
+  token: 
+}
+</code></pre><h3 id="offline-first-không-cloud-lock-in">Offline-First, Không Cloud Lock-in<a hidden class="anchor" aria-hidden="true" href="#offline-first-không-cloud-lock-in">#</a></h3>
+<p>Bruno hoạt động hoàn toàn offline. Không cần tài khoản, không đồng bộ cloud, không tracking. Dữ liệu của bạn luôn nằm trên local disk — đây là lý do chính khiến nhiều developer chuyển sang Bruno.</p>
+<h3 id="mã-nguồn-mở-và-cli-support">Mã Nguồn Mở và CLI Support<a hidden class="anchor" aria-hidden="true" href="#mã-nguồn-mở-và-cli-support">#</a></h3>
+<p>Bruno là open-source (MIT license) và cung cấp CLI (<code>bru run</code>) cho CI/CD. Bạn có thể chạy collection trong GitHub Actions, GitLab CI, hay bất kỳ pipeline nào: `````yaml</p>
+<h1 id="githubworkflowsapi-testsyml">.github/workflows/api-tests.yml<a hidden class="anchor" aria-hidden="true" href="#githubworkflowsapi-testsyml">#</a></h1>
 <ul>
 <li>name: Run API Tests
-run: |
-npm install -g @usebruno/cli
-bru run api-tests &ndash;env ci</li>
+run: npx @usebruno/cli run &ndash;env local</li>
 </ul>
 <pre tabindex="0"><code>
-### Newman (Postman CLI)
+### Scripting với JavaScript
 
-Newman은 Postman의 CLI 도구로, 수년간 안정적으로 사용되어 왔습니다. 하지만 물리 사용자는 기본적으로 사용할 수 없습니다: `````bash
-npm install -g newman
-newman run collection.json -e environment.json
-</code></pre><h3 id="insomnia-cli">Insomnia CLI<a hidden class="anchor" aria-hidden="true" href="#insomnia-cli">#</a></h3>
-<p>Insomnia도 CLI를 제공하지만, 2024년 기준 기능이 Bruno나 Newman보다 제한적입니다.</p>
-<h2 id="기타-주목할만한-api-테스트-도구">기타 주목할만한 API 테스트 도구<a hidden class="anchor" aria-hidden="true" href="#기타-주목할만한-api-테스트-도구">#</a></h2>
+Bruno hỗ trợ pre-request và post-response scripts bằng JavaScript, tương tự Postman nhưng với cú pháp đơn giản hơn: `````javascript
+// Pre-request script
+const token = bru.getEnvVar(&#34;authToken&#34;);
+req.setHeader(&#34;Authorization&#34;, ````Bearer ${token}````);
+</code></pre><h2 id="so-sánh-trực-tiếp-postman-vs-insomnia-vs-bruno">So Sánh Trực Tiếp: Postman vs Insomnia vs Bruno<a hidden class="anchor" aria-hidden="true" href="#so-sánh-trực-tiếp-postman-vs-insomnia-vs-bruno">#</a></h2>
 <table>
 	<thead>
 			<tr>
-					<th>도구</th>
-					<th>특징</th>
-					<th>적합한 사용자</th>
+					<th>Tiêu chí</th>
+					<th>Postman</th>
+					<th>Insomnia</th>
+					<th>Bruno</th>
 			</tr>
 	</thead>
 	<tbody>
 			<tr>
-					<td><a href="https://httpie.io">HTTPie Desktop</a></td>
-					<td>직관적인 HTTP 클라이언트</td>
-					<td>CLI HTTPie 팬</td>
+					<td><strong>Giá cá nhân</strong></td>
+					<td>Free (giới hạn)</td>
+					<td>Free</td>
+					<td>Miễn phí hoàn toàn</td>
 			</tr>
 			<tr>
-					<td><a href="https://hoppscotch.io">Hoppscotch</a></td>
-					<td>브라우저 기반, 오픈소스</td>
-					<td>가벼운 테스트</td>
+					<td><strong>Giá team</strong></td>
+					<td>$14-49/tháng</td>
+					<td>$10/tháng</td>
+					<td>$19/tháng (Golden Edition)</td>
 			</tr>
 			<tr>
-					<td>Thunder Client</td>
-					<td>VS Code 확장, 초경량</td>
-					<td>VS Code 고수</td>
+					<td><strong>Mã nguồn mở</strong></td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>✅ MIT License</td>
 			</tr>
 			<tr>
-					<td>REST Client</td>
-					<td>파일 기반 HTTP 요청</td>
-					<td>마크다운 애호가</td>
+					<td><strong>Offline</strong></td>
+					<td>❌ Bắt buộc đăng nhập</td>
+					<td>✅</td>
+					<td>✅ Hoàn toàn offline</td>
+			</tr>
+			<tr>
+					<td><strong>Git-friendly</strong></td>
+					<td>⚠️ Export/import</td>
+					<td>⚠️ Export/import</td>
+					<td>✅ Native Bru files</td>
+			</tr>
+			<tr>
+					<td><strong>CLI/CI</strong></td>
+					<td>✅ Newman</td>
+					<td>⚠️ Limited</td>
+					<td>✅ @usebruno/cli</td>
+			</tr>
+			<tr>
+					<td><strong>REST</strong></td>
+					<td>✅</td>
+					<td>✅</td>
+					<td>✅</td>
+			</tr>
+			<tr>
+					<td><strong>GraphQL</strong></td>
+					<td>✅</td>
+					<td>✅</td>
+					<td>✅</td>
+			</tr>
+			<tr>
+					<td><strong>gRPC</strong></td>
+					<td>✅</td>
+					<td>✅</td>
+					<td>❌</td>
+			</tr>
+			<tr>
+					<td><strong>WebSocket</strong></td>
+					<td>✅</td>
+					<td>✅</td>
+					<td>✅</td>
+			</tr>
+			<tr>
+					<td><strong>Platform</strong></td>
+					<td>Win/Mac/Linux</td>
+					<td>Win/Mac/Linux</td>
+					<td>Win/Mac/Linux</td>
+			</tr>
+			<tr>
+					<td><strong>Collection as Code</strong></td>
+					<td>❌</td>
+					<td>❌</td>
+					<td>✅</td>
+			</tr>
+			<tr>
+					<td><strong>API Documentation</strong></td>
+					<td>✅ Tích hợp</td>
+					<td>⚠️ Plugin</td>
+					<td>❌</td>
+			</tr>
+			<tr>
+					<td><strong>Mock Server</strong></td>
+					<td>✅</td>
+					<td>❌</td>
+					<td>❌</td>
+			</tr>
+			<tr>
+					<td><strong>Monitoring</strong></td>
+					<td>✅</td>
+					<td>❌</td>
+					<td>❌</td>
 			</tr>
 	</tbody>
 </table>
-<h2 id="워크플로우별-도구-추천">워크플로우별 도구 추천<a hidden class="anchor" aria-hidden="true" href="#워크플로우별-도구-추천">#</a></h2>
-<h3 id="개인-개발자-bruno-또는-insomnia">개인 개발자: Bruno 또는 Insomnia<a hidden class="anchor" aria-hidden="true" href="#개인-개발자-bruno-또는-insomnia">#</a></h3>
-<p>큰 제약 없이 물리로 사용할 수 있습니다. Git 버전 관리가 중요하면 Bruno, 다중 프로토콜 지원이 중요하면 Insomnia를 선택하세요.</p>
-<h3 id="협업-우선-팀-postman">협업 우선 팀: Postman<a hidden class="anchor" aria-hidden="true" href="#협업-우선-팀-postman">#</a></h3>
-<p>팀 Workspace, 실시간 동기화, 권한 관리가 필요한 경우 Postman이 여전히 최선입니다. 엔터프라이즈 환경에서의 안정성도 검증되었습니다.</p>
-<h3 id="git-first-팀-bruno">Git-First 팀: Bruno<a hidden class="anchor" aria-hidden="true" href="#git-first-팀-bruno">#</a></h3>
-<p>API 컬렉션을 코드처럼 PR로 리뷰하고, CI/CD에서 자동 테스트하는 워크플로우를 원한다면 Bruno이 유일한 선택지입니다.</p>
-<h3 id="vs-code-사용자-thunder-client-또는-rest-client">VS Code 사용자: Thunder Client 또는 REST Client<a hidden class="anchor" aria-hidden="true" href="#vs-code-사용자-thunder-client-또는-rest-client">#</a></h3>
-<p>에디터 전환 없이 API 테스트를 하려면 Thunder Client 확장이 가장 편리합니다.</p>
-<h2 id="마이그레이션-가이드-postman에서-bruno으로">마이그레이션 가이드: Postman에서 Bruno으로<a hidden class="anchor" aria-hidden="true" href="#마이그레이션-가이드-postman에서-bruno으로">#</a></h2>
-<ol>
-<li><strong>낯출</strong>: Postman에서 Collection → Export → Collection v2.1 선택</li>
-<li><strong>변환</strong>: Bruno의 Import 기능으로 <code>.json</code> 파일 업로드</li>
-<li><strong>환경 변수</strong>: Postman Environment를 <code>.env</code> 파일로 변환</li>
-<li><strong>스크립트</strong>: Postman의 ````pm.*``` API를 Bruno의 JavaScript 문법으로 변환</li>
-</ol>
-<p>2025년 3월 기준 Bruno의 Postman importer는 95% 이상의 컬렉션을 정확히 변환합니다. 복잡한 테스트 스크립트만 수동 수정이 필요합니다.</p>
-<h2 id="결론">결론<a hidden class="anchor" aria-hidden="true" href="#결론">#</a></h2>
-<p>2025년 API 테스트 도구의 선택은 우선순위의 문제입니다. 강력한 협업과 생태계를 원한다면 Postman, 가벼운 멀티 프로토콜 지원을 원한다면 Insomnia, 코드로서의 API 관리를 원한다면 Bruno이 각각 최적의 답입니다.</p>
-<p>Git 네이티브 API 클라이언트의 부상은 개발자 커뮤니티가 &ldquo;단순한 도구&quot;에서 &ldquo;워크플로우의 일부&quot;로 API 테스트를 재정의하고 있음을 보여줍니다.</p>
-<hr>
-<h2 id="faq">FAQ<a hidden class="anchor" aria-hidden="true" href="#faq">#</a></h2>
-<p><strong>Bruno이 Postman보다 더 나은가요?</strong><br>
-상황에 따라 다릅니다. Git 버전 관리와 오프라인 사용이 중요하면 Bruno이 우수합니다. 팀 협업, API 문서화, Mock Server 등의 기능이 필요하면 Postman이 더 적합합니다.</p>
-<p><strong>최고의 물리 API 테스트 도구는 무엇인가요?</strong><br>
-2025년 기준 개인 사용자에게 가장 적합한 물리 도구는 Bruno입니다. 완전 물리이며 CLI, Git 통합, 오프라인 사용이 모두 지원됩니다. Insomnia의 물리 요금제도 좋은 대안입니다.</p>
-<p><strong>API 테스트 도구를 오프라인에서 사용할 수 있나요?</strong><br>
-Bruno은 완전한 오프라인 사용을 지원합니다. Postman은 2023년 이후 클라우드 계정 생성을 강제하며, Insomnia는 로컬 사용이 가능하지만 일부 기능은 인터넷 연결이 필요합니다.</p>
-<p><strong>Postman에서 Bruno으로 어떻게 마이그레이션하나요?</strong><br>
-Postman에서 컬렉션을 v2.1 JSON으로 낯출한 뒤, Bruno의 Import 기능으로 불러오면 됩니다. 환경 변수와 테스트 스크립트는 수동 검증이 필요합니다.</p>
-<p><strong>GraphQL과 gRPC를 동시에 지원하는 API 클라이언트는 무엇인가요?</strong><br>
-Postman과 Insomnia가 REST, GraphQL, gRPC, WebSocket을 모두 지원합니다. Bruno은 2025년 현재 gRPC 지원을 베타 단계에서 준비 중입니다.</p>
-<hr>
-<h2 id="추천-인프라">추천 인프라<a hidden class="anchor" aria-hidden="true" href="#추천-인프라">#</a></h2>
-<p>위 도구들을 24/7 안정 운영하려면 인프라가 중요하다: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.</p>
+<h3 id="so-sánh-giá-chi-tiết">So Sánh Giá Chi Tiết<a hidden class="anchor" aria-hidden="true" href="#so-sánh-giá-chi-tiết">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Gói</th>
+					<th>Postman</th>
+					<th>Insomnia</th>
+					<th>Bruno</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Free</td>
+					<td>3 users/collection</td>
+					<td>Không giới hạn cơ bản</td>
+					<td>Unlimited, tất cả tính năng</td>
+			</tr>
+			<tr>
+					<td>Cá nhân</td>
+					<td>$14/tháng</td>
+					<td>$4/tháng</td>
+					<td>Free</td>
+			</tr>
+			<tr>
+					<td>Team</td>
+					<td>$29/tháng</td>
+					<td>$10/tháng</td>
+					<td>$19/tháng</td>
+			</tr>
+			<tr>
+					<td>Enterprise</td>
+					<td>$49/tháng</td>
+					<td>Custom</td>
+					<td>Custom</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="các-công-cụ-kiểm-thử-api-khác-đáng-chú-ý">Các Công Cụ Kiểm Thử API Khác Đáng Chú Ý<a hidden class="anchor" aria-hidden="true" href="#các-công-cụ-kiểm-thử-api-khác-đáng-chú-ý">#</a></h2>
+<h3 id="httpie-desktop">HTTPie Desktop<a hidden class="anchor" aria-hidden="true" href="#httpie-desktop">#</a></h3>
+<p>HTTPie bắt đầu như CLI tool với syntax thân thiện (<code>http GET example.com</code>), nay đã có phiên bản Desktop. Phù hợp cho ngườithích giao diện sạch và CLI integration. Website: <a href="https://httpie.io">httpie.io</a></p>
+<h3 id="hoppscotch">Hoppscotch<a hidden class="anchor" aria-hidden="true" href="#hoppscotch">#</a></h3>
+<p>Hoppscotch là API client hoàn toàn chạy trong trình duyệt, open-source, và hỗ trợ real-time collaboration. Đặc biệt hữu ích khi bạn không thể cài đặt phần mềm trên máy. Website: <a href="https://hoppscotch.io">hoppscotch.io</a></p>
+<h3 id="thunder-client">Thunder Client<a hidden class="anchor" aria-hidden="true" href="#thunder-client">#</a></h3>
+<p>Thunder Client là extension VS Code nhẹ nhất cho API testing. Không cần rờikhỏi editor, bạn có thể gửi request và xem response ngay trong VS Code. Phù hợp cho developer không muốn chuyển đổi giữa nhiều ứng dụng.</p>
+<h3 id="pawrapidapi">Paw/RapidAPI<a hidden class="anchor" aria-hidden="true" href="#pawrapidapi">#</a></h3>
+<p>Paw (nay là RapidAPI for Mac) là API client native cho macOS với giao diện visual editing đẹp mắt. Tuy nhiên, chỉ hỗ trợ macOS và có giá khá cao ($49.99).</p>
+<h2 id="tích-hợp-git-và-quản-lý-phiên-bản">Tích Hợp Git và Quản Lý Phiên Bản<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-git-và-quản-lý-phiên-bản">#</a></h2>
+<h3 id="tại-sao-collection-thân-thiện-với-git-lại-quan-trọng">Tại Sao Collection Thân Thiện với Git Lại Quan Trọng?<a hidden class="anchor" aria-hidden="true" href="#tại-sao-collection-thân-thiện-với-git-lại-quan-trọng">#</a></h3>
+<p>Trong phát triển phần mềm hiện đại, &ldquo;everything as code&rdquo; là xu hướng chính. API collections không ngoại lệ. Khi collection được lưu dưới dạng code, bạn có thể: - <strong>Code review</strong>: Review thay đổi API qua pull request</p>
 <ul>
-<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연. dibi8.com 자체 호스팅 IDC.</li>
+<li><strong>Version control</strong>: Theo dõi lịch sử thay đổi API</li>
+<li><strong>CI/CD</strong>: Chạy kiểm thử API tự động trong pipeline</li>
+<li><strong>Collaboration</strong>: Nhiều ngườicùng chỉnh sửa không conflict</li>
 </ul>
-<p><em>추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.</em></p>
+<h3 id="cách-bruno-thực-hiện-collections-as-code">Cách Bruno Thực Hiện Collections as Code<a hidden class="anchor" aria-hidden="true" href="#cách-bruno-thực-hiện-collections-as-code">#</a></h3>
+<p>Bruno là công cụ duy nhất trong ba công cụ chính lưu collection dưới dạng plain text files. Mỗi request là một file <code>.bru</code> độc lập, dễ dàng diff trong Git và review qua pull request.</p>
+<h3 id="workaround-cho-postman-và-insomnia">Workaround cho Postman và Insomnia<a hidden class="anchor" aria-hidden="true" href="#workaround-cho-postman-và-insomnia">#</a></h3>
+<p>Postman và Insomnia không có native Git integration. Workaround là export collection ra JSON rồi commit vào repo. Tuy nhiên, file JSON khó đọc khi diff và dễ gây conflict khi nhiều ngườicùng chỉnh sửa.</p>
+<h2 id="cli-và-khả-năng-tự-động-hóa">CLI và Khả Năng Tự Động Hóa<a hidden class="anchor" aria-hidden="true" href="#cli-và-khả-năng-tự-động-hóa">#</a></h2>
+<h3 id="bruno-cli-cho-cicd-pipelines">Bruno CLI cho CI/CD Pipelines<a hidden class="anchor" aria-hidden="true" href="#bruno-cli-cho-cicd-pipelines">#</a></h3>
+<p>Bruno CLI (<code>@usebruno/cli</code>) là một package npm cho phép chạy collection từ command line. Hỗ trợ reporters (junit, html), environment variables, và tích hợp dễ dàng với GitHub Actions.</p>
+<h3 id="newman-postman-cli-cho-tự-động-hóa-kiểm-thử">Newman (Postman CLI) cho Tự Động Hóa Kiểm Thử<a hidden class="anchor" aria-hidden="true" href="#newman-postman-cli-cho-tự-động-hóa-kiểm-thử">#</a></h3>
+<p>Newman là CLI của Postman, đã có từ lâu và rất ổn định. Hỗ trợ đầy đủ các tính năng của Postman collection và có hệ sinh thái reporters phong phú. Tuy nhiên, cần export collection từ Postman trước khi dùng với Newman.</p>
+<h3 id="tích-hợp-kiểm-thử-api-trong-github-actions">Tích Hợp Kiểm Thử API trong GitHub Actions<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-kiểm-thử-api-trong-github-actions">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">API Tests</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>: [<span style="color:#ae81ff">push, pull_request]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs: test: runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps: - uses</span>: <span style="color:#ae81ff">actions/checkout@v4</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Setup Bruno CLI</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">npm install -g @usebruno/cli</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run API Tests</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">bru run --env ci</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">working-directory</span>: <span style="color:#ae81ff">./api-tests</span>
+</span></span></code></pre></div><h2 id="hướng-dẫn-chọn-công-cụ-phù-hợp-với-workflow">Hướng Dẫn Chọn Công Cụ Phù Hợp với Workflow<a hidden class="anchor" aria-hidden="true" href="#hướng-dẫn-chọn-công-cụ-phù-hợp-với-workflow">#</a></h2>
+<h3 id="lập-trình-viên-cá-nhân">Lập Trình Viên Cá Nhân<a hidden class="anchor" aria-hidden="true" href="#lập-trình-viên-cá-nhân">#</a></h3>
+<ul>
+<li><strong>Bruno</strong>: Nếu bạn muốn Git-native, offline, miễn phí</li>
+<li><strong>Insomnia</strong>: Nếu cần GraphQL/gRPC với giao diện đẹp</li>
+<li><strong>Thunder Client</strong>: Nếu muốn test API ngay trong VS Code</li>
+</ul>
+<h3 id="nhóm-ưu-tiên-cộng-tác">Nhóm Ưu Tiên Cộng Tác<a hidden class="anchor" aria-hidden="true" href="#nhóm-ưu-tiên-cộng-tác">#</a></h3>
+<ul>
+<li><strong>Postman</strong>: Vẫn là lựa chọn tốt nhất cho team collaboration, sharing collections, và API documentation</li>
+<li><strong>Hoppscotch</strong>: Nếu team cần real-time collaboration trên web</li>
+</ul>
+<h3 id="team-theo-hướng-git-first">Team theo Hướng Git-First<a hidden class="anchor" aria-hidden="true" href="#team-theo-hướng-git-first">#</a></h3>
+<ul>
+<li><strong>Bruno</strong>: Lựa chọn duy nhất với native Git integration</li>
+</ul>
+<h3 id="môi-trường-doanh-nghiệp">Môi Trường Doanh Nghiệp<a hidden class="anchor" aria-hidden="true" href="#môi-trường-doanh-nghiệp">#</a></h3>
+<ul>
+<li><strong>Postman Enterprise</strong>: SSO, governance, enterprise support</li>
+<li><strong>Bruno Golden Edition</strong>: Self-hostable, audit logs, on-premise</li>
+</ul>
+<h3 id="ngườidùng-vs-code">Ngườidùng VS Code<a hidden class="anchor" aria-hidden="true" href="#ngườidùng-vs-code">#</a></h3>
+<ul>
+<li><strong>Thunder Client</strong>: Extension nhẹ, không rờikhỏi editor</li>
+<li><strong>REST Client</strong>: File-based approach, lưu request trong ````.http``` files</li>
+</ul>
+<h2 id="hướng-dẫn-di-chuyển-giữa-các-công-cụ">Hướng Dẫn Di Chuyển Giữa Các Công Cụ<a hidden class="anchor" aria-hidden="true" href="#hướng-dẫn-di-chuyển-giữa-các-công-cụ">#</a></h2>
+<h3 id="export-từ-postman-sang-bruno">Export từ Postman sang Bruno<a hidden class="anchor" aria-hidden="true" href="#export-từ-postman-sang-bruno">#</a></h3>
+<p>Bruno hỗ trợ import trực tiếp Postman collection (JSON format). Quy trình: 1. Export collection từ Postman: Collection → Export → Collection v2.1
+2. Trong Bruno: Create Collection → Import → Chọn file JSON
+3. Review và điều chỉnh các script nếu cần</p>
+<h3 id="chuyển-đổi-collections-và-environments">Chuyển Đổi Collections và Environments<a hidden class="anchor" aria-hidden="true" href="#chuyển-đổi-collections-và-environments">#</a></h3>
+<p>Các công cụ hỗ trợ import Postman collection: Bruno, Insomnia, và Hoppscotch. Tuy nhiên, post-response scripts có thể cần điều chỉnh do mỗi công cụ có syntax riêng.</p>
+<h3 id="duy-trì-test-scripts-trong-quá-trình-di-chuyển">Duy Trì Test Scripts Trong Quá Trình Di Chuyển<a hidden class="anchor" aria-hidden="true" href="#duy-trì-test-scripts-trong-quá-trình-di-chuyển">#</a></h3>
+<p>Cả Bruno và Insomnia đều hỗ trợ JavaScript scripting tương tự Postman. Tuy nhiên, Bruno sử dụng syntax đơn giản hơn. Nên test lại toàn bộ collection sau khi migrate.</p>
+<h2 id="faq">FAQ<a hidden class="anchor" aria-hidden="true" href="#faq">#</a></h2>
+<h3 id="bruno-có-tốt-hơn-postman-không">Bruno Có Tốt Hơn Postman Không?<a hidden class="anchor" aria-hidden="true" href="#bruno-có-tốt-hơn-postman-không">#</a></h3>
+<p>&ldquo;Tốt hơn&rdquo; phụ thuộc vào nhu cầu của bạn. Bruno vượt trội ở Git integration, offline-first, và mã nguồn mở. Postman vẫn mạnh hơn về ecosystem, collaboration features, API documentation, và mock servers. Nếu bạn cần Git-friendly workflow và không muốn cloud lock-in, Bruno tốt hơn. Nếu bạn cần enterprise features và team collaboration nâng cao, Postman vẫn là lựa chọn phù hợp.</p>
+<h3 id="công-cụ-kiểm-thử-api-miễn-phí-tốt-nhất-là-gì">Công Cụ Kiểm Thử API Miễn Phí Tốt Nhất Là Gì?<a hidden class="anchor" aria-hidden="true" href="#công-cụ-kiểm-thử-api-miễn-phí-tốt-nhất-là-gì">#</a></h3>
+<p>Cho cá nhân: <strong>Bruno</strong> (miễn phí hoàn toàn, không giới hạn) và <strong>Hoppscotch</strong> (web-based, open-source). Cho team nhỏ: <strong>Insomnia free tier</strong>. Nếu bạn cần CLI cho CI/CD, Bruno CLI miễn phí là lựa chọn tốt nhất.</p>
+<h3 id="có-thể-dùng-công-cụ-kiểm-thử-api-offline-không">Có Thể Dùng Công Cụ Kiểm Thử API Offline Không?<a hidden class="anchor" aria-hidden="true" href="#có-thể-dùng-công-cụ-kiểm-thử-api-offline-không">#</a></h3>
+<p><strong>Bruno</strong> hoạt động hoàn toàn offline — không cần tài khoản, không cần internet. <strong>Insomnia</strong> cũng hoạt động offline nhưng có một số tính năng cloud. <strong>Postman</strong> yêu cầu đăng nhập tài khoản, dù có thể dùng offline sau khi đăng nhập. <strong>Thunder Client</strong> và <strong>REST Client</strong> hoàn toàn offline vì là VS Code extensions.</p>
+<h3 id="làm-thế-nào-để-chuyển-từ-postman-sang-bruno">Làm Thế Nào Để Chuyển từ Postman sang Bruno?<a hidden class="anchor" aria-hidden="true" href="#làm-thế-nào-để-chuyển-từ-postman-sang-bruno">#</a></h3>
+<p>Quy trình đơn giản: 1. Trong Postman, export collection (Collection → Export → v2.1)
+2. Trong Bruno, click &ldquo;Create Collection&rdquo; → &ldquo;Import Collection&rdquo;
+3. Chọn file JSON đã export
+4. Kiểm tra lại các variables và scripts
+5. Lưu collection vào thư mục đã được Git track</p>
+<p>Lưu ý: Postman tests cần chuyển đổi sang Bruno script syntax. Xem tài liệu tại <a href="https://www.usebruno.com">www.usebruno.com</a>.</p>
+<h3 id="công-cụ-nào-hỗ-trợ-graphql-và-grpc">Công Cụ Nào Hỗ Trợ GraphQL và gRPC?<a hidden class="anchor" aria-hidden="true" href="#công-cụ-nào-hỗ-trợ-graphql-và-grpc">#</a></h3>
+<p>Cả <strong>Postman</strong> và <strong>Insomnia</strong> đều hỗ trợ đầy đủ REST, GraphQL, gRPC, và WebSocket. <strong>Bruno</strong> hỗ trợ REST, GraphQL, và WebSocket nhưng chưa hỗ trợ gRPC (tính đến tháng 3 năm 2025). <strong>Hoppscotch</strong> hỗ trợ tất cả các giao thức này. Nếu cần gRPC, Postman hoặc Insomnia là lựa chọn an toàn.</p>
+<h2 id="kết-luận">Kết Luận<a hidden class="anchor" aria-hidden="true" href="#kết-luận">#</a></h2>
+<p>Lựa chọn công cụ kiểm thử API tốt nhất phụ thuộc vào ưu tiên của bạn. Postman vẫn là vua về tính năng toàn diện và ecosystem. Insomnia là lựa chọn cân bằng giữa tính năng và trải nghiệm ngườidùng. Bruno đại diện cho tương lai của API testing — Git-native, offline-first, và collections as code.</p>
+<p>Xu hướng Git-native API clients đang ngày càng mạnh mẽ, phản ánh sự chuyển dịch rộng hơn trong ngành về &ldquo;everything as code&rdquo;. Dù bạn chọn công cụ nào, hãy đảm bảo nó phù hợp với workflow của team và có thể tích hợp vào CI/CD pipeline.</p>
+<p>Tìm hiểu thêm tại <a href="https://www.postman.com">postman.com</a>, <a href="https://insomnia.rest">insomnia.rest</a>, và <a href="https://www.usebruno.com">usebruno.com</a>.</p>
+<hr>
+<h2 id="hạ-tầng-đề-xuất">Hạ Tầng Đề Xuất<a hidden class="anchor" aria-hidden="true" href="#hạ-tầng-đề-xuất">#</a></h2>
+<p>Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.</li>
+<li><strong><a href="https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN">Hostinger</a></strong> — VPS giá tốt cho thị trường Việt Nam.</li>
+</ul>
+<p><em>Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.</em></p>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;Postman vs Insomnia vs Bruno: 2025년 최고의 API 테스트 도구 비교&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Postman vs Insomnia vs Bruno: Công Cụ Kiểm Thử API Tốt Nhất Năm 2025&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-18&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-18&rdquo;,
 &ldquo;author&rdquo;: {
@@ -474,54 +698,10 @@ Postman과 Insomnia가 REST, GraphQL, gRPC, WebSocket을 모두 지원합니다.
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/api-testing-tools-postman-vs-insomnia-vs-bruno%22">https://dibi8.com/kr/resources/api-testing-tools-postman-vs-insomnia-vs-bruno"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/vi/resources/api-testing-tools-postman-vs-insomnia-vs-bruno%22">https://dibi8.com/vi/resources/api-testing-tools-postman-vs-insomnia-vs-bruno"</a>
 }
 }
 </script></p>
-<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
-<p>Understanding postman vs insomnia vs bruno: 2025년 최고의 api 테스트 도구 비교 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
-<ul>
-<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
-<li><strong>Quality</strong>: Improve output consistency</li>
-<li><strong>Scalability</strong>: Handle larger workloads</li>
-<li><strong>Cost</strong>: Reduce operational expenses</li>
-</ul>
-<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
-<p>Organizations are using similar approaches to: 1. Automate code review processes
-2. Generate documentation automatically
-3. Build internal knowledge bases
-4. Streamline deployment pipelines</p>
-<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
-<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
-<ul>
-<li>Identify repetitive tasks</li>
-<li>Measure current time costs</li>
-<li>Define success metrics</li>
-</ul>
-<ol start="2">
-<li>
-<p><strong>Choose Your Approach</strong></p>
-<ul>
-<li>Start with simple automations</li>
-<li>Gradually increase complexity</li>
-<li>Test and iterate</li>
-</ul>
-</li>
-<li>
-<p><strong>Measure Results</strong></p>
-<ul>
-<li>Track time savings</li>
-<li>Monitor quality improvements</li>
-<li>Calculate ROI</li>
-</ul>
-</li>
-</ol>
-<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
-<p>Postman vs Insomnia vs Bruno: 2025년 최고의 API 테스트 도구 비교 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
-<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
-<hr>
-<p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~5 minutes</em></p>
 
 
   </div>
@@ -554,6 +734,81 @@ Postman과 Insomnia가 REST, GraphQL, gRPC, WebSocket을 모두 지원합니다.
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

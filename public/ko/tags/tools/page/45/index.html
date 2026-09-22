@@ -134,6 +134,22 @@
     </h2>
   </header>
   <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Ai Tools source_version: ’&#39; licensing_model: Open Source license_type: AGPL-3.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“libretranslate”, “dịch máy”, “tự host”, “docker”, “api”, “mã nguồn mở”, “argos translate”, “xử lý ngôn ngữ tự nhiên”] aliases:
+/vi/posts/libretranslate/ LibreTranslate là một API dịch máy miễn phí, mã nguồn mở mà bạn tự host. Không cần API key của Google. Không tính phí theo ký tự như DeepL. Dữ liệu không rồi khỏi hạ tầng của bạn. Với 14,400&#43; sao GitHub và chu kỳ phát hành tích cực (phiên bản v1.9.5 tính đến tháng 5/2026), nó đã trở thành lựa chọn mặc định cho các developer cần dịch thuật riêng tư, có khả năng offline với chi phí biên bằng không. Hướng dẫn này là một LibreTranslate tutorial đầy đủ, bao gồm từ libretranslate setup đến libretranslate docker triển khai production, cùng với so sánh chi tiết với DeepL và Google Translate (libretranslate vs deepl) và các best practice về self-hosted translation. Hướng dẫn này đi qua triển khai production, benchmark và tích hợp.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>21 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/libretranslate/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
     <p>TL;DR Lightning AI is the leading open-source framework for production machine learning in 2026, with 25k&#43; stars on GitHub. This comprehensive guide covers installation, model training, distributed computing, inference optimization, and production deployment for building scalable ML systems.
 What Is Lightning AI? Lightning AI (formerly PyTorch Lightning) is a lightweight PyTorch wrapper that structures code into predictable components, making research code production-ready. It handles the engineering overhead of training loops, mixed precision, multi-GPU, and TPU training so you can focus on the model architecture.
 ...</p>
@@ -165,12 +181,12 @@ What Is Lightning AI? Lightning AI (formerly PyTorch Lightning) is a lightweight
   </header>
   <div class="entry-content">
     <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-02T00:00:00&#43;08:00 lastmod: 2026-06-02T00:00:00&#43;08:00 tech_stack: [] application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-06-02” draft: false categories: [“dev-utils”] tags: [&#34;] aliases:
-/posts/markitdown-dev-utils-2026/ faqs: - q: ‘markitdown은 어떻게 설치하나요?’ a: ‘pip로 설치합니다. 보통은 모든 포맷 extras를 함께 설치합니다. bash pip install &#39;&#39;markitdown[all&#34;]&#39;&#39; ’ q: ‘markitdown은 모든 종류의 오피스 문서를 변환할 수 있나요?’ a: ‘Word(.docx), Excel(.xlsx), PowerPoint(.pptx), PDF, HTML, 이미지, 오디오 등 매우 다양한 포맷을 지원하지만, 모든 포맷의 모든 기능이 보존되는 것은 아닙니다. 지원되는 유형과 필요한 extras는 문서를 확인하세요.’ q: ‘markitdown은 어떤 라이선스로 배포되나요?’ a: ‘markitdown은 MIT 라이선스로 배포되어, 어떤 용도로든 자유롭게 사용하고 수정할 수 있습니다.’ q: ‘프로젝트에 어떻게 기여하나요?’ a: ‘이슈를 보고하거나 풀 리퀘스트를 보낼 수 있습니다. 기여 가이드라인은 GitHub 저장소를 확인하세요.’ q: ‘markitdown에 알려진 한계가 있나요?’ a: ‘네, 일부 고급 기능과 복잡한 문서 구조는 완전히 보존되지 않을 수 있습니다. 프로젝트는 활발히 유지보수되지만, 시각적 재현보다 텍스트 정확성을 우선합니다.’ markitdown: 파일과 오피스 문서를 마크다운으로 변환 (141K Stars) — 2026 실전 가이드 들어가며 오피스 문서를 마크다운으로 변환하는 일은 꽤 번거롭습니다. 특히 여러 파일과 다양한 포맷을 한꺼번에 다뤄야 할 때는 더 그렇죠. 마이크로소프트의 ```markitdown도구가 바로 이 작업을 도와줍니다. GitHub 스타 14만 1천 개를 넘기며, 문서 변환이 필요한 개발자들에게 인기 있는 선택지가 되었습니다. 이 가이드에서는 설치, 사용법, 그리고 다른 도구들과의 비교를 차례로 살펴보면서markitdown````이 여러분의 작업 흐름에 맞는지 판단할 수 있도록 돕겠습니다.
+/posts/markitdown-dev-utils-2026/ faqs: - q: ‘Cài markitdown thế nào?’ a: ‘Cài bằng pip. Lựa chọn phổ biến là kéo về tất cả extras định dạng: bash pip install &#39;&#39;markitdown[all&#34;]&#39;&#39; ’ q: ‘markitdown có chuyển được mọi loại tài liệu Office không?’ a: ‘Nó hỗ trợ rất nhiều định dạng — Word (.docx), Excel (.xlsx), PowerPoint (.pptx), PDF, HTML, ảnh và âm thanh — nhưng không phải tính năng nào của mọi định dạng cũng được giữ lại. Hãy xem tài liệu để biết danh sách các loại được hỗ trợ và extras cần thiết.’ q: ‘markitdown phát hành theo giấy phép nào?’ a: ‘markitdown được phát hành theo giấy phép MIT, nên có thể sử dụng và chỉnh sửa tự do cho mọi mục đích.’ q: ‘Đóng góp cho dự án thế nào?’ a: ‘Bạn có thể báo lỗi (issue) hoặc gửi pull request. Xem hướng dẫn đóng góp tại repository GitHub.’ q: ‘markitdown có hạn chế nào đã biết không?’ a: ‘Có — một số tính năng nâng cao và cấu trúc tài liệu phức tạp có thể không được giữ lại đầy đủ. Dự án được bảo trì tích cực, nhưng nó ưu tiên độ chính xác văn bản hơn là tái tạo hình thức.’ markitdown: Chuyển file và tài liệu Office sang Markdown (141K Stars) — Hướng dẫn thực chiến 2026 Giới thiệu Chuyển tài liệu Office sang Markdown có thể là một việc khá nhọc, nhất là khi phải xử lý nhiều file và nhiều định dạng khác nhau. Công cụ ```markitdowncủa Microsoft sinh ra để giúp việc đó, với hơn 141 nghìn sao trên GitHub, trở thành lựa chọn quen thuộc của các lập trình viên khi cần chuyển đổi tài liệu. Bài viết này sẽ dẫn bạn qua phần cài đặt, cách dùng và so sánh với các công cụ khác, giúp bạn quyết định liệumarkitdown```` có hợp với quy trình của mình hay không.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/markitdown-dev-utils-2026/"></a>
 </article>
 
@@ -180,13 +196,13 @@ What Is Lightning AI? Lightning AI (formerly PyTorch Lightning) is a lightweight
     </h2>
   </header>
   <div class="entry-content">
-    <p>소개: 데이터베이스의 ```LIKE```` 쿼리가 UX를 죽이고 있다 검색은 대부분의 애플리케이션에서 가장 높은 트래픽을 차지하는 상호작용이다. 그러나 2026년에도 63%의 웹 애플리케이션이 데이터베이스 LIKE 쿼리를 검색에 사용하고 있다. 결과는? 100&#34;, “000개 이상의 행이 있는 데이터셋에서 쿼리가 300ms에서 3초가 걸린다. 사용자는 500ms 후에 검색을 포기한다. 당신은 참여도를 잃고 있다.
-Elasticsearch에 대해 들어봤을 것이다. 잘 작동하지만 최소 8GB RAM”, “JVM 튜닝”, “전용 운영 팀이 필요하다. Algolia는 빠르지만 확장 시 1”, “000건 검색당 $1.00이 든다. 몇 분 안에 배포되고”, “$20 VPS에서 실행되며”, “수백만 문서를 번쩍이는 눈썂 처리하는 것이 필요하다.
+    <p>title: “Meilisearch: The Lightning-Fast Open-Source Search Engin… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [”] aliases:
+/posts/meilisearch-fast-search-engine/- Introduction: Your Database’s ```LIKE```` Query Is Killing Your UX Search is the highest-traffic interaction on most applications. Yet&#34;, “63% of web applications still use database LIKE queries for search in 2026. The result? Queries that take 300ms to 3 seconds on datasets over 100”, “000 rows. Users abandon searches after 500ms. You are bleeding engagement.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>15 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>17 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/meilisearch-fast-search-engine/"></a>
 </article>
 
@@ -197,12 +213,12 @@ Elasticsearch에 대해 들어봤을 것이다. 잘 작동하지만 최소 8GB R
   </header>
   <div class="entry-content">
     <p>slug: microsoft-presidio-pii-detection-redaction-sdk title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-22 00:00:00&#43;08:00 lastmod: “2026-06-22 00:00:00&#43;08:00” tech_stack: - Python 3.8&#43;
-spaCy Transformers Docker PySpark application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-06-21” draft: false categories: [“dev-utils”] tags: [“프레시디오”, “개인 식별 정보(pii) 탐지”, “데이터 삭제”, “데이터 익명화”, “마이크로소프트”, “자연어 처리”, “개체명 인식”, “이미지 편집”, “디컴”, “일반 개인정보 보호 규정”, “hipaa”, “오픈-ssf”, “프라이버시”, “데이터 보호”] aliases: /posts/microsoft-presidio-pii-detection-redaction-sdk/ faqs: - q: ‘마이크로소프트 프레지디오란 무엇인가요?’ a: ‘Presidio는 텍스트, 이미지 및 구조화된 데이터 전반에서 개인 식별 정보(PII)를 감지, 수정, 마스킹 및 익명화하기 위한 Microsoft의 오픈 소스 SDK입니다. ‘보호’ 또는 ‘주둔지’를 의미하는 라틴어에서 이름을 따왔으며, 문맥 인식, 플러그형 및 맞춤형 PII 비식별화 모듈을 제공합니다. 이는 명명된 개체 인식(NER), 정규 표현식, 규칙 기반 논리 및 체크섬 검증을 다국어로 지원합니다.’ q: ‘프레시디오를 구성하는 요소는 무엇인가요?’ a: ‘Presidio는 네 가지 주요 구성 요소로 이루어져 있습니다: (1) Presidio Analyzer — NER, 정규식, 규칙 기반 논리 및 체크섬을 활용한 미리 정의되거나 사용자 지정된 인식기를 사용하여 텍스트에서 PII를 감지합니다; (2) Presidio Anonymizer — 감지된 PII를 편집, 마스킹, 해싱하거나 구성 가능한 변환으로 대체합니다; (3) Presidio Image Redactor — 표준 이미지 유형 및 DICOM 의료 이미지를 포함한 이미지에서 PII를 편집합니다; (4) Presidio Structured — CSV 및 Excel 파일과 같은 테이블/구조화된 데이터에서 PII를 감지합니다.’ q: ‘Presidio가 감지할 수 있는 PII 유형은 무엇입니까?’ a: ‘Presidio는 신용카드 번호, 이름, 위치, 사회보장번호, 비트코인 지갑, 미국 전화번호, 금융 데이터, 이메일 주소, IP 주소, 신용카드 번호 등을 감지합니다. 사전 정의된 인식기와 사용자 정의 인식기를 모두 지원합니다. NER 기반 인식기는 spaCy와 HuggingFace 트랜스포머를 사용하며, 사용자 정의 정규식 패턴, 규칙 기반 논리 추가하거나 외부 PII 감지 모델과 연결할 수 있습니다.’ q: ‘Presidio를 상업적으로 사용하는 것은 무료인가요?’ a: ‘네. Presidio는 MIT 라이선스로 라이선스되어 있으며, 이는 개인 및 상업적 목적으로 자유롭게 사용, 수정 및 배포할 수 있음을 허용합니다. 또한 OpenSSF Best Practices 배지를 인증받아 엄격한 오픈 소스 보안 및 유지보수 표준을 충족함을 나타냅니다.’ q: ‘프레시디오(Pre­sidio)는 이미지 삭제를 어떻게 처리하나요?’ a: ‘Presidio 이미지 편집기는 컴퓨터 비전 모델을 사용하여 이미지에서 PII를 감지하고 편집합니다. 표준 이미지 형식(PNG, JPEG 등)과 DICOM 의료 이미지를 지원합니다. 편집은 감지된 텍스트를 검은 상자로 교체하거나, 영역을 흐리게 처리하거나, 텍스트를 완전히 제거할 수 있습니다. 이는 특히 의료 기관이 공유 또는 출판 전에 의료 영상 데이터를 익명화해야 하는 경우에 매우 유용합니다.’ q: ‘프레시디오가 대규모로 프로덕션 환경에서 실행될 수 있나요?’ a: ‘예. Presidio는 여러 배포 옵션을 지원합니다: Python 또는 PySpark 작업, Docker 컨테이너, 그리고 Kubernetes 배포. 분석기와 익명화기는 REST API로 실행될 수 있으며, 구조화된 구성 요소는 대규모 테이블형 데이터를 처리할 수 있습니다. 이는 여러 플랫폼에서 완전 자동화 및 반자동 PII 비식별화 흐름 모두를 위해 설계되었습니다.’ Why PII Detection Matters More Than Ever 사용자 데이터를 처리하는 모든 조직은 동일하게 증가하는 도전에 직면합니다: 민감한 정보가 어디에 있는지 알고 이를 보호하는 것. 고객 지원 채팅에서의 신용카드 번호. 인사(HR) 문서에 있는 사회보장번호. 의료 이미지에 있는 환자 이름. 마케팅 데이터베이스에 있는 이메일 주소.
+spaCy Transformers Docker PySpark application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-06-21” draft: false categories: [“dev-utils”] tags: [“pháo đài”, “phát hiện pii”, “ẩn dữ liệu”, “ẩn danh dữ liệu”, “microsoft”, “xử lý ngôn ngữ tự nhiên”, “nhận dạng thực thể có tên”, “chỉnh sửa hình ảnh”, “dicom”, “gdpr”, “hipaa”, “mở-ssf”, “quyền riêng tư”, “bảo vệ dữ liệu”] aliases: /posts/microsoft-presidio-pii-detection-redaction-sdk/ faqs: - q: ‘Microsoft Presidio là gì?’ a: ‘Presidio là một SDK mã nguồn mở từ Microsoft để phát hiện, chỉnh sửa, che giấu và ẩn danh thông tin cá nhân có thể nhận dạng được (PII) trên văn bản, hình ảnh và dữ liệu có cấu trúc. Được đặt theo từ tiếng Latin có nghĩa là “bảo vệ” hoặc “pháo đài”, nó cung cấp các mô-đun tách PII theo ngữ cảnh, có thể cắm thêm và tùy chỉnh. Nó hỗ trợ Nhận dạng Thực thể Đặt tên (NER), biểu thức chính quy, logic dựa trên quy tắc và kiểm tra số dư trên nhiều ngôn ngữ.’ q: ‘Những thành phần nào tạo nên Presidio?’ a: ‘Presidio bao gồm bốn thành phần chính: (1) Presidio Analyzer — phát hiện PII trong văn bản sử dụng các bộ nhận diện được định nghĩa sẵn hoặc tùy chỉnh dựa trên NER, regex, logic theo quy tắc và checksum; (2) Presidio Anonymizer — ẩn, che, băm hoặc thay thế PII được phát hiện bằng các biến đổi có thể cấu hình; (3) Presidio Image Redactor — ẩn PII khỏi hình ảnh bao gồm các loại hình ảnh tiêu chuẩn và hình ảnh y tế DICOM; (4) Presidio Structured — phát hiện PII trong dữ liệu bảng/cấu trúc như các tệp CSV và Excel.’ q: ‘Presidio có thể phát hiện những loại PII nào?’ a: ‘Presidio phát hiện số thẻ tín dụng, tên, địa điểm, số an sinh xã hội, ví Bitcoin, số điện thoại Mỹ, dữ liệu tài chính, địa chỉ email, địa chỉ IP, số thẻ tín dụng và nhiều thứ khác. Nó hỗ trợ cả các bộ nhận diện đã định sẵn và bộ nhận diện tùy chỉnh. Các bộ nhận diện dựa trên NER sử dụng spaCy và HuggingFace transformers, và bạn có thể thêm các mẫu regex tùy chỉnh, logic dựa trên quy tắc, hoặc kết nối với các mô hình phát hiện PII bên ngoài.’ q: ‘Presidio có miễn phí để sử dụng thương mại không?’ a: ‘Vâng. Presidio được cấp phép theo giấy phép MIT, cho phép sử dụng, chỉnh sửa và phân phối miễn phí cho cả mục đích cá nhân và thương mại. Nó cũng được chứng nhận với huy hiệu Thực hành tốt nhất OpenSSF, cho thấy nó đáp ứng các tiêu chuẩn bảo mật và bảo trì nguồn mở nghiêm ngặt.’ q: ‘Presidio xử lý việc che mờ hình ảnh như thế nào?’ a: ‘Presidio Image Redactor sử dụng các mô hình thị giác máy tính để phát hiện và chỉnh sửa thông tin nhận dạng cá nhân (PII) từ hình ảnh. Nó hỗ trợ các định dạng hình ảnh tiêu chuẩn (PNG, JPEG, v.v.) và hình ảnh y tế DICOM. Việc chỉnh sửa có thể thay thế văn bản được phát hiện bằng các hộp màu đen, làm mờ các khu vực hoặc loại bỏ hoàn toàn văn bản. Điều này đặc biệt có giá trị đối với các tổ chức chăm sóc sức khỏe cần ẩn danh dữ liệu hình ảnh y tế trước khi chia sẻ hoặc xuất bản.’ q: ‘Liệu Presidio có thể chạy trong môi trường sản xuất ở quy mô lớn không?’ a: ‘Vâng. Presidio hỗ trợ nhiều tùy chọn triển khai: khối lượng công việc Python hoặc PySpark, container Docker và triển khai Kubernetes. Bộ phân tích và bộ ẩn danh có thể chạy dưới dạng REST API, và thành phần có cấu trúc có thể xử lý các tập dữ liệu bảng lớn. Nó được thiết kế cho cả các luồng xác minh PII tự động hoàn toàn và bán tự động trên nhiều nền tảng.’ Why PII Detection Matters More Than Ever Mọi tổ chức xử lý dữ liệu người dùng đều đối mặt với cùng một thách thức ngày càng tăng: biết thông tin nhạy cảm nằm ở đâu và bảo vệ nó. Số thẻ tín dụng trong các cuộc trò chuyện hỗ trợ khách hàng. Số an sinh xã hội trong tài liệu nhân sự. Tên bệnh nhân trong hình ảnh y tế. Địa chỉ email trong cơ sở dữ liệu marketing.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>19 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/microsoft-presidio-pii-detection-redaction-sdk/"></a>
 </article>
 
@@ -212,13 +228,13 @@ spaCy Transformers Docker PySpark application_domain: Dev Utils source_version: 
     </h2>
   </header>
   <div class="entry-content">
-    <p>소개: 추적되지 않는 실험의 혼란 시리즈 B 스타트업의 데이터 과학 팀은 추천 모델 구축에 3개월을 투자했다. 그들은 6가지 아키텍처, 4가지 옵티마이저, 그리고 수십 가지 하이퍼파라미터 조합을 시도했다. 제품 관리자가 “어떤 버전을 출시해야 합니까?“라고 물었을 때, 아물도 확실한 답을 낼 수 없었다. 가장 성능이 좋은 모델은 서버의 체크포인트 파일이었고, 이를 훈련시킨 엔지니어는 이미 세 개의 git 커밋 전에 훈련 스크립트를 덮어썼었다.
-이것이 실험 재현성 위기이다. Algorithmia의 2024년 500명 ML 실무자 조사에 따류리 68%의 팀이 과거 실험을 재현하는 데 어려움을 겪고 있으며, **42%**가 어떤 정확한 코드와 데이터에서 생성되었는지 모른 채 모델을 출시했다. 비용은 잃어버린 모델, 중복 노력, 프로덕션 실패로 측정된다.
+    <p>title: “MLflow 2026: The Open-Source ML Lifecycle Platform Track… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Data Science source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“data-science”] tags: [“mlflow”, “machine learning”, “mlops”, “experiment tracking”, “model registry”, “model serving”, “python”, “open source”, “data science”] aliases:
+/posts/mlflow-experiment-tracking-production/- Introduction: The Chaos of Untracked Experiments A data science team at a Series B startup was three months into building a recommendation model. They had tried six different architectures, four optimizers, and dozens of hyperparameter combinations. When the product manager asked, “Which version should we ship?”, nobody could answer definitively. The best-performing model was a checkpoint file on a server, and the engineer who trained it had overwritten the training script three git commits ago.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>14 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>17 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/mlflow-experiment-tracking-production/"></a>
 </article>
 
@@ -228,30 +244,13 @@ spaCy Transformers Docker PySpark application_domain: Dev Utils source_version: 
     </h2>
   </header>
   <div class="entry-content">
-    <p>MLflow vs Weights &amp; Biases vs Neptune: 2024년 MLOps 실험 추적 플랫폼 완벽 비교 가이드 {&lt;/* resource-info */&gt;}
-머신러닝 모델 개발은 수백 번의 실험 반복을 동반합니다. 각 실험의 하이퍼파라미터, 메트릭, 아티팩트를 체계적으로 관리하지 않으면 재현성과 협업 효율이 급격히 저하됩니다. MLOps 실험 추적 플랫폼은 이러한 문제를 해결하는 핵심 인프라입니다. 본 가이드에서는 2024년 기준 가장 널리 사용되는 3대 플랫폼을 심층 비교합니다.
-MLOps와 실험 추적의 중요성 MLOps는 머신러닝 모델의 전체 라이프사이클을 관리하는 방법론입니다. 실험 단계에서 모니터링까지 흐름은 다음과 같습니다: 실험 → 추적 → 등록 → 배포 → 모니터링. 이 중 실험 추적은 모든 단계의 기초가 됩니다.
+    <p>What Is Modal? Modal is a serverless compute platform designed specifically for machine learning and data-intensive workloads. Unlike traditional cloud providers where you provision VMs, manage Kubernetes clusters, or configure auto-scaling groups, Modal abstracts all infrastructure away into simple Python decorators.
+The core philosophy is simple: your code is your infrastructure definition. Write a Python function, add a few decorators specifying resource requirements (GPU type, memory, timeout), and deploy. Modal automatically provisions the right containers, scales them based on incoming requests, and bills you per-second of actual compute used.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/mlops-platform-comparison-mlflow-wandb-neptune/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Tool Guide
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>TL;DR Modal은 인프라를 관리하지 않고도 GPU 가속 워크로드를 실행할 수 있는 Python 네이티브 서버리스 컴퓨팅 플랫폼입니다. 표준 Python 함수를 작성하고 ```@modal.enter()및@modal.function()````으로 데코레이터하면 Modal이 컨테이너 프로비저닝, GPU 할당, 네트워킹 및 스케일링을 처리합니다. LLM 추론 엔드포인트, 파인튜닝 작업, 배치 ML 파이프라인에 완벽합니다.
-Modal이란? Modal은 머신러닝과 데이터 집약적 워크로드를 위해 특별히 설계된 서버리스 컴퓨팅 플랫폼입니다. VM을 프로비저닝하고 Kubernetes 클러스터를 관리하거나 자동 확장 그룹을 구성해야 하는 전통적인 클라우드 제공업체와 달리, Modal은 모든 인프라를 간단한 Python 데코레이터로 추상화합니다.
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/modal-serverless-gpu-compute/"></a>
 </article>
 
@@ -277,14 +276,14 @@ Modal이란? Modal은 머신러닝과 데이터 집약적 워크로드를 위해
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png&#34; } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/ollama-vs-vllm&#34; } } Why This Matters Understanding ollama vs vllm 2026: 로컬 개발의 간결함 vs 프로덕션 처리량 is crucial for modern AI development. Here’s why: ### Key Benefits
-Efficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: AGPL-3.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“nocodb”, “thay-the-airtable”, “ma-nguon-mo”, “co-so-du-lieu”, “bang-tinh”, “tu-luu-tru”, “docker”, “mysql”, “postgresql”] aliases:
+/vi/posts/noco-db-airtable-alternative/ Giới Thiệu: Khi Bảng Tính Chạm Giới Hạn Mỗi team kỹ sư đều có “bảng tính chủ chốt” đó. Nó bắt đầu một cách vô hại — một Google Sheet theo dõi onboarding khách hàng, một file CSV SKU hàng tồn kho, một file Excel chia sẻ ngân sách dự án. Rồi hỗn loạn ập đến: ai đó ghi đè công thức, lịch sử phiên bản trở nên không đọc được, và giới hạn 65,000 hàng treo lơ lửng như đám mây giông.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>2 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/ollama-vs-vllm/"></a>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>16 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/llm-frameworks/noco-db-airtable-alternative/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
@@ -315,6 +314,81 @@ Efficiency: Save time on repetitive tasks Quality: Improve output consistency Sc
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

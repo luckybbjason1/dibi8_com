@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "Dify vs Flowise 2026 비교: 풀스택 AI 앱 플랫폼 vs 경량 LLM 캔버스 한눈에 결론 Dify는 RAG, 프롬프트 엔지니어링, 멀티 모델 관리, 애플리케이션 라이프사이클을 한 곳에 모두 갖춘 완전하고 의견이 강한 플랫폼으로 LLM 애플리케이션을 구축하고 운영하고 싶을 때 적합합니다. Flowise는 노드 캔버스에서 파이프라인을 조립하고 모든 컴포넌트를 밀접하게 제어하며 작업하고 싶은 경량, 시각적 LangChain/LlamaIndex 빌더가 필요한 개발자에게 맞습니다.\nDify 선택 시: 엔드투엔드 플랫폼이 필요하거나, 수동 조립 없는 내장 RAG가 필요하거나, 하나의 UI로 여러 모델을 관리하거나, 비기술 최종 사용자를 위한 AI 앱을 구축 중일 때.\nFlowise 선택 시: LangChain 프리미티브로 생각하는 개발자이거나, 최소한의 셀프호스팅 서비스가 필요하거나, 모든 파이프라인 노드에 대한 완전한 투명성을 선호하거나, 최대 유연성으로 빠르게 프로토타이핑할 때.\n항목별 비교 항목 Dify Flowise 핵심 개념 풀스택 LLM 앱 플랫폼 시각적 LangChain/LlamaIndex 캔버스 내장 RAG 있음 — 문서 업로드, 청킹, 검색 LangChain RAG 노드로 (수동 조립) 멀티 모델 라우팅 중앙 모델 제공자 관리 UI 캔버스에서 노드별 교체 셀프호스팅 Docker Compose (멀티 서비스) 단일 Docker 이미지 또는 npm 프롬프트 관리 내장 버전 관리 프롬프트 에디터 캔버스의 노드 속성 애플리케이션 게시 챗봇, API, 임베드 위젯, 워크플로 API 엔드포인트, 임베드 챗봇 커뮤니티/플러그인 성장 중인 마켓플레이스 대형 노드 생태계 최적 대상 풀스택 AI 팀, 엔터프라이즈 개발자, LangChain 빌더 라이선스 오픈소스 (Apache 2.0) 오픈소스 (Apache 2.0) Dify를 선택해야 할 때 사용 사례 1: 수동 설정 없는 엔드투엔드 RAG Dify의 RAG 파이프라인은 대부분의 팀에게 두드러진 기능입니다. PDF를 업로드하고, 청킹 전략과 임베딩 모델을 선택하면, 문서가 몇 분 안에 내장 벡터 스토리지에 인덱싱됩니다. 벡터 데이터베이스 설정 필요 없고, LangChain 문서 로더 체인 조립 불필요, 텍스트 스플리터 튜닝도 필요 없습니다. 전용 문서로 지식 베이스 챗봇을 구축하는 팀에게 Dify는 열 단계의 수동 작업을 하나의 UI 흐름으로 압축합니다.\n사용 사례 2: 한 곳에서 여러 AI 모델 관리 Dify의 모델 제공자 레이어를 통해 단일 설정 패널에서 OpenAI, Anthropic, Azure OpenAI, Hugging Face Inference, 로컬 Ollama 모델을 구성할 수 있습니다. 그런 다음 구축하는 모든 애플리케이션이나 워크플로는 드롭다운으로 구성된 모델 중 하나로 지정할 수 있습니다 — 파이프라인 코드를 건드리지 않고 낮은 우선순위 작업은 저렴한 모델로, 중요한 작업은 프리미엄 모델로 라우팅. 이것은 LLM 게이트웨이 비교에서 설명하는 접근 방식에 부합합니다.\n사용 사례 3: 최종 사용자에게 AI 애플리케이션 게시 Dify는 실제 애플리케이션을 구동하는 백엔드로 설계되었습니다. 구축하는 모든 워크플로나 챗봇을 원클릭으로 호스팅 웹 챗봇, 임베드 가능한 위젯 또는 API 엔드포인트로 게시할 수 있습니다. 프론트엔드를 구축하지 않고 비기술 사용자에게 작동하는 AI 제품을 전달하고 싶은 팀에게 Dify가 배포 레이어를 처리합니다.\nFlowise를 선택해야 할 때 사용 사례 1: LangChain 프리미티브로 생각하는 개발자 Flowise는 LangChain과 LlamaIndex 개념에 매우 직접적으로 매핑됩니다 — 문서 로더, 텍스트 스플리터, 벡터 스토리지, 리트리버, LLM 노드, 메모리, 체인, 에이전트가 모두 캔버스에서 연결하는 별도의 노드입니다. LangChain을 아는 개발자에게 Flowise 캔버스를 읽는 것은 코드를 읽는 것과 같습니다. 이 투명성은 강력합니다: 모든 파라미터를 조정하고, 어떤 컴포넌트든 교체하고, 각 단계에서 정확히 무슨 일이 일어나는지 이해할 수 있습니다.\n사용 사례 2: 경량 단일 컨테이너 배포 Flowise는 단일 Node.js 서비스로 실행됩니다 — ```docker run또는npx flowise start````면 바로 실행됩니다. PostgreSQL, Redis, 또는 벡터 데이터베이스가 기본으로 포함되지 않습니다(필요 시 직접 연결). 최소한의 인프라로 운영하는 개인 개발자나 소규모 팀에게 이 경량 공간 차지는 Dify의 멀티 서비스 스택 대비 중요한 이점입니다.\n사용 사례 3: 최대 컴포넌트 유연성으로 빠른 프로토타이핑 Flowise가 모든 LangChain과 LlamaIndex 컴포넌트를 교체 가능한 노드로 노출하기 때문에, 복잡한 파이프라인 — 멀티홉 검색, 에이전트 루프, 도구 호출 체인 — 을 코드를 작성하는 것보다 빠르게, 그리고 Dify의 더 의견이 강한 워크플로 모델에 맞추는 것보다 빠르게 프로토타이핑할 수 있습니다. 캔버스는 본질적으로 AI 파이프라인 실험을 위한 시각적 스케치북입니다.\nRAG 파이프라인 비교 RAG(검색 증강 생성)는 플랫폼이 가장 명확하게 갈리는 부분입니다.\nDify RAG: 문서를 Dify의 지식 베이스에 업로드하고, 청킹 전략(자동, 고정 길이 또는 단락)을 선택하고, 임베딩 모델을 선택하면 Dify가 내장 벡터 스토리지에 인덱싱합니다. 워크플로에 지식 노드를 추가하면 Dify가 검색, 리랭킹, 컨텍스트 주입을 자동으로 처리합니다. 전체 프로세스가 외부 서비스 설정 없이 GUI를 통해 관리됩니다.\nFlowise RAG: 컴포넌트에서 파이프라인을 구축합니다: 문서 로더 노드(PDF, 웹, Notion 등), 텍스트 스플리터 노드(RecursiveCharacterTextSplitter 등), 벡터 스토리지 노드(Pinecone, Qdrant, Chroma 등 — 외부 설정 필요), 임베딩 노드, 검색 체인 또는 대화형 검색 체인. 조립이 더 필요하지만 모든 파라미터를 제어할 수 있습니다. 어떤 스토리지를 연결할지는 벡터 데이터베이스 비교 2026을 참조하세요.\n결론: 빠르게 생산용 RAG 제품을 제공하려면 Dify. 모든 RAG 컴포넌트와 파라미터에 대한 세밀한 제어가 필요하면 Flowise.\n셀프호스팅 요구사항 요구사항 Dify Flowise 서비스 API, worker, web, PostgreSQL, Redis, Weaviate/Qdrant 단일 Node.js 프로세스 Docker Docker Compose (5+ 컨테이너) 단일 ````docker run``` 외부 DB PostgreSQL 필수 SQLite(기본), 외부 선택 사항 메모리 공간 높음 (멀티 서비스) 매우 낮음 설정 시간 10~20분 5분 미만 두 도구 모두 Docker에 익숙한 개발자에게는 간단하지만, Flowise가 눈에 띄게 더 작은 공간을 차지합니다. 셀프호스팅 AI 스택에 대해서는 로컬 우선 AI 스택 2026을 참조하세요.\n생태계와 플러그인 Dify 마켓플레이스: Dify는 커뮤니티 멤버들이 도구, 모델 제공자, 확장 기능을 게시하는 플러그인 마켓플레이스를 출시했습니다. Dify의 시리즈 B 펀딩 이후 생태계가 빠르게 성장하고 있습니다.\nFlowise 커뮤니티 노드: Flowise에는 공식 패키지에 없는 특정 데이터베이스, API, LLM 제공자를 위한 통합을 구축하는 많은 기여자 커뮤니티가 있습니다. 커뮤니티 노드를 설치하면 캔버스가 크게 확장됩니다.\n두 생태계 모두 건강합니다. Dify 마켓플레이스는 더 큐레이션되어 있고, Flowise의 노드 생태계는 더 광범위하고 개발자 주도적입니다.\n두 가지를 상호 보완적으로 쓸 수 있나요? 일부 아키텍처에서는 가능합니다. 팀들은 Flowise로 파이프라인을 프로토타이핑하고 검증한 다음, 검증된 흐름을 관리형 배포와 사용자 대면 게시를 위해 Dify에서 재구축합니다. 워크플로를 직접 이식할 수는 없지만 패턴이 전달됩니다. 또한 일부 팀은 내부 개발자 도구에는 Flowise를, 고객 대면 AI 제품에는 Dify를 사용합니다.\ndibi8의 판단 Dify는 챗봇, 문서 Q\u0026A, AI 워크플로 등 최소한의 맞춤 엔지니어링으로 생산용 AI 애플리케이션을 제공하고 싶을 때의 선택입니다. RAG 관리, 멀티 모델 라우팅, 게시 레이어 덕분에 팀이 주변 배관이 아닌 AI를 구축합니다.\nFlowise는 LLM 파이프라인에 대한 최대 투명성과 제어가 필요할 때의 선택입니다. 모든 단계를 이해하고 조정해야 하는 개발자에게 노드 캔버스는 의견이 강한 플랫폼보다 더 나은 작업 환경입니다.\n솔직한 분업: Dify는 제품 출시에, Flowise는 이해를 쌓는 데 — 많은 개발자들이 먼저 Flowise로 기술 스택을 배운 다음 Dify에서 생산 시스템을 구축합니다.\n추가 읽을거리 LLM 게이트웨이 — Portkey, LiteLLM, OpenRouter 비교 2026 벡터 데이터베이스 비교 2026 로컬 우선 AI 스택 2026 AI 에이전트 메모리 시스템 2026 오픈소스 AI 에이전트 프레임워크 Top 10 2026 외부 참조: Dify · Dify GitHub · Flowise · Flowise GitHub\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Dify vs Flowise 2026 비교: 풀스택 AI 앱 플랫폼 vs 경량 LLM 캔버스”, “datePublished”: “2026-06-07”, “dateModified”: “2026-06-07”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/dify-vs-flowise-2026\" } } Why This Matters Understanding dify vs flowise 2026 비교: 풀스택 ai 앱 플랫폼 vs 경량 llm 캔버스 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Dify vs Flowise 2026 비교: 풀스택 AI 앱 플랫폼 vs 경량 LLM 캔버스 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nRelated Articles dify-vs-flowise-2026 dify-vs-flowise-2026 supermemory-open-source-ai-memory-api claude-code-vs-cline cursor-vs-windsurf Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n",
-  "wordCount" : "1220",
+  "articleBody": "Dify vs Flowise in 2026: Full-Stack AI App Platform vs Lightweight LLM Canvas Quick Answer Dify is the pick if you want a complete, opinionated platform for building and running LLM applications — with RAG, prompt engineering, multi-model management, and an application lifecycle all in one place. Flowise is the pick if you want a lean, visual LangChain/LlamaIndex builder where you assemble pipelines on a node canvas and maintain close control over every component.\nChoose Dify if: You want an end-to-end platform, need built-in RAG without manual assembly, want to manage multiple models from one UI, or are building AI apps for non-technical end users.\nChoose Flowise if: You are a developer who thinks in LangChain primitives, want a minimal self-hosted service, prefer full transparency over each pipeline node, or are prototyping quickly with maximum flexibility.\nSide-by-Side Comparison | Dimension | Dify | Flowise | |\n|\n|\n| | Core concept | Full-stack LLM app platform | Visual LangChain/LlamaIndex canvas | | Built-in RAG | Yes — document upload, chunking, retrieval | Via LangChain RAG nodes (manual assembly) | | Multi-model routing | Central model provider management UI | Swap per-node on canvas | | Self-hosting | Docker Compose (multi-service) | Single Docker image or npm | | Prompt management | Built-in versioned prompt editor | Node properties on canvas | | Application publish | Chatbot, API, embed widget, workflow | API endpoint, embed chatbot | | Community / plugins | Growing marketplace | Large node ecosystem | | Best for | Full-stack AI teams, enterprise | Developers, LangChain builders | | License | Open-source (Apache 2.0) | Open-source (Apache 2.0) |\nWhen to Choose Dify Use case 1: End-to-end RAG without manual setup Dify’s RAG pipeline is the standout feature for most teams. Upload a PDF, choose a chunking strategy and embedding model, and the document is indexed into the built-in vector store in minutes. No vector database setup, no LangChain document loader chain to assemble, no text splitter to tune. For teams building knowledge-base chatbots on proprietary documents, Dify collapses what would be ten manual steps into one UI flow.\nUse case 2: Managing multiple AI models from one place Dify’s model provider layer lets you configure OpenAI, Anthropic, Azure OpenAI, Hugging Face Inference, and local Ollama models from a single settings panel. Then any application or workflow you build can be pointed at any configured model with a dropdown — routing a low-stakes task to a cheap model and a critical one to a premium model without touching the pipeline code. This fits the approach described in the LLM Gateway comparison.\nUse case 3: Publishing AI applications to end users Dify is designed to be the backend that powers a real application. Every workflow or chatbot you build can be published as a hosted web chatbot, an embeddable widget, or an API endpoint with a single click. For teams who want to hand a working AI product to non-technical users without building a frontend, Dify handles the deployment layer.\nWhen to Choose Flowise Use case 1: Developers who think in LangChain primitives Flowise maps very directly to LangChain and LlamaIndex concepts — document loaders, text splitters, vector stores, retrievers, LLM nodes, memory, chains, and agents are all separate canvas nodes you connect. For a developer who knows LangChain, reading a Flowise canvas is like reading the code. That transparency is powerful: you can tune every parameter, swap any component, and understand exactly what is happening at each step.\nUse case 2: Lightweight single-container deployment Flowise runs as a single Node.js service — ```docker runornpx flowise start```` and it is up. There is no PostgreSQL, Redis, or vector database baked in (you bring your own if needed). For a solo developer or a small team running on minimal infrastructure, this lightweight footprint is a significant advantage over Dify’s multi-service stack.\nUse case 3: Rapid prototyping with maximum component flexibility Because Flowise exposes every LangChain and LlamaIndex component as a swappable node, you can prototype complex pipelines — multi-hop retrieval, agent loops, tool-calling chains — faster than writing code and faster than fitting them into Dify’s more opinionated workflow model. The canvas is essentially a visual scratchpad for AI pipeline experiments.\nRAG Pipeline Comparison RAG (Retrieval-Augmented Generation) is where the platforms diverge most clearly.\nDify RAG: You upload documents to Dify’s Knowledge Base, choose chunking strategy (automatic, fixed-length, or paragraph), select an embedding model, and Dify indexes into its built-in vector store. When you add a Knowledge node to a workflow, Dify handles retrieval, reranking, and context injection automatically. The entire process is managed through a GUI with no external service setup.\nFlowise RAG: You build the pipeline from components: a document loader node (PDF, web, Notion, etc.), a text splitter node (RecursiveCharacterTextSplitter, etc.), a vector store node (Pinecone, Qdrant, Chroma, etc. — external setup required), an embeddings node, and a retrieval chain or conversational retrieval chain. It takes more assembly, but you control every parameter. See our Vector Database Comparison 2026 for help choosing which store to wire in.\nVerdict: For a production RAG product delivered quickly, Dify. For fine-grained control over every RAG component and parameter, Flowise.\nSelf-Hosting Requirements | Requirement | Dify | Flowise | |\n|\n|\n| | Services | API, worker, web, PostgreSQL, Redis, Weaviate/Qdrant | Single Node.js process | | Docker | Docker Compose (5+ containers) | Single ````docker run``` | | External DB | PostgreSQL required | SQLite (default), external optional | | Memory footprint | Higher (multi-service) | Very low | | Setup time | 10–20 minutes | Under 5 minutes |\nBoth are straightforward for developers comfortable with Docker, but Flowise has a noticeably smaller footprint. For self-hosted AI stacks, see our Local-First AI Stack 2026.\nEcosystem and Plugins Dify marketplace: Dify has launched a plugin marketplace where community members publish tools, model providers, and extensions. The ecosystem is growing rapidly since Dify’s Series B funding.\nFlowise community nodes: Flowise has a large community of contributors building custom nodes — integrations for specific databases, APIs, and LLM providers that are not in the official package. Installing community nodes expands the canvas significantly.\nBoth ecosystems are healthy. Dify’s marketplace is more curated; Flowise’s node ecosystem is broader and more developer-driven.\nCan They Complement Each Other? In some architectures, yes. Teams use Flowise to prototype and validate a pipeline, then rebuild the validated flow in Dify for managed deployment and user-facing publishing. The workflows are not directly portable, but the patterns transfer. Alternatively, some teams use Flowise for internal developer tooling and Dify for customer-facing AI products.\ndibi8’s Take Dify wins if you want to ship a production AI application — chatbot, document Q\u0026A, AI workflow — with the least custom engineering. Its RAG management, multi-model routing, and publish layer mean your team builds the AI, not the plumbing around it.\nFlowise wins if you want maximum transparency and control over your LLM pipeline. For developers who need to understand and tune every step, the node canvas is a better working environment than an opinionated platform.\nThe honest split: Dify for shipping products, Flowise for building understanding — and many developers use Flowise first to learn the stack before building production systems in Dify.\nFurther Reading LLM Gateway — Portkey, LiteLLM, OpenRouter Compared 2026 Vector Database Comparison 2026 Local-First AI Stack 2026 AI Agent Memory Systems 2026 Open Source AI Agent Frameworks — Top 10 2026 External references: Dify · Dify on GitHub · Flowise · Flowise on GitHub\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Dify vs Flowise in 2026: Full-Stack AI App Platform vs Lightweight LLM Canvas”, “datePublished”: “2026-06-07”, “dateModified”: “2026-06-07”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/dify-vs-flowise-2026\" } } Why This Matters Understanding dify vs flowise in 2026: full-stack ai app platform vs lightweight llm canvas is crucial for modern AI development. Here\"s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Dify vs Flowise in 2026: Full-Stack AI App Platform vs Lightweight LLM Canvas represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\nRelated Articles dify-vs-flowise-2026 dify-vs-flowise-2026 dify-vs-flowise-2026 supermemory-open-source-ai-memory-api claude-code-vs-cline Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n",
+  "wordCount" : "1505",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/dify-vs-flowise-2026/">En</a>
@@ -209,44 +209,44 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#dify-vs-flowise-2026-%eb%b9%84%ea%b5%90-%ed%92%80%ec%8a%a4%ed%83%9d-ai-%ec%95%b1-%ed%94%8c%eb%9e%ab%ed%8f%bc-vs-%ea%b2%bd%eb%9f%89-llm-%ec%ba%94%eb%b2%84%ec%8a%a4" aria-label="Dify vs Flowise 2026 비교: 풀스택 AI 앱 플랫폼 vs 경량 LLM 캔버스">Dify vs Flowise 2026 비교: 풀스택 AI 앱 플랫폼 vs 경량 LLM 캔버스</a><ul>
+                <a href="#dify-vs-flowise-in-2026-full-stack-ai-app-platform-vs-lightweight-llm-canvas" aria-label="Dify vs Flowise in 2026: Full-Stack AI App Platform vs Lightweight LLM Canvas">Dify vs Flowise in 2026: Full-Stack AI App Platform vs Lightweight LLM Canvas</a><ul>
                     
             <li>
-                <a href="#%ed%95%9c%eb%88%88%ec%97%90-%ea%b2%b0%eb%a1%a0" aria-label="한눈에 결론">한눈에 결론</a></li>
+                <a href="#quick-answer" aria-label="Quick Answer">Quick Answer</a></li>
             <li>
-                <a href="#%ed%95%ad%eb%aa%a9%eb%b3%84-%eb%b9%84%ea%b5%90" aria-label="항목별 비교">항목별 비교</a></li>
+                <a href="#side-by-side-comparison" aria-label="Side-by-Side Comparison">Side-by-Side Comparison</a></li>
             <li>
-                <a href="#dify%eb%a5%bc-%ec%84%a0%ed%83%9d%ed%95%b4%ec%95%bc-%ed%95%a0-%eb%95%8c" aria-label="Dify를 선택해야 할 때">Dify를 선택해야 할 때</a><ul>
+                <a href="#when-to-choose-dify" aria-label="When to Choose Dify">When to Choose Dify</a><ul>
                     
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80-1-%ec%88%98%eb%8f%99-%ec%84%a4%ec%a0%95-%ec%97%86%eb%8a%94-%ec%97%94%eb%93%9c%ed%88%ac%ec%97%94%eb%93%9c-rag" aria-label="사용 사례 1: 수동 설정 없는 엔드투엔드 RAG">사용 사례 1: 수동 설정 없는 엔드투엔드 RAG</a></li>
+                <a href="#use-case-1-end-to-end-rag-without-manual-setup" aria-label="Use case 1: End-to-end RAG without manual setup">Use case 1: End-to-end RAG without manual setup</a></li>
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80-2-%ed%95%9c-%ea%b3%b3%ec%97%90%ec%84%9c-%ec%97%ac%eb%9f%ac-ai-%eb%aa%a8%eb%8d%b8-%ea%b4%80%eb%a6%ac" aria-label="사용 사례 2: 한 곳에서 여러 AI 모델 관리">사용 사례 2: 한 곳에서 여러 AI 모델 관리</a></li>
+                <a href="#use-case-2-managing-multiple-ai-models-from-one-place" aria-label="Use case 2: Managing multiple AI models from one place">Use case 2: Managing multiple AI models from one place</a></li>
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80-3-%ec%b5%9c%ec%a2%85-%ec%82%ac%ec%9a%a9%ec%9e%90%ec%97%90%ea%b2%8c-ai-%ec%95%a0%ed%94%8c%eb%a6%ac%ec%bc%80%ec%9d%b4%ec%85%98-%ea%b2%8c%ec%8b%9c" aria-label="사용 사례 3: 최종 사용자에게 AI 애플리케이션 게시">사용 사례 3: 최종 사용자에게 AI 애플리케이션 게시</a></li></ul>
+                <a href="#use-case-3-publishing-ai-applications-to-end-users" aria-label="Use case 3: Publishing AI applications to end users">Use case 3: Publishing AI applications to end users</a></li></ul>
             </li>
             <li>
-                <a href="#flowise%eb%a5%bc-%ec%84%a0%ed%83%9d%ed%95%b4%ec%95%bc-%ed%95%a0-%eb%95%8c" aria-label="Flowise를 선택해야 할 때">Flowise를 선택해야 할 때</a><ul>
+                <a href="#when-to-choose-flowise" aria-label="When to Choose Flowise">When to Choose Flowise</a><ul>
                     
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80-1-langchain-%ed%94%84%eb%a6%ac%eb%af%b8%ed%8b%b0%eb%b8%8c%eb%a1%9c-%ec%83%9d%ea%b0%81%ed%95%98%eb%8a%94-%ea%b0%9c%eb%b0%9c%ec%9e%90" aria-label="사용 사례 1: LangChain 프리미티브로 생각하는 개발자">사용 사례 1: LangChain 프리미티브로 생각하는 개발자</a></li>
+                <a href="#use-case-1-developers-who-think-in-langchain-primitives" aria-label="Use case 1: Developers who think in LangChain primitives">Use case 1: Developers who think in LangChain primitives</a></li>
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80-2-%ea%b2%bd%eb%9f%89-%eb%8b%a8%ec%9d%bc-%ec%bb%a8%ed%85%8c%ec%9d%b4%eb%84%88-%eb%b0%b0%ed%8f%ac" aria-label="사용 사례 2: 경량 단일 컨테이너 배포">사용 사례 2: 경량 단일 컨테이너 배포</a></li>
+                <a href="#use-case-2-lightweight-single-container-deployment" aria-label="Use case 2: Lightweight single-container deployment">Use case 2: Lightweight single-container deployment</a></li>
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80-3-%ec%b5%9c%eb%8c%80-%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8-%ec%9c%a0%ec%97%b0%ec%84%b1%ec%9c%bc%eb%a1%9c-%eb%b9%a0%eb%a5%b8-%ed%94%84%eb%a1%9c%ed%86%a0%ed%83%80%ec%9d%b4%ed%95%91" aria-label="사용 사례 3: 최대 컴포넌트 유연성으로 빠른 프로토타이핑">사용 사례 3: 최대 컴포넌트 유연성으로 빠른 프로토타이핑</a></li></ul>
+                <a href="#use-case-3-rapid-prototyping-with-maximum-component-flexibility" aria-label="Use case 3: Rapid prototyping with maximum component flexibility">Use case 3: Rapid prototyping with maximum component flexibility</a></li></ul>
             </li>
             <li>
-                <a href="#rag-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8-%eb%b9%84%ea%b5%90" aria-label="RAG 파이프라인 비교">RAG 파이프라인 비교</a></li>
+                <a href="#rag-pipeline-comparison" aria-label="RAG Pipeline Comparison">RAG Pipeline Comparison</a></li>
             <li>
-                <a href="#%ec%85%80%ed%94%84%ed%98%b8%ec%8a%a4%ed%8c%85-%ec%9a%94%ea%b5%ac%ec%82%ac%ed%95%ad" aria-label="셀프호스팅 요구사항">셀프호스팅 요구사항</a></li>
+                <a href="#self-hosting-requirements" aria-label="Self-Hosting Requirements">Self-Hosting Requirements</a></li>
             <li>
-                <a href="#%ec%83%9d%ed%83%9c%ea%b3%84%ec%99%80-%ed%94%8c%eb%9f%ac%ea%b7%b8%ec%9d%b8" aria-label="생태계와 플러그인">생태계와 플러그인</a></li>
+                <a href="#ecosystem-and-plugins" aria-label="Ecosystem and Plugins">Ecosystem and Plugins</a></li>
             <li>
-                <a href="#%eb%91%90-%ea%b0%80%ec%a7%80%eb%a5%bc-%ec%83%81%ed%98%b8-%eb%b3%b4%ec%99%84%ec%a0%81%ec%9c%bc%eb%a1%9c-%ec%93%b8-%ec%88%98-%ec%9e%88%eb%82%98%ec%9a%94" aria-label="두 가지를 상호 보완적으로 쓸 수 있나요?">두 가지를 상호 보완적으로 쓸 수 있나요?</a></li>
+                <a href="#can-they-complement-each-other" aria-label="Can They Complement Each Other?">Can They Complement Each Other?</a></li>
             <li>
-                <a href="#dibi8%ec%9d%98-%ed%8c%90%eb%8b%a8" aria-label="dibi8의 판단">dibi8의 판단</a></li>
+                <a href="#dibi8s-take" aria-label="dibi8&rsquo;s Take">dibi8&rsquo;s Take</a></li>
             <li>
-                <a href="#%ec%b6%94%ea%b0%80-%ec%9d%bd%ec%9d%84%ea%b1%b0%eb%a6%ac" aria-label="추가 읽을거리">추가 읽을거리</a></li>
+                <a href="#further-reading" aria-label="Further Reading">Further Reading</a></li>
             <li>
                 <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
                     
@@ -268,158 +268,96 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><h1 id="dify-vs-flowise-2026-비교-풀스택-ai-앱-플랫폼-vs-경량-llm-캔버스">Dify vs Flowise 2026 비교: 풀스택 AI 앱 플랫폼 vs 경량 LLM 캔버스<a hidden class="anchor" aria-hidden="true" href="#dify-vs-flowise-2026-비교-풀스택-ai-앱-플랫폼-vs-경량-llm-캔버스">#</a></h1>
-<h2 id="한눈에-결론">한눈에 결론<a hidden class="anchor" aria-hidden="true" href="#한눈에-결론">#</a></h2>
-<p><strong>Dify</strong>는 RAG, 프롬프트 엔지니어링, 멀티 모델 관리, 애플리케이션 라이프사이클을 한 곳에 모두 갖춘 완전하고 의견이 강한 플랫폼으로 LLM 애플리케이션을 구축하고 운영하고 싶을 때 적합합니다. <strong>Flowise</strong>는 노드 캔버스에서 파이프라인을 조립하고 모든 컴포넌트를 밀접하게 제어하며 작업하고 싶은 경량, 시각적 LangChain/LlamaIndex 빌더가 필요한 개발자에게 맞습니다.</p>
-<p><strong>Dify</strong> 선택 시: 엔드투엔드 플랫폼이 필요하거나, 수동 조립 없는 내장 RAG가 필요하거나, 하나의 UI로 여러 모델을 관리하거나, 비기술 최종 사용자를 위한 AI 앱을 구축 중일 때.</p>
-<p><strong>Flowise</strong> 선택 시: LangChain 프리미티브로 생각하는 개발자이거나, 최소한의 셀프호스팅 서비스가 필요하거나, 모든 파이프라인 노드에 대한 완전한 투명성을 선호하거나, 최대 유연성으로 빠르게 프로토타이핑할 때.</p>
+  <div class="post-content md-content"><h1 id="dify-vs-flowise-in-2026-full-stack-ai-app-platform-vs-lightweight-llm-canvas">Dify vs Flowise in 2026: Full-Stack AI App Platform vs Lightweight LLM Canvas<a hidden class="anchor" aria-hidden="true" href="#dify-vs-flowise-in-2026-full-stack-ai-app-platform-vs-lightweight-llm-canvas">#</a></h1>
+<h2 id="quick-answer">Quick Answer<a hidden class="anchor" aria-hidden="true" href="#quick-answer">#</a></h2>
+<p><strong>Dify</strong> is the pick if you want a complete, opinionated platform for building and running LLM applications — with RAG, prompt engineering, multi-model management, and an application lifecycle all in one place. <strong>Flowise</strong> is the pick if you want a lean, visual LangChain/LlamaIndex builder where you assemble pipelines on a node canvas and maintain close control over every component.</p>
+<p>Choose <strong>Dify</strong> if: You want an end-to-end platform, need built-in RAG without manual assembly, want to manage multiple models from one UI, or are building AI apps for non-technical end users.</p>
+<p>Choose <strong>Flowise</strong> if: You are a developer who thinks in LangChain primitives, want a minimal self-hosted service, prefer full transparency over each pipeline node, or are prototyping quickly with maximum flexibility.</p>
 <hr>
-<h2 id="항목별-비교">항목별 비교<a hidden class="anchor" aria-hidden="true" href="#항목별-비교">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>항목</th>
-					<th>Dify</th>
-					<th>Flowise</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>핵심 개념</td>
-					<td>풀스택 LLM 앱 플랫폼</td>
-					<td>시각적 LangChain/LlamaIndex 캔버스</td>
-			</tr>
-			<tr>
-					<td>내장 RAG</td>
-					<td>있음 — 문서 업로드, 청킹, 검색</td>
-					<td>LangChain RAG 노드로 (수동 조립)</td>
-			</tr>
-			<tr>
-					<td>멀티 모델 라우팅</td>
-					<td>중앙 모델 제공자 관리 UI</td>
-					<td>캔버스에서 노드별 교체</td>
-			</tr>
-			<tr>
-					<td>셀프호스팅</td>
-					<td>Docker Compose (멀티 서비스)</td>
-					<td>단일 Docker 이미지 또는 npm</td>
-			</tr>
-			<tr>
-					<td>프롬프트 관리</td>
-					<td>내장 버전 관리 프롬프트 에디터</td>
-					<td>캔버스의 노드 속성</td>
-			</tr>
-			<tr>
-					<td>애플리케이션 게시</td>
-					<td>챗봇, API, 임베드 위젯, 워크플로</td>
-					<td>API 엔드포인트, 임베드 챗봇</td>
-			</tr>
-			<tr>
-					<td>커뮤니티/플러그인</td>
-					<td>성장 중인 마켓플레이스</td>
-					<td>대형 노드 생태계</td>
-			</tr>
-			<tr>
-					<td>최적 대상</td>
-					<td>풀스택 AI 팀, 엔터프라이즈</td>
-					<td>개발자, LangChain 빌더</td>
-			</tr>
-			<tr>
-					<td>라이선스</td>
-					<td>오픈소스 (Apache 2.0)</td>
-					<td>오픈소스 (Apache 2.0)</td>
-			</tr>
-	</tbody>
-</table>
+<h2 id="side-by-side-comparison">Side-by-Side Comparison<a hidden class="anchor" aria-hidden="true" href="#side-by-side-comparison">#</a></h2>
+<p>| Dimension | Dify | Flowise |
+|</p>
 <hr>
-<h2 id="dify를-선택해야-할-때">Dify를 선택해야 할 때<a hidden class="anchor" aria-hidden="true" href="#dify를-선택해야-할-때">#</a></h2>
-<h3 id="사용-사례-1-수동-설정-없는-엔드투엔드-rag">사용 사례 1: 수동 설정 없는 엔드투엔드 RAG<a hidden class="anchor" aria-hidden="true" href="#사용-사례-1-수동-설정-없는-엔드투엔드-rag">#</a></h3>
-<p>Dify의 RAG 파이프라인은 대부분의 팀에게 두드러진 기능입니다. PDF를 업로드하고, 청킹 전략과 임베딩 모델을 선택하면, 문서가 몇 분 안에 내장 벡터 스토리지에 인덱싱됩니다. 벡터 데이터베이스 설정 필요 없고, LangChain 문서 로더 체인 조립 불필요, 텍스트 스플리터 튜닝도 필요 없습니다. 전용 문서로 지식 베이스 챗봇을 구축하는 팀에게 Dify는 열 단계의 수동 작업을 하나의 UI 흐름으로 압축합니다.</p>
-<h3 id="사용-사례-2-한-곳에서-여러-ai-모델-관리">사용 사례 2: 한 곳에서 여러 AI 모델 관리<a hidden class="anchor" aria-hidden="true" href="#사용-사례-2-한-곳에서-여러-ai-모델-관리">#</a></h3>
-<p>Dify의 모델 제공자 레이어를 통해 단일 설정 패널에서 OpenAI, Anthropic, Azure OpenAI, Hugging Face Inference, 로컬 Ollama 모델을 구성할 수 있습니다. 그런 다음 구축하는 모든 애플리케이션이나 워크플로는 드롭다운으로 구성된 모델 중 하나로 지정할 수 있습니다 — 파이프라인 코드를 건드리지 않고 낮은 우선순위 작업은 저렴한 모델로, 중요한 작업은 프리미엄 모델로 라우팅. 이것은 <a href="https://dibi8.com/kr/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/">LLM 게이트웨이 비교</a>에서 설명하는 접근 방식에 부합합니다.</p>
-<h3 id="사용-사례-3-최종-사용자에게-ai-애플리케이션-게시">사용 사례 3: 최종 사용자에게 AI 애플리케이션 게시<a hidden class="anchor" aria-hidden="true" href="#사용-사례-3-최종-사용자에게-ai-애플리케이션-게시">#</a></h3>
-<p>Dify는 실제 애플리케이션을 구동하는 백엔드로 설계되었습니다. 구축하는 모든 워크플로나 챗봇을 원클릭으로 호스팅 웹 챗봇, 임베드 가능한 위젯 또는 API 엔드포인트로 게시할 수 있습니다. 프론트엔드를 구축하지 않고 비기술 사용자에게 작동하는 AI 제품을 전달하고 싶은 팀에게 Dify가 배포 레이어를 처리합니다.</p>
-<p><img alt="LLM 애플리케이션을 관리하는 엔터프라이즈 AI 플랫폼 대시보드, via dibi8.com" loading="lazy" src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=760&q=80"></p>
+<p>|</p>
 <hr>
-<h2 id="flowise를-선택해야-할-때">Flowise를 선택해야 할 때<a hidden class="anchor" aria-hidden="true" href="#flowise를-선택해야-할-때">#</a></h2>
-<h3 id="사용-사례-1-langchain-프리미티브로-생각하는-개발자">사용 사례 1: LangChain 프리미티브로 생각하는 개발자<a hidden class="anchor" aria-hidden="true" href="#사용-사례-1-langchain-프리미티브로-생각하는-개발자">#</a></h3>
-<p>Flowise는 LangChain과 LlamaIndex 개념에 매우 직접적으로 매핑됩니다 — 문서 로더, 텍스트 스플리터, 벡터 스토리지, 리트리버, LLM 노드, 메모리, 체인, 에이전트가 모두 캔버스에서 연결하는 별도의 노드입니다. LangChain을 아는 개발자에게 Flowise 캔버스를 읽는 것은 코드를 읽는 것과 같습니다. 이 투명성은 강력합니다: 모든 파라미터를 조정하고, 어떤 컴포넌트든 교체하고, 각 단계에서 정확히 무슨 일이 일어나는지 이해할 수 있습니다.</p>
-<h3 id="사용-사례-2-경량-단일-컨테이너-배포">사용 사례 2: 경량 단일 컨테이너 배포<a hidden class="anchor" aria-hidden="true" href="#사용-사례-2-경량-단일-컨테이너-배포">#</a></h3>
-<p>Flowise는 단일 Node.js 서비스로 실행됩니다 — ```docker run<code>또는</code>npx flowise start````면 바로 실행됩니다. PostgreSQL, Redis, 또는 벡터 데이터베이스가 기본으로 포함되지 않습니다(필요 시 직접 연결). 최소한의 인프라로 운영하는 개인 개발자나 소규모 팀에게 이 경량 공간 차지는 Dify의 멀티 서비스 스택 대비 중요한 이점입니다.</p>
-<h3 id="사용-사례-3-최대-컴포넌트-유연성으로-빠른-프로토타이핑">사용 사례 3: 최대 컴포넌트 유연성으로 빠른 프로토타이핑<a hidden class="anchor" aria-hidden="true" href="#사용-사례-3-최대-컴포넌트-유연성으로-빠른-프로토타이핑">#</a></h3>
-<p>Flowise가 모든 LangChain과 LlamaIndex 컴포넌트를 교체 가능한 노드로 노출하기 때문에, 복잡한 파이프라인 — 멀티홉 검색, 에이전트 루프, 도구 호출 체인 — 을 코드를 작성하는 것보다 빠르게, 그리고 Dify의 더 의견이 강한 워크플로 모델에 맞추는 것보다 빠르게 프로토타이핑할 수 있습니다. 캔버스는 본질적으로 AI 파이프라인 실험을 위한 시각적 스케치북입니다.</p>
-<p><img alt="개발자가 시각적 캔버스에서 AI 파이프라인 노드를 구축하는 모습, via dibi8.com" loading="lazy" src="https://images.unsplash.com/photo-1633412802994-5c058f151b66?w=760&q=80"></p>
+<p>|</p>
 <hr>
-<h2 id="rag-파이프라인-비교">RAG 파이프라인 비교<a hidden class="anchor" aria-hidden="true" href="#rag-파이프라인-비교">#</a></h2>
-<p>RAG(검색 증강 생성)는 플랫폼이 가장 명확하게 갈리는 부분입니다.</p>
-<p><strong>Dify RAG:</strong> 문서를 Dify의 지식 베이스에 업로드하고, 청킹 전략(자동, 고정 길이 또는 단락)을 선택하고, 임베딩 모델을 선택하면 Dify가 내장 벡터 스토리지에 인덱싱합니다. 워크플로에 지식 노드를 추가하면 Dify가 검색, 리랭킹, 컨텍스트 주입을 자동으로 처리합니다. 전체 프로세스가 외부 서비스 설정 없이 GUI를 통해 관리됩니다.</p>
-<p><strong>Flowise RAG:</strong> 컴포넌트에서 파이프라인을 구축합니다: 문서 로더 노드(PDF, 웹, Notion 등), 텍스트 스플리터 노드(RecursiveCharacterTextSplitter 등), 벡터 스토리지 노드(Pinecone, Qdrant, Chroma 등 — 외부 설정 필요), 임베딩 노드, 검색 체인 또는 대화형 검색 체인. 조립이 더 필요하지만 모든 파라미터를 제어할 수 있습니다. 어떤 스토리지를 연결할지는 <a href="https://dibi8.com/kr/resources/llm-frameworks/vector-database-comparison/">벡터 데이터베이스 비교 2026</a>을 참조하세요.</p>
-<p><strong>결론:</strong> 빠르게 생산용 RAG 제품을 제공하려면 Dify. 모든 RAG 컴포넌트와 파라미터에 대한 세밀한 제어가 필요하면 Flowise.</p>
+<p>|
+| Core concept | Full-stack LLM app platform | Visual LangChain/LlamaIndex canvas |
+| Built-in RAG | Yes — document upload, chunking, retrieval | Via LangChain RAG nodes (manual assembly) |
+| Multi-model routing | Central model provider management UI | Swap per-node on canvas |
+| Self-hosting | Docker Compose (multi-service) | Single Docker image or npm |
+| Prompt management | Built-in versioned prompt editor | Node properties on canvas |
+| Application publish | Chatbot, API, embed widget, workflow | API endpoint, embed chatbot |
+| Community / plugins | Growing marketplace | Large node ecosystem |
+| Best for | Full-stack AI teams, enterprise | Developers, LangChain builders |
+| License | Open-source (Apache 2.0) | Open-source (Apache 2.0) |</p>
 <hr>
-<h2 id="셀프호스팅-요구사항">셀프호스팅 요구사항<a hidden class="anchor" aria-hidden="true" href="#셀프호스팅-요구사항">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>요구사항</th>
-					<th>Dify</th>
-					<th>Flowise</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>서비스</td>
-					<td>API, worker, web, PostgreSQL, Redis, Weaviate/Qdrant</td>
-					<td>단일 Node.js 프로세스</td>
-			</tr>
-			<tr>
-					<td>Docker</td>
-					<td>Docker Compose (5+ 컨테이너)</td>
-					<td>단일 ````docker run```</td>
-			</tr>
-			<tr>
-					<td>외부 DB</td>
-					<td>PostgreSQL 필수</td>
-					<td>SQLite(기본), 외부 선택 사항</td>
-			</tr>
-			<tr>
-					<td>메모리 공간</td>
-					<td>높음 (멀티 서비스)</td>
-					<td>매우 낮음</td>
-			</tr>
-			<tr>
-					<td>설정 시간</td>
-					<td>10~20분</td>
-					<td>5분 미만</td>
-			</tr>
-	</tbody>
-</table>
-<p>두 도구 모두 Docker에 익숙한 개발자에게는 간단하지만, Flowise가 눈에 띄게 더 작은 공간을 차지합니다. 셀프호스팅 AI 스택에 대해서는 <a href="https://dibi8.com/kr/resources/llm-frameworks/local-first-ai-stack-offline-development-2026/">로컬 우선 AI 스택 2026</a>을 참조하세요.</p>
+<h2 id="when-to-choose-dify">When to Choose Dify<a hidden class="anchor" aria-hidden="true" href="#when-to-choose-dify">#</a></h2>
+<h3 id="use-case-1-end-to-end-rag-without-manual-setup">Use case 1: End-to-end RAG without manual setup<a hidden class="anchor" aria-hidden="true" href="#use-case-1-end-to-end-rag-without-manual-setup">#</a></h3>
+<p>Dify&rsquo;s RAG pipeline is the standout feature for most teams. Upload a PDF, choose a chunking strategy and embedding model, and the document is indexed into the built-in vector store in minutes. No vector database setup, no LangChain document loader chain to assemble, no text splitter to tune. For teams building knowledge-base chatbots on proprietary documents, Dify collapses what would be ten manual steps into one UI flow.</p>
+<h3 id="use-case-2-managing-multiple-ai-models-from-one-place">Use case 2: Managing multiple AI models from one place<a hidden class="anchor" aria-hidden="true" href="#use-case-2-managing-multiple-ai-models-from-one-place">#</a></h3>
+<p>Dify&rsquo;s model provider layer lets you configure OpenAI, Anthropic, Azure OpenAI, Hugging Face Inference, and local Ollama models from a single settings panel. Then any application or workflow you build can be pointed at any configured model with a dropdown — routing a low-stakes task to a cheap model and a critical one to a premium model without touching the pipeline code. This fits the approach described in the <a href="https://dibi8.com/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/">LLM Gateway comparison</a>.</p>
+<h3 id="use-case-3-publishing-ai-applications-to-end-users">Use case 3: Publishing AI applications to end users<a hidden class="anchor" aria-hidden="true" href="#use-case-3-publishing-ai-applications-to-end-users">#</a></h3>
+<p>Dify is designed to be the backend that powers a real application. Every workflow or chatbot you build can be published as a hosted web chatbot, an embeddable widget, or an API endpoint with a single click. For teams who want to hand a working AI product to non-technical users without building a frontend, Dify handles the deployment layer.</p>
+<p><img alt="An enterprise AI platform dashboard for managing LLM applications, via dibi8.com" loading="lazy" src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=760&q=80"></p>
 <hr>
-<h2 id="생태계와-플러그인">생태계와 플러그인<a hidden class="anchor" aria-hidden="true" href="#생태계와-플러그인">#</a></h2>
-<p><strong>Dify 마켓플레이스:</strong> Dify는 커뮤니티 멤버들이 도구, 모델 제공자, 확장 기능을 게시하는 플러그인 마켓플레이스를 출시했습니다. Dify의 시리즈 B 펀딩 이후 생태계가 빠르게 성장하고 있습니다.</p>
-<p><strong>Flowise 커뮤니티 노드:</strong> Flowise에는 공식 패키지에 없는 특정 데이터베이스, API, LLM 제공자를 위한 통합을 구축하는 많은 기여자 커뮤니티가 있습니다. 커뮤니티 노드를 설치하면 캔버스가 크게 확장됩니다.</p>
-<p>두 생태계 모두 건강합니다. Dify 마켓플레이스는 더 큐레이션되어 있고, Flowise의 노드 생태계는 더 광범위하고 개발자 주도적입니다.</p>
+<h2 id="when-to-choose-flowise">When to Choose Flowise<a hidden class="anchor" aria-hidden="true" href="#when-to-choose-flowise">#</a></h2>
+<h3 id="use-case-1-developers-who-think-in-langchain-primitives">Use case 1: Developers who think in LangChain primitives<a hidden class="anchor" aria-hidden="true" href="#use-case-1-developers-who-think-in-langchain-primitives">#</a></h3>
+<p>Flowise maps very directly to LangChain and LlamaIndex concepts — document loaders, text splitters, vector stores, retrievers, LLM nodes, memory, chains, and agents are all separate canvas nodes you connect. For a developer who knows LangChain, reading a Flowise canvas is like reading the code. That transparency is powerful: you can tune every parameter, swap any component, and understand exactly what is happening at each step.</p>
+<h3 id="use-case-2-lightweight-single-container-deployment">Use case 2: Lightweight single-container deployment<a hidden class="anchor" aria-hidden="true" href="#use-case-2-lightweight-single-container-deployment">#</a></h3>
+<p>Flowise runs as a single Node.js service — ```docker run<code>or</code>npx flowise start```` and it is up. There is no PostgreSQL, Redis, or vector database baked in (you bring your own if needed). For a solo developer or a small team running on minimal infrastructure, this lightweight footprint is a significant advantage over Dify&rsquo;s multi-service stack.</p>
+<h3 id="use-case-3-rapid-prototyping-with-maximum-component-flexibility">Use case 3: Rapid prototyping with maximum component flexibility<a hidden class="anchor" aria-hidden="true" href="#use-case-3-rapid-prototyping-with-maximum-component-flexibility">#</a></h3>
+<p>Because Flowise exposes every LangChain and LlamaIndex component as a swappable node, you can prototype complex pipelines — multi-hop retrieval, agent loops, tool-calling chains — faster than writing code and faster than fitting them into Dify&rsquo;s more opinionated workflow model. The canvas is essentially a visual scratchpad for AI pipeline experiments.</p>
+<p><img alt="A developer building AI pipeline nodes on a visual canvas, via dibi8.com" loading="lazy" src="https://images.unsplash.com/photo-1633412802994-5c058f151b66?w=760&q=80"></p>
 <hr>
-<h2 id="두-가지를-상호-보완적으로-쓸-수-있나요">두 가지를 상호 보완적으로 쓸 수 있나요?<a hidden class="anchor" aria-hidden="true" href="#두-가지를-상호-보완적으로-쓸-수-있나요">#</a></h2>
-<p>일부 아키텍처에서는 가능합니다. 팀들은 <strong>Flowise로 파이프라인을 프로토타이핑하고 검증</strong>한 다음, 검증된 흐름을 관리형 배포와 사용자 대면 게시를 위해 <strong>Dify에서 재구축</strong>합니다. 워크플로를 직접 이식할 수는 없지만 패턴이 전달됩니다. 또한 일부 팀은 내부 개발자 도구에는 Flowise를, 고객 대면 AI 제품에는 Dify를 사용합니다.</p>
+<h2 id="rag-pipeline-comparison">RAG Pipeline Comparison<a hidden class="anchor" aria-hidden="true" href="#rag-pipeline-comparison">#</a></h2>
+<p>RAG (Retrieval-Augmented Generation) is where the platforms diverge most clearly.</p>
+<p><strong>Dify RAG:</strong> You upload documents to Dify&rsquo;s Knowledge Base, choose chunking strategy (automatic, fixed-length, or paragraph), select an embedding model, and Dify indexes into its built-in vector store. When you add a Knowledge node to a workflow, Dify handles retrieval, reranking, and context injection automatically. The entire process is managed through a GUI with no external service setup.</p>
+<p><strong>Flowise RAG:</strong> You build the pipeline from components: a document loader node (PDF, web, Notion, etc.), a text splitter node (RecursiveCharacterTextSplitter, etc.), a vector store node (Pinecone, Qdrant, Chroma, etc. — external setup required), an embeddings node, and a retrieval chain or conversational retrieval chain. It takes more assembly, but you control every parameter. See our <a href="https://dibi8.com/resources/llm-frameworks/vector-database-comparison/">Vector Database Comparison 2026</a> for help choosing which store to wire in.</p>
+<p><strong>Verdict:</strong> For a production RAG product delivered quickly, Dify. For fine-grained control over every RAG component and parameter, Flowise.</p>
 <hr>
-<h2 id="dibi8의-판단">dibi8의 판단<a hidden class="anchor" aria-hidden="true" href="#dibi8의-판단">#</a></h2>
-<p><strong>Dify</strong>는 챗봇, 문서 Q&amp;A, AI 워크플로 등 최소한의 맞춤 엔지니어링으로 생산용 AI 애플리케이션을 제공하고 싶을 때의 선택입니다. RAG 관리, 멀티 모델 라우팅, 게시 레이어 덕분에 팀이 주변 배관이 아닌 AI를 구축합니다.</p>
-<p><strong>Flowise</strong>는 LLM 파이프라인에 대한 최대 투명성과 제어가 필요할 때의 선택입니다. 모든 단계를 이해하고 조정해야 하는 개발자에게 노드 캔버스는 의견이 강한 플랫폼보다 더 나은 작업 환경입니다.</p>
-<p>솔직한 분업: <strong>Dify는 제품 출시에, Flowise는 이해를 쌓는 데</strong> — 많은 개발자들이 먼저 Flowise로 기술 스택을 배운 다음 Dify에서 생산 시스템을 구축합니다.</p>
-<h2 id="추가-읽을거리">추가 읽을거리<a hidden class="anchor" aria-hidden="true" href="#추가-읽을거리">#</a></h2>
+<h2 id="self-hosting-requirements">Self-Hosting Requirements<a hidden class="anchor" aria-hidden="true" href="#self-hosting-requirements">#</a></h2>
+<p>| Requirement | Dify | Flowise |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Services | API, worker, web, PostgreSQL, Redis, Weaviate/Qdrant | Single Node.js process |
+| Docker | Docker Compose (5+ containers) | Single ````docker run``` |
+| External DB | PostgreSQL required | SQLite (default), external optional |
+| Memory footprint | Higher (multi-service) | Very low |
+| Setup time | 10–20 minutes | Under 5 minutes |</p>
+<p>Both are straightforward for developers comfortable with Docker, but Flowise has a noticeably smaller footprint. For self-hosted AI stacks, see our <a href="https://dibi8.com/resources/llm-frameworks/local-first-ai-stack-offline-development-2026/">Local-First AI Stack 2026</a>.</p>
+<hr>
+<h2 id="ecosystem-and-plugins">Ecosystem and Plugins<a hidden class="anchor" aria-hidden="true" href="#ecosystem-and-plugins">#</a></h2>
+<p><strong>Dify marketplace:</strong> Dify has launched a plugin marketplace where community members publish tools, model providers, and extensions. The ecosystem is growing rapidly since Dify&rsquo;s Series B funding.</p>
+<p><strong>Flowise community nodes:</strong> Flowise has a large community of contributors building custom nodes — integrations for specific databases, APIs, and LLM providers that are not in the official package. Installing community nodes expands the canvas significantly.</p>
+<p>Both ecosystems are healthy. Dify&rsquo;s marketplace is more curated; Flowise&rsquo;s node ecosystem is broader and more developer-driven.</p>
+<hr>
+<h2 id="can-they-complement-each-other">Can They Complement Each Other?<a hidden class="anchor" aria-hidden="true" href="#can-they-complement-each-other">#</a></h2>
+<p>In some architectures, yes. Teams use <strong>Flowise to prototype and validate a pipeline</strong>, then <strong>rebuild the validated flow in Dify</strong> for managed deployment and user-facing publishing. The workflows are not directly portable, but the patterns transfer. Alternatively, some teams use Flowise for internal developer tooling and Dify for customer-facing AI products.</p>
+<hr>
+<h2 id="dibi8s-take">dibi8&rsquo;s Take<a hidden class="anchor" aria-hidden="true" href="#dibi8s-take">#</a></h2>
+<p><strong>Dify</strong> wins if you want to ship a production AI application — chatbot, document Q&amp;A, AI workflow — with the least custom engineering. Its RAG management, multi-model routing, and publish layer mean your team builds the AI, not the plumbing around it.</p>
+<p><strong>Flowise</strong> wins if you want maximum transparency and control over your LLM pipeline. For developers who need to understand and tune every step, the node canvas is a better working environment than an opinionated platform.</p>
+<p>The honest split: <strong>Dify for shipping products, Flowise for building understanding</strong> — and many developers use Flowise first to learn the stack before building production systems in Dify.</p>
+<h2 id="further-reading">Further Reading<a hidden class="anchor" aria-hidden="true" href="#further-reading">#</a></h2>
 <ul>
-<li><a href="https://dibi8.com/kr/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/">LLM 게이트웨이 — Portkey, LiteLLM, OpenRouter 비교 2026</a></li>
-<li><a href="https://dibi8.com/kr/resources/llm-frameworks/vector-database-comparison/">벡터 데이터베이스 비교 2026</a></li>
-<li><a href="https://dibi8.com/kr/resources/llm-frameworks/local-first-ai-stack-offline-development-2026/">로컬 우선 AI 스택 2026</a></li>
-<li><a href="https://dibi8.com/kr/resources/llm-frameworks/ai-agent-memory-systems-2026/">AI 에이전트 메모리 시스템 2026</a></li>
-<li><a href="https://dibi8.com/kr/resources/llm-frameworks/open-source-ai-agent-framework-top-10-2026/">오픈소스 AI 에이전트 프레임워크 Top 10 2026</a></li>
+<li><a href="https://dibi8.com/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/">LLM Gateway — Portkey, LiteLLM, OpenRouter Compared 2026</a></li>
+<li><a href="https://dibi8.com/resources/llm-frameworks/vector-database-comparison/">Vector Database Comparison 2026</a></li>
+<li><a href="https://dibi8.com/resources/llm-frameworks/local-first-ai-stack-offline-development-2026/">Local-First AI Stack 2026</a></li>
+<li><a href="https://dibi8.com/resources/llm-frameworks/ai-agent-memory-systems-2026/">AI Agent Memory Systems 2026</a></li>
+<li><a href="https://dibi8.com/resources/llm-frameworks/open-source-ai-agent-framework-top-10-2026/">Open Source AI Agent Frameworks — Top 10 2026</a></li>
 </ul>
-<p>외부 참조: <a href="https://dify.ai/">Dify</a> · <a href="https://github.com/langgenius/dify">Dify GitHub</a> · <a href="https://flowiseai.com/">Flowise</a> · <a href="https://github.com/FlowiseAI/Flowise">Flowise GitHub</a></p>
+<p>External references: <a href="https://dify.ai/">Dify</a> · <a href="https://github.com/langgenius/dify">Dify on GitHub</a> · <a href="https://flowiseai.com/">Flowise</a> · <a href="https://github.com/FlowiseAI/Flowise">Flowise on GitHub</a></p>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;Dify vs Flowise 2026 비교: 풀스택 AI 앱 플랫폼 vs 경량 LLM 캔버스&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Dify vs Flowise in 2026: Full-Stack AI App Platform vs Lightweight LLM Canvas&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-06-07&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-06-07&rdquo;,
 &ldquo;author&rdquo;: {
@@ -436,12 +374,12 @@
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/dify-vs-flowise-2026%22">https://dibi8.com/kr/resources/dify-vs-flowise-2026"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/dify-vs-flowise-2026%22">https://dibi8.com/resources/dify-vs-flowise-2026"</a>
 }
 }
 </script></p>
 <h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
-<p>Understanding dify vs flowise 2026 비교: 풀스택 ai 앱 플랫폼 vs 경량 llm 캔버스 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
+<p>Understanding dify vs flowise in 2026: full-stack ai app platform vs lightweight llm canvas is crucial for modern AI development. Here&quot;s why: ### Key Benefits</p>
 <ul>
 <li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
 <li><strong>Quality</strong>: Improve output consistency</li>
@@ -479,19 +417,19 @@
 </li>
 </ol>
 <h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
-<p>Dify vs Flowise 2026 비교: 풀스택 AI 앱 플랫폼 vs 경량 LLM 캔버스 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>Dify vs Flowise in 2026: Full-Stack AI App Platform vs Lightweight LLM Canvas represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
 <p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
 <hr>
 <p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~5 minutes</em></p>
+<em>Read time: ~6 minutes</em></p>
 <hr>
 <h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
 <ul>
 <li><a href="/ko/ai-coding-agents/dify-vs-flowise-2026/">dify-vs-flowise-2026</a></li>
 <li><a href="/ko/ai-coding-agents/dify-vs-flowise-2026/">dify-vs-flowise-2026</a></li>
+<li><a href="/ko/ai-coding-agents/dify-vs-flowise-2026/">dify-vs-flowise-2026</a></li>
 <li><a href="/ko/ai-coding-agents/dify-vs-flowise-2026/">supermemory-open-source-ai-memory-api</a></li>
 <li><a href="/ko/ai-coding-agents/dify-vs-flowise-2026/">claude-code-vs-cline</a></li>
-<li><a href="/ko/ai-coding-agents/dify-vs-flowise-2026/">cursor-vs-windsurf</a></li>
 </ul>
 <hr>
 <p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
@@ -548,6 +486,81 @@
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

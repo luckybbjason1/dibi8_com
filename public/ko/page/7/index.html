@@ -132,13 +132,27 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-06-06” draft: false categories: [“dev-utils”] tags: [“ai 토큰 모니터”, “claude 쿼터”, “gemini 쿼터 추적”, “grok 토큰”, “kimi api”, “conky 위젯”, “linux 데스크탑”, “오픈소스”, “python”, “개발자 도구”] aliases:
-/kr/posts/ai-token-monitor-conky-linux/ faqs: - q: ‘AI Token Monitor가 macOS나 Windows에서도 작동하나요?’ a: ‘현재 위젯 표시 레이어는 Linux 전용 Conky에 의존합니다. 핵심 Python 스크립트(api_fetcher.py)는 어느 OS에서나 실행되지만, 시각적 렌더링은 Conky가 필요합니다. 저장소에 tkinter 기반 크로스 플랫폼 버전(monitor.py)이 있지만 GNOME에서 프레임 없는 창이 보이지 않을 수 있어 실험적입니다.’ q: ‘Claude API 토큰 잔액을 어떻게 읽나요?’ a: ‘/v1/messages에 max_tokens=1로 최소 POST 요청을 보내고 응답 헤더의 anthropic-ratelimit-tokens-remaining 및 anthropic-ratelimit-tokens-limit 값을 읽습니다. 체크당 약 10개 입력 토큰을 소비하며, 5분 cron 기준 하루 약 2,880 토큰으로 대부분 요금제에서 무시 가능한 수준입니다.’ q: ‘API 키를 ~/.config/.ai_monitor_keys에 저장하는 게 안전한가요?’ a: ‘파일은 chmod 600으로 생성되어 현재 사용자만 읽을 수 있습니다. .gitignore로 git에서 제외됩니다. .env 파일에 저장하는 것과 동일한 보안 수준으로 파일 시스템 권한에 의존합니다. 공유 머신이라면 gpg-agent나 시크릿 매니저로 암호화하는 것을 권장합니다.’ q: ‘목록에 없는 AI 서비스(예: Mistral, Together AI)를 추가할 수 있나요?’ a: ‘api_fetcher.py에 해당 서비스 API를 호출하는 블록을 추가하고 ok(불리언), label(표시 문자열), 선택적으로 pct(0-1 사이 소수)를 캐시 dict에 씁니다. 그런 다음 conky_ai.py의 SERVICES 목록에 서비스 이름과 reset_h 값을 추가하면 됩니다.’ q: ‘Grok이 잔액이 있는데도 “耗尽”(소진)으로 표시되는 이유는?’ a: ‘Grok 체크는 GET /v1/models를 호출합니다. 인증 유효 및 잔액 있을 때 200, 잔액 소진 시 403을 반환합니다. xAI의 403은 계정 잔액 0을 의미합니다. 잔액이 있는데 403이 표시된다면 ~/.config/.ai_monitor_keys의 API 키가 올바른지 확인하세요.’ 문제: 여섯 개 AI 서비스를 동시에 관리하면서 어느 것이 소진됐는지 알 수 없다 현대 개발자는 동시에 4~8개의 AI 서비스를 사용합니다 — Claude는 복잡한 추론, Gemini는 긴 컨텍스트 분석, Grok은 실시간 웹 데이터, Kimi는 대용량 문서 처리. 각 서비스마다 독립적인 쿼터 대시보드, 리셋 일정, 청구 페이지가 있습니다.
+    <p>AI Stack Builder — Find Your Perfect LLM &#43; Vector DB &#43; Framework Combo { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “AI Stack Builder — Find Your Perfect LLM &#43; Vector DB &#43; Framework Combo”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png&#34; } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/ai-stack-builder&#34; } } Why This Matters Understanding ai stack builder — find your perfect llm &#43; vector db &#43; framework combo is crucial for modern AI development. Here’s why: ### Key Benefits
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>4 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ai-stack-builder/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota… description: “Technical guide and comparison.” date: 2026-06-06T00:00:00&#43;08:00 lastmod: 2026-06-06T00:00:00&#43;08:00 tech_stack: [Python, Conky, Linux] application_domain: Dev Utils source_version: “1.0.0” licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-06-06” draft: false categories: [“dev-utils”] tags: [“ai token monitor”, “claude quota”, “gemini quota tracker”, “grok token”, “kimi api”, “conky widget”, “linux desktop”, “open source”, “python”, “developer tools”] aliases:
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ai-token-monitor-conky-linux/"></a>
 </article>
 
@@ -148,12 +162,13 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” source_version: &#34;&#34; licensing_model: “Open Source” license_type: “MIT” file_size: &#34;&#34; file_md5: &#34;&#34; download_url: &#34;&#34; backup_url: &#34;&#34; last_maintained: “2026-05-15” draft: false faqs: - q: ‘2024년 최고의 무료 AI 도구는 무엇인가요?’ a: ‘최고의 무료 AI 도구로는 챗봇 분야의 ChatGPT와 Claude, 디자인 분야의 Canva AI, 글쓰기 분야의 Grammarly, 배경 제거 도구인 Remove.bg, 코딩 보조 도구인 Codeium, 생산성 도구인 Notion AI, 소셜 미디어 예약 게시 도구인 Buffer가 있습니다. Codeium은 무제한 무료 코드 자동완성을 제공하며, Stable Diffusion은 셀프 호스팅 시 완전히 무료입니다.’
+    <p>title: “AI Tools Directory 2024: Complete Guide to Best AI Tools… description: “Technical guide and comparison.” for writing, image generation, coding, marketing, and more. Free and paid options with detailed reviews. date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - Go
+JavaScript application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-15” draft: false aliases: /posts/ai-tools-comparison/ /posts/ai-tools-directory-2024-complete-guide-to-best-ai-tools-dibi8/ /posts/ai-tools-for-developers/ /posts/free-ai-tools-2024/ faqs: - q: ‘What are the best free AI tools in 2024?’ a: ‘The best free AI tools include ChatGPT and Claude for chatbots, Canva AI for design, Grammarly for writing, Remove.bg for background removal, Codeium for coding, Notion AI for productivity, and Buffer for social media scheduling. Codeium offers unlimited free code completion, while Stable Diffusion is fully free when self-hosted.’ q: ‘Which AI coding tool is best for free, unlimited code completion?’ a: ‘Codeium is the standout free option, offering unlimited usage with no cost. Other free-tier coding tools include Cursor (free / $20/mo), Bolt.new, and V0 by Vercel for React UI generation, while GitHub Copilot starts at $10/mo.’ q: ‘What is the best AI image generator for commercial, copyright-safe use?’ a: ‘Adobe Firefly is the best choice for commercial-safe images at $4.99/mo, since it is trained on licensed content and is copyright-safe. For maximum control, Stable Diffusion is free and open-source when self-hosted, and Midjourney ($10/mo) offers the highest artistic quality.’ q: ‘How much do AI tools typically cost per month?’ a: ‘Most AI tools offer monthly plans in the $10-50 range, with many providing free tiers to test first. Annual billing typically saves 20-40%, and enterprise plans use custom pricing for large teams.’ q: ‘Which AI tool is best for generating full songs with vocals?’ a: ‘Suno is best for creating full songs with vocals (free / $10/mo). Other music generation options include Udio for high-quality music, AIVA for classical and cinematic tracks, and Soundraw for royalty-free background music.’— {&lt;/* resource-info */&gt;}
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ai-tools-directory/"></a>
 </article>
 
@@ -163,13 +178,13 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” source_version: &#34;&#34; licensing_model: “Open Source” license_type: “MIT” file_size: “14.6 MB” file_md5: &#34;&#34; download_url: “https://github.com/HKUDS/AI-Trader&#34; backup_url: &#34;” last_maintained: “2026-05-13” draft: false aliases:
-/kr/posts/ai-trader/ faqs: - q: ‘HKUDS가 개발한 AI-Trader란 무엇인가요?’ a: ‘AI-Trader는 홍콩대학교 데이터과학 연구실(HKUDS)이 개발한 오픈소스 완전 자동화 AI 트레이딩 에이전트 시스템입니다. 강화학습과 멀티 에이전트 협업 방식을 활용해 주식, 암호화폐, 외환, 선물 거래를 지원하며 MIT 라이선스로 배포됩니다.’ q: ‘AI-Trader는 어떤 시장과 자산을 지원하나요?’ a: ‘AI-Trader는 네 가지 시장을 지원합니다: 주식(미국, 홍콩, A주), 암호화폐(BTC, ETH, 알트코인), 외환(주요 통화쌍), 선물(원자재 및 지수). 각 시장별로 모멘텀, 추세 추종, 캐리 트레이드, 스프레드 거래 등 맞춤형 전략 유형이 적용됩니다.’ q: ‘AI-Trader는 어떤 강화학습 알고리즘을 사용하나요?’ a: ‘AI-Trader는 딥 강화학습을 사용하며, 학습 알고리즘으로 PPO(Proximal Policy Optimization)를, 시퀀스 모델링에는 LSTM 네트워크를 활용합니다. 에이전트는 배포 전 과거 시장 데이터로 사전 학습됩니다.’ q: ‘AI-Trader의 멀티 에이전트 아키텍처는 어떻게 구성되나요?’ a: ‘AI-Trader는 거래를 전담 에이전트별로 분리합니다: 분석 에이전트(기술적, 펀더멘털, 센티먼트 분석), 매수/매도/보유를 결정하는 결정 에이전트, 포트폴리오 리스크를 모니터링하고 손절매를 실행하는 리스크 에이전트, 주문 처리 및 슬리피지 제어를 담당하는 실행 에이전트로 구성됩니다.’ q: ‘실제 자금 위험 없이 AI-Trader를 테스트할 수 있나요?’ a: ‘네, 가능합니다. AI-Trader에는 과거 데이터를 활용한 고정밀 백테스팅 엔진과 페이퍼 트레이딩 모드(설정 파일에서 mode: paper로 지정)가 내장되어 있습니다. 프로젝트 문서에서는 실거래 배포 전에 반드시 페이퍼 트레이딩을 먼저 사용하도록 권장하고 있습니다.’ {&lt;/* resource-info */&gt;}
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - Go
+Python application_domain: “Llm Frameworks” source_version: &#34;&#34; licensing_model: “Open Source” license_type: “MIT” file_size: “14.6 MB” file_md5: &#34;&#34; download_url: “https://github.com/HKUDS/AI-Trader&#34; backup_url: &#34;” last_maintained: “2026-05-13” draft: false aliases: /posts/ai-trader/ faqs: - q: ‘What is AI-Trader by HKUDS?’ a: ‘AI-Trader is an open-source fully automated AI trading agent system developed by the Hong Kong University Data Science Lab (HKUDS). It uses reinforcement learning and multi-agent collaboration to trade stocks, crypto, forex, and futures, and is released under the MIT license.’ q: ‘Which markets and assets does AI-Trader support?’ a: ‘AI-Trader supports four markets: stocks (US, HK, and A-shares), crypto (BTC, ETH, and altcoins), forex (major pairs), and futures (commodities and indices). Each market uses tailored strategy types such as momentum, trend following, carry trade, and spread trading.’ q: ‘What reinforcement learning algorithm does AI-Trader use?’ a: ‘AI-Trader uses Deep Reinforcement Learning, with PPO (Proximal Policy Optimization) as the training algorithm and an LSTM network for sequence modeling. Agents are trained on historical market data before deployment.’ q: ‘How is AI-Trader’’s multi-agent architecture organized?’ a: ‘AI-Trader splits trading into specialized agents: Analysis Agents (technical, fundamental, sentiment), a Decision Agent that chooses buy/sell/hold, a Risk Agent that monitors portfolio risk and runs stop-loss, and an Execution Agent that handles order placement and slippage control.’ q: ‘Can I test AI-Trader without risking real money?’ a: ‘Yes. AI-Trader includes a high-fidelity backtesting engine for historical simulation and a paper trading mode (set mode: paper in the config). The project documentation recommends always using paper trading before deploying to live trading.’ {&lt;/* resource-info */&gt;}
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ai-trader/"></a>
 </article>
 
@@ -179,13 +194,13 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-21T00:00:00&#43;08:00 lastmod: 2026-05-21T00:00:00&#43;08:00 tech_stack: [Python, Docker, PostgreSQL, WebSocket] application_domain: Collections source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-21” draft: false categories: [“collections”] tags: [“ai 트레이딩”, “퀀트”, “암호화폐”, “hyperliquid”, “polymarket”, “스택”, “컬렉션”] aliases:
-/posts/ai-trading-stack/ AI 트레이딩 스택 2026: 암호화폐 &#43; 예측 시장용 7컴포넌트 오픈소스 퀀트 워크플로우 ⚠️ 면책 조항: 이는 AI 트레이딩 스택 구축 기술 가이드이지 투자 조언 아님. 퀀트 트레이딩은 실질적 자본 손실 위험. 실제 자본 배포 전 페이퍼/테스트넷에서 광범위하게 테스트. 과거 백테스트 성과는 미래 수익 예측 안 함.
+    <p>title: “The AI Trading Stack 2026: 7-Component Open-Source Quant… description: “Technical guide and comparison.” date: 2026-05-21T00:00:00&#43;08:00 lastmod: 2026-05-21T00:00:00&#43;08:00 tech_stack: - Python
+Docker PostgreSQL WebSocket application_domain: Collections source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-21” draft: false categories: [“collections”] tags: [“ai trading”, “quant”, “crypto”, “hyperliquid”, “polymarket”, “stack”, “collection”] aliases: /posts/ai-trading-stack/- ⚠️ Disclaimer: This is a technical guide to building an AI trading stack, not investment advice. Quantitative trading carries substantial risk of capital loss. Test extensively on paper / testnet before deploying real capital. Past backtest performance does not predict future returns.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ai-trading-stack/"></a>
 </article>
 
@@ -195,13 +210,13 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>2025년 최고의 AI 번역 도구: Google Translate vs DeepL vs ChatGPT 비교 {&lt;/* resource-info */&gt;}
-언어 장벽이 AI로 물러나고 있다. 2025년 현재, 기계 번역 시장은 대형 언어 모델(LLM) 기반의 문맥 인식 번역으로 급속 진화하고 있으며, 전통적인 통계 기계 번역(SMT)은 거의 완전히 신경 기계 번역(NMT)으로 대첸되었다. Common Sense Advisory에 따른, 글로벌 언어 서비스 시장은 2025년 650억 달러 규모에 이륾며, 그 중 AI 번역이 차지하는 비중은 45%를 넘어섰다. 본 기사에서는 2025년 가장 많이 사용되는 6대 AI 번역 도구를 번역 품질, 지원 언어, 가격 측면에서 비교한다.
+    <p>Các Công Cụ Dịch AI Tốt Nhất 2025: So Sánh Google Translate, DeepL Và ChatGPT {&lt;/* resource-info */&gt;}
+Dịch thuật là một trong những lĩnh vực đầu tiên và thành công nhất trong việc ứng dụng AI vào thực tiễn. Từ những bản dịch ngô nghê, vô duyên của thập kỷ trước, công cụ dịch AI năm 2025 đã đạt đến mức độ trôi chảy và chính xác khiến nhiều ngườI khó phân biệt được đâu là dịch máy, đâu là dịch ngườI. Google Translate xử lý hơn 100 tỷ từ mỗI ngày, DeepL được các dịch giả chuyên nghiệp tin dùng nhờ chất lượng vượt trộI, còn ChatGPT mang đến khả năng dịch thuật nhận thức ngữ cảnh chưa từng có. Bài viết này so sánh chi tiết 6 công cụ dịch AI hàng đầu, giúp bạn chọn đúng công cụ cho từng nhu cầu.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>16 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ai-translation-tools-compared-2025/"></a>
 </article>
 
@@ -211,13 +226,13 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-25T00:00:00&#43;08:00 lastmod: 2026-05-25T00:00:00&#43;08:00 tech_stack: [Aider, Cline, OpenHands, Python, TypeScript] application_domain: Dev Utils source_version: “Aider 0.78 / Cline 3.4 / OpenHands 0.42” licensing_model: Open Source license_type: ‘MIT / Apache-2.0’ last_maintained: “2026-05-25” draft: false categories: [“dev-utils”] tags: [“ai-coding”, “open-source”, “aider”, “cline”, “openhands”, “2026”] aliases:
-/kr/posts/aider-cline-openhands-2026-honest-comparison/ faq: - q: “2026년 최고의 오픈소스 코딩 에이전트는 무엇인가요?” a: “상황에 따라 다릅니다. 터미널 우선 git 인식 편집은 Aider(모델 독립적, 가장 빠름). IDE 네이티브 VS Code 통합은 Cline(비 CLI 사용자에게 최고의 UX). 완전 자율 멀티스텝 에이전트 작업은 OpenHands(브라우저 &#43; 셸 &#43; 리포). 숙련된 사용자 대부분은 Aider를 기본값으로 두고 특정 작업용으로 Cline이나 OpenHands를 추가합니다.” q: “Claude Code나 Cursor와 비용을 비교하면 어떤가요?” a: “BYO API 키 모델은 토큰당 지불을 의미합니다. Sonnet 4.6을 월 60시간 사용 시: 약 $80-130 (vs Claude Max $200). GPT-5의 경우: 약 $100-180. ‘상용보다 저렴’이라는 프레임은 컨텍스트 크기를 잘 관리할 때만 참이고, 방치하면 거짓입니다.” q: “이 에이전트들에 셸 접근 권한을 주는 것이 안전한가요?” a: “Aider는 모든 셸 명령에 대해 확인을 요청합니다 — 가장 안전. Cline은 편리하지만 위험한 자동 승인 모드가 있습니다. OpenHands는 기본적으로 샌드박스 Docker에서 실행됩니다 — 자율 루프에 가장 안전. 프로덕션 작업에서는 항상 자동 승인을 비활성화하고 모든 커밋을 검토하세요.” q: “2026년에 가장 활발히 개발되는 것은 무엇인가요?” a: “커밋 수로는 Cline (주간 릴리스, 대규모 Discord 커뮤니티). GitHub 스타와 학술 논문 인용으로는 OpenHands. ‘도구 자체의 코드 품질’로는 Aider — paul-gauthier의 점진적 다듬기는 전설적입니다. 세 프로젝트 모두 건강하며 사라질 가능성이 낮습니다.” q: “이것들이 Claude Code나 Cursor를 완전히 대체할 수 있나요?” a: “터미널에 익숙한 솔로 개발자라면 가능. Aider는 Claude Code의 CLI 모드를 80% 작업에서 대체합니다. Cline은 VS Code에서 Cursor의 에이전트 모드를 비슷한 품질로 대체합니다. OpenHands는 Cursor가 처리할 수 없는 장시간 자율 작업을 처리합니다. 격차는 다듬기에 있습니다 — 오류 복구, UX 디테일, 모델 자동 선택.” q: “각각의 학습 곡선은 어떤가요?” a: “Aider: 생산성까지 15분(명확한 패턴을 따르는 CLI일 뿐). Cline: 30분(VS Code 확장 설정 &#43; 모델 설정). OpenHands: 2-3시간(Docker 설정, 브라우저 도구 구성, 에이전트 루프 튜닝). Aider가 진입 장벽이 가장 낮고, OpenHands가 천장이 가장 높습니다.” Aider vs Cline vs OpenHands 2026: 정직한 3자 OSS 비교 메타 설명: 동일한 5K LOC TypeScript 코드베이스에서 세 가지를 모두 테스트. 벤치마크 수치, 각자가 빛나는 지점, BYO API 키 비용의 현실과 상용 대안 비교.
+    <p>title: “Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Codin… description: “Technical guide and comparison.” date: 2026-05-25T00:00:00&#43;08:00 lastmod: 2026-05-25T00:00:00&#43;08:00 tech_stack: [Aider, Cline, OpenHands, Python, TypeScript] application_domain: Dev Utils source_version: “Aider 0.78 / Cline 3.4 / OpenHands 0.42” licensing_model: Open Source license_type: ‘MIT / Apache-2.0’ last_maintained: “2026-05-25” draft: false categories: [“dev-utils”] tags: [“ai-coding”, “open-source”, “aider”, “cline”, “openhands”, “2026”] aliases:
+/posts/aider-cline-openhands-2026-honest-comparison/ faq: - q: “Which OSS coding agent is best in 2026?” a: “It depends. Aider for terminal-first git-aware editing (model-agnostic, fastest). Cline for IDE-native VS Code integration (best UX for non-CLI users). OpenHands for fully autonomous multi-step agent work (browser &#43; shell &#43; repo). Most experienced users keep Aider as default &#43; add Cline or OpenHands for specific tasks.” q: “How does cost compare to Claude Code or Cursor?” a: “BYO API key model means you pay per token. For Sonnet 4.6 usage at 60 hours/month: roughly $80-130 (vs Claude Max $200). For GPT-5: roughly $100-180. The ‘cheaper than commercial’ framing is true when you watch your context size, false when you let it sprawl.” q: “Are these agents safe to give shell access to?” a: “Aider asks for confirmation on every shell command — safest. Cline has an auto-approve mode that’s convenient but risky. OpenHands runs in a sandboxed Docker by default — safest for autonomous loops. For production work always disable auto-approve and review every commit.” q: “Which has the most active development in 2026?” a: “Cline by commit volume (weekly releases, large Discord community). OpenHands by GitHub stars and citation in academic papers. Aider by ‘code quality of the tool itself’ — paul-gauthier’s incremental refinements are legendary. All three are healthy projects unlikely to disappear.” q: “Can these replace Claude Code or Cursor entirely?” a: “For solo developers comfortable with terminal: yes. Aider replaces Claude Code’s CLI mode for 80% of work. Cline replaces Cursor’s agent mode in VS Code with comparable quality. OpenHands handles long autonomous tasks Cursor can’t. The gap is in polish — error recovery, UX details, model auto-selection.” q: “What’s the learning curve for each?” a: “Aider: 15 minutes to productive (it’s a CLI that follows obvious patterns). Cline: 30 minutes (VS Code extension settings &#43; model setup). OpenHands: 2-3 hours (Docker setup, browser tool config, agent loop tuning). Aider has the lowest barrier, OpenHands the highest ceiling.” Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Comparison Meta Description: Tested all three on the same 5K-LOC TypeScript codebase. Benchmark numbers, where each wins, BYO-API-key cost reality vs commercial alternatives.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/aider-cline-openhands-2026-honest-comparison/"></a>
 </article>
 
@@ -227,13 +242,13 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“aider”, “ai-페어-프로그래밍”, “터미널-ai”, “cli-코딩”, “git-ai”, “llm-도구”, “오픈소스”] aliases:
-/kr/posts/aider/ 소개 터미널은 항상 고급 사용자의 영역이었다. 2026년에는 가장 강력한 AI 코딩 어시스턴트가 작동하는 곳이기도 하다. GitHub 스타 45,000개 이상을 보유한 오픈소스 터미널 AI 페어 프로그래밍 도구인 Aider는 기존 에디터를 버리거나 월간 구독료를 지불하지 않고도 AI 지원을 받고자 하는 개발자들의 필수 도구로 자리 잡았다. IDE에 종속된 대안과 달리 Aider는 VS Code, Vim, Neovim, Emacs 또는 모든 텍스트 에디터와 함께 작동한다 — 에디터 플러그인이 아닌 git 저장소를 직접 조작하기 때문이다. aider 튜토리얼을 찾고 있거나, aider vs claude code를 비교하거나, 프로덕션급 ai 페어 프로그래밍 설정을 찾고 있다면, 이 가이드는 설치, 구성, 벤치마크 및 솔직한 장단점을 다룬다.
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“aider”, “ai-pair-programming”, “terminal-ai”, “cli-coding”, “git-ai”, “llm-tools”, “open-source”] aliases:
+/posts/aider/- Introduction The terminal has always been where power users live. In 2026, it is also where the most capable AI coding assistant operates. Aider, an open-source terminal AI pair programming tool with over 45,000 GitHub stars, has quietly become the weapon of choice for developers who want AI assistance without abandoning their existing editor or paying a monthly subscription. Unlike IDE-locked alternatives, Aider works with VS Code, Vim, Neovim, Emacs, or any text editor — because it operates on your git repository directly, not inside an editor plugin. If you have been searching for an aider tutorial, comparing aider vs claude code, or looking for a production-grade ai pair programming setup, this guide covers installation, configuration, benchmarks, and honest trade-offs.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/aider/"></a>
 </article>
 
@@ -243,13 +258,13 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>소개: 동기 스크래핑의 병목 현상 50,000개의 URL을 스크래핑해야 한다고 가정해 보자. ```requests````를 사용하여 루프를 실행했다. 3시간이 지나도 여전히 기다리고 있다. 각 요청은 전체 스레드를 블로킹하여 네트워크 I/O로 **실행 시간의 99.9%**를 낭비한다. CPU는 유휴 상태인데 스크립트는 초당 4-5페이지 속도로 기어간다. 이것이 동기 HTTP 클라이언트의 현실이다.
-aio-libs가 관리하며 GitHub Star 15,200개를 보유한 aiohttp는 Python 비동기 HTTP 클라이언트/서버 프레임워크의 사실상 표준이다. asyncio 기반으로 스레딩이나 멀티프로세싱 오버헤드 없이 동시 요청을 가능하게 한다. 프로덕션 벤치마크에서 단일 aiohttp 프로세스는 로컬 엔드포인트에서 초당 10,000개 이상의 요청을 처리하며, 실제 분산 API에서는 초당 2,000-4,000 req/s를 달성한다. 이 글은 aiohttp v3.11을 사용하여 프로덕션급 고성능 웹 스크래퍼를 구축하는 완벽한 가이드이다.
+    <p>title: “aiohttp 2026: Build High-Performance Async Web Scrapers … description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“aiohttp”, “async”, “web scraping”, “python”, “http client”, “asyncio”] aliases:
+/posts/aiohttp-async-web-scraping/- Introduction: The Synchronous Scraping Bottleneck You have a list of 50,000 URLs to scrape. You fire up ```requests```` in a loop. Three hours later, you are still waiting. Each request blocks the entire thread, wasting 99.9% of the runtime on network I/O. Your CPU sits idle while your script crawls at 4-5 pages per second. This is the reality of synchronous HTTP clients.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>14 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/aiohttp-async-web-scraping/"></a>
 </article>
 
@@ -259,30 +274,14 @@ aio-libs가 관리하며 GitHub Star 15,200개를 보유한 aiohttp는 Python �
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” source_version: &#34;&#34; licensing_model: “Open Source” license_type: “MIT” file_size: “335.6 MB” file_md5: &#34;&#34; download_url: “https://github.com/yikart/AiToEarn&#34; backup_url: &#34;” last_maintained: “2026-05-15” draft: false aliases:
-/kr/posts/aitoearn-ai-monetization/ faqs: - q: ‘AiToEarn이란 무엇인가요?’ a: ‘AiToEarn은 크리에이터가 글, 이미지, 영상 스크립트, 코드 같은 AI 생성 콘텐츠를 수동 수입원으로 전환하도록 돕는 오픈소스 AI 콘텐츠 수익화 플랫폼입니다. AI 콘텐츠 생성, 원클릭 멀티 플랫폼 배포, 내장형 수익화 기능을 하나의 셀프 호스팅 도구에 통합했습니다.’ q: ‘AiToEarn은 크리에이터에게 어떻게 수익을 만들어 주나요?’ a: ‘AiToEarn은 다섯 가지 수익화 방식을 지원합니다: 유료 구독(사용자당 $5-50/month), Google AdSense 및 Media.net을 통한 광고 수익, Amazon 및 Taobao 링크가 자동 삽입되는 제휴 마케팅(5-50% 수수료), 템플릿과 프롬프트 팩의 유료 다운로드(개당 $1-20), 그리고 패키징된 AI 워크플로우의 API 과금(호출당 $0.01-0.1)입니다.’ q: ‘AiToEarn은 어떤 플랫폼에 콘텐츠를 자동 게시할 수 있나요?’ a: ‘AiToEarn은 블로그 플랫폼(WordPress, Ghost, Notion), 소셜 미디어(Twitter/X, LinkedIn, Facebook, Instagram), 중국 플랫폼(WeChat 공식 계정, Zhihu, Xiaohongshu, Bilibili), 그리고 영상 플랫폼(YouTube, TikTok, Douyin 스크립트 생성)에 콘텐츠를 배포합니다.’ q: ‘AiToEarn은 어떤 AI 모델을 지원하나요?’ a: ‘AiToEarn은 Model Router를 사용해 GPT-4(OpenAI), Claude(Anthropic), Gemini(Google), 로컬 LLM 등 여러 AI 제공업체에 연결합니다. 또한 DALL-E, Midjourney, Stable Diffusion 같은 이미지 생성기도 통합합니다.’ q: ‘AiToEarn은 셀프 호스팅이 가능한가요? 어떻게 설치하나요?’ a: ‘네, AiToEarn은 셀프 호스팅이 가능합니다. GitHub 저장소를 클론하고 npm install을 실행한 뒤, .env.example을 .env로 복사하고 API 키를 입력한 다음 npm run dev를 실행합니다. 그러면 앱이 http://localhost:3000에서 로컬로 실행됩니다.’ {&lt;/* resource-info */&gt;}
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - Go
+JavaScript TypeScript application_domain: “Llm Frameworks” source_version: &#34;&#34; licensing_model: “Open Source” license_type: “MIT” file_size: “335.6 MB” file_md5: &#34;&#34; download_url: “https://github.com/yikart/AiToEarn&#34; backup_url: &#34;” last_maintained: “2026-05-15” draft: false aliases: /posts/aitoearn-ai-monetization/ faqs: - q: ‘What is AiToEarn?’ a: ‘AiToEarn is an open-source AI content monetization platform that helps creators turn AI-generated content such as articles, images, video scripts, and code into passive income streams. It combines AI content generation, one-click multi-platform distribution, and built-in monetization in a single self-hosted tool.’ q: ‘How does AiToEarn make money for creators?’ a: ‘AiToEarn supports five monetization methods: paid subscriptions ($5-50/month per user), ad revenue via Google AdSense and Media.net, affiliate marketing with auto-inserted Amazon and Taobao links (5-50% commission), paid downloads of templates and prompt packs ($1-20 each), and API billing for packaged AI workflows ($0.01-0.1 per call).’ q: ‘Which platforms can AiToEarn auto-publish content to?’ a: ‘AiToEarn distributes content to blog platforms (WordPress, Ghost, Notion), social media (Twitter/X, LinkedIn, Facebook, Instagram), Chinese platforms (WeChat Official, Zhihu, Xiaohongshu, Bilibili), and video platforms (YouTube, TikTok, Douyin for script generation).’ q: ‘Which AI models does AiToEarn support?’ a: ‘AiToEarn uses a Model Router that connects to multiple AI providers, including GPT-4 (OpenAI), Claude (Anthropic), Gemini (Google), and local LLMs. It also integrates image generators like DALL-E, Midjourney, and Stable Diffusion.’ q: ‘Can AiToEarn be self-hosted, and how do you install it?’ a: ‘Yes, AiToEarn is self-hostable. You clone the GitHub repository, run npm install, copy .env.example to .env and add your API keys, then run npm run dev. The app then runs locally at http://localhost:3000.’ {&lt;/* resource-info */&gt;}
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/aitoearn-ai-monetization/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Tool Guide
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” source_version: &#34;&#34; licensing_model: “Open Source” license_type: “MIT” file_size: &#34;&#34; file_md5: &#34;&#34; download_url: &#34;&#34; backup_url: &#34;&#34; last_maintained: “2026-05-15” draft: false aliases:
-/kr/posts/aitoearn-guide/ faqs: - q: ‘AiToEarn은 Buffer와 Hootsuite의 무료 대안인가요?’ a: ‘네. AiToEarn은 오픈소스(MIT 라이선스)이며 셀프호스팅 방식이라 월 비용이 $0입니다. Buffer는 월 $120&#43;, Hootsuite는 월 $249&#43;인 것과 대조됩니다. 또한 유료 플랜에서 부과하는 게시물 수 제한도 없습니다.’ q: ‘AiToEarn은 소홍서(RED)와 Instagram에 동시에 게시할 수 있나요?’ a: ‘네. AiToEarn은 Instagram, TikTok 등 서구권 플랫폼과 소홍서, WeChat 등 중국 생태계 플랫폼 모두에 네이티브 통합을 제공하여 여러 플랫폼에 동시 게시할 수 있습니다.’ q: ‘AiToEarn은 단순 예약 발행이 아닌 콘텐츠를 어떻게 직접 생성하나요?’ a: ‘AiToEarn은 DAG(유향 비순환 그래프) 엔진을 사용해 트렌드 주제를 수집하고, DeepSeek 또는 로컬 Llama 3 같은 딥러닝 모델로 요약한 뒤, 각 타깃 플랫폼에 맞게 출력물을 포맷합니다.’ q: ‘AiToEarn은 소홍서, TikTok처럼 API를 제한하는 플랫폼에 어떻게 게시하나요?’ a: ‘공식 게시 API에만 의존하지 않고 Playwright 헤드리스 브라우저를 사용해 소홍서(RED), TikTok 등 플랫폼의 API 제한을 우회합니다.’ q: ‘AiToEarn을 안정적으로 셀프호스팅하려면 무엇이 필요한가요?’ a: ‘AiToEarn은 SQLite 데이터베이스와 Playwright 헤드리스 브라우저를 격리하는 Docker Compose 파일을 제공하며, $5짜리 저렴한 VPS에서도 약 99.9%의 업타임으로 운영할 수 있습니다.’ {&lt;/* resource-info */&gt;}
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>4 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/aitoearn-guide/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
@@ -313,6 +312,81 @@ aio-libs가 관리하며 GitHub Star 15,200개를 보유한 aiohttp는 Python �
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

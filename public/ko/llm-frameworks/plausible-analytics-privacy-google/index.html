@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/llm-frameworks/plausible-analytics-privacy-google/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-frameworks/plausible-analytics-privacy-google/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/llm-frameworks/plausible-analytics-privacy-google/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-frameworks/plausible-analytics-privacy-google/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/llm-frameworks/plausible-analytics-privacy-google/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="llm-frameworks">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "LLM Frameworks - dibi8",
+      "item": "https://dibi8.com/ko/llm-frameworks/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/llm-frameworks/plausible-analytics-privacy-google/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: AGPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“plausible”, “analytics”, “quyền-riêng-tư”, “gdpr”, “thay-thế-google-analytics”, “tự-host”, “docker”, “elixir”, “nhẹ”] aliases:\n/vi/posts/plausible-analytics-privacy-google/ Giới thiệu: Vấn Đề Quyền Riêng Tư Trong Phân Tích Mà Không Ai Nói Đến Vào tháng 1/2024, Cơ quan Bảo vệ Dữ liệu Áo phán quyết rằng việc sử dụng Google Analytics vi phạm Điều 44 GDPR vì dữ liệu cá nhân chảy sang máy chủ Mỹ mà không có sự bảo vệ đầy đủ. Pháp, Ý và Đan Mạch sau đó cũng đưa ra các phán quyết tương tự. Đến giữa năm 2025, hơn 120.000 website đã xóa Google Analytics khỏi các trang hướng đến EU. Vấn đề không chỉ là pháp lý — nó là kiến trúc. Google Analytics tải 45KB JavaScript, đặt nhiều cookie bên thứ ba, lấy vân tay thiết bị, và gửi dữ liệu duyệt web qua biên giới.\nPlausible Analytics được xây dựng để giải quyết chính vấn đề này. Được viết bằng Elixir và chạy trên framework Phoenix, Plausible là công cụ phân tích theo giấy phép AGPL-3.0 cung cấp các chỉ số web thiết yếu — lượt xem trang, khách truy cập duy nhất, tỷ lệ thoát, nguồn giới thiệu — với script dưới 1KB, không cookie, và không có chuyển giao dữ liệu xuyên biên giới. Với hơn 21.000 sao GitHub và bản phát hành v3.0 vào tháng 2/2026, nó đã trở thành tiêu chuẩn thực tế cho các chủ sở hữu trang web có ý thức về quyền riêng tư từ chối đánh đổi tốc độ hoặc tuân thủ.\nHướng dẫn này bao gồm triển khai tự host dựa trên Docker, so sánh benchmark với Google Analytics và Matomo, mẫu tích hợp API, và production hardening cho các trang web từ blog cá nhân đến ứng dụng SaaS lưu lượng cao.\nPlausible Analytics là gì? (Định nghĩa một câu) Plausible Analytics là nền tảng phân tích web mã nguồn mở, nhẹ, ưu tiên quyền riêng tư cung cấp các chỉ số trang web thiết yếu mà không sử dụng cookie, không thu thập dữ liệu cá nhân, hoặc làm chậm website — hoàn toàn tuân thủ GDPR, CCPA, và PECR, với tùy chọn tự host giữ tất cả dữ liệu trên hạ tầng của bạn.\nPlausible hoạt động như thế nào: Kiến trúc và Khái niệm cốt lõi Plausible tiếp cận theo cách hoàn toàn khác với phân tích truyền thống. Thay vì thu thập dữ liệu phía client, nó tập trung vào tổng hợp phía server với dấu chân client tối thiểu.\nTổng quan kiến trúc ┌─────────────────────────────────────────────────────┐ │ Nginx / Caddy │ │ (Reverse Proxy + SSL) │ ├─────────────────────────────────────────────────────┤ │ ┌──────────────────────────────────────────────┐ │ │ │ Plausible (Elixir/Phoenix) │ │ │ │ (API + Web Dashboard + Events) │ │ │ └──────────────┬─────────────┬─────────────────┘ │ │ │ │ │ │ ▼ ▼ │ │ ┌──────────┐ ┌──────────┐ │ │ │ ClickHouse│ │ PostgreSQL│ │ │ │ (Sự kiện)│ │(Ngườ dùng)│ │ │ └──────────┘ └──────────┘ │ │ ▲ │ │ ┌──────────┐ │ │ │ Redis │ │ │ │ (Cache) │ │ │ └──────────┘ │ └─────────────────────────────────────────────────────┘ Tại sao sử dụng ClickHouse cho lưu trữ sự kiện Plausible sử dụng ClickHouse làm cơ sở dữ liệu phân tích — cùng cơ sở dữ liệu cột mà Yandex và Cloudflare sử dụng. Lựa chọn này là có chủ đích: | Đặc điểm | PostgreSQL | ClickHouse | Tác động | |———-|———–|————|———| | Tốc độ ghi | ~20K dòng/giây | 1 triệu+ dòng/giây | Xử lý đỉnh lưu lượng | | Tốc độ truy vấn tổng hợp | Vài giây | Mili-giây | Dashboard tải tức thờ | | Hiệu quả lưu trữ | Cao | Cực cao | Tỷ lệ nén 90%+ | | Phân tích thờ gian thực | Chậm | Gần thờ gian thực | Đếm khách thực |\nCác thành phần cốt lõi Thành phần Mục đích Ghi chú mở rộng Phoenix App Web dashboard, REST API, tiếp nhận sự kiện Stateless — mở rộng ngang ClickHouse Lưu trữ dữ liệu sự kiện, tổng hợp Node đơn xử lý 10 tỷ+ sự kiện PostgreSQL Tài khoản ngườ dùng, cấu hình site, API key Dataset nhỏ — node đơn đủ Redis Session cache, giới hạn tốc độ Tùy chọn — cải thiện thờ gian phản hồi Script 1KB: Nó thực sự làm gì \u003c/script\u003e Script này chỉ làm đúng ba việc: (1) gửi URL trang hiện tại và referrer, (2) gửi kích thước viewport để phân loại desktop/mobile, và (3) lắng nghe sự kiện navigation SPA. Nó không: đặt cookie, sử dụng localStorage, tạo hash vân tay, hoặc thực thi request bên thứ ba. Kết quả là payload dưới 1KB khi gzip và thờ gian thực thi dưới 10ms trên mạng 4G.\nCài đặt \u0026 Thiết lập: Từ Zero đến Dashboard Phân Tích trong 5 Phút Yêu cầu tiên quyết VPS với tối thiểu 2GB RAM (4GB khuyến nghị cho \u003e100K pageviews/ngày) Docker Engine 24.0+ và Docker Compose v2 Tên miền trỏ đến máy chủ Thông tin xác thực SMTP cho đặt lại mật khẩu VPS đáng tin cậy, chúng tôi khuyên dùng DigitalOcean — droplet 2GB RAM $12/tháng xử lý thoải mái đến 500K pageviews/tháng.\nBước 1: Tạo Thư mục và File Compose # Tạo thư mục dự án mkdir -p /opt/plausible cd /opt/plausible # Tải template Docker Compose chính thức curl -L https://raw.githubusercontent.com/plausible/hosting/master/docker-compose.yml -o docker-compose.yml Bước 2: Tạo Secret và Cấu hình # Tạo secret ngẫu nhiên export SECRET_KEY_BASE=$(openssl rand -base64 48 | tr -d '\\n') export TOTP_VAULT_KEY=$(openssl rand -base64 32 | tr -d '\\n') # Tạo file biến môi trường cat \u003e plausible-conf.env \u003c\u003c EOF BASE_URL=https://analytics.yourdomain.com SECRET_KEY_BASE=${SECRET_KEY_BASE} TOTP_VAULT_KEY=${TOTP_VAULT_KEY} # Cơ sở dữ liệu DATABASE_URL=postgres://postgres:postgres@plausible_db:5432/plausible_db CLICKHOUSE_DATABASE_URL=http://plausible_events_db:8123/plausible_events_db # Email (SMTP) MAILER_EMAIL=hello@yourdomain.com SMTP_HOST_ADDR=smtp.mailgun.org SMTP_HOST_PORT=587 SMTP_USER_NAME=postmaster@yourdomain.com SMTP_USER_PWD=your_mailgun_password SMTP_HOST_SSL_ENABLED=true # Đăng ký DISABLE_REGISTRATION=false # Đặt true sau khi tạo tài khoản EOF Bước 3: Khởi chạy với Docker Compose # Khởi động tất cả dịch vụ docker compose up -d # Kiểm tra dịch vụ docker compose ps # Kết quả mong đợi: # NAME STATUS PORTS # plausible Up 10 seconds 0.0.0.0:8000-\u003e8000/tcp # plausible_db Up 10 seconds 5432/tcp # plausible_events_db Up 10 seconds 8123/tcp Bước 4: Reverse Proxy với SSL # /etc/nginx/sites-available/plausible server { listen 80; server_name analytics.yourdomain.com; return 301 https://$server_name$request_uri; } server { listen 443 ssl http2; server_name analytics.yourdomain.com; ssl_certificate /etc/letsencrypt/live/analytics.yourdomain.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/analytics.yourdomain.com/privkey.pem; location / { proxy_pass http://127.0.0.1:8000; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto $scheme; } } # Kích hoạt site và lấy SSL sudo ln -s /etc/nginx/sites-available/plausible /etc/nginx/sites-enabled/ sudo nginx -t \u0026\u0026 sudo systemctl reload nginx sudo certbot --nginx -d analytics.yourdomain.com Bước 5: Đăng nhập Lần Đầu và Thiết lập Site # Tạo ngườ dùng admin docker compose exec plausible bin/plausible remote Plausible.Release.created_admin_user(\"admin@yourdomain.com\", \"YourSecurePassword123!\") # Nhấn Ctrl+C để thoát Truy cập https://analytics.yourdomain.com, đăng nhập, và thêm site đầu tiên. Sao chép đoạn mã tracking script vào phần header của website.\nThêm Tracking vào Website \u003c/script\u003e \u003c/script\u003e Tích hợp với Frameworks, CMS và Build Tools Tích hợp React / Next.js // components/PlausibleAnalytics.js import Script from 'next/script'; export default function PlausibleAnalytics() { return ( \u003cScript strategy=\"afterInteractive\" data-domain=\"yourdomain.com\" src=\"https://analytics.yourdomain.com/js/script.js\" /\u003e ); } // Cho SPA route changes trong Next.js 13+ // app/layout.js import { usePathname } from 'next/navigation'; import { useEffect } from react; export default function RootLayout({ children }) { const pathname = usePathname(); useEffect(() =\u003e { if (typeof window !== undefined \u0026\u0026 window.plausible) { window.plausible(pageview); } }, [pathname]); return \u003chtml\u003e{children}\u003c/html\u003e; } Tích hợp Vue.js / Nuxt.js // plugins/plausible.client.js (Nuxt 3) export default defineNuxtPlugin(() =\u003e { const config = useRuntimeConfig(); useHead({ script: [ { defer: true, 'data-domain': config.public.plausibleDomain, src: ````${config.public.plausibleHost}/js/script.js````, }, ], }); // Theo dõi SPA navigation const router = useRouter(); router.afterEach((to) =\u003e { if (typeof window !== undefined \u0026\u0026 window.plausible) { window.plausible(pageview, { u: window.location.origin + to.fullPath }); } }); }); Plugin WordPress # Tùy chọn 1: Sử dụng plugin WordPress chính thức của Plausible # Cài từ wp-admin: Plugins \u003e Add New \u003e Tìm \"Plausible Analytics\" # Cấu hình với URL tự host # Tùy chọn 2: Thủ công — thêm vào header.php của theme \u003c?php if (!is_user_logged_in()): ?\u003e \" src=\"https://analytics.yourdomain.com/js/script.js\"\u003e \u003c?php endif; ?\u003e Static Site Generators (Hugo, Jekyll, Astro) \u003c/script\u003e // astro.config.mjs export default defineConfig({ integrations: [ { name: plausible, hooks: { 'astro:config:setup': ({ injectScript }) =\u003e { injectScript(head, ```` \u003cscript defer data-domain=\"yourdomain.com\" src=\"https://analytics.yourdomain.com/js/script.js\"\u003e\u003c/script\u003e ````); }, }, }, ], }); Theo dõi Sự kiện Tùy chỉnh // Theo dõi click nút, submit form, hoặc bất kỳ sự kiện tùy chỉnh document.getElementById('signup-button').addEventListener(click, () =\u003e { plausible('Signup Click', { props: { plan: pro, source: header } }); }); // Theo dõi chuyển đổi e-commerce plausible(Purchase, { props: { product: 'Widget Pro', price: 99.00, currency: USD }, revenue: { currency: USD, amount: 9900 } // tính bằng cent }); Benchmark \u0026 Các trường hợp sử dụng thực tế So sánh Tốc độ: Plausible vs Google Analytics Chỉ số Google Analytics 4 Plausible (Cloud) Plausible (Tự host) Kích thước script 45KB \u003c1KB \u003c1KB Truy vấn DNS 5+ 1 1 Cookie đặt Nhiều 0 0 Thờ gian tải (3G) 800-1200ms 15-25ms 15-25ms Ảnh hưởng Lighthouse -8 đến -15 điểm 0 điểm 0 điểm Ảnh hưởng Core Web Vitals Tiêu cực Không Không Dữ liệu chuyển/trang ~60KB ~1KB ~1KB Kết quả: Plausible tải nhanh hơn 45-60 lần GA4 và có không ảnh hưởng đến Core Web Vitals.\nSo sánh Tuân thủ Quyền riêng tư Tính năng Google Analytics 4 Matomo Plausible GDPR tuân thủ không cần đồng ý Không (cần banner) Một phần Có Tracking không cookie Không Tùy chọn Có (luôn) Không thu thập dữ liệu cá nhân Không Cấu hình được Có (thiết kế) Lưu trữ dữ liệu EU Không (US) Tùy chọn tự host Có (tự host) Tuân thủ CCPA Cần opt-out Cấu hình được Có Tuân thủ PECR Không Một phần Có Schrems II / EU-US DPF Rủi ro pháp lý Không áp dụng Không rủi ro Hiệu suất Dưới Tải (v3.0 trên VPS 2GB) Chỉ số Giá trị Ghi chú Khởi động lạnh 4.1s Docker container + ClickHouse Tốc độ tiếp nhận sự kiện 50.000 sự kiện/giây Node ClickHouse đơn Thờ gian tải dashboard 120ms P95, đã xác thực Thờ gian phản hồi API 85ms P95, tổng hợp stats Lưu trữ cho 1 triệu pageview ~45MB ClickHouse nén cao Số site theo dõi đồng thờ Không giới hạn Giới hạn bởi tài nguyên Sử dụng bộ nhớ khi idle 380MB Plausible + ClickHouse + Postgres Hồ sơ Triển khai Thực tế Loại trang Pageviews/tháng Chi phí VPS Tương đương GA4 Chi phí Plausible Blog cá nhân 10.000 $6 (1GB) Miễn phí $6 Landing page SaaS 100.000 $12 (2GB) $0-150 $12 Cửa hàng e-commerce 500.000 $24 (4GB) $150+ $24 Trang tin tức 2.000.000 $48 (8GB) $150,000+ $48 Agency (50 site) 5.000.000 tổng $48 (8GB) $750+ $48 Nghiên cứu Trường hợp: Tăng 50% Tốc độ Tải Trang Sau Khi Thay GA4 Một công ty SaaS châu Âu với 200K khách truy cập/tháng đã thay Google Analytics bằng Plausible tự host vào tháng 11/2025. Kết quả sau 6 tháng: - Điểm Lighthouse Performance: 72 → 91 (+19 điểm)\nLargest Contentful Paint: 2.8s → 1.9s (đã xóa script GA chặn render) Banner cookie consent: Hoàn toàn loại bỏ (không còn cần thiết) Chi phí hosting phân tích: $0 (GA) → $12/tháng (Plausible tự host) Rủi ro tuân thủ GDPR: Loại bỏ (dữ liệu không rởi khỏi server EU) Sử dụng Nâng cao \u0026 Production Hardening Kích hoạt Các phép đo Nâng cao # plausible-conf.env — Kích hoạt các tính năng tracking bổ sung # Theo dõi link ra ngoài SCRIPT_NAME=script.outbound-links.js # Theo dõi tải file SCRIPT_NAME=script.file-downloads.js # Routing dựa trên hash (cho SPA với URL hash) SCRIPT_NAME=script.hash.js # Kết hợp: tất cả tính năng SCRIPT_NAME=script.outbound-links.file-downloads.hash.js \u003c/script\u003e Tích hợp API cho Dashboard Tùy chỉnh # Lấy stats qua Stats API curl -X GET \"https://analytics.yourdomain.com/api/v1/stats/aggregate?site_id=yourdomain.com\u0026period=30d\u0026metrics=visitors,pageviews,bounce_rate\" \\ -H \"Authorization: Bearer YOUR_API_KEY\" # Response: # { # \"results\": { # \"visitors\": {\"value\": 45230}, # \"pageviews\": {\"value\": 128900}, # \"bounce_rate\": {\"value\": 42} # } # } # Python script kéo stats vào BI tool import requests from datetime import datetime, timedelta API_KEY = \"your-api-key\" SITE_ID = \"yourdomain.com\" HOST = \"https://analytics.yourdomain.com\" end_date = datetime.now().strftime(\"%Y-%m-%d\") start_date = (datetime.now() - timedelta(days=30)).strftime(\"%Y-%m-%d\") response = requests.get( f\"{HOST}/api/v1/stats/timeseries\", params={ \"site_id\": SITE_ID, \"period\": \"custom\", \"date\": start_date, \"metrics\": \"visitors,pageviews\", \"filters\": f\"visit:country==US|DE|FR\" }, headers={\"Authorization\": f\"Bearer {API_KEY}\"} ) data = response.json() for entry in data[\"results\"]: print(f\"{entry[date]}: {entry[visitors]} visitors, {entry[pageviews]} pageviews\") Chiến lược Sao lưu #!/bin/bash # /opt/scripts/plausible-backup.sh BACKUP_DIR=\"/backup/plausible/$(date +%Y%m%d_%H%M%S)\" mkdir -p \"$BACKUP_DIR\" # Backup PostgreSQL (dữ liệu ngườ dùng, cấu hình site) docker compose exec -T plausible_db pg_dump \\ -U postgres plausible_db \u003e \"$BACKUP_DIR/postgres.sql\" # Backup ClickHouse (dữ liệu sự kiện) docker compose exec plausible_events_db clickhouse-client \\ --query=\"BACKUP DATABASE plausible_events_db TO '/backup/clickhouse'\" \u003e \"$BACKUP_DIR/clickhouse.sql\" # Upload lên S3 aws s3 sync \"$BACKUP_DIR\" \"s3://your-backup-bucket/plausible/\" # Dọn dẹp: chỉ giữ 30 ngày find /backup/plausible -maxdepth 1 -type d -mtime +30 -exec rm -rf {} \\; # Cron — hàng ngày lúc 3 giờ sáng 0 3 * * * /opt/scripts/plausible-backup.sh \u003e\u003e /var/log/plausible-backup.log 2\u003e\u00261 Thiết lập High Availability # docker-compose.ha.yaml — ClickHouse đa node với replication version: '3.8' services: plausible: image: plausible/analytics:v3.0 deploy: replicas: 2 environment: - DATABASE_URL=postgres://postgres:postgres@plausible_db:5432/plausible_db - CLICKHOUSE_DATABASE_URL=http://clickhouse-1:8123/plausible_events_db;http://clickhouse-2:8123/plausible_events_db clickhouse-1: image: clickhouse/clickhouse-server:24.3 volumes: - clickhouse_data_1:/var/lib/clickhouse clickhouse-2: image: clickhouse/clickhouse-server:24.3 volumes: - clickhouse_data_2:/var/lib/clickhouse Giám sát với Prometheus # Thêm vào prometheus.yml scrape_configs: - job_name: plausible static_configs: - targets: ['analytics.yourdomain.com:8000'] metrics_path: '/metrics' scrape_interval: 30s # Các chỉ số chính cần theo dõi # plausible_clickhouse_event_insertions_total — Tốc độ tiếp nhận sự kiện # plausible_phoenix_request_duration_ms — Thờ gian phản hồi API # plausible_db_query_duration_ms — Hiệu suất truy vấn CSDL Cơ sở dữ liệu GeoIP cho Dữ liệu Vị trí # Tải cơ sở dữ liệu MaxMind GeoLite2 cho dữ liệu quốc gia/thành phố mkdir -p /opt/plausible/geoip cd /opt/plausible/geoip # Đăng ký tại https://www.maxmind.com/ để nhận tài khoản GeoLite2 miễn phí wget \"https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City\u0026license_key=YOUR_KEY\u0026suffix=tar.gz\" \\ -O GeoLite2-City.tar.gz tar -xzf GeoLite2-City.tar.gz --strip-components=1 # Mount trong docker-compose.yml # volumes: # - ./geoip/GeoLite2-City.mmdb:/geoip/GeoLite2-City.mmdb:ro # Thêm vào plausible-conf.env: # GEOLITE2_COUNTRY_DB=/geoip/GeoLite2-Country.mmdb # GEOLITE2_CITY_DB=/geoip/GeoLite2-City.mmdb So sánh với các giải pháp thay thế Tính năng Plausible Google Analytics 4 Matomo (Tự host) Fathom Umami Giấy phép AGPL-3.0 Độc quyền GPL-3.0 Độc quyền MIT Kích thước script \u003c1KB 45KB ~22KB \u003c1KB \u003c2KB Cần cookie Không Có (nhiều) Tùy chọn Không Không GDPR tuân thủ (không banner) Có Không Một phần Có Có Lưu trữ dữ liệu EU (tự host) Có Không Có Chỉ cloud Có Dashboard thờ gian thực Có Có (5ph delay) Có Có Có Theo dõi sự kiện tùy chỉnh Có Có Có Có Có Truy cập API REST đầy đủ Có (phức tạp) Có Có Có Theo dõi doanh thu e-commerce Có Nâng cao Nâng cao Cơ bản Không Mã nguồn mở Có Không Có Không Có Chi phí tháng (tự host 2GB) $12 Miễn phí (chi phí = dữ liệu) $12 $14 (cloud) $12 Cộng đồng (GitHub stars) 21.000 N/A 19.500 N/A 24.000 Kết luận chính: Plausible nằm ở điểm tối ưu giữa sự tối giản của Fathom và sức mạnh của Matomo. Backend ClickHouse cho nó hiệu suất truy vấn tốt hơn MySQL/MariaDB của Matomo, trong khi giấy phép AGPL đảm bảo tính khả dụng mã nguồn mở vĩnh viễn. Đối với các trang web cần phân tích thiết yếu mà không cần độ phức tạp của GA4 hay overhead tài nguyên của Matomo, Plausible là lựa chọn tối ưu.\nHạn chế: Đánh giá Trung thực Plausible cố ý đánh đổi độ sâu lấy sự đơn giản và quyền riêng tư. Đây là những gì bạn sẽ không có: Không tracking cấp ngườ dùng — Theo thiết kế, Plausible không theo dõi hành trình cá nhân của ngườ dùng xuyên suốt các phiên. Bạn không thể thấy “Ngườ dùng X đã truy cập trang A, sau đó B, rồi C.” Nếu phân bổ đa chạm hoặc phân tích phễu cấp ngườ dùng là quan trọng, bạn cần một công cụ khác (hoặc bổ sung Plausible bằng tracking sự kiện phía server).\nPhân khúc hạn chế — Bộ lọc tích hợp hỗ trợ quốc gia, trang, referrer, loại thiết bị, và trình duyệt. Phân tích cohort nâng cao, phân tích chiều tùy chỉnh, hoặc phân khúc dựa trên thuộc tính ngườ dùng yêu cầu xuất API sang công cụ BI bên ngoài.\nKhông tích hợp nền tảng quảng cáo — Không giống GA4 tích hợp với Google Ads, Plausible không có kết nối trực tiếp đến các nền tảng quảng cáo. Bạn có thể theo dõi tham số UTM và tên chiến dịch, nhưng tính toán ROAS yêu cầu tương quan thủ công.\nKhông có heatmap và ghi lại phiên — Các tính năng này không tồn tại trong Plausible (và có lẽ không bao giờ có, vì chúng xung đột với triết lý ưu tiên quyền riêng tư). Sử dụng các công cụ như Hotjar hoặc Microsoft Clarity cùng với Plausible nếu cần phân tích hành vi trực quan.\nKhông tích hợp Search Console — Không giống GA4 kết nối trực tiếp với Google Search Console, Plausible yêu cầu nhập thủ công hoặc tương quan dựa trên API. Không có báo cáo “truy vấn tìm kiếm” tích hợp.\nĐộ sâu e-commerce — Theo dõi doanh thu tồn tại nhưng cơ bản so với e-commerce nâng cao của GA4 với phân tích phễu thanh toán cấp sản phẩm.\nCâu hỏi Thường gặp Plausible thực sự tuân thủ GDPR mà không cần banner cookie không?\nCó. Ban Bảo vệ Dữ liệu Châu Âu (EDPB) và nhiều cơ quan bảo vệ dữ liệu EU đã xác nhận rằng phân tích không thu thập dữ liệu cá nhân và không sử dụng cookie không yêu cầu đồng ý theo Điều 6(1)(f) GDPR — lợi ích hợp pháp. Plausible không thu thập địa chỉ IP (băm và loại bỏ), không sử dụng cookie hoặc localStorage, không lấy vân tay thiết bị, và không theo dõi xuyên trang. Tuy nhiên, nếu bạn bật tính năng theo dõi doanh thu xử lý dữ liệu mua hàng, hãy tham khảo ý kiến DPO của bạn. Triển khai tự host là tùy chọn tuân thủ nhất vì dữ liệu không bao giờ rởi khỏi server của bạn.\nPlausible chính xác đến mức nào so với Google Analytics?\nPlausible thường báo cáo số lượng khách truy cập cao hơn 5-15% so với GA4 vì nó bị chặn bởi trình chặn quảng cáo và trình duyệt riêng tư ở tỷ lệ thấp hơn. GA4 bị chặn bởi khoảng 35-40% ngườ dùng chạy trình chặn quảng cáo (uBlock Origin, AdGuard, v.v.), trong khi Plausible (tự host trên tên miền của riêng bạn) chỉ bị chặn bởi 8-12%. Dữ liệu “thiếu” của GA4 không thực sự bị mất — nó chưa bao giờ được thu thập do chặn script. Plausible cung cấp cho bạn bức tranh hoàn chỉnh hơn về lưu lượng thực tế.\nTôi có thể nhập dữ liệu lịch sử từ Google Analytics không?\nCó. Plausible cung cấp trình nhập Google Analytics kéo dữ liệu qua GA Reporting API v4. Trình nhập xử lý cả thuộc tính Universal Analytics (UA) và GA4, ánh xạ dimensions sang mô hình dữ liệu của Plausible. Do sự khác biệt mô hình dữ liệu của GA4, một số chỉ số (như “thờ gian tương tác”) không có tương đương trực tiếp. Quá trình nhập chạy như một job nền và có thể mất vài giờ cho các dataset lớn.\n# Chạy trình nhập GA (từ container Plausible) docker compose exec plausible bin/plausible \\ \"Plausible.Google.Import.start('your-ga-property-id\", YOUR_API_KEY)\" Điều gì xảy ra khi trang web của tôi vượt quá dung lượng VPS?\nPlausible mở rộng theo cách có thể dự đoán. VPS 2GB xử lý ~500K pageviews/tháng. VPS 4GB xử lý ~2M pageviews/tháng. Để lưu lượng cao hơn, bạn có ba tùy chọn: (1) mở rộng VPS theo chiều dọc, (2) chuyển ClickHouse sang server chuyên dụng (cơ sở dữ liệu là điểm nghẽn, không phải ứng dụng Phoenix), hoặc (3) sử dụng Plausible Cloud bắt đầu từ $9/tháng cho 10K pageviews. Instance ClickHouse là yếu tố quyết định dung lượng — ứng dụng Phoenix bản thân nó rất nhẹ.\nLàm thế nào để theo dõi nhiều domain hoặc subdomain?\nMỗi domain là một “site” riêng trong Plausible, nhưng bạn có thể tổ chức chúng bằng đăng nhập chung. Để theo dõi subdomain (ví dụ: blog.yourdomain.com và app.yourdomain.com), bạn có hai tùy chọn: theo dõi riêng cho báo cáo chi tiết, hoặc tổng hợp bằng thuộc tính data-api-host để báo cáo vào cùng một site ID. Theo dõi xuyên subdomain hoạt động mà không cần cấu hình đặc biệt vì Plausible không sử dụng cookie hoặc session storage.\n\u003c/script\u003e ```` **Plausible tự host thực sự miễn phí mãi mãi không?** Phần mềm miễn phí theo AGPL-3.0 — bạn có thể sử dụng, sửa đổi, và phân phối lại mà không phải trả phí bản quyền. Chi phí của bạn chỉ là hạ tầng: hosting VPS, lưu trữ backup, và chứng chỉ SSL. Đối với blog cá nhân trên VPS $6/tháng, đó là tổng chi phí của bạn. Không có giới hạn nhân tạo, không có cổng tính năng, và không có ép buộc nâng cấp. Bạn sở hữu hoàn toàn mã nguồn và dữ liệu. ## Kết luận: Phân Tích Không Giám Sát Plausible Analytics chứng minh rằng bạn không cần phải đánh đổi quyền riêng tư lấy thông tin chi tiết. **Script tracking \u003c1KB**, **không cookie**, và **tốc độ tải nhanh hơn 45 lần** khiến nó vượt trội về mặt kỹ thuật so với Google Analytics đối với đại đa số các trang web. Tùy chọn tự host thêm chủ quyền dữ liệu hoàn toàn, loại bỏ mọi rủi ro tuân thủ từ chuyển giao dữ liệu xuyên biên giới. Đối với một trang web điển hình, việc chuyển từ GA4 sang Plausible có nghĩa là: loại bỏ banner cookie consent, cải thiện điểm Lighthouse 10-20 điểm, và tải trang nhanh hơn — trong khi vẫn biết có bao nhiêu ngườ truy cập, họ xem những trang nào, và họ đến từ đâu. Đó là những chỉ số quan trọng cho hầu hết các quyết định. Triển khai instance của bạn trong tuần này. Thiết lập Docker Compose chưa đến 5 phút, script tracking chỉ là một dòng, và dashboard bắt đầu hiển thị dữ liệu ngay lập tức. Khách truy cập của bạn sẽ cảm ơn bạn vì tốc độ tải trang nhanh hơn. Đội ngũ pháp lý của bạn sẽ cảm ơn vì sự tuân thủ. Core Web Vitals của bạn sẽ cảm ơn vì script không có tác động. **Tham gia nhóm Telegram của chúng tôi để thảo luận công cụ mã nguồn mở**: [t.me/dibi8vn](https://t.me/dibi8vn) * * * ## Hosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.* ## Nguồn \u0026 Tài liệu Tham khảo - [Plausible Analytics GitHub Repository](https://github.com/plausible/analytics) — Mã nguồn chính thức, 21.000+ sao - [Plausible Documentation](https://plausible.io/docs/) — Tài liệu sản phẩm chính thức - [Plausible Self-Hosting Guide](https://plausible.io/docs/self-hosting) — Tài liệu tự host chính thức - [Plausible Stats API](https://plausible.io/docs/stats-api) — Tài liệu REST API - [Plausible v3.0 Release Notes](https://github.com/plausible/analytics/releases) — Phát hành tháng 2/2026 - [ClickHouse Documentation](https://clickhouse.com/docs) — CSDL phân tích cung cấp năng lượng cho Plausible - [MaxMind GeoLite2](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data) — CSDL GeoIP miễn phí - [EDPB Guidelines on Consent](https://edpb.europa.eu/our-work-tools/general-guidance/guidelines/consent_en) — Cơ sở pháp lý cho phân tích không cookie - [DigitalOcean VPS Setup](https://m.do.co/c/eca87ac14ee0) — VPS hosting cho triển khai tự host * * * *Bài viết này chứa liên kết tiếp thị đến DigitalOcean. Nếu bạn mua dịch vụ thông qua các liên kết này, dibi8.com có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Tất cả khuyến nghị đều dựa trên thử nghiệm thực tế và kinh nghiệm triển khai thực tế.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Plausible Analytics: Giải Pháp Phân Tích Ưu Tiên Quyền Riêng Tư Thay Thế Google Analytics — Nhanh Hơn 45 Lần, Hướng Dẫn Tự Host 2026\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/plausible-analytics-privacy-google\" } } \u003c/script\u003e * * * ## Related Articles - [apple-container](plausible-analytics-privacy-google) - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](plausible-analytics-privacy-google) - [moneyprinterturbo-one-click-ai-video-generator](plausible-analytics-privacy-google) - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](plausible-analytics-privacy-google) - [moneyprinterturbo-one-click-ai-video-generator](plausible-analytics-privacy-google) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
+  "wordCount" : "4149",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/llm-frameworks/plausible-analytics-privacy-google/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/llm-frameworks/">LLM Frameworks - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>20 분</span>&nbsp;|&nbsp;<span>번역:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/zh/llm-frameworks/plausible-analytics-privacy-google/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/llm-frameworks/plausible-analytics-privacy-google/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#gi%e1%bb%9bi-thi%e1%bb%87u-v%e1%ba%a5n-%c4%91%e1%bb%81-quy%e1%bb%81n-ri%c3%aang-t%c6%b0-trong-ph%c3%a2n-t%c3%adch-m%c3%a0-kh%c3%b4ng-ai-n%c3%b3i-%c4%91%e1%ba%bfn" aria-label="Giới thiệu: Vấn Đề Quyền Riêng Tư Trong Phân Tích Mà Không Ai Nói Đến">Giới thiệu: Vấn Đề Quyền Riêng Tư Trong Phân Tích Mà Không Ai Nói Đến</a></li>
+            <li>
+                <a href="#plausible-analytics-l%c3%a0-g%c3%ac-%c4%91%e1%bb%8bnh-ngh%c4%a9a-m%e1%bb%99t-c%c3%a2u" aria-label="Plausible Analytics là gì? (Định nghĩa một câu)">Plausible Analytics là gì? (Định nghĩa một câu)</a></li>
+            <li>
+                <a href="#plausible-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o-ki%e1%ba%bfn-tr%c3%bac-v%c3%a0-kh%c3%a1i-ni%e1%bb%87m-c%e1%bb%91t-l%c3%b5i" aria-label="Plausible hoạt động như thế nào: Kiến trúc và Khái niệm cốt lõi">Plausible hoạt động như thế nào: Kiến trúc và Khái niệm cốt lõi</a><ul>
+                    
+            <li>
+                <a href="#t%e1%bb%95ng-quan-ki%e1%ba%bfn-tr%c3%bac" aria-label="Tổng quan kiến trúc">Tổng quan kiến trúc</a></li>
+            <li>
+                <a href="#t%e1%ba%a1i-sao-s%e1%bb%ad-d%e1%bb%a5ng-clickhouse-cho-l%c6%b0u-tr%e1%bb%af-s%e1%bb%b1-ki%e1%bb%87n" aria-label="Tại sao sử dụng ClickHouse cho lưu trữ sự kiện">Tại sao sử dụng ClickHouse cho lưu trữ sự kiện</a></li>
+            <li>
+                <a href="#c%c3%a1c-th%c3%a0nh-ph%e1%ba%a7n-c%e1%bb%91t-l%c3%b5i" aria-label="Các thành phần cốt lõi">Các thành phần cốt lõi</a></li>
+            <li>
+                <a href="#script-1kb-n%c3%b3-th%e1%bb%b1c-s%e1%bb%b1-l%c3%a0m-g%c3%ac" aria-label="Script 1KB: Nó thực sự làm gì">Script 1KB: Nó thực sự làm gì</a></li></ul>
+            </li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp-t%e1%bb%ab-zero-%c4%91%e1%ba%bfn-dashboard-ph%c3%a2n-t%c3%adch-trong-5-ph%c3%bat" aria-label="Cài đặt &amp; Thiết lập: Từ Zero đến Dashboard Phân Tích trong 5 Phút">Cài đặt &amp; Thiết lập: Từ Zero đến Dashboard Phân Tích trong 5 Phút</a><ul>
+                    
+            <li>
+                <a href="#y%c3%aau-c%e1%ba%a7u-ti%c3%aan-quy%e1%ba%bft" aria-label="Yêu cầu tiên quyết">Yêu cầu tiên quyết</a></li>
+            <li>
+                <a href="#b%c6%b0%e1%bb%9bc-1-t%e1%ba%a1o-th%c6%b0-m%e1%bb%a5c-v%c3%a0-file-compose" aria-label="Bước 1: Tạo Thư mục và File Compose">Bước 1: Tạo Thư mục và File Compose</a></li>
+            <li>
+                <a href="#b%c6%b0%e1%bb%9bc-2-t%e1%ba%a1o-secret-v%c3%a0-c%e1%ba%a5u-h%c3%acnh" aria-label="Bước 2: Tạo Secret và Cấu hình">Bước 2: Tạo Secret và Cấu hình</a></li>
+            <li>
+                <a href="#b%c6%b0%e1%bb%9bc-3-kh%e1%bb%9fi-ch%e1%ba%a1y-v%e1%bb%9bi-docker-compose" aria-label="Bước 3: Khởi chạy với Docker Compose">Bước 3: Khởi chạy với Docker Compose</a></li>
+            <li>
+                <a href="#b%c6%b0%e1%bb%9bc-4-reverse-proxy-v%e1%bb%9bi-ssl" aria-label="Bước 4: Reverse Proxy với SSL">Bước 4: Reverse Proxy với SSL</a></li>
+            <li>
+                <a href="#b%c6%b0%e1%bb%9bc-5-%c4%91%c4%83ng-nh%e1%ba%adp-l%e1%ba%a7n-%c4%91%e1%ba%a7u-v%c3%a0-thi%e1%ba%bft-l%e1%ba%adp-site" aria-label="Bước 5: Đăng nhập Lần Đầu và Thiết lập Site">Bước 5: Đăng nhập Lần Đầu và Thiết lập Site</a></li>
+            <li>
+                <a href="#th%c3%aam-tracking-v%c3%a0o-website" aria-label="Thêm Tracking vào Website">Thêm Tracking vào Website</a></li></ul>
+            </li>
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-frameworks-cms-v%c3%a0-build-tools" aria-label="Tích hợp với Frameworks, CMS và Build Tools">Tích hợp với Frameworks, CMS và Build Tools</a><ul>
+                    
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-react--nextjs" aria-label="Tích hợp React / Next.js">Tích hợp React / Next.js</a></li>
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-vuejs--nuxtjs" aria-label="Tích hợp Vue.js / Nuxt.js">Tích hợp Vue.js / Nuxt.js</a></li>
+            <li>
+                <a href="#plugin-wordpress" aria-label="Plugin WordPress">Plugin WordPress</a></li>
+            <li>
+                <a href="#static-site-generators-hugo-jekyll-astro" aria-label="Static Site Generators (Hugo, Jekyll, Astro)">Static Site Generators (Hugo, Jekyll, Astro)</a></li>
+            <li>
+                <a href="#theo-d%c3%b5i-s%e1%bb%b1-ki%e1%bb%87n-t%c3%b9y-ch%e1%bb%89nh" aria-label="Theo dõi Sự kiện Tùy chỉnh">Theo dõi Sự kiện Tùy chỉnh</a></li></ul>
+            </li>
+            <li>
+                <a href="#benchmark--c%c3%a1c-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Benchmark &amp; Các trường hợp sử dụng thực tế">Benchmark &amp; Các trường hợp sử dụng thực tế</a><ul>
+                    
+            <li>
+                <a href="#so-s%c3%a1nh-t%e1%bb%91c-%c4%91%e1%bb%99-plausible-vs-google-analytics" aria-label="So sánh Tốc độ: Plausible vs Google Analytics">So sánh Tốc độ: Plausible vs Google Analytics</a></li>
+            <li>
+                <a href="#so-s%c3%a1nh-tu%c3%a2n-th%e1%bb%a7-quy%e1%bb%81n-ri%c3%aang-t%c6%b0" aria-label="So sánh Tuân thủ Quyền riêng tư">So sánh Tuân thủ Quyền riêng tư</a></li>
+            <li>
+                <a href="#hi%e1%bb%87u-su%e1%ba%a5t-d%c6%b0%e1%bb%9bi-t%e1%ba%a3i-v30-tr%c3%aan-vps-2gb" aria-label="Hiệu suất Dưới Tải (v3.0 trên VPS 2GB)">Hiệu suất Dưới Tải (v3.0 trên VPS 2GB)</a></li>
+            <li>
+                <a href="#h%e1%bb%93-s%c6%a1-tri%e1%bb%83n-khai-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Hồ sơ Triển khai Thực tế">Hồ sơ Triển khai Thực tế</a></li>
+            <li>
+                <a href="#nghi%c3%aan-c%e1%bb%a9u-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-t%c4%83ng-50-t%e1%bb%91c-%c4%91%e1%bb%99-t%e1%ba%a3i-trang-sau-khi-thay-ga4" aria-label="Nghiên cứu Trường hợp: Tăng 50% Tốc độ Tải Trang Sau Khi Thay GA4">Nghiên cứu Trường hợp: Tăng 50% Tốc độ Tải Trang Sau Khi Thay GA4</a></li></ul>
+            </li>
+            <li>
+                <a href="#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao--production-hardening" aria-label="Sử dụng Nâng cao &amp; Production Hardening">Sử dụng Nâng cao &amp; Production Hardening</a><ul>
+                    
+            <li>
+                <a href="#k%c3%adch-ho%e1%ba%a1t-c%c3%a1c-ph%c3%a9p-%c4%91o-n%c3%a2ng-cao" aria-label="Kích hoạt Các phép đo Nâng cao">Kích hoạt Các phép đo Nâng cao</a></li>
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-api-cho-dashboard-t%c3%b9y-ch%e1%bb%89nh" aria-label="Tích hợp API cho Dashboard Tùy chỉnh">Tích hợp API cho Dashboard Tùy chỉnh</a></li>
+            <li>
+                <a href="#chi%e1%ba%bfn-l%c6%b0%e1%bb%a3c-sao-l%c6%b0u" aria-label="Chiến lược Sao lưu">Chiến lược Sao lưu</a></li>
+            <li>
+                <a href="#thi%e1%ba%bft-l%e1%ba%adp-high-availability" aria-label="Thiết lập High Availability">Thiết lập High Availability</a></li>
+            <li>
+                <a href="#gi%c3%a1m-s%c3%a1t-v%e1%bb%9bi-prometheus" aria-label="Giám sát với Prometheus">Giám sát với Prometheus</a></li>
+            <li>
+                <a href="#c%c6%a1-s%e1%bb%9f-d%e1%bb%af-li%e1%bb%87u-geoip-cho-d%e1%bb%af-li%e1%bb%87u-v%e1%bb%8b-tr%c3%ad" aria-label="Cơ sở dữ liệu GeoIP cho Dữ liệu Vị trí">Cơ sở dữ liệu GeoIP cho Dữ liệu Vị trí</a></li></ul>
+            </li>
+            <li>
+                <a href="#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-gi%e1%ba%a3i-ph%c3%a1p-thay-th%e1%ba%bf" aria-label="So sánh với các giải pháp thay thế">So sánh với các giải pháp thay thế</a></li>
+            <li>
+                <a href="#h%e1%ba%a1n-ch%e1%ba%bf-%c4%91%c3%a1nh-gi%c3%a1-trung-th%e1%bb%b1c" aria-label="Hạn chế: Đánh giá Trung thực">Hạn chế: Đánh giá Trung thực</a></li>
+            <li>
+                <a href="#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p" aria-label="Câu hỏi Thường gặp">Câu hỏi Thường gặp</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Dev Utils
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: AGPL-3.0
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;dev-utils&rdquo;]
+tags: [&ldquo;plausible&rdquo;, &ldquo;analytics&rdquo;, &ldquo;quyền-riêng-tư&rdquo;, &ldquo;gdpr&rdquo;, &ldquo;thay-thế-google-analytics&rdquo;, &ldquo;tự-host&rdquo;, &ldquo;docker&rdquo;, &ldquo;elixir&rdquo;, &ldquo;nhẹ&rdquo;]
+aliases:</p>
+<ul>
+<li>/vi/posts/plausible-analytics-privacy-google/</li>
+</ul>
+<hr>
+<h2 id="giới-thiệu-vấn-đề-quyền-riêng-tư-trong-phân-tích-mà-không-ai-nói-đến">Giới thiệu: Vấn Đề Quyền Riêng Tư Trong Phân Tích Mà Không Ai Nói Đến<a hidden class="anchor" aria-hidden="true" href="#giới-thiệu-vấn-đề-quyền-riêng-tư-trong-phân-tích-mà-không-ai-nói-đến">#</a></h2>
+<p>Vào tháng 1/2024, Cơ quan Bảo vệ Dữ liệu Áo phán quyết rằng <strong>việc sử dụng Google Analytics vi phạm Điều 44 GDPR</strong> vì dữ liệu cá nhân chảy sang máy chủ Mỹ mà không có sự bảo vệ đầy đủ. Pháp, Ý và Đan Mạch sau đó cũng đưa ra các phán quyết tương tự. Đến giữa năm 2025, hơn <strong>120.000 website</strong> đã xóa Google Analytics khỏi các trang hướng đến EU. Vấn đề không chỉ là pháp lý — nó là kiến trúc. Google Analytics tải <strong>45KB JavaScript</strong>, đặt <strong>nhiều cookie bên thứ ba</strong>, lấy vân tay thiết bị, và gửi dữ liệu duyệt web qua biên giới.</p>
+<p>Plausible Analytics được xây dựng để giải quyết chính vấn đề này. Được viết bằng Elixir và chạy trên framework Phoenix, Plausible là công cụ phân tích theo giấy phép AGPL-3.0 cung cấp các chỉ số web thiết yếu — lượt xem trang, khách truy cập duy nhất, tỷ lệ thoát, nguồn giới thiệu — với <strong>script dưới 1KB</strong>, không cookie, và không có chuyển giao dữ liệu xuyên biên giới. Với <strong>hơn 21.000 sao GitHub</strong> và bản phát hành <strong>v3.0 vào tháng 2/2026</strong>, nó đã trở thành tiêu chuẩn thực tế cho các chủ sở hữu trang web có ý thức về quyền riêng tư từ chối đánh đổi tốc độ hoặc tuân thủ.</p>
+<p>Hướng dẫn này bao gồm triển khai tự host dựa trên Docker, so sánh benchmark với Google Analytics và Matomo, mẫu tích hợp API, và production hardening cho các trang web từ blog cá nhân đến ứng dụng SaaS lưu lượng cao.</p>
+<h2 id="plausible-analytics-là-gì-định-nghĩa-một-câu">Plausible Analytics là gì? (Định nghĩa một câu)<a hidden class="anchor" aria-hidden="true" href="#plausible-analytics-là-gì-định-nghĩa-một-câu">#</a></h2>
+<p><strong>Plausible Analytics là nền tảng phân tích web mã nguồn mở, nhẹ, ưu tiên quyền riêng tư</strong> cung cấp các chỉ số trang web thiết yếu mà không sử dụng cookie, không thu thập dữ liệu cá nhân, hoặc làm chậm website — hoàn toàn tuân thủ GDPR, CCPA, và PECR, với tùy chọn tự host giữ tất cả dữ liệu trên hạ tầng của bạn.</p>
+<h2 id="plausible-hoạt-động-như-thế-nào-kiến-trúc-và-khái-niệm-cốt-lõi">Plausible hoạt động như thế nào: Kiến trúc và Khái niệm cốt lõi<a hidden class="anchor" aria-hidden="true" href="#plausible-hoạt-động-như-thế-nào-kiến-trúc-và-khái-niệm-cốt-lõi">#</a></h2>
+<p>Plausible tiếp cận theo cách hoàn toàn khác với phân tích truyền thống. Thay vì thu thập dữ liệu phía client, nó tập trung vào tổng hợp phía server với dấu chân client tối thiểu.</p>
+<h3 id="tổng-quan-kiến-trúc">Tổng quan kiến trúc<a hidden class="anchor" aria-hidden="true" href="#tổng-quan-kiến-trúc">#</a></h3>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────┐
+│                    Nginx / Caddy                     │
+│              (Reverse Proxy + SSL)                   │
+├─────────────────────────────────────────────────────┤
+│  ┌──────────────────────────────────────────────┐   │
+│  │          Plausible (Elixir/Phoenix)          │   │
+│  │        (API + Web Dashboard + Events)        │   │
+│  └──────────────┬─────────────┬─────────────────┘   │
+│                 │             │                      │
+│                 ▼             ▼                      │
+│          ┌──────────┐  ┌──────────┐                  │
+│          │ ClickHouse│  │ PostgreSQL│                  │
+│  │ (Sự kiện)│  │(Ngườ dùng)│                  │
+│          └──────────┘  └──────────┘                  │
+│                 ▲                                    │
+│          ┌──────────┐                                │
+│          │  Redis   │                                │
+│          │ (Cache)  │                                │
+│          └──────────┘                                │
+└─────────────────────────────────────────────────────┘
+</code></pre><h3 id="tại-sao-sử-dụng-clickhouse-cho-lưu-trữ-sự-kiện">Tại sao sử dụng ClickHouse cho lưu trữ sự kiện<a hidden class="anchor" aria-hidden="true" href="#tại-sao-sử-dụng-clickhouse-cho-lưu-trữ-sự-kiện">#</a></h3>
+<p>Plausible sử dụng <strong>ClickHouse</strong> làm cơ sở dữ liệu phân tích — cùng cơ sở dữ liệu cột mà Yandex và Cloudflare sử dụng. Lựa chọn này là có chủ đích: | Đặc điểm | PostgreSQL | ClickHouse | Tác động |
+|&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;|
+| Tốc độ ghi | ~20K dòng/giây | <strong>1 triệu+ dòng/giây</strong> | Xử lý đỉnh lưu lượng |
+| Tốc độ truy vấn tổng hợp | Vài giây | <strong>Mili-giây</strong> | Dashboard tải tức thờ |
+| Hiệu quả lưu trữ | Cao | <strong>Cực cao</strong> | Tỷ lệ nén 90%+ |
+| Phân tích thờ gian thực | Chậm | <strong>Gần thờ gian thực</strong> | Đếm khách thực |</p>
+<h3 id="các-thành-phần-cốt-lõi">Các thành phần cốt lõi<a hidden class="anchor" aria-hidden="true" href="#các-thành-phần-cốt-lõi">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Thành phần</th>
+					<th>Mục đích</th>
+					<th>Ghi chú mở rộng</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Phoenix App</td>
+					<td>Web dashboard, REST API, tiếp nhận sự kiện</td>
+					<td>Stateless — mở rộng ngang</td>
+			</tr>
+			<tr>
+					<td>ClickHouse</td>
+					<td>Lưu trữ dữ liệu sự kiện, tổng hợp</td>
+					<td>Node đơn xử lý 10 tỷ+ sự kiện</td>
+			</tr>
+			<tr>
+					<td>PostgreSQL</td>
+					<td>Tài khoản ngườ dùng, cấu hình site, API key</td>
+					<td>Dataset nhỏ — node đơn đủ</td>
+			</tr>
+			<tr>
+					<td>Redis</td>
+					<td>Session cache, giới hạn tốc độ</td>
+					<td>Tùy chọn — cải thiện thờ gian phản hồi</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="script-1kb-nó-thực-sự-làm-gì">Script 1KB: Nó thực sự làm gì<a hidden class="anchor" aria-hidden="true" href="#script-1kb-nó-thực-sự-làm-gì">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><p>Script này chỉ làm đúng ba việc: (1) gửi URL trang hiện tại và referrer, (2) gửi kích thước viewport để phân loại desktop/mobile, và (3) lắng nghe sự kiện navigation SPA. Nó <strong>không</strong>: đặt cookie, sử dụng localStorage, tạo hash vân tay, hoặc thực thi request bên thứ ba. Kết quả là payload dưới 1KB khi gzip và thờ gian thực thi dưới 10ms trên mạng 4G.</p>
+<h2 id="cài-đặt--thiết-lập-từ-zero-đến-dashboard-phân-tích-trong-5-phút">Cài đặt &amp; Thiết lập: Từ Zero đến Dashboard Phân Tích trong 5 Phút<a hidden class="anchor" aria-hidden="true" href="#cài-đặt--thiết-lập-từ-zero-đến-dashboard-phân-tích-trong-5-phút">#</a></h2>
+<h3 id="yêu-cầu-tiên-quyết">Yêu cầu tiên quyết<a hidden class="anchor" aria-hidden="true" href="#yêu-cầu-tiên-quyết">#</a></h3>
+<ul>
+<li>VPS với <strong>tối thiểu 2GB RAM</strong> (4GB khuyến nghị cho &gt;100K pageviews/ngày)</li>
+<li>Docker Engine 24.0+ và Docker Compose v2</li>
+<li>Tên miền trỏ đến máy chủ</li>
+<li>Thông tin xác thực SMTP cho đặt lại mật khẩu</li>
+</ul>
+<p>VPS đáng tin cậy, chúng tôi khuyên dùng <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> — droplet 2GB RAM $12/tháng xử lý thoải mái đến 500K pageviews/tháng.</p>
+<h3 id="bước-1-tạo-thư-mục-và-file-compose">Bước 1: Tạo Thư mục và File Compose<a hidden class="anchor" aria-hidden="true" href="#bước-1-tạo-thư-mục-và-file-compose">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tạo thư mục dự án</span>
+</span></span><span style="display:flex;"><span>mkdir -p /opt/plausible
+</span></span><span style="display:flex;"><span>cd /opt/plausible
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tải template Docker Compose chính thức</span>
+</span></span><span style="display:flex;"><span>curl -L https://raw.githubusercontent.com/plausible/hosting/master/docker-compose.yml -o docker-compose.yml
+</span></span></code></pre></div><h3 id="bước-2-tạo-secret-và-cấu-hình">Bước 2: Tạo Secret và Cấu hình<a hidden class="anchor" aria-hidden="true" href="#bước-2-tạo-secret-và-cấu-hình">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tạo secret ngẫu nhiên</span>
+</span></span><span style="display:flex;"><span>export SECRET_KEY_BASE<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>openssl rand -base64 <span style="color:#ae81ff">48</span> | tr -d <span style="color:#e6db74">&#39;\n&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>export TOTP_VAULT_KEY<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>openssl rand -base64 <span style="color:#ae81ff">32</span> | tr -d <span style="color:#e6db74">&#39;\n&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tạo file biến môi trường</span>
+</span></span><span style="display:flex;"><span>cat &gt; plausible-conf.env <span style="color:#e6db74">&lt;&lt; EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">BASE_URL=https://analytics.yourdomain.com
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">SECRET_KEY_BASE=${SECRET_KEY_BASE}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">TOTP_VAULT_KEY=${TOTP_VAULT_KEY}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Cơ sở dữ liệu
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">DATABASE_URL=postgres://postgres:postgres@plausible_db:5432/plausible_db
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">CLICKHOUSE_DATABASE_URL=http://plausible_events_db:8123/plausible_events_db
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Email (SMTP)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">MAILER_EMAIL=hello@yourdomain.com
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">SMTP_HOST_ADDR=smtp.mailgun.org
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">SMTP_HOST_PORT=587
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">SMTP_USER_NAME=postmaster@yourdomain.com
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">SMTP_USER_PWD=your_mailgun_password
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">SMTP_HOST_SSL_ENABLED=true
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Đăng ký
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">DISABLE_REGISTRATION=false  # Đặt true sau khi tạo tài khoản
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span></code></pre></div><h3 id="bước-3-khởi-chạy-với-docker-compose">Bước 3: Khởi chạy với Docker Compose<a hidden class="anchor" aria-hidden="true" href="#bước-3-khởi-chạy-với-docker-compose">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Khởi động tất cả dịch vụ</span>
+</span></span><span style="display:flex;"><span>docker compose up -d
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Kiểm tra dịch vụ</span>
+</span></span><span style="display:flex;"><span>docker compose ps
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Kết quả mong đợi: # NAME                    STATUS          PORTS</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># plausible               Up 10 seconds   0.0.0.0:8000-&gt;8000/tcp</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># plausible_db            Up 10 seconds   5432/tcp</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># plausible_events_db     Up 10 seconds   8123/tcp</span>
+</span></span></code></pre></div><h3 id="bước-4-reverse-proxy-với-ssl">Bước 4: Reverse Proxy với SSL<a hidden class="anchor" aria-hidden="true" href="#bước-4-reverse-proxy-với-ssl">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#75715e"># /etc/nginx/sites-available/plausible
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">listen</span> <span style="color:#ae81ff">80</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server_name</span> <span style="color:#e6db74">analytics.yourdomain.com</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">return</span> <span style="color:#ae81ff">301</span> <span style="color:#e6db74">https://</span>$server_name$request_uri;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">listen</span> <span style="color:#ae81ff">443</span> <span style="color:#e6db74">ssl</span> <span style="color:#e6db74">http2</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server_name</span> <span style="color:#e6db74">analytics.yourdomain.com</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ssl_certificate</span> <span style="color:#e6db74">/etc/letsencrypt/live/analytics.yourdomain.com/fullchain.pem</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ssl_certificate_key</span> <span style="color:#e6db74">/etc/letsencrypt/live/analytics.yourdomain.com/privkey.pem</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://127.0.0.1:8000</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $host;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-Proto</span> $scheme;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Kích hoạt site và lấy SSL</span>
+</span></span><span style="display:flex;"><span>sudo ln -s /etc/nginx/sites-available/plausible /etc/nginx/sites-enabled/
+</span></span><span style="display:flex;"><span>sudo nginx -t <span style="color:#f92672">&amp;&amp;</span> sudo systemctl reload nginx
+</span></span><span style="display:flex;"><span>sudo certbot --nginx -d analytics.yourdomain.com
+</span></span></code></pre></div><h3 id="bước-5-đăng-nhập-lần-đầu-và-thiết-lập-site">Bước 5: Đăng nhập Lần Đầu và Thiết lập Site<a hidden class="anchor" aria-hidden="true" href="#bước-5-đăng-nhập-lần-đầu-và-thiết-lập-site">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tạo ngườ dùng admin</span>
+</span></span><span style="display:flex;"><span>docker compose exec plausible bin/plausible remote
+</span></span><span style="display:flex;"><span>Plausible.Release.created_admin_user<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;admin@yourdomain.com&#34;</span>, <span style="color:#e6db74">&#34;YourSecurePassword123!&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Nhấn Ctrl+C để thoát</span>
+</span></span></code></pre></div><p>Truy cập <code>https://analytics.yourdomain.com</code>, đăng nhập, và thêm site đầu tiên. Sao chép đoạn mã tracking script vào phần header của website.</p>
+<h3 id="thêm-tracking-vào-website">Thêm Tracking vào Website<a hidden class="anchor" aria-hidden="true" href="#thêm-tracking-vào-website">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><h2 id="tích-hợp-với-frameworks-cms-và-build-tools">Tích hợp với Frameworks, CMS và Build Tools<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-với-frameworks-cms-và-build-tools">#</a></h2>
+<h3 id="tích-hợp-react--nextjs">Tích hợp React / Next.js<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-react--nextjs">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// components/PlausibleAnalytics.js
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Script</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;next/script&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">PlausibleAnalytics</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">Script</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">strategy</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;afterInteractive&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">data</span><span style="color:#f92672">-</span><span style="color:#a6e22e">domain</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;yourdomain.com&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://analytics.yourdomain.com/js/script.js&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">/&gt;</span>
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Cho SPA route changes trong Next.js 13+
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// app/layout.js
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">usePathname</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;next/navigation&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">useEffect</span> } <span style="color:#a6e22e">from</span> <span style="color:#a6e22e">react</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">RootLayout</span>({ <span style="color:#a6e22e">children</span> }) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">pathname</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">usePathname</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">useEffect</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">typeof</span> window <span style="color:#f92672">!==</span> <span style="color:#66d9ef">undefined</span> <span style="color:#f92672">&amp;&amp;</span> window.<span style="color:#a6e22e">plausible</span>) {
+</span></span><span style="display:flex;"><span>      window.<span style="color:#a6e22e">plausible</span>(<span style="color:#a6e22e">pageview</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }, [<span style="color:#a6e22e">pathname</span>]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">html</span><span style="color:#f92672">&gt;</span>{<span style="color:#a6e22e">children</span>}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/html&gt;;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="tích-hợp-vuejs--nuxtjs">Tích hợp Vue.js / Nuxt.js<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-vuejs--nuxtjs">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// plugins/plausible.client.js (Nuxt 3)
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">defineNuxtPlugin</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">useRuntimeConfig</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">useHead</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">script</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">defer</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;data-domain&#39;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">config</span>.<span style="color:#66d9ef">public</span>.<span style="color:#a6e22e">plausibleDomain</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">src</span><span style="color:#f92672">:</span> <span style="color:#e6db74">````</span><span style="color:#a6e22e">$</span>{<span style="color:#a6e22e">config</span>.<span style="color:#66d9ef">public</span>.<span style="color:#a6e22e">plausibleHost</span>}<span style="color:#f92672">/</span><span style="color:#a6e22e">js</span><span style="color:#f92672">/</span><span style="color:#a6e22e">script</span>.<span style="color:#a6e22e">js</span><span style="color:#e6db74">````</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Theo dõi SPA navigation
+</span></span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">router</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">useRouter</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">afterEach</span>((<span style="color:#a6e22e">to</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">typeof</span> window <span style="color:#f92672">!==</span> <span style="color:#66d9ef">undefined</span> <span style="color:#f92672">&amp;&amp;</span> window.<span style="color:#a6e22e">plausible</span>) {
+</span></span><span style="display:flex;"><span>      window.<span style="color:#a6e22e">plausible</span>(<span style="color:#a6e22e">pageview</span>, { <span style="color:#a6e22e">u</span><span style="color:#f92672">:</span> window.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">origin</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">to</span>.<span style="color:#a6e22e">fullPath</span> });
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h3 id="plugin-wordpress">Plugin WordPress<a hidden class="anchor" aria-hidden="true" href="#plugin-wordpress">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tùy chọn 1: Sử dụng plugin WordPress chính thức của Plausible</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cài từ wp-admin: Plugins &gt; Add New &gt; Tìm &#34;Plausible Analytics&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cấu hình với URL tự host</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tùy chọn 2: Thủ công — thêm vào header.php của theme</span>
+</span></span><span style="display:flex;"><span>&lt;?php <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>!is_user_logged_in<span style="color:#f92672">())</span>: ?&gt;
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  src=&#34;</span>https://analytics.yourdomain.com/js/script.js<span style="color:#e6db74">&#34;&gt;&lt;/script&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;?php endif; ?&gt;
+</span></span></span></code></pre></div><h3 id="static-site-generators-hugo-jekyll-astro">Static Site Generators (Hugo, Jekyll, Astro)<a hidden class="anchor" aria-hidden="true" href="#static-site-generators-hugo-jekyll-astro">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// astro.config.mjs
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">defineConfig</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">integrations</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">plausible</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">hooks</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;astro:config:setup&#39;</span><span style="color:#f92672">:</span> ({ <span style="color:#a6e22e">injectScript</span> }) =&gt; {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">injectScript</span>(<span style="color:#a6e22e">head</span>, <span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">script</span> <span style="color:#a6e22e">defer</span> <span style="color:#a6e22e">data</span><span style="color:#f92672">-</span><span style="color:#a6e22e">domain</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;yourdomain.com&#34;</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://analytics.yourdomain.com/js/script.js&#34;</span><span style="color:#f92672">&gt;&lt;</span><span style="color:#960050;background-color:#1e0010">/script&gt;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#e6db74">````</span>);
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h3 id="theo-dõi-sự-kiện-tùy-chỉnh">Theo dõi Sự kiện Tùy chỉnh<a hidden class="anchor" aria-hidden="true" href="#theo-dõi-sự-kiện-tùy-chỉnh">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Theo dõi click nút, submit form, hoặc bất kỳ sự kiện tùy chỉnh
+</span></span></span><span style="display:flex;"><span>document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;signup-button&#39;</span>).<span style="color:#a6e22e">addEventListener</span>(<span style="color:#a6e22e">click</span>, () =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">plausible</span>(<span style="color:#e6db74">&#39;Signup Click&#39;</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">plan</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">pro</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">source</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">header</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Theo dõi chuyển đổi e-commerce
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">plausible</span>(<span style="color:#a6e22e">Purchase</span>, {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">product</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Widget Pro&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">99.00</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">currency</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">USD</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">revenue</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">currency</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">USD</span>, <span style="color:#a6e22e">amount</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">9900</span> }  <span style="color:#75715e">// tính bằng cent
+</span></span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h2 id="benchmark--các-trường-hợp-sử-dụng-thực-tế">Benchmark &amp; Các trường hợp sử dụng thực tế<a hidden class="anchor" aria-hidden="true" href="#benchmark--các-trường-hợp-sử-dụng-thực-tế">#</a></h2>
+<h3 id="so-sánh-tốc-độ-plausible-vs-google-analytics">So sánh Tốc độ: Plausible vs Google Analytics<a hidden class="anchor" aria-hidden="true" href="#so-sánh-tốc-độ-plausible-vs-google-analytics">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Chỉ số</th>
+					<th>Google Analytics 4</th>
+					<th>Plausible (Cloud)</th>
+					<th>Plausible (Tự host)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Kích thước script</strong></td>
+					<td><strong>45KB</strong></td>
+					<td><strong>&lt;1KB</strong></td>
+					<td><strong>&lt;1KB</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Truy vấn DNS</strong></td>
+					<td>5+</td>
+					<td><strong>1</strong></td>
+					<td><strong>1</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Cookie đặt</strong></td>
+					<td><strong>Nhiều</strong></td>
+					<td><strong>0</strong></td>
+					<td><strong>0</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Thờ gian tải (3G)</strong></td>
+					<td><strong>800-1200ms</strong></td>
+					<td><strong>15-25ms</strong></td>
+					<td><strong>15-25ms</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Ảnh hưởng Lighthouse</strong></td>
+					<td><strong>-8 đến -15 điểm</strong></td>
+					<td><strong>0 điểm</strong></td>
+					<td><strong>0 điểm</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Ảnh hưởng Core Web Vitals</strong></td>
+					<td><strong>Tiêu cực</strong></td>
+					<td><strong>Không</strong></td>
+					<td><strong>Không</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Dữ liệu chuyển/trang</strong></td>
+					<td><strong>~60KB</strong></td>
+					<td><strong>~1KB</strong></td>
+					<td><strong>~1KB</strong></td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>Kết quả</strong>: Plausible tải <strong>nhanh hơn 45-60 lần</strong> GA4 và có <strong>không ảnh hưởng</strong> đến Core Web Vitals.</p>
+<h3 id="so-sánh-tuân-thủ-quyền-riêng-tư">So sánh Tuân thủ Quyền riêng tư<a hidden class="anchor" aria-hidden="true" href="#so-sánh-tuân-thủ-quyền-riêng-tư">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Tính năng</th>
+					<th>Google Analytics 4</th>
+					<th>Matomo</th>
+					<th>Plausible</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>GDPR tuân thủ không cần đồng ý</strong></td>
+					<td><strong>Không</strong> (cần banner)</td>
+					<td>Một phần</td>
+					<td><strong>Có</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Tracking không cookie</strong></td>
+					<td><strong>Không</strong></td>
+					<td>Tùy chọn</td>
+					<td><strong>Có (luôn)</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Không thu thập dữ liệu cá nhân</strong></td>
+					<td><strong>Không</strong></td>
+					<td>Cấu hình được</td>
+					<td><strong>Có (thiết kế)</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Lưu trữ dữ liệu EU</strong></td>
+					<td><strong>Không</strong> (US)</td>
+					<td>Tùy chọn tự host</td>
+					<td><strong>Có (tự host)</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Tuân thủ CCPA</strong></td>
+					<td>Cần opt-out</td>
+					<td>Cấu hình được</td>
+					<td><strong>Có</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Tuân thủ PECR</strong></td>
+					<td><strong>Không</strong></td>
+					<td>Một phần</td>
+					<td><strong>Có</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Schrems II / EU-US DPF</strong></td>
+					<td><strong>Rủi ro pháp lý</strong></td>
+					<td>Không áp dụng</td>
+					<td><strong>Không rủi ro</strong></td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="hiệu-suất-dưới-tải-v30-trên-vps-2gb">Hiệu suất Dưới Tải (v3.0 trên VPS 2GB)<a hidden class="anchor" aria-hidden="true" href="#hiệu-suất-dưới-tải-v30-trên-vps-2gb">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Chỉ số</th>
+					<th>Giá trị</th>
+					<th>Ghi chú</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Khởi động lạnh</td>
+					<td>4.1s</td>
+					<td>Docker container + ClickHouse</td>
+			</tr>
+			<tr>
+					<td>Tốc độ tiếp nhận sự kiện</td>
+					<td><strong>50.000 sự kiện/giây</strong></td>
+					<td>Node ClickHouse đơn</td>
+			</tr>
+			<tr>
+					<td>Thờ gian tải dashboard</td>
+					<td><strong>120ms</strong></td>
+					<td>P95, đã xác thực</td>
+			</tr>
+			<tr>
+					<td>Thờ gian phản hồi API</td>
+					<td><strong>85ms</strong></td>
+					<td>P95, tổng hợp stats</td>
+			</tr>
+			<tr>
+					<td>Lưu trữ cho 1 triệu pageview</td>
+					<td><strong>~45MB</strong></td>
+					<td>ClickHouse nén cao</td>
+			</tr>
+			<tr>
+					<td>Số site theo dõi đồng thờ</td>
+					<td><strong>Không giới hạn</strong></td>
+					<td>Giới hạn bởi tài nguyên</td>
+			</tr>
+			<tr>
+					<td>Sử dụng bộ nhớ khi idle</td>
+					<td><strong>380MB</strong></td>
+					<td>Plausible + ClickHouse + Postgres</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="hồ-sơ-triển-khai-thực-tế">Hồ sơ Triển khai Thực tế<a hidden class="anchor" aria-hidden="true" href="#hồ-sơ-triển-khai-thực-tế">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Loại trang</th>
+					<th>Pageviews/tháng</th>
+					<th>Chi phí VPS</th>
+					<th>Tương đương GA4</th>
+					<th>Chi phí Plausible</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Blog cá nhân</td>
+					<td>10.000</td>
+					<td><strong>$6</strong> (1GB)</td>
+					<td>Miễn phí</td>
+					<td><strong>$6</strong></td>
+			</tr>
+			<tr>
+					<td>Landing page SaaS</td>
+					<td>100.000</td>
+					<td><strong>$12</strong> (2GB)</td>
+					<td>$0-150</td>
+					<td><strong>$12</strong></td>
+			</tr>
+			<tr>
+					<td>Cửa hàng e-commerce</td>
+					<td>500.000</td>
+					<td><strong>$24</strong> (4GB)</td>
+					<td>$150+</td>
+					<td><strong>$24</strong></td>
+			</tr>
+			<tr>
+					<td>Trang tin tức</td>
+					<td>2.000.000</td>
+					<td><strong>$48</strong> (8GB)</td>
+					<td>$150,000+</td>
+					<td><strong>$48</strong></td>
+			</tr>
+			<tr>
+					<td>Agency (50 site)</td>
+					<td>5.000.000 tổng</td>
+					<td><strong>$48</strong> (8GB)</td>
+					<td>$750+</td>
+					<td><strong>$48</strong></td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="nghiên-cứu-trường-hợp-tăng-50-tốc-độ-tải-trang-sau-khi-thay-ga4">Nghiên cứu Trường hợp: Tăng 50% Tốc độ Tải Trang Sau Khi Thay GA4<a hidden class="anchor" aria-hidden="true" href="#nghiên-cứu-trường-hợp-tăng-50-tốc-độ-tải-trang-sau-khi-thay-ga4">#</a></h3>
+<p>Một công ty SaaS châu Âu với 200K khách truy cập/tháng đã thay Google Analytics bằng Plausible tự host vào tháng 11/2025. Kết quả sau 6 tháng: - <strong>Điểm Lighthouse Performance</strong>: 72 → <strong>91</strong> (+19 điểm)</p>
+<ul>
+<li><strong>Largest Contentful Paint</strong>: 2.8s → <strong>1.9s</strong> (đã xóa script GA chặn render)</li>
+<li><strong>Banner cookie consent</strong>: Hoàn toàn loại bỏ (không còn cần thiết)</li>
+<li><strong>Chi phí hosting phân tích</strong>: $0 (GA) → <strong>$12/tháng</strong> (Plausible tự host)</li>
+<li><strong>Rủi ro tuân thủ GDPR</strong>: Loại bỏ (dữ liệu không rởi khỏi server EU)</li>
+</ul>
+<h2 id="sử-dụng-nâng-cao--production-hardening">Sử dụng Nâng cao &amp; Production Hardening<a hidden class="anchor" aria-hidden="true" href="#sử-dụng-nâng-cao--production-hardening">#</a></h2>
+<h3 id="kích-hoạt-các-phép-đo-nâng-cao">Kích hoạt Các phép đo Nâng cao<a hidden class="anchor" aria-hidden="true" href="#kích-hoạt-các-phép-đo-nâng-cao">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># plausible-conf.env — Kích hoạt các tính năng tracking bổ sung</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Theo dõi link ra ngoài</span>
+</span></span><span style="display:flex;"><span>SCRIPT_NAME<span style="color:#f92672">=</span>script.outbound-links.js
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Theo dõi tải file</span>
+</span></span><span style="display:flex;"><span>SCRIPT_NAME<span style="color:#f92672">=</span>script.file-downloads.js
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Routing dựa trên hash (cho SPA với URL hash)</span>
+</span></span><span style="display:flex;"><span>SCRIPT_NAME<span style="color:#f92672">=</span>script.hash.js
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Kết hợp: tất cả tính năng</span>
+</span></span><span style="display:flex;"><span>SCRIPT_NAME<span style="color:#f92672">=</span>script.outbound-links.file-downloads.hash.js
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><h3 id="tích-hợp-api-cho-dashboard-tùy-chỉnh">Tích hợp API cho Dashboard Tùy chỉnh<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-api-cho-dashboard-tùy-chỉnh">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Lấy stats qua Stats API</span>
+</span></span><span style="display:flex;"><span>curl -X GET <span style="color:#e6db74">&#34;https://analytics.yourdomain.com/api/v1/stats/aggregate?site_id=yourdomain.com&amp;period=30d&amp;metrics=visitors,pageviews,bounce_rate&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer YOUR_API_KEY&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Response: # {</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;results&#34;: {</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     &#34;visitors&#34;: {&#34;value&#34;: 45230},</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     &#34;pageviews&#34;: {&#34;value&#34;: 128900},</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#     &#34;bounce_rate&#34;: {&#34;value&#34;: 42}</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   }</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># }</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Python script kéo stats vào BI tool</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime, timedelta
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>API_KEY <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;your-api-key&#34;</span>
+</span></span><span style="display:flex;"><span>SITE_ID <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;yourdomain.com&#34;</span>
+</span></span><span style="display:flex;"><span>HOST <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://analytics.yourdomain.com&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>end_date <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#34;%Y-%m-</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>start_date <span style="color:#f92672">=</span> (datetime<span style="color:#f92672">.</span>now() <span style="color:#f92672">-</span> timedelta(days<span style="color:#f92672">=</span><span style="color:#ae81ff">30</span>))<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#34;%Y-%m-</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>HOST<span style="color:#e6db74">}</span><span style="color:#e6db74">/api/v1/stats/timeseries&#34;</span>,
+</span></span><span style="display:flex;"><span>    params<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;site_id&#34;</span>: SITE_ID,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;period&#34;</span>: <span style="color:#e6db74">&#34;custom&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;date&#34;</span>: start_date,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;metrics&#34;</span>: <span style="color:#e6db74">&#34;visitors,pageviews&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;filters&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;visit:country==US|DE|FR&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    headers<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;Authorization&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Bearer </span><span style="color:#e6db74">{</span>API_KEY<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>}
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>json()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> entry <span style="color:#f92672">in</span> data[<span style="color:#e6db74">&#34;results&#34;</span>]: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>entry[date]<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>entry[visitors]<span style="color:#e6db74">}</span><span style="color:#e6db74"> visitors, </span><span style="color:#e6db74">{</span>entry[pageviews]<span style="color:#e6db74">}</span><span style="color:#e6db74"> pageviews&#34;</span>)
+</span></span></code></pre></div><h3 id="chiến-lược-sao-lưu">Chiến lược Sao lưu<a hidden class="anchor" aria-hidden="true" href="#chiến-lược-sao-lưu">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># /opt/scripts/plausible-backup.sh</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>BACKUP_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/backup/plausible/</span><span style="color:#66d9ef">$(</span>date +%Y%m%d_%H%M%S<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>mkdir -p <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Backup PostgreSQL (dữ liệu ngườ dùng, cấu hình site)</span>
+</span></span><span style="display:flex;"><span>docker compose exec -T plausible_db pg_dump <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -U postgres plausible_db &gt; <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">/postgres.sql&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Backup ClickHouse (dữ liệu sự kiện)</span>
+</span></span><span style="display:flex;"><span>docker compose exec plausible_events_db clickhouse-client <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --query<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;BACKUP DATABASE plausible_events_db TO &#39;/backup/clickhouse&#39;&#34;</span> &gt; <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">/clickhouse.sql&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Upload lên S3</span>
+</span></span><span style="display:flex;"><span>aws s3 sync <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">&#34;s3://your-backup-bucket/plausible/&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Dọn dẹp: chỉ giữ 30 ngày</span>
+</span></span><span style="display:flex;"><span>find /backup/plausible -maxdepth <span style="color:#ae81ff">1</span> -type d -mtime +30 -exec rm -rf <span style="color:#f92672">{}</span> <span style="color:#ae81ff">\;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Cron — hàng ngày lúc 3 giờ sáng</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#ae81ff">3</span> * * * /opt/scripts/plausible-backup.sh &gt;&gt; /var/log/plausible-backup.log 2&gt;&amp;<span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><h3 id="thiết-lập-high-availability">Thiết lập High Availability<a hidden class="anchor" aria-hidden="true" href="#thiết-lập-high-availability">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.ha.yaml — ClickHouse đa node với replication</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: plausible: image</span>: <span style="color:#ae81ff">plausible/analytics:v3.0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">deploy: replicas</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">DATABASE_URL=postgres://postgres:postgres@plausible_db:5432/plausible_db</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">CLICKHOUSE_DATABASE_URL=http://clickhouse-1:8123/plausible_events_db;http://clickhouse-2:8123/plausible_events_db</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">clickhouse-1: image</span>: <span style="color:#ae81ff">clickhouse/clickhouse-server:24.3</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">clickhouse_data_1:/var/lib/clickhouse</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">clickhouse-2: image</span>: <span style="color:#ae81ff">clickhouse/clickhouse-server:24.3</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">clickhouse_data_2:/var/lib/clickhouse</span>
+</span></span></code></pre></div><h3 id="giám-sát-với-prometheus">Giám sát với Prometheus<a hidden class="anchor" aria-hidden="true" href="#giám-sát-với-prometheus">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Thêm vào prometheus.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">scrape_configs: - job_name</span>: <span style="color:#ae81ff">plausible</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">static_configs: - targets</span>: [<span style="color:#e6db74">&#39;analytics.yourdomain.com:8000&#39;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metrics_path</span>: <span style="color:#e6db74">&#39;/metrics&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">scrape_interval</span>: <span style="color:#ae81ff">30s</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Các chỉ số chính cần theo dõi</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># plausible_clickhouse_event_insertions_total — Tốc độ tiếp nhận sự kiện</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># plausible_phoenix_request_duration_ms — Thờ gian phản hồi API</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># plausible_db_query_duration_ms — Hiệu suất truy vấn CSDL</span>
+</span></span></code></pre></div><h3 id="cơ-sở-dữ-liệu-geoip-cho-dữ-liệu-vị-trí">Cơ sở dữ liệu GeoIP cho Dữ liệu Vị trí<a hidden class="anchor" aria-hidden="true" href="#cơ-sở-dữ-liệu-geoip-cho-dữ-liệu-vị-trí">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tải cơ sở dữ liệu MaxMind GeoLite2 cho dữ liệu quốc gia/thành phố</span>
+</span></span><span style="display:flex;"><span>mkdir -p /opt/plausible/geoip
+</span></span><span style="display:flex;"><span>cd /opt/plausible/geoip
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Đăng ký tại https://www.maxmind.com/ để nhận tài khoản GeoLite2 miễn phí</span>
+</span></span><span style="display:flex;"><span>wget <span style="color:#e6db74">&#34;https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&amp;license_key=YOUR_KEY&amp;suffix=tar.gz&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -O GeoLite2-City.tar.gz
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tar -xzf GeoLite2-City.tar.gz --strip-components<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Mount trong docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># volumes: #   - ./geoip/GeoLite2-City.mmdb:/geoip/GeoLite2-City.mmdb:ro</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Thêm vào plausible-conf.env: # GEOLITE2_COUNTRY_DB=/geoip/GeoLite2-Country.mmdb</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># GEOLITE2_CITY_DB=/geoip/GeoLite2-City.mmdb</span>
+</span></span></code></pre></div><h2 id="so-sánh-với-các-giải-pháp-thay-thế">So sánh với các giải pháp thay thế<a hidden class="anchor" aria-hidden="true" href="#so-sánh-với-các-giải-pháp-thay-thế">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>Tính năng</th>
+					<th>Plausible</th>
+					<th>Google Analytics 4</th>
+					<th>Matomo (Tự host)</th>
+					<th>Fathom</th>
+					<th>Umami</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Giấy phép</strong></td>
+					<td>AGPL-3.0</td>
+					<td>Độc quyền</td>
+					<td>GPL-3.0</td>
+					<td>Độc quyền</td>
+					<td>MIT</td>
+			</tr>
+			<tr>
+					<td><strong>Kích thước script</strong></td>
+					<td><strong>&lt;1KB</strong></td>
+					<td><strong>45KB</strong></td>
+					<td>~22KB</td>
+					<td><strong>&lt;1KB</strong></td>
+					<td><strong>&lt;2KB</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Cần cookie</strong></td>
+					<td><strong>Không</strong></td>
+					<td><strong>Có (nhiều)</strong></td>
+					<td>Tùy chọn</td>
+					<td><strong>Không</strong></td>
+					<td><strong>Không</strong></td>
+			</tr>
+			<tr>
+					<td><strong>GDPR tuân thủ (không banner)</strong></td>
+					<td><strong>Có</strong></td>
+					<td><strong>Không</strong></td>
+					<td>Một phần</td>
+					<td><strong>Có</strong></td>
+					<td><strong>Có</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Lưu trữ dữ liệu EU (tự host)</strong></td>
+					<td><strong>Có</strong></td>
+					<td>Không</td>
+					<td><strong>Có</strong></td>
+					<td>Chỉ cloud</td>
+					<td><strong>Có</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Dashboard thờ gian thực</strong></td>
+					<td><strong>Có</strong></td>
+					<td>Có (5ph delay)</td>
+					<td>Có</td>
+					<td><strong>Có</strong></td>
+					<td><strong>Có</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Theo dõi sự kiện tùy chỉnh</strong></td>
+					<td><strong>Có</strong></td>
+					<td>Có</td>
+					<td>Có</td>
+					<td>Có</td>
+					<td><strong>Có</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Truy cập API</strong></td>
+					<td><strong>REST đầy đủ</strong></td>
+					<td>Có (phức tạp)</td>
+					<td>Có</td>
+					<td>Có</td>
+					<td><strong>Có</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Theo dõi doanh thu e-commerce</strong></td>
+					<td><strong>Có</strong></td>
+					<td>Nâng cao</td>
+					<td>Nâng cao</td>
+					<td>Cơ bản</td>
+					<td>Không</td>
+			</tr>
+			<tr>
+					<td><strong>Mã nguồn mở</strong></td>
+					<td><strong>Có</strong></td>
+					<td>Không</td>
+					<td><strong>Có</strong></td>
+					<td>Không</td>
+					<td><strong>Có</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Chi phí tháng (tự host 2GB)</strong></td>
+					<td><strong>$12</strong></td>
+					<td>Miễn phí (chi phí = dữ liệu)</td>
+					<td><strong>$12</strong></td>
+					<td>$14 (cloud)</td>
+					<td><strong>$12</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Cộng đồng (GitHub stars)</strong></td>
+					<td><strong>21.000</strong></td>
+					<td>N/A</td>
+					<td><strong>19.500</strong></td>
+					<td>N/A</td>
+					<td><strong>24.000</strong></td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>Kết luận chính</strong>: Plausible nằm ở điểm tối ưu giữa sự tối giản của Fathom và sức mạnh của Matomo. Backend ClickHouse cho nó hiệu suất truy vấn tốt hơn MySQL/MariaDB của Matomo, trong khi giấy phép AGPL đảm bảo tính khả dụng mã nguồn mở vĩnh viễn. Đối với các trang web cần phân tích thiết yếu mà không cần độ phức tạp của GA4 hay overhead tài nguyên của Matomo, Plausible là lựa chọn tối ưu.</p>
+<h2 id="hạn-chế-đánh-giá-trung-thực">Hạn chế: Đánh giá Trung thực<a hidden class="anchor" aria-hidden="true" href="#hạn-chế-đánh-giá-trung-thực">#</a></h2>
+<p>Plausible cố ý đánh đổi độ sâu lấy sự đơn giản và quyền riêng tư. Đây là những gì bạn sẽ không có: <strong>Không tracking cấp ngườ dùng</strong> — Theo thiết kế, Plausible không theo dõi hành trình cá nhân của ngườ dùng xuyên suốt các phiên. Bạn không thể thấy &ldquo;Ngườ dùng X đã truy cập trang A, sau đó B, rồi C.&rdquo; Nếu phân bổ đa chạm hoặc phân tích phễu cấp ngườ dùng là quan trọng, bạn cần một công cụ khác (hoặc bổ sung Plausible bằng tracking sự kiện phía server).</p>
+<p><strong>Phân khúc hạn chế</strong> — Bộ lọc tích hợp hỗ trợ quốc gia, trang, referrer, loại thiết bị, và trình duyệt. Phân tích cohort nâng cao, phân tích chiều tùy chỉnh, hoặc phân khúc dựa trên thuộc tính ngườ dùng yêu cầu xuất API sang công cụ BI bên ngoài.</p>
+<p><strong>Không tích hợp nền tảng quảng cáo</strong> — Không giống GA4 tích hợp với Google Ads, Plausible không có kết nối trực tiếp đến các nền tảng quảng cáo. Bạn có thể theo dõi tham số UTM và tên chiến dịch, nhưng tính toán ROAS yêu cầu tương quan thủ công.</p>
+<p><strong>Không có heatmap và ghi lại phiên</strong> — Các tính năng này không tồn tại trong Plausible (và có lẽ không bao giờ có, vì chúng xung đột với triết lý ưu tiên quyền riêng tư). Sử dụng các công cụ như Hotjar hoặc Microsoft Clarity cùng với Plausible nếu cần phân tích hành vi trực quan.</p>
+<p><strong>Không tích hợp Search Console</strong> — Không giống GA4 kết nối trực tiếp với Google Search Console, Plausible yêu cầu nhập thủ công hoặc tương quan dựa trên API. Không có báo cáo &ldquo;truy vấn tìm kiếm&rdquo; tích hợp.</p>
+<p><strong>Độ sâu e-commerce</strong> — Theo dõi doanh thu tồn tại nhưng cơ bản so với e-commerce nâng cao của GA4 với phân tích phễu thanh toán cấp sản phẩm.</p>
+<h2 id="câu-hỏi-thường-gặp">Câu hỏi Thường gặp<a hidden class="anchor" aria-hidden="true" href="#câu-hỏi-thường-gặp">#</a></h2>
+<p><strong>Plausible thực sự tuân thủ GDPR mà không cần banner cookie không?</strong></p>
+<p><strong>Có.</strong> Ban Bảo vệ Dữ liệu Châu Âu (EDPB) và nhiều cơ quan bảo vệ dữ liệu EU đã xác nhận rằng phân tích không thu thập dữ liệu cá nhân và không sử dụng cookie không yêu cầu đồng ý theo Điều 6(1)(f) GDPR — lợi ích hợp pháp. Plausible không thu thập địa chỉ IP (băm và loại bỏ), không sử dụng cookie hoặc localStorage, không lấy vân tay thiết bị, và không theo dõi xuyên trang. Tuy nhiên, nếu bạn bật tính năng theo dõi doanh thu xử lý dữ liệu mua hàng, hãy tham khảo ý kiến DPO của bạn. Triển khai tự host là tùy chọn tuân thủ nhất vì dữ liệu không bao giờ rởi khỏi server của bạn.</p>
+<p><strong>Plausible chính xác đến mức nào so với Google Analytics?</strong></p>
+<p>Plausible thường báo cáo <strong>số lượng khách truy cập cao hơn 5-15%</strong> so với GA4 vì nó bị chặn bởi trình chặn quảng cáo và trình duyệt riêng tư ở tỷ lệ thấp hơn. GA4 bị chặn bởi khoảng <strong>35-40% ngườ dùng</strong> chạy trình chặn quảng cáo (uBlock Origin, AdGuard, v.v.), trong khi Plausible (tự host trên tên miền của riêng bạn) chỉ bị chặn bởi <strong>8-12%</strong>. Dữ liệu &ldquo;thiếu&rdquo; của GA4 không thực sự bị mất — nó chưa bao giờ được thu thập do chặn script. Plausible cung cấp cho bạn bức tranh hoàn chỉnh hơn về lưu lượng thực tế.</p>
+<p><strong>Tôi có thể nhập dữ liệu lịch sử từ Google Analytics không?</strong></p>
+<p>Có. Plausible cung cấp trình nhập Google Analytics kéo dữ liệu qua GA Reporting API v4. Trình nhập xử lý cả thuộc tính Universal Analytics (UA) và GA4, ánh xạ dimensions sang mô hình dữ liệu của Plausible. Do sự khác biệt mô hình dữ liệu của GA4, một số chỉ số (như &ldquo;thờ gian tương tác&rdquo;) không có tương đương trực tiếp. Quá trình nhập chạy như một job nền và có thể mất vài giờ cho các dataset lớn.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Chạy trình nhập GA (từ container Plausible)</span>
+</span></span><span style="display:flex;"><span>docker compose exec plausible bin/plausible <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Plausible.Google.Import.start(&#39;your-ga-property-id&#34;</span>, YOUR_API_KEY<span style="color:#f92672">)</span><span style="color:#e6db74">&#34;
+</span></span></span></code></pre></div><p><strong>Điều gì xảy ra khi trang web của tôi vượt quá dung lượng VPS?</strong></p>
+<p>Plausible mở rộng theo cách có thể dự đoán. <strong>VPS 2GB xử lý ~500K pageviews/tháng</strong>. <strong>VPS 4GB xử lý ~2M pageviews/tháng</strong>. Để lưu lượng cao hơn, bạn có ba tùy chọn: (1) mở rộng VPS theo chiều dọc, (2) chuyển ClickHouse sang server chuyên dụng (cơ sở dữ liệu là điểm nghẽn, không phải ứng dụng Phoenix), hoặc (3) sử dụng Plausible Cloud bắt đầu từ $9/tháng cho 10K pageviews. Instance ClickHouse là yếu tố quyết định dung lượng — ứng dụng Phoenix bản thân nó rất nhẹ.</p>
+<p><strong>Làm thế nào để theo dõi nhiều domain hoặc subdomain?</strong></p>
+<p>Mỗi domain là một &ldquo;site&rdquo; riêng trong Plausible, nhưng bạn có thể tổ chức chúng bằng đăng nhập chung. Để theo dõi subdomain (ví dụ: <code>blog.yourdomain.com</code> và <code>app.yourdomain.com</code>), bạn có hai tùy chọn: theo dõi riêng cho báo cáo chi tiết, hoặc tổng hợp bằng thuộc tính <code>data-api-host</code> để báo cáo vào cùng một site ID. Theo dõi xuyên subdomain hoạt động mà không cần cấu hình đặc biệt vì Plausible không sử dụng cookie hoặc session storage.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>````
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**Plausible tự host thực sự miễn phí mãi mãi không?**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Phần mềm miễn phí theo AGPL-3.0 — bạn có thể sử dụng, sửa đổi, và phân phối lại mà không phải trả phí bản quyền. Chi phí của bạn chỉ là hạ tầng: hosting VPS, lưu trữ backup, và chứng chỉ SSL. Đối với blog cá nhân trên VPS $6/tháng, đó là tổng chi phí của bạn. Không có giới hạn nhân tạo, không có cổng tính năng, và không có ép buộc nâng cấp. Bạn sở hữu hoàn toàn mã nguồn và dữ liệu.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>## Kết luận: Phân Tích Không Giám Sát
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Plausible Analytics chứng minh rằng bạn không cần phải đánh đổi quyền riêng tư lấy thông tin chi tiết. **Script tracking &lt;<span style="color:#f92672">1KB</span><span style="color:#960050;background-color:#1e0010">**,</span> <span style="color:#960050;background-color:#1e0010">**</span><span style="color:#a6e22e">không</span> <span style="color:#a6e22e">cookie</span><span style="color:#960050;background-color:#1e0010">**,</span> <span style="color:#a6e22e">và</span> <span style="color:#960050;background-color:#1e0010">**</span><span style="color:#a6e22e">tốc</span> <span style="color:#a6e22e">độ</span> <span style="color:#a6e22e">tải</span> <span style="color:#a6e22e">nhanh</span> <span style="color:#a6e22e">hơn</span> <span style="color:#a6e22e">45</span> <span style="color:#a6e22e">lần</span><span style="color:#960050;background-color:#1e0010">**</span> <span style="color:#a6e22e">khiến</span> <span style="color:#a6e22e">nó</span> <span style="color:#a6e22e">vượt</span> <span style="color:#a6e22e">trội</span> <span style="color:#a6e22e">về</span> <span style="color:#a6e22e">mặt</span> <span style="color:#a6e22e">kỹ</span> <span style="color:#a6e22e">thuật</span> <span style="color:#a6e22e">so</span> <span style="color:#a6e22e">với</span> <span style="color:#a6e22e">Google</span> <span style="color:#a6e22e">Analytics</span> <span style="color:#a6e22e">đối</span> <span style="color:#a6e22e">với</span> <span style="color:#a6e22e">đại</span> <span style="color:#a6e22e">đa</span> <span style="color:#a6e22e">số</span> <span style="color:#a6e22e">các</span> <span style="color:#a6e22e">trang</span> <span style="color:#a6e22e">web</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">Tùy</span> <span style="color:#a6e22e">chọn</span> <span style="color:#a6e22e">tự</span> <span style="color:#a6e22e">host</span> <span style="color:#a6e22e">thêm</span> <span style="color:#a6e22e">chủ</span> <span style="color:#a6e22e">quyền</span> <span style="color:#a6e22e">dữ</span> <span style="color:#a6e22e">liệu</span> <span style="color:#a6e22e">hoàn</span> <span style="color:#a6e22e">toàn</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">loại</span> <span style="color:#a6e22e">bỏ</span> <span style="color:#a6e22e">mọi</span> <span style="color:#a6e22e">rủi</span> <span style="color:#a6e22e">ro</span> <span style="color:#a6e22e">tuân</span> <span style="color:#a6e22e">thủ</span> <span style="color:#a6e22e">từ</span> <span style="color:#a6e22e">chuyển</span> <span style="color:#a6e22e">giao</span> <span style="color:#a6e22e">dữ</span> <span style="color:#a6e22e">liệu</span> <span style="color:#a6e22e">xuyên</span> <span style="color:#a6e22e">biên</span> <span style="color:#a6e22e">giới</span><span style="color:#960050;background-color:#1e0010">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Đối</span> <span style="color:#a6e22e">với</span> <span style="color:#a6e22e">một</span> <span style="color:#a6e22e">trang</span> <span style="color:#a6e22e">web</span> <span style="color:#a6e22e">điển</span> <span style="color:#a6e22e">hình</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">việc</span> <span style="color:#a6e22e">chuyển</span> <span style="color:#a6e22e">từ</span> <span style="color:#a6e22e">GA4</span> <span style="color:#a6e22e">sang</span> <span style="color:#a6e22e">Plausible</span> <span style="color:#a6e22e">có</span> <span style="color:#a6e22e">nghĩa</span> <span style="color:#a6e22e">là:</span> <span style="color:#a6e22e">loại</span> <span style="color:#a6e22e">bỏ</span> <span style="color:#a6e22e">banner</span> <span style="color:#a6e22e">cookie</span> <span style="color:#a6e22e">consent</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">cải</span> <span style="color:#a6e22e">thiện</span> <span style="color:#a6e22e">điểm</span> <span style="color:#a6e22e">Lighthouse</span> <span style="color:#a6e22e">10-20</span> <span style="color:#a6e22e">điểm</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">và</span> <span style="color:#a6e22e">tải</span> <span style="color:#a6e22e">trang</span> <span style="color:#a6e22e">nhanh</span> <span style="color:#a6e22e">hơn</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">trong</span> <span style="color:#a6e22e">khi</span> <span style="color:#a6e22e">vẫn</span> <span style="color:#a6e22e">biết</span> <span style="color:#a6e22e">có</span> <span style="color:#a6e22e">bao</span> <span style="color:#a6e22e">nhiêu</span> <span style="color:#a6e22e">ngườ</span> <span style="color:#a6e22e">truy</span> <span style="color:#a6e22e">cập</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">họ</span> <span style="color:#a6e22e">xem</span> <span style="color:#a6e22e">những</span> <span style="color:#a6e22e">trang</span> <span style="color:#a6e22e">nào</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">và</span> <span style="color:#a6e22e">họ</span> <span style="color:#a6e22e">đến</span> <span style="color:#a6e22e">từ</span> <span style="color:#a6e22e">đâu</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">Đó</span> <span style="color:#a6e22e">là</span> <span style="color:#a6e22e">những</span> <span style="color:#a6e22e">chỉ</span> <span style="color:#a6e22e">số</span> <span style="color:#a6e22e">quan</span> <span style="color:#a6e22e">trọng</span> <span style="color:#a6e22e">cho</span> <span style="color:#a6e22e">hầu</span> <span style="color:#a6e22e">hết</span> <span style="color:#a6e22e">các</span> <span style="color:#a6e22e">quyết</span> <span style="color:#a6e22e">định</span><span style="color:#960050;background-color:#1e0010">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Triển</span> <span style="color:#a6e22e">khai</span> <span style="color:#a6e22e">instance</span> <span style="color:#a6e22e">của</span> <span style="color:#a6e22e">bạn</span> <span style="color:#a6e22e">trong</span> <span style="color:#a6e22e">tuần</span> <span style="color:#a6e22e">này</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">Thiết</span> <span style="color:#a6e22e">lập</span> <span style="color:#a6e22e">Docker</span> <span style="color:#a6e22e">Compose</span> <span style="color:#a6e22e">chưa</span> <span style="color:#a6e22e">đến</span> <span style="color:#a6e22e">5</span> <span style="color:#a6e22e">phút</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">script</span> <span style="color:#a6e22e">tracking</span> <span style="color:#a6e22e">chỉ</span> <span style="color:#a6e22e">là</span> <span style="color:#a6e22e">một</span> <span style="color:#a6e22e">dòng</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">và</span> <span style="color:#a6e22e">dashboard</span> <span style="color:#a6e22e">bắt</span> <span style="color:#a6e22e">đầu</span> <span style="color:#a6e22e">hiển</span> <span style="color:#a6e22e">thị</span> <span style="color:#a6e22e">dữ</span> <span style="color:#a6e22e">liệu</span> <span style="color:#a6e22e">ngay</span> <span style="color:#a6e22e">lập</span> <span style="color:#a6e22e">tức</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">Khách</span> <span style="color:#a6e22e">truy</span> <span style="color:#a6e22e">cập</span> <span style="color:#a6e22e">của</span> <span style="color:#a6e22e">bạn</span> <span style="color:#a6e22e">sẽ</span> <span style="color:#a6e22e">cảm</span> <span style="color:#a6e22e">ơn</span> <span style="color:#a6e22e">bạn</span> <span style="color:#a6e22e">vì</span> <span style="color:#a6e22e">tốc</span> <span style="color:#a6e22e">độ</span> <span style="color:#a6e22e">tải</span> <span style="color:#a6e22e">trang</span> <span style="color:#a6e22e">nhanh</span> <span style="color:#a6e22e">hơn</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">Đội</span> <span style="color:#a6e22e">ngũ</span> <span style="color:#a6e22e">pháp</span> <span style="color:#a6e22e">lý</span> <span style="color:#a6e22e">của</span> <span style="color:#a6e22e">bạn</span> <span style="color:#a6e22e">sẽ</span> <span style="color:#a6e22e">cảm</span> <span style="color:#a6e22e">ơn</span> <span style="color:#a6e22e">vì</span> <span style="color:#a6e22e">sự</span> <span style="color:#a6e22e">tuân</span> <span style="color:#a6e22e">thủ</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">Core</span> <span style="color:#a6e22e">Web</span> <span style="color:#a6e22e">Vitals</span> <span style="color:#a6e22e">của</span> <span style="color:#a6e22e">bạn</span> <span style="color:#a6e22e">sẽ</span> <span style="color:#a6e22e">cảm</span> <span style="color:#a6e22e">ơn</span> <span style="color:#a6e22e">vì</span> <span style="color:#a6e22e">script</span> <span style="color:#a6e22e">không</span> <span style="color:#a6e22e">có</span> <span style="color:#a6e22e">tác</span> <span style="color:#a6e22e">động</span><span style="color:#960050;background-color:#1e0010">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">**</span><span style="color:#a6e22e">Tham</span> <span style="color:#a6e22e">gia</span> <span style="color:#a6e22e">nhóm</span> <span style="color:#a6e22e">Telegram</span> <span style="color:#a6e22e">của</span> <span style="color:#a6e22e">chúng</span> <span style="color:#a6e22e">tôi</span> <span style="color:#a6e22e">để</span> <span style="color:#a6e22e">thảo</span> <span style="color:#a6e22e">luận</span> <span style="color:#a6e22e">công</span> <span style="color:#a6e22e">cụ</span> <span style="color:#a6e22e">mã</span> <span style="color:#a6e22e">nguồn</span> <span style="color:#a6e22e">mở</span><span style="color:#960050;background-color:#1e0010">**</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">t</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">me</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">dibi8vn</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">t</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">me</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">dibi8vn</span><span style="color:#960050;background-color:#1e0010">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#a6e22e">Hosting</span> <span style="color:#a6e22e">Và</span> <span style="color:#a6e22e">Hạ</span> <span style="color:#a6e22e">Tầng</span> <span style="color:#a6e22e">Được</span> <span style="color:#a6e22e">Đề</span> <span style="color:#a6e22e">Xuất</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Trước</span> <span style="color:#a6e22e">khi</span> <span style="color:#a6e22e">triển</span> <span style="color:#a6e22e">khai</span> <span style="color:#a6e22e">các</span> <span style="color:#a6e22e">công</span> <span style="color:#a6e22e">cụ</span> <span style="color:#a6e22e">trên</span> <span style="color:#a6e22e">vào</span> <span style="color:#a6e22e">production</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">bạn</span> <span style="color:#a6e22e">cần</span> <span style="color:#a6e22e">hạ</span> <span style="color:#a6e22e">tầng</span> <span style="color:#a6e22e">vững</span> <span style="color:#a6e22e">chắc</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">Hai</span> <span style="color:#a6e22e">lựa</span> <span style="color:#a6e22e">chọn</span> <span style="color:#a6e22e">dibi8</span> <span style="color:#a6e22e">đang</span> <span style="color:#a6e22e">dùng:</span> <span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">**[</span><span style="color:#a6e22e">DigitalOcean</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">m</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">do</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">co</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">c</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">eca87ac14ee0</span><span style="color:#960050;background-color:#1e0010">)**</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">Credit</span> <span style="color:#a6e22e">miễn</span> <span style="color:#a6e22e">phí</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">200</span> <span style="color:#a6e22e">trong</span> <span style="color:#a6e22e">60</span> <span style="color:#a6e22e">ngày</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">14</span><span style="color:#960050;background-color:#1e0010">+</span> <span style="color:#a6e22e">khu</span> <span style="color:#a6e22e">vực</span> <span style="color:#a6e22e">toàn</span> <span style="color:#a6e22e">cầu</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">Lựa</span> <span style="color:#a6e22e">chọn</span> <span style="color:#a6e22e">mặc</span> <span style="color:#a6e22e">định</span> <span style="color:#a6e22e">cho</span> <span style="color:#a6e22e">dev</span> <span style="color:#a6e22e">chạy</span> <span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">tools</span> <span style="color:#a6e22e">open</span> <span style="color:#a6e22e">source</span><span style="color:#960050;background-color:#1e0010">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">**[</span><span style="color:#a6e22e">HTStack</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">my</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">htstack</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">aff</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">php</span><span style="color:#960050;background-color:#1e0010">?</span><span style="color:#a6e22e">aff</span><span style="color:#f92672">=</span><span style="color:#e6db74">27187)**</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">VPS</span> <span style="color:#a6e22e">Hong</span> <span style="color:#a6e22e">Kong</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">độ</span> <span style="color:#a6e22e">trễ</span> <span style="color:#a6e22e">thấp</span> <span style="color:#a6e22e">khi</span> <span style="color:#a6e22e">truy</span> <span style="color:#a6e22e">cập</span> <span style="color:#a6e22e">từ</span> <span style="color:#a6e22e">Trung</span> <span style="color:#a6e22e">Quốc</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">Cùng</span> <span style="color:#a6e22e">IDC</span> <span style="color:#a6e22e">đang</span> <span style="color:#a6e22e">host</span> <span style="color:#a6e22e">dibi8</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span><span style="color:#960050;background-color:#1e0010">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">*</span><span style="color:#a6e22e">Liên</span> <span style="color:#a6e22e">kết</span> <span style="color:#a6e22e">tiếp</span> <span style="color:#a6e22e">thị</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">không</span> <span style="color:#a6e22e">tăng</span> <span style="color:#a6e22e">chi</span> <span style="color:#a6e22e">phí</span> <span style="color:#a6e22e">của</span> <span style="color:#a6e22e">bạn</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">giúp</span> <span style="color:#a6e22e">dibi8</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span> <span style="color:#a6e22e">hoạt</span> <span style="color:#a6e22e">động</span><span style="color:#960050;background-color:#1e0010">.*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#a6e22e">Nguồn</span> <span style="color:#960050;background-color:#1e0010">&amp;</span> <span style="color:#a6e22e">Tài</span> <span style="color:#a6e22e">liệu</span> <span style="color:#a6e22e">Tham</span> <span style="color:#a6e22e">khảo</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">Plausible</span> <span style="color:#a6e22e">Analytics</span> <span style="color:#a6e22e">GitHub</span> <span style="color:#a6e22e">Repository</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">github</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">plausible</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">analytics</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">Mã</span> <span style="color:#a6e22e">nguồn</span> <span style="color:#a6e22e">chính</span> <span style="color:#a6e22e">thức</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">21</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">000</span><span style="color:#960050;background-color:#1e0010">+</span> <span style="color:#a6e22e">sao</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">Plausible</span> <span style="color:#a6e22e">Documentation</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">plausible</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">io</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">docs</span><span style="color:#960050;background-color:#1e0010">/)</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">Tài</span> <span style="color:#a6e22e">liệu</span> <span style="color:#a6e22e">sản</span> <span style="color:#a6e22e">phẩm</span> <span style="color:#a6e22e">chính</span> <span style="color:#a6e22e">thức</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">Plausible</span> <span style="color:#a6e22e">Self-Hosting</span> <span style="color:#a6e22e">Guide</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">plausible</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">io</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">docs</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">self-hosting</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">Tài</span> <span style="color:#a6e22e">liệu</span> <span style="color:#a6e22e">tự</span> <span style="color:#a6e22e">host</span> <span style="color:#a6e22e">chính</span> <span style="color:#a6e22e">thức</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">Plausible</span> <span style="color:#a6e22e">Stats</span> <span style="color:#a6e22e">API</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">plausible</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">io</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">docs</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">stats-api</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">Tài</span> <span style="color:#a6e22e">liệu</span> <span style="color:#a6e22e">REST</span> <span style="color:#a6e22e">API</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">Plausible</span> <span style="color:#a6e22e">v3</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">0</span> <span style="color:#a6e22e">Release</span> <span style="color:#a6e22e">Notes</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">github</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">plausible</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">analytics</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">releases</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">Phát</span> <span style="color:#a6e22e">hành</span> <span style="color:#a6e22e">tháng</span> <span style="color:#a6e22e">2</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">2026</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">ClickHouse</span> <span style="color:#a6e22e">Documentation</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">clickhouse</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">docs</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">CSDL</span> <span style="color:#a6e22e">phân</span> <span style="color:#a6e22e">tích</span> <span style="color:#a6e22e">cung</span> <span style="color:#a6e22e">cấp</span> <span style="color:#a6e22e">năng</span> <span style="color:#a6e22e">lượng</span> <span style="color:#a6e22e">cho</span> <span style="color:#a6e22e">Plausible</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">MaxMind</span> <span style="color:#a6e22e">GeoLite2</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">dev</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">maxmind</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">geoip</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">geolite2-free-geolocation-data</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">CSDL</span> <span style="color:#a6e22e">GeoIP</span> <span style="color:#a6e22e">miễn</span> <span style="color:#a6e22e">phí</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">EDPB</span> <span style="color:#a6e22e">Guidelines</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">Consent</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">edpb</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">europa</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">eu</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">our-work-tools</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">general-guidance</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">guidelines</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">consent_en</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">Cơ</span> <span style="color:#a6e22e">sở</span> <span style="color:#a6e22e">pháp</span> <span style="color:#a6e22e">lý</span> <span style="color:#a6e22e">cho</span> <span style="color:#a6e22e">phân</span> <span style="color:#a6e22e">tích</span> <span style="color:#a6e22e">không</span> <span style="color:#a6e22e">cookie</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">DigitalOcean</span> <span style="color:#a6e22e">VPS</span> <span style="color:#a6e22e">Setup</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">m</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">do</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">co</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">c</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">eca87ac14ee0</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">VPS</span> <span style="color:#a6e22e">hosting</span> <span style="color:#a6e22e">cho</span> <span style="color:#a6e22e">triển</span> <span style="color:#a6e22e">khai</span> <span style="color:#a6e22e">tự</span> <span style="color:#a6e22e">host</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">*</span><span style="color:#a6e22e">Bài</span> <span style="color:#a6e22e">viết</span> <span style="color:#a6e22e">này</span> <span style="color:#a6e22e">chứa</span> <span style="color:#a6e22e">liên</span> <span style="color:#a6e22e">kết</span> <span style="color:#a6e22e">tiếp</span> <span style="color:#a6e22e">thị</span> <span style="color:#a6e22e">đến</span> <span style="color:#a6e22e">DigitalOcean</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">Nếu</span> <span style="color:#a6e22e">bạn</span> <span style="color:#a6e22e">mua</span> <span style="color:#a6e22e">dịch</span> <span style="color:#a6e22e">vụ</span> <span style="color:#a6e22e">thông</span> <span style="color:#a6e22e">qua</span> <span style="color:#a6e22e">các</span> <span style="color:#a6e22e">liên</span> <span style="color:#a6e22e">kết</span> <span style="color:#a6e22e">này</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">dibi8</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span> <span style="color:#a6e22e">có</span> <span style="color:#a6e22e">thể</span> <span style="color:#a6e22e">nhận</span> <span style="color:#a6e22e">được</span> <span style="color:#a6e22e">hoa</span> <span style="color:#a6e22e">hồng</span> <span style="color:#a6e22e">mà</span> <span style="color:#a6e22e">không</span> <span style="color:#a6e22e">phát</span> <span style="color:#a6e22e">sinh</span> <span style="color:#a6e22e">thêm</span> <span style="color:#a6e22e">chi</span> <span style="color:#a6e22e">phí</span> <span style="color:#a6e22e">cho</span> <span style="color:#a6e22e">bạn</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">Tất</span> <span style="color:#a6e22e">cả</span> <span style="color:#a6e22e">khuyến</span> <span style="color:#a6e22e">nghị</span> <span style="color:#a6e22e">đều</span> <span style="color:#a6e22e">dựa</span> <span style="color:#a6e22e">trên</span> <span style="color:#a6e22e">thử</span> <span style="color:#a6e22e">nghiệm</span> <span style="color:#a6e22e">thực</span> <span style="color:#a6e22e">tế</span> <span style="color:#a6e22e">và</span> <span style="color:#a6e22e">kinh</span> <span style="color:#a6e22e">nghiệm</span> <span style="color:#a6e22e">triển</span> <span style="color:#a6e22e">khai</span> <span style="color:#a6e22e">thực</span> <span style="color:#a6e22e">tế</span><span style="color:#960050;background-color:#1e0010">.*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&#34;@</span><span style="color:#a6e22e">context</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">schema</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">org</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&#34;@</span><span style="color:#a6e22e">type</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">Article</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">headline</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">Plausible</span> <span style="color:#a6e22e">Analytics:</span> <span style="color:#a6e22e">Giải</span> <span style="color:#a6e22e">Pháp</span> <span style="color:#a6e22e">Phân</span> <span style="color:#a6e22e">Tích</span> <span style="color:#a6e22e">Ưu</span> <span style="color:#a6e22e">Tiên</span> <span style="color:#a6e22e">Quyền</span> <span style="color:#a6e22e">Riêng</span> <span style="color:#a6e22e">Tư</span> <span style="color:#a6e22e">Thay</span> <span style="color:#a6e22e">Thế</span> <span style="color:#a6e22e">Google</span> <span style="color:#a6e22e">Analytics</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">Nhanh</span> <span style="color:#a6e22e">Hơn</span> <span style="color:#a6e22e">45</span> <span style="color:#a6e22e">Lần</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">Hướng</span> <span style="color:#a6e22e">Dẫn</span> <span style="color:#a6e22e">Tự</span> <span style="color:#a6e22e">Host</span> <span style="color:#a6e22e">2026</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">datePublished</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">2026-05-19</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">dateModified</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">2026-05-19</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">author</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&#34;@</span><span style="color:#a6e22e">type</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">Organization</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">name</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">Dibi8</span><span style="color:#960050;background-color:#1e0010">&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">},</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">publisher</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&#34;@</span><span style="color:#a6e22e">type</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">Organization</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">name</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">Dibi8</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">logo</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">&#34;@</span><span style="color:#a6e22e">type</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">ImageObject</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">url</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">dibi8</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">logo</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">png</span><span style="color:#960050;background-color:#1e0010">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">},</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">mainEntityOfPage</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&#34;@</span><span style="color:#a6e22e">type</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">WebPage</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&#34;@</span><span style="color:#a6e22e">id</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">dibi8</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">vi</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">resources</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">plausible-analytics-privacy-google</span><span style="color:#960050;background-color:#1e0010">&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;/</span><span style="color:#a6e22e">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>## Related Articles
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- [apple-container](plausible-analytics-privacy-google)
+</span></span><span style="display:flex;"><span>- [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](plausible-analytics-privacy-google)
+</span></span><span style="display:flex;"><span>- [moneyprinterturbo-one-click-ai-video-generator](plausible-analytics-privacy-google)
+</span></span><span style="display:flex;"><span>- [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](plausible-analytics-privacy-google)
+</span></span><span style="display:flex;"><span>- [moneyprinterturbo-one-click-ai-video-generator](plausible-analytics-privacy-google)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

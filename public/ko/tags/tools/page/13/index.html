@@ -150,14 +150,13 @@
   </header>
   <div class="entry-content">
     <p>{&lt;/* resource-info */&gt;}
-한 줄 요약: 2026년 5월 GitHub Trending 2위를 차지한 오픈소스 프로젝트. Chromium의 C&#43;&#43; 소스코드를 49개 지문 패치로 수정해 실제 사용자 브라우저와 완벽히 동일하게 만든다. reCAPTCHA v3에서 0.9점(Playwright는 0.1), 30개 이상 봇 감지 서비스 전부 통과. 그리고 완전히 무료다.
-왜 CloakBrowser인가: 한국 개발자가 겪는 봇 감지의 현실 Playwright나 Puppeteer, Selenium으로 웹 스크래핑이나 브라우저 자동화를 해본 개발자라면 공감할 것이다.
-깔끔하게 코드를 짰는데, 배포하자마자 Cloudflare Turnstile의 “브라우저를 확인하는 중” 무한 로딩 reCAPTCHA v3가 스크립트에 0.1점을 줘서 모든 요청이 조용히 차단됨 ```playwright-stealth````로 설정값을 수정했더니 Chrome 업데이트되면서 또 깨짐 undetected-chromedriver는 Cloudflare가 소스코드를 연구해서 모든 패치에 대응책을 만들어버림 상용 반봇 브라우저(Multilogin, AdsPower)는 월 $49~$299. 사이드 프로젝트에는 부담스러운 가격 2026년 5월 8일, CloakBrowser가 GitHub Trending에 등장했다. 78일 만에 5,700개 이상의 Star를 모았고, 하루 만에 1,300개 이상의 Star가 추가됐다. 커뮤니티의 반응은 즉각적이고 폭발적이었다. 왜냐하면 이전에 아무도 시도하지 않았던 방식으로 문제를 해결했기 때문이다: Chromium의 C&#43;&#43; 소스코드를 직접 수정하고, 실제 브라우저 바이너리로 컴파일해서 Playwright 대체품으로 배포하는 것.
+TL;DR: In May 2026, a new open-source project hit GitHub Trending #2 with 1,300&#43; stars in 24 hours. It applies 49 C&#43;&#43; source-level patches to Chromium, scores 0.9 on reCAPTCHA v3 (vs. 0.1 for stock Playwright), passes 30&#43; bot detection suites, and costs absolutely nothing. Here’s the complete technical breakdown.
+The Problem Every Automation Engineer Faces If you’ve built web scrapers, browser automations, or AI agents that interact with websites, you know the drill: - You write clean Playwright code. It works locally. You deploy it — Cloudflare Turnstile blocks it.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/cloakbrowser-stealth-browser-2026/"></a>
 </article>
 
@@ -167,12 +166,12 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>CloakBrowser: 모든 봇 검사를 통과하는 스텔스 Chromium — 25,000 스타의 스크래핑 도구 — 2026 실전 가이드 ┌──────────────────────────────────────────────────────┐ │ CloakBrowser 안티-디텍션 │ │ │ │ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ │ │ │ Canvas │ │ WebGL │ │ Audio │ │ │ │ 지문 │ │ 지문 │ │ 지문 │ │ │ └──────┬──────┘ └──────┬──────┘ └──────┬──────┘ │ │ │ │ │ │ │ ┌──────▼────────────────▼─────────────────▼──────┐ │ │ │ 소스 레벨 패치 │ │ │ │ • navigator.webdriver = false │ │ │ │ • chrome runtime 스푸핑 │ │ │ │ • TLS 지문 랜덤화 │ │ │ │ • WebRTC 누수 방지 │ │ │ │ • Headless 감지 우회 │ │ │ │ • Geolocation 스푸핑 │ │ │ └───────────────────────┬───────────────────────┘ │ │ │ 30/30 테스트 통과 │ │ ┌───────────────────────▼───────────────────────┐ │ │ │ 안티-디텍션 브라우저 │ │ │ └───────────────────────────────────────────────┘ │ └──────────────────────────────────────────────────────┘ CloakBrowser: 모든 봇 테스트를 통과하는 드롭인 Playwright 교체품
+    <p>CloakBrowser: Stealth Chromium That Passes Every Bot Detection Test — 25,000 Stars for Scraping — A Practical Guide 2026 ┌──────────────────────────────────────────────────────┐ │ CloakBrowser Anti-Detection │ │ │ │ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ │ │ │ Canvas │ │ WebGL │ │ Audio │ │ │ │ Fingerprint │ │ Fingerprint │ │ Fingerprint │ │ │ └──────┬──────┘ └──────┬──────┘ └──────┬──────┘ │ │ │ │ │ │ │ ┌──────▼────────────────▼─────────────────▼──────┐ │ │ │ Source-Level Patches │ │ │ │ • navigator.webdriver = false │ │ │ │ • chrome runtime spoofing │ │ │ │ • TLS fingerprint randomization │ │ │ │ • WebRTC leak prevention │ │ │ │ • Headless detection bypass │ │ │ │ • Geolocation spoofing │ │ │ └───────────────────────┬───────────────────────┘ │ │ │ 30/30 tests passed │ │ ┌───────────────────────▼───────────────────────┐ │ │ │ Anti-detection browser │ │ │ └───────────────────────────────────────────────┘ │ └──────────────────────────────────────────────────────┘ CloakBrowser: drop-in Playwright replacement that passes every bot test
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/cloakbrowser-stealth-chromium-bot-detection-scraping/"></a>
 </article>
 
@@ -216,13 +215,13 @@ TL;DR Codebase Memory MCP (24K&#43; stars) is a high-performance Model Context P
     </h2>
   </header>
   <div class="entry-content">
-    <p>Codebase-Memory-MCP: AI 코딩 에이전트를 위한 고성능 코드 인텔리전스 빠르게 발전하는 AI 지원 소프트웨어 개발 환경에서 한 가지 병목 현상은 여전히 끈질기게 남아 있습니다. AI 코딩 에이전트는 어떻게 대규모 코드베이스를 효율적으로 이해하고 탐색합니까? 파일별 검색 또는 순진한 RAG 시스템과 같은 기존 접근 방식은 엄청난 양의 토큰을 낭비하고, 단편화된 컨텍스트를 생성하며, 구조적 코드 이해에 어려움을 겪습니다.
-AI 코딩 에이전트가 코드와 상호 작용하는 방식을 변화시키는 혁신적인 MCP(모델 컨텍스트 프로토콜) 서버인 **codebase-memory-mcp**를 입력하세요. 오늘만 7,100개 이상의 GitHub 스타와 2,300개의 스타가 추가된 이 프로젝트는 최첨단 코드 인텔리전스를 대표합니다.
+    <p>Codebase-Memory-MCP: High-Performance Code Intelligence for AI Coding Agents In the rapidly evolving landscape of AI-assisted software development, one bottleneck remains stubbornly persistent: how do AI coding agents efficiently understand and navigate large codebases? Traditional approaches like file-by-file search or naive RAG systems waste enormous amounts of tokens, produce fragmented context, and struggle with structural code understanding.
+Enter codebase-memory-mcp — a revolutionary MCP (Model Context Protocol) server that transforms how AI coding agents interact with code. With 7,100&#43; GitHub stars and 2,300 stars added today alone, this project represents the cutting edge of code intelligence.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/codebase-memory-mcp-high-performance-code-intelligence/"></a>
 </article>
 
@@ -232,12 +231,12 @@ AI 코딩 에이전트가 코드와 상호 작용하는 방식을 변화시키�
     </h2>
   </header>
   <div class="entry-content">
-    <p>CodeGraph: 코드베이스 전체에서 코드 지식 그래프 구축 소개 모든 소프트웨어 프로젝트는 인간의 인지 능력을 초월할 정도로 복잡해집니다. 새로 합류한 팀원들은 특정 함수가 어디에 있고 어떻게 시스템의 나머지 부분과 연결되어 있는지 파악하는 데 몇 주가 걸리기도 합니다. CodeGraph는 전체 코드베이스를 탐색 가능한 지식 그래프로 변환하는 오픈소스 도구로, 클래스, 함수, 인터페이스, 패키지 간의 관계를 한눈에 이해할 수 있게 해줍니다. Kotlin으로 작성된 CodeGraph는 심층적인 코드베이스 이해가 필요한 개발자를 위해 강력한 CLI와 프로그래밍 API를 제공합니다.
+    <p>Codegraph: The Code Knowledge Graph That Slashes LLM Token Costs by 40-60% — Pre-Indexed, 100% Local — A Practical Guide 2026 ┌──────────────────────────────────────────────────────┐ │ Codegraph Knowledge Graph Engine │ │ │ │ ┌────────────┐ ┌────────────┐ ┌───────────┐ │ │ │ Source Code │ │ Configs │ │ Docs │ │ │ │ (.py,.ts) │ │ (.yaml) │ │ (.md) │ │ │ └─────┬──────┘ └─────┬──────┘ └─────┬─────┘ │ │ │ │ │ │ │ ▼ ▼ ▼ │ │ ┌───────────────────────────────────────────────┐ │ │ │ Codegraph Indexer &amp; Graph Builder │ │ │ │ • AST Parsing • Dependency Analysis │ │ │ │ • Symbol Linking • Call Graph Construction │ │ │ └───────────────────────┬───────────────────────┘ │ │ │ Local vector store │ │ ┌───────────────────────▼───────────────────────┐ │ │ │ AI Agent Query (Claude Code / Codex / ...) │ │ │ │ Returns: relevant code snippets, not entire repo │ │ └───────────────────────────────────────────────┘ │ └──────────────────────────────────────────────────────┘ Codegraph: source code → knowledge graph → precise agent queries
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/codegraph-pre-indexed-code-knowledge-graph-ai-agents/"></a>
 </article>
 
@@ -248,12 +247,12 @@ AI 코딩 에이전트가 코드와 상호 작용하는 방식을 변화시키�
   </header>
   <div class="entry-content">
     <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-23T00:00:00&#43;08:00 lastmod: 2026-05-23T00:00:00&#43;08:00 tech_stack: [] application_domain: Dev Utils source_version: “v0.9.3” licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-22” draft: false categories: [“dev-utils”] tags: [“codegraph”, “claude-code”, “ai-coding-agent”, “code-graph”, “token-savings”, “mcp”, “hermes-agent”, “cursor”, “codex-cli”, “opencode”, “developer-productivity”] aliases:
-/kr/posts/codegraph-pre-indexed-knowledge-graph-2026/ 문제: AI 코딩 에이전트가 ```grep````에서 토큰을 태우고 있다 Claude Code, Cursor Pro 또는 OpenAI 경유 Codex CLI를 쓴다면 누구나 느꼈을 것이다. 에이전트가 코드베이스를 “이해&#34;해야 할 때마다 Explore 단계가 시작된다: Glob로 파일 찾고, Grep로 심볼 찾고, Read로 컨텍스트 로딩. 모든 호출은 도구 왕복이고, 모든 왕복은 토큰이다 — 요청 페이로드와 컨텍스트로 돌아오는 응답 양쪽 다.
+/zh/posts/codegraph-pre-indexed-knowledge-graph-2026/- 问题：AI 编码代理正在&#34;grep&#34;中烧钱 如果你在用 Claude Code、Cursor Pro 或者通过 OpenAI 跑 Codex CLI，你一定有过这种体验：每次代理需要&#34;理解&#34;一个代码库，它会启动 Explore 阶段——```Glob 找文件、Grep 找符号、Read```` 加载上下文。每一次工具调用都是一次往返。每一次往返就是 token——请求的 payload 加上塞回上下文的响应。
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>4 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/codegraph-pre-indexed-knowledge-graph-2026/"></a>
 </article>
 
@@ -318,6 +317,81 @@ TL;DR Cognee (26K&#43; stars) is an open-source AI memory platform that gives ag
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

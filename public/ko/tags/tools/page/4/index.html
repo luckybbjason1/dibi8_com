@@ -134,15 +134,32 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>{&lt;/* resource-info */&gt;}
-서론: 당신의 AI 프로그래밍 도우미는 왜 계속 “기억상실&#34;인가 Claude Code나 Cursor를 매일 쓰는 개발자라면 한결같이 겪는 문제가 있다. 20분 동안 프로젝트 아키텍처, 네이밍 컨벤션, 방금 해결한 버그 해결법을 설명하고 나면 에이전트가 이해한다. 진도가 나간다. 그러고 터미널을 끈다.
-다음날? 백지 상태. 에이전트는 모든 것을 잊어버린다. 매번 새로운 사람에게 똑같은 설명을 반복하는 수업 선생님 신세가 된다.
-이것은 버그가 아니다—현재 대부분의 AI 코딩 에이전트는 상태를 유지하지 않는(stateless) 구조로 설계되었기 때문이다. 모든 대화를 독립적인 트랜잭션으로 처리하며, 학습된 지식을 다음 세션으로 전달할 메커니즘이 없다.
+    <p>Addy Osmani’s Agent Skills: The Production-Grade Approach I used to think AI coding assistants were just fancy autocomplete with chat. Then Addy Osmani published his Agent Skills framework and showed me I was wrong.
+This isn’t just another tool — it’s a complete philosophy for building reliable AI workflows. While other projects add features, Addy focused on what matters: making AI assistants actually work in production.
+Who Is Addy Osmani? Before diving in, let’s understand why this matters: - Former Google Chrome engineer
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/agent-skills-production-workflows/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>
+{&lt;/* resource-info */&gt;}
+The Problem: Every New Session Is Groundhog Day If you use Claude Code, Cursor, or Codex CLI daily, you know the drill. You spend 20 minutes explaining your codebase’s architecture, naming conventions, and that tricky bug workaround. The agent gets it. You make progress. Then you close the terminal.
+Tomorrow? Blank slate. The agent forgot everything. You’re the teacher in a classroom where every student has permanent amnesia.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/agentmemory-mcp-persistent-memory-2026/"></a>
 </article>
 
@@ -152,12 +169,12 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>AgentMemory: AI 코딩 에이전트를 위한 persistente 메모리 시스템 1위 — 22,000 스타의 실제 벤치마크 — 2026 실전 가이드 ┌──────────────────────────────────────────────────────┐ │ AgentMemory 아키텍처 │ │ │ │ ┌────────────┐ ┌────────────┐ ┌──────────────┐ │ │ │ 세션 1 │ │ 세션 2 │ │ 세션 N │ │ │ │ (Claude) │ │ (Codex) │ │ (OpenCode) │ │ │ └─────┬──────┘ └─────┬──────┘ └──────┬───────┘ │ │ │ │ │ │ │ ▼ ▼ ▼ │ │ ┌───────────────────────────────────────────────┐ │ │ │ 메모리 저장 레이어 │ │ │ │ • 벡터 DB (임베딩) │ │ │ │ • 그래프 DB (관계) │ │ │ │ • 키-값 (사실, 결정) │ │ │ └───────────────────────┬───────────────────────┘ │ │ │ 쿼리 및 검색 │ │ ┌───────────────────────▼───────────────────────┐ │ │ │ 에이전트가 메모리에서 컨텍스트 획득 │ │ │ │ &#34;지난번에 인증 버그를 수정했죠...&#34; │ │ │ └───────────────────────────────────────────────┘ │ └──────────────────────────────────────────────────────┘ AgentMemory: 세션 → 메모리 저장 → 컨텍스트 인지 에이전트
+    <p>AgentMemory: The #1 Persistent Memory System for AI Coding Agents — 22,000 Stars for Real-World Benchmarks — A Practical Guide 2026 ┌──────────────────────────────────────────────────────┐ │ AgentMemory Architecture │ │ │ │ ┌────────────┐ ┌────────────┐ ┌──────────────┐ │ │ │ Session 1 │ │ Session 2 │ │ Session N │ │ │ │ (Claude) │ │ (Codex) │ │ (OpenCode) │ │ │ └─────┬──────┘ └─────┬──────┘ └──────┬───────┘ │ │ │ │ │ │ │ ▼ ▼ ▼ │ │ ┌───────────────────────────────────────────────┐ │ │ │ Memory Storage Layer │ │ │ │ • Vector DB (embeddings) │ │ │ │ • Graph DB (relationships) │ │ │ │ • Key-value (facts, decisions) │ │ │ └───────────────────────┬───────────────────────┘ │ │ │ Query &amp; Retrieve │ │ ┌───────────────────────▼───────────────────────┐ │ │ │ Agent Gets Context from Memory │ │ │ │ &#34;Last time you fixed the auth bug...&#34; │ │ │ └───────────────────────────────────────────────┘ │ └──────────────────────────────────────────────────────┘ AgentMemory: sessions → memory storage → context-aware agent
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/"></a>
 </article>
 
@@ -167,13 +184,13 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“agno”, “ai-agent”, “python-sdk”, “multi-agent”, “오픈소스”, “경량 프레임워크”, “agent-platform”, “ollama”, “openai”] aliases:
-/kr/posts/agno/ 2026년에 AI 에이전트 프레임워크를 선택하는 것은 지뢰밭을 탐색하는 것과 같습니다. 지난 18개월 동안 수십 개의 라이브러리가 “에이전트 개발을 단순화&#34;하겠다고 약속하며 등장했지만, 대부분은 가치보다 더 많은 추상화를 도입했습니다. 팀들은 그래프 기반 오케스트레이션 의미론을 배우는 데 수 주일을 소비한 끝에, 그들의 사용 사례가 단순한 경량 도구 호출 루프 이상이 아니었다는 것을 발견한다고 보고합니다. Agno(이전 Phidata)는 런타임 우선 철학으로 이 소음을 끊어냅니다: 에이전트를 빠르게 빌드하고, 서비스로 실행하고, 전체 스택을 완전히 제어하세요. 40,233개의 GitHub Star, 452명의 기여자, 그리고 새로운 Apache-2.0 라이선스를 통해 Agno는 Python 팀이 프로덕션 에이전트 시스템을 배포하는 데 있어 선호하는 프레임워크가 되었습니다. 이 가이드 — 2026년 agno tutorial —는 agno setup, 아키텍처, 실제 코드 예제, agno vs crewai 벤치마크 비교, 그리고 이 lightweight ai framework의 부족한 부분에 대한 진실한 분석을 다룹니다.
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“agno”, “ai-agent”, “python-sdk”, “multi-agent”, “open-source”, “lightweight-framework”, “agent-platform”, “ollama”, “openai”] aliases:
+/posts/agno/- Choosing an AI agent framework in 2026 feels like navigating a minefield. Over the past 18 months, dozens of libraries have emerged promising to “simplify” agent development, yet most introduce more abstraction than value. Teams report spending weeks learning graph-based orchestration semantics only to discover their use case needed nothing more than a lightweight tool-calling loop. Agno (formerly Phidata) cuts through this noise with a runtime-first philosophy: build agents fast, serve them as services, and own your entire stack. With 40,233 GitHub stars, 452 contributors, and a fresh Apache-2.0 license, it has become the go-to framework for Python teams shipping production agent systems. This guide — a practical agno tutorial for 2026 — walks through agno setup, architecture, real code examples, benchmarks in the agno vs crewai debate, and the hard truths about where this lightweight ai framework falls short.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>14 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/agno/"></a>
 </article>
 
@@ -183,13 +200,13 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-04T00:00:00&#43;08:00 lastmod: 2026-06-04T00:00:00&#43;08:00 tech_stack: - AI Agents
-LLM Governance Security application_domain: Collections source_version: ’&#39; licensing_model: Open Source license_type: CC-BY-4.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-06-04” draft: false categories: [“collections”] tags: [“ai에이전트”, “ai윤리”, “책임있는ai”, “ai거버넌스”, “에이전트보안”, “정렬”, “윤리강령”] aliases: /kr/posts/ai-agent-code-of-ethics/ faqs: - q: ‘AI 에이전트 윤리는 챗봇 윤리와 어떻게 다른가요?’ a: ‘챗봇은 텍스트를 생성하지만 에이전트는 행동을 실행합니다 — 도구를 호출하고, 돈을 옮기고, 이메일을 보내고, 파일을 수정하고, 현실의 결과를 일으킵니다. 챗봇 윤리는 주로 “무엇을 말하는가”(편향, 유해성, 허위정보)에 관한 것이고, 에이전트 윤리는 “무엇을 하는가&#34;에 관한 것입니다: 인가, 가역성, 그리고 되돌릴 수 없는 행동에 대한 책임. 위해의 표면이 정보가 아니라 운영 차원이므로, 통제 수단은 콘텐츠 필터가 아니라 엔지니어링 통제여야 합니다.’ q: ‘AI 에이전트의 최소 권한 인가란 무엇인가요?’ a: ‘최소 권한이란 에이전트가 눈앞의 작업에 필요한 가장 좁은 권한만, 그것도 시간과 영향 범위를 한정해 부여받는 것을 뜻합니다. 광범위한 상시 접근권 대신 말이죠. 실무적으로는: 장기 API 키 대신 작업별 단기 자격증명, 기본 읽기 전용에 쓰기는 명시적 권한 상승, 지출 상한, 도구·도메인 화이트리스트, 작업 종료 시 자동 만료. 에이전트가 탈취되거나 오작동해도 최소 권한이 피해를 가둡니다.’ q: ‘AI 에이전트는 행동 전에 항상 사람의 승인을 받아야 하나요?’ a: ‘아닙니다 — 모든 행동에 승인을 걸면 자동화의 가치가 사라집니다. 올바른 모델은 위험 등급제입니다: 저위험·가역적 작업(데이터 읽기, 초안 작성)은 자율적으로 두고, 고위험·비가역적 작업(외부 메시지 발송, 결제, 삭제, 프로덕션 배포)은 사람의 확인을 요구하며, 모든 자율 행동은 사후 감사 가능하게 합니다. 경계선은 “일괄 승인&#34;이 아니라 “가역성&#34;입니다.’ q: ‘자율 AI 에이전트가 피해를 일으키면 누가 책임지나요?’ a: ‘책임은 에이전트에게 떠넘길 수 없습니다 — 에이전트는 도덕적·법적 주체가 아닙니다. 책임은 그것을 배포한 운영자, 만든 개발자, 그로부터 이익을 얻는 조직에 있습니다. 윤리적인 에이전트는 이를 강제 가능하게 만듭니다: 모든 행동이 인가된 신원, 기록된 결정, 이름이 있는 사람 책임자로 추적되는 끊기지 않는 사슬을 유지함으로써. “AI가 했다&#34;는 결코 유효한 답이 아닙니다.’ q: ‘AI 에이전트의 페일세이프 기본값이란 무엇인가요?’ a: ‘페일세이프 기본값이란 에이전트가 불확실하거나, 맥락을 잃거나, 오류를 만나거나, 신뢰도 임계값 아래로 떨어졌을 때 추측해서 진행하는 대신 멈추고 보고하는 것입니다. 비가역적 작업에서 실패는 “행동하지 않음&#34;으로 기본 설정되어야 합니다. 에이전트를 실행 도중 멈추는 킬 스위치와, 안전하게 재시도할 수 있는 멱등 연산이 이 원칙의 최소한의 엔지니어링 표현입니다.’ q: ‘이 윤리 원칙들은 코드로 강제할 수 있나요, 아니면 그냥 지침인가요?’ a: ‘대부분은 코드로 강제할 수 있습니다. 최소 권한은 범위가 한정된 자격증명과 화이트리스트, 감사 가능성은 모든 도구 호출의 구조화된 로깅, 가역성은 위험 등급별 승인 게이트와 실행취소/멱등, 제한된 자율성은 속도·지출 상한, 페일세이프는 신뢰도 임계값과 킬 스위치입니다. 오직 그 뒤의 의도 — 어떤 행동이 고위험인지 판단하는 것 — 만 사람의 판단이 필요합니다. 강제할 수 없는 윤리는 장식일 뿐입니다.’ AI 에이전트 윤리 강령 (2026): 자율 에이전트를 위한 실전 거버넌스 프레임워크 이 문서에 대하여: 이것은 자율 AI 에이전트 — 텍스트만 생성하는 것이 아니라 행동을 실행하는 시스템 — 를 구축하고 운영하는 엔지니어를 위한 실전 윤리 강령입니다. 높이 내건 구호가 아니라 강제 가능하도록 쓰였습니다. 아래의 모든 원칙은 배포 전 코드베이스에 넣을 수 있는 하나의 통제 수단으로 매핑됩니다.
+    <p>title: “The AI Agent Code of Ethics (2026): A Practical Governan… description: “Technical guide and comparison.” date: 2026-06-04T00:00:00&#43;08:00 lastmod: 2026-06-04T00:00:00&#43;08:00 tech_stack: - AI Agents
+LLM Governance Security application_domain: Collections source_version: ’&#39; licensing_model: Open Source license_type: CC-BY-4.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-06-04” draft: false categories: [“collections”] tags: [“ai agent”, “ai ethics”, “responsible ai”, “ai governance”, “agent safety”, “alignment”, “code of ethics”] aliases: /posts/ai-agent-code-of-ethics/ faqs: - q: ‘How is AI agent ethics different from chatbot ethics?’ a: ‘A chatbot produces text; an agent takes actions — it calls tools, moves money, sends emails, edits files, and triggers real-world effects. Chatbot ethics is mostly about what is said (bias, toxicity, misinformation). Agent ethics is about what is done: authorization, reversibility, and accountability for irreversible actions. The harm surface is operational, not just informational, so the controls must be engineering controls, not content filters.’ q: ‘What is least-privilege authorization for an AI agent?’ a: ‘Least privilege means an agent is granted only the narrowest permissions needed for its current task, scoped in time and blast radius, rather than broad standing access. In practice: per-task credentials over long-lived API keys, read-only by default with explicit elevation for writes, hard spending caps, allowlisted tools and domains, and automatic expiry. If an agent is compromised or misaligned, least privilege bounds the damage.’ q: ‘Should an AI agent always require human approval before acting?’ a: ‘No — gating every action destroys the value of automation. The right model is risk-tiered: let the agent act autonomously on low-risk, reversible operations (reading data, drafting), require human confirmation for high-risk or irreversible ones (sending external messages, payments, deletions, production deploys), and make every autonomous action auditable after the fact. Reversibility, not blanket approval, is the dividing line.’ q: ‘Who is accountable when an autonomous AI agent causes harm?’ a: ‘Accountability cannot be delegated to the agent — it is not a moral or legal person. The operator who deployed the agent, the developer who built it, and the organization that benefits from it hold accountability. An ethical agent makes this enforceable by maintaining an unbroken chain: every action traces to an authorizing identity, a logged decision, and a human owner. “The AI did it” is never a valid answer.’ q: ‘What is a fail-safe default for an AI agent?’ a: ‘A fail-safe default means that when an agent is uncertain, loses context, hits an error, or exceeds a confidence threshold, it stops and escalates rather than guessing and proceeding. Failure should default to inaction on irreversible operations. A kill switch that halts the agent mid-run, and idempotent operations that can be safely retried, are the minimum engineering expression of this principle.’ q: ‘Can these ethics principles be enforced in code, or are they just guidelines?’ a: ‘Most of them are enforceable in code. Least privilege is scoped credentials and allowlists; auditability is structured logging of every tool call; reversibility is risk-tiered approval gates plus undo/idempotency; bounded autonomy is rate and spend limits; fail-safe is confidence thresholds and a kill switch. Only the intent behind them — deciding which actions are high-risk — requires human judgment. Ethics that cannot be enforced are decoration.’ The AI Agent Code of Ethics (2026): A Practical Governance Framework for Autonomous Agents About this document: This is a practical code of ethics for engineers building and operating autonomous AI agents — systems that take actions, not just generate text. It is written to be enforceable, not aspirational. Every principle below maps to a control you can put in your codebase before you ship.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ai-agent-code-of-ethics/"></a>
 </article>
 
@@ -199,11 +216,13 @@ LLM Governance Security application_domain: Collections source_version: ’&#39;
     </h2>
   </header>
   <div class="entry-content">
-    <p>{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: ““LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap…”, “description”: ““2026년 상위 5개 오픈 소스 AI 에이전트 프레임워크를 나란히 비교합니다. 실제 별 개수, 코드 예제, 성능 벤치마크 및 프로젝트에 적합한 프레임워크를 선택하기 위한 실용적인 지침입니다.”. Comprehensive guide covering features, pricing, and best practices for 2026.”, “datePublished”: “2026-06-30T00:00:00&#43;09:00”, “dateModified”: “2026-06-30T00:00:00&#43;09:00”, “author”: { “@type”: “Organization”, “name”: “dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png&#34; } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/tools/ai-agent-frameworks-comparison-2026/&#34; }, “url”: “https://dibi8.com/kr/tools/ai-agent-frameworks-comparison-2026/&#34;, “image”: “https://picsum.photos/seed/ai-agent-frameworks-comparison-2026/1200x630&#34;, “keywords”: “ai-agents,frameworks,comparison,langchain,crewai,autogen,llamaindex,langgraph”, “articleSection”: “llm-frameworks” } ...</p>
+    <p>title: “LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap…” description: “Technical guide and comparison.” date: 2026-06-30T00:00:00&#43;09:00 lastmod: 2026-06-30T00:00:00&#43;09:00 draft: false tags: [“ai-agents”, “frameworks”, “comparison”, “langchain”, “crewai”, “autogen”, “llamaindex”, “langgraph”] categories: [“llm-frameworks”] slug: ai-agent-frameworks-comparison-2026 author: “Dibi8 Editorial Team” showAuthor: true showSummary: true sources: - name: GitHub url: https://github.com/langchain-ai/langchain type: star_count
+name: GitHub url: https://github.com/crewAIInc/crewAI type: star_count name: GitHub url: https://github.com/microsoft/autogen type: star_count name: GitHub url: https://github.com/run-llama/llama_index type: star_count name: GitHub url: https://github.com/langchain-ai/langgraph type: star_count— Editorial Disclosure: This comparison uses real-time GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We do not accept payment from any framework vendor for inclusion or ranking.
+...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>20 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>22 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ai-agent-frameworks-comparison-2026/"></a>
 </article>
 
@@ -213,8 +232,8 @@ LLM Governance Security application_domain: Collections source_version: ’&#39;
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-25T00:00:00&#43;08:00 lastmod: 2026-05-25T00:00:00&#43;08:00 tech_stack: [Letta, Mem0, ‘A-MEM’, ‘Vector DB’, Python] application_domain: LLM Frameworks source_version: “Letta 0.8 / Mem0 0.2 / A-MEM 1.3” licensing_model: 오픈 소스 license_type: ‘Apache-2.0 / MIT’ last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“ai-agent”, “memory”, “persistence”, “letta”, “mem0”, “2026”] aliases:
-/kr/posts/ai-agent-memory-persistence-letta-mem0-a-mem-2026/ faq: - q: “AI Agent에 영속 메모리가 왜 필요한가요?” a: “영속화가 없으면 모든 세션이 0에서 다시 시작됩니다 — Agent는 어제의 선호, 결정, 컨텍스트를 기억하지 못합니다. 지속적인 협업(코딩 파트너, 리서치 어시스턴트, 고객 응대 챗봇)에서는 영속 메모리가 도구와 파트너를 가르는 분기점입니다.” q: “세 가지 접근 방식의 차이는?” a: “Letta는 OS 같은 메모리 계층(core / archival / recall)을 사용합니다. Mem0은 간단한 add/search API로 개발자 편의에 집중합니다. A-MEM은 능동적 망각과 감쇠를 가진 연구 지향형입니다. 셋 다 같은 문제를 다른 방식으로 풉니다.” q: “그냥 MCP memory server를 써도 되나요?” a: “1인 / 경량 케이스에는: 네. 공식 MCP memory server는 더 단순하지만 검색 스코어링, 감쇠, 세션 간 추론이 없습니다. 정교한 멀티턴 Agent에는 Letta나 Mem0 같은 전용 메모리 프레임워크가 이깁니다.” q: “Agent 메모리는 그 복잡도를 감수할 가치가 있나요?” a: “실사용자를 응대하는 프로덕션 Agent 대부분에서: 네, 실질적으로 가치 있습니다. ‘당신을 기억한다’와 ‘처음부터 시작한다’ 사이의 품질 격차는 큽니다. 일회성 작업이나 단순 워크플로에는: 복잡도를 감당할 가치가 없습니다.” AI Agent 메모리 영속화 2026: Letta vs Mem0 vs A-MEM Meta Description: 메모리 없는 Agent는 매번 0에서 다시 시작합니다. 멀티 세션 워크로드에서 Letta, Mem0, A-MEM 실측. 누가 진짜 컨텍스트를 유지하는지, 비용은 어떤지, 언제 직접 만들어야 하는지.
+    <p>title: “AI Agent Memory Persistence 2026: Letta vs Mem0 vs A-MEM… description: “Technical guide and comparison.” date: 2026-05-25T00:00:00&#43;08:00 lastmod: 2026-05-25T00:00:00&#43;08:00 tech_stack: [Letta, Mem0, ‘A-MEM’, ‘Vector DB’, Python] application_domain: LLM Frameworks source_version: “Letta 0.8 / Mem0 0.2 / A-MEM 1.3” licensing_model: Open Source license_type: ‘Apache-2.0 / MIT’ last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“ai-agent”, “memory”, “persistence”, “letta”, “mem0”, “2026”] aliases:
+/posts/ai-agent-memory-persistence-letta-mem0-a-mem-2026/ faq: - q: “Why do AI agents need persistent memory?” a: “Without persistence, every session restarts from zero — agent doesn’t remember yesterday’s preferences, decisions, or context. For ongoing collaboration (coding partner, research assistant, customer-facing chatbot), persistent memory is the difference between tool and partner.” q: “How do these three differ in approach?” a: “Letta uses an OS-like memory hierarchy (core / archival / recall). Mem0 focuses on developer ergonomics with simple add/search API. A-MEM is research-focused with active forgetting and decay. All three solve the same problem differently.” q: “Can I just use the MCP memory server instead?” a: “For solo / lightweight cases: yes. The official MCP memory server is simpler but lacks retrieval scoring, decay, and cross-session reasoning. For sophisticated multi-turn agents, dedicated memory frameworks like Letta or Mem0 win.” q: “Is agent memory worth the complexity?” a: “For most production agents serving real users: yes, materially. The quality difference between ‘remembers you’ and ‘starts from scratch’ is large. For one-shot tasks or simple workflows: not worth the complexity.” AI Agent Memory Persistence 2026: Letta vs Mem0 vs A-MEM Meta Description: Agents without memory restart from zero. Tested Letta, Mem0, A-MEM on multi-session workload. Which actually retains context, costs less, when to roll your own.
 ...</p>
   </div>
   <footer class="entry-footer">
@@ -229,13 +248,13 @@ LLM Governance Security application_domain: Collections source_version: ’&#39;
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-22T00:00:00&#43;08:00 lastmod: 2026-05-22T00:00:00&#43;08:00 tech_stack: [Python, TypeScript, PostgreSQL, ‘Vector databases’, MCP] application_domain: Llm Frameworks source_version: ’’ licensing_model: Open Source license_type: Apache-2.0 / MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-20” draft: false categories: [“llm-frameworks”] tags: [“ai-agents”, “memory-systems”, “mem0”, “agentmemory”, “hindsight”, “mempalace”, “mcp”, “rag”, “vector-database”, “persistent-memory”, “open-source”, “llm-infrastructure”] aliases:
-/kr/posts/ai-agent-memory-systems-2026/ /kr/resources/dev-utils/ai-agent-memory-systems-2026/ faqs: - q: ‘Mem0, agentmemory, Hindsight, MemPalace의 차이?’ a: ‘Mem0는 프레임워크 통합이 가장 넓음(21 프레임워크, 20 벡터 백엔드). agentmemory는 코딩 에이전트에 특화되어 네이티브 MCP 사용. Hindsight는 recall 정확도가 가장 높고 생체모방 3종 메모리 &#43; 4전략 검색. MemPalace는 커뮤니티 규모(52K&#43; stars) 최고.’ q: ‘프로덕션에서 AI 에이전트 메모리 레이어가 필요한가요?’ a: ‘네, 에이전트가 멀티 세션 연속성, 장기 고객 관계, 도메인 전문성 축적이 필요하다면. 무상태 에이전트는 단발성 작업엔 괜찮지만 진짜 작업엔 한계. Gartner는 2026년 말까지 엔터프라이즈 앱의 40%가 작업 지향 AI 에이전트를 통합한다고 예측 — 메모리는 전제조건.’ q: ‘어떤 메모리 레이어가 Claude Code와 통합되나요?’ a: ‘agentmemory가 MCP 네이티브로 Claude Code, Cursor, Codex CLI, Windsurf 및 11&#43; 다른 에이전트 클라이언트에 특화. progressive context injection으로 장기 코드베이스 프로젝트에서 60%&#43; 반복 설명 감소.’ q: ‘AI 에이전트 메모리 레이어 비용은?’ a: ‘4대 솔루션(Mem0, agentmemory, Hindsight, MemPalace) 모두 Apache-2.0 또는 MIT 오픈소스. 호스팅(vector DB &#43; Postgres)과 검색 시 LLM API 토큰만 지불. Mem0는 매니지드 클라우드 티어도 제공.’ q: ‘메모리 레이어로 LLM 토큰 비용을 줄일 수 있나요?’ a: ‘네 — Mem0 2026-04 알고리즘 업그레이드로 LoCoMo 92.5% 정확도를 query당 ~7K 토큰으로 달성 (full-context ~26K 토큰 대비). 토큰 73% 감소하면서 정확도는 더 높음. inference 규모에서는 비즈니스 모델 차이지 한계적 개선이 아님.’ 2026 AI 에이전트 메모리 시스템 완벽 비교: Mem0 / agentmemory / Hindsight / MemPalace Quick Answer Q: 2026년 최고의 AI 에이전트 메모리 시스템은?
+    <p>title: “AI Agent Memory Systems 2026: Mem0 vs agentmemory vs Hin… description: “Technical guide and comparison.” date: 2026-05-22T00:00:00&#43;08:00 lastmod: 2026-05-22T00:00:00&#43;08:00 tech_stack: [Python, TypeScript, PostgreSQL, ‘Vector databases’, MCP] application_domain: Llm Frameworks source_version: ’’ licensing_model: Open Source license_type: Apache-2.0 / MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-20” draft: false categories: [“llm-frameworks”] tags: [“ai-agents”, “memory-systems”, “mem0”, “agentmemory”, “hindsight”, “mempalace”, “mcp”, “rag”, “vector-database”, “persistent-memory”, “open-source”, “llm-infrastructure”] aliases:
+/posts/ai-agent-memory-systems-2026/ /resources/dev-utils/ai-agent-memory-systems-2026/ faqs: - q: What’s the difference between Mem0, agentmemory, Hindsight, and MemPalace?&#39; a: ‘Mem0 leads in framework integrations (21 frameworks, 20 vector backends). agentmemory specializes in coding agents via native MCP. Hindsight has the highest recall accuracy with biomimetic 3-type memory and 4-strategy retrieval. MemPalace leads in community size (52K&#43; stars) with stable, well-documented vector semantic memory.’ q: ‘Do I need an AI agent memory layer for production?’ a: ‘Yes if your agents need multi-session continuity, long-term customer relationships, or accumulated domain expertise. Stateless agents are fine for one-shot tasks but hit an architectural ceiling for anything resembling real work. Gartner forecasts 40% of enterprise apps will integrate task-oriented AI agents by end of 2026 — memory is the prerequisite.’ q: ‘Which memory layer integrates with Claude Code?’ a: ‘agentmemory is MCP-native and ships specifically for Claude Code, Cursor, Codex CLI, Windsurf, and 11&#43; other agent clients. It uses progressive context injection to cut 60%&#43; of repetitive re-explanation in long codebase projects.’ q: ‘How much do AI agent memory layers cost?’ a: ‘All four leading systems (Mem0, agentmemory, Hindsight, MemPalace) are open source under Apache-2.0 or MIT. You pay only for hosting (vector database &#43; Postgres) and LLM API tokens for retrieval. Mem0 also offers a managed cloud tier.’ q: ‘Can memory layers reduce my LLM token bill?’ a: ‘Yes — Mem0’’s April 2026 algorithm upgrade delivers LoCoMo 92.5% accuracy at ~7K tokens/query vs ~26K for full-context approaches. That’’s 73% fewer tokens per query while outperforming on accuracy. At inference scale this is a business model difference, not a marginal improvement.’ AI Agent Memory Systems 2026: Mem0 vs agentmemory vs Hindsight vs MemPalace (Open-Source Compared) Quick Answer Q: What’s the best AI agent memory system in 2026?
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ai-agent-memory-systems-2026/"></a>
 </article>
 
@@ -245,14 +264,13 @@ LLM Governance Security application_domain: Collections source_version: ’&#39;
     </h2>
   </header>
   <div class="entry-content">
-    <p>2026년 AI 에이전트 메모리 시스템 완벽 가이드 대화만 끝나면 초기화되는 AI는 도구가 아니라 장난감이다. 2026년, 지속적 기억은 에이전트의 ‘선택 옵션’이 아니라 ‘기반 시설’이 되었다.
-왜 지금 AI 에이전트 메모리가 뜨는가 2년간 개발자들은 LLM이 ‘잘 생각하게’ 만드는 데 집중했다. 도구 사용(tool use), 멀티스텝 추론, 빠른 추론 속도. 하지만 근본적인 문제를 외면했다: 세션이 끝나면 에이전트는 모든 것을 잊는다.
-Claude Code나 Cursor, Codex CLI를 쓰는 개발자라면 누구나 겪어봤을 것이다. 새로운 대화창을 열면 프로젝트 구조부터 다시 설명해야 하고, 지난주에 함께 디버깅한 성능 병목도, 팀의 코딩 컨벤션도 모두 백지가 된다. 이것은 단순한 불편이 아니라 — 에이전트가 장기 프로젝트를 수행할 수 있는 천장이다.
+    <p>AI Agent Memory Systems 2026: The Infrastructure Layer You Can’t Ignore Stateless AI agents are the dial-up internet of 2026 — technically functional, fundamentally unusable for real work. Persistent memory is no longer a nice-to-have. It’s the difference between a demo and a product.
+Why Agent Memory Exploded in May 2026 For two years, the AI engineering community optimized how agents think — better reasoning, richer tool use, faster inference. But we ignored a basic truth: every session ends with amnesia.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ai-agent-memory-systems-open-source-infrastructure-2026/"></a>
 </article>
 
@@ -263,32 +281,14 @@ Claude Code나 Cursor, Codex CLI를 쓰는 개발자라면 누구나 겪어봤�
   </header>
   <div class="entry-content">
     <p>{&lt;/* resource-info */&gt;}
-Meta Description: 2026년 가장 핫한 AI Agent Skills 생태계를 심층 분석합니다. mattpocock/skills부터 rohitg00/agentmemory까지, 클로드 코드 스킬의 설치와 사용법, 나만의 스킬 작성법을 단계별로 알려드립니다.
-발행일: 2026년 5월 16일 읽는 시간: 12분 키워드: AI 에이전트 스킬, 클로드 코드 스킬, Claude Code skills, mattpocock 스킬 튜토리얼, AI 코딩 에이전트 스킬팩, 커서 스킬 설치, 2026 AI 개발 도구 트렌드, 에이전트 워크플로우
-TL;DR 핵심 요약 2026년 5월, GitHub Trending은 2주 연속 AI Agent Skills가 점령했습니다. mattpocock/skills는 75,000&#43; Star로 1위를 지키고 있고, obra/superpowers는 188,000 Star로 가장 큰 커뮤니티를 형성했으며, rohitg00/agentmemory는 AI 코딩 에이전트의 가장 큰 고통인 기억 상실 문제를 해결했습니다. 스킬은 프롬프트가 아닙니다 — 반복 가능한 구조화된 워크플로우이며, 개발자와 AI의 협업 방식을 재정의하고 있습니다.
+Meta Description: Master AI Agent Skills in 2026 with our comprehensive guide. Learn how mattpocock/skills, obra/superpowers, and agentmemory are transforming Claude Code, Cursor, and Codex CLI workflows. Step-by-step installation, usage, and custom skill authoring included.
+Published: May 16, 2026 Reading Time: 12 minutes Keywords: AI agent skills, Claude Code skills tutorial, mattpocock skills guide, agent workflow 2026, AI coding agent skills, how to write agent skills, Cursor skills vs prompts, MCP vs skills, production AI agent workflows
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ai-agent-skills-2026-developer-guide/"></a>
-</article>
-
-<article class="post-entry tag-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Tool Guide
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>AI 에이전트 스킬이란? 블랙박스에서 조립형 행동 레고로 핵심 개념: 전문가의 직관을 에이전트 제약 조건으로 인코딩하기 전통적인 AI 코딩 어시스턴트의 근본적인 문제는 무상태성, 제약 부재, 기억 없음이다. 모든 대화는 백지 상태에서 시작된다. AI는 같은 실수를 반복하고, 메인 브랜치에 force push하고, 프로덕션에서 ```rm -rf````를 실행한다.
-스킬 패턴은 이 문제를 해결한다: 특정 도메인의 워크플로우, 가드레일(guardrails), 디버깅 방법론을 구조화된 구성 파일로 인코딩한다. AI 에이전트는 어떤 작업을 실행하기 전에 이 “행동 패턴&#34;을 로드한다.
-┌────────────────────────────────────────────────────────────────┐ │ AI 에이전트 스킬 아키텍처 │ ├────────────────────────────────────────────────────────────────┤ │ │ │ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ │ │ │ AI 코딩 │ │ 스킬 │ │ 신뢰할 수 │ │ │ │ 에이전트 │◄────│ (설정과 │────►│ 있는 제약 │ │ │ │ (Claude, │ │ 패턴) │ │ 출력 │ │ │ │ Codex) │ │ │ │ │ │ │ └─────────────┘ └─────────────┘ └─────────────┘ │ │ │ │ 스킬 예시: │ │ ├─ 가드레일: git push --force / rm -rf 차단 │ │ ├─ TDD 패턴: 구현 전 테스트 요구 │ │ ├─ 디버그 워크플로우: 구조화된 오류 조사 │ │ ├─ 도메인 패턴: TypeScript/React/Python 베스트 프랙티스 │ │ └─ 리뷰 체크리스트: PR 템플릿, 코드 스타일 가이드 │ │ │ └────────────────────────────────────────────────────────────────┘ 왜 스킬이 프롬프트보다 강력한가 차원 기존 프롬프트 AI 에이전트 스킬 재사용성 매번 다시 작성 한 번 작성, 프로젝트 전체 재사용 일관성 기억에 의존 파일 기반, 버전 관리 팀 온보딩 구두 전달 저장소에 포함, 신규 개발자 즉시 적용 유지보수성 채팅 기록에 흩어짐 구조화된 SKILL.md &#43; 스크립트 트리거 수동 붙여넣기 컨텍스트 자동 감지, 조건부 활성화 Matt Pocock의 mattpocock/skills 저장소는 이 운동의 도화선이 되었다. 그는 개인 .claude 디렉토리를 오픈소스로 공개했는데, 여기에는 다음이 포함된다: - TDD 스킬: RED-GREEN-REFACTOR 사이클 강제
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ai-agent-skills-framework-spec-driven-development-2026/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
@@ -319,6 +319,81 @@ TL;DR 핵심 요약 2026년 5월, GitHub Trending은 2주 연속 AI Agent Skills
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

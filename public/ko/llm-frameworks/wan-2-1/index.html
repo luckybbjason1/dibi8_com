@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/llm-frameworks/wan-2-1/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/llm-frameworks/wan-2-1/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-frameworks/wan-2-1/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/llm-frameworks/wan-2-1/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="llm-frameworks">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "LLM Frameworks - dibi8",
+      "item": "https://dibi8.com/ko/llm-frameworks/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/llm-frameworks/wan-2-1/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“wan-2-1”, “tạo-video”, “diffusion-transformer”, “ai-video”, “mã-nguồn-mở”, “alibaba”, “comfyui”, “diffusers”] aliases:\n/vi/posts/wan-2-1/ Giới thiệu Mọi lập trình viên đã thử tạo video cục bộ đều biết cùng một nỗi đau: hoặc mô hình yêu cầu phần cứng GPU đắt hơn cả xe hơi, hoặc đầu ra trông như trình chiếu từ những năm 1990. Đầu năm 2025, nhóm Wan của Alibaba phát hành Wan 2.1 — một bộ công cụ tạo video hoàn toàn mã nguồn mở đã thay đổi phương trình. Với 16.100+ sao GitHub và mô hình 1,3B tham số chạy trên RTX 4090, Wan 2.1 là mô hình tạo video chất lượng cao dễ tiếp cận nhất hiện nay. Hướng dẫn này sẽ đi sâu vào Wan 2.1 là gì, cách hoạt động, cách cài đặt, so sánh với HunyuanVideo, CogVideo và Open-Sora, và cách triển khai trong môi trường production.\nWan 2.1 là gì? Wan 2.1 là bộ mô hình tạo video nền quy mô lớn nâng cao và mở được nhóm Wan của Alibaba phát hành vào tháng 2 năm 2025. Nó cung cấp khả năng tạo video từ văn bản (T2V), từ hình ảnh (I2V), chỉnh sửa video, tạo hình ảnh từ văn bản, tạo video từ khung đầu/cuối (FLF2V) và tạo âm thanh từ video. Bộ công cụ có hai kích thước tham số — mô hình 14B cho chất lượng tối đa và mô hình 1,3B được tối ưu hóa cho GPU phổ thông. Wan 2.1 là mô hình video mã nguồn mở đầu tiên có khả năng tạo văn bản tiếng Trung và tiếng Anh trong khung hình video.\nWan 2.1 hoạt động như thế nào Tổng quan kiến trúc Wan 2.1 được xây dựng trên nền tảng Diffusion Transformer (DiT) với Flow Matching, cùng họ kiến trúc với Stable Diffusion 3. Kiến trúc có ba thành phần cốt lõi: Wan-VAE (Bộ mã hóa tự động biến phân video): Một VAE nhân quả 3D thực hiện nén không-thờ gian 256x. Không giống các VAE hình ảnh tiêu chuẩn, Wan-VAE bảo toàn tính nhân quả thờ gian — nghĩa là mỗi khung chỉ quan sát các khung trước đó, không phải khung tương lai. Điều này loại bỏ hiện tượng nhấp nháy phổ biến ở các mô hình tạo video đầu tiên. Wan-VAE có thể mã hóa video 1080P với độ dài bất kỳ mà không mất thông tin thờ gian.\nDiffusion Transformer (DiT): Xương sống tạo sinh sử dụng transformer tiêu chuẩn với cross-attention để điều khiển theo văn bản. Mỗi khối transformer xử lý các patch không-thờ gian và áp dụng hướng dẫn văn bản thông qua embedding T5. Phép điều chế MLP sử dụng MLP được chia sẻ trên tất cả các khối, mỗi khối học một bộ bias riêng.\nBộ mã hóa văn bản T5: Wan 2.1 sử dụng bộ mã hóa văn bản UMT5-XXL để hiểu prompt đa ngôn ngữ. Bộ mã hóa này được đào tạo trên cả văn bản tiếng Anh và tiếng Trung, mang lại khả năng hiểu song ngữ gốc.\nThông số kỹ thuật mô hình Mô hình Tham số Độ phân giải VRAM (GPU đơn) Thờ gian tạo điển hình T2V-1.3B 1.3B 480P 8.19 GB ~4 phút trên RTX 4090 T2V-14B 14B 480P / 720P 40–48 GB (480P fp8) ~4 phút trên H100 (480P) I2V-14B 14B 480P / 720P 65–80 GB (720P) ~10–12 phút trên H100 (720P) FLF2V-14B 14B 720P 65–80 GB ~10–15 phút trên H100 Mô hình 14B sử dụng chiều 5120, 40 đầu attention và 40 lớp transformer. Mô hình 1,3B giảm xuống chiều 1536, 12 đầu và 30 lớp.\nCài đặt và thiết lập Yêu cầu tiên quyết GPU NVIDIA hỗ trợ CUDA (8GB+ cho 1.3B, 40GB+ cho 14B) Python 3.10+ CUDA 12.1+ Cài đặt cơ bản # Clone repository git clone https://github.com/Wan-Video/Wan2.1.git cd Wan2.1 # Tạo môi trường ảo python -m venv venv source venv/bin/activate # Cài đặt dependencies (yêu cầu torch \u003e= 2.4.0) pip install -r requirements.txt Nội dung requirements.txt: ````` torch\u003e=2.4.0 torchvision\u003e=0.19.0 opencv-python\u003e=4.9.0.80 diffusers\u003e=0.31.0 transformers\u003e=4.49.0 accelerate\u003e=1.1.1 flash_attn gradio\u003e=5.0.0 numpy\u003e=1.23.5,\u003c2\n### Cài đặt bằng Poetry (thay thế) `````bash # Cài đặt dependencies poetry install # Nếu flash-attn xây dựng thất bại poetry run pip install --upgrade pip setuptools wheel poetry run pip install flash-attn --no-build-isolation poetry install Tải mô hình Tải mô hình bằng HuggingFace CLI: `````bash\nCài đặt huggingface-cli pip install “huggingface_hub[cli]”\nTải mô hình T2V 14B huggingface-cli download Wan-AI/Wan2.1-T2V-14B –local-dir ./Wan2.1-T2V-14B\nTải mô hình 1.3B cho GPU phổ thông huggingface-cli download Wan-AI/Wan2.1-T2V-1.3B –local-dir ./Wan2.1-T2V-1.3B\nTải VAE huggingface-cli download Wan-AI/Wan2.1-VAE –local-dir ./Wan2.1-VAE\nTải bộ mã hóa văn bản huggingface-cli download Wan-AI/Wan2.1-T5 –local-dir ./Wan2.1-T5\nHoặc dùng ModelScope để tải nhanh hơn từ Trung Quốc: `````bash pip install modelscope modelscope download Wan-AI/Wan2.1-T2V-14B --local_dir ./Wan2.1-T2V-14B Tạo video đầu tiên (T2V-1.3B) python generate.py \\ --task t2v-1.3B \\ --size 832*480 \\ --ckpt_dir ./Wan2.1-T2V-1.3B \\ --prompt \"Hồ núi yên bìn lúc bình minh, sương mù bốc lên từ mặt nước, camera di chuyển chậm sang phải\" Tạo video đầu tiên (T2V-14B) python generate.py \\ --task t2v-14B \\ --size 1280*720 \\ --ckpt_dir ./Wan2.1-T2V-14B \\ --prompt \"Hai chú mèo nhân hóa mặc đồ boxing thoải mái và găng tay sáng màu đấu nhau kịch liệt trên sân khấu được chiếu đèn.\" Chạy Gradio Web UI cd gradio # Chạy T2V 14B với GPU đơn python t2v_14B_singleGPU.py \\ --prompt_extend_method dashscope \\ --ckpt_dir ./Wan2.1-T2V-14B # Chạy T2V 1.3B (nhẹ hơn, cho GPU phổ thông) python t2v_1.3B_singleGPU.py \\ --ckpt_dir ./Wan2.1-T2V-1.3B Tích hợp với ComfyUI, Diffusers và các công cụ khác Tích hợp ComfyUI Wan 2.1 có tích hợp ComfyUI gốc. Cách tiếp cận được đề xuất sử dụng các node tùy chỉnh ComfyUI-WanVideoWrapper của Kijai: `````bash\nCài đặt node tùy chỉnh cd ComfyUI/custom_nodes git clone https://github.com/Kijai/ComfyUI-WanVideoWrapper.git git clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git git clone https://github.com/kijai/ComfyUI-KJNodes.git\nCài đặt dependencies cho node cd ComfyUI-WanVideoWrapper pip install -r requirements.txt\nTải file mô hình và đặt vào thư mục ComfyUI phù hợp: `````bash # Diffusion models -\u003e ComfyUI/models/diffusion_models # Wan2_1-T2V-14B_fp8_e4m3fn.safetensors # Wan2_1-T2V-1_3B_fp32.safetensors # Text encoders -\u003e ComfyUI/models/text_encoders # umt5-xxl-enc-bf16.safetensors # VAE -\u003e ComfyUI/models/vae # Wan2_1_VAE_fp32.safetensors Tích hợp Diffusers import torch from diffusers.utils import export_to_video from diffusers import AutoencoderKLWan, WanPipeline from diffusers.schedulers.scheduling_unipc_multistep import UniPCMultistepScheduler # Tải mô hình model_id = \"Wan-AI/Wan2.1-T2V-14B-Diffusers\" vae = AutoencoderKLWan.from_pretrained( model_id, subfolder=\"vae\", torch_dtype=torch.float32 ) # Cấu hình scheduler flow_shift = 5.0 # 5.0 cho 720P, 3.0 cho 480P scheduler = UniPCMultistepScheduler( prediction_type=flow_prediction, use_flow_sigmas=True, num_train_timesteps=1000, flow_shift=flow_shift ) # Xây dựng pipeline pipe = WanPipeline.from_pretrained( model_id, vae=vae, torch_dtype=torch.bfloat16 ) pipe.scheduler = scheduler pipe.to(\"cuda\") # Tạo video prompt = ( \"Một con mèo và một con chó cùng nướng bánh trong bếp. \" \"Con mèo đang cẩn thận đong bột mì, con chó khuấy bột bằng thìa gỗ. \" \"Căn bếp ấm cúng, ánh nắng chiếu qua cửa sổ.\" ) negative_prompt = ( \"Tông màu sáng, cháy sáng, tĩnh, chi tiết mờ, phụ đề, \" \"phong cách, tác phẩm, tranh vẽ, hình ảnh, tĩnh, \" \"chất lượng kém, nét xấu, không đầy đủ\" ) output = pipe( prompt=prompt, negative_prompt=negative_prompt, height=720, width=1280, num_frames=81, guidance_scale=5.0, ).frames[0] export_to_video(output, \"output.mp4\", fps=16) Suy luận đa GPU với FSDP + xDiT # Cài đặt xDiT pip install \"xfuser\u003e=0.4.1\" # Chạy trên 8 GPU torchrun --nproc_per_node=8 generate.py \\ --task t2v-14B \\ --size 1280*720 \\ --ckpt_dir ./Wan2.1-T2V-14B \\ --dit_fsdp --t5_fsdp \\ --ulysses_size 8 \\ --prompt \"Nhập prompt của bạn\" Tạo video từ hình ảnh (I2V) python generate.py \\ --task i2v-14B \\ --size 1280*720 \\ --ckpt_dir ./Wan2.1-I2V-14B-720P \\ --image examples/i2v_input.JPG \\ --prompt \"Phong cách kỳ nghỉ bãi biển mùa hè, một chú mèo trắng đeo kính râm ngồi trên ván lướt sóng.\" Tạo video từ khung đầu/cuối (FLF2V) python generate.py \\ --task flf2v-14B \\ --size 1280*720 \\ --ckpt_dir ./Wan2.1-FLF2V-14B-720P \\ --first_frame examples/flf2v_input_first_frame.png \\ --last_frame examples/flf2v_input_last_frame.png \\ --prompt \"Phong cách hoạt hình CG, một chú chim xanh nhỏ cất cánh từ mặt đất, vỗ cánh bay lên.\" Mở rộng prompt # Sử dụng mô hình Qwen cục bộ python generate.py \\ --task t2v-14B \\ --size 1280*720 \\ --ckpt_dir ./Wan2.1-T2V-14B \\ --prompt \"Một con mèo chơi piano\" \\ --use_prompt_extend \\ --prompt_extend_model Qwen/Qwen2.5-7B-Instruct # Sử dụng API DashScope DASH_API_KEY=your_key python generate.py \\ --task t2v-14B \\ --size 1280*720 \\ --ckpt_dir ./Wan2.1-T2V-14B \\ --prompt \"Một con mèo chơi piano\" \\ --use_prompt_extend \\ --prompt_extend_method dashscope Benchmark / Các trường hợp sử dụng thực tế Hiệu suất VBench Wan 2.1 được đánh giá trên 14 chiều chính và 26 chiều phụ với 1.035 prompt nội bộ. Mô hình 14B đạt điểm VBench có trọng số là 0,724, vượt qua cả đối thủ mã nguồn mở và độc quyền.\nBenchmark hiệu suất GPU Hiệu suất trên các GPU khác nhau (tổng thờ gian giây / bộ nhớ GPU đỉnh GB): | GPU | 1.3B 480P | 14B 480P | 14B 720P | |—|—|—|—| | RTX 4090 (24GB) | 281s / 8,2GB | Không hỗ trợ | Không hỗ trợ | | A5000 (24GB) | 462s / 8,2GB | Không hỗ trợ | Không hỗ trợ | | A40 (48GB) | 350s / 8,2GB | 1083s / 42GB | Không hỗ trợ | | A100 (80GB) | 170s / 8,2GB | 523s / 48GB | ~850s / 72GB | | L40 (48GB) | 290s / 8,2GB | 859s / 42GB | Không hỗ trợ | | H100 (80GB) | 85s / 8,2GB | 284s / 48GB | ~580s / 72GB |\nChi phí production thực tế Chi phí GPU cloud cho tạo video đầu năm 2026: | Mô hình | Độ phân giải | Thờ lượng | Thờ gian tạo | Chi phí GPU | Chi phí/clip | |—|—|—|—|—|—| | Wan 2.1 1.3B | 480P | 5s | ~4 phút | RTX 4090 local | ~$0,02 | | Wan 2.1 14B | 480P | 5s | ~4 phút | $2,50/giờ (H100) | ~$0,17 | | Wan 2.1 14B | 720P | 5s | ~10 phút | $2,50/giờ (H100) | ~$0,42 | | HunyuanVideo | 720P | 5s | ~20 phút | $3,49/giờ (H200) | ~$0,70 |\nCác trường hợp sử dụng production Pipeline nội dung mạng xã hội: Clip 5 giây 480P tốn khoảng $0,17 trên H100. Với 100 clip/tháng, chi phí cloud dưới $20 — so với $30–80/tháng cho dịch vụ API độc quyền.\nNguyên mẫu quảng cáo sáng tạo: Khả năng tạo văn bản song ngữ của Wan 2.1 rất lý tưởng cho thị trường Đông Á, nơi cần phủ lớp văn bản tiếng Trung hoặc tiếng Nhật lên video.\nTiền trực quan hóa phim: Tác vụ FLF2V cho phép nghệ sĩ storyboard tạo hoạt hình giữa hai keyframe để lập kế hoạch cảnh quay.\nSử dụng nâng cao / Củng cố production Lượng tử hóa FP8 để giảm VRAM # Lượng tử hóa FP8 giảm ~20% VRAM python generate.py \\ --task t2v-14B \\ --size 832*480 \\ --ckpt_dir ./Wan2.1-T2V-14B \\ --offload_model True \\ --t5_cpu \\ --prompt \"Nhập prompt của bạn\" Cờ tối ưu VRAM Cờ Mô tả Tác động VRAM --offload_model True Chuyển transformer sang CPU giữa các bước -15–20GB --t5_cpu Chạy encoder T5 trên CPU -2–3GB --dit_fsdp Chia DiT qua nhiều GPU Chia theo số GPU --ulysses_size N Sử dụng song song chuỗi Giảm tuyến tính Triển khai Docker FROM nvidia/cuda:12.1.0-devel-ubuntu22.04 WORKDIR /app RUN apt-get update \u0026\u0026 apt-get install -y python3-pip git COPY requirements.txt . RUN pip install -r requirements.txt COPY . . RUN huggingface-cli download Wan-AI/Wan2.1-T2V-14B \\ --local-dir ./Wan2.1-T2V-14B EXPOSE 7860 CMD [\"python\", \"gradio/t2v_14B_singleGPU.py\", \"--ckpt_dir\", \"./Wan2.1-T2V-14B\"] Build và chạy: `````bash docker build -t wan2.1 . docker run –gpus all -p 7860:7860 wan2.1\n### Giám sát tác vụ tạo sinh `````python import time import psutil import torch def generate_with_monitoring(prompt, **kwargs): process = psutil.Process() start_mem = process.memory_info().rss / 1024**3 start_time = time.time() result = generate_video(prompt, **kwargs) elapsed = time.time() - start_time peak_mem = process.memory_info().rss / 1024**3 gpu_mem = torch.cuda.max_memory_allocated() / 1024**3 print(f\"Hoàn thành sau {elapsed:.1f}s\") print(f\"VRAM GPU đỉnh: {gpu_mem:.1f} GB\") print(f\"Tăng RAM: {peak_mem - start_mem:.1f} GB\") return result Fine-tuning LoRA # Cài đặt DiffSynth-Studio pip install diffsynth-studio # Huấn luyện LoRA phong cách python -m diffsynth.train \\ --model_name wan2.1-t2v-14b \\ --dataset_path ./my_style_videos \\ --output_path ./wan_lora_output \\ --learning_rate 1e-4 \\ --num_train_steps 1000 So sánh với các lựa chọn thay thế Tính năng Wan 2.1 HunyuanVideo CogVideoX-1.5-5B Open-Sora 2.0 Tham số 1.3B / 14B ~13B 5B 7B VRAM tối thiểu (T2V) 8,19GB (1.3B) 12GB (lượng tử) 5GB (diffusers) 24GB Độ phân giải tối đa 720P 1080P 1360x768 768P Thờ lượng tối đa ~5s (81 khung) ~5s 10s ~5s Tốc độ tạo (H100, 720P) ~10 phút ~20 phút ~9 phút ~15 phút Văn bản song ngữ Có (Trung+Anh) Không Không Không Hỗ trợ I2V Có (14B) Có Có Có (T2I2V) Chỉnh sửa video Có (VACE) Không Không Không Giấy phép Apache-2.0 Apache-2.0 Apache-2.0 Apache-2.0 Điểm VBench 0,724 0,71 0,68 0,73 Tính liền mạch chuyển động 8/10 9/10 7,5/10 8/10 Hỗ trợ GPU phổ thông Có (1.3B) Một phần (lượng tử) Có (diffusers) Không Hỗ trợ ComfyUI Gốc Cộng đồng Cộng đồng Cộng đồng Chi phí huấn luyện Không công bố Không công bố Không công bố $200K Khi nào chọn mỗi mô hình Wan 2.1: Cân bằng tốt nhất giữa chất lượng, tốc độ và khả năng tiếp cận. Chọn khi cần văn bản song ngữ, hỗ trợ GPU phổ thông (1.3B) hoặc tích hợp ComfyUI gốc. HunyuanVideo: Chọn khi cần tính chân thực chuyển động và độ trung thực hình ảnh tối đa, với phần cứng H200. CogVideoX-1.5-5B: Chọn khi cần VRAM thấp nhất hoặc tạo clip 10 giây. Open-Sora 2.0: Chọn khi cần pipeline hiệu quả về huấn luyện ($200K chi phí đã ghi nhận) hoặc workflow T2I2V tích hợp FLUX. Hạn chế / Đánh giá trung thực Wan 2.1 không phải đũa thần. Đây là những gì bảng thông số không nói cho bạn biết: Độ dài clip bị giới hạn cứng ở ~5 giây. Mô hình được đào tạo trên 81 khung 16 FPS. Cố gắng tạo clip dài hơn qua cửa sổ trượt hoặc tiếp cận tự hồi quy sẽ gây suy giảm chất lượng sau khung 81.\n720P trên mô hình 14B chỉ dành cho H100. README chính thức ghi hỗ trợ 720P nhưng thực tế cần 65–80GB VRAM. RTX 4090 (24GB) không thể chạy 720P ngay cả khi lượng tử hóa.\nMô phỏng vật lý hạn chế. Các tương tác vật lý phức tạp (chất lỏng, vải, va chạm vật rắn) xuất hiện artifact. Các mô hình như Kling 2.1 xử lý cảnh vật lý thuyết phục hơn.\nMô hình 1.3B có đánh đổi chất lượng. Nó nhanh và dễ tiếp cận nhưng tuân thủ prompt yếu hơn đáng kể so với 14B.\nMở rộng prompt tăng độ trễ. Tính năng mở rộng Qwen cải thiện chất lượng nhưng thêm 30–60 giây mỗi lần tạo.\nThờ gian khởi động lần đầu. Tải và biên dịch mô hình lần đầu có thể mất 5–10 phút. Các lần sau bắt đầu ngay lập tức.\nCâu hỏi thường gặp Q: Wan 2.1 có chạy trên RTX 3060 12GB không?\nMô hình 1.3B cần 8,19GB VRAM, vì vậy RTX 3060 12GB có thể chạy ở 480P với FP16. Mô hình 14B không chạy được. Sử dụng phiên bản GGUF hoặc FP8 từ cộng đồng nếu cần thêm dung lượng.\nQ: Wan 2.1 so với Sora hay Kling như thế nào?\nCác mô hình độc quyền như Sora và Kling vẫn dẫn đầu về tính nhất quán thờ gian, hiểu biết vật lý và độ dài clip tối đa (60+ giây). Lợi thế của Wan 2.1 là trọng số mở, chạy cục bộ và chi phí API bằng không. Với clip 5 giây, khoảng cách đã thu hẹp đáng kể.\nQ: Sự khác biệt giữa mô hình 1.3B và 14B là gì?\nMô hình 1.3B được chưng cất từ 14B và tối ưu cho tốc độ. Nó chạy trên GPU phổ thông nhưng chi tiết mềm hơn và tuân thủ prompt yếu hơn. Mô hình 14B là phiên bản chất lượng đầy đủ với động học chuyển động và kết xuất văn bản vượt trội.\nQ: Wan 2.1 có hỗ trợ chỉnh sửa video không?\nCó, thông qua tiện ích mở rộng VACE (Video Auto Content Editing). VACE hỗ trợ tạo video từ tham chiếu, chỉnh sửa video-to-video và chỉnh sửa video có mặt nạ. Cả hai mô hình VACE 1.3B và 14B đều có sẵn.\nQ: Wan 2.1 có thể sử dụng thương mại không?\nCó. Wan 2.1 được cấp phép Apache 2.0, cho phép sử dụng thương mại, sửa đổi và phân phối. Bạn giữ toàn quyền đối với nội dung được tạo.\nQ: Làm thế nào để giảm VRAM cho mô hình 14B?\nSử dụng --offload_model True, ````–t5_cpu```, và lượng tử hóa FP8 để giảm xuống còn ~35GB VRAM.\nQ: Video tạo ra bị nhấp nháy hoặc chuyển động không nhất quán?\nĐảm bảo sử dụng Wan 2.1 VAE chính hãng. Sử dụng chính xác 81 khung cho mô hình 14B. Tham số flow_shift nên là 5.0 cho 720P và 3.0 cho 480P.\nQ: Wan 2.1 có hoạt động trên AMD GPU hoặc Apple Silicon không?\nHỗ trợ chính thức chỉ dành cho CUDA. Các bản port cộng đồng cho ROCm (AMD) tồn tại nhưng hiệu suất khác nhau. Apple Silicon không được khuyến nghị do hạn chế băng thông bộ nhớ.\nKết luận Wan 2.1 thực hiện lờ hứa mà ít mô hình video mã nguồn mở làm được: đầu ra chất lượng production trên phần cứng dễ tiếp cận. Mô hình 1.3B dân chủ hóa tạo video cho ngườ dùng cá nhân, trong khi 14B cạnh tranh với dịch vụ độc quyền cho workflow chuyên nghiệp. Với 16.100+ sao GitHub, đóng góp cộng đồng tích cực và giấy phép Apache-2.0, Wan 2.1 là lựa chọn thực tiễn cho các nhóm xây dựng pipeline tạo video vào năm 2026.\nDanh sách hành động:\nClone repository và chạy mô hình 1.3B trên GPU cục bộ ngay hôm nay Benchmark mô hình 14B trên phần cứng H100 cloud Tham gia Wan Discord hoặc GitHub Discussions để được hỗ trợ Đánh giá tích hợp ComfyUI cho phát triển workflow trực quan Tham gia nhóm Telegram dibi8 để nhận phân tích sâu công cụ AI hàng tuần và mẹo triển khai production.\nHosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nNguồn và Tài liệu tham khảo Kho GitHub Wan 2.1 Báo cáo kỹ thuật Wan 2.1 (arXiv:2503.20314) Mô hình HuggingFace Wan 2.1 ComfyUI WanVideoWrapper bởi Kijai Tài liệu Diffusers Wan 2.1 Tăng tốc TeaCache Wan 2.1 Hướng dẫn chỉnh sửa video VACE Hướng dẫn GPU Cloud cho Video AI (Spheron) Báo cáo kỹ thuật Open-Sora 2.0 { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Wan 2.1: 16.1K+ Stars — Phân tích sâu tạo video mở so với HunyuanVideo, CogVideo 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/wan-2-1\" } } Related Articles stable-diffusion-complete-guide comfyui-workflows-complete-guide comfyui-workflows-complete-guide comfyui-workflows-complete-guide Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "3267",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/llm-frameworks/wan-2-1/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/llm-frameworks/">LLM Frameworks - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>16 분</span>&nbsp;|&nbsp;<span>번역:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/vi/llm-frameworks/wan-2-1/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#gi%e1%bb%9bi-thi%e1%bb%87u" aria-label="Giới thiệu">Giới thiệu</a></li>
+            <li>
+                <a href="#wan-21-l%c3%a0-g%c3%ac" aria-label="Wan 2.1 là gì?">Wan 2.1 là gì?</a></li>
+            <li>
+                <a href="#wan-21-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="Wan 2.1 hoạt động như thế nào">Wan 2.1 hoạt động như thế nào</a><ul>
+                    
+            <li>
+                <a href="#t%e1%bb%95ng-quan-ki%e1%ba%bfn-tr%c3%bac" aria-label="Tổng quan kiến trúc">Tổng quan kiến trúc</a></li>
+            <li>
+                <a href="#th%c3%b4ng-s%e1%bb%91-k%e1%bb%b9-thu%e1%ba%adt-m%c3%b4-h%c3%acnh" aria-label="Thông số kỹ thuật mô hình">Thông số kỹ thuật mô hình</a></li></ul>
+            </li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-v%c3%a0-thi%e1%ba%bft-l%e1%ba%adp" aria-label="Cài đặt và thiết lập">Cài đặt và thiết lập</a><ul>
+                    
+            <li>
+                <a href="#y%c3%aau-c%e1%ba%a7u-ti%c3%aan-quy%e1%ba%bft" aria-label="Yêu cầu tiên quyết">Yêu cầu tiên quyết</a></li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-c%c6%a1-b%e1%ba%a3n" aria-label="Cài đặt cơ bản">Cài đặt cơ bản</a></li>
+            <li>
+                <a href="#t%e1%ba%a3i-m%c3%b4-h%c3%acnh" aria-label="Tải mô hình">Tải mô hình</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-huggingface-cli" aria-label="Cài đặt huggingface-cli">Cài đặt huggingface-cli</a></li>
+            <li>
+                <a href="#t%e1%ba%a3i-m%c3%b4-h%c3%acnh-t2v-14b" aria-label="Tải mô hình T2V 14B">Tải mô hình T2V 14B</a></li>
+            <li>
+                <a href="#t%e1%ba%a3i-m%c3%b4-h%c3%acnh-13b-cho-gpu-ph%e1%bb%95-th%c3%b4ng" aria-label="Tải mô hình 1.3B cho GPU phổ thông">Tải mô hình 1.3B cho GPU phổ thông</a></li>
+            <li>
+                <a href="#t%e1%ba%a3i-vae" aria-label="Tải VAE">Tải VAE</a></li>
+            <li>
+                <a href="#t%e1%ba%a3i-b%e1%bb%99-m%c3%a3-h%c3%b3a-v%c4%83n-b%e1%ba%a3n" aria-label="Tải bộ mã hóa văn bản">Tải bộ mã hóa văn bản</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#t%e1%ba%a1o-video-%c4%91%e1%ba%a7u-ti%c3%aan-t2v-13b" aria-label="Tạo video đầu tiên (T2V-1.3B)">Tạo video đầu tiên (T2V-1.3B)</a></li>
+            <li>
+                <a href="#t%e1%ba%a1o-video-%c4%91%e1%ba%a7u-ti%c3%aan-t2v-14b" aria-label="Tạo video đầu tiên (T2V-14B)">Tạo video đầu tiên (T2V-14B)</a></li>
+            <li>
+                <a href="#ch%e1%ba%a1y-gradio-web-ui" aria-label="Chạy Gradio Web UI">Chạy Gradio Web UI</a></li></ul>
+                
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-comfyui-diffusers-v%c3%a0-c%c3%a1c-c%c3%b4ng-c%e1%bb%a5-kh%c3%a1c" aria-label="Tích hợp với ComfyUI, Diffusers và các công cụ khác">Tích hợp với ComfyUI, Diffusers và các công cụ khác</a><ul>
+                    
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-comfyui" aria-label="Tích hợp ComfyUI">Tích hợp ComfyUI</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-node-t%c3%b9y-ch%e1%bb%89nh" aria-label="Cài đặt node tùy chỉnh">Cài đặt node tùy chỉnh</a></li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-dependencies-cho-node" aria-label="Cài đặt dependencies cho node">Cài đặt dependencies cho node</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-diffusers" aria-label="Tích hợp Diffusers">Tích hợp Diffusers</a></li>
+            <li>
+                <a href="#suy-lu%e1%ba%adn-%c4%91a-gpu-v%e1%bb%9bi-fsdp--xdit" aria-label="Suy luận đa GPU với FSDP &#43; xDiT">Suy luận đa GPU với FSDP + xDiT</a></li>
+            <li>
+                <a href="#t%e1%ba%a1o-video-t%e1%bb%ab-h%c3%acnh-%e1%ba%a3nh-i2v" aria-label="Tạo video từ hình ảnh (I2V)">Tạo video từ hình ảnh (I2V)</a></li>
+            <li>
+                <a href="#t%e1%ba%a1o-video-t%e1%bb%ab-khung-%c4%91%e1%ba%a7ucu%e1%bb%91i-flf2v" aria-label="Tạo video từ khung đầu/cuối (FLF2V)">Tạo video từ khung đầu/cuối (FLF2V)</a></li>
+            <li>
+                <a href="#m%e1%bb%9f-r%e1%bb%99ng-prompt" aria-label="Mở rộng prompt">Mở rộng prompt</a></li></ul>
+                
+            <li>
+                <a href="#benchmark--c%c3%a1c-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Benchmark / Các trường hợp sử dụng thực tế">Benchmark / Các trường hợp sử dụng thực tế</a><ul>
+                    
+            <li>
+                <a href="#hi%e1%bb%87u-su%e1%ba%a5t-vbench" aria-label="Hiệu suất VBench">Hiệu suất VBench</a></li>
+            <li>
+                <a href="#benchmark-hi%e1%bb%87u-su%e1%ba%a5t-gpu" aria-label="Benchmark hiệu suất GPU">Benchmark hiệu suất GPU</a></li>
+            <li>
+                <a href="#chi-ph%c3%ad-production-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Chi phí production thực tế">Chi phí production thực tế</a></li>
+            <li>
+                <a href="#c%c3%a1c-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-production" aria-label="Các trường hợp sử dụng production">Các trường hợp sử dụng production</a></li></ul>
+            </li>
+            <li>
+                <a href="#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao--c%e1%bb%a7ng-c%e1%bb%91-production" aria-label="Sử dụng nâng cao / Củng cố production">Sử dụng nâng cao / Củng cố production</a><ul>
+                    
+            <li>
+                <a href="#l%c6%b0%e1%bb%a3ng-t%e1%bb%ad-h%c3%b3a-fp8-%c4%91%e1%bb%83-gi%e1%ba%a3m-vram" aria-label="Lượng tử hóa FP8 để giảm VRAM">Lượng tử hóa FP8 để giảm VRAM</a></li>
+            <li>
+                <a href="#c%e1%bb%9d-t%e1%bb%91i-%c6%b0u-vram" aria-label="Cờ tối ưu VRAM">Cờ tối ưu VRAM</a></li>
+            <li>
+                <a href="#tri%e1%bb%83n-khai-docker" aria-label="Triển khai Docker">Triển khai Docker</a></li>
+            <li>
+                <a href="#fine-tuning-lora" aria-label="Fine-tuning LoRA">Fine-tuning LoRA</a></li></ul>
+            </li>
+            <li>
+                <a href="#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-l%e1%bb%b1a-ch%e1%bb%8dn-thay-th%e1%ba%bf" aria-label="So sánh với các lựa chọn thay thế">So sánh với các lựa chọn thay thế</a><ul>
+                    
+            <li>
+                <a href="#khi-n%c3%a0o-ch%e1%bb%8dn-m%e1%bb%97i-m%c3%b4-h%c3%acnh" aria-label="Khi nào chọn mỗi mô hình">Khi nào chọn mỗi mô hình</a></li></ul>
+            </li>
+            <li>
+                <a href="#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-trung-th%e1%bb%b1c" aria-label="Hạn chế / Đánh giá trung thực">Hạn chế / Đánh giá trung thực</a></li>
+            <li>
+                <a href="#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p" aria-label="Câu hỏi thường gặp">Câu hỏi thường gặp</a></li>
+            <li>
+                <a href="#k%e1%ba%bft-lu%e1%ba%adn" aria-label="Kết luận">Kết luận</a></li>
+            <li>
+                <a href="#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t" aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li>
+            <li>
+                <a href="#ngu%e1%bb%93n-v%c3%a0-t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o" aria-label="Nguồn và Tài liệu tham khảo">Nguồn và Tài liệu tham khảo</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Ai Tools
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: Apache-2.0
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;ai-tools&rdquo;]
+tags: [&ldquo;wan-2-1&rdquo;, &ldquo;tạo-video&rdquo;, &ldquo;diffusion-transformer&rdquo;, &ldquo;ai-video&rdquo;, &ldquo;mã-nguồn-mở&rdquo;, &ldquo;alibaba&rdquo;, &ldquo;comfyui&rdquo;, &ldquo;diffusers&rdquo;]
+aliases:</p>
+<ul>
+<li>/vi/posts/wan-2-1/</li>
+</ul>
+<hr>
+<p><img alt="Ảnh bìa Wan 2.1" loading="lazy" src="https://raw.githubusercontent.com/dibi8/articles/main/wan-2-1/feature.jpg"></p>
+<h2 id="giới-thiệu">Giới thiệu<a hidden class="anchor" aria-hidden="true" href="#giới-thiệu">#</a></h2>
+<p>Mọi lập trình viên đã thử tạo video cục bộ đều biết cùng một nỗi đau: hoặc mô hình yêu cầu phần cứng GPU đắt hơn cả xe hơi, hoặc đầu ra trông như trình chiếu từ những năm 1990. Đầu năm 2025, nhóm Wan của Alibaba phát hành Wan 2.1 — một bộ công cụ tạo video hoàn toàn mã nguồn mở đã thay đổi phương trình. Với 16.100+ sao GitHub và mô hình 1,3B tham số chạy trên RTX 4090, Wan 2.1 là mô hình tạo video chất lượng cao dễ tiếp cận nhất hiện nay. Hướng dẫn này sẽ đi sâu vào Wan 2.1 là gì, cách hoạt động, cách cài đặt, so sánh với HunyuanVideo, CogVideo và Open-Sora, và cách triển khai trong môi trường production.</p>
+<h2 id="wan-21-là-gì">Wan 2.1 là gì?<a hidden class="anchor" aria-hidden="true" href="#wan-21-là-gì">#</a></h2>
+<p>Wan 2.1 là bộ mô hình tạo video nền quy mô lớn nâng cao và mở được nhóm Wan của Alibaba phát hành vào tháng 2 năm 2025. Nó cung cấp khả năng tạo video từ văn bản (T2V), từ hình ảnh (I2V), chỉnh sửa video, tạo hình ảnh từ văn bản, tạo video từ khung đầu/cuối (FLF2V) và tạo âm thanh từ video. Bộ công cụ có hai kích thước tham số — mô hình 14B cho chất lượng tối đa và mô hình 1,3B được tối ưu hóa cho GPU phổ thông. Wan 2.1 là mô hình video mã nguồn mở đầu tiên có khả năng tạo văn bản tiếng Trung và tiếng Anh trong khung hình video.</p>
+<p><img alt="Wan 2.1 Logo" loading="lazy" src="https://raw.githubusercontent.com/Wan-Video/Wan2.1/main/assets/logo.png"></p>
+<h2 id="wan-21-hoạt-động-như-thế-nào">Wan 2.1 hoạt động như thế nào<a hidden class="anchor" aria-hidden="true" href="#wan-21-hoạt-động-như-thế-nào">#</a></h2>
+<h3 id="tổng-quan-kiến-trúc">Tổng quan kiến trúc<a hidden class="anchor" aria-hidden="true" href="#tổng-quan-kiến-trúc">#</a></h3>
+<p>Wan 2.1 được xây dựng trên nền tảng Diffusion Transformer (DiT) với Flow Matching, cùng họ kiến trúc với Stable Diffusion 3. Kiến trúc có ba thành phần cốt lõi: <strong>Wan-VAE (Bộ mã hóa tự động biến phân video):</strong> Một VAE nhân quả 3D thực hiện nén không-thờ gian 256x. Không giống các VAE hình ảnh tiêu chuẩn, Wan-VAE bảo toàn tính nhân quả thờ gian — nghĩa là mỗi khung chỉ quan sát các khung trước đó, không phải khung tương lai. Điều này loại bỏ hiện tượng nhấp nháy phổ biến ở các mô hình tạo video đầu tiên. Wan-VAE có thể mã hóa video 1080P với độ dài bất kỳ mà không mất thông tin thờ gian.</p>
+<p><strong>Diffusion Transformer (DiT):</strong> Xương sống tạo sinh sử dụng transformer tiêu chuẩn với cross-attention để điều khiển theo văn bản. Mỗi khối transformer xử lý các patch không-thờ gian và áp dụng hướng dẫn văn bản thông qua embedding T5. Phép điều chế MLP sử dụng MLP được chia sẻ trên tất cả các khối, mỗi khối học một bộ bias riêng.</p>
+<p><strong>Bộ mã hóa văn bản T5:</strong> Wan 2.1 sử dụng bộ mã hóa văn bản UMT5-XXL để hiểu prompt đa ngôn ngữ. Bộ mã hóa này được đào tạo trên cả văn bản tiếng Anh và tiếng Trung, mang lại khả năng hiểu song ngữ gốc.</p>
+<h3 id="thông-số-kỹ-thuật-mô-hình">Thông số kỹ thuật mô hình<a hidden class="anchor" aria-hidden="true" href="#thông-số-kỹ-thuật-mô-hình">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Mô hình</th>
+					<th>Tham số</th>
+					<th>Độ phân giải</th>
+					<th>VRAM (GPU đơn)</th>
+					<th>Thờ gian tạo điển hình</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>T2V-1.3B</td>
+					<td>1.3B</td>
+					<td>480P</td>
+					<td>8.19 GB</td>
+					<td>~4 phút trên RTX 4090</td>
+			</tr>
+			<tr>
+					<td>T2V-14B</td>
+					<td>14B</td>
+					<td>480P / 720P</td>
+					<td>40–48 GB (480P fp8)</td>
+					<td>~4 phút trên H100 (480P)</td>
+			</tr>
+			<tr>
+					<td>I2V-14B</td>
+					<td>14B</td>
+					<td>480P / 720P</td>
+					<td>65–80 GB (720P)</td>
+					<td>~10–12 phút trên H100 (720P)</td>
+			</tr>
+			<tr>
+					<td>FLF2V-14B</td>
+					<td>14B</td>
+					<td>720P</td>
+					<td>65–80 GB</td>
+					<td>~10–15 phút trên H100</td>
+			</tr>
+	</tbody>
+</table>
+<p>Mô hình 14B sử dụng chiều 5120, 40 đầu attention và 40 lớp transformer. Mô hình 1,3B giảm xuống chiều 1536, 12 đầu và 30 lớp.</p>
+<h2 id="cài-đặt-và-thiết-lập">Cài đặt và thiết lập<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-và-thiết-lập">#</a></h2>
+<h3 id="yêu-cầu-tiên-quyết">Yêu cầu tiên quyết<a hidden class="anchor" aria-hidden="true" href="#yêu-cầu-tiên-quyết">#</a></h3>
+<ul>
+<li>GPU NVIDIA hỗ trợ CUDA (8GB+ cho 1.3B, 40GB+ cho 14B)</li>
+<li>Python 3.10+</li>
+<li>CUDA 12.1+</li>
+</ul>
+<h3 id="cài-đặt-cơ-bản">Cài đặt cơ bản<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-cơ-bản">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone repository</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/Wan-Video/Wan2.1.git
+</span></span><span style="display:flex;"><span>cd Wan2.1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tạo môi trường ảo</span>
+</span></span><span style="display:flex;"><span>python -m venv venv
+</span></span><span style="display:flex;"><span>source venv/bin/activate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cài đặt dependencies (yêu cầu torch &gt;= 2.4.0)</span>
+</span></span><span style="display:flex;"><span>pip install -r requirements.txt
+</span></span></code></pre></div><p>Nội dung requirements.txt: `````
+torch&gt;=2.4.0
+torchvision&gt;=0.19.0
+opencv-python&gt;=4.9.0.80
+diffusers&gt;=0.31.0
+transformers&gt;=4.49.0
+accelerate&gt;=1.1.1
+flash_attn
+gradio&gt;=5.0.0
+numpy&gt;=1.23.5,&lt;2</p>
+<pre tabindex="0"><code>
+### Cài đặt bằng Poetry (thay thế)
+
+`````bash
+# Cài đặt dependencies
+poetry install
+
+# Nếu flash-attn xây dựng thất bại
+poetry run pip install --upgrade pip setuptools wheel
+poetry run pip install flash-attn --no-build-isolation
+poetry install
+</code></pre><h3 id="tải-mô-hình">Tải mô hình<a hidden class="anchor" aria-hidden="true" href="#tải-mô-hình">#</a></h3>
+<p>Tải mô hình bằng HuggingFace CLI: `````bash</p>
+<h1 id="cài-đặt-huggingface-cli">Cài đặt huggingface-cli<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-huggingface-cli">#</a></h1>
+<p>pip install &ldquo;huggingface_hub[cli]&rdquo;</p>
+<h1 id="tải-mô-hình-t2v-14b">Tải mô hình T2V 14B<a hidden class="anchor" aria-hidden="true" href="#tải-mô-hình-t2v-14b">#</a></h1>
+<p>huggingface-cli download Wan-AI/Wan2.1-T2V-14B &ndash;local-dir ./Wan2.1-T2V-14B</p>
+<h1 id="tải-mô-hình-13b-cho-gpu-phổ-thông">Tải mô hình 1.3B cho GPU phổ thông<a hidden class="anchor" aria-hidden="true" href="#tải-mô-hình-13b-cho-gpu-phổ-thông">#</a></h1>
+<p>huggingface-cli download Wan-AI/Wan2.1-T2V-1.3B &ndash;local-dir ./Wan2.1-T2V-1.3B</p>
+<h1 id="tải-vae">Tải VAE<a hidden class="anchor" aria-hidden="true" href="#tải-vae">#</a></h1>
+<p>huggingface-cli download Wan-AI/Wan2.1-VAE &ndash;local-dir ./Wan2.1-VAE</p>
+<h1 id="tải-bộ-mã-hóa-văn-bản">Tải bộ mã hóa văn bản<a hidden class="anchor" aria-hidden="true" href="#tải-bộ-mã-hóa-văn-bản">#</a></h1>
+<p>huggingface-cli download Wan-AI/Wan2.1-T5 &ndash;local-dir ./Wan2.1-T5</p>
+<pre tabindex="0"><code>
+Hoặc dùng ModelScope để tải nhanh hơn từ Trung Quốc: `````bash
+pip install modelscope
+modelscope download Wan-AI/Wan2.1-T2V-14B --local_dir ./Wan2.1-T2V-14B
+</code></pre><h3 id="tạo-video-đầu-tiên-t2v-13b">Tạo video đầu tiên (T2V-1.3B)<a hidden class="anchor" aria-hidden="true" href="#tạo-video-đầu-tiên-t2v-13b">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python generate.py <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --task t2v-1.3B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --size 832*480 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --ckpt_dir ./Wan2.1-T2V-1.3B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --prompt <span style="color:#e6db74">&#34;Hồ núi yên bìn lúc bình minh, sương mù bốc lên từ mặt nước, camera di chuyển chậm sang phải&#34;</span>
+</span></span></code></pre></div><h3 id="tạo-video-đầu-tiên-t2v-14b">Tạo video đầu tiên (T2V-14B)<a hidden class="anchor" aria-hidden="true" href="#tạo-video-đầu-tiên-t2v-14b">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python generate.py <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --task t2v-14B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --size 1280*720 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --ckpt_dir ./Wan2.1-T2V-14B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --prompt <span style="color:#e6db74">&#34;Hai chú mèo nhân hóa mặc đồ boxing thoải mái và găng tay sáng màu đấu nhau kịch liệt trên sân khấu được chiếu đèn.&#34;</span>
+</span></span></code></pre></div><h3 id="chạy-gradio-web-ui">Chạy Gradio Web UI<a hidden class="anchor" aria-hidden="true" href="#chạy-gradio-web-ui">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd gradio
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Chạy T2V 14B với GPU đơn</span>
+</span></span><span style="display:flex;"><span>python t2v_14B_singleGPU.py <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --prompt_extend_method dashscope <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --ckpt_dir ./Wan2.1-T2V-14B
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Chạy T2V 1.3B (nhẹ hơn, cho GPU phổ thông)</span>
+</span></span><span style="display:flex;"><span>python t2v_1.3B_singleGPU.py <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --ckpt_dir ./Wan2.1-T2V-1.3B
+</span></span></code></pre></div><h2 id="tích-hợp-với-comfyui-diffusers-và-các-công-cụ-khác">Tích hợp với ComfyUI, Diffusers và các công cụ khác<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-với-comfyui-diffusers-và-các-công-cụ-khác">#</a></h2>
+<h3 id="tích-hợp-comfyui">Tích hợp ComfyUI<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-comfyui">#</a></h3>
+<p>Wan 2.1 có tích hợp ComfyUI gốc. Cách tiếp cận được đề xuất sử dụng các node tùy chỉnh ComfyUI-WanVideoWrapper của Kijai: `````bash</p>
+<h1 id="cài-đặt-node-tùy-chỉnh">Cài đặt node tùy chỉnh<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-node-tùy-chỉnh">#</a></h1>
+<p>cd ComfyUI/custom_nodes
+git clone <a href="https://github.com/Kijai/ComfyUI-WanVideoWrapper.git">https://github.com/Kijai/ComfyUI-WanVideoWrapper.git</a>
+git clone <a href="https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git">https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git</a>
+git clone <a href="https://github.com/kijai/ComfyUI-KJNodes.git">https://github.com/kijai/ComfyUI-KJNodes.git</a></p>
+<h1 id="cài-đặt-dependencies-cho-node">Cài đặt dependencies cho node<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-dependencies-cho-node">#</a></h1>
+<p>cd ComfyUI-WanVideoWrapper
+pip install -r requirements.txt</p>
+<pre tabindex="0"><code>
+Tải file mô hình và đặt vào thư mục ComfyUI phù hợp: `````bash
+# Diffusion models -&gt; ComfyUI/models/diffusion_models
+# Wan2_1-T2V-14B_fp8_e4m3fn.safetensors
+# Wan2_1-T2V-1_3B_fp32.safetensors
+
+# Text encoders -&gt; ComfyUI/models/text_encoders
+# umt5-xxl-enc-bf16.safetensors
+
+# VAE -&gt; ComfyUI/models/vae
+# Wan2_1_VAE_fp32.safetensors
+</code></pre><p><img alt="Workflow Wan 2.1 ComfyUI" loading="lazy" src="https://raw.githubusercontent.com/Wan-Video/Wan2.1/main/assets/vben_vs_sota.png"></p>
+<h3 id="tích-hợp-diffusers">Tích hợp Diffusers<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-diffusers">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> diffusers.utils <span style="color:#f92672">import</span> export_to_video
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> diffusers <span style="color:#f92672">import</span> AutoencoderKLWan, WanPipeline
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> diffusers.schedulers.scheduling_unipc_multistep <span style="color:#f92672">import</span> UniPCMultistepScheduler
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tải mô hình</span>
+</span></span><span style="display:flex;"><span>model_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Wan-AI/Wan2.1-T2V-14B-Diffusers&#34;</span>
+</span></span><span style="display:flex;"><span>vae <span style="color:#f92672">=</span> AutoencoderKLWan<span style="color:#f92672">.</span>from_pretrained(
+</span></span><span style="display:flex;"><span>    model_id, subfolder<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;vae&#34;</span>, torch_dtype<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>float32
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cấu hình scheduler</span>
+</span></span><span style="display:flex;"><span>flow_shift <span style="color:#f92672">=</span> <span style="color:#ae81ff">5.0</span>  <span style="color:#75715e"># 5.0 cho 720P, 3.0 cho 480P</span>
+</span></span><span style="display:flex;"><span>scheduler <span style="color:#f92672">=</span> UniPCMultistepScheduler(
+</span></span><span style="display:flex;"><span>    prediction_type<span style="color:#f92672">=</span>flow_prediction,
+</span></span><span style="display:flex;"><span>    use_flow_sigmas<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    num_train_timesteps<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>,
+</span></span><span style="display:flex;"><span>    flow_shift<span style="color:#f92672">=</span>flow_shift
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Xây dựng pipeline</span>
+</span></span><span style="display:flex;"><span>pipe <span style="color:#f92672">=</span> WanPipeline<span style="color:#f92672">.</span>from_pretrained(
+</span></span><span style="display:flex;"><span>    model_id, vae<span style="color:#f92672">=</span>vae, torch_dtype<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>bfloat16
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>pipe<span style="color:#f92672">.</span>scheduler <span style="color:#f92672">=</span> scheduler
+</span></span><span style="display:flex;"><span>pipe<span style="color:#f92672">.</span>to(<span style="color:#e6db74">&#34;cuda&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tạo video</span>
+</span></span><span style="display:flex;"><span>prompt <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Một con mèo và một con chó cùng nướng bánh trong bếp. &#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Con mèo đang cẩn thận đong bột mì, con chó khuấy bột bằng thìa gỗ. &#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Căn bếp ấm cúng, ánh nắng chiếu qua cửa sổ.&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>negative_prompt <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Tông màu sáng, cháy sáng, tĩnh, chi tiết mờ, phụ đề, &#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;phong cách, tác phẩm, tranh vẽ, hình ảnh, tĩnh, &#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;chất lượng kém, nét xấu, không đầy đủ&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>output <span style="color:#f92672">=</span> pipe(
+</span></span><span style="display:flex;"><span>    prompt<span style="color:#f92672">=</span>prompt,
+</span></span><span style="display:flex;"><span>    negative_prompt<span style="color:#f92672">=</span>negative_prompt,
+</span></span><span style="display:flex;"><span>    height<span style="color:#f92672">=</span><span style="color:#ae81ff">720</span>,
+</span></span><span style="display:flex;"><span>    width<span style="color:#f92672">=</span><span style="color:#ae81ff">1280</span>,
+</span></span><span style="display:flex;"><span>    num_frames<span style="color:#f92672">=</span><span style="color:#ae81ff">81</span>,
+</span></span><span style="display:flex;"><span>    guidance_scale<span style="color:#f92672">=</span><span style="color:#ae81ff">5.0</span>,
+</span></span><span style="display:flex;"><span>)<span style="color:#f92672">.</span>frames[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>export_to_video(output, <span style="color:#e6db74">&#34;output.mp4&#34;</span>, fps<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>)
+</span></span></code></pre></div><h3 id="suy-luận-đa-gpu-với-fsdp--xdit">Suy luận đa GPU với FSDP + xDiT<a hidden class="anchor" aria-hidden="true" href="#suy-luận-đa-gpu-với-fsdp--xdit">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Cài đặt xDiT</span>
+</span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;xfuser&gt;=0.4.1&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Chạy trên 8 GPU</span>
+</span></span><span style="display:flex;"><span>torchrun --nproc_per_node<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span> generate.py <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --task t2v-14B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --size 1280*720 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --ckpt_dir ./Wan2.1-T2V-14B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --dit_fsdp --t5_fsdp <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --ulysses_size <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --prompt <span style="color:#e6db74">&#34;Nhập prompt của bạn&#34;</span>
+</span></span></code></pre></div><h3 id="tạo-video-từ-hình-ảnh-i2v">Tạo video từ hình ảnh (I2V)<a hidden class="anchor" aria-hidden="true" href="#tạo-video-từ-hình-ảnh-i2v">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python generate.py <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --task i2v-14B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --size 1280*720 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --ckpt_dir ./Wan2.1-I2V-14B-720P <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --image examples/i2v_input.JPG <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --prompt <span style="color:#e6db74">&#34;Phong cách kỳ nghỉ bãi biển mùa hè, một chú mèo trắng đeo kính râm ngồi trên ván lướt sóng.&#34;</span>
+</span></span></code></pre></div><h3 id="tạo-video-từ-khung-đầucuối-flf2v">Tạo video từ khung đầu/cuối (FLF2V)<a hidden class="anchor" aria-hidden="true" href="#tạo-video-từ-khung-đầucuối-flf2v">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python generate.py <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --task flf2v-14B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --size 1280*720 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --ckpt_dir ./Wan2.1-FLF2V-14B-720P <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --first_frame examples/flf2v_input_first_frame.png <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --last_frame examples/flf2v_input_last_frame.png <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --prompt <span style="color:#e6db74">&#34;Phong cách hoạt hình CG, một chú chim xanh nhỏ cất cánh từ mặt đất, vỗ cánh bay lên.&#34;</span>
+</span></span></code></pre></div><h3 id="mở-rộng-prompt">Mở rộng prompt<a hidden class="anchor" aria-hidden="true" href="#mở-rộng-prompt">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Sử dụng mô hình Qwen cục bộ</span>
+</span></span><span style="display:flex;"><span>python generate.py <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --task t2v-14B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --size 1280*720 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --ckpt_dir ./Wan2.1-T2V-14B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --prompt <span style="color:#e6db74">&#34;Một con mèo chơi piano&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --use_prompt_extend <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --prompt_extend_model Qwen/Qwen2.5-7B-Instruct
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Sử dụng API DashScope</span>
+</span></span><span style="display:flex;"><span>DASH_API_KEY<span style="color:#f92672">=</span>your_key python generate.py <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --task t2v-14B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --size 1280*720 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --ckpt_dir ./Wan2.1-T2V-14B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --prompt <span style="color:#e6db74">&#34;Một con mèo chơi piano&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --use_prompt_extend <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --prompt_extend_method dashscope
+</span></span></code></pre></div><h2 id="benchmark--các-trường-hợp-sử-dụng-thực-tế">Benchmark / Các trường hợp sử dụng thực tế<a hidden class="anchor" aria-hidden="true" href="#benchmark--các-trường-hợp-sử-dụng-thực-tế">#</a></h2>
+<h3 id="hiệu-suất-vbench">Hiệu suất VBench<a hidden class="anchor" aria-hidden="true" href="#hiệu-suất-vbench">#</a></h3>
+<p>Wan 2.1 được đánh giá trên 14 chiều chính và 26 chiều phụ với 1.035 prompt nội bộ. Mô hình 14B đạt điểm VBench có trọng số là 0,724, vượt qua cả đối thủ mã nguồn mở và độc quyền.</p>
+<p><img alt="VBench Wan 2.1" loading="lazy" src="https://raw.githubusercontent.com/Wan-Video/Wan2.1/main/assets/vben_vs_sota.png"></p>
+<h3 id="benchmark-hiệu-suất-gpu">Benchmark hiệu suất GPU<a hidden class="anchor" aria-hidden="true" href="#benchmark-hiệu-suất-gpu">#</a></h3>
+<p>Hiệu suất trên các GPU khác nhau (tổng thờ gian giây / bộ nhớ GPU đỉnh GB): | GPU | 1.3B 480P | 14B 480P | 14B 720P |
+|&mdash;|&mdash;|&mdash;|&mdash;|
+| RTX 4090 (24GB) | 281s / 8,2GB | Không hỗ trợ | Không hỗ trợ |
+| A5000 (24GB) | 462s / 8,2GB | Không hỗ trợ | Không hỗ trợ |
+| A40 (48GB) | 350s / 8,2GB | 1083s / 42GB | Không hỗ trợ |
+| A100 (80GB) | 170s / 8,2GB | 523s / 48GB | ~850s / 72GB |
+| L40 (48GB) | 290s / 8,2GB | 859s / 42GB | Không hỗ trợ |
+| H100 (80GB) | 85s / 8,2GB | 284s / 48GB | ~580s / 72GB |</p>
+<h3 id="chi-phí-production-thực-tế">Chi phí production thực tế<a hidden class="anchor" aria-hidden="true" href="#chi-phí-production-thực-tế">#</a></h3>
+<p>Chi phí GPU cloud cho tạo video đầu năm 2026: | Mô hình | Độ phân giải | Thờ lượng | Thờ gian tạo | Chi phí GPU | Chi phí/clip |
+|&mdash;|&mdash;|&mdash;|&mdash;|&mdash;|&mdash;|
+| Wan 2.1 1.3B | 480P | 5s | ~4 phút | RTX 4090 local | ~$0,02 |
+| Wan 2.1 14B | 480P | 5s | ~4 phút | $2,50/giờ (H100) | ~$0,17 |
+| Wan 2.1 14B | 720P | 5s | ~10 phút | $2,50/giờ (H100) | ~$0,42 |
+| HunyuanVideo | 720P | 5s | ~20 phút | $3,49/giờ (H200) | ~$0,70 |</p>
+<h3 id="các-trường-hợp-sử-dụng-production">Các trường hợp sử dụng production<a hidden class="anchor" aria-hidden="true" href="#các-trường-hợp-sử-dụng-production">#</a></h3>
+<p><strong>Pipeline nội dung mạng xã hội:</strong> Clip 5 giây 480P tốn khoảng $0,17 trên H100. Với 100 clip/tháng, chi phí cloud dưới $20 — so với $30–80/tháng cho dịch vụ API độc quyền.</p>
+<p><strong>Nguyên mẫu quảng cáo sáng tạo:</strong> Khả năng tạo văn bản song ngữ của Wan 2.1 rất lý tưởng cho thị trường Đông Á, nơi cần phủ lớp văn bản tiếng Trung hoặc tiếng Nhật lên video.</p>
+<p><strong>Tiền trực quan hóa phim:</strong> Tác vụ FLF2V cho phép nghệ sĩ storyboard tạo hoạt hình giữa hai keyframe để lập kế hoạch cảnh quay.</p>
+<h2 id="sử-dụng-nâng-cao--củng-cố-production">Sử dụng nâng cao / Củng cố production<a hidden class="anchor" aria-hidden="true" href="#sử-dụng-nâng-cao--củng-cố-production">#</a></h2>
+<h3 id="lượng-tử-hóa-fp8-để-giảm-vram">Lượng tử hóa FP8 để giảm VRAM<a hidden class="anchor" aria-hidden="true" href="#lượng-tử-hóa-fp8-để-giảm-vram">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Lượng tử hóa FP8 giảm ~20% VRAM</span>
+</span></span><span style="display:flex;"><span>python generate.py <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --task t2v-14B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --size 832*480 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --ckpt_dir ./Wan2.1-T2V-14B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --offload_model True <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --t5_cpu <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --prompt <span style="color:#e6db74">&#34;Nhập prompt của bạn&#34;</span>
+</span></span></code></pre></div><h3 id="cờ-tối-ưu-vram">Cờ tối ưu VRAM<a hidden class="anchor" aria-hidden="true" href="#cờ-tối-ưu-vram">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Cờ</th>
+					<th>Mô tả</th>
+					<th>Tác động VRAM</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>--offload_model True</code></td>
+					<td>Chuyển transformer sang CPU giữa các bước</td>
+					<td>-15–20GB</td>
+			</tr>
+			<tr>
+					<td><code>--t5_cpu</code></td>
+					<td>Chạy encoder T5 trên CPU</td>
+					<td>-2–3GB</td>
+			</tr>
+			<tr>
+					<td><code>--dit_fsdp</code></td>
+					<td>Chia DiT qua nhiều GPU</td>
+					<td>Chia theo số GPU</td>
+			</tr>
+			<tr>
+					<td><code>--ulysses_size N</code></td>
+					<td>Sử dụng song song chuỗi</td>
+					<td>Giảm tuyến tính</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="triển-khai-docker">Triển khai Docker<a hidden class="anchor" aria-hidden="true" href="#triển-khai-docker">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">nvidia/cuda:12.1.0-devel-ubuntu22.04</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y python3-pip git<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> requirements.txt .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> pip install -r requirements.txt<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> . .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> huggingface-cli download Wan-AI/Wan2.1-T2V-14B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --local-dir ./Wan2.1-T2V-14B<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">EXPOSE</span> <span style="color:#e6db74">7860</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;python&#34;</span>, <span style="color:#e6db74">&#34;gradio/t2v_14B_singleGPU.py&#34;</span>, <span style="color:#e6db74">&#34;--ckpt_dir&#34;</span>, <span style="color:#e6db74">&#34;./Wan2.1-T2V-14B&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>Build và chạy: `````bash
+docker build -t wan2.1 .
+docker run &ndash;gpus all -p 7860:7860 wan2.1</p>
+<pre tabindex="0"><code>
+### Giám sát tác vụ tạo sinh
+
+`````python
+import time
+import psutil
+import torch
+
+def generate_with_monitoring(prompt, **kwargs): process = psutil.Process()
+    start_mem = process.memory_info().rss / 1024**3
+    start_time = time.time()
+    
+    result = generate_video(prompt, **kwargs)
+    
+    elapsed = time.time() - start_time
+    peak_mem = process.memory_info().rss / 1024**3
+    gpu_mem = torch.cuda.max_memory_allocated() / 1024**3
+    
+    print(f&#34;Hoàn thành sau {elapsed:.1f}s&#34;)
+    print(f&#34;VRAM GPU đỉnh: {gpu_mem:.1f} GB&#34;)
+    print(f&#34;Tăng RAM: {peak_mem - start_mem:.1f} GB&#34;)
+    
+    return result
+</code></pre><h3 id="fine-tuning-lora">Fine-tuning LoRA<a hidden class="anchor" aria-hidden="true" href="#fine-tuning-lora">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Cài đặt DiffSynth-Studio</span>
+</span></span><span style="display:flex;"><span>pip install diffsynth-studio
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Huấn luyện LoRA phong cách</span>
+</span></span><span style="display:flex;"><span>python -m diffsynth.train <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model_name wan2.1-t2v-14b <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --dataset_path ./my_style_videos <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --output_path ./wan_lora_output <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --learning_rate 1e-4 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --num_train_steps <span style="color:#ae81ff">1000</span>
+</span></span></code></pre></div><h2 id="so-sánh-với-các-lựa-chọn-thay-thế">So sánh với các lựa chọn thay thế<a hidden class="anchor" aria-hidden="true" href="#so-sánh-với-các-lựa-chọn-thay-thế">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>Tính năng</th>
+					<th>Wan 2.1</th>
+					<th>HunyuanVideo</th>
+					<th>CogVideoX-1.5-5B</th>
+					<th>Open-Sora 2.0</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Tham số</strong></td>
+					<td>1.3B / 14B</td>
+					<td>~13B</td>
+					<td>5B</td>
+					<td>7B</td>
+			</tr>
+			<tr>
+					<td><strong>VRAM tối thiểu (T2V)</strong></td>
+					<td>8,19GB (1.3B)</td>
+					<td>12GB (lượng tử)</td>
+					<td>5GB (diffusers)</td>
+					<td>24GB</td>
+			</tr>
+			<tr>
+					<td><strong>Độ phân giải tối đa</strong></td>
+					<td>720P</td>
+					<td>1080P</td>
+					<td>1360x768</td>
+					<td>768P</td>
+			</tr>
+			<tr>
+					<td><strong>Thờ lượng tối đa</strong></td>
+					<td>~5s (81 khung)</td>
+					<td>~5s</td>
+					<td>10s</td>
+					<td>~5s</td>
+			</tr>
+			<tr>
+					<td><strong>Tốc độ tạo</strong> (H100, 720P)</td>
+					<td>~10 phút</td>
+					<td>~20 phút</td>
+					<td>~9 phút</td>
+					<td>~15 phút</td>
+			</tr>
+			<tr>
+					<td><strong>Văn bản song ngữ</strong></td>
+					<td>Có (Trung+Anh)</td>
+					<td>Không</td>
+					<td>Không</td>
+					<td>Không</td>
+			</tr>
+			<tr>
+					<td><strong>Hỗ trợ I2V</strong></td>
+					<td>Có (14B)</td>
+					<td>Có</td>
+					<td>Có</td>
+					<td>Có (T2I2V)</td>
+			</tr>
+			<tr>
+					<td><strong>Chỉnh sửa video</strong></td>
+					<td>Có (VACE)</td>
+					<td>Không</td>
+					<td>Không</td>
+					<td>Không</td>
+			</tr>
+			<tr>
+					<td><strong>Giấy phép</strong></td>
+					<td>Apache-2.0</td>
+					<td>Apache-2.0</td>
+					<td>Apache-2.0</td>
+					<td>Apache-2.0</td>
+			</tr>
+			<tr>
+					<td><strong>Điểm VBench</strong></td>
+					<td>0,724</td>
+					<td>0,71</td>
+					<td>0,68</td>
+					<td>0,73</td>
+			</tr>
+			<tr>
+					<td><strong>Tính liền mạch chuyển động</strong></td>
+					<td>8/10</td>
+					<td>9/10</td>
+					<td>7,5/10</td>
+					<td>8/10</td>
+			</tr>
+			<tr>
+					<td><strong>Hỗ trợ GPU phổ thông</strong></td>
+					<td>Có (1.3B)</td>
+					<td>Một phần (lượng tử)</td>
+					<td>Có (diffusers)</td>
+					<td>Không</td>
+			</tr>
+			<tr>
+					<td><strong>Hỗ trợ ComfyUI</strong></td>
+					<td>Gốc</td>
+					<td>Cộng đồng</td>
+					<td>Cộng đồng</td>
+					<td>Cộng đồng</td>
+			</tr>
+			<tr>
+					<td><strong>Chi phí huấn luyện</strong></td>
+					<td>Không công bố</td>
+					<td>Không công bố</td>
+					<td>Không công bố</td>
+					<td>$200K</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="khi-nào-chọn-mỗi-mô-hình">Khi nào chọn mỗi mô hình<a hidden class="anchor" aria-hidden="true" href="#khi-nào-chọn-mỗi-mô-hình">#</a></h3>
+<ul>
+<li><strong>Wan 2.1:</strong> Cân bằng tốt nhất giữa chất lượng, tốc độ và khả năng tiếp cận. Chọn khi cần văn bản song ngữ, hỗ trợ GPU phổ thông (1.3B) hoặc tích hợp ComfyUI gốc.</li>
+<li><strong>HunyuanVideo:</strong> Chọn khi cần tính chân thực chuyển động và độ trung thực hình ảnh tối đa, với phần cứng H200.</li>
+<li><strong>CogVideoX-1.5-5B:</strong> Chọn khi cần VRAM thấp nhất hoặc tạo clip 10 giây.</li>
+<li><strong>Open-Sora 2.0:</strong> Chọn khi cần pipeline hiệu quả về huấn luyện ($200K chi phí đã ghi nhận) hoặc workflow T2I2V tích hợp FLUX.</li>
+</ul>
+<h2 id="hạn-chế--đánh-giá-trung-thực">Hạn chế / Đánh giá trung thực<a hidden class="anchor" aria-hidden="true" href="#hạn-chế--đánh-giá-trung-thực">#</a></h2>
+<p>Wan 2.1 không phải đũa thần. Đây là những gì bảng thông số không nói cho bạn biết: <strong>Độ dài clip bị giới hạn cứng ở ~5 giây.</strong> Mô hình được đào tạo trên 81 khung 16 FPS. Cố gắng tạo clip dài hơn qua cửa sổ trượt hoặc tiếp cận tự hồi quy sẽ gây suy giảm chất lượng sau khung 81.</p>
+<p><strong>720P trên mô hình 14B chỉ dành cho H100.</strong> README chính thức ghi hỗ trợ 720P nhưng thực tế cần 65–80GB VRAM. RTX 4090 (24GB) không thể chạy 720P ngay cả khi lượng tử hóa.</p>
+<p><strong>Mô phỏng vật lý hạn chế.</strong> Các tương tác vật lý phức tạp (chất lỏng, vải, va chạm vật rắn) xuất hiện artifact. Các mô hình như Kling 2.1 xử lý cảnh vật lý thuyết phục hơn.</p>
+<p><strong>Mô hình 1.3B có đánh đổi chất lượng.</strong> Nó nhanh và dễ tiếp cận nhưng tuân thủ prompt yếu hơn đáng kể so với 14B.</p>
+<p><strong>Mở rộng prompt tăng độ trễ.</strong> Tính năng mở rộng Qwen cải thiện chất lượng nhưng thêm 30–60 giây mỗi lần tạo.</p>
+<p><strong>Thờ gian khởi động lần đầu.</strong> Tải và biên dịch mô hình lần đầu có thể mất 5–10 phút. Các lần sau bắt đầu ngay lập tức.</p>
+<h2 id="câu-hỏi-thường-gặp">Câu hỏi thường gặp<a hidden class="anchor" aria-hidden="true" href="#câu-hỏi-thường-gặp">#</a></h2>
+<p><strong>Q: Wan 2.1 có chạy trên RTX 3060 12GB không?</strong></p>
+<p>Mô hình 1.3B cần 8,19GB VRAM, vì vậy RTX 3060 12GB có thể chạy ở 480P với FP16. Mô hình 14B không chạy được. Sử dụng phiên bản GGUF hoặc FP8 từ cộng đồng nếu cần thêm dung lượng.</p>
+<p><strong>Q: Wan 2.1 so với Sora hay Kling như thế nào?</strong></p>
+<p>Các mô hình độc quyền như Sora và Kling vẫn dẫn đầu về tính nhất quán thờ gian, hiểu biết vật lý và độ dài clip tối đa (60+ giây). Lợi thế của Wan 2.1 là trọng số mở, chạy cục bộ và chi phí API bằng không. Với clip 5 giây, khoảng cách đã thu hẹp đáng kể.</p>
+<p><strong>Q: Sự khác biệt giữa mô hình 1.3B và 14B là gì?</strong></p>
+<p>Mô hình 1.3B được chưng cất từ 14B và tối ưu cho tốc độ. Nó chạy trên GPU phổ thông nhưng chi tiết mềm hơn và tuân thủ prompt yếu hơn. Mô hình 14B là phiên bản chất lượng đầy đủ với động học chuyển động và kết xuất văn bản vượt trội.</p>
+<p><strong>Q: Wan 2.1 có hỗ trợ chỉnh sửa video không?</strong></p>
+<p>Có, thông qua tiện ích mở rộng VACE (Video Auto Content Editing). VACE hỗ trợ tạo video từ tham chiếu, chỉnh sửa video-to-video và chỉnh sửa video có mặt nạ. Cả hai mô hình VACE 1.3B và 14B đều có sẵn.</p>
+<p><strong>Q: Wan 2.1 có thể sử dụng thương mại không?</strong></p>
+<p>Có. Wan 2.1 được cấp phép Apache 2.0, cho phép sử dụng thương mại, sửa đổi và phân phối. Bạn giữ toàn quyền đối với nội dung được tạo.</p>
+<p><strong>Q: Làm thế nào để giảm VRAM cho mô hình 14B?</strong></p>
+<p>Sử dụng <code>--offload_model True</code>, ````&ndash;t5_cpu```, và lượng tử hóa FP8 để giảm xuống còn ~35GB VRAM.</p>
+<p><strong>Q: Video tạo ra bị nhấp nháy hoặc chuyển động không nhất quán?</strong></p>
+<p>Đảm bảo sử dụng Wan 2.1 VAE chính hãng. Sử dụng chính xác 81 khung cho mô hình 14B. Tham số flow_shift nên là 5.0 cho 720P và 3.0 cho 480P.</p>
+<p><strong>Q: Wan 2.1 có hoạt động trên AMD GPU hoặc Apple Silicon không?</strong></p>
+<p>Hỗ trợ chính thức chỉ dành cho CUDA. Các bản port cộng đồng cho ROCm (AMD) tồn tại nhưng hiệu suất khác nhau. Apple Silicon không được khuyến nghị do hạn chế băng thông bộ nhớ.</p>
+<h2 id="kết-luận">Kết luận<a hidden class="anchor" aria-hidden="true" href="#kết-luận">#</a></h2>
+<p>Wan 2.1 thực hiện lờ hứa mà ít mô hình video mã nguồn mở làm được: đầu ra chất lượng production trên phần cứng dễ tiếp cận. Mô hình 1.3B dân chủ hóa tạo video cho ngườ dùng cá nhân, trong khi 14B cạnh tranh với dịch vụ độc quyền cho workflow chuyên nghiệp. Với 16.100+ sao GitHub, đóng góp cộng đồng tích cực và giấy phép Apache-2.0, Wan 2.1 là lựa chọn thực tiễn cho các nhóm xây dựng pipeline tạo video vào năm 2026.</p>
+<p><strong>Danh sách hành động:</strong></p>
+<ol>
+<li>Clone repository và chạy mô hình 1.3B trên GPU cục bộ ngay hôm nay</li>
+<li>Benchmark mô hình 14B trên phần cứng H100 cloud</li>
+<li>Tham gia Wan Discord hoặc GitHub Discussions để được hỗ trợ</li>
+<li>Đánh giá tích hợp ComfyUI cho phát triển workflow trực quan</li>
+</ol>
+<p>Tham gia <a href="https://t.me/dibi8channel">nhóm Telegram dibi8</a> để nhận phân tích sâu công cụ AI hàng tuần và mẹo triển khai production.</p>
+<h2 id="hosting-và-hạ-tầng-được-đề-xuất">Hosting Và Hạ Tầng Được Đề Xuất<a hidden class="anchor" aria-hidden="true" href="#hosting-và-hạ-tầng-được-đề-xuất">#</a></h2>
+<p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li>
+</ul>
+<p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p>
+<h2 id="nguồn-và-tài-liệu-tham-khảo">Nguồn và Tài liệu tham khảo<a hidden class="anchor" aria-hidden="true" href="#nguồn-và-tài-liệu-tham-khảo">#</a></h2>
+<ul>
+<li><a href="https://github.com/Wan-Video/Wan2.1">Kho GitHub Wan 2.1</a></li>
+<li><a href="https://arxiv.org/abs/2503.20314">Báo cáo kỹ thuật Wan 2.1 (arXiv:2503.20314)</a></li>
+<li><a href="https://huggingface.co/Wan-AI">Mô hình HuggingFace Wan 2.1</a></li>
+<li><a href="https://github.com/Kijai/ComfyUI-WanVideoWrapper">ComfyUI WanVideoWrapper bởi Kijai</a></li>
+<li><a href="https://huggingface.co/docs/diffusers/main/en/api/pipelines/wan">Tài liệu Diffusers Wan 2.1</a></li>
+<li><a href="https://github.com/ali-vilab/TeaCache">Tăng tốc TeaCache Wan 2.1</a></li>
+<li><a href="https://github.com/ali-vilab/VACE/blob/main/UserGuide.md">Hướng dẫn chỉnh sửa video VACE</a></li>
+<li><a href="https://www.spheron.network/blog/gpu-cloud-video-ai-2026/">Hướng dẫn GPU Cloud cho Video AI (Spheron)</a></li>
+<li><a href="https://arxiv.org/abs/2503.09642">Báo cáo kỹ thuật Open-Sora 2.0</a></li>
+</ul>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Wan 2.1: 16.1K+ Stars — Phân tích sâu tạo video mở so với HunyuanVideo, CogVideo 2026&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/vi/resources/wan-2-1%22">https://dibi8.com/vi/resources/wan-2-1"</a>
+}
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/ko/llm-frameworks/wan-2-1/">stable-diffusion-complete-guide</a></li>
+<li><a href="/ko/llm-frameworks/wan-2-1/">comfyui-workflows-complete-guide</a></li>
+<li><a href="/ko/llm-frameworks/wan-2-1/">comfyui-workflows-complete-guide</a></li>
+<li><a href="/ko/llm-frameworks/wan-2-1/">comfyui-workflows-complete-guide</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

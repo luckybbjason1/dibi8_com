@@ -132,100 +132,13 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“puppeteer”, “브라우저-자동화”, “헤드리스-크롬”, “웹-스크래핑”, “docker”, “테스팅”, “typescript”] aliases:
-/kr/posts/puppeteer/ 소개 프로덕션 환경에서 브라우저 자동화를 실행한다는 것은 Chrome 충돌, 헤드리스 환경의 메모리 누수, 그리고 페이지 로드 간 불일치하는 선택자와 씨름해야 함을 의미한다. Google Chrome DevTools 팀이 유지보수하는 Puppeteer는 DevTools Protocol과 WebDriver BiDi를 통해 Chrome과 Firefox를 제어하는 고수준 Node.js API를 제공한다. 94,300개의 GitHub Star, 540명 이상의 기여자, 주간 490만 회의 npm 다운로드를 보유한 Puppeteer는 프로덕션 환경에서 신뢰할 수 있고 프로그래밍 가능한 브라우저 제어가 필요한 팀의 go-to 라이브러리로 남아있다.
+    <p>title: “RAG vs Fine-Tuning 2026: A Data-Driven Decision Framewor… description: “Technical guide and comparison.” date: 2026-05-25T00:00:00&#43;08:00 lastmod: 2026-05-25T00:00:00&#43;08:00 tech_stack: [RAG, ‘Fine-Tuning’, LangChain, LlamaIndex, OpenAI, Anthropic] application_domain: LLM Frameworks source_version: “2026 Q2 pricing” licensing_model: Mixed license_type: ‘Open-source frameworks &#43; commercial APIs’ last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“rag”, “fine-tuning”, “llm”, “cost-optimization”, “decision-framework”, “2026”] aliases:
+/posts/rag-vs-fine-tuning-2026-decision-framework/ faq: - q: “When does RAG win over fine-tuning in 2026?” a: “RAG wins when (a) your knowledge base updates more than weekly, (b) you need citation/provenance, (c) document corpus &lt; 100K chunks, (d) latency budget allows ~200-400ms retrieval. Fine-tuning wins when you need style/format consistency, when knowledge is stable, and when you can afford the upfront training cost.” q: “How much does RAG actually cost in production?” a: “Per-query cost in 2026: embedding lookup ~$0.0001, retrieval&#43;rerank ~$0.0003, LLM generation ~$0.003-0.015 depending on model. Total ~$0.005 per query for Claude Sonnet, ~$0.001 for GPT-4o-mini. At 100K queries/month: $100-500 range for compute, $20-100 for vector DB hosting.” q: “What’s the break-even point for fine-tuning?” a: “Fine-tuning makes economic sense at ~1M&#43; queries/month with stable knowledge. Below that, RAG’s lower upfront cost wins even with higher per-query cost. The breakeven shifts when you factor in maintenance — fine-tuned models lock you out of the base model’s improvements unless you retrain.” q: “Can I combine RAG &#43; fine-tuning?” a: “Yes, and it’s increasingly the production answer. Fine-tune for style/format/tone, RAG for facts. The fine-tuned model writes in your company voice; the RAG layer injects current data. Costs add up but each layer solves a different problem.” q: “What’s changed between 2024 RAG advice and 2026 reality?” a: “Three things: (1) Context windows grew (1M tokens viable) — sometimes you can skip RAG and stuff everything. (2) Embedding quality jumped (text-embedding-3-large, Voyage-3) — retrieval works for messier corpora. (3) Open-source local models (Llama 3.3, Mistral Large) good enough for fine-tuning on commodity hardware — changed the cost equation.” q: “Should I use Vector DB or just SQLite with full-text search?” a: “Under 10K chunks: full-text search (FTS5, MeiliSearch) is often enough and 10x simpler. Above 50K chunks: vector DB justifies its complexity. The 10K-50K gray zone — try FTS first, switch to vectors only when retrieval quality drops below 80% precision@5.” RAG vs Fine-Tuning 2026: Data-Driven Decision Framework Meta Description: When to RAG, when to fine-tune, when to do both. Real cost numbers, decision tree, and the 2026 reality that changed the answer.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>15 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/puppeteer/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Tool Guide
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - Go
-Python application_domain: Ai Tools source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-15” draft: false aliases: /ko/posts/python-context-managers-the-three-cases-you-actually-need/ faqs: - q: ’try/finally를 직접 사용하는 대신 커스텀 컨텍스트 매니저를 언제 만들어야 하나요?&#39; a: ‘정리 코드를 빠뜨리면 다음 사람이 모르게 리소스를 누수할 상황이거나, 동일한 획득/해제 try/finally 패턴이 코드베이스 전반에 반복되는 경우에 만드세요. 핵심 이점은 try/finally가 헬퍼 함수 안에 있기 때문에 모든 호출자가 자동으로 혜택을 받고, finally 블록을 까먹을 수 없다는 점입니다.’ q: ‘환경 변수를 일시적으로 설정했다가 이후에 복원하는 컨텍스트 매니저를 어떻게 만드나요?’ a: ‘@contextlib.contextmanager를 사용해 os.environ.get()으로 각 변수의 이전 값을 저장하고, 오버라이드를 적용한 뒤 try 안에서 yield하고, finally에서 복원합니다. 중요한 점은, 변수가 원래 없었을 경우(저장된 값이 None이면) os.environ.pop()으로 복원해야 합니다. 그냥 대입하면 리터럴 문자열 “None&#34;이 환경 변수에 써집니다.’ q: ‘contextlib.suppress는 무엇을 하며 왜 try/except: pass보다 나은가요?’ a: ‘contextlib.suppress(ExceptionClass)는 지정한 예외를 삼키고 계속 실행합니다. 예: with suppress(FileNotFoundError): os.unlink(&#34;maybe-stale.lock&#34;). 제한된 범위 덕분에 예외 클래스를 명시해야 하므로, try/except: pass보다 명확합니다. 실수로 모든 예외를 잡거나 정리 코드 아래의 코드까지 영향을 줄 수 없어 안전합니다.’ q: ‘Python에서 비동기 컨텍스트 매니저는 어떻게 작성하나요?’ a: ‘@contextlib.asynccontextmanager로 비동기 제너레이터를 데코레이트하고 async with로 사용합니다. 구조는 동기 버전과 완전히 같으며, 차이점은 본문 내에서 await를 쓸 수 있다는 것입니다. 이는 ‘‘풀에서 연결을 획득하고, 쿼리를 실행한 뒤, finally 블록에서 반환’‘하는 패턴에 특히 유용합니다.’ q: ‘Python에서 컨텍스트 매니저를 사용하지 말아야 할 때는 언제인가요?’ a: ‘다음 경우에는 피하세요: 획득 단계에 대응하는 해제가 필요 없을 때(그냥 함수를 호출하면 됨), 정리가 최선 노력 수준이고 인라인 try/finally가 더 읽기 쉬울 때, 또는 관리 대상 리소스가 이미 다른 것(예: 프레임워크가 자체 생명주기를 관리하는 Session)에 의해 관리될 때입니다. with를 쓸 때마다 오버헤드가 생기고, 여러 개를 쌓으면 가독성이 빠르게 나빠집니다.’ {&lt;/* resource-info */&gt;}
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/python-context-managers-the-three-cases-you-actually-need/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Tool Guide
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Data Science source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“data-science”] tags: [“qdrant”, “벡터 데이터베이스”, “rust”, “hnsw”, “유사도 검색”, “docker”, “자체 호스팅”, “ai”] aliases:
-/kr/posts/qdrant-vector-database-rust/ 소개: 모든 AI 팀이 마주하는 벡터 데이터베이스 병목 현상 임베딩 파이프라인이 작동 중입니다. 문서가 청크되고, 임베딩되고, 저장되었습니다. 그런데 누군가 500,000개 벡터를 검색하라고 하고 응답에 4.2초가 걸립니다. 제품 팀이 실시간 의미 검색을 원합니다. 현재 인메모리 Chroma 설정은 50K 벡터에서도 멈춥니다. 공황 상태가 시작됩니다.
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>15 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/qdrant-vector-database-rust/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Tool Guide
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>はじめに Google NotebookLM は、すぐにでも使える最も有用な AI 搭載ナレッジマネジメントツールの一つへと急速に発展しました。ドキュメントやソースをアップロードすることで、ユーザーは AI アシスタントが推論を行い、質問に答え、要約や学習ガイド、詳細な分析に統合できるプライベートな「ノートブック」を作成できます。これは本質的に、箱組み（out of the box）で使用できる RAG システムです。
-しかし NotebookLM には制限があります。ドキュメントを手動でアップロードする必要があり、コンテンツを大規模に供給するプログラム的な方法がありません。もし YouTube ビデオ、ポッドキャストのエピソード、ブログ記事、またはペイウォールのかけられた研究論文を、そのまま使える NotebookLM のソースに自動的に変換できたらどうでしょうか？
-そこで登場するのが joeseesun による Qiaomu Anything to NotebookLM です。まさにそれを行うツールで、5,015 の GitHub スターを誇り、多様なコンテンツソースと Google NotebookLM の間のギャップを埋め、15 種類以上のコンテンツフォーマットをサポートし、ペイウォール回避のような革新的な機能を提供します。
-免責事項： この記事にはアフィリエイトリンクが含まれている可能性があります。通过这些リンクから登録した場合、追加費用なく少額の手数料を得る場合があります。免責ポリシー
-DigitalOcean - AI ツール用の信頼性の高いクラウドインフラ。HTStack - 高性能サーバーホスティング。WebShare - AI データパイプライン向けのプレミアムプロキシサービス。
-Qiaomu Anything to NotebookLM とは？ Qiaomu Anything to NotebookLM は、15 種類以上の異なるソースからのコンテンツを Google NotebookLM と互換性のあるフォーマットに変換する包括的なツールキットです。スタンドアロンの Python パッケージとして、また Claude Code スキルとして動作し、プログラムユーザーと会話型 AI ワークフローを好むユーザーの両方にアクセス可能です。
-ツールキットは主に2つの操作モードを中心に構築されています：
-Claude Code スキルモード — Claude Code で自然言語を使用して変換をトリガーします。「機械学習に関するこの YouTube ビデオを NotebookLM のソースに変換して。」スキルがパイプライン全体を処理します。 Python パッケージモード — バッチ処理、スケジュール設定、より大きなデータパイプラインへの統合のために ```qiaomu-notebooklm```` Python パッケージをプログラム的に使用します。 機能画像：
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/qiaomu-anything-to-notebooklm/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Tool Guide
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>{&lt;/* resource-info */&gt;}
-LLM은 방대한 지식을 갖추고 있지만, 학습 데이터에 없는 최신 정볼나 기업 내 납부 문서에 대해서는 답변할 수 없습니다. RAG(Retrieval-Augmented Generation)는 외부 지식 베이스에서 관련 정보를 검색해 LLM의 문맥으로 제공함으로써 이 문제를 해결합니다. 이 글에서는 RAG 아키텍처의 기본부터 고급 기법, 프로덕션 배포까지 전 과정을 다룹니다.
-RAG란? 검색 증강 생성 이해하기 기본 RAG 개념과 워크플로우 RAG는 2020년 Meta AI의 논문에서 처음 제안된 아키텍처로, 크게 3단계로 동작합니다: 1. 인덱싱: 문서를 임베딩 벡터로 변환해 벡터 데이터베이스에 저장 2. 검색: 사용자 질문과 유사한 벡터를 데이터베이스에서 검색 3. 생성: 검색된 문맥을 LLM에 전달해 답변 생성
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/rag-architecture-implementation-guide/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Tool Guide
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-25T00:00:00&#43;08:00 lastmod: 2026-05-25T00:00:00&#43;08:00 tech_stack: [RAG, ‘Fine-Tuning’, LangChain, LlamaIndex, OpenAI, Anthropic] application_domain: LLM Frameworks source_version: “2026 Q2 pricing” licensing_model: Mixed license_type: ‘Open-source frameworks &#43; commercial APIs’ last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“rag”, “fine-tuning”, “llm”, “cost-optimization”, “decision-framework”, “2026”] aliases:
-/kr/posts/rag-vs-fine-tuning-2026-decision-framework/ faq: - q: “2026년에 RAG가 파인튜닝보다 유리한 경우는?” a: “RAG가 유리한 조건: (a) 지식 베이스가 주 단위 이상으로 업데이트, (b) 인용/출처가 필요, (c) 문서 코퍼스 &lt; 10만 chunks, (d) 200-400ms 검색 지연 허용. 파인튜닝이 유리한 조건: 스타일/포맷 일관성이 필요하고, 지식이 안정적이며, 선행 학습 비용을 감당할 수 있을 때.” q: “RAG의 실제 프로덕션 비용은 얼마인가?” a: “2026년 쿼리당 비용: embedding 조회 약 $0.0001, 검색&#43;리랭크 약 $0.0003, LLM 생성 $0.003-0.015 (모델에 따라). Claude Sonnet은 쿼리당 약 $0.005, GPT-4o-mini는 약 $0.001. 월 10만 쿼리 기준: 컴퓨팅 $100-500, 벡터 DB 호스팅 $20-100.” q: “파인튜닝의 손익분기점은?” a: “지식이 안정적이고 월 100만&#43; 쿼리에서 파인튜닝이 경제적으로 의미 있다. 그 미만에서는 쿼리당 비용이 높더라도 RAG의 낮은 선행 비용이 우세하다. 유지보수를 감안하면 손익분기점이 이동한다 — 파인튜닝된 모델은 재훈련하지 않는 한 기반 모델의 개선을 받지 못한다.” q: “RAG와 파인튜닝을 결합할 수 있는가?” a: “그렇다. 그리고 점점 프로덕션의 표준 답이 되고 있다. 스타일/포맷/톤은 파인튜닝, 사실은 RAG. 파인튜닝된 모델은 회사의 목소리로 쓰고, RAG 레이어가 최신 데이터를 주입한다. 비용은 누적되지만 각 레이어는 다른 문제를 해결한다.” q: “2024년 RAG 조언과 2026년 현실의 차이는?” a: “세 가지: (1) 컨텍스트 윈도우가 커졌다 (100만 토큰 실현 가능) — 작은 코퍼스는 RAG 없이 전부 넣을 수 있다. (2) Embedding 품질이 도약했다 (text-embedding-3-large, Voyage-3) — 어수선한 코퍼스에서도 검색이 작동한다. (3) 오픈소스 로컬 모델 (Llama 3.3, Mistral Large)이 일반 하드웨어로 파인튜닝 가능 — 비용 구조가 바뀌었다.” q: “벡터 DB를 써야 할까, SQLite 전문 검색으로 충분할까?” a: “1만 chunks 미만: 전문 검색 (FTS5, MeiliSearch)으로 충분하고 10배 단순하다. 5만 chunks 이상: 벡터 DB의 복잡성이 정당화된다. 1만-5만의 회색 지대 — 먼저 FTS를 시도하고, 검색 품질이 precision@5 80% 이하로 떨어질 때만 벡터로 전환.” RAG vs 파인튜닝 2026: 데이터 기반 의사결정 프레임워크 Meta Description: 언제 RAG를, 언제 파인튜닝을, 언제 둘 다 사용할 것인가. 실제 비용 수치, 의사결정 트리, 그리고 답을 바꾼 2026 현실.
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/rag-vs-fine-tuning-2026-decision-framework/"></a>
 </article>
 
@@ -235,13 +148,13 @@ RAG란? 검색 증강 생성 이해하기 기본 RAG 개념과 워크플로우 R
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“ragflow”, “rag엔진”, “문서이해”, “docker배포”, “llm에이전트”, “프로덕션rag”, “오픈소스ai”] aliases:
-/kr/posts/ragflow/ 소개 대부분의 RAG 파이프라인은 PDF와 PowerPoint를 일반 텍스트로 처리하기 때문에 프로덕션에서 실패합니다. 표가 망가지고, 이미지 캡션이 사라지며, 스캔 문서는 읽을 수 없게 됩니다. 결과는 검색 시스템이 LLM에 쓰레기 컨텍스트를 반환하고 — 환각 답변이 뒤따릅니다. GitHub 80,000개 이상의 스타를 가진 오픈소스 RAG 엔진인 RAGFlow는 바로 이 문제를 해결하기 위해 구축되었습니다. DeepDoc 엔진이 문서 레이아웃을 이해하고, 내장 에이전트 프레임워크를 통해 단순한 챗봇이 아닌 자율 지식 작업자를 구축할 수 있습니다. 이 가이드에서는 프로덕션 서버에 RAGFlow를 배포하고, 문서 수집을 구성하며, 검색 품질을 튜닝하고, 기존 LLM 스택과 통합하는 방법을 알려드립니다.
+    <p>title: “RAGFlow: Deploy a Production-Ready RAG Engine with 80K&#43; … description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“ragflow”, “rag-engine”, “document-understanding”, “docker-deployment”, “llm-agent”, “production-rag”, “open-source-ai”] aliases:
+/posts/ragflow/- Introduction Most RAG pipelines fail in production because they treat PDFs and PowerPoints as plain text. Tables get mangled, image captions disappear, and scanned documents become unreadable. The result is a retrieval system that returns garbage context to your LLM — and hallucinated answers follow. RAGFlow, an open-source RAG engine with over 80,000 GitHub stars, was built to solve exactly this. Its DeepDoc engine understands document layouts, and its built-in agent framework lets you build autonomous knowledge workers, not just chatbots. In this guide, you will deploy RAGFlow on a production server, configure document ingestion, tune retrieval quality, and integrate it with your existing LLM stack.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>15 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ragflow/"></a>
 </article>
 
@@ -251,13 +164,13 @@ RAG란? 검색 증강 생성 이해하기 기본 RAG 개념과 워크플로우 R
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” bottleneck detection, and database performance optimization. date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - AI application_domain: Ai Tools source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-15” draft: false aliases:
-/ko/posts/reading-explain-analyze-postgres/ faqs: - q: ‘EXPLAIN ANALYZE 출력에서 상단 줄의 actual time은 무엇을 의미하나요?’ a: ‘가장 바깥쪽 노드의 두 번째 actual time 값은 해당 노드가 한 번 실행되는 동안 전체 쿼리에 소요된 실제 벽시계 시간(밀리초 단위)입니다. 그 아래의 모든 노드는 그 총 시간이 어디에 쓰였는지를 세분화해서 보여줍니다.’ q: ‘EXPLAIN ANALYZE 의 행 수로 잘못된 쿼리 플랜을 어떻게 찾나요?’ a: ‘cost= 섹션의 rows=(플래너 추정값)와 actual time= 섹션의 rows=(실제값)을 비교하세요. 두 값이 10배 이상 차이가 나면 플래너가 오래된 통계를 사용한 것이며, 그 위의 모든 노드가 잘못된 가정을 바탕으로 선택된 것입니다. 이것이 거의 항상 버그의 원인입니다.’ q: ‘EXPLAIN ANALYZE 에서 특정 노드 하나에만 소요된 시간을 어떻게 계산하나요?’ a: ’loops=1인 노드의 경우, 자체 소요 시간은 대략 해당 노드의 마지막 행 시간(B)에서 자식 노드들의 마지막 행 시간의 합을 뺀 값입니다. loops=N이 큰 노드는 보고된 시간이 루프당 시간이므로, loops를 곱해야 총 소요 시간이 됩니다.&#39; q: ‘EXPLAIN (ANALYZE, BUFFERS)에서 shared hit과 shared read의 차이는 무엇인가요?’ a: ‘shared hit은 이미 Postgres 버퍼 캐시에 있는 페이지 수로 비용이 낮고, shared read는 OS나 디스크에서 가져온 페이지 수로 비용이 높습니다. read가 지배적이라면 데이터가 캐시에 없다는 의미입니다. 쿼리를 두 번 실행해보세요. 두 번째 실행 결과가 정상 상태를 더 잘 반영합니다.’ q: ‘쿼리 플랜의 Sort 또는 Hash 노드에 temp written이 나타나면 무슨 뜻인가요?’ a: ‘정렬 또는 해시 작업이 work_mem에 맞지 않아 디스크로 스필된 것을 의미하며, 이로 인해 해당 노드의 시간이 쉽게 10배까지 늘어날 수 있습니다. 해결 방법은 해당 세션의 work_mem을 늘리고 EXPLAIN을 다시 실행하는 것입니다.’ PostgreSQL에서 EXPLAIN ANALYZE 출력 읽기 - 길을 잃지 않게 {&lt;/* resource-info */&gt;}
+    <p>title: Reading EXPLAIN ANALYZE in Postgres Without Getting Lost description: “Technical guide and comparison.” interpret query plans, identify bottlenecks and optimize database performance. date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - Python application_domain: Ai Tools source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-15” draft: false aliases:
+/en/posts/reading-explain-analyze-postgres/ /posts/reading-explain-analyze-postgres/ faqs: - q: ‘What does the top line’’s actual time mean in EXPLAIN ANALYZE output?’ a: ‘The outermost node’’s second actual time value is the wall-clock cost of the whole query in milliseconds for one execution of that node. Every node below it breaks down where that total time was spent.’ q: ‘How do I find a bad query plan from EXPLAIN ANALYZE row counts?’ a: ‘Compare the planner’’s estimated rows= (in the cost= section) against the actual rows= (in the actual time= section). When they disagree by 10x or more, the planner used bad statistics, and every node above it was chosen on a wrong assumption—that is almost always the bug.’ q: ‘How do I calculate the time spent in just one EXPLAIN ANALYZE node?’ a: ‘For nodes with loops=1, self time is approximately this node’’s last-row time (B) minus the sum of its children’’s last-row times. For a node with large loops=N, the reported times are per-loop, so multiply by loops to get the total.’ q: ‘What is the difference between shared hit and shared read in EXPLAIN (ANALYZE, BUFFERS)?’ a: ‘shared hit counts pages already in Postgres’’ buffer cache and is cheap, while shared read counts pages fetched from the OS or disk and is expensive. If read dominates, the data simply isn’’t cached—run the query twice, since the second run reflects steady state.’ q: ‘What does temp written mean on a Sort or Hash node in a query plan?’ a: ‘It means the sort or hash didn’’t fit in work_mem and spilled to disk, which can easily multiply a node’’s time by 10x. The fix is to bump work_mem for that session and re-run EXPLAIN.’ Reading EXPLAIN ANALYZE in Postgres Without Getting Lost {&lt;/* resource-info */&gt;}
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>5 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/reading-explain-analyze-postgres/"></a>
 </article>
 
@@ -267,12 +180,12 @@ RAG란? 검색 증강 생성 이해하기 기본 RAG 개념과 워크플로우 R
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-09T00:00:00&#43;08:00 lastmod: 2026-06-09T00:00:00&#43;08:00 tech_stack: [‘Node.js’, TypeScript, CLI] application_domain: Dev Utils source_version: “v0.3” licensing_model: Open Source license_type: MIT file_size: ’’ file_md5: ’&#39; download_url: “https://github.com/yamadashy/repomix&#34; backup_url: ’&#39; last_maintained: “2026-06-01” draft: false categories: [“dev-utils”] tags: [“repomix”, “repopack”, “ai코딩”, “llm컨텍스트”, “코드베이스패킹”, “claude”, “chatgpt”, “개발자도구”, “오픈소스”] aliases:
-/kr/posts/repomix-pack-repo-for-llm-context-2026/ faqs: - q: ‘repomix란 무엇이며 이전 이름은 무엇이었습니까?’ a: ‘repomix(구 repopack)는 전체 Git 저장소를 LLM 컨텍스트 창에 최적화된 단일 구조화 텍스트 파일로 패킹하는 오픈소스 CLI 도구입니다. npm의 기존 “repack” 명령과의 혼동을 피하기 위해 2025년에 “repopack&#34;에서 “repomix&#34;로 이름이 변경되었습니다. yamadashy가 개발했으며 MIT 라이선스입니다.’ q: ‘repomix가 지원하는 출력 형식은 무엇입니까?’ a: ‘repomix는 세 가지 출력 형식을 지원합니다: 일반 텍스트(기본값, ChatGPT 등 일반 LLM에 적합), XML(Claude에 최적 — Claude는 XML을 기본으로 사용), 마크다운(Copilot, 문서 워크플로에 적합). –style plain|xml|markdown으로 선택합니다.’ q: ‘repomix는 얼마나 큰 코드베이스를 처리할 수 있습니까?’ a: ‘repomix는 약 100,000–200,000 토큰(대략 5,000–10,000개 파일 프로젝트)까지 잘 작동합니다. 더 큰 저장소의 경우 –include 패턴을 사용하여 관련 서브시스템만 전송하세요. –output-show-line-numbers 플래그는 LLM이 정확한 줄 참조로 편집 제안을 하는 데 도움이 됩니다.’ ...</p>
+    <p>title: “repomix 2026: Pack Your Entire Codebase into One LLM-Rea… description: “Technical guide and comparison.” date: 2026-06-09T00:00:00&#43;08:00 lastmod: 2026-06-09T00:00:00&#43;08:00 tech_stack: [‘Node.js’, TypeScript, CLI] application_domain: Dev Utils source_version: “v0.3” licensing_model: Open Source license_type: MIT file_size: ’’ file_md5: ’&#39; download_url: ‘https://github.com/yamadashy/repomix&#39; backup_url: ’’ last_maintained: “2026-06-01” draft: false categories: [“dev-utils”] tags: [“repomix”, “repopack”, “ai-coding”, “llm-context”, “codebase-packing”, “claude”, “chatgpt”, “developer-tools”, “open-source”] aliases:
+/posts/repomix-pack-repo-for-llm-context-2026/ faqs: - q: ‘What is repomix and what was it called before?’ a: ‘repomix (formerly repopack) is an open-source CLI tool that packs an entire Git repository into a single structured text file, optimized for LLM context windows. It was renamed from “repopack” to “repomix” in 2025 to avoid confusion with npm’’s existing “repack” command. Built by yamadashy and released under MIT.’ q: ‘What output formats does repomix support?’ a: ‘repomix supports three output formats: plain text (default), XML (structured with file tags, best for Claude which uses XML natively), and Markdown (best for documentation workflows and GitHub Copilot). You select the format with –style plain|xml|markdown.’ q: ‘How does repomix differ from just copying all files manually?’ a: ‘repomix automatically respects .gitignore rules, adds a token count estimate per file, generates a repository summary and directory tree at the top, handles binary file exclusion, and supports custom include/exclude glob patterns — all in one command. The output is formatted specifically for LLMs with file separators that the model can parse reliably.’ q: ‘How large a codebase can repomix handle?’ a: ‘repomix works well up to around 100,000–200,000 tokens (roughly a 5,000–10,000 file project). For larger repos, use –include patterns to send only the relevant subsystem. The –output-show-line-numbers flag helps LLMs give accurate line references for edits.’ q: ‘Can I use repomix with Claude Projects or ChatGPT memory?’ a: ‘Yes — the most common workflow is to run repomix, then paste or upload the output file to a Claude Project or a custom GPT. This gives the AI full codebase context for debugging, code review, documentation, or architecture discussions without iterating over dozens of files.’— ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>4 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/repomix-pack-repo-for-llm-context-2026/"></a>
 </article>
 
@@ -282,12 +195,92 @@ RAG란? 검색 증강 생성 이해하기 기본 RAG 개념과 워크플로우 R
     </h2>
   </header>
   <div class="entry-content">
-    <p>{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: ““robots.txt 생성기 — AI 크롤러 제어 (GPTBot, ClaudeBot, Perplexit…”, “description”: ““클릭 한 번으로 깔끔한 robots.txt 생성: sitemap 설정, 차단 경로 지정, GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, CCBot, Google-Extended 등 AI 크롤러 차단. 복사해서 사이트 루트에 붙여넣기.””, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png&#34; } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/tools/robots-txt-generator/&#34; }, “url”: “https://dibi8.com/kr/tools/robots-txt-generator/&#34;, “image”: “https://picsum.photos/seed/robots-txt-generator/1200x630&#34;, “keywords”: “”, “articleSection”: “Technology” } ...</p>
+    <p>{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: ““robots.txt Generator — With AI Crawler Controls (GPTBot,…”, “description”: ““Generate a clean robots.txt with one click — set sitemap, disallow paths, and block AI crawlers like GPTBot, ChatGPT-User, ClaudeBot, PerplexityBot, CCBot, and Google-Extended. Copy-paste ready for your site root.””, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png&#34; } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/cn/tools/robots-txt-generator/&#34; }, “url”: “https://dibi8.com/cn/tools/robots-txt-generator/&#34;, “image”: “https://picsum.photos/seed/robots-txt-generator/1200x630&#34;, “keywords”: “”, “articleSection”: “Technology” } ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>3 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/robots-txt-generator/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>I Cut My AI Coding Bill by 80% With This Rust CLI Proxy — Here’s the Exact Setup (rtk Guide 2026) TL;DR: rtk is a single Rust binary, zero-dependency CLI proxy that filters and compresses command output before it reaches your AI agent’s context window. It reduces LLM token consumption by 60–90% across 100&#43; dev commands and 13 AI coding tools, with &lt;10ms overhead. Install in 30 seconds, forget it’s there, watch your API bill drop.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>{&lt;/* resource-info */&gt;}
+The Hidden Tax of AI-Powered Development In 2026, AI coding agents like Claude Code, GitHub Copilot, Cursor, OpenAI Codex, and Gemini CLI have become embedded in daily developer workflows. But one cost is bleeding budgets silently: token consumption from routine shell commands.
+Here is what actually happens under the hood. When Claude Code runs ```cargo teston a mid-sized Rust project and a few tests fail, the model still receives the full 200&#43; line output—including every single passing test you do not care about. Agit status```` call can easily push 2,000 tokens. A 30-minute coding session on a TypeScript or Rust project can burn through 118,000 tokens just from standard shell interactions.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/rtk-rust-cli-proxy-ai-token-saver/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “rtk Review: The Rust CLI Proxy That Cuts AI Coding Bills… description: “Technical guide and comparison.” date: 2026-05-22T00:00:00&#43;08:00 lastmod: 2026-05-22T00:00:00&#43;08:00 tech_stack: [Rust, CLI, ‘Shell hooks’] application_domain: Llm Frameworks source_version: “0.28.2” licensing_model: Open Source license_type: MIT file_size: ’’ file_md5: ’&#39; download_url: ‘https://github.com/rtk-ai/rtk/releases&#39; backup_url: ’’ last_maintained: “2026-05-20” draft: false categories: [“llm-frameworks”] tags: [“rtk”, “rust”, “cli”, “llm”, “token-optimization”, “ai-coding”, “claude-code”, “cursor”, “copilot”, “cost-optimization”, “open-source”, “developer-tools”] aliases:
+/posts/rtk/ /resources/dev-utils/rtk-rust-cli-proxy-llm-token-savings-2026/ faqs: - q: “What is rtk and how much can it save on AI coding bills?” a: “rtk is an open-source Rust CLI proxy that compresses command output before it reaches your AI agent’s context window. It cuts LLM token consumption by 60-90% across 13 AI coding tools (Claude Code, Cursor, GitHub Copilot, Gemini CLI, etc.). Real benchmark: $400/month Claude Code bill drops to ~$80, with &lt;10ms latency overhead. MIT licensed. 30-second install.” q: “Does rtk send my code to any third party?” a: “No. rtk is a local-only binary. It only filters output between your shell and your AI tool’s context window. Nothing is sent over the network.” q: “How much can I save on my Claude Code or Cursor bill with rtk?” a: “Real benchmark on a mid-sized TypeScript fullstack project shows 80% token reduction across typical AI coding sessions. If your monthly bill is $400, rtk drops it to ~$80. The AI agent receives the same actionable information — just without progress bars, redundant logs, and ASCII clutter.” q: “Will rtk break if Claude Code or Cursor updates?” a: “The hook mechanism is stable. rtk has been tracking Claude Code’s hook API since version 0.10. If a breaking change ships, expect an rtk update within 24-48 hours.” q: “Is rtk safe for production CI/CD pipelines?” a: “Yes when used in agent workflows. Don’t use it in set -e strict-mode pipelines that depend on exact command output text — but for AI agent loops that read output and decide next steps, rtk’s compressed output is what the agent actually needs.” Quick Answer Q: What is rtk and how much can it save on AI coding bills?
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/rtk-rust-cli-proxy-llm-token-savings-2026/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Introduction The landscape of AI coding tools has become remarkably fragmented. Developers juggle between Claude Code, Cursor, Copilot, Codex, and a growing zoo of CLI tools — each with its own configuration, pricing, and capabilities. Managing multiple model providers, each with different APIs, rate limits, and token costs, has become a significant operational burden for teams building intelligent applications.
+Ruv Pi (also known as pi-agent) from Earendil Works addresses this fragmentation head-on. With 61,200 GitHub stars, it has become one of the most popular coding agent frameworks available. Pi provides a self-extensible coding agent CLI backed by a unified multi-provider LLM API, letting developers write code once and run it across any model provider.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ruv-pi/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Introduction WiFi has become more than just a means of connecting devices to the internet — it has evolved into a spatial intelligence platform capable of tracking real-time positions, mapping building layouts, and optimizing wireless networks. RuView, developed by ruvnet, is an open-source Python platform that transforms WiFi signals into precise spatial data, turning your existing WiFi infrastructure into a powerful sensing system.
+Built on the principle that WiFi signals contain rich spatial information, RuView analyzes signal strength, time-of-flight measurements, and channel state information (CSI) to determine the location of devices within a building. The result is a system that can track objects in real-time, map indoor environments, and optimize WiFi coverage — all without requiring additional hardware beyond standard WiFi adapters. With over 72,000 GitHub stars, RuView has emerged as a leader in the WiFi spatial intelligence space.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ruvnet-ruview-wifi-spatial-intelligence-guide/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
@@ -318,6 +311,81 @@ RAG란? 검색 증강 생성 이해하기 기본 RAG 개념과 워크플로우 R
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

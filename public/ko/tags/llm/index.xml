@@ -9,11 +9,11 @@
     <lastBuildDate>Sun, 20 Sep 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://dibi8.com/ko/tags/llm/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>RAG Systems 2026: Advanced Techniques for Production Deployment</title>
+      <title>RAG Systems 2026: 프로덕션 배포를 위한 고급 기술</title>
       <link>https://dibi8.com/ko/rag-systems-2026/</link>
       <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/rag-systems-2026/</guid>
-      <description>Advanced RAG implementation patterns for 2026: hybrid retrieval, query expansion, re-ranking, and multi-modal retrieval. Real production examples and benchmarks.</description>
+      <description>2026년 RAG 구현 고급 패턴: 하이브리드 검색, 쿼리 확장, 재랭킹, 멀티모달 검색. 실제 프로덕션 예제와 벤치마크.</description>
     </item>
   </channel>
 </rss>

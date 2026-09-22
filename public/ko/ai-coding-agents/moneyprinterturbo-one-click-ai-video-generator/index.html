@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “‘MoneyPrinterTurbo: 9만 개 이상의 별을 가진 원클릭 AI 비디오 생성기’”, “description”: “‘MoneyPrinterTurbo에 비디오 주제나 키워드를 제공하면 스크립트, 스톡 영상, 자막, 배경 음악, HD 짧은 동영상을 자동으로 생성합니다. TikTok, YouTube Shorts, Instagram Reels를 지원합니다. GitHub 별점 9만 이상.’”, “datePublished”: “2026-06-22”, “dateModified”: “2026-06-22”, “author”: { “@type”: “Organization”, “name”: “dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/tools/moneyprinterturbo-one-click-ai-video-generator/\" }, “url”: “https://dibi8.com/kr/tools/moneyprinterturbo-one-click-ai-video-generator/\", “image”: “https://picsum.photos/seed/moneyprinterturbo-one-click-ai-video-generator/1200x630\", “keywords”: “ai tools,video generation,short videos,automation,self-hosted,docker”, “articleSection”: “ai-tools” } title: “MoneyPrinterTurbo: One-Click AI Video Generator with 90K+ Stars’ description: “Technical guide and comparison.” date: 2026-06-22 lastmod: 2026-06-22 draft: false tags: [“ai tools”, “video generation”, “short videos”, “automation”, “self-hosted”, “docker”] categories: [“ai-tools”] slug: moneyprinterturbo-one-click-ai-video-generator\naliases: [’/moneyprinterturbo’] sources: - name: GitHub url: ‘https://github.com/harry0703/MoneyPrinterTurbo'\nname: ‘Demo Videos’ url: ‘https://github.com/harry0703/MoneyPrinterTurbo#video-demo' MoneyPrinterTurbo: One-Click AI Video Generator with 90K+ Stars TL;DR — MoneyPrinterTurbo is an open-source Python tool that turns a video topic or keyword into a complete HD short video — auto-generating the script, sourcing copyright-free stock footage, creating subtitles, adding background music, and composing everything into a vertical 9:16 or horizontal 16:9 video. With 90,000+ GitHub stars, it supports dozens of LLM providers, multiple TTS engines, and one-click publishing to TikTok, YouTube Shorts, and Instagram Reels.\nWhat Is MoneyPrinterTurbo? MoneyPrinterTurbo takes a single input — a video topic or keyword — and produces a finished short video in minutes. The pipeline is fully automated: 1. Script generation — AI writes a compelling video script in Chinese or English 2. Stock footage sourcing — Downloads copyright-free clips from Pexels, Pixabay, and Coverr 3. Voice synthesis — Generates narration using Edge TTS (free) or Azure TTS V2 (premium) 4. Subtitle creation — Produces synchronized subtitles with customizable fonts, colors, and positions 5. Background music — Adds royalty-free background music with adjustable volume 6. Video composition — Uses MoviePy 2.x to stitch everything together into HD video\nThe result is a production-ready short video suitable for TikTok, YouTube Shorts, Instagram Reels, or any social platform.\nGitHub: harry0703/MoneyPrinterTurbo · Stars: 90,884+ · License: MIT · Language: Python\nKey Features MVC Architecture — Clean code structure with both API and Web UI interfaces AI Script Generation — Auto-generate video scripts or use custom ones Multiple HD Sizes — Portrait 9:16 (1080x1920) and Landscape 16:9 (1920x1080) Batch Generation — Generate multiple videos at once and pick the best one Multi-Language Support — Chinese and English video scripts Multiple Voice Options — Real-time voice preview with Edge TTS and Azure TTS V2 Customizable Subtitles — Adjust font, position, color, size, and stroke Background Music — Random or specified music files with volume control HD Copyright-Free Footage — Sourced from Pexels, Pixabay, and Coverr Cross-Platform Publishing — Auto-upload to TikTok, Instagram, and YouTube Shorts via Upload-Post 16+ LLM Providers — OpenAI, Google Gemini, Anthropic, Ollama, DeepSeek, and more Supported LLM Providers MoneyPrinterTurbo integrates with a wide range of language models for script generation: | Provider | Models | Cost | |———-|——–|——| | OpenAI | GPT-4, GPT-4o, GPT-3.5 | Paid | | Google Gemini | Gemini Pro, Gemini 1.5 | Freemium | | Anthropic | Claude Sonnet, Haiku | Paid | | Ollama | Local Llama, Mistral, Qwen | Free | | DeepSeek | DeepSeek V3, V4 | Freemium | | Moonshot | Kimi series | Paid | | Azure OpenAI | GPT-4, GPT-3.5 | Paid | | Zhipu AI | GLM-4 | Freemium | | Bailian (Alibaba) | Qwen series | Freemium | | MiniMax | MiniMax-01 | Freemium | | Wenxin Yiyan (Baidu) | ERNIE Bot | Paid | | Pollinations | Various open models | Free | | ModelScope | Chinese models | Freemium | | AIHubMix | 700+ models aggregated | Freemium | | GPT4Free | Unofficial endpoints | Free | | One-API | China proxy gateway | Paid |\nSupported TTS Engines Engine Quality Cost Voices Edge TTS (V1) Good Free 100+ Azure TTS V2 Excellent Paid 50+ neural OpenAI TTS Very Good Paid 6 voices Fish Audio Good Freemium Custom Edge TTS is the default and requires no API key. For higher quality voices, configure Azure Speech Services credentials.\nInstallation Methods Method 1: Docker (Recommended for Isolation) git clone https://github.com/harry0703/MoneyPrinterTurbo.git cd MoneyPrinterTurbo # Copy config example cp config.example.toml config.toml # Edit config.toml with your API keys # Then start with release image docker compose -f docker-compose.release.yml up Access the Web UI at http://127.0.0.1:8501 and the API docs at http://127.0.0.1:8080/docs.\nMethod 2: uv (Recommended for Local Python) git clone https://github.com/harry0703/MoneyPrinterTurbo.git cd MoneyPrinterTurbo # Install Python 3.11 and dependencies uv python install 3.11 uv sync --frozen # Start Web UI uv run streamlit run ./webui/Main.py --browser.gatherUsageStats=False --server.showEmailPrompt=False # Or start API service uv run python main.py Method 3: Traditional pip git clone https://github.com/harry0703/MoneyPrinterTurbo.git cd MoneyPrinterTurbo python3.11 -m venv .venv source .venv/bin/activate pip install -r requirements.txt # Start Web UI python webui/Main.py Method 4: Windows One-Click Package Download the latest release from GitHub Releases Extract (avoid Chinese characters or special characters in path) Run update.bat to get the latest code Run start.bat to launch Method 5: Google Colab No local setup required. Click the badge below to run MoneyPrinterTurbo directly in Google Colab: Configuration After cloning, copy config.example.toml to config.toml and configure your settings: `````toml [app]\nVideo output settings video_width = 1080 video_height = 1920 # 9:16 portrait mode fps = 30\nSubtitle settings subtitle_enabled = true subtitle_font = “Arial” subtitle_color = “white”\n[basic_tts]\nEdge TTS is free, no API key needed provider = “edge-tts” voice_name = “en-US-GuyNeural”\n[azure]\nOptional: for Azure TTS V2 premium voices speech_key = “your-azure-speech-key” speech_region = “eastus”\n[llm]\nChoose your LLM provider provider = “openai” # or gemini, ollama, deepseek, etc. api_key = “your-api-key” model = “gpt-4o”\n[pexels]\nStock footage sources (free API keys) api_keys = [“your-pexels-api-key”]\n[pixabay] api_keys = [“your-pixabay-api-key”]\n[coverr]\nAlternative stock footage api_keys = [“your-coverr-api-key”]\n## Usage Examples ### Web UI Launch the Streamlit web interface and enter a video topic: `````bash uv run streamlit run ./webui/Main.py Open http://localhost:8501 in your browser. Enter a topic like “The importance of exercise” and the tool will: 1. Generate a script using your configured LLM 2. Search for relevant stock footage 3. Create voiceover narration 4. Generate synchronized subtitles 5. Assemble everything into a finished video\nCommand Line Interface For headless operation or automation: `````bash\nGenerate video from a topic uv run python cli.py –video-subject “The importance of exercise”\nSpecify local video materials uv run python cli.py –video-subject “Exercise benefits” –video-source local –video-materials “clip1.mp4,clip2.mp4” –stop-at video\nGenerate only the script (for review) uv run python cli.py –video-subject “Healthy eating” –stop-at script\nGenerate script and voiceover only uv run python cli.py –video-subject “Healthy eating” –stop-at audio\n### API Endpoint MoneyPrinterTurbo exposes a REST API for programmatic access: `````bash # Start the API service uv run python main.py # Then access Swagger docs at http://localhost:8080/docs Subtitle Generation Two subtitle generation modes are available: ### Edge Mode (Fast)\nUses Edge TTS timing stamps Fast, no GPU required Works on any machine Occasionally inaccurate timestamps for complex sentences Whisper Mode (Accurate) Uses local faster-whisper for audio transcription More granular timestamps Requires downloading model files (~250MB for turbo, ~3GB for large-v3) Better subtitle accuracy overall Switch modes in config.toml: `````toml [subtitle] provider = “edge” # or “whisper”\nFor Whisper mode, download the model from HuggingFace. If you're in China and can\"t access HuggingFace directly: - **Baidu Pan:** https://pan.baidu.com/s/11h3Q6tsDtjQKTjUu3sc5cA?pwd=xjs9 - **Quark Pan:** https://pan.quark.cn/s/3ee3d991d64b Extract and place in ``MoneyPrinterTurbo/models/whisper-large-v3/``: ````` MoneyPrinterTurbo/ models/ whisper-large-v3/ config.json model.bin preprocessor_config.json tokenizer.json vocabulary.json Cross-Platform Publishing MoneyPrinterTurbo can automatically publish generated videos to social platforms via Upload-Post: `````toml [upload] enabled = true platforms = [“tiktok”, “youtube_shorts”, “instagram_reels”] youtube_privacy_status = “private” # or “public”, “unlisted”\nYouTube publishing automatically marks AI-generated content as required by platform policies. ## System Requirements | Component | Minimum | Recommended | Ideal | |-----------|---------|-------------|-------| | CPU | 4 cores | 6-8 cores | 8+ cores | | RAM | 4 GB | 8 GB | 16+ GB | | GPU | Not required | 4 GB VRAM | 8 GB VRAM | | Disk | 2 GB | 5 GB | 10 GB | GPU is optional but helps with: - Local Whisper transcription - Faster video processing - Smoother batch generation If you rely mainly on cloud LLMs, cloud TTS, and online footage sources, CPU and RAM matter more than GPU. ## Troubleshooting ### No ffmpeg Found RuntimeError: No ffmpeg exe could be found.\nDownload ffmpeg from https://www.gyan.dev/ffmpeg/builds/ and set the path: `````toml [app] ffmpeg_path = \"C:\\\\Users\\\\YourName\\\\Downloads\\\\ffmpeg.exe\" Too Many Open Files OSError: [Errno 24] Too many open files Increase the limit: `````bash ulimit -n 10240\n### Whisper Model Download Failure If you see ````LocalEntryNotFoundError````, download the model manually (see Subtitle Generation section above). ### ImageMagick Errors The current version no longer requires ImageMagick — it uses Pillow for subtitle rendering after upgrading to MoviePy 2.x. If you still see errors, update your code: `````bash git pull # Windows: run update.bat Architecture Overview ┌──────────────────────────────────────────────────────┐ │ MoneyPrinterTurbo │ ├──────────────────────────────────────────────────────┤ │ Web UI (Streamlit) │ API (FastAPI) │ ├────────────────────────┼──────────────────────────────┤ │ Script Generator │ ← LLM (OpenAI/Gemini/Ollama)│ │ Stock Footage Fetcher │ ← Pexels/Pixabay/Coverr │ │ TTS Engine │ ← Edge/Azure/OpenAI │ │ Subtitle Generator │ ← Edge/Whisper │ │ Music Mixer │ ← Local resource files │ │ Video Composer │ ← MoviePy 2.x │ │ Publisher │ ← Upload-Post API │ └────────────────────────┴──────────────────────────────┘ Who Should Use MoneyPrinterTurbo? Content creators who want to produce videos at scale without filming themselves Social media managers who need consistent video output for TikTok, Reels, and Shorts Educators creating explainer videos from topics Marketers producing promotional content quickly Developers who want to integrate AI video generation into their own apps via the REST API Alternatives Compared Feature MoneyPrinterTurbo InVideo AI Pictory Fliki Open source ✅ MIT ❌ Proprietary ❌ SaaS ❌ SaaS Self-hosted ✅ Docker/Local ❌ Cloud only ❌ Cloud only ❌ Cloud only Free tier ✅ Fully free ❌ Watermark ❌ Trial only ❌ Limited LLM flexibility ✅ 16+ providers ❌ Fixed ❌ Fixed ❌ Fixed TTS options ✅ Edge/Azure/OpenAI ❌ Fixed ❌ Fixed ✅ Limited Stock footage ✅ 3 sources ✅ Proprietary ✅ Proprietary ✅ Limited Custom subtitles ✅ Full control ❌ Auto only ❌ Auto only ❌ Auto only API access ✅ FastAPI ❌ No ❌ No ❌ No Batch generation ✅ Yes ❌ No ❌ No ❌ No Getting Started Checklist Clone the repository: git clone https://github.com/harry0703/MoneyPrinterTurbo.git Copy config: cp config.example.toml config.toml Add your API keys (at minimum, a Pexels API key for footage) Choose your LLM provider (Ollama for free local, or OpenAI for best quality) Start Docker: docker compose -f docker-compose.release.yml up Open Web UI at http://localhost:8501 Enter a video topic and watch it generate a complete video Review, tweak, and regenerate if needed Frequently Asked Questions Q: Do I need API keys for everything? No. Edge TTS is completely free and requires no key. For stock footage, Pexels and Pixabay offer free API keys. The LLM provider is optional — you can use local Ollama models for free, or skip script generation and use custom scripts.\nQ: Can I use my own video素材 (materials)? Yes. Set video_source to local and provide a comma-separated list of video file paths. The tool will use your local files instead of fetching from stock sources.\nQ: How long does video generation take? Typically 2-10 minutes depending on video length, LLM response time, and whether Whisper transcription is enabled. Docker deployment tends to be faster than local Python installs due to optimized dependencies.\nQ: Can I generate videos in languages other than Chinese and English? The default script generation supports Chinese and English. For other languages, you can write custom scripts and use the appropriate TTS voice. The stock footage and music are language-agnostic.\nQ: Does it work on Raspberry Pi? Yes, though slowly. The Docker image supports ARM64. For best results on Pi, use Edge TTS (no heavy model downloads) and skip Whisper subtitle generation.\nQ: How do I change the output aspect ratio? Edit config.toml: `````toml [app] video_width = 1080 video_height = 1920 # 9:16 portrait (TikTok/Shorts)\nOR video_width = 1920 video_height = 1080 # 16:9 landscape (YouTube)\n## Sources - [MoneyPrinterTurbo on GitHub](https://github.com/harry0703/MoneyPrinterTurbo) - [Demo Videos](https://github.com/harry0703/MoneyPrinterTurbo#video-demo) - [Configuration Example](https://github.com/harry0703/MoneyPrinterTurbo/blob/main/config.example.toml) - [Upload-Post Cross-Platform Publishing](https://upload-post.com) * * * **Want to generate videos at scale?** MoneyPrinterTurbo is free, open-source, and runs on any machine with Python or Docker. **Join the Dibi8 community:** [Telegram Group](https://t.me/DIBI8_Group/2) ",
-  "wordCount" : "2063",
+  "articleBody": "{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “‘MoneyPrinterTurbo: One-Click AI Video Generator with 90K…”, “description”: “‘Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtitles, background music, and HD short videos. Supports TikTok, YouTube Shorts, Instagram Reels. 90K+ GitHub stars.’”, “datePublished”: “2026-06-22”, “dateModified”: “2026-06-22”, “author”: { “@type”: “Organization”, “name”: “dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/cn/tools/moneyprinterturbo-one-click-ai-video-generator/\" }, “url”: “https://dibi8.com/cn/tools/moneyprinterturbo-one-click-ai-video-generator/\", “image”: “https://picsum.photos/seed/moneyprinterturbo-one-click-ai-video-generator/1200x630\", “keywords”: “ai-tools,automation,generator,open-source,video-generation”, “articleSection”: “ai-tools” } title: ‘MoneyPrinterTurbo: One-Click AI Video Generator with 90K… description: “Technical guide and comparison.” date: 2026-06-22 lastmod: 2026-06-22 draft: false tags: [“ai tools”, “video generation”, “short videos”, “automation”, “self-hosted”, “docker”] categories: [“ai-tools”] slug: moneyprinterturbo-one-click-ai-video-generator\naliases: [/moneyprinterturbo] sources: - name: GitHub url: ‘https://github.com/harry0703/MoneyPrinterTurbo'\nname: ‘Demo Videos’ url: ‘https://github.com/harry0703/MoneyPrinterTurbo#video-demo' MoneyPrinterTurbo: One-Click AI Video Generator with 90K+ Stars TL;DR — MoneyPrinterTurbo is an open-source Python tool that turns a video topic or keyword into a complete HD short video — auto-generating the script, sourcing copyright-free stock footage, creating subtitles, adding background music, and composing everything into a vertical 9:16 or horizontal 16:9 video. With 90,000+ GitHub stars, it supports dozens of LLM providers, multiple TTS engines, and one-click publishing to TikTok, YouTube Shorts, and Instagram Reels.\nWhat Is MoneyPrinterTurbo? MoneyPrinterTurbo takes a single input — a video topic or keyword — and produces a finished short video in minutes. The pipeline is fully automated: 1. Script generation — AI writes a compelling video script in Chinese or English 2. Stock footage sourcing — Downloads copyright-free clips from Pexels, Pixabay, and Coverr 3. Voice synthesis — Generates narration using Edge TTS (free) or Azure TTS V2 (premium) 4. Subtitle creation — Produces synchronized subtitles with customizable fonts, colors, and positions 5. Background music — Adds royalty-free background music with adjustable volume 6. Video composition — Uses MoviePy 2.x to stitch everything together into HD video\nThe result is a production-ready short video suitable for TikTok, YouTube Shorts, Instagram Reels, or any social platform.\nGitHub: harry0703/MoneyPrinterTurbo · Stars: 90,884+ · License: MIT · Language: Python\nKey Features MVC Architecture — Clean code structure with both API and Web UI interfaces AI Script Generation — Auto-generate video scripts or use custom ones Multiple HD Sizes — Portrait 9:16 (1080x1920) and Landscape 16:9 (1920x1080) Batch Generation — Generate multiple videos at once and pick the best one Multi-Language Support — Chinese and English video scripts Multiple Voice Options — Real-time voice preview with Edge TTS and Azure TTS V2 Customizable Subtitles — Adjust font, position, color, size, and stroke Background Music — Random or specified music files with volume control HD Copyright-Free Footage — Sourced from Pexels, Pixabay, and Coverr Cross-Platform Publishing — Auto-upload to TikTok, Instagram, and YouTube Shorts via Upload-Post 16+ LLM Providers — OpenAI, Google Gemini, Anthropic, Ollama, DeepSeek, and more Supported LLM Providers MoneyPrinterTurbo integrates with a wide range of language models for script generation: | Provider | Models | Cost | |\n|\n|\n| | OpenAI | GPT-4, GPT-4o, GPT-3.5 | Paid | | Google Gemini | Gemini Pro, Gemini 1.5 | Freemium | | Anthropic | Claude Sonnet, Haiku | Paid | | Ollama | Local Llama, Mistral, Qwen | Free | | DeepSeek | DeepSeek V3, V4 | Freemium | | Moonshot | Kimi series | Paid | | Azure OpenAI | GPT-4, GPT-3.5 | Paid | | Zhipu AI | GLM-4 | Freemium | | Bailian (Alibaba) | Qwen series | Freemium | | MiniMax | MiniMax-01 | Freemium | | Wenxin Yiyan (Baidu) | ERNIE Bot | Paid | | Pollinations | Various open models | Free | | ModelScope | Chinese models | Freemium | | AIHubMix | 700+ models aggregated | Freemium | | GPT4Free | Unofficial endpoints | Free | | One-API | China proxy gateway | Paid |\nSupported TTS Engines | Engine | Quality | Cost | Voices | |\n|\n|\n|\n| | Edge TTS (V1) | Good | Free | 100+ | | Azure TTS V2 | Excellent | Paid | 50+ neural | | OpenAI TTS | Very Good | Paid | 6 voices | | Fish Audio | Good | Freemium | Custom |\nEdge TTS is the default and requires no API key. For higher quality voices, configure Azure Speech Services credentials.\nInstallation Methods Method 1: Docker (Recommended for Isolation) git clone https://github.com/harry0703/MoneyPrinterTurbo.git cd MoneyPrinterTurbo # Copy config example cp config.example.toml config.toml # Edit config.toml with your API keys # Then start with release image docker compose -f docker-compose.release.yml up Access the Web UI at http://127.0.0.1:8501 and the API docs at http://127.0.0.1:8080/docs.\nMethod 2: uv (Recommended for Local Python) git clone https://github.com/harry0703/MoneyPrinterTurbo.git cd MoneyPrinterTurbo # Install Python 3.11 and dependencies uv python install 3.11 uv sync --frozen # Start Web UI uv run streamlit run ./webui/Main.py --browser.gatherUsageStats=False --server.showEmailPrompt=False # Or start API service uv run python main.py Method 3: Traditional pip git clone https://github.com/harry0703/MoneyPrinterTurbo.git cd MoneyPrinterTurbo python3.11 -m venv .venv source .venv/bin/activate pip install -r requirements.txt # Start Web UI python webui/Main.py Method 4: Windows One-Click Package Download the latest release from GitHub Releases Extract (avoid Chinese characters or special characters in path) Run update.bat to get the latest code Run start.bat to launch Method 5: Google Colab No local setup required. Click the badge below to run MoneyPrinterTurbo directly in Google Colab: Configuration After cloning, copy config.example.toml to config.toml and configure your settings: `````toml [app]\nVideo output settings video_width = 1080 video_height = 1920 # 9:16 portrait mode fps = 30\nSubtitle settings subtitle_enabled = true subtitle_font = “Arial” subtitle_color = “white”\n[basic_tts]\nEdge TTS is free, no API key needed provider = “edge-tts” voice_name = “en-US-GuyNeural”\n[azure]\nOptional: for Azure TTS V2 premium voices speech_key = “your-azure-speech-key” speech_region = “eastus”\n[llm]\nChoose your LLM provider provider = “openai” # or gemini, ollama, deepseek, etc. api_key = “your-api-key” model = “gpt-4o”\n[pexels]\nStock footage sources (free API keys) api_keys = [“your-pexels-api-key”]\n[pixabay] api_keys = [“your-pixabay-api-key”]\n[coverr]\nAlternative stock footage api_keys = [“your-coverr-api-key”]\n## Usage Examples ### Web UI Launch the Streamlit web interface and enter a video topic: `````bash uv run streamlit run ./webui/Main.py Open http://localhost:8501 in your browser. Enter a topic like “The importance of exercise” and the tool will: 1. Generate a script using your configured LLM 2. Search for relevant stock footage 3. Create voiceover narration 4. Generate synchronized subtitles 5. Assemble everything into a finished video\nCommand Line Interface For headless operation or automation: `````bash\nGenerate video from a topic uv run python cli.py –video-subject “The importance of exercise”\nSpecify local video materials uv run python cli.py –video-subject “Exercise benefits” –video-source local –video-materials “clip1.mp4,clip2.mp4” –stop-at video\nGenerate only the script (for review) uv run python cli.py –video-subject “Healthy eating” –stop-at script\nGenerate script and voiceover only uv run python cli.py –video-subject “Healthy eating” –stop-at audio\n### API Endpoint MoneyPrinterTurbo exposes a REST API for programmatic access: `````bash # Start the API service uv run python main.py # Then access Swagger docs at http://localhost:8080/docs Subtitle Generation Two subtitle generation modes are available: ### Edge Mode (Fast)\nUses Edge TTS timing stamps Fast, no GPU required Works on any machine Occasionally inaccurate timestamps for complex sentences Whisper Mode (Accurate) Uses local faster-whisper for audio transcription More granular timestamps Requires downloading model files (~250MB for turbo, ~3GB for large-v3) Better subtitle accuracy overall Switch modes in config.toml: `````toml [subtitle] provider = “edge” # or “whisper”\nFor Whisper mode, download the model from HuggingFace. If you're in China and can\"t access HuggingFace directly: - **Baidu Pan:** https://pan.baidu.com/s/11h3Q6tsDtjQKTjUu3sc5cA?pwd=xjs9 - **Quark Pan:** https://pan.quark.cn/s/3ee3d991d64b Extract and place in ``MoneyPrinterTurbo/models/whisper-large-v3/``: ````` MoneyPrinterTurbo/ models/ whisper-large-v3/ config.json model.bin preprocessor_config.json tokenizer.json vocabulary.json Cross-Platform Publishing MoneyPrinterTurbo can automatically publish generated videos to social platforms via Upload-Post: `````toml [upload] enabled = true platforms = [“tiktok”, “youtube_shorts”, “instagram_reels”] youtube_privacy_status = “private” # or “public”, “unlisted”\nYouTube publishing automatically marks AI-generated content as required by platform policies. ## System Requirements | Component | Minimum | Recommended | Ideal | | * * * | * * * | * * * | * * * | | CPU | 4 cores | 6-8 cores | 8+ cores | | RAM | 4 GB | 8 GB | 16+ GB | | GPU | Not required | 4 GB VRAM | 8 GB VRAM | | Disk | 2 GB | 5 GB | 10 GB | GPU is optional but helps with: - Local Whisper transcription - Faster video processing - Smoother batch generation If you rely mainly on cloud LLMs, cloud TTS, and online footage sources, CPU and RAM matter more than GPU. ## Troubleshooting ### No ffmpeg Found RuntimeError: No ffmpeg exe could be found.\nDownload ffmpeg from https://www.gyan.dev/ffmpeg/builds/ and set the path: `````toml [app] ffmpeg_path = \"C:\\\\Users\\\\YourName\\\\Downloads\\\\ffmpeg.exe\" Too Many Open Files OSError: [Errno 24] Too many open files Increase the limit: `````bash ulimit -n 10240\n### Whisper Model Download Failure If you see ````LocalEntryNotFoundError````, download the model manually (see Subtitle Generation section above). ### ImageMagick Errors The current version no longer requires ImageMagick — it uses Pillow for subtitle rendering after upgrading to MoviePy 2.x. If you still see errors, update your code: `````bash git pull # Windows: run update.bat Architecture Overview ┌──────────────────────────────────────────────────────┐ │ MoneyPrinterTurbo │ ├──────────────────────────────────────────────────────┤ │ Web UI (Streamlit) │ API (FastAPI) │ ├────────────────────────┼──────────────────────────────┤ │ Script Generator │ ← LLM (OpenAI/Gemini/Ollama)│ │ Stock Footage Fetcher │ ← Pexels/Pixabay/Coverr │ │ TTS Engine │ ← Edge/Azure/OpenAI │ │ Subtitle Generator │ ← Edge/Whisper │ │ Music Mixer │ ← Local resource files │ │ Video Composer │ ← MoviePy 2.x │ │ Publisher │ ← Upload-Post API │ └────────────────────────┴──────────────────────────────┘ Who Should Use MoneyPrinterTurbo? Content creators who want to produce videos at scale without filming themselves Social media managers who need consistent video output for TikTok, Reels, and Shorts Educators creating explainer videos from topics Marketers producing promotional content quickly Developers who want to integrate AI video generation into their own apps via the REST API Alternatives Compared | Feature | MoneyPrinterTurbo | InVideo AI | Pictory | Fliki | |\n|\n|\n|\n|\n| | Open source | ✅ MIT | ❌ Proprietary | ❌ SaaS | ❌ SaaS | | Self-hosted | ✅ Docker/Local | ❌ Cloud only | ❌ Cloud only | ❌ Cloud only | | Free tier | ✅ Fully free | ❌ Watermark | ❌ Trial only | ❌ Limited | | LLM flexibility | ✅ 16+ providers | ❌ Fixed | ❌ Fixed | ❌ Fixed | | TTS options | ✅ Edge/Azure/OpenAI | ❌ Fixed | ❌ Fixed | ✅ Limited | | Stock footage | ✅ 3 sources | ✅ Proprietary | ✅ Proprietary | ✅ Limited | | Custom subtitles | ✅ Full control | ❌ Auto only | ❌ Auto only | ❌ Auto only | | API access | ✅ FastAPI | ❌ No | ❌ No | ❌ No | | Batch generation | ✅ Yes | ❌ No | ❌ No | ❌ No |\nGetting Started Checklist Clone the repository: git clone https://github.com/harry0703/MoneyPrinterTurbo.git Copy config: cp config.example.toml config.toml Add your API keys (at minimum, a Pexels API key for footage) Choose your LLM provider (Ollama for free local, or OpenAI for best quality) Start Docker: docker compose -f docker-compose.release.yml up Open Web UI at http://localhost:8501 Enter a video topic and watch it generate a complete video Review, tweak, and regenerate if needed Frequently Asked Questions Q: Do I need API keys for everything? No. Edge TTS is completely free and requires no key. For stock footage, Pexels and Pixabay offer free API keys. The LLM provider is optional — you can use local Ollama models for free, or skip script generation and use custom scripts.\nQ: Can I use my own video素材 (materials)? Yes. Set video_source to local and provide a comma-separated list of video file paths. The tool will use your local files instead of fetching from stock sources.\nQ: How long does video generation take? Typically 2-10 minutes depending on video length, LLM response time, and whether Whisper transcription is enabled. Docker deployment tends to be faster than local Python installs due to optimized dependencies.\nQ: Can I generate videos in languages other than Chinese and English? The default script generation supports Chinese and English. For other languages, you can write custom scripts and use the appropriate TTS voice. The stock footage and music are language-agnostic.\nQ: Does it work on Raspberry Pi? Yes, though slowly. The Docker image supports ARM64. For best results on Pi, use Edge TTS (no heavy model downloads) and skip Whisper subtitle generation.\nQ: How do I change the output aspect ratio? Edit config.toml: `````toml [app] video_width = 1080 video_height = 1920 # 9:16 portrait (TikTok/Shorts)\nOR video_width = 1920 video_height = 1080 # 16:9 landscape (YouTube)\n## Sources - [MoneyPrinterTurbo on GitHub](https://github.com/harry0703/MoneyPrinterTurbo) - [Demo Videos](https://github.com/harry0703/MoneyPrinterTurbo#video-demo) - [Configuration Example](https://github.com/harry0703/MoneyPrinterTurbo/blob/main/config.example.toml) - [Upload-Post Cross-Platform Publishing](https://upload-post.com) * * * **Want to generate videos at scale?** MoneyPrinterTurbo is free, open-source, and runs on any machine with Python or Docker. **Join the Dibi8 community:** [Telegram Group](https://t.me/DIBI8_Group/2) ",
+  "wordCount" : "2174",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/moneyprinterturbo-one-click-ai-video-generator/">En</a>
@@ -312,8 +312,8 @@
   <div class="post-content md-content"><p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;&lsquo;MoneyPrinterTurbo: 9만 개 이상의 별을 가진 원클릭 AI 비디오 생성기&rsquo;&rdquo;,
-&ldquo;description&rdquo;: &ldquo;&lsquo;MoneyPrinterTurbo에 비디오 주제나 키워드를 제공하면 스크립트, 스톡 영상, 자막, 배경 음악, HD 짧은 동영상을 자동으로 생성합니다. TikTok, YouTube Shorts, Instagram Reels를 지원합니다. GitHub 별점 9만 이상.&rsquo;&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;&lsquo;MoneyPrinterTurbo: One-Click AI Video Generator with 90K&hellip;&rdquo;,
+&ldquo;description&rdquo;: &ldquo;&lsquo;Give MoneyPrinterTurbo a video topic or keyword and it auto-generates scripts, stock footage, subtitles, background music, and HD short videos. Supports TikTok, YouTube Shorts, Instagram Reels. 90K+ GitHub stars.&rsquo;&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-06-22&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-06-22&rdquo;,
 &ldquo;author&rdquo;: {
@@ -330,15 +330,16 @@
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/tools/moneyprinterturbo-one-click-ai-video-generator/%22">https://dibi8.com/kr/tools/moneyprinterturbo-one-click-ai-video-generator/"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/cn/tools/moneyprinterturbo-one-click-ai-video-generator/%22">https://dibi8.com/cn/tools/moneyprinterturbo-one-click-ai-video-generator/"</a>
 },
-&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/kr/tools/moneyprinterturbo-one-click-ai-video-generator/%22">https://dibi8.com/kr/tools/moneyprinterturbo-one-click-ai-video-generator/"</a>,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/cn/tools/moneyprinterturbo-one-click-ai-video-generator/%22">https://dibi8.com/cn/tools/moneyprinterturbo-one-click-ai-video-generator/"</a>,
 &ldquo;image&rdquo;: &ldquo;<a href="https://picsum.photos/seed/moneyprinterturbo-one-click-ai-video-generator/1200x630%22">https://picsum.photos/seed/moneyprinterturbo-one-click-ai-video-generator/1200x630"</a>,
-&ldquo;keywords&rdquo;: &ldquo;ai tools,video generation,short videos,automation,self-hosted,docker&rdquo;,
+&ldquo;keywords&rdquo;: &ldquo;ai-tools,automation,generator,open-source,video-generation&rdquo;,
 &ldquo;articleSection&rdquo;: &ldquo;ai-tools&rdquo;
 }
 </script></p>
-<p>title: &ldquo;MoneyPrinterTurbo: One-Click AI Video Generator with 90K+ Stars&rsquo;
+<hr>
+<p>title: &lsquo;MoneyPrinterTurbo: One-Click AI Video Generator with 90K&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-06-22
 lastmod: 2026-06-22
@@ -346,7 +347,7 @@ draft: false
 tags: [&ldquo;ai tools&rdquo;, &ldquo;video generation&rdquo;, &ldquo;short videos&rdquo;, &ldquo;automation&rdquo;, &ldquo;self-hosted&rdquo;, &ldquo;docker&rdquo;]
 categories: [&ldquo;ai-tools&rdquo;]
 slug: moneyprinterturbo-one-click-ai-video-generator</p>
-<p>aliases: [&rsquo;/moneyprinterturbo&rsquo;]
+<p>aliases: [/moneyprinterturbo]
 sources: - name: GitHub
 url: &lsquo;<a href="https://github.com/harry0703/MoneyPrinterTurbo%27">https://github.com/harry0703/MoneyPrinterTurbo'</a></p>
 <ul>
@@ -381,7 +382,13 @@ url: &lsquo;<a href="https://github.com/harry0703/MoneyPrinterTurbo#video-demo%2
 </ul>
 <h2 id="supported-llm-providers">Supported LLM Providers<a hidden class="anchor" aria-hidden="true" href="#supported-llm-providers">#</a></h2>
 <p>MoneyPrinterTurbo integrates with a wide range of language models for script generation: | Provider | Models | Cost |
-|&mdash;&mdash;&mdash;-|&mdash;&mdash;&ndash;|&mdash;&mdash;|
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | OpenAI | GPT-4, GPT-4o, GPT-3.5 | Paid |
 | Google Gemini | Gemini Pro, Gemini 1.5 | Freemium |
 | Anthropic | Claude Sonnet, Haiku | Paid |
@@ -399,42 +406,20 @@ url: &lsquo;<a href="https://github.com/harry0703/MoneyPrinterTurbo#video-demo%2
 | GPT4Free | Unofficial endpoints | Free |
 | One-API | China proxy gateway | Paid |</p>
 <h2 id="supported-tts-engines">Supported TTS Engines<a hidden class="anchor" aria-hidden="true" href="#supported-tts-engines">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>Engine</th>
-					<th>Quality</th>
-					<th>Cost</th>
-					<th>Voices</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>Edge TTS (V1)</td>
-					<td>Good</td>
-					<td>Free</td>
-					<td>100+</td>
-			</tr>
-			<tr>
-					<td>Azure TTS V2</td>
-					<td>Excellent</td>
-					<td>Paid</td>
-					<td>50+ neural</td>
-			</tr>
-			<tr>
-					<td>OpenAI TTS</td>
-					<td>Very Good</td>
-					<td>Paid</td>
-					<td>6 voices</td>
-			</tr>
-			<tr>
-					<td>Fish Audio</td>
-					<td>Good</td>
-					<td>Freemium</td>
-					<td>Custom</td>
-			</tr>
-	</tbody>
-</table>
+<p>| Engine | Quality | Cost | Voices |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Edge TTS (V1) | Good | Free | 100+ |
+| Azure TTS V2 | Excellent | Paid | 50+ neural |
+| OpenAI TTS | Very Good | Paid | 6 voices |
+| Fish Audio | Good | Freemium | Custom |</p>
 <p>Edge TTS is the default and requires no API key. For higher quality voices, configure Azure Speech Services credentials.</p>
 <h2 id="installation-methods">Installation Methods<a hidden class="anchor" aria-hidden="true" href="#installation-methods">#</a></h2>
 <h3 id="method-1-docker-recommended-for-isolation">Method 1: Docker (Recommended for Isolation)<a hidden class="anchor" aria-hidden="true" href="#method-1-docker-recommended-for-isolation">#</a></h3>
@@ -593,7 +578,15 @@ YouTube publishing automatically marks AI-generated content as required by platf
 ## System Requirements
 
 | Component | Minimum | Recommended | Ideal |
-|-----------|---------|-------------|-------|
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
 | CPU | 4 cores | 6-8 cores | 8+ cores |
 | RAM | 4 GB | 8 GB | 16+ GB |
 | GPU | Not required | 4 GB VRAM | 8 GB VRAM |
@@ -650,82 +643,27 @@ git pull
 <li><strong>Developers</strong> who want to integrate AI video generation into their own apps via the REST API</li>
 </ul>
 <h2 id="alternatives-compared">Alternatives Compared<a hidden class="anchor" aria-hidden="true" href="#alternatives-compared">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>Feature</th>
-					<th>MoneyPrinterTurbo</th>
-					<th>InVideo AI</th>
-					<th>Pictory</th>
-					<th>Fliki</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>Open source</td>
-					<td>✅ MIT</td>
-					<td>❌ Proprietary</td>
-					<td>❌ SaaS</td>
-					<td>❌ SaaS</td>
-			</tr>
-			<tr>
-					<td>Self-hosted</td>
-					<td>✅ Docker/Local</td>
-					<td>❌ Cloud only</td>
-					<td>❌ Cloud only</td>
-					<td>❌ Cloud only</td>
-			</tr>
-			<tr>
-					<td>Free tier</td>
-					<td>✅ Fully free</td>
-					<td>❌ Watermark</td>
-					<td>❌ Trial only</td>
-					<td>❌ Limited</td>
-			</tr>
-			<tr>
-					<td>LLM flexibility</td>
-					<td>✅ 16+ providers</td>
-					<td>❌ Fixed</td>
-					<td>❌ Fixed</td>
-					<td>❌ Fixed</td>
-			</tr>
-			<tr>
-					<td>TTS options</td>
-					<td>✅ Edge/Azure/OpenAI</td>
-					<td>❌ Fixed</td>
-					<td>❌ Fixed</td>
-					<td>✅ Limited</td>
-			</tr>
-			<tr>
-					<td>Stock footage</td>
-					<td>✅ 3 sources</td>
-					<td>✅ Proprietary</td>
-					<td>✅ Proprietary</td>
-					<td>✅ Limited</td>
-			</tr>
-			<tr>
-					<td>Custom subtitles</td>
-					<td>✅ Full control</td>
-					<td>❌ Auto only</td>
-					<td>❌ Auto only</td>
-					<td>❌ Auto only</td>
-			</tr>
-			<tr>
-					<td>API access</td>
-					<td>✅ FastAPI</td>
-					<td>❌ No</td>
-					<td>❌ No</td>
-					<td>❌ No</td>
-			</tr>
-			<tr>
-					<td>Batch generation</td>
-					<td>✅ Yes</td>
-					<td>❌ No</td>
-					<td>❌ No</td>
-					<td>❌ No</td>
-			</tr>
-	</tbody>
-</table>
+<p>| Feature | MoneyPrinterTurbo | InVideo AI | Pictory | Fliki |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Open source | ✅ MIT | ❌ Proprietary | ❌ SaaS | ❌ SaaS |
+| Self-hosted | ✅ Docker/Local | ❌ Cloud only | ❌ Cloud only | ❌ Cloud only |
+| Free tier | ✅ Fully free | ❌ Watermark | ❌ Trial only | ❌ Limited |
+| LLM flexibility | ✅ 16+ providers | ❌ Fixed | ❌ Fixed | ❌ Fixed |
+| TTS options | ✅ Edge/Azure/OpenAI | ❌ Fixed | ❌ Fixed | ✅ Limited |
+| Stock footage | ✅ 3 sources | ✅ Proprietary | ✅ Proprietary | ✅ Limited |
+| Custom subtitles | ✅ Full control | ❌ Auto only | ❌ Auto only | ❌ Auto only |
+| API access | ✅ FastAPI | ❌ No | ❌ No | ❌ No |
+| Batch generation | ✅ Yes | ❌ No | ❌ No | ❌ No |</p>
 <h2 id="getting-started-checklist">Getting Started Checklist<a hidden class="anchor" aria-hidden="true" href="#getting-started-checklist">#</a></h2>
 <ol>
 <li>Clone the repository: <code>git clone https://github.com/harry0703/MoneyPrinterTurbo.git</code></li>
@@ -765,7 +703,6 @@ video_height = 1080  # 16:9 landscape (YouTube)</p>
 - [Upload-Post Cross-Platform Publishing](https://upload-post.com)
 
 * * *
-
 **Want to generate videos at scale?** MoneyPrinterTurbo is free, open-source, and runs on any machine with Python or Docker.
 
 **Join the Dibi8 community:** [Telegram Group](https://t.me/DIBI8_Group/2)
@@ -811,6 +748,81 @@ video_height = 1080  # 16:9 landscape (YouTube)</p>
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

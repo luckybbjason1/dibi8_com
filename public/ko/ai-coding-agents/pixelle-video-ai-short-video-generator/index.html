@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” 이미지, 음성 해설, 배경음악이 포함된 완성된 영상을 생성합니다. date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Python application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: “27.1 MB” file_md5: ’' download_url: https://github.com/AIDC-AI/Pixelle-Video backup_url: ’' last_maintained: “2026-05-06” draft: false aliases:\n/ko/posts/pixelle-video-ai-short-video-generator/ faqs: - q: ‘Pixelle-Video란 무엇인가요?’ a: ‘Pixelle-Video는 단 하나의 주제를 입력하면 완성된 짧은 동영상을 자동으로 만들어 주는 오픈소스 MIT 라이선스 AI 엔진입니다. 하나의 입력으로 스크립트 작성, 장면에 맞는 AI 이미지 또는 영상 생성, TTS를 이용한 보이스오버 합성, 배경음악 추가까지 자동으로 처리한 뒤 최종 영상을 렌더링합니다.’ q: ‘Pixelle-Video는 무료이고 오픈소스인가요?’ a: ‘네. Pixelle-Video는 AIDC-AI가 MIT 라이선스로 배포하며 직접 서버에 설치해 무료로 사용할 수 있습니다. 로컬 배포 시 GPU만 있으면 별도 비용이 들지 않지만, 로컬 하드웨어가 없을 경우 이미지 생성에 RunningHub 같은 종량제 클라우드 서비스를 선택적으로 활용할 수 있습니다.’ q: ‘Pixelle-Video는 어떤 AI 모델을 지원하나요?’ a: ‘스크립트 생성에는 OpenAI GPT-4o/GPT-4o-mini, 알리바바 통의첸원(Tongyi Qianwen), DeepSeek V3/R1, 그리고 로컬 Ollama 모델을 지원합니다. 이미지 생성에는 FLUX, Stable Diffusion, Qwen, Nano Banana, RunningHub를 지원하고, 음성 합성에는 Edge-TTS, Index-TTS, ChatTTS를 지원합니다.’ q: ‘Pixelle-Video를 어떻게 설치하고 실행하나요?’ a: ‘git으로 레포지토리를 클론한 뒤 pip install -r requirements.txt를 실행하고, config.json에 API 키를 입력한 다음 python webui.py로 인터페이스를 실행합니다. Gradio Web UI가 http://localhost:7860에서 열리면 주제를 입력하고 음성과 템플릿을 선택한 후 Generate Video를 클릭하면 됩니다.’ q: ‘Pixelle-Video는 기본 영상 생성 외에 어떤 기능이 있나요?’ a: ‘세 가지 확장 모듈이 포함되어 있습니다. 디지털 휴먼 아바타는 사진 한 장을 한국어·중국어·영어 립싱크가 지원되는 토킹헤드 영상으로 변환합니다. Image-to-Video는 정지 이미지를 동영상으로 만들어 줍니다. Motion Transfer는 참조 영상의 움직임을 정지 이미지에 적용합니다.’ { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “‘Pixelle-Video 리뷰: AI 완전 자동 쇼트 비디오 생성 엔진, 주제 입력으로 완성된 영상’”, “description”: “Pixelle-Video는 오픈소스 AI 완전 자동 쇼트 비디오 생성 엔진입니다. 주제를 입력하면 자동으로 스크립트, AI. Comprehensive guide covering features, pricing, and best practices for 2026.”, “datePublished”: “2026-05-15 04:20:25+09:00”, “dateModified”: “2026-05-15 04:20:25+09:00”, “author”: { “@type”: “Organization”, “name”: “dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/tools/pixelle-video-ai-short-video-generator/\" }, “url”: “https://dibi8.com/kr/tools/pixelle-video-ai-short-video-generator/\", “image”: “https://picsum.photos/seed/pixelle-video-ai-short-video-generator/1200x630\", “keywords”: “”, “articleSection”: “Technology” } Pixelle-Video 리뷰: AI 완전 자동 쇼트 비디오 생성 엔진, 주제 입력으로 완성된 영상 {\u003c/* resource-info */\u003e}\n출처: github.com/AIDC-AI/Pixelle-Video — 공식 Web UI\nPixelle-Video란? Pixelle-Video는 오픈소스 AI 완전 자동 쇼트 비디오 생성 엔진입니다. 주제만 입력하면 전체 비디오 제작 과정을 자동으로 완료합니다: - ✍️ AI 스마트 스크립트 — 주제에 따라 자동으로 해설词 생성\n🎨 AI 이미지/비디오 생성 — 각 장면에 맞는 AI 일러스트 또는 동영상 생성 🗣️ AI 음성 합성 — 스크립트를 자연스러운 음성으로 변환 🎵 배경음악 — 분위기를 높이는 BGM 자동 추가 🎬 원클릭 비디오 합성 — 최종 영상 자동 렌더링 진입장벽 제로, 영상 편집 경험 불필요 — 비디오 제작이 한 문장만큼 간단해집니다!\n🔗 GitHub: https://github.com/AIDC-AI/Pixelle-Video\n핵심 기능 기능 설명 완전 자동 생성 주제 입력 → 완성된 비디오 획득 AI 스마트 스크립트 AI가 해설词 작성, 수동 스크립트 불필요 AI 이미지 생성 각 문장에 어울리는 AI 일러스트 생성 AI 비디오 생성 WAN 2.1 등 비디오 모델로 동적 콘텐츠 생성 다중 TTS 지원 Edge-TTS, Index-TTS 등 다양한 음성 합성 배경음악 BGM 추가로 분위기 업 비주얼 템플릿 다양한 템플릿으로 독특한 영상 스타일 유연한 사이즈 세로, 가로 등 다양한 비디오 크기 지원 다양한 AI 모델 GPT, 통의천문, DeepSeek, Ollama 등 ComfyUI 아키텍처 모듈식 설계, 모든 기능 커스터마이징 가능 비디오 생성 파이프라인 Pixelle-Video는 모듈식 설계를 채택하여 명확한 워크플로를 제공합니다: 텍스트 입력 → 스크립트 생성 → 이미지 기획 → 프레임 처리 → 비디오 합성\n각 단계는 유연한 커스터마이징을 지원 — AI 모델, 오디오 엔진, 비주얼 스타일 등을 개인화하여 선택할 수 있습니다.\n확장 모듈 기본 비디오 생성 외에도 Pixelle-Video는 강력한 확장 기능을 제공합니다: ### 👤 디지털 휴먼 아바타 사진을 업로드하여 입 모양 동기화된 말하는 영상 생성. 한국어, 중국어, 영어 등 다국어 지원.\n🖼️ 이미지를 비디오로 정적 이미지를 AI 비디오 생성 모델로 동적 영상으로 변환.\n💃 모션 전이 참조 비디오와 이미지를 업로드하여 모션을 이미지에 전이 — 사진 속 인물이 춤추게 만들기.\n지원 AI 모델 LLM (스크립트 생성) OpenAI GPT-4o / GPT-4o-mini 알리바바 통의천문 DeepSeek V3 / R1 Ollama (로컬 배포) 사용자 정의 API 엔드포인트 이미지 생성 FLUX (ComfyUI 통해) Stable Diffusion 통의천문 이미지 생성 RunningHub 클라우드 서비스 Nano Banana 모델 TTS (음성 합성) Edge-TTS (무료, 다국어) Index-TTS (음성 클로닝) ChatTTS 사용자 정의 ComfyUI TTS 워크플로 빠른 시작 1. 저장소 클론 git clone https://github.com/AIDC-AI/Pixelle-Video.git cd Pixelle-Video 2. 의존성 설치 pip install -r requirements.txt 3. API 키 구성 config.json을 편집하여 API 키 입력: `````json { “llm”: { “api_key”: “당신의 API 키”, “base_url”: “https://api.openai.com/v1\", “model”: “gpt-4o” }, “image”: { “comfyui_url”: “http://127.0.0.1:8188” } }\n### 4. Web UI 시작 `````bash python webui.py 브라우저에서 ````http://localhost:7860``` 열기\n5. 첫 번째 비디오 생성 주제 입력, 예: “독서 습관의 중요성” 원하는 TTS 음성 선택 비주얼 템플릿 선택 “비디오 생성” 클릭 2-5분 대기 후 완성된 비디오 획득 사용 시나리오 시나리오 예시 주제 지식 공유 “Python 초보자가 알아야 할 10가지 팁” 제품 리뷰 “iPhone 16 vs 삼성 S24 비교” 스토리텔링 “스타트업 창업자의 여정” 교육 콘텐츠 “블록체인은 어떻게 작동하나요?” 뉴스 코멘터리 “2026년 AI 트렌드” 책/영화 리뷰 “『아토믹 해빗』의 교훈” 비디오 스타일 예시 Pixelle-Video는 다양한 비디오 스타일을 지원합니다: - 🌄 다큐멘터리 스타일 — 여행, 자연, 인문 이야기\n🔍 문화 분석 — 트렌드와 현상의 심층 분석 🔭 과학 철학 — 복잡한 개념을 쉽게 설명 🌱 개인 성장 — 자기 계발, 생산성 향상 🧠 심층 사고 — 심리학, 철학, 성찰 🏯 역사 문화 — 고인의 지혜, 역사적 사건 ☀️ 감성 — 따뜻한 이야기, 영감 📜 소설 해설 — 소설 리뷰, 인물 분석 🧬 지식 과학 — 의학 상식, 건강 지식 기술 아키텍처 Pixelle-Video는 ComfyUI 아키텍처 기반: - 모듈식 워크플로 — 각 구성 요소(LLM, TTS, 이미지 생성)가 독립 노드\n커스터마이징 파이프라인 — 모델 또는 서비스 쉽게 교체 API 우선 설계 — 모든 기능 REST API로 노출 Web UI — Gradio 기반의 사용하기 쉬운 인터페이스 배치 처리 — 여러 비디오 동시 생성 성능 및 비용 옵션 비용 속도 품질 로컬 배포 무료 (GPU 필요) 빠름 높음 RunningHub 클라우드 사용량 기반 과금 즉시 높음 혼합 모드 유연 균형 높음 초보자 추천 구성: - LLM: DeepSeek API (저렴, 품질 좋음)\n이미지: RunningHub (로컬 GPU 불필요) TTS: Edge-TTS (무료, 다국어) 다른 도구와 비교 기능 Pixelle-Video HeyGen Synthesia Pictory 오픈소스 ✅ ❌ ❌ ❌ 무료 사용 ✅ 제한적 제한적 제한적 로컬 배포 ✅ ❌ ❌ ❌ 커스텀 모델 ✅ ❌ ❌ ❌ ComfyUI 통합 ✅ ❌ ❌ ❌ 음성 클로닝 ✅ ✅ ✅ ❌ 디지털 휴먼 ✅ ✅ ✅ ❌ 모션 전이 ✅ ❌ ❌ ❌ 최적의 결과를 위한 팁 주제 구체화 — 구체적일수록 더 나은 스크립트 생성 템플릿 매칭 — 콘텐츠 스타일에 맞는 템플릿 선택 프롬프트 프리픽스 — 영어 프롬프트 프리픽스로 이미지 스타일 일관성 유지 음성 미리듣기 — 전체 비디오 생성 전 TTS 미리듣기 배치 생성 — 3-5개 버전 동시 생성 후 최고 선택 관련 기사 Free Claude Code: Claude Code CLI를 무료로 사용할 수 있는 오픈소스 프록시 도구 — 무료 AI 코딩 어시스턴트 Agent Reach: AI 에이전트에 인터넷 슈퍼파워를 부여하다 — AI 에이전트 인터넷 연결 도구 결론 Pixelle-Video는 LLM, 이미지 생성, TTS, 비디오 편집을 단일 자동화 파이프라인으로 통합하여 비디오 제작을 민주화합니다. 콘텐츠 크리에이터, 교육자, 마케터, 개발자 모두에게 이 도구는 많은 비디오 제작 시간을 절약해줍니다.\nComfyUI 기반 아키텍처는 단순한 블랙박스가 아닙니다 — 각 구성 요소를 커스터마이징하고, 모델을 교체하고, 자신만의 비디오 생성 워크플로를 구축할 수 있습니다.\n가장 적합: 빠른 비디오 제작이 필요한 콘텐츠 크리에이터, 교육자, 마케터, 개발자\nGitHub: https://github.com/AIDC-AI/Pixelle-Video\n추천 도구 오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.\n**** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%. 추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.\n마지막 업데이트: 2026-05-06\n",
-  "wordCount" : "1250",
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” topic and get a complete video with script, AI images, voiceover, and BGM. date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Go\nPython application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: “27.1 MB” file_md5: ’' download_url: https://github.com/AIDC-AI/Pixelle-Video backup_url: ’' last_maintained: “2026-05-06” draft: false aliases: /en/posts/pixelle-video-ai-short-video-generator/ /posts/pixelle-video-ai-short-video-generator/ faqs: - q: ‘What is Pixelle-Video?’ a: ‘Pixelle-Video is an open-source, MIT-licensed AI engine that turns a single topic into a complete short video. From one input it automatically writes the script, generates matching AI images or video, synthesizes voiceover with TTS, and adds background music before rendering the final clip.’ q: ‘Is Pixelle-Video free and open source?’ a: ‘Yes. Pixelle-Video is released under the MIT license by AIDC-AI and is free to self-host. Local deployment costs nothing aside from needing a GPU, though you can optionally use pay-per-use cloud services like RunningHub for image generation if you lack local hardware.’ q: ‘Which AI models does Pixelle-Video support?’ a: ‘For scripts it supports OpenAI GPT-4o/GPT-4o-mini, Alibaba Tongyi Qianwen, DeepSeek V3/R1, and local Ollama models. For images it works with FLUX, Stable Diffusion, Qwen, Nano Banana, and RunningHub, and for voice it supports Edge-TTS, Index-TTS, and ChatTTS.’ q: ‘How do you install and run Pixelle-Video?’ a: ‘Clone the repo with git, run pip install -r requirements.txt, add your API keys to config.json, then launch the interface with python webui.py. The Gradio Web UI opens at http://localhost:7860, where you enter a topic, pick a voice and template, and click Generate Video.’ q: ‘What can Pixelle-Video do beyond basic video generation?’ a: ‘It includes three extension modules: a Digital Human Avatar that turns a photo into a lip-synced talking-head video in Korean, Chinese, or English; Image-to-Video that animates static images; and Motion Transfer that maps motion from a reference video onto a still image.’ { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “‘Pixelle-Video Review: AI Auto Short Video Generator — On…”, “description”: “Pixelle-Video is an AI-powered automatic short video engine. Input a. Comprehensive guide covering features, pricing, and best practices for 2026.”, “datePublished”: “2026-05-15 04:20:25+09:00”, “dateModified”: “2026-05-15 04:20:25+09:00”, “author”: { “@type”: “Organization”, “name”: “dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/cn/tools/pixelle-video-ai-short-video-generator/\" }, “url”: “https://dibi8.com/cn/tools/pixelle-video-ai-short-video-generator/\", “image”: “https://picsum.photos/seed/pixelle-video-ai-short-video-generator/1200x630\", “keywords”: “”, “articleSection”: “Technology” } Pixelle-Video Review: AI Auto Short Video Generator — One Topic to Full Video {\u003c/* resource-info */\u003e}\nSource: github.com/AIDC-AI/Pixelle-Video — official Web UI\nWhat is Pixelle-Video? Pixelle-Video is an open-source AI-powered automatic short video generation engine. Simply input a topic, and it automatically completes the entire video production pipeline: - ✍️ AI Script Writing — Generates video narration based on your topic\n🎨 AI Image/Video Generation — Creates matching visuals for every scene 🗣️ AI Voice Synthesis — Converts script to natural speech using TTS 🎵 Background Music — Adds BGM to enhance atmosphere 🎬 One-Click Video Assembly — Renders final video automatically Zero门槛, zero editing experience — video creation becomes as simple as typing one sentence!\n🔗 GitHub: https://github.com/AIDC-AI/Pixelle-Video\nKey Features | Feature | Description | |\n|\n| | Fully Automatic | Input topic → get complete video | | AI Smart Script | AI writes narration, no manual scripting needed | | AI Image Generation | Every sentence gets a matching AI illustration | | AI Video Generation | Supports WAN 2.1 and other video models for dynamic content | | Multi TTS Support | Edge-TTS, Index-TTS, and more voice synthesis options | | Background Music | Built-in BGM support for better atmosphere | | Visual Templates | Multiple templates for unique video styles | | Flexible Sizes | Portrait, landscape, and custom video dimensions | | Multiple AI Models | GPT, Tongyi Qianwen, DeepSeek, Ollama support | | ComfyUI Architecture | Modular design, customizable workflows |\nVideo Generation Pipeline Pixelle-Video uses a modular design with a clear workflow: Text Input → Script Generation → Image Planning → Frame Processing → Video Synthesis\nEach stage supports flexible customization — choose different AI models, audio engines, visual styles to meet personalized creation needs.\nExtended Modules Beyond basic video generation, Pixelle-Video offers powerful extension modules: ### 👤 Digital Human Avatar Upload a photo and generate a talking-head video with lip-sync. Supports multiple languages including Korean, Chinese, and English.\n🖼️ Image-to-Video Transform static images into dynamic videos using AI video generation models.\n💃 Motion Transfer Upload a reference video and image to transfer motions — like making a photo dance following video movements.\nSupported AI Models LLM (Script Generation) OpenAI GPT-4o / GPT-4o-mini Alibaba Tongyi Qianwen DeepSeek V3 / R1 Ollama (local deployment) Custom API endpoints Image Generation FLUX (via ComfyUI) Stable Diffusion Qwen Image Generation RunningHub cloud service Nano Banana model TTS (Voice Synthesis) Edge-TTS (free, multi-language) Index-TTS (voice cloning) ChatTTS Custom ComfyUI TTS workflows Quick Start 1. Clone Repository git clone https://github.com/AIDC-AI/Pixelle-Video.git cd Pixelle-Video 2. Install Dependencies pip install -r requirements.txt 3. Configure API Keys Edit config.json with your API keys: `````json { “llm”: { “api_key”: “your-api-key”, “base_url”: “https://api.openai.com/v1\", “model”: “gpt-4o” }, “image”: { “comfyui_url”: “http://127.0.0.1:8188” } }\n### 4. Launch Web UI `````bash python webui.py Open ````http://localhost:7860``` in your browser.\n5. Generate Your First Video Enter a topic like “Why reading habits matter” Select your preferred TTS voice Choose a visual template Click “Generate Video” Wait 2-5 minutes for the complete video Use Cases | Scenario | Example Topic | |\n|\n| | Knowledge Sharing | “10 Python tricks beginners should know” | | Product Review | “iPhone 16 vs Samsung S24 comparison” | | Storytelling | “The journey of a startup founder” | | Educational Content | “How does blockchain work?” | | News Commentary | “AI trends in 2026” | | Book/Movie Review | “Lessons from ‘Atomic Habits’” |\nVideo Style Examples Pixelle-Video supports multiple video styles: - 🌄 Documentary Style — Travel, nature, human stories\n🔍 Cultural Analysis — Deep dives into trends and phenomena 🔭 Science \u0026 Philosophy — Complex concepts made simple 🌱 Personal Growth — Self-improvement, productivity 🧠 Deep Thinking — Psychology, philosophy, reflection 🏯 History \u0026 Culture — Ancient wisdom, historical events ☀️ Emotional — Heartwarming stories, inspiration 📜 Fiction Commentary — Novel reviews, character analysis 🧬 Health \u0026 Wellness — Medical tips, wellness advice Technical Architecture Pixelle-Video is built on ComfyUI architecture: - Modular Workflows — Each component (LLM, TTS, image gen) is a separate node\nCustomizable Pipeline — Swap any model or service easily API-First Design — All capabilities exposed via REST API Web UI — Gradio-based interface for easy use Batch Processing — Generate multiple videos simultaneously Performance \u0026 Cost | Option | Cost | Speed | Quality | |\n|\n|\n|\n| | Local Deployment | Free (GPU required) | Fast | High | | RunningHub Cloud | Pay-per-use | Instant | High | | Mixed Mode | Flexible | Balanced | High |\nRecommended setup for beginners: - LLM: DeepSeek API (cheap, good quality)\nImage: RunningHub (no local GPU needed) TTS: Edge-TTS (free, multi-language) Comparison with Other Tools | Feature | Pixelle-Video | HeyGen | Synthesia | Pictory | |\n|\n|\n|\n|\n| | Open Source | ✅ | ❌ | ❌ | ❌ | | Free Tier | ✅ | Limited | Limited | Limited | | Local Deployment | ✅ | ❌ | ❌ | ❌ | | Custom Models | ✅ | ❌ | ❌ | ❌ | | ComfyUI Integration | ✅ | ❌ | ❌ | ❌ | | Voice Cloning | ✅ | ✅ | ✅ | ❌ | | Digital Human | ✅ | ✅ | ✅ | ❌ | | Motion Transfer | ✅ | ❌ | ❌ | ❌ |\nTips for Best Results Topic Specificity — More specific topics yield better scripts Template Selection — Match template to content style Prompt Prefix — Use English prompt prefixes for consistent image style Voice Preview — Always preview TTS before generating full video Batch Generation — Generate 3-5 variants and pick the best Related Articles Free Claude Code: Use Claude Code CLI for Free with Any AI Provider — Free AI coding assistant Agent Reach: Give Your AI Agent Internet Superpowers — AI agent with internet access Conclusion Pixelle-Video democratizes video creation by combining LLM, image generation, TTS, and video editing into a single automated pipeline. Whether you’re a content creator, educator, marketer, or developer, this tool can save hours of video production time.\nThe ComfyUI-based architecture means it\"s not just a black-box tool — you can customize every component, swap models, and build your own video generation workflows.\nBest for: Content creators, educators, marketers, developers who need quick video production\nGitHub: https://github.com/AIDC-AI/Pixelle-Video\nRecommended Tools For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.\n**** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing. Affiliate link — supports dibi8.com at no cost to you.\nLast updated: 2026-05-06\nReferences \u0026 Sources Pixelle-Video ComfyUI Edge-TTS Index-TTS ChatTTS FLUX Ollama Gradio DeepSeek-V3 ",
+  "wordCount" : "1540",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/pixelle-video-ai-short-video-generator/">En</a>
@@ -209,62 +209,64 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#pixelle-video-%eb%a6%ac%eb%b7%b0-ai-%ec%99%84%ec%a0%84-%ec%9e%90%eb%8f%99-%ec%87%bc%ed%8a%b8-%eb%b9%84%eb%94%94%ec%98%a4-%ec%83%9d%ec%84%b1-%ec%97%94%ec%a7%84-%ec%a3%bc%ec%a0%9c-%ec%9e%85%eb%a0%a5%ec%9c%bc%eb%a1%9c-%ec%99%84%ec%84%b1%eb%90%9c-%ec%98%81%ec%83%81" aria-label="Pixelle-Video 리뷰: AI 완전 자동 쇼트 비디오 생성 엔진, 주제 입력으로 완성된 영상">Pixelle-Video 리뷰: AI 완전 자동 쇼트 비디오 생성 엔진, 주제 입력으로 완성된 영상</a><ul>
+                <a href="#pixelle-video-review-ai-auto-short-video-generator--one-topic-to-full-video" aria-label="Pixelle-Video Review: AI Auto Short Video Generator — One Topic to Full Video">Pixelle-Video Review: AI Auto Short Video Generator — One Topic to Full Video</a><ul>
                     
             <li>
-                <a href="#pixelle-video%eb%9e%80" aria-label="Pixelle-Video란?">Pixelle-Video란?</a></li>
+                <a href="#what-is-pixelle-video" aria-label="What is Pixelle-Video?">What is Pixelle-Video?</a></li>
             <li>
-                <a href="#%ed%95%b5%ec%8b%ac-%ea%b8%b0%eb%8a%a5" aria-label="핵심 기능">핵심 기능</a></li>
+                <a href="#key-features" aria-label="Key Features">Key Features</a></li>
             <li>
-                <a href="#%eb%b9%84%eb%94%94%ec%98%a4-%ec%83%9d%ec%84%b1-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8" aria-label="비디오 생성 파이프라인">비디오 생성 파이프라인</a></li>
+                <a href="#video-generation-pipeline" aria-label="Video Generation Pipeline">Video Generation Pipeline</a></li>
             <li>
-                <a href="#%ed%99%95%ec%9e%a5-%eb%aa%a8%eb%93%88" aria-label="확장 모듈">확장 모듈</a><ul>
+                <a href="#extended-modules" aria-label="Extended Modules">Extended Modules</a><ul>
                     
             <li>
-                <a href="#-%ec%9d%b4%eb%af%b8%ec%a7%80%eb%a5%bc-%eb%b9%84%eb%94%94%ec%98%a4%eb%a1%9c" aria-label="🖼️ 이미지를 비디오로">🖼️ 이미지를 비디오로</a></li>
+                <a href="#-image-to-video" aria-label="🖼️ Image-to-Video">🖼️ Image-to-Video</a></li>
             <li>
-                <a href="#-%eb%aa%a8%ec%85%98-%ec%a0%84%ec%9d%b4" aria-label="💃 모션 전이">💃 모션 전이</a></li></ul>
+                <a href="#-motion-transfer" aria-label="💃 Motion Transfer">💃 Motion Transfer</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%a7%80%ec%9b%90-ai-%eb%aa%a8%eb%8d%b8" aria-label="지원 AI 모델">지원 AI 모델</a><ul>
+                <a href="#supported-ai-models" aria-label="Supported AI Models">Supported AI Models</a><ul>
                     
             <li>
-                <a href="#llm-%ec%8a%a4%ed%81%ac%eb%a6%bd%ed%8a%b8-%ec%83%9d%ec%84%b1" aria-label="LLM (스크립트 생성)">LLM (스크립트 생성)</a></li>
+                <a href="#llm-script-generation" aria-label="LLM (Script Generation)">LLM (Script Generation)</a></li>
             <li>
-                <a href="#%ec%9d%b4%eb%af%b8%ec%a7%80-%ec%83%9d%ec%84%b1" aria-label="이미지 생성">이미지 생성</a></li>
+                <a href="#image-generation" aria-label="Image Generation">Image Generation</a></li>
             <li>
-                <a href="#tts-%ec%9d%8c%ec%84%b1-%ed%95%a9%ec%84%b1" aria-label="TTS (음성 합성)">TTS (음성 합성)</a></li></ul>
+                <a href="#tts-voice-synthesis" aria-label="TTS (Voice Synthesis)">TTS (Voice Synthesis)</a></li></ul>
             </li>
             <li>
-                <a href="#%eb%b9%a0%eb%a5%b8-%ec%8b%9c%ec%9e%91" aria-label="빠른 시작">빠른 시작</a><ul>
+                <a href="#quick-start" aria-label="Quick Start">Quick Start</a><ul>
                     
             <li>
-                <a href="#1-%ec%a0%80%ec%9e%a5%ec%86%8c-%ed%81%b4%eb%a1%a0" aria-label="1. 저장소 클론">1. 저장소 클론</a></li>
+                <a href="#1-clone-repository" aria-label="1. Clone Repository">1. Clone Repository</a></li>
             <li>
-                <a href="#2-%ec%9d%98%ec%a1%b4%ec%84%b1-%ec%84%a4%ec%b9%98" aria-label="2. 의존성 설치">2. 의존성 설치</a></li>
+                <a href="#2-install-dependencies" aria-label="2. Install Dependencies">2. Install Dependencies</a></li>
             <li>
-                <a href="#3-api-%ed%82%a4-%ea%b5%ac%ec%84%b1" aria-label="3. API 키 구성">3. API 키 구성</a></li>
+                <a href="#3-configure-api-keys" aria-label="3. Configure API Keys">3. Configure API Keys</a></li>
             <li>
-                <a href="#5-%ec%b2%ab-%eb%b2%88%ec%a7%b8-%eb%b9%84%eb%94%94%ec%98%a4-%ec%83%9d%ec%84%b1" aria-label="5. 첫 번째 비디오 생성">5. 첫 번째 비디오 생성</a></li></ul>
+                <a href="#5-generate-your-first-video" aria-label="5. Generate Your First Video">5. Generate Your First Video</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9-%ec%8b%9c%eb%82%98%eb%a6%ac%ec%98%a4" aria-label="사용 시나리오">사용 시나리오</a></li>
+                <a href="#use-cases" aria-label="Use Cases">Use Cases</a></li>
             <li>
-                <a href="#%eb%b9%84%eb%94%94%ec%98%a4-%ec%8a%a4%ed%83%80%ec%9d%bc-%ec%98%88%ec%8b%9c" aria-label="비디오 스타일 예시">비디오 스타일 예시</a></li>
+                <a href="#video-style-examples" aria-label="Video Style Examples">Video Style Examples</a></li>
             <li>
-                <a href="#%ea%b8%b0%ec%88%a0-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98" aria-label="기술 아키텍처">기술 아키텍처</a></li>
+                <a href="#technical-architecture" aria-label="Technical Architecture">Technical Architecture</a></li>
             <li>
-                <a href="#%ec%84%b1%eb%8a%a5-%eb%b0%8f-%eb%b9%84%ec%9a%a9" aria-label="성능 및 비용">성능 및 비용</a></li>
+                <a href="#performance--cost" aria-label="Performance &amp; Cost">Performance &amp; Cost</a></li>
             <li>
-                <a href="#%eb%8b%a4%eb%a5%b8-%eb%8f%84%ea%b5%ac%ec%99%80-%eb%b9%84%ea%b5%90" aria-label="다른 도구와 비교">다른 도구와 비교</a></li>
+                <a href="#comparison-with-other-tools" aria-label="Comparison with Other Tools">Comparison with Other Tools</a></li>
             <li>
-                <a href="#%ec%b5%9c%ec%a0%81%ec%9d%98-%ea%b2%b0%ea%b3%bc%eb%a5%bc-%ec%9c%84%ed%95%9c-%ed%8c%81" aria-label="최적의 결과를 위한 팁">최적의 결과를 위한 팁</a></li>
+                <a href="#tips-for-best-results" aria-label="Tips for Best Results">Tips for Best Results</a></li>
             <li>
-                <a href="#%ea%b4%80%eb%a0%a8-%ea%b8%b0%ec%82%ac" aria-label="관련 기사">관련 기사</a></li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
             <li>
-                <a href="#%ea%b2%b0%eb%a1%a0" aria-label="결론">결론</a></li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
             <li>
-                <a href="#%ec%b6%94%ec%b2%9c-%eb%8f%84%ea%b5%ac" aria-label="추천 도구">추천 도구</a>
+                <a href="#recommended-tools" aria-label="Recommended Tools">Recommended Tools</a></li>
+            <li>
+                <a href="#references--sources" aria-label="References &amp; Sources">References &amp; Sources</a>
             </li>
         </ul>
         </li>
@@ -274,10 +276,12 @@
 
   <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
-이미지, 음성 해설, 배경음악이 포함된 완성된 영상을 생성합니다.
+topic and get a complete video with script, AI images, voiceover, and BGM.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Python
+tech_stack: - Go</p>
+<ul>
+<li>Python
 application_domain: Ai Tools
 source_version: &rsquo;'
 licensing_model: Open Source
@@ -288,26 +292,32 @@ download_url: <a href="https://github.com/AIDC-AI/Pixelle-Video">https://github.
 backup_url: &rsquo;'
 last_maintained: &ldquo;2026-05-06&rdquo;
 draft: false
-aliases:</p>
+aliases:
 <ul>
-<li>/ko/posts/pixelle-video-ai-short-video-generator/
-faqs: - q: &lsquo;Pixelle-Video란 무엇인가요?&rsquo;
-a: &lsquo;Pixelle-Video는 단 하나의 주제를 입력하면 완성된 짧은 동영상을 자동으로 만들어 주는 오픈소스 MIT 라이선스 AI 엔진입니다. 하나의 입력으로 스크립트 작성, 장면에 맞는 AI 이미지 또는 영상 생성, TTS를 이용한 보이스오버 합성, 배경음악 추가까지 자동으로 처리한 뒤 최종 영상을 렌더링합니다.&rsquo;</li>
-<li>q: &lsquo;Pixelle-Video는 무료이고 오픈소스인가요?&rsquo;
-a: &lsquo;네. Pixelle-Video는 AIDC-AI가 MIT 라이선스로 배포하며 직접 서버에 설치해 무료로 사용할 수 있습니다. 로컬 배포 시 GPU만 있으면 별도 비용이 들지 않지만, 로컬 하드웨어가 없을 경우 이미지 생성에 RunningHub 같은 종량제 클라우드 서비스를 선택적으로 활용할 수 있습니다.&rsquo;</li>
-<li>q: &lsquo;Pixelle-Video는 어떤 AI 모델을 지원하나요?&rsquo;
-a: &lsquo;스크립트 생성에는 OpenAI GPT-4o/GPT-4o-mini, 알리바바 통의첸원(Tongyi Qianwen), DeepSeek V3/R1, 그리고 로컬 Ollama 모델을 지원합니다. 이미지 생성에는 FLUX, Stable Diffusion, Qwen, Nano Banana, RunningHub를 지원하고, 음성 합성에는 Edge-TTS, Index-TTS, ChatTTS를 지원합니다.&rsquo;</li>
-<li>q: &lsquo;Pixelle-Video를 어떻게 설치하고 실행하나요?&rsquo;
-a: &lsquo;git으로 레포지토리를 클론한 뒤 pip install -r requirements.txt를 실행하고, config.json에 API 키를 입력한 다음 python webui.py로 인터페이스를 실행합니다. Gradio Web UI가 http://localhost:7860에서 열리면 주제를 입력하고 음성과 템플릿을 선택한 후 Generate Video를 클릭하면 됩니다.&rsquo;</li>
-<li>q: &lsquo;Pixelle-Video는 기본 영상 생성 외에 어떤 기능이 있나요?&rsquo;
-a: &lsquo;세 가지 확장 모듈이 포함되어 있습니다. 디지털 휴먼 아바타는 사진 한 장을 한국어·중국어·영어 립싱크가 지원되는 토킹헤드 영상으로 변환합니다. Image-to-Video는 정지 이미지를 동영상으로 만들어 줍니다. Motion Transfer는 참조 영상의 움직임을 정지 이미지에 적용합니다.&rsquo;</li>
+<li>/en/posts/pixelle-video-ai-short-video-generator/</li>
+</ul>
+</li>
+<li>/posts/pixelle-video-ai-short-video-generator/
+faqs: - q: &lsquo;What is Pixelle-Video?&rsquo;
+a: &lsquo;Pixelle-Video is an open-source, MIT-licensed AI engine that turns a single topic into a complete short video. From one input it automatically writes the script, generates matching AI images or video, synthesizes voiceover with TTS, and adds background music before rendering the final clip.&rsquo;
+<ul>
+<li>q: &lsquo;Is Pixelle-Video free and open source?&rsquo;
+a: &lsquo;Yes. Pixelle-Video is released under the MIT license by AIDC-AI and is free to self-host. Local deployment costs nothing aside from needing a GPU, though you can optionally use pay-per-use cloud services like RunningHub for image generation if you lack local hardware.&rsquo;</li>
+<li>q: &lsquo;Which AI models does Pixelle-Video support?&rsquo;
+a: &lsquo;For scripts it supports OpenAI GPT-4o/GPT-4o-mini, Alibaba Tongyi Qianwen, DeepSeek V3/R1, and local Ollama models. For images it works with FLUX, Stable Diffusion, Qwen, Nano Banana, and RunningHub, and for voice it supports Edge-TTS, Index-TTS, and ChatTTS.&rsquo;</li>
+<li>q: &lsquo;How do you install and run Pixelle-Video?&rsquo;
+a: &lsquo;Clone the repo with git, run pip install -r requirements.txt, add your API keys to config.json, then launch the interface with python webui.py. The Gradio Web UI opens at http://localhost:7860, where you enter a topic, pick a voice and template, and click Generate Video.&rsquo;</li>
+<li>q: &lsquo;What can Pixelle-Video do beyond basic video generation?&rsquo;
+a: &lsquo;It includes three extension modules: a Digital Human Avatar that turns a photo into a lip-synced talking-head video in Korean, Chinese, or English; Image-to-Video that animates static images; and Motion Transfer that maps motion from a reference video onto a still image.&rsquo;</li>
+</ul>
+</li>
 </ul>
 <hr>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;&lsquo;Pixelle-Video 리뷰: AI 완전 자동 쇼트 비디오 생성 엔진, 주제 입력으로 완성된 영상&rsquo;&rdquo;,
-&ldquo;description&rdquo;: &ldquo;Pixelle-Video는 오픈소스 AI 완전 자동 쇼트 비디오 생성 엔진입니다. 주제를 입력하면 자동으로 스크립트, AI. Comprehensive guide covering features, pricing, and best practices for 2026.&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;&lsquo;Pixelle-Video Review: AI Auto Short Video Generator — On&hellip;&rdquo;,
+&ldquo;description&rdquo;: &ldquo;Pixelle-Video is an AI-powered automatic short video engine. Input a. Comprehensive guide covering features, pricing, and best practices for 2026.&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-15 04:20:25+09:00&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-15 04:20:25+09:00&rdquo;,
 &ldquo;author&rdquo;: {
@@ -324,129 +334,95 @@ a: &lsquo;세 가지 확장 모듈이 포함되어 있습니다. 디지털 휴�
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/tools/pixelle-video-ai-short-video-generator/%22">https://dibi8.com/kr/tools/pixelle-video-ai-short-video-generator/"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/cn/tools/pixelle-video-ai-short-video-generator/%22">https://dibi8.com/cn/tools/pixelle-video-ai-short-video-generator/"</a>
 },
-&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/kr/tools/pixelle-video-ai-short-video-generator/%22">https://dibi8.com/kr/tools/pixelle-video-ai-short-video-generator/"</a>,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/cn/tools/pixelle-video-ai-short-video-generator/%22">https://dibi8.com/cn/tools/pixelle-video-ai-short-video-generator/"</a>,
 &ldquo;image&rdquo;: &ldquo;<a href="https://picsum.photos/seed/pixelle-video-ai-short-video-generator/1200x630%22">https://picsum.photos/seed/pixelle-video-ai-short-video-generator/1200x630"</a>,
 &ldquo;keywords&rdquo;: &ldquo;&rdquo;,
 &ldquo;articleSection&rdquo;: &ldquo;Technology&rdquo;
 }
 </script></p>
-<h1 id="pixelle-video-리뷰-ai-완전-자동-쇼트-비디오-생성-엔진-주제-입력으로-완성된-영상">Pixelle-Video 리뷰: AI 완전 자동 쇼트 비디오 생성 엔진, 주제 입력으로 완성된 영상<a hidden class="anchor" aria-hidden="true" href="#pixelle-video-리뷰-ai-완전-자동-쇼트-비디오-생성-엔진-주제-입력으로-완성된-영상">#</a></h1>
+<h1 id="pixelle-video-review-ai-auto-short-video-generator--one-topic-to-full-video">Pixelle-Video Review: AI Auto Short Video Generator — One Topic to Full Video<a hidden class="anchor" aria-hidden="true" href="#pixelle-video-review-ai-auto-short-video-generator--one-topic-to-full-video">#</a></h1>
 <p>{&lt;/* resource-info */&gt;}</p>
-<p><img alt="Pixelle-Video 웹 UI: 스크립트 / TTS / 분할 / 생성 결과" loading="lazy" src="/images/articles/pixelle-video-ai-short-video-generator/webui.png">
-<em>출처: <a href="https://github.com/AIDC-AI/Pixelle-Video">github.com/AIDC-AI/Pixelle-Video</a> — 공식 Web UI</em></p>
-<h2 id="pixelle-video란">Pixelle-Video란?<a hidden class="anchor" aria-hidden="true" href="#pixelle-video란">#</a></h2>
-<p><strong>Pixelle-Video</strong>는 오픈소스 AI 완전 자동 쇼트 비디오 생성 엔진입니다. <strong>주제</strong>만 입력하면 전체 비디오 제작 과정을 자동으로 완료합니다: - ✍️ <strong>AI 스마트 스크립트</strong> — 주제에 따라 자동으로 해설词 생성</p>
+<p><img alt="Pixelle-Video web UI showing script, TTS, scene template, generated output" loading="lazy" src="/images/articles/pixelle-video-ai-short-video-generator/webui.png">
+<em>Source: <a href="https://github.com/AIDC-AI/Pixelle-Video">github.com/AIDC-AI/Pixelle-Video</a> — official Web UI</em></p>
+<h2 id="what-is-pixelle-video">What is Pixelle-Video?<a hidden class="anchor" aria-hidden="true" href="#what-is-pixelle-video">#</a></h2>
+<p><strong>Pixelle-Video</strong> is an open-source AI-powered automatic short video generation engine. Simply input a <strong>topic</strong>, and it automatically completes the entire video production pipeline: - ✍️ <strong>AI Script Writing</strong> — Generates video narration based on your topic</p>
 <ul>
-<li>🎨 <strong>AI 이미지/비디오 생성</strong> — 각 장면에 맞는 AI 일러스트 또는 동영상 생성</li>
-<li>🗣️ <strong>AI 음성 합성</strong> — 스크립트를 자연스러운 음성으로 변환</li>
-<li>🎵 <strong>배경음악</strong> — 분위기를 높이는 BGM 자동 추가</li>
-<li>🎬 <strong>원클릭 비디오 합성</strong> — 최종 영상 자동 렌더링</li>
+<li>🎨 <strong>AI Image/Video Generation</strong> — Creates matching visuals for every scene</li>
+<li>🗣️ <strong>AI Voice Synthesis</strong> — Converts script to natural speech using TTS</li>
+<li>🎵 <strong>Background Music</strong> — Adds BGM to enhance atmosphere</li>
+<li>🎬 <strong>One-Click Video Assembly</strong> — Renders final video automatically</li>
 </ul>
-<p><strong>진입장벽 제로, 영상 편집 경험 불필요</strong> — 비디오 제작이 한 문장만큼 간단해집니다!</p>
+<p><strong>Zero门槛, zero editing experience</strong> — video creation becomes as simple as typing one sentence!</p>
 <p>🔗 <strong>GitHub</strong>: <a href="https://github.com/AIDC-AI/Pixelle-Video">https://github.com/AIDC-AI/Pixelle-Video</a></p>
 <hr>
-<h2 id="핵심-기능">핵심 기능<a hidden class="anchor" aria-hidden="true" href="#핵심-기능">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>기능</th>
-					<th>설명</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>완전 자동 생성</strong></td>
-					<td>주제 입력 → 완성된 비디오 획득</td>
-			</tr>
-			<tr>
-					<td><strong>AI 스마트 스크립트</strong></td>
-					<td>AI가 해설词 작성, 수동 스크립트 불필요</td>
-			</tr>
-			<tr>
-					<td><strong>AI 이미지 생성</strong></td>
-					<td>각 문장에 어울리는 AI 일러스트 생성</td>
-			</tr>
-			<tr>
-					<td><strong>AI 비디오 생성</strong></td>
-					<td>WAN 2.1 등 비디오 모델로 동적 콘텐츠 생성</td>
-			</tr>
-			<tr>
-					<td><strong>다중 TTS 지원</strong></td>
-					<td>Edge-TTS, Index-TTS 등 다양한 음성 합성</td>
-			</tr>
-			<tr>
-					<td><strong>배경음악</strong></td>
-					<td>BGM 추가로 분위기 업</td>
-			</tr>
-			<tr>
-					<td><strong>비주얼 템플릿</strong></td>
-					<td>다양한 템플릿으로 독특한 영상 스타일</td>
-			</tr>
-			<tr>
-					<td><strong>유연한 사이즈</strong></td>
-					<td>세로, 가로 등 다양한 비디오 크기 지원</td>
-			</tr>
-			<tr>
-					<td><strong>다양한 AI 모델</strong></td>
-					<td>GPT, 통의천문, DeepSeek, Ollama 등</td>
-			</tr>
-			<tr>
-					<td><strong>ComfyUI 아키텍처</strong></td>
-					<td>모듈식 설계, 모든 기능 커스터마이징 가능</td>
-			</tr>
-	</tbody>
-</table>
+<h2 id="key-features">Key Features<a hidden class="anchor" aria-hidden="true" href="#key-features">#</a></h2>
+<p>| Feature | Description |
+|</p>
 <hr>
-<h2 id="비디오-생성-파이프라인">비디오 생성 파이프라인<a hidden class="anchor" aria-hidden="true" href="#비디오-생성-파이프라인">#</a></h2>
-<p>Pixelle-Video는 모듈식 설계를 채택하여 명확한 워크플로를 제공합니다: <strong>텍스트 입력 → 스크립트 생성 → 이미지 기획 → 프레임 처리 → 비디오 합성</strong></p>
-<p>각 단계는 유연한 커스터마이징을 지원 — AI 모델, 오디오 엔진, 비주얼 스타일 등을 개인화하여 선택할 수 있습니다.</p>
+<p>|</p>
 <hr>
-<h2 id="확장-모듈">확장 모듈<a hidden class="anchor" aria-hidden="true" href="#확장-모듈">#</a></h2>
-<p>기본 비디오 생성 외에도 Pixelle-Video는 강력한 확장 기능을 제공합니다: ### 👤 디지털 휴먼 아바타
-사진을 업로드하여 입 모양 동기화된 말하는 영상 생성. 한국어, 중국어, 영어 등 다국어 지원.</p>
-<h3 id="-이미지를-비디오로">🖼️ 이미지를 비디오로<a hidden class="anchor" aria-hidden="true" href="#-이미지를-비디오로">#</a></h3>
-<p>정적 이미지를 AI 비디오 생성 모델로 동적 영상으로 변환.</p>
-<h3 id="-모션-전이">💃 모션 전이<a hidden class="anchor" aria-hidden="true" href="#-모션-전이">#</a></h3>
-<p>참조 비디오와 이미지를 업로드하여 모션을 이미지에 전이 — 사진 속 인물이 춤추게 만들기.</p>
+<p>|
+| <strong>Fully Automatic</strong> | Input topic → get complete video |
+| <strong>AI Smart Script</strong> | AI writes narration, no manual scripting needed |
+| <strong>AI Image Generation</strong> | Every sentence gets a matching AI illustration |
+| <strong>AI Video Generation</strong> | Supports WAN 2.1 and other video models for dynamic content |
+| <strong>Multi TTS Support</strong> | Edge-TTS, Index-TTS, and more voice synthesis options |
+| <strong>Background Music</strong> | Built-in BGM support for better atmosphere |
+| <strong>Visual Templates</strong> | Multiple templates for unique video styles |
+| <strong>Flexible Sizes</strong> | Portrait, landscape, and custom video dimensions |
+| <strong>Multiple AI Models</strong> | GPT, Tongyi Qianwen, DeepSeek, Ollama support |
+| <strong>ComfyUI Architecture</strong> | Modular design, customizable workflows |</p>
 <hr>
-<h2 id="지원-ai-모델">지원 AI 모델<a hidden class="anchor" aria-hidden="true" href="#지원-ai-모델">#</a></h2>
-<h3 id="llm-스크립트-생성">LLM (스크립트 생성)<a hidden class="anchor" aria-hidden="true" href="#llm-스크립트-생성">#</a></h3>
+<h2 id="video-generation-pipeline">Video Generation Pipeline<a hidden class="anchor" aria-hidden="true" href="#video-generation-pipeline">#</a></h2>
+<p>Pixelle-Video uses a modular design with a clear workflow: <strong>Text Input → Script Generation → Image Planning → Frame Processing → Video Synthesis</strong></p>
+<p>Each stage supports flexible customization — choose different AI models, audio engines, visual styles to meet personalized creation needs.</p>
+<hr>
+<h2 id="extended-modules">Extended Modules<a hidden class="anchor" aria-hidden="true" href="#extended-modules">#</a></h2>
+<p>Beyond basic video generation, Pixelle-Video offers powerful extension modules: ### 👤 Digital Human Avatar
+Upload a photo and generate a talking-head video with lip-sync. Supports multiple languages including Korean, Chinese, and English.</p>
+<h3 id="-image-to-video">🖼️ Image-to-Video<a hidden class="anchor" aria-hidden="true" href="#-image-to-video">#</a></h3>
+<p>Transform static images into dynamic videos using AI video generation models.</p>
+<h3 id="-motion-transfer">💃 Motion Transfer<a hidden class="anchor" aria-hidden="true" href="#-motion-transfer">#</a></h3>
+<p>Upload a reference video and image to transfer motions — like making a photo dance following video movements.</p>
+<hr>
+<h2 id="supported-ai-models">Supported AI Models<a hidden class="anchor" aria-hidden="true" href="#supported-ai-models">#</a></h2>
+<h3 id="llm-script-generation">LLM (Script Generation)<a hidden class="anchor" aria-hidden="true" href="#llm-script-generation">#</a></h3>
 <ul>
 <li>OpenAI GPT-4o / GPT-4o-mini</li>
-<li>알리바바 통의천문</li>
+<li>Alibaba Tongyi Qianwen</li>
 <li>DeepSeek V3 / R1</li>
-<li>Ollama (로컬 배포)</li>
-<li>사용자 정의 API 엔드포인트</li>
+<li>Ollama (local deployment)</li>
+<li>Custom API endpoints</li>
 </ul>
-<h3 id="이미지-생성">이미지 생성<a hidden class="anchor" aria-hidden="true" href="#이미지-생성">#</a></h3>
+<h3 id="image-generation">Image Generation<a hidden class="anchor" aria-hidden="true" href="#image-generation">#</a></h3>
 <ul>
-<li>FLUX (ComfyUI 통해)</li>
+<li>FLUX (via ComfyUI)</li>
 <li>Stable Diffusion</li>
-<li>통의천문 이미지 생성</li>
-<li>RunningHub 클라우드 서비스</li>
-<li>Nano Banana 모델</li>
+<li>Qwen Image Generation</li>
+<li>RunningHub cloud service</li>
+<li>Nano Banana model</li>
 </ul>
-<h3 id="tts-음성-합성">TTS (음성 합성)<a hidden class="anchor" aria-hidden="true" href="#tts-음성-합성">#</a></h3>
+<h3 id="tts-voice-synthesis">TTS (Voice Synthesis)<a hidden class="anchor" aria-hidden="true" href="#tts-voice-synthesis">#</a></h3>
 <ul>
-<li>Edge-TTS (무료, 다국어)</li>
-<li>Index-TTS (음성 클로닝)</li>
+<li>Edge-TTS (free, multi-language)</li>
+<li>Index-TTS (voice cloning)</li>
 <li>ChatTTS</li>
-<li>사용자 정의 ComfyUI TTS 워크플로</li>
+<li>Custom ComfyUI TTS workflows</li>
 </ul>
 <hr>
-<h2 id="빠른-시작">빠른 시작<a hidden class="anchor" aria-hidden="true" href="#빠른-시작">#</a></h2>
-<h3 id="1-저장소-클론">1. 저장소 클론<a hidden class="anchor" aria-hidden="true" href="#1-저장소-클론">#</a></h3>
+<h2 id="quick-start">Quick Start<a hidden class="anchor" aria-hidden="true" href="#quick-start">#</a></h2>
+<h3 id="1-clone-repository">1. Clone Repository<a hidden class="anchor" aria-hidden="true" href="#1-clone-repository">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/AIDC-AI/Pixelle-Video.git
 </span></span><span style="display:flex;"><span>cd Pixelle-Video
-</span></span></code></pre></div><h3 id="2-의존성-설치">2. 의존성 설치<a hidden class="anchor" aria-hidden="true" href="#2-의존성-설치">#</a></h3>
+</span></span></code></pre></div><h3 id="2-install-dependencies">2. Install Dependencies<a hidden class="anchor" aria-hidden="true" href="#2-install-dependencies">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install -r requirements.txt
-</span></span></code></pre></div><h3 id="3-api-키-구성">3. API 키 구성<a hidden class="anchor" aria-hidden="true" href="#3-api-키-구성">#</a></h3>
-<p><code>config.json</code>을 편집하여 API 키 입력: `````json
+</span></span></code></pre></div><h3 id="3-configure-api-keys">3. Configure API Keys<a hidden class="anchor" aria-hidden="true" href="#3-configure-api-keys">#</a></h3>
+<p>Edit <code>config.json</code> with your API keys: `````json
 {
 &ldquo;llm&rdquo;: {
-&ldquo;api_key&rdquo;: &ldquo;당신의 API 키&rdquo;,
+&ldquo;api_key&rdquo;: &ldquo;your-api-key&rdquo;,
 &ldquo;base_url&rdquo;: &ldquo;<a href="https://api.openai.com/v1%22">https://api.openai.com/v1"</a>,
 &ldquo;model&rdquo;: &ldquo;gpt-4o&rdquo;
 },
@@ -455,215 +431,142 @@ a: &lsquo;세 가지 확장 모듈이 포함되어 있습니다. 디지털 휴�
 }
 }</p>
 <pre tabindex="0"><code>
-### 4. Web UI 시작
+### 4. Launch Web UI
 
 `````bash
 python webui.py
-</code></pre><p>브라우저에서 ````http://localhost:7860``` 열기</p>
-<h3 id="5-첫-번째-비디오-생성">5. 첫 번째 비디오 생성<a hidden class="anchor" aria-hidden="true" href="#5-첫-번째-비디오-생성">#</a></h3>
+</code></pre><p>Open ````http://localhost:7860``` in your browser.</p>
+<h3 id="5-generate-your-first-video">5. Generate Your First Video<a hidden class="anchor" aria-hidden="true" href="#5-generate-your-first-video">#</a></h3>
 <ol>
-<li>주제 입력, 예: &ldquo;독서 습관의 중요성&rdquo;</li>
-<li>원하는 TTS 음성 선택</li>
-<li>비주얼 템플릿 선택</li>
-<li>&ldquo;비디오 생성&rdquo; 클릭</li>
-<li>2-5분 대기 후 완성된 비디오 획득</li>
+<li>Enter a topic like &ldquo;Why reading habits matter&rdquo;</li>
+<li>Select your preferred TTS voice</li>
+<li>Choose a visual template</li>
+<li>Click &ldquo;Generate Video&rdquo;</li>
+<li>Wait 2-5 minutes for the complete video</li>
 </ol>
 <hr>
-<h2 id="사용-시나리오">사용 시나리오<a hidden class="anchor" aria-hidden="true" href="#사용-시나리오">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>시나리오</th>
-					<th>예시 주제</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>지식 공유</strong></td>
-					<td>&ldquo;Python 초보자가 알아야 할 10가지 팁&rdquo;</td>
-			</tr>
-			<tr>
-					<td><strong>제품 리뷰</strong></td>
-					<td>&ldquo;iPhone 16 vs 삼성 S24 비교&rdquo;</td>
-			</tr>
-			<tr>
-					<td><strong>스토리텔링</strong></td>
-					<td>&ldquo;스타트업 창업자의 여정&rdquo;</td>
-			</tr>
-			<tr>
-					<td><strong>교육 콘텐츠</strong></td>
-					<td>&ldquo;블록체인은 어떻게 작동하나요?&rdquo;</td>
-			</tr>
-			<tr>
-					<td><strong>뉴스 코멘터리</strong></td>
-					<td>&ldquo;2026년 AI 트렌드&rdquo;</td>
-			</tr>
-			<tr>
-					<td><strong>책/영화 리뷰</strong></td>
-					<td>&ldquo;『아토믹 해빗』의 교훈&rdquo;</td>
-			</tr>
-	</tbody>
-</table>
+<h2 id="use-cases">Use Cases<a hidden class="anchor" aria-hidden="true" href="#use-cases">#</a></h2>
+<p>| Scenario | Example Topic |
+|</p>
 <hr>
-<h2 id="비디오-스타일-예시">비디오 스타일 예시<a hidden class="anchor" aria-hidden="true" href="#비디오-스타일-예시">#</a></h2>
-<p>Pixelle-Video는 다양한 비디오 스타일을 지원합니다: - 🌄 <strong>다큐멘터리 스타일</strong> — 여행, 자연, 인문 이야기</p>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Knowledge Sharing</strong> | &ldquo;10 Python tricks beginners should know&rdquo; |
+| <strong>Product Review</strong> | &ldquo;iPhone 16 vs Samsung S24 comparison&rdquo; |
+| <strong>Storytelling</strong> | &ldquo;The journey of a startup founder&rdquo; |
+| <strong>Educational Content</strong> | &ldquo;How does blockchain work?&rdquo; |
+| <strong>News Commentary</strong> | &ldquo;AI trends in 2026&rdquo; |
+| <strong>Book/Movie Review</strong> | &ldquo;Lessons from &lsquo;Atomic Habits&rsquo;&rdquo; |</p>
+<hr>
+<h2 id="video-style-examples">Video Style Examples<a hidden class="anchor" aria-hidden="true" href="#video-style-examples">#</a></h2>
+<p>Pixelle-Video supports multiple video styles: - 🌄 <strong>Documentary Style</strong> — Travel, nature, human stories</p>
 <ul>
-<li>🔍 <strong>문화 분석</strong> — 트렌드와 현상의 심층 분석</li>
-<li>🔭 <strong>과학 철학</strong> — 복잡한 개념을 쉽게 설명</li>
-<li>🌱 <strong>개인 성장</strong> — 자기 계발, 생산성 향상</li>
-<li>🧠 <strong>심층 사고</strong> — 심리학, 철학, 성찰</li>
-<li>🏯 <strong>역사 문화</strong> — 고인의 지혜, 역사적 사건</li>
-<li>☀️ <strong>감성</strong> — 따뜻한 이야기, 영감</li>
-<li>📜 <strong>소설 해설</strong> — 소설 리뷰, 인물 분석</li>
-<li>🧬 <strong>지식 과학</strong> — 의학 상식, 건강 지식</li>
+<li>🔍 <strong>Cultural Analysis</strong> — Deep dives into trends and phenomena</li>
+<li>🔭 <strong>Science &amp; Philosophy</strong> — Complex concepts made simple</li>
+<li>🌱 <strong>Personal Growth</strong> — Self-improvement, productivity</li>
+<li>🧠 <strong>Deep Thinking</strong> — Psychology, philosophy, reflection</li>
+<li>🏯 <strong>History &amp; Culture</strong> — Ancient wisdom, historical events</li>
+<li>☀️ <strong>Emotional</strong> — Heartwarming stories, inspiration</li>
+<li>📜 <strong>Fiction Commentary</strong> — Novel reviews, character analysis</li>
+<li>🧬 <strong>Health &amp; Wellness</strong> — Medical tips, wellness advice</li>
 </ul>
 <hr>
-<h2 id="기술-아키텍처">기술 아키텍처<a hidden class="anchor" aria-hidden="true" href="#기술-아키텍처">#</a></h2>
-<p>Pixelle-Video는 <strong>ComfyUI</strong> 아키텍처 기반: - <strong>모듈식 워크플로</strong> — 각 구성 요소(LLM, TTS, 이미지 생성)가 독립 노드</p>
+<h2 id="technical-architecture">Technical Architecture<a hidden class="anchor" aria-hidden="true" href="#technical-architecture">#</a></h2>
+<p>Pixelle-Video is built on <strong>ComfyUI</strong> architecture: - <strong>Modular Workflows</strong> — Each component (LLM, TTS, image gen) is a separate node</p>
 <ul>
-<li><strong>커스터마이징 파이프라인</strong> — 모델 또는 서비스 쉽게 교체</li>
-<li><strong>API 우선 설계</strong> — 모든 기능 REST API로 노출</li>
-<li><strong>Web UI</strong> — Gradio 기반의 사용하기 쉬운 인터페이스</li>
-<li><strong>배치 처리</strong> — 여러 비디오 동시 생성</li>
+<li><strong>Customizable Pipeline</strong> — Swap any model or service easily</li>
+<li><strong>API-First Design</strong> — All capabilities exposed via REST API</li>
+<li><strong>Web UI</strong> — Gradio-based interface for easy use</li>
+<li><strong>Batch Processing</strong> — Generate multiple videos simultaneously</li>
 </ul>
 <hr>
-<h2 id="성능-및-비용">성능 및 비용<a hidden class="anchor" aria-hidden="true" href="#성능-및-비용">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>옵션</th>
-					<th>비용</th>
-					<th>속도</th>
-					<th>품질</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>로컬 배포</strong></td>
-					<td>무료 (GPU 필요)</td>
-					<td>빠름</td>
-					<td>높음</td>
-			</tr>
-			<tr>
-					<td><strong>RunningHub 클라우드</strong></td>
-					<td>사용량 기반 과금</td>
-					<td>즉시</td>
-					<td>높음</td>
-			</tr>
-			<tr>
-					<td><strong>혼합 모드</strong></td>
-					<td>유연</td>
-					<td>균형</td>
-					<td>높음</td>
-			</tr>
-	</tbody>
-</table>
-<p>초보자 추천 구성: - LLM: DeepSeek API (저렴, 품질 좋음)</p>
+<h2 id="performance--cost">Performance &amp; Cost<a hidden class="anchor" aria-hidden="true" href="#performance--cost">#</a></h2>
+<p>| Option | Cost | Speed | Quality |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Local Deployment</strong> | Free (GPU required) | Fast | High |
+| <strong>RunningHub Cloud</strong> | Pay-per-use | Instant | High |
+| <strong>Mixed Mode</strong> | Flexible | Balanced | High |</p>
+<p>Recommended setup for beginners: - LLM: DeepSeek API (cheap, good quality)</p>
 <ul>
-<li>이미지: RunningHub (로컬 GPU 불필요)</li>
-<li>TTS: Edge-TTS (무료, 다국어)</li>
+<li>Image: RunningHub (no local GPU needed)</li>
+<li>TTS: Edge-TTS (free, multi-language)</li>
 </ul>
 <hr>
-<h2 id="다른-도구와-비교">다른 도구와 비교<a hidden class="anchor" aria-hidden="true" href="#다른-도구와-비교">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>기능</th>
-					<th>Pixelle-Video</th>
-					<th>HeyGen</th>
-					<th>Synthesia</th>
-					<th>Pictory</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>오픈소스</strong></td>
-					<td>✅</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-			</tr>
-			<tr>
-					<td><strong>무료 사용</strong></td>
-					<td>✅</td>
-					<td>제한적</td>
-					<td>제한적</td>
-					<td>제한적</td>
-			</tr>
-			<tr>
-					<td><strong>로컬 배포</strong></td>
-					<td>✅</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-			</tr>
-			<tr>
-					<td><strong>커스텀 모델</strong></td>
-					<td>✅</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-			</tr>
-			<tr>
-					<td><strong>ComfyUI 통합</strong></td>
-					<td>✅</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-			</tr>
-			<tr>
-					<td><strong>음성 클로닝</strong></td>
-					<td>✅</td>
-					<td>✅</td>
-					<td>✅</td>
-					<td>❌</td>
-			</tr>
-			<tr>
-					<td><strong>디지털 휴먼</strong></td>
-					<td>✅</td>
-					<td>✅</td>
-					<td>✅</td>
-					<td>❌</td>
-			</tr>
-			<tr>
-					<td><strong>모션 전이</strong></td>
-					<td>✅</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-			</tr>
-	</tbody>
-</table>
+<h2 id="comparison-with-other-tools">Comparison with Other Tools<a hidden class="anchor" aria-hidden="true" href="#comparison-with-other-tools">#</a></h2>
+<p>| Feature | Pixelle-Video | HeyGen | Synthesia | Pictory |
+|</p>
 <hr>
-<h2 id="최적의-결과를-위한-팁">최적의 결과를 위한 팁<a hidden class="anchor" aria-hidden="true" href="#최적의-결과를-위한-팁">#</a></h2>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Open Source</strong> | ✅ | ❌ | ❌ | ❌ |
+| <strong>Free Tier</strong> | ✅ | Limited | Limited | Limited |
+| <strong>Local Deployment</strong> | ✅ | ❌ | ❌ | ❌ |
+| <strong>Custom Models</strong> | ✅ | ❌ | ❌ | ❌ |
+| <strong>ComfyUI Integration</strong> | ✅ | ❌ | ❌ | ❌ |
+| <strong>Voice Cloning</strong> | ✅ | ✅ | ✅ | ❌ |
+| <strong>Digital Human</strong> | ✅ | ✅ | ✅ | ❌ |
+| <strong>Motion Transfer</strong> | ✅ | ❌ | ❌ | ❌ |</p>
+<hr>
+<h2 id="tips-for-best-results">Tips for Best Results<a hidden class="anchor" aria-hidden="true" href="#tips-for-best-results">#</a></h2>
 <ol>
-<li><strong>주제 구체화</strong> — 구체적일수록 더 나은 스크립트 생성</li>
-<li><strong>템플릿 매칭</strong> — 콘텐츠 스타일에 맞는 템플릿 선택</li>
-<li><strong>프롬프트 프리픽스</strong> — 영어 프롬프트 프리픽스로 이미지 스타일 일관성 유지</li>
-<li><strong>음성 미리듣기</strong> — 전체 비디오 생성 전 TTS 미리듣기</li>
-<li><strong>배치 생성</strong> — 3-5개 버전 동시 생성 후 최고 선택</li>
+<li><strong>Topic Specificity</strong> — More specific topics yield better scripts</li>
+<li><strong>Template Selection</strong> — Match template to content style</li>
+<li><strong>Prompt Prefix</strong> — Use English prompt prefixes for consistent image style</li>
+<li><strong>Voice Preview</strong> — Always preview TTS before generating full video</li>
+<li><strong>Batch Generation</strong> — Generate 3-5 variants and pick the best</li>
 </ol>
 <hr>
-<h2 id="관련-기사">관련 기사<a hidden class="anchor" aria-hidden="true" href="#관련-기사">#</a></h2>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
 <ul>
-<li><a href="/kr/resources/ai-tools/free-claude-code-open-source-proxy/">Free Claude Code: Claude Code CLI를 무료로 사용할 수 있는 오픈소스 프록시 도구</a> — 무료 AI 코딩 어시스턴트</li>
-<li><a href="/kr/resources/llm-frameworks/agent-reach-ai-agent-internet-access/">Agent Reach: AI 에이전트에 인터넷 슈퍼파워를 부여하다</a> — AI 에이전트 인터넷 연결 도구</li>
+<li><a href="/resources/ai-tools/free-claude-code-open-source-proxy/">Free Claude Code: Use Claude Code CLI for Free with Any AI Provider</a> — Free AI coding assistant</li>
+<li><a href="/resources/llm-frameworks/agent-reach-ai-agent-internet-access/">Agent Reach: Give Your AI Agent Internet Superpowers</a> — AI agent with internet access</li>
 </ul>
 <hr>
-<h2 id="결론">결론<a hidden class="anchor" aria-hidden="true" href="#결론">#</a></h2>
-<p><strong>Pixelle-Video</strong>는 LLM, 이미지 생성, TTS, 비디오 편집을 단일 자동화 파이프라인으로 통합하여 비디오 제작을 민주화합니다. 콘텐츠 크리에이터, 교육자, 마케터, 개발자 모두에게 이 도구는 많은 비디오 제작 시간을 절약해줍니다.</p>
-<p>ComfyUI 기반 아키텍처는 단순한 블랙박스가 아닙니다 — 각 구성 요소를 커스터마이징하고, 모델을 교체하고, 자신만의 비디오 생성 워크플로를 구축할 수 있습니다.</p>
-<p><strong>가장 적합</strong>: 빠른 비디오 제작이 필요한 콘텐츠 크리에이터, 교육자, 마케터, 개발자</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p><strong>Pixelle-Video</strong> democratizes video creation by combining LLM, image generation, TTS, and video editing into a single automated pipeline. Whether you&rsquo;re a content creator, educator, marketer, or developer, this tool can save hours of video production time.</p>
+<p>The ComfyUI-based architecture means it&quot;s not just a black-box tool — you can customize every component, swap models, and build your own video generation workflows.</p>
+<p><strong>Best for</strong>: Content creators, educators, marketers, developers who need quick video production</p>
 <p><strong>GitHub</strong>: <a href="https://github.com/AIDC-AI/Pixelle-Video">https://github.com/AIDC-AI/Pixelle-Video</a></p>
 <hr>
-<hr>
-<h2 id="추천-도구">추천 도구<a hidden class="anchor" aria-hidden="true" href="#추천-도구">#</a></h2>
-<p>오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.</p>
 <ul>
-<li>**** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.</li>
+<li></li>
 </ul>
-<p><em>추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.</em></p>
-<p><em>마지막 업데이트: 2026-05-06</em></p>
+<hr>
+<h2 id="recommended-tools">Recommended Tools<a hidden class="anchor" aria-hidden="true" href="#recommended-tools">#</a></h2>
+<p>For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.</p>
+<ul>
+<li>**** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.</li>
+</ul>
+<p><em>Affiliate link — supports dibi8.com at no cost to you.</em></p>
+<p><em>Last updated: 2026-05-06</em></p>
+<h2 id="references--sources">References &amp; Sources<a hidden class="anchor" aria-hidden="true" href="#references--sources">#</a></h2>
+<ul>
+<li><a href="https://github.com/AIDC-AI/Pixelle-Video">Pixelle-Video</a></li>
+<li><a href="https://github.com/comfyanonymous/ComfyUI">ComfyUI</a></li>
+<li><a href="https://github.com/rany2/edge-tts">Edge-TTS</a></li>
+<li><a href="https://github.com/index-tts/index-tts">Index-TTS</a></li>
+<li><a href="https://github.com/2noise/ChatTTS">ChatTTS</a></li>
+<li><a href="https://github.com/black-forest-labs/flux">FLUX</a></li>
+<li><a href="https://github.com/ollama/ollama">Ollama</a></li>
+<li><a href="https://github.com/gradio-app/gradio">Gradio</a></li>
+<li><a href="https://github.com/deepseek-ai/DeepSeek-V3">DeepSeek-V3</a></li>
+</ul>
 
 
   </div>
@@ -706,6 +609,81 @@ python webui.py
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

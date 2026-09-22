@@ -82,8 +82,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: AGPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“plausible”, “analytics”, “프라이버시”, “gdpr”, “google-analytics-대안”, “셀프호스팅”, “docker”, “elixir”, “경량”] aliases:\n/kr/posts/plausible-analytics-privacy-google/ 소개: 아묵도 이야기하지 않는 분석 프라이버시 문제 2024년 1월 오스트리아 데이터 보호 당국은 Google Analytics 사용이 GDPR 제44조를 위반한다고 판결했는데, 이는 개인 데이터가 적절한 보호 없이 미국 서버로 흘러들어가기 때문이다. 프랑스, 이탈리아, 덴에도 유사한 판결을 남겼다. 2025년 중반까지 12만 개 이상의 웹사이트가 EU 대상 페이지에서 Google Analytics를 제거했다. 문제는 법적 측멿뿐만 아니라 아키텍처적이다. Google Analytics는 45KB의 JavaScript를 로드하고, 여러 서드파티 쿠키를 설정하며, 디바이스를 핑거프린팅하고, 브라우징 데이터를 국경을 넘어 전송한다.\nPlausible Analytics는 바로 이것을 해결하기 위해 구축되었다. Elixir로 작성되고 Phoenix 프레임워크에서 실행되는 Plausible은 AGPL-3.0 라이선스 분석 도구로, 1KB 미만의 스크립트, 제로 쿠키, 제로 국경 간 데이터 전송으로 핵심 웹 지표(페이지뷰, 고유 방문자, 이탈률, 추천 소스)를 제공한다. GitHub 21,000+ 스타를 보유하고 있으며 2026년 2월 v3.0 릴리즈를 통해, 이는 속도나 컴플라이언스를 타협하지 않으려는 프라이버시 중심 사이트 소유자의 사실상 표준이 되었다.\n이 가이드는 Docker 기반 셀프 호스팅 배포, Google Analytics 및 Matomo와의 비교 벤치마크, API 통합 패턴, 개인 블로그부터 고트래픽 SaaS 애플리케이션까지의 프로덕션 하드닝을 다룬다.\nPlausible Analytics란? (한 문장 정의) Plausible Analytics는 경량, 프라이버시 우선, 오픈소스 웹 분석 플랫폼으로, 쿠키를 사용하지 않고, 개인 데이터를 수집하지 않으며, 웹사이트 속도를 늦추지 않으면서 핵심 사이트 지표를 제공한다 — 완전한 GDPR, CCPA, PECR 준수와 모든 데이터를 자신의 인프라에 보관하는 셀프 호스팅 옵션을 제공한다.\nPlausible 작동 방식: 아키텍처와 핵심 개념 Plausible은 기존 분석 도구와 근본적으로 다른 접근 방식을 취한다. 클라이언트 측 데이터 수확 대신 최소한의 클라이언트 푸프린트로 서버 측 집계에 중점을 둔다.\n아키텍처 개요 ┌─────────────────────────────────────────────────────┐ │ Nginx / Caddy │ │ (리버스 프록시 + SSL) │ ├─────────────────────────────────────────────────────┤ │ ┌──────────────────────────────────────────────┐ │ │ │ Plausible (Elixir/Phoenix) │ │ │ │ (API + 웹 대시보드 + 이벤트) │ │ │ └──────────────┬─────────────┬─────────────────┘ │ │ │ │ │ │ ▼ ▼ │ │ ┌──────────┐ ┌──────────┐ │ │ │ ClickHouse│ │ PostgreSQL│ │ │ │ (이벤트) │ │ (사용자) │ │ │ └──────────┘ └──────────┘ │ │ ▲ │ │ ┌──────────┐ │ │ │ Redis │ │ │ │ (캐시) │ │ │ └──────────┘ │ └─────────────────────────────────────────────────────┘ 이벤트 저장소로 ClickHouse를 선택한 이유 Plausible은 ClickHouse를 분석 데이터베이스로 사용한다 — Yandex와 Cloudflare 분석을 구동하는 동일한 컬럼형 DBMS이다. 이 선택은 의도적인 것이다: | 특성 | PostgreSQL | ClickHouse | 영향 | |——|———–|————|——| | 삽입 처리량 | ~2만 행/초 | 100만+ 행/초 | 트래픽 스파이크 처리 | | 집계 쿼리 속도 | 수초 | 밀리초 | 대시보드 즉각 로드 | | 저장 효율 | 높음 | 매우 높음 | 90%+ 압축률 | | 실시간 분석 | 지연 | 근실시간 | 라이브 방문자 수 |\n핵심 구성 요소 구성 요소 용도 스케일링 참고 Phoenix 앱 웹 대시보드, REST API, 이벤트 수집 스테이트리스 — 수평 확장 ClickHouse 이벤트 데이터 저장, 집계 단일 노드가 100억+ 이벤트 처리 PostgreSQL 사용자 계정, 사이트 설정, API 키 작은 데이터셋 — 단일 노드로 충분 Redis 세션 캐시, 속도 제한 옵션 — 응답 시간 개선 1KB 스크립트: 실제로 하는 일 \u003c/script\u003e 이 스크립트는 정확히 세 가지만 수행한다: (1) 현재 페이지 URL과 리퍼러를 전송하고, (2) 브라우저 뷰포트 크기를 전송하여 데스크톱/모바일을 분류하고, (3) SPA 낵게이션 이벤트를 수신한다. 이 스크립트는 다음을 수행하지 않는다: 쿠키 설정, localStorage 사용, 핑거프린트 해시 생성, 서드파티 요청 실행. 결과는 gzip 압축 시 1KB 미만의 페이로드와 4G 네트워크에서 10ms 미만의 실행 시간이다.\n설치 및 설정: 5분 만에 분석 대시보드 가동 사전 요구 사항 최소 2GB RAM VPS (월 10만 PV 이상은 4GB 권장) Docker Engine 24.0+ 및 Docker Compose v2 서버를 가리키는 도메인 이름 비밀번호 재설정용 SMTP 자격 증명 안정적인 VPS로는 DigitalOcean을 추천한다 — 월 $12의 2GB RAM Droplet이 월 50만 페이지뷰를 편안하게 처리한다.\n1단계: 디렉토리 및 Compose 파일 생성 # 프로젝트 디렉토리 생성 mkdir -p /opt/plausible cd /opt/plausible # 공식 Docker Compose 템플릿 다운로드 curl -L https://raw.githubusercontent.com/plausible/hosting/master/docker-compose.yml -o docker-compose.yml 2단계: 시크릿 생성 및 구성 # 랜덤 시크릿 생성 export SECRET_KEY_BASE=$(openssl rand -base64 48 | tr -d '\\n') export TOTP_VAULT_KEY=$(openssl rand -base64 32 | tr -d '\\n') # 환경 변수 파일 생성 cat \u003e plausible-conf.env \u003c\u003c EOF BASE_URL=https://analytics.yourdomain.com SECRET_KEY_BASE=${SECRET_KEY_BASE} TOTP_VAULT_KEY=${TOTP_VAULT_KEY} # 데이터베이스 DATABASE_URL=postgres://postgres:postgres@plausible_db:5432/plausible_db CLICKHOUSE_DATABASE_URL=http://plausible_events_db:8123/plausible_events_db # 이메일 (SMTP) MAILER_EMAIL=hello@yourdomain.com SMTP_HOST_ADDR=smtp.mailgun.org SMTP_HOST_PORT=587 SMTP_USER_NAME=postmaster@yourdomain.com SMTP_USER_PWD=your_mailgun_password SMTP_HOST_SSL_ENABLED=true # 등록 DISABLE_REGISTRATION=false # 계정 생성 후 true로 설정 EOF 3단계: Docker Compose로 실행 # 모든 서비스 시작 docker compose up -d # 서비스 확인 docker compose ps # 예상 출력: # NAME STATUS PORTS # plausible Up 10 seconds 0.0.0.0:8000-\u003e8000/tcp # plausible_db Up 10 seconds 5432/tcp # plausible_events_db Up 10 seconds 8123/tcp 4단계: 리버스 프록시 및 SSL # /etc/nginx/sites-available/plausible server { listen 80; server_name analytics.yourdomain.com; return 301 https://$server_name$request_uri; } server { listen 443 ssl http2; server_name analytics.yourdomain.com; ssl_certificate /etc/letsencrypt/live/analytics.yourdomain.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/analytics.yourdomain.com/privkey.pem; location / { proxy_pass http://127.0.0.1:8000; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto $scheme; } } # 사이트 활성화 및 SSL 획득 sudo ln -s /etc/nginx/sites-available/plausible /etc/nginx/sites-enabled/ sudo nginx -t \u0026\u0026 sudo systemctl reload nginx sudo certbot --nginx -d analytics.yourdomain.com 5단계: 첫 로그인 및 사이트 설정 # 관리자 사용자 생성 docker compose exec plausible bin/plausible remote Plausible.Release.created_admin_user(\"admin@yourdomain.com\", \"YourSecurePassword123!\") # Ctrl+C를 눌러 종료 https://analytics.yourdomain.com에 접속하여 로그인하고 첫 번째 사이트를 추가하라. 추적 스크립트 코드를 웹사이트 헤더에 복사하라.\n웹사이트에 추적 추가 \u003c/script\u003e \u003c/script\u003e 프레임워크, CMS 및 빌드 도구와의 통합 React / Next.js 통합 // components/PlausibleAnalytics.js import Script from 'next/script'; export default function PlausibleAnalytics() { return ( \u003cScript strategy=\"afterInteractive\" data-domain=\"yourdomain.com\" src=\"https://analytics.yourdomain.com/js/script.js\" /\u003e ); } // Next.js 13+ SPA 라우트 변경 // app/layout.js import { usePathname } from 'next/navigation'; import { useEffect } from react; export default function RootLayout({ children }) { const pathname = usePathname(); useEffect(() =\u003e { if (typeof window !== undefined \u0026\u0026 window.plausible) { window.plausible(pageview); } }, [pathname]); return \u003chtml\u003e{children}\u003c/html\u003e; } Vue.js / Nuxt.js 통합 // plugins/plausible.client.js (Nuxt 3) export default defineNuxtPlugin(() =\u003e { const config = useRuntimeConfig(); useHead({ script: [ { defer: true, 'data-domain': config.public.plausibleDomain, src: ````${config.public.plausibleHost}/js/script.js````, }, ], }); // SPA 낵게이션 추적 const router = useRouter(); router.afterEach((to) =\u003e { if (typeof window !== undefined \u0026\u0026 window.plausible) { window.plausible(pageview, { u: window.location.origin + to.fullPath }); } }); }); WordPress 플러그인 # 옵션 1: 공식 Plausible WordPress 플러그인 사용 # wp-admin에서 설치: 플러그인 \u003e 새로 추가 \u003e \"Plausible Analytics\" 검색 # 셀프 호스팅 URL로 구성 # 옵션 2: 수동 — 테마의 header.php에 추가 \u003c?php if (!is_user_logged_in()): ?\u003e \" src=\"https://analytics.yourdomain.com/js/script.js\"\u003e \u003c?php endif; ?\u003e 정적 사이트 생성기 (Hugo, Jekyll, Astro) \u003c/script\u003e // astro.config.mjs export default defineConfig({ integrations: [ { name: plausible, hooks: { 'astro:config:setup': ({ injectScript }) =\u003e { injectScript(head, ```` \u003cscript defer data-domain=\"yourdomain.com\" src=\"https://analytics.yourdomain.com/js/script.js\"\u003e\u003c/script\u003e ````); }, }, }, ], }); 커스텀 이벤트 추적 // 버튼 클릭, 폼 제출 또는 모든 커스텀 이벤트 추적 document.getElementById('signup-button').addEventListener(click, () =\u003e { plausible('Signup Click', { props: { plan: pro, source: header } }); }); // 이커머스 전환 추적 plausible(Purchase, { props: { product: 'Widget Pro', price: 99.00, currency: USD }, revenue: { currency: USD, amount: 9900 } // 센트 단위 }); 벤치마크 및 실제 활용 사례 속도 비교: Plausible 대 Google Analytics 지표 Google Analytics 4 Plausible (Cloud) Plausible (셀프 호스팅) 스크립트 크기 45KB \u003c1KB \u003c1KB DNS 조회 5+ 1 1 설정 쿠키 여러 개 0 0 3G 로드 시간 800-1200ms 15-25ms 15-25ms Lighthouse 영향 -8~-15점 0점 0점 Core Web Vitals 영향 부정적 없음 없음 페이지당 데이터 전송 ~60KB ~1KB ~1KB 결과: Plausible은 GA4보다 45-60배 빠르게 로드되고 Core Web Vitals에 영향이 없다.\n프라이버시 컴플라이언스 비교 기능 Google Analytics 4 Matomo Plausible 동의 없이 GDPR 준수 아니오 부분 예 쿠키 없는 추적 아니오 옵션 예 (항상) 개인 데이터 수집 없음 아니오 구성 가능 예 (설계상) EU 데이터 거주 아니오 셀프 호스팅 예 CCPA 준수 옵트아웃 필요 구성 가능 예 PECR 준수 아니오 부분 예 Schrems II / EU-US DPF 법적 리스크 해당 없음 리스크 없음 부하 하에서의 성능 (2GB VPS에서 v3.0) 지표 값 참고 콜드 스타트 4.1초 Docker 컨테이너 + ClickHouse 이벤트 수집률 5만 이벤트/초 단일 노드 ClickHouse 대시보드 로드 시간 120ms P95, 인증됨 API 응답 시간 85ms P95, 통계 집계 100만 PV당 저장소 ~45MB 고도로 압축된 ClickHouse 동시 추적 사이트 무제한 리소스에 의해 제한 유휴 메모리 사용 380MB Plausible + ClickHouse + Postgres 실제 배포 프로필 사이트 유형 월 PV VPS 비용 GA4 동급 Plausible 비용 개인 블로그 1만 $6 (1GB) 묣 $6 SaaS 랜딩 페이지 10만 $12 (2GB) $0-150 $12 이커머스 스토어 50만 $24 (4GB) $150+ $24 뉴스 사이트 200만 $48 (8GB) $150,000+ $48 에이전시 (50 사이트) 총 500만 $48 (8GB) $750+ $48 사례 연구: GA4 교체 후 페이지 로드 50% 빨라짐 월 방문자 20만 명의 유럽 SaaS 회사가 2025년 11월 Google Analytics에서 셀프 호스팅 Plausible로 마이그레이션했다. 6개월 후 결과: - Lighthouse 성능 점수: 72 → 91 (+19점)\nLargest Contentful Paint: 2.8초 → 1.9초 쿠키 동의 배너: 완전히 제거됨 분석 호스팅 비용: $0 → $12/월 GDPR 컴플라이언스 리스크: 제거됨 (데이터가 EU 서버를 벗어나지 않음) 고급 사용법 및 프로덕션 하드닝 향상된 측정 활성화 # plausible-conf.env — 추가 추적 기능 활성화 # 아웃바운드 링크 추적 SCRIPT_NAME=script.outbound-links.js # 파일 다운로드 추적 SCRIPT_NAME=script.file-downloads.js # 해시 기반 라우팅 SCRIPT_NAME=script.hash.js # 조합: 모든 기능 SCRIPT_NAME=script.outbound-links.file-downloads.hash.js \u003c/script\u003e 커스텀 대시보드를 위한 API 통합 # Stats API를 통한 통계 조회 curl -X GET \"https://analytics.yourdomain.com/api/v1/stats/aggregate?site_id=yourdomain.com\u0026period=30d\u0026metrics=visitors,pageviews,bounce_rate\" \\ -H \"Authorization: Bearer YOUR_API_KEY\" # 응답: # { # \"results\": { # \"visitors\": {\"value\": 45230}, # \"pageviews\": {\"value\": 128900}, # \"bounce_rate\": {\"value\": 42} # } # } # BI 도구로 통계를 가져오는 Python 스크립트 import requests from datetime import datetime, timedelta API_KEY = \"your-api-key\" SITE_ID = \"yourdomain.com\" HOST = \"https://analytics.yourdomain.com\" end_date = datetime.now().strftime(\"%Y-%m-%d\") start_date = (datetime.now() - timedelta(days=30)).strftime(\"%Y-%m-%d\") response = requests.get( f\"{HOST}/api/v1/stats/timeseries\", params={ \"site_id\": SITE_ID, \"period\": \"custom\", \"date\": start_date, \"metrics\": \"visitors,pageviews\", \"filters\": f\"visit:country==US|DE|FR\" }, headers={\"Authorization\": f\"Bearer {API_KEY}\"} ) data = response.json() for entry in data[\"results\"]: print(f\"{entry[date]}: {entry[visitors]} 방문자, {entry[pageviews]} 페이지뷰\") 백업 전략 #!/bin/bash # /opt/scripts/plausible-backup.sh BACKUP_DIR=\"/backup/plausible/$(date +%Y%m%d_%H%M%S)\" mkdir -p \"$BACKUP_DIR\" # PostgreSQL 백업 (사용자 데이터, 사이트 설정) docker compose exec -T plausible_db pg_dump \\ -U postgres plausible_db \u003e \"$BACKUP_DIR/postgres.sql\" # ClickHouse 백업 (이벤트 데이터) docker compose exec plausible_events_db clickhouse-client \\ --query=\"BACKUP DATABASE plausible_events_db TO '/backup/clickhouse'\" \u003e \"$BACKUP_DIR/clickhouse.sql\" # S3 업로드 aws s3 sync \"$BACKUP_DIR\" \"s3://your-backup-bucket/plausible/\" # 정리: 30일만 유지 find /backup/plausible -maxdepth 1 -type d -mtime +30 -exec rm -rf {} \\; # Cron — 매일 오전 3시 0 3 * * * /opt/scripts/plausible-backup.sh \u003e\u003e /var/log/plausible-backup.log 2\u003e\u00261 고가용성 설정 # docker-compose.ha.yaml — 복제가 있는 다중 노드 ClickHouse version: '3.8' services: plausible: image: plausible/analytics:v3.0 deploy: replicas: 2 environment: - DATABASE_URL=postgres://postgres:postgres@plausible_db:5432/plausible_db - CLICKHOUSE_DATABASE_URL=http://clickhouse-1:8123/plausible_events_db;http://clickhouse-2:8123/plausible_events_db clickhouse-1: image: clickhouse/clickhouse-server:24.3 volumes: - clickhouse_data_1:/var/lib/clickhouse clickhouse-2: image: clickhouse/clickhouse-server:24.3 volumes: - clickhouse_data_2:/var/lib/clickhouse Prometheus를 이용한 모니터링 # prometheus.yml에 추가 scrape_configs: - job_name: plausible static_configs: - targets: ['analytics.yourdomain.com:8000'] metrics_path: '/metrics' scrape_interval: 30s 위치 데이터를 위한 GeoIP 데이터베이스 # MaxMind GeoLite2 데이터베이스 다운로드 mkdir -p /opt/plausible/geoip cd /opt/plausible/geoip # https://www.maxmind.com/에서 묣 GeoLite2 계정 등록 wget \"https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City\u0026license_key=YOUR_KEY\u0026suffix=tar.gz\" \\ -O GeoLite2-City.tar.gz tar -xzf GeoLite2-City.tar.gz --strip-components=1 # docker-compose.yml에 마운트 # volumes: # - ./geoip/GeoLite2-City.mmdb:/geoip/GeoLite2-City.mmdb:ro # plausible-conf.env에 추가: # GEOLITE2_COUNTRY_DB=/geoip/GeoLite2-Country.mmdb # GEOLITE2_CITY_DB=/geoip/GeoLite2-City.mmdb 대안과 비교 기능 Plausible Google Analytics 4 Matomo (셀프 호스팅) Fathom Umami 라이선스 AGPL-3.0 독점 GPL-3.0 독점 MIT 스크립트 크기 \u003c1KB 45KB ~22KB \u003c1KB \u003c2KB 쿠키 필요 아니오 예 옵션 아니오 아니오 배너 없는 GDPR 준수 예 아니오 부분 예 예 EU 데이터 거주 (셀프 호스팅) 예 아니오 예 클라우드 전용 예 실시간 대시보드 예 예 (5분 지연) 예 예 예 커스텀 이벤트 추적 예 예 예 예 예 API 접근 전체 REST 예 (복잡) 예 예 예 이커머스 수익 추적 예 고급 고급 기본 아니오 오픈소스 예 아니오 예 아니오 예 월 비용 (셀프 호스팅 2GB) $12 묣 $12 $14 (클) $12 커뮤니티 (GitHub 스타) 21,000 해당 없음 19,500 해당 없음 24,000 핵심 요약: Plausible은 Fathom의 미니멀리즘과 Matomo의 파워 사이에서 최적의 지점에 위치한다. ClickHouse 백엔드는 Matomo의 MySQL/MariaDB보다 우수한 쿼리 성능을 제공하고, AGPL 라이선스는 영구적인 오픈소스 가용성을 보장한다. GA4의 복잡성이나 Matomo의 리소스 오버헤드 없이 핵심 분석이 필요한 사이트에 최적의 선택이다.\n한계점: 솔직한 평가 Plausible은 의도적으로 깊이를 단순성과 프라이버시와 교환한다. 다음은 제공되지 않는 것이다: 사용자 수준 추적 없음 — 설계상 Plausible은 개별 사용자의 세션 간 여정을 추적하지 않는다. “사용자 X가 A 페이지를 방문한 다음 B, 그 다음 C\"를 볼 수 없다. 멀티터치 어트리뷰션이나 사용자 수준 퍼널 분석이 중요하다면 다른 도구가 필요하다.\n제한된 세그먼테이션 — 내장 필터링은 국가, 페이지, 리퍼러, 디바이스 유형, 브라우저를 지원한다. 고급 코호트 분석이나 커스텀 디멘전 분석은 API를 통한 외부 BI 도구 낼이 필요하다.\n광고 플랫폼 통합 없음 — GA4가 Google Ads와 네이티브 통합되는 것과 달리, Plausible에는 광고 플랫폼과의 직접 연결이 없다. UTM 파라미터와 캠페인 이름은 추적할 수 있지만 ROAS 계산은 수동 상관관계가 필요하다.\n히트맵 및 세션 녹화 — 이 기능은 Plausible에 존재하지 않는다(프라이버시 우선 철학과 충돌). 시각적 행동 분석이 필요하면 Hotjar이나 Microsoft Clarity와 함께 사용하라.\n서치 콘솔 통합 — GA4가 Google Search Console에 직접 연결되는 것과 달리, Plausible은 수동 가져오기 또는 API 기반 상관관계가 필요하다. 네이티브 “검색 쿼리” 보고서가 없다.\n이커머스 깊이 — 수익 추적은 존재하지만 GA4의 향상된 이커머스에 비하면 기본적이다.\n자주 묻는 질문 Plausible은 정말 쿠키 배너 없이 GDPR을 준수하나요?\n예. EDPB와 여러 EU 데이터 보호 당국은 쿠키나 개인 데이터 수집 없는 분석이 GDPR 제6(1)(f)의 동의를 필요로 하지 않는다고 확인했다. Plausible은 IP 주소를 수집하지 않고(해시 후 폐기), 쿠키나 localStorage를 사용하지 않고, 디바이스를 핑거프린팅하지 않으며, 사이트 간 추적을 하지 않는다. 그러나 구매 데이터를 처리하는 수익 추적 기능을 활성화하는 경우 DPO와 상담하라. 셀프 호스팅 배포가 가장 준수하는 옵션이다.\nGoogle Analytics와 비교하여 Plausible의 정확도는 어떠한가요?\nPlausible은 일반적으로 GA4보다 5-15% 높은 방문자 수를 보고하는데, 광고 차단기와 프라이버시 브라우저에 차단되는 비율이 더 낮기 때문이다. GA4는 약 **35-40%**의 광고 차단기 사용자에 의해 차단되는 반면, Plausible(자체 도메인에서 셀프 호스팅)은 **8-12%**만 차단된다. GA4의 “누락된” 데이터는 실제로 누락된 것이 아니라 스크립트 차단으로 수집되지 않은 것이다. Plausible은 실제 트래픽의 더 완전한 그림을 제공한다.\nGA4의 역사적 데이터를 가져올 수 있나요?\n예. Plausible은 GA Reporting API v4를 통해 데이터를 가져오는 Google Analytics 가져오기 도구를 제공한다. UA 속성과 GA4 속성을 처리하여 Plausible의 데이터 모델에 매핑한다. GA4의 데이터 모델 차이로 인해 일부 지표에는 직접적인 대등 항목이 없다. 가져오기는 백그라운드 작업으로 실행되며 대규모 데이터셋에는 수 시간이 소요될 수 있다.\n# GA 가져오기 실행 (Plausible 컨테이너에서) docker compose exec plausible bin/plausible \\ \"Plausible.Google.Import.start('your-ga-property-id\", YOUR_API_KEY)\" 사이트가 VPS 용량을 초과하면 어떻게 되나요?\nPlausible은 예측 가능하게 확장된다. 2GB VPS는 월 약 50만 PV를 처리한다. 4GB VPS는 월 약 200만 PV를 처리한다. 더 높은 트래픽의 경우 세 가지 옵션이 있다: (1) VPS 수직 확장, (2) ClickHouse를 전용 서버로 이동(Phoenix 앱이 아닌 데이터베이스가 병목), (3) Plausible Cloud 사용(월 1만 PV부터 $9 시작). ClickHouse 인스턴스가 용량을 결정한다.\n여러 도메인이나 서브도메인은 어떻게 추적하나요?\n각 도메인은 Plausible에서 별도의 “사이트\"이지만 공유 로그인으로 구성할 수 있다. 서브도메인 추적의 경우 두 가지 옵션이 있다: 세부 보고를 위해 별도로 추적하거나, data-api-host 속성을 사용하여 동일한 사이트 ID로 롤업한다. 서브도메인 간 추적은 Plausible이 쿠키나 세션 저장소를 사용하지 않으므로 특별한 구성 없이 작동한다.\n\u003c/script\u003e ```` **셀프 호스팅 Plausible은 정말 영구적으로 묣인가요?** 소프트웨어는 AGPL-3.0 하에 묣 — 라이선스 비용 없이 사용, 수정, 재배포할 수 있다. 비용은 인프라뿐이다: VPS 호스팅, 백업 저장소, SSL 인증서. 월 $6 VPS의 개인 블로그의 경우 이것이 총 비용이다. 인위적인 제한, 기능 게이트, 강제 업그레이드가 없다. 코드와 데이터를 완전히 소유한다. ## 결론: 감시 없는 분석 Plausible Analytics는 인사이트를 위해 프라이버시를 거래할 필요가 없음을 증명한다. **1KB 미만의 추적 스크립트**, **제로 쿠키**, **45배 더 빠른 로드 시간**은 대다수 웹사이트에 대해 기술적으로 Google Analytics보다 우수하다. 셀프 호스팅 옵션은 완전한 데이터 주권을 추가하여 국경 간 데이터 전송의 컴플라이언스 리스크를 제거한다. 일반적인 웹사이트의 경우 GA4에서 Plausible으로 전환하는 것은: 쿠키 동의 배너 제거, Lighthouse 점수 10-20점 향상, 더 빠른 페이지 로드 — 여전히 몇 명이 방문했는지, 어떤 페이지를 봤는지, 어디서 왔는지 알면서 말이다. 이것이 대부분의 결정에 중요한 지표이다. 이번 주에 인스턴스를 배포하라. Docker Compose 설정은 5분이 채 걸리지 않고, 추적 스크립트는 한 줄이며, 대시보드는 즉시 데이터를 표시한다. 더 빠른 페이지 로드에 대해 방문자가 감사할 것이다. 컴플라이언스에 대해 법무팀이 감사할 것이다. 제로 임팩트 스크립트에 대해 Core Web Vitals이 감사할 것이다. **오픈소스 도구 논의를 위한 Telegram 그룹**: [t.me/dibi8ko](https://t.me/dibi8ko) * * * ## 추천 호스팅 및 인프라 위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC. *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.* ## 참고 자료 및 추가 읽기 - [Plausible Analytics GitHub 저장소](https://github.com/plausible/analytics) — 공식 소스, 21,000+ 스타 - [Plausible 문서](https://plausible.io/docs/) — 공식 제품 문서 - [Plausible 셀프 호스팅 가이드](https://plausible.io/docs/self-hosting) — 공식 셀프 호스팅 문서 - [Plausible Stats API](https://plausible.io/docs/stats-api) — REST API 참조 - [Plausible v3.0 릴리스 노트](https://github.com/plausible/analytics/releases) — 2026년 2월 릴리스 - [ClickHouse 문서](https://clickhouse.com/docs) — Plausible을 구동하는 분석 데이터베이스 - [MaxMind GeoLite2](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data) — 묣 GeoIP 데이터베이스 - [EDPB 동의 가이드라인](https://edpb.europa.eu/our-work-tools/general-guidance/guidelines/consent_en) — 쿠키 없는 분석의 법적 기초 - [DigitalOcean VPS 설정](https://m.do.co/c/eca87ac14ee0) — 셀프 호스팅 배포용 VPS 호스팅 * * * *본 문서에는 DigitalOcean의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 VPS 서비스를 구매할 경우 dibi8.com에 추가 비용 없이 커미션이 지급될 수 있습니다. 모든 추천은 실제 테스트와 실제 배포 경험에 기반합니다.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Plausible Analytics: Google Analytics보다 45배 빠른 프라이버시 우선 대안 — 2026년 셀프 호스팅 설정\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/plausible-analytics-privacy-google\" } } \u003c/script\u003e * * * ## Related Articles - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](plausible-analytics-privacy-google) - [paperclip-open-source-agent-workplace-managing-ai-agents-at-scale](plausible-analytics-privacy-google) - [open-notebook-open-source-notebooklm-alternative-15-ai-providers](plausible-analytics-privacy-google) - [apple-container](plausible-analytics-privacy-google) - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](plausible-analytics-privacy-google) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
-  "wordCount" : "2805",
+  "articleBody": "title: “Plausible Analytics: The Privacy-First Google Analytics … description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: AGPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“plausible”, “analytics”, “privacy”, “gdpr”, “google-analytics-alternative”, “self-hosted”, “docker”, “elixir”, “lightweight”] aliases:\n/posts/plausible-analytics-privacy-google/- Introduction: The Analytics Privacy Problem Nobody Talks About In January 2024, the Austrian Data Protection Authority ruled that using Google Analytics violates GDPR Article 44 because personal data flows to US servers without adequate protection. France, Italy, and Denmark followed with similar rulings. By mid-2025, over 120,000 websites had removed Google Analytics from EU-facing pages. The problem is not just legal — it is architectural. Google Analytics loads 45KB of JavaScript, sets multiple third-party cookies, fingerprint devices, and sends browsing data across borders.\nPlausible Analytics was built to solve exactly this. Written in Elixir and running on the Phoenix framework, Plausible is an AGPL-3.0 licensed analytics tool that delivers essential web metrics — page views, unique visitors, bounce rate, referral sources — with a script under 1KB, zero cookies, and zero cross-border data transfers. With 21,000+ GitHub stars and a release of v3.0 in February 2026, it has become the de facto standard for privacy-conscious site owners who refuse to compromise on speed or compliance.\nThis guide covers the Docker-based self-hosted deployment, comparison benchmarks against Google Analytics and Matomo, API integration patterns, and production hardening for sites ranging from personal blogs to high-traffic SaaS applications.\nWhat Is Plausible Analytics? (One Sentence) Plausible Analytics is a lightweight, privacy-first, open-source web analytics platform that provides essential site metrics without using cookies, collecting personal data, or slowing down your website — fully GDPR, CCPA, and PECR compliant, with a self-hosted option that keeps all data on your infrastructure.\nHow Plausible Works: Architecture \u0026 Core Concepts Plausible takes a fundamentally different approach from traditional analytics. Instead of client-side data harvesting, it focuses on server-side aggregation with minimal client footprint.\nArchitecture Overview ┌─────────────────────────────────────────────────────┐ │ Nginx / Caddy │ │ (Reverse Proxy + SSL) │ ├─────────────────────────────────────────────────────┤ │ ┌──────────────────────────────────────────────┐ │ │ │ Plausible (Elixir/Phoenix) │ │ │ │ (API + Web Dashboard + Events) │ │ │ └──────────────┬─────────────┬─────────────────┘ │ │ │ │ │ │ ▼ ▼ │ │ ┌──────────┐ ┌──────────┐ │ │ │ ClickHouse│ │ PostgreSQL│ │ │ │ (Events) │ │ (Users) │ │ │ └──────────┘ └──────────┘ │ │ ▲ │ │ ┌──────────┐ │ │ │ Redis │ │ │ │ (Cache) │ │ │ └──────────┘ │ └─────────────────────────────────────────────────────┘ Why ClickHouse for Event Storage Plausible uses ClickHouse as its analytical database — the same columnar DBMS that powers Yandex and Cloudflare analytics. This choice is deliberate: | Characteristic | PostgreSQL | ClickHouse | Impact | |\n|\n|\n|\n| | Insert throughput | ~20K rows/sec | 1M+ rows/sec | Handles traffic spikes | | Aggregation query speed | Seconds | Milliseconds | Dashboard loads instantly | | Storage efficiency | High | Extremely high | 90%+ compression ratio | | Real-time analytics | Laggy | Near real-time | Live visitor counts |\nCore Components | Component | Purpose | Scaling Notes | |\n|\n|\n| | Phoenix App | Web dashboard, REST API, event ingestion | Stateless — scale horizontally | | ClickHouse | Event data storage, aggregations | Single node handles 10B+ events | | PostgreSQL | User accounts, site configs, API keys | Small dataset — single node sufficient | | Redis | Session cache, rate limiting | Optional — improves response times |\nThe 1KB Script: What It Actually Does \u003c/script\u003e This script does exactly three things: (1) sends the current page URL and referrer, (2) sends the browser viewport size to classify as desktop/mobile, and (3) listens for SPA navigation events. It does not: set cookies, use localStorage, generate fingerprint hashes, or execute third-party requests. The result is a payload under 1KB gzipped and execution time under 10ms on 4G networks.\nInstallation \u0026 Setup: From Zero to Analytics Dashboard in 5 Minutes Prerequisites VPS with 2GB RAM minimum (4GB recommended for \u003e100K pageviews/day) Docker Engine 24.0+ and Docker Compose v2 A domain name pointed at your server SMTP credentials for password resets For a reliable VPS, DigitalOcean offers an excellent starting point — their $12/month 2GB RAM droplet handles up to 500K pageviews/month comfortably.\nStep 1: Create Directory and Compose File # Create project directory mkdir -p /opt/plausible cd /opt/plausible # Download the official Docker Compose template curl -L https://raw.githubusercontent.com/plausible/hosting/master/docker-compose.yml -o docker-compose.yml Step 2: Generate Secrets and Configure # Generate random secrets export SECRET_KEY_BASE=$(openssl rand -base64 48 | tr -d '\\n') export TOTP_VAULT_KEY=$(openssl rand -base64 32 | tr -d '\\n') # Create environment file cat \u003e plausible-conf.env \u003c\u003c EOF BASE_URL=https://analytics.yourdomain.com SECRET_KEY_BASE=${SECRET_KEY_BASE} TOTP_VAULT_KEY=${TOTP_VAULT_KEY} # Database DATABASE_URL=postgres://postgres:postgres@plausible_db:5432/plausible_db CLICKHOUSE_DATABASE_URL=http://plausible_events_db:8123/plausible_events_db # Email (SMTP) MAILER_EMAIL=hello@yourdomain.com SMTP_HOST_ADDR=smtp.mailgun.org SMTP_HOST_PORT=587 SMTP_USER_NAME=postmaster@yourdomain.com SMTP_USER_PWD=your_mailgun_password SMTP_HOST_SSL_ENABLED=true # Registration DISABLE_REGISTRATION=false # Set to true after creating your account EOF Step 3: Launch with Docker Compose # Start all services docker compose up -d # Verify services docker compose ps # Expected output: # NAME STATUS PORTS # plausible Up 10 seconds 0.0.0.0:8000-\u003e8000/tcp # plausible_db Up 10 seconds 5432/tcp # plausible_events_db Up 10 seconds 8123/tcp Step 4: Reverse Proxy with SSL # /etc/nginx/sites-available/plausible server { listen 80; server_name analytics.yourdomain.com; return 301 https://$server_name$request_uri; } server { listen 443 ssl http2; server_name analytics.yourdomain.com; ssl_certificate /etc/letsencrypt/live/analytics.yourdomain.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/analytics.yourdomain.com/privkey.pem; location / { proxy_pass http://127.0.0.1:8000; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto $scheme; } } # Enable site and obtain SSL sudo ln -s /etc/nginx/sites-available/plausible /etc/nginx/sites-enabled/ sudo nginx -t \u0026\u0026 sudo systemctl reload nginx sudo certbot --nginx -d analytics.yourdomain.com Step 5: First Login and Site Setup # Create admin user docker compose exec plausible bin/plausible remote Plausible.Release.created_admin_user(\"admin@yourdomain.com\", \"YourSecurePassword123!\") # Press Ctrl+C to exit Visit https://analytics.yourdomain.com, log in, and add your first site. Copy the tracking script snippet to your website header.\nAdd Tracking to Your Website \u003c/script\u003e \u003c/script\u003e Integration with Frameworks, CMS, and Build Tools React / Next.js Integration // components/PlausibleAnalytics.js import Script from 'next/script'; export default function PlausibleAnalytics() { return ( \u003cScript strategy=\"afterInteractive\" data-domain=\"yourdomain.com\" src=\"https://analytics.yourdomain.com/js/script.js\" /\u003e ); } // For SPA route changes in Next.js 13+ // app/layout.js import { usePathname } from 'next/navigation'; import { useEffect } from react; export default function RootLayout({ children }) { const pathname = usePathname(); useEffect(() =\u003e { if (typeof window !== undefined \u0026\u0026 window.plausible) { window.plausible(pageview); } }, [pathname]); return \u003chtml\u003e{children}\u003c/html\u003e; } Vue.js / Nuxt.js Integration // plugins/plausible.client.js (Nuxt 3) export default defineNuxtPlugin(() =\u003e { const config = useRuntimeConfig(); useHead({ script: [ { defer: true, 'data-domain': config.public.plausibleDomain, src: ````${config.public.plausibleHost}/js/script.js````, }, ], }); // Track SPA navigation const router = useRouter(); router.afterEach((to) =\u003e { if (typeof window !== undefined \u0026\u0026 window.plausible) { window.plausible(pageview, { u: window.location.origin + to.fullPath }); } }); }); WordPress Plugin # Option 1: Use the official Plausible WordPress plugin # Install from wp-admin: Plugins \u003e Add New \u003e Search \"Plausible Analytics\" # Configure with your self-hosted URL # Option 2: Manual — add to theme's header.php \u003c?php if (!is_user_logged_in()): ?\u003e \" src=\"https://analytics.yourdomain.com/js/script.js\"\u003e \u003c?php endif; ?\u003e Static Site Generators (Hugo, Jekyll, Astro) \u003c/script\u003e // astro.config.mjs export default defineConfig({ integrations: [ { name: plausible, hooks: { 'astro:config:setup': ({ injectScript }) =\u003e { injectScript(head, ```` \u003cscript defer data-domain=\"yourdomain.com\" src=\"https://analytics.yourdomain.com/js/script.js\"\u003e\u003c/script\u003e ````); }, }, }, ], }); Custom Event Tracking // Track button clicks, form submissions, or any custom event // In your JavaScript: document.getElementById('signup-button').addEventListener(click, () =\u003e { plausible('Signup Click', { props: { plan: pro, source: header } }); }); // Track e-commerce conversions plausible(Purchase, { props: { product: 'Widget Pro', price: 99.00, currency: USD }, revenue: { currency: USD, amount: 9900 } // in cents }); Benchmarks \u0026 Real-World Use Cases Speed Comparison: Plausible vs Google Analytics | Metric | Google Analytics 4 | Plausible (Cloud) | Plausible (Self-Hosted) | |\n|\n|\n|\n| | Script size | 45KB (gtag.js + analytics.js) | \u003c1KB | \u003c1KB | | DNS lookups | 5+ (google-analytics, googletagmanager, doubleclick, etc.) | 1 | 1 | | Cookies set | Multiple (_ga, _gid, _gat, etc.) | 0 | 0 | | Load time (3G) | 800-1200ms | 15-25ms | 15-25ms | | Lighthouse impact | -8 to -15 points | 0 points | 0 points | | Core Web Vitals impact | Negative (LCP, CLS) | None | None | | Data transferred/page | ~60KB | ~1KB | ~1KB |\nResult: Plausible loads 45-60x faster than GA4 and has zero impact on Core Web Vitals.\nPrivacy Compliance Comparison | Feature | Google Analytics 4 | Matomo | Plausible | |\n|\n|\n|\n| | GDPR compliant without consent | No (requires consent banner) | Partial | Yes | | Cookie-free tracking | No | Optional | Yes (always) | | No personal data collection | No | Configurable | Yes (by design) | | EU data residency | No (US-based) | Self-hosted option | Yes (self-hosted) | | CCPA compliant | Requires opt-out | Configurable | Yes | | PECR compliant | No | Partial | Yes | | Schrems II / EU-US DPF | Legal risk | N/A | No risk |\nPerformance Under Load (v3.0 on 2GB VPS) | Metric | Value | Notes | |\n|\n|\n| | Cold start | 4.1s | Docker container + ClickHouse | | Event ingestion rate | 50,000 events/sec | Single node ClickHouse | | Dashboard load time | 120ms | P95, authenticated | | API response time | 85ms | P95, stats aggregate | | Storage per 1M pageviews | ~45MB | Highly compressed ClickHouse | | Concurrent sites tracked | Unlimited | Limited by resources | | Memory usage at idle | 380MB | Plausible + ClickHouse + Postgres |\nReal-World Deployment Profiles | Site Type | Monthly Pageviews | VPS Cost | GA4 Equivalent | Plausible Cost | |\n|\n|\n|\n|\n| | Personal blog | 10,000 | $6 (1GB) | Free | $6 | | SaaS landing page | 100,000 | $12 (2GB) | $0-150 | $12 | | E-commerce store | 500,000 | $24 (4GB) | $150+ | $24 | | News site | 2,000,000 | $48 (8GB) | $150,000+ (360) | $48 | | Agency (50 sites) | 5,000,000 total | $48 (8GB) | $750+ | $48 |\nCase Study: 50% Faster Page Loads After Replacing GA4 A European SaaS company with 200K monthly visitors replaced Google Analytics with self-hosted Plausible in November 2025. Results after 6 months: - Lighthouse Performance score: 72 → 91 (+19 points)\nLargest Contentful Paint: 2.8s → 1.9s (removed render-blocking GA script) Cookie consent banner: Removed entirely (no longer needed) Analytics hosting cost: $0 (was $0 GA) → $12/month (self-hosted Plausible) GDPR compliance risk: Eliminated (data never leaves EU servers) Advanced Usage \u0026 Production Hardening Enabling Enhanced Measurements # plausible-conf.env — Enable additional tracking features # Outbound link tracking SCRIPT_NAME=script.outbound-links.js # File download tracking SCRIPT_NAME=script.file-downloads.js # Hash-based routing (for SPAs with hash URLs) SCRIPT_NAME=script.hash.js # Combined: all features SCRIPT_NAME=script.outbound-links.file-downloads.hash.js \u003c/script\u003e API Integration for Custom Dashboards # Get stats via the Stats API curl -X GET \"https://analytics.yourdomain.com/api/v1/stats/aggregate?site_id=yourdomain.com\u0026period=30d\u0026metrics=visitors,pageviews,bounce_rate\" \\ -H \"Authorization: Bearer YOUR_API_KEY\" # Response: # { # \"results\": { # \"visitors\": {\"value\": 45230}, # \"pageviews\": {\"value\": 128900}, # \"bounce_rate\": {\"value\": 42} # } # } # Python script to pull stats into your BI tool import requests from datetime import datetime, timedelta API_KEY = \"your-api-key\" SITE_ID = \"yourdomain.com\" HOST = \"https://analytics.yourdomain.com\" end_date = datetime.now().strftime(\"%Y-%m-%d\") start_date = (datetime.now() - timedelta(days=30)).strftime(\"%Y-%m-%d\") response = requests.get( f\"{HOST}/api/v1/stats/timeseries\", params={ \"site_id\": SITE_ID, \"period\": \"custom\", \"date\": start_date, \"metrics\": \"visitors,pageviews\", \"filters\": f\"visit:country==US|DE|FR\" }, headers={\"Authorization\": f\"Bearer {API_KEY}\"} ) data = response.json() for entry in data[\"results\"]: print(f\"{entry[date]}: {entry[visitors]} visitors, {entry[pageviews]} pageviews\") Backup Strategy #!/bin/bash # /opt/scripts/plausible-backup.sh BACKUP_DIR=\"/backup/plausible/$(date +%Y%m%d_%H%M%S)\" mkdir -p \"$BACKUP_DIR\" # Backup PostgreSQL (user data, site configs) docker compose exec -T plausible_db pg_dump \\ -U postgres plausible_db \u003e \"$BACKUP_DIR/postgres.sql\" # Backup ClickHouse (event data) docker compose exec plausible_events_db clickhouse-client \\ --query=\"BACKUP DATABASE plausible_events_db TO '/backup/clickhouse'\" \u003e \"$BACKUP_DIR/clickhouse.sql\" # Upload to S3 aws s3 sync \"$BACKUP_DIR\" \"s3://your-backup-bucket/plausible/\" # Cleanup: keep only 30 days find /backup/plausible -maxdepth 1 -type d -mtime +30 -exec rm -rf {} \\; # Cron — daily at 3 AM 0 3 * * * /opt/scripts/plausible-backup.sh \u003e\u003e /var/log/plausible-backup.log 2\u003e\u00261 High Availability Setup # docker-compose.ha.yaml — Multi-node ClickHouse with replication version: '3.8' services: plausible: image: plausible/analytics:v3.0 deploy: replicas: 2 environment: - DATABASE_URL=postgres://postgres:postgres@plausible_db:5432/plausible_db - CLICKHOUSE_DATABASE_URL=http://clickhouse-1:8123/plausible_events_db;http://clickhouse-2:8123/plausible_events_db clickhouse-1: image: clickhouse/clickhouse-server:24.3 volumes: - clickhouse_data_1:/var/lib/clickhouse clickhouse-2: image: clickhouse/clickhouse-server:24.3 volumes: - clickhouse_data_2:/var/lib/clickhouse Monitoring with Prometheus # Add to your prometheus.yml scrape_configs: - job_name: plausible static_configs: - targets: [analytics.yourdomain.com:8000] metrics_path: '/metrics' scrape_interval: 30s # Key metrics to monitor # plausible_clickhouse_event_insertions_total — Event ingestion rate # plausible_phoenix_request_duration_ms — API response times # plausible_db_query_duration_ms — Database query performance GeoIP Database for Location Data # Download MaxMind GeoLite2 database for country/city data mkdir -p /opt/plausible/geoip cd /opt/plausible/geoip # Register at https://www.maxmind.com/ for free GeoLite2 account wget \"https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City\u0026license_key=YOUR_KEY\u0026suffix=tar.gz\" \\ -O GeoLite2-City.tar.gz tar -xzf GeoLite2-City.tar.gz --strip-components=1 # Mount in docker-compose.yml # volumes: # - ./geoip/GeoLite2-City.mmdb:/geoip/GeoLite2-City.mmdb:ro # Add to plausible-conf.env: # GEOLITE2_COUNTRY_DB=/geoip/GeoLite2-Country.mmdb # GEOLITE2_CITY_DB=/geoip/GeoLite2-City.mmdb Comparison with Alternatives | Feature | Plausible | Google Analytics 4 | Matomo (Self-Hosted) | Fathom | Umami | |\n|\n|\n|\n|\n|\n| | License | AGPL-3.0 | Proprietary | GPL-3.0 | Proprietary | MIT | | Script size | \u003c1KB | 45KB | ~22KB | \u003c1KB | \u003c2KB | | Cookies required | No | Yes (multiple) | Optional | No | No | | GDPR compliant (no banner) | Yes | No | Partial | Yes | Yes | | EU data residency (self-host) | Yes | No | Yes | Cloud only | Yes | | Real-time dashboard | Yes | Yes (5min delay) | Yes | Yes | Yes | | Custom event tracking | Yes | Yes | Yes | Yes | Yes | | API access | Full REST | Yes (complex) | Yes | Yes | Yes | | E-commerce revenue tracking | Yes | Advanced | Advanced | Basic | No | | Open source | Yes | No | Yes | No | Yes | | Monthly cost (self-host, 2GB) | $12 | Free (data as cost) | $12 | $14 (cloud) | $12 | | Community size (GitHub stars) | 21,000 | N/A | 19,500 | N/A | 24,000 |\nKey takeaway: Plausible sits in the sweet spot between the minimalism of Fathom and the power of Matomo. The ClickHouse backend gives it better query performance than Matomo’s MySQL/MariaDB, while the AGPL license guarantees perpetual open-source availability. For sites that need essential analytics without the complexity of GA4 or the resource overhead of Matomo, Plausible is the optimal choice.\nLimitations: Honest Assessment Plausible intentionally trades depth for simplicity and privacy. Here is what you will not get: No user-level tracking — By design, Plausible does not track individual user journeys across sessions. You cannot see “User X visited pages A, then B, then C.” If multi-touch attribution or funnel analysis at the user level is critical, you need a different tool (or supplement Plausible with server-side event tracking).\nLimited segmentation — The built-in filtering supports country, page, referrer, device type, and browser. Advanced cohort analysis, custom dimension breakdowns, or user-property-based segments require API export to external BI tools.\nNo ad platform integration — Unlike GA4 which integrates natively with Google Ads, Plausible has no direct connection to advertising platforms. You can track UTM parameters and campaign names, but ROAS calculations require manual correlation.\nHeatmaps and session recording — These features do not exist in Plausible (and likely never will, as they conflict with the privacy-first philosophy). Use tools like Hotjar or Microsoft Clarity alongside Plausible if visual behavior analysis is needed.\nSearch Console integration — Unlike GA4 which connects directly to Google Search Console, Plausible requires manual import or API-based correlation. There is no “search queries” report natively.\nE-commerce depth — Revenue tracking exists but is basic compared to GA4’s enhanced e-commerce with product-level impressions, add-to-cart events, and checkout funnel analysis.\nFrequently Asked Questions Is Plausible really GDPR compliant without a cookie banner?\nYes. The European Data Protection Board (EDPB) and multiple EU data protection authorities have confirmed that analytics without personal data collection and without cookies does not require consent under GDPR Article 6(1)(f) — legitimate interest. Plausible does not collect IP addresses (hashes and discards them), does not use cookies or localStorage, does not fingerprint devices, and does not track across sites. However, if you enable the revenue tracking feature that processes purchase data, consult your DPO. The self-hosted deployment is the most compliant option because data never leaves your servers.\nHow accurate is Plausible compared to Google Analytics?\nPlausible typically reports 5-15% higher visitor counts than GA4 because it is not blocked by ad blockers and privacy browsers at the same rate. GA4 is blocked by approximately 35-40% of users running ad blockers (uBlock Origin, AdGuard, etc.), while Plausible (self-hosted on your own domain) is blocked by only 8-12%. The “missing” GA4 data is not lost — it was never collected due to script blocking. Plausible gives you a more complete picture of actual traffic.\nCan I import my historical Google Analytics data?\nYes. Plausible provides a Google Analytics importer that pulls data via the GA Reporting API v4. The importer handles Universal Analytics (UA) properties and GA4 properties, mapping dimensions to Plausible’s data model. Note that due to GA4’s data model differences, some metrics (like “engagement time”) do not have direct equivalents. The import runs as a background job and can take several hours for large datasets.\n# Run the GA importer (from the Plausible container) docker compose exec plausible bin/plausible \\ \"Plausible.Google.Import.start('your-ga-property-id', YOUR_API_KEY)\" What happens when my site exceeds my VPS capacity?\nPlausible scales predictably. A 2GB VPS handles ~500K pageviews/month. A 4GB VPS handles ~2M pageviews/month. For higher traffic, you have three options: (1) vertically scale your VPS, (2) move ClickHouse to a dedicated server (the database is the bottleneck, not the Phoenix app), or (3) use Plausible Cloud which starts at $9/month for 10K pageviews. The ClickHouse instance is what determines capacity — the Phoenix app itself is lightweight.\nHow do I track multiple domains or subdomains?\nEach domain is a separate “site” in Plausible, but you can organize them with a shared login. For subdomain tracking (e.g., blog.yourdomain.com and app.yourdomain.com), you have two options: track them separately for granular reporting, or roll them up using the data-api-host attribute to report to the same site ID. Cross-subdomain tracking works without special configuration because Plausible does not use cookies or session storage.\n\u003c/script\u003e ```` **Is self-hosted Plausible truly free forever?** The software is free under AGPL-3.0 — you can use, modify, and redistribute it without paying license fees. Your costs are infrastructure only: VPS hosting, backup storage, and SSL certificates. For a personal blog on a $6/month VPS, that is your total cost. There are no artificial limits, no feature gates, and no forced upgrades. You own the code and the data completely. ## Conclusion: Analytics Without Surveillance Plausible Analytics proves that you do not need to trade privacy for insights. The **\u003c1KB tracking script**, **zero cookies**, and **45x faster load times** make it technically superior to Google Analytics for the vast majority of websites. The self-hosted option adds complete data sovereignty, eliminating any compliance risk from cross-border data transfers. For a typical website, the switch from GA4 to Plausible means: removing the cookie consent banner, improving Lighthouse scores by 10-20 points, and getting faster page loads — while still knowing how many people visited, which pages they viewed, and where they came from. Those are the metrics that matter for most decisions. Deploy your instance this week. The Docker Compose setup takes under 5 minutes, the tracking script is a single line, and the dashboard starts showing data immediately. Your visitors will thank you for the faster page loads. Your legal team will thank you for the compliance. Your Core Web Vitals will thank you for the zero-impact script. **Join our Telegram group for open-source tooling discussions**: [t.me/dibi8opensource](https://t.me/dibi8opensource) * * * ## Recommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. *Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.* ## Sources \u0026 Further Reading - [Plausible Analytics GitHub Repository](https://github.com/plausible/analytics) — Official source, 21,000+ stars - [Plausible Documentation](https://plausible.io/docs/) — Official product documentation - [Plausible Self-Hosting Guide](https://plausible.io/docs/self-hosting) — Official self-hosting docs - [Plausible Stats API](https://plausible.io/docs/stats-api) — REST API reference - [Plausible v3.0 Release Notes](https://github.com/plausible/analytics/releases) — February 2026 release - [ClickHouse Documentation](https://clickhouse.com/docs) — Analytical database powering Plausible - [MaxMind GeoLite2](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data) — Free GeoIP database - [EDPB Guidelines on Consent](https://edpb.europa.eu/our-work-tools/general-guidance/guidelines/consent_en) — Legal basis for cookie-free analytics - [DigitalOcean VPS Setup](https://m.do.co/c/eca87ac14ee0) — VPS hosting for self-hosted deployment * * * *This article contains an affiliate link to DigitalOcean. If you purchase VPS services through this link, dibi8.com may receive a commission at no additional cost to you. All recommendations are based on hands-on testing and real deployment experience.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Plausible Analytics: The Privacy-First Google Analytics Alternative Loading 45x Faster — 2026 Self-Hosted Setup\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/plausible-analytics-privacy-google\" } } \u003c/script\u003e * * * ## Related Articles - [2026-06-15-trending-ai-agents](plausible-analytics-privacy-google) - [2026-06-22-trending-ai-agents](plausible-analytics-privacy-google) - [prompts-chat](plausible-analytics-privacy-google) - [paddleocr-81k-star-ocr-engine](plausible-analytics-privacy-google) - [markitdown-universal-file-to-markdown-converter](plausible-analytics-privacy-google) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
+  "wordCount" : "3616",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -187,7 +187,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>14 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>17 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/plausible-analytics-privacy-google/">En</a>
@@ -205,95 +205,95 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#%ec%86%8c%ea%b0%9c-%ec%95%84%eb%ac%b5%eb%8f%84-%ec%9d%b4%ec%95%bc%ea%b8%b0%ed%95%98%ec%a7%80-%ec%95%8a%eb%8a%94-%eb%b6%84%ec%84%9d-%ed%94%84%eb%9d%bc%ec%9d%b4%eb%b2%84%ec%8b%9c-%eb%ac%b8%ec%a0%9c" aria-label="소개: 아묵도 이야기하지 않는 분석 프라이버시 문제">소개: 아묵도 이야기하지 않는 분석 프라이버시 문제</a></li>
+                <a href="#introduction-the-analytics-privacy-problem-nobody-talks-about" aria-label="Introduction: The Analytics Privacy Problem Nobody Talks About">Introduction: The Analytics Privacy Problem Nobody Talks About</a></li>
             <li>
-                <a href="#plausible-analytics%eb%9e%80-%ed%95%9c-%eb%ac%b8%ec%9e%a5-%ec%a0%95%ec%9d%98" aria-label="Plausible Analytics란? (한 문장 정의)">Plausible Analytics란? (한 문장 정의)</a></li>
+                <a href="#what-is-plausible-analytics-one-sentence" aria-label="What Is Plausible Analytics? (One Sentence)">What Is Plausible Analytics? (One Sentence)</a></li>
             <li>
-                <a href="#plausible-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98%ec%99%80-%ed%95%b5%ec%8b%ac-%ea%b0%9c%eb%85%90" aria-label="Plausible 작동 방식: 아키텍처와 핵심 개념">Plausible 작동 방식: 아키텍처와 핵심 개념</a><ul>
+                <a href="#how-plausible-works-architecture--core-concepts" aria-label="How Plausible Works: Architecture &amp; Core Concepts">How Plausible Works: Architecture &amp; Core Concepts</a><ul>
                     
             <li>
-                <a href="#%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98-%ea%b0%9c%ec%9a%94" aria-label="아키텍처 개요">아키텍처 개요</a></li>
+                <a href="#architecture-overview" aria-label="Architecture Overview">Architecture Overview</a></li>
             <li>
-                <a href="#%ec%9d%b4%eb%b2%a4%ed%8a%b8-%ec%a0%80%ec%9e%a5%ec%86%8c%eb%a1%9c-clickhouse%eb%a5%bc-%ec%84%a0%ed%83%9d%ed%95%9c-%ec%9d%b4%ec%9c%a0" aria-label="이벤트 저장소로 ClickHouse를 선택한 이유">이벤트 저장소로 ClickHouse를 선택한 이유</a></li>
+                <a href="#why-clickhouse-for-event-storage" aria-label="Why ClickHouse for Event Storage">Why ClickHouse for Event Storage</a></li>
             <li>
-                <a href="#%ed%95%b5%ec%8b%ac-%ea%b5%ac%ec%84%b1-%ec%9a%94%ec%86%8c" aria-label="핵심 구성 요소">핵심 구성 요소</a></li>
+                <a href="#core-components" aria-label="Core Components">Core Components</a></li>
             <li>
-                <a href="#1kb-%ec%8a%a4%ed%81%ac%eb%a6%bd%ed%8a%b8-%ec%8b%a4%ec%a0%9c%eb%a1%9c-%ed%95%98%eb%8a%94-%ec%9d%bc" aria-label="1KB 스크립트: 실제로 하는 일">1KB 스크립트: 실제로 하는 일</a></li></ul>
+                <a href="#the-1kb-script-what-it-actually-does" aria-label="The 1KB Script: What It Actually Does">The 1KB Script: What It Actually Does</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95-5%eb%b6%84-%eb%a7%8c%ec%97%90-%eb%b6%84%ec%84%9d-%eb%8c%80%ec%8b%9c%eb%b3%b4%eb%93%9c-%ea%b0%80%eb%8f%99" aria-label="설치 및 설정: 5분 만에 분석 대시보드 가동">설치 및 설정: 5분 만에 분석 대시보드 가동</a><ul>
+                <a href="#installation--setup-from-zero-to-analytics-dashboard-in-5-minutes" aria-label="Installation &amp; Setup: From Zero to Analytics Dashboard in 5 Minutes">Installation &amp; Setup: From Zero to Analytics Dashboard in 5 Minutes</a><ul>
                     
             <li>
-                <a href="#%ec%82%ac%ec%a0%84-%ec%9a%94%ea%b5%ac-%ec%82%ac%ed%95%ad" aria-label="사전 요구 사항">사전 요구 사항</a></li>
+                <a href="#prerequisites" aria-label="Prerequisites">Prerequisites</a></li>
             <li>
-                <a href="#1%eb%8b%a8%ea%b3%84-%eb%94%94%eb%a0%89%ed%86%a0%eb%a6%ac-%eb%b0%8f-compose-%ed%8c%8c%ec%9d%bc-%ec%83%9d%ec%84%b1" aria-label="1단계: 디렉토리 및 Compose 파일 생성">1단계: 디렉토리 및 Compose 파일 생성</a></li>
+                <a href="#step-1-create-directory-and-compose-file" aria-label="Step 1: Create Directory and Compose File">Step 1: Create Directory and Compose File</a></li>
             <li>
-                <a href="#2%eb%8b%a8%ea%b3%84-%ec%8b%9c%ed%81%ac%eb%a6%bf-%ec%83%9d%ec%84%b1-%eb%b0%8f-%ea%b5%ac%ec%84%b1" aria-label="2단계: 시크릿 생성 및 구성">2단계: 시크릿 생성 및 구성</a></li>
+                <a href="#step-2-generate-secrets-and-configure" aria-label="Step 2: Generate Secrets and Configure">Step 2: Generate Secrets and Configure</a></li>
             <li>
-                <a href="#3%eb%8b%a8%ea%b3%84-docker-compose%eb%a1%9c-%ec%8b%a4%ed%96%89" aria-label="3단계: Docker Compose로 실행">3단계: Docker Compose로 실행</a></li>
+                <a href="#step-3-launch-with-docker-compose" aria-label="Step 3: Launch with Docker Compose">Step 3: Launch with Docker Compose</a></li>
             <li>
-                <a href="#4%eb%8b%a8%ea%b3%84-%eb%a6%ac%eb%b2%84%ec%8a%a4-%ed%94%84%eb%a1%9d%ec%8b%9c-%eb%b0%8f-ssl" aria-label="4단계: 리버스 프록시 및 SSL">4단계: 리버스 프록시 및 SSL</a></li>
+                <a href="#step-4-reverse-proxy-with-ssl" aria-label="Step 4: Reverse Proxy with SSL">Step 4: Reverse Proxy with SSL</a></li>
             <li>
-                <a href="#5%eb%8b%a8%ea%b3%84-%ec%b2%ab-%eb%a1%9c%ea%b7%b8%ec%9d%b8-%eb%b0%8f-%ec%82%ac%ec%9d%b4%ed%8a%b8-%ec%84%a4%ec%a0%95" aria-label="5단계: 첫 로그인 및 사이트 설정">5단계: 첫 로그인 및 사이트 설정</a></li>
+                <a href="#step-5-first-login-and-site-setup" aria-label="Step 5: First Login and Site Setup">Step 5: First Login and Site Setup</a></li>
             <li>
-                <a href="#%ec%9b%b9%ec%82%ac%ec%9d%b4%ed%8a%b8%ec%97%90-%ec%b6%94%ec%a0%81-%ec%b6%94%ea%b0%80" aria-label="웹사이트에 추적 추가">웹사이트에 추적 추가</a></li></ul>
+                <a href="#add-tracking-to-your-website" aria-label="Add Tracking to Your Website">Add Tracking to Your Website</a></li></ul>
             </li>
             <li>
-                <a href="#%ed%94%84%eb%a0%88%ec%9e%84%ec%9b%8c%ed%81%ac-cms-%eb%b0%8f-%eb%b9%8c%eb%93%9c-%eb%8f%84%ea%b5%ac%ec%99%80%ec%9d%98-%ed%86%b5%ed%95%a9" aria-label="프레임워크, CMS 및 빌드 도구와의 통합">프레임워크, CMS 및 빌드 도구와의 통합</a><ul>
+                <a href="#integration-with-frameworks-cms-and-build-tools" aria-label="Integration with Frameworks, CMS, and Build Tools">Integration with Frameworks, CMS, and Build Tools</a><ul>
                     
             <li>
-                <a href="#react--nextjs-%ed%86%b5%ed%95%a9" aria-label="React / Next.js 통합">React / Next.js 통합</a></li>
+                <a href="#react--nextjs-integration" aria-label="React / Next.js Integration">React / Next.js Integration</a></li>
             <li>
-                <a href="#vuejs--nuxtjs-%ed%86%b5%ed%95%a9" aria-label="Vue.js / Nuxt.js 통합">Vue.js / Nuxt.js 통합</a></li>
+                <a href="#vuejs--nuxtjs-integration" aria-label="Vue.js / Nuxt.js Integration">Vue.js / Nuxt.js Integration</a></li>
             <li>
-                <a href="#wordpress-%ed%94%8c%eb%9f%ac%ea%b7%b8%ec%9d%b8" aria-label="WordPress 플러그인">WordPress 플러그인</a></li>
+                <a href="#wordpress-plugin" aria-label="WordPress Plugin">WordPress Plugin</a></li>
             <li>
-                <a href="#%ec%a0%95%ec%a0%81-%ec%82%ac%ec%9d%b4%ed%8a%b8-%ec%83%9d%ec%84%b1%ea%b8%b0-hugo-jekyll-astro" aria-label="정적 사이트 생성기 (Hugo, Jekyll, Astro)">정적 사이트 생성기 (Hugo, Jekyll, Astro)</a></li>
+                <a href="#static-site-generators-hugo-jekyll-astro" aria-label="Static Site Generators (Hugo, Jekyll, Astro)">Static Site Generators (Hugo, Jekyll, Astro)</a></li>
             <li>
-                <a href="#%ec%bb%a4%ec%8a%a4%ed%85%80-%ec%9d%b4%eb%b2%a4%ed%8a%b8-%ec%b6%94%ec%a0%81" aria-label="커스텀 이벤트 추적">커스텀 이벤트 추적</a></li></ul>
+                <a href="#custom-event-tracking" aria-label="Custom Event Tracking">Custom Event Tracking</a></li></ul>
             </li>
             <li>
-                <a href="#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac-%eb%b0%8f-%ec%8b%a4%ec%a0%9c-%ed%99%9c%ec%9a%a9-%ec%82%ac%eb%a1%80" aria-label="벤치마크 및 실제 활용 사례">벤치마크 및 실제 활용 사례</a><ul>
+                <a href="#benchmarks--real-world-use-cases" aria-label="Benchmarks &amp; Real-World Use Cases">Benchmarks &amp; Real-World Use Cases</a><ul>
                     
             <li>
-                <a href="#%ec%86%8d%eb%8f%84-%eb%b9%84%ea%b5%90-plausible-%eb%8c%80-google-analytics" aria-label="속도 비교: Plausible 대 Google Analytics">속도 비교: Plausible 대 Google Analytics</a></li>
+                <a href="#speed-comparison-plausible-vs-google-analytics" aria-label="Speed Comparison: Plausible vs Google Analytics">Speed Comparison: Plausible vs Google Analytics</a></li>
             <li>
-                <a href="#%ed%94%84%eb%9d%bc%ec%9d%b4%eb%b2%84%ec%8b%9c-%ec%bb%b4%ed%94%8c%eb%9d%bc%ec%9d%b4%ec%96%b8%ec%8a%a4-%eb%b9%84%ea%b5%90" aria-label="프라이버시 컴플라이언스 비교">프라이버시 컴플라이언스 비교</a></li>
+                <a href="#privacy-compliance-comparison" aria-label="Privacy Compliance Comparison">Privacy Compliance Comparison</a></li>
             <li>
-                <a href="#%eb%b6%80%ed%95%98-%ed%95%98%ec%97%90%ec%84%9c%ec%9d%98-%ec%84%b1%eb%8a%a5-2gb-vps%ec%97%90%ec%84%9c-v30" aria-label="부하 하에서의 성능 (2GB VPS에서 v3.0)">부하 하에서의 성능 (2GB VPS에서 v3.0)</a></li>
+                <a href="#performance-under-load-v30-on-2gb-vps" aria-label="Performance Under Load (v3.0 on 2GB VPS)">Performance Under Load (v3.0 on 2GB VPS)</a></li>
             <li>
-                <a href="#%ec%8b%a4%ec%a0%9c-%eb%b0%b0%ed%8f%ac-%ed%94%84%eb%a1%9c%ed%95%84" aria-label="실제 배포 프로필">실제 배포 프로필</a></li>
+                <a href="#real-world-deployment-profiles" aria-label="Real-World Deployment Profiles">Real-World Deployment Profiles</a></li>
             <li>
-                <a href="#%ec%82%ac%eb%a1%80-%ec%97%b0%ea%b5%ac-ga4-%ea%b5%90%ec%b2%b4-%ed%9b%84-%ed%8e%98%ec%9d%b4%ec%a7%80-%eb%a1%9c%eb%93%9c-50-%eb%b9%a8%eb%9d%bc%ec%a7%90" aria-label="사례 연구: GA4 교체 후 페이지 로드 50% 빨라짐">사례 연구: GA4 교체 후 페이지 로드 50% 빨라짐</a></li></ul>
+                <a href="#case-study-50-faster-page-loads-after-replacing-ga4" aria-label="Case Study: 50% Faster Page Loads After Replacing GA4">Case Study: 50% Faster Page Loads After Replacing GA4</a></li></ul>
             </li>
             <li>
-                <a href="#%ea%b3%a0%ea%b8%89-%ec%82%ac%ec%9a%a9%eb%b2%95-%eb%b0%8f-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ed%95%98%eb%93%9c%eb%8b%9d" aria-label="고급 사용법 및 프로덕션 하드닝">고급 사용법 및 프로덕션 하드닝</a><ul>
+                <a href="#advanced-usage--production-hardening" aria-label="Advanced Usage &amp; Production Hardening">Advanced Usage &amp; Production Hardening</a><ul>
                     
             <li>
-                <a href="#%ed%96%a5%ec%83%81%eb%90%9c-%ec%b8%a1%ec%a0%95-%ed%99%9c%ec%84%b1%ed%99%94" aria-label="향상된 측정 활성화">향상된 측정 활성화</a></li>
+                <a href="#enabling-enhanced-measurements" aria-label="Enabling Enhanced Measurements">Enabling Enhanced Measurements</a></li>
             <li>
-                <a href="#%ec%bb%a4%ec%8a%a4%ed%85%80-%eb%8c%80%ec%8b%9c%eb%b3%b4%eb%93%9c%eb%a5%bc-%ec%9c%84%ed%95%9c-api-%ed%86%b5%ed%95%a9" aria-label="커스텀 대시보드를 위한 API 통합">커스텀 대시보드를 위한 API 통합</a></li>
+                <a href="#api-integration-for-custom-dashboards" aria-label="API Integration for Custom Dashboards">API Integration for Custom Dashboards</a></li>
             <li>
-                <a href="#%eb%b0%b1%ec%97%85-%ec%a0%84%eb%9e%b5" aria-label="백업 전략">백업 전략</a></li>
+                <a href="#backup-strategy" aria-label="Backup Strategy">Backup Strategy</a></li>
             <li>
-                <a href="#%ea%b3%a0%ea%b0%80%ec%9a%a9%ec%84%b1-%ec%84%a4%ec%a0%95" aria-label="고가용성 설정">고가용성 설정</a></li>
+                <a href="#high-availability-setup" aria-label="High Availability Setup">High Availability Setup</a></li>
             <li>
-                <a href="#prometheus%eb%a5%bc-%ec%9d%b4%ec%9a%a9%ed%95%9c-%eb%aa%a8%eb%8b%88%ed%84%b0%eb%a7%81" aria-label="Prometheus를 이용한 모니터링">Prometheus를 이용한 모니터링</a></li>
+                <a href="#monitoring-with-prometheus" aria-label="Monitoring with Prometheus">Monitoring with Prometheus</a></li>
             <li>
-                <a href="#%ec%9c%84%ec%b9%98-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%a5%bc-%ec%9c%84%ed%95%9c-geoip-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4" aria-label="위치 데이터를 위한 GeoIP 데이터베이스">위치 데이터를 위한 GeoIP 데이터베이스</a></li></ul>
+                <a href="#geoip-database-for-location-data" aria-label="GeoIP Database for Location Data">GeoIP Database for Location Data</a></li></ul>
             </li>
             <li>
-                <a href="#%eb%8c%80%ec%95%88%ea%b3%bc-%eb%b9%84%ea%b5%90" aria-label="대안과 비교">대안과 비교</a></li>
+                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li>
             <li>
-                <a href="#%ed%95%9c%ea%b3%84%ec%a0%90-%ec%86%94%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80" aria-label="한계점: 솔직한 평가">한계점: 솔직한 평가</a></li>
+                <a href="#limitations-honest-assessment" aria-label="Limitations: Honest Assessment">Limitations: Honest Assessment</a></li>
             <li>
-                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a>
             </li>
         </ul>
     </div>
 </details>
 
-  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+  <div class="post-content md-content"><p>title: &ldquo;Plausible Analytics: The Privacy-First Google Analytics &hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -309,115 +309,104 @@ backup_url: &rsquo;'
 last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;dev-utils&rdquo;]
-tags: [&ldquo;plausible&rdquo;, &ldquo;analytics&rdquo;, &ldquo;프라이버시&rdquo;, &ldquo;gdpr&rdquo;, &ldquo;google-analytics-대안&rdquo;, &ldquo;셀프호스팅&rdquo;, &ldquo;docker&rdquo;, &ldquo;elixir&rdquo;, &ldquo;경량&rdquo;]
+tags: [&ldquo;plausible&rdquo;, &ldquo;analytics&rdquo;, &ldquo;privacy&rdquo;, &ldquo;gdpr&rdquo;, &ldquo;google-analytics-alternative&rdquo;, &ldquo;self-hosted&rdquo;, &ldquo;docker&rdquo;, &ldquo;elixir&rdquo;, &ldquo;lightweight&rdquo;]
 aliases:</p>
 <ul>
-<li>/kr/posts/plausible-analytics-privacy-google/</li>
+<li>/posts/plausible-analytics-privacy-google/-</li>
 </ul>
 <hr>
-<h2 id="소개-아묵도-이야기하지-않는-분석-프라이버시-문제">소개: 아묵도 이야기하지 않는 분석 프라이버시 문제<a hidden class="anchor" aria-hidden="true" href="#소개-아묵도-이야기하지-않는-분석-프라이버시-문제">#</a></h2>
-<p>2024년 1월 오스트리아 데이터 보호 당국은 <strong>Google Analytics 사용이 GDPR 제44조를 위반</strong>한다고 판결했는데, 이는 개인 데이터가 적절한 보호 없이 미국 서버로 흘러들어가기 때문이다. 프랑스, 이탈리아, 덴에도 유사한 판결을 남겼다. 2025년 중반까지 <strong>12만 개 이상의 웹사이트</strong>가 EU 대상 페이지에서 Google Analytics를 제거했다. 문제는 법적 측멿뿐만 아니라 아키텍처적이다. Google Analytics는 <strong>45KB의 JavaScript</strong>를 로드하고, <strong>여러 서드파티 쿠키</strong>를 설정하며, 디바이스를 핑거프린팅하고, 브라우징 데이터를 국경을 넘어 전송한다.</p>
-<p>Plausible Analytics는 바로 이것을 해결하기 위해 구축되었다. Elixir로 작성되고 Phoenix 프레임워크에서 실행되는 Plausible은 AGPL-3.0 라이선스 분석 도구로, <strong>1KB 미만의 스크립트</strong>, 제로 쿠키, 제로 국경 간 데이터 전송으로 핵심 웹 지표(페이지뷰, 고유 방문자, 이탈률, 추천 소스)를 제공한다. <strong>GitHub 21,000+ 스타</strong>를 보유하고 있으며 <strong>2026년 2월 v3.0 릴리즈</strong>를 통해, 이는 속도나 컴플라이언스를 타협하지 않으려는 프라이버시 중심 사이트 소유자의 사실상 표준이 되었다.</p>
-<p>이 가이드는 Docker 기반 셀프 호스팅 배포, Google Analytics 및 Matomo와의 비교 벤치마크, API 통합 패턴, 개인 블로그부터 고트래픽 SaaS 애플리케이션까지의 프로덕션 하드닝을 다룬다.</p>
-<h2 id="plausible-analytics란-한-문장-정의">Plausible Analytics란? (한 문장 정의)<a hidden class="anchor" aria-hidden="true" href="#plausible-analytics란-한-문장-정의">#</a></h2>
-<p><strong>Plausible Analytics는 경량, 프라이버시 우선, 오픈소스 웹 분석 플랫폼</strong>으로, 쿠키를 사용하지 않고, 개인 데이터를 수집하지 않으며, 웹사이트 속도를 늦추지 않으면서 핵심 사이트 지표를 제공한다 — 완전한 GDPR, CCPA, PECR 준수와 모든 데이터를 자신의 인프라에 보관하는 셀프 호스팅 옵션을 제공한다.</p>
-<h2 id="plausible-작동-방식-아키텍처와-핵심-개념">Plausible 작동 방식: 아키텍처와 핵심 개념<a hidden class="anchor" aria-hidden="true" href="#plausible-작동-방식-아키텍처와-핵심-개념">#</a></h2>
-<p>Plausible은 기존 분석 도구와 근본적으로 다른 접근 방식을 취한다. 클라이언트 측 데이터 수확 대신 최소한의 클라이언트 푸프린트로 서버 측 집계에 중점을 둔다.</p>
-<h3 id="아키텍처-개요">아키텍처 개요<a hidden class="anchor" aria-hidden="true" href="#아키텍처-개요">#</a></h3>
+<h2 id="introduction-the-analytics-privacy-problem-nobody-talks-about">Introduction: The Analytics Privacy Problem Nobody Talks About<a hidden class="anchor" aria-hidden="true" href="#introduction-the-analytics-privacy-problem-nobody-talks-about">#</a></h2>
+<p>In January 2024, the Austrian Data Protection Authority ruled that <strong>using Google Analytics violates GDPR Article 44</strong> because personal data flows to US servers without adequate protection. France, Italy, and Denmark followed with similar rulings. By mid-2025, over <strong>120,000 websites</strong> had removed Google Analytics from EU-facing pages. The problem is not just legal — it is architectural. Google Analytics loads <strong>45KB of JavaScript</strong>, sets <strong>multiple third-party cookies</strong>, fingerprint devices, and sends browsing data across borders.</p>
+<p>Plausible Analytics was built to solve exactly this. Written in Elixir and running on the Phoenix framework, Plausible is an AGPL-3.0 licensed analytics tool that delivers essential web metrics — page views, unique visitors, bounce rate, referral sources — with a <strong>script under 1KB</strong>, zero cookies, and zero cross-border data transfers. With <strong>21,000+ GitHub stars</strong> and a release of <strong>v3.0 in February 2026</strong>, it has become the de facto standard for privacy-conscious site owners who refuse to compromise on speed or compliance.</p>
+<p>This guide covers the Docker-based self-hosted deployment, comparison benchmarks against Google Analytics and Matomo, API integration patterns, and production hardening for sites ranging from personal blogs to high-traffic SaaS applications.</p>
+<h2 id="what-is-plausible-analytics-one-sentence">What Is Plausible Analytics? (One Sentence)<a hidden class="anchor" aria-hidden="true" href="#what-is-plausible-analytics-one-sentence">#</a></h2>
+<p><strong>Plausible Analytics is a lightweight, privacy-first, open-source web analytics platform</strong> that provides essential site metrics without using cookies, collecting personal data, or slowing down your website — fully GDPR, CCPA, and PECR compliant, with a self-hosted option that keeps all data on your infrastructure.</p>
+<h2 id="how-plausible-works-architecture--core-concepts">How Plausible Works: Architecture &amp; Core Concepts<a hidden class="anchor" aria-hidden="true" href="#how-plausible-works-architecture--core-concepts">#</a></h2>
+<p>Plausible takes a fundamentally different approach from traditional analytics. Instead of client-side data harvesting, it focuses on server-side aggregation with minimal client footprint.</p>
+<h3 id="architecture-overview">Architecture Overview<a hidden class="anchor" aria-hidden="true" href="#architecture-overview">#</a></h3>
 <pre tabindex="0"><code>┌─────────────────────────────────────────────────────┐
 │                    Nginx / Caddy                     │
-│              (리버스 프록시 + SSL)                   │
+│              (Reverse Proxy + SSL)                   │
 ├─────────────────────────────────────────────────────┤
 │  ┌──────────────────────────────────────────────┐   │
 │  │          Plausible (Elixir/Phoenix)          │   │
-│  │        (API + 웹 대시보드 + 이벤트)          │   │
+│  │        (API + Web Dashboard + Events)        │   │
 │  └──────────────┬─────────────┬─────────────────┘   │
 │                 │             │                      │
 │                 ▼             ▼                      │
 │          ┌──────────┐  ┌──────────┐                  │
 │          │ ClickHouse│  │ PostgreSQL│                  │
-│          │ (이벤트) │  │ (사용자) │                  │
+│          │ (Events) │  │  (Users) │                  │
 │          └──────────┘  └──────────┘                  │
 │                 ▲                                    │
 │          ┌──────────┐                                │
 │          │  Redis   │                                │
-│          │ (캐시)   │                                │
+│          │ (Cache)  │                                │
 │          └──────────┘                                │
 └─────────────────────────────────────────────────────┘
-</code></pre><h3 id="이벤트-저장소로-clickhouse를-선택한-이유">이벤트 저장소로 ClickHouse를 선택한 이유<a hidden class="anchor" aria-hidden="true" href="#이벤트-저장소로-clickhouse를-선택한-이유">#</a></h3>
-<p>Plausible은 <strong>ClickHouse</strong>를 분석 데이터베이스로 사용한다 — Yandex와 Cloudflare 분석을 구동하는 동일한 컬럼형 DBMS이다. 이 선택은 의도적인 것이다: | 특성 | PostgreSQL | ClickHouse | 영향 |
-|&mdash;&mdash;|&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&mdash;|&mdash;&mdash;|
-| 삽입 처리량 | ~2만 행/초 | <strong>100만+ 행/초</strong> | 트래픽 스파이크 처리 |
-| 집계 쿼리 속도 | 수초 | <strong>밀리초</strong> | 대시보드 즉각 로드 |
-| 저장 효율 | 높음 | <strong>매우 높음</strong> | 90%+ 압축률 |
-| 실시간 분석 | 지연 | <strong>근실시간</strong> | 라이브 방문자 수 |</p>
-<h3 id="핵심-구성-요소">핵심 구성 요소<a hidden class="anchor" aria-hidden="true" href="#핵심-구성-요소">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>구성 요소</th>
-					<th>용도</th>
-					<th>스케일링 참고</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>Phoenix 앱</td>
-					<td>웹 대시보드, REST API, 이벤트 수집</td>
-					<td>스테이트리스 — 수평 확장</td>
-			</tr>
-			<tr>
-					<td>ClickHouse</td>
-					<td>이벤트 데이터 저장, 집계</td>
-					<td>단일 노드가 100억+ 이벤트 처리</td>
-			</tr>
-			<tr>
-					<td>PostgreSQL</td>
-					<td>사용자 계정, 사이트 설정, API 키</td>
-					<td>작은 데이터셋 — 단일 노드로 충분</td>
-			</tr>
-			<tr>
-					<td>Redis</td>
-					<td>세션 캐시, 속도 제한</td>
-					<td>옵션 — 응답 시간 개선</td>
-			</tr>
-	</tbody>
-</table>
-<h3 id="1kb-스크립트-실제로-하는-일">1KB 스크립트: 실제로 하는 일<a hidden class="anchor" aria-hidden="true" href="#1kb-스크립트-실제로-하는-일">#</a></h3>
+</code></pre><h3 id="why-clickhouse-for-event-storage">Why ClickHouse for Event Storage<a hidden class="anchor" aria-hidden="true" href="#why-clickhouse-for-event-storage">#</a></h3>
+<p>Plausible uses <strong>ClickHouse</strong> as its analytical database — the same columnar DBMS that powers Yandex and Cloudflare analytics. This choice is deliberate: | Characteristic | PostgreSQL | ClickHouse | Impact |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Insert throughput | ~20K rows/sec | <strong>1M+ rows/sec</strong> | Handles traffic spikes |
+| Aggregation query speed | Seconds | <strong>Milliseconds</strong> | Dashboard loads instantly |
+| Storage efficiency | High | <strong>Extremely high</strong> | 90%+ compression ratio |
+| Real-time analytics | Laggy | <strong>Near real-time</strong> | Live visitor counts |</p>
+<h3 id="core-components">Core Components<a hidden class="anchor" aria-hidden="true" href="#core-components">#</a></h3>
+<p>| Component | Purpose | Scaling Notes |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Phoenix App | Web dashboard, REST API, event ingestion | Stateless — scale horizontally |
+| ClickHouse | Event data storage, aggregations | Single node handles 10B+ events |
+| PostgreSQL | User accounts, site configs, API keys | Small dataset — single node sufficient |
+| Redis | Session cache, rate limiting | Optional — improves response times |</p>
+<h3 id="the-1kb-script-what-it-actually-does">The 1KB Script: What It Actually Does<a hidden class="anchor" aria-hidden="true" href="#the-1kb-script-what-it-actually-does">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
-</span></span></code></pre></div><p>이 스크립트는 정확히 세 가지만 수행한다: (1) 현재 페이지 URL과 리퍼러를 전송하고, (2) 브라우저 뷰포트 크기를 전송하여 데스크톱/모바일을 분류하고, (3) SPA 낵게이션 이벤트를 수신한다. 이 스크립트는 다음을 수행하지 <strong>않는다</strong>: 쿠키 설정, localStorage 사용, 핑거프린트 해시 생성, 서드파티 요청 실행. 결과는 gzip 압축 시 1KB 미만의 페이로드와 4G 네트워크에서 10ms 미만의 실행 시간이다.</p>
-<h2 id="설치-및-설정-5분-만에-분석-대시보드-가동">설치 및 설정: 5분 만에 분석 대시보드 가동<a hidden class="anchor" aria-hidden="true" href="#설치-및-설정-5분-만에-분석-대시보드-가동">#</a></h2>
-<h3 id="사전-요구-사항">사전 요구 사항<a hidden class="anchor" aria-hidden="true" href="#사전-요구-사항">#</a></h3>
+</span></span></code></pre></div><p>This script does exactly three things: (1) sends the current page URL and referrer, (2) sends the browser viewport size to classify as desktop/mobile, and (3) listens for SPA navigation events. It does <strong>not</strong>: set cookies, use localStorage, generate fingerprint hashes, or execute third-party requests. The result is a payload under 1KB gzipped and execution time under 10ms on 4G networks.</p>
+<h2 id="installation--setup-from-zero-to-analytics-dashboard-in-5-minutes">Installation &amp; Setup: From Zero to Analytics Dashboard in 5 Minutes<a hidden class="anchor" aria-hidden="true" href="#installation--setup-from-zero-to-analytics-dashboard-in-5-minutes">#</a></h2>
+<h3 id="prerequisites">Prerequisites<a hidden class="anchor" aria-hidden="true" href="#prerequisites">#</a></h3>
 <ul>
-<li><strong>최소 2GB RAM</strong> VPS (월 10만 PV 이상은 4GB 권장)</li>
-<li>Docker Engine 24.0+ 및 Docker Compose v2</li>
-<li>서버를 가리키는 도메인 이름</li>
-<li>비밀번호 재설정용 SMTP 자격 증명</li>
+<li>VPS with <strong>2GB RAM minimum</strong> (4GB recommended for &gt;100K pageviews/day)</li>
+<li>Docker Engine 24.0+ and Docker Compose v2</li>
+<li>A domain name pointed at your server</li>
+<li>SMTP credentials for password resets</li>
 </ul>
-<p>안정적인 VPS로는 <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a>을 추천한다 — 월 $12의 2GB RAM Droplet이 월 50만 페이지뷰를 편안하게 처리한다.</p>
-<h3 id="1단계-디렉토리-및-compose-파일-생성">1단계: 디렉토리 및 Compose 파일 생성<a hidden class="anchor" aria-hidden="true" href="#1단계-디렉토리-및-compose-파일-생성">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 프로젝트 디렉토리 생성</span>
+<p>For a reliable VPS, <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> offers an excellent starting point — their $12/month 2GB RAM droplet handles up to 500K pageviews/month comfortably.</p>
+<h3 id="step-1-create-directory-and-compose-file">Step 1: Create Directory and Compose File<a hidden class="anchor" aria-hidden="true" href="#step-1-create-directory-and-compose-file">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create project directory</span>
 </span></span><span style="display:flex;"><span>mkdir -p /opt/plausible
 </span></span><span style="display:flex;"><span>cd /opt/plausible
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 공식 Docker Compose 템플릿 다운로드</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Download the official Docker Compose template</span>
 </span></span><span style="display:flex;"><span>curl -L https://raw.githubusercontent.com/plausible/hosting/master/docker-compose.yml -o docker-compose.yml
-</span></span></code></pre></div><h3 id="2단계-시크릿-생성-및-구성">2단계: 시크릿 생성 및 구성<a hidden class="anchor" aria-hidden="true" href="#2단계-시크릿-생성-및-구성">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 랜덤 시크릿 생성</span>
+</span></span></code></pre></div><h3 id="step-2-generate-secrets-and-configure">Step 2: Generate Secrets and Configure<a hidden class="anchor" aria-hidden="true" href="#step-2-generate-secrets-and-configure">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Generate random secrets</span>
 </span></span><span style="display:flex;"><span>export SECRET_KEY_BASE<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>openssl rand -base64 <span style="color:#ae81ff">48</span> | tr -d <span style="color:#e6db74">&#39;\n&#39;</span><span style="color:#66d9ef">)</span>
 </span></span><span style="display:flex;"><span>export TOTP_VAULT_KEY<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>openssl rand -base64 <span style="color:#ae81ff">32</span> | tr -d <span style="color:#e6db74">&#39;\n&#39;</span><span style="color:#66d9ef">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 환경 변수 파일 생성</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create environment file</span>
 </span></span><span style="display:flex;"><span>cat &gt; plausible-conf.env <span style="color:#e6db74">&lt;&lt; EOF
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">BASE_URL=https://analytics.yourdomain.com
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">SECRET_KEY_BASE=${SECRET_KEY_BASE}
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">TOTP_VAULT_KEY=${TOTP_VAULT_KEY}
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 데이터베이스
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Database
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">DATABASE_URL=postgres://postgres:postgres@plausible_db:5432/plausible_db
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">CLICKHOUSE_DATABASE_URL=http://plausible_events_db:8123/plausible_events_db
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 이메일 (SMTP)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Email (SMTP)
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">MAILER_EMAIL=hello@yourdomain.com
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">SMTP_HOST_ADDR=smtp.mailgun.org
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">SMTP_HOST_PORT=587
@@ -425,21 +414,21 @@ aliases:</p>
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">SMTP_USER_PWD=your_mailgun_password
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">SMTP_HOST_SSL_ENABLED=true
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 등록
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">DISABLE_REGISTRATION=false  # 계정 생성 후 true로 설정
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Registration
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">DISABLE_REGISTRATION=false  # Set to true after creating your account
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
-</span></span></code></pre></div><h3 id="3단계-docker-compose로-실행">3단계: Docker Compose로 실행<a hidden class="anchor" aria-hidden="true" href="#3단계-docker-compose로-실행">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 모든 서비스 시작</span>
+</span></span></code></pre></div><h3 id="step-3-launch-with-docker-compose">Step 3: Launch with Docker Compose<a hidden class="anchor" aria-hidden="true" href="#step-3-launch-with-docker-compose">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Start all services</span>
 </span></span><span style="display:flex;"><span>docker compose up -d
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 서비스 확인</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify services</span>
 </span></span><span style="display:flex;"><span>docker compose ps
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 예상 출력: # NAME                    STATUS          PORTS</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected output: # NAME                    STATUS          PORTS</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># plausible               Up 10 seconds   0.0.0.0:8000-&gt;8000/tcp</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># plausible_db            Up 10 seconds   5432/tcp</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># plausible_events_db     Up 10 seconds   8123/tcp</span>
-</span></span></code></pre></div><h3 id="4단계-리버스-프록시-및-ssl">4단계: 리버스 프록시 및 SSL<a hidden class="anchor" aria-hidden="true" href="#4단계-리버스-프록시-및-ssl">#</a></h3>
+</span></span></code></pre></div><h3 id="step-4-reverse-proxy-with-ssl">Step 4: Reverse Proxy with SSL<a hidden class="anchor" aria-hidden="true" href="#step-4-reverse-proxy-with-ssl">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#75715e"># /etc/nginx/sites-available/plausible
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">listen</span> <span style="color:#ae81ff">80</span>;
@@ -462,22 +451,22 @@ aliases:</p>
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-Proto</span> $scheme;
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 사이트 활성화 및 SSL 획득</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Enable site and obtain SSL</span>
 </span></span><span style="display:flex;"><span>sudo ln -s /etc/nginx/sites-available/plausible /etc/nginx/sites-enabled/
 </span></span><span style="display:flex;"><span>sudo nginx -t <span style="color:#f92672">&amp;&amp;</span> sudo systemctl reload nginx
 </span></span><span style="display:flex;"><span>sudo certbot --nginx -d analytics.yourdomain.com
-</span></span></code></pre></div><h3 id="5단계-첫-로그인-및-사이트-설정">5단계: 첫 로그인 및 사이트 설정<a hidden class="anchor" aria-hidden="true" href="#5단계-첫-로그인-및-사이트-설정">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 관리자 사용자 생성</span>
+</span></span></code></pre></div><h3 id="step-5-first-login-and-site-setup">Step 5: First Login and Site Setup<a hidden class="anchor" aria-hidden="true" href="#step-5-first-login-and-site-setup">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create admin user</span>
 </span></span><span style="display:flex;"><span>docker compose exec plausible bin/plausible remote
 </span></span><span style="display:flex;"><span>Plausible.Release.created_admin_user<span style="color:#f92672">(</span><span style="color:#e6db74">&#34;admin@yourdomain.com&#34;</span>, <span style="color:#e6db74">&#34;YourSecurePassword123!&#34;</span><span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ctrl+C를 눌러 종료</span>
-</span></span></code></pre></div><p><code>https://analytics.yourdomain.com</code>에 접속하여 로그인하고 첫 번째 사이트를 추가하라. 추적 스크립트 코드를 웹사이트 헤더에 복사하라.</p>
-<h3 id="웹사이트에-추적-추가">웹사이트에 추적 추가<a hidden class="anchor" aria-hidden="true" href="#웹사이트에-추적-추가">#</a></h3>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Press Ctrl+C to exit</span>
+</span></span></code></pre></div><p>Visit <code>https://analytics.yourdomain.com</code>, log in, and add your first site. Copy the tracking script snippet to your website header.</p>
+<h3 id="add-tracking-to-your-website">Add Tracking to Your Website<a hidden class="anchor" aria-hidden="true" href="#add-tracking-to-your-website">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
-</span></span></code></pre></div><h2 id="프레임워크-cms-및-빌드-도구와의-통합">프레임워크, CMS 및 빌드 도구와의 통합<a hidden class="anchor" aria-hidden="true" href="#프레임워크-cms-및-빌드-도구와의-통합">#</a></h2>
-<h3 id="react--nextjs-통합">React / Next.js 통합<a hidden class="anchor" aria-hidden="true" href="#react--nextjs-통합">#</a></h3>
+</span></span></code></pre></div><h2 id="integration-with-frameworks-cms-and-build-tools">Integration with Frameworks, CMS, and Build Tools<a hidden class="anchor" aria-hidden="true" href="#integration-with-frameworks-cms-and-build-tools">#</a></h2>
+<h3 id="react--nextjs-integration">React / Next.js Integration<a hidden class="anchor" aria-hidden="true" href="#react--nextjs-integration">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// components/PlausibleAnalytics.js
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">Script</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;next/script&#39;</span>;
 </span></span><span style="display:flex;"><span>
@@ -491,7 +480,7 @@ aliases:</p>
 </span></span><span style="display:flex;"><span>  );
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// Next.js 13+ SPA 라우트 변경
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// For SPA route changes in Next.js 13+
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e">// app/layout.js
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">usePathname</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;next/navigation&#39;</span>;
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">useEffect</span> } <span style="color:#a6e22e">from</span> <span style="color:#a6e22e">react</span>;
@@ -507,7 +496,7 @@ aliases:</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#f92672">&lt;</span><span style="color:#a6e22e">html</span><span style="color:#f92672">&gt;</span>{<span style="color:#a6e22e">children</span>}<span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/html&gt;;</span>
 </span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id="vuejs--nuxtjs-통합">Vue.js / Nuxt.js 통합<a hidden class="anchor" aria-hidden="true" href="#vuejs--nuxtjs-통합">#</a></h3>
+</span></span></code></pre></div><h3 id="vuejs--nuxtjs-integration">Vue.js / Nuxt.js Integration<a hidden class="anchor" aria-hidden="true" href="#vuejs--nuxtjs-integration">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// plugins/plausible.client.js (Nuxt 3)
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">defineNuxtPlugin</span>(() =&gt; {
 </span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">config</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">useRuntimeConfig</span>();
@@ -522,7 +511,7 @@ aliases:</p>
 </span></span><span style="display:flex;"><span>    ],
 </span></span><span style="display:flex;"><span>  });
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// SPA 낵게이션 추적
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Track SPA navigation
 </span></span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">router</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">useRouter</span>();
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">afterEach</span>((<span style="color:#a6e22e">to</span>) =&gt; {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">typeof</span> window <span style="color:#f92672">!==</span> <span style="color:#66d9ef">undefined</span> <span style="color:#f92672">&amp;&amp;</span> window.<span style="color:#a6e22e">plausible</span>) {
@@ -530,17 +519,17 @@ aliases:</p>
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>  });
 </span></span><span style="display:flex;"><span>});
-</span></span></code></pre></div><h3 id="wordpress-플러그인">WordPress 플러그인<a hidden class="anchor" aria-hidden="true" href="#wordpress-플러그인">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 옵션 1: 공식 Plausible WordPress 플러그인 사용</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># wp-admin에서 설치: 플러그인 &gt; 새로 추가 &gt; &#34;Plausible Analytics&#34; 검색</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 셀프 호스팅 URL로 구성</span>
+</span></span></code></pre></div><h3 id="wordpress-plugin">WordPress Plugin<a hidden class="anchor" aria-hidden="true" href="#wordpress-plugin">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Option 1: Use the official Plausible WordPress plugin</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install from wp-admin: Plugins &gt; Add New &gt; Search &#34;Plausible Analytics&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Configure with your self-hosted URL</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 옵션 2: 수동 — 테마의 header.php에 추가</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Option 2: Manual — add to theme&#39;s header.php</span>
 </span></span><span style="display:flex;"><span>&lt;?php <span style="color:#66d9ef">if</span> <span style="color:#f92672">(</span>!is_user_logged_in<span style="color:#f92672">())</span>: ?&gt;
 </span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  src=&#34;</span>https://analytics.yourdomain.com/js/script.js<span style="color:#e6db74">&#34;&gt;&lt;/script&gt;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;?php endif; ?&gt;
-</span></span></span></code></pre></div><h3 id="정적-사이트-생성기-hugo-jekyll-astro">정적 사이트 생성기 (Hugo, Jekyll, Astro)<a hidden class="anchor" aria-hidden="true" href="#정적-사이트-생성기-hugo-jekyll-astro">#</a></h3>
+</span></span></span></code></pre></div><h3 id="static-site-generators-hugo-jekyll-astro">Static Site Generators (Hugo, Jekyll, Astro)<a hidden class="anchor" aria-hidden="true" href="#static-site-generators-hugo-jekyll-astro">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// astro.config.mjs
@@ -559,10 +548,10 @@ aliases:</p>
 </span></span><span style="display:flex;"><span>    },
 </span></span><span style="display:flex;"><span>  ],
 </span></span><span style="display:flex;"><span>});
-</span></span></code></pre></div><h3 id="커스텀-이벤트-추적">커스텀 이벤트 추적<a hidden class="anchor" aria-hidden="true" href="#커스텀-이벤트-추적">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// 버튼 클릭, 폼 제출 또는 모든 커스텀 이벤트 추적
-</span></span></span><span style="display:flex;"><span>document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;signup-button&#39;</span>).<span style="color:#a6e22e">addEventListener</span>(<span style="color:#a6e22e">click</span>, () =&gt; {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">plausible</span>(<span style="color:#e6db74">&#39;Signup Click&#39;</span>, {
+</span></span></code></pre></div><h3 id="custom-event-tracking">Custom Event Tracking<a hidden class="anchor" aria-hidden="true" href="#custom-event-tracking">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Track button clicks, form submissions, or any custom event
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// In your JavaScript: document.getElementById(&#39;signup-button&#39;).addEventListener(click, () =&gt; {
+</span></span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">plausible</span>(<span style="color:#e6db74">&#39;Signup Click&#39;</span>, {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> {
 </span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">plan</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">pro</span>,
 </span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">source</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">header</span>
@@ -570,259 +559,123 @@ aliases:</p>
 </span></span><span style="display:flex;"><span>  });
 </span></span><span style="display:flex;"><span>});
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">// 이커머스 전환 추적
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Track e-commerce conversions
 </span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">plausible</span>(<span style="color:#a6e22e">Purchase</span>, {
 </span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">props</span><span style="color:#f92672">:</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">product</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Widget Pro&#39;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">price</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">99.00</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">currency</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">USD</span>
 </span></span><span style="display:flex;"><span>  },
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">revenue</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">currency</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">USD</span>, <span style="color:#a6e22e">amount</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">9900</span> }  <span style="color:#75715e">// 센트 단위
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">revenue</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">currency</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">USD</span>, <span style="color:#a6e22e">amount</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">9900</span> }  <span style="color:#75715e">// in cents
 </span></span></span><span style="display:flex;"><span>});
-</span></span></code></pre></div><h2 id="벤치마크-및-실제-활용-사례">벤치마크 및 실제 활용 사례<a hidden class="anchor" aria-hidden="true" href="#벤치마크-및-실제-활용-사례">#</a></h2>
-<h3 id="속도-비교-plausible-대-google-analytics">속도 비교: Plausible 대 Google Analytics<a hidden class="anchor" aria-hidden="true" href="#속도-비교-plausible-대-google-analytics">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>지표</th>
-					<th>Google Analytics 4</th>
-					<th>Plausible (Cloud)</th>
-					<th>Plausible (셀프 호스팅)</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>스크립트 크기</strong></td>
-					<td><strong>45KB</strong></td>
-					<td><strong>&lt;1KB</strong></td>
-					<td><strong>&lt;1KB</strong></td>
-			</tr>
-			<tr>
-					<td><strong>DNS 조회</strong></td>
-					<td>5+</td>
-					<td><strong>1</strong></td>
-					<td><strong>1</strong></td>
-			</tr>
-			<tr>
-					<td><strong>설정 쿠키</strong></td>
-					<td><strong>여러 개</strong></td>
-					<td><strong>0</strong></td>
-					<td><strong>0</strong></td>
-			</tr>
-			<tr>
-					<td><strong>3G 로드 시간</strong></td>
-					<td><strong>800-1200ms</strong></td>
-					<td><strong>15-25ms</strong></td>
-					<td><strong>15-25ms</strong></td>
-			</tr>
-			<tr>
-					<td><strong>Lighthouse 영향</strong></td>
-					<td><strong>-8~-15점</strong></td>
-					<td><strong>0점</strong></td>
-					<td><strong>0점</strong></td>
-			</tr>
-			<tr>
-					<td><strong>Core Web Vitals 영향</strong></td>
-					<td><strong>부정적</strong></td>
-					<td><strong>없음</strong></td>
-					<td><strong>없음</strong></td>
-			</tr>
-			<tr>
-					<td><strong>페이지당 데이터 전송</strong></td>
-					<td><strong>~60KB</strong></td>
-					<td><strong>~1KB</strong></td>
-					<td><strong>~1KB</strong></td>
-			</tr>
-	</tbody>
-</table>
-<p><strong>결과</strong>: Plausible은 GA4보다 <strong>45-60배 빠르게</strong> 로드되고 Core Web Vitals에 <strong>영향이 없다</strong>.</p>
-<h3 id="프라이버시-컴플라이언스-비교">프라이버시 컴플라이언스 비교<a hidden class="anchor" aria-hidden="true" href="#프라이버시-컴플라이언스-비교">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>기능</th>
-					<th>Google Analytics 4</th>
-					<th>Matomo</th>
-					<th>Plausible</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>동의 없이 GDPR 준수</strong></td>
-					<td><strong>아니오</strong></td>
-					<td>부분</td>
-					<td><strong>예</strong></td>
-			</tr>
-			<tr>
-					<td><strong>쿠키 없는 추적</strong></td>
-					<td><strong>아니오</strong></td>
-					<td>옵션</td>
-					<td><strong>예 (항상)</strong></td>
-			</tr>
-			<tr>
-					<td><strong>개인 데이터 수집 없음</strong></td>
-					<td><strong>아니오</strong></td>
-					<td>구성 가능</td>
-					<td><strong>예 (설계상)</strong></td>
-			</tr>
-			<tr>
-					<td><strong>EU 데이터 거주</strong></td>
-					<td><strong>아니오</strong></td>
-					<td>셀프 호스팅</td>
-					<td><strong>예</strong></td>
-			</tr>
-			<tr>
-					<td><strong>CCPA 준수</strong></td>
-					<td>옵트아웃 필요</td>
-					<td>구성 가능</td>
-					<td><strong>예</strong></td>
-			</tr>
-			<tr>
-					<td><strong>PECR 준수</strong></td>
-					<td><strong>아니오</strong></td>
-					<td>부분</td>
-					<td><strong>예</strong></td>
-			</tr>
-			<tr>
-					<td><strong>Schrems II / EU-US DPF</strong></td>
-					<td><strong>법적 리스크</strong></td>
-					<td>해당 없음</td>
-					<td><strong>리스크 없음</strong></td>
-			</tr>
-	</tbody>
-</table>
-<h3 id="부하-하에서의-성능-2gb-vps에서-v30">부하 하에서의 성능 (2GB VPS에서 v3.0)<a hidden class="anchor" aria-hidden="true" href="#부하-하에서의-성능-2gb-vps에서-v30">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>지표</th>
-					<th>값</th>
-					<th>참고</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>콜드 스타트</td>
-					<td>4.1초</td>
-					<td>Docker 컨테이너 + ClickHouse</td>
-			</tr>
-			<tr>
-					<td>이벤트 수집률</td>
-					<td><strong>5만 이벤트/초</strong></td>
-					<td>단일 노드 ClickHouse</td>
-			</tr>
-			<tr>
-					<td>대시보드 로드 시간</td>
-					<td><strong>120ms</strong></td>
-					<td>P95, 인증됨</td>
-			</tr>
-			<tr>
-					<td>API 응답 시간</td>
-					<td><strong>85ms</strong></td>
-					<td>P95, 통계 집계</td>
-			</tr>
-			<tr>
-					<td>100만 PV당 저장소</td>
-					<td><strong>~45MB</strong></td>
-					<td>고도로 압축된 ClickHouse</td>
-			</tr>
-			<tr>
-					<td>동시 추적 사이트</td>
-					<td><strong>무제한</strong></td>
-					<td>리소스에 의해 제한</td>
-			</tr>
-			<tr>
-					<td>유휴 메모리 사용</td>
-					<td><strong>380MB</strong></td>
-					<td>Plausible + ClickHouse + Postgres</td>
-			</tr>
-	</tbody>
-</table>
-<h3 id="실제-배포-프로필">실제 배포 프로필<a hidden class="anchor" aria-hidden="true" href="#실제-배포-프로필">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>사이트 유형</th>
-					<th>월 PV</th>
-					<th>VPS 비용</th>
-					<th>GA4 동급</th>
-					<th>Plausible 비용</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>개인 블로그</td>
-					<td>1만</td>
-					<td><strong>$6</strong> (1GB)</td>
-					<td>묣</td>
-					<td><strong>$6</strong></td>
-			</tr>
-			<tr>
-					<td>SaaS 랜딩 페이지</td>
-					<td>10만</td>
-					<td><strong>$12</strong> (2GB)</td>
-					<td>$0-150</td>
-					<td><strong>$12</strong></td>
-			</tr>
-			<tr>
-					<td>이커머스 스토어</td>
-					<td>50만</td>
-					<td><strong>$24</strong> (4GB)</td>
-					<td>$150+</td>
-					<td><strong>$24</strong></td>
-			</tr>
-			<tr>
-					<td>뉴스 사이트</td>
-					<td>200만</td>
-					<td><strong>$48</strong> (8GB)</td>
-					<td>$150,000+</td>
-					<td><strong>$48</strong></td>
-			</tr>
-			<tr>
-					<td>에이전시 (50 사이트)</td>
-					<td>총 500만</td>
-					<td><strong>$48</strong> (8GB)</td>
-					<td>$750+</td>
-					<td><strong>$48</strong></td>
-			</tr>
-	</tbody>
-</table>
-<h3 id="사례-연구-ga4-교체-후-페이지-로드-50-빨라짐">사례 연구: GA4 교체 후 페이지 로드 50% 빨라짐<a hidden class="anchor" aria-hidden="true" href="#사례-연구-ga4-교체-후-페이지-로드-50-빨라짐">#</a></h3>
-<p>월 방문자 20만 명의 유럽 SaaS 회사가 2025년 11월 Google Analytics에서 셀프 호스팅 Plausible로 마이그레이션했다. 6개월 후 결과: - <strong>Lighthouse 성능 점수</strong>: 72 → <strong>91</strong> (+19점)</p>
+</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks &amp; Real-World Use Cases<a hidden class="anchor" aria-hidden="true" href="#benchmarks--real-world-use-cases">#</a></h2>
+<h3 id="speed-comparison-plausible-vs-google-analytics">Speed Comparison: Plausible vs Google Analytics<a hidden class="anchor" aria-hidden="true" href="#speed-comparison-plausible-vs-google-analytics">#</a></h3>
+<p>| Metric | Google Analytics 4 | Plausible (Cloud) | Plausible (Self-Hosted) |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Script size</strong> | <strong>45KB</strong> (gtag.js + analytics.js) | <strong>&lt;1KB</strong> | <strong>&lt;1KB</strong> |
+| <strong>DNS lookups</strong> | 5+ (google-analytics, googletagmanager, doubleclick, etc.) | <strong>1</strong> | <strong>1</strong> |
+| <strong>Cookies set</strong> | <strong>Multiple (_ga, _gid, _gat, etc.)</strong> | <strong>0</strong> | <strong>0</strong> |
+| <strong>Load time (3G)</strong> | <strong>800-1200ms</strong> | <strong>15-25ms</strong> | <strong>15-25ms</strong> |
+| <strong>Lighthouse impact</strong> | <strong>-8 to -15 points</strong> | <strong>0 points</strong> | <strong>0 points</strong> |
+| <strong>Core Web Vitals impact</strong> | <strong>Negative (LCP, CLS)</strong> | <strong>None</strong> | <strong>None</strong> |
+| <strong>Data transferred/page</strong> | <strong>~60KB</strong> | <strong>~1KB</strong> | <strong>~1KB</strong> |</p>
+<p><strong>Result</strong>: Plausible loads <strong>45-60x faster</strong> than GA4 and has <strong>zero impact on Core Web Vitals</strong>.</p>
+<h3 id="privacy-compliance-comparison">Privacy Compliance Comparison<a hidden class="anchor" aria-hidden="true" href="#privacy-compliance-comparison">#</a></h3>
+<p>| Feature | Google Analytics 4 | Matomo | Plausible |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>GDPR compliant without consent</strong> | <strong>No</strong> (requires consent banner) | Partial | <strong>Yes</strong> |
+| <strong>Cookie-free tracking</strong> | <strong>No</strong> | Optional | <strong>Yes (always)</strong> |
+| <strong>No personal data collection</strong> | <strong>No</strong> | Configurable | <strong>Yes (by design)</strong> |
+| <strong>EU data residency</strong> | <strong>No</strong> (US-based) | Self-hosted option | <strong>Yes (self-hosted)</strong> |
+| <strong>CCPA compliant</strong> | Requires opt-out | Configurable | <strong>Yes</strong> |
+| <strong>PECR compliant</strong> | <strong>No</strong> | Partial | <strong>Yes</strong> |
+| <strong>Schrems II / EU-US DPF</strong> | <strong>Legal risk</strong> | N/A | <strong>No risk</strong> |</p>
+<h3 id="performance-under-load-v30-on-2gb-vps">Performance Under Load (v3.0 on 2GB VPS)<a hidden class="anchor" aria-hidden="true" href="#performance-under-load-v30-on-2gb-vps">#</a></h3>
+<p>| Metric | Value | Notes |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Cold start | 4.1s | Docker container + ClickHouse |
+| Event ingestion rate | <strong>50,000 events/sec</strong> | Single node ClickHouse |
+| Dashboard load time | <strong>120ms</strong> | P95, authenticated |
+| API response time | <strong>85ms</strong> | P95, stats aggregate |
+| Storage per 1M pageviews | <strong>~45MB</strong> | Highly compressed ClickHouse |
+| Concurrent sites tracked | <strong>Unlimited</strong> | Limited by resources |
+| Memory usage at idle | <strong>380MB</strong> | Plausible + ClickHouse + Postgres |</p>
+<h3 id="real-world-deployment-profiles">Real-World Deployment Profiles<a hidden class="anchor" aria-hidden="true" href="#real-world-deployment-profiles">#</a></h3>
+<p>| Site Type | Monthly Pageviews | VPS Cost | GA4 Equivalent | Plausible Cost |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Personal blog | 10,000 | <strong>$6</strong> (1GB) | Free | <strong>$6</strong> |
+| SaaS landing page | 100,000 | <strong>$12</strong> (2GB) | $0-150 | <strong>$12</strong> |
+| E-commerce store | 500,000 | <strong>$24</strong> (4GB) | $150+ | <strong>$24</strong> |
+| News site | 2,000,000 | <strong>$48</strong> (8GB) | $150,000+ (360) | <strong>$48</strong> |
+| Agency (50 sites) | 5,000,000 total | <strong>$48</strong> (8GB) | $750+ | <strong>$48</strong> |</p>
+<h3 id="case-study-50-faster-page-loads-after-replacing-ga4">Case Study: 50% Faster Page Loads After Replacing GA4<a hidden class="anchor" aria-hidden="true" href="#case-study-50-faster-page-loads-after-replacing-ga4">#</a></h3>
+<p>A European SaaS company with 200K monthly visitors replaced Google Analytics with self-hosted Plausible in November 2025. Results after 6 months: - <strong>Lighthouse Performance score</strong>: 72 → <strong>91</strong> (+19 points)</p>
 <ul>
-<li><strong>Largest Contentful Paint</strong>: 2.8초 → <strong>1.9초</strong></li>
-<li><strong>쿠키 동의 배너</strong>: 완전히 제거됨</li>
-<li><strong>분석 호스팅 비용</strong>: $0 → <strong>$12/월</strong></li>
-<li><strong>GDPR 컴플라이언스 리스크</strong>: 제거됨 (데이터가 EU 서버를 벗어나지 않음)</li>
+<li><strong>Largest Contentful Paint</strong>: 2.8s → <strong>1.9s</strong> (removed render-blocking GA script)</li>
+<li><strong>Cookie consent banner</strong>: Removed entirely (no longer needed)</li>
+<li><strong>Analytics hosting cost</strong>: $0 (was $0 GA) → <strong>$12/month</strong> (self-hosted Plausible)</li>
+<li><strong>GDPR compliance risk</strong>: Eliminated (data never leaves EU servers)</li>
 </ul>
-<h2 id="고급-사용법-및-프로덕션-하드닝">고급 사용법 및 프로덕션 하드닝<a hidden class="anchor" aria-hidden="true" href="#고급-사용법-및-프로덕션-하드닝">#</a></h2>
-<h3 id="향상된-측정-활성화">향상된 측정 활성화<a hidden class="anchor" aria-hidden="true" href="#향상된-측정-활성화">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># plausible-conf.env — 추가 추적 기능 활성화</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 아웃바운드 링크 추적</span>
+<h2 id="advanced-usage--production-hardening">Advanced Usage &amp; Production Hardening<a hidden class="anchor" aria-hidden="true" href="#advanced-usage--production-hardening">#</a></h2>
+<h3 id="enabling-enhanced-measurements">Enabling Enhanced Measurements<a hidden class="anchor" aria-hidden="true" href="#enabling-enhanced-measurements">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># plausible-conf.env — Enable additional tracking features</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Outbound link tracking</span>
 </span></span><span style="display:flex;"><span>SCRIPT_NAME<span style="color:#f92672">=</span>script.outbound-links.js
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 파일 다운로드 추적</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># File download tracking</span>
 </span></span><span style="display:flex;"><span>SCRIPT_NAME<span style="color:#f92672">=</span>script.file-downloads.js
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 해시 기반 라우팅</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hash-based routing (for SPAs with hash URLs)</span>
 </span></span><span style="display:flex;"><span>SCRIPT_NAME<span style="color:#f92672">=</span>script.hash.js
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 조합: 모든 기능</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Combined: all features</span>
 </span></span><span style="display:flex;"><span>SCRIPT_NAME<span style="color:#f92672">=</span>script.outbound-links.file-downloads.hash.js
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
-</span></span></code></pre></div><h3 id="커스텀-대시보드를-위한-api-통합">커스텀 대시보드를 위한 API 통합<a hidden class="anchor" aria-hidden="true" href="#커스텀-대시보드를-위한-api-통합">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Stats API를 통한 통계 조회</span>
+</span></span></code></pre></div><h3 id="api-integration-for-custom-dashboards">API Integration for Custom Dashboards<a hidden class="anchor" aria-hidden="true" href="#api-integration-for-custom-dashboards">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Get stats via the Stats API</span>
 </span></span><span style="display:flex;"><span>curl -X GET <span style="color:#e6db74">&#34;https://analytics.yourdomain.com/api/v1/stats/aggregate?site_id=yourdomain.com&amp;period=30d&amp;metrics=visitors,pageviews,bounce_rate&#34;</span> <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer YOUR_API_KEY&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 응답: # {</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Response: # {</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#   &#34;results&#34;: {</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#     &#34;visitors&#34;: {&#34;value&#34;: 45230},</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#     &#34;pageviews&#34;: {&#34;value&#34;: 128900},</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#     &#34;bounce_rate&#34;: {&#34;value&#34;: 42}</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#   }</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># }</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># BI 도구로 통계를 가져오는 Python 스크립트</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Python script to pull stats into your BI tool</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime, timedelta
 </span></span><span style="display:flex;"><span>
@@ -846,31 +699,31 @@ aliases:</p>
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> response<span style="color:#f92672">.</span>json()
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> entry <span style="color:#f92672">in</span> data[<span style="color:#e6db74">&#34;results&#34;</span>]: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>entry[date]<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>entry[visitors]<span style="color:#e6db74">}</span><span style="color:#e6db74"> 방문자, </span><span style="color:#e6db74">{</span>entry[pageviews]<span style="color:#e6db74">}</span><span style="color:#e6db74"> 페이지뷰&#34;</span>)
-</span></span></code></pre></div><h3 id="백업-전략">백업 전략<a hidden class="anchor" aria-hidden="true" href="#백업-전략">#</a></h3>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> entry <span style="color:#f92672">in</span> data[<span style="color:#e6db74">&#34;results&#34;</span>]: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>entry[date]<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>entry[visitors]<span style="color:#e6db74">}</span><span style="color:#e6db74"> visitors, </span><span style="color:#e6db74">{</span>entry[pageviews]<span style="color:#e6db74">}</span><span style="color:#e6db74"> pageviews&#34;</span>)
+</span></span></code></pre></div><h3 id="backup-strategy">Backup Strategy<a hidden class="anchor" aria-hidden="true" href="#backup-strategy">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
 </span></span></span><span style="display:flex;"><span><span style="color:#75715e"># /opt/scripts/plausible-backup.sh</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>BACKUP_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/backup/plausible/</span><span style="color:#66d9ef">$(</span>date +%Y%m%d_%H%M%S<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>mkdir -p <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># PostgreSQL 백업 (사용자 데이터, 사이트 설정)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Backup PostgreSQL (user data, site configs)</span>
 </span></span><span style="display:flex;"><span>docker compose exec -T plausible_db pg_dump <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -U postgres plausible_db &gt; <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">/postgres.sql&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># ClickHouse 백업 (이벤트 데이터)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Backup ClickHouse (event data)</span>
 </span></span><span style="display:flex;"><span>docker compose exec plausible_events_db clickhouse-client <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --query<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;BACKUP DATABASE plausible_events_db TO &#39;/backup/clickhouse&#39;&#34;</span> &gt; <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">/clickhouse.sql&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># S3 업로드</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Upload to S3</span>
 </span></span><span style="display:flex;"><span>aws s3 sync <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">&#34;s3://your-backup-bucket/plausible/&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 정리: 30일만 유지</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cleanup: keep only 30 days</span>
 </span></span><span style="display:flex;"><span>find /backup/plausible -maxdepth <span style="color:#ae81ff">1</span> -type d -mtime +30 -exec rm -rf <span style="color:#f92672">{}</span> <span style="color:#ae81ff">\;</span>
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Cron — 매일 오전 3시</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Cron — daily at 3 AM</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#ae81ff">3</span> * * * /opt/scripts/plausible-backup.sh &gt;&gt; /var/log/plausible-backup.log 2&gt;&amp;<span style="color:#ae81ff">1</span>
-</span></span></code></pre></div><h3 id="고가용성-설정">고가용성 설정<a hidden class="anchor" aria-hidden="true" href="#고가용성-설정">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.ha.yaml — 복제가 있는 다중 노드 ClickHouse</span>
+</span></span></code></pre></div><h3 id="high-availability-setup">High Availability Setup<a hidden class="anchor" aria-hidden="true" href="#high-availability-setup">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.ha.yaml — Multi-node ClickHouse with replication</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">services: plausible: image</span>: <span style="color:#ae81ff">plausible/analytics:v3.0</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">deploy: replicas</span>: <span style="color:#ae81ff">2</span>
@@ -882,240 +735,158 @@ aliases:</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">clickhouse-2: image</span>: <span style="color:#ae81ff">clickhouse/clickhouse-server:24.3</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">clickhouse_data_2:/var/lib/clickhouse</span>
-</span></span></code></pre></div><h3 id="prometheus를-이용한-모니터링">Prometheus를 이용한 모니터링<a hidden class="anchor" aria-hidden="true" href="#prometheus를-이용한-모니터링">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># prometheus.yml에 추가</span>
+</span></span></code></pre></div><h3 id="monitoring-with-prometheus">Monitoring with Prometheus<a hidden class="anchor" aria-hidden="true" href="#monitoring-with-prometheus">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Add to your prometheus.yml</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">scrape_configs: - job_name</span>: <span style="color:#ae81ff">plausible</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">static_configs: - targets</span>: [<span style="color:#e6db74">&#39;analytics.yourdomain.com:8000&#39;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">static_configs: - targets</span>: [<span style="color:#ae81ff">analytics.yourdomain.com:8000]</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">metrics_path</span>: <span style="color:#e6db74">&#39;/metrics&#39;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">scrape_interval</span>: <span style="color:#ae81ff">30s</span>
-</span></span></code></pre></div><h3 id="위치-데이터를-위한-geoip-데이터베이스">위치 데이터를 위한 GeoIP 데이터베이스<a hidden class="anchor" aria-hidden="true" href="#위치-데이터를-위한-geoip-데이터베이스">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># MaxMind GeoLite2 데이터베이스 다운로드</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Key metrics to monitor</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># plausible_clickhouse_event_insertions_total — Event ingestion rate</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># plausible_phoenix_request_duration_ms — API response times</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># plausible_db_query_duration_ms — Database query performance</span>
+</span></span></code></pre></div><h3 id="geoip-database-for-location-data">GeoIP Database for Location Data<a hidden class="anchor" aria-hidden="true" href="#geoip-database-for-location-data">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Download MaxMind GeoLite2 database for country/city data</span>
 </span></span><span style="display:flex;"><span>mkdir -p /opt/plausible/geoip
 </span></span><span style="display:flex;"><span>cd /opt/plausible/geoip
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># https://www.maxmind.com/에서 묣 GeoLite2 계정 등록</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Register at https://www.maxmind.com/ for free GeoLite2 account</span>
 </span></span><span style="display:flex;"><span>wget <span style="color:#e6db74">&#34;https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&amp;license_key=YOUR_KEY&amp;suffix=tar.gz&#34;</span> <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -O GeoLite2-City.tar.gz
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>tar -xzf GeoLite2-City.tar.gz --strip-components<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml에 마운트</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Mount in docker-compose.yml</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># volumes: #   - ./geoip/GeoLite2-City.mmdb:/geoip/GeoLite2-City.mmdb:ro</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># plausible-conf.env에 추가: # GEOLITE2_COUNTRY_DB=/geoip/GeoLite2-Country.mmdb</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add to plausible-conf.env: # GEOLITE2_COUNTRY_DB=/geoip/GeoLite2-Country.mmdb</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># GEOLITE2_CITY_DB=/geoip/GeoLite2-City.mmdb</span>
-</span></span></code></pre></div><h2 id="대안과-비교">대안과 비교<a hidden class="anchor" aria-hidden="true" href="#대안과-비교">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>기능</th>
-					<th>Plausible</th>
-					<th>Google Analytics 4</th>
-					<th>Matomo (셀프 호스팅)</th>
-					<th>Fathom</th>
-					<th>Umami</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>라이선스</strong></td>
-					<td>AGPL-3.0</td>
-					<td>독점</td>
-					<td>GPL-3.0</td>
-					<td>독점</td>
-					<td>MIT</td>
-			</tr>
-			<tr>
-					<td><strong>스크립트 크기</strong></td>
-					<td><strong>&lt;1KB</strong></td>
-					<td><strong>45KB</strong></td>
-					<td>~22KB</td>
-					<td><strong>&lt;1KB</strong></td>
-					<td><strong>&lt;2KB</strong></td>
-			</tr>
-			<tr>
-					<td><strong>쿠키 필요</strong></td>
-					<td><strong>아니오</strong></td>
-					<td><strong>예</strong></td>
-					<td>옵션</td>
-					<td><strong>아니오</strong></td>
-					<td><strong>아니오</strong></td>
-			</tr>
-			<tr>
-					<td><strong>배너 없는 GDPR 준수</strong></td>
-					<td><strong>예</strong></td>
-					<td><strong>아니오</strong></td>
-					<td>부분</td>
-					<td><strong>예</strong></td>
-					<td><strong>예</strong></td>
-			</tr>
-			<tr>
-					<td><strong>EU 데이터 거주 (셀프 호스팅)</strong></td>
-					<td><strong>예</strong></td>
-					<td>아니오</td>
-					<td><strong>예</strong></td>
-					<td>클라우드 전용</td>
-					<td><strong>예</strong></td>
-			</tr>
-			<tr>
-					<td><strong>실시간 대시보드</strong></td>
-					<td><strong>예</strong></td>
-					<td>예 (5분 지연)</td>
-					<td>예</td>
-					<td><strong>예</strong></td>
-					<td><strong>예</strong></td>
-			</tr>
-			<tr>
-					<td><strong>커스텀 이벤트 추적</strong></td>
-					<td><strong>예</strong></td>
-					<td>예</td>
-					<td>예</td>
-					<td>예</td>
-					<td><strong>예</strong></td>
-			</tr>
-			<tr>
-					<td><strong>API 접근</strong></td>
-					<td><strong>전체 REST</strong></td>
-					<td>예 (복잡)</td>
-					<td>예</td>
-					<td>예</td>
-					<td><strong>예</strong></td>
-			</tr>
-			<tr>
-					<td><strong>이커머스 수익 추적</strong></td>
-					<td><strong>예</strong></td>
-					<td>고급</td>
-					<td>고급</td>
-					<td>기본</td>
-					<td>아니오</td>
-			</tr>
-			<tr>
-					<td><strong>오픈소스</strong></td>
-					<td><strong>예</strong></td>
-					<td>아니오</td>
-					<td><strong>예</strong></td>
-					<td>아니오</td>
-					<td><strong>예</strong></td>
-			</tr>
-			<tr>
-					<td><strong>월 비용 (셀프 호스팅 2GB)</strong></td>
-					<td><strong>$12</strong></td>
-					<td>묣</td>
-					<td><strong>$12</strong></td>
-					<td>$14 (클)</td>
-					<td><strong>$12</strong></td>
-			</tr>
-			<tr>
-					<td><strong>커뮤니티 (GitHub 스타)</strong></td>
-					<td><strong>21,000</strong></td>
-					<td>해당 없음</td>
-					<td><strong>19,500</strong></td>
-					<td>해당 없음</td>
-					<td><strong>24,000</strong></td>
-			</tr>
-	</tbody>
-</table>
-<p><strong>핵심 요약</strong>: Plausible은 Fathom의 미니멀리즘과 Matomo의 파워 사이에서 최적의 지점에 위치한다. ClickHouse 백엔드는 Matomo의 MySQL/MariaDB보다 우수한 쿼리 성능을 제공하고, AGPL 라이선스는 영구적인 오픈소스 가용성을 보장한다. GA4의 복잡성이나 Matomo의 리소스 오버헤드 없이 핵심 분석이 필요한 사이트에 최적의 선택이다.</p>
-<h2 id="한계점-솔직한-평가">한계점: 솔직한 평가<a hidden class="anchor" aria-hidden="true" href="#한계점-솔직한-평가">#</a></h2>
-<p>Plausible은 의도적으로 깊이를 단순성과 프라이버시와 교환한다. 다음은 제공되지 않는 것이다: <strong>사용자 수준 추적 없음</strong> — 설계상 Plausible은 개별 사용자의 세션 간 여정을 추적하지 않는다. &ldquo;사용자 X가 A 페이지를 방문한 다음 B, 그 다음 C&quot;를 볼 수 없다. 멀티터치 어트리뷰션이나 사용자 수준 퍼널 분석이 중요하다면 다른 도구가 필요하다.</p>
-<p><strong>제한된 세그먼테이션</strong> — 내장 필터링은 국가, 페이지, 리퍼러, 디바이스 유형, 브라우저를 지원한다. 고급 코호트 분석이나 커스텀 디멘전 분석은 API를 통한 외부 BI 도구 낼이 필요하다.</p>
-<p><strong>광고 플랫폼 통합 없음</strong> — GA4가 Google Ads와 네이티브 통합되는 것과 달리, Plausible에는 광고 플랫폼과의 직접 연결이 없다. UTM 파라미터와 캠페인 이름은 추적할 수 있지만 ROAS 계산은 수동 상관관계가 필요하다.</p>
-<p><strong>히트맵 및 세션 녹화</strong> — 이 기능은 Plausible에 존재하지 않는다(프라이버시 우선 철학과 충돌). 시각적 행동 분석이 필요하면 Hotjar이나 Microsoft Clarity와 함께 사용하라.</p>
-<p><strong>서치 콘솔 통합</strong> — GA4가 Google Search Console에 직접 연결되는 것과 달리, Plausible은 수동 가져오기 또는 API 기반 상관관계가 필요하다. 네이티브 &ldquo;검색 쿼리&rdquo; 보고서가 없다.</p>
-<p><strong>이커머스 깊이</strong> — 수익 추적은 존재하지만 GA4의 향상된 이커머스에 비하면 기본적이다.</p>
-<h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
-<p><strong>Plausible은 정말 쿠키 배너 없이 GDPR을 준수하나요?</strong></p>
-<p><strong>예.</strong> EDPB와 여러 EU 데이터 보호 당국은 쿠키나 개인 데이터 수집 없는 분석이 GDPR 제6(1)(f)의 동의를 필요로 하지 않는다고 확인했다. Plausible은 IP 주소를 수집하지 않고(해시 후 폐기), 쿠키나 localStorage를 사용하지 않고, 디바이스를 핑거프린팅하지 않으며, 사이트 간 추적을 하지 않는다. 그러나 구매 데이터를 처리하는 수익 추적 기능을 활성화하는 경우 DPO와 상담하라. 셀프 호스팅 배포가 가장 준수하는 옵션이다.</p>
-<p><strong>Google Analytics와 비교하여 Plausible의 정확도는 어떠한가요?</strong></p>
-<p>Plausible은 일반적으로 GA4보다 <strong>5-15% 높은 방문자 수</strong>를 보고하는데, 광고 차단기와 프라이버시 브라우저에 차단되는 비율이 더 낮기 때문이다. GA4는 약 **35-40%**의 광고 차단기 사용자에 의해 차단되는 반면, Plausible(자체 도메인에서 셀프 호스팅)은 **8-12%**만 차단된다. GA4의 &ldquo;누락된&rdquo; 데이터는 실제로 누락된 것이 아니라 스크립트 차단으로 수집되지 않은 것이다. Plausible은 실제 트래픽의 더 완전한 그림을 제공한다.</p>
-<p><strong>GA4의 역사적 데이터를 가져올 수 있나요?</strong></p>
-<p>예. Plausible은 GA Reporting API v4를 통해 데이터를 가져오는 Google Analytics 가져오기 도구를 제공한다. UA 속성과 GA4 속성을 처리하여 Plausible의 데이터 모델에 매핑한다. GA4의 데이터 모델 차이로 인해 일부 지표에는 직접적인 대등 항목이 없다. 가져오기는 백그라운드 작업으로 실행되며 대규모 데이터셋에는 수 시간이 소요될 수 있다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># GA 가져오기 실행 (Plausible 컨테이너에서)</span>
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
+<p>| Feature | Plausible | Google Analytics 4 | Matomo (Self-Hosted) | Fathom | Umami |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>License</strong> | AGPL-3.0 | Proprietary | GPL-3.0 | Proprietary | MIT |
+| <strong>Script size</strong> | <strong>&lt;1KB</strong> | <strong>45KB</strong> | ~22KB | <strong>&lt;1KB</strong> | <strong>&lt;2KB</strong> |
+| <strong>Cookies required</strong> | <strong>No</strong> | <strong>Yes (multiple)</strong> | Optional | <strong>No</strong> | <strong>No</strong> |
+| <strong>GDPR compliant (no banner)</strong> | <strong>Yes</strong> | <strong>No</strong> | Partial | <strong>Yes</strong> | <strong>Yes</strong> |
+| <strong>EU data residency (self-host)</strong> | <strong>Yes</strong> | No | <strong>Yes</strong> | Cloud only | <strong>Yes</strong> |
+| <strong>Real-time dashboard</strong> | <strong>Yes</strong> | Yes (5min delay) | Yes | <strong>Yes</strong> | <strong>Yes</strong> |
+| <strong>Custom event tracking</strong> | <strong>Yes</strong> | Yes | Yes | Yes | <strong>Yes</strong> |
+| <strong>API access</strong> | <strong>Full REST</strong> | Yes (complex) | Yes | Yes | <strong>Yes</strong> |
+| <strong>E-commerce revenue tracking</strong> | <strong>Yes</strong> | Advanced | Advanced | Basic | No |
+| <strong>Open source</strong> | <strong>Yes</strong> | No | <strong>Yes</strong> | No | <strong>Yes</strong> |
+| <strong>Monthly cost (self-host, 2GB)</strong> | <strong>$12</strong> | Free (data as cost) | <strong>$12</strong> | $14 (cloud) | <strong>$12</strong> |
+| <strong>Community size (GitHub stars)</strong> | <strong>21,000</strong> | N/A | <strong>19,500</strong> | N/A | <strong>24,000</strong> |</p>
+<p><strong>Key takeaway</strong>: Plausible sits in the sweet spot between the minimalism of Fathom and the power of Matomo. The ClickHouse backend gives it better query performance than Matomo&rsquo;s MySQL/MariaDB, while the AGPL license guarantees perpetual open-source availability. For sites that need essential analytics without the complexity of GA4 or the resource overhead of Matomo, Plausible is the optimal choice.</p>
+<h2 id="limitations-honest-assessment">Limitations: Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations-honest-assessment">#</a></h2>
+<p>Plausible intentionally trades depth for simplicity and privacy. Here is what you will not get: <strong>No user-level tracking</strong> — By design, Plausible does not track individual user journeys across sessions. You cannot see &ldquo;User X visited pages A, then B, then C.&rdquo; If multi-touch attribution or funnel analysis at the user level is critical, you need a different tool (or supplement Plausible with server-side event tracking).</p>
+<p><strong>Limited segmentation</strong> — The built-in filtering supports country, page, referrer, device type, and browser. Advanced cohort analysis, custom dimension breakdowns, or user-property-based segments require API export to external BI tools.</p>
+<p><strong>No ad platform integration</strong> — Unlike GA4 which integrates natively with Google Ads, Plausible has no direct connection to advertising platforms. You can track UTM parameters and campaign names, but ROAS calculations require manual correlation.</p>
+<p><strong>Heatmaps and session recording</strong> — These features do not exist in Plausible (and likely never will, as they conflict with the privacy-first philosophy). Use tools like <a href="https://hotjar.com">Hotjar</a> or <a href="https://clarity.microsoft.com">Microsoft Clarity</a> alongside Plausible if visual behavior analysis is needed.</p>
+<p><strong>Search Console integration</strong> — Unlike GA4 which connects directly to Google Search Console, Plausible requires manual import or API-based correlation. There is no &ldquo;search queries&rdquo; report natively.</p>
+<p><strong>E-commerce depth</strong> — Revenue tracking exists but is basic compared to GA4&rsquo;s enhanced e-commerce with product-level impressions, add-to-cart events, and checkout funnel analysis.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<p><strong>Is Plausible really GDPR compliant without a cookie banner?</strong></p>
+<p><strong>Yes.</strong> The European Data Protection Board (EDPB) and multiple EU data protection authorities have confirmed that analytics without personal data collection and without cookies does not require consent under GDPR Article 6(1)(f) — legitimate interest. Plausible does not collect IP addresses (hashes and discards them), does not use cookies or localStorage, does not fingerprint devices, and does not track across sites. However, if you enable the revenue tracking feature that processes purchase data, consult your DPO. The self-hosted deployment is the most compliant option because data never leaves your servers.</p>
+<p><strong>How accurate is Plausible compared to Google Analytics?</strong></p>
+<p>Plausible typically reports <strong>5-15% higher visitor counts</strong> than GA4 because it is not blocked by ad blockers and privacy browsers at the same rate. GA4 is blocked by approximately <strong>35-40% of users</strong> running ad blockers (uBlock Origin, AdGuard, etc.), while Plausible (self-hosted on your own domain) is blocked by only <strong>8-12%</strong>. The &ldquo;missing&rdquo; GA4 data is not lost — it was never collected due to script blocking. Plausible gives you a more complete picture of actual traffic.</p>
+<p><strong>Can I import my historical Google Analytics data?</strong></p>
+<p>Yes. Plausible provides a Google Analytics importer that pulls data via the GA Reporting API v4. The importer handles Universal Analytics (UA) properties and GA4 properties, mapping dimensions to Plausible&rsquo;s data model. Note that due to GA4&rsquo;s data model differences, some metrics (like &ldquo;engagement time&rdquo;) do not have direct equivalents. The import runs as a background job and can take several hours for large datasets.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Run the GA importer (from the Plausible container)</span>
 </span></span><span style="display:flex;"><span>docker compose exec plausible bin/plausible <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Plausible.Google.Import.start(&#39;your-ga-property-id&#34;</span>, YOUR_API_KEY<span style="color:#f92672">)</span><span style="color:#e6db74">&#34;
-</span></span></span></code></pre></div><p><strong>사이트가 VPS 용량을 초과하면 어떻게 되나요?</strong></p>
-<p>Plausible은 예측 가능하게 확장된다. <strong>2GB VPS는 월 약 50만 PV</strong>를 처리한다. <strong>4GB VPS는 월 약 200만 PV</strong>를 처리한다. 더 높은 트래픽의 경우 세 가지 옵션이 있다: (1) VPS 수직 확장, (2) ClickHouse를 전용 서버로 이동(Phoenix 앱이 아닌 데이터베이스가 병목), (3) Plausible Cloud 사용(월 1만 PV부터 $9 시작). ClickHouse 인스턴스가 용량을 결정한다.</p>
-<p><strong>여러 도메인이나 서브도메인은 어떻게 추적하나요?</strong></p>
-<p>각 도메인은 Plausible에서 별도의 &ldquo;사이트&quot;이지만 공유 로그인으로 구성할 수 있다. 서브도메인 추적의 경우 두 가지 옵션이 있다: 세부 보고를 위해 별도로 추적하거나, <code>data-api-host</code> 속성을 사용하여 동일한 사이트 ID로 롤업한다. 서브도메인 간 추적은 Plausible이 쿠키나 세션 저장소를 사용하지 않으므로 특별한 구성 없이 작동한다.</p>
+</span></span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Plausible.Google.Import.start(&#39;your-ga-property-id&#39;, YOUR_API_KEY)&#34;</span>
+</span></span></code></pre></div><p><strong>What happens when my site exceeds my VPS capacity?</strong></p>
+<p>Plausible scales predictably. A <strong>2GB VPS handles ~500K pageviews/month</strong>. A <strong>4GB VPS handles ~2M pageviews/month</strong>. For higher traffic, you have three options: (1) vertically scale your VPS, (2) move ClickHouse to a dedicated server (the database is the bottleneck, not the Phoenix app), or (3) use Plausible Cloud which starts at $9/month for 10K pageviews. The ClickHouse instance is what determines capacity — the Phoenix app itself is lightweight.</p>
+<p><strong>How do I track multiple domains or subdomains?</strong></p>
+<p>Each domain is a separate &ldquo;site&rdquo; in Plausible, but you can organize them with a shared login. For subdomain tracking (e.g., <code>blog.yourdomain.com</code> and <code>app.yourdomain.com</code>), you have two options: track them separately for granular reporting, or roll them up using the <code>data-api-host</code> attribute to report to the same site ID. Cross-subdomain tracking works without special configuration because Plausible does not use cookies or session storage.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
 </span></span><span style="display:flex;"><span>````
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**셀프 호스팅 Plausible은 정말 영구적으로 묣인가요?**
+</span></span><span style="display:flex;"><span>**Is self-hosted Plausible truly free forever?**
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>소프트웨어는 AGPL-3.0 하에 묣 — 라이선스 비용 없이 사용, 수정, 재배포할 수 있다. 비용은 인프라뿐이다: VPS 호스팅, 백업 저장소, SSL 인증서. 월 $6 VPS의 개인 블로그의 경우 이것이 총 비용이다. 인위적인 제한, 기능 게이트, 강제 업그레이드가 없다. 코드와 데이터를 완전히 소유한다.
+</span></span><span style="display:flex;"><span>The software is free under AGPL-3.0 — you can use, modify, and redistribute it without paying license fees. Your costs are infrastructure only: VPS hosting, backup storage, and SSL certificates. For a personal blog on a $6/month VPS, that is your total cost. There are no artificial limits, no feature gates, and no forced upgrades. You own the code and the data completely.
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>## 결론: 감시 없는 분석
+</span></span><span style="display:flex;"><span>## Conclusion: Analytics Without Surveillance
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Plausible Analytics는 인사이트를 위해 프라이버시를 거래할 필요가 없음을 증명한다. **1KB 미만의 추적 스크립트**, **제로 쿠키**, **45배 더 빠른 로드 시간**은 대다수 웹사이트에 대해 기술적으로 Google Analytics보다 우수하다. 셀프 호스팅 옵션은 완전한 데이터 주권을 추가하여 국경 간 데이터 전송의 컴플라이언스 리스크를 제거한다.
+</span></span><span style="display:flex;"><span>Plausible Analytics proves that you do not need to trade privacy for insights. The **&lt;<span style="color:#f92672">1KB</span> <span style="color:#a6e22e">tracking</span> <span style="color:#a6e22e">script</span><span style="color:#960050;background-color:#1e0010">**,</span> <span style="color:#960050;background-color:#1e0010">**</span><span style="color:#a6e22e">zero</span> <span style="color:#a6e22e">cookies</span><span style="color:#960050;background-color:#1e0010">**,</span> <span style="color:#a6e22e">and</span> <span style="color:#960050;background-color:#1e0010">**</span><span style="color:#a6e22e">45x</span> <span style="color:#a6e22e">faster</span> <span style="color:#a6e22e">load</span> <span style="color:#a6e22e">times</span><span style="color:#960050;background-color:#1e0010">**</span> <span style="color:#a6e22e">make</span> <span style="color:#a6e22e">it</span> <span style="color:#a6e22e">technically</span> <span style="color:#a6e22e">superior</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">Google</span> <span style="color:#a6e22e">Analytics</span> <span style="color:#a6e22e">for</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">vast</span> <span style="color:#a6e22e">majority</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">websites</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">The</span> <span style="color:#a6e22e">self-hosted</span> <span style="color:#a6e22e">option</span> <span style="color:#a6e22e">adds</span> <span style="color:#a6e22e">complete</span> <span style="color:#a6e22e">data</span> <span style="color:#a6e22e">sovereignty</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">eliminating</span> <span style="color:#a6e22e">any</span> <span style="color:#a6e22e">compliance</span> <span style="color:#a6e22e">risk</span> <span style="color:#a6e22e">from</span> <span style="color:#a6e22e">cross-border</span> <span style="color:#a6e22e">data</span> <span style="color:#a6e22e">transfers</span><span style="color:#960050;background-color:#1e0010">.</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>일반적인 웹사이트의 경우 GA4에서 Plausible으로 전환하는 것은: 쿠키 동의 배너 제거, Lighthouse 점수 10-20점 향상, 더 빠른 페이지 로드 — 여전히 몇 명이 방문했는지, 어떤 페이지를 봤는지, 어디서 왔는지 알면서 말이다. 이것이 대부분의 결정에 중요한 지표이다.
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">For</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">typical</span> <span style="color:#a6e22e">website</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">switch</span> <span style="color:#a6e22e">from</span> <span style="color:#a6e22e">GA4</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">Plausible</span> <span style="color:#a6e22e">means:</span> <span style="color:#a6e22e">removing</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">cookie</span> <span style="color:#a6e22e">consent</span> <span style="color:#a6e22e">banner</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">improving</span> <span style="color:#a6e22e">Lighthouse</span> <span style="color:#a6e22e">scores</span> <span style="color:#a6e22e">by</span> <span style="color:#a6e22e">10-20</span> <span style="color:#a6e22e">points</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">getting</span> <span style="color:#a6e22e">faster</span> <span style="color:#a6e22e">page</span> <span style="color:#a6e22e">loads</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">while</span> <span style="color:#a6e22e">still</span> <span style="color:#a6e22e">knowing</span> <span style="color:#a6e22e">how</span> <span style="color:#a6e22e">many</span> <span style="color:#a6e22e">people</span> <span style="color:#a6e22e">visited</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">which</span> <span style="color:#a6e22e">pages</span> <span style="color:#a6e22e">they</span> <span style="color:#a6e22e">viewed</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">where</span> <span style="color:#a6e22e">they</span> <span style="color:#a6e22e">came</span> <span style="color:#a6e22e">from</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">Those</span> <span style="color:#a6e22e">are</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">metrics</span> <span style="color:#a6e22e">that</span> <span style="color:#a6e22e">matter</span> <span style="color:#a6e22e">for</span> <span style="color:#a6e22e">most</span> <span style="color:#a6e22e">decisions</span><span style="color:#960050;background-color:#1e0010">.</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>이번 주에 인스턴스를 배포하라. Docker Compose 설정은 5분이 채 걸리지 않고, 추적 스크립트는 한 줄이며, 대시보드는 즉시 데이터를 표시한다. 더 빠른 페이지 로드에 대해 방문자가 감사할 것이다. 컴플라이언스에 대해 법무팀이 감사할 것이다. 제로 임팩트 스크립트에 대해 Core Web Vitals이 감사할 것이다.
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Deploy</span> <span style="color:#a6e22e">your</span> <span style="color:#a6e22e">instance</span> <span style="color:#a6e22e">this</span> <span style="color:#a6e22e">week</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">The</span> <span style="color:#a6e22e">Docker</span> <span style="color:#a6e22e">Compose</span> <span style="color:#a6e22e">setup</span> <span style="color:#a6e22e">takes</span> <span style="color:#a6e22e">under</span> <span style="color:#a6e22e">5</span> <span style="color:#a6e22e">minutes</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">tracking</span> <span style="color:#a6e22e">script</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">single</span> <span style="color:#a6e22e">line</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">dashboard</span> <span style="color:#a6e22e">starts</span> <span style="color:#a6e22e">showing</span> <span style="color:#a6e22e">data</span> <span style="color:#a6e22e">immediately</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">Your</span> <span style="color:#a6e22e">visitors</span> <span style="color:#a6e22e">will</span> <span style="color:#a6e22e">thank</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">for</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">faster</span> <span style="color:#a6e22e">page</span> <span style="color:#a6e22e">loads</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">Your</span> <span style="color:#a6e22e">legal</span> <span style="color:#a6e22e">team</span> <span style="color:#a6e22e">will</span> <span style="color:#a6e22e">thank</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">for</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">compliance</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">Your</span> <span style="color:#a6e22e">Core</span> <span style="color:#a6e22e">Web</span> <span style="color:#a6e22e">Vitals</span> <span style="color:#a6e22e">will</span> <span style="color:#a6e22e">thank</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">for</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">zero-impact</span> <span style="color:#a6e22e">script</span><span style="color:#960050;background-color:#1e0010">.</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**오픈소스 도구 논의를 위한 Telegram 그룹**: [t.me/dibi8ko](https://t.me/dibi8ko)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">**</span><span style="color:#a6e22e">Join</span> <span style="color:#a6e22e">our</span> <span style="color:#a6e22e">Telegram</span> <span style="color:#a6e22e">group</span> <span style="color:#a6e22e">for</span> <span style="color:#a6e22e">open-source</span> <span style="color:#a6e22e">tooling</span> <span style="color:#a6e22e">discussions</span><span style="color:#960050;background-color:#1e0010">**</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">t</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">me</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">dibi8opensource</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">t</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">me</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">dibi8opensource</span><span style="color:#960050;background-color:#1e0010">)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#a6e22e">Recommended</span> <span style="color:#a6e22e">Hosting</span> <span style="color:#960050;background-color:#1e0010">&amp;</span> <span style="color:#a6e22e">Infrastructure</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>## 추천 호스팅 및 인프라
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Before</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">deploy</span> <span style="color:#a6e22e">any</span> <span style="color:#a6e22e">of</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">tools</span> <span style="color:#a6e22e">above</span> <span style="color:#a6e22e">into</span> <span style="color:#a6e22e">production</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">you</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#a6e22e">ll</span> <span style="color:#a6e22e">need</span> <span style="color:#a6e22e">solid</span> <span style="color:#a6e22e">infrastructure</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">Two</span> <span style="color:#a6e22e">options</span> <span style="color:#a6e22e">dibi8</span> <span style="color:#a6e22e">actually</span> <span style="color:#a6e22e">uses</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">recommends:</span> <span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">**[</span><span style="color:#a6e22e">DigitalOcean</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">m</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">do</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">co</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">c</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">eca87ac14ee0</span><span style="color:#960050;background-color:#1e0010">)**</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#a6e22e">200</span> <span style="color:#a6e22e">free</span> <span style="color:#a6e22e">credit</span> <span style="color:#a6e22e">for</span> <span style="color:#a6e22e">60</span> <span style="color:#a6e22e">days</span> <span style="color:#a6e22e">across</span> <span style="color:#a6e22e">14</span><span style="color:#960050;background-color:#1e0010">+</span> <span style="color:#a6e22e">global</span> <span style="color:#a6e22e">regions</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">The</span> <span style="color:#a6e22e">default</span> <span style="color:#a6e22e">option</span> <span style="color:#a6e22e">for</span> <span style="color:#a6e22e">indie</span> <span style="color:#a6e22e">devs</span> <span style="color:#a6e22e">running</span> <span style="color:#a6e22e">open-source</span> <span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">tools</span><span style="color:#960050;background-color:#1e0010">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">**[</span><span style="color:#a6e22e">HTStack</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">my</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">htstack</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">aff</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">php</span><span style="color:#960050;background-color:#1e0010">?</span><span style="color:#a6e22e">aff</span><span style="color:#f92672">=</span><span style="color:#e6db74">27187)**</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">Hong</span> <span style="color:#a6e22e">Kong</span> <span style="color:#a6e22e">VPS</span> <span style="color:#a6e22e">with</span> <span style="color:#a6e22e">low-latency</span> <span style="color:#a6e22e">access</span> <span style="color:#a6e22e">from</span> <span style="color:#a6e22e">mainland</span> <span style="color:#a6e22e">China</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">This</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">same</span> <span style="color:#a6e22e">IDC</span> <span style="color:#a6e22e">that</span> <span style="color:#a6e22e">hosts</span> <span style="color:#a6e22e">dibi8</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">battle-tested</span> <span style="color:#a6e22e">in</span> <span style="color:#a6e22e">production</span><span style="color:#960050;background-color:#1e0010">.</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.
-</span></span><span style="display:flex;"><span>- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">*</span><span style="color:#a6e22e">Affiliate</span> <span style="color:#a6e22e">links</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">they</span> <span style="color:#a6e22e">don</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">t</span> <span style="color:#a6e22e">cost</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">extra</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">they</span> <span style="color:#a6e22e">help</span> <span style="color:#a6e22e">keep</span> <span style="color:#a6e22e">dibi8</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span> <span style="color:#a6e22e">running</span><span style="color:#960050;background-color:#1e0010">.*</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>*제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.*
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#a6e22e">Sources</span> <span style="color:#960050;background-color:#1e0010">&amp;</span> <span style="color:#a6e22e">Further</span> <span style="color:#a6e22e">Reading</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>## 참고 자료 및 추가 읽기
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">Plausible</span> <span style="color:#a6e22e">Analytics</span> <span style="color:#a6e22e">GitHub</span> <span style="color:#a6e22e">Repository</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">github</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">plausible</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">analytics</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">Official</span> <span style="color:#a6e22e">source</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">21</span><span style="color:#960050;background-color:#1e0010">,</span><span style="color:#a6e22e">000</span><span style="color:#960050;background-color:#1e0010">+</span> <span style="color:#a6e22e">stars</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">Plausible</span> <span style="color:#a6e22e">Documentation</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">plausible</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">io</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">docs</span><span style="color:#960050;background-color:#1e0010">/)</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">Official</span> <span style="color:#a6e22e">product</span> <span style="color:#a6e22e">documentation</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">Plausible</span> <span style="color:#a6e22e">Self-Hosting</span> <span style="color:#a6e22e">Guide</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">plausible</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">io</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">docs</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">self-hosting</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">Official</span> <span style="color:#a6e22e">self-hosting</span> <span style="color:#a6e22e">docs</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">Plausible</span> <span style="color:#a6e22e">Stats</span> <span style="color:#a6e22e">API</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">plausible</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">io</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">docs</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">stats-api</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">REST</span> <span style="color:#a6e22e">API</span> <span style="color:#a6e22e">reference</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">Plausible</span> <span style="color:#a6e22e">v3</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">0</span> <span style="color:#a6e22e">Release</span> <span style="color:#a6e22e">Notes</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">github</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">plausible</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">analytics</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">releases</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">February</span> <span style="color:#a6e22e">2026</span> <span style="color:#a6e22e">release</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">ClickHouse</span> <span style="color:#a6e22e">Documentation</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">clickhouse</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">docs</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">Analytical</span> <span style="color:#a6e22e">database</span> <span style="color:#a6e22e">powering</span> <span style="color:#a6e22e">Plausible</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">MaxMind</span> <span style="color:#a6e22e">GeoLite2</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">dev</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">maxmind</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">geoip</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">geolite2-free-geolocation-data</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">Free</span> <span style="color:#a6e22e">GeoIP</span> <span style="color:#a6e22e">database</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">EDPB</span> <span style="color:#a6e22e">Guidelines</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">Consent</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">edpb</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">europa</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">eu</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">our-work-tools</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">general-guidance</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">guidelines</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">consent_en</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">Legal</span> <span style="color:#a6e22e">basis</span> <span style="color:#a6e22e">for</span> <span style="color:#a6e22e">cookie-free</span> <span style="color:#a6e22e">analytics</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">-</span> <span style="color:#960050;background-color:#1e0010">[</span><span style="color:#a6e22e">DigitalOcean</span> <span style="color:#a6e22e">VPS</span> <span style="color:#a6e22e">Setup</span><span style="color:#960050;background-color:#1e0010">](</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">m</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">do</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">co</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">c</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">eca87ac14ee0</span><span style="color:#960050;background-color:#1e0010">)</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">VPS</span> <span style="color:#a6e22e">hosting</span> <span style="color:#a6e22e">for</span> <span style="color:#a6e22e">self-hosted</span> <span style="color:#a6e22e">deployment</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- [Plausible Analytics GitHub 저장소](https://github.com/plausible/analytics) — 공식 소스, 21,000+ 스타
-</span></span><span style="display:flex;"><span>- [Plausible 문서](https://plausible.io/docs/) — 공식 제품 문서
-</span></span><span style="display:flex;"><span>- [Plausible 셀프 호스팅 가이드](https://plausible.io/docs/self-hosting) — 공식 셀프 호스팅 문서
-</span></span><span style="display:flex;"><span>- [Plausible Stats API](https://plausible.io/docs/stats-api) — REST API 참조
-</span></span><span style="display:flex;"><span>- [Plausible v3.0 릴리스 노트](https://github.com/plausible/analytics/releases) — 2026년 2월 릴리스
-</span></span><span style="display:flex;"><span>- [ClickHouse 문서](https://clickhouse.com/docs) — Plausible을 구동하는 분석 데이터베이스
-</span></span><span style="display:flex;"><span>- [MaxMind GeoLite2](https://dev.maxmind.com/geoip/geolite2-free-geolocation-data) — 묣 GeoIP 데이터베이스
-</span></span><span style="display:flex;"><span>- [EDPB 동의 가이드라인](https://edpb.europa.eu/our-work-tools/general-guidance/guidelines/consent_en) — 쿠키 없는 분석의 법적 기초
-</span></span><span style="display:flex;"><span>- [DigitalOcean VPS 설정](https://m.do.co/c/eca87ac14ee0) — 셀프 호스팅 배포용 VPS 호스팅
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">*</span> <span style="color:#960050;background-color:#1e0010">*</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>* * *
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>*본 문서에는 DigitalOcean의 제휴 링크가 포함되어 있습니다. 이 링크를 통해 VPS 서비스를 구매할 경우 dibi8.com에 추가 비용 없이 커미션이 지급될 수 있습니다. 모든 추천은 실제 테스트와 실제 배포 경험에 기반합니다.*
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">*</span><span style="color:#a6e22e">This</span> <span style="color:#a6e22e">article</span> <span style="color:#a6e22e">contains</span> <span style="color:#a6e22e">an</span> <span style="color:#a6e22e">affiliate</span> <span style="color:#a6e22e">link</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">DigitalOcean</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">If</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">purchase</span> <span style="color:#a6e22e">VPS</span> <span style="color:#a6e22e">services</span> <span style="color:#a6e22e">through</span> <span style="color:#a6e22e">this</span> <span style="color:#a6e22e">link</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">dibi8</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span> <span style="color:#a6e22e">may</span> <span style="color:#a6e22e">receive</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">commission</span> <span style="color:#a6e22e">at</span> <span style="color:#a6e22e">no</span> <span style="color:#a6e22e">additional</span> <span style="color:#a6e22e">cost</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">you</span><span style="color:#960050;background-color:#1e0010">.</span> <span style="color:#a6e22e">All</span> <span style="color:#a6e22e">recommendations</span> <span style="color:#a6e22e">are</span> <span style="color:#a6e22e">based</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">hands-on</span> <span style="color:#a6e22e">testing</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">real</span> <span style="color:#a6e22e">deployment</span> <span style="color:#a6e22e">experience</span><span style="color:#960050;background-color:#1e0010">.*</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  &#34;@context&#34;: &#34;https://schema.org&#34;,
-</span></span><span style="display:flex;"><span>  &#34;@type&#34;: &#34;Article&#34;,
-</span></span><span style="display:flex;"><span>  &#34;headline&#34;: &#34;Plausible Analytics: Google Analytics보다 45배 빠른 프라이버시 우선 대안 — 2026년 셀프 호스팅 설정&#34;,
-</span></span><span style="display:flex;"><span>  &#34;datePublished&#34;: &#34;2026-05-19&#34;,
-</span></span><span style="display:flex;"><span>  &#34;dateModified&#34;: &#34;2026-05-19&#34;,
-</span></span><span style="display:flex;"><span>  &#34;author&#34;: {
-</span></span><span style="display:flex;"><span>    &#34;@type&#34;: &#34;Organization&#34;,
-</span></span><span style="display:flex;"><span>    &#34;name&#34;: &#34;Dibi8&#34;
-</span></span><span style="display:flex;"><span>  },
-</span></span><span style="display:flex;"><span>  &#34;publisher&#34;: {
-</span></span><span style="display:flex;"><span>    &#34;@type&#34;: &#34;Organization&#34;,
-</span></span><span style="display:flex;"><span>    &#34;name&#34;: &#34;Dibi8&#34;,
-</span></span><span style="display:flex;"><span>    &#34;logo&#34;: {
-</span></span><span style="display:flex;"><span>      &#34;@type&#34;: &#34;ImageObject&#34;,
-</span></span><span style="display:flex;"><span>      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  },
-</span></span><span style="display:flex;"><span>  &#34;mainEntityOfPage&#34;: {
-</span></span><span style="display:flex;"><span>    &#34;@type&#34;: &#34;WebPage&#34;,
-</span></span><span style="display:flex;"><span>    &#34;@id&#34;: &#34;https://dibi8.com/kr/resources/plausible-analytics-privacy-google&#34;
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&#34;@</span><span style="color:#a6e22e">context</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">schema</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">org</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&#34;@</span><span style="color:#a6e22e">type</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">Article</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">headline</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">Plausible</span> <span style="color:#a6e22e">Analytics:</span> <span style="color:#a6e22e">The</span> <span style="color:#a6e22e">Privacy-First</span> <span style="color:#a6e22e">Google</span> <span style="color:#a6e22e">Analytics</span> <span style="color:#a6e22e">Alternative</span> <span style="color:#a6e22e">Loading</span> <span style="color:#a6e22e">45x</span> <span style="color:#a6e22e">Faster</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">2026</span> <span style="color:#a6e22e">Self-Hosted</span> <span style="color:#a6e22e">Setup</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">datePublished</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">2026-05-19</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">dateModified</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">2026-05-19</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">author</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&#34;@</span><span style="color:#a6e22e">type</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">Organization</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">name</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">Dibi8</span><span style="color:#960050;background-color:#1e0010">&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">},</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">publisher</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&#34;@</span><span style="color:#a6e22e">type</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">Organization</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">name</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">Dibi8</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">logo</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">&#34;@</span><span style="color:#a6e22e">type</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">ImageObject</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">url</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">dibi8</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">logo</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">png</span><span style="color:#960050;background-color:#1e0010">&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">},</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">mainEntityOfPage</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&#34;@</span><span style="color:#a6e22e">type</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">WebPage</span><span style="color:#960050;background-color:#1e0010">&#34;,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#960050;background-color:#1e0010">&#34;@</span><span style="color:#a6e22e">id</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">:</span> <span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">https:</span><span style="color:#960050;background-color:#1e0010">//</span><span style="color:#a6e22e">dibi8</span><span style="color:#960050;background-color:#1e0010">.</span><span style="color:#a6e22e">com</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">resources</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#a6e22e">plausible-analytics-privacy-google</span><span style="color:#960050;background-color:#1e0010">&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">&lt;/</span><span style="color:#a6e22e">script</span>&gt;
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>* * *
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>## Related Articles
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](plausible-analytics-privacy-google)
-</span></span><span style="display:flex;"><span>- [paperclip-open-source-agent-workplace-managing-ai-agents-at-scale](plausible-analytics-privacy-google)
-</span></span><span style="display:flex;"><span>- [open-notebook-open-source-notebooklm-alternative-15-ai-providers](plausible-analytics-privacy-google)
-</span></span><span style="display:flex;"><span>- [apple-container](plausible-analytics-privacy-google)
-</span></span><span style="display:flex;"><span>- [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](plausible-analytics-privacy-google)
+</span></span><span style="display:flex;"><span>- [2026-06-15-trending-ai-agents](plausible-analytics-privacy-google)
+</span></span><span style="display:flex;"><span>- [2026-06-22-trending-ai-agents](plausible-analytics-privacy-google)
+</span></span><span style="display:flex;"><span>- [prompts-chat](plausible-analytics-privacy-google)
+</span></span><span style="display:flex;"><span>- [paddleocr-81k-star-ocr-engine](plausible-analytics-privacy-google)
+</span></span><span style="display:flex;"><span>- [markitdown-universal-file-to-markdown-converter](plausible-analytics-privacy-google)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>* * *
 </span></span><span style="display:flex;"><span>
@@ -1162,6 +933,81 @@ aliases:</p>
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

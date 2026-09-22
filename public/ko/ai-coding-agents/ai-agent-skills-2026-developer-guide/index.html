@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "{\u003c/* resource-info */\u003e}\nMeta Description: 2026년 가장 핫한 AI Agent Skills 생태계를 심층 분석합니다. mattpocock/skills부터 rohitg00/agentmemory까지, 클로드 코드 스킬의 설치와 사용법, 나만의 스킬 작성법을 단계별로 알려드립니다.\n발행일: 2026년 5월 16일 읽는 시간: 12분 키워드: AI 에이전트 스킬, 클로드 코드 스킬, Claude Code skills, mattpocock 스킬 튜토리얼, AI 코딩 에이전트 스킬팩, 커서 스킬 설치, 2026 AI 개발 도구 트렌드, 에이전트 워크플로우\nTL;DR 핵심 요약 2026년 5월, GitHub Trending은 2주 연속 AI Agent Skills가 점령했습니다. mattpocock/skills는 75,000+ Star로 1위를 지키고 있고, obra/superpowers는 188,000 Star로 가장 큰 커뮤니티를 형성했으며, rohitg00/agentmemory는 AI 코딩 에이전트의 가장 큰 고통인 기억 상실 문제를 해결했습니다. 스킬은 프롬프트가 아닙니다 — 반복 가능한 구조화된 워크플로우이며, 개발자와 AI의 협업 방식을 재정의하고 있습니다.\n1. AI 에이전트 스킬이란? 왜 “고급 프롬프트\"가 아닌가 스킬을 “더 길게 쓴 프롬프트\"로 이해하고 있다면, 2026년 AI 개발 도구 분야에서 가장 중요한 패러다임 전환을 놓치고 있는 것입니다.\n스킬과 프롬프트의 본질적 차이:\n구분 프롬프트 (Prompt) 스킬 (Skill) 생명주기 단일 세션, 대화 종료 시 소멸 영구 파일, 세션 간 재사용 구조화 수준 자유 텍스트, 모델의 이해에 의존 표준화된 템플릿, 단계별 워크플로우 정의 팀 협업 공유 불가, 각자 재작성 버전 관리 가능, 팀 표준화 트리거 방식 매번 수동 입력 의도 자동 인식, 매칭 실행 출력 일관성 모델 버전과 컨텍스트에 따라 변동 정의된 프로세스와 출력 형식 강제 요약하자면: 프롬프트는 AI에게 “무엇을” 할지 말하고, 스킬은 “어떻게” 할지를 알려줍니다 — 그리고 매번 똑같은 방식으로 합니다.\n클로드 코드(Claude Code)는 2026년 초 ```.claude/skills/```` 디렉토리 지원을 공식화했고, 커서(Cursor), 코덱스 CLI(Codex CLI), 윈드서프(Windsurf)가 잇따라 도입했습니다. 스킬은 이제 AI 프로그래밍 에이전트의 표준 설정 방식이 되었습니다.\n2. 2026년 5월 GitHub Trending TOP 3 스킬 저장소 심층 분석 2.1 mattpocock/skills — 실전 엔지니어의 스킬 라이브러리 (75,133 Star, 이번 주 +3,867) 타입스크립트 교육 분야에서 가장 신뢰받는 이름 중 하나인 Matt Pocock이 매일 사용하는 21개의 클로드 코드 스킬을 오픈소스로 공개했습니다. 이것은 데모 코드가 아니라, 실제 업무에서 돌아가는 프로덕션급 설정입니다.\n핵심 스킬 분류:\n기획 및 설계\nwrite-a-prd — 템플릿 채우기가 아닌, 개발자와의 인터랙티브 인터뷰를 통해 기존 코드베이스를 탐색하고 모듈 경계를 설계하여 완성된 PRD를 깃허브 이슈로 자동 제출 to-issues — PRD를 독립적으로 수행 가능한 깃허브 이슈로 분해 (범위, 수락 기준, 의존성 식별 포함) grill-me — 구현 전 구조화된 질문을 통해 설계 가정, 엣지 케이스, 인터페이스 선택의 결함을 노출 design-an-interface — 구현 전 API 사용 패턴, 인체공학, 제약 조건 탐색 개발\ntdd — 가장 기술적으로 독단적이면서도 가치 높은 스킬: 에이전트 레벨에서 Red-Green-Refactor 사이클을 강제. 실패하는 테스트를 먼저 작성하고, 올바른 이유로 실패하는지 확인하고, 최소 구현을 작성하고, 리팩토링. 에이전트는 실패 테스트 단계를 건너뛸 수 없습니다. triage-issue — 모호한 버그 리포트를 재현 → 최소화 → 가설 → 계측 → 수정 → 회귀 테스트의 구조화된 조사를 통해 실행 가능한 보고서로 변환 improve-codebase-architecture — 깊은 모듈, 얕은 인터페이스, 단순화 가능한 패턴 식별 도구 및 안전\nsetup-pre-commit — Husky, lint-staged, Prettier 일괄 구성 git-guardrails-claude-code — 시니어 엔지니어가 주니어 기여자에게 적용하는 것과 동일한 Git 작업 제약을 에이전트에 추가 설치 방법 (권장):\n# 필요한 스킬만 개별 설치 npx skills@latest add mattpocock/skills/write-a-prd npx skills@latest add mattpocock/skills/tdd npx skills@latest add mattpocock/skills/git-guardrails-claude-code 우선적으로 주목해야 할 이유: Matt Pocock은 AI 인플루언서가 아닙니다. 그의 타입스크립트 교육 콘텐츠는 수십만 개발자에게 검증되었습니다. 이 스킬들은 이론적 추론이 아닌, 그가 실제로 경험한 에이전트 실패 모드를 해결합니다.\n2.2 obra/superpowers — 커뮤니티 기반 최대 에이전트 워크플로우 스킬셋 (188,714 Star) mattpocock/skills가 개인 실전 선별품이라면, obra/superpowers는 커뮤니티가 함께 다듬은 스킬 공동체입니다.\n더 넓은 커버리지:\n브레인스토밍과 창의적 발산 병렬 에이전트 스케줄링 및 결과 집계 체계적인 디버깅 방법론 테스트 주도 개발(TDD) 완전 사이클 코드 리뷰 및 리팩토링 계획 핵심 가치: 구체적인 스킬 정의를 직접 도입하지 않더라도, 워크플로우 구조 자체가 팀만의 에이전트 지침서 작성의 참조 모델이 됩니다. 188K Star는 지속적인 개발자 관심을 반영합니다.\n2.3 rohitg00/agentmemory — AI 코딩 에이전트의 기억 상실증 해결 (6,513 Star, Apache-2.0) 2026년 5월 Trending에서 가장 과소평가된 저장소입니다. 클로드 코드, 커서, 코덱스 CLI를 써본 모든 사람이 겪는 공통의 고통: 새 세션을 시작하면 에이전트가 이전의 모든 것을 잊어버린다.\n4단계 기억 통합 파이프라인:\n작업 기억(Working Memory) — 현재 세션 컨텍스트 단기 기억(Short-Term Memory) — 최근 세션의 핵심 결정 장기 기억(Long-Term Memory) — 프로젝트 간 패턴, 선호도, 아키텍처 제약 절차 기억(Procedural Memory) — 스킬 파일로 코드베이스에 고화된 워크플로우 기술 하이라이트:\n50+ MCP 도구 통합 15+ 에이전트 클라이언트 지원 (클로드 코드, 커서, 코덱스, 클린 등) npm 및 Docker 이중 설치 경로 로컬 저장 모델, 클라우드 의존성 없음 설치:\nnpm install agentmemory # 또는 docker pull rohitg00/agentmemory 왜 이것이 세 가지 중 가장 생산성에 영향을 미칠 수 있는가: 스킬은 에이전트가 더 잘 일하게 합니다. agentmemory는 에이전트가 당신이 무엇을 말했는지 기억하게 합니다. 전자는 효율 문제, 후자는 사용 가능성 문제입니다.\n3. 실전: mattpocock/skills로 프로젝트 시작하기 3.1 환경 준비 클로드 코드(또는 커서/코덱스 CLI)가 설치되어 있는지 확인: `````bash\n클로드 코드 설치 curl -fsSL https://claude.ai/install.sh | bash\n설치 확인 claude –version\n### 3.2 스킬 설치 `````bash # 프로젝트 디렉토리로 이동 cd your-project # 개별 스킬 설치 (필요한 것만 권장) npx skills@latest add mattpocock/skills/tdd npx skills@latest add mattpocock/skills/to-prd npx skills@latest add mattpocock/skills/diagnose # 설치 확인 ls .claude/skills/ 클로드 코드는 다음 실행 시 .claude/skills/ 디렉토리의 모든 스킬 파일을 자동으로 발견합니다.\n3.3 스킬 호출 특별한 문법을 기억할 필요 없이, 평소처럼 대화하듯 요청하세요: 시나리오 1: 새 기능 개발 시작 (tdd 스킬 트리거)\n프로젝트에 사용자 인증 모듈을 추가해야 해. TDD 방식으로 구현해줘. 클로드 코드가 자동으로 tdd 스킬을 매칭하여 실행: 1. 기존 코드베이스 구조 분석 2. 첫 번째 실패 테스트 작성 3. 테스트 실행하여 실패 이유 확인 4. 최소 구현 작성 5. 테스트 통과 확인 6. 코드 리팩토링\n시나리오 2: 모호한 버그 리포트 처리 (triage 스킬 트리거)\n사용자가 \"가끔 저장 버튼이 안 먹힌다\"고 하는데, 조사해줘. triage 스킬이 구조화된 조사를 시작: 1. 관련 코드 경로 검색 2. 문제 재현 시도 3. 근본 원인 식별 4. 발견 사항 문서화 5. 수정 제안 또는 자동 수정\n시나리오 3: 새 API 설계 (design-an-interface 스킬 트리거)\n파일 업로드 인터페이스를 설계하려고 해. 중단점 재개와 진도 알림을 지원해야 해. 4. 고급: 나만의 스킬 작성하기 4.1 스킬 파일의 기본 해부학 각 스킬은 표준 마크다운 파일로, .claude/skills/{skill-name}/SKILL.md에 배치됩니다: `````markdown\n코드 리뷰 스킬 설명 성능, 보안, 유지보수성, 스타일 일관성을 체계적으로 검토하는 풀 리퀘스트 리뷰.\n트리거 조건 “이 PR 리뷰해줘” “이 코드에 문제가 있는지 봐줘” “코드 리뷰 부탁해” 워크플로우 단계 1: 변경 범위 이해 PR 설명과 관련 이슈 읽기 수정 파일 목록 식별 핵심 변경과 부수적 조정 구분 단계 2: 아키텍처 리뷰 변경이 기존 아키텍처 패턴과 일치하는가 새로운 의존성이 적절한가 모듈 경계가 명확한가 단계 3: 구현 세부사항 리뷰 경계 조건 처리 오류 처리 완전성 동시성 안전성 성능 영향 평가 단계 4: 구조화된 보고서 출력 ## 리뷰 결과 ### 심각한 문제 (반드시 수정) 1. ... ### 개선 권장 (수정 권장) 1. ... ### 긍정적 피드백 (유지) 1. ... 제약 가독성에 영향을 주지 않는 한 스타일 문제는 제안하지 않음 성능 미세 최적화보다 정확성과 보안을 우선 모든 문제는 구체적인 라인 번호를 참조해야 함 ### 4.2 고품질 스킬 설계 원칙 **Matt Pocock의 실천에서 추출:** 1. **트리거 단어를 설명에 포함** — \"Use when...\"으로 시작하여 에이전트가 언제 사용할지 알게 함 2. **SKILL.md는 100줄 이내** — 초과 시 스킬 범위가 넓음. 파일 분할 3. **시간 민감 정보 제외** — \"현재 버전은 X\" 같은 내용 금물 4. **용어 일관성** — 동일한 어휘 체계 전체 사용 5. **구체적 예시 포함** — 추상 원칙보다 하나의 실행 가능한 예시 6. **참조 깊이는 1단계** — 다른 스킬을 연쇄 호출하지 않음 ### 4.3 write-a-skill 스킬로 스킬 만들기 메타 스킬 — 스킬을 만드는 스킬: `````bash npx skills@latest add mattpocock/skills/write-a-skill 클로드 코드에서: ````` 데이터베이스 모델 수정 시 자동으로 마이그레이션 스크립트를 생성하는 스킬이 필요해. 스키마 변경 감지, 롤백 가능한 마이그레이션, 테스트 데이터 시딩을 포함해야 해.\n````write-a-skill````이 다음을 안내: 1. 목적과 트리거 정의 2. 워크플로우 단계 구조화 3. 동반 스크립트 결정 4. 단일/다중 파일 구조 선택 5. 검토 체크리스트 실행 * * * ## 5. 스킬 vs MCP vs 프롬프트: 세 가지 요소의 협력 2026년 AI 개발 도구 스택에서 이 세 가지 개념이 가장 혼동됩니다. | 구성 요소 | 비유 | 범위 | 전통적 개발 비유 | |----------|------|------|----------------| | **프롬프트** | 임시 쪽지 | 단일 대화 | 구두 커뮤니케이션 | | **스킬** | 표준 작업 절차(SOP) | 프로젝트/팀 | 내부 문서 | | **MCP** | API 커넥터 | 교차 애플리케이션 | SDK/라이브러리 | **실제 협력 시나리오:** 웹 애플리케이션 개발 중: 1. **MCP**가 깃허브, PostgreSQL, 센트리를 연결하여 에이전트가 이슈 읽기, DB 쿼리, 오류 로그 확인 가능 2. **스킬**이 팀의 TDD 프로세스, 코드 리뷰 기준, 릴리즈 체크리스트를 정의 3. **프롬프트**가 \"이 함수 이름을 userAuthentication으로 바꿔줘\" 같은 세션 내 구체적 지시 처리 대체 관계가 아닌 보완 관계입니다. MCP는 능력 경계를 확장하고, 스킬은 실행 방식을 표준화하며, 프롬프트는 즉각적 의도를 처리합니다. * * * ## 6. 2026년 스킬 생태계의 미래 방향 ### 6.1 상용화 가속 explainx.ai 등의 플랫폼이 스킬 배포 및 수익화 기능을 출시했습니다: - 유료 스킬 출판 (크롬 확장 프로그램 스토어와 유사) - 설치량 또는 호출량 기반 과금 - 특정 기술 스택(Next.js, Django, Rust) 전문 스킬팩 ### 6.2 개인에서 기업으로 초기 스킬은 개인 ````.claude```` 디렉토리의 공유였으나, 2026년 Q2부터: - 팀 레벨 스킬 레지스트리 - CI/CD 통합 (PR마다 자동 코드 리뷰 스킬 실행) - 규정 준수 및 감사 (금융, 의료 분야 커스텀 제약 스킬) ### 6.3 IDE와의 깊은 통합 - **커서 컴포저** — 시각적 스킬 마켓플레이스와 실시간 미리보기 - **윈드서프 캐스케이드** — 스킬 체이닝과 그래픽 워크플로우 에디터 - **VS 코드 확장** — 사이드바에서 탐색 가능한 서드파티 레지스트리 * * * ## 7. 자주 묻는 질문 (FAQ) **Q: 스킬은 클로드 코드에서만 작동하나요?** A: 아닙니다. ````.claude/skills/````는 클로드 코드의 네이티브 경로지만, mattpocock/skills 등은 커서, 코덱스 CLI, 클린, 윈드서프 등 다양한 에이전트용 설치를 지원합니다. 핵심 형식은 표준 마크다운으로 툴 간 호환됩니다. **Q: 스킬 설치가 기존 프로젝트에 영향을 주나요?** A: 전혀 없습니다. 스킬은 ````.claude/skills/```` 디렉토리에 있는 순수 마크다운 파일입니다. 소스 코드나 의존성을 수정하지 않습니다. 삭제는 해당 폴더를 제거하면 됩니다. **Q: 스킬과 커스텀 GPT의 차이는?** A: 커스텀 GPT는 ChatGPT 대화를 감싸는 주로 톤과 지식 범위에 영향을 줍니다. 스킬은 코드 생성, 파일 조작, 명령 실행 프로세스를 직접 제어하는 절차적 워크플로우를 정의합니다. **Q: mattpocock/skills를 쓰려면 타입스크립트 프로젝트여야 하나요?** A: 아닙니다. Matt가 타입스크립트 전문가지만, ````tdd````, ````write-a-prd````, ````diagnose```` 등은 언어에 무관합니다. 어떤 기술 스택에도 적용됩니다. **Q: agentmemory와 스킬은 충돌하나요?** A: 전혀 그렇지 않습니다. agentmemory는 \"에이전트가 컨텍스트를 기억\"하는 문제를, 스킬은 \"에이전트가 규범적으로 일\"하는 문제를 해결합니다. 함께 쓸수록 효과가 좋습니다. **Q: 2026년 가장 먼저 배워야 할 스킬은?** A: 팀장이시라면 ````write-a-prd````와 ````to-issues````를. 개발자라면 ````tdd````와 ````diagnose````를. 보안 민감 프로젝트라면 ````git-guardrails-claude-code```를 우선적으로 고려하세요. * * * ## 결론 2026년 5월, GitHub Trending에서 Agent Skills의 지배는 일시적 유행이 아닙니다. 이는 AI 코딩 에이전트가 실험적 보조 도구에서 프로덕션급 엔지니어링 도구로 전환하는 것을 의미합니다. 스킬을 사용하는 개발자와 그렇지 않은 개발자의 차이는 대화를 나누는 것과 프로토콜을 따르는 것의 차이입니다. 대화는 탐색에 효율적이고, 프로토콜은 규모에 필요합니다. mattpocock/skills은 프로덕션 검증된 규율을, obra/superpowers는 커뮤니티 검증된 폭을, agentmemory는 둘 모두를 실제 업무일에 사용할 수 있게 하는 지속성을 제공합니다. 이 셋이 2026년 AI 개발자의 핵심 스택을 정의합니다. **오늘의 실천:** 이 가이드에서 소개한 스킬 하나를 골라, 주요 프로젝트에 설치하고 다음 기능 개발이나 버그 수정에 사용해 보세요. \"AI에게 물어보는 것\"에서 \"훈련된 협업자에게 위임하는 것\"으로의 전환을 직접 경험하게 될 것입니다. * * * **관련 자료:** - [Claude Code 공식 문서 — 에이전트 스킬](https://docs.anthropic.com/en/docs/claude-code/skills) - [mattpocock/skills 깃허브 저장소](https://github.com/mattpocock/skills) - [obra/superpowers 깃허브 저장소](https://github.com/obra/superpowers) - [rohitg00/agentmemory 깃허브 저장소](https://github.com/rohitg00/agentmemory) - [Agent Skills 완전 입문 가이드 (explainx.ai)](https://explainx.ai/blog/what-are-agent-skills-complete-guide) *스타 수와 저장소 통계는 2026년 5월 13일 기준 깃허브 API 데이터입니다. 모든 저장소는 최근 커밋으로 활발히 유지보수되고 있습니다.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"2026년 AI 에이전트 스킬 완벽 가이드: 클로드 코드 실전 튜토리얼과 핫한 저장소 소개\", \"datePublished\": \"2026-05-16\", \"dateModified\": \"2026-05-16\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/ai-agent-skills-2026-developer-guide\" } } ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
-  "wordCount" : "1851",
+  "articleBody": "{\u003c/* resource-info */\u003e}\nMeta Description: Master AI Agent Skills in 2026 with our comprehensive guide. Learn how mattpocock/skills, obra/superpowers, and agentmemory are transforming Claude Code, Cursor, and Codex CLI workflows. Step-by-step installation, usage, and custom skill authoring included.\nPublished: May 16, 2026 Reading Time: 12 minutes Keywords: AI agent skills, Claude Code skills tutorial, mattpocock skills guide, agent workflow 2026, AI coding agent skills, how to write agent skills, Cursor skills vs prompts, MCP vs skills, production AI agent workflows\nTL;DR: Why Agent Skills Are the Defining Developer Tool of 2026 For two consecutive weeks in May 2026, GitHub Trending has been dominated by a single concept: AI Agent Skills. mattpocock/skills sits at #1 with 75,000+ stars. obra/superpowers commands the largest community at 188,000 stars. And rohitg00/agentmemory solves the memory amnesia that plagues every AI coding agent.\nSkills are not prompts. They are reusable, structured workflow definitions that turn inconsistent AI assistance into predictable, team-scalable engineering processes. If you are not using them yet, you are working with one hand tied behind your back.\nWhat Are AI Agent Skills, Really? The fastest way to understand Skills is to understand what they fix. Every developer who has used Claude Code, Cursor, or Codex CLI has experienced these failure modes: - The Agent does something completely different from what you wanted — because your instructions were interpreted through the model’s general training, not your specific context.\nThe Agent forgets project conventions between sessions — because each conversation starts from a blank slate. The Agent skips critical steps — like writing tests before implementation, or reviewing the existing codebase before proposing changes. Different team members get different results from the same request — because each person phrases their prompts differently. Skills solve all four problems by replacing improvisation with procedure.\nSkills vs Prompts vs MCP: The Three-Layer Stack | Layer | Analogy | Scope | What It Does | |\n|\n|\n|\n| | Prompts | Conversation | Single session | Expresses immediate intent | | Skills | Standard Operating Procedure | Project/team | Defines how work gets done | | MCP | API Integration | Cross-application | Connects agents to external systems |\nA prompt says: “Build a login form.” A Skill says: “When asked to build authentication, first review existing user models, then write a failing test for the auth flow, then implement the minimal passing code, then add guardrails against SQL injection, then document the API contract.”\nMCP lets the Agent query your production database to check existing schema. Skills tell it what to do with that information. They are complementary, not competitive.\nThe Three GitHub Trending Repositories You Should Inspect mattpocock/skills: Real-Engineer Skills for Daily Use (75,133 stars, +3,867 this week) Matt Pocock — the educator behind Total TypeScript and one of the most trusted voices in modern JavaScript — open-sourced his entire ```.claude```` directory. These are not tutorial examples. These are the exact workflows he runs daily.\nThe 21 skills are organized into four domains:\nPlanning \u0026 Design\nwrite-a-prd — Conducts an interactive discovery session, explores your codebase, designs module boundaries, and produces a complete PRD filed as a GitHub Issue. Not a template fill-in exercise. A design session. to-issues — Decomposes any PRD, spec, or plan into independently actionable GitHub issues with acceptance criteria and dependency mapping. grill-me — Structured interrogation of your design decisions before a single line of code is written. Surfaces assumptions, edge cases, and interface risks. design-an-interface — API ergonomics and constraint exploration before implementation. Development\ntdd — The most technically opinionated skill. Enforces Red-Green-Refactor at the agent level. The agent cannot skip writing the failing test first. For teams with existing test discipline, this is the highest-ROI skill in the entire collection. triage — Transforms vague bug reports into structured root-cause analyses through a state-machine investigation: reproduce → minimize → hypothesize → instrument → fix → regression-test. improve-codebase-architecture — Identifies deep modules, shallow interfaces, and simplification opportunities informed by your domain language and ADRs. Tooling \u0026 Safety\nsetup-pre-commit — Configures Husky, lint-staged, and Prettier with one command. git-guardrails-claude-code — Blocks dangerous git operations that would break CI, rewrite shared branch history, or delete work. Applies the same constraints a senior engineer places on a junior contributor. Productivity\ncaveman — Ultra-compressed communication mode that cuts token usage ~75% while preserving technical accuracy. handoff — Compacts the current conversation into a structured handoff document so another agent — or another human — can continue the work seamlessly. Installation:\n# Install individual skills on demand (recommended) npx skills@latest add mattpocock/skills/tdd npx skills@latest add mattpocock/skills/write-a-prd npx skills@latest add mattpocock/skills/git-guardrails-claude-code Claude Code auto-discovers .claude/skills/ on next launch. Install only what your current project needs.\nobra/superpowers: The Largest Community-Driven Skill Collection (188,714 total stars) Where mattpocock/skills is a curated personal toolkit, obra/superpowers is a community commons. With nearly 189K stars, it represents the most battle-tested collective knowledge about agent workflows.\nWhat makes it distinct:\nBroader coverage — From brainstorming and parallel agent dispatch to systematic debugging and full TDD lifecycle. Composable architecture — Skills are designed to chain together. The brainstorming skill feeds into the planning skill, which feeds into the development skills. Community validation — High star counts correlate with sustained developer attention, not just launch-day buzz. Even if you do not adopt the specific skill definitions, the structural patterns — how to decompose a workflow, how to define decision gates, how to specify output formats — are transferable to your own custom skills.\nrohitg00/agentmemory: Solving the Amnesia Problem (6,513 stars, Apache-2.0) Here is the most underappreciated repository on the May 2026 Trending list. Every AI coding agent loses context when you start a new session. That architectural decision you explained three hours ago? Gone. The database schema you walked it through yesterday? Forgotten. The naming convention your team agreed on? Vanished.\nagentmemory provides a four-tier memory consolidation pipeline:\nWorking Memory — Current session context Short-Term Memory — Key decisions from recent sessions Long-Term Memory — Cross-project patterns, preferences, and architectural constraints Procedural Memory — Workflows codified as Skill files within the repository Technical specifications:\n50+ MCP tool integrations Support for 15+ agent clients (Claude Code, Cursor, Codex CLI, Cline, and more) Dual install paths: npm and Docker Local-first storage model — no cloud dependency, no data exfiltration risk Installation:\nnpm install agentmemory # or docker pull rohitg00/agentmemory Why this might be the highest-productivity impact of the three: Skills make agents work better. agentmemory makes agents work at all across sessions. If your agent cannot remember what you told it yesterday, no amount of workflow sophistication matters.\nHands-On: Setting Up mattpocock/skills in Your Project Step 1 — Prerequisites Ensure Claude Code is installed: `````bash curl -fsSL https://claude.ai/install.sh | bash claude –version\nThe same process works for Cursor and Codex CLI with path variations (````.cursor/skills/````, ````.codex/skills/````). ### Step 2 — Install Skills `````bash cd your-project-root # Install only the skills relevant to your workflow npx skills@latest add mattpocock/skills/tdd npx skills@latest add mattpocock/skills/to-prd npx skills@latest add mattpocock/skills/diagnose # Verify ls .claude/skills/ Step 3 — Natural Invocation No special syntax required. Describe what you need in plain language, and the agent matches your intent to the skill: Scenario: Starting a feature with TDD\nI need to implement JWT-based authentication for the API. Use test-driven development. The tdd skill triggers automatically: 1. Analyzes existing codebase structure 2. Writes the first failing authentication test 3. Runs the test and confirms the failure is for the right reason 4. Implements the minimal passing code 5. Verifies green 6. Refactors for clarity\nScenario: Investigating a vague bug report\nUsers report intermittent 500 errors on the checkout page. Can you investigate? The triage skill activates: 1. Searches for checkout-related code paths 2. Attempts to reproduce the error 3. Identifies root cause through instrumentation 4. Documents findings in a structured report 5. Proposes or implements a fix\nScenario: Planning a major refactor\nI want to migrate our state management from Redux to Zustand. Help me plan this. The to-prd skill engages: 1. Explores current Redux implementation 2. Maps state slices and dependencies 3. Produces a migration PRD with phased rollout plan 4. Files it as a GitHub Issue with linked sub-tasks\nAuthoring Your Own Skills: A Production-Ready Template Anatomy of a High-Quality Skill Create .claude/skills/code-review/SKILL.md: `````markdown\nCode Review Skill Description Systematic pull request review covering performance, security, maintainability, and style consistency. Biases toward caution over speed for changes touching authentication, payment, or data integrity paths.\nTriggers “Review this PR” “Check this code for issues” “Can you code review this?” “What problems do you see here?” Workflow Phase 1 — Understand Scope Read PR description and linked issues Identify the file change set Distinguish core changes from incidental adjustments Phase 2 — Architecture Review Do changes align with established patterns? Are new dependencies justified? Is module boundary clarity maintained? Does this change affect the public API contract? Phase 3 — Implementation Review Boundary condition handling Error handling completeness Concurrency safety Performance impact (time and space complexity) Security surface area change Phase 4 — Output Structured Report ## Code Review Results ### Blockers (must fix before merge) 1. Line 45: Unchecked user input flows directly to query construction — SQL injection risk ### Recommendations (should fix) 1. Line 78: Consider extracting this logic to a shared utility — duplicated in 3 files ### Affirmations (preserve these patterns) 1. Excellent test coverage for the edge case at line 120 Constraints Never suggest style-only changes unless they materially impact readability Prioritize correctness and security over performance micro-optimizations Every issue must reference specific line numbers If unsure about a security issue, flag it explicitly rather than staying silent ### Design Principles From the 75K-Star Repository Matt Pocock's skills follow rules that transfer to any custom skill: 1. **Include trigger phrases in descriptions** — Start with \"Use when...\" so the agent knows when to activate 2. **Keep SKILL.md under 100 lines** — If it exceeds, the skill scope is too broad; split it 3. **Avoid time-sensitive information** — No \"current version is X\" or \"as of May 2026\" 4. **Maintain consistent terminology** — Pick one vocabulary and use it throughout 5. **Embed concrete examples** — Abstract guidance is less useful than one runnable sample 6. **Reference depth of one** — Do not chain-skill (Skill A calling Skill B). Coupling creates fragility. ### Meta-Skill: Using write-a-skill to Create Skills `````bash npx skills@latest add mattpocock/skills/write-a-skill Then in Claude Code: ````` I need a skill that automatically generates migration scripts when I modify database models. It should detect schema changes, produce rollback-capable migrations, and include test data seeding.\nThe ````write-a-skill```` skill walks you through: 1. Defining purpose and triggers 2. Structuring the workflow steps 3. Deciding on companion scripts for deterministic operations 4. Choosing single-file vs multi-file organization 5. Running the review checklist * * * ## The Skills Ecosystem: Where It Is Going in 2026 ### From Personal Dotfiles to Team Infrastructure The Skills evolution follows a predictable maturity curve: **Phase 1 (Early 2026):** Individual ````.claude```` directories shared on GitHub as personal dotfiles. Adoption is artisanal — each developer curates their own. **Phase 2 (Mid 2026 — Now):** Registry platforms like explainx.ai launch Skill marketplaces. Monetization emerges: specialized Skills for legal AI, medical compliance, financial auditing. **Phase 3 (Late 2026):** Enterprise adoption accelerates. Team-level Skills registries, CI/CD integration (automatic code review on every PR), compliance auditing (Skills that enforce SOC 2 or HIPAA constraints). ### IDE Integration Deepens - **Cursor Composer** — Visual Skill marketplace with real-time previews - **Windsurf Cascade** — Skill chaining with graphical workflow editor - **VS Code extensions** — Third-party registries browsable from the sidebar ### The Emerging Skill Economy Technical writers, senior engineers, and domain experts are beginning to productize their expertise as Skills. A senior React architect can package their decade of component design patterns into a $29 Skill. A DevOps consultant can codify their Kubernetes troubleshooting playbook. This is expertise-as-code — and it is monetizable. * * * ## FAQ **Q: Do Skills only work with Claude Code?** A: No. While ````.claude/skills/```` is the native path, the community has built installers for Cursor (````.cursor/skills/````), Codex CLI (````.codex/skills/````), Cline, and Windsurf. The core format is standard Markdown with YAML frontmatter. **Q: Will installing Skills modify my project code?** A: Absolutely not. Skills are read-only Markdown files in a hidden directory. They influence agent behavior but do not touch your source code or dependencies. **Q: How are Skills different from Custom GPTs?** A: Custom GPTs wrap ChatGPT conversations, primarily affecting tone and knowledge scope. Skills define *procedural workflows* that directly impact code generation, file manipulation, and command execution sequences. **Q: Do I need a TypeScript project to use mattpocock/skills?** A: No. While Matt is a TypeScript authority, skills like ````tdd````, ````write-a-prd````, and ````diagnose```` are language-agnostic. The principles apply to Python, Go, Rust, or any stack. **Q: Can Skills and agentmemory be used together?** A: Yes, and they should be. agentmemory solves *context persistence* across sessions. Skills solve *workflow standardization*. Together they give you an agent that remembers your preferences *and* follows your procedures. **Q: What is the single best Skill to start with?** A: For engineering teams: ````tdd````. For product teams: ````write-a-prd````. For any codebase: ````git-guardrails-claude-code````. Pick one, install it, use it for a week. The productivity delta will make the value obvious. **Q: How do I share Skills across my team?** A: Commit ````.claude/skills/```` to your repository. New team members clone the repo and the skills are already configured. For cross-project sharing, use ````npx skills add``` with a shared GitHub repository as the source. * * * ## Conclusion The dominance of Agent Skills on GitHub Trending throughout May 2026 signals something larger than a temporary hype cycle. It marks the transition of AI coding agents from experimental assistants to production-grade engineering tools. The difference between a developer who uses Skills and one who does not is the difference between having a conversation and having a protocol. Conversations are efficient for exploration. Protocols are necessary for scale. mattpocock/skills brings production-tested discipline. obra/superpowers brings community-validated breadth. agentmemory brings the persistence that makes both usable across real workdays. Together they define the 2026 AI developer stack. **Your next step:** Pick one skill from this guide. Install it in your main project. Use it for your next feature, bug fix, or refactor. Experience the shift from \"asking an AI\" to \"delegating to a trained collaborator.\" * * * **Further Reading:** - [Claude Code Official Documentation — Agent Skills](https://docs.anthropic.com/en/docs/claude-code/skills) - [mattpocock/skills on GitHub](https://github.com/mattpocock/skills) - [obra/superpowers on GitHub](https://github.com/obra/superpowers) - [rohitg00/agentmemory on GitHub](https://github.com/rohitg00/agentmemory) - [What Are Agent Skills? Complete Guide (explainx.ai)](https://explainx.ai/blog/what-are-agent-skills-complete-guide) - [Dictionary of AI Coding Terms (Matt Pocock)](https://github.com/mattpocock/dictionary-of-ai-coding) *Star counts and repository statistics reflect GitHub API data as of May 13, 2026. All repositories are actively maintained with recent commits.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"AI Agent Skills Explained: The 2026 Developer''s Guide to Production-Grade Agent Workflows\", \"datePublished\": \"2026-05-16\", \"dateModified\": \"2026-05-16\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/ai-agent-skills-2026-developer-guide\" } } ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
+  "wordCount" : "2522",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/ai-agent-skills-2026-developer-guide/">En</a>
@@ -209,63 +209,59 @@
 
     <div class="inner"><ul><ul>
             <li>
-                <a href="#tldr-%ed%95%b5%ec%8b%ac-%ec%9a%94%ec%95%bd" aria-label="TL;DR 핵심 요약">TL;DR 핵심 요약</a></li>
+                <a href="#tldr-why-agent-skills-are-the-defining-developer-tool-of-2026" aria-label="TL;DR: Why Agent Skills Are the Defining Developer Tool of 2026">TL;DR: Why Agent Skills Are the Defining Developer Tool of 2026</a></li>
             <li>
-                <a href="#1-ai-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ec%8a%a4%ed%82%ac%ec%9d%b4%eb%9e%80-%ec%99%9c-%ea%b3%a0%ea%b8%89-%ed%94%84%eb%a1%ac%ed%94%84%ed%8a%b8%ea%b0%80-%ec%95%84%eb%8b%8c%ea%b0%80" aria-label="1. AI 에이전트 스킬이란? 왜 &ldquo;고급 프롬프트&quot;가 아닌가">1. AI 에이전트 스킬이란? 왜 &ldquo;고급 프롬프트&quot;가 아닌가</a></li>
-            <li>
-                <a href="#2-2026%eb%85%84-5%ec%9b%94-github-trending-top-3-%ec%8a%a4%ed%82%ac-%ec%a0%80%ec%9e%a5%ec%86%8c-%ec%8b%ac%ec%b8%b5-%eb%b6%84%ec%84%9d" aria-label="2. 2026년 5월 GitHub Trending TOP 3 스킬 저장소 심층 분석">2. 2026년 5월 GitHub Trending TOP 3 스킬 저장소 심층 분석</a><ul>
+                <a href="#what-are-ai-agent-skills-really" aria-label="What Are AI Agent Skills, Really?">What Are AI Agent Skills, Really?</a><ul>
                     
             <li>
-                <a href="#21-mattpocockskills--%ec%8b%a4%ec%a0%84-%ec%97%94%ec%a7%80%eb%8b%88%ec%96%b4%ec%9d%98-%ec%8a%a4%ed%82%ac-%eb%9d%bc%ec%9d%b4%eb%b8%8c%eb%9f%ac%eb%a6%ac-75133-star-%ec%9d%b4%eb%b2%88-%ec%a3%bc-3867" aria-label="2.1 mattpocock/skills — 실전 엔지니어의 스킬 라이브러리 (75,133 Star, 이번 주 &#43;3,867)">2.1 mattpocock/skills — 실전 엔지니어의 스킬 라이브러리 (75,133 Star, 이번 주 +3,867)</a></li>
-            <li>
-                <a href="#22-obrasuperpowers--%ec%bb%a4%eb%ae%a4%eb%8b%88%ed%8b%b0-%ea%b8%b0%eb%b0%98-%ec%b5%9c%eb%8c%80-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0-%ec%8a%a4%ed%82%ac%ec%85%8b-188714-star" aria-label="2.2 obra/superpowers — 커뮤니티 기반 최대 에이전트 워크플로우 스킬셋 (188,714 Star)">2.2 obra/superpowers — 커뮤니티 기반 최대 에이전트 워크플로우 스킬셋 (188,714 Star)</a></li>
-            <li>
-                <a href="#23-rohitg00agentmemory--ai-%ec%bd%94%eb%94%a9-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8%ec%9d%98-%ea%b8%b0%ec%96%b5-%ec%83%81%ec%8b%a4%ec%a6%9d-%ed%95%b4%ea%b2%b0-6513-star-apache-20" aria-label="2.3 rohitg00/agentmemory — AI 코딩 에이전트의 기억 상실증 해결 (6,513 Star, Apache-2.0)">2.3 rohitg00/agentmemory — AI 코딩 에이전트의 기억 상실증 해결 (6,513 Star, Apache-2.0)</a></li></ul>
+                <a href="#skills-vs-prompts-vs-mcp-the-three-layer-stack" aria-label="Skills vs Prompts vs MCP: The Three-Layer Stack">Skills vs Prompts vs MCP: The Three-Layer Stack</a></li></ul>
             </li>
             <li>
-                <a href="#3-%ec%8b%a4%ec%a0%84-mattpocockskills%eb%a1%9c-%ed%94%84%eb%a1%9c%ec%a0%9d%ed%8a%b8-%ec%8b%9c%ec%9e%91%ed%95%98%ea%b8%b0" aria-label="3. 실전: mattpocock/skills로 프로젝트 시작하기">3. 실전: mattpocock/skills로 프로젝트 시작하기</a><ul>
+                <a href="#the-three-github-trending-repositories-you-should-inspect" aria-label="The Three GitHub Trending Repositories You Should Inspect">The Three GitHub Trending Repositories You Should Inspect</a><ul>
                     
             <li>
-                <a href="#31-%ed%99%98%ea%b2%bd-%ec%a4%80%eb%b9%84" aria-label="3.1 환경 준비">3.1 환경 준비</a></li></ul>
+                <a href="#mattpocockskills-real-engineer-skills-for-daily-use-75133-stars-3867-this-week" aria-label="mattpocock/skills: Real-Engineer Skills for Daily Use (75,133 stars, &#43;3,867 this week)">mattpocock/skills: Real-Engineer Skills for Daily Use (75,133 stars, +3,867 this week)</a></li>
+            <li>
+                <a href="#obrasuperpowers-the-largest-community-driven-skill-collection-188714-total-stars" aria-label="obra/superpowers: The Largest Community-Driven Skill Collection (188,714 total stars)">obra/superpowers: The Largest Community-Driven Skill Collection (188,714 total stars)</a></li>
+            <li>
+                <a href="#rohitg00agentmemory-solving-the-amnesia-problem-6513-stars-apache-20" aria-label="rohitg00/agentmemory: Solving the Amnesia Problem (6,513 stars, Apache-2.0)">rohitg00/agentmemory: Solving the Amnesia Problem (6,513 stars, Apache-2.0)</a></li></ul>
+            </li>
+            <li>
+                <a href="#hands-on-setting-up-mattpocockskills-in-your-project" aria-label="Hands-On: Setting Up mattpocock/skills in Your Project">Hands-On: Setting Up mattpocock/skills in Your Project</a><ul>
+                    
+            <li>
+                <a href="#step-1--prerequisites" aria-label="Step 1 — Prerequisites">Step 1 — Prerequisites</a></li>
+            <li>
+                <a href="#step-3--natural-invocation" aria-label="Step 3 — Natural Invocation">Step 3 — Natural Invocation</a></li></ul>
+            </li>
+            <li>
+                <a href="#authoring-your-own-skills-a-production-ready-template" aria-label="Authoring Your Own Skills: A Production-Ready Template">Authoring Your Own Skills: A Production-Ready Template</a><ul>
+                    
+            <li>
+                <a href="#anatomy-of-a-high-quality-skill" aria-label="Anatomy of a High-Quality Skill">Anatomy of a High-Quality Skill</a></li></ul>
             </li></ul>
                 
             <li>
-                <a href="#%ed%81%b4%eb%a1%9c%eb%93%9c-%ec%bd%94%eb%93%9c-%ec%84%a4%ec%b9%98" aria-label="클로드 코드 설치">클로드 코드 설치</a></li>
-            <li>
-                <a href="#%ec%84%a4%ec%b9%98-%ed%99%95%ec%9d%b8" aria-label="설치 확인">설치 확인</a><ul>
-                    <ul>
+                <a href="#code-review-skill" aria-label="Code Review Skill">Code Review Skill</a><ul>
                     
             <li>
-                <a href="#33-%ec%8a%a4%ed%82%ac-%ed%98%b8%ec%b6%9c" aria-label="3.3 스킬 호출">3.3 스킬 호출</a></li></ul>
-                
+                <a href="#description" aria-label="Description">Description</a></li>
             <li>
-                <a href="#4-%ea%b3%a0%ea%b8%89-%eb%82%98%eb%a7%8c%ec%9d%98-%ec%8a%a4%ed%82%ac-%ec%9e%91%ec%84%b1%ed%95%98%ea%b8%b0" aria-label="4. 고급: 나만의 스킬 작성하기">4. 고급: 나만의 스킬 작성하기</a><ul>
+                <a href="#triggers" aria-label="Triggers">Triggers</a></li>
+            <li>
+                <a href="#workflow" aria-label="Workflow">Workflow</a><ul>
                     
             <li>
-                <a href="#41-%ec%8a%a4%ed%82%ac-%ed%8c%8c%ec%9d%bc%ec%9d%98-%ea%b8%b0%eb%b3%b8-%ed%95%b4%eb%b6%80%ed%95%99" aria-label="4.1 스킬 파일의 기본 해부학">4.1 스킬 파일의 기본 해부학</a></li></ul>
-            </li></ul>
+                <a href="#phase-1--understand-scope" aria-label="Phase 1 — Understand Scope">Phase 1 — Understand Scope</a></li>
+            <li>
+                <a href="#phase-2--architecture-review" aria-label="Phase 2 — Architecture Review">Phase 2 — Architecture Review</a></li>
+            <li>
+                <a href="#phase-3--implementation-review" aria-label="Phase 3 — Implementation Review">Phase 3 — Implementation Review</a></li>
+            <li>
+                <a href="#phase-4--output-structured-report" aria-label="Phase 4 — Output Structured Report">Phase 4 — Output Structured Report</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%bd%94%eb%93%9c-%eb%a6%ac%eb%b7%b0-%ec%8a%a4%ed%82%ac" aria-label="코드 리뷰 스킬">코드 리뷰 스킬</a><ul>
-                    
-            <li>
-                <a href="#%ec%84%a4%eb%aa%85" aria-label="설명">설명</a></li>
-            <li>
-                <a href="#%ed%8a%b8%eb%a6%ac%ea%b1%b0-%ec%a1%b0%ea%b1%b4" aria-label="트리거 조건">트리거 조건</a></li>
-            <li>
-                <a href="#%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0" aria-label="워크플로우">워크플로우</a><ul>
-                    
-            <li>
-                <a href="#%eb%8b%a8%ea%b3%84-1-%eb%b3%80%ea%b2%bd-%eb%b2%94%ec%9c%84-%ec%9d%b4%ed%95%b4" aria-label="단계 1: 변경 범위 이해">단계 1: 변경 범위 이해</a></li>
-            <li>
-                <a href="#%eb%8b%a8%ea%b3%84-2-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98-%eb%a6%ac%eb%b7%b0" aria-label="단계 2: 아키텍처 리뷰">단계 2: 아키텍처 리뷰</a></li>
-            <li>
-                <a href="#%eb%8b%a8%ea%b3%84-3-%ea%b5%ac%ed%98%84-%ec%84%b8%eb%b6%80%ec%82%ac%ed%95%ad-%eb%a6%ac%eb%b7%b0" aria-label="단계 3: 구현 세부사항 리뷰">단계 3: 구현 세부사항 리뷰</a></li>
-            <li>
-                <a href="#%eb%8b%a8%ea%b3%84-4-%ea%b5%ac%ec%a1%b0%ed%99%94%eb%90%9c-%eb%b3%b4%ea%b3%a0%ec%84%9c-%ec%b6%9c%eb%a0%a5" aria-label="단계 4: 구조화된 보고서 출력">단계 4: 구조화된 보고서 출력</a></li></ul>
-            </li>
-            <li>
-                <a href="#%ec%a0%9c%ec%95%bd" aria-label="제약">제약</a>
+                <a href="#constraints" aria-label="Constraints">Constraints</a>
             </li>
         </ul>
         </li>
@@ -274,329 +270,306 @@
 </details>
 
   <div class="post-content md-content"><p>{&lt;/* resource-info */&gt;}</p>
-<p><strong>Meta Description:</strong> 2026년 가장 핫한 AI Agent Skills 생태계를 심층 분석합니다. mattpocock/skills부터 rohitg00/agentmemory까지, 클로드 코드 스킬의 설치와 사용법, 나만의 스킬 작성법을 단계별로 알려드립니다.</p>
-<p><strong>발행일:</strong> 2026년 5월 16일
-<strong>읽는 시간:</strong> 12분
-<strong>키워드:</strong> AI 에이전트 스킬, 클로드 코드 스킬, Claude Code skills, mattpocock 스킬 튜토리얼, AI 코딩 에이전트 스킬팩, 커서 스킬 설치, 2026 AI 개발 도구 트렌드, 에이전트 워크플로우</p>
+<p><strong>Meta Description:</strong> Master AI Agent Skills in 2026 with our comprehensive guide. Learn how mattpocock/skills, obra/superpowers, and agentmemory are transforming Claude Code, Cursor, and Codex CLI workflows. Step-by-step installation, usage, and custom skill authoring included.</p>
+<p><strong>Published:</strong> May 16, 2026
+<strong>Reading Time:</strong> 12 minutes
+<strong>Keywords:</strong> AI agent skills, Claude Code skills tutorial, mattpocock skills guide, agent workflow 2026, AI coding agent skills, how to write agent skills, Cursor skills vs prompts, MCP vs skills, production AI agent workflows</p>
 <hr>
-<h2 id="tldr-핵심-요약">TL;DR 핵심 요약<a hidden class="anchor" aria-hidden="true" href="#tldr-핵심-요약">#</a></h2>
-<p>2026년 5월, GitHub Trending은 2주 연속 AI Agent Skills가 점령했습니다. mattpocock/skills는 75,000+ Star로 1위를 지키고 있고, obra/superpowers는 188,000 Star로 가장 큰 커뮤니티를 형성했으며, rohitg00/agentmemory는 AI 코딩 에이전트의 가장 큰 고통인 기억 상실 문제를 해결했습니다. 스킬은 프롬프트가 아닙니다 — 반복 가능한 구조화된 워크플로우이며, 개발자와 AI의 협업 방식을 재정의하고 있습니다.</p>
+<h2 id="tldr-why-agent-skills-are-the-defining-developer-tool-of-2026">TL;DR: Why Agent Skills Are the Defining Developer Tool of 2026<a hidden class="anchor" aria-hidden="true" href="#tldr-why-agent-skills-are-the-defining-developer-tool-of-2026">#</a></h2>
+<p>For two consecutive weeks in May 2026, GitHub Trending has been dominated by a single concept: <strong>AI Agent Skills</strong>. mattpocock/skills sits at #1 with 75,000+ stars. obra/superpowers commands the largest community at 188,000 stars. And rohitg00/agentmemory solves the memory amnesia that plagues every AI coding agent.</p>
+<p>Skills are not prompts. They are reusable, structured workflow definitions that turn inconsistent AI assistance into predictable, team-scalable engineering processes. If you are not using them yet, you are working with one hand tied behind your back.</p>
 <hr>
-<h2 id="1-ai-에이전트-스킬이란-왜-고급-프롬프트가-아닌가">1. AI 에이전트 스킬이란? 왜 &ldquo;고급 프롬프트&quot;가 아닌가<a hidden class="anchor" aria-hidden="true" href="#1-ai-에이전트-스킬이란-왜-고급-프롬프트가-아닌가">#</a></h2>
-<p>스킬을 &ldquo;더 길게 쓴 프롬프트&quot;로 이해하고 있다면, 2026년 AI 개발 도구 분야에서 가장 중요한 패러다임 전환을 놓치고 있는 것입니다.</p>
-<p><strong>스킬과 프롬프트의 본질적 차이:</strong></p>
-<table>
-	<thead>
-			<tr>
-					<th>구분</th>
-					<th>프롬프트 (Prompt)</th>
-					<th>스킬 (Skill)</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>생명주기</td>
-					<td>단일 세션, 대화 종료 시 소멸</td>
-					<td>영구 파일, 세션 간 재사용</td>
-			</tr>
-			<tr>
-					<td>구조화 수준</td>
-					<td>자유 텍스트, 모델의 이해에 의존</td>
-					<td>표준화된 템플릿, 단계별 워크플로우 정의</td>
-			</tr>
-			<tr>
-					<td>팀 협업</td>
-					<td>공유 불가, 각자 재작성</td>
-					<td>버전 관리 가능, 팀 표준화</td>
-			</tr>
-			<tr>
-					<td>트리거 방식</td>
-					<td>매번 수동 입력</td>
-					<td>의도 자동 인식, 매칭 실행</td>
-			</tr>
-			<tr>
-					<td>출력 일관성</td>
-					<td>모델 버전과 컨텍스트에 따라 변동</td>
-					<td>정의된 프로세스와 출력 형식 강제</td>
-			</tr>
-	</tbody>
-</table>
-<p>요약하자면: 프롬프트는 AI에게 &ldquo;무엇을&rdquo; 할지 말하고, 스킬은 &ldquo;어떻게&rdquo; 할지를 알려줍니다 — 그리고 매번 똑같은 방식으로 합니다.</p>
-<p>클로드 코드(Claude Code)는 2026년 초 ```.claude/skills/```` 디렉토리 지원을 공식화했고, 커서(Cursor), 코덱스 CLI(Codex CLI), 윈드서프(Windsurf)가 잇따라 도입했습니다. 스킬은 이제 AI 프로그래밍 에이전트의 표준 설정 방식이 되었습니다.</p>
+<h2 id="what-are-ai-agent-skills-really">What Are AI Agent Skills, Really?<a hidden class="anchor" aria-hidden="true" href="#what-are-ai-agent-skills-really">#</a></h2>
+<p>The fastest way to understand Skills is to understand what they fix. Every developer who has used Claude Code, Cursor, or Codex CLI has experienced these failure modes: - <strong>The Agent does something completely different from what you wanted</strong> — because your instructions were interpreted through the model&rsquo;s general training, not your specific context.</p>
+<ul>
+<li><strong>The Agent forgets project conventions between sessions</strong> — because each conversation starts from a blank slate.</li>
+<li><strong>The Agent skips critical steps</strong> — like writing tests before implementation, or reviewing the existing codebase before proposing changes.</li>
+<li><strong>Different team members get different results from the same request</strong> — because each person phrases their prompts differently.</li>
+</ul>
+<p>Skills solve all four problems by replacing improvisation with procedure.</p>
+<h3 id="skills-vs-prompts-vs-mcp-the-three-layer-stack">Skills vs Prompts vs MCP: The Three-Layer Stack<a hidden class="anchor" aria-hidden="true" href="#skills-vs-prompts-vs-mcp-the-three-layer-stack">#</a></h3>
+<p>| Layer | Analogy | Scope | What It Does |
+|</p>
 <hr>
-<h2 id="2-2026년-5월-github-trending-top-3-스킬-저장소-심층-분석">2. 2026년 5월 GitHub Trending TOP 3 스킬 저장소 심층 분석<a hidden class="anchor" aria-hidden="true" href="#2-2026년-5월-github-trending-top-3-스킬-저장소-심층-분석">#</a></h2>
-<h3 id="21-mattpocockskills--실전-엔지니어의-스킬-라이브러리-75133-star-이번-주-3867">2.1 mattpocock/skills — 실전 엔지니어의 스킬 라이브러리 (75,133 Star, 이번 주 +3,867)<a hidden class="anchor" aria-hidden="true" href="#21-mattpocockskills--실전-엔지니어의-스킬-라이브러리-75133-star-이번-주-3867">#</a></h3>
-<p>타입스크립트 교육 분야에서 가장 신뢰받는 이름 중 하나인 Matt Pocock이 매일 사용하는 21개의 클로드 코드 스킬을 오픈소스로 공개했습니다. 이것은 데모 코드가 아니라, 실제 업무에서 돌아가는 프로덕션급 설정입니다.</p>
-<p><strong>핵심 스킬 분류:</strong></p>
-<p><strong>기획 및 설계</strong></p>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Prompts</strong> | Conversation | Single session | Expresses immediate intent |
+| <strong>Skills</strong> | Standard Operating Procedure | Project/team | Defines <em>how</em> work gets done |
+| <strong>MCP</strong> | API Integration | Cross-application | Connects agents to external systems |</p>
+<p>A prompt says: <em>&ldquo;Build a login form.&rdquo;</em>
+A Skill says: <em>&ldquo;When asked to build authentication, first review existing user models, then write a failing test for the auth flow, then implement the minimal passing code, then add guardrails against SQL injection, then document the API contract.&rdquo;</em></p>
+<p>MCP lets the Agent query your production database to check existing schema. Skills tell it what to do with that information. They are complementary, not competitive.</p>
+<hr>
+<h2 id="the-three-github-trending-repositories-you-should-inspect">The Three GitHub Trending Repositories You Should Inspect<a hidden class="anchor" aria-hidden="true" href="#the-three-github-trending-repositories-you-should-inspect">#</a></h2>
+<h3 id="mattpocockskills-real-engineer-skills-for-daily-use-75133-stars-3867-this-week">mattpocock/skills: Real-Engineer Skills for Daily Use (75,133 stars, +3,867 this week)<a hidden class="anchor" aria-hidden="true" href="#mattpocockskills-real-engineer-skills-for-daily-use-75133-stars-3867-this-week">#</a></h3>
+<p>Matt Pocock — the educator behind Total TypeScript and one of the most trusted voices in modern JavaScript — open-sourced his entire ```.claude```` directory. These are not tutorial examples. These are the exact workflows he runs daily.</p>
+<p><strong>The 21 skills are organized into four domains:</strong></p>
+<p><strong>Planning &amp; Design</strong></p>
 <ul>
-<li><code>write-a-prd</code> — 템플릿 채우기가 아닌, 개발자와의 인터랙티브 인터뷰를 통해 기존 코드베이스를 탐색하고 모듈 경계를 설계하여 완성된 PRD를 깃허브 이슈로 자동 제출</li>
-<li><code>to-issues</code> — PRD를 독립적으로 수행 가능한 깃허브 이슈로 분해 (범위, 수락 기준, 의존성 식별 포함)</li>
-<li><code>grill-me</code> — 구현 전 구조화된 질문을 통해 설계 가정, 엣지 케이스, 인터페이스 선택의 결함을 노출</li>
-<li><code>design-an-interface</code> — 구현 전 API 사용 패턴, 인체공학, 제약 조건 탐색</li>
+<li><code>write-a-prd</code> — Conducts an interactive discovery session, explores your codebase, designs module boundaries, and produces a complete PRD filed as a GitHub Issue. Not a template fill-in exercise. A design session.</li>
+<li><code>to-issues</code> — Decomposes any PRD, spec, or plan into independently actionable GitHub issues with acceptance criteria and dependency mapping.</li>
+<li><code>grill-me</code> — Structured interrogation of your design decisions before a single line of code is written. Surfaces assumptions, edge cases, and interface risks.</li>
+<li><code>design-an-interface</code> — API ergonomics and constraint exploration before implementation.</li>
 </ul>
-<p><strong>개발</strong></p>
+<p><strong>Development</strong></p>
 <ul>
-<li><code>tdd</code> — 가장 기술적으로 독단적이면서도 가치 높은 스킬: 에이전트 레벨에서 Red-Green-Refactor 사이클을 강제. 실패하는 테스트를 먼저 작성하고, 올바른 이유로 실패하는지 확인하고, 최소 구현을 작성하고, 리팩토링. 에이전트는 실패 테스트 단계를 건너뛸 수 없습니다.</li>
-<li><code>triage-issue</code> — 모호한 버그 리포트를 재현 → 최소화 → 가설 → 계측 → 수정 → 회귀 테스트의 구조화된 조사를 통해 실행 가능한 보고서로 변환</li>
-<li><code>improve-codebase-architecture</code> — 깊은 모듈, 얕은 인터페이스, 단순화 가능한 패턴 식별</li>
+<li><code>tdd</code> — The most technically opinionated skill. Enforces Red-Green-Refactor at the agent level. The agent <em>cannot</em> skip writing the failing test first. For teams with existing test discipline, this is the highest-ROI skill in the entire collection.</li>
+<li><code>triage</code> — Transforms vague bug reports into structured root-cause analyses through a state-machine investigation: reproduce → minimize → hypothesize → instrument → fix → regression-test.</li>
+<li><code>improve-codebase-architecture</code> — Identifies deep modules, shallow interfaces, and simplification opportunities informed by your domain language and ADRs.</li>
 </ul>
-<p><strong>도구 및 안전</strong></p>
+<p><strong>Tooling &amp; Safety</strong></p>
 <ul>
-<li><code>setup-pre-commit</code> — Husky, lint-staged, Prettier 일괄 구성</li>
-<li><code>git-guardrails-claude-code</code> — 시니어 엔지니어가 주니어 기여자에게 적용하는 것과 동일한 Git 작업 제약을 에이전트에 추가</li>
+<li><code>setup-pre-commit</code> — Configures Husky, lint-staged, and Prettier with one command.</li>
+<li><code>git-guardrails-claude-code</code> — Blocks dangerous git operations that would break CI, rewrite shared branch history, or delete work. Applies the same constraints a senior engineer places on a junior contributor.</li>
 </ul>
-<p><strong>설치 방법 (권장):</strong></p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 필요한 스킬만 개별 설치</span>
-</span></span><span style="display:flex;"><span>npx skills@latest add mattpocock/skills/write-a-prd
+<p><strong>Productivity</strong></p>
+<ul>
+<li><code>caveman</code> — Ultra-compressed communication mode that cuts token usage ~75% while preserving technical accuracy.</li>
+<li><code>handoff</code> — Compacts the current conversation into a structured handoff document so another agent — or another human — can continue the work seamlessly.</li>
+</ul>
+<p><strong>Installation:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install individual skills on demand (recommended)</span>
 </span></span><span style="display:flex;"><span>npx skills@latest add mattpocock/skills/tdd
+</span></span><span style="display:flex;"><span>npx skills@latest add mattpocock/skills/write-a-prd
 </span></span><span style="display:flex;"><span>npx skills@latest add mattpocock/skills/git-guardrails-claude-code
-</span></span></code></pre></div><p><strong>우선적으로 주목해야 할 이유:</strong>
-Matt Pocock은 AI 인플루언서가 아닙니다. 그의 타입스크립트 교육 콘텐츠는 수십만 개발자에게 검증되었습니다. 이 스킬들은 이론적 추론이 아닌, 그가 실제로 경험한 에이전트 실패 모드를 해결합니다.</p>
+</span></span></code></pre></div><p>Claude Code auto-discovers <code>.claude/skills/</code> on next launch. Install only what your current project needs.</p>
 <hr>
-<h3 id="22-obrasuperpowers--커뮤니티-기반-최대-에이전트-워크플로우-스킬셋-188714-star">2.2 obra/superpowers — 커뮤니티 기반 최대 에이전트 워크플로우 스킬셋 (188,714 Star)<a hidden class="anchor" aria-hidden="true" href="#22-obrasuperpowers--커뮤니티-기반-최대-에이전트-워크플로우-스킬셋-188714-star">#</a></h3>
-<p>mattpocock/skills가 개인 실전 선별품이라면, obra/superpowers는 커뮤니티가 함께 다듬은 스킬 공동체입니다.</p>
-<p><strong>더 넓은 커버리지:</strong></p>
+<h3 id="obrasuperpowers-the-largest-community-driven-skill-collection-188714-total-stars">obra/superpowers: The Largest Community-Driven Skill Collection (188,714 total stars)<a hidden class="anchor" aria-hidden="true" href="#obrasuperpowers-the-largest-community-driven-skill-collection-188714-total-stars">#</a></h3>
+<p>Where mattpocock/skills is a curated personal toolkit, obra/superpowers is a community commons. With nearly 189K stars, it represents the most battle-tested collective knowledge about agent workflows.</p>
+<p><strong>What makes it distinct:</strong></p>
 <ul>
-<li>브레인스토밍과 창의적 발산</li>
-<li>병렬 에이전트 스케줄링 및 결과 집계</li>
-<li>체계적인 디버깅 방법론</li>
-<li>테스트 주도 개발(TDD) 완전 사이클</li>
-<li>코드 리뷰 및 리팩토링 계획</li>
+<li><strong>Broader coverage</strong> — From brainstorming and parallel agent dispatch to systematic debugging and full TDD lifecycle.</li>
+<li><strong>Composable architecture</strong> — Skills are designed to chain together. The brainstorming skill feeds into the planning skill, which feeds into the development skills.</li>
+<li><strong>Community validation</strong> — High star counts correlate with sustained developer attention, not just launch-day buzz.</li>
 </ul>
-<p><strong>핵심 가치:</strong> 구체적인 스킬 정의를 직접 도입하지 않더라도, 워크플로우 구조 자체가 팀만의 에이전트 지침서 작성의 참조 모델이 됩니다. 188K Star는 지속적인 개발자 관심을 반영합니다.</p>
+<p><strong>Even if you do not adopt the specific skill definitions</strong>, the structural patterns — how to decompose a workflow, how to define decision gates, how to specify output formats — are transferable to your own custom skills.</p>
 <hr>
-<h3 id="23-rohitg00agentmemory--ai-코딩-에이전트의-기억-상실증-해결-6513-star-apache-20">2.3 rohitg00/agentmemory — AI 코딩 에이전트의 기억 상실증 해결 (6,513 Star, Apache-2.0)<a hidden class="anchor" aria-hidden="true" href="#23-rohitg00agentmemory--ai-코딩-에이전트의-기억-상실증-해결-6513-star-apache-20">#</a></h3>
-<p>2026년 5월 Trending에서 가장 과소평가된 저장소입니다. 클로드 코드, 커서, 코덱스 CLI를 써본 모든 사람이 겪는 공통의 고통: <strong>새 세션을 시작하면 에이전트가 이전의 모든 것을 잊어버린다</strong>.</p>
-<p><strong>4단계 기억 통합 파이프라인:</strong></p>
+<h3 id="rohitg00agentmemory-solving-the-amnesia-problem-6513-stars-apache-20">rohitg00/agentmemory: Solving the Amnesia Problem (6,513 stars, Apache-2.0)<a hidden class="anchor" aria-hidden="true" href="#rohitg00agentmemory-solving-the-amnesia-problem-6513-stars-apache-20">#</a></h3>
+<p>Here is the most underappreciated repository on the May 2026 Trending list. Every AI coding agent loses context when you start a new session. That architectural decision you explained three hours ago? Gone. The database schema you walked it through yesterday? Forgotten. The naming convention your team agreed on? Vanished.</p>
+<p><strong>agentmemory provides a four-tier memory consolidation pipeline:</strong></p>
 <ol>
-<li><strong>작업 기억(Working Memory)</strong> — 현재 세션 컨텍스트</li>
-<li><strong>단기 기억(Short-Term Memory)</strong> — 최근 세션의 핵심 결정</li>
-<li><strong>장기 기억(Long-Term Memory)</strong> — 프로젝트 간 패턴, 선호도, 아키텍처 제약</li>
-<li><strong>절차 기억(Procedural Memory)</strong> — 스킬 파일로 코드베이스에 고화된 워크플로우</li>
+<li><strong>Working Memory</strong> — Current session context</li>
+<li><strong>Short-Term Memory</strong> — Key decisions from recent sessions</li>
+<li><strong>Long-Term Memory</strong> — Cross-project patterns, preferences, and architectural constraints</li>
+<li><strong>Procedural Memory</strong> — Workflows codified as Skill files within the repository</li>
 </ol>
-<p><strong>기술 하이라이트:</strong></p>
+<p><strong>Technical specifications:</strong></p>
 <ul>
-<li>50+ MCP 도구 통합</li>
-<li>15+ 에이전트 클라이언트 지원 (클로드 코드, 커서, 코덱스, 클린 등)</li>
-<li>npm 및 Docker 이중 설치 경로</li>
-<li>로컬 저장 모델, 클라우드 의존성 없음</li>
+<li>50+ MCP tool integrations</li>
+<li>Support for 15+ agent clients (Claude Code, Cursor, Codex CLI, Cline, and more)</li>
+<li>Dual install paths: npm and Docker</li>
+<li>Local-first storage model — no cloud dependency, no data exfiltration risk</li>
 </ul>
-<p><strong>설치:</strong></p>
+<p><strong>Installation:</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install agentmemory
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 또는</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># or</span>
 </span></span><span style="display:flex;"><span>docker pull rohitg00/agentmemory
-</span></span></code></pre></div><p><strong>왜 이것이 세 가지 중 가장 생산성에 영향을 미칠 수 있는가:</strong> 스킬은 에이전트가 더 잘 일하게 합니다. agentmemory는 에이전트가 당신이 무엇을 말했는지 기억하게 합니다. 전자는 효율 문제, 후자는 사용 가능성 문제입니다.</p>
+</span></span></code></pre></div><p><strong>Why this might be the highest-productivity impact of the three:</strong> Skills make agents work <em>better</em>. agentmemory makes agents work <em>at all</em> across sessions. If your agent cannot remember what you told it yesterday, no amount of workflow sophistication matters.</p>
 <hr>
-<h2 id="3-실전-mattpocockskills로-프로젝트-시작하기">3. 실전: mattpocock/skills로 프로젝트 시작하기<a hidden class="anchor" aria-hidden="true" href="#3-실전-mattpocockskills로-프로젝트-시작하기">#</a></h2>
-<h3 id="31-환경-준비">3.1 환경 준비<a hidden class="anchor" aria-hidden="true" href="#31-환경-준비">#</a></h3>
-<p>클로드 코드(또는 커서/코덱스 CLI)가 설치되어 있는지 확인: `````bash</p>
-<h1 id="클로드-코드-설치">클로드 코드 설치<a hidden class="anchor" aria-hidden="true" href="#클로드-코드-설치">#</a></h1>
-<p>curl -fsSL <a href="https://claude.ai/install.sh">https://claude.ai/install.sh</a> | bash</p>
-<h1 id="설치-확인">설치 확인<a hidden class="anchor" aria-hidden="true" href="#설치-확인">#</a></h1>
-<p>claude &ndash;version</p>
+<h2 id="hands-on-setting-up-mattpocockskills-in-your-project">Hands-On: Setting Up mattpocock/skills in Your Project<a hidden class="anchor" aria-hidden="true" href="#hands-on-setting-up-mattpocockskills-in-your-project">#</a></h2>
+<h3 id="step-1--prerequisites">Step 1 — Prerequisites<a hidden class="anchor" aria-hidden="true" href="#step-1--prerequisites">#</a></h3>
+<p>Ensure Claude Code is installed: `````bash
+curl -fsSL <a href="https://claude.ai/install.sh">https://claude.ai/install.sh</a> | bash
+claude &ndash;version</p>
 <pre tabindex="0"><code>
-### 3.2 스킬 설치
+The same process works for Cursor and Codex CLI with path variations (````.cursor/skills/````, ````.codex/skills/````).
+
+### Step 2 — Install Skills
 
 `````bash
-# 프로젝트 디렉토리로 이동
-cd your-project
+cd your-project-root
 
-# 개별 스킬 설치 (필요한 것만 권장)
+# Install only the skills relevant to your workflow
 npx skills@latest add mattpocock/skills/tdd
 npx skills@latest add mattpocock/skills/to-prd
 npx skills@latest add mattpocock/skills/diagnose
 
-# 설치 확인
+# Verify
 ls .claude/skills/
-</code></pre><p>클로드 코드는 다음 실행 시 <code>.claude/skills/</code> 디렉토리의 모든 스킬 파일을 자동으로 발견합니다.</p>
-<h3 id="33-스킬-호출">3.3 스킬 호출<a hidden class="anchor" aria-hidden="true" href="#33-스킬-호출">#</a></h3>
-<p>특별한 문법을 기억할 필요 없이, 평소처럼 대화하듯 요청하세요: <strong>시나리오 1: 새 기능 개발 시작 (tdd 스킬 트리거)</strong></p>
-<pre tabindex="0"><code>프로젝트에 사용자 인증 모듈을 추가해야 해. TDD 방식으로 구현해줘.
-</code></pre><p>클로드 코드가 자동으로 <code>tdd</code> 스킬을 매칭하여 실행: 1. 기존 코드베이스 구조 분석
-2. 첫 번째 실패 테스트 작성
-3. 테스트 실행하여 실패 이유 확인
-4. 최소 구현 작성
-5. 테스트 통과 확인
-6. 코드 리팩토링</p>
-<p><strong>시나리오 2: 모호한 버그 리포트 처리 (triage 스킬 트리거)</strong></p>
-<pre tabindex="0"><code>사용자가 &#34;가끔 저장 버튼이 안 먹힌다&#34;고 하는데, 조사해줘.
-</code></pre><p><code>triage</code> 스킬이 구조화된 조사를 시작: 1. 관련 코드 경로 검색
-2. 문제 재현 시도
-3. 근본 원인 식별
-4. 발견 사항 문서화
-5. 수정 제안 또는 자동 수정</p>
-<p><strong>시나리오 3: 새 API 설계 (design-an-interface 스킬 트리거)</strong></p>
-<pre tabindex="0"><code>파일 업로드 인터페이스를 설계하려고 해. 중단점 재개와 진도 알림을 지원해야 해.
-</code></pre><hr>
-<h2 id="4-고급-나만의-스킬-작성하기">4. 고급: 나만의 스킬 작성하기<a hidden class="anchor" aria-hidden="true" href="#4-고급-나만의-스킬-작성하기">#</a></h2>
-<h3 id="41-스킬-파일의-기본-해부학">4.1 스킬 파일의 기본 해부학<a hidden class="anchor" aria-hidden="true" href="#41-스킬-파일의-기본-해부학">#</a></h3>
-<p>각 스킬은 표준 마크다운 파일로, <code>.claude/skills/{skill-name}/SKILL.md</code>에 배치됩니다: `````markdown</p>
-<h1 id="코드-리뷰-스킬">코드 리뷰 스킬<a hidden class="anchor" aria-hidden="true" href="#코드-리뷰-스킬">#</a></h1>
-<h2 id="설명">설명<a hidden class="anchor" aria-hidden="true" href="#설명">#</a></h2>
-<p>성능, 보안, 유지보수성, 스타일 일관성을 체계적으로 검토하는 풀 리퀘스트 리뷰.</p>
-<h2 id="트리거-조건">트리거 조건<a hidden class="anchor" aria-hidden="true" href="#트리거-조건">#</a></h2>
+</code></pre><h3 id="step-3--natural-invocation">Step 3 — Natural Invocation<a hidden class="anchor" aria-hidden="true" href="#step-3--natural-invocation">#</a></h3>
+<p>No special syntax required. Describe what you need in plain language, and the agent matches your intent to the skill: <strong>Scenario: Starting a feature with TDD</strong></p>
+<pre tabindex="0"><code>I need to implement JWT-based authentication for the API. Use test-driven development.
+</code></pre><p>The <code>tdd</code> skill triggers automatically: 1. Analyzes existing codebase structure
+2. Writes the first failing authentication test
+3. Runs the test and confirms the failure is for the right reason
+4. Implements the minimal passing code
+5. Verifies green
+6. Refactors for clarity</p>
+<p><strong>Scenario: Investigating a vague bug report</strong></p>
+<pre tabindex="0"><code>Users report intermittent 500 errors on the checkout page. Can you investigate?
+</code></pre><p>The <code>triage</code> skill activates: 1. Searches for checkout-related code paths
+2. Attempts to reproduce the error
+3. Identifies root cause through instrumentation
+4. Documents findings in a structured report
+5. Proposes or implements a fix</p>
+<p><strong>Scenario: Planning a major refactor</strong></p>
+<pre tabindex="0"><code>I want to migrate our state management from Redux to Zustand. Help me plan this.
+</code></pre><p>The <code>to-prd</code> skill engages: 1. Explores current Redux implementation
+2. Maps state slices and dependencies
+3. Produces a migration PRD with phased rollout plan
+4. Files it as a GitHub Issue with linked sub-tasks</p>
+<hr>
+<h2 id="authoring-your-own-skills-a-production-ready-template">Authoring Your Own Skills: A Production-Ready Template<a hidden class="anchor" aria-hidden="true" href="#authoring-your-own-skills-a-production-ready-template">#</a></h2>
+<h3 id="anatomy-of-a-high-quality-skill">Anatomy of a High-Quality Skill<a hidden class="anchor" aria-hidden="true" href="#anatomy-of-a-high-quality-skill">#</a></h3>
+<p>Create <code>.claude/skills/code-review/SKILL.md</code>: `````markdown</p>
+<h1 id="code-review-skill">Code Review Skill<a hidden class="anchor" aria-hidden="true" href="#code-review-skill">#</a></h1>
+<h2 id="description">Description<a hidden class="anchor" aria-hidden="true" href="#description">#</a></h2>
+<p>Systematic pull request review covering performance, security, maintainability,
+and style consistency. Biases toward caution over speed for changes touching
+authentication, payment, or data integrity paths.</p>
+<h2 id="triggers">Triggers<a hidden class="anchor" aria-hidden="true" href="#triggers">#</a></h2>
 <ul>
-<li>&ldquo;이 PR 리뷰해줘&rdquo;</li>
-<li>&ldquo;이 코드에 문제가 있는지 봐줘&rdquo;</li>
-<li>&ldquo;코드 리뷰 부탁해&rdquo;</li>
+<li>&ldquo;Review this PR&rdquo;</li>
+<li>&ldquo;Check this code for issues&rdquo;</li>
+<li>&ldquo;Can you code review this?&rdquo;</li>
+<li>&ldquo;What problems do you see here?&rdquo;</li>
 </ul>
-<h2 id="워크플로우">워크플로우<a hidden class="anchor" aria-hidden="true" href="#워크플로우">#</a></h2>
-<h3 id="단계-1-변경-범위-이해">단계 1: 변경 범위 이해<a hidden class="anchor" aria-hidden="true" href="#단계-1-변경-범위-이해">#</a></h3>
+<h2 id="workflow">Workflow<a hidden class="anchor" aria-hidden="true" href="#workflow">#</a></h2>
+<h3 id="phase-1--understand-scope">Phase 1 — Understand Scope<a hidden class="anchor" aria-hidden="true" href="#phase-1--understand-scope">#</a></h3>
+<ol>
+<li>Read PR description and linked issues</li>
+<li>Identify the file change set</li>
+<li>Distinguish core changes from incidental adjustments</li>
+</ol>
+<h3 id="phase-2--architecture-review">Phase 2 — Architecture Review<a hidden class="anchor" aria-hidden="true" href="#phase-2--architecture-review">#</a></h3>
 <ul>
-<li>PR 설명과 관련 이슈 읽기</li>
-<li>수정 파일 목록 식별</li>
-<li>핵심 변경과 부수적 조정 구분</li>
+<li><input disabled="" type="checkbox"> Do changes align with established patterns?</li>
+<li><input disabled="" type="checkbox"> Are new dependencies justified?</li>
+<li><input disabled="" type="checkbox"> Is module boundary clarity maintained?</li>
+<li><input disabled="" type="checkbox"> Does this change affect the public API contract?</li>
 </ul>
-<h3 id="단계-2-아키텍처-리뷰">단계 2: 아키텍처 리뷰<a hidden class="anchor" aria-hidden="true" href="#단계-2-아키텍처-리뷰">#</a></h3>
+<h3 id="phase-3--implementation-review">Phase 3 — Implementation Review<a hidden class="anchor" aria-hidden="true" href="#phase-3--implementation-review">#</a></h3>
 <ul>
-<li><input disabled="" type="checkbox"> 변경이 기존 아키텍처 패턴과 일치하는가</li>
-<li><input disabled="" type="checkbox"> 새로운 의존성이 적절한가</li>
-<li><input disabled="" type="checkbox"> 모듈 경계가 명확한가</li>
+<li><input disabled="" type="checkbox"> Boundary condition handling</li>
+<li><input disabled="" type="checkbox"> Error handling completeness</li>
+<li><input disabled="" type="checkbox"> Concurrency safety</li>
+<li><input disabled="" type="checkbox"> Performance impact (time and space complexity)</li>
+<li><input disabled="" type="checkbox"> Security surface area change</li>
 </ul>
-<h3 id="단계-3-구현-세부사항-리뷰">단계 3: 구현 세부사항 리뷰<a hidden class="anchor" aria-hidden="true" href="#단계-3-구현-세부사항-리뷰">#</a></h3>
+<h3 id="phase-4--output-structured-report">Phase 4 — Output Structured Report<a hidden class="anchor" aria-hidden="true" href="#phase-4--output-structured-report">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="color:#75715e">## Code Review Results
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Blockers (must fix before merge)
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">1.</span> Line 45: Unchecked user input flows directly to query construction — SQL injection risk
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Recommendations (should fix)
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">1.</span> Line 78: Consider extracting this logic to a shared utility — duplicated in 3 files
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Affirmations (preserve these patterns)
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">1.</span> Excellent test coverage for the edge case at line 120
+</span></span></code></pre></div><h2 id="constraints">Constraints<a hidden class="anchor" aria-hidden="true" href="#constraints">#</a></h2>
 <ul>
-<li><input disabled="" type="checkbox"> 경계 조건 처리</li>
-<li><input disabled="" type="checkbox"> 오류 처리 완전성</li>
-<li><input disabled="" type="checkbox"> 동시성 안전성</li>
-<li><input disabled="" type="checkbox"> 성능 영향 평가</li>
-</ul>
-<h3 id="단계-4-구조화된-보고서-출력">단계 4: 구조화된 보고서 출력<a hidden class="anchor" aria-hidden="true" href="#단계-4-구조화된-보고서-출력">#</a></h3>
-<pre tabindex="0"><code>## 리뷰 결과
-
-### 심각한 문제 (반드시 수정)
-1. ...
-
-### 개선 권장 (수정 권장)
-1. ...
-
-### 긍정적 피드백 (유지)
-1. ...
-</code></pre><h2 id="제약">제약<a hidden class="anchor" aria-hidden="true" href="#제약">#</a></h2>
-<ul>
-<li>가독성에 영향을 주지 않는 한 스타일 문제는 제안하지 않음</li>
-<li>성능 미세 최적화보다 정확성과 보안을 우선</li>
-<li>모든 문제는 구체적인 라인 번호를 참조해야 함</li>
+<li>Never suggest style-only changes unless they materially impact readability</li>
+<li>Prioritize correctness and security over performance micro-optimizations</li>
+<li>Every issue must reference specific line numbers</li>
+<li>If unsure about a security issue, flag it explicitly rather than staying silent</li>
 </ul>
 <pre tabindex="0"><code>
-### 4.2 고품질 스킬 설계 원칙
+### Design Principles From the 75K-Star Repository
 
-**Matt Pocock의 실천에서 추출:**
+Matt Pocock&#39;s skills follow rules that transfer to any custom skill: 1. **Include trigger phrases in descriptions** — Start with &#34;Use when...&#34; so the agent knows when to activate
+2. **Keep SKILL.md under 100 lines** — If it exceeds, the skill scope is too broad; split it
+3. **Avoid time-sensitive information** — No &#34;current version is X&#34; or &#34;as of May 2026&#34;
+4. **Maintain consistent terminology** — Pick one vocabulary and use it throughout
+5. **Embed concrete examples** — Abstract guidance is less useful than one runnable sample
+6. **Reference depth of one** — Do not chain-skill (Skill A calling Skill B). Coupling creates fragility.
 
-1. **트리거 단어를 설명에 포함** — &#34;Use when...&#34;으로 시작하여 에이전트가 언제 사용할지 알게 함
-2. **SKILL.md는 100줄 이내** — 초과 시 스킬 범위가 넓음. 파일 분할
-3. **시간 민감 정보 제외** — &#34;현재 버전은 X&#34; 같은 내용 금물
-4. **용어 일관성** — 동일한 어휘 체계 전체 사용
-5. **구체적 예시 포함** — 추상 원칙보다 하나의 실행 가능한 예시
-6. **참조 깊이는 1단계** — 다른 스킬을 연쇄 호출하지 않음
+### Meta-Skill: Using write-a-skill to Create Skills
 
-### 4.3 write-a-skill 스킬로 스킬 만들기
-
-메타 스킬 — 스킬을 만드는 스킬: `````bash
+`````bash
 npx skills@latest add mattpocock/skills/write-a-skill
-</code></pre><p>클로드 코드에서: `````
-데이터베이스 모델 수정 시 자동으로 마이그레이션 스크립트를 생성하는
-스킬이 필요해. 스키마 변경 감지, 롤백 가능한 마이그레이션,
-테스트 데이터 시딩을 포함해야 해.</p>
+</code></pre><p>Then in Claude Code: `````
+I need a skill that automatically generates migration scripts when I modify
+database models. It should detect schema changes, produce rollback-capable
+migrations, and include test data seeding.</p>
 <pre tabindex="0"><code>
-````write-a-skill````이 다음을 안내: 1. 목적과 트리거 정의
-2. 워크플로우 단계 구조화
-3. 동반 스크립트 결정
-4. 단일/다중 파일 구조 선택
-5. 검토 체크리스트 실행
+The ````write-a-skill```` skill walks you through: 1. Defining purpose and triggers
+2. Structuring the workflow steps
+3. Deciding on companion scripts for deterministic operations
+4. Choosing single-file vs multi-file organization
+5. Running the review checklist
 
 * * *
 
-## 5. 스킬 vs MCP vs 프롬프트: 세 가지 요소의 협력
+## The Skills Ecosystem: Where It Is Going in 2026
 
-2026년 AI 개발 도구 스택에서 이 세 가지 개념이 가장 혼동됩니다.
+### From Personal Dotfiles to Team Infrastructure
 
-| 구성 요소 | 비유 | 범위 | 전통적 개발 비유 |
-|----------|------|------|----------------|
-| **프롬프트** | 임시 쪽지 | 단일 대화 | 구두 커뮤니케이션 |
-| **스킬** | 표준 작업 절차(SOP) | 프로젝트/팀 | 내부 문서 |
-| **MCP** | API 커넥터 | 교차 애플리케이션 | SDK/라이브러리 |
+The Skills evolution follows a predictable maturity curve: **Phase 1 (Early 2026):** Individual ````.claude```` directories shared on GitHub as personal dotfiles. Adoption is artisanal — each developer curates their own.
 
-**실제 협력 시나리오:**
+**Phase 2 (Mid 2026 — Now):** Registry platforms like explainx.ai launch Skill marketplaces. Monetization emerges: specialized Skills for legal AI, medical compliance, financial auditing.
 
-웹 애플리케이션 개발 중: 1. **MCP**가 깃허브, PostgreSQL, 센트리를 연결하여 에이전트가 이슈 읽기, DB 쿼리, 오류 로그 확인 가능
-2. **스킬**이 팀의 TDD 프로세스, 코드 리뷰 기준, 릴리즈 체크리스트를 정의
-3. **프롬프트**가 &#34;이 함수 이름을 userAuthentication으로 바꿔줘&#34; 같은 세션 내 구체적 지시 처리
+**Phase 3 (Late 2026):** Enterprise adoption accelerates. Team-level Skills registries, CI/CD integration (automatic code review on every PR), compliance auditing (Skills that enforce SOC 2 or HIPAA constraints).
 
-대체 관계가 아닌 보완 관계입니다. MCP는 능력 경계를 확장하고, 스킬은 실행 방식을 표준화하며, 프롬프트는 즉각적 의도를 처리합니다.
+### IDE Integration Deepens
 
-* * *
+- **Cursor Composer** — Visual Skill marketplace with real-time previews
+- **Windsurf Cascade** — Skill chaining with graphical workflow editor
+- **VS Code extensions** — Third-party registries browsable from the sidebar
 
-## 6. 2026년 스킬 생태계의 미래 방향
+### The Emerging Skill Economy
 
-### 6.1 상용화 가속
-
-explainx.ai 등의 플랫폼이 스킬 배포 및 수익화 기능을 출시했습니다: - 유료 스킬 출판 (크롬 확장 프로그램 스토어와 유사)
-- 설치량 또는 호출량 기반 과금
-- 특정 기술 스택(Next.js, Django, Rust) 전문 스킬팩
-
-### 6.2 개인에서 기업으로
-
-초기 스킬은 개인 ````.claude```` 디렉토리의 공유였으나, 2026년 Q2부터: - 팀 레벨 스킬 레지스트리
-- CI/CD 통합 (PR마다 자동 코드 리뷰 스킬 실행)
-- 규정 준수 및 감사 (금융, 의료 분야 커스텀 제약 스킬)
-
-### 6.3 IDE와의 깊은 통합
-
-- **커서 컴포저** — 시각적 스킬 마켓플레이스와 실시간 미리보기
-- **윈드서프 캐스케이드** — 스킬 체이닝과 그래픽 워크플로우 에디터
-- **VS 코드 확장** — 사이드바에서 탐색 가능한 서드파티 레지스트리
+Technical writers, senior engineers, and domain experts are beginning to productize their expertise as Skills. A senior React architect can package their decade of component design patterns into a $29 Skill. A DevOps consultant can codify their Kubernetes troubleshooting playbook. This is expertise-as-code — and it is monetizable.
 
 * * *
 
-## 7. 자주 묻는 질문 (FAQ)
+## FAQ
 
-**Q: 스킬은 클로드 코드에서만 작동하나요?**
-A: 아닙니다. ````.claude/skills/````는 클로드 코드의 네이티브 경로지만, mattpocock/skills 등은 커서, 코덱스 CLI, 클린, 윈드서프 등 다양한 에이전트용 설치를 지원합니다. 핵심 형식은 표준 마크다운으로 툴 간 호환됩니다.
+**Q: Do Skills only work with Claude Code?**
+A: No. While ````.claude/skills/```` is the native path, the community has built installers for Cursor (````.cursor/skills/````), Codex CLI (````.codex/skills/````), Cline, and Windsurf. The core format is standard Markdown with YAML frontmatter.
 
-**Q: 스킬 설치가 기존 프로젝트에 영향을 주나요?**
-A: 전혀 없습니다. 스킬은 ````.claude/skills/```` 디렉토리에 있는 순수 마크다운 파일입니다. 소스 코드나 의존성을 수정하지 않습니다. 삭제는 해당 폴더를 제거하면 됩니다.
+**Q: Will installing Skills modify my project code?**
+A: Absolutely not. Skills are read-only Markdown files in a hidden directory. They influence agent behavior but do not touch your source code or dependencies.
 
-**Q: 스킬과 커스텀 GPT의 차이는?**
-A: 커스텀 GPT는 ChatGPT 대화를 감싸는 주로 톤과 지식 범위에 영향을 줍니다. 스킬은 코드 생성, 파일 조작, 명령 실행 프로세스를 직접 제어하는 절차적 워크플로우를 정의합니다.
+**Q: How are Skills different from Custom GPTs?**
+A: Custom GPTs wrap ChatGPT conversations, primarily affecting tone and knowledge scope. Skills define *procedural workflows* that directly impact code generation, file manipulation, and command execution sequences.
 
-**Q: mattpocock/skills를 쓰려면 타입스크립트 프로젝트여야 하나요?**
-A: 아닙니다. Matt가 타입스크립트 전문가지만, ````tdd````, ````write-a-prd````, ````diagnose```` 등은 언어에 무관합니다. 어떤 기술 스택에도 적용됩니다.
+**Q: Do I need a TypeScript project to use mattpocock/skills?**
+A: No. While Matt is a TypeScript authority, skills like ````tdd````, ````write-a-prd````, and ````diagnose```` are language-agnostic. The principles apply to Python, Go, Rust, or any stack.
 
-**Q: agentmemory와 스킬은 충돌하나요?**
-A: 전혀 그렇지 않습니다. agentmemory는 &#34;에이전트가 컨텍스트를 기억&#34;하는 문제를, 스킬은 &#34;에이전트가 규범적으로 일&#34;하는 문제를 해결합니다. 함께 쓸수록 효과가 좋습니다.
+**Q: Can Skills and agentmemory be used together?**
+A: Yes, and they should be. agentmemory solves *context persistence* across sessions. Skills solve *workflow standardization*. Together they give you an agent that remembers your preferences *and* follows your procedures.
 
-**Q: 2026년 가장 먼저 배워야 할 스킬은?**
-A: 팀장이시라면 ````write-a-prd````와 ````to-issues````를. 개발자라면 ````tdd````와 ````diagnose````를. 보안 민감 프로젝트라면 ````git-guardrails-claude-code```를 우선적으로 고려하세요.
+**Q: What is the single best Skill to start with?**
+A: For engineering teams: ````tdd````. For product teams: ````write-a-prd````. For any codebase: ````git-guardrails-claude-code````. Pick one, install it, use it for a week. The productivity delta will make the value obvious.
 
-* * *
-
-## 결론
-
-2026년 5월, GitHub Trending에서 Agent Skills의 지배는 일시적 유행이 아닙니다. 이는 AI 코딩 에이전트가 실험적 보조 도구에서 프로덕션급 엔지니어링 도구로 전환하는 것을 의미합니다.
-
-스킬을 사용하는 개발자와 그렇지 않은 개발자의 차이는 대화를 나누는 것과 프로토콜을 따르는 것의 차이입니다. 대화는 탐색에 효율적이고, 프로토콜은 규모에 필요합니다.
-
-mattpocock/skills은 프로덕션 검증된 규율을, obra/superpowers는 커뮤니티 검증된 폭을, agentmemory는 둘 모두를 실제 업무일에 사용할 수 있게 하는 지속성을 제공합니다. 이 셋이 2026년 AI 개발자의 핵심 스택을 정의합니다.
-
-**오늘의 실천:** 이 가이드에서 소개한 스킬 하나를 골라, 주요 프로젝트에 설치하고 다음 기능 개발이나 버그 수정에 사용해 보세요. &#34;AI에게 물어보는 것&#34;에서 &#34;훈련된 협업자에게 위임하는 것&#34;으로의 전환을 직접 경험하게 될 것입니다.
+**Q: How do I share Skills across my team?**
+A: Commit ````.claude/skills/```` to your repository. New team members clone the repo and the skills are already configured. For cross-project sharing, use ````npx skills add``` with a shared GitHub repository as the source.
 
 * * *
 
-**관련 자료:**
-- [Claude Code 공식 문서 — 에이전트 스킬](https://docs.anthropic.com/en/docs/claude-code/skills)
-- [mattpocock/skills 깃허브 저장소](https://github.com/mattpocock/skills)
-- [obra/superpowers 깃허브 저장소](https://github.com/obra/superpowers)
-- [rohitg00/agentmemory 깃허브 저장소](https://github.com/rohitg00/agentmemory)
-- [Agent Skills 완전 입문 가이드 (explainx.ai)](https://explainx.ai/blog/what-are-agent-skills-complete-guide)
+## Conclusion
 
-*스타 수와 저장소 통계는 2026년 5월 13일 기준 깃허브 API 데이터입니다. 모든 저장소는 최근 커밋으로 활발히 유지보수되고 있습니다.*
+The dominance of Agent Skills on GitHub Trending throughout May 2026 signals something larger than a temporary hype cycle. It marks the transition of AI coding agents from experimental assistants to production-grade engineering tools.
+
+The difference between a developer who uses Skills and one who does not is the difference between having a conversation and having a protocol. Conversations are efficient for exploration. Protocols are necessary for scale.
+
+mattpocock/skills brings production-tested discipline. obra/superpowers brings community-validated breadth. agentmemory brings the persistence that makes both usable across real workdays. Together they define the 2026 AI developer stack.
+
+**Your next step:** Pick one skill from this guide. Install it in your main project. Use it for your next feature, bug fix, or refactor. Experience the shift from &#34;asking an AI&#34; to &#34;delegating to a trained collaborator.&#34;
+
+* * *
+
+**Further Reading:**
+- [Claude Code Official Documentation — Agent Skills](https://docs.anthropic.com/en/docs/claude-code/skills)
+- [mattpocock/skills on GitHub](https://github.com/mattpocock/skills)
+- [obra/superpowers on GitHub](https://github.com/obra/superpowers)
+- [rohitg00/agentmemory on GitHub](https://github.com/rohitg00/agentmemory)
+- [What Are Agent Skills? Complete Guide (explainx.ai)](https://explainx.ai/blog/what-are-agent-skills-complete-guide)
+- [Dictionary of AI Coding Terms (Matt Pocock)](https://github.com/mattpocock/dictionary-of-ai-coding)
+
+*Star counts and repository statistics reflect GitHub API data as of May 13, 2026. All repositories are actively maintained with recent commits.*
 
 
 {
   &#34;@context&#34;: &#34;https://schema.org&#34;,
   &#34;@type&#34;: &#34;Article&#34;,
-  &#34;headline&#34;: &#34;2026년 AI 에이전트 스킬 완벽 가이드: 클로드 코드 실전 튜토리얼과 핫한 저장소 소개&#34;,
+  &#34;headline&#34;: &#34;AI Agent Skills Explained: The 2026 Developer&#39;&#39;s Guide to Production-Grade Agent Workflows&#34;,
   &#34;datePublished&#34;: &#34;2026-05-16&#34;,
   &#34;dateModified&#34;: &#34;2026-05-16&#34;,
   &#34;author&#34;: {
@@ -613,7 +586,7 @@ mattpocock/skills은 프로덕션 검증된 규율을, obra/superpowers는 커�
   },
   &#34;mainEntityOfPage&#34;: {
     &#34;@type&#34;: &#34;WebPage&#34;,
-    &#34;@id&#34;: &#34;https://dibi8.com/kr/resources/ai-agent-skills-2026-developer-guide&#34;
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/ai-agent-skills-2026-developer-guide&#34;
   }
 }
 &lt;/script&gt;
@@ -680,6 +653,81 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

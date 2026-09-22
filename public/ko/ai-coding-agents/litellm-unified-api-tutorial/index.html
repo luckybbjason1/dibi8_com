@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "{\u003c/* resource-info */\u003e}\nAI 서비스를 개발하다 별면 여러 LLM 제공자의 API를 각각 연결해야 하는 번거로움을 경험하게 됩니다. LiteLLM은 이런 문제를 해결하는 통합 LLM API 게이트웨이로, 100개 이상의 모델을 하나의 인터페이스로 호출할 수 있게 해줍니다.\nLiteLLM이란 무엇인가? 범용 LLM API 게이트웨이 LiteLLM은 BerriAI가 개발한 오픈소스 LLM 프록시 서버로, OpenAI, Anthropic, Google, Azure 등 다양한 제공자의 API를 표준화된 OpenAI 호환 형식으로 변환합니다. 개발자는 ```completion()```` 함수 하나로 GPT-4, Claude 3, Gemini, Llama 등 어떤 모델이든 동일한 코드로 호출할 수 있습니다.\n왜 LiteLLM을 사용해야 할까? 다중 제공자 관리 간소화: API 키, 엔드포인트, 요청 형식을 각각 관리할 필요 없음 지능형 라우팅: 비용, 지연 시간, 가용성을 기준으로 최적의 모델로 자동 분배 폴리백과 재시도: 한 제공자에 장애가 발생하면 자동으로 대체 모델로 전환 비용 통제: 팀별 예산 설정과 실시간 비용 모니터링 핵심 기능 개요 기능 설명 통합 API 100+ 모델을 OpenAI 호환 형식으로 호출 프록시 서버 가상 키, 속도 제한, 예산 관리 지능형 라우터 비용/지연 시간 기반 모델 선택 캐싱 반복 쿼리에 대한 응답 캐싱으로 비용 절감 스트리밍 모든 제공자에서 실시간 스트리밍 지원 임베딩 통합 텍스트 임베딩도 동일한 인터페이스로 처리 100개 이상의 제공자와 모델 지원 주요 제공자 OpenAI: GPT-4o, GPT-4 Turbo, GPT-3.5-Turbo Anthropic: Claude 3 Opus, Sonnet, Haiku Google: Gemini 1.5 Pro, Gemini 1.5 Flash Azure OpenAI: 엔터프라이즈 환경의 OpenAI 모델 AWS Bedrock: Claude, Llama, Titan 등 Vertex AI: Google Cloud의 Gemini 및 기타 모델 오픈소스 및 로컬 모델 Ollama: 로컬에서 실행하는 Llama, Mistral, Gemma vLLM: 고성능 오픈소스 모델 서빙 엔진 Hugging Face: TGI(Text Generation Inference)로 호스팅되는 모델 Groq: 초저지연 추론을 제공하는 특화 제공자 Together AI: 클라우드 기반 오픈소스 모델 서비스 설치와 빠른 시작 pip로 LiteLLM 설치 pip install litellm 첫 번째 통합 API 호출 import litellm # OpenAI 모델 호출 response = litellm.completion( model=\"gpt-4o\", messages=[{\"role\": \"user\", \"content\": \"안녕하세요!\"}] ) # Claude 모델 호출 (동일한 함수 사용) response = litellm.completion( model=\"claude-3-sonnet-20240229\", messages=[{\"role\": \"user\", \"content\": \"안녕하세요!\"}] ) # Gemini 모델 호출 response = litellm.completion( model=\"gemini/gemini-1.5-pro\", messages=[{\"role\": \"user\", \"content\": \"안녕하세요!\"}] ) 모델명 앞에 제공자 접두사(gemini/, anthropic/ 등)를 붙이면 LiteLLM이 자동으로 해당 제공자의 API로 라우팅합니다. 접두사 없이 사용하면 기본 제공자로 해석됩니다.\n비동기 지원 import litellm response = await litellm.acompletion( model=\"gpt-4o\", messages=[{\"role\": \"user\", \"content\": \"비동기 호출 예시\"}] ) acompletion() 함수로 비동기 처리가 가능하며, 고성능 애플리케이션에서 필수적입니다.\nLiteLLM 프록시 서버 프록시 서버 설정 litellm --config config.yaml config.yaml 상세 구성 model_list: - model_name: gpt-4o litellm_params: model: openai/gpt-4o api_key: os.environ/OPENAI_API_KEY - model_name: claude-sonnet litellm_params: model: anthropic/claude-3-sonnet-20240229 api_key: os.environ/ANTHROPIC_API_KEY - model_name: gemini-pro litellm_params: model: gemini/gemini-1.5-pro api_key: os.environ/GEMINI_API_KEY router_settings: routing_strategy: simple-shuffle timeout: 30 num_retries: 3 가상 키 관리 litellm_settings: fallbacks: [{\"gpt-4o\": [\"claude-sonnet\", \"gemini-pro\"]}] budget_alerts: True max_budget: 100 가상 키를 통해 팀별 접근 권한과 예산을 독립적으로 관리할 수 있습니다.\n고급 기능 지능형 라우터 비용 기반 라우팅은 가장 저렴한 사용 가능한 모델을 자동 선택합니다. 지연 시간 기반 라우팅은 응답 속도가 가장 빠른 모델로 요청을 볃납니다.\n폴리백과 재시도 fallbacks: - {\"gpt-4o\": [\"claude-3-sonnet\", \"gemini-1.5-pro\"]} - {\"claude-3-opus\": [\"gpt-4-turbo\"]} 1순위 모델이 실패하면 2순위, 3순위 모델로 자동 전환됩니다.\n응답 캐싱 cache: True cache_params: type: redis host: localhost port: 6379 Redis를 백엔드로 사용하면 동일한 질문에 대한 반복 호출을 캐싱하여 API 비용을 최대 40% 절감할 수 있습니다.\nLiteLLM + LangChain/LlamaIndex 연동 LangChain에서 사용하기 from langchain_community.chat_models import ChatLiteLLM llm = ChatLiteLLM(model=\"gpt-4o\") response = llm.predict(\"LangChain에서 LiteLLM 사용하기\") LlamaIndex에서 사용하기 from llama_index.llms.litellm import LiteLLM llm = LiteLLM(model=\"claude-3-sonnet\") 기존 코드베이스에서 모델 교체가 필요할 때 LiteLLM은 거의 드롭인 방식으로 적용 가능합니다.\n엔터프라이즈 기능 사용자 관리 및 RBAC: 팀별 역할 기반 접근 통제 비용 추적 및 알림: 실시간 비용 대시보드와 예산 알림 로깅 및 관찰 가능성: LangSmith, Langfuse, OpenTelemetry 연동 셀프 호스팅: 남부 데이터센터에 직접 배포 SSO 통합: OIDC, SAML 기업 로그인 비용 최적화 전략 전략 예상 절감 효과 저렴한 제공자 라우팅 30-60% 오픈소스 모델 활용 70-90% 캐싱 20-40% 스트리밍 지연 시간 50% 감소 LiteLLM과 대안 비교 항목 LiteLLM Portkey 직접 통합 제공자 수 100+ 20+ 1개씩 오픈소스 O X - 프록시 서버 O O X 가상 키 O O X 비용 추적 O O 직접 구현 셀프 호스팅 O X - 프로덕션 배포 가이드 Docker 배포 FROM ghcr.io/berriai/litellm:main-latest COPY config.yaml /app/config.yaml CMD [\"litellm\", \"--config\", \"/app/config.yaml\", \"--port\", \"4000\"] Kubernetes Helm 차트 helm repo add litellm https://berriai.github.io/litellm helm install litellm litellm/litellm -f values.yaml 자주 묻는 질문 LiteLLM은 물로 사용할 수 있나요?\n기본 SDK와 프록시 서버는 MIT 라이선스로 완전 물론입니다. 엔터프라이즈 기능(가상 키, RBAC, SSO)이 포함된 LiteLLM Enterprise는 유료 플랜이 있습니다.\nLiteLLM은 어떤 LLM 제공자를 지원하나요?\n2025년 5월 기준 100개 이상의 제공자를 지원합니다. OpenAI, Anthropic, Google, Azure, AWS Bedrock, Vertex AI, Cohere, Groq, Together AI, Ollama, vLLM 등이 포함됩니다.\nLiteLLM이 API 키 관리를 어떻게 처리하나요?\n환경 변수나 .env 파일에서 API 키를 읽어옵니다. config.yaml에서 api_key: os.environ/KEY_NAME 형식으로 참조하여 코드에 민감한 정보를 노출하지 않습니다.\n셀프 호스팅 모델과 LiteLLM을 연동할 수 있나요?\nOllama나 vLLM으로 로컬에서 실행하는 모델도 LiteLLM에 등록할 수 있습니다. model: ollama/llama3 또는 ````model: hosted_vllm/llama3``` 형식으로 설정합니다.\nLiteLLM SDK와 프록시의 차이점은 무엇인가요?\nSDK는 Python 라이브러리로 코드에서 직접 호출합니다. 프록시 서버는 독립 실행형 서버로, 모든 프로그래밍 언어에서 HTTP 요청으로 접근할 수 있으며 가상 키 관리와 로드 밸런싱 기능이 포함됩니다.\n참고 자료 LiteLLM 공식 문서 LiteLLM GitHub 저장소 LiteLLM 프록시 문서 OpenAI API 문서 Anthropic API 문서 추천 인프라 위 도구들을 24/7 안정 운영하려면 인프라가 중요하다: - DigitalOcean — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.\nHTStack — 홍콩 VPS, 중국 본토 저지연. dibi8.com 자체 호스팅 IDC. 추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “LiteLLM 튜토리얼 2025: 하나의 API로 100개 이상의 LLM 사용하기”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/litellm-unified-api-tutorial\" } } Why This Matters Understanding litellm 튜토리얼 2025: 하나의 api로 100개 이상의 llm 사용하기 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion LiteLLM 튜토리얼 2025: 하나의 API로 100개 이상의 LLM 사용하기 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\nFramework Comparison Framework Primary Use Learning Curve Community Production Ready LangChain General-purpose Medium Large ✅ Yes LlamaIndex RAG/Retrieval Low Growing ✅ Yes Haystack Document processing Medium Medium ✅ Yes LangGraph Stateful agents High Growing ✅ Yes ",
-  "wordCount" : "1110",
+  "articleBody": "{\u003c/* resource-info */\u003e}\nManaging multiple LLM providers in production is a nightmare most developers know too well. Each provider has its own API format, authentication method, error handling, and rate limits. Switching from GPT-4 to Claude 3.5 Sonnet means rewriting API calls. Adding a fallback to Gemini means more boilerplate. This fragmentation burns engineering time and introduces brittle code paths.\nEnter LiteLLM. This open-source project provides a single, unified interface to call over 100 LLM providers using the familiar OpenAI API format. Whether you need OpenAI, Anthropic, Google Gemini, Azure OpenAI, AWS Bedrock, or self-hosted models via Ollama and vLLM, LiteLLM handles the translation layer so you focus on building features.\nIn this guide, you will learn how to install LiteLLM, make your first unified API call, set up the production-grade proxy server, configure intelligent routing, and deploy at enterprise scale. Let us dive in.\nWhat is LiteLLM? The Universal LLM API Gateway LiteLLM, maintained by Berri AI on GitHub, is an open-source LLM gateway that translates API calls between the OpenAI format and 100+ different LLM providers. It functions as a drop-in compatibility layer, meaning code written for OpenAI’s ```/chat/completions```` endpoint works seamlessly with Anthropic Claude, Google Gemini, Cohere Command, and dozens more without modification.\nThe project started in early 2023 and has grown to become one of the most popular LLM infrastructure tools, with over 10,000 GitHub stars and active daily releases. Companies like Cloudflare, Postman, and Shopify use LiteLLM in production to manage multi-provider LLM access.\nWhy Use LiteLLM? Building direct integrations for each LLM provider requires maintaining separate SDKs, handling different authentication headers, parsing unique response formats, and managing provider-specific error codes. LiteLLM eliminates this overhead entirely.\nKey benefits include: - Single API format: Write once, call any provider using the OpenAI SDK structure\nAutomatic fallbacks: If OpenAI’s API is down, route to Anthropic or Gemini instantly Load balancing: Distribute traffic across multiple providers to reduce latency and cost Unified logging: Track all LLM calls across providers in one place Budget controls: Set spend limits per API key, user, or team Caching: Reduce costs by caching identical requests across providers Key Features Overview LiteLLM offers two main components. The Python SDK (litellm pip package) provides a programmatic interface for making unified LLM calls in Python applications. The Proxy Server (deployed via Docker or pip) exposes an OpenAI-compatible HTTP API that any application can call, complete with virtual key management, rate limiting, and spend tracking.\nAdditional enterprise features include role-based access control (RBAC), SSO integration via OAuth/SAML, detailed spend dashboards, and support for embedding models, image generation, and function calling across providers.\nSupported Providers and Models (100+) OpenAI, Anthropic, Google (Gemini) LiteLLM supports all major commercial LLM providers with full feature parity: - OpenAI: GPT-4o, GPT-4 Turbo, GPT-4, GPT-3.5 Turbo, DALL-E, Whisper, text-embedding-3-large\nAnthropic: Claude 3.5 Sonnet, Claude 3 Opus, Claude 3 Sonnet, Claude 3 Haiku Google: Gemini 1.5 Pro, Gemini 1.5 Flash, Gemini Pro, Gemini Ultra Each provider supports streaming responses, function calling, multi-modal inputs, and tool use where available.\nAzure OpenAI Azure OpenAI Service receives dedicated support in LiteLLM. You can configure multiple Azure deployments (e.g., gpt-4 in East US and gpt-4 in West Europe) and let LiteLLM automatically route requests to the deployment with the lowest latency or highest token availability. This is critical for applications requiring regional failover or compliance with data residency requirements.\nOpen-Source Models via Hugging Face LiteLLM connects to any model hosted on Hugging Face through the Inference API or by calling TGI (Text Generation Inference) endpoints. This includes models like Llama 3, Mistral, Qwen, and over 500,000 others. You can deploy models on Hugging Face Inference Endpoints or self-host with TGI and point LiteLLM to your endpoint.\nLocal Models via Ollama, vLLM For privacy-sensitive applications or cost reduction, LiteLLM integrates with local model servers: - Ollama: Run Llama 3, Mistral, or Gemma locally and expose them through LiteLLM’s unified API\nvLLM: High-throughput serving of open-source models with PagedAttention LM Studio: Local model management with LiteLLM-compatible endpoints This means your development environment can use local models while production uses GPT-4, all with the same code.\nCloud Providers: AWS Bedrock, Vertex AI Enterprise cloud deployments are fully supported: - AWS Bedrock: Access Claude, Llama 3, Titan, and Command models through your AWS account\nGoogle Vertex AI: Use Gemini and PaLM models via Google Cloud Azure AI: Native integration with Azure’s model catalog LiteLLM handles the IAM authentication, region selection, and model ID translation automatically.\nSpecialized Providers: Cohere, Groq, Together AI Niche providers with unique strengths are also covered: - Groq: Extremely fast inference (500+ tokens/second) for Llama 3 and Mixtral\nTogether AI: Optimized inference for open-source models at competitive pricing Cohere: Command models and Embed v3 embeddings Mistral AI: Direct API access to Mistral models AI21 Labs: Jurassic models for enterprise use Installation and Quick Start Installing LiteLLM (pip install litellm) Getting started takes under 60 seconds. Install the LiteLLM Python SDK via pip: `````bash pip install litellm\nFor the proxy server with all enterprise features, install the full package: `````bash pip install 'litellm[proxy]' Both options require Python 3.8 or higher. LiteLLM has minimal dependencies and installs cleanly in virtual environments, Docker containers, and Jupyter notebooks.\nMaking Your First Unified API Call Here is a basic completion call that works with any supported provider: `````python import litellm from litellm import completion\nCall OpenAI response = completion( model=“gpt-4o”, messages=[{“role”: “user”, “content”: “Hello, how are you?”}] )\nCall Anthropic Claude - same function, different model string response = completion( model=“claude-3-5-sonnet-20241022”, messages=[{“role”: “user”, “content”: “Hello, how are you?”}] )\nCall Gemini - same function again response = completion( model=“gemini/gemini-1.5-pro”, messages=[{“role”: “user”, “content”: “Hello, how are you?”}] )\nNotice that the ````completion()```` function and message format stay identical. Only the ````model```` parameter changes, using LiteLLM's provider-prefixed naming convention where needed. ### Understanding the completion() Function The ````completion()```` function accepts all standard OpenAI parameters: ````model````, ````messages````, ````temperature````, ````max_tokens````, ````top_p````, ````stream````, ````tools````, and ````tool_choice````. LiteLLM translates these to each provider's native format behind the scenes. Provider-specific parameters can be passed through the ````extra_body```` parameter. API keys are read from environment variables by default (````OPENAI_API_KEY````, ````ANTHROPIC_API_KEY````, ````GEMINI_API_KEY````), or passed explicitly via the ````api_key```` parameter. ### Async Support Overview For production applications handling concurrent requests, LiteLLM provides ``acompletion()``: `````python from litellm import acompletion import asyncio async def call_llm(): response = await acompletion( model=\"gpt-4o\", messages=[{\"role\": \"user\", \"content\": \"Async call\"}] ) return response # Handle multiple concurrent calls tasks = [call_llm() for _ in range(10)] results = await asyncio.gather(*tasks) Async mode is essential for high-throughput applications and integrates seamlessly with FastAPI, Sanic, and other async Python frameworks.\nThe LiteLLM Proxy Server Setting Up the Proxy Server The LiteLLM Proxy Server transforms LiteLLM from a Python library into a production-grade API gateway. Any application that speaks OpenAI’s API can connect to the proxy without code changes.\nStart the proxy server with a configuration file: `````bash litellm –config /path/to/config.yaml\nOr deploy via Docker: `````bash docker run -p 4000:4000 \\ -v $(pwd)/config.yaml:/app/config.yaml \\ ghcr.io/berriai/litellm:main-latest \\ --config /app/config.yaml The proxy exposes the standard OpenAI endpoints: /chat/completions, /completions, /embeddings, /models, and /images/generations.\nConfiguration File (config.yaml) Deep Dive The config.yaml file defines your model inventory, routing rules, and enterprise settings. Here is a production-ready example: `````yaml model_list: - model_name: gpt-4 litellm_params: model: gpt-4o api_key: os.environ/OPENAI_API_KEY\nmodel_name: claude-3-5 litellm_params: model: claude-3-5-sonnet-20241022 api_key: os.environ/ANTHROPIC_API_KEY\nmodel_name: llama-3 litellm_params: model: ollama/llama3 api_base: http://localhost:11434\nrouter_settings: routing_strategy: simple-shuffle fallbacks: [{“gpt-4”: [“claude-3-5”]}] cooldown_time: 30\ngeneral_settings: master_key: sk-litellm-master-key database_url: os.environ/DATABASE_URL\nThis configuration defines three model aliases (````gpt-4````, ````claude-3-5````, ````llama-3````), sets Claude as a fallback for OpenAI, and configures master key authentication. ### Virtual Key Management The proxy generates virtual keys that map to specific models and budgets. Create a virtual key via the API: `````bash curl -X POST http://localhost:4000/key/generate \\ -H \"Authorization: Bearer sk-litellm-master-key\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"models\": [\"gpt-4\", \"claude-3-5\"], \"max_budget\": 100.00, \"tpm_limit\": 100000, \"rpm_limit\": 1000 }' Each virtual key tracks its own spend, enforces its own rate limits, and can be revoked independently. This is ideal for multi-tenant SaaS applications.\nRate Limiting and Budget Controls LiteLLM enforces rate limits at multiple levels. Per-key limits include requests per minute (RPM), tokens per minute (TPM), and maximum budget in USD. Per-user limits track consumption across multiple keys. Global limits protect the entire deployment from unexpected spikes.\nBudget alerts trigger webhooks when spend thresholds are reached. Teams can configure Slack, email, or custom webhook notifications to stay informed about LLM spending patterns.\nLoad Balancing Across Providers The proxy supports multiple routing strategies: - Simple shuffle: Round-robin across healthy providers\nLatency-based: Route to the provider with the lowest response time Cost-based: Send requests to the cheapest available model Rate-limit aware: Avoid providers approaching their rate limits Configure routing in config.yaml: `````yaml router_settings: routing_strategy: latency-based-routing timeout: 30 num_retries: 3\n## Advanced Features ### Router: Intelligent Model Selection The ``Router`` class provides programmatic control over model selection in Python: `````python from litellm import Router router = Router( model_list=[ {\"model_name\": \"gpt-4\", \"litellm_params\": {\"model\": \"gpt-4o\"}}, {\"model_name\": \"gpt-4\", \"litellm_params\": {\"model\": \"azure/gpt-4\"}}, ], routing_strategy=\"latency-based\", fallbacks=[{\"gpt-4\": [\"claude-3-5\"]}] ) response = await router.acompletion( model=\"gpt-4\", messages=[{\"role\": \"user\", \"content\": \"Hello\"}] ) The router automatically tracks latency per deployment and routes requests to the fastest option.\nFallbacks and Retries When a provider returns an error (rate limit, timeout, server error), LiteLLM can automatically retry with the same provider or fall back to a different one: `````python response = completion( model=“gpt-4o”, messages=messages, fallback_dict={“gpt-4o”: [“claude-3-5-sonnet”, “gemini-1.5-pro”]}, num_retries=3 )\nThis ensures 99.9%+ uptime even when individual providers experience outages. ### Caching Responses LiteLLM supports Redis-based caching to avoid redundant API calls: `````python litellm.cache = litellm.Cache(type=\"redis\", host=\"localhost\", port=6379) # First call hits the API response = completion(model=\"gpt-4o\", messages=messages) # Second identical call returns cached result instantly response = completion(model=\"gpt-4o\", messages=messages) Caching supports TTL configuration, cache-key customization, and cache invalidation via API.\nStreaming Support All providers support streaming responses through a unified interface: `````python response = completion( model=“gpt-4o”, messages=messages, stream=True )\nfor chunk in response: print(chunk.choices[0].delta.content, end=\"\")\nThe streaming format is normalized across all providers, so your frontend code works identically regardless of which LLM serves the request. ### Function Calling Across Providers Function calling (tool use) works across all supported providers with automatic format translation: `````python tools = [{ \"type\": \"function\", \"function\": { \"name\": \"get_weather\", \"parameters\": {\"location\": {\"type\": \"string\"}} } }] # Works with OpenAI, Anthropic, Gemini, and more response = completion(model=\"gpt-4o\", messages=messages, tools=tools) Embedding Models Unified API LiteLLM unifies embedding APIs across providers: `````python from litellm import embedding\nOpenAI embeddings response = embedding(model=“text-embedding-3-large”, input=[“Hello world”])\nCohere embeddings response = embedding(model=“cohere/embed-english-v3.0”, input=[“Hello world”])\nLocal embeddings via Ollama response = embedding(model=“ollama/nomic-embed-text”, input=[“Hello world”])\n## LiteLLM + LangChain/LlamaIndex Integration ### Using LiteLLM with LangChain LiteLLM integrates with [LangChain](https://python.langchain.com) through the ``ChatLiteLLM`` class: `````python from langchain_community.chat_models import ChatLiteLLM llm = ChatLiteLLM(model=\"gpt-4o\") response = llm.invoke(\"What is the capital of France?\") LangChain’s chains, agents, and RAG pipelines work transparently with any LiteLLM-supported model. Switching from GPT-4 to Claude requires only changing the model string.\nUsing LiteLLM with LlamaIndex LlamaIndex supports LiteLLM as a drop-in LLM backend: `````python from llama_index.llms.litellm import LiteLLM\nllm = LiteLLM(model=“claude-3-5-sonnet-20241022”)\nLlamaIndex's query engines, chat engines, and agent frameworks work seamlessly with LiteLLM-powered models for RAG applications. ### Drop-in Replacement Patterns The most powerful integration pattern is using the LiteLLM Proxy as an OpenAI API replacement. Configure any tool that expects an OpenAI-compatible endpoint to use your LiteLLM proxy instead: `````python import openai client = openai.OpenAI( api_key=\"your-virtual-key\", base_url=\"http://localhost:4000\" ) # All calls now go through LiteLLM proxy with routing, caching, and logging response = client.chat.completions.create(model=\"gpt-4\", messages=messages) This works with LangChain, LlamaIndex, AutoGen, CrewAI, and any other OpenAI-compatible tool.\nEnterprise Features User Management and RBAC LiteLLM supports role-based access control with three built-in roles: Admin (full access), Internal User (specific model access), and Proxy User (API key access only). Teams can define custom roles with granular permissions per model and endpoint.\nSpend Tracking and Budget Alerts The admin dashboard provides real-time spend tracking with breakdowns by user, model, provider, and time period. Budget alerts trigger at configurable thresholds, preventing bill shock from unexpected API usage.\nLogging and Observability LiteLLM integrates with popular observability platforms: - LangSmith: Trace requests through complex chains\nLangfuse: Open-source LLM observability PromptLayer: Prompt management and analytics Weights \u0026 Biases: Experiment tracking OpenTelemetry: Vendor-neutral observability Self-Hosted Deployment The proxy deploys via Docker, Kubernetes, or cloud platforms. The database backend supports PostgreSQL for production workloads. SSO integration supports Google OAuth, Microsoft Entra ID, Okta, and generic SAML providers.\nSSO Integration Enterprise deployments can require SSO authentication for proxy access. LiteLLM supports OIDC and SAML 2.0, integrating with existing identity providers for seamless team onboarding.\nCost Optimization Strategies Routing to Cheapest Provider Configure the proxy to route non-critical requests to the cheapest available model: `````yaml model_list: - model_name: “cheap-llm” litellm_params: model: “together_ai/llama-3-8b”\nmodel_name: “cheap-llm” litellm_params: model: “groq/llama-3-8b” With ````routing_strategy: cost-based````, requests automatically go to the lowest-cost option. ### Using Open-Source Models For internal tools and development workflows, route requests to local models via Ollama or vLLM. This eliminates per-token costs entirely. Use GPT-4 only for production customer-facing features. ### Caching Frequently Asked Queries Enable Redis caching for applications with repetitive queries. Customer support chatbots, FAQ systems, and internal knowledge bases often see 30-50% cache hit rates, directly reducing API spend by the same amount. ### Monitoring Spend Dashboards Review the admin dashboard weekly to identify optimization opportunities. Common patterns include overuse of expensive models for simple tasks, forgotten development keys accumulating charges, and peak usage times that could benefit from cheaper provider routing. ## LiteLLM vs Alternatives ### LiteLLM vs Direct API Integration | Feature | Direct Integration | LiteLLM | | * * * | * * * | * * * | | Lines of code per provider | 50-100+ | 1 (model string) | | Fallback handling | Manual | Automatic | | Provider switching | Rewrite API calls | Change model string | | Unified logging | Custom build | Built-in | | Rate limit management | Per-provider | Centralized | | Setup time | Days | Minutes | ### LiteLLM vs Portkey Portkey is another popular LLM gateway. LiteLLM excels in open-source flexibility and provider coverage (100+ vs 20+), while Portkey offers stronger built-in prompt management and A/B testing features. LiteLLM is self-hostable for free; Portkey requires a paid plan for gateway deployment. ### LiteLLM vs LangChain's Model Abstraction LangChain provides model abstractions but requires separate integration code for each provider class. LiteLLM's ````completion()```` function works outside LangChain and supports more providers with deeper feature parity. The tools complement each other, LiteLLM for the gateway layer and LangChain for the application layer. ## Production Deployment Guide ### Docker Deployment The recommended production deployment uses the official Docker image: `````dockerfile FROM ghcr.io/berriai/litellm:main-latest COPY config.yaml /app/config.yaml CMD [\"--config\", \"/app/config.yaml\", \"--port\", \"4000\"] Kubernetes Helm Chart LiteLLM provides an official Helm chart for Kubernetes deployment: `````bash helm repo add litellm https://berriai.github.io/litellm helm install litellm litellm/litellm -f values.yaml\nConfigure replicas, resource limits, and ingress rules through ````values.yaml````. ### Monitoring and Alerting The proxy exposes Prometheus metrics at ````/metrics``` for monitoring request latency, error rates, token usage, and spend. Configure Grafana dashboards and set up PagerDuty alerts for critical thresholds. ### Security Best Practices - Store master keys in a secrets manager (AWS Secrets Manager, Vault) - Use virtual keys per team or application - Enable request/response logging for audit compliance - Deploy behind a load balancer with TLS termination - Restrict proxy network access to internal services only ## Conclusion LiteLLM solves one of the most painful problems in modern LLM development: managing multiple providers without code duplication. Its unified API, production-ready proxy server, and enterprise features make it the de facto standard for multi-provider LLM access in 2025. Whether you are building a prototype with a single model or deploying a multi-tenant SaaS application with 20+ providers, LiteLLM reduces complexity and increases reliability. Start with the Python SDK for development and graduate to the proxy server for production. The project is actively maintained with daily releases, responsive maintainers on GitHub, and a growing ecosystem of integrations. If you have not adopted an LLM gateway yet, LiteLLM is where you should start. ## Frequently Asked Questions **Is LiteLLM free to use?** Yes. LiteLLM is open-source under the MIT license and free for both personal and commercial use. You only pay for the LLM API calls you make to providers. The proxy server, Python SDK, and core features are all free. Enterprise features like SSO and advanced analytics are available in a paid LiteLLM Enterprise plan. **Which LLM providers does LiteLLM support?** LiteLLM supports over 100 providers including OpenAI, Anthropic, Google Gemini, Azure OpenAI, AWS Bedrock, Cohere, Mistral AI, Groq, Together AI, Hugging Face, Ollama, vLLM, AI21 Labs, and many more. The full list is available in the [official documentation](https://docs.litellm.ai/docs/providers). **How does LiteLLM handle API key management?** LiteLLM reads API keys from environment variables by default. In the proxy server, you define keys in the configuration file and create virtual keys for consumers. Virtual keys can have spend limits, model restrictions, and rate limits attached. Master keys protect the admin API while virtual keys protect the completion endpoint. **Can LiteLLM work with self-hosted models?** Absolutely. LiteLLM integrates with Ollama, vLLM, LM Studio, Hugging Face TGI, and any OpenAI-compatible local server. Simply point LiteLLM to the local endpoint URL and use the same unified API to call your self-hosted models alongside commercial ones. **What is the difference between LiteLLM SDK and Proxy?** The LiteLLM Python SDK is a library you import in Python code for programmatic LLM access. The Proxy Server is a standalone HTTP service that exposes OpenAI-compatible endpoints for applications in any language. Use the SDK for Python applications and the proxy for multi-language teams or when you need features like virtual key management, rate limiting, and spend tracking. * * * ## Recommended Infrastructure To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven. *Affiliate links — no extra cost to you, helps keep dibi8.com running.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"LiteLLM Tutorial 2025: One API to Access 100+ LLMs\", \"datePublished\": \"2026-05-18\", \"dateModified\": \"2026-05-18\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/litellm-unified-api-tutorial\" } } ## Frequently Asked Questions (FAQ) **问：LangChain和LlamaIndex哪个更好？** LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。 **问：如何评估LLM框架的性能？** 基准测试包括：推理速度、准确率、资源消耗、可扩展性。 **问：开源LLM框架的商业使用限制？** 大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。 **问：是否需要GPU才能运行LLM框架？** 推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。 **问：企业级部署的最佳实践？** 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。 * * * ",
+  "wordCount" : "3080",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>15 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/litellm-unified-api-tutorial/">En</a>
@@ -207,487 +207,573 @@
         <span class="title">목차</span>
     </summary>
 
-    <div class="inner"><ul>
+    <div class="inner"><ul><ul>
             <li>
-                <a href="#litellm%ec%9d%b4%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80" aria-label="LiteLLM이란 무엇인가?">LiteLLM이란 무엇인가?</a><ul>
+                <a href="#what-is-litellm" aria-label="What is LiteLLM?">What is LiteLLM?</a><ul>
                     
             <li>
-                <a href="#%eb%b2%94%ec%9a%a9-llm-api-%ea%b2%8c%ec%9d%b4%ed%8a%b8%ec%9b%a8%ec%9d%b4" aria-label="범용 LLM API 게이트웨이">범용 LLM API 게이트웨이</a></li>
+                <a href="#the-universal-llm-api-gateway" aria-label="The Universal LLM API Gateway">The Universal LLM API Gateway</a></li>
             <li>
-                <a href="#%ec%99%9c-litellm%ec%9d%84-%ec%82%ac%ec%9a%a9%ed%95%b4%ec%95%bc-%ed%95%a0%ea%b9%8c" aria-label="왜 LiteLLM을 사용해야 할까?">왜 LiteLLM을 사용해야 할까?</a></li>
+                <a href="#why-use-litellm" aria-label="Why Use LiteLLM?">Why Use LiteLLM?</a></li>
             <li>
-                <a href="#%ed%95%b5%ec%8b%ac-%ea%b8%b0%eb%8a%a5-%ea%b0%9c%ec%9a%94" aria-label="핵심 기능 개요">핵심 기능 개요</a></li></ul>
+                <a href="#key-features-overview" aria-label="Key Features Overview">Key Features Overview</a></li></ul>
             </li>
             <li>
-                <a href="#100%ea%b0%9c-%ec%9d%b4%ec%83%81%ec%9d%98-%ec%a0%9c%ea%b3%b5%ec%9e%90%ec%99%80-%eb%aa%a8%eb%8d%b8-%ec%a7%80%ec%9b%90" aria-label="100개 이상의 제공자와 모델 지원">100개 이상의 제공자와 모델 지원</a><ul>
+                <a href="#supported-providers-and-models-100" aria-label="Supported Providers and Models (100&#43;)">Supported Providers and Models (100+)</a><ul>
                     
             <li>
-                <a href="#%ec%a3%bc%ec%9a%94-%ec%a0%9c%ea%b3%b5%ec%9e%90" aria-label="주요 제공자">주요 제공자</a></li>
+                <a href="#openai-anthropic-google-gemini" aria-label="OpenAI, Anthropic, Google (Gemini)">OpenAI, Anthropic, Google (Gemini)</a></li>
             <li>
-                <a href="#%ec%98%a4%ed%94%88%ec%86%8c%ec%8a%a4-%eb%b0%8f-%eb%a1%9c%ec%bb%ac-%eb%aa%a8%eb%8d%b8" aria-label="오픈소스 및 로컬 모델">오픈소스 및 로컬 모델</a></li></ul>
+                <a href="#azure-openai" aria-label="Azure OpenAI">Azure OpenAI</a></li>
+            <li>
+                <a href="#open-source-models-via-hugging-face" aria-label="Open-Source Models via Hugging Face">Open-Source Models via Hugging Face</a></li>
+            <li>
+                <a href="#local-models-via-ollama-vllm" aria-label="Local Models via Ollama, vLLM">Local Models via Ollama, vLLM</a></li>
+            <li>
+                <a href="#cloud-providers-aws-bedrock-vertex-ai" aria-label="Cloud Providers: AWS Bedrock, Vertex AI">Cloud Providers: AWS Bedrock, Vertex AI</a></li>
+            <li>
+                <a href="#specialized-providers-cohere-groq-together-ai" aria-label="Specialized Providers: Cohere, Groq, Together AI">Specialized Providers: Cohere, Groq, Together AI</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%84%a4%ec%b9%98%ec%99%80-%eb%b9%a0%eb%a5%b8-%ec%8b%9c%ec%9e%91" aria-label="설치와 빠른 시작">설치와 빠른 시작</a><ul>
+                <a href="#installation-and-quick-start" aria-label="Installation and Quick Start">Installation and Quick Start</a><ul>
                     
             <li>
-                <a href="#pip%eb%a1%9c-litellm-%ec%84%a4%ec%b9%98" aria-label="pip로 LiteLLM 설치">pip로 LiteLLM 설치</a></li>
+                <a href="#installing-litellm-pip-install-litellm" aria-label="Installing LiteLLM (pip install litellm)">Installing LiteLLM (pip install litellm)</a></li>
             <li>
-                <a href="#%ec%b2%ab-%eb%b2%88%ec%a7%b8-%ed%86%b5%ed%95%a9-api-%ed%98%b8%ec%b6%9c" aria-label="첫 번째 통합 API 호출">첫 번째 통합 API 호출</a></li>
+                <a href="#making-your-first-unified-api-call" aria-label="Making Your First Unified API Call">Making Your First Unified API Call</a></li></ul>
+            </li></ul>
+                
             <li>
-                <a href="#%eb%b9%84%eb%8f%99%ea%b8%b0-%ec%a7%80%ec%9b%90" aria-label="비동기 지원">비동기 지원</a></li></ul>
-            </li>
+                <a href="#call-openai" aria-label="Call OpenAI">Call OpenAI</a></li>
             <li>
-                <a href="#litellm-%ed%94%84%eb%a1%9d%ec%8b%9c-%ec%84%9c%eb%b2%84" aria-label="LiteLLM 프록시 서버">LiteLLM 프록시 서버</a><ul>
+                <a href="#call-anthropic-claude---same-function-different-model-string" aria-label="Call Anthropic Claude - same function, different model string">Call Anthropic Claude - same function, different model string</a></li>
+            <li>
+                <a href="#call-gemini---same-function-again" aria-label="Call Gemini - same function again">Call Gemini - same function again</a><ul>
                     
             <li>
-                <a href="#%ed%94%84%eb%a1%9d%ec%8b%9c-%ec%84%9c%eb%b2%84-%ec%84%a4%ec%a0%95" aria-label="프록시 서버 설정">프록시 서버 설정</a></li>
-            <li>
-                <a href="#configyaml-%ec%83%81%ec%84%b8-%ea%b5%ac%ec%84%b1" aria-label="config.yaml 상세 구성">config.yaml 상세 구성</a></li>
-            <li>
-                <a href="#%ea%b0%80%ec%83%81-%ed%82%a4-%ea%b4%80%eb%a6%ac" aria-label="가상 키 관리">가상 키 관리</a></li></ul>
-            </li>
-            <li>
-                <a href="#%ea%b3%a0%ea%b8%89-%ea%b8%b0%eb%8a%a5" aria-label="고급 기능">고급 기능</a><ul>
+                <a href="#the-litellm-proxy-server" aria-label="The LiteLLM Proxy Server">The LiteLLM Proxy Server</a><ul>
                     
             <li>
-                <a href="#%ec%a7%80%eb%8a%a5%ed%98%95-%eb%9d%bc%ec%9a%b0%ed%84%b0" aria-label="지능형 라우터">지능형 라우터</a></li>
+                <a href="#setting-up-the-proxy-server" aria-label="Setting Up the Proxy Server">Setting Up the Proxy Server</a></li>
             <li>
-                <a href="#%ed%8f%b4%eb%a6%ac%eb%b0%b1%ea%b3%bc-%ec%9e%ac%ec%8b%9c%eb%8f%84" aria-label="폴리백과 재시도">폴리백과 재시도</a></li>
+                <a href="#configuration-file-configyaml-deep-dive" aria-label="Configuration File (config.yaml) Deep Dive">Configuration File (config.yaml) Deep Dive</a></li>
             <li>
-                <a href="#%ec%9d%91%eb%8b%b5-%ec%ba%90%ec%8b%b1" aria-label="응답 캐싱">응답 캐싱</a></li></ul>
+                <a href="#rate-limiting-and-budget-controls" aria-label="Rate Limiting and Budget Controls">Rate Limiting and Budget Controls</a></li>
+            <li>
+                <a href="#load-balancing-across-providers" aria-label="Load Balancing Across Providers">Load Balancing Across Providers</a></li>
+            <li>
+                <a href="#fallbacks-and-retries" aria-label="Fallbacks and Retries">Fallbacks and Retries</a></li>
+            <li>
+                <a href="#streaming-support" aria-label="Streaming Support">Streaming Support</a></li>
+            <li>
+                <a href="#embedding-models-unified-api" aria-label="Embedding Models Unified API">Embedding Models Unified API</a></li></ul>
+            </li></ul>
             </li>
             <li>
-                <a href="#litellm--langchainllamaindex-%ec%97%b0%eb%8f%99" aria-label="LiteLLM &#43; LangChain/LlamaIndex 연동">LiteLLM + LangChain/LlamaIndex 연동</a><ul>
+                <a href="#openai-embeddings" aria-label="OpenAI embeddings">OpenAI embeddings</a></li>
+            <li>
+                <a href="#cohere-embeddings" aria-label="Cohere embeddings">Cohere embeddings</a></li>
+            <li>
+                <a href="#local-embeddings-via-ollama" aria-label="Local embeddings via Ollama">Local embeddings via Ollama</a><ul>
+                    <ul>
                     
             <li>
-                <a href="#langchain%ec%97%90%ec%84%9c-%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0" aria-label="LangChain에서 사용하기">LangChain에서 사용하기</a></li>
+                <a href="#using-litellm-with-llamaindex" aria-label="Using LiteLLM with LlamaIndex">Using LiteLLM with LlamaIndex</a></li></ul>
+                
             <li>
-                <a href="#llamaindex%ec%97%90%ec%84%9c-%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0" aria-label="LlamaIndex에서 사용하기">LlamaIndex에서 사용하기</a></li></ul>
-            </li>
-            <li>
-                <a href="#%ec%97%94%ed%84%b0%ed%94%84%eb%9d%bc%ec%9d%b4%ec%a6%88-%ea%b8%b0%eb%8a%a5" aria-label="엔터프라이즈 기능">엔터프라이즈 기능</a></li>
-            <li>
-                <a href="#%eb%b9%84%ec%9a%a9-%ec%b5%9c%ec%a0%81%ed%99%94-%ec%a0%84%eb%9e%b5" aria-label="비용 최적화 전략">비용 최적화 전략</a></li>
-            <li>
-                <a href="#litellm%ea%b3%bc-%eb%8c%80%ec%95%88-%eb%b9%84%ea%b5%90" aria-label="LiteLLM과 대안 비교">LiteLLM과 대안 비교</a></li>
-            <li>
-                <a href="#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%eb%b0%b0%ed%8f%ac-%ea%b0%80%ec%9d%b4%eb%93%9c" aria-label="프로덕션 배포 가이드">프로덕션 배포 가이드</a><ul>
+                <a href="#enterprise-features" aria-label="Enterprise Features">Enterprise Features</a><ul>
                     
             <li>
-                <a href="#docker-%eb%b0%b0%ed%8f%ac" aria-label="Docker 배포">Docker 배포</a></li>
+                <a href="#user-management-and-rbac" aria-label="User Management and RBAC">User Management and RBAC</a></li>
             <li>
-                <a href="#kubernetes-helm-%ec%b0%a8%ed%8a%b8" aria-label="Kubernetes Helm 차트">Kubernetes Helm 차트</a></li></ul>
+                <a href="#spend-tracking-and-budget-alerts" aria-label="Spend Tracking and Budget Alerts">Spend Tracking and Budget Alerts</a></li>
+            <li>
+                <a href="#logging-and-observability" aria-label="Logging and Observability">Logging and Observability</a></li>
+            <li>
+                <a href="#self-hosted-deployment" aria-label="Self-Hosted Deployment">Self-Hosted Deployment</a></li>
+            <li>
+                <a href="#sso-integration" aria-label="SSO Integration">SSO Integration</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a></li>
-            <li>
-                <a href="#%ec%b0%b8%ea%b3%a0-%ec%9e%90%eb%a3%8c" aria-label="참고 자료">참고 자료</a></li>
-            <li>
-                <a href="#%ec%b6%94%ec%b2%9c-%ec%9d%b8%ed%94%84%eb%9d%bc" aria-label="추천 인프라">추천 인프라</a></li>
-            <li>
-                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                <a href="#cost-optimization-strategies" aria-label="Cost Optimization Strategies">Cost Optimization Strategies</a><ul>
                     
             <li>
-                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+                <a href="#routing-to-cheapest-provider" aria-label="Routing to Cheapest Provider">Routing to Cheapest Provider</a></li>
             <li>
-                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+                <a href="#kubernetes-helm-chart" aria-label="Kubernetes Helm Chart">Kubernetes Helm Chart</a>
             </li>
-            <li>
-                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
-            <li>
-                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li>
-            <li>
-                <a href="#framework-comparison" aria-label="Framework Comparison">Framework Comparison</a>
-            </li>
+        </ul>
+        </li>
+        </ul>
+        </li>
         </ul>
     </div>
 </details>
 
   <div class="post-content md-content"><p>{&lt;/* resource-info */&gt;}</p>
-<p>AI 서비스를 개발하다 별면 여러 LLM 제공자의 API를 각각 연결해야 하는 번거로움을 경험하게 됩니다. LiteLLM은 이런 문제를 해결하는 통합 LLM API 게이트웨이로, 100개 이상의 모델을 하나의 인터페이스로 호출할 수 있게 해줍니다.</p>
-<h2 id="litellm이란-무엇인가">LiteLLM이란 무엇인가?<a hidden class="anchor" aria-hidden="true" href="#litellm이란-무엇인가">#</a></h2>
-<h3 id="범용-llm-api-게이트웨이">범용 LLM API 게이트웨이<a hidden class="anchor" aria-hidden="true" href="#범용-llm-api-게이트웨이">#</a></h3>
-<p>LiteLLM은 BerriAI가 개발한 오픈소스 LLM 프록시 서버로, OpenAI, Anthropic, Google, Azure 등 다양한 제공자의 API를 표준화된 OpenAI 호환 형식으로 변환합니다. 개발자는 ```completion()```` 함수 하나로 GPT-4, Claude 3, Gemini, Llama 등 어떤 모델이든 동일한 코드로 호출할 수 있습니다.</p>
-<h3 id="왜-litellm을-사용해야-할까">왜 LiteLLM을 사용해야 할까?<a hidden class="anchor" aria-hidden="true" href="#왜-litellm을-사용해야-할까">#</a></h3>
+<p>Managing multiple LLM providers in production is a nightmare most developers know too well. Each provider has its own API format, authentication method, error handling, and rate limits. Switching from GPT-4 to Claude 3.5 Sonnet means rewriting API calls. Adding a fallback to Gemini means more boilerplate. This fragmentation burns engineering time and introduces brittle code paths.</p>
+<p>Enter LiteLLM. This open-source project provides a single, unified interface to call over 100 LLM providers using the familiar OpenAI API format. Whether you need OpenAI, Anthropic, Google Gemini, Azure OpenAI, AWS Bedrock, or self-hosted models via Ollama and vLLM, LiteLLM handles the translation layer so you focus on building features.</p>
+<p>In this guide, you will learn how to install LiteLLM, make your first unified API call, set up the production-grade proxy server, configure intelligent routing, and deploy at enterprise scale. Let us dive in.</p>
+<h2 id="what-is-litellm">What is LiteLLM?<a hidden class="anchor" aria-hidden="true" href="#what-is-litellm">#</a></h2>
+<h3 id="the-universal-llm-api-gateway">The Universal LLM API Gateway<a hidden class="anchor" aria-hidden="true" href="#the-universal-llm-api-gateway">#</a></h3>
+<p>LiteLLM, maintained by Berri AI on <a href="https://github.com/BerriAI/litellm">GitHub</a>, is an open-source LLM gateway that translates API calls between the OpenAI format and 100+ different LLM providers. It functions as a drop-in compatibility layer, meaning code written for OpenAI&rsquo;s ```/chat/completions```` endpoint works seamlessly with Anthropic Claude, Google Gemini, Cohere Command, and dozens more without modification.</p>
+<p>The project started in early 2023 and has grown to become one of the most popular LLM infrastructure tools, with over 10,000 GitHub stars and active daily releases. Companies like Cloudflare, Postman, and Shopify use LiteLLM in production to manage multi-provider LLM access.</p>
+<h3 id="why-use-litellm">Why Use LiteLLM?<a hidden class="anchor" aria-hidden="true" href="#why-use-litellm">#</a></h3>
+<p>Building direct integrations for each LLM provider requires maintaining separate SDKs, handling different authentication headers, parsing unique response formats, and managing provider-specific error codes. LiteLLM eliminates this overhead entirely.</p>
+<p>Key benefits include: - <strong>Single API format</strong>: Write once, call any provider using the OpenAI SDK structure</p>
 <ul>
-<li><strong>다중 제공자 관리 간소화</strong>: API 키, 엔드포인트, 요청 형식을 각각 관리할 필요 없음</li>
-<li><strong>지능형 라우팅</strong>: 비용, 지연 시간, 가용성을 기준으로 최적의 모델로 자동 분배</li>
-<li><strong>폴리백과 재시도</strong>: 한 제공자에 장애가 발생하면 자동으로 대체 모델로 전환</li>
-<li><strong>비용 통제</strong>: 팀별 예산 설정과 실시간 비용 모니터링</li>
+<li><strong>Automatic fallbacks</strong>: If OpenAI&rsquo;s API is down, route to Anthropic or Gemini instantly</li>
+<li><strong>Load balancing</strong>: Distribute traffic across multiple providers to reduce latency and cost</li>
+<li><strong>Unified logging</strong>: Track all LLM calls across providers in one place</li>
+<li><strong>Budget controls</strong>: Set spend limits per API key, user, or team</li>
+<li><strong>Caching</strong>: Reduce costs by caching identical requests across providers</li>
 </ul>
-<h3 id="핵심-기능-개요">핵심 기능 개요<a hidden class="anchor" aria-hidden="true" href="#핵심-기능-개요">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>기능</th>
-					<th>설명</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>통합 API</td>
-					<td>100+ 모델을 OpenAI 호환 형식으로 호출</td>
-			</tr>
-			<tr>
-					<td>프록시 서버</td>
-					<td>가상 키, 속도 제한, 예산 관리</td>
-			</tr>
-			<tr>
-					<td>지능형 라우터</td>
-					<td>비용/지연 시간 기반 모델 선택</td>
-			</tr>
-			<tr>
-					<td>캐싱</td>
-					<td>반복 쿼리에 대한 응답 캐싱으로 비용 절감</td>
-			</tr>
-			<tr>
-					<td>스트리밍</td>
-					<td>모든 제공자에서 실시간 스트리밍 지원</td>
-			</tr>
-			<tr>
-					<td>임베딩 통합</td>
-					<td>텍스트 임베딩도 동일한 인터페이스로 처리</td>
-			</tr>
-	</tbody>
-</table>
-<h2 id="100개-이상의-제공자와-모델-지원">100개 이상의 제공자와 모델 지원<a hidden class="anchor" aria-hidden="true" href="#100개-이상의-제공자와-모델-지원">#</a></h2>
-<h3 id="주요-제공자">주요 제공자<a hidden class="anchor" aria-hidden="true" href="#주요-제공자">#</a></h3>
+<h3 id="key-features-overview">Key Features Overview<a hidden class="anchor" aria-hidden="true" href="#key-features-overview">#</a></h3>
+<p>LiteLLM offers two main components. The <strong>Python SDK</strong> (<code>litellm</code> pip package) provides a programmatic interface for making unified LLM calls in Python applications. The <strong>Proxy Server</strong> (deployed via Docker or pip) exposes an OpenAI-compatible HTTP API that any application can call, complete with virtual key management, rate limiting, and spend tracking.</p>
+<p>Additional enterprise features include role-based access control (RBAC), SSO integration via OAuth/SAML, detailed spend dashboards, and support for embedding models, image generation, and function calling across providers.</p>
+<h2 id="supported-providers-and-models-100">Supported Providers and Models (100+)<a hidden class="anchor" aria-hidden="true" href="#supported-providers-and-models-100">#</a></h2>
+<h3 id="openai-anthropic-google-gemini">OpenAI, Anthropic, Google (Gemini)<a hidden class="anchor" aria-hidden="true" href="#openai-anthropic-google-gemini">#</a></h3>
+<p>LiteLLM supports all major commercial LLM providers with full feature parity: - <strong>OpenAI</strong>: GPT-4o, GPT-4 Turbo, GPT-4, GPT-3.5 Turbo, DALL-E, Whisper, text-embedding-3-large</p>
 <ul>
-<li><strong>OpenAI</strong>: GPT-4o, GPT-4 Turbo, GPT-3.5-Turbo</li>
-<li><strong>Anthropic</strong>: Claude 3 Opus, Sonnet, Haiku</li>
-<li><strong>Google</strong>: Gemini 1.5 Pro, Gemini 1.5 Flash</li>
-<li><strong>Azure OpenAI</strong>: 엔터프라이즈 환경의 OpenAI 모델</li>
-<li><strong>AWS Bedrock</strong>: Claude, Llama, Titan 등</li>
-<li><strong>Vertex AI</strong>: Google Cloud의 Gemini 및 기타 모델</li>
+<li><strong>Anthropic</strong>: Claude 3.5 Sonnet, Claude 3 Opus, Claude 3 Sonnet, Claude 3 Haiku</li>
+<li><strong>Google</strong>: Gemini 1.5 Pro, Gemini 1.5 Flash, Gemini Pro, Gemini Ultra</li>
 </ul>
-<h3 id="오픈소스-및-로컬-모델">오픈소스 및 로컬 모델<a hidden class="anchor" aria-hidden="true" href="#오픈소스-및-로컬-모델">#</a></h3>
+<p>Each provider supports streaming responses, function calling, multi-modal inputs, and tool use where available.</p>
+<h3 id="azure-openai">Azure OpenAI<a hidden class="anchor" aria-hidden="true" href="#azure-openai">#</a></h3>
+<p>Azure OpenAI Service receives dedicated support in LiteLLM. You can configure multiple Azure deployments (e.g., <code>gpt-4</code> in East US and <code>gpt-4</code> in West Europe) and let LiteLLM automatically route requests to the deployment with the lowest latency or highest token availability. This is critical for applications requiring regional failover or compliance with data residency requirements.</p>
+<h3 id="open-source-models-via-hugging-face">Open-Source Models via Hugging Face<a hidden class="anchor" aria-hidden="true" href="#open-source-models-via-hugging-face">#</a></h3>
+<p>LiteLLM connects to any model hosted on <a href="https://huggingface.co">Hugging Face</a> through the Inference API or by calling TGI (Text Generation Inference) endpoints. This includes models like Llama 3, Mistral, Qwen, and over 500,000 others. You can deploy models on Hugging Face Inference Endpoints or self-host with TGI and point LiteLLM to your endpoint.</p>
+<h3 id="local-models-via-ollama-vllm">Local Models via Ollama, vLLM<a hidden class="anchor" aria-hidden="true" href="#local-models-via-ollama-vllm">#</a></h3>
+<p>For privacy-sensitive applications or cost reduction, LiteLLM integrates with local model servers: - <strong>Ollama</strong>: Run Llama 3, Mistral, or Gemma locally and expose them through LiteLLM&rsquo;s unified API</p>
 <ul>
-<li><strong>Ollama</strong>: 로컬에서 실행하는 Llama, Mistral, Gemma</li>
-<li><strong>vLLM</strong>: 고성능 오픈소스 모델 서빙 엔진</li>
-<li><strong>Hugging Face</strong>: TGI(Text Generation Inference)로 호스팅되는 모델</li>
-<li><strong>Groq</strong>: 초저지연 추론을 제공하는 특화 제공자</li>
-<li><strong>Together AI</strong>: 클라우드 기반 오픈소스 모델 서비스</li>
+<li><strong>vLLM</strong>: High-throughput serving of open-source models with PagedAttention</li>
+<li><strong>LM Studio</strong>: Local model management with LiteLLM-compatible endpoints</li>
 </ul>
-<h2 id="설치와-빠른-시작">설치와 빠른 시작<a hidden class="anchor" aria-hidden="true" href="#설치와-빠른-시작">#</a></h2>
-<h3 id="pip로-litellm-설치">pip로 LiteLLM 설치<a hidden class="anchor" aria-hidden="true" href="#pip로-litellm-설치">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install litellm
-</span></span></code></pre></div><h3 id="첫-번째-통합-api-호출">첫 번째 통합 API 호출<a hidden class="anchor" aria-hidden="true" href="#첫-번째-통합-api-호출">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> litellm
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># OpenAI 모델 호출</span>
-</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> litellm<span style="color:#f92672">.</span>completion(
-</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
-</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;안녕하세요!&#34;</span>}]
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Claude 모델 호출 (동일한 함수 사용)</span>
-</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> litellm<span style="color:#f92672">.</span>completion(
-</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;claude-3-sonnet-20240229&#34;</span>,
-</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;안녕하세요!&#34;</span>}]
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Gemini 모델 호출</span>
-</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> litellm<span style="color:#f92672">.</span>completion(
-</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gemini/gemini-1.5-pro&#34;</span>,
-</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;안녕하세요!&#34;</span>}]
-</span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><p>모델명 앞에 제공자 접두사(<code>gemini/</code>, <code>anthropic/</code> 등)를 붙이면 LiteLLM이 자동으로 해당 제공자의 API로 라우팅합니다. 접두사 없이 사용하면 기본 제공자로 해석됩니다.</p>
-<h3 id="비동기-지원">비동기 지원<a hidden class="anchor" aria-hidden="true" href="#비동기-지원">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> litellm
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> litellm<span style="color:#f92672">.</span>acompletion(
-</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
-</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;비동기 호출 예시&#34;</span>}]
-</span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><p><code>acompletion()</code> 함수로 비동기 처리가 가능하며, 고성능 애플리케이션에서 필수적입니다.</p>
-<h2 id="litellm-프록시-서버">LiteLLM 프록시 서버<a hidden class="anchor" aria-hidden="true" href="#litellm-프록시-서버">#</a></h2>
-<h3 id="프록시-서버-설정">프록시 서버 설정<a hidden class="anchor" aria-hidden="true" href="#프록시-서버-설정">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>litellm --config config.yaml
-</span></span></code></pre></div><h3 id="configyaml-상세-구성">config.yaml 상세 구성<a hidden class="anchor" aria-hidden="true" href="#configyaml-상세-구성">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">model_list: - model_name</span>: <span style="color:#ae81ff">gpt-4o</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">litellm_params: model</span>: <span style="color:#ae81ff">openai/gpt-4o</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">api_key</span>: <span style="color:#ae81ff">os.environ/OPENAI_API_KEY</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">model_name</span>: <span style="color:#ae81ff">claude-sonnet</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">litellm_params: model</span>: <span style="color:#ae81ff">anthropic/claude-3-sonnet-20240229</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">api_key</span>: <span style="color:#ae81ff">os.environ/ANTHROPIC_API_KEY</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">model_name</span>: <span style="color:#ae81ff">gemini-pro</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">litellm_params: model</span>: <span style="color:#ae81ff">gemini/gemini-1.5-pro</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">api_key</span>: <span style="color:#ae81ff">os.environ/GEMINI_API_KEY</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">router_settings: routing_strategy</span>: <span style="color:#ae81ff">simple-shuffle</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">30</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">num_retries</span>: <span style="color:#ae81ff">3</span>
-</span></span></code></pre></div><h3 id="가상-키-관리">가상 키 관리<a hidden class="anchor" aria-hidden="true" href="#가상-키-관리">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">litellm_settings: fallbacks</span>: [{<span style="color:#f92672">&#34;gpt-4o&#34;: </span>[<span style="color:#e6db74">&#34;claude-sonnet&#34;</span>, <span style="color:#e6db74">&#34;gemini-pro&#34;</span>]}]
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">budget_alerts</span>: <span style="color:#66d9ef">True</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">max_budget</span>: <span style="color:#ae81ff">100</span>
-</span></span></code></pre></div><p>가상 키를 통해 팀별 접근 권한과 예산을 독립적으로 관리할 수 있습니다.</p>
-<h2 id="고급-기능">고급 기능<a hidden class="anchor" aria-hidden="true" href="#고급-기능">#</a></h2>
-<h3 id="지능형-라우터">지능형 라우터<a hidden class="anchor" aria-hidden="true" href="#지능형-라우터">#</a></h3>
-<p>비용 기반 라우팅은 가장 저렴한 사용 가능한 모델을 자동 선택합니다. 지연 시간 기반 라우팅은 응답 속도가 가장 빠른 모델로 요청을 볃납니다.</p>
-<h3 id="폴리백과-재시도">폴리백과 재시도<a hidden class="anchor" aria-hidden="true" href="#폴리백과-재시도">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">fallbacks</span>: - {<span style="color:#f92672">&#34;gpt-4o&#34;: </span>[<span style="color:#e6db74">&#34;claude-3-sonnet&#34;</span>, <span style="color:#e6db74">&#34;gemini-1.5-pro&#34;</span>]}
-</span></span><span style="display:flex;"><span>  - {<span style="color:#f92672">&#34;claude-3-opus&#34;: </span>[<span style="color:#e6db74">&#34;gpt-4-turbo&#34;</span>]}
-</span></span></code></pre></div><p>1순위 모델이 실패하면 2순위, 3순위 모델로 자동 전환됩니다.</p>
-<h3 id="응답-캐싱">응답 캐싱<a hidden class="anchor" aria-hidden="true" href="#응답-캐싱">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">cache</span>: <span style="color:#66d9ef">True</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">cache_params: type</span>: <span style="color:#ae81ff">redis</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">host</span>: <span style="color:#ae81ff">localhost</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">port</span>: <span style="color:#ae81ff">6379</span>
-</span></span></code></pre></div><p>Redis를 백엔드로 사용하면 동일한 질문에 대한 반복 호출을 캐싱하여 API 비용을 최대 40% 절감할 수 있습니다.</p>
-<h2 id="litellm--langchainllamaindex-연동">LiteLLM + LangChain/LlamaIndex 연동<a hidden class="anchor" aria-hidden="true" href="#litellm--langchainllamaindex-연동">#</a></h2>
-<h3 id="langchain에서-사용하기">LangChain에서 사용하기<a hidden class="anchor" aria-hidden="true" href="#langchain에서-사용하기">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.chat_models <span style="color:#f92672">import</span> ChatLiteLLM
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>llm <span style="color:#f92672">=</span> ChatLiteLLM(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>)
-</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> llm<span style="color:#f92672">.</span>predict(<span style="color:#e6db74">&#34;LangChain에서 LiteLLM 사용하기&#34;</span>)
-</span></span></code></pre></div><h3 id="llamaindex에서-사용하기">LlamaIndex에서 사용하기<a hidden class="anchor" aria-hidden="true" href="#llamaindex에서-사용하기">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.llms.litellm <span style="color:#f92672">import</span> LiteLLM
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>llm <span style="color:#f92672">=</span> LiteLLM(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;claude-3-sonnet&#34;</span>)
-</span></span></code></pre></div><p>기존 코드베이스에서 모델 교체가 필요할 때 LiteLLM은 거의 드롭인 방식으로 적용 가능합니다.</p>
-<h2 id="엔터프라이즈-기능">엔터프라이즈 기능<a hidden class="anchor" aria-hidden="true" href="#엔터프라이즈-기능">#</a></h2>
+<p>This means your development environment can use local models while production uses GPT-4, all with the same code.</p>
+<h3 id="cloud-providers-aws-bedrock-vertex-ai">Cloud Providers: AWS Bedrock, Vertex AI<a hidden class="anchor" aria-hidden="true" href="#cloud-providers-aws-bedrock-vertex-ai">#</a></h3>
+<p>Enterprise cloud deployments are fully supported: - <strong>AWS Bedrock</strong>: Access Claude, Llama 3, Titan, and Command models through your AWS account</p>
 <ul>
-<li><strong>사용자 관리 및 RBAC</strong>: 팀별 역할 기반 접근 통제</li>
-<li><strong>비용 추적 및 알림</strong>: 실시간 비용 대시보드와 예산 알림</li>
-<li><strong>로깅 및 관찰 가능성</strong>: LangSmith, Langfuse, OpenTelemetry 연동</li>
-<li><strong>셀프 호스팅</strong>: 남부 데이터센터에 직접 배포</li>
-<li><strong>SSO 통합</strong>: OIDC, SAML 기업 로그인</li>
+<li><strong>Google Vertex AI</strong>: Use Gemini and PaLM models via Google Cloud</li>
+<li><strong>Azure AI</strong>: Native integration with Azure&rsquo;s model catalog</li>
 </ul>
-<h2 id="비용-최적화-전략">비용 최적화 전략<a hidden class="anchor" aria-hidden="true" href="#비용-최적화-전략">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>전략</th>
-					<th>예상 절감 효과</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>저렴한 제공자 라우팅</td>
-					<td>30-60%</td>
-			</tr>
-			<tr>
-					<td>오픈소스 모델 활용</td>
-					<td>70-90%</td>
-			</tr>
-			<tr>
-					<td>캐싱</td>
-					<td>20-40%</td>
-			</tr>
-			<tr>
-					<td>스트리밍</td>
-					<td>지연 시간 50% 감소</td>
-			</tr>
-	</tbody>
-</table>
-<h2 id="litellm과-대안-비교">LiteLLM과 대안 비교<a hidden class="anchor" aria-hidden="true" href="#litellm과-대안-비교">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>항목</th>
-					<th>LiteLLM</th>
-					<th>Portkey</th>
-					<th>직접 통합</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>제공자 수</td>
-					<td>100+</td>
-					<td>20+</td>
-					<td>1개씩</td>
-			</tr>
-			<tr>
-					<td>오픈소스</td>
-					<td>O</td>
-					<td>X</td>
-					<td>-</td>
-			</tr>
-			<tr>
-					<td>프록시 서버</td>
-					<td>O</td>
-					<td>O</td>
-					<td>X</td>
-			</tr>
-			<tr>
-					<td>가상 키</td>
-					<td>O</td>
-					<td>O</td>
-					<td>X</td>
-			</tr>
-			<tr>
-					<td>비용 추적</td>
-					<td>O</td>
-					<td>O</td>
-					<td>직접 구현</td>
-			</tr>
-			<tr>
-					<td>셀프 호스팅</td>
-					<td>O</td>
-					<td>X</td>
-					<td>-</td>
-			</tr>
-	</tbody>
-</table>
-<h2 id="프로덕션-배포-가이드">프로덕션 배포 가이드<a hidden class="anchor" aria-hidden="true" href="#프로덕션-배포-가이드">#</a></h2>
-<h3 id="docker-배포">Docker 배포<a hidden class="anchor" aria-hidden="true" href="#docker-배포">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">ghcr.io/berriai/litellm:main-latest</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> config.yaml /app/config.yaml<span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;litellm&#34;</span>, <span style="color:#e6db74">&#34;--config&#34;</span>, <span style="color:#e6db74">&#34;/app/config.yaml&#34;</span>, <span style="color:#e6db74">&#34;--port&#34;</span>, <span style="color:#e6db74">&#34;4000&#34;</span>]<span style="color:#960050;background-color:#1e0010">
-</span></span></span></code></pre></div><h3 id="kubernetes-helm-차트">Kubernetes Helm 차트<a hidden class="anchor" aria-hidden="true" href="#kubernetes-helm-차트">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>helm repo add litellm https://berriai.github.io/litellm
-</span></span><span style="display:flex;"><span>helm install litellm litellm/litellm -f values.yaml
-</span></span></code></pre></div><h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
-<p><strong>LiteLLM은 물로 사용할 수 있나요?</strong></p>
-<p>기본 SDK와 프록시 서버는 MIT 라이선스로 완전 물론입니다. 엔터프라이즈 기능(가상 키, RBAC, SSO)이 포함된 LiteLLM Enterprise는 유료 플랜이 있습니다.</p>
-<p><strong>LiteLLM은 어떤 LLM 제공자를 지원하나요?</strong></p>
-<p>2025년 5월 기준 100개 이상의 제공자를 지원합니다. OpenAI, Anthropic, Google, Azure, AWS Bedrock, Vertex AI, Cohere, Groq, Together AI, Ollama, vLLM 등이 포함됩니다.</p>
-<p><strong>LiteLLM이 API 키 관리를 어떻게 처리하나요?</strong></p>
-<p>환경 변수나 <code>.env</code> 파일에서 API 키를 읽어옵니다. <code>config.yaml</code>에서 <code>api_key: os.environ/KEY_NAME</code> 형식으로 참조하여 코드에 민감한 정보를 노출하지 않습니다.</p>
-<p><strong>셀프 호스팅 모델과 LiteLLM을 연동할 수 있나요?</strong></p>
-<p>Ollama나 vLLM으로 로컬에서 실행하는 모델도 LiteLLM에 등록할 수 있습니다. <code>model: ollama/llama3</code> 또는 ````model: hosted_vllm/llama3``` 형식으로 설정합니다.</p>
-<p><strong>LiteLLM SDK와 프록시의 차이점은 무엇인가요?</strong></p>
-<p>SDK는 Python 라이브러리로 코드에서 직접 호출합니다. 프록시 서버는 독립 실행형 서버로, 모든 프로그래밍 언어에서 HTTP 요청으로 접근할 수 있으며 가상 키 관리와 로드 밸런싱 기능이 포함됩니다.</p>
-<h2 id="참고-자료">참고 자료<a hidden class="anchor" aria-hidden="true" href="#참고-자료">#</a></h2>
+<p>LiteLLM handles the IAM authentication, region selection, and model ID translation automatically.</p>
+<h3 id="specialized-providers-cohere-groq-together-ai">Specialized Providers: Cohere, Groq, Together AI<a hidden class="anchor" aria-hidden="true" href="#specialized-providers-cohere-groq-together-ai">#</a></h3>
+<p>Niche providers with unique strengths are also covered: - <strong>Groq</strong>: Extremely fast inference (500+ tokens/second) for Llama 3 and Mixtral</p>
 <ul>
-<li><a href="https://docs.litellm.ai">LiteLLM 공식 문서</a></li>
-<li><a href="https://github.com/BerriAI/litellm">LiteLLM GitHub 저장소</a></li>
-<li><a href="https://docs.litellm.ai/docs/proxy">LiteLLM 프록시 문서</a></li>
-<li><a href="https://platform.openai.com/docs">OpenAI API 문서</a></li>
-<li><a href="https://docs.anthropic.com">Anthropic API 문서</a></li>
+<li><strong>Together AI</strong>: Optimized inference for open-source models at competitive pricing</li>
+<li><strong>Cohere</strong>: Command models and Embed v3 embeddings</li>
+<li><strong>Mistral AI</strong>: Direct API access to Mistral models</li>
+<li><strong>AI21 Labs</strong>: Jurassic models for enterprise use</li>
 </ul>
-<hr>
-<h2 id="추천-인프라">추천 인프라<a hidden class="anchor" aria-hidden="true" href="#추천-인프라">#</a></h2>
-<p>위 도구들을 24/7 안정 운영하려면 인프라가 중요하다: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.</p>
-<ul>
-<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연. dibi8.com 자체 호스팅 IDC.</li>
-</ul>
-<p><em>추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.</em></p>
-<p>{
-&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
-&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;LiteLLM 튜토리얼 2025: 하나의 API로 100개 이상의 LLM 사용하기&rdquo;,
-&ldquo;datePublished&rdquo;: &ldquo;2026-05-18&rdquo;,
-&ldquo;dateModified&rdquo;: &ldquo;2026-05-18&rdquo;,
-&ldquo;author&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
-&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
-},
-&ldquo;publisher&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
-&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
-&ldquo;logo&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
-}
-},
-&ldquo;mainEntityOfPage&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/litellm-unified-api-tutorial%22">https://dibi8.com/kr/resources/litellm-unified-api-tutorial"</a>
-}
-}
-</script></p>
-<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
-<p>Understanding litellm 튜토리얼 2025: 하나의 api로 100개 이상의 llm 사용하기 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
-<ul>
-<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
-<li><strong>Quality</strong>: Improve output consistency</li>
-<li><strong>Scalability</strong>: Handle larger workloads</li>
-<li><strong>Cost</strong>: Reduce operational expenses</li>
-</ul>
-<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
-<p>Organizations are using similar approaches to: 1. Automate code review processes
-2. Generate documentation automatically
-3. Build internal knowledge bases
-4. Streamline deployment pipelines</p>
-<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
-<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
-<ul>
-<li>Identify repetitive tasks</li>
-<li>Measure current time costs</li>
-<li>Define success metrics</li>
-</ul>
-<ol start="2">
-<li>
-<p><strong>Choose Your Approach</strong></p>
-<ul>
-<li>Start with simple automations</li>
-<li>Gradually increase complexity</li>
-<li>Test and iterate</li>
-</ul>
-</li>
-<li>
-<p><strong>Measure Results</strong></p>
-<ul>
-<li>Track time savings</li>
-<li>Monitor quality improvements</li>
-<li>Calculate ROI</li>
-</ul>
-</li>
-</ol>
-<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
-<p>LiteLLM 튜토리얼 2025: 하나의 API로 100개 이상의 LLM 사용하기 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
-<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
-<hr>
-<p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~5 minutes</em></p>
-<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
-<p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p>
-<p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p>
-<p><strong>问：如何评估LLM框架的性能？</strong></p>
-<p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p>
-<p><strong>问：开源LLM框架的商业使用限制？</strong></p>
-<p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p>
-<p><strong>问：是否需要GPU才能运行LLM框架？</strong></p>
-<p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p>
-<p><strong>问：企业级部署的最佳实践？</strong></p>
-<p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p>
-<h2 id="framework-comparison">Framework Comparison<a hidden class="anchor" aria-hidden="true" href="#framework-comparison">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>Framework</th>
-					<th>Primary Use</th>
-					<th>Learning Curve</th>
-					<th>Community</th>
-					<th>Production Ready</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>LangChain</strong></td>
-					<td>General-purpose</td>
-					<td>Medium</td>
-					<td>Large</td>
-					<td>✅ Yes</td>
-			</tr>
-			<tr>
-					<td><strong>LlamaIndex</strong></td>
-					<td>RAG/Retrieval</td>
-					<td>Low</td>
-					<td>Growing</td>
-					<td>✅ Yes</td>
-			</tr>
-			<tr>
-					<td><strong>Haystack</strong></td>
-					<td>Document processing</td>
-					<td>Medium</td>
-					<td>Medium</td>
-					<td>✅ Yes</td>
-			</tr>
-			<tr>
-					<td><strong>LangGraph</strong></td>
-					<td>Stateful agents</td>
-					<td>High</td>
-					<td>Growing</td>
-					<td>✅ Yes</td>
-			</tr>
-	</tbody>
-</table>
+<h2 id="installation-and-quick-start">Installation and Quick Start<a hidden class="anchor" aria-hidden="true" href="#installation-and-quick-start">#</a></h2>
+<h3 id="installing-litellm-pip-install-litellm">Installing LiteLLM (pip install litellm)<a hidden class="anchor" aria-hidden="true" href="#installing-litellm-pip-install-litellm">#</a></h3>
+<p>Getting started takes under 60 seconds. Install the LiteLLM Python SDK via pip: `````bash
+pip install litellm</p>
+<pre tabindex="0"><code>
+For the proxy server with all enterprise features, install the full package: `````bash
+pip install &#39;litellm[proxy]&#39;
+</code></pre><p>Both options require Python 3.8 or higher. LiteLLM has minimal dependencies and installs cleanly in virtual environments, Docker containers, and Jupyter notebooks.</p>
+<h3 id="making-your-first-unified-api-call">Making Your First Unified API Call<a hidden class="anchor" aria-hidden="true" href="#making-your-first-unified-api-call">#</a></h3>
+<p>Here is a basic completion call that works with any supported provider: `````python
+import litellm
+from litellm import completion</p>
+<h1 id="call-openai">Call OpenAI<a hidden class="anchor" aria-hidden="true" href="#call-openai">#</a></h1>
+<p>response = completion(
+model=&ldquo;gpt-4o&rdquo;,
+messages=[{&ldquo;role&rdquo;: &ldquo;user&rdquo;, &ldquo;content&rdquo;: &ldquo;Hello, how are you?&rdquo;}]
+)</p>
+<h1 id="call-anthropic-claude---same-function-different-model-string">Call Anthropic Claude - same function, different model string<a hidden class="anchor" aria-hidden="true" href="#call-anthropic-claude---same-function-different-model-string">#</a></h1>
+<p>response = completion(
+model=&ldquo;claude-3-5-sonnet-20241022&rdquo;,
+messages=[{&ldquo;role&rdquo;: &ldquo;user&rdquo;, &ldquo;content&rdquo;: &ldquo;Hello, how are you?&rdquo;}]
+)</p>
+<h1 id="call-gemini---same-function-again">Call Gemini - same function again<a hidden class="anchor" aria-hidden="true" href="#call-gemini---same-function-again">#</a></h1>
+<p>response = completion(
+model=&ldquo;gemini/gemini-1.5-pro&rdquo;,
+messages=[{&ldquo;role&rdquo;: &ldquo;user&rdquo;, &ldquo;content&rdquo;: &ldquo;Hello, how are you?&rdquo;}]
+)</p>
+<pre tabindex="0"><code>
+Notice that the ````completion()```` function and message format stay identical. Only the ````model```` parameter changes, using LiteLLM&#39;s provider-prefixed naming convention where needed.
 
+### Understanding the completion() Function
+
+The ````completion()```` function accepts all standard OpenAI parameters: ````model````, ````messages````, ````temperature````, ````max_tokens````, ````top_p````, ````stream````, ````tools````, and ````tool_choice````. LiteLLM translates these to each provider&#39;s native format behind the scenes.
+
+Provider-specific parameters can be passed through the ````extra_body```` parameter. API keys are read from environment variables by default (````OPENAI_API_KEY````, ````ANTHROPIC_API_KEY````, ````GEMINI_API_KEY````), or passed explicitly via the ````api_key```` parameter.
+
+### Async Support Overview
+
+For production applications handling concurrent requests, LiteLLM provides ``acompletion()``: `````python
+from litellm import acompletion
+import asyncio
+
+async def call_llm(): response = await acompletion(
+        model=&#34;gpt-4o&#34;,
+        messages=[{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Async call&#34;}]
+    )
+    return response
+
+# Handle multiple concurrent calls
+tasks = [call_llm() for _ in range(10)]
+results = await asyncio.gather(*tasks)
+</code></pre><p>Async mode is essential for high-throughput applications and integrates seamlessly with FastAPI, Sanic, and other async Python frameworks.</p>
+<h2 id="the-litellm-proxy-server">The LiteLLM Proxy Server<a hidden class="anchor" aria-hidden="true" href="#the-litellm-proxy-server">#</a></h2>
+<h3 id="setting-up-the-proxy-server">Setting Up the Proxy Server<a hidden class="anchor" aria-hidden="true" href="#setting-up-the-proxy-server">#</a></h3>
+<p>The LiteLLM Proxy Server transforms LiteLLM from a Python library into a production-grade API gateway. Any application that speaks OpenAI&rsquo;s API can connect to the proxy without code changes.</p>
+<p>Start the proxy server with a configuration file: `````bash
+litellm &ndash;config /path/to/config.yaml</p>
+<pre tabindex="0"><code>
+Or deploy via Docker: `````bash
+docker run -p 4000:4000 \
+  -v $(pwd)/config.yaml:/app/config.yaml \
+  ghcr.io/berriai/litellm:main-latest \
+  --config /app/config.yaml
+</code></pre><p>The proxy exposes the standard OpenAI endpoints: <code>/chat/completions</code>, <code>/completions</code>, <code>/embeddings</code>, <code>/models</code>, and <code>/images/generations</code>.</p>
+<h3 id="configuration-file-configyaml-deep-dive">Configuration File (config.yaml) Deep Dive<a hidden class="anchor" aria-hidden="true" href="#configuration-file-configyaml-deep-dive">#</a></h3>
+<p>The <code>config.yaml</code> file defines your model inventory, routing rules, and enterprise settings. Here is a production-ready example: `````yaml
+model_list: - model_name: gpt-4
+litellm_params: model: gpt-4o
+api_key: os.environ/OPENAI_API_KEY</p>
+<ul>
+<li>
+<p>model_name: claude-3-5
+litellm_params: model: claude-3-5-sonnet-20241022
+api_key: os.environ/ANTHROPIC_API_KEY</p>
+</li>
+<li>
+<p>model_name: llama-3
+litellm_params: model: ollama/llama3
+api_base: http://localhost:11434</p>
+</li>
+</ul>
+<p>router_settings: routing_strategy: simple-shuffle
+fallbacks: [{&ldquo;gpt-4&rdquo;: [&ldquo;claude-3-5&rdquo;]}]
+cooldown_time: 30</p>
+<p>general_settings: master_key: sk-litellm-master-key
+database_url: os.environ/DATABASE_URL</p>
+<pre tabindex="0"><code>
+This configuration defines three model aliases (````gpt-4````, ````claude-3-5````, ````llama-3````), sets Claude as a fallback for OpenAI, and configures master key authentication.
+
+### Virtual Key Management
+
+The proxy generates virtual keys that map to specific models and budgets. Create a virtual key via the API: `````bash
+curl -X POST http://localhost:4000/key/generate \
+  -H &#34;Authorization: Bearer sk-litellm-master-key&#34; \
+  -H &#34;Content-Type: application/json&#34; \
+  -d &#39;{
+    &#34;models&#34;: [&#34;gpt-4&#34;, &#34;claude-3-5&#34;],
+    &#34;max_budget&#34;: 100.00,
+    &#34;tpm_limit&#34;: 100000,
+    &#34;rpm_limit&#34;: 1000
+  }&#39;
+</code></pre><p>Each virtual key tracks its own spend, enforces its own rate limits, and can be revoked independently. This is ideal for multi-tenant SaaS applications.</p>
+<h3 id="rate-limiting-and-budget-controls">Rate Limiting and Budget Controls<a hidden class="anchor" aria-hidden="true" href="#rate-limiting-and-budget-controls">#</a></h3>
+<p>LiteLLM enforces rate limits at multiple levels. Per-key limits include requests per minute (RPM), tokens per minute (TPM), and maximum budget in USD. Per-user limits track consumption across multiple keys. Global limits protect the entire deployment from unexpected spikes.</p>
+<p>Budget alerts trigger webhooks when spend thresholds are reached. Teams can configure Slack, email, or custom webhook notifications to stay informed about LLM spending patterns.</p>
+<h3 id="load-balancing-across-providers">Load Balancing Across Providers<a hidden class="anchor" aria-hidden="true" href="#load-balancing-across-providers">#</a></h3>
+<p>The proxy supports multiple routing strategies: - <strong>Simple shuffle</strong>: Round-robin across healthy providers</p>
+<ul>
+<li><strong>Latency-based</strong>: Route to the provider with the lowest response time</li>
+<li><strong>Cost-based</strong>: Send requests to the cheapest available model</li>
+<li><strong>Rate-limit aware</strong>: Avoid providers approaching their rate limits</li>
+</ul>
+<p>Configure routing in <code>config.yaml</code>: `````yaml
+router_settings: routing_strategy: latency-based-routing
+timeout: 30
+num_retries: 3</p>
+<pre tabindex="0"><code>
+## Advanced Features
+
+### Router: Intelligent Model Selection
+
+The ``Router`` class provides programmatic control over model selection in Python: `````python
+from litellm import Router
+
+router = Router(
+    model_list=[
+        {&#34;model_name&#34;: &#34;gpt-4&#34;, &#34;litellm_params&#34;: {&#34;model&#34;: &#34;gpt-4o&#34;}},
+        {&#34;model_name&#34;: &#34;gpt-4&#34;, &#34;litellm_params&#34;: {&#34;model&#34;: &#34;azure/gpt-4&#34;}},
+    ],
+    routing_strategy=&#34;latency-based&#34;,
+    fallbacks=[{&#34;gpt-4&#34;: [&#34;claude-3-5&#34;]}]
+)
+
+response = await router.acompletion(
+    model=&#34;gpt-4&#34;,
+    messages=[{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Hello&#34;}]
+)
+</code></pre><p>The router automatically tracks latency per deployment and routes requests to the fastest option.</p>
+<h3 id="fallbacks-and-retries">Fallbacks and Retries<a hidden class="anchor" aria-hidden="true" href="#fallbacks-and-retries">#</a></h3>
+<p>When a provider returns an error (rate limit, timeout, server error), LiteLLM can automatically retry with the same provider or fall back to a different one: `````python
+response = completion(
+model=&ldquo;gpt-4o&rdquo;,
+messages=messages,
+fallback_dict={&ldquo;gpt-4o&rdquo;: [&ldquo;claude-3-5-sonnet&rdquo;, &ldquo;gemini-1.5-pro&rdquo;]},
+num_retries=3
+)</p>
+<pre tabindex="0"><code>
+This ensures 99.9%+ uptime even when individual providers experience outages.
+
+### Caching Responses
+
+LiteLLM supports Redis-based caching to avoid redundant API calls: `````python
+litellm.cache = litellm.Cache(type=&#34;redis&#34;, host=&#34;localhost&#34;, port=6379)
+
+# First call hits the API
+response = completion(model=&#34;gpt-4o&#34;, messages=messages)
+
+# Second identical call returns cached result instantly
+response = completion(model=&#34;gpt-4o&#34;, messages=messages)
+</code></pre><p>Caching supports TTL configuration, cache-key customization, and cache invalidation via API.</p>
+<h3 id="streaming-support">Streaming Support<a hidden class="anchor" aria-hidden="true" href="#streaming-support">#</a></h3>
+<p>All providers support streaming responses through a unified interface: `````python
+response = completion(
+model=&ldquo;gpt-4o&rdquo;,
+messages=messages,
+stream=True
+)</p>
+<p>for chunk in response: print(chunk.choices[0].delta.content, end=&quot;&quot;)</p>
+<pre tabindex="0"><code>
+The streaming format is normalized across all providers, so your frontend code works identically regardless of which LLM serves the request.
+
+### Function Calling Across Providers
+
+Function calling (tool use) works across all supported providers with automatic format translation: `````python
+tools = [{
+    &#34;type&#34;: &#34;function&#34;,
+    &#34;function&#34;: {
+        &#34;name&#34;: &#34;get_weather&#34;,
+        &#34;parameters&#34;: {&#34;location&#34;: {&#34;type&#34;: &#34;string&#34;}}
+    }
+}]
+
+# Works with OpenAI, Anthropic, Gemini, and more
+response = completion(model=&#34;gpt-4o&#34;, messages=messages, tools=tools)
+</code></pre><h3 id="embedding-models-unified-api">Embedding Models Unified API<a hidden class="anchor" aria-hidden="true" href="#embedding-models-unified-api">#</a></h3>
+<p>LiteLLM unifies embedding APIs across providers: `````python
+from litellm import embedding</p>
+<h1 id="openai-embeddings">OpenAI embeddings<a hidden class="anchor" aria-hidden="true" href="#openai-embeddings">#</a></h1>
+<p>response = embedding(model=&ldquo;text-embedding-3-large&rdquo;, input=[&ldquo;Hello world&rdquo;])</p>
+<h1 id="cohere-embeddings">Cohere embeddings<a hidden class="anchor" aria-hidden="true" href="#cohere-embeddings">#</a></h1>
+<p>response = embedding(model=&ldquo;cohere/embed-english-v3.0&rdquo;, input=[&ldquo;Hello world&rdquo;])</p>
+<h1 id="local-embeddings-via-ollama">Local embeddings via Ollama<a hidden class="anchor" aria-hidden="true" href="#local-embeddings-via-ollama">#</a></h1>
+<p>response = embedding(model=&ldquo;ollama/nomic-embed-text&rdquo;, input=[&ldquo;Hello world&rdquo;])</p>
+<pre tabindex="0"><code>
+## LiteLLM + LangChain/LlamaIndex Integration
+
+### Using LiteLLM with LangChain
+
+LiteLLM integrates with [LangChain](https://python.langchain.com) through the ``ChatLiteLLM`` class: `````python
+from langchain_community.chat_models import ChatLiteLLM
+
+llm = ChatLiteLLM(model=&#34;gpt-4o&#34;)
+response = llm.invoke(&#34;What is the capital of France?&#34;)
+</code></pre><p>LangChain&rsquo;s chains, agents, and RAG pipelines work transparently with any LiteLLM-supported model. Switching from GPT-4 to Claude requires only changing the model string.</p>
+<h3 id="using-litellm-with-llamaindex">Using LiteLLM with LlamaIndex<a hidden class="anchor" aria-hidden="true" href="#using-litellm-with-llamaindex">#</a></h3>
+<p><a href="https://docs.llamaindex.ai">LlamaIndex</a> supports LiteLLM as a drop-in LLM backend: `````python
+from llama_index.llms.litellm import LiteLLM</p>
+<p>llm = LiteLLM(model=&ldquo;claude-3-5-sonnet-20241022&rdquo;)</p>
+<pre tabindex="0"><code>
+LlamaIndex&#39;s query engines, chat engines, and agent frameworks work seamlessly with LiteLLM-powered models for RAG applications.
+
+### Drop-in Replacement Patterns
+
+The most powerful integration pattern is using the LiteLLM Proxy as an OpenAI API replacement. Configure any tool that expects an OpenAI-compatible endpoint to use your LiteLLM proxy instead: `````python
+import openai
+
+client = openai.OpenAI(
+    api_key=&#34;your-virtual-key&#34;,
+    base_url=&#34;http://localhost:4000&#34;
+)
+
+# All calls now go through LiteLLM proxy with routing, caching, and logging
+response = client.chat.completions.create(model=&#34;gpt-4&#34;, messages=messages)
+</code></pre><p>This works with LangChain, LlamaIndex, AutoGen, CrewAI, and any other OpenAI-compatible tool.</p>
+<h2 id="enterprise-features">Enterprise Features<a hidden class="anchor" aria-hidden="true" href="#enterprise-features">#</a></h2>
+<h3 id="user-management-and-rbac">User Management and RBAC<a hidden class="anchor" aria-hidden="true" href="#user-management-and-rbac">#</a></h3>
+<p>LiteLLM supports role-based access control with three built-in roles: Admin (full access), Internal User (specific model access), and Proxy User (API key access only). Teams can define custom roles with granular permissions per model and endpoint.</p>
+<h3 id="spend-tracking-and-budget-alerts">Spend Tracking and Budget Alerts<a hidden class="anchor" aria-hidden="true" href="#spend-tracking-and-budget-alerts">#</a></h3>
+<p>The admin dashboard provides real-time spend tracking with breakdowns by user, model, provider, and time period. Budget alerts trigger at configurable thresholds, preventing bill shock from unexpected API usage.</p>
+<h3 id="logging-and-observability">Logging and Observability<a hidden class="anchor" aria-hidden="true" href="#logging-and-observability">#</a></h3>
+<p>LiteLLM integrates with popular observability platforms: - <strong>LangSmith</strong>: Trace requests through complex chains</p>
+<ul>
+<li><strong>Langfuse</strong>: Open-source LLM observability</li>
+<li><strong>PromptLayer</strong>: Prompt management and analytics</li>
+<li><strong>Weights &amp; Biases</strong>: Experiment tracking</li>
+<li><strong>OpenTelemetry</strong>: Vendor-neutral observability</li>
+</ul>
+<h3 id="self-hosted-deployment">Self-Hosted Deployment<a hidden class="anchor" aria-hidden="true" href="#self-hosted-deployment">#</a></h3>
+<p>The proxy deploys via Docker, Kubernetes, or cloud platforms. The database backend supports PostgreSQL for production workloads. SSO integration supports Google OAuth, Microsoft Entra ID, Okta, and generic SAML providers.</p>
+<h3 id="sso-integration">SSO Integration<a hidden class="anchor" aria-hidden="true" href="#sso-integration">#</a></h3>
+<p>Enterprise deployments can require SSO authentication for proxy access. LiteLLM supports OIDC and SAML 2.0, integrating with existing identity providers for seamless team onboarding.</p>
+<h2 id="cost-optimization-strategies">Cost Optimization Strategies<a hidden class="anchor" aria-hidden="true" href="#cost-optimization-strategies">#</a></h2>
+<h3 id="routing-to-cheapest-provider">Routing to Cheapest Provider<a hidden class="anchor" aria-hidden="true" href="#routing-to-cheapest-provider">#</a></h3>
+<p>Configure the proxy to route non-critical requests to the cheapest available model: `````yaml
+model_list: - model_name: &ldquo;cheap-llm&rdquo;
+litellm_params: model: &ldquo;together_ai/llama-3-8b&rdquo;</p>
+<ul>
+<li>model_name: &ldquo;cheap-llm&rdquo;
+litellm_params: model: &ldquo;groq/llama-3-8b&rdquo;</li>
+</ul>
+<pre tabindex="0"><code>
+With ````routing_strategy: cost-based````, requests automatically go to the lowest-cost option.
+
+### Using Open-Source Models
+
+For internal tools and development workflows, route requests to local models via Ollama or vLLM. This eliminates per-token costs entirely. Use GPT-4 only for production customer-facing features.
+
+### Caching Frequently Asked Queries
+
+Enable Redis caching for applications with repetitive queries. Customer support chatbots, FAQ systems, and internal knowledge bases often see 30-50% cache hit rates, directly reducing API spend by the same amount.
+
+### Monitoring Spend Dashboards
+
+Review the admin dashboard weekly to identify optimization opportunities. Common patterns include overuse of expensive models for simple tasks, forgotten development keys accumulating charges, and peak usage times that could benefit from cheaper provider routing.
+
+## LiteLLM vs Alternatives
+
+### LiteLLM vs Direct API Integration
+
+| Feature | Direct Integration | LiteLLM |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Lines of code per provider | 50-100+ | 1 (model string) |
+| Fallback handling | Manual | Automatic |
+| Provider switching | Rewrite API calls | Change model string |
+| Unified logging | Custom build | Built-in |
+| Rate limit management | Per-provider | Centralized |
+| Setup time | Days | Minutes |
+
+### LiteLLM vs Portkey
+
+Portkey is another popular LLM gateway. LiteLLM excels in open-source flexibility and provider coverage (100+ vs 20+), while Portkey offers stronger built-in prompt management and A/B testing features. LiteLLM is self-hostable for free; Portkey requires a paid plan for gateway deployment.
+
+### LiteLLM vs LangChain&#39;s Model Abstraction
+
+LangChain provides model abstractions but requires separate integration code for each provider class. LiteLLM&#39;s ````completion()```` function works outside LangChain and supports more providers with deeper feature parity. The tools complement each other, LiteLLM for the gateway layer and LangChain for the application layer.
+
+## Production Deployment Guide
+
+### Docker Deployment
+
+The recommended production deployment uses the official Docker image: `````dockerfile
+FROM ghcr.io/berriai/litellm:main-latest
+COPY config.yaml /app/config.yaml
+CMD [&#34;--config&#34;, &#34;/app/config.yaml&#34;, &#34;--port&#34;, &#34;4000&#34;]
+</code></pre><h3 id="kubernetes-helm-chart">Kubernetes Helm Chart<a hidden class="anchor" aria-hidden="true" href="#kubernetes-helm-chart">#</a></h3>
+<p>LiteLLM provides an official Helm chart for Kubernetes deployment: `````bash
+helm repo add litellm <a href="https://berriai.github.io/litellm">https://berriai.github.io/litellm</a>
+helm install litellm litellm/litellm -f values.yaml</p>
+<pre tabindex="0"><code>
+Configure replicas, resource limits, and ingress rules through ````values.yaml````.
+
+### Monitoring and Alerting
+
+The proxy exposes Prometheus metrics at ````/metrics``` for monitoring request latency, error rates, token usage, and spend. Configure Grafana dashboards and set up PagerDuty alerts for critical thresholds.
+
+### Security Best Practices
+
+- Store master keys in a secrets manager (AWS Secrets Manager, Vault)
+- Use virtual keys per team or application
+- Enable request/response logging for audit compliance
+- Deploy behind a load balancer with TLS termination
+- Restrict proxy network access to internal services only
+
+## Conclusion
+
+LiteLLM solves one of the most painful problems in modern LLM development: managing multiple providers without code duplication. Its unified API, production-ready proxy server, and enterprise features make it the de facto standard for multi-provider LLM access in 2025.
+
+Whether you are building a prototype with a single model or deploying a multi-tenant SaaS application with 20+ providers, LiteLLM reduces complexity and increases reliability. Start with the Python SDK for development and graduate to the proxy server for production.
+
+The project is actively maintained with daily releases, responsive maintainers on GitHub, and a growing ecosystem of integrations. If you have not adopted an LLM gateway yet, LiteLLM is where you should start.
+
+## Frequently Asked Questions
+
+**Is LiteLLM free to use?**
+
+Yes. LiteLLM is open-source under the MIT license and free for both personal and commercial use. You only pay for the LLM API calls you make to providers. The proxy server, Python SDK, and core features are all free. Enterprise features like SSO and advanced analytics are available in a paid LiteLLM Enterprise plan.
+
+**Which LLM providers does LiteLLM support?**
+
+LiteLLM supports over 100 providers including OpenAI, Anthropic, Google Gemini, Azure OpenAI, AWS Bedrock, Cohere, Mistral AI, Groq, Together AI, Hugging Face, Ollama, vLLM, AI21 Labs, and many more. The full list is available in the [official documentation](https://docs.litellm.ai/docs/providers).
+
+**How does LiteLLM handle API key management?**
+
+LiteLLM reads API keys from environment variables by default. In the proxy server, you define keys in the configuration file and create virtual keys for consumers. Virtual keys can have spend limits, model restrictions, and rate limits attached. Master keys protect the admin API while virtual keys protect the completion endpoint.
+
+**Can LiteLLM work with self-hosted models?**
+
+Absolutely. LiteLLM integrates with Ollama, vLLM, LM Studio, Hugging Face TGI, and any OpenAI-compatible local server. Simply point LiteLLM to the local endpoint URL and use the same unified API to call your self-hosted models alongside commercial ones.
+
+**What is the difference between LiteLLM SDK and Proxy?**
+
+The LiteLLM Python SDK is a library you import in Python code for programmatic LLM access. The Proxy Server is a standalone HTTP service that exposes OpenAI-compatible endpoints for applications in any language. Use the SDK for Python applications and the proxy for multi-language teams or when you need features like virtual key management, rate limiting, and spend tracking.
+
+
+* * *
+## Recommended Infrastructure
+
+To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
+- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.
+
+*Affiliate links — no extra cost to you, helps keep dibi8.com running.*
+
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;LiteLLM Tutorial 2025: One API to Access 100+ LLMs&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-18&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-18&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/litellm-unified-api-tutorial&#34;
+  }
+}
+&lt;/script&gt;
+## Frequently Asked Questions (FAQ)
+
+**问：LangChain和LlamaIndex哪个更好？**
+
+LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。
+
+**问：如何评估LLM框架的性能？**
+
+基准测试包括：推理速度、准确率、资源消耗、可扩展性。
+
+**问：开源LLM框架的商业使用限制？**
+
+大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。
+
+**问：是否需要GPU才能运行LLM框架？**
+
+推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。
+
+**问：企业级部署的最佳实践？**
+
+使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
+
+
+* * *
+</code></pre>
 
   </div>
 
@@ -729,6 +815,81 @@
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

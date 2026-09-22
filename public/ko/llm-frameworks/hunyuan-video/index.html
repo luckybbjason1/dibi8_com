@@ -82,8 +82,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“비디오생성”, “디퓨전트랜스포머”, “텐센트”, “hunyuanvideo”, “comfyui”, “docker”, “fp8”, “멀티모달”] aliases:\n/kr/posts/hunyuan-video/ 720p에서 5초짜리 클립을 생성하는데 60GB VRAM이 필요한 비디오 생성 모델은 장난감이 아니라 인프라다. 텐센트의 HunyuanVideo는 130억 파라미터의 디퓨전 트랜스포머 비디오 생성 모델로, GitHub에서 12,100개 이상의 스타를 획득했으며 자체 호스팅 하드웨어에서 영화급 비디오 합성이 필요한 팀들의 필수 선택이 되었다. 이 가이드는 완전한 프로덕션 구축을 다룬다: 작동하는 Docker 배포부터 FP8 양자화, 다중 GPU 병렬 추론, ComfyUI 통합, 그리고 대규모 서비스에 필요한 모니터링까지.\nHunyuanVideo란? HunyuanVideo는 텐센트가 개발한 대규모 비디오 생성 모델을 위한 체계적 프레임워크이다. 원본 릴리스(2024년 12월)는 130억 파라미터의 디퓨전 트랜스포머(DiT)를 탑재하여 텍스트 프롬프트나 참조 이미지로부터 720p 비디오 클립을 생성한다. 2025년 11월 후속 버전인 HunyuanVideo-1.5는 파라미터 수를 83억으로 줄이면서 SSTA(Selective and Sliding Tile Attention) 메커니즘과 내장 1080p 슈퍼 레졸루션 업스케일러를 도입했다. 두 버전 모두 Apache-2.0 라이선스로 NVIDIA GPU가 장착된 Linux에서 실행된다.\nHunyuanVideo의 작동 원리 아키텍처는 세 가지 주요 컴포넌트를 가진 잠재 디퓨전 파이프라인을 따른다: Causal 3D VAE는 입력 비디오를 잠재 공간으로 압축하며, 시간 압축비는 4x, 공간 압축비는 8x이다. 이는 트랜스포머로 들어가는 토큰 수를 줄여 동일한 컴퓨팅 성장 없이 더 높은 해상도의 생성을 가능하게 한다.\nMLLM 텍스트 인코더는 이전 비디오 모델에서 사용된 기존 CLIP + T5-XXL 조합을 대체한다. HunyuanVideo는 양방향 토큰 리파이너와 함께 멀티모달 대형 언어 모델(1.5에서는 미세 조정된 Qwen2.5-VL 변형)을 텍스트 인코더로 사용한다. 이는 복잡한 장면 설명에 대한 더 나은 프롬프트 충족 능력을 제공한다.\n듀얼 스트림에서 싱글 스트림 DiT는 초기 트랜스포머 블록에서 비디오와 텍스트 토큰을 독립적으로 처리하고(듀얼 스트림), 이후 블록에서 이들을 연결하여 멀티모달 퓨전을 수행한다(싱글 스트림). 이 하이브리드 디자인은 모달리티별 학습과 크로스모달 어텐션 사이의 균형을 맞춘다.\n**SSTA 어텐션(1.5 전용)**은 슬라이딩 타일 윈도우를 사용하여 중복되는 시공간 key/value 블록을 동적으로 가지친다. FlashAttention-3과 비교하여 10초 720p 합성에서 1.87배의 엔드투엔드 스피드업을 제공한다.\n설치 및 설정 작동하는 HunyuanVideo 인스턴스를 얻는 가장 빠른 경로는 Docker이다. 커스텀 빌드가 필요한 팀을 위해 수동 conda 설치도 제공한다.\nDocker 배포 (권장) # 공식 CUDA 12 이미지 Pull docker pull hunyuanvideo/hunyuanvideo:cuda_12 # GPU 패스스루로 실행 docker run -itd --gpus all --init --net=host --uts=host --ipc=host \\ --name hunyuanvideo \\ --security-opt=seccomp=unconfined \\ --ulimit=stack=67108864 --ulimit=memlock=-1 \\ --privileged \\ -v /mnt/models:/models \\ -p 8081:8081 \\ hunyuanvideo/hunyuanvideo:cuda_12 Ubuntu 수동 설치 # 저장소 클론 git clone https://github.com/Tencent-Hunyuan/HunyuanVideo.git cd HunyuanVideo # conda 환경 생성 conda create -n hunyuan python==3.10.9 -y conda activate hunyuan # CUDA 12.4가 포함된 PyTorch 설치 conda install pytorch==2.6.0 torchvision==0.19.0 torchaudio==2.4.0 \\ pytorch-cuda=12.4 -c pytorch -c nvidia -y # Python 의존성 설치 python -m pip install -r requirements.txt # Flash Attention v2 설치로 가속 python -m pip install ninja python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.6.3 # 다중 GPU 병렬 추론을 위한 xDiT 설치 python -m pip install xfuser==0.4.0 사전학습 모델 가중치 다운로드 # huggingface-cli 설치 pip install huggingface_hub # 메인 DiT 가중치 다운로드 huggingface-cli download tencent/HunyuanVideo \\ --include \"mp_rank_00_model_states.pt\" \\ --local-dir ./ckpts # FP8 양자화 가중치 다운로드 (약 10GB VRAM 절약) huggingface-cli download tencent/HunyuanVideo \\ --include \"mp_rank_00_model_states_fp8.pt\" \\ --local-dir ./ckpts # 텍스트 인코더 모델 다운로드 huggingface-cli download tencent/HunyuanVideo \\ --include \"*text_encoder*\" \\ --local-dir ./ckpts 첫 번째 추론 실행 conda activate hunyuan python sample_video.py \\ --video-size 720 1280 \\ --video-length 129 \\ --infer-steps 50 \\ --prompt \"A cat walks on the grass, realistic style, golden hour lighting\" \\ --flow-reverse \\ --use-cpu-offload \\ --save-path ./results 80GB 미만 VRAM의 GPU에서는 --use-cpu-offload 플래그가 필수적이다. 사용하지 않을 때 모델 가중치를 시스템 RAM으로 오프로드하여 속도를 희생하며 메모리를 확보한다.\n인기 도구와의 통합 ComfyUI (네이티브 노드) ComfyUI는 2025년 초에 네이티브 HunyuanVideo 지원을 추가했다. Comfy-Org에서 재패키징된 모델 파일을 다운로드하라: `````bash\n모델 파일을 ComfyUI/models/ 경로에 배치 - text_encoders/clip_l.safetensors - text_encoders/llava_llama3_vision.safetensors - diffusion_models/hunyuan_video_720p_bf16.safetensors - vae/hunyuan_video_vae_bf16.safetensors 공식 워크플로우 JSON을 ComfyUI로 드래그하여 로드하라. 핵심 노드는 ````HunyuanVideoSampler````, ````HunyuanVideoDecode````, ````TextEncodeHunyuanVideo````이다. ### Kijai의 HunyuanVideoWrapper (고급) FP8 추론, 비디오 투 비디오, 이미지 투 비디오를 위해서는 커뮤니티 래퍼를 사용하라: `````bash # ComfyUI 관리자 또는 git으로 설치 cd ComfyUI/custom_nodes git clone https://github.com/kijai/ComfyUI-HunyuanVideoWrapper.git # 의존성 설치 cd ComfyUI-HunyuanVideoWrapper pip install -r requirements.txt Hugging Face의 Kijai/HunyuanVideo_comfy에서 FP8 가중치를 다운로드하여 ComfyUI/models/diffusion_models/에 배치하라.\nDiffusers 파이프라인 from diffusers import HunyuanVideoPipeline import torch pipe = HunyuanVideoPipeline.from_pretrained( \"tencent/HunyuanVideo-1.5\", torch_dtype=torch.bfloat16, variant=\"fp8\" ) pipe.enable_model_cpu_offload() video = pipe( prompt=\"A cat playing piano in a jazz club, warm lighting\", num_frames=121, height=720, width=1280, num_inference_steps=30, guidance_scale=6.0 ).frames[0] # 비디오 저장 import numpy as np from PIL import Image frames = [(f * 255).astype(np.uint8) for f in video] frames = [Image.fromarray(f) for f in frames] frames[0].save( \"output.mp4\", save_all=True, append_images=frames[1:], duration=67, loop=0 ) Gradio API 서버 # Gradio 서버 시작 python gradio_server.py --flow-reverse # 또는 모든 인터페이스에 바인딩하여 원격 접근 허용 SERVER_NAME=0.0.0.0 SERVER_PORT=8081 \\ python gradio_server.py --flow-reverse --use-cpu-offload Gradio UI는 프롬프트, 해상도, 프레임 수, CFG 스케일, 시드 등의 파라미터를 노출한다. 프로그래매틱 접근을 위해 브라우저에서 /run/predict 엔드포인트를 찾아 JSON 페이로드를 복제하라.\nDigitalOcean GPU Droplets 로컬 GPU 하드웨어가 없는 팀을 위해 DigitalOcean GPU Droplets는 온디맨드로 NVIDIA H100 및 A100 인스턴스를 제공한다: `````yaml #cloud-config package_update: true packages: - docker.io\nnvidia-container-toolkit runcmd: - systemctl restart docker docker pull hunyuanvideo/hunyuanvideo:cuda_12 docker run -d –gpus all –name hunyuan -p 8081:8081 -v /mnt/models:/models hunyuanvideo/hunyuanvideo:cuda_12 python gradio_server.py –flow-reverse –use-cpu-offload ## 벤치마크 / 실제 사용 사례 RTX 4090 및 데이터센터 GPU 테스트의 커뮤니티 벤치마크 (2026년 3월): | 모델 | 파라미터 | VRAM (720p) | 생성 시간 (5초, RTX 4090) | 미적 품질 | |---|---|---|---|---| | HunyuanVideo (오리지널) | 13B | ~60GB | ~5:50 | 8.8/10 | | HunyuanVideo-1.5 | 8.3B | ~24GB (INT8) | ~3:20 | 8.5/10 | | Wan 2.2 | 14B | ~48GB | ~4:20 | 8.5/10 | | LTX-Video 0.9.5 | 13B | ~16GB | ~1:30 | 7.4/10 | | CogVideoX-5B | 5B | ~12GB | ~8:10 | 6.8/10 | **실제 프로덕션 사용 사례:** - **광고 크리에이티브 생성**: 선전의 한 이커머스 팀이 커스텀 LoRA가 적용된 HunyuanVideo로 매일 200개 이상의 제품 쇼케이스 비디오를 생성한다. 영화급 미적 효과로 Wan 출력 대비 후반 작업 시간이 60% 감소했다고 보고했다. - **소셜 미디어 콘텐츠 팩토리**: 브라질의 한 MCN이 xDiT 병렬 추론으로 4xA100 노드에서 HunyuanVideo를 실행하여 TikTok과 Reels용 5초 세로 클립을 제작한다. - **영화 프리비주얼라이제이션**: LA의 한 독립 영화 감독이 이미지 투 비디오 파이프라인으로 스토리보드 프레임에 애니메이션을 입혀 프리비즈 반복 시간을 며칠에서 몇 시간으로 단축했다. ## 고급 사용법 / 프로덕션 하드닝 ### FP8 양자화로 메모리 절감 FP8 양자화는 FP32 가중치를 8비트 부동소수점 형식으로 변환하여 최소한의 품질 저하로 약 10GB GPU 메모리 사용량을 줄인다. `````bash # FP8 가중치 및 스케일 파일 다운로드 huggingface-cli download tencent/HunyuanVideo \\ --include \"mp_rank_00_model_states_fp8.pt\" \\ --include \"mp_rank_00_model_states_fp8_map.pt\" \\ --local-dir ./ckpts/fp8 # FP8로 추론 실행 python sample_video.py \\ --dit-weight ./ckpts/fp8/mp_rank_00_model_states_fp8.pt \\ --video-size 1280 720 \\ --video-length 129 \\ --infer-steps 50 \\ --prompt \"A golden retriever runs on a beach at sunset\" \\ --flow-reverse \\ --use-cpu-offload \\ --use-fp8 \\ --save-path ./results --use-fp8 플래그는 hyvideo/modules/fp8_optimization.py에서 FP8 파이프라인을 활성화한다. E4M3 형식(지수 4비트, 가수 3비트)은 메모리를 약 40% 절감하면서 추론에 충분한 정밀도를 유지한다.\nxDiT를 활용한 다중 GPU 병렬 추론 프로덕션 워크로드의 경우 xDiT는 여러 GPU에서 확장되는 Unified Sequence Parallelism을 제공한다: `````bash\n8 GPU 병렬 추론 torchrun –nproc_per_node=8 sample_video.py –video-size 1280 720 –video-length 129 –infer-steps 50 –prompt “A cinematic aerial shot of a mountain valley at dawn” –flow-reverse –seed 42 –ulysses-degree 8 –ring-degree 1 –save-path ./results\n1280x720, 129 프레임, 50 스텝의 지연 시간 확장: | GPU 수 | 지연 시간 (초) | 스피드업 | |---|---|---| | 1 | 1904 | 1.00x | | 2 | 934 | 2.04x | | 4 | 514 | 3.70x | | 8 | 338 | 5.64x | ````--ulysses-degree````와 ````--ring-degree```` 파라미터는 병렬 전략을 제어한다. 대부분의 설정에서는 Ulysses를 먼저 최대화하라. ### 리버스 프록시가 있는 프로덕션 Gradio `````bash # 프로덕션 설정으로 시작 SERVER_NAME=0.0.0.0 \\ SERVER_PORT=8081 \\ python gradio_server.py \\ --flow-reverse \\ --use-cpu-offload \\ --use-fp8 \\ --max-queue-size 10 \\ --queue-timeout 300 속도 제한이 있는 Nginx 리버스 프록시 뒤에서: `````nginx upstream hunyuan { server 127.0.0.1:8081; keepalive 32; }\nserver { listen 443 ssl http2; server_name video-api.yourdomain.com;\nclient_max_body_size 100M; location / { proxy_pass http://hunyuan; proxy_http_version 1.1; proxy_set_header Connection \"\"; proxy_read_timeout 600s; } # 속도 제한: IP당 분당 10개 요청 limit_req_zone $binary_remote_addr zone=video:10m rate=10r/m; limit_req zone=video burst=5 nodelay; }\n### Prometheus로 모니터링 `````python # gradio_server.py에 추가 또는 추론 호출 래핑 from prometheus_client import Counter, Histogram, start_http_server import time inference_count = Counter(hunyuan_inferences_total, '총 추론 횟수') inference_duration = Histogram(hunyuan_inference_seconds, '추론 지연 시간') queue_depth = Gauge(hunyuan_queue_depth, '현재 큐 깊이') @inference_duration.time() def generate_video(prompt, height, width, frames, steps): inference_count.inc() # ... 기존 추론 로직 return video # 9090 포트에서 메트릭 서버 시작 start_http_server(9090) 보안 하드닝 모델 가중치 무결성: Hugging Face 모델 카드에 게시된 SHA-256 체크섬으로 다운로드한 가중치를 검증하라. 입력 샌티타이제이션: MLLM 텍스트 인코더로 본격 병하기 전에 프롬프트를 샌티타이즈하라. GPU 격리: 다중 테넌트 환경에서 NVIDIA MIG를 사용하여 A100/H100 GPU를 분할하라. 네트워크 격리: 낮은 VPC에서 Gradio 컨테이너를 실행하고 인증된 API 게이트웨이를 통해서만 노출하라. 대안과의 비교 기능 HunyuanVideo Wan 2.2 CogVideoX-5B Open-Sora 파라미터 13B (1.5는 8.3B) 14B 5B 1.1B - 7B 최대 해상도 1080p (SR 통해) 1080p 720p 720p 최소 VRAM (720p) 24GB (INT8) 24GB 12GB 16GB 텍스트 투 비디오 예 예 예 예 이미지 투 비디오 예 (1.5) 예 예 예 라이선스 Apache-2.0 Apache-2.0 Apache-2.0 BSD-3-Clause 영화급 품질 8.8/10 8.5/10 6.8/10 7.0/10 생성 시간 (5초, 4090) 5:50 (오리지널) 4:20 8:10 6:00 모션 사실감 우수 우수 보통 양호 이중 언어 프롬프트 예 (중/영) 예 (중/영) 예 (중/영) 영어 중심 내장 업스케일러 예 (1.5) 아니오 아니오 아니오 ComfyUI 지원 예 예 예 예 다중 GPU 병렬 예 (xDiT) 예 (USP) 제한적 아니오 HunyuanVideo의 주요 차별화 요소는 영화급 미학과 모션 사실감이다. “하우스 스타일\"은 풍부한 색상 그레이딩, 자연스러운 보케, 영화 같은 모션을 기본적으로 생성한다. Wan 2.2는 포토리얼리스틱 인간 얼굴과 미세 디테일에서 약간 앞선다.\n한계 / 정직한 평가 속도: FP8과 SSTA가 있어도 HunyuanVideo는 Wan 2.2보다 느리고 LTX-Video보다 현저히 느리다. 빠른 반복이 필요한 워크플로우에는 LTX-Video나 상업용 API가 더 적합하다.\nVRAM 요구사항: 오리지널 13B 모델은 720p 생성에 60GB가 필요하다. 1.5 릴리스의 INT8 양자화만이 이를 24GB로 낮춘다. A100, H100, RTX 4090급 하드웨어가 없는 팀은 CogVideoX나 클라우드 추론을 고려해야 한다.\n프롬프트 의존성: 짧거나 모호한 프롬프트는 일관성 없는 결과를 낳는다. 모델은 30-60 단어의 상세한 구조화된 설명을 기대한다.\n해상도 한계: 네이티브 생성은 720p로 제한된다. 1.5의 1080p 슈퍼 레졸루션 네트워크는 처리 시간을 추가하고 복잡한 텍스처에서 아티팩트를 도입할 수 있다.\n클립 길이: 실제 생성은 5-10초로 제한된다. 더 긴 시퀀스는 H100 사양을 초과하는 컴퓨팅 리소스가 필요하다.\nLinux 전용: 공식 Windows나 macOS 지원이 없다. WSL2가 작동할 수 있지만 문서화되거나 테스트되지 않았다.\n자주 묻는 질문 Q: HunyuanVideo를 실행하는데 실제로 얼마나 많은 VRAM이 필요한가?\nA: 오리지널 13B 모델은 720p 생성에 60GB GPU 메모리가 필요하고 540p에는 45GB가 필요하다. HunyuanVideo-1.5는 INT8 양자화로 24GB로 줄이며 CPU 오프로딩을 활성화하면 14GB까지 낮출 수 있다. FP8 가중치는 FP16 대비 약 10GB를 절약한다. 프로덕션에는 NVIDIA A100 80GB 또는 H100을 권장하며, 실험용으로는 RTX 4090 (24GB)로 1.5 모델을 양자화하여 실행할 수 있다.\nQ: Windows에서 HunyuanVideo를 실행할 수 있는가?\nA: 공식적으로는 아니오 — 프로젝트는 Linux만 지원한다. 일부 사용자가 WSL2와 CUDA 패스스루로 성공했다고 보고했지만 텐센트 팀이 문서화하거나 지원하지 않는다. Windows 기반 팀에게 WSL2 백엔드를 사용하는 Docker Desktop이 가장 실현 가능한 경로이다.\nQ: HunyuanVideo는 Sora나 Kling 같은 상업용 API와 어떻게 비교되는가?\nA: 인간 평가에서 HunyuanVideo는 모션 품질과 전체 순위에서 Runway Gen-3과 Luma 1.6을 능가했다. 선도적인 상업 모델과의 격차는 크게 좁혀졌지만 포토리얼리스틱 인간 피사체에서 여전히 측정 가능한 차이가 있다. 트레이드오프는 비용이다: 상업용 API는 초당 $0.10-0.50을 청구하는 반면, 자체 호스팅 HunyuanVideo는 GPU 컴퓨팅 시간만 필요하다 (H200 클라우드 인스턴스에서 약 $0.14-0.21/초).\nQ: HunyuanVideo에 가장 적합한 프롬프트 형식은 무엇인가?\nA: 주제, 동작, 환경을 명확히 분리하는 구조화된 프롬프트를 사용하라. 30-60 단어를 목표로 하라. 프롬프트 재작성 기능을 활성화하여 짧은 프롬프트를 모델이 선호하는 설명으로 자동 확장하라.\nQ: 프로덕션에서 추론 속도를 높이려면 어떻게 해야 하는가?\nA: 여러 최적화를 조합하라: (1) FP8 양자화 가중치 사용. (2) xDiT 다중 GPU 병렬 추론 활성화 — 8x A100은 5.6배 스피드업을 제공한다. (3) CFG-증류 모델 변형으로 약 2배 스피드업. (4) TeaCache 기능 캐싱 활성화. (5) 1.5의 경우 SSTA 어텐션 메커니즘이 자동으로 1.87배 스피드업을 제공한다.\nQ: 도움을 받거나 다른 사용자와 HunyuanVideo에 대해 논의할 수 있는 곳은 어디인가?\nA: 텐센트 팀은 GitHub README에 Discord 서버와 WeChat 그룹 링크를 유지한다. 영어 사용자를 위해서는 Hugging Face 커뮤니티 포럼과 ComfyUI Discord에 활발한 HunyuanVideo 채널이 있다.\n결론 HunyuanVideo는 폐쇄형 상업용 API와 오픈소스 접근성 사이의 격차를 메우는 프로덕션급 비디오 생성 프레임워크이다. 1.5 릴리스로 83억 파라미터, SSTA 어텐션, 소비자 GPU 호환성을 갖추면서 스튜디오와 독립 크리에이터 모두에게 실용적인 선택이 되었다.\n오늘 시작하기 위한 액션 아이템: 1. 저장소를 클론하고 GPU 인스턴스에서 Docker 이미지를 실행하라 — 공식 CUDA 12 이미지가 가장 빠른 경로이다. 2. FP8 가중치를 다운로드하고 ````sample_video.py```로 첫 720p 생성을 실행하라. 3. Kijai의 래퍼로 ComfyUI와 통합하여 시각적 워크플로우 편집을 하라. 4. dibi8 Telegram 그룹에 가입하여 배포 전략을 논의하고 커뮤니티와 생성된 비디오를 공유하라.\n이 기사의 일부 링크는 제휴 링크이다. 서비스를 통해 구매하면 커미션을 받을 수 있다 — 이는 추가 비용 없이 dibi8 오픈소스 프로젝트를 지원하는데 도움이 된다.\n추천 호스팅 및 인프라 위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - DigitalOcean — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.\nHTStack — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC. 제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.\n출처 및 추가 참고자료 공식 저장소: https://github.com/Tencent-Hunyuan/HunyuanVideo HunyuanVideo-1.5 저장소: https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5 프로젝트 페이지: https://aivideo.hunyuan.tencent.com Hugging Face 모델 카드: https://huggingface.co/tencent/HunyuanVideo ComfyUI Wiki 튜토리얼: https://comfyui-wiki.com/en/tutorial/advanced/hunyuan-text-to-video-workflow-guide-and-example 기술 보고서 (arXiv): https://arxiv.org/abs/2412.03603 HunyuanVideo 1.5 기술 보고서: https://arxiv.org/abs/2511.18870 xDiT 병렬 추론: https://github.com/xdit-project/xDiT Kijai ComfyUI 래퍼: https://github.com/kijai/ComfyUI-HunyuanVideoWrapper DigitalOcean GPU Droplets: https://www.digitalocean.com/products/gpu-droplets { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “HunyuanVideo: 12.1K+ Stars — 2026 프로덕션 배포 가이드”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/hunyuan-video\" } } Related Articles open-notebook-open-source-notebooklm-alternative-15-ai-providers stable-diffusion-complete-guide comfyui-workflows-complete-guide comfyui-workflows-complete-guide comfyui-workflows-complete-guide Found this helpful? Join our Telegram community for daily AI tool updates!\n",
-  "wordCount" : "2193",
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“video-generation”, “diffusion-transformer”, “tencent”, “hunyuanvideo”, “comfyui”, “docker”, “fp8”, “multimodal”] aliases:\n/posts/hunyuan-video/- A video generation model that needs 60GB of VRAM for a 5-second clip at 720p is not a toy — it is infrastructure. Tencent’s HunyuanVideo, a 13-billion-parameter diffusion transformer for video generation, has accumulated over 12,100 GitHub stars and become a go-to choice for teams that need cinematic-quality video synthesis on self-hosted hardware. This hunyuanvideo tutorial walks through the complete production setup: from a hunyuanvideo Docker deployment to FP8 quantization, multi-GPU parallel inference, ComfyUI integration, and the monitoring you need when serving video generation production workloads at scale.\nWhat Is HunyuanVideo? HunyuanVideo is a systematic framework for large video generation models developed by Tencent. The original release (December 2024) features a 13B-parameter Diffusion Transformer (DiT) that generates 720p video clips from text prompts or reference images. The November 2025 follow-up, HunyuanVideo-1.5, trimmed the parameter count to 8.3B while introducing the SSTA (Selective and Sliding Tile Attention) mechanism and a built-in super-resolution upscaler to 1080p. Both versions are Apache-2.0 licensed and run on Linux with NVIDIA GPUs. This hunyuanvideo setup guide covers both manual and Docker installation paths.\nHow HunyuanVideo Works The architecture follows a latent diffusion pipeline with three major components: Causal 3D VAE compresses input video into a latent space with 4x temporal and 8x spatial compression ratios. This reduces the token count fed into the transformer, enabling higher-resolution generation without proportional compute growth.\nMLLM Text Encoder replaces the traditional CLIP + T5-XXL combo used in older video models. HunyuanVideo uses a Multimodal Large Language Model (specifically a fine-tuned Qwen2.5-VL variant in 1.5) with bidirectional token refinement. This produces better prompt adherence for complex scene descriptions.\nDual-stream to Single-stream DiT processes video and text tokens independently through the initial transformer blocks (dual-stream), then concatenates them for multimodal fusion in the later blocks (single-stream). This hybrid design balances modality-specific learning with cross-modal attention.\nSSTA Attention (1.5 only) dynamically prunes redundant spatiotemporal key/value blocks using a sliding tile window. Compared to FlashAttention-3, this delivers a 1.87x end-to-end speedup on 10-second 720p synthesis.\nInstallation \u0026 Setup The fastest path to a working HunyuanVideo instance is Docker. For teams that need custom builds, the manual conda installation follows.\nDocker Deployment (Recommended) # Pull the official CUDA 12 image docker pull hunyuanvideo/hunyuanvideo:cuda_12 # Run with GPU passthrough docker run -itd --gpus all --init --net=host --uts=host --ipc=host \\ --name hunyuanvideo \\ --security-opt=seccomp=unconfined \\ --ulimit=stack=67108864 --ulimit=memlock=-1 \\ --privileged \\ -v /mnt/models:/models \\ -p 8081:8081 \\ hunyuanvideo/hunyuanvideo:cuda_12 Manual Installation on Ubuntu # Clone the repository git clone https://github.com/Tencent-Hunyuan/HunyuanVideo.git cd HunyuanVideo # Create conda environment conda create -n hunyuan python==3.10.9 -y conda activate hunyuan # Install PyTorch with CUDA 12.4 conda install pytorch==2.6.0 torchvision==0.19.0 torchaudio==2.4.0 \\ pytorch-cuda=12.4 -c pytorch -c nvidia -y # Install Python dependencies python -m pip install -r requirements.txt # Install Flash Attention v2 for acceleration python -m pip install ninja python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.6.3 # Install xDiT for multi-GPU parallel inference python -m pip install xfuser==0.4.0 Download Model Weights # Install huggingface-cli pip install huggingface_hub # Download the main DiT weights huggingface-cli download tencent/HunyuanVideo \\ --include \"mp_rank_00_model_states.pt\" \\ --local-dir ./ckpts # Download the FP8 quantized weights (saves ~10GB VRAM) huggingface-cli download tencent/HunyuanVideo \\ --include \"mp_rank_00_model_states_fp8.pt\" \\ --local-dir ./ckpts # Download text encoder models huggingface-cli download tencent/HunyuanVideo \\ --include \"*text_encoder*\" \\ --local-dir ./ckpts First Inference Run conda activate hunyuan python sample_video.py \\ --video-size 720 1280 \\ --video-length 129 \\ --infer-steps 50 \\ --prompt \"A cat walks on the grass, realistic style, golden hour lighting\" \\ --flow-reverse \\ --use-cpu-offload \\ --save-path ./results The --use-cpu-offload flag is essential for GPUs with less than 80GB VRAM. It offloads model weights to system RAM when not in use, trading speed for memory.\nIntegration with Popular Tools ComfyUI (Native Nodes) ComfyUI added native HunyuanVideo support in early 2025. Download the repackaged model files from Comfy-Org: `````bash\nModel files go to ComfyUI/models/ - text_encoders/clip_l.safetensors - text_encoders/llava_llama3_vision.safetensors - diffusion_models/hunyuan_video_720p_bf16.safetensors - vae/hunyuan_video_vae_bf16.safetensors Load the official workflow by dragging the JSON into ComfyUI. The key nodes are ````HunyuanVideoSampler````, ````HunyuanVideoDecode````, and ````TextEncodeHunyuanVideo````. ### Kijai's HunyuanVideoWrapper (Advanced) For FP8 inference, video-to-video, and image-to-video, use the community wrapper: `````bash # Install via ComfyUI Manager or git cd ComfyUI/custom_nodes git clone https://github.com/kijai/ComfyUI-HunyuanVideoWrapper.git # Install dependencies cd ComfyUI-HunyuanVideoWrapper pip install -r requirements.txt Download the FP8 weights from Kijai/HunyuanVideo_comfy on Hugging Face and place them in ComfyUI/models/diffusion_models/.\nDiffusers Pipeline from diffusers import HunyuanVideoPipeline import torch pipe = HunyuanVideoPipeline.from_pretrained( \"tencent/HunyuanVideo-1.5\", torch_dtype=torch.bfloat16, variant=\"fp8\" ) pipe.enable_model_cpu_offload() video = pipe( prompt=\"A cat playing piano in a jazz club, warm lighting\", num_frames=121, height=720, width=1280, num_inference_steps=30, guidance_scale=6.0 ).frames[0] # Save the video import numpy as np from PIL import Image frames = [(f * 255).astype(np.uint8) for f in video] frames = [Image.fromarray(f) for f in frames] frames[0].save( \"output.mp4\", save_all=True, append_images=frames[1:], duration=67, loop=0 ) Gradio API Server # Start the Gradio server python gradio_server.py --flow-reverse # Or bind to all interfaces for remote access SERVER_NAME=0.0.0.0 SERVER_PORT=8081 \\ python gradio_server.py --flow-reverse --use-cpu-offload The Gradio UI exposes parameters for prompt, resolution, frame count, CFG scale, and seed. For programmatic access, inspect the network tab in your browser to find the /run/predict endpoint and replicate the JSON payload.\nDigitalOcean GPU Droplets For teams without local GPU hardware, DigitalOcean GPU Droplets provide NVIDIA H100 and A100 instances on demand. Deploy HunyuanVideo with the following cloud-init: `````yaml #cloud-config package_update: true packages: - docker.io\nnvidia-container-toolkit runcmd: - systemctl restart docker docker pull hunyuanvideo/hunyuanvideo:cuda_12 docker run -d –gpus all –name hunyuan -p 8081:8081 -v /mnt/models:/models hunyuanvideo/hunyuanvideo:cuda_12 python gradio_server.py –flow-reverse –use-cpu-offload ## Benchmarks / Real-World Use Cases Community benchmarks from RTX 4090 and datacenter GPU testing (March 2026): | Model | Params | VRAM (720p) | Gen Time (5s, RTX 4090) | Aesthetic Quality | | * * * | * * * | * * * | * * * | * * * | | HunyuanVideo (original) | 13B | ~60GB | ~5:50 | 8.8/10 | | HunyuanVideo-1.5 | 8.3B | ~24GB (INT8) | ~3:20 | 8.5/10 | | Wan 2.2 | 14B | ~48GB | ~4:20 | 8.5/10 | | LTX-Video 0.9.5 | 13B | ~16GB | ~1:30 | 7.4/10 | | CogVideoX-5B | 5B | ~12GB | ~8:10 | 6.8/10 | **Production use cases observed in the wild:** - **Ad creative generation**: An e-commerce team in Shenzhen generates 200+ product showcase videos daily using HunyuanVideo with a custom LoRA fine-tuned on their product catalog. They report the cinematic aesthetic reduces post-production time by 60% compared to Wan outputs. - **Social media content farms**: A Brazilian MCN runs HunyuanVideo on a 4xA100 node via xDiT parallel inference, producing 5-second vertical clips for TikTok and Reels. The built-in prompt rewriter ensures consistent output quality from short user prompts. - **Film pre-visualization**: An indie film director in Los Angeles uses the image-to-video pipeline to animate storyboard frames, cutting previz iteration time from days to hours. ## Advanced Usage / Production Hardening ### FP8 Quantization for Memory Reduction FP8 quantization converts FP32 weights to 8-bit floating-point format, reducing GPU memory usage by approximately 10GB with minimal quality degradation. `````bash # Download FP8 weights and scale files huggingface-cli download tencent/HunyuanVideo \\ --include \"mp_rank_00_model_states_fp8.pt\" \\ --include \"mp_rank_00_model_states_fp8_map.pt\" \\ --local-dir ./ckpts/fp8 # Run inference with FP8 python sample_video.py \\ --dit-weight ./ckpts/fp8/mp_rank_00_model_states_fp8.pt \\ --video-size 1280 720 \\ --video-length 129 \\ --infer-steps 50 \\ --prompt \"A golden retriever runs on a beach at sunset\" \\ --flow-reverse \\ --use-cpu-offload \\ --use-fp8 \\ --save-path ./results The --use-fp8 flag activates the FP8 pipeline in hyvideo/modules/fp8_optimization.py. The E4M3 format (4 exponent bits, 3 mantissa bits) preserves enough precision for inference while cutting memory by ~40%.\nMulti-GPU Parallel Inference with xDiT For production workloads, xDiT provides Unified Sequence Parallelism that scales across multiple GPUs: `````bash\n8-GPU parallel inference torchrun –nproc_per_node=8 sample_video.py –video-size 1280 720 –video-length 129 –infer-steps 50 –prompt “A cinematic aerial shot of a mountain valley at dawn” –flow-reverse –seed 42 –ulysses-degree 8 –ring-degree 1 –save-path ./results\nLatency scaling on 1280x720, 129 frames, 50 steps: | GPUs | Latency (sec) | Speedup | | * * * | * * * | * * * | | 1 | 1904 | 1.00x | | 2 | 934 | 2.04x | | 4 | 514 | 3.70x | | 8 | 338 | 5.64x | The ````--ulysses-degree```` and ````--ring-degree```` parameters control the parallelism strategy. Ulysses parallelism shards the attention computation; ring parallelism distributes across the sequence dimension. For most setups, maximize Ulysses first. ### Production Gradio with Reverse Proxy `````bash # Start with production settings SERVER_NAME=0.0.0.0 \\ SERVER_PORT=8081 \\ python gradio_server.py \\ --flow-reverse \\ --use-cpu-offload \\ --use-fp8 \\ --max-queue-size 10 \\ --queue-timeout 300 Behind an Nginx reverse proxy with rate limiting: `````nginx upstream hunyuan { server 127.0.0.1:8081; keepalive 32; }\nserver { listen 443 ssl http2; server_name video-api.yourdomain.com;\nclient_max_body_size 100M; location / { proxy_pass http://hunyuan; proxy_http_version 1.1; proxy_set_header Connection \"\"; proxy_read_timeout 600s; } # Rate limit: 10 requests per minute per IP limit_req_zone $binary_remote_addr zone=video:10m rate=10r/m; limit_req zone=video burst=5 nodelay; }\n### Monitoring with Prometheus `````python # Add to gradio_server.py or wrap the inference call from prometheus_client import Counter, Histogram, start_http_server import time inference_count = Counter(hunyuan_inferences_total, 'Total inferences') inference_duration = Histogram(hunyuan_inference_seconds, 'Inference latency') queue_depth = Gauge(hunyuan_queue_depth, 'Current queue depth') @inference_duration.time() def generate_video(prompt, height, width, frames, steps): inference_count.inc() # ... existing inference logic return video # Start metrics server on port 9090 start_http_server(9090) Security Hardening Model weight integrity: Verify downloaded weights against SHA-256 checksums published on the Hugging Face model card. Input sanitization: Sanitize prompts before sending to the MLLM text encoder. Prompt injection can cause the text encoder to generate adversarial embeddings. GPU isolation: In multi-tenant environments, use NVIDIA MIG (Multi-Instance GPU) to partition A100/H100 GPUs so one user’s generation does not exhaust VRAM needed by another. Network isolation: Run the Gradio container on an internal VPC. Expose only through your API gateway with authentication. Comparison with Alternatives | Feature | HunyuanVideo | Wan 2.2 | CogVideoX-5B | Open-Sora | |\n|\n|\n|\n|\n| | Parameters | 13B (8.3B in 1.5) | 14B | 5B | 1.1B - 7B | | Max resolution | 1080p (via SR) | 1080p | 720p | 720p | | Min VRAM (720p) | 24GB (INT8) | 24GB | 12GB | 16GB | | Text-to-Video | Yes | Yes | Yes | Yes | | Image-to-Video | Yes (1.5) | Yes | Yes | Yes | | License | Apache-2.0 | Apache-2.0 | Apache-2.0 | BSD-3-Clause | | Cinematic quality | 8.8/10 | 8.5/10 | 6.8/10 | 7.0/10 | | Gen time (5s, 4090) | 5:50 (original) | 4:20 | 8:10 | 6:00 | | Motion realism | Excellent | Excellent | Moderate | Good | | Bilingual prompts | Yes (CN/EN) | Yes (CN/EN) | Yes (CN/EN) | EN focused | | Built-in upscaler | Yes (1.5) | No | No | No | | ComfyUI support | Yes | Yes | Yes | Yes | | Multi-GPU parallel | Yes (xDiT) | Yes (USP) | Limited | No |\nIn the hunyuanvideo vs wan debate, HunyuanVideo’s primary differentiator is its cinematic aesthetic and motion realism. The “house style” produces rich color grading, natural bokeh, and film-like motion out of the box. Wan 2.2 edges ahead on photorealistic human faces and fine detail. CogVideoX-5B remains the accessibility champion for 12GB GPUs, though quality lags behind. Open-Sora offers the most flexible training pipeline for researchers who want to train from scratch.\nLimitations / Honest Assessment HunyuanVideo is not the right tool for every video generation task. Here is what it does poorly: Speed: Even with FP8 and SSTA, HunyuanVideo is slower than Wan 2.2 and significantly slower than LTX-Video. If your workflow requires rapid iteration (hundreds of clips per hour), LTX-Video or commercial APIs are better fits.\nVRAM requirements: The original 13B model needs 60GB for 720p generation. Only the 1.5 release with INT8 quantization brings this down to 24GB. Teams without A100, H100, or RTX 4090-class hardware should consider CogVideoX or cloud inference.\nPrompt dependency: Short or vague prompts produce inconsistent results. The model expects detailed, structured descriptions (30-60 words) that separate subject, action, and environment. The built-in prompt rewriter helps but adds latency.\nResolution ceiling: Native generation tops out at 720p. The 1080p super-resolution network in 1.5 adds processing time and can introduce artifacts on complex textures. For native 1080p generation, commercial models like Sora or Kling remain ahead.\nClip length: Practical generation is limited to 5-10 seconds. Longer sequences require computational resources beyond even H100 specifications, and temporal consistency degrades after 10 seconds.\nLinux only: There is no official Windows or macOS support. WSL2 may work but is not documented or tested by the maintainers.\nFrequently Asked Questions Q: How much VRAM do I actually need to run HunyuanVideo?\nA: The original 13B model requires 60GB GPU memory for 720p generation and 45GB for 540p. HunyuanVideo-1.5 reduces this to 24GB with INT8 quantization, or 14GB if you enable CPU offloading. The FP8 weights save approximately 10GB compared to FP16. For production, an NVIDIA A100 80GB or H100 is recommended; for experimentation, a single RTX 4090 (24GB) can run the 1.5 model with quantization.\nQ: Can I run HunyuanVideo on Windows?\nA: Officially, no — the project only supports Linux. Some users have reported success with WSL2 (Windows Subsystem for Linux) and CUDA pass-through, but this is not documented or supported by the Tencent team. For Windows-based teams, Docker Desktop with WSL2 backend is the most viable path, though expect to troubleshoot CUDA compatibility issues.\nQ: How does HunyuanVideo compare to commercial APIs like Sora or Kling?\nA: In human evaluations, HunyuanVideo outperformed Runway Gen-3 and Luma 1.6 on motion quality and overall ranking. The gap to leading commercial models (Sora 2, Kling 2.5) has narrowed substantially but remains measurable on photorealistic human subjects and complex multi-object scenes. The trade-off is cost: commercial APIs charge $0.10-0.50 per second of video, while self-hosted HunyuanVideo costs only the GPU compute time (approximately $0.14-0.21 per second on H200 cloud instances, or near-zero on owned hardware).\nQ: What is the best prompt format for HunyuanVideo?\nA: Use structured prompts that clearly separate subject, action, and environment. Aim for 30-60 words. Example: “A golden retriever runs along a sandy beach at sunset. Ocean waves break in the background. The dog’s fur blows in the wind. Warm golden hour lighting. Wide angle shot, cinematic color grading.” Enable the prompt rewrite feature (Normal mode for accuracy, Master mode for visual polish) to automatically expand short prompts into model-preferred descriptions.\nQ: How do I speed up inference in production?\nA: Combine multiple optimizations: (1) Use FP8 quantized weights to reduce memory and increase batch throughput. (2) Enable xDiT multi-GPU parallel inference — 8x A100 achieves 5.6x speedup over single-GPU. (3) Use the CFG-distilled model variant for approximately 2x speedup at a small quality cost. (4) Enable feature caching (TeaCache) to skip redundant computation across steps. (5) For 1.5, the SSTA attention mechanism provides 1.87x speedup automatically with no quality loss.\nQ: Where can I get help or discuss HunyuanVideo with other users?\nA: The Tencent team maintains a Discord server and WeChat group linked from the GitHub README. For English-speaking developers, the Hugging Face community forums and the ComfyUI Discord have active HunyuanVideo channels. For bug reports and feature requests, use GitHub Issues on the official repository.\nConclusion HunyuanVideo is a production-grade video generation framework that bridges the gap between closed-source commercial APIs and open-source accessibility. With the 1.5 release bringing 8.3B parameters, SSTA attention, and consumer-GPU compatibility, it has become a practical choice for studios and indie creators alike.\nAction items to get started today: 1. Clone the repo and run the Docker image on a GPU instance — the official CUDA 12 image is the fastest path. 2. Download the FP8 weights and run your first 720p generation with ````sample_video.py```. 3. Integrate with ComfyUI using Kijai’s wrapper for visual workflow editing. 4. Join the dibi8 Telegram group to discuss deployment strategies and share your generated videos with the community.\nSome links in this article are affiliate links. We may earn a commission if you purchase services through them — this helps support the dibi8 open-source project at no extra cost to you.\nRecommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.\nSources \u0026 Further Reading Official Repository: https://github.com/Tencent-Hunyuan/HunyuanVideo HunyuanVideo-1.5 Repository: https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5 Project Page: https://aivideo.hunyuan.tencent.com Hugging Face Model Card: https://huggingface.co/tencent/HunyuanVideo ComfyUI Wiki Tutorial: https://comfyui-wiki.com/en/tutorial/advanced/hunyuan-text-to-video-workflow-guide-and-example Technical Report (arXiv): https://arxiv.org/abs/2412.03603 HunyuanVideo 1.5 Technical Report: https://arxiv.org/abs/2511.18870 xDiT Parallel Inference: https://github.com/xdit-project/xDiT Kijai ComfyUI Wrapper: https://github.com/kijai/ComfyUI-HunyuanVideoWrapper DigitalOcean GPU Droplets: https://www.digitalocean.com/products/gpu-droplets { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “HunyuanVideo: 12.1K+ Stars — Production Deployment Guide 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/hunyuan-video\" } } Related Articles nvidia-cosmos-world-models-platform-2026 stable-diffusion-complete-guide comfyui-workflows-complete-guide comfyui-workflows-complete-guide comfyui-workflows-complete-guide Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "2915",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -187,7 +187,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>14 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/llm-frameworks/hunyuan-video/">En</a>
@@ -205,30 +205,30 @@
 
     <div class="inner"><ul><ul>
             <li>
-                <a href="#hunyuanvideo%eb%9e%80" aria-label="HunyuanVideo란?">HunyuanVideo란?</a></li>
+                <a href="#what-is-hunyuanvideo" aria-label="What Is HunyuanVideo?">What Is HunyuanVideo?</a></li>
             <li>
-                <a href="#hunyuanvideo%ec%9d%98-%ec%9e%91%eb%8f%99-%ec%9b%90%eb%a6%ac" aria-label="HunyuanVideo의 작동 원리">HunyuanVideo의 작동 원리</a></li>
+                <a href="#how-hunyuanvideo-works" aria-label="How HunyuanVideo Works">How HunyuanVideo Works</a></li>
             <li>
-                <a href="#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95" aria-label="설치 및 설정">설치 및 설정</a><ul>
+                <a href="#installation--setup" aria-label="Installation &amp; Setup">Installation &amp; Setup</a><ul>
                     
             <li>
-                <a href="#docker-%eb%b0%b0%ed%8f%ac-%ea%b6%8c%ec%9e%a5" aria-label="Docker 배포 (권장)">Docker 배포 (권장)</a></li>
+                <a href="#docker-deployment-recommended" aria-label="Docker Deployment (Recommended)">Docker Deployment (Recommended)</a></li>
             <li>
-                <a href="#ubuntu-%ec%88%98%eb%8f%99-%ec%84%a4%ec%b9%98" aria-label="Ubuntu 수동 설치">Ubuntu 수동 설치</a></li>
+                <a href="#manual-installation-on-ubuntu" aria-label="Manual Installation on Ubuntu">Manual Installation on Ubuntu</a></li>
             <li>
-                <a href="#%ec%82%ac%ec%a0%84%ed%95%99%ec%8a%b5-%eb%aa%a8%eb%8d%b8-%ea%b0%80%ec%a4%91%ec%b9%98-%eb%8b%a4%ec%9a%b4%eb%a1%9c%eb%93%9c" aria-label="사전학습 모델 가중치 다운로드">사전학습 모델 가중치 다운로드</a></li>
+                <a href="#download-model-weights" aria-label="Download Model Weights">Download Model Weights</a></li>
             <li>
-                <a href="#%ec%b2%ab-%eb%b2%88%ec%a7%b8-%ec%b6%94%eb%a1%a0-%ec%8b%a4%ed%96%89" aria-label="첫 번째 추론 실행">첫 번째 추론 실행</a></li></ul>
+                <a href="#first-inference-run" aria-label="First Inference Run">First Inference Run</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%9d%b8%ea%b8%b0-%eb%8f%84%ea%b5%ac%ec%99%80%ec%9d%98-%ed%86%b5%ed%95%a9" aria-label="인기 도구와의 통합">인기 도구와의 통합</a><ul>
+                <a href="#integration-with-popular-tools" aria-label="Integration with Popular Tools">Integration with Popular Tools</a><ul>
                     
             <li>
-                <a href="#comfyui-%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c-%eb%85%b8%eb%93%9c" aria-label="ComfyUI (네이티브 노드)">ComfyUI (네이티브 노드)</a></li></ul>
+                <a href="#comfyui-native-nodes" aria-label="ComfyUI (Native Nodes)">ComfyUI (Native Nodes)</a></li></ul>
             </li></ul>
                 
             <li>
-                <a href="#%eb%aa%a8%eb%8d%b8-%ed%8c%8c%ec%9d%bc%ec%9d%84-comfyuimodels-%ea%b2%bd%eb%a1%9c%ec%97%90-%eb%b0%b0%ec%b9%98" aria-label="모델 파일을 ComfyUI/models/ 경로에 배치">모델 파일을 ComfyUI/models/ 경로에 배치</a></li>
+                <a href="#model-files-go-to-comfyuimodels" aria-label="Model files go to ComfyUI/models/">Model files go to ComfyUI/models/</a></li>
             <li>
                 <a href="#--text_encodersclip_lsafetensors" aria-label="- text_encoders/clip_l.safetensors">- text_encoders/clip_l.safetensors</a></li>
             <li>
@@ -240,34 +240,34 @@
                     <ul>
                     
             <li>
-                <a href="#diffusers-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8" aria-label="Diffusers 파이프라인">Diffusers 파이프라인</a></li>
+                <a href="#diffusers-pipeline" aria-label="Diffusers Pipeline">Diffusers Pipeline</a></li>
             <li>
-                <a href="#gradio-api-%ec%84%9c%eb%b2%84" aria-label="Gradio API 서버">Gradio API 서버</a></li>
+                <a href="#gradio-api-server" aria-label="Gradio API Server">Gradio API Server</a></li>
             <li>
                 <a href="#digitalocean-gpu-droplets" aria-label="DigitalOcean GPU Droplets">DigitalOcean GPU Droplets</a></li>
             <li>
-                <a href="#xdit%eb%a5%bc-%ed%99%9c%ec%9a%a9%ed%95%9c-%eb%8b%a4%ec%a4%91-gpu-%eb%b3%91%eb%a0%ac-%ec%b6%94%eb%a1%a0" aria-label="xDiT를 활용한 다중 GPU 병렬 추론">xDiT를 활용한 다중 GPU 병렬 추론</a></li></ul>
+                <a href="#multi-gpu-parallel-inference-with-xdit" aria-label="Multi-GPU Parallel Inference with xDiT">Multi-GPU Parallel Inference with xDiT</a></li></ul>
                 </ul>
             </li>
             <li>
-                <a href="#8-gpu-%eb%b3%91%eb%a0%ac-%ec%b6%94%eb%a1%a0" aria-label="8 GPU 병렬 추론">8 GPU 병렬 추론</a><ul>
+                <a href="#8-gpu-parallel-inference" aria-label="8-GPU parallel inference">8-GPU parallel inference</a><ul>
                     <ul>
                     
             <li>
-                <a href="#%eb%b3%b4%ec%95%88-%ed%95%98%eb%93%9c%eb%8b%9d" aria-label="보안 하드닝">보안 하드닝</a></li></ul>
+                <a href="#security-hardening" aria-label="Security Hardening">Security Hardening</a></li></ul>
                 
             <li>
-                <a href="#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90" aria-label="대안과의 비교">대안과의 비교</a></li>
+                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li>
             <li>
-                <a href="#%ed%95%9c%ea%b3%84--%ec%a0%95%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80" aria-label="한계 / 정직한 평가">한계 / 정직한 평가</a></li>
+                <a href="#limitations--honest-assessment" aria-label="Limitations / Honest Assessment">Limitations / Honest Assessment</a></li>
             <li>
-                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a></li>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a></li>
             <li>
-                <a href="#%ea%b2%b0%eb%a1%a0" aria-label="결론">결론</a></li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
             <li>
-                <a href="#%ec%b6%94%ec%b2%9c-%ed%98%b8%ec%8a%a4%ed%8c%85-%eb%b0%8f-%ec%9d%b8%ed%94%84%eb%9d%bc" aria-label="추천 호스팅 및 인프라">추천 호스팅 및 인프라</a></li>
+                <a href="#recommended-hosting--infrastructure" aria-label="Recommended Hosting &amp; Infrastructure">Recommended Hosting &amp; Infrastructure</a></li>
             <li>
-                <a href="#%ec%b6%9c%ec%b2%98-%eb%b0%8f-%ec%b6%94%ea%b0%80-%ec%b0%b8%ea%b3%a0%ec%9e%90%eb%a3%8c" aria-label="출처 및 추가 참고자료">출처 및 추가 참고자료</a></li>
+                <a href="#sources--further-reading" aria-label="Sources &amp; Further Reading">Sources &amp; Further Reading</a></li>
             <li>
                 <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
             </li>
@@ -293,30 +293,30 @@ backup_url: &rsquo;'
 last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;ai-tools&rdquo;]
-tags: [&ldquo;비디오생성&rdquo;, &ldquo;디퓨전트랜스포머&rdquo;, &ldquo;텐센트&rdquo;, &ldquo;hunyuanvideo&rdquo;, &ldquo;comfyui&rdquo;, &ldquo;docker&rdquo;, &ldquo;fp8&rdquo;, &ldquo;멀티모달&rdquo;]
+tags: [&ldquo;video-generation&rdquo;, &ldquo;diffusion-transformer&rdquo;, &ldquo;tencent&rdquo;, &ldquo;hunyuanvideo&rdquo;, &ldquo;comfyui&rdquo;, &ldquo;docker&rdquo;, &ldquo;fp8&rdquo;, &ldquo;multimodal&rdquo;]
 aliases:</p>
 <ul>
-<li>/kr/posts/hunyuan-video/</li>
+<li>/posts/hunyuan-video/-</li>
 </ul>
 <hr>
-<p>720p에서 5초짜리 클립을 생성하는데 60GB VRAM이 필요한 비디오 생성 모델은 장난감이 아니라 인프라다. 텐센트의 HunyuanVideo는 130억 파라미터의 디퓨전 트랜스포머 비디오 생성 모델로, GitHub에서 12,100개 이상의 스타를 획득했으며 자체 호스팅 하드웨어에서 영화급 비디오 합성이 필요한 팀들의 필수 선택이 되었다. 이 가이드는 완전한 프로덕션 구축을 다룬다: 작동하는 Docker 배포부터 FP8 양자화, 다중 GPU 병렬 추론, ComfyUI 통합, 그리고 대규모 서비스에 필요한 모니터링까지.</p>
-<h2 id="hunyuanvideo란">HunyuanVideo란?<a hidden class="anchor" aria-hidden="true" href="#hunyuanvideo란">#</a></h2>
-<p>HunyuanVideo는 텐센트가 개발한 대규모 비디오 생성 모델을 위한 체계적 프레임워크이다. 원본 릴리스(2024년 12월)는 130억 파라미터의 디퓨전 트랜스포머(DiT)를 탑재하여 텍스트 프롬프트나 참조 이미지로부터 720p 비디오 클립을 생성한다. 2025년 11월 후속 버전인 HunyuanVideo-1.5는 파라미터 수를 83억으로 줄이면서 SSTA(Selective and Sliding Tile Attention) 메커니즘과 내장 1080p 슈퍼 레졸루션 업스케일러를 도입했다. 두 버전 모두 Apache-2.0 라이선스로 NVIDIA GPU가 장착된 Linux에서 실행된다.</p>
-<h2 id="hunyuanvideo의-작동-원리">HunyuanVideo의 작동 원리<a hidden class="anchor" aria-hidden="true" href="#hunyuanvideo의-작동-원리">#</a></h2>
-<p>아키텍처는 세 가지 주요 컴포넌트를 가진 잠재 디퓨전 파이프라인을 따른다: <img alt="HunyuanVideo 전체 아키텍처" loading="lazy" src="https://raw.githubusercontent.com/Tencent-Hunyuan/HunyuanVideo/main/assets/backbone.png"></p>
-<p><strong>Causal 3D VAE</strong>는 입력 비디오를 잠재 공간으로 압축하며, 시간 압축비는 4x, 공간 압축비는 8x이다. 이는 트랜스포머로 들어가는 토큰 수를 줄여 동일한 컴퓨팅 성장 없이 더 높은 해상도의 생성을 가능하게 한다.</p>
-<p><strong>MLLM 텍스트 인코더</strong>는 이전 비디오 모델에서 사용된 기존 CLIP + T5-XXL 조합을 대체한다. HunyuanVideo는 양방향 토큰 리파이너와 함께 멀티모달 대형 언어 모델(1.5에서는 미세 조정된 Qwen2.5-VL 변형)을 텍스트 인코더로 사용한다. 이는 복잡한 장면 설명에 대한 더 나은 프롬프트 충족 능력을 제공한다.</p>
-<p><img alt="HunyuanVideo 텍스트 인코더 아키텍처" loading="lazy" src="https://raw.githubusercontent.com/Tencent-Hunyuan/HunyuanVideo/main/assets/text_encoder.png"></p>
-<p><strong>듀얼 스트림에서 싱글 스트림 DiT</strong>는 초기 트랜스포머 블록에서 비디오와 텍스트 토큰을 독립적으로 처리하고(듀얼 스트림), 이후 블록에서 이들을 연결하여 멀티모달 퓨전을 수행한다(싱글 스트림). 이 하이브리드 디자인은 모달리티별 학습과 크로스모달 어텐션 사이의 균형을 맞춘다.</p>
-<p><img alt="HunyuanVideo 3D VAE 아키텍처" loading="lazy" src="https://raw.githubusercontent.com/Tencent-Hunyuan/HunyuanVideo/main/assets/3dvae.png"></p>
-<p>**SSTA 어텐션(1.5 전용)**은 슬라이딩 타일 윈도우를 사용하여 중복되는 시공간 key/value 블록을 동적으로 가지친다. FlashAttention-3과 비교하여 10초 720p 합성에서 1.87배의 엔드투엔드 스피드업을 제공한다.</p>
-<h2 id="설치-및-설정">설치 및 설정<a hidden class="anchor" aria-hidden="true" href="#설치-및-설정">#</a></h2>
-<p>작동하는 HunyuanVideo 인스턴스를 얻는 가장 빠른 경로는 Docker이다. 커스텀 빌드가 필요한 팀을 위해 수동 conda 설치도 제공한다.</p>
-<h3 id="docker-배포-권장">Docker 배포 (권장)<a hidden class="anchor" aria-hidden="true" href="#docker-배포-권장">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 공식 CUDA 12 이미지 Pull</span>
+<p>A video generation model that needs 60GB of VRAM for a 5-second clip at 720p is not a toy — it is infrastructure. Tencent&rsquo;s HunyuanVideo, a 13-billion-parameter diffusion transformer for video generation, has accumulated over 12,100 GitHub stars and become a go-to choice for teams that need cinematic-quality video synthesis on self-hosted hardware. This hunyuanvideo tutorial walks through the complete production setup: from a hunyuanvideo Docker deployment to FP8 quantization, multi-GPU parallel inference, ComfyUI integration, and the monitoring you need when serving video generation production workloads at scale.</p>
+<h2 id="what-is-hunyuanvideo">What Is HunyuanVideo?<a hidden class="anchor" aria-hidden="true" href="#what-is-hunyuanvideo">#</a></h2>
+<p>HunyuanVideo is a systematic framework for large video generation models developed by Tencent. The original release (December 2024) features a 13B-parameter Diffusion Transformer (DiT) that generates 720p video clips from text prompts or reference images. The November 2025 follow-up, HunyuanVideo-1.5, trimmed the parameter count to 8.3B while introducing the SSTA (Selective and Sliding Tile Attention) mechanism and a built-in super-resolution upscaler to 1080p. Both versions are Apache-2.0 licensed and run on Linux with NVIDIA GPUs. This hunyuanvideo setup guide covers both manual and Docker installation paths.</p>
+<h2 id="how-hunyuanvideo-works">How HunyuanVideo Works<a hidden class="anchor" aria-hidden="true" href="#how-hunyuanvideo-works">#</a></h2>
+<p>The architecture follows a latent diffusion pipeline with three major components: <img alt="HunyuanVideo Overall Architecture" loading="lazy" src="https://raw.githubusercontent.com/Tencent-Hunyuan/HunyuanVideo/main/assets/backbone.png"></p>
+<p><strong>Causal 3D VAE</strong> compresses input video into a latent space with 4x temporal and 8x spatial compression ratios. This reduces the token count fed into the transformer, enabling higher-resolution generation without proportional compute growth.</p>
+<p><strong>MLLM Text Encoder</strong> replaces the traditional CLIP + T5-XXL combo used in older video models. HunyuanVideo uses a Multimodal Large Language Model (specifically a fine-tuned Qwen2.5-VL variant in 1.5) with bidirectional token refinement. This produces better prompt adherence for complex scene descriptions.</p>
+<p><img alt="HunyuanVideo Text Encoder Architecture" loading="lazy" src="https://raw.githubusercontent.com/Tencent-Hunyuan/HunyuanVideo/main/assets/text_encoder.png"></p>
+<p><strong>Dual-stream to Single-stream DiT</strong> processes video and text tokens independently through the initial transformer blocks (dual-stream), then concatenates them for multimodal fusion in the later blocks (single-stream). This hybrid design balances modality-specific learning with cross-modal attention.</p>
+<p><img alt="HunyuanVideo 3D VAE Architecture" loading="lazy" src="https://raw.githubusercontent.com/Tencent-Hunyuan/HunyuanVideo/main/assets/3dvae.png"></p>
+<p><strong>SSTA Attention (1.5 only)</strong> dynamically prunes redundant spatiotemporal key/value blocks using a sliding tile window. Compared to FlashAttention-3, this delivers a 1.87x end-to-end speedup on 10-second 720p synthesis.</p>
+<h2 id="installation--setup">Installation &amp; Setup<a hidden class="anchor" aria-hidden="true" href="#installation--setup">#</a></h2>
+<p>The fastest path to a working HunyuanVideo instance is Docker. For teams that need custom builds, the manual conda installation follows.</p>
+<h3 id="docker-deployment-recommended">Docker Deployment (Recommended)<a hidden class="anchor" aria-hidden="true" href="#docker-deployment-recommended">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Pull the official CUDA 12 image</span>
 </span></span><span style="display:flex;"><span>docker pull hunyuanvideo/hunyuanvideo:cuda_12
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># GPU 패스스루로 실행</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run with GPU passthrough</span>
 </span></span><span style="display:flex;"><span>docker run -itd --gpus all --init --net<span style="color:#f92672">=</span>host --uts<span style="color:#f92672">=</span>host --ipc<span style="color:#f92672">=</span>host <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --name hunyuanvideo <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --security-opt<span style="color:#f92672">=</span>seccomp<span style="color:#f92672">=</span>unconfined <span style="color:#ae81ff">\
@@ -325,47 +325,47 @@ aliases:</p>
 </span></span></span><span style="display:flex;"><span>  -v /mnt/models:/models <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -p 8081:8081 <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  hunyuanvideo/hunyuanvideo:cuda_12
-</span></span></code></pre></div><h3 id="ubuntu-수동-설치">Ubuntu 수동 설치<a hidden class="anchor" aria-hidden="true" href="#ubuntu-수동-설치">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 저장소 클론</span>
+</span></span></code></pre></div><h3 id="manual-installation-on-ubuntu">Manual Installation on Ubuntu<a hidden class="anchor" aria-hidden="true" href="#manual-installation-on-ubuntu">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone the repository</span>
 </span></span><span style="display:flex;"><span>git clone https://github.com/Tencent-Hunyuan/HunyuanVideo.git
 </span></span><span style="display:flex;"><span>cd HunyuanVideo
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># conda 환경 생성</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create conda environment</span>
 </span></span><span style="display:flex;"><span>conda create -n hunyuan python<span style="color:#f92672">==</span>3.10.9 -y
 </span></span><span style="display:flex;"><span>conda activate hunyuan
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># CUDA 12.4가 포함된 PyTorch 설치</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install PyTorch with CUDA 12.4</span>
 </span></span><span style="display:flex;"><span>conda install pytorch<span style="color:#f92672">==</span>2.6.0 torchvision<span style="color:#f92672">==</span>0.19.0 torchaudio<span style="color:#f92672">==</span>2.4.0 <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  pytorch-cuda<span style="color:#f92672">=</span>12.4 -c pytorch -c nvidia -y
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Python 의존성 설치</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install Python dependencies</span>
 </span></span><span style="display:flex;"><span>python -m pip install -r requirements.txt
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Flash Attention v2 설치로 가속</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install Flash Attention v2 for acceleration</span>
 </span></span><span style="display:flex;"><span>python -m pip install ninja
 </span></span><span style="display:flex;"><span>python -m pip install git+https://github.com/Dao-AILab/flash-attention.git@v2.6.3
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 다중 GPU 병렬 추론을 위한 xDiT 설치</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install xDiT for multi-GPU parallel inference</span>
 </span></span><span style="display:flex;"><span>python -m pip install xfuser<span style="color:#f92672">==</span>0.4.0
-</span></span></code></pre></div><h3 id="사전학습-모델-가중치-다운로드">사전학습 모델 가중치 다운로드<a hidden class="anchor" aria-hidden="true" href="#사전학습-모델-가중치-다운로드">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># huggingface-cli 설치</span>
+</span></span></code></pre></div><h3 id="download-model-weights">Download Model Weights<a hidden class="anchor" aria-hidden="true" href="#download-model-weights">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install huggingface-cli</span>
 </span></span><span style="display:flex;"><span>pip install huggingface_hub
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 메인 DiT 가중치 다운로드</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Download the main DiT weights</span>
 </span></span><span style="display:flex;"><span>huggingface-cli download tencent/HunyuanVideo <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --include <span style="color:#e6db74">&#34;mp_rank_00_model_states.pt&#34;</span> <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --local-dir ./ckpts
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># FP8 양자화 가중치 다운로드 (약 10GB VRAM 절약)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Download the FP8 quantized weights (saves ~10GB VRAM)</span>
 </span></span><span style="display:flex;"><span>huggingface-cli download tencent/HunyuanVideo <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --include <span style="color:#e6db74">&#34;mp_rank_00_model_states_fp8.pt&#34;</span> <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --local-dir ./ckpts
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 텍스트 인코더 모델 다운로드</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Download text encoder models</span>
 </span></span><span style="display:flex;"><span>huggingface-cli download tencent/HunyuanVideo <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --include <span style="color:#e6db74">&#34;*text_encoder*&#34;</span> <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --local-dir ./ckpts
-</span></span></code></pre></div><h3 id="첫-번째-추론-실행">첫 번째 추론 실행<a hidden class="anchor" aria-hidden="true" href="#첫-번째-추론-실행">#</a></h3>
+</span></span></code></pre></div><h3 id="first-inference-run">First Inference Run<a hidden class="anchor" aria-hidden="true" href="#first-inference-run">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>conda activate hunyuan
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>python sample_video.py <span style="color:#ae81ff">\
@@ -376,30 +376,30 @@ aliases:</p>
 </span></span></span><span style="display:flex;"><span>    --flow-reverse <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>    --use-cpu-offload <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>    --save-path ./results
-</span></span></code></pre></div><p>80GB 미만 VRAM의 GPU에서는 <code>--use-cpu-offload</code> 플래그가 필수적이다. 사용하지 않을 때 모델 가중치를 시스템 RAM으로 오프로드하여 속도를 희생하며 메모리를 확보한다.</p>
-<h2 id="인기-도구와의-통합">인기 도구와의 통합<a hidden class="anchor" aria-hidden="true" href="#인기-도구와의-통합">#</a></h2>
-<h3 id="comfyui-네이티브-노드">ComfyUI (네이티브 노드)<a hidden class="anchor" aria-hidden="true" href="#comfyui-네이티브-노드">#</a></h3>
-<p>ComfyUI는 2025년 초에 네이티브 HunyuanVideo 지원을 추가했다. Comfy-Org에서 재패키징된 모델 파일을 다운로드하라: `````bash</p>
-<h1 id="모델-파일을-comfyuimodels-경로에-배치">모델 파일을 ComfyUI/models/ 경로에 배치<a hidden class="anchor" aria-hidden="true" href="#모델-파일을-comfyuimodels-경로에-배치">#</a></h1>
+</span></span></code></pre></div><p>The <code>--use-cpu-offload</code> flag is essential for GPUs with less than 80GB VRAM. It offloads model weights to system RAM when not in use, trading speed for memory.</p>
+<h2 id="integration-with-popular-tools">Integration with Popular Tools<a hidden class="anchor" aria-hidden="true" href="#integration-with-popular-tools">#</a></h2>
+<h3 id="comfyui-native-nodes">ComfyUI (Native Nodes)<a hidden class="anchor" aria-hidden="true" href="#comfyui-native-nodes">#</a></h3>
+<p>ComfyUI added native HunyuanVideo support in early 2025. Download the repackaged model files from Comfy-Org: `````bash</p>
+<h1 id="model-files-go-to-comfyuimodels">Model files go to ComfyUI/models/<a hidden class="anchor" aria-hidden="true" href="#model-files-go-to-comfyuimodels">#</a></h1>
 <h1 id="--text_encodersclip_lsafetensors">- text_encoders/clip_l.safetensors<a hidden class="anchor" aria-hidden="true" href="#--text_encodersclip_lsafetensors">#</a></h1>
 <h1 id="--text_encodersllava_llama3_visionsafetensors">- text_encoders/llava_llama3_vision.safetensors<a hidden class="anchor" aria-hidden="true" href="#--text_encodersllava_llama3_visionsafetensors">#</a></h1>
 <h1 id="--diffusion_modelshunyuan_video_720p_bf16safetensors">- diffusion_models/hunyuan_video_720p_bf16.safetensors<a hidden class="anchor" aria-hidden="true" href="#--diffusion_modelshunyuan_video_720p_bf16safetensors">#</a></h1>
 <h1 id="--vaehunyuan_video_vae_bf16safetensors">- vae/hunyuan_video_vae_bf16.safetensors<a hidden class="anchor" aria-hidden="true" href="#--vaehunyuan_video_vae_bf16safetensors">#</a></h1>
 <pre tabindex="0"><code>
-공식 워크플로우 JSON을 ComfyUI로 드래그하여 로드하라. 핵심 노드는 ````HunyuanVideoSampler````, ````HunyuanVideoDecode````, ````TextEncodeHunyuanVideo````이다.
+Load the official workflow by dragging the JSON into ComfyUI. The key nodes are ````HunyuanVideoSampler````, ````HunyuanVideoDecode````, and ````TextEncodeHunyuanVideo````.
 
-### Kijai의 HunyuanVideoWrapper (고급)
+### Kijai&#39;s HunyuanVideoWrapper (Advanced)
 
-FP8 추론, 비디오 투 비디오, 이미지 투 비디오를 위해서는 커뮤니티 래퍼를 사용하라: `````bash
-# ComfyUI 관리자 또는 git으로 설치
+For FP8 inference, video-to-video, and image-to-video, use the community wrapper: `````bash
+# Install via ComfyUI Manager or git
 cd ComfyUI/custom_nodes
 git clone https://github.com/kijai/ComfyUI-HunyuanVideoWrapper.git
 
-# 의존성 설치
+# Install dependencies
 cd ComfyUI-HunyuanVideoWrapper
 pip install -r requirements.txt
-</code></pre><p>Hugging Face의 <code>Kijai/HunyuanVideo_comfy</code>에서 FP8 가중치를 다운로드하여 <code>ComfyUI/models/diffusion_models/</code>에 배치하라.</p>
-<h3 id="diffusers-파이프라인">Diffusers 파이프라인<a hidden class="anchor" aria-hidden="true" href="#diffusers-파이프라인">#</a></h3>
+</code></pre><p>Download the FP8 weights from <code>Kijai/HunyuanVideo_comfy</code> on Hugging Face and place them in <code>ComfyUI/models/diffusion_models/</code>.</p>
+<h3 id="diffusers-pipeline">Diffusers Pipeline<a hidden class="anchor" aria-hidden="true" href="#diffusers-pipeline">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> diffusers <span style="color:#f92672">import</span> HunyuanVideoPipeline
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
 </span></span><span style="display:flex;"><span>
@@ -419,7 +419,7 @@ pip install -r requirements.txt
 </span></span><span style="display:flex;"><span>    guidance_scale<span style="color:#f92672">=</span><span style="color:#ae81ff">6.0</span>
 </span></span><span style="display:flex;"><span>)<span style="color:#f92672">.</span>frames[<span style="color:#ae81ff">0</span>]
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 비디오 저장</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Save the video</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> PIL <span style="color:#f92672">import</span> Image
 </span></span><span style="display:flex;"><span>frames <span style="color:#f92672">=</span> [(f <span style="color:#f92672">*</span> <span style="color:#ae81ff">255</span>)<span style="color:#f92672">.</span>astype(np<span style="color:#f92672">.</span>uint8) <span style="color:#66d9ef">for</span> f <span style="color:#f92672">in</span> video]
@@ -431,16 +431,16 @@ pip install -r requirements.txt
 </span></span><span style="display:flex;"><span>    duration<span style="color:#f92672">=</span><span style="color:#ae81ff">67</span>,
 </span></span><span style="display:flex;"><span>    loop<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><h3 id="gradio-api-서버">Gradio API 서버<a hidden class="anchor" aria-hidden="true" href="#gradio-api-서버">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Gradio 서버 시작</span>
+</span></span></code></pre></div><h3 id="gradio-api-server">Gradio API Server<a hidden class="anchor" aria-hidden="true" href="#gradio-api-server">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Start the Gradio server</span>
 </span></span><span style="display:flex;"><span>python gradio_server.py --flow-reverse
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 또는 모든 인터페이스에 바인딩하여 원격 접근 허용</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or bind to all interfaces for remote access</span>
 </span></span><span style="display:flex;"><span>SERVER_NAME<span style="color:#f92672">=</span>0.0.0.0 SERVER_PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">8081</span> <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  python gradio_server.py --flow-reverse --use-cpu-offload
-</span></span></code></pre></div><p>Gradio UI는 프롬프트, 해상도, 프레임 수, CFG 스케일, 시드 등의 파라미터를 노출한다. 프로그래매틱 접근을 위해 브라우저에서 <code>/run/predict</code> 엔드포인트를 찾아 JSON 페이로드를 복제하라.</p>
+</span></span></code></pre></div><p>The Gradio UI exposes parameters for prompt, resolution, frame count, CFG scale, and seed. For programmatic access, inspect the network tab in your browser to find the <code>/run/predict</code> endpoint and replicate the JSON payload.</p>
 <h3 id="digitalocean-gpu-droplets">DigitalOcean GPU Droplets<a hidden class="anchor" aria-hidden="true" href="#digitalocean-gpu-droplets">#</a></h3>
-<p>로컬 GPU 하드웨어가 없는 팀을 위해 DigitalOcean GPU Droplets는 온디맨드로 NVIDIA H100 및 A100 인스턴스를 제공한다: `````yaml
+<p>For teams without local GPU hardware, DigitalOcean GPU Droplets provide NVIDIA H100 and A100 instances on demand. Deploy HunyuanVideo with the following cloud-init: `````yaml
 #cloud-config
 package_update: true
 packages: - docker.io</p>
@@ -454,38 +454,48 @@ hunyuanvideo/hunyuanvideo:cuda_12 <br>
 python gradio_server.py &ndash;flow-reverse &ndash;use-cpu-offload</li>
 </ul>
 <pre tabindex="0"><code>
-## 벤치마크 / 실제 사용 사례
+## Benchmarks / Real-World Use Cases
 
-RTX 4090 및 데이터센터 GPU 테스트의 커뮤니티 벤치마크 (2026년 3월): | 모델 | 파라미터 | VRAM (720p) | 생성 시간 (5초, RTX 4090) | 미적 품질 |
-|---|---|---|---|---|
-| HunyuanVideo (오리지널) | 13B | ~60GB | ~5:50 | 8.8/10 |
+Community benchmarks from RTX 4090 and datacenter GPU testing (March 2026): | Model | Params | VRAM (720p) | Gen Time (5s, RTX 4090) | Aesthetic Quality |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| HunyuanVideo (original) | 13B | ~60GB | ~5:50 | 8.8/10 |
 | HunyuanVideo-1.5 | 8.3B | ~24GB (INT8) | ~3:20 | 8.5/10 |
 | Wan 2.2 | 14B | ~48GB | ~4:20 | 8.5/10 |
 | LTX-Video 0.9.5 | 13B | ~16GB | ~1:30 | 7.4/10 |
 | CogVideoX-5B | 5B | ~12GB | ~8:10 | 6.8/10 |
 
-**실제 프로덕션 사용 사례:**
+**Production use cases observed in the wild:**
 
-- **광고 크리에이티브 생성**: 선전의 한 이커머스 팀이 커스텀 LoRA가 적용된 HunyuanVideo로 매일 200개 이상의 제품 쇼케이스 비디오를 생성한다. 영화급 미적 효과로 Wan 출력 대비 후반 작업 시간이 60% 감소했다고 보고했다.
+- **Ad creative generation**: An e-commerce team in Shenzhen generates 200+ product showcase videos daily using HunyuanVideo with a custom LoRA fine-tuned on their product catalog. They report the cinematic aesthetic reduces post-production time by 60% compared to Wan outputs.
 
-- **소셜 미디어 콘텐츠 팩토리**: 브라질의 한 MCN이 xDiT 병렬 추론으로 4xA100 노드에서 HunyuanVideo를 실행하여 TikTok과 Reels용 5초 세로 클립을 제작한다.
+- **Social media content farms**: A Brazilian MCN runs HunyuanVideo on a 4xA100 node via xDiT parallel inference, producing 5-second vertical clips for TikTok and Reels. The built-in prompt rewriter ensures consistent output quality from short user prompts.
 
-- **영화 프리비주얼라이제이션**: LA의 한 독립 영화 감독이 이미지 투 비디오 파이프라인으로 스토리보드 프레임에 애니메이션을 입혀 프리비즈 반복 시간을 며칠에서 몇 시간으로 단축했다.
+- **Film pre-visualization**: An indie film director in Los Angeles uses the image-to-video pipeline to animate storyboard frames, cutting previz iteration time from days to hours.
 
-## 고급 사용법 / 프로덕션 하드닝
+## Advanced Usage / Production Hardening
 
-### FP8 양자화로 메모리 절감
+### FP8 Quantization for Memory Reduction
 
-FP8 양자화는 FP32 가중치를 8비트 부동소수점 형식으로 변환하여 최소한의 품질 저하로 약 10GB GPU 메모리 사용량을 줄인다.
+FP8 quantization converts FP32 weights to 8-bit floating-point format, reducing GPU memory usage by approximately 10GB with minimal quality degradation.
 
 `````bash
-# FP8 가중치 및 스케일 파일 다운로드
+# Download FP8 weights and scale files
 huggingface-cli download tencent/HunyuanVideo \
   --include &#34;mp_rank_00_model_states_fp8.pt&#34; \
   --include &#34;mp_rank_00_model_states_fp8_map.pt&#34; \
   --local-dir ./ckpts/fp8
 
-# FP8로 추론 실행
+# Run inference with FP8
 python sample_video.py \
     --dit-weight ./ckpts/fp8/mp_rank_00_model_states_fp8.pt \
     --video-size 1280 720 \
@@ -496,10 +506,10 @@ python sample_video.py \
     --use-cpu-offload \
     --use-fp8 \
     --save-path ./results
-</code></pre><p><code>--use-fp8</code> 플래그는 <code>hyvideo/modules/fp8_optimization.py</code>에서 FP8 파이프라인을 활성화한다. E4M3 형식(지수 4비트, 가수 3비트)은 메모리를 약 40% 절감하면서 추론에 충분한 정밀도를 유지한다.</p>
-<h3 id="xdit를-활용한-다중-gpu-병렬-추론">xDiT를 활용한 다중 GPU 병렬 추론<a hidden class="anchor" aria-hidden="true" href="#xdit를-활용한-다중-gpu-병렬-추론">#</a></h3>
-<p>프로덕션 워크로드의 경우 xDiT는 여러 GPU에서 확장되는 Unified Sequence Parallelism을 제공한다: `````bash</p>
-<h1 id="8-gpu-병렬-추론">8 GPU 병렬 추론<a hidden class="anchor" aria-hidden="true" href="#8-gpu-병렬-추론">#</a></h1>
+</code></pre><p>The <code>--use-fp8</code> flag activates the FP8 pipeline in <code>hyvideo/modules/fp8_optimization.py</code>. The E4M3 format (4 exponent bits, 3 mantissa bits) preserves enough precision for inference while cutting memory by ~40%.</p>
+<h3 id="multi-gpu-parallel-inference-with-xdit">Multi-GPU Parallel Inference with xDiT<a hidden class="anchor" aria-hidden="true" href="#multi-gpu-parallel-inference-with-xdit">#</a></h3>
+<p>For production workloads, xDiT provides Unified Sequence Parallelism that scales across multiple GPUs: `````bash</p>
+<h1 id="8-gpu-parallel-inference">8-GPU parallel inference<a hidden class="anchor" aria-hidden="true" href="#8-gpu-parallel-inference">#</a></h1>
 <p>torchrun &ndash;nproc_per_node=8 sample_video.py <br>
 &ndash;video-size 1280 720 <br>
 &ndash;video-length 129 <br>
@@ -511,19 +521,25 @@ python sample_video.py \
 &ndash;ring-degree 1 <br>
 &ndash;save-path ./results</p>
 <pre tabindex="0"><code>
-1280x720, 129 프레임, 50 스텝의 지연 시간 확장: | GPU 수 | 지연 시간 (초) | 스피드업 |
-|---|---|---|
+Latency scaling on 1280x720, 129 frames, 50 steps: | GPUs | Latency (sec) | Speedup |
+|
+* * *
+|
+* * *
+|
+* * *
+|
 | 1 | 1904 | 1.00x |
 | 2 | 934 | 2.04x |
 | 4 | 514 | 3.70x |
 | 8 | 338 | 5.64x |
 
-````--ulysses-degree````와 ````--ring-degree```` 파라미터는 병렬 전략을 제어한다. 대부분의 설정에서는 Ulysses를 먼저 최대화하라.
+The ````--ulysses-degree```` and ````--ring-degree```` parameters control the parallelism strategy. Ulysses parallelism shards the attention computation; ring parallelism distributes across the sequence dimension. For most setups, maximize Ulysses first.
 
-### 리버스 프록시가 있는 프로덕션 Gradio
+### Production Gradio with Reverse Proxy
 
 `````bash
-# 프로덕션 설정으로 시작
+# Start with production settings
 SERVER_NAME=0.0.0.0 \
 SERVER_PORT=8081 \
 python gradio_server.py \
@@ -532,7 +548,7 @@ python gradio_server.py \
   --use-fp8 \
   --max-queue-size 10 \
   --queue-timeout 300
-</code></pre><p>속도 제한이 있는 Nginx 리버스 프록시 뒤에서: `````nginx
+</code></pre><p>Behind an Nginx reverse proxy with rate limiting: `````nginx
 upstream hunyuan {
 server 127.0.0.1:8081;
 keepalive 32;
@@ -549,193 +565,114 @@ location / {
     proxy_read_timeout 600s;
 }
 
-# 속도 제한: IP당 분당 10개 요청
+# Rate limit: 10 requests per minute per IP
 limit_req_zone $binary_remote_addr zone=video:10m rate=10r/m;
 limit_req zone=video burst=5 nodelay;
 </code></pre>
 <p>}</p>
 <pre tabindex="0"><code>
-### Prometheus로 모니터링
+### Monitoring with Prometheus
 
 `````python
-# gradio_server.py에 추가 또는 추론 호출 래핑
+# Add to gradio_server.py or wrap the inference call
 from prometheus_client import Counter, Histogram, start_http_server
 import time
 
-inference_count = Counter(hunyuan_inferences_total, &#39;총 추론 횟수&#39;)
-inference_duration = Histogram(hunyuan_inference_seconds, &#39;추론 지연 시간&#39;)
-queue_depth = Gauge(hunyuan_queue_depth, &#39;현재 큐 깊이&#39;)
+inference_count = Counter(hunyuan_inferences_total, &#39;Total inferences&#39;)
+inference_duration = Histogram(hunyuan_inference_seconds, &#39;Inference latency&#39;)
+queue_depth = Gauge(hunyuan_queue_depth, &#39;Current queue depth&#39;)
 
 @inference_duration.time()
 def generate_video(prompt, height, width, frames, steps): inference_count.inc()
-    # ... 기존 추론 로직
+    # ... existing inference logic
     return video
 
-# 9090 포트에서 메트릭 서버 시작
+# Start metrics server on port 9090
 start_http_server(9090)
-</code></pre><h3 id="보안-하드닝">보안 하드닝<a hidden class="anchor" aria-hidden="true" href="#보안-하드닝">#</a></h3>
+</code></pre><h3 id="security-hardening">Security Hardening<a hidden class="anchor" aria-hidden="true" href="#security-hardening">#</a></h3>
 <ul>
-<li><strong>모델 가중치 무결성</strong>: Hugging Face 모델 카드에 게시된 SHA-256 체크섬으로 다운로드한 가중치를 검증하라.</li>
-<li><strong>입력 샌티타이제이션</strong>: MLLM 텍스트 인코더로 본격 병하기 전에 프롬프트를 샌티타이즈하라.</li>
-<li><strong>GPU 격리</strong>: 다중 테넌트 환경에서 NVIDIA MIG를 사용하여 A100/H100 GPU를 분할하라.</li>
-<li><strong>네트워크 격리</strong>: 낮은 VPC에서 Gradio 컨테이너를 실행하고 인증된 API 게이트웨이를 통해서만 노출하라.</li>
+<li><strong>Model weight integrity</strong>: Verify downloaded weights against SHA-256 checksums published on the Hugging Face model card.</li>
+<li><strong>Input sanitization</strong>: Sanitize prompts before sending to the MLLM text encoder. Prompt injection can cause the text encoder to generate adversarial embeddings.</li>
+<li><strong>GPU isolation</strong>: In multi-tenant environments, use NVIDIA MIG (Multi-Instance GPU) to partition A100/H100 GPUs so one user&rsquo;s generation does not exhaust VRAM needed by another.</li>
+<li><strong>Network isolation</strong>: Run the Gradio container on an internal VPC. Expose only through your API gateway with authentication.</li>
 </ul>
-<h2 id="대안과의-비교">대안과의 비교<a hidden class="anchor" aria-hidden="true" href="#대안과의-비교">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>기능</th>
-					<th>HunyuanVideo</th>
-					<th>Wan 2.2</th>
-					<th>CogVideoX-5B</th>
-					<th>Open-Sora</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>파라미터</td>
-					<td>13B (1.5는 8.3B)</td>
-					<td>14B</td>
-					<td>5B</td>
-					<td>1.1B - 7B</td>
-			</tr>
-			<tr>
-					<td>최대 해상도</td>
-					<td>1080p (SR 통해)</td>
-					<td>1080p</td>
-					<td>720p</td>
-					<td>720p</td>
-			</tr>
-			<tr>
-					<td>최소 VRAM (720p)</td>
-					<td>24GB (INT8)</td>
-					<td>24GB</td>
-					<td>12GB</td>
-					<td>16GB</td>
-			</tr>
-			<tr>
-					<td>텍스트 투 비디오</td>
-					<td>예</td>
-					<td>예</td>
-					<td>예</td>
-					<td>예</td>
-			</tr>
-			<tr>
-					<td>이미지 투 비디오</td>
-					<td>예 (1.5)</td>
-					<td>예</td>
-					<td>예</td>
-					<td>예</td>
-			</tr>
-			<tr>
-					<td>라이선스</td>
-					<td>Apache-2.0</td>
-					<td>Apache-2.0</td>
-					<td>Apache-2.0</td>
-					<td>BSD-3-Clause</td>
-			</tr>
-			<tr>
-					<td>영화급 품질</td>
-					<td>8.8/10</td>
-					<td>8.5/10</td>
-					<td>6.8/10</td>
-					<td>7.0/10</td>
-			</tr>
-			<tr>
-					<td>생성 시간 (5초, 4090)</td>
-					<td>5:50 (오리지널)</td>
-					<td>4:20</td>
-					<td>8:10</td>
-					<td>6:00</td>
-			</tr>
-			<tr>
-					<td>모션 사실감</td>
-					<td>우수</td>
-					<td>우수</td>
-					<td>보통</td>
-					<td>양호</td>
-			</tr>
-			<tr>
-					<td>이중 언어 프롬프트</td>
-					<td>예 (중/영)</td>
-					<td>예 (중/영)</td>
-					<td>예 (중/영)</td>
-					<td>영어 중심</td>
-			</tr>
-			<tr>
-					<td>내장 업스케일러</td>
-					<td>예 (1.5)</td>
-					<td>아니오</td>
-					<td>아니오</td>
-					<td>아니오</td>
-			</tr>
-			<tr>
-					<td>ComfyUI 지원</td>
-					<td>예</td>
-					<td>예</td>
-					<td>예</td>
-					<td>예</td>
-			</tr>
-			<tr>
-					<td>다중 GPU 병렬</td>
-					<td>예 (xDiT)</td>
-					<td>예 (USP)</td>
-					<td>제한적</td>
-					<td>아니오</td>
-			</tr>
-	</tbody>
-</table>
-<p>HunyuanVideo의 주요 차별화 요소는 영화급 미학과 모션 사실감이다. &ldquo;하우스 스타일&quot;은 풍부한 색상 그레이딩, 자연스러운 보케, 영화 같은 모션을 기본적으로 생성한다. Wan 2.2는 포토리얼리스틱 인간 얼굴과 미세 디테일에서 약간 앞선다.</p>
-<h2 id="한계--정직한-평가">한계 / 정직한 평가<a hidden class="anchor" aria-hidden="true" href="#한계--정직한-평가">#</a></h2>
-<p><strong>속도</strong>: FP8과 SSTA가 있어도 HunyuanVideo는 Wan 2.2보다 느리고 LTX-Video보다 현저히 느리다. 빠른 반복이 필요한 워크플로우에는 LTX-Video나 상업용 API가 더 적합하다.</p>
-<p><strong>VRAM 요구사항</strong>: 오리지널 13B 모델은 720p 생성에 60GB가 필요하다. 1.5 릴리스의 INT8 양자화만이 이를 24GB로 낮춘다. A100, H100, RTX 4090급 하드웨어가 없는 팀은 CogVideoX나 클라우드 추론을 고려해야 한다.</p>
-<p><strong>프롬프트 의존성</strong>: 짧거나 모호한 프롬프트는 일관성 없는 결과를 낳는다. 모델은 30-60 단어의 상세한 구조화된 설명을 기대한다.</p>
-<p><strong>해상도 한계</strong>: 네이티브 생성은 720p로 제한된다. 1.5의 1080p 슈퍼 레졸루션 네트워크는 처리 시간을 추가하고 복잡한 텍스처에서 아티팩트를 도입할 수 있다.</p>
-<p><strong>클립 길이</strong>: 실제 생성은 5-10초로 제한된다. 더 긴 시퀀스는 H100 사양을 초과하는 컴퓨팅 리소스가 필요하다.</p>
-<p><strong>Linux 전용</strong>: 공식 Windows나 macOS 지원이 없다. WSL2가 작동할 수 있지만 문서화되거나 테스트되지 않았다.</p>
-<h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
-<p><strong>Q: HunyuanVideo를 실행하는데 실제로 얼마나 많은 VRAM이 필요한가?</strong></p>
-<p>A: 오리지널 13B 모델은 720p 생성에 60GB GPU 메모리가 필요하고 540p에는 45GB가 필요하다. HunyuanVideo-1.5는 INT8 양자화로 24GB로 줄이며 CPU 오프로딩을 활성화하면 14GB까지 낮출 수 있다. FP8 가중치는 FP16 대비 약 10GB를 절약한다. 프로덕션에는 NVIDIA A100 80GB 또는 H100을 권장하며, 실험용으로는 RTX 4090 (24GB)로 1.5 모델을 양자화하여 실행할 수 있다.</p>
-<p><strong>Q: Windows에서 HunyuanVideo를 실행할 수 있는가?</strong></p>
-<p>A: 공식적으로는 아니오 — 프로젝트는 Linux만 지원한다. 일부 사용자가 WSL2와 CUDA 패스스루로 성공했다고 보고했지만 텐센트 팀이 문서화하거나 지원하지 않는다. Windows 기반 팀에게 WSL2 백엔드를 사용하는 Docker Desktop이 가장 실현 가능한 경로이다.</p>
-<p><strong>Q: HunyuanVideo는 Sora나 Kling 같은 상업용 API와 어떻게 비교되는가?</strong></p>
-<p>A: 인간 평가에서 HunyuanVideo는 모션 품질과 전체 순위에서 Runway Gen-3과 Luma 1.6을 능가했다. 선도적인 상업 모델과의 격차는 크게 좁혀졌지만 포토리얼리스틱 인간 피사체에서 여전히 측정 가능한 차이가 있다. 트레이드오프는 비용이다: 상업용 API는 초당 $0.10-0.50을 청구하는 반면, 자체 호스팅 HunyuanVideo는 GPU 컴퓨팅 시간만 필요하다 (H200 클라우드 인스턴스에서 약 $0.14-0.21/초).</p>
-<p><strong>Q: HunyuanVideo에 가장 적합한 프롬프트 형식은 무엇인가?</strong></p>
-<p>A: 주제, 동작, 환경을 명확히 분리하는 구조화된 프롬프트를 사용하라. 30-60 단어를 목표로 하라. 프롬프트 재작성 기능을 활성화하여 짧은 프롬프트를 모델이 선호하는 설명으로 자동 확장하라.</p>
-<p><strong>Q: 프로덕션에서 추론 속도를 높이려면 어떻게 해야 하는가?</strong></p>
-<p>A: 여러 최적화를 조합하라: (1) FP8 양자화 가중치 사용. (2) xDiT 다중 GPU 병렬 추론 활성화 — 8x A100은 5.6배 스피드업을 제공한다. (3) CFG-증류 모델 변형으로 약 2배 스피드업. (4) TeaCache 기능 캐싱 활성화. (5) 1.5의 경우 SSTA 어텐션 메커니즘이 자동으로 1.87배 스피드업을 제공한다.</p>
-<p><strong>Q: 도움을 받거나 다른 사용자와 HunyuanVideo에 대해 논의할 수 있는 곳은 어디인가?</strong></p>
-<p>A: 텐센트 팀은 GitHub README에 Discord 서버와 WeChat 그룹 링크를 유지한다. 영어 사용자를 위해서는 Hugging Face 커뮤니티 포럼과 ComfyUI Discord에 활발한 HunyuanVideo 채널이 있다.</p>
-<h2 id="결론">결론<a hidden class="anchor" aria-hidden="true" href="#결론">#</a></h2>
-<p>HunyuanVideo는 폐쇄형 상업용 API와 오픈소스 접근성 사이의 격차를 메우는 프로덕션급 비디오 생성 프레임워크이다. 1.5 릴리스로 83억 파라미터, SSTA 어텐션, 소비자 GPU 호환성을 갖추면서 스튜디오와 독립 크리에이터 모두에게 실용적인 선택이 되었다.</p>
-<p>오늘 시작하기 위한 액션 아이템: 1. 저장소를 클론하고 GPU 인스턴스에서 Docker 이미지를 실행하라 — 공식 CUDA 12 이미지가 가장 빠른 경로이다.
-2. FP8 가중치를 다운로드하고 ````sample_video.py```로 첫 720p 생성을 실행하라.
-3. Kijai의 래퍼로 ComfyUI와 통합하여 시각적 워크플로우 편집을 하라.
-4. <a href="https://t.me/dibi8Channel">dibi8 Telegram 그룹</a>에 가입하여 배포 전략을 논의하고 커뮤니티와 생성된 비디오를 공유하라.</p>
-<p><em>이 기사의 일부 링크는 제휴 링크이다. 서비스를 통해 구매하면 커미션을 받을 수 있다 — 이는 추가 비용 없이 dibi8 오픈소스 프로젝트를 지원하는데 도움이 된다.</em></p>
-<h2 id="추천-호스팅-및-인프라">추천 호스팅 및 인프라<a hidden class="anchor" aria-hidden="true" href="#추천-호스팅-및-인프라">#</a></h2>
-<p>위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.</p>
+<h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
+<p>| Feature | HunyuanVideo | Wan 2.2 | CogVideoX-5B | Open-Sora |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Parameters | 13B (8.3B in 1.5) | 14B | 5B | 1.1B - 7B |
+| Max resolution | 1080p (via SR) | 1080p | 720p | 720p |
+| Min VRAM (720p) | 24GB (INT8) | 24GB | 12GB | 16GB |
+| Text-to-Video | Yes | Yes | Yes | Yes |
+| Image-to-Video | Yes (1.5) | Yes | Yes | Yes |
+| License | Apache-2.0 | Apache-2.0 | Apache-2.0 | BSD-3-Clause |
+| Cinematic quality | 8.8/10 | 8.5/10 | 6.8/10 | 7.0/10 |
+| Gen time (5s, 4090) | 5:50 (original) | 4:20 | 8:10 | 6:00 |
+| Motion realism | Excellent | Excellent | Moderate | Good |
+| Bilingual prompts | Yes (CN/EN) | Yes (CN/EN) | Yes (CN/EN) | EN focused |
+| Built-in upscaler | Yes (1.5) | No | No | No |
+| ComfyUI support | Yes | Yes | Yes | Yes |
+| Multi-GPU parallel | Yes (xDiT) | Yes (USP) | Limited | No |</p>
+<p>In the hunyuanvideo vs wan debate, HunyuanVideo&rsquo;s primary differentiator is its cinematic aesthetic and motion realism. The &ldquo;house style&rdquo; produces rich color grading, natural bokeh, and film-like motion out of the box. Wan 2.2 edges ahead on photorealistic human faces and fine detail. CogVideoX-5B remains the accessibility champion for 12GB GPUs, though quality lags behind. Open-Sora offers the most flexible training pipeline for researchers who want to train from scratch.</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations--honest-assessment">#</a></h2>
+<p>HunyuanVideo is not the right tool for every video generation task. Here is what it does poorly: <strong>Speed</strong>: Even with FP8 and SSTA, HunyuanVideo is slower than Wan 2.2 and significantly slower than LTX-Video. If your workflow requires rapid iteration (hundreds of clips per hour), LTX-Video or commercial APIs are better fits.</p>
+<p><strong>VRAM requirements</strong>: The original 13B model needs 60GB for 720p generation. Only the 1.5 release with INT8 quantization brings this down to 24GB. Teams without A100, H100, or RTX 4090-class hardware should consider CogVideoX or cloud inference.</p>
+<p><strong>Prompt dependency</strong>: Short or vague prompts produce inconsistent results. The model expects detailed, structured descriptions (30-60 words) that separate subject, action, and environment. The built-in prompt rewriter helps but adds latency.</p>
+<p><strong>Resolution ceiling</strong>: Native generation tops out at 720p. The 1080p super-resolution network in 1.5 adds processing time and can introduce artifacts on complex textures. For native 1080p generation, commercial models like Sora or Kling remain ahead.</p>
+<p><strong>Clip length</strong>: Practical generation is limited to 5-10 seconds. Longer sequences require computational resources beyond even H100 specifications, and temporal consistency degrades after 10 seconds.</p>
+<p><strong>Linux only</strong>: There is no official Windows or macOS support. WSL2 may work but is not documented or tested by the maintainers.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<p><strong>Q: How much VRAM do I actually need to run HunyuanVideo?</strong></p>
+<p>A: The original 13B model requires 60GB GPU memory for 720p generation and 45GB for 540p. HunyuanVideo-1.5 reduces this to 24GB with INT8 quantization, or 14GB if you enable CPU offloading. The FP8 weights save approximately 10GB compared to FP16. For production, an NVIDIA A100 80GB or H100 is recommended; for experimentation, a single RTX 4090 (24GB) can run the 1.5 model with quantization.</p>
+<p><strong>Q: Can I run HunyuanVideo on Windows?</strong></p>
+<p>A: Officially, no — the project only supports Linux. Some users have reported success with WSL2 (Windows Subsystem for Linux) and CUDA pass-through, but this is not documented or supported by the Tencent team. For Windows-based teams, Docker Desktop with WSL2 backend is the most viable path, though expect to troubleshoot CUDA compatibility issues.</p>
+<p><strong>Q: How does HunyuanVideo compare to commercial APIs like Sora or Kling?</strong></p>
+<p>A: In human evaluations, HunyuanVideo outperformed Runway Gen-3 and Luma 1.6 on motion quality and overall ranking. The gap to leading commercial models (Sora 2, Kling 2.5) has narrowed substantially but remains measurable on photorealistic human subjects and complex multi-object scenes. The trade-off is cost: commercial APIs charge $0.10-0.50 per second of video, while self-hosted HunyuanVideo costs only the GPU compute time (approximately $0.14-0.21 per second on H200 cloud instances, or near-zero on owned hardware).</p>
+<p><strong>Q: What is the best prompt format for HunyuanVideo?</strong></p>
+<p>A: Use structured prompts that clearly separate subject, action, and environment. Aim for 30-60 words. Example: &ldquo;A golden retriever runs along a sandy beach at sunset. Ocean waves break in the background. The dog&rsquo;s fur blows in the wind. Warm golden hour lighting. Wide angle shot, cinematic color grading.&rdquo; Enable the prompt rewrite feature (Normal mode for accuracy, Master mode for visual polish) to automatically expand short prompts into model-preferred descriptions.</p>
+<p><strong>Q: How do I speed up inference in production?</strong></p>
+<p>A: Combine multiple optimizations: (1) Use FP8 quantized weights to reduce memory and increase batch throughput. (2) Enable xDiT multi-GPU parallel inference — 8x A100 achieves 5.6x speedup over single-GPU. (3) Use the CFG-distilled model variant for approximately 2x speedup at a small quality cost. (4) Enable feature caching (TeaCache) to skip redundant computation across steps. (5) For 1.5, the SSTA attention mechanism provides 1.87x speedup automatically with no quality loss.</p>
+<p><strong>Q: Where can I get help or discuss HunyuanVideo with other users?</strong></p>
+<p>A: The Tencent team maintains a Discord server and WeChat group linked from the GitHub README. For English-speaking developers, the Hugging Face community forums and the ComfyUI Discord have active HunyuanVideo channels. For bug reports and feature requests, use GitHub Issues on the official repository.</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>HunyuanVideo is a production-grade video generation framework that bridges the gap between closed-source commercial APIs and open-source accessibility. With the 1.5 release bringing 8.3B parameters, SSTA attention, and consumer-GPU compatibility, it has become a practical choice for studios and indie creators alike.</p>
+<p>Action items to get started today: 1. Clone the repo and run the Docker image on a GPU instance — the official CUDA 12 image is the fastest path.
+2. Download the FP8 weights and run your first 720p generation with ````sample_video.py```.
+3. Integrate with ComfyUI using Kijai&rsquo;s wrapper for visual workflow editing.
+4. Join the <a href="https://t.me/dibi8Channel">dibi8 Telegram group</a> to discuss deployment strategies and share your generated videos with the community.</p>
+<p><em>Some links in this article are affiliate links. We may earn a commission if you purchase services through them — this helps support the dibi8 open-source project at no extra cost to you.</em></p>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-hosting--infrastructure">#</a></h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
 <ul>
-<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.</li>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
 </ul>
-<p><em>제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.</em></p>
-<h2 id="출처-및-추가-참고자료">출처 및 추가 참고자료<a hidden class="anchor" aria-hidden="true" href="#출처-및-추가-참고자료">#</a></h2>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading<a hidden class="anchor" aria-hidden="true" href="#sources--further-reading">#</a></h2>
 <ul>
-<li>공식 저장소: <a href="https://github.com/Tencent-Hunyuan/HunyuanVideo">https://github.com/Tencent-Hunyuan/HunyuanVideo</a></li>
-<li>HunyuanVideo-1.5 저장소: <a href="https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5">https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5</a></li>
-<li>프로젝트 페이지: <a href="https://aivideo.hunyuan.tencent.com">https://aivideo.hunyuan.tencent.com</a></li>
-<li>Hugging Face 모델 카드: <a href="https://huggingface.co/tencent/HunyuanVideo">https://huggingface.co/tencent/HunyuanVideo</a></li>
-<li>ComfyUI Wiki 튜토리얼: <a href="https://comfyui-wiki.com/en/tutorial/advanced/hunyuan-text-to-video-workflow-guide-and-example">https://comfyui-wiki.com/en/tutorial/advanced/hunyuan-text-to-video-workflow-guide-and-example</a></li>
-<li>기술 보고서 (arXiv): <a href="https://arxiv.org/abs/2412.03603">https://arxiv.org/abs/2412.03603</a></li>
-<li>HunyuanVideo 1.5 기술 보고서: <a href="https://arxiv.org/abs/2511.18870">https://arxiv.org/abs/2511.18870</a></li>
-<li>xDiT 병렬 추론: <a href="https://github.com/xdit-project/xDiT">https://github.com/xdit-project/xDiT</a></li>
-<li>Kijai ComfyUI 래퍼: <a href="https://github.com/kijai/ComfyUI-HunyuanVideoWrapper">https://github.com/kijai/ComfyUI-HunyuanVideoWrapper</a></li>
+<li>Official Repository: <a href="https://github.com/Tencent-Hunyuan/HunyuanVideo">https://github.com/Tencent-Hunyuan/HunyuanVideo</a></li>
+<li>HunyuanVideo-1.5 Repository: <a href="https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5">https://github.com/Tencent-Hunyuan/HunyuanVideo-1.5</a></li>
+<li>Project Page: <a href="https://aivideo.hunyuan.tencent.com">https://aivideo.hunyuan.tencent.com</a></li>
+<li>Hugging Face Model Card: <a href="https://huggingface.co/tencent/HunyuanVideo">https://huggingface.co/tencent/HunyuanVideo</a></li>
+<li>ComfyUI Wiki Tutorial: <a href="https://comfyui-wiki.com/en/tutorial/advanced/hunyuan-text-to-video-workflow-guide-and-example">https://comfyui-wiki.com/en/tutorial/advanced/hunyuan-text-to-video-workflow-guide-and-example</a></li>
+<li>Technical Report (arXiv): <a href="https://arxiv.org/abs/2412.03603">https://arxiv.org/abs/2412.03603</a></li>
+<li>HunyuanVideo 1.5 Technical Report: <a href="https://arxiv.org/abs/2511.18870">https://arxiv.org/abs/2511.18870</a></li>
+<li>xDiT Parallel Inference: <a href="https://github.com/xdit-project/xDiT">https://github.com/xdit-project/xDiT</a></li>
+<li>Kijai ComfyUI Wrapper: <a href="https://github.com/kijai/ComfyUI-HunyuanVideoWrapper">https://github.com/kijai/ComfyUI-HunyuanVideoWrapper</a></li>
 <li>DigitalOcean GPU Droplets: <a href="https://www.digitalocean.com/products/gpu-droplets">https://www.digitalocean.com/products/gpu-droplets</a></li>
 </ul>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;HunyuanVideo: 12.1K+ Stars — 2026 프로덕션 배포 가이드&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;HunyuanVideo: 12.1K+ Stars — Production Deployment Guide 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;author&rdquo;: {
@@ -752,14 +689,14 @@ start_http_server(9090)
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/hunyuan-video%22">https://dibi8.com/kr/resources/hunyuan-video"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/hunyuan-video%22">https://dibi8.com/resources/hunyuan-video"</a>
 }
 }
 </script></p>
 <hr>
 <h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
 <ul>
-<li><a href="/ko/llm-frameworks/hunyuan-video/">open-notebook-open-source-notebooklm-alternative-15-ai-providers</a></li>
+<li><a href="/ko/llm-frameworks/hunyuan-video/">nvidia-cosmos-world-models-platform-2026</a></li>
 <li><a href="/ko/llm-frameworks/hunyuan-video/">stable-diffusion-complete-guide</a></li>
 <li><a href="/ko/llm-frameworks/hunyuan-video/">comfyui-workflows-complete-guide</a></li>
 <li><a href="/ko/llm-frameworks/hunyuan-video/">comfyui-workflows-complete-guide</a></li>
@@ -799,6 +736,81 @@ start_http_server(9090)
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

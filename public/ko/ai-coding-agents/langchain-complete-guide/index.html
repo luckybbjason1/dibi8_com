@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "LangChain 완벽 가이드 2025: 초보자를 위한 프로덕션급 AI 앱 개발 {\u003c/* resource-info */\u003e}\nLangChain은 2023년 첫 공개 이후 18개월 만에 가장 널리 사용되는 LLM 애플리케이션 프레임워크로 자리매김했다. 2025년 5월 기준 GitHub Star 96,000개 이상을 보유하고 있으며, Python과 JavaScript/TypeScript 생태계를 동시에 지원한다. 이 가이드는 LangChain의 핵심 개념부터 실전 패턴, 프로덕션 배포까지 전 과정을 다룬다.\nLangChain이란 무엇인가? 핵심 개념 이해하기 LangChain은 대규모 언어 모델(LLM)을 기반으로 한 애플리케이션 개발을 위한 오픈소스 프레임워크다. 단순히 API를 호출하는 것을 넘어, 외부 데이터 소스 연결, 도구 통합, 멀티스텝 워크플로우 설계를 체계적으로 지원한다.\n왜 2025년에도 LangChain이 중요한가? 최근 LLM 기술이 빠르게 발전하면서 단일 모델 호출만으로는 복잡한 업무를 처리하기 어려워졌다. Retrieval-Augmented Generation(RAG), 에이전트 기반 자동화, 멀티 모달 처리 등 고급 패턴의 필요성이 커졌고, LangChain은 이러한 패턴을 표준화된 방식으로 구현할 수 있는 인프라를 제공한다.\nLangChain 생태계는 세 가지 핵심 프로젝트로 구성된다:\nLangChain: 코어 오케스트레이션 프레임워크 LangGraph: 상태 기반 멀티 에이전트 워크플로우 엔진 LangSmith: 관측성과 디버깅 플랫폼 LangChain 핵심 컴포넌트 완벽 정리 LangChain의 강력함은 모듈화된 컴포넌트 설계에서 비롯된다. 각 컴포넌트는 필요에 따라 조합하여 사용할 수 있다.\n모델 (LLMs \u0026 Chat Models) LangChain은 OpenAI GPT-4, Anthropic Claude, Google Gemini, Mistral, Ollama 등 100개 이상의 모델 제공자를 통합 지원한다. ```ChatOpenAI, ChatAnthropic```` 같은 클래스로 일관된 인터페이스를 제공하며, 모델 교체 시 코드 변경을 최소화한다.\n프롬프트와 프롬프트 템플릿 PromptTemplate, ChatPromptTemplate 클래스를 통해 동적 프롬프트 생성을 지원한다. 변수 삽입, Few-shot 예제 로딩, 프롬프트 체인링이 가능하며, LangSmith를 통해 프롬프트 버전 관리도 할 수 있다.\n체인 (Chains) 체인은 여러 컴포넌트를 순차적으로 연결하는 핵심 추상화다. 2025년 현재 LangChain은 LCEL(LangChain Expression Language)을 통해 선언적 체인 구성을 권장한다. RunnableSequence, RunnableParallel 등으로 복잡한 데이터 흐름을 구현한다.\n문서 로더와 텍스트 분할기 PDF, 웹사이트, 데이터베이스, 클라우드 스토리지 등 80개 이상의 문서 로더를 제공한다. RecursiveCharacterTextSplitter, TokenTextSplitter 등 다양한 분할 전략으로 청크 크기와 중첩을 세밀하게 제어할 수 있다.\n벡터 스토어와 리트리버 Chroma, Pinecone, Weaviate, FAISS, pgvector 등 40개 이상의 벡터 데이터베이스와 통합된다. similarity_search, mmr(Maximal Marginal Relevance) 등 다양한 검색 전략을 지원한다.\n에이전트와 도구 통합 ReAct, Plan-and-Execute, Self-Ask 등 여러 에이전트 아키텍처를 내장하고 있다. Python REPL, 웹 검색, API 호출, 데이터베이스 쿼리 등 50개 이상의 사전 제작 도구를 제공한다.\n메모리와 대화 관리 ConversationBufferMemory, ConversationSummaryMemory, VectorStoreRetrieverMemory 등 대화 맥락을 유지하는 다양한 메모리 구현체를 지원한다. 긴 대화에서 토큰 사용량을 최적화하는 것이 핵심이다.\nLangChain vs LangGraph vs LangSmith: 차이점은 무엇인가? 구분 LangChain LangGraph LangSmith 역할 코어 오케스트레이션 상태 기반 워크플로우 관측성 및 디버깅 사용 목적 체인/에이전트 구성 멀티 에이전트 시스템 성능 모니터링, 추적 주요 개념 LCEL, 컴포넌트 그래프, 노드, 엣지 트레이스, 피드백 2025년 버전 0.3.x 0.2.x GA 릴리스 LangChain은 기본적인 체인과 에이전트 실행을 담당한다. LangGraph는 복잡한 멀티 에이전트 워크플로우를 상태 머신 기반으로 설계할 수 있게 한다. LangSmith는 프로덕션 환경에서의 프롬프트 버전 관리, 성능 트레이싱, A/B 테스트를 지원한다.\nLangChain 빠른 시작: 첫 번째 앱 만들기 설치 및 환경 설정 pip install langchain langchain-openai export OPENAI_API_KEY=\"your-key\" 간단한 LLM 체인 구성 from langchain_openai import ChatOpenAI from langchain_core.prompts import ChatPromptTemplate llm = ChatOpenAI(model=\"gpt-4o\") prompt = ChatPromptTemplate.from_template(\"{topic}에 대해 3문장으로 설명해줘\") chain = prompt | llm response = chain.invoke({\"topic\": \"양자 컴퓨팅\"}) RAG와 문서 로딩 추가 from langchain_community.document_loaders import PyPDFLoader from langchain_chroma import Chroma from langchain_openai import OpenAIEmbeddings loader = PyPDFLoader(\"document.pdf\") docs = loader.load_and_split() vectorstore = Chroma.from_documents(docs, OpenAIEmbeddings()) retriever = vectorstore.as_retriever(search_kwargs={\"k\": 3}) ReAct 에이전트와 도구 생성 from langchain.agents import create_react_agent, AgentExecutor from langchain.tools import Tool tools = [search_tool, calculator_tool] agent = create_react_agent(llm, tools, prompt) executor = AgentExecutor(agent=agent, tools=tools) 고급 LangChain 패턴 멀티스텝 추론 체인 구축 LCEL의 RunnableParallel과 RunnableBranch를 사용하여 조걸 분기와 병렬 실행을 구현한다. 복잡한 의사결정 트리를 선언적으로 표현할 수 있다.\n커스텀 도구와 에이전트 실행기 @tool 데코레이터로 Python 함수를 도구로 등록할 수 있다. AgentExecutor의 handle_parsing_errors, max_iterations 파라미터로 안정성을 높인다.\n스트리밍과 비동기 실행 chain.astream() 메서드로 토큰 단위 실시간 스트리밍을 지원한다. 2025년 기준 LangChain은 asyncio 기반 비동기 처리를 전 컴포넌트에서 기본 지원한다.\n에러 처리와 폴백 RunnableWithFallbacks로 모델 장애 시 대체 모델로 자동 전환할 수 있다. OpenAI Rate Limit 초과 시 Claude로 폴백하는 패턴이 대표적이다.\n프로덕션 환경에서의 LangChain 모범 사례 성능 최적화 팁 벡터 검색 Top-K 값을 3~5로 제한하여 토큰 사용량 절감 Caching 레이어로 반복 쿼리 캐싱 (Redis, SQLite 지원) 문서 분할 시 청크 크기 5001000 토큰, 오버랩 1020% 설정 보안 고려사항과 프롬프트 인젝션 방어 프롬프트 인젝션 공격에 대비해 LangChainPromptInjectionDefender와 같은 미들웨어를 체인 앞단에 배치한다. 민감한 데이터는 SecretStr 타입으로 관리하고, LangSmith 로그에서 자동 마스킹을 활성화한다.\nLangSmith로 모니터링하기 프로덕션 환경에서는 모든 체인 실행을 LangSmith로 추적한다. 평균 응답 시간, 토큰 사용량, 에러율을 대시보드에서 실시간 확인할 수 있으며, 피드백 점수로 모델 성능을 지속적으로 개선한다.\n배포 전략 Docker 컨테이너로 애플리케이션을 패키징하고, AWS ECS, Google Cloud Run, Kubernetes 등에서 실행한다. LangServe를 통해 체인을 REST API로 노출할 수도 있다.\n2025년 주요 LangChain 대안 프레임워크 프레임워크 강점 적합한 사용례 LlamaIndex RAG, 데이터 인제스트 문서 기반 Q\u0026A 시스템 Haystack 엔터프라이즈 검색 대규모 문서 검색 파이프라인 CrewAI 멀티 에이전트 오케스트레이션 역할 기반 에이전트 팀 AutoGen 대화형 에이전트 코드 생성 및 디버깅 에이전트 각 프레임워크는 특정 사용례에 최적화되어 있다. RAG 중심 애플리케이션에는 LlamaIndex가, 복잡한 에이전트 협업에는 AutoGen이나 CrewAI가 더 적합할 수 있다. 상세 비교는 LlamaIndex vs LangChain 글을 참고한다.\n결론과 다음 단계 LangChain은 2025년 현재 가장 성숙하고 생태계가 풍부한 LLM 프레임워크다. LCEL 기반의 선언적 문법, 100개 이상의 모델/벡터스토어 통합, LangSmith 기반 관측성은 프로덕션 환경에서의 신뢰도를 높인다.\n권장 학습 경로:\n공식 Python 문서에서 Quickstart 튜토리얼 완료 GitHub 저장소에서 예제 코드 분석 LangSmith에 가입하여 트레이싱 실습 LangGraph 튜토리얼로 멀티 에이전트 시스템 학습 자체 RAG 애플리케이션을 구축하고 프로덕션 배포 자주 묻는 질문 (FAQ) LangChain은 어떤 용도로 사용하나요? LangChain은 RAG 기반 문서 검색, 대화형 AI 챗봇, 자동화 에이전트, 데이터 분석 파이프라인 등 LLM을 활용한 애플리케이션 개발에 사용됩니다. 2025년 기준 약 10만 개 이상의 프로젝트에서 활용되고 있습니다.\nLangChain은 물론인가요? 네, LangChain은 MIT 라이선스 기반의 완전한 오픈소스 프로젝트입니다. LangSmith는 물론 기반으로 관측성 기능을 묶어 제공하지만, 코어 프레임워크 사용에는 비용이 발생하지 않습니다.\nLangChain과 LlamaIndex 중 어떤 것을 선택해야 하나요? RAG와 데이터 중심 애플리케이션에는 LlamaIndex가, 범용 에이전트와 복잡한 워크플로우에는 LangChain이 적합합니다. 두 프레임워크는 함께 사용할 수도 있습니다.\nOllama 같은 로컬 LLM과 LangChain을 함께 사용할 수 있나요? 네, langchain-ollama 통합 패키지를 통해 Ollama에서 실행 중인 로컬 모델을 LangChain 에이전트와 체인에 연결할 수 있습니다.\nLangChain은 JavaScript/TypeScript를 지원하나요? 네, LangChain.js라는 별도의 공식 패키지가 존재하며, Python 버전과 유사한 API를 제공합니다. npm으로 ````langchain``` 패키지를 설치하여 사용할 수 있습니다.\n참고 자료 LangChain 공식 문서 LangChain GitHub 저장소 LangSmith 문서 LangGraph 튜토리얼 Hugging Face 모델 허브 추천 인프라 위 도구들을 24/7 안정 운영하려면 인프라가 중요하다: - DigitalOcean — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.\nHTStack — 홍콩 VPS, 중국 본토 저지연. dibi8.com 자체 호스팅 IDC. 추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “LangChain 완벽 가이드 2025: 초보자를 위한 프로덕션급 AI 앱 개발”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/langchain-complete-guide\" } } Why This Matters Understanding langchain 완벽 가이드 2025: 초보자를 위한 프로덕션급 ai 앱 개발 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion LangChain 완벽 가이드 2025: 초보자를 위한 프로덕션급 AI 앱 개발 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\nFramework Comparison Framework Primary Use Learning Curve Community Production Ready LangChain General-purpose Medium Large ✅ Yes LlamaIndex RAG/Retrieval Low Growing ✅ Yes Haystack Document processing Medium Medium ✅ Yes LangGraph Stateful agents High Growing ✅ Yes ",
-  "wordCount" : "1294",
+  "articleBody": "{\u003c/* resource-info */\u003e}\nBuilding applications with large language models used to mean writing hundreds of lines of boilerplate code for every project. You would manually handle API calls, craft prompts, parse outputs, and manage conversation state — repeating the same patterns again and again. LangChain changed that. First released by Harrison Chase in October 2022, LangChain has grown into the most widely adopted orchestration framework for LLM-powered applications, with over 91,000 GitHub stars and 10 million monthly PyPI downloads as of early 2025.\nThis guide walks you through everything you need to know about LangChain in 2025. Whether you are building your first chatbot or deploying a production RAG pipeline, you will find actionable code examples, architectural insights, and best practices derived from real-world deployments.\nWhat is LangChain? Understanding the Core Concept LangChain is an open-source Python and JavaScript framework that simplifies the development of applications powered by large language models. It provides a modular architecture of composable components — models, prompts, chains, agents, vector stores, and memory — that developers can combine into sophisticated AI workflows.\nThe framework’s core philosophy centers on abstraction without lock-in. Each component follows a standard interface, allowing you to swap OpenAI’s GPT-4 for Anthropic’s Claude, or switch from Chroma to Pinecone, with minimal code changes. This flexibility has made LangChain the default choice for teams prototyping AI features and shipping them to production.\nWhy LangChain Matters in 2025 The LLM landscape exploded in 2024-2025. New models from OpenAI, Anthropic, Google, Meta, and open-source communities hit the market monthly. Each has different API formats, context windows, and pricing structures. LangChain abstracts these differences, giving developers a unified interface to work with over 100 different LLM providers.\nBeyond model abstraction, LangChain excels at orchestration. Modern AI apps rarely call a model once and return the result. They retrieve documents, call external APIs, make decisions, and maintain conversation context across multiple turns. LangChain’s chain and agent primitives handle this complexity so you can focus on application logic.\nThe LangChain Ecosystem: Three Pillars LangChain today is not just one library — it is an ecosystem of three integrated tools: | Tool | Purpose | When to Use | |\n|\n|\n| | LangChain | Core orchestration framework | Building chains, agents, and RAG pipelines | | LangGraph | Stateful multi-agent applications | Complex workflows with cycles, branching, and persistence | | LangSmith | Observability and debugging platform | Monitoring, tracing, and evaluating production LLM apps |\nUnderstanding how these three tools complement each other is essential for building production-grade applications. LangChain provides the building blocks, LangGraph manages multi-step stateful execution, and LangSmith gives you visibility into what your application is doing in production.\nLangChain Core Components Explained LangChain’s power comes from its component architecture. Each piece handles a specific concern, and they connect together like LEGO bricks. Here is a breakdown of the seven core components you need to master.\nModels (LLMs and Chat Models) LangChain distinguishes between two types of models. LLMs take a string input and return a string output — this is the traditional text-in, text-out interface. Chat models accept a list of messages and return a message object, which is the format used by modern conversational APIs like GPT-4 and Claude 3.\nIn 2025, you should almost always use chat models. LangChain’s init_chat_model function provides a provider-agnostic way to instantiate any major chat model: ````python from langchain.chat_models import init_chat_model\nWorks with OpenAI, Anthropic, Google, and 20+ providers model = init_chat_model(“gpt-4o”, model_provider=“openai”)\nOr simply: init_chat_model(“claude-3-5-sonnet-20241022”) ### Prompts and Prompt Templates Prompt engineering directly impacts application quality. LangChain provides ``PromptTemplate`` and ``ChatPromptTemplate`` classes for structuring prompts with dynamic inputs. The ``ChatPromptTemplate`` is particularly powerful — it lets you define system messages, human messages, and AI messages as reusable templates: `````python from langchain.prompts import ChatPromptTemplate template = ChatPromptTemplate([ (\"system\", \"You are a {role}. Answer concisely.\"), (\"human\", \"{question}\") ]) prompt = template.invoke({\"role\": \"Python expert\", \"question\": \"What are dataclasses?\"}) LangChain also supports few-shot prompting, example selectors, and output parsers — all critical for reliable production applications.\nChains: Simple and Complex Workflows A chain is the most fundamental LangChain abstraction. It is a sequence of calls — whether to an LLM, a tool, or a data source. The simplest chain connects a prompt template to a model: `````python from langchain.chains import LLMChain\nchain = template | model response = chain.invoke({“role”: “Python expert”, “question”: “Explain list comprehensions”})\nThe pipe operator (````|````) creates a Runnable sequence, LangChain's unified execution interface introduced in version 0.1. This composition syntax, inspired by Unix pipes, makes it trivial to build multi-step workflows. ### Document Loaders and Text Splitters RAG applications need data. LangChain includes over 100 document loaders for sources ranging from PDFs and Word documents to web pages, databases, and cloud storage. The most commonly used loaders include ````PyPDFLoader````, ````UnstructuredFileLoader````, and ````WebBaseLoader````. Loading is only half the battle. LLMs have context limits, so long documents must be split into chunks. LangChain's text splitters handle this intelligently: `````python from langchain.text_splitter import RecursiveCharacterTextSplitter splitter = RecursiveCharacterTextSplitter( chunk_size=1000, chunk_overlap=200, separators=[\"\\n\\n\", \"\\n\", \" \", \"\"] ) docs = splitter.split_documents(loaded_documents) The RecursiveCharacterTextSplitter preserves semantic boundaries by trying larger separators first, keeping paragraphs and sentences intact when possible.\nVector Stores and Retrievers Once documents are split, they are converted to embeddings and stored in a vector database. LangChain supports 30+ vector store integrations including Chroma, Pinecone, Weaviate, Milvus, and pgvector.\nThe retriever interface abstracts the similarity search process: `````python from langchain.vectorstores import Chroma from langchain.embeddings import OpenAIEmbeddings\nvectorstore = Chroma.from_documents(docs, OpenAIEmbeddings()) retriever = vectorstore.as_retriever(search_kwargs={“k”: 4})\nIn 2025, most developers use the ````create_retrieval_chain```` helper, which combines retrieval with a generation step in a single, optimized pipeline. ### Agents and Tool Integration Agents represent LangChain's most powerful abstraction. An agent uses an LLM to decide which actions to take, rather than following a predetermined sequence. You provide the agent with tools — functions it can call — and the agent reasons about which tool to use and when. LangChain supports several agent types, with ReAct (Reasoning + Acting) being the most popular: `````python from langchain.agents import create_react_agent, AgentExecutor from langchain.tools import tool @tool def search_api(query: str) -\u003e str: \"\"\"Search the company knowledge base.\"\"\" return \"Search results here\" agent = create_react_agent(model, [search_api]) executor = AgentExecutor(agent=agent, tools=[search_api]) Memory and Conversation Management Conversational applications need to remember previous turns. LangChain’s memory components store and retrieve chat history. The most commonly used options include ConversationBufferMemory (stores full history), ConversationBufferWindowMemory (keeps last N exchanges), and ConversationSummaryMemory (summarizes older turns to save tokens).\nIn production, most teams now use LangGraph’s persistence layer instead of standalone memory classes, as it offers more control over state management.\nLangChain vs LangGraph vs LangSmith: What is the Difference? Developers often confuse the three pillars of the LangChain ecosystem. Here is the clear breakdown you need.\nLangChain is the core framework. It provides the component abstractions — models, prompts, document loaders, vector stores — and the composition primitives for building chains. If you are writing a simple RAG app or calling an LLM with structured output, LangChain is all you need.\nLangGraph builds on top of LangChain for stateful, multi-actor applications. While LangChain chains execute linearly (step A, then step B, then step C), LangGraph models applications as graphs where nodes can loop back, branch conditionally, and maintain persistent state across executions. Use LangGraph when building multi-agent systems, human-in-the-loop workflows, or any application where execution flow depends on runtime conditions.\nLangSmith is a hosted platform for observability, testing, and evaluation. It traces every step of your chain or agent execution, showing exact prompts, model responses, token usage, and latency. You can define evaluation datasets, run automated tests, and compare model performance across different configurations. LangSmith is essential for production deployments but optional during development.\nLangChain Quick Start: Build Your First App Let us build a complete RAG application in under 50 lines of code. You will need Python 3.9+ and an OpenAI API key.\nInstallation and Environment Setup pip install langchain langchain-openai langchain-chroma export OPENAI_API_KEY=\"your-key-here\" Building a Simple LLM Chain from langchain_openai import ChatOpenAI from langchain.prompts import ChatPromptTemplate model = ChatOpenAI(model=\"gpt-4o-mini\") template = ChatPromptTemplate.from_template(\"Explain {topic} in one paragraph\") chain = template | model result = chain.invoke({\"topic\": \"vector embeddings\"}) print(result.content) Adding RAG with Document Loading from langchain_community.document_loaders import PyPDFLoader from langchain.text_splitter import RecursiveCharacterTextSplitter from langchain_openai import OpenAIEmbeddings from langchain_chroma import Chroma from langchain.chains import create_retrieval_chain from langchain.chains.combine_documents import create_stuff_documents_chain # Load and split loader = PyPDFLoader(\"document.pdf\") docs = loader.load() splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200) chunks = splitter.split_documents(docs) # Store and retrieve vectorstore = Chroma.from_documents(chunks, OpenAIEmbeddings()) retriever = vectorstore.as_retriever() # Create RAG chain combine_docs = create_stuff_documents_chain(model, template) rag_chain = create_retrieval_chain(retriever, combine_docs) result = rag_chain.invoke({\"input\": \"What are the main findings?\"}) print(result[\"answer\"]) Creating a ReAct Agent with Tools from langchain.agents import create_react_agent, AgentExecutor from langchain import hub from langchain.tools import tool @tool def calculator(expression: str) -\u003e str: \"\"\"Evaluate a mathematical expression.\"\"\" return str(eval(expression)) prompt = hub.pull(\"hwchase17/react\") agent = create_react_agent(model, [calculator], prompt) executor = AgentExecutor(agent=agent, tools=[calculator], verbose=True) executor.invoke({\"input\": \"What is 127 multiplied by 43?\"}) Advanced LangChain Patterns Once you have mastered the basics, these patterns will help you build more robust applications.\nBuilding Multi-Step Reasoning Chains Complex tasks often require breaking problems into sub-tasks. LangChain’s expression language (LCEL) makes this compositional: `````python from operator import itemgetter from langchain_core.runnables import RunnablePassthrough\nchain = ( {“context”: retriever, “question”: RunnablePassthrough()} | template | model )\n### Streaming and Async Execution Production applications should stream responses to reduce perceived latency: `````python for chunk in chain.stream({\"topic\": \"machine learning\"}): print(chunk.content, end=\"\", flush=True) Async support is built in — simply use ainvoke, astream, or abatch instead of their synchronous counterparts.\nError Handling and Fallbacks Models fail. Rate limits hit. Networks timeout. LangChain’s fallback mechanism lets you specify backup models: `````python from langchain_openai import ChatAnthropic\nprimary = ChatOpenAI(model=“gpt-4o”) backup = ChatAnthropic(model=“claude-3-5-sonnet-20241022”)\nmodel_with_fallback = primary.with_fallbacks([backup])\n## LangChain in Production: Best Practices Deploying LangChain applications requires attention to several operational concerns. ### Performance Optimization Tips - **Use batching**: The ````batch``` method processes multiple inputs concurrently, dramatically improving throughput - **Enable caching**: LangChain supports caching LLM responses via SQLite, Redis, or in-memory stores - **Choose the right model**: GPT-4o-mini handles 80% of tasks at 1/50th the cost of GPT-4o - **Optimize retrieval**: Use MMR (Maximal Marginal Relevance) to diversify retrieved documents and reduce redundancy ### Security Considerations and Prompt Injection Defense Prompt injection remains the top security concern for LLM applications. Mitigation strategies include: - **Input validation**: Sanitize user inputs before including them in prompts - **Permission boundaries**: Run tool executions in sandboxed environments with minimal privileges - **Output encoding**: Treat all LLM outputs as untrusted until validated - **Human-in-the-loop**: Require approval for high-impact actions like data deletion or financial transactions ### Monitoring with LangSmith LangSmith traces every step of your application execution. In production, you should: 1. Set up automated evaluation runs on representative datasets 2. Monitor token usage and latency dashboards 3. Configure alerts for error rate spikes 4. Use feedback collection to track user satisfaction Sign up for LangSmith at [docs.smith.langchain.com](https://docs.smith.langchain.com). ### Deployment Strategies LangChain applications deploy like any Python service. Common patterns include: - **Docker containers**: Package your chain with a FastAPI or Streamlit frontend - **Serverless**: Deploy to AWS Lambda or Google Cloud Run for variable workloads - **LangServe**: LangChain's built-in tool for exposing chains as REST APIs - **LangGraph Cloud**: Managed hosting for LangGraph applications with built-in persistence ## Top LangChain Alternatives 2025 While LangChain leads in adoption, several alternatives excel in specific scenarios: | Framework | Strength | Best For | | * * * | * * * | * * * | | **LlamaIndex** | Advanced RAG and data ingestion | Document Q\u0026A over large knowledge bases | | **Haystack** | Enterprise search pipelines | Semantic search and information retrieval | | **CrewAI** | Role-based multi-agent systems | Collaborative agent workflows | | **AutoGen** | Conversational agents with code execution | Research and data analysis automation | | **Semantic Kernel** | Microsoft ecosystem integration | .NET and enterprise Microsoft environments | For most teams, LangChain remains the safest default due to its ecosystem breadth and documentation quality. However, if your application is purely RAG-focused, LlamaIndex's specialized indexing and retrieval capabilities may deliver better results with less configuration. ## Frequently Asked Questions ### What is LangChain used for? LangChain is used to build applications powered by large language models. Common use cases include chatbots with retrieval-augmented generation (RAG), AI agents that interact with external tools, text summarization pipelines, and automated data analysis workflows. Companies use LangChain for customer support automation, internal knowledge search, content generation, and code assistance tools. ### Is LangChain free to use? Yes, LangChain is open-source and free under the MIT license. You can use it commercially without restrictions. However, you pay for the underlying LLM API calls (OpenAI, Anthropic, etc.) and any hosted services like LangSmith, which offers a generous free tier for development. ### LangChain vs LlamaIndex: Which should I choose? Choose LangChain for general-purpose LLM orchestration, multi-step agent workflows, and applications requiring complex tool integration. Choose LlamaIndex when your primary need is advanced RAG with sophisticated document indexing, knowledge graph construction, or multi-modal data retrieval. Many teams use both — LlamaIndex for ingestion and retrieval, LangChain for orchestration and agent logic. ### Can I use LangChain with local LLMs like Ollama? Absolutely. LangChain integrates with Ollama, LM Studio, vLLM, and other local LLM servers through the OpenAI-compatible API or dedicated integration packages. This lets you build applications that run entirely on-premises without sending data to external APIs. See [github.com/langchain-ai](https://github.com/langchain-ai) for integration examples. ### Does LangChain support JavaScript and TypeScript? Yes. LangChain.js provides first-class support for JavaScript and TypeScript environments, including Node.js, Edge functions, and browsers. The JavaScript package maintains API parity with the Python version for core components, though some integrations and advanced features are Python-only. You can find the JavaScript documentation at [python.langchain.com](https://python.langchain.com). ## Conclusion and Next Steps LangChain has evolved from a simple chaining utility into a comprehensive ecosystem for building production AI applications. The combination of LangChain's component library, LangGraph's stateful execution engine, and LangSmith's observability platform gives developers everything they need to go from prototype to production. Start with a simple chain, add retrieval when you need domain knowledge, introduce agents for complex decision-making, and use LangGraph when you need stateful multi-actor workflows. Monitor everything with LangSmith, optimize based on real usage data, and iterate. The best way to learn LangChain is to build something. Pick a problem you have — summarizing research papers, answering questions over your company's documentation, automating a repetitive analysis task — and implement it. The framework\"s modular design means you can start simple and add complexity only when you need it. For the latest updates, follow the [LangChain blog](https://blog.langchain.dev) and explore the ever-growing collection of integrations and templates in the official documentation. * * * ## Recommended Infrastructure To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven. *Affiliate links — no extra cost to you, helps keep dibi8.com running.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"LangChain Complete Guide 2025: From Zero to Production-Ready AI Apps\", \"datePublished\": \"2026-05-18\", \"dateModified\": \"2026-05-18\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/langchain-complete-guide\" } } ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 * * * ",
+  "wordCount" : "2585",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/langchain-complete-guide/">En</a>
@@ -207,407 +207,384 @@
         <span class="title">목차</span>
     </summary>
 
-    <div class="inner"><ul>
+    <div class="inner"><ul><ul>
             <li>
-                <a href="#langchain-%ec%99%84%eb%b2%bd-%ea%b0%80%ec%9d%b4%eb%93%9c-2025-%ec%b4%88%eb%b3%b4%ec%9e%90%eb%a5%bc-%ec%9c%84%ed%95%9c-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98%ea%b8%89-ai-%ec%95%b1-%ea%b0%9c%eb%b0%9c" aria-label="LangChain 완벽 가이드 2025: 초보자를 위한 프로덕션급 AI 앱 개발">LangChain 완벽 가이드 2025: 초보자를 위한 프로덕션급 AI 앱 개발</a><ul>
+                <a href="#what-is-langchain-understanding-the-core-concept" aria-label="What is LangChain? Understanding the Core Concept">What is LangChain? Understanding the Core Concept</a><ul>
                     
             <li>
-                <a href="#langchain%ec%9d%b4%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80-%ed%95%b5%ec%8b%ac-%ea%b0%9c%eb%85%90-%ec%9d%b4%ed%95%b4%ed%95%98%ea%b8%b0" aria-label="LangChain이란 무엇인가? 핵심 개념 이해하기">LangChain이란 무엇인가? 핵심 개념 이해하기</a></li>
+                <a href="#why-langchain-matters-in-2025" aria-label="Why LangChain Matters in 2025">Why LangChain Matters in 2025</a></li>
             <li>
-                <a href="#langchain-%ed%95%b5%ec%8b%ac-%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8-%ec%99%84%eb%b2%bd-%ec%a0%95%eb%a6%ac" aria-label="LangChain 핵심 컴포넌트 완벽 정리">LangChain 핵심 컴포넌트 완벽 정리</a><ul>
+                <a href="#the-langchain-ecosystem-three-pillars" aria-label="The LangChain Ecosystem: Three Pillars">The LangChain Ecosystem: Three Pillars</a></li></ul>
+            </li>
+            <li>
+                <a href="#langchain-core-components-explained" aria-label="LangChain Core Components Explained">LangChain Core Components Explained</a><ul>
                     
             <li>
-                <a href="#%eb%aa%a8%eb%8d%b8-llms--chat-models" aria-label="모델 (LLMs &amp; Chat Models)">모델 (LLMs &amp; Chat Models)</a></li>
+                <a href="#models-llms-and-chat-models" aria-label="Models (LLMs and Chat Models)">Models (LLMs and Chat Models)</a></li></ul>
+            </li></ul>
+                
             <li>
-                <a href="#%ed%94%84%eb%a1%ac%ed%94%84%ed%8a%b8%ec%99%80-%ed%94%84%eb%a1%ac%ed%94%84%ed%8a%b8-%ed%85%9c%ed%94%8c%eb%a6%bf" aria-label="프롬프트와 프롬프트 템플릿">프롬프트와 프롬프트 템플릿</a></li>
+                <a href="#works-with-openai-anthropic-google-and-20-providers" aria-label="Works with OpenAI, Anthropic, Google, and 20&#43; providers">Works with OpenAI, Anthropic, Google, and 20+ providers</a></li>
             <li>
-                <a href="#%ec%b2%b4%ec%9d%b8-chains" aria-label="체인 (Chains)">체인 (Chains)</a></li>
-            <li>
-                <a href="#%eb%ac%b8%ec%84%9c-%eb%a1%9c%eb%8d%94%ec%99%80-%ed%85%8d%ec%8a%a4%ed%8a%b8-%eb%b6%84%ed%95%a0%ea%b8%b0" aria-label="문서 로더와 텍스트 분할기">문서 로더와 텍스트 분할기</a></li>
-            <li>
-                <a href="#%eb%b2%a1%ed%84%b0-%ec%8a%a4%ed%86%a0%ec%96%b4%ec%99%80-%eb%a6%ac%ed%8a%b8%eb%a6%ac%eb%b2%84" aria-label="벡터 스토어와 리트리버">벡터 스토어와 리트리버</a></li>
-            <li>
-                <a href="#%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8%ec%99%80-%eb%8f%84%ea%b5%ac-%ed%86%b5%ed%95%a9" aria-label="에이전트와 도구 통합">에이전트와 도구 통합</a></li>
-            <li>
-                <a href="#%eb%a9%94%eb%aa%a8%eb%a6%ac%ec%99%80-%eb%8c%80%ed%99%94-%ea%b4%80%eb%a6%ac" aria-label="메모리와 대화 관리">메모리와 대화 관리</a></li></ul>
-            </li>
-            <li>
-                <a href="#langchain-vs-langgraph-vs-langsmith-%ec%b0%a8%ec%9d%b4%ec%a0%90%ec%9d%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80" aria-label="LangChain vs LangGraph vs LangSmith: 차이점은 무엇인가?">LangChain vs LangGraph vs LangSmith: 차이점은 무엇인가?</a></li>
-            <li>
-                <a href="#langchain-%eb%b9%a0%eb%a5%b8-%ec%8b%9c%ec%9e%91-%ec%b2%ab-%eb%b2%88%ec%a7%b8-%ec%95%b1-%eb%a7%8c%eb%93%a4%ea%b8%b0" aria-label="LangChain 빠른 시작: 첫 번째 앱 만들기">LangChain 빠른 시작: 첫 번째 앱 만들기</a><ul>
+                <a href="#or-simply-init_chat_modelclaude-3-5-sonnet-20241022" aria-label="Or simply: init_chat_model(&ldquo;claude-3-5-sonnet-20241022&rdquo;)">Or simply: init_chat_model(&ldquo;claude-3-5-sonnet-20241022&rdquo;)</a><ul>
+                    <ul>
                     
             <li>
-                <a href="#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ed%99%98%ea%b2%bd-%ec%84%a4%ec%a0%95" aria-label="설치 및 환경 설정">설치 및 환경 설정</a></li>
+                <a href="#chains-simple-and-complex-workflows" aria-label="Chains: Simple and Complex Workflows">Chains: Simple and Complex Workflows</a></li>
             <li>
-                <a href="#%ea%b0%84%eb%8b%a8%ed%95%9c-llm-%ec%b2%b4%ec%9d%b8-%ea%b5%ac%ec%84%b1" aria-label="간단한 LLM 체인 구성">간단한 LLM 체인 구성</a></li>
+                <a href="#vector-stores-and-retrievers" aria-label="Vector Stores and Retrievers">Vector Stores and Retrievers</a></li>
             <li>
-                <a href="#rag%ec%99%80-%eb%ac%b8%ec%84%9c-%eb%a1%9c%eb%94%a9-%ec%b6%94%ea%b0%80" aria-label="RAG와 문서 로딩 추가">RAG와 문서 로딩 추가</a></li>
+                <a href="#memory-and-conversation-management" aria-label="Memory and Conversation Management">Memory and Conversation Management</a></li></ul>
+                
             <li>
-                <a href="#react-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8%ec%99%80-%eb%8f%84%ea%b5%ac-%ec%83%9d%ec%84%b1" aria-label="ReAct 에이전트와 도구 생성">ReAct 에이전트와 도구 생성</a></li></ul>
-            </li>
+                <a href="#langchain-vs-langgraph-vs-langsmith-what-is-the-difference" aria-label="LangChain vs LangGraph vs LangSmith: What is the Difference?">LangChain vs LangGraph vs LangSmith: What is the Difference?</a></li>
             <li>
-                <a href="#%ea%b3%a0%ea%b8%89-langchain-%ed%8c%a8%ed%84%b4" aria-label="고급 LangChain 패턴">고급 LangChain 패턴</a><ul>
+                <a href="#langchain-quick-start-build-your-first-app" aria-label="LangChain Quick Start: Build Your First App">LangChain Quick Start: Build Your First App</a><ul>
                     
             <li>
-                <a href="#%eb%a9%80%ed%8b%b0%ec%8a%a4%ed%85%9d-%ec%b6%94%eb%a1%a0-%ec%b2%b4%ec%9d%b8-%ea%b5%ac%ec%b6%95" aria-label="멀티스텝 추론 체인 구축">멀티스텝 추론 체인 구축</a></li>
+                <a href="#installation-and-environment-setup" aria-label="Installation and Environment Setup">Installation and Environment Setup</a></li>
             <li>
-                <a href="#%ec%bb%a4%ec%8a%a4%ed%85%80-%eb%8f%84%ea%b5%ac%ec%99%80-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ec%8b%a4%ed%96%89%ea%b8%b0" aria-label="커스텀 도구와 에이전트 실행기">커스텀 도구와 에이전트 실행기</a></li>
+                <a href="#building-a-simple-llm-chain" aria-label="Building a Simple LLM Chain">Building a Simple LLM Chain</a></li>
             <li>
-                <a href="#%ec%8a%a4%ed%8a%b8%eb%a6%ac%eb%b0%8d%ea%b3%bc-%eb%b9%84%eb%8f%99%ea%b8%b0-%ec%8b%a4%ed%96%89" aria-label="스트리밍과 비동기 실행">스트리밍과 비동기 실행</a></li>
+                <a href="#adding-rag-with-document-loading" aria-label="Adding RAG with Document Loading">Adding RAG with Document Loading</a></li>
             <li>
-                <a href="#%ec%97%90%eb%9f%ac-%ec%b2%98%eb%a6%ac%ec%99%80-%ed%8f%b4%eb%b0%b1" aria-label="에러 처리와 폴백">에러 처리와 폴백</a></li></ul>
+                <a href="#creating-a-react-agent-with-tools" aria-label="Creating a ReAct Agent with Tools">Creating a ReAct Agent with Tools</a></li></ul>
             </li>
             <li>
-                <a href="#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ed%99%98%ea%b2%bd%ec%97%90%ec%84%9c%ec%9d%98-langchain-%eb%aa%a8%eb%b2%94-%ec%82%ac%eb%a1%80" aria-label="프로덕션 환경에서의 LangChain 모범 사례">프로덕션 환경에서의 LangChain 모범 사례</a><ul>
+                <a href="#advanced-langchain-patterns" aria-label="Advanced LangChain Patterns">Advanced LangChain Patterns</a><ul>
                     
             <li>
-                <a href="#%ec%84%b1%eb%8a%a5-%ec%b5%9c%ec%a0%81%ed%99%94-%ed%8c%81" aria-label="성능 최적화 팁">성능 최적화 팁</a></li>
+                <a href="#building-multi-step-reasoning-chains" aria-label="Building Multi-Step Reasoning Chains">Building Multi-Step Reasoning Chains</a></li>
             <li>
-                <a href="#%eb%b3%b4%ec%95%88-%ea%b3%a0%eb%a0%a4%ec%82%ac%ed%95%ad%ea%b3%bc-%ed%94%84%eb%a1%ac%ed%94%84%ed%8a%b8-%ec%9d%b8%ec%a0%9d%ec%85%98-%eb%b0%a9%ec%96%b4" aria-label="보안 고려사항과 프롬프트 인젝션 방어">보안 고려사항과 프롬프트 인젝션 방어</a></li>
-            <li>
-                <a href="#langsmith%eb%a1%9c-%eb%aa%a8%eb%8b%88%ed%84%b0%eb%a7%81%ed%95%98%ea%b8%b0" aria-label="LangSmith로 모니터링하기">LangSmith로 모니터링하기</a></li>
-            <li>
-                <a href="#%eb%b0%b0%ed%8f%ac-%ec%a0%84%eb%9e%b5" aria-label="배포 전략">배포 전략</a></li></ul>
+                <a href="#error-handling-and-fallbacks" aria-label="Error Handling and Fallbacks">Error Handling and Fallbacks</a>
             </li>
-            <li>
-                <a href="#2025%eb%85%84-%ec%a3%bc%ec%9a%94-langchain-%eb%8c%80%ec%95%88-%ed%94%84%eb%a0%88%ec%9e%84%ec%9b%8c%ed%81%ac" aria-label="2025년 주요 LangChain 대안 프레임워크">2025년 주요 LangChain 대안 프레임워크</a></li>
-            <li>
-                <a href="#%ea%b2%b0%eb%a1%a0%ea%b3%bc-%eb%8b%a4%ec%9d%8c-%eb%8b%a8%ea%b3%84" aria-label="결론과 다음 단계">결론과 다음 단계</a></li>
-            <li>
-                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8-faq" aria-label="자주 묻는 질문 (FAQ)">자주 묻는 질문 (FAQ)</a></li>
-            <li>
-                <a href="#%ec%b0%b8%ea%b3%a0-%ec%9e%90%eb%a3%8c" aria-label="참고 자료">참고 자료</a></li>
-            <li>
-                <a href="#%ec%b6%94%ec%b2%9c-%ec%9d%b8%ed%94%84%eb%9d%bc" aria-label="추천 인프라">추천 인프라</a></li>
-            <li>
-                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
-                    
-            <li>
-                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
-            <li>
-                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
-            </li>
-            <li>
-                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
-            <li>
-                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li>
-            <li>
-                <a href="#framework-comparison" aria-label="Framework Comparison">Framework Comparison</a>
-            </li>
+        </ul>
+        </li>
         </ul>
         </li>
         </ul>
     </div>
 </details>
 
-  <div class="post-content md-content"><h1 id="langchain-완벽-가이드-2025-초보자를-위한-프로덕션급-ai-앱-개발">LangChain 완벽 가이드 2025: 초보자를 위한 프로덕션급 AI 앱 개발<a hidden class="anchor" aria-hidden="true" href="#langchain-완벽-가이드-2025-초보자를-위한-프로덕션급-ai-앱-개발">#</a></h1>
-<p>{&lt;/* resource-info */&gt;}</p>
-<p>LangChain은 2023년 첫 공개 이후 18개월 만에 가장 널리 사용되는 LLM 애플리케이션 프레임워크로 자리매김했다. 2025년 5월 기준 GitHub Star 96,000개 이상을 보유하고 있으며, Python과 JavaScript/TypeScript 생태계를 동시에 지원한다. 이 가이드는 LangChain의 핵심 개념부터 실전 패턴, 프로덕션 배포까지 전 과정을 다룬다.</p>
-<h2 id="langchain이란-무엇인가-핵심-개념-이해하기">LangChain이란 무엇인가? 핵심 개념 이해하기<a hidden class="anchor" aria-hidden="true" href="#langchain이란-무엇인가-핵심-개념-이해하기">#</a></h2>
-<p>LangChain은 대규모 언어 모델(LLM)을 기반으로 한 애플리케이션 개발을 위한 오픈소스 프레임워크다. 단순히 API를 호출하는 것을 넘어, 외부 데이터 소스 연결, 도구 통합, 멀티스텝 워크플로우 설계를 체계적으로 지원한다.</p>
-<p><strong>왜 2025년에도 LangChain이 중요한가?</strong> 최근 LLM 기술이 빠르게 발전하면서 단일 모델 호출만으로는 복잡한 업무를 처리하기 어려워졌다. Retrieval-Augmented Generation(RAG), 에이전트 기반 자동화, 멀티 모달 처리 등 고급 패턴의 필요성이 커졌고, LangChain은 이러한 패턴을 표준화된 방식으로 구현할 수 있는 인프라를 제공한다.</p>
-<p><strong>LangChain 생태계는 세 가지 핵심 프로젝트로 구성된다:</strong></p>
-<ul>
-<li><strong>LangChain</strong>: 코어 오케스트레이션 프레임워크</li>
-<li><strong>LangGraph</strong>: 상태 기반 멀티 에이전트 워크플로우 엔진</li>
-<li><strong>LangSmith</strong>: 관측성과 디버깅 플랫폼</li>
-</ul>
-<h2 id="langchain-핵심-컴포넌트-완벽-정리">LangChain 핵심 컴포넌트 완벽 정리<a hidden class="anchor" aria-hidden="true" href="#langchain-핵심-컴포넌트-완벽-정리">#</a></h2>
-<p>LangChain의 강력함은 모듈화된 컴포넌트 설계에서 비롯된다. 각 컴포넌트는 필요에 따라 조합하여 사용할 수 있다.</p>
-<h3 id="모델-llms--chat-models">모델 (LLMs &amp; Chat Models)<a hidden class="anchor" aria-hidden="true" href="#모델-llms--chat-models">#</a></h3>
-<p>LangChain은 OpenAI GPT-4, Anthropic Claude, Google Gemini, Mistral, Ollama 등 100개 이상의 모델 제공자를 통합 지원한다. ```ChatOpenAI<code>, </code>ChatAnthropic```` 같은 클래스로 일관된 인터페이스를 제공하며, 모델 교체 시 코드 변경을 최소화한다.</p>
-<h3 id="프롬프트와-프롬프트-템플릿">프롬프트와 프롬프트 템플릿<a hidden class="anchor" aria-hidden="true" href="#프롬프트와-프롬프트-템플릿">#</a></h3>
-<p><code>PromptTemplate</code>, <code>ChatPromptTemplate</code> 클래스를 통해 동적 프롬프트 생성을 지원한다. 변수 삽입, Few-shot 예제 로딩, 프롬프트 체인링이 가능하며, LangSmith를 통해 프롬프트 버전 관리도 할 수 있다.</p>
-<h3 id="체인-chains">체인 (Chains)<a hidden class="anchor" aria-hidden="true" href="#체인-chains">#</a></h3>
-<p>체인은 여러 컴포넌트를 순차적으로 연결하는 핵심 추상화다. 2025년 현재 LangChain은 <code>LCEL(LangChain Expression Language)</code>을 통해 선언적 체인 구성을 권장한다. <code>RunnableSequence</code>, <code>RunnableParallel</code> 등으로 복잡한 데이터 흐름을 구현한다.</p>
-<h3 id="문서-로더와-텍스트-분할기">문서 로더와 텍스트 분할기<a hidden class="anchor" aria-hidden="true" href="#문서-로더와-텍스트-분할기">#</a></h3>
-<p>PDF, 웹사이트, 데이터베이스, 클라우드 스토리지 등 80개 이상의 문서 로더를 제공한다. <code>RecursiveCharacterTextSplitter</code>, <code>TokenTextSplitter</code> 등 다양한 분할 전략으로 청크 크기와 중첩을 세밀하게 제어할 수 있다.</p>
-<h3 id="벡터-스토어와-리트리버">벡터 스토어와 리트리버<a hidden class="anchor" aria-hidden="true" href="#벡터-스토어와-리트리버">#</a></h3>
-<p>Chroma, Pinecone, Weaviate, FAISS, pgvector 등 40개 이상의 벡터 데이터베이스와 통합된다. <code>similarity_search</code>, <code>mmr</code>(Maximal Marginal Relevance) 등 다양한 검색 전략을 지원한다.</p>
-<h3 id="에이전트와-도구-통합">에이전트와 도구 통합<a hidden class="anchor" aria-hidden="true" href="#에이전트와-도구-통합">#</a></h3>
-<p>ReAct, Plan-and-Execute, Self-Ask 등 여러 에이전트 아키텍처를 내장하고 있다. Python REPL, 웹 검색, API 호출, 데이터베이스 쿼리 등 50개 이상의 사전 제작 도구를 제공한다.</p>
-<h3 id="메모리와-대화-관리">메모리와 대화 관리<a hidden class="anchor" aria-hidden="true" href="#메모리와-대화-관리">#</a></h3>
-<p><code>ConversationBufferMemory</code>, <code>ConversationSummaryMemory</code>, <code>VectorStoreRetrieverMemory</code> 등 대화 맥락을 유지하는 다양한 메모리 구현체를 지원한다. 긴 대화에서 토큰 사용량을 최적화하는 것이 핵심이다.</p>
-<h2 id="langchain-vs-langgraph-vs-langsmith-차이점은-무엇인가">LangChain vs LangGraph vs LangSmith: 차이점은 무엇인가?<a hidden class="anchor" aria-hidden="true" href="#langchain-vs-langgraph-vs-langsmith-차이점은-무엇인가">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>구분</th>
-					<th>LangChain</th>
-					<th>LangGraph</th>
-					<th>LangSmith</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>역할</strong></td>
-					<td>코어 오케스트레이션</td>
-					<td>상태 기반 워크플로우</td>
-					<td>관측성 및 디버깅</td>
-			</tr>
-			<tr>
-					<td><strong>사용 목적</strong></td>
-					<td>체인/에이전트 구성</td>
-					<td>멀티 에이전트 시스템</td>
-					<td>성능 모니터링, 추적</td>
-			</tr>
-			<tr>
-					<td><strong>주요 개념</strong></td>
-					<td>LCEL, 컴포넌트</td>
-					<td>그래프, 노드, 엣지</td>
-					<td>트레이스, 피드백</td>
-			</tr>
-			<tr>
-					<td><strong>2025년 버전</strong></td>
-					<td>0.3.x</td>
-					<td>0.2.x</td>
-					<td>GA 릴리스</td>
-			</tr>
-	</tbody>
-</table>
-<p><strong>LangChain</strong>은 기본적인 체인과 에이전트 실행을 담당한다. <strong>LangGraph</strong>는 복잡한 멀티 에이전트 워크플로우를 상태 머신 기반으로 설계할 수 있게 한다. <strong>LangSmith</strong>는 프로덕션 환경에서의 프롬프트 버전 관리, 성능 트레이싱, A/B 테스트를 지원한다.</p>
-<h2 id="langchain-빠른-시작-첫-번째-앱-만들기">LangChain 빠른 시작: 첫 번째 앱 만들기<a hidden class="anchor" aria-hidden="true" href="#langchain-빠른-시작-첫-번째-앱-만들기">#</a></h2>
-<h3 id="설치-및-환경-설정">설치 및 환경 설정<a hidden class="anchor" aria-hidden="true" href="#설치-및-환경-설정">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install langchain langchain-openai
-</span></span><span style="display:flex;"><span>export OPENAI_API_KEY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-key&#34;</span>
-</span></span></code></pre></div><h3 id="간단한-llm-체인-구성">간단한 LLM 체인 구성<a hidden class="anchor" aria-hidden="true" href="#간단한-llm-체인-구성">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.prompts <span style="color:#f92672">import</span> ChatPromptTemplate
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>llm <span style="color:#f92672">=</span> ChatOpenAI(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>)
-</span></span><span style="display:flex;"><span>prompt <span style="color:#f92672">=</span> ChatPromptTemplate<span style="color:#f92672">.</span>from_template(<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{topic}</span><span style="color:#e6db74">에 대해 3문장으로 설명해줘&#34;</span>)
-</span></span><span style="display:flex;"><span>chain <span style="color:#f92672">=</span> prompt <span style="color:#f92672">|</span> llm
-</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> chain<span style="color:#f92672">.</span>invoke({<span style="color:#e6db74">&#34;topic&#34;</span>: <span style="color:#e6db74">&#34;양자 컴퓨팅&#34;</span>})
-</span></span></code></pre></div><h3 id="rag와-문서-로딩-추가">RAG와 문서 로딩 추가<a hidden class="anchor" aria-hidden="true" href="#rag와-문서-로딩-추가">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.document_loaders <span style="color:#f92672">import</span> PyPDFLoader
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_chroma <span style="color:#f92672">import</span> Chroma
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> OpenAIEmbeddings
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>loader <span style="color:#f92672">=</span> PyPDFLoader(<span style="color:#e6db74">&#34;document.pdf&#34;</span>)
-</span></span><span style="display:flex;"><span>docs <span style="color:#f92672">=</span> loader<span style="color:#f92672">.</span>load_and_split()
-</span></span><span style="display:flex;"><span>vectorstore <span style="color:#f92672">=</span> Chroma<span style="color:#f92672">.</span>from_documents(docs, OpenAIEmbeddings())
-</span></span><span style="display:flex;"><span>retriever <span style="color:#f92672">=</span> vectorstore<span style="color:#f92672">.</span>as_retriever(search_kwargs<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;k&#34;</span>: <span style="color:#ae81ff">3</span>})
-</span></span></code></pre></div><h3 id="react-에이전트와-도구-생성">ReAct 에이전트와 도구 생성<a hidden class="anchor" aria-hidden="true" href="#react-에이전트와-도구-생성">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.agents <span style="color:#f92672">import</span> create_react_agent, AgentExecutor
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.tools <span style="color:#f92672">import</span> Tool
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>tools <span style="color:#f92672">=</span> [search_tool, calculator_tool]
-</span></span><span style="display:flex;"><span>agent <span style="color:#f92672">=</span> create_react_agent(llm, tools, prompt)
-</span></span><span style="display:flex;"><span>executor <span style="color:#f92672">=</span> AgentExecutor(agent<span style="color:#f92672">=</span>agent, tools<span style="color:#f92672">=</span>tools)
-</span></span></code></pre></div><h2 id="고급-langchain-패턴">고급 LangChain 패턴<a hidden class="anchor" aria-hidden="true" href="#고급-langchain-패턴">#</a></h2>
-<h3 id="멀티스텝-추론-체인-구축">멀티스텝 추론 체인 구축<a hidden class="anchor" aria-hidden="true" href="#멀티스텝-추론-체인-구축">#</a></h3>
-<p>LCEL의 <code>RunnableParallel</code>과 <code>RunnableBranch</code>를 사용하여 조걸 분기와 병렬 실행을 구현한다. 복잡한 의사결정 트리를 선언적으로 표현할 수 있다.</p>
-<h3 id="커스텀-도구와-에이전트-실행기">커스텀 도구와 에이전트 실행기<a hidden class="anchor" aria-hidden="true" href="#커스텀-도구와-에이전트-실행기">#</a></h3>
-<p><code>@tool</code> 데코레이터로 Python 함수를 도구로 등록할 수 있다. <code>AgentExecutor</code>의 <code>handle_parsing_errors</code>, <code>max_iterations</code> 파라미터로 안정성을 높인다.</p>
-<h3 id="스트리밍과-비동기-실행">스트리밍과 비동기 실행<a hidden class="anchor" aria-hidden="true" href="#스트리밍과-비동기-실행">#</a></h3>
-<p><code>chain.astream()</code> 메서드로 토큰 단위 실시간 스트리밍을 지원한다. 2025년 기준 LangChain은 <code>asyncio</code> 기반 비동기 처리를 전 컴포넌트에서 기본 지원한다.</p>
-<h3 id="에러-처리와-폴백">에러 처리와 폴백<a hidden class="anchor" aria-hidden="true" href="#에러-처리와-폴백">#</a></h3>
-<p><code>RunnableWithFallbacks</code>로 모델 장애 시 대체 모델로 자동 전환할 수 있다. OpenAI Rate Limit 초과 시 Claude로 폴백하는 패턴이 대표적이다.</p>
-<h2 id="프로덕션-환경에서의-langchain-모범-사례">프로덕션 환경에서의 LangChain 모범 사례<a hidden class="anchor" aria-hidden="true" href="#프로덕션-환경에서의-langchain-모범-사례">#</a></h2>
-<h3 id="성능-최적화-팁">성능 최적화 팁<a hidden class="anchor" aria-hidden="true" href="#성능-최적화-팁">#</a></h3>
-<ul>
-<li>벡터 검색 Top-K 값을 3~5로 제한하여 토큰 사용량 절감</li>
-<li><code>Caching</code> 레이어로 반복 쿼리 캐싱 (Redis, SQLite 지원)</li>
-<li>문서 분할 시 청크 크기 500<del>1000 토큰, 오버랩 10</del>20% 설정</li>
-</ul>
-<h3 id="보안-고려사항과-프롬프트-인젝션-방어">보안 고려사항과 프롬프트 인젝션 방어<a hidden class="anchor" aria-hidden="true" href="#보안-고려사항과-프롬프트-인젝션-방어">#</a></h3>
-<p>프롬프트 인젝션 공격에 대비해 <code>LangChainPromptInjectionDefender</code>와 같은 미들웨어를 체인 앞단에 배치한다. 민감한 데이터는 <code>SecretStr</code> 타입으로 관리하고, LangSmith 로그에서 자동 마스킹을 활성화한다.</p>
-<h3 id="langsmith로-모니터링하기">LangSmith로 모니터링하기<a hidden class="anchor" aria-hidden="true" href="#langsmith로-모니터링하기">#</a></h3>
-<p>프로덕션 환경에서는 모든 체인 실행을 LangSmith로 추적한다. 평균 응답 시간, 토큰 사용량, 에러율을 대시보드에서 실시간 확인할 수 있으며, 피드백 점수로 모델 성능을 지속적으로 개선한다.</p>
-<h3 id="배포-전략">배포 전략<a hidden class="anchor" aria-hidden="true" href="#배포-전략">#</a></h3>
-<p>Docker 컨테이너로 애플리케이션을 패키징하고, AWS ECS, Google Cloud Run, Kubernetes 등에서 실행한다. LangServe를 통해 체인을 REST API로 노출할 수도 있다.</p>
-<h2 id="2025년-주요-langchain-대안-프레임워크">2025년 주요 LangChain 대안 프레임워크<a hidden class="anchor" aria-hidden="true" href="#2025년-주요-langchain-대안-프레임워크">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>프레임워크</th>
-					<th>강점</th>
-					<th>적합한 사용례</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>LlamaIndex</strong></td>
-					<td>RAG, 데이터 인제스트</td>
-					<td>문서 기반 Q&amp;A 시스템</td>
-			</tr>
-			<tr>
-					<td><strong>Haystack</strong></td>
-					<td>엔터프라이즈 검색</td>
-					<td>대규모 문서 검색 파이프라인</td>
-			</tr>
-			<tr>
-					<td><strong>CrewAI</strong></td>
-					<td>멀티 에이전트 오케스트레이션</td>
-					<td>역할 기반 에이전트 팀</td>
-			</tr>
-			<tr>
-					<td><strong>AutoGen</strong></td>
-					<td>대화형 에이전트</td>
-					<td>코드 생성 및 디버깅 에이전트</td>
-			</tr>
-	</tbody>
-</table>
-<p>각 프레임워크는 특정 사용례에 최적화되어 있다. RAG 중심 애플리케이션에는 LlamaIndex가, 복잡한 에이전트 협업에는 AutoGen이나 CrewAI가 더 적합할 수 있다. 상세 비교는 <a href="/tags/llamaindex-vs-langchain/">LlamaIndex vs LangChain</a> 글을 참고한다.</p>
-<h2 id="결론과-다음-단계">결론과 다음 단계<a hidden class="anchor" aria-hidden="true" href="#결론과-다음-단계">#</a></h2>
-<p>LangChain은 2025년 현재 가장 성숙하고 생태계가 풍부한 LLM 프레임워크다. LCEL 기반의 선언적 문법, 100개 이상의 모델/벡터스토어 통합, LangSmith 기반 관측성은 프로덕션 환경에서의 신뢰도를 높인다.</p>
-<p><strong>권장 학습 경로:</strong></p>
-<ol>
-<li><a href="https://python.langchain.com">공식 Python 문서</a>에서 Quickstart 튜토리얼 완료</li>
-<li><a href="https://github.com/langchain-ai">GitHub 저장소</a>에서 예제 코드 분석</li>
-<li><a href="https://docs.smith.langchain.com">LangSmith</a>에 가입하여 트레이싱 실습</li>
-<li><a href="https://langchain-ai.github.io/langgraph">LangGraph 튜토리얼</a>로 멀티 에이전트 시스템 학습</li>
-<li>자체 RAG 애플리케이션을 구축하고 프로덕션 배포</li>
-</ol>
+  <div class="post-content md-content"><p>{&lt;/* resource-info */&gt;}</p>
+<p>Building applications with large language models used to mean writing hundreds of lines of boilerplate code for every project. You would manually handle API calls, craft prompts, parse outputs, and manage conversation state — repeating the same patterns again and again. LangChain changed that. First released by Harrison Chase in October 2022, LangChain has grown into the most widely adopted orchestration framework for LLM-powered applications, with over 91,000 GitHub stars and 10 million monthly PyPI downloads as of early 2025.</p>
+<p>This guide walks you through everything you need to know about LangChain in 2025. Whether you are building your first chatbot or deploying a production RAG pipeline, you will find actionable code examples, architectural insights, and best practices derived from real-world deployments.</p>
+<h2 id="what-is-langchain-understanding-the-core-concept">What is LangChain? Understanding the Core Concept<a hidden class="anchor" aria-hidden="true" href="#what-is-langchain-understanding-the-core-concept">#</a></h2>
+<p>LangChain is an open-source Python and JavaScript framework that simplifies the development of applications powered by large language models. It provides a modular architecture of composable components — models, prompts, chains, agents, vector stores, and memory — that developers can combine into sophisticated AI workflows.</p>
+<p>The framework&rsquo;s core philosophy centers on abstraction without lock-in. Each component follows a standard interface, allowing you to swap OpenAI&rsquo;s GPT-4 for Anthropic&rsquo;s Claude, or switch from Chroma to Pinecone, with minimal code changes. This flexibility has made LangChain the default choice for teams prototyping AI features and shipping them to production.</p>
+<h3 id="why-langchain-matters-in-2025">Why LangChain Matters in 2025<a hidden class="anchor" aria-hidden="true" href="#why-langchain-matters-in-2025">#</a></h3>
+<p>The LLM landscape exploded in 2024-2025. New models from OpenAI, Anthropic, Google, Meta, and open-source communities hit the market monthly. Each has different API formats, context windows, and pricing structures. LangChain abstracts these differences, giving developers a unified interface to work with <a href="https://python.langchain.com/docs/integrations/providers/">over 100 different LLM providers</a>.</p>
+<p>Beyond model abstraction, LangChain excels at orchestration. Modern AI apps rarely call a model once and return the result. They retrieve documents, call external APIs, make decisions, and maintain conversation context across multiple turns. LangChain&rsquo;s chain and agent primitives handle this complexity so you can focus on application logic.</p>
+<h3 id="the-langchain-ecosystem-three-pillars">The LangChain Ecosystem: Three Pillars<a hidden class="anchor" aria-hidden="true" href="#the-langchain-ecosystem-three-pillars">#</a></h3>
+<p>LangChain today is not just one library — it is an ecosystem of three integrated tools: | Tool | Purpose | When to Use |
+|</p>
 <hr>
-<h2 id="자주-묻는-질문-faq">자주 묻는 질문 (FAQ)<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문-faq">#</a></h2>
-<p><strong>LangChain은 어떤 용도로 사용하나요?</strong>
-LangChain은 RAG 기반 문서 검색, 대화형 AI 챗봇, 자동화 에이전트, 데이터 분석 파이프라인 등 LLM을 활용한 애플리케이션 개발에 사용됩니다. 2025년 기준 약 10만 개 이상의 프로젝트에서 활용되고 있습니다.</p>
-<p><strong>LangChain은 물론인가요?</strong>
-네, LangChain은 MIT 라이선스 기반의 완전한 오픈소스 프로젝트입니다. LangSmith는 물론 기반으로 관측성 기능을 묶어 제공하지만, 코어 프레임워크 사용에는 비용이 발생하지 않습니다.</p>
-<p><strong>LangChain과 LlamaIndex 중 어떤 것을 선택해야 하나요?</strong>
-RAG와 데이터 중심 애플리케이션에는 LlamaIndex가, 범용 에이전트와 복잡한 워크플로우에는 LangChain이 적합합니다. 두 프레임워크는 함께 사용할 수도 있습니다.</p>
-<p><strong>Ollama 같은 로컬 LLM과 LangChain을 함께 사용할 수 있나요?</strong>
-네, <code>langchain-ollama</code> 통합 패키지를 통해 Ollama에서 실행 중인 로컬 모델을 LangChain 에이전트와 체인에 연결할 수 있습니다.</p>
-<p><strong>LangChain은 JavaScript/TypeScript를 지원하나요?</strong>
-네, <code>LangChain.js</code>라는 별도의 공식 패키지가 존재하며, Python 버전과 유사한 API를 제공합니다. npm으로 ````langchain``` 패키지를 설치하여 사용할 수 있습니다.</p>
-<h2 id="참고-자료">참고 자료<a hidden class="anchor" aria-hidden="true" href="#참고-자료">#</a></h2>
-<ul>
-<li><a href="https://python.langchain.com">LangChain 공식 문서</a></li>
-<li><a href="https://github.com/langchain-ai">LangChain GitHub 저장소</a></li>
-<li><a href="https://docs.smith.langchain.com">LangSmith 문서</a></li>
-<li><a href="https://langchain-ai.github.io/langgraph">LangGraph 튜토리얼</a></li>
-<li><a href="https://huggingface.co">Hugging Face 모델 허브</a></li>
-</ul>
+<p>|</p>
 <hr>
-<h2 id="추천-인프라">추천 인프라<a hidden class="anchor" aria-hidden="true" href="#추천-인프라">#</a></h2>
-<p>위 도구들을 24/7 안정 운영하려면 인프라가 중요하다: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.</p>
-<ul>
-<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연. dibi8.com 자체 호스팅 IDC.</li>
-</ul>
-<p><em>추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.</em></p>
-<p>{
-&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
-&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;LangChain 완벽 가이드 2025: 초보자를 위한 프로덕션급 AI 앱 개발&rdquo;,
-&ldquo;datePublished&rdquo;: &ldquo;2026-05-18&rdquo;,
-&ldquo;dateModified&rdquo;: &ldquo;2026-05-18&rdquo;,
-&ldquo;author&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
-&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
-},
-&ldquo;publisher&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
-&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
-&ldquo;logo&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
-}
-},
-&ldquo;mainEntityOfPage&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/langchain-complete-guide%22">https://dibi8.com/kr/resources/langchain-complete-guide"</a>
-}
-}
-</script></p>
-<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
-<p>Understanding langchain 완벽 가이드 2025: 초보자를 위한 프로덕션급 ai 앱 개발 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
-<ul>
-<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
-<li><strong>Quality</strong>: Improve output consistency</li>
-<li><strong>Scalability</strong>: Handle larger workloads</li>
-<li><strong>Cost</strong>: Reduce operational expenses</li>
-</ul>
-<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
-<p>Organizations are using similar approaches to: 1. Automate code review processes
-2. Generate documentation automatically
-3. Build internal knowledge bases
-4. Streamline deployment pipelines</p>
-<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
-<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
-<ul>
-<li>Identify repetitive tasks</li>
-<li>Measure current time costs</li>
-<li>Define success metrics</li>
-</ul>
-<ol start="2">
-<li>
-<p><strong>Choose Your Approach</strong></p>
-<ul>
-<li>Start with simple automations</li>
-<li>Gradually increase complexity</li>
-<li>Test and iterate</li>
-</ul>
-</li>
-<li>
-<p><strong>Measure Results</strong></p>
-<ul>
-<li>Track time savings</li>
-<li>Monitor quality improvements</li>
-<li>Calculate ROI</li>
-</ul>
-</li>
-</ol>
-<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
-<p>LangChain 완벽 가이드 2025: 초보자를 위한 프로덕션급 AI 앱 개발 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
-<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<p>|</p>
 <hr>
-<p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~5 minutes</em></p>
-<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
-<p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p>
-<p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p>
-<p><strong>问：如何评估LLM框架的性能？</strong></p>
-<p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p>
-<p><strong>问：开源LLM框架的商业使用限制？</strong></p>
-<p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p>
-<p><strong>问：是否需要GPU才能运行LLM框架？</strong></p>
-<p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p>
-<p><strong>问：企业级部署的最佳实践？</strong></p>
-<p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p>
-<h2 id="framework-comparison">Framework Comparison<a hidden class="anchor" aria-hidden="true" href="#framework-comparison">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>Framework</th>
-					<th>Primary Use</th>
-					<th>Learning Curve</th>
-					<th>Community</th>
-					<th>Production Ready</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>LangChain</strong></td>
-					<td>General-purpose</td>
-					<td>Medium</td>
-					<td>Large</td>
-					<td>✅ Yes</td>
-			</tr>
-			<tr>
-					<td><strong>LlamaIndex</strong></td>
-					<td>RAG/Retrieval</td>
-					<td>Low</td>
-					<td>Growing</td>
-					<td>✅ Yes</td>
-			</tr>
-			<tr>
-					<td><strong>Haystack</strong></td>
-					<td>Document processing</td>
-					<td>Medium</td>
-					<td>Medium</td>
-					<td>✅ Yes</td>
-			</tr>
-			<tr>
-					<td><strong>LangGraph</strong></td>
-					<td>Stateful agents</td>
-					<td>High</td>
-					<td>Growing</td>
-					<td>✅ Yes</td>
-			</tr>
-	</tbody>
-</table>
+<p>|
+| <strong>LangChain</strong> | Core orchestration framework | Building chains, agents, and RAG pipelines |
+| <strong>LangGraph</strong> | Stateful multi-agent applications | Complex workflows with cycles, branching, and persistence |
+| <strong>LangSmith</strong> | Observability and debugging platform | Monitoring, tracing, and evaluating production LLM apps |</p>
+<p>Understanding how these three tools complement each other is essential for building production-grade applications. LangChain provides the building blocks, LangGraph manages multi-step stateful execution, and LangSmith gives you visibility into what your application is doing in production.</p>
+<h2 id="langchain-core-components-explained">LangChain Core Components Explained<a hidden class="anchor" aria-hidden="true" href="#langchain-core-components-explained">#</a></h2>
+<p>LangChain&rsquo;s power comes from its component architecture. Each piece handles a specific concern, and they connect together like LEGO bricks. Here is a breakdown of the seven core components you need to master.</p>
+<h3 id="models-llms-and-chat-models">Models (LLMs and Chat Models)<a hidden class="anchor" aria-hidden="true" href="#models-llms-and-chat-models">#</a></h3>
+<p>LangChain distinguishes between two types of models. LLMs take a string input and return a string output — this is the traditional text-in, text-out interface. Chat models accept a list of messages and return a message object, which is the format used by modern conversational APIs like GPT-4 and Claude 3.</p>
+<p>In 2025, you should almost always use chat models. LangChain&rsquo;s <code>init_chat_model</code> function provides a provider-agnostic way to instantiate any major chat model: ````python
+from langchain.chat_models import init_chat_model</p>
+<h1 id="works-with-openai-anthropic-google-and-20-providers">Works with OpenAI, Anthropic, Google, and 20+ providers<a hidden class="anchor" aria-hidden="true" href="#works-with-openai-anthropic-google-and-20-providers">#</a></h1>
+<p>model = init_chat_model(&ldquo;gpt-4o&rdquo;, model_provider=&ldquo;openai&rdquo;)</p>
+<h1 id="or-simply-init_chat_modelclaude-3-5-sonnet-20241022">Or simply: init_chat_model(&ldquo;claude-3-5-sonnet-20241022&rdquo;)<a hidden class="anchor" aria-hidden="true" href="#or-simply-init_chat_modelclaude-3-5-sonnet-20241022">#</a></h1>
+<pre tabindex="0"><code>
+### Prompts and Prompt Templates
 
+Prompt engineering directly impacts application quality. LangChain provides ``PromptTemplate`` and ``ChatPromptTemplate`` classes for structuring prompts with dynamic inputs. The ``ChatPromptTemplate`` is particularly powerful — it lets you define system messages, human messages, and AI messages as reusable templates: `````python
+from langchain.prompts import ChatPromptTemplate
+
+template = ChatPromptTemplate([
+    (&#34;system&#34;, &#34;You are a {role}. Answer concisely.&#34;),
+    (&#34;human&#34;, &#34;{question}&#34;)
+])
+
+prompt = template.invoke({&#34;role&#34;: &#34;Python expert&#34;, &#34;question&#34;: &#34;What are dataclasses?&#34;})
+</code></pre><p>LangChain also supports few-shot prompting, example selectors, and output parsers — all critical for reliable production applications.</p>
+<h3 id="chains-simple-and-complex-workflows">Chains: Simple and Complex Workflows<a hidden class="anchor" aria-hidden="true" href="#chains-simple-and-complex-workflows">#</a></h3>
+<p>A chain is the most fundamental LangChain abstraction. It is a sequence of calls — whether to an LLM, a tool, or a data source. The simplest chain connects a prompt template to a model: `````python
+from langchain.chains import LLMChain</p>
+<p>chain = template | model
+response = chain.invoke({&ldquo;role&rdquo;: &ldquo;Python expert&rdquo;, &ldquo;question&rdquo;: &ldquo;Explain list comprehensions&rdquo;})</p>
+<pre tabindex="0"><code>
+The pipe operator (````|````) creates a Runnable sequence, LangChain&#39;s unified execution interface introduced in version 0.1. This composition syntax, inspired by Unix pipes, makes it trivial to build multi-step workflows.
+
+### Document Loaders and Text Splitters
+
+RAG applications need data. LangChain includes over 100 document loaders for sources ranging from PDFs and Word documents to web pages, databases, and cloud storage. The most commonly used loaders include ````PyPDFLoader````, ````UnstructuredFileLoader````, and ````WebBaseLoader````.
+
+Loading is only half the battle. LLMs have context limits, so long documents must be split into chunks. LangChain&#39;s text splitters handle this intelligently: `````python
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000,
+    chunk_overlap=200,
+    separators=[&#34;\n\n&#34;, &#34;\n&#34;, &#34; &#34;, &#34;&#34;]
+)
+docs = splitter.split_documents(loaded_documents)
+</code></pre><p>The <code>RecursiveCharacterTextSplitter</code> preserves semantic boundaries by trying larger separators first, keeping paragraphs and sentences intact when possible.</p>
+<h3 id="vector-stores-and-retrievers">Vector Stores and Retrievers<a hidden class="anchor" aria-hidden="true" href="#vector-stores-and-retrievers">#</a></h3>
+<p>Once documents are split, they are converted to embeddings and stored in a vector database. LangChain supports <a href="https://python.langchain.com/docs/integrations/vectorstores/">30+ vector store integrations</a> including Chroma, Pinecone, Weaviate, Milvus, and pgvector.</p>
+<p>The retriever interface abstracts the similarity search process: `````python
+from langchain.vectorstores import Chroma
+from langchain.embeddings import OpenAIEmbeddings</p>
+<p>vectorstore = Chroma.from_documents(docs, OpenAIEmbeddings())
+retriever = vectorstore.as_retriever(search_kwargs={&ldquo;k&rdquo;: 4})</p>
+<pre tabindex="0"><code>
+In 2025, most developers use the ````create_retrieval_chain```` helper, which combines retrieval with a generation step in a single, optimized pipeline.
+
+### Agents and Tool Integration
+
+Agents represent LangChain&#39;s most powerful abstraction. An agent uses an LLM to decide which actions to take, rather than following a predetermined sequence. You provide the agent with tools — functions it can call — and the agent reasons about which tool to use and when.
+
+LangChain supports several agent types, with ReAct (Reasoning + Acting) being the most popular: `````python
+from langchain.agents import create_react_agent, AgentExecutor
+from langchain.tools import tool
+
+@tool
+def search_api(query: str) -&gt; str: &#34;&#34;&#34;Search the company knowledge base.&#34;&#34;&#34;
+    return &#34;Search results here&#34;
+
+agent = create_react_agent(model, [search_api])
+executor = AgentExecutor(agent=agent, tools=[search_api])
+</code></pre><h3 id="memory-and-conversation-management">Memory and Conversation Management<a hidden class="anchor" aria-hidden="true" href="#memory-and-conversation-management">#</a></h3>
+<p>Conversational applications need to remember previous turns. LangChain&rsquo;s memory components store and retrieve chat history. The most commonly used options include <code>ConversationBufferMemory</code> (stores full history), <code>ConversationBufferWindowMemory</code> (keeps last N exchanges), and <code>ConversationSummaryMemory</code> (summarizes older turns to save tokens).</p>
+<p>In production, most teams now use LangGraph&rsquo;s persistence layer instead of standalone memory classes, as it offers more control over state management.</p>
+<h2 id="langchain-vs-langgraph-vs-langsmith-what-is-the-difference">LangChain vs LangGraph vs LangSmith: What is the Difference?<a hidden class="anchor" aria-hidden="true" href="#langchain-vs-langgraph-vs-langsmith-what-is-the-difference">#</a></h2>
+<p>Developers often confuse the three pillars of the LangChain ecosystem. Here is the clear breakdown you need.</p>
+<p><strong>LangChain</strong> is the core framework. It provides the component abstractions — models, prompts, document loaders, vector stores — and the composition primitives for building chains. If you are writing a simple RAG app or calling an LLM with structured output, LangChain is all you need.</p>
+<p><strong>LangGraph</strong> builds on top of LangChain for stateful, multi-actor applications. While LangChain chains execute linearly (step A, then step B, then step C), LangGraph models applications as graphs where nodes can loop back, branch conditionally, and maintain persistent state across executions. Use LangGraph when building multi-agent systems, human-in-the-loop workflows, or any application where execution flow depends on runtime conditions.</p>
+<p><strong>LangSmith</strong> is a hosted platform for observability, testing, and evaluation. It traces every step of your chain or agent execution, showing exact prompts, model responses, token usage, and latency. You can define evaluation datasets, run automated tests, and compare model performance across different configurations. LangSmith is essential for production deployments but optional during development.</p>
+<h2 id="langchain-quick-start-build-your-first-app">LangChain Quick Start: Build Your First App<a hidden class="anchor" aria-hidden="true" href="#langchain-quick-start-build-your-first-app">#</a></h2>
+<p>Let us build a complete RAG application in under 50 lines of code. You will need Python 3.9+ and an OpenAI API key.</p>
+<h3 id="installation-and-environment-setup">Installation and Environment Setup<a hidden class="anchor" aria-hidden="true" href="#installation-and-environment-setup">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install langchain langchain-openai langchain-chroma
+</span></span><span style="display:flex;"><span>export OPENAI_API_KEY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-key-here&#34;</span>
+</span></span></code></pre></div><h3 id="building-a-simple-llm-chain">Building a Simple LLM Chain<a hidden class="anchor" aria-hidden="true" href="#building-a-simple-llm-chain">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.prompts <span style="color:#f92672">import</span> ChatPromptTemplate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> ChatOpenAI(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o-mini&#34;</span>)
+</span></span><span style="display:flex;"><span>template <span style="color:#f92672">=</span> ChatPromptTemplate<span style="color:#f92672">.</span>from_template(<span style="color:#e6db74">&#34;Explain </span><span style="color:#e6db74">{topic}</span><span style="color:#e6db74"> in one paragraph&#34;</span>)
+</span></span><span style="display:flex;"><span>chain <span style="color:#f92672">=</span> template <span style="color:#f92672">|</span> model
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> chain<span style="color:#f92672">.</span>invoke({<span style="color:#e6db74">&#34;topic&#34;</span>: <span style="color:#e6db74">&#34;vector embeddings&#34;</span>})
+</span></span><span style="display:flex;"><span>print(result<span style="color:#f92672">.</span>content)
+</span></span></code></pre></div><h3 id="adding-rag-with-document-loading">Adding RAG with Document Loading<a hidden class="anchor" aria-hidden="true" href="#adding-rag-with-document-loading">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.document_loaders <span style="color:#f92672">import</span> PyPDFLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.text_splitter <span style="color:#f92672">import</span> RecursiveCharacterTextSplitter
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> OpenAIEmbeddings
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_chroma <span style="color:#f92672">import</span> Chroma
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains <span style="color:#f92672">import</span> create_retrieval_chain
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains.combine_documents <span style="color:#f92672">import</span> create_stuff_documents_chain
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load and split</span>
+</span></span><span style="display:flex;"><span>loader <span style="color:#f92672">=</span> PyPDFLoader(<span style="color:#e6db74">&#34;document.pdf&#34;</span>)
+</span></span><span style="display:flex;"><span>docs <span style="color:#f92672">=</span> loader<span style="color:#f92672">.</span>load()
+</span></span><span style="display:flex;"><span>splitter <span style="color:#f92672">=</span> RecursiveCharacterTextSplitter(chunk_size<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>, chunk_overlap<span style="color:#f92672">=</span><span style="color:#ae81ff">200</span>)
+</span></span><span style="display:flex;"><span>chunks <span style="color:#f92672">=</span> splitter<span style="color:#f92672">.</span>split_documents(docs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Store and retrieve</span>
+</span></span><span style="display:flex;"><span>vectorstore <span style="color:#f92672">=</span> Chroma<span style="color:#f92672">.</span>from_documents(chunks, OpenAIEmbeddings())
+</span></span><span style="display:flex;"><span>retriever <span style="color:#f92672">=</span> vectorstore<span style="color:#f92672">.</span>as_retriever()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create RAG chain</span>
+</span></span><span style="display:flex;"><span>combine_docs <span style="color:#f92672">=</span> create_stuff_documents_chain(model, template)
+</span></span><span style="display:flex;"><span>rag_chain <span style="color:#f92672">=</span> create_retrieval_chain(retriever, combine_docs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> rag_chain<span style="color:#f92672">.</span>invoke({<span style="color:#e6db74">&#34;input&#34;</span>: <span style="color:#e6db74">&#34;What are the main findings?&#34;</span>})
+</span></span><span style="display:flex;"><span>print(result[<span style="color:#e6db74">&#34;answer&#34;</span>])
+</span></span></code></pre></div><h3 id="creating-a-react-agent-with-tools">Creating a ReAct Agent with Tools<a hidden class="anchor" aria-hidden="true" href="#creating-a-react-agent-with-tools">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.agents <span style="color:#f92672">import</span> create_react_agent, AgentExecutor
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain <span style="color:#f92672">import</span> hub
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.tools <span style="color:#f92672">import</span> tool
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@tool</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">calculator</span>(expression: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;Evaluate a mathematical expression.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> str(eval(expression))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>prompt <span style="color:#f92672">=</span> hub<span style="color:#f92672">.</span>pull(<span style="color:#e6db74">&#34;hwchase17/react&#34;</span>)
+</span></span><span style="display:flex;"><span>agent <span style="color:#f92672">=</span> create_react_agent(model, [calculator], prompt)
+</span></span><span style="display:flex;"><span>executor <span style="color:#f92672">=</span> AgentExecutor(agent<span style="color:#f92672">=</span>agent, tools<span style="color:#f92672">=</span>[calculator], verbose<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>executor<span style="color:#f92672">.</span>invoke({<span style="color:#e6db74">&#34;input&#34;</span>: <span style="color:#e6db74">&#34;What is 127 multiplied by 43?&#34;</span>})
+</span></span></code></pre></div><h2 id="advanced-langchain-patterns">Advanced LangChain Patterns<a hidden class="anchor" aria-hidden="true" href="#advanced-langchain-patterns">#</a></h2>
+<p>Once you have mastered the basics, these patterns will help you build more robust applications.</p>
+<h3 id="building-multi-step-reasoning-chains">Building Multi-Step Reasoning Chains<a hidden class="anchor" aria-hidden="true" href="#building-multi-step-reasoning-chains">#</a></h3>
+<p>Complex tasks often require breaking problems into sub-tasks. LangChain&rsquo;s expression language (LCEL) makes this compositional: `````python
+from operator import itemgetter
+from langchain_core.runnables import RunnablePassthrough</p>
+<p>chain = (
+{&ldquo;context&rdquo;: retriever, &ldquo;question&rdquo;: RunnablePassthrough()}
+| template
+| model
+)</p>
+<pre tabindex="0"><code>
+### Streaming and Async Execution
+
+Production applications should stream responses to reduce perceived latency: `````python
+for chunk in chain.stream({&#34;topic&#34;: &#34;machine learning&#34;}): print(chunk.content, end=&#34;&#34;, flush=True)
+</code></pre><p>Async support is built in — simply use <code>ainvoke</code>, <code>astream</code>, or <code>abatch</code> instead of their synchronous counterparts.</p>
+<h3 id="error-handling-and-fallbacks">Error Handling and Fallbacks<a hidden class="anchor" aria-hidden="true" href="#error-handling-and-fallbacks">#</a></h3>
+<p>Models fail. Rate limits hit. Networks timeout. LangChain&rsquo;s fallback mechanism lets you specify backup models: `````python
+from langchain_openai import ChatAnthropic</p>
+<p>primary = ChatOpenAI(model=&ldquo;gpt-4o&rdquo;)
+backup = ChatAnthropic(model=&ldquo;claude-3-5-sonnet-20241022&rdquo;)</p>
+<p>model_with_fallback = primary.with_fallbacks([backup])</p>
+<pre tabindex="0"><code>
+## LangChain in Production: Best Practices
+
+Deploying LangChain applications requires attention to several operational concerns.
+
+### Performance Optimization Tips
+
+- **Use batching**: The ````batch``` method processes multiple inputs concurrently, dramatically improving throughput
+- **Enable caching**: LangChain supports caching LLM responses via SQLite, Redis, or in-memory stores
+- **Choose the right model**: GPT-4o-mini handles 80% of tasks at 1/50th the cost of GPT-4o
+- **Optimize retrieval**: Use MMR (Maximal Marginal Relevance) to diversify retrieved documents and reduce redundancy
+
+### Security Considerations and Prompt Injection Defense
+
+Prompt injection remains the top security concern for LLM applications. Mitigation strategies include: - **Input validation**: Sanitize user inputs before including them in prompts
+- **Permission boundaries**: Run tool executions in sandboxed environments with minimal privileges
+- **Output encoding**: Treat all LLM outputs as untrusted until validated
+- **Human-in-the-loop**: Require approval for high-impact actions like data deletion or financial transactions
+
+### Monitoring with LangSmith
+
+LangSmith traces every step of your application execution. In production, you should: 1. Set up automated evaluation runs on representative datasets
+2. Monitor token usage and latency dashboards
+3. Configure alerts for error rate spikes
+4. Use feedback collection to track user satisfaction
+
+Sign up for LangSmith at [docs.smith.langchain.com](https://docs.smith.langchain.com).
+
+### Deployment Strategies
+
+LangChain applications deploy like any Python service. Common patterns include: - **Docker containers**: Package your chain with a FastAPI or Streamlit frontend
+- **Serverless**: Deploy to AWS Lambda or Google Cloud Run for variable workloads
+- **LangServe**: LangChain&#39;s built-in tool for exposing chains as REST APIs
+- **LangGraph Cloud**: Managed hosting for LangGraph applications with built-in persistence
+
+## Top LangChain Alternatives 2025
+
+While LangChain leads in adoption, several alternatives excel in specific scenarios: | Framework | Strength | Best For |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| **LlamaIndex** | Advanced RAG and data ingestion | Document Q&amp;A over large knowledge bases |
+| **Haystack** | Enterprise search pipelines | Semantic search and information retrieval |
+| **CrewAI** | Role-based multi-agent systems | Collaborative agent workflows |
+| **AutoGen** | Conversational agents with code execution | Research and data analysis automation |
+| **Semantic Kernel** | Microsoft ecosystem integration | .NET and enterprise Microsoft environments |
+
+For most teams, LangChain remains the safest default due to its ecosystem breadth and documentation quality. However, if your application is purely RAG-focused, LlamaIndex&#39;s specialized indexing and retrieval capabilities may deliver better results with less configuration.
+
+## Frequently Asked Questions
+
+### What is LangChain used for?
+
+LangChain is used to build applications powered by large language models. Common use cases include chatbots with retrieval-augmented generation (RAG), AI agents that interact with external tools, text summarization pipelines, and automated data analysis workflows. Companies use LangChain for customer support automation, internal knowledge search, content generation, and code assistance tools.
+
+### Is LangChain free to use?
+
+Yes, LangChain is open-source and free under the MIT license. You can use it commercially without restrictions. However, you pay for the underlying LLM API calls (OpenAI, Anthropic, etc.) and any hosted services like LangSmith, which offers a generous free tier for development.
+
+### LangChain vs LlamaIndex: Which should I choose?
+
+Choose LangChain for general-purpose LLM orchestration, multi-step agent workflows, and applications requiring complex tool integration. Choose LlamaIndex when your primary need is advanced RAG with sophisticated document indexing, knowledge graph construction, or multi-modal data retrieval. Many teams use both — LlamaIndex for ingestion and retrieval, LangChain for orchestration and agent logic.
+
+### Can I use LangChain with local LLMs like Ollama?
+
+Absolutely. LangChain integrates with Ollama, LM Studio, vLLM, and other local LLM servers through the OpenAI-compatible API or dedicated integration packages. This lets you build applications that run entirely on-premises without sending data to external APIs. See [github.com/langchain-ai](https://github.com/langchain-ai) for integration examples.
+
+### Does LangChain support JavaScript and TypeScript?
+
+Yes. LangChain.js provides first-class support for JavaScript and TypeScript environments, including Node.js, Edge functions, and browsers. The JavaScript package maintains API parity with the Python version for core components, though some integrations and advanced features are Python-only. You can find the JavaScript documentation at [python.langchain.com](https://python.langchain.com).
+
+## Conclusion and Next Steps
+
+LangChain has evolved from a simple chaining utility into a comprehensive ecosystem for building production AI applications. The combination of LangChain&#39;s component library, LangGraph&#39;s stateful execution engine, and LangSmith&#39;s observability platform gives developers everything they need to go from prototype to production.
+
+Start with a simple chain, add retrieval when you need domain knowledge, introduce agents for complex decision-making, and use LangGraph when you need stateful multi-actor workflows. Monitor everything with LangSmith, optimize based on real usage data, and iterate.
+
+The best way to learn LangChain is to build something. Pick a problem you have — summarizing research papers, answering questions over your company&#39;s documentation, automating a repetitive analysis task — and implement it. The framework&#34;s modular design means you can start simple and add complexity only when you need it.
+
+For the latest updates, follow the [LangChain blog](https://blog.langchain.dev) and explore the ever-growing collection of integrations and templates in the official documentation.
+
+
+* * *
+## Recommended Infrastructure
+
+To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
+- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.
+
+*Affiliate links — no extra cost to you, helps keep dibi8.com running.*
+
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;LangChain Complete Guide 2025: From Zero to Production-Ready AI Apps&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-18&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-18&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/langchain-complete-guide&#34;
+  }
+}
+&lt;/script&gt;
+## Frequently Asked Questions (FAQ)
+
+**问：AI Agent和传统自动化有什么区别？**
+
+AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+
+**问：如何选择合适的AI Agent框架？**
+
+考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+
+**问：AI Agent的安全性如何保证？**
+
+实施权限最小化、输入验证、审计日志、以及定期安全评估。
+
+**问：AI Agent的学习成本有多高？**
+
+入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+
+**问：能否自定义AI Agent的行为？**
+
+是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+
+
+* * *
+</code></pre>
 
   </div>
 
@@ -649,6 +626,81 @@ RAG와 데이터 중심 애플리케이션에는 LlamaIndex가, 범용 에이전
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

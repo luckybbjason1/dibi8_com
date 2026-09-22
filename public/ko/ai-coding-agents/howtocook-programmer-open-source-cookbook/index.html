@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: “455.3 MB” file_md5: \"\" download_url: “https://github.com/Anduin2017/HowToCook\" backup_url: \"” last_maintained: “2026-05-15” draft: false aliases:\n/kr/posts/howtocook-programmer-open-source-cookbook/ faqs: - q: ‘HowToCook이란 무엇인가요?’ a: ‘HowToCook(程序员做饭指南)은 프로그래머 Anduin2017이 만든 오픈 소스 레시피 프로젝트로, 개발자가 문서에서 기대하는 수준의 정밀함과 명확함으로 작성된 297가지 레시피를 담고 있습니다.’ q: ‘HowToCook은 기존 레시피와 어떻게 다른가요?’ a: ‘‘‘소금 약간’‘이나 ‘‘노릇해질 때까지 볶기’’ 같은 모호한 표현 대신, 모든 레시피에 정확한 계량(예: ‘‘소금 3g’’), 정확한 시간(예: ‘‘한 면당 90초 볶기’’), 완전한 사전 재료 목록, 필요 도구 목록, 그리고 1-5성 난이도 등급이 명시되어 있습니다.’ q: ‘HowToCook 레시피의 난이도 등급은 어떻게 되나요?’ a: ‘레시피는 1-5성 체계를 사용합니다. 1성은 토마토 달걀볶음, 인스턴트 라면 같은 간단한 요리이고, 5성은 샥스핀 수프, 전복죽 같은 고급 요리입니다. 전체 컬렉션은 1성 45개, 2성 78개, 3성 89개, 4성 56개, 5성 29개로 구성되어 있습니다.’ q: ‘Docker로 HowToCook을 로컬에서 실행하는 방법은 무엇인가요?’ a: ‘다음 명령으로 이미지를 받아 실행하세요: docker pull ghcr.io/anduin2017/how-to-cook:latest 후 docker run -d -p 5000:5000 ghcr.io/anduin2017/how-to-cook:latest를 실행하고, http://localhost:5000에서 접속합니다.’ q: ‘HowToCook에 레시피를 기여하는 방법은 무엇인가요?’ a: ‘저장소를 Fork하고, 템플릿 레시피를 복사한 뒤, 프로젝트의 구조화된 형식에 맞게 레시피를 작성하고 Pull Request를 제출하면 됩니다. 이 프로젝트에는 200명 이상의 기여자가 있으며 중국어, 영어, 일본어를 지원합니다.’ {\u003c/* resource-info */\u003e}\nHowToCook란? HowToCook（프로그래머 요리 가이드）는 프로그래머 Anduin2017이 만든 오픈소스 레시피 프로젝트입니다. 297개 레시피가 프로그래머가 익숙한 정확성과 명확성으로 작성되었습니다.\n프로젝트 철학: 레시피는 코드처럼 명확해야 합니다. “소금 조금\"이나 “노랗게 볶을 때까지” 같은 모호한 설명 없이, 모든 레시피는 정확한 계량, 정확한 시간, 단계별 프로세스를 제공합니다.\nGitHub: https://github.com/Anduin2017/HowToCook\nStars: 70K+\n기여자: 200+\n라이선스: Unlicense\n왜 프로그래머가 이것이 필요한가? 기존 레시피의 문제 문제 예시 HowToCook 해결책 모호한 양 “소금 조금” “소금 3g（1/2 티스푼）” 애매한 시간 “노랗게 볶을 때까지” “한 면당 90초 볶기” 누락된 단계 중간에 새로운 재료 등장 완전한 재료 목록 먼저 난이도 없음 모든 요리가 똑같이 어려워 보임 1-5성 난이도 시스템 장비 목록 없음 모든 것이 있다고 가정 필요한 도구 먼저 나열 개발자를 위한 특성 구조화된 형식: 매개변수가 있는 함수처럼 난이도 등급: 1-5성（라면에서 베이징 덕까지） 장비 요구사항: 재료 전에 나열 정확한 계량: g, ml, “한 꼬집” 아님 시간 추적: 준비 시간, 조리 시간, 총 시간 에러 처리: 일반적인 실수와 피하는 방법 레시피 분류 난이도별 성급 수량 예시 ⭐ 45 토마토 계란볶음, 라면 업그레이드 ⭐⭐ 78 궁보계정, 홍소육 ⭐⭐⭐ 89 탕초排骨, 마파두부 ⭐⭐⭐⭐ 56 베이징 덕, 훠궈 베이스 ⭐⭐⭐⭐⭐ 29 상어 지느러미 수프, 전복 죽 종류별 채소: 85道（볶음, 조림, 찜） 고기: 92道（돼지, 소, 닭, 양） 해산물: 34道（생선, 새우, 게） 국물: 46道（빠른 국, 느린 끓임） 아침: 23道（죽, 팬케이크, 샌드위치） 디저트: 17道（케이크, 푸딩, 단팥죽） 샘플 레시피: 토마토 계란볶음 # 토마토 계란볶음 ⭐ ## 재료 - 계란 2개（100g） - 토마토 2개（300g） - 소금 3g（1/2 티스푼） - 설탕 5g（1 티스푼） - 식용유 10ml - 파 2g（선택） ## 조리도구 - 프라이팬 - 뒤집개 - 볼 ## 시간 - 준비: 5분 - 조리: 5분 - 총계: 10분 ## 단계 1. 계란을 볼에 깨서 소금 1g 넣고 균일하게 휘핑 2. 토마토를 씻어 2cm 덩이로 자르기 3. 중불로 프라이팬을 180°C까지 가열 4. 기름을 두르고 10초 대기 5. 계란을 부어 30초간 계속 저으며 볶기 6. 계란이 80% 익었을 때（약간 촉촉한 상태）꺼내기 7. 같은 팬에 토마토 넣고 2분 볶기 8. 남은 소금과 설탕 추가 9. 계란을 다시 팬에 넣고 20초 섞기 10. 즉시 서빙 ## 팁 - 계란을 너무 오래 볶지 마세요 — 꺼낸 후에도 익어갑니다 - 토마토가 너무 신맛이 나면 설탕 1g 더 추가 - 더 부드러운 식감을 원하면 계란에 우유 10ml 추가 커뮤니티와 기여 기여 방법 Fork 저장소 복사 템플릿 레시피 작성 형식에 맞는 레시피 제출 Pull Request 기여 통계 200+ 기여자 전 세계에서 297개 레시피 지속적으로 증가 다국어 지원: 중국어, 영어, 일본어 Docker 지원: 한 줄 명령으로 로컬 실행 웹 배포 # 로컬 배포 docker pull ghcr.io/anduin2017/how-to-cook:latest docker run -d -p 5000:5000 ghcr.io/anduin2017/how-to-cook:latest # http://localhost:5000 접속 NPM 패키지 Node.js 패키지로 설치: `````bash npm install how-to-cook\n프로그래밍 방식 사용: `````javascript const recipes = require('how-to-cook'); // 레시피 검색 const tomatoRecipes = recipes.search('토마토'); // 난이도로 필터링 const easyRecipes = recipes.filterByStars(1); // 랜덤 가져오기 const dinner = recipes.random(); ```` * * * ## 학습 경로 ### 초보자（1-2주） - 주방 준비 - 기본 칼 기술 - 1성 레시피 - 밥 짓기 ### 중급자（3-4주） - 2-3성 레시피 - 육류 처리 - 볶음 기술 - 국물 기초 ### 고급자（5주+） - 4-5성 레시피 - 다중 요리 조율 - 맛 균형 - 플레이팅 * * * ## 왜 이 프로젝트가 주목받아야 하는가 **HowToCook**은 다음의 완벽한 예시입니다: 1. **커뮤니티 기반 콘텐츠**: 200+ 기여자가 진정한 콘텐츠를 창조 2. **구조화된 데이터**: 레시피는 schema.org 형식을 따름 3. **롱테일 키워드**: \"프로그래머 요리 가이드\", \"how to cook for developers\" 4. **에버그린 콘텐츠**: 요리는 결코 시대에 뒤떨어지지 않음 5. **다국어**: 중국어, 영어, 일본어 버전 * * * ## 관련 기사 - [Free Claude Code 오픈소스 AI 코딩 에이전트](/kr/resources/ai-tools/free-claude-code-open-source-proxy/) — 또 다른 개발자 오픈소스 도구 - [Pixelle-Video AI 쇼트 비디오 생성기](/kr/resources/ai-tools/pixelle-video-ai-short-video-generator/) — AI 콘텐츠 제작 도구 - [OpenClaw 42개 사용 사례](/kr/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) — AI 에이전트 일상 작업 * * * *면책 조항: 본 문서는 오픈소스 프로젝트를 소개합니다. 모든 레시피 콘텐츠는 HowToCook 커뮤니티에 속합니다. 요리 시 식품 안전 지침을 따르세요.* * * * ## 추천 도구 오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet. - **** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%. *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"HowToCook 프로그래머 요리 가이드: 코딩을 더 향기롭게 하는 297개 오픈소스 레시피\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/howtocook-programmer-open-source-cookbook\" } } ## Why This Matters Understanding howtocook 프로그래머 요리 가이드: 코딩을 더 향기롭게 하는 297개 오픈소스 레시피 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion HowToCook 프로그래머 요리 가이드: 코딩을 더 향기롭게 하는 297개 오픈소스 레시피 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* ",
-  "wordCount" : "1119",
+  "articleBody": "title: “HowToCook: 297 Recipes for Programmers - The Open Source…” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Docker\nGo JavaScript application_domain: “Ai Tools” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: “455.3 MB” file_md5: \"\" download_url: “https://github.com/Anduin2017/HowToCook\" backup_url: \"” last_maintained: “2026-05-15” draft: false aliases: /posts/howtocook-programmer-open-source-cookbook/ faqs: - q: ‘What is HowToCook?’ a: ‘HowToCook (程序员做饭指南) is an open-source cookbook project created by programmer Anduin2017. It contains 297 recipes written with the precision and clarity that developers expect from documentation.’ q: ‘How does HowToCook differ from traditional recipes?’ a: ‘Instead of vague instructions like “a little salt” or “cook until golden,” every recipe uses exact measurements (e.g., “3g salt”), precise timings (e.g., “fry for 90 seconds per side”), a complete upfront ingredient list, a required equipment list, and a 1-5 star difficulty rating.’ q: ‘How are HowToCook recipes rated by difficulty?’ a: ‘Recipes use a 1-5 star system: 1-star covers simple dishes like tomato scrambled eggs and instant noodles, while 5-star covers advanced dishes like shark fin soup and abalone porridge. The collection has 45 one-star, 78 two-star, 89 three-star, 56 four-star, and 29 five-star recipes.’ q: ‘How do you run HowToCook locally with Docker?’ a: ‘Pull and run the image with: docker pull ghcr.io/anduin2017/how-to-cook:latest then docker run -d -p 5000:5000 ghcr.io/anduin2017/how-to-cook:latest, and access it at http://localhost:5000.’ q: ‘How can you contribute a recipe to HowToCook?’ a: ‘Fork the repository, copy the template recipe, write your recipe following the project’’s structured format, and submit a Pull Request. The project has 200+ contributors and supports Chinese, English, and Japanese.’ {\u003c/* resource-info */\u003e}\nWhat is HowToCook? HowToCook (程序员做饭指南) is an open-source cookbook project created by programmer Anduin2017. It contains 297 recipes written with the precision and clarity that developers expect from documentation.\nThe project’s philosophy is simple: cooking recipes should be as clear as code. No ambiguous instructions like “a little salt” or “cook until done.” Every recipe uses precise measurements, exact timings, and step-by-step procedures.\nGitHub: https://github.com/Anduin2017/HowToCook\nStars: 70K+\nContributors: 200+\nLicense: Unlicense\nWhy Programmers Need This The Problem with Traditional Recipes | Issue | Example | HowToCook Solution | |\n|\n|\n| | Ambiguous quantities | “a little salt” | “3g salt (1/2 teaspoon)” | | Vague timing | “cook until golden” | “fry for 90 seconds per side” | | Missing steps | Ingredients appear mid-recipe | Complete ingredient list upfront | | No difficulty rating | All recipes look equally hard | 1-5 star difficulty system | | No equipment list | Assume you have everything | Required tools listed first |\nFeatures Designed for Developers Structured format: Like functions with parameters Difficulty levels: 1-5 stars (from instant noodles to Peking Duck) Equipment requirements: Listed before ingredients Exact measurements: Grams, milliliters, not “a pinch” Time tracking: Prep time, cook time, total time Error handling: Common mistakes and how to avoid them Recipe Categories By Difficulty | Stars | Count | Examples | |\n|\n|\n| | ⭐ | 45 | Tomato scrambled eggs, instant noodles upgrade | | ⭐⭐ | 78 | Kung Pao chicken, braised pork | | ⭐⭐⭐ | 89 | Sweet and sour pork ribs, mapo tofu | | ⭐⭐⭐⭐ | 56 | Peking duck, hot pot base | | ⭐⭐⭐⭐⭐ | 29 | Shark fin soup, abalone porridge |\nBy Type Vegetables: 85 recipes (stir-fried, braised, steamed) Meat: 92 recipes (pork, beef, chicken, lamb) Seafood: 34 recipes (fish, shrimp, crab) Soups: 46 recipes (quick soups, slow-cooked broths) Breakfast: 23 recipes (congee, pancakes, sandwiches) Desserts: 17 recipes (cakes, puddings, sweet soups) Sample Recipe: Tomato Scrambled Eggs # Tomato Scrambled Eggs (西红柿炒鸡蛋) ⭐ ## Ingredients - 2 eggs (100g) - 2 tomatoes (300g) - 3g salt (1/2 teaspoon) - 5g sugar (1 teaspoon) - 10ml cooking oil - 2g green onion (optional) ## Equipment - Frying pan - Spatula - Bowl ## Time - Prep: 5 minutes - Cook: 5 minutes - Total: 10 minutes ## Steps 1. Crack eggs into bowl, add 1g salt, beat until uniform 2. Wash tomatoes, cut into 2cm chunks 3. Heat pan to medium-high (180°C) 4. Add oil, wait 10 seconds 5. Pour eggs, stir constantly for 30 seconds 6. Remove eggs when 80% solid (slightly runny) 7. Add tomatoes to same pan, cook 2 minutes 8. Add remaining salt and sugar 9. Return eggs to pan, mix 20 seconds 10. Serve immediately ## Tips - Don't overcook eggs - they continue cooking after removal - If tomatoes are too acidic, add 1g more sugar - For softer texture, add 10ml milk to eggs Community \u0026 Contributions How to Contribute Fork the repository Copy the template recipe Write your recipe following the format Submit a Pull Request Contribution Stats 200+ contributors worldwide 297 recipes and growing Multiple languages: Chinese, English, Japanese Docker support: Run locally with one command Web Deployment # Deploy locally docker pull ghcr.io/anduin2017/how-to-cook:latest docker run -d -p 5000:5000 ghcr.io/anduin2017/how-to-cook:latest # Access at http://localhost:5000 NPM Package Install as a Node.js package: `````bash npm install how-to-cook\nUse programmatically: `````javascript const recipes = require('how-to-cook'); // Search recipes const tomatoRecipes = recipes.search('tomato'); // Get by difficulty const easyRecipes = recipes.filterByStars(1); // Get random recipe const dinner = recipes.random(); ```` * * * ## Learning Path ### Beginner (Week 1-2) - Kitchen preparation - Basic knife skills - 1-star recipes - Rice cooking ### Intermediate (Week 3-4) - 2-3 star recipes - Meat preparation - Stir-fry techniques - Soup basics ### Advanced (Week 5+) - 4-5 star recipes - Multi-dish coordination - Flavor balancing - Presentation * * * ## Why This Matters for SEO **HowToCook** is a perfect example of: 1. **Community-driven content**: 200+ contributors create authentic content 2. **Structured data**: Recipes follow schema.org format 3. **Long-tail keywords**: \"程序员做饭指南\", \"how to cook for developers\" 4. **Evergreen content**: Cooking never goes out of style 5. **Multi-language**: Chinese, English, Japanese versions * * * ## Related Articles - [Free Claude Code: Open Source AI Coding Agent](/resources/ai-tools/free-claude-code-open-source-proxy/) - Another developer-focused open source tool - [Pixelle-Video: AI Short Video Generator](/resources/ai-tools/pixelle-video-ai-short-video-generator/) - AI tools for content creation - [OpenClaw 42 Use Cases](/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) - AI agents for daily tasks * * * *Disclaimer: This article introduces an open-source project. All recipe content belongs to the HowToCook community. Please follow food safety guidelines when cooking.* * * * ## Recommended Tools For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads. - **** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing. *Affiliate link — supports dibi8.com at no cost to you.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"HowToCook: 297 Recipes for Programmers - The Open Source Cookbook\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/howtocook-programmer-open-source-cookbook\" } } ## Why This Matters Understanding howtocook: 297 recipes for programmers - the open source cookbook is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion HowToCook: 297 Recipes for Programmers - The Open Source Cookbook represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* ",
+  "wordCount" : "1363",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/howtocook-programmer-open-source-cookbook/">En</a>
@@ -209,44 +209,51 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#howtocook%eb%9e%80" aria-label="HowToCook란?">HowToCook란?</a></li>
+                <a href="#what-is-howtocook" aria-label="What is HowToCook?">What is HowToCook?</a></li>
             <li>
-                <a href="#%ec%99%9c-%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%98%eb%a8%b8%ea%b0%80-%ec%9d%b4%ea%b2%83%ec%9d%b4-%ed%95%84%ec%9a%94%ed%95%9c%ea%b0%80" aria-label="왜 프로그래머가 이것이 필요한가?">왜 프로그래머가 이것이 필요한가?</a><ul>
+                <a href="#why-programmers-need-this" aria-label="Why Programmers Need This">Why Programmers Need This</a><ul>
                     
             <li>
-                <a href="#%ea%b8%b0%ec%a1%b4-%eb%a0%88%ec%8b%9c%ed%94%bc%ec%9d%98-%eb%ac%b8%ec%a0%9c" aria-label="기존 레시피의 문제">기존 레시피의 문제</a></li>
+                <a href="#the-problem-with-traditional-recipes" aria-label="The Problem with Traditional Recipes">The Problem with Traditional Recipes</a></li>
             <li>
-                <a href="#%ea%b0%9c%eb%b0%9c%ec%9e%90%eb%a5%bc-%ec%9c%84%ed%95%9c-%ed%8a%b9%ec%84%b1" aria-label="개발자를 위한 특성">개발자를 위한 특성</a></li></ul>
+                <a href="#features-designed-for-developers" aria-label="Features Designed for Developers">Features Designed for Developers</a></li></ul>
             </li>
             <li>
-                <a href="#%eb%a0%88%ec%8b%9c%ed%94%bc-%eb%b6%84%eb%a5%98" aria-label="레시피 분류">레시피 분류</a><ul>
+                <a href="#recipe-categories" aria-label="Recipe Categories">Recipe Categories</a><ul>
                     
             <li>
-                <a href="#%eb%82%9c%ec%9d%b4%eb%8f%84%eb%b3%84" aria-label="난이도별">난이도별</a></li>
+                <a href="#by-difficulty" aria-label="By Difficulty">By Difficulty</a></li>
             <li>
-                <a href="#%ec%a2%85%eb%a5%98%eb%b3%84" aria-label="종류별">종류별</a></li></ul>
+                <a href="#by-type" aria-label="By Type">By Type</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%83%98%ed%94%8c-%eb%a0%88%ec%8b%9c%ed%94%bc-%ed%86%a0%eb%a7%88%ed%86%a0-%ea%b3%84%eb%9e%80%eb%b3%b6%ec%9d%8c" aria-label="샘플 레시피: 토마토 계란볶음">샘플 레시피: 토마토 계란볶음</a></li>
+                <a href="#sample-recipe-tomato-scrambled-eggs" aria-label="Sample Recipe: Tomato Scrambled Eggs">Sample Recipe: Tomato Scrambled Eggs</a></li>
             <li>
-                <a href="#%ec%bb%a4%eb%ae%a4%eb%8b%88%ed%8b%b0%ec%99%80-%ea%b8%b0%ec%97%ac" aria-label="커뮤니티와 기여">커뮤니티와 기여</a><ul>
+                <a href="#community--contributions" aria-label="Community &amp; Contributions">Community &amp; Contributions</a><ul>
                     
             <li>
-                <a href="#%ea%b8%b0%ec%97%ac-%eb%b0%a9%eb%b2%95" aria-label="기여 방법">기여 방법</a></li>
+                <a href="#how-to-contribute" aria-label="How to Contribute">How to Contribute</a></li>
             <li>
-                <a href="#%ea%b8%b0%ec%97%ac-%ed%86%b5%ea%b3%84" aria-label="기여 통계">기여 통계</a></li>
+                <a href="#contribution-stats" aria-label="Contribution Stats">Contribution Stats</a></li>
             <li>
-                <a href="#%ec%9b%b9-%eb%b0%b0%ed%8f%ac" aria-label="웹 배포">웹 배포</a></li></ul>
+                <a href="#web-deployment" aria-label="Web Deployment">Web Deployment</a></li></ul>
             </li>
             <li>
-                <a href="#npm-%ed%8c%a8%ed%82%a4%ec%a7%80" aria-label="NPM 패키지">NPM 패키지</a>
+                <a href="#npm-package" aria-label="NPM Package">NPM Package</a>
             </li>
         </ul>
     </div>
 </details>
 
-  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+  <div class="post-content md-content"><p>title: &ldquo;HowToCook: 297 Recipes for Programmers - The Open Source&hellip;&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
+tech_stack: - Docker</p>
+<ul>
+<li>Go</li>
+<li>JavaScript
+application_domain: &ldquo;Ai Tools&rdquo;
 source_version: &quot;&quot;
 licensing_model: &ldquo;Open Source&rdquo;
 license_type: &ldquo;MIT&rdquo;
@@ -256,262 +263,215 @@ download_url: &ldquo;<a href="https://github.com/Anduin2017/HowToCook%22">https:
 backup_url: &quot;&rdquo;
 last_maintained: &ldquo;2026-05-15&rdquo;
 draft: false
-aliases:</p>
-<ul>
-<li>/kr/posts/howtocook-programmer-open-source-cookbook/
-faqs: - q: &lsquo;HowToCook이란 무엇인가요?&rsquo;
-a: &lsquo;HowToCook(程序员做饭指南)은 프로그래머 Anduin2017이 만든 오픈 소스 레시피 프로젝트로, 개발자가 문서에서 기대하는 수준의 정밀함과 명확함으로 작성된 297가지 레시피를 담고 있습니다.&rsquo;</li>
-<li>q: &lsquo;HowToCook은 기존 레시피와 어떻게 다른가요?&rsquo;
-a: &lsquo;&lsquo;&lsquo;소금 약간&rsquo;&lsquo;이나 &lsquo;&lsquo;노릇해질 때까지 볶기&rsquo;&rsquo; 같은 모호한 표현 대신, 모든 레시피에 정확한 계량(예: &lsquo;&lsquo;소금 3g&rsquo;&rsquo;), 정확한 시간(예: &lsquo;&lsquo;한 면당 90초 볶기&rsquo;&rsquo;), 완전한 사전 재료 목록, 필요 도구 목록, 그리고 1-5성 난이도 등급이 명시되어 있습니다.&rsquo;</li>
-<li>q: &lsquo;HowToCook 레시피의 난이도 등급은 어떻게 되나요?&rsquo;
-a: &lsquo;레시피는 1-5성 체계를 사용합니다. 1성은 토마토 달걀볶음, 인스턴트 라면 같은 간단한 요리이고, 5성은 샥스핀 수프, 전복죽 같은 고급 요리입니다. 전체 컬렉션은 1성 45개, 2성 78개, 3성 89개, 4성 56개, 5성 29개로 구성되어 있습니다.&rsquo;</li>
-<li>q: &lsquo;Docker로 HowToCook을 로컬에서 실행하는 방법은 무엇인가요?&rsquo;
-a: &lsquo;다음 명령으로 이미지를 받아 실행하세요: docker pull ghcr.io/anduin2017/how-to-cook:latest 후 docker run -d -p 5000:5000 ghcr.io/anduin2017/how-to-cook:latest를 실행하고, http://localhost:5000에서 접속합니다.&rsquo;</li>
-<li>q: &lsquo;HowToCook에 레시피를 기여하는 방법은 무엇인가요?&rsquo;
-a: &lsquo;저장소를 Fork하고, 템플릿 레시피를 복사한 뒤, 프로젝트의 구조화된 형식에 맞게 레시피를 작성하고 Pull Request를 제출하면 됩니다. 이 프로젝트에는 200명 이상의 기여자가 있으며 중국어, 영어, 일본어를 지원합니다.&rsquo;</li>
+aliases:</li>
+<li>/posts/howtocook-programmer-open-source-cookbook/
+faqs: - q: &lsquo;What is HowToCook?&rsquo;
+a: &lsquo;HowToCook (程序员做饭指南) is an open-source cookbook project created by programmer Anduin2017. It contains 297 recipes written with the precision and clarity that developers expect from documentation.&rsquo;</li>
+<li>q: &lsquo;How does HowToCook differ from traditional recipes?&rsquo;
+a: &lsquo;Instead of vague instructions like &ldquo;a little salt&rdquo; or &ldquo;cook until golden,&rdquo; every recipe uses exact measurements (e.g., &ldquo;3g salt&rdquo;), precise timings (e.g., &ldquo;fry for 90 seconds per side&rdquo;), a complete upfront ingredient list, a required equipment list, and a 1-5 star difficulty rating.&rsquo;</li>
+<li>q: &lsquo;How are HowToCook recipes rated by difficulty?&rsquo;
+a: &lsquo;Recipes use a 1-5 star system: 1-star covers simple dishes like tomato scrambled eggs and instant noodles, while 5-star covers advanced dishes like shark fin soup and abalone porridge. The collection has 45 one-star, 78 two-star, 89 three-star, 56 four-star, and 29 five-star recipes.&rsquo;</li>
+<li>q: &lsquo;How do you run HowToCook locally with Docker?&rsquo;
+a: &lsquo;Pull and run the image with: docker pull ghcr.io/anduin2017/how-to-cook:latest then docker run -d -p 5000:5000 ghcr.io/anduin2017/how-to-cook:latest, and access it at http://localhost:5000.&rsquo;</li>
+<li>q: &lsquo;How can you contribute a recipe to HowToCook?&rsquo;
+a: &lsquo;Fork the repository, copy the template recipe, write your recipe following the project&rsquo;&rsquo;s structured format, and submit a Pull Request. The project has 200+ contributors and supports Chinese, English, and Japanese.&rsquo;</li>
 </ul>
 <hr>
 <p>{&lt;/* resource-info */&gt;}</p>
-<h2 id="howtocook란">HowToCook란?<a hidden class="anchor" aria-hidden="true" href="#howtocook란">#</a></h2>
-<p><strong>HowToCook</strong>（프로그래머 요리 가이드）는 프로그래머 <strong>Anduin2017</strong>이 만든 오픈소스 레시피 프로젝트입니다. <strong>297개 레시피</strong>가 프로그래머가 익숙한 정확성과 명확성으로 작성되었습니다.</p>
-<p>프로젝트 철학: <strong>레시피는 코드처럼 명확해야 합니다</strong>. &ldquo;소금 조금&quot;이나 &ldquo;노랗게 볶을 때까지&rdquo; 같은 모호한 설명 없이, 모든 레시피는 정확한 계량, 정확한 시간, 단계별 프로세스를 제공합니다.</p>
+<h2 id="what-is-howtocook">What is HowToCook?<a hidden class="anchor" aria-hidden="true" href="#what-is-howtocook">#</a></h2>
+<p><strong>HowToCook</strong> (程序员做饭指南) is an open-source cookbook project created by programmer <strong>Anduin2017</strong>. It contains <strong>297 recipes</strong> written with the precision and clarity that developers expect from documentation.</p>
+<p>The project&rsquo;s philosophy is simple: <strong>cooking recipes should be as clear as code</strong>. No ambiguous instructions like &ldquo;a little salt&rdquo; or &ldquo;cook until done.&rdquo; Every recipe uses precise measurements, exact timings, and step-by-step procedures.</p>
 <p><strong>GitHub</strong>: <a href="https://github.com/Anduin2017/HowToCook">https://github.com/Anduin2017/HowToCook</a><br>
 <strong>Stars</strong>: 70K+<br>
-<strong>기여자</strong>: 200+<br>
-<strong>라이선스</strong>: Unlicense</p>
+<strong>Contributors</strong>: 200+<br>
+<strong>License</strong>: Unlicense</p>
 <hr>
-<h2 id="왜-프로그래머가-이것이-필요한가">왜 프로그래머가 이것이 필요한가?<a hidden class="anchor" aria-hidden="true" href="#왜-프로그래머가-이것이-필요한가">#</a></h2>
-<h3 id="기존-레시피의-문제">기존 레시피의 문제<a hidden class="anchor" aria-hidden="true" href="#기존-레시피의-문제">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>문제</th>
-					<th>예시</th>
-					<th>HowToCook 해결책</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>모호한 양</td>
-					<td>&ldquo;소금 조금&rdquo;</td>
-					<td>&ldquo;소금 3g（1/2 티스푼）&rdquo;</td>
-			</tr>
-			<tr>
-					<td>애매한 시간</td>
-					<td>&ldquo;노랗게 볶을 때까지&rdquo;</td>
-					<td>&ldquo;한 면당 90초 볶기&rdquo;</td>
-			</tr>
-			<tr>
-					<td>누락된 단계</td>
-					<td>중간에 새로운 재료 등장</td>
-					<td>완전한 재료 목록 먼저</td>
-			</tr>
-			<tr>
-					<td>난이도 없음</td>
-					<td>모든 요리가 똑같이 어려워 보임</td>
-					<td>1-5성 난이도 시스템</td>
-			</tr>
-			<tr>
-					<td>장비 목록 없음</td>
-					<td>모든 것이 있다고 가정</td>
-					<td>필요한 도구 먼저 나열</td>
-			</tr>
-	</tbody>
-</table>
-<h3 id="개발자를-위한-특성">개발자를 위한 특성<a hidden class="anchor" aria-hidden="true" href="#개발자를-위한-특성">#</a></h3>
+<h2 id="why-programmers-need-this">Why Programmers Need This<a hidden class="anchor" aria-hidden="true" href="#why-programmers-need-this">#</a></h2>
+<h3 id="the-problem-with-traditional-recipes">The Problem with Traditional Recipes<a hidden class="anchor" aria-hidden="true" href="#the-problem-with-traditional-recipes">#</a></h3>
+<p>| Issue | Example | HowToCook Solution |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Ambiguous quantities | &ldquo;a little salt&rdquo; | &ldquo;3g salt (1/2 teaspoon)&rdquo; |
+| Vague timing | &ldquo;cook until golden&rdquo; | &ldquo;fry for 90 seconds per side&rdquo; |
+| Missing steps | Ingredients appear mid-recipe | Complete ingredient list upfront |
+| No difficulty rating | All recipes look equally hard | 1-5 star difficulty system |
+| No equipment list | Assume you have everything | Required tools listed first |</p>
+<h3 id="features-designed-for-developers">Features Designed for Developers<a hidden class="anchor" aria-hidden="true" href="#features-designed-for-developers">#</a></h3>
 <ul>
-<li><strong>구조화된 형식</strong>: 매개변수가 있는 함수처럼</li>
-<li><strong>난이도 등급</strong>: 1-5성（라면에서 베이징 덕까지）</li>
-<li><strong>장비 요구사항</strong>: 재료 전에 나열</li>
-<li><strong>정확한 계량</strong>: g, ml, &ldquo;한 꼬집&rdquo; 아님</li>
-<li><strong>시간 추적</strong>: 준비 시간, 조리 시간, 총 시간</li>
-<li><strong>에러 처리</strong>: 일반적인 실수와 피하는 방법</li>
+<li><strong>Structured format</strong>: Like functions with parameters</li>
+<li><strong>Difficulty levels</strong>: 1-5 stars (from instant noodles to Peking Duck)</li>
+<li><strong>Equipment requirements</strong>: Listed before ingredients</li>
+<li><strong>Exact measurements</strong>: Grams, milliliters, not &ldquo;a pinch&rdquo;</li>
+<li><strong>Time tracking</strong>: Prep time, cook time, total time</li>
+<li><strong>Error handling</strong>: Common mistakes and how to avoid them</li>
 </ul>
 <hr>
-<h2 id="레시피-분류">레시피 분류<a hidden class="anchor" aria-hidden="true" href="#레시피-분류">#</a></h2>
-<h3 id="난이도별">난이도별<a hidden class="anchor" aria-hidden="true" href="#난이도별">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>성급</th>
-					<th>수량</th>
-					<th>예시</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>⭐</td>
-					<td>45</td>
-					<td>토마토 계란볶음, 라면 업그레이드</td>
-			</tr>
-			<tr>
-					<td>⭐⭐</td>
-					<td>78</td>
-					<td>궁보계정, 홍소육</td>
-			</tr>
-			<tr>
-					<td>⭐⭐⭐</td>
-					<td>89</td>
-					<td>탕초排骨, 마파두부</td>
-			</tr>
-			<tr>
-					<td>⭐⭐⭐⭐</td>
-					<td>56</td>
-					<td>베이징 덕, 훠궈 베이스</td>
-			</tr>
-			<tr>
-					<td>⭐⭐⭐⭐⭐</td>
-					<td>29</td>
-					<td>상어 지느러미 수프, 전복 죽</td>
-			</tr>
-	</tbody>
-</table>
-<h3 id="종류별">종류별<a hidden class="anchor" aria-hidden="true" href="#종류별">#</a></h3>
+<h2 id="recipe-categories">Recipe Categories<a hidden class="anchor" aria-hidden="true" href="#recipe-categories">#</a></h2>
+<h3 id="by-difficulty">By Difficulty<a hidden class="anchor" aria-hidden="true" href="#by-difficulty">#</a></h3>
+<p>| Stars | Count | Examples |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| ⭐ | 45 | Tomato scrambled eggs, instant noodles upgrade |
+| ⭐⭐ | 78 | Kung Pao chicken, braised pork |
+| ⭐⭐⭐ | 89 | Sweet and sour pork ribs, mapo tofu |
+| ⭐⭐⭐⭐ | 56 | Peking duck, hot pot base |
+| ⭐⭐⭐⭐⭐ | 29 | Shark fin soup, abalone porridge |</p>
+<h3 id="by-type">By Type<a hidden class="anchor" aria-hidden="true" href="#by-type">#</a></h3>
 <ul>
-<li><strong>채소</strong>: 85道（볶음, 조림, 찜）</li>
-<li><strong>고기</strong>: 92道（돼지, 소, 닭, 양）</li>
-<li><strong>해산물</strong>: 34道（생선, 새우, 게）</li>
-<li><strong>국물</strong>: 46道（빠른 국, 느린 끓임）</li>
-<li><strong>아침</strong>: 23道（죽, 팬케이크, 샌드위치）</li>
-<li><strong>디저트</strong>: 17道（케이크, 푸딩, 단팥죽）</li>
+<li><strong>Vegetables</strong>: 85 recipes (stir-fried, braised, steamed)</li>
+<li><strong>Meat</strong>: 92 recipes (pork, beef, chicken, lamb)</li>
+<li><strong>Seafood</strong>: 34 recipes (fish, shrimp, crab)</li>
+<li><strong>Soups</strong>: 46 recipes (quick soups, slow-cooked broths)</li>
+<li><strong>Breakfast</strong>: 23 recipes (congee, pancakes, sandwiches)</li>
+<li><strong>Desserts</strong>: 17 recipes (cakes, puddings, sweet soups)</li>
 </ul>
 <hr>
-<h2 id="샘플-레시피-토마토-계란볶음">샘플 레시피: 토마토 계란볶음<a hidden class="anchor" aria-hidden="true" href="#샘플-레시피-토마토-계란볶음">#</a></h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span># 토마토 계란볶음 ⭐
+<h2 id="sample-recipe-tomato-scrambled-eggs">Sample Recipe: Tomato Scrambled Eggs<a hidden class="anchor" aria-hidden="true" href="#sample-recipe-tomato-scrambled-eggs">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span># Tomato Scrambled Eggs (西红柿炒鸡蛋) ⭐
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## 재료
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 계란 2개（100g）
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 토마토 2개（300g）
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 소금 3g（1/2 티스푼）
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 설탕 5g（1 티스푼）
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 식용유 10ml
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 파 2g（선택）
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Ingredients
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 2 eggs (100g)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 2 tomatoes (300g)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 3g salt (1/2 teaspoon)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 5g sugar (1 teaspoon)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 10ml cooking oil
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 2g green onion (optional)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## 조리도구
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 프라이팬
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 뒤집개
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 볼
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Equipment
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Frying pan
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Spatula
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Bowl
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## 시간
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 준비: 5분
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 조리: 5분
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 총계: 10분
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Time
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Prep: 5 minutes
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Cook: 5 minutes
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Total: 10 minutes
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## 단계
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">1.</span> 계란을 볼에 깨서 소금 1g 넣고 균일하게 휘핑
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">2.</span> 토마토를 씻어 2cm 덩이로 자르기
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">3.</span> 중불로 프라이팬을 180°C까지 가열
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">4.</span> 기름을 두르고 10초 대기
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">5.</span> 계란을 부어 30초간 계속 저으며 볶기
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">6.</span> 계란이 80% 익었을 때（약간 촉촉한 상태）꺼내기
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">7.</span> 같은 팬에 토마토 넣고 2분 볶기
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">8.</span> 남은 소금과 설탕 추가
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">9.</span> 계란을 다시 팬에 넣고 20초 섞기
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">10.</span> 즉시 서빙
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Steps
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">1.</span> Crack eggs into bowl, add 1g salt, beat until uniform
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">2.</span> Wash tomatoes, cut into 2cm chunks
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">3.</span> Heat pan to medium-high (180°C)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">4.</span> Add oil, wait 10 seconds
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">5.</span> Pour eggs, stir constantly for 30 seconds
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">6.</span> Remove eggs when 80% solid (slightly runny)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">7.</span> Add tomatoes to same pan, cook 2 minutes
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">8.</span> Add remaining salt and sugar
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">9.</span> Return eggs to pan, mix 20 seconds
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">10.</span> Serve immediately
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## 팁
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 계란을 너무 오래 볶지 마세요 — 꺼낸 후에도 익어갑니다
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 토마토가 너무 신맛이 나면 설탕 1g 더 추가
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 더 부드러운 식감을 원하면 계란에 우유 10ml 추가
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Tips
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Don&#39;t overcook eggs - they continue cooking after removal
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> If tomatoes are too acidic, add 1g more sugar
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> For softer texture, add 10ml milk to eggs
 </span></span></code></pre></div><hr>
-<h2 id="커뮤니티와-기여">커뮤니티와 기여<a hidden class="anchor" aria-hidden="true" href="#커뮤니티와-기여">#</a></h2>
-<h3 id="기여-방법">기여 방법<a hidden class="anchor" aria-hidden="true" href="#기여-방법">#</a></h3>
+<h2 id="community--contributions">Community &amp; Contributions<a hidden class="anchor" aria-hidden="true" href="#community--contributions">#</a></h2>
+<h3 id="how-to-contribute">How to Contribute<a hidden class="anchor" aria-hidden="true" href="#how-to-contribute">#</a></h3>
 <ol>
-<li><strong>Fork</strong> 저장소</li>
-<li><strong>복사</strong> 템플릿 레시피</li>
-<li><strong>작성</strong> 형식에 맞는 레시피</li>
-<li><strong>제출</strong> Pull Request</li>
+<li><strong>Fork</strong> the repository</li>
+<li><strong>Copy</strong> the template recipe</li>
+<li><strong>Write</strong> your recipe following the format</li>
+<li><strong>Submit</strong> a Pull Request</li>
 </ol>
-<h3 id="기여-통계">기여 통계<a hidden class="anchor" aria-hidden="true" href="#기여-통계">#</a></h3>
+<h3 id="contribution-stats">Contribution Stats<a hidden class="anchor" aria-hidden="true" href="#contribution-stats">#</a></h3>
 <ul>
-<li><strong>200+ 기여자</strong> 전 세계에서</li>
-<li><strong>297개 레시피</strong> 지속적으로 증가</li>
-<li><strong>다국어 지원</strong>: 중국어, 영어, 일본어</li>
-<li><strong>Docker 지원</strong>: 한 줄 명령으로 로컬 실행</li>
+<li><strong>200+ contributors</strong> worldwide</li>
+<li><strong>297 recipes</strong> and growing</li>
+<li><strong>Multiple languages</strong>: Chinese, English, Japanese</li>
+<li><strong>Docker support</strong>: Run locally with one command</li>
 </ul>
-<h3 id="웹-배포">웹 배포<a hidden class="anchor" aria-hidden="true" href="#웹-배포">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 로컬 배포</span>
+<h3 id="web-deployment">Web Deployment<a hidden class="anchor" aria-hidden="true" href="#web-deployment">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Deploy locally</span>
 </span></span><span style="display:flex;"><span>docker pull ghcr.io/anduin2017/how-to-cook:latest
 </span></span><span style="display:flex;"><span>docker run -d -p 5000:5000 ghcr.io/anduin2017/how-to-cook:latest
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># http://localhost:5000 접속</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Access at http://localhost:5000</span>
 </span></span></code></pre></div><hr>
-<h2 id="npm-패키지">NPM 패키지<a hidden class="anchor" aria-hidden="true" href="#npm-패키지">#</a></h2>
-<p>Node.js 패키지로 설치: `````bash
+<h2 id="npm-package">NPM Package<a hidden class="anchor" aria-hidden="true" href="#npm-package">#</a></h2>
+<p>Install as a Node.js package: `````bash
 npm install how-to-cook</p>
 <pre tabindex="0"><code>
-프로그래밍 방식 사용: `````javascript
+Use programmatically: `````javascript
 const recipes = require(&#39;how-to-cook&#39;);
 
-// 레시피 검색
-const tomatoRecipes = recipes.search(&#39;토마토&#39;);
+// Search recipes
+const tomatoRecipes = recipes.search(&#39;tomato&#39;);
 
-// 난이도로 필터링
+// Get by difficulty
 const easyRecipes = recipes.filterByStars(1);
 
-// 랜덤 가져오기
+// Get random recipe
 const dinner = recipes.random();
 ````
 
 * * *
 
-## 학습 경로
+## Learning Path
 
-### 초보자（1-2주）
-- 주방 준비
-- 기본 칼 기술
-- 1성 레시피
-- 밥 짓기
+### Beginner (Week 1-2)
+- Kitchen preparation
+- Basic knife skills
+- 1-star recipes
+- Rice cooking
 
-### 중급자（3-4주）
-- 2-3성 레시피
-- 육류 처리
-- 볶음 기술
-- 국물 기초
+### Intermediate (Week 3-4)
+- 2-3 star recipes
+- Meat preparation
+- Stir-fry techniques
+- Soup basics
 
-### 고급자（5주+）
-- 4-5성 레시피
-- 다중 요리 조율
-- 맛 균형
-- 플레이팅
-
-* * *
-
-## 왜 이 프로젝트가 주목받아야 하는가
-
-**HowToCook**은 다음의 완벽한 예시입니다: 1. **커뮤니티 기반 콘텐츠**: 200+ 기여자가 진정한 콘텐츠를 창조
-2. **구조화된 데이터**: 레시피는 schema.org 형식을 따름
-3. **롱테일 키워드**: &#34;프로그래머 요리 가이드&#34;, &#34;how to cook for developers&#34;
-4. **에버그린 콘텐츠**: 요리는 결코 시대에 뒤떨어지지 않음
-5. **다국어**: 중국어, 영어, 일본어 버전
+### Advanced (Week 5+)
+- 4-5 star recipes
+- Multi-dish coordination
+- Flavor balancing
+- Presentation
 
 * * *
 
-## 관련 기사
+## Why This Matters for SEO
 
-- [Free Claude Code 오픈소스 AI 코딩 에이전트](/kr/resources/ai-tools/free-claude-code-open-source-proxy/) — 또 다른 개발자 오픈소스 도구
-- [Pixelle-Video AI 쇼트 비디오 생성기](/kr/resources/ai-tools/pixelle-video-ai-short-video-generator/) — AI 콘텐츠 제작 도구
-- [OpenClaw 42개 사용 사례](/kr/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) — AI 에이전트 일상 작업
-
-* * *
-
-*면책 조항: 본 문서는 오픈소스 프로젝트를 소개합니다. 모든 레시피 콘텐츠는 HowToCook 커뮤니티에 속합니다. 요리 시 식품 안전 지침을 따르세요.*
+**HowToCook** is a perfect example of: 1. **Community-driven content**: 200+ contributors create authentic content
+2. **Structured data**: Recipes follow schema.org format
+3. **Long-tail keywords**: &#34;程序员做饭指南&#34;, &#34;how to cook for developers&#34;
+4. **Evergreen content**: Cooking never goes out of style
+5. **Multi-language**: Chinese, English, Japanese versions
 
 * * *
 
-## 추천 도구
+## Related Articles
 
-오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
-- **** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
+- [Free Claude Code: Open Source AI Coding Agent](/resources/ai-tools/free-claude-code-open-source-proxy/) - Another developer-focused open source tool
+- [Pixelle-Video: AI Short Video Generator](/resources/ai-tools/pixelle-video-ai-short-video-generator/) - AI tools for content creation
+- [OpenClaw 42 Use Cases](/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) - AI agents for daily tasks
 
-*추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
+* * *
+
+*Disclaimer: This article introduces an open-source project. All recipe content belongs to the HowToCook community. Please follow food safety guidelines when cooking.*
+
+* * *
+
+## Recommended Tools
+
+For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+- **** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.
+
+*Affiliate link — supports dibi8.com at no cost to you.*
 
 
 
 {
   &#34;@context&#34;: &#34;https://schema.org&#34;,
   &#34;@type&#34;: &#34;Article&#34;,
-  &#34;headline&#34;: &#34;HowToCook 프로그래머 요리 가이드: 코딩을 더 향기롭게 하는 297개 오픈소스 레시피&#34;,
+  &#34;headline&#34;: &#34;HowToCook: 297 Recipes for Programmers - The Open Source Cookbook&#34;,
   &#34;datePublished&#34;: &#34;2026-05-15&#34;,
   &#34;dateModified&#34;: &#34;2026-05-15&#34;,
   &#34;author&#34;: {
@@ -528,14 +488,14 @@ const dinner = recipes.random();
   },
   &#34;mainEntityOfPage&#34;: {
     &#34;@type&#34;: &#34;WebPage&#34;,
-    &#34;@id&#34;: &#34;https://dibi8.com/kr/resources/howtocook-programmer-open-source-cookbook&#34;
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/howtocook-programmer-open-source-cookbook&#34;
   }
 }
 &lt;/script&gt;
 
 ## Why This Matters
 
-Understanding howtocook 프로그래머 요리 가이드: 코딩을 더 향기롭게 하는 297개 오픈소스 레시피 is crucial for modern AI development. Here&#39;s why: ### Key Benefits
+Understanding howtocook: 297 recipes for programmers - the open source cookbook is crucial for modern AI development. Here&#39;s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
@@ -565,7 +525,7 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 ## Conclusion
 
-HowToCook 프로그래머 요리 가이드: 코딩을 더 향기롭게 하는 297개 오픈소스 레시피 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
+HowToCook: 297 Recipes for Programmers - The Open Source Cookbook represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
@@ -615,6 +575,81 @@ For the latest updates and community discussions, join our Telegram channel: htt
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

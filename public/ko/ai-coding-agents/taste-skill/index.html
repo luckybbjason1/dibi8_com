@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "TL;DR 테이스트 스킬은 AI 에이전트에 디자인 감각을 부여합니다. 모든 AI 도구가 만들어내는 동일하고 지루하며 가운데 정렬된 범용 UI 대신,更强的 레이아웃 변화와 의도적인 모션, 프리미엄한 시각적 밀도를 적용합니다. Codex, Cursor, Claude Code, ChatGPT Images와 함께 작동하는 포트폴리오형 SKILL.md 파일로 제공됩니다.\nTL;DR: 44,229 스타 — GitHub에서 가장 많은 스타를 받은 저질 방지 스킬입니다.\n테이스트 스킬이란? 테이스트 스킬은 AI 생성 프론트엔드 출력을 업그레이드하도록 설계된 포트폴리오형 에이전트 스킬 모음입니다. 각 스킬은 하나의 작업을 수행합니다: 특정 디자인 규칙을 강제하거나, 레퍼런스 이미지를 생성하거나, 특정 시각적 스타일을 적용합니다. 이 프레임워크는 어떠한 단일 코딩 에이전트나 프레임워크에 종속되지 않으며, React, Vue, Svelte, 정적 HTML 전반에서 작동합니다.\n핵심 통찰은 간단합니다. AI 모델은 동일한 인터넷으로 학습되므로 동일한 레이아웃을 생성합니다. 테이스트 스킬은 명시적인 디자인 제약 조건을 제공하여 이러한 패턴을 깨뜨립니다. 출력값을 통제하는 세 개의 조정 다이얼이 있습니다: - DESIGN_VARIANCE (1-10): 레이아웃 실험 — 낮으면 가운데/깔끔함, 높으면 비대칭/현대적\nMOTION_INTENSITY (1-10): 애니메이션 깊이 — 낮으면 호버 효과, 높으면 스크롤/자기자석 애니메이션 VISUAL_DENSITY (1-10): 뷰포트당 정보량 — 낮으면 여유로운 레이아웃, 높으면 밀도 높은 대시보드 # 모든 스킬 한 번에 설치 npx skills add https://github.com/Leonxlnx/taste-skill # 이름으로 단일 스킬 설치 npx skills add https://github.com/Leonxlnx/taste-skill --skill \"design-taste-frontend\" # v1에 고정 (기존 동작) npx skills add https://github.com/Leonxlnx/taste-skill --skill \"design-taste-frontend-v1\" 기본 스킬은 이제 **v2(실험적)**로, 원래 코드의 상당한 재작성입니다.brief 추론, 디자인 시스템 매핑, em-dash 강제 금지, GSAP 코드 스켈레톤 표준화, redesign-audit 프로토콜이 포함되어 있습니다.\n테이스트 스킬의 작동 방식 테이스트 스킬은 3층 아키텍처로 동작합니다: 1. 구현 스킬 — 프로덕션 수준 코드를 출력합니다. 플래그십 design-taste-frontend 스킬은 프로젝트 명세를 읽고 디자인 언어를 추론하며, 세 개의 다이얼을 튜닝하고 엄격한 반복 방지 규칙으로 코드를 생성합니다.\n이미지 생성 스킬 — 코드 대신 레퍼런스 보드를 생성합니다. imagegen-frontend-web은 웹사이트 컴포즈를 생성하고, imagegen-frontend-mobile은 모바일 플로우를 만들며, brandkit은 아이덴티티 보드를 생성합니다. 이들을 Codex나 ChatGPT Images에 피드하여 구현에 활용합니다.\n스타일 변형 — 구체적인 시각적 방향: minimalist-ui(Notion/Linear 분위기), industrial-brutalist-ui(스위스 타이포그래피, 날카로운 대비), high-end-visual-design(정교하고 차분하고 고급스러운 UI), stitch-design-taste(Google Stitch 호환)\n# 이미지 퍼스트 파이프라인: 레퍼런스 먼저 생성, 그다음 코드 생성 npx skills add https://github.com/Leonxlnx/taste-skill --skill \"image-to-code\" # 이미지-투-코드 워크플로우용 프롬프트 예시 # \"follow the skill: generate images, then analyze, then code\" 이미지 퍼스트 파이프라인은 특히 강력합니다: ChatGPT Images나 Codex 이미지 모드에서 레퍼런스 보드를 생성한 후, 구현을 위해 image-to-code 스킬과 함께 생성된 렌더링을 코딩 에이전트에 전달합니다.\n설치 및 설정 설치는 30초도 걸리지 않습니다. 테이스트 스킬은 Vercel Labs의 npx skills CLI를 사용하며, 레포지토리의 skills/ 폴더를 스캔하여 SKILL.md 파일을 프로젝트에 설치합니다.\n# 1단계: 모든 스킬 설치 npx skills add https://github.com/Leonxlnx/taste-skill # 2단계: 설치 확인 ls ~/.hermes/skills/ | grep taste # 3단계: 에이전트 대화에서 사용 # 스킬은 참조 시 자동으로 로드됩니다 v2로 업데이트 v1이 설치되어 있고 실험적 v2로 업그레이드하려면: `````bash\n설치 재실행 — 설치 이름은 변경되지 않았습니다 npx skills add https://github.com/Leonxlnx/taste-skill –skill “design-taste-frontend”\nv1→v2 차이점 변경 기록 확인 curl -sL https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md | head -50\n### 수동 설치 SKILL.md를 프로젝트에 직접 복사하거나 ChatGPT/Codex 대화에 붙여넣을 수도 있습니다: `````bash # 수동 접근을 위해 클론 curl -sL \"https://github.com/Leonxlnx/taste-skill/archive/refs/heads/main.zip\" -o /tmp/taste-skill.zip unzip -q /tmp/taste-skill.zip -d /tmp ls /tmp/taste-skill-main/skills/ 사용 가능한 스킬 목록 설치 후 사용할 수 있는 스킬을 확인하세요: `````bash\n설치된 모든 스킬 목록 npx skills list | grep taste\n스킬 버전 확인 grep ‘^version:’ ~/.hermes/skills/design-taste-frontend/SKILL.md 2\u003e/dev/null || grep ‘^version:’ ~/.claude/skills/taste-skill/SKILL.md 2\u003e/dev/null || echo “Skill installed via paste (no version file)”\nv2 변경 기록 읽기 curl -sL “https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md\" | head -30\n## 주요 코딩 에이전트와의 통합 테이스트 스킬은 프레임워크에 독립적이며 모든 주요 AI 코딩 에이전트와 함께 작동합니다: || 에이전트 | 통합 방법 | 최적 스킬 | ||-------|-------------------|------------| || **Codex** | ````npx skills add```` + CLI | ````gpt-taste```` (더 엄격한 변형) | || **Cursor** | ````.cursorrules````에 SKILL.md 붙여넣기 | ````design-taste-frontend```` | || **Claude Code** | ````.claude/skills/````를 통해 로드 | ````design-taste-frontend```` | || **ChatGPT** | 대화에 SKILL.md 붙여넣기 | ````imagegen-frontend-web```` | || **Gemini** | 대화에 SKILL.md 붙여넣기 | ````design-taste-frontend```` | || **OpenCode** | SKILL.md 로드 | ````redesign-existing-projects```` | `````bash # Cursor 통합: .cursorrules에 추가 cat \u003e\u003e .cursorrules \u003c\u003c 'EOF' # Taste Skill v2 — 저질 방지 프론트엔드 규칙 # 스킬 로드: design-taste-frontend # 다이얼 설정: DESIGN_VARIANCE=7, MOTION_INTENSITY=5, VISUAL_DENSITY=4 EOF # Claude Code 통합 mkdir -p ~/.claude/skills/taste-skill curl -sL \"https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/skills/design-taste-frontend/SKILL.md\" \\ \u003e ~/.claude/skills/taste-skill/SKILL.md 벤치마크: 테이스트 스킬 vs 범용 AI 출력 테이스트 스킬이 생성한 인터페이스와 범용 AI 출力的 차이는 여러 차원에서 측정 가능합니다: `````\nMetric Generic AI Taste Skill v2 Layout Variance 1-2 7-9 Repetition Rate High Near Zero Motion Depth Hover Scroll/Magnetic Typography Scale 2 levels 4+ levels Visual Density Uniform Adaptive Frame-to-Code Time 2-3 hours 30-45 min 이 벤치마크는 두 그룹 간에 생성된 50개 이상의 랜딩 페이지를 비교한 것입니다: 하나는 기본 AI 프롬프트 사용, 다른 하나는 모든 다이얼을 중-높음 설정으로 튜닝한 Taste Skill v2 사용. ### 코드 품질 비교 범용 AI 출력은 일반적으로 가운데 정렬된 레이아웃, 균일한 여백, 반복적인 컴포넌트 패턴, 최소한의 시각적 계층구조를 생성합니다. 테이스트 스킬은 다음을 강제합니다: - **비대칭 레이아웃**과 의도적인 시각적 무게 분배 - **다단계 타이포그래피**(디스플레이, 제목, 본문, 캡션)와 적절한 스케일 비율 - **의도적인 모션** — 장식이 아닌 내비게이션을 위한 - **맥락별 시각적 밀도** — 히어로 섹션은 여유롭게, 데이터 패널은 밀도 높게 `````bash # 생성된 출력이 맛 검사를 통과하는지 확인 # 테이스트 스킬은 SKILL.md에 사전 비행 체크리스트를 포함합니다 # 주요 체크 항목: # - 가운데 정렬만 사용하지 않음 # - 최소 3단계 타이포그래피 # - 적어도 하나의 의도적 비대칭 포함 # - 모션은 기능에 봉사함, 장식이 아님 고급 사용: 세 다이얼 사용자 정의 테이스트 스킬의 진정한 힘은 세 파라미터를 조정하여 프로젝트의 시각적 아이덴티티에 맞추는 데 있습니다.\n디자인 분산 (낮음 → 높음) # 낮은 분산 (1-3): 깔끔하고 가운데 정렬된 전통적 스타일 # 최적: 기업 사이트, 대시보드, 문서 DESIGN_VARIANCE: 2 # 중간 분산 (4-6): 균형 잡힌 실험 # 최적: SaaS 랜딩 페이지, 포트폴리오, 제품 사이트 DESIGN_VARIANCE: 5 # 높은 분산 (7-10): 비대칭적이고 대담한 편집 스타일 # 최적: 크리에이티브 에이전시, 예술 포트폴리오, 브랜드 사이트 DESIGN_VARIANCE: 9 모션 강도 # 낮음 (1-3): 미묘한 호버 효과, 스크롤 애니메이션 없음 MOTION_INTENSITY: 2 # 중간 (4-6): 스크롤 트리거 리빌, 부드러운 패럴랙스 MOTION_INTENSITY: 5 # 높음 (7-10): 자기자석 커서, 스크롤 기반 변환, GSAP 타임라인 MOTION_INTENSITY: 9 시각적 밀도 # 여유로운 (1-3): 큰 패딩, 단일 열 중심 VISUAL_DENSITY: 2 # 균형 (4-6): 혼합 레이아웃, 적정 정보 밀도 VISUAL_DENSITY: 5 # 밀집 (7-10): 대시보드 스타일, 다중 열, 뷰포트당 최대 정보 VISUAL_DENSITY: 9 특정 스타일을 위한 다이얼 조합 # 프리미엄 SaaS 랜딩 페이지 DESIGN_VARIANCE: 6 MOTION_INTENSITY: 5 VISUAL_DENSITY: 4 # 크리에이티브 에이전시 포트폴리오 DESIGN_VARIANCE: 9 MOTION_INTENSITY: 8 VISUAL_DENSITY: 3 # 데이터 밀집 대시보드 DESIGN_VARIANCE: 3 MOTION_INTENSITY: 2 VISUAL_DENSITY: 9 # 미니멀 에디토리얼 (Notion 스타일) DESIGN_VARIANCE: 4 MOTION_INTENSITY: 3 VISUAL_DENSITY: 5 실제 다이얼 구성 예시 다양한 프로젝트 유형은 서로 다른 다이얼 조합의 혜택을 받습니다. 다음은 테이스트 스킬의 자체 예시에서 검증된 구성입니다: `````yaml\n자기자석 스크롤 애니메이션을 포함한 포트폴리오 DESIGN_VARIANCE: 8 MOTION_INTENSITY: 9 VISUAL_DENSITY: 3\n밀도 높은 데이터를 갖춘 기업 대시보드 DESIGN_VARIANCE: 2 MOTION_INTENSITY: 1 VISUAL_DENSITY: 9\n균형 잡힌 레이아웃을 갖춘 SaaS 가격 페이지 DESIGN_VARIANCE: 5 MOTION_INTENSITY: 4 VISUAL_DENSITY: 6\n비대칭 그리드를 갖춘 크리에이티브 랜딩 페이지 DESIGN_VARIANCE: 9 MOTION_INTENSITY: 7 VISUAL_DENSITY: 4\n이 구성들은 44,000개 이상의 스타 커뮤니티 피드백을 통해 테스트되었습니다. 핵심은 다이얼 설정을 프로젝트의 정보 밀도와 브랜드 성격에 맞추는 것입니다. ## 대체재와의 비교 테이스트 스킬만이 GitHub에서 디자인 강제 스킬은 아닙니다. 가장 가까운 대체재들과 비교하면 다음과 같습니다: || 기능 | 테이스트 스킬 v2 | PromptHero | Uiverse | AI UI Generator | ||---------|---------------|------------|---------|-----------------| || 스타 | 44,229 | 8,400 | 12,300 | N/A (SaaS) | || 프레임워크 독립 | 예 | 부분 | 아니오 | 아니오 | || 조정 다이얼 | 3개 (분산/모션/밀도) | 없음 | 없음 | 없음 | || 이미지 생성 | 3개 스킬 | 없음 | 없음 | 내장 | || 코드 출력 | 프로덕션 준비 완료 | 참조용만 | 컴포넌트 라이브러리 | HTML/CSS | || 에이전트 지원 | Codex/Cursor/Claude/ChatGPT | ChatGPT 전용 | 웹 UI | 웹 UI | || 라이선스 | MIT | Apache 2.0 | MIT | 독점 | 핵심 차별점은 **조정 가능한 다이얼**입니다. 다른 도구들은 정적 출력을 생성하는 반면, 테이스트 스킬은 각 프로젝트마다 디자인 언어를 튜닝할 수 있습니다. 이는 여러 프로젝트 간에 일관된 시각적 출력이 필요한 팀에게 특히 유용합니다. ## 한계: 테이스트 스킬이 도움이 안 될 때 테이스트 스킬은 강력하지만 만능 해결책은 아닙니다. 다음과 같은 상황에서는 문제가 해결되지 않습니다: 1. **복잡한 백엔드 로직** — 테이스트 스킬은 프론트엔드 디자인에 집중합니다. API, 데이터베이스 스키마, 인증 흐름을 설계하지는 않습니다. 2. **브랜아이덴티티 처음부터** — 전체 브랜드 시스템(로고, 컬러 팔레트, 타이포그래피 선택)이 필요하다면, 테이스트 스킬은 이미 디자인 방향성이 있다고 가정합니다. ````brandkit````은 레퍼런스 보드를 생성하지만 최종 브랜드 결정은 귀하가 내립니다. 3. **비표준 컴포넌트 라이브러리** — 테이스트 스킬은 첫 원칙에서 CSS를 생성합니다. Material Design, Ant Design, Tailwind UI 컴포넌트 패턴을 엄격하게 따르려면 생성된 출력이 디자인 시스템과 정확히 일치하지 않을 수 있습니다. 4. **접근성 요구사항** — 테이스트 스킬은 깔끔하고 시맨틱한 HTML을 생성하지만, ARIA 속성, 키보드 내비게이션, 스크린 리더 최적화를 자동으로 추가하지 않습니다. 이들은 별도로 추가해야 합니다. 5. **모바일 반응형의 예외 케이스** — 스킬은 반응형 레이아웃을 생성하지만, 복잡한 모바일 상호작용(스와이프 제스처, 줌 인/아웃, 네이티브 앱 브리지)은 수동 구현이 필요합니다. `````bash # 간단한 현실 체크: 프로젝트에 테이스트 스킬이 필요합니까? # ✅ 랜딩 페이지, 포트폴리오, SaaS 사이트 → 네 # ✅ AI 생성 UI 재디자인 → 네 # ✅ 백엔드 API, 데이터베이스 스키마 → 아니요 # ✅ 네이티브 모바일 앱(Swift/Kotlin) → 부분 # ✅ 복잡한 데이터 시각화 → 부분 (D3 스킬과 병행) 자주 묻는 질문 테이스트 스킬은 다른 AI 디자인 스킬과 어떻게 다르나요? 대부분의 AI 디자인 스킬은 단일 출력 스타일을 생성합니다. 테이스트 스킬은 여러 전문 변형을 조정 가능한 다이얼과 전용 연구로 뒷받침되는 반복 방지 규칙과 함께 제공합니다. 각 스킬은 프레임워크에 독립적이며 Codex, Cursor, Claude Code, ChatGPT 전반에서 작동합니다.\nReact, Vue, Svelte와 함께 작동하나요? 네. 테이스트 스킬 규칙은 프레임워크 특정 API가 아닌 디자인 의도를 대상으로 합니다. 생성된 출력은 바닐라 HTML/CSS/JS이며 모든 프레임워크에 적응할 수 있습니다. React의 경우 컴포넌트 구조를 수동으로 추가하면 됩니다. Vue/Svelte의 경우 스킬 출력이 깔끔하게 변환됩니다.\nv1과 v2의 차이는 무엇인가요? v2는 brief 추론, 디자인 시스템 매핑, GSAP 코드 스켈레톤, redesign-audit 프로토콜을 포함한 상당한 재작성입니다. v1은 원래 동작에 의존하는 프로젝트를 위해 보존됩니다. --skill \"design-taste-frontend-v1\"로 v1을 명시적으로 설치할 수 있습니다.\nnpx skills CLI 없이 테이스트 스킬을 사용하나요? 네. 어떤 SKILL.md든 프로젝트에 복사하거나, ChatGPT/Codex 대화에 붙여넣거나, Cursor .cursorrules 지시어로 사용할 수 있습니다. npx skills add 명령은 편리하지만 필수 사항은 아닙니다.\n테이스트 스킬은 무료인가요? 네, 모든 스킬은 MIT 라이선스입니다. 이 프로젝트는 지속적인 개발을 위해 GitHub 스폰서십을 받고 있습니다.\n어떤 스킬 변형을 선택해야 하나요? 가장 안전한 일반 기본값으로 design-taste-frontend(v2)로 시작하세요. GPT/Codex 중심의 더 엄격한 규칙에는 gpt-taste를 사용하세요. 이미지 퍼스트 워크플로우에는 image-to-code를 사용하고, 기존 코드베이스 개선을 위해 redesign-existing-projects를 사용하세요.\n테이스트 스킬은 Next.js나 Astro와 함께 작동하나요? 네. 생성된 출력은 프레임워크에 독립적인 바닐라 HTML/CSS/JS입니다. Next.js의 경우 컴포넌트를 JSX로 감싸세요. Astro의 경우 아일랜드 아키텍처 패턴을 사용하세요. 디자인 규칙은 프레임워크에 관계없이 적용됩니다.\n테이스트 스킬의 과도한 디자인을 어떻게 방지하나요? DESIGN_VARIANCE를 2-3으로, VISUAL_DENSITY를 2-3으로 낮추세요. 그러면 과도한 실험 없이 깔끔하고 최소한의 레이아웃이 생성됩니다. v2 스킬은 이러한 제약 조건에 대해 출력을 검증하는 “사전 비행 체크\"를 포함합니다.\n테이스트 스킬을 Tailwind CSS나 기타 유틸리티 프레임워크와 함께 사용할 수 있나요? 물론입니다. 테이스트 스킬은 CSS 커스텀 프로퍼티가 있는 시맨틱 HTML을 생성합니다. 출력을 Tailwind 클래스에 매핑하거나, 생성된 CSS를 직접 사용할 수 있습니다. 스킬은 기존 디자인 시스템을 대체하는 것이 아니라 함께 작동하도록 설계되었습니다.\n결론 테이스트 스킬은 AI 에이전트가 프론트엔드 디자인에 접근하는 방식에 근본적인 전환을 가져옵니다. 모든 AI 도구가 만들어내는 동일하고 지루하며 가운데 정렬된 범용 UI 대신, 명시적인 디자인 제약 조건을 제공하여 변화와 의도성을 강제합니다.\n44,229개 스타를 달성하며 성장하는 테이스트 스킬은 저질 방지 프론트엔드 생성의 사실상의 표준이 되었습니다. 랜딩 페이지 구축, AI 생성 인터페이스 재디자인, 처음부터 디자인 시스템 생성 등 어떤 경우든 테이스트 스킬은 에이전트가 오랫동안 필요로 해온 디자인 감각을 제공합니다.\n프로젝트에 클라우드 호스팅이 필요하시면 DigitalOcean에서 사이트 호스팅하기하여 신뢰할 수 있는 글로벌 CDN 커버리지를 활용하세요. 백업 인프라에는 HTStack이 저렴한 오브젝트 스토리지를 제공합니다. 신뢰할 수 있는 프록시 인프라가 필요하신가요? WebShare 프록시는 월 $1부터 시작합니다. 암호화폐 트레이더는 포트폴리오 다양화를 위해 Binance 또는 OKX를 사용하세요.\n오늘 바로 시작하세요:\nnpx skills add https://github.com/Leonxlnx/taste-skill --skill \"design-taste-frontend\" ```` **내부 링크**: [AI 코딩 에이전트 알아보기](https://dibi8.com/ai-tools/oh-my-pi) · [개발 유틸리티 비교](https://dibi8.com/dev-utils/) * * * **소스 및 추가 읽을거리**: - 공식 사이트: https://tasteskill.dev - GitHub 레포지토리: https://github.com/Leonxlnx/taste-skill - 변경 기록: https://www.tasteskill.dev/changelog - 커뮤니티: [@lexnlin on X](https://x.com/lexnlin), [@blueemi99 on X](https://x.com/blueemi99) **Sources \u0026 Further Reading**: - 공식 사이트: https://tasteskill.dev - GitHub 저장소: https://github.com/Leonxlnx/taste-skill - 변경 로그: https://www.tasteskill.dev/changelog - 커뮤니티: [@lexnlin on X](https://x.com/lexnlin), [@blueemi99 on X](https://x.com/blueemi99) **CTA**: Telegram에서 테이스트 스킬 커뮤니티에 가입하세요 — [t.me/DIBI8_Group](https://t.me/DIBI8_Group) **고지사항**: 이 기사에는 제휴 링크가 포함되어 있습니다. 링크를 통해 가입하시면 추가 비용 없이 저희가 커미션을 받을 수 있습니다. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"테이스트 스킬: AI가 범용적인 저질을 생성하는 것을 막아라 — 에이전트 스킬 프레임워크 2026\", \"datePublished\": \"2026-06-15\", \"dateModified\": \"2026-06-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/taste-skill\" } } * * * ## Related Articles - [langflow-visual-llm-workflow-builder-2026](taste-skill) - [12-factor-agents](taste-skill) - [2026-05-25-trending-ai-agents](taste-skill) - [2026-06-01-trending-ai-agents](taste-skill) - [2026-06-08-trending-ai-agents](taste-skill) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
-  "wordCount" : "2067",
+  "articleBody": "TL;DR Taste Skill gives your AI agent a design brain. Instead of generating the same generic, centered, boring UI that every AI tool produces, it enforces stronger layout variance, intentional motion, and premium visual density. It ships as portable SKILL.md files that work with Codex, Cursor, Claude Code, and ChatGPT Images.\nTL;DR: 44,229 stars — the most-starred anti-slop skill on GitHub.\nWhat Is Taste Skill? Taste Skill is a collection of portable agent skills designed to upgrade AI-generated frontend output. Each skill does one job: enforce specific design rules, generate reference images, or apply a particular visual style. The framework is not tied to any single coding agent or framework — it works across React, Vue, Svelte, and static HTML.\nThe core insight is simple: AI models are trained on the same internet, so they generate the same layouts. Taste Skill breaks this by providing explicit design constraints that force variance. Three adjustable dials control the output: - DESIGN_VARIANCE (1-10): Layout experimentation — lower for centered/clean, higher for asymmetric/modern\nMOTION_INTENSITY (1-10): Animation depth — lower for hover effects, higher for scroll/magnetic animations VISUAL_DENSITY (1-10): Information per viewport — lower for spacious layouts, higher for dense dashboards # Install all skills at once npx skills add https://github.com/Leonxlnx/taste-skill # Install a single skill by name npx skills add https://github.com/Leonxlnx/taste-skill --skill \"design-taste-frontend\" # Pin to v1 (original behavior) npx skills add https://github.com/Leonxlnx/taste-skill --skill \"design-taste-frontend-v1\" The default skill is now v2 (experimental), a substantial rewrite of the original. It includes brief inference, design-system mapping, hard em-dash bans, canonical GSAP code skeletons, and a redesign-audit protocol.\nHow Taste Skill Works Taste Skill operates through a three-layer architecture: 1. Implementation Skills — These output production-ready code. The flagship design-taste-frontend skill reads your project brief, infers a design language, tunes the three dials, and generates code with strict anti-repetition rules.\nImage Generation Skills — These produce reference boards (not code). imagegen-frontend-web generates website comps, imagegen-frontend-mobile creates mobile flows, and brandkit produces identity boards. Feed these to Codex or ChatGPT Images for implementation.\nStyle Variants — Specific visual directions: minimalist-ui (Notion/Linear vibes), industrial-brutalist-ui (Swiss type, sharp contrast), high-end-visual-design (polished, calm, expensive UI), and stitch-design-taste (Google Stitch-compatible).\n# Image-first pipeline: generate references, then code npx skills add https://github.com/Leonxlnx/taste-skill --skill \"image-to-code\" # Prompt example for image-to-code workflow # \"follow the skill: generate images, then analyze, then code\" The image-first pipeline is particularly powerful: generate reference boards with ChatGPT Images or Codex image mode, then pass the renders to your coding agent with the image-to-code skill for implementation.\nInstallation \u0026 Setup Installation takes less than 30 seconds. Taste Skill uses the Vercel Labs npx skills CLI, which scans the repo’s skills/ folder and installs SKILL.md files into your project.\n# Step 1: Install all skills npx skills add https://github.com/Leonxlnx/taste-skill # Step 2: Verify installation ls ~/.hermes/skills/ | grep taste # Step 3: Use in your agent conversation # The skill is automatically loaded when referenced Updating to v2 If you have v1 installed and want the experimental v2: `````bash\nRe-run install — the install name didn’t change npx skills add https://github.com/Leonxlnx/taste-skill –skill “design-taste-frontend”\nCheck changelog for v1→v2 differences curl -sL https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md | head -50\n### Manual Installation You can also copy any SKILL.md directly into your project or paste it into ChatGPT/Codex conversations: `````bash # Clone for manual access curl -sL \"https://github.com/Leonxlnx/taste-skill/archive/refs/heads/main.zip\" -o /tmp/taste-skill.zip unzip -q /tmp/taste-skill.zip -d /tmp ls /tmp/taste-skill-main/skills/ Listing Available Skills After installation, see what skills are available: `````bash\nList all installed skills npx skills list | grep taste\nCheck the skill version grep ‘^version:’ ~/.hermes/skills/design-taste-frontend/SKILL.md 2\u003e/dev/null || grep ‘^version:’ ~/.claude/skills/taste-skill/SKILL.md 2\u003e/dev/null || echo “Skill installed via paste (no version file)”\nRead the v2 changelog curl -sL “https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md\" | head -30\n## Integration with Major Coding Agents Taste Skill is framework-agnostic and works with every major AI coding agent: | Agent | Integration Method | Best Skill | | * * * | * * * | * * * | | **Codex** | ````npx skills add```` + CLI | ````gpt-taste```` (stricter variant) | | **Cursor** | Paste SKILL.md into ````.cursorrules```` | ````design-taste-frontend```` | | **Claude Code** | Load via ````.claude/skills/```` | ````design-taste-frontend```` | | **ChatGPT** | Paste SKILL.md into conversation | ````imagegen-frontend-web```` | | **Gemini** | Paste SKILL.md into conversation | ````design-taste-frontend```` | | **OpenCode** | Load SKILL.md | ````redesign-existing-projects```` | `````bash # Cursor integration: add to .cursorrules cat \u003e\u003e .cursorrules \u003c\u003c 'EOF' # Taste Skill v2 — Anti-slop frontend rules # Load skill: design-taste-frontend # Dials: DESIGN_VARIANCE=7, MOTION_INTENSITY=5, VISUAL_DENSITY=4 EOF # Claude Code integration mkdir -p ~/.claude/skills/taste-skill curl -sL \"https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/skills/design-taste-frontend/SKILL.md\" \\ \u003e ~/.claude/skills/taste-skill/SKILL.md Benchmarks: Taste Skill vs Generic AI Output The difference between a Taste Skill-generated interface and a generic AI output is measurable across several dimensions: ````` Metric | Generic AI | Taste Skill v2\n|\n|— Layout Variance | 1-2 | 7-9 Repetition Rate | High | Near Zero Motion Depth | Hover | Scroll/Magnetic Typography Scale | 2 levels | 4+ levels Visual Density | Uniform | Adaptive Frame-to-Code Time | 2-3 hours | 30-45 min\nThe benchmark comes from comparing 50+ generated landing pages across two groups: one using default AI prompts, one using Taste Skill v2 with all three dials tuned to medium-high settings. ### Code Quality Comparison Generic AI output typically produces centered layouts with uniform spacing, repetitive component patterns, and minimal visual hierarchy. Taste Skill enforces: - **Asymmetric layouts** with deliberate visual weight distribution - **Multi-level typography** (display, heading, body, caption) with proper scale ratios - **Intentional motion** that serves navigation, not decoration - **Contextual visual density** — sparse for hero sections, dense for data panels `````bash # Verify your generated output passes taste check # Taste Skill includes a pre-flight checklist in the SKILL.md # Key checks: # - No centered-only layouts # - Minimum 3 typography levels # - At least one intentional asymmetry # - Motion serves function, not decoration Advanced Usage: Customizing the Three Dials The real power of Taste Skill comes from dialing the three parameters to match your project’s visual identity.\nDesign Variance (Low → High) # Low variance (1-3): Clean, centered, traditional # Best for: Corporate sites, dashboards, documentation DESIGN_VARIANCE: 2 # Medium variance (4-6): Balanced experimentation # Best for: SaaS landing pages, portfolios, product sites DESIGN_VARIANCE: 5 # High variance (7-10): Asymmetric, bold, editorial # Best for: Creative agencies, art portfolios, brand sites DESIGN_VARIANCE: 9 Motion Intensity # Low (1-3): Subtle hover effects, no scroll animations MOTION_INTENSITY: 2 # Medium (4-6): Scroll-triggered reveals, gentle parallax MOTION_INTENSITY: 5 # High (7-10): Magnetic cursors, scroll-driven transforms, GSAP timelines MOTION_INTENSITY: 9 Visual Density # Spacious (1-3): Large padding, single-column focus VISUAL_DENSITY: 2 # Balanced (4-6): Mixed layouts, moderate information density VISUAL_DENSITY: 5 # Dense (7-10): Dashboard-style, multi-column, maximum information per viewport VISUAL_DENSITY: 9 Combining Dials for Specific Styles # Premium SaaS Landing Page DESIGN_VARIANCE: 6 MOTION_INTENSITY: 5 VISUAL_DENSITY: 4 # Creative Agency Portfolio DESIGN_VARIANCE: 9 MOTION_INTENSITY: 8 VISUAL_DENSITY: 3 # Data-Dense Dashboard DESIGN_VARIANCE: 3 MOTION_INTENSITY: 2 VISUAL_DENSITY: 9 # Minimal Editorial (Notion-style) DESIGN_VARIANCE: 4 MOTION_INTENSITY: 3 VISUAL_DENSITY: 5 Real-World Dial Configuration Examples Different project types benefit from different dial combinations. Here are proven configurations from Taste Skill’s own examples: `````yaml\nPortfolio with magnetic scroll animations DESIGN_VARIANCE: 8 MOTION_INTENSITY: 9 VISUAL_DENSITY: 3\nCorporate dashboard with dense data DESIGN_VARIANCE: 2 MOTION_INTENSITY: 1 VISUAL_DENSITY: 9\nSaaS pricing page with balanced layout DESIGN_VARIANCE: 5 MOTION_INTENSITY: 4 VISUAL_DENSITY: 6\nCreative landing page with asymmetric grid DESIGN_VARIANCE: 9 MOTION_INTENSITY: 7 VISUAL_DENSITY: 4\nThese configurations are tested across 44,000+ stars worth of community feedback. The key is matching your dial settings to the project's information density and brand personality. ## Comparison with Alternatives Taste Skill is not the only design-enforcement skill on GitHub. Here's how it compares to the closest alternatives: | Feature | Taste Skill v2 | PromptHero | Uiverse | AI UI Generator | | * * * | * * * | * * * | * * * | * * * | | Star Rating | 44,229 | 8,400 | 12,300 | N/A (SaaS) | | Framework Agnostic | Yes | Partial | No | No | | Adjustable Dials | 3 (Variance/Motion/Density) | None | None | None | | Image Generation | 3 skills | None | None | Built-in | | Code Output | Production-ready | Reference only | Component library | HTML/CSS | | Agent Support | Codex/Cursor/Claude/ChatGPT | ChatGPT only | Web UI | Web UI | | License | MIT | Apache 2.0 | MIT | Proprietary | The key differentiator is **adjustable dials**. While other tools produce static outputs, Taste Skill lets you tune the design language for each project. This is particularly valuable for teams that need consistent visual output across multiple projects. ## Limitations: When Taste Skill Won't Help Taste Skill is powerful but not a magic wand. Here's when it won't solve your problem: 1. **Complex backend logic** — Taste Skill focuses on frontend design. It won't architect your API, database schema, or authentication flow. 2. **Brand identity from scratch** — If you need a full brand system (logo, color palette, typography selection), Taste Skill assumes you already have design direction. Use ````brandkit```` for reference boards, but the final brand decisions are yours. 3. **Non-standard component libraries** — Taste Skill generates from-first-principles CSS. If you need strict adherence to Material Design, Ant Design, or Tailwind UI component patterns, the output may not match your design system exactly. 4. **Accessibility requirements** — While Taste Skill produces clean, semantic HTML, it doesn't automatically add ARIA attributes, keyboard navigation, or screen-reader optimizations. These need to be added separately. 5. **Mobile responsiveness edge cases** — The skills generate responsive layouts, but complex mobile interactions (swipe gestures, pinch-to-zoom, native app bridges) require manual implementation. `````bash # Quick reality check: does your project need Taste Skill? # ✅ Landing pages, portfolios, SaaS sites → YES # ✅ Redesigning AI-generated UI → YES # ✅ Backend APIs, database schemas → NO # ✅ Native mobile apps (Swift/Kotlin) → PARTIAL # ✅ Complex data visualization → PARTIAL (pair with D3 skills) Frequently Asked Questions How is Taste Skill different from other AI design skills? Most AI design skills produce a single output style. Taste Skill ships multiple specialized variants with adjustable dials and anti-repetition rules backed by dedicated research. Each skill is framework-agnostic and works across Codex, Cursor, Claude Code, and ChatGPT.\nDoes it work with React, Vue, and Svelte? Yes. Taste Skill rules target design intent, not framework-specific APIs. The generated output is vanilla HTML/CSS/JS that can be adapted to any framework. For React, add component structure manually. For Vue/Svelte, the skill output converts cleanly.\nWhat is the difference between v1 and v2? v2 is a substantial rewrite with brief inference, design-system mapping, GSAP code skeletons, and a redesign-audit protocol. v1 is preserved for projects that depend on the original behavior. Install v1 explicitly with --skill \"design-taste-frontend-v1\".\nCan I use Taste Skill without npx skills CLI? Yes. You can copy any SKILL.md into your project, paste it into ChatGPT/Codex conversations, or use it as a Cursor .cursorrules directive. The npx skills add command is convenient but not required.\nIs Taste Skill free? Yes, all skills are MIT-licensed. The project accepts GitHub sponsorships for continued development.\nHow do I choose which skill variant to use? Start with design-taste-frontend (v2) for the safest general default. Use gpt-taste for stricter GPT/Codex-oriented rules. Use image-to-code for image-first workflows. Use redesign-existing-projects for improving existing codebases.\nDoes Taste Skill work with Next.js or Astro? Yes. The generated output is framework-agnostic vanilla HTML/CSS/JS. For Next.js, wrap components in JSX. For Astro, use the islands architecture pattern. The design rules apply regardless of framework.\nHow do I prevent Taste Skill from over-designing? Lower DESIGN_VARIANCE to 2-3 and VISUAL_DENSITY to 2-3. This produces clean, minimal layouts without excessive experimentation. The v2 skill includes a “pre-flight check” that validates output against these constraints.\nCan I combine Taste Skill with Tailwind CSS or other utility frameworks? Absolutely. Taste Skill generates semantic HTML with CSS custom properties. You can map the output to Tailwind classes, or use the generated CSS directly. The skills are designed to work alongside, not replace, your existing design system.\nConclusion Taste Skill represents a fundamental shift in how AI agents approach frontend design. Instead of generating the same generic, centered, boring UI that every AI tool produces, it provides explicit design constraints that force variance and intentionality.\nWith 44,229 stars and growing, it has become the de facto standard for anti-slop frontend generation. Whether you’re building a landing page, redesigning an AI-generated interface, or creating a design system from scratch, Taste Skill gives your agent the design brain it’s been missing.\nIf you need cloud hosting for your projects, host your site on DigitalOcean for reliable global CDN coverage. For backup infrastructure, HTStack provides affordable object storage. Need reliable proxy infrastructure? WebShare proxies start at $1/month. Crypto traders can use Binance or OKX for portfolio diversification.\nTry it today:\nnpx skills add https://github.com/Leonxlnx/taste-skill --skill \"design-taste-frontend\" ```` **Internal links**: [Learn about AI coding agents](https://dibi8.com/ai-tools/oh-my-pi) · [Compare dev utilities](https://dibi8.com/dev-utils/) * * * **Sources \u0026 Further Reading**: - Official site: https://tasteskill.dev - GitHub repository: https://github.com/Leonxlnx/taste-skill - Changelog: https://www.tasteskill.dev/changelog - Community: [@lexnlin on X](https://x.com/lexnlin), [@blueemi99 on X](https://x.com/blueemi99) **CTA**: Join the Taste Skill community on Telegram — [t.me/DIBI8_Group](https://t.me/DIBI8_Group) **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Taste Skill: Stop AI From Generating Generic Slop — Agent Skill Framework 2026\", \"datePublished\": \"2026-06-15\", \"dateModified\": \"2026-06-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/taste-skill\" } } * * * ## Related Articles - [2026-06-15-trending-ai-agents](taste-skill) - [2026-06-22-trending-ai-agents](taste-skill) - [agency-agents-complete-ai-agency-framework](taste-skill) - [compound-engineering-multi-agent-coding-claude-codex-cursor](taste-skill) - [impeccable-ai-design-language-harness-quality-ui](taste-skill) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
+  "wordCount" : "2333",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/taste-skill/">En</a>
@@ -211,83 +211,83 @@
             <li>
                 <a href="#tldr" aria-label="TL;DR">TL;DR</a></li>
             <li>
-                <a href="#%ed%85%8c%ec%9d%b4%ec%8a%a4%ed%8a%b8-%ec%8a%a4%ed%82%ac%ec%9d%b4%eb%9e%80" aria-label="테이스트 스킬이란?">테이스트 스킬이란?</a></li>
+                <a href="#what-is-taste-skill" aria-label="What Is Taste Skill?">What Is Taste Skill?</a></li>
             <li>
-                <a href="#%ed%85%8c%ec%9d%b4%ec%8a%a4%ed%8a%b8-%ec%8a%a4%ed%82%ac%ec%9d%98-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d" aria-label="테이스트 스킬의 작동 방식">테이스트 스킬의 작동 방식</a></li>
+                <a href="#how-taste-skill-works" aria-label="How Taste Skill Works">How Taste Skill Works</a></li>
             <li>
-                <a href="#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95" aria-label="설치 및 설정">설치 및 설정</a><ul>
+                <a href="#installation--setup" aria-label="Installation &amp; Setup">Installation &amp; Setup</a><ul>
                     
             <li>
-                <a href="#v2%eb%a1%9c-%ec%97%85%eb%8d%b0%ec%9d%b4%ed%8a%b8" aria-label="v2로 업데이트">v2로 업데이트</a></li></ul>
+                <a href="#updating-to-v2" aria-label="Updating to v2">Updating to v2</a></li></ul>
             </li></ul>
                 
             <li>
-                <a href="#%ec%84%a4%ec%b9%98-%ec%9e%ac%ec%8b%a4%ed%96%89--%ec%84%a4%ec%b9%98-%ec%9d%b4%eb%a6%84%ec%9d%80-%eb%b3%80%ea%b2%bd%eb%90%98%ec%a7%80-%ec%95%8a%ec%95%98%ec%8a%b5%eb%8b%88%eb%8b%a4" aria-label="설치 재실행 — 설치 이름은 변경되지 않았습니다">설치 재실행 — 설치 이름은 변경되지 않았습니다</a></li>
+                <a href="#re-run-install--the-install-name-didnt-change" aria-label="Re-run install — the install name didn&rsquo;t change">Re-run install — the install name didn&rsquo;t change</a></li>
             <li>
-                <a href="#v1v2-%ec%b0%a8%ec%9d%b4%ec%a0%90-%eb%b3%80%ea%b2%bd-%ea%b8%b0%eb%a1%9d-%ed%99%95%ec%9d%b8" aria-label="v1→v2 차이점 변경 기록 확인">v1→v2 차이점 변경 기록 확인</a><ul>
+                <a href="#check-changelog-for-v1v2-differences" aria-label="Check changelog for v1→v2 differences">Check changelog for v1→v2 differences</a><ul>
                     <ul>
                     
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9-%ea%b0%80%eb%8a%a5%ed%95%9c-%ec%8a%a4%ed%82%ac-%eb%aa%a9%eb%a1%9d" aria-label="사용 가능한 스킬 목록">사용 가능한 스킬 목록</a></li></ul>
+                <a href="#listing-available-skills" aria-label="Listing Available Skills">Listing Available Skills</a></li></ul>
                 </ul>
             </li>
             <li>
-                <a href="#%ec%84%a4%ec%b9%98%eb%90%9c-%eb%aa%a8%eb%93%a0-%ec%8a%a4%ed%82%ac-%eb%aa%a9%eb%a1%9d" aria-label="설치된 모든 스킬 목록">설치된 모든 스킬 목록</a></li>
+                <a href="#list-all-installed-skills" aria-label="List all installed skills">List all installed skills</a></li>
             <li>
-                <a href="#%ec%8a%a4%ed%82%ac-%eb%b2%84%ec%a0%84-%ed%99%95%ec%9d%b8" aria-label="스킬 버전 확인">스킬 버전 확인</a></li>
+                <a href="#check-the-skill-version" aria-label="Check the skill version">Check the skill version</a></li>
             <li>
-                <a href="#v2-%eb%b3%80%ea%b2%bd-%ea%b8%b0%eb%a1%9d-%ec%9d%bd%ea%b8%b0" aria-label="v2 변경 기록 읽기">v2 변경 기록 읽기</a><ul>
+                <a href="#read-the-v2-changelog" aria-label="Read the v2 changelog">Read the v2 changelog</a><ul>
                     
             <li>
-                <a href="#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac-%ed%85%8c%ec%9d%b4%ec%8a%a4%ed%8a%b8-%ec%8a%a4%ed%82%ac-vs-%eb%b2%94%ec%9a%a9-ai-%ec%b6%9c%eb%a0%a5" aria-label="벤치마크: 테이스트 스킬 vs 범용 AI 출력">벤치마크: 테이스트 스킬 vs 범용 AI 출력</a></li>
+                <a href="#benchmarks-taste-skill-vs-generic-ai-output" aria-label="Benchmarks: Taste Skill vs Generic AI Output">Benchmarks: Taste Skill vs Generic AI Output</a></li>
             <li>
-                <a href="#%ea%b3%a0%ea%b8%89-%ec%82%ac%ec%9a%a9-%ec%84%b8-%eb%8b%a4%ec%9d%b4%ec%96%bc-%ec%82%ac%ec%9a%a9%ec%9e%90-%ec%a0%95%ec%9d%98" aria-label="고급 사용: 세 다이얼 사용자 정의">고급 사용: 세 다이얼 사용자 정의</a><ul>
+                <a href="#advanced-usage-customizing-the-three-dials" aria-label="Advanced Usage: Customizing the Three Dials">Advanced Usage: Customizing the Three Dials</a><ul>
                     
             <li>
-                <a href="#%eb%94%94%ec%9e%90%ec%9d%b8-%eb%b6%84%ec%82%b0-%eb%82%ae%ec%9d%8c--%eb%86%92%ec%9d%8c" aria-label="디자인 분산 (낮음 → 높음)">디자인 분산 (낮음 → 높음)</a></li>
+                <a href="#design-variance-low--high" aria-label="Design Variance (Low → High)">Design Variance (Low → High)</a></li>
             <li>
-                <a href="#%eb%aa%a8%ec%85%98-%ea%b0%95%eb%8f%84" aria-label="모션 강도">모션 강도</a></li>
+                <a href="#motion-intensity" aria-label="Motion Intensity">Motion Intensity</a></li>
             <li>
-                <a href="#%ec%8b%9c%ea%b0%81%ec%a0%81-%eb%b0%80%eb%8f%84" aria-label="시각적 밀도">시각적 밀도</a></li>
+                <a href="#visual-density" aria-label="Visual Density">Visual Density</a></li>
             <li>
-                <a href="#%ed%8a%b9%ec%a0%95-%ec%8a%a4%ed%83%80%ec%9d%bc%ec%9d%84-%ec%9c%84%ed%95%9c-%eb%8b%a4%ec%9d%b4%ec%96%bc-%ec%a1%b0%ed%95%a9" aria-label="특정 스타일을 위한 다이얼 조합">특정 스타일을 위한 다이얼 조합</a></li>
+                <a href="#combining-dials-for-specific-styles" aria-label="Combining Dials for Specific Styles">Combining Dials for Specific Styles</a></li>
             <li>
-                <a href="#%ec%8b%a4%ec%a0%9c-%eb%8b%a4%ec%9d%b4%ec%96%bc-%ea%b5%ac%ec%84%b1-%ec%98%88%ec%8b%9c" aria-label="실제 다이얼 구성 예시">실제 다이얼 구성 예시</a></li></ul>
+                <a href="#real-world-dial-configuration-examples" aria-label="Real-World Dial Configuration Examples">Real-World Dial Configuration Examples</a></li></ul>
             </li></ul>
             </li>
             <li>
-                <a href="#%ec%9e%90%ea%b8%b0%ec%9e%90%ec%84%9d-%ec%8a%a4%ed%81%ac%eb%a1%a4-%ec%95%a0%eb%8b%88%eb%a9%94%ec%9d%b4%ec%85%98%ec%9d%84-%ed%8f%ac%ed%95%a8%ed%95%9c-%ed%8f%ac%ed%8a%b8%ed%8f%b4%eb%a6%ac%ec%98%a4" aria-label="자기자석 스크롤 애니메이션을 포함한 포트폴리오">자기자석 스크롤 애니메이션을 포함한 포트폴리오</a></li>
+                <a href="#portfolio-with-magnetic-scroll-animations" aria-label="Portfolio with magnetic scroll animations">Portfolio with magnetic scroll animations</a></li>
             <li>
-                <a href="#%eb%b0%80%eb%8f%84-%eb%86%92%ec%9d%80-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%a5%bc-%ea%b0%96%ec%b6%98-%ea%b8%b0%ec%97%85-%eb%8c%80%ec%8b%9c%eb%b3%b4%eb%93%9c" aria-label="밀도 높은 데이터를 갖춘 기업 대시보드">밀도 높은 데이터를 갖춘 기업 대시보드</a></li>
+                <a href="#corporate-dashboard-with-dense-data" aria-label="Corporate dashboard with dense data">Corporate dashboard with dense data</a></li>
             <li>
-                <a href="#%ea%b7%a0%ed%98%95-%ec%9e%a1%ed%9e%8c-%eb%a0%88%ec%9d%b4%ec%95%84%ec%9b%83%ec%9d%84-%ea%b0%96%ec%b6%98-saas-%ea%b0%80%ea%b2%a9-%ed%8e%98%ec%9d%b4%ec%a7%80" aria-label="균형 잡힌 레이아웃을 갖춘 SaaS 가격 페이지">균형 잡힌 레이아웃을 갖춘 SaaS 가격 페이지</a></li>
+                <a href="#saas-pricing-page-with-balanced-layout" aria-label="SaaS pricing page with balanced layout">SaaS pricing page with balanced layout</a></li>
             <li>
-                <a href="#%eb%b9%84%eb%8c%80%ec%b9%ad-%ea%b7%b8%eb%a6%ac%eb%93%9c%eb%a5%bc-%ea%b0%96%ec%b6%98-%ed%81%ac%eb%a6%ac%ec%97%90%ec%9d%b4%ed%8b%b0%eb%b8%8c-%eb%9e%9c%eb%94%a9-%ed%8e%98%ec%9d%b4%ec%a7%80" aria-label="비대칭 그리드를 갖춘 크리에이티브 랜딩 페이지">비대칭 그리드를 갖춘 크리에이티브 랜딩 페이지</a><ul>
+                <a href="#creative-landing-page-with-asymmetric-grid" aria-label="Creative landing page with asymmetric grid">Creative landing page with asymmetric grid</a><ul>
                     
             <li>
-                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a><ul>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
                     
             <li>
-                <a href="#%ed%85%8c%ec%9d%b4%ec%8a%a4%ed%8a%b8-%ec%8a%a4%ed%82%ac%ec%9d%80-%eb%8b%a4%eb%a5%b8-ai-%eb%94%94%ec%9e%90%ec%9d%b8-%ec%8a%a4%ed%82%ac%ea%b3%bc-%ec%96%b4%eb%96%bb%ea%b2%8c-%eb%8b%a4%eb%a5%b4%eb%82%98%ec%9a%94" aria-label="테이스트 스킬은 다른 AI 디자인 스킬과 어떻게 다르나요?">테이스트 스킬은 다른 AI 디자인 스킬과 어떻게 다르나요?</a></li>
+                <a href="#how-is-taste-skill-different-from-other-ai-design-skills" aria-label="How is Taste Skill different from other AI design skills?">How is Taste Skill different from other AI design skills?</a></li>
             <li>
-                <a href="#react-vue-svelte%ec%99%80-%ed%95%a8%ea%bb%98-%ec%9e%91%eb%8f%99%ed%95%98%eb%82%98%ec%9a%94" aria-label="React, Vue, Svelte와 함께 작동하나요?">React, Vue, Svelte와 함께 작동하나요?</a></li>
+                <a href="#does-it-work-with-react-vue-and-svelte" aria-label="Does it work with React, Vue, and Svelte?">Does it work with React, Vue, and Svelte?</a></li>
             <li>
-                <a href="#v1%ea%b3%bc-v2%ec%9d%98-%ec%b0%a8%ec%9d%b4%eb%8a%94-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80%ec%9a%94" aria-label="v1과 v2의 차이는 무엇인가요?">v1과 v2의 차이는 무엇인가요?</a></li>
+                <a href="#what-is-the-difference-between-v1-and-v2" aria-label="What is the difference between v1 and v2?">What is the difference between v1 and v2?</a></li>
             <li>
-                <a href="#npx-skills-cli-%ec%97%86%ec%9d%b4-%ed%85%8c%ec%9d%b4%ec%8a%a4%ed%8a%b8-%ec%8a%a4%ed%82%ac%ec%9d%84-%ec%82%ac%ec%9a%a9%ed%95%98%eb%82%98%ec%9a%94" aria-label="npx skills CLI 없이 테이스트 스킬을 사용하나요?">npx skills CLI 없이 테이스트 스킬을 사용하나요?</a></li>
+                <a href="#can-i-use-taste-skill-without-npx-skills-cli" aria-label="Can I use Taste Skill without npx skills CLI?">Can I use Taste Skill without npx skills CLI?</a></li>
             <li>
-                <a href="#%ed%85%8c%ec%9d%b4%ec%8a%a4%ed%8a%b8-%ec%8a%a4%ed%82%ac%ec%9d%80-%eb%ac%b4%eb%a3%8c%ec%9d%b8%ea%b0%80%ec%9a%94" aria-label="테이스트 스킬은 무료인가요?">테이스트 스킬은 무료인가요?</a></li>
+                <a href="#is-taste-skill-free" aria-label="Is Taste Skill free?">Is Taste Skill free?</a></li>
             <li>
-                <a href="#%ec%96%b4%eb%96%a4-%ec%8a%a4%ed%82%ac-%eb%b3%80%ed%98%95%ec%9d%84-%ec%84%a0%ed%83%9d%ed%95%b4%ec%95%bc-%ed%95%98%eb%82%98%ec%9a%94" aria-label="어떤 스킬 변형을 선택해야 하나요?">어떤 스킬 변형을 선택해야 하나요?</a></li>
+                <a href="#how-do-i-choose-which-skill-variant-to-use" aria-label="How do I choose which skill variant to use?">How do I choose which skill variant to use?</a></li>
             <li>
-                <a href="#%ed%85%8c%ec%9d%b4%ec%8a%a4%ed%8a%b8-%ec%8a%a4%ed%82%ac%ec%9d%80-nextjs%eb%82%98-astro%ec%99%80-%ed%95%a8%ea%bb%98-%ec%9e%91%eb%8f%99%ed%95%98%eb%82%98%ec%9a%94" aria-label="테이스트 스킬은 Next.js나 Astro와 함께 작동하나요?">테이스트 스킬은 Next.js나 Astro와 함께 작동하나요?</a></li>
+                <a href="#does-taste-skill-work-with-nextjs-or-astro" aria-label="Does Taste Skill work with Next.js or Astro?">Does Taste Skill work with Next.js or Astro?</a></li>
             <li>
-                <a href="#%ed%85%8c%ec%9d%b4%ec%8a%a4%ed%8a%b8-%ec%8a%a4%ed%82%ac%ec%9d%98-%ea%b3%bc%eb%8f%84%ed%95%9c-%eb%94%94%ec%9e%90%ec%9d%b8%ec%9d%84-%ec%96%b4%eb%96%bb%ea%b2%8c-%eb%b0%a9%ec%a7%80%ed%95%98%eb%82%98%ec%9a%94" aria-label="테이스트 스킬의 과도한 디자인을 어떻게 방지하나요?">테이스트 스킬의 과도한 디자인을 어떻게 방지하나요?</a></li>
+                <a href="#how-do-i-prevent-taste-skill-from-over-designing" aria-label="How do I prevent Taste Skill from over-designing?">How do I prevent Taste Skill from over-designing?</a></li>
             <li>
-                <a href="#%ed%85%8c%ec%9d%b4%ec%8a%a4%ed%8a%b8-%ec%8a%a4%ed%82%ac%ec%9d%84-tailwind-css%eb%82%98-%ea%b8%b0%ed%83%80-%ec%9c%a0%ed%8b%b8%eb%a6%ac%ed%8b%b0-%ed%94%84%eb%a0%88%ec%9e%84%ec%9b%8c%ed%81%ac%ec%99%80-%ed%95%a8%ea%bb%98-%ec%82%ac%ec%9a%a9%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98%ec%9a%94" aria-label="테이스트 스킬을 Tailwind CSS나 기타 유틸리티 프레임워크와 함께 사용할 수 있나요?">테이스트 스킬을 Tailwind CSS나 기타 유틸리티 프레임워크와 함께 사용할 수 있나요?</a></li></ul>
+                <a href="#can-i-combine-taste-skill-with-tailwind-css-or-other-utility-frameworks" aria-label="Can I combine Taste Skill with Tailwind CSS or other utility frameworks?">Can I combine Taste Skill with Tailwind CSS or other utility frameworks?</a></li></ul>
             </li>
             <li>
-                <a href="#%ea%b2%b0%eb%a1%a0" aria-label="결론">결론</a>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a>
             </li>
         </ul>
         </li>
@@ -296,314 +296,295 @@
 </details>
 
   <div class="post-content md-content"><h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
-<p>테이스트 스킬은 AI 에이전트에 디자인 감각을 부여합니다. 모든 AI 도구가 만들어내는 동일하고 지루하며 가운데 정렬된 범용 UI 대신,更强的 레이아웃 변화와 의도적인 모션, 프리미엄한 시각적 밀도를 적용합니다. Codex, Cursor, Claude Code, ChatGPT Images와 함께 작동하는 포트폴리오형 SKILL.md 파일로 제공됩니다.</p>
-<p><strong>TL;DR: 44,229 스타</strong> — GitHub에서 가장 많은 스타를 받은 저질 방지 스킬입니다.</p>
-<h2 id="테이스트-스킬이란">테이스트 스킬이란?<a hidden class="anchor" aria-hidden="true" href="#테이스트-스킬이란">#</a></h2>
-<p>테이스트 스킬은 AI 생성 프론트엔드 출력을 업그레이드하도록 설계된 포트폴리오형 에이전트 스킬 모음입니다. 각 스킬은 하나의 작업을 수행합니다: 특정 디자인 규칙을 강제하거나, 레퍼런스 이미지를 생성하거나, 특정 시각적 스타일을 적용합니다. 이 프레임워크는 <strong>어떠한 단일 코딩 에이전트나 프레임워크에 종속되지 않으며</strong>, React, Vue, Svelte, 정적 HTML 전반에서 작동합니다.</p>
-<p>핵심 통찰은 간단합니다. AI 모델은 동일한 인터넷으로 학습되므로 동일한 레이아웃을 생성합니다. 테이스트 스킬은 명시적인 디자인 제약 조건을 제공하여 이러한 패턴을 깨뜨립니다. 출력값을 통제하는 세 개의 조정 다이얼이 있습니다: - <strong>DESIGN_VARIANCE (1-10):</strong> 레이아웃 실험 — 낮으면 가운데/깔끔함, 높으면 비대칭/현대적</p>
+<p>Taste Skill gives your AI agent a design brain. Instead of generating the same generic, centered, boring UI that every AI tool produces, it enforces stronger layout variance, intentional motion, and premium visual density. It ships as portable SKILL.md files that work with Codex, Cursor, Claude Code, and ChatGPT Images.</p>
+<p><strong>TL;DR: 44,229 stars</strong> — the most-starred anti-slop skill on GitHub.</p>
+<h2 id="what-is-taste-skill">What Is Taste Skill?<a hidden class="anchor" aria-hidden="true" href="#what-is-taste-skill">#</a></h2>
+<p>Taste Skill is a collection of portable agent skills designed to upgrade AI-generated frontend output. Each skill does one job: enforce specific design rules, generate reference images, or apply a particular visual style. The framework is <strong>not tied to any single coding agent or framework</strong> — it works across React, Vue, Svelte, and static HTML.</p>
+<p>The core insight is simple: AI models are trained on the same internet, so they generate the same layouts. Taste Skill breaks this by providing explicit design constraints that force variance. Three adjustable dials control the output: - <strong>DESIGN_VARIANCE (1-10):</strong> Layout experimentation — lower for centered/clean, higher for asymmetric/modern</p>
 <ul>
-<li><strong>MOTION_INTENSITY (1-10):</strong> 애니메이션 깊이 — 낮으면 호버 효과, 높으면 스크롤/자기자석 애니메이션</li>
-<li><strong>VISUAL_DENSITY (1-10):</strong> 뷰포트당 정보량 — 낮으면 여유로운 레이아웃, 높으면 밀도 높은 대시보드</li>
+<li><strong>MOTION_INTENSITY (1-10):</strong> Animation depth — lower for hover effects, higher for scroll/magnetic animations</li>
+<li><strong>VISUAL_DENSITY (1-10):</strong> Information per viewport — lower for spacious layouts, higher for dense dashboards</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 모든 스킬 한 번에 설치</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install all skills at once</span>
 </span></span><span style="display:flex;"><span>npx skills add https://github.com/Leonxlnx/taste-skill
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 이름으로 단일 스킬 설치</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install a single skill by name</span>
 </span></span><span style="display:flex;"><span>npx skills add https://github.com/Leonxlnx/taste-skill --skill <span style="color:#e6db74">&#34;design-taste-frontend&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># v1에 고정 (기존 동작)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Pin to v1 (original behavior)</span>
 </span></span><span style="display:flex;"><span>npx skills add https://github.com/Leonxlnx/taste-skill --skill <span style="color:#e6db74">&#34;design-taste-frontend-v1&#34;</span>
-</span></span></code></pre></div><p>기본 스킬은 이제 **v2(실험적)**로, 원래 코드의 상당한 재작성입니다.brief 추론, 디자인 시스템 매핑, em-dash 강제 금지, GSAP 코드 스켈레톤 표준화, redesign-audit 프로토콜이 포함되어 있습니다.</p>
-<h2 id="테이스트-스킬의-작동-방식">테이스트 스킬의 작동 방식<a hidden class="anchor" aria-hidden="true" href="#테이스트-스킬의-작동-방식">#</a></h2>
-<p>테이스트 스킬은 3층 아키텍처로 동작합니다: 1. <strong>구현 스킬</strong> — 프로덕션 수준 코드를 출력합니다. 플래그십 <code>design-taste-frontend</code> 스킬은 프로젝트 명세를 읽고 디자인 언어를 추론하며, 세 개의 다이얼을 튜닝하고 엄격한 반복 방지 규칙으로 코드를 생성합니다.</p>
+</span></span></code></pre></div><p>The default skill is now <strong>v2 (experimental)</strong>, a substantial rewrite of the original. It includes brief inference, design-system mapping, hard em-dash bans, canonical GSAP code skeletons, and a redesign-audit protocol.</p>
+<h2 id="how-taste-skill-works">How Taste Skill Works<a hidden class="anchor" aria-hidden="true" href="#how-taste-skill-works">#</a></h2>
+<p>Taste Skill operates through a three-layer architecture: 1. <strong>Implementation Skills</strong> — These output production-ready code. The flagship <code>design-taste-frontend</code> skill reads your project brief, infers a design language, tunes the three dials, and generates code with strict anti-repetition rules.</p>
 <ol start="2">
 <li>
-<p><strong>이미지 생성 스킬</strong> — 코드 대신 레퍼런스 보드를 생성합니다. <code>imagegen-frontend-web</code>은 웹사이트 컴포즈를 생성하고, <code>imagegen-frontend-mobile</code>은 모바일 플로우를 만들며, <code>brandkit</code>은 아이덴티티 보드를 생성합니다. 이들을 Codex나 ChatGPT Images에 피드하여 구현에 활용합니다.</p>
+<p><strong>Image Generation Skills</strong> — These produce reference boards (not code). <code>imagegen-frontend-web</code> generates website comps, <code>imagegen-frontend-mobile</code> creates mobile flows, and <code>brandkit</code> produces identity boards. Feed these to Codex or ChatGPT Images for implementation.</p>
 </li>
 <li>
-<p><strong>스타일 변형</strong> — 구체적인 시각적 방향: <code>minimalist-ui</code>(Notion/Linear 분위기), <code>industrial-brutalist-ui</code>(스위스 타이포그래피, 날카로운 대비), <code>high-end-visual-design</code>(정교하고 차분하고 고급스러운 UI), <code>stitch-design-taste</code>(Google Stitch 호환)</p>
+<p><strong>Style Variants</strong> — Specific visual directions: <code>minimalist-ui</code> (Notion/Linear vibes), <code>industrial-brutalist-ui</code> (Swiss type, sharp contrast), <code>high-end-visual-design</code> (polished, calm, expensive UI), and <code>stitch-design-taste</code> (Google Stitch-compatible).</p>
 </li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 이미지 퍼스트 파이프라인: 레퍼런스 먼저 생성, 그다음 코드 생성</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Image-first pipeline: generate references, then code</span>
 </span></span><span style="display:flex;"><span>npx skills add https://github.com/Leonxlnx/taste-skill --skill <span style="color:#e6db74">&#34;image-to-code&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 이미지-투-코드 워크플로우용 프롬프트 예시</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Prompt example for image-to-code workflow</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># &#34;follow the skill: generate images, then analyze, then code&#34;</span>
-</span></span></code></pre></div><p>이미지 퍼스트 파이프라인은 특히 강력합니다: ChatGPT Images나 Codex 이미지 모드에서 레퍼런스 보드를 생성한 후, 구현을 위해 <code>image-to-code</code> 스킬과 함께 생성된 렌더링을 코딩 에이전트에 전달합니다.</p>
-<h2 id="설치-및-설정">설치 및 설정<a hidden class="anchor" aria-hidden="true" href="#설치-및-설정">#</a></h2>
-<p>설치는 30초도 걸리지 않습니다. 테이스트 스킬은 Vercel Labs의 <code>npx skills</code> CLI를 사용하며, 레포지토리의 <code>skills/</code> 폴더를 스캔하여 SKILL.md 파일을 프로젝트에 설치합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 1단계: 모든 스킬 설치</span>
+</span></span></code></pre></div><p>The image-first pipeline is particularly powerful: generate reference boards with ChatGPT Images or Codex image mode, then pass the renders to your coding agent with the <code>image-to-code</code> skill for implementation.</p>
+<h2 id="installation--setup">Installation &amp; Setup<a hidden class="anchor" aria-hidden="true" href="#installation--setup">#</a></h2>
+<p>Installation takes less than 30 seconds. Taste Skill uses the Vercel Labs <code>npx skills</code> CLI, which scans the repo&rsquo;s <code>skills/</code> folder and installs SKILL.md files into your project.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Step 1: Install all skills</span>
 </span></span><span style="display:flex;"><span>npx skills add https://github.com/Leonxlnx/taste-skill
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2단계: 설치 확인</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Step 2: Verify installation</span>
 </span></span><span style="display:flex;"><span>ls ~/.hermes/skills/ | grep taste
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3단계: 에이전트 대화에서 사용</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 스킬은 참조 시 자동으로 로드됩니다</span>
-</span></span></code></pre></div><h3 id="v2로-업데이트">v2로 업데이트<a hidden class="anchor" aria-hidden="true" href="#v2로-업데이트">#</a></h3>
-<p>v1이 설치되어 있고 실험적 v2로 업그레이드하려면: `````bash</p>
-<h1 id="설치-재실행--설치-이름은-변경되지-않았습니다">설치 재실행 — 설치 이름은 변경되지 않았습니다<a hidden class="anchor" aria-hidden="true" href="#설치-재실행--설치-이름은-변경되지-않았습니다">#</a></h1>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Step 3: Use in your agent conversation</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The skill is automatically loaded when referenced</span>
+</span></span></code></pre></div><h3 id="updating-to-v2">Updating to v2<a hidden class="anchor" aria-hidden="true" href="#updating-to-v2">#</a></h3>
+<p>If you have v1 installed and want the experimental v2: `````bash</p>
+<h1 id="re-run-install--the-install-name-didnt-change">Re-run install — the install name didn&rsquo;t change<a hidden class="anchor" aria-hidden="true" href="#re-run-install--the-install-name-didnt-change">#</a></h1>
 <p>npx skills add <a href="https://github.com/Leonxlnx/taste-skill">https://github.com/Leonxlnx/taste-skill</a> &ndash;skill &ldquo;design-taste-frontend&rdquo;</p>
-<h1 id="v1v2-차이점-변경-기록-확인">v1→v2 차이점 변경 기록 확인<a hidden class="anchor" aria-hidden="true" href="#v1v2-차이점-변경-기록-확인">#</a></h1>
+<h1 id="check-changelog-for-v1v2-differences">Check changelog for v1→v2 differences<a hidden class="anchor" aria-hidden="true" href="#check-changelog-for-v1v2-differences">#</a></h1>
 <p>curl -sL <a href="https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md">https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md</a> | head -50</p>
 <pre tabindex="0"><code>
-### 수동 설치
+### Manual Installation
 
-SKILL.md를 프로젝트에 직접 복사하거나 ChatGPT/Codex 대화에 붙여넣을 수도 있습니다: `````bash
-# 수동 접근을 위해 클론
+You can also copy any SKILL.md directly into your project or paste it into ChatGPT/Codex conversations: `````bash
+# Clone for manual access
 curl -sL &#34;https://github.com/Leonxlnx/taste-skill/archive/refs/heads/main.zip&#34; -o /tmp/taste-skill.zip
 unzip -q /tmp/taste-skill.zip -d /tmp
 ls /tmp/taste-skill-main/skills/
-</code></pre><h3 id="사용-가능한-스킬-목록">사용 가능한 스킬 목록<a hidden class="anchor" aria-hidden="true" href="#사용-가능한-스킬-목록">#</a></h3>
-<p>설치 후 사용할 수 있는 스킬을 확인하세요: `````bash</p>
-<h1 id="설치된-모든-스킬-목록">설치된 모든 스킬 목록<a hidden class="anchor" aria-hidden="true" href="#설치된-모든-스킬-목록">#</a></h1>
+</code></pre><h3 id="listing-available-skills">Listing Available Skills<a hidden class="anchor" aria-hidden="true" href="#listing-available-skills">#</a></h3>
+<p>After installation, see what skills are available: `````bash</p>
+<h1 id="list-all-installed-skills">List all installed skills<a hidden class="anchor" aria-hidden="true" href="#list-all-installed-skills">#</a></h1>
 <p>npx skills list | grep taste</p>
-<h1 id="스킬-버전-확인">스킬 버전 확인<a hidden class="anchor" aria-hidden="true" href="#스킬-버전-확인">#</a></h1>
+<h1 id="check-the-skill-version">Check the skill version<a hidden class="anchor" aria-hidden="true" href="#check-the-skill-version">#</a></h1>
 <p>grep &lsquo;^version:&rsquo; ~/.hermes/skills/design-taste-frontend/SKILL.md 2&gt;/dev/null || <br>
 grep &lsquo;^version:&rsquo; ~/.claude/skills/taste-skill/SKILL.md 2&gt;/dev/null || <br>
 echo &ldquo;Skill installed via paste (no version file)&rdquo;</p>
-<h1 id="v2-변경-기록-읽기">v2 변경 기록 읽기<a hidden class="anchor" aria-hidden="true" href="#v2-변경-기록-읽기">#</a></h1>
+<h1 id="read-the-v2-changelog">Read the v2 changelog<a hidden class="anchor" aria-hidden="true" href="#read-the-v2-changelog">#</a></h1>
 <p>curl -sL &ldquo;<a href="https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md%22">https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md"</a> | head -30</p>
 <pre tabindex="0"><code>
-## 주요 코딩 에이전트와의 통합
+## Integration with Major Coding Agents
 
-테이스트 스킬은 프레임워크에 독립적이며 모든 주요 AI 코딩 에이전트와 함께 작동합니다: || 에이전트 | 통합 방법 | 최적 스킬 |
-||-------|-------------------|------------|
-|| **Codex** | ````npx skills add```` + CLI | ````gpt-taste```` (더 엄격한 변형) |
-|| **Cursor** | ````.cursorrules````에 SKILL.md 붙여넣기 | ````design-taste-frontend```` |
-|| **Claude Code** | ````.claude/skills/````를 통해 로드 | ````design-taste-frontend```` |
-|| **ChatGPT** | 대화에 SKILL.md 붙여넣기 | ````imagegen-frontend-web```` |
-|| **Gemini** | 대화에 SKILL.md 붙여넣기 | ````design-taste-frontend```` |
-|| **OpenCode** | SKILL.md 로드 | ````redesign-existing-projects```` |
+Taste Skill is framework-agnostic and works with every major AI coding agent: | Agent | Integration Method | Best Skill |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| **Codex** | ````npx skills add```` + CLI | ````gpt-taste```` (stricter variant) |
+| **Cursor** | Paste SKILL.md into ````.cursorrules```` | ````design-taste-frontend```` |
+| **Claude Code** | Load via ````.claude/skills/```` | ````design-taste-frontend```` |
+| **ChatGPT** | Paste SKILL.md into conversation | ````imagegen-frontend-web```` |
+| **Gemini** | Paste SKILL.md into conversation | ````design-taste-frontend```` |
+| **OpenCode** | Load SKILL.md | ````redesign-existing-projects```` |
 
 `````bash
-# Cursor 통합: .cursorrules에 추가
+# Cursor integration: add to .cursorrules
 cat &gt;&gt; .cursorrules &lt;&lt; &#39;EOF&#39;
-# Taste Skill v2 — 저질 방지 프론트엔드 규칙
-# 스킬 로드: design-taste-frontend
-# 다이얼 설정: DESIGN_VARIANCE=7, MOTION_INTENSITY=5, VISUAL_DENSITY=4
+# Taste Skill v2 — Anti-slop frontend rules
+# Load skill: design-taste-frontend
+# Dials: DESIGN_VARIANCE=7, MOTION_INTENSITY=5, VISUAL_DENSITY=4
 EOF
 
-# Claude Code 통합
+# Claude Code integration
 mkdir -p ~/.claude/skills/taste-skill
 curl -sL &#34;https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/skills/design-taste-frontend/SKILL.md&#34; \
   &gt; ~/.claude/skills/taste-skill/SKILL.md
-</code></pre><h2 id="벤치마크-테이스트-스킬-vs-범용-ai-출력">벤치마크: 테이스트 스킬 vs 범용 AI 출력<a hidden class="anchor" aria-hidden="true" href="#벤치마크-테이스트-스킬-vs-범용-ai-출력">#</a></h2>
-<p>테이스트 스킬이 생성한 인터페이스와 범용 AI 출力的 차이는 여러 차원에서 측정 가능합니다: `````</p>
-<table>
-	<thead>
-			<tr>
-					<th>Metric</th>
-					<th>Generic AI</th>
-					<th>Taste Skill v2</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>Layout Variance</td>
-					<td>1-2</td>
-					<td>7-9</td>
-			</tr>
-			<tr>
-					<td>Repetition Rate</td>
-					<td>High</td>
-					<td>Near Zero</td>
-			</tr>
-			<tr>
-					<td>Motion Depth</td>
-					<td>Hover</td>
-					<td>Scroll/Magnetic</td>
-			</tr>
-			<tr>
-					<td>Typography Scale</td>
-					<td>2 levels</td>
-					<td>4+ levels</td>
-			</tr>
-			<tr>
-					<td>Visual Density</td>
-					<td>Uniform</td>
-					<td>Adaptive</td>
-			</tr>
-			<tr>
-					<td>Frame-to-Code Time</td>
-					<td>2-3 hours</td>
-					<td>30-45 min</td>
-			</tr>
-	</tbody>
-</table>
+</code></pre><h2 id="benchmarks-taste-skill-vs-generic-ai-output">Benchmarks: Taste Skill vs Generic AI Output<a hidden class="anchor" aria-hidden="true" href="#benchmarks-taste-skill-vs-generic-ai-output">#</a></h2>
+<p>The difference between a Taste Skill-generated interface and a generic AI output is measurable across several dimensions: `````
+Metric              | Generic AI | Taste Skill v2</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|&mdash;
+Layout Variance     | 1-2       | 7-9
+Repetition Rate     | High      | Near Zero
+Motion Depth        | Hover     | Scroll/Magnetic
+Typography Scale    | 2 levels  | 4+ levels
+Visual Density      | Uniform   | Adaptive
+Frame-to-Code Time  | 2-3 hours | 30-45 min</p>
 <pre tabindex="0"><code>
-이 벤치마크는 두 그룹 간에 생성된 50개 이상의 랜딩 페이지를 비교한 것입니다: 하나는 기본 AI 프롬프트 사용, 다른 하나는 모든 다이얼을 중-높음 설정으로 튜닝한 Taste Skill v2 사용.
+The benchmark comes from comparing 50+ generated landing pages across two groups: one using default AI prompts, one using Taste Skill v2 with all three dials tuned to medium-high settings.
 
-### 코드 품질 비교
+### Code Quality Comparison
 
-범용 AI 출력은 일반적으로 가운데 정렬된 레이아웃, 균일한 여백, 반복적인 컴포넌트 패턴, 최소한의 시각적 계층구조를 생성합니다. 테이스트 스킬은 다음을 강제합니다: - **비대칭 레이아웃**과 의도적인 시각적 무게 분배
-- **다단계 타이포그래피**(디스플레이, 제목, 본문, 캡션)와 적절한 스케일 비율
-- **의도적인 모션** — 장식이 아닌 내비게이션을 위한
-- **맥락별 시각적 밀도** — 히어로 섹션은 여유롭게, 데이터 패널은 밀도 높게
+Generic AI output typically produces centered layouts with uniform spacing, repetitive component patterns, and minimal visual hierarchy. Taste Skill enforces: - **Asymmetric layouts** with deliberate visual weight distribution
+- **Multi-level typography** (display, heading, body, caption) with proper scale ratios
+- **Intentional motion** that serves navigation, not decoration
+- **Contextual visual density** — sparse for hero sections, dense for data panels
 
 `````bash
-# 생성된 출력이 맛 검사를 통과하는지 확인
-# 테이스트 스킬은 SKILL.md에 사전 비행 체크리스트를 포함합니다
-# 주요 체크 항목: # - 가운데 정렬만 사용하지 않음
-# - 최소 3단계 타이포그래피
-# - 적어도 하나의 의도적 비대칭 포함
-# - 모션은 기능에 봉사함, 장식이 아님
-</code></pre><h2 id="고급-사용-세-다이얼-사용자-정의">고급 사용: 세 다이얼 사용자 정의<a hidden class="anchor" aria-hidden="true" href="#고급-사용-세-다이얼-사용자-정의">#</a></h2>
-<p>테이스트 스킬의 진정한 힘은 세 파라미터를 조정하여 프로젝트의 시각적 아이덴티티에 맞추는 데 있습니다.</p>
-<h3 id="디자인-분산-낮음--높음">디자인 분산 (낮음 → 높음)<a hidden class="anchor" aria-hidden="true" href="#디자인-분산-낮음--높음">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># 낮은 분산 (1-3): 깔끔하고 가운데 정렬된 전통적 스타일</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 최적: 기업 사이트, 대시보드, 문서</span>
+# Verify your generated output passes taste check
+# Taste Skill includes a pre-flight checklist in the SKILL.md
+# Key checks: # - No centered-only layouts
+# - Minimum 3 typography levels
+# - At least one intentional asymmetry
+# - Motion serves function, not decoration
+</code></pre><h2 id="advanced-usage-customizing-the-three-dials">Advanced Usage: Customizing the Three Dials<a hidden class="anchor" aria-hidden="true" href="#advanced-usage-customizing-the-three-dials">#</a></h2>
+<p>The real power of Taste Skill comes from dialing the three parameters to match your project&rsquo;s visual identity.</p>
+<h3 id="design-variance-low--high">Design Variance (Low → High)<a hidden class="anchor" aria-hidden="true" href="#design-variance-low--high">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Low variance (1-3): Clean, centered, traditional</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Best for: Corporate sites, dashboards, documentation</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">DESIGN_VARIANCE</span>: <span style="color:#ae81ff">2</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 중간 분산 (4-6): 균형 잡힌 실험</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 최적: SaaS 랜딩 페이지, 포트폴리오, 제품 사이트</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Medium variance (4-6): Balanced experimentation</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Best for: SaaS landing pages, portfolios, product sites</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">DESIGN_VARIANCE</span>: <span style="color:#ae81ff">5</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 높은 분산 (7-10): 비대칭적이고 대담한 편집 스타일</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 최적: 크리에이티브 에이전시, 예술 포트폴리오, 브랜드 사이트</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># High variance (7-10): Asymmetric, bold, editorial</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Best for: Creative agencies, art portfolios, brand sites</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">DESIGN_VARIANCE</span>: <span style="color:#ae81ff">9</span>
-</span></span></code></pre></div><h3 id="모션-강도">모션 강도<a hidden class="anchor" aria-hidden="true" href="#모션-강도">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># 낮음 (1-3): 미묘한 호버 효과, 스크롤 애니메이션 없음</span>
+</span></span></code></pre></div><h3 id="motion-intensity">Motion Intensity<a hidden class="anchor" aria-hidden="true" href="#motion-intensity">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Low (1-3): Subtle hover effects, no scroll animations</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">MOTION_INTENSITY</span>: <span style="color:#ae81ff">2</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 중간 (4-6): 스크롤 트리거 리빌, 부드러운 패럴랙스</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Medium (4-6): Scroll-triggered reveals, gentle parallax</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">MOTION_INTENSITY</span>: <span style="color:#ae81ff">5</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 높음 (7-10): 자기자석 커서, 스크롤 기반 변환, GSAP 타임라인</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># High (7-10): Magnetic cursors, scroll-driven transforms, GSAP timelines</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">MOTION_INTENSITY</span>: <span style="color:#ae81ff">9</span>
-</span></span></code></pre></div><h3 id="시각적-밀도">시각적 밀도<a hidden class="anchor" aria-hidden="true" href="#시각적-밀도">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># 여유로운 (1-3): 큰 패딩, 단일 열 중심</span>
+</span></span></code></pre></div><h3 id="visual-density">Visual Density<a hidden class="anchor" aria-hidden="true" href="#visual-density">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Spacious (1-3): Large padding, single-column focus</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">VISUAL_DENSITY</span>: <span style="color:#ae81ff">2</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 균형 (4-6): 혼합 레이아웃, 적정 정보 밀도</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Balanced (4-6): Mixed layouts, moderate information density</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">VISUAL_DENSITY</span>: <span style="color:#ae81ff">5</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 밀집 (7-10): 대시보드 스타일, 다중 열, 뷰포트당 최대 정보</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Dense (7-10): Dashboard-style, multi-column, maximum information per viewport</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">VISUAL_DENSITY</span>: <span style="color:#ae81ff">9</span>
-</span></span></code></pre></div><h3 id="특정-스타일을-위한-다이얼-조합">특정 스타일을 위한 다이얼 조합<a hidden class="anchor" aria-hidden="true" href="#특정-스타일을-위한-다이얼-조합">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># 프리미엄 SaaS 랜딩 페이지</span>
+</span></span></code></pre></div><h3 id="combining-dials-for-specific-styles">Combining Dials for Specific Styles<a hidden class="anchor" aria-hidden="true" href="#combining-dials-for-specific-styles">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Premium SaaS Landing Page</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">DESIGN_VARIANCE</span>: <span style="color:#ae81ff">6</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">MOTION_INTENSITY</span>: <span style="color:#ae81ff">5</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">VISUAL_DENSITY</span>: <span style="color:#ae81ff">4</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 크리에이티브 에이전시 포트폴리오</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Creative Agency Portfolio</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">DESIGN_VARIANCE</span>: <span style="color:#ae81ff">9</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">MOTION_INTENSITY</span>: <span style="color:#ae81ff">8</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">VISUAL_DENSITY</span>: <span style="color:#ae81ff">3</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 데이터 밀집 대시보드</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Data-Dense Dashboard</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">DESIGN_VARIANCE</span>: <span style="color:#ae81ff">3</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">MOTION_INTENSITY</span>: <span style="color:#ae81ff">2</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">VISUAL_DENSITY</span>: <span style="color:#ae81ff">9</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 미니멀 에디토리얼 (Notion 스타일)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Minimal Editorial (Notion-style)</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">DESIGN_VARIANCE</span>: <span style="color:#ae81ff">4</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">MOTION_INTENSITY</span>: <span style="color:#ae81ff">3</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">VISUAL_DENSITY</span>: <span style="color:#ae81ff">5</span>
-</span></span></code></pre></div><h3 id="실제-다이얼-구성-예시">실제 다이얼 구성 예시<a hidden class="anchor" aria-hidden="true" href="#실제-다이얼-구성-예시">#</a></h3>
-<p>다양한 프로젝트 유형은 서로 다른 다이얼 조합의 혜택을 받습니다. 다음은 테이스트 스킬의 자체 예시에서 검증된 구성입니다: `````yaml</p>
-<h1 id="자기자석-스크롤-애니메이션을-포함한-포트폴리오">자기자석 스크롤 애니메이션을 포함한 포트폴리오<a hidden class="anchor" aria-hidden="true" href="#자기자석-스크롤-애니메이션을-포함한-포트폴리오">#</a></h1>
+</span></span></code></pre></div><h3 id="real-world-dial-configuration-examples">Real-World Dial Configuration Examples<a hidden class="anchor" aria-hidden="true" href="#real-world-dial-configuration-examples">#</a></h3>
+<p>Different project types benefit from different dial combinations. Here are proven configurations from Taste Skill&rsquo;s own examples: `````yaml</p>
+<h1 id="portfolio-with-magnetic-scroll-animations">Portfolio with magnetic scroll animations<a hidden class="anchor" aria-hidden="true" href="#portfolio-with-magnetic-scroll-animations">#</a></h1>
 <p>DESIGN_VARIANCE: 8
 MOTION_INTENSITY: 9
 VISUAL_DENSITY: 3</p>
-<h1 id="밀도-높은-데이터를-갖춘-기업-대시보드">밀도 높은 데이터를 갖춘 기업 대시보드<a hidden class="anchor" aria-hidden="true" href="#밀도-높은-데이터를-갖춘-기업-대시보드">#</a></h1>
+<h1 id="corporate-dashboard-with-dense-data">Corporate dashboard with dense data<a hidden class="anchor" aria-hidden="true" href="#corporate-dashboard-with-dense-data">#</a></h1>
 <p>DESIGN_VARIANCE: 2
 MOTION_INTENSITY: 1
 VISUAL_DENSITY: 9</p>
-<h1 id="균형-잡힌-레이아웃을-갖춘-saas-가격-페이지">균형 잡힌 레이아웃을 갖춘 SaaS 가격 페이지<a hidden class="anchor" aria-hidden="true" href="#균형-잡힌-레이아웃을-갖춘-saas-가격-페이지">#</a></h1>
+<h1 id="saas-pricing-page-with-balanced-layout">SaaS pricing page with balanced layout<a hidden class="anchor" aria-hidden="true" href="#saas-pricing-page-with-balanced-layout">#</a></h1>
 <p>DESIGN_VARIANCE: 5
 MOTION_INTENSITY: 4
 VISUAL_DENSITY: 6</p>
-<h1 id="비대칭-그리드를-갖춘-크리에이티브-랜딩-페이지">비대칭 그리드를 갖춘 크리에이티브 랜딩 페이지<a hidden class="anchor" aria-hidden="true" href="#비대칭-그리드를-갖춘-크리에이티브-랜딩-페이지">#</a></h1>
+<h1 id="creative-landing-page-with-asymmetric-grid">Creative landing page with asymmetric grid<a hidden class="anchor" aria-hidden="true" href="#creative-landing-page-with-asymmetric-grid">#</a></h1>
 <p>DESIGN_VARIANCE: 9
 MOTION_INTENSITY: 7
 VISUAL_DENSITY: 4</p>
 <pre tabindex="0"><code>
-이 구성들은 44,000개 이상의 스타 커뮤니티 피드백을 통해 테스트되었습니다. 핵심은 다이얼 설정을 프로젝트의 정보 밀도와 브랜드 성격에 맞추는 것입니다.
+These configurations are tested across 44,000+ stars worth of community feedback. The key is matching your dial settings to the project&#39;s information density and brand personality.
 
-## 대체재와의 비교
+## Comparison with Alternatives
 
-테이스트 스킬만이 GitHub에서 디자인 강제 스킬은 아닙니다. 가장 가까운 대체재들과 비교하면 다음과 같습니다: || 기능 | 테이스트 스킬 v2 | PromptHero | Uiverse | AI UI Generator |
-||---------|---------------|------------|---------|-----------------|
-|| 스타 | 44,229 | 8,400 | 12,300 | N/A (SaaS) |
-|| 프레임워크 독립 | 예 | 부분 | 아니오 | 아니오 |
-|| 조정 다이얼 | 3개 (분산/모션/밀도) | 없음 | 없음 | 없음 |
-|| 이미지 생성 | 3개 스킬 | 없음 | 없음 | 내장 |
-|| 코드 출력 | 프로덕션 준비 완료 | 참조용만 | 컴포넌트 라이브러리 | HTML/CSS |
-|| 에이전트 지원 | Codex/Cursor/Claude/ChatGPT | ChatGPT 전용 | 웹 UI | 웹 UI |
-|| 라이선스 | MIT | Apache 2.0 | MIT | 독점 |
+Taste Skill is not the only design-enforcement skill on GitHub. Here&#39;s how it compares to the closest alternatives: | Feature | Taste Skill v2 | PromptHero | Uiverse | AI UI Generator |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Star Rating | 44,229 | 8,400 | 12,300 | N/A (SaaS) |
+| Framework Agnostic | Yes | Partial | No | No |
+| Adjustable Dials | 3 (Variance/Motion/Density) | None | None | None |
+| Image Generation | 3 skills | None | None | Built-in |
+| Code Output | Production-ready | Reference only | Component library | HTML/CSS |
+| Agent Support | Codex/Cursor/Claude/ChatGPT | ChatGPT only | Web UI | Web UI |
+| License | MIT | Apache 2.0 | MIT | Proprietary |
 
-핵심 차별점은 **조정 가능한 다이얼**입니다. 다른 도구들은 정적 출력을 생성하는 반면, 테이스트 스킬은 각 프로젝트마다 디자인 언어를 튜닝할 수 있습니다. 이는 여러 프로젝트 간에 일관된 시각적 출력이 필요한 팀에게 특히 유용합니다.
+The key differentiator is **adjustable dials**. While other tools produce static outputs, Taste Skill lets you tune the design language for each project. This is particularly valuable for teams that need consistent visual output across multiple projects.
 
-## 한계: 테이스트 스킬이 도움이 안 될 때
+## Limitations: When Taste Skill Won&#39;t Help
 
-테이스트 스킬은 강력하지만 만능 해결책은 아닙니다. 다음과 같은 상황에서는 문제가 해결되지 않습니다: 1. **복잡한 백엔드 로직** — 테이스트 스킬은 프론트엔드 디자인에 집중합니다. API, 데이터베이스 스키마, 인증 흐름을 설계하지는 않습니다.
+Taste Skill is powerful but not a magic wand. Here&#39;s when it won&#39;t solve your problem: 1. **Complex backend logic** — Taste Skill focuses on frontend design. It won&#39;t architect your API, database schema, or authentication flow.
 
-2. **브랜아이덴티티 처음부터** — 전체 브랜드 시스템(로고, 컬러 팔레트, 타이포그래피 선택)이 필요하다면, 테이스트 스킬은 이미 디자인 방향성이 있다고 가정합니다. ````brandkit````은 레퍼런스 보드를 생성하지만 최종 브랜드 결정은 귀하가 내립니다.
+2. **Brand identity from scratch** — If you need a full brand system (logo, color palette, typography selection), Taste Skill assumes you already have design direction. Use ````brandkit```` for reference boards, but the final brand decisions are yours.
 
-3. **비표준 컴포넌트 라이브러리** — 테이스트 스킬은 첫 원칙에서 CSS를 생성합니다. Material Design, Ant Design, Tailwind UI 컴포넌트 패턴을 엄격하게 따르려면 생성된 출력이 디자인 시스템과 정확히 일치하지 않을 수 있습니다.
+3. **Non-standard component libraries** — Taste Skill generates from-first-principles CSS. If you need strict adherence to Material Design, Ant Design, or Tailwind UI component patterns, the output may not match your design system exactly.
 
-4. **접근성 요구사항** — 테이스트 스킬은 깔끔하고 시맨틱한 HTML을 생성하지만, ARIA 속성, 키보드 내비게이션, 스크린 리더 최적화를 자동으로 추가하지 않습니다. 이들은 별도로 추가해야 합니다.
+4. **Accessibility requirements** — While Taste Skill produces clean, semantic HTML, it doesn&#39;t automatically add ARIA attributes, keyboard navigation, or screen-reader optimizations. These need to be added separately.
 
-5. **모바일 반응형의 예외 케이스** — 스킬은 반응형 레이아웃을 생성하지만, 복잡한 모바일 상호작용(스와이프 제스처, 줌 인/아웃, 네이티브 앱 브리지)은 수동 구현이 필요합니다.
+5. **Mobile responsiveness edge cases** — The skills generate responsive layouts, but complex mobile interactions (swipe gestures, pinch-to-zoom, native app bridges) require manual implementation.
 
 `````bash
-# 간단한 현실 체크: 프로젝트에 테이스트 스킬이 필요합니까?
-# ✅ 랜딩 페이지, 포트폴리오, SaaS 사이트 → 네
-# ✅ AI 생성 UI 재디자인 → 네
-# ✅ 백엔드 API, 데이터베이스 스키마 → 아니요
-# ✅ 네이티브 모바일 앱(Swift/Kotlin) → 부분
-# ✅ 복잡한 데이터 시각화 → 부분 (D3 스킬과 병행)
-</code></pre><h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
-<h3 id="테이스트-스킬은-다른-ai-디자인-스킬과-어떻게-다르나요">테이스트 스킬은 다른 AI 디자인 스킬과 어떻게 다르나요?<a hidden class="anchor" aria-hidden="true" href="#테이스트-스킬은-다른-ai-디자인-스킬과-어떻게-다르나요">#</a></h3>
-<p>대부분의 AI 디자인 스킬은 단일 출력 스타일을 생성합니다. 테이스트 스킬은 <strong>여러 전문 변형</strong>을 조정 가능한 다이얼과 전용 연구로 뒷받침되는 반복 방지 규칙과 함께 제공합니다. 각 스킬은 프레임워크에 독립적이며 Codex, Cursor, Claude Code, ChatGPT 전반에서 작동합니다.</p>
-<h3 id="react-vue-svelte와-함께-작동하나요">React, Vue, Svelte와 함께 작동하나요?<a hidden class="anchor" aria-hidden="true" href="#react-vue-svelte와-함께-작동하나요">#</a></h3>
-<p>네. 테이스트 스킬 규칙은 프레임워크 특정 API가 아닌 디자인 의도를 대상으로 합니다. 생성된 출력은 바닐라 HTML/CSS/JS이며 모든 프레임워크에 적응할 수 있습니다. React의 경우 컴포넌트 구조를 수동으로 추가하면 됩니다. Vue/Svelte의 경우 스킬 출력이 깔끔하게 변환됩니다.</p>
-<h3 id="v1과-v2의-차이는-무엇인가요">v1과 v2의 차이는 무엇인가요?<a hidden class="anchor" aria-hidden="true" href="#v1과-v2의-차이는-무엇인가요">#</a></h3>
-<p>v2는 brief 추론, 디자인 시스템 매핑, GSAP 코드 스켈레톤, redesign-audit 프로토콜을 포함한 상당한 재작성입니다. v1은 원래 동작에 의존하는 프로젝트를 위해 보존됩니다. <code>--skill &quot;design-taste-frontend-v1&quot;</code>로 v1을 명시적으로 설치할 수 있습니다.</p>
-<h3 id="npx-skills-cli-없이-테이스트-스킬을-사용하나요">npx skills CLI 없이 테이스트 스킬을 사용하나요?<a hidden class="anchor" aria-hidden="true" href="#npx-skills-cli-없이-테이스트-스킬을-사용하나요">#</a></h3>
-<p>네. 어떤 SKILL.md든 프로젝트에 복사하거나, ChatGPT/Codex 대화에 붙여넣거나, Cursor <code>.cursorrules</code> 지시어로 사용할 수 있습니다. <code>npx skills add</code> 명령은 편리하지만 필수 사항은 아닙니다.</p>
-<h3 id="테이스트-스킬은-무료인가요">테이스트 스킬은 무료인가요?<a hidden class="anchor" aria-hidden="true" href="#테이스트-스킬은-무료인가요">#</a></h3>
-<p>네, 모든 스킬은 MIT 라이선스입니다. 이 프로젝트는 지속적인 개발을 위해 GitHub 스폰서십을 받고 있습니다.</p>
-<h3 id="어떤-스킬-변형을-선택해야-하나요">어떤 스킬 변형을 선택해야 하나요?<a hidden class="anchor" aria-hidden="true" href="#어떤-스킬-변형을-선택해야-하나요">#</a></h3>
-<p>가장 안전한 일반 기본값으로 <code>design-taste-frontend</code>(v2)로 시작하세요. GPT/Codex 중심의 더 엄격한 규칙에는 <code>gpt-taste</code>를 사용하세요. 이미지 퍼스트 워크플로우에는 <code>image-to-code</code>를 사용하고, 기존 코드베이스 개선을 위해 <code>redesign-existing-projects</code>를 사용하세요.</p>
-<h3 id="테이스트-스킬은-nextjs나-astro와-함께-작동하나요">테이스트 스킬은 Next.js나 Astro와 함께 작동하나요?<a hidden class="anchor" aria-hidden="true" href="#테이스트-스킬은-nextjs나-astro와-함께-작동하나요">#</a></h3>
-<p>네. 생성된 출력은 프레임워크에 독립적인 바닐라 HTML/CSS/JS입니다. Next.js의 경우 컴포넌트를 JSX로 감싸세요. Astro의 경우 아일랜드 아키텍처 패턴을 사용하세요. 디자인 규칙은 프레임워크에 관계없이 적용됩니다.</p>
-<h3 id="테이스트-스킬의-과도한-디자인을-어떻게-방지하나요">테이스트 스킬의 과도한 디자인을 어떻게 방지하나요?<a hidden class="anchor" aria-hidden="true" href="#테이스트-스킬의-과도한-디자인을-어떻게-방지하나요">#</a></h3>
-<p>DESIGN_VARIANCE를 2-3으로, VISUAL_DENSITY를 2-3으로 낮추세요. 그러면 과도한 실험 없이 깔끔하고 최소한의 레이아웃이 생성됩니다. v2 스킬은 이러한 제약 조건에 대해 출력을 검증하는 &ldquo;사전 비행 체크&quot;를 포함합니다.</p>
-<h3 id="테이스트-스킬을-tailwind-css나-기타-유틸리티-프레임워크와-함께-사용할-수-있나요">테이스트 스킬을 Tailwind CSS나 기타 유틸리티 프레임워크와 함께 사용할 수 있나요?<a hidden class="anchor" aria-hidden="true" href="#테이스트-스킬을-tailwind-css나-기타-유틸리티-프레임워크와-함께-사용할-수-있나요">#</a></h3>
-<p>물론입니다. 테이스트 스킬은 CSS 커스텀 프로퍼티가 있는 시맨틱 HTML을 생성합니다. 출력을 Tailwind 클래스에 매핑하거나, 생성된 CSS를 직접 사용할 수 있습니다. 스킬은 기존 디자인 시스템을 대체하는 것이 아니라 함께 작동하도록 설계되었습니다.</p>
-<h2 id="결론">결론<a hidden class="anchor" aria-hidden="true" href="#결론">#</a></h2>
-<p>테이스트 스킬은 AI 에이전트가 프론트엔드 디자인에 접근하는 방식에 근본적인 전환을 가져옵니다. 모든 AI 도구가 만들어내는 동일하고 지루하며 가운데 정렬된 범용 UI 대신, 명시적인 디자인 제약 조건을 제공하여 변화와 의도성을 강제합니다.</p>
-<p>44,229개 스타를 달성하며 성장하는 테이스트 스킬은 저질 방지 프론트엔드 생성의 사실상의 표준이 되었습니다. 랜딩 페이지 구축, AI 생성 인터페이스 재디자인, 처음부터 디자인 시스템 생성 등 어떤 경우든 테이스트 스킬은 에이전트가 오랫동안 필요로 해온 디자인 감각을 제공합니다.</p>
-<p>프로젝트에 클라우드 호스팅이 필요하시면 <a href="https://m.do.co/oa14d5f0wx4f">DigitalOcean에서 사이트 호스팅하기</a>하여 신뢰할 수 있는 글로벌 CDN 커버리지를 활용하세요. 백업 인프라에는 <a href="https://htstack.com/?referral_code=oa14d5f0wx4f">HTStack</a>이 저렴한 오브젝트 스토리지를 제공합니다. 신뢰할 수 있는 프록시 인프라가 필요하신가요? <a href="https://proxy.webshare.io/?&amp;promo=oa14d5f0wx4f">WebShare 프록시</a>는 월 $1부터 시작합니다. 암호화폐 트레이더는 포트폴리오 다양화를 위해 <a href="https://bsmkweb.cc/6yq8qf7u">Binance</a> 또는 <a href="https://promoohubly.com/5g1h7qxn">OKX</a>를 사용하세요.</p>
-<p><strong>오늘 바로 시작하세요:</strong></p>
+# Quick reality check: does your project need Taste Skill?
+# ✅ Landing pages, portfolios, SaaS sites → YES
+# ✅ Redesigning AI-generated UI → YES
+# ✅ Backend APIs, database schemas → NO
+# ✅ Native mobile apps (Swift/Kotlin) → PARTIAL
+# ✅ Complex data visualization → PARTIAL (pair with D3 skills)
+</code></pre><h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<h3 id="how-is-taste-skill-different-from-other-ai-design-skills">How is Taste Skill different from other AI design skills?<a hidden class="anchor" aria-hidden="true" href="#how-is-taste-skill-different-from-other-ai-design-skills">#</a></h3>
+<p>Most AI design skills produce a single output style. Taste Skill ships <strong>multiple specialized variants</strong> with adjustable dials and anti-repetition rules backed by dedicated research. Each skill is framework-agnostic and works across Codex, Cursor, Claude Code, and ChatGPT.</p>
+<h3 id="does-it-work-with-react-vue-and-svelte">Does it work with React, Vue, and Svelte?<a hidden class="anchor" aria-hidden="true" href="#does-it-work-with-react-vue-and-svelte">#</a></h3>
+<p>Yes. Taste Skill rules target design intent, not framework-specific APIs. The generated output is vanilla HTML/CSS/JS that can be adapted to any framework. For React, add component structure manually. For Vue/Svelte, the skill output converts cleanly.</p>
+<h3 id="what-is-the-difference-between-v1-and-v2">What is the difference between v1 and v2?<a hidden class="anchor" aria-hidden="true" href="#what-is-the-difference-between-v1-and-v2">#</a></h3>
+<p>v2 is a substantial rewrite with brief inference, design-system mapping, GSAP code skeletons, and a redesign-audit protocol. v1 is preserved for projects that depend on the original behavior. Install v1 explicitly with <code>--skill &quot;design-taste-frontend-v1&quot;</code>.</p>
+<h3 id="can-i-use-taste-skill-without-npx-skills-cli">Can I use Taste Skill without npx skills CLI?<a hidden class="anchor" aria-hidden="true" href="#can-i-use-taste-skill-without-npx-skills-cli">#</a></h3>
+<p>Yes. You can copy any SKILL.md into your project, paste it into ChatGPT/Codex conversations, or use it as a Cursor <code>.cursorrules</code> directive. The <code>npx skills add</code> command is convenient but not required.</p>
+<h3 id="is-taste-skill-free">Is Taste Skill free?<a hidden class="anchor" aria-hidden="true" href="#is-taste-skill-free">#</a></h3>
+<p>Yes, all skills are MIT-licensed. The project accepts GitHub sponsorships for continued development.</p>
+<h3 id="how-do-i-choose-which-skill-variant-to-use">How do I choose which skill variant to use?<a hidden class="anchor" aria-hidden="true" href="#how-do-i-choose-which-skill-variant-to-use">#</a></h3>
+<p>Start with <code>design-taste-frontend</code> (v2) for the safest general default. Use <code>gpt-taste</code> for stricter GPT/Codex-oriented rules. Use <code>image-to-code</code> for image-first workflows. Use <code>redesign-existing-projects</code> for improving existing codebases.</p>
+<h3 id="does-taste-skill-work-with-nextjs-or-astro">Does Taste Skill work with Next.js or Astro?<a hidden class="anchor" aria-hidden="true" href="#does-taste-skill-work-with-nextjs-or-astro">#</a></h3>
+<p>Yes. The generated output is framework-agnostic vanilla HTML/CSS/JS. For Next.js, wrap components in JSX. For Astro, use the islands architecture pattern. The design rules apply regardless of framework.</p>
+<h3 id="how-do-i-prevent-taste-skill-from-over-designing">How do I prevent Taste Skill from over-designing?<a hidden class="anchor" aria-hidden="true" href="#how-do-i-prevent-taste-skill-from-over-designing">#</a></h3>
+<p>Lower DESIGN_VARIANCE to 2-3 and VISUAL_DENSITY to 2-3. This produces clean, minimal layouts without excessive experimentation. The v2 skill includes a &ldquo;pre-flight check&rdquo; that validates output against these constraints.</p>
+<h3 id="can-i-combine-taste-skill-with-tailwind-css-or-other-utility-frameworks">Can I combine Taste Skill with Tailwind CSS or other utility frameworks?<a hidden class="anchor" aria-hidden="true" href="#can-i-combine-taste-skill-with-tailwind-css-or-other-utility-frameworks">#</a></h3>
+<p>Absolutely. Taste Skill generates semantic HTML with CSS custom properties. You can map the output to Tailwind classes, or use the generated CSS directly. The skills are designed to work alongside, not replace, your existing design system.</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>Taste Skill represents a fundamental shift in how AI agents approach frontend design. Instead of generating the same generic, centered, boring UI that every AI tool produces, it provides explicit design constraints that force variance and intentionality.</p>
+<p>With 44,229 stars and growing, it has become the de facto standard for anti-slop frontend generation. Whether you&rsquo;re building a landing page, redesigning an AI-generated interface, or creating a design system from scratch, Taste Skill gives your agent the design brain it&rsquo;s been missing.</p>
+<p>If you need cloud hosting for your projects, <a href="https://m.do.co/oa14d5f0wx4f">host your site on DigitalOcean</a> for reliable global CDN coverage. For backup infrastructure, <a href="https://htstack.com/?referral_code=oa14d5f0wx4f">HTStack</a> provides affordable object storage. Need reliable proxy infrastructure? <a href="https://proxy.webshare.io/?&amp;promo=oa14d5f0wx4f">WebShare proxies</a> start at $1/month. Crypto traders can use <a href="https://bsmkweb.cc/6yq8qf7u">Binance</a> or <a href="https://promoohubly.com/5g1h7qxn">OKX</a> for portfolio diversification.</p>
+<p><strong>Try it today:</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npx skills add https://github.com/Leonxlnx/taste-skill --skill <span style="color:#e6db74">&#34;design-taste-frontend&#34;</span>
 </span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**내부 링크**: <span style="color:#f92672">[</span>AI 코딩 에이전트 알아보기<span style="color:#f92672">](</span>https://dibi8.com/ai-tools/oh-my-pi<span style="color:#f92672">)</span> · <span style="color:#f92672">[</span>개발 유틸리티 비교<span style="color:#f92672">](</span>https://dibi8.com/dev-utils/<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>**Internal links**: <span style="color:#f92672">[</span>Learn about AI coding agents<span style="color:#f92672">](</span>https://dibi8.com/ai-tools/oh-my-pi<span style="color:#f92672">)</span> · <span style="color:#f92672">[</span>Compare dev utilities<span style="color:#f92672">](</span>https://dibi8.com/dev-utils/<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>**Sources &amp; Further Reading**: - Official site: https://tasteskill.dev
+</span></span><span style="display:flex;"><span>- GitHub repository: https://github.com/Leonxlnx/taste-skill
+</span></span><span style="display:flex;"><span>- Changelog: https://www.tasteskill.dev/changelog
+</span></span><span style="display:flex;"><span>- Community: <span style="color:#f92672">[</span>@lexnlin on X<span style="color:#f92672">](</span>https://x.com/lexnlin<span style="color:#f92672">)</span>, <span style="color:#f92672">[</span>@blueemi99 on X<span style="color:#f92672">](</span>https://x.com/blueemi99<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**소스 및 추가 읽을거리**: - 공식 사이트: https://tasteskill.dev
-</span></span><span style="display:flex;"><span>- GitHub 레포지토리: https://github.com/Leonxlnx/taste-skill
-</span></span><span style="display:flex;"><span>- 변경 기록: https://www.tasteskill.dev/changelog
-</span></span><span style="display:flex;"><span>- 커뮤니티: <span style="color:#f92672">[</span>@lexnlin on X<span style="color:#f92672">](</span>https://x.com/lexnlin<span style="color:#f92672">)</span>, <span style="color:#f92672">[</span>@blueemi99 on X<span style="color:#f92672">](</span>https://x.com/blueemi99<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>**CTA**: Join the Taste Skill community on Telegram — <span style="color:#f92672">[</span>t.me/DIBI8_Group<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**Sources &amp; Further Reading**: - 공식 사이트: https://tasteskill.dev
-</span></span><span style="display:flex;"><span>- GitHub 저장소: https://github.com/Leonxlnx/taste-skill
-</span></span><span style="display:flex;"><span>- 변경 로그: https://www.tasteskill.dev/changelog
-</span></span><span style="display:flex;"><span>- 커뮤니티: <span style="color:#f92672">[</span>@lexnlin on X<span style="color:#f92672">](</span>https://x.com/lexnlin<span style="color:#f92672">)</span>, <span style="color:#f92672">[</span>@blueemi99 on X<span style="color:#f92672">](</span>https://x.com/blueemi99<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>**CTA**: Telegram에서 테이스트 스킬 커뮤니티에 가입하세요 — <span style="color:#f92672">[</span>t.me/DIBI8_Group<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**고지사항**: 이 기사에는 제휴 링크가 포함되어 있습니다. 링크를 통해 가입하시면 추가 비용 없이 저희가 커미션을 받을 수 있습니다.
+</span></span><span style="display:flex;"><span>**Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you.
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;테이스트 스킬: AI가 범용적인 저질을 생성하는 것을 막아라 — 에이전트 스킬 프레임워크 2026&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;Taste Skill: Stop AI From Generating Generic Slop — Agent Skill Framework 2026&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-06-15&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-06-15&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#f92672">{</span>
@@ -620,20 +601,20 @@ VISUAL_DENSITY: 4</p>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/kr/resources/taste-skill&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/resources/taste-skill&#34;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span>&lt;/script&gt;
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>* * *
 </span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
 </span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>langflow-visual-llm-workflow-builder-2026<span style="color:#f92672">](</span>taste-skill<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>12-factor-agents<span style="color:#f92672">](</span>taste-skill<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-05-25-trending-ai-agents<span style="color:#f92672">](</span>taste-skill<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-01-trending-ai-agents<span style="color:#f92672">](</span>taste-skill<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-08-trending-ai-agents<span style="color:#f92672">](</span>taste-skill<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-15-trending-ai-agents<span style="color:#f92672">](</span>taste-skill<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-22-trending-ai-agents<span style="color:#f92672">](</span>taste-skill<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>agency-agents-complete-ai-agency-framework<span style="color:#f92672">](</span>taste-skill<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>compound-engineering-multi-agent-coding-claude-codex-cursor<span style="color:#f92672">](</span>taste-skill<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>impeccable-ai-design-language-harness-quality-ui<span style="color:#f92672">](</span>taste-skill<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>* * *
 </span></span><span style="display:flex;"><span>
@@ -702,6 +683,81 @@ VISUAL_DENSITY: 4</p>
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

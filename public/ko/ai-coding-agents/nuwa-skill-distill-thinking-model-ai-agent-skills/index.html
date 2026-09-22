@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆星 — 2026 指南 ┌──────────────────────────────────────────────┐ │ Nuwa-Skill Pipeline │ │ │ │ Input: \"Distill Steve Jobs\" │ │ │ │ │ ▼ │ │ ┌─────────────────────────┐ │ │ │ Step 1: Research │ │ │ │ - Gather public content │ │ │ │ - Speeches, interviews, │ │ │ │ books, tweets │ │ │ └─────────┬───────────────┘ │ │ ▼ │ │ ┌─────────────────────────┐ │ │ │ Step 2: Analyze 5 L4s │ │ │ │ 1. How they speak │ │ │ │ 2. How they think │ │ │ │ 3. How they decide │ │ │ │ 4. What they avoid │ │ │ │ 5. Their limitations │ │ │ └─────────┬───────────────┘ │ │ ▼ │ │ ┌─────────────────────────┐ │ │ │ Step 3: Generate SKILL │ │ │ │ .md with YAML front- │ │ │ │ matter + instructions │ │ │ └─────────┬───────────────┘ │ │ ▼ │ │ ┌─────────────────────────┐ │ │ │ Step 4: Deploy to any │ │ │ │ Agent Runtime │ │ │ │ (50+ compatible) │ │ │ └─────────────────────────┘ │ └──────────────────────────────────────────────┘ Nuwa-Skill（女媧）是一套開創性的 AI Agent 技能框架，讓你將任何人的思維模型——從史蒂夫·賈伯斯到華倫·巴菲特，再到你最喜歡的政治節目主持人——提煉為可複用、可部署的 Agent 技能。擁有 23,500+ 顆 GitHub 星，它已成為 Agent Skills 生態系中最受歡迎的專案之一。\n核心洞察簡單卻深刻：與其要求 LLM「扮演 X」，Nuwa-Skill 會提取五層深度的認知操作系統——他們如何說話、如何思考、如何決策、他們避開什麼，以及他們誠實的局限——並將這些編碼為結構化的 SKILL.md 檔案，任何相容的 Agent 執行環境都能使用。\n什麼是 Nuwa-Skill？ Nuwa-Skill 建立在開放的 Agent Skills 協議 之上，與 50+ 相容的 AI Agent 執行環境配合運作，包括 Claude Code、Codex CLI、Cursor、OpenClaw、Hermes Agent、CodeBuddy、Gemini CLI 和 OpenCode。\n與只會產生表面模仿的傳統角色扮演提示不同，Nuwa-Skill 提取五個截然不同的認知層：\n|| 層 | 捕捉內容 | 範例 | ||——-|—————–|———| || 1. 表達 DNA | 語調、節奏、用字偏好 | 賈伯斯的「 insane really great」、Naval 豐富的寓言風格 | || 2. 心智模型 | 認知框架與思考模式 | Musk 的「第一原理」、Buffett 的「能力圈」 | || 3. 決策經驗法則 | 在不確定性下做出選擇的規則 | Bezos 的「單向門 vs 雙向門」 | || 4. 反模式 | 他們明確拒絕做的事情 | 賈伯斯的「專注意味著說不」 | || 5. 誠實邊界 | 他們明確無法做的事情 | Musk 的承認：「我不懂生物學」 |\n這種五層方法確保提煉超越表面模仿，進入真正的認知框架轉移。\n輸出範例 以下是提煉 Naval Ravikant 的結果：\nUser ❯ 我想同時做自媒體、寫書和創業 Naval ❯ 你列出了三個願望。每個願望都是你與不快樂簽下的契約。 不是你缺乏精力——是你簽了太多契約。 問問自己：哪一件事讓你忘卻時間？ 那就是你的獨特知識所在。 不要從三選一。先成為一個，然後再成為另一個。 串行複利，而非並行摩擦。 以及 Musk 談 SaaS 客戶獲取：\nUser ❯ 我們的 SaaS 客戶獲取成本太高 Musk ❯ 別急著想如何降低。先算出物理極限。 使用者發現你並付費，最少必要動作是什麼？ 資訊傳輸的理論最短路徑是什麼？ 現在——你實際的路徑比理論極限長多少倍？ 如果超過 3 倍，中間就有應該被刪掉的步驟。 別優化漏斗。質疑漏斗是否應該存在。 運作原理 提煉過程完全自動化。你提供一個名字，Nuwa-Skill 會處理研究、分析、生成和部署流程。\n第一步：研究階段 系統會收集目標人物的公開內容：書籍、演講、訪談、 Podcast、推文和文章。這五層分析將以此作為原始材料。\n第二步：五層分析 每一層獨立分析：\n# Nuwa 生成的範例 SKILL.md 結構 name: \"Steve Jobs\" description: \"Technical guide and comparison.\" cognitive_layers: expression: tone: \"直接、自信、有時尖銳\" patterns: [\"隱喻\", \"二元框架\", \"重複\"] signature_phrases: - \"insanely great\" - \"the only way to do great work\" - \"stay hungry, stay foolish\" mental_models: - \"connect the dots looking backward\" - \"focus and simplify\" - \"reality distortion field (convince others of possibility)\" - \"端到端控制 (end-to-end control)\" decision_heuristics: - \"say no to 1000 things to focus on 3\" - \"people think focus means saying yes to the thing you've got to focus on\" - \"simplicity is the ultimate sophistication\" anti_patterns: - \"never compromise on quality for speed\" - \"avoid feature creep\" - \"don't design for committees\" limitations: - \"not suited for collaborative team-building contexts\" - \"decisions made with incomplete data\" - \"highly personality-dependent, hard to scale\" 第三步：SKILL.md 生成 分析結果會被編譯為 SKILL.md 檔案，遵循 Agent Skills 協議規範。該檔案包含 YAML frontmatter 元資料和供 Agent 執行環境使用的結構化指令。\n第四步：部署 生成的技能會被部署到你選擇的 Agent 執行環境——Claude Code、Codex、Cursor，或 50+ 相容平台中的任何一個。\n安裝與設定 方法一：一鍵安裝（推薦） 開啟任何相容的 Agent（Claude Code、Codex、Cursor、OpenClaw、Hermes、CodeBuddy、Workbuddy、Gemini CLI、OpenCode 等），然後告訴它：\nHelp me install this skill: https://github.com/alchaincyf/nuwa-skill Agent 會自動偵測你的執行環境並將技能安裝到正確的目錄。\n方法二：通用 CLI 安裝器 使用 vercel-labs/skills 通用 CLI 工具，支援 55+ 執行環境：\n# 將 Nuwa-Skill 安裝到預設執行環境 npx skills add alchaincyf/nuwa-skill # 指定特定執行環境 npx skills add alchaincyf/nuwa-skill -a claude-code npx skills add alchaincyf/nuwa-skill -a codex npx skills add alchaincyf/nuwa-skill -a cursor npx skills add alchaincyf/nuwa-skill -a openclaw 方法三：手動安裝 適合想要自訂安裝的進階使用者：\n# 複製到適當的執行環境技能目錄 git clone https://github.com/alchaincyf/nuwa-skill ~/.claude/skills/nuwa-skill/ git clone https://github.com/alchaincyf/nuwa-skill ~/.codex/skills/nuwa-skill/ git clone https://github.com/alchaincyf/nuwa-skill ~/.cursor/skills/nuwa-skill/ git clone https://github.com/alchaincyf/nuwa-skill ~/.openclaw/workspace/skills/nuwa-skill/ 各執行環境的技能目錄：\n|| 執行環境 | 安裝路徑 | ||———|——————| || Claude Code | ~/.claude/skills/nuwa-skill/ | || Codex CLI | ~/.codex/skills/nuwa-skill/ | || Cursor | ~/.cursor/skills/nuwa-skill/ | || OpenClaw | ~/.openclaw/workspace/skills/nuwa-skill/ | || Hermes Agent | 執行 tools/install_hermes_skill.py | || 其他執行環境 | 複製到其 skills/ 目錄 |\n方法四：僅參考使用 即使你的執行環境不支援自動 Agent Skills 載入，你也可以將 SKILL.md 內容直接貼入對話中——它本質上只是帶有 YAML frontmatter 的 Markdown。\n使用方法 安裝完成後，你可以使用自然語言指令來使用 Nuwa-Skill：\n# 建立提煉 \u003e Distill Paul Graham \u003e Create a Zhang Xiaolong perspective Skill \u003e Help me make a Daniel Okun (段永平) Skill # 建立後，呼叫提煉 \u003e Analyze this investment decision from Munger's perspective \u003e How would Feynman explain quantum computing? \u003e Switch to Naval, I'm纠结 about three things 建立自訂提煉 你可以透過提供人名和可選的額外脈絡，為任何人物建立技能：\n# 範例：自訂提煉提示 \u003e Distill Linus Torvalds \u003e Context: Focus on his technical decision-making and Linux development philosophy \u003e Output: Include his anti-patterns (about religious coding and BDFL debates) \u003e Distill my manager \u003e Context: She's great at prioritization and stakeholder management \u003e Output: Capture her email writing patterns and meeting facilitation approach 與 Agent 執行環境整合 Claude Code # 安裝完成後，Claude Code 會自動載入技能 # 不需要額外的設定 claude \u003e distill Elon Musk \u003e use Musk's framework to analyze this product decision Codex CLI # Codex 會自動偵測並載入技能 # 若未自動偵測，請明確指定 codex --skill nuwa-skill \u003e distill Naval Ravikant \u003e analyze my startup strategy from Naval's perspective Cursor # 在 Cursor 中，技能會作為斜線指令出現 /distill [person name] # 或在對話中直接使用技能 \u003e Switch to the Steve Jobs thinking model OpenClaw # OpenClaw 會從其工作區目錄載入技能 # Nuwa-Skill 會自動部署到那裡 \u003e Create a Jobs distillation \u003e Apply it to this code review 效能指標與應用場景 提煉品質比較 || 面向 | 傳統角色扮演 | Nuwa-Skill 五層 | ||——–|———————|——————-| || 語調匹配 | 好 | 優秀 | || 決策框架 | 差 | 優秀 | || 局限意識 | 無 | 完整五層 | || 一致性 | 不穩定 | 高 | || 適應性 | 低 | 高（可結合脈絡重新提問） |\n實際應用場景 1. 產品策略 User: \"我們應該在生產力應用程式中加入社交功能嗎？\" Jobs 模型: \"你問錯了問題。真正的问题是： 如果你除了其中一個功能外，移除所有功能，會發生什麼事？\" 2. 投資分析 User: \"這個加密貨幣專案值得投資嗎？\" Munger 模型: \"讓我重新框架：創辦人的誘因是什麼？ 他們與股東利益一致嗎？讓我看看他們的實際投入。\" 3. 技術架構 User: \"我們應該建構單體還是微服務？\" Torvalds 模型: \"我不在乎架構。我在乎的是 程式碼能不能運作。從可行的開始。如果真的出問題了再重構。\" 進階用法 自訂提煉 你可以透過添加特定指令來優化提煉：\n\u003e Distill Tim Cook but focus specifically on supply chain management \u003e and operational excellence, not his public speaking style \u003e Distill my PhD advisor with emphasis on their experimental design \u003e methodology and paper review patterns 組合多個提煉 \u003e First, analyze this from Buffett's perspective on risk \u003e Then, from Musk's perspective on first principles \u003e Finally, synthesize both viewpoints 匯出與分享 生成的技能可以匯出和分享：\n# 匯出技能 cat ~/.claude/skills/nuwa-skill/SKILL.md \u003e jobs-distilled.md # 與團隊成員分享 scp jobs-distilled.md team@example.com:~/skills/ # 他們透過指向你的 URL 來安裝 npx skills add https://your-server.com/jobs-distilled.md 為個人用途建立技能 除了知名人士，Nuwa-Skill 也可以捕捉任何你想保留思維模式的人：\n\u003e Distill my mentor Sarah — she's great at system design \u003e and always asks \"what breaks first?\" when reviewing architecture \u003e Distill the engineering team's decision-making patterns \u003e from our last 10 architecture review meetings 與替代方案比較 || 功能 | Nuwa-Skill | 傳統角色扮演提示 | 自訂微調 | 角色卡 | ||———|———–|—————————|——————-|—————-| || 設定時間 | 1 個指令 | 5 分鐘撰寫 | 2-4 小時 | 10-30 分鐘 | || 認知深度 | 5 層 | 表面語調 | 深但靜態 | 不穩定 | || 多執行環境 | 50+ 執行環境 | 僅聊天介面 | 模型特定 | 平台特定 | || 更新能力 | 隨時重新提煉 | 重寫提示 | 需要重新訓練 | 編輯 JSON | || 局限意識 | 內建（第 5 層） | 無 | 無 | 罕見 | || Agent 整合 | 原生（SKILL.md） | 僅聊天訊息 | 僅 API 呼叫 | 聊天訊息 |\n局限性 / 誠實評估 Nuwa-Skill 雖然創新，但有重要的局限性：\n僅限公開資訊 — 提煉受限於該人物已公開表達的內容。私密想法和未言明的框架無法被捕捉。\n時間快照 — 提煉捕捉的是人物在特定時間點的思維。人們會演變，除非重新提煉，否則技能不會反映這種演變。\n無法轉移直覺 — 正如 README 所述：「提煉無法捕捉直覺——框架可以被提取，靈感則不行。」技能提供認知模式，而非創意火花。\n執行環境依賴 — 輸出的品質取決於底層 LLM。較弱的模型可能無法忠實遵循五層指令。\n研究品質參差不齊 — 提煉的品質取決於目標人物公開內容的質量和數量。公眾記錄有限的冷門人物會產生較薄的提煉結果。\n不是該人物的替代品 — 技能捕捉思維模式，而非人類認知的全部複雜性。它是決策輔助工具，而非通靈媒介。\n常見問題 Q：Nuwa-Skill 與單純使用角色扮演提示有何不同？\nA：傳統角色扮演提示僅捕捉表面語調和詞彙。Nuwa-Skill 的五層提取會捕捉決策經驗法則、反模式和誠實聲明的局限性——產生更實用的認知框架。\nQ：我可以提煉自己嗎？\nA：可以，這是最實用的應用場景之一。系統會分析你的公開內容（部落格文章、推文、GitHub 提交、訪談記錄）並將你的獨特思維模式提煉為一個技能，你可以在所有 Agent 執行環境中使用。\nQ：Nuwa-Skill 會儲存我的資料嗎？\nA：Nuwa-Skill 是一個本機優先的框架。SKILL.md 檔案儲存在你本機 Agent 執行環境的技能目錄中。提煉過程中不會向外部伺服器發送任何資料。\nQ：我可以建立多少提煉？\nA：沒有硬性限制。你可以建立任意數量的技能。colleague-skill 專案證明了提煉同事是可行的——但為何只停在同事？\nQ：Nuwa-Skill 與 MCP 有什麼區別？\nA：Nuwa-Skill 使用 Agent Skills 協議（agentskills.io），這是一個與 MCP 不同的標準。它專門為可複用的認知框架設計，而非工具介面。它與 MCP 並存運作，而非取代 MCP。\nQ：我可以將 Nuwa-Skill 用於 OpenAI 的 ChatGPT 嗎？\nA：不能直接使用，因為 ChatGPT 不支援 Agent Skills 協議。不過，你可以將 SKILL.md 內容直接貼入 ChatGPT 對話中，或使用 ChatGPT 的自訂指示功能來達到類似效果。\n結論 Nuwa-Skill 代表了 AI Agent 增強的新範式——它不問「我應該使用哪種模型」，而是問「我應該借用誰的思維」。透過將專家、歷史人物和導師的認知操作系統提煉為可複用、可部署的技能，它賦予你一項超能力：即時存取世界上最佳思維者的決策框架。\nNuwa-Skill 的美在於它的簡潔：一個指令、50+ 執行環境、無限的提煉可能性。從史蒂夫·賈伯斯的产品哲學、華倫·巴菲特的投資經驗法則，到你經理的電子郵件模式，你需要的認知框架只需一個 ````npx skills add``` 就能取得。\n嘗試 Nuwa-Skill： github.com/alchaincyf/nuwa-skill\n相關文章：\nHeadroom — 將 LLM 輸入壓縮 60-95% Matt Pocock 的技能 — AI Agent 超級能力的 CLI 框架 來源與延伸閱讀：\nAgent Skills 協議：https://agentskills.io 通用技能安裝器：https://github.com/vercel-labs/skills Colleague-skill（前身為）：https://github.com/titanwings/colleague-skill GitHub 儲存庫：https://github.com/alchaincyf/nuwa-skill 加入我們的社群，取得更多 AI 工具深度解析：t.me/DIBI8_Group\n免責聲明： 本文僅供資訊用途。提煉基於公開可用的資訊，不代表所描述人物的真實想法。請獨立驗證所有聲明。附屬披露：上述部分連結可能包含附屬代碼。我們可能會獲得佣金，不會為你帶來額外成本。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆星 — 2026 指南”, “datePublished”: “2026-06-09”, “dateModified”: “2026-06-09”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/nuwa-skill-distill-thinking-model-ai-agent-skills\" } } Why This Matters Understanding nuwa-skill：將任何人的思維模型提煉為 ai agent 技能 — 23,000 顆星 — 2026 指南 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆星 — 2026 指南 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\nRelated Articles nuwa-skill-distill-thinking-model-ai-agent-skills nuwa-skill-distill-thinking-model-ai-agent-skills free-mcp-tools-top10-2026 cc-switch-all-in-one-ai-coding-agent-manager codebase-memory-mcp-high-performance-code-intelligence Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
-  "wordCount" : "1464",
+  "articleBody": "Nuwa-Skill: Distill Any Person Thinking Model into AI Agent Skill — 23,000 Stars — Guide 2026 ┌──────────────────────────────────────────────┐ │ Nuwa-Skill Pipeline │ │ │ │ Input: \"Distill Steve Jobs\" │ │ │ │ │ ▼ │ │ ┌─────────────────────────┐ │ │ │ Step 1: Research │ │ │ │ - Gather public content │ │ │ │ - Speeches, interviews, │ │ │ │ books, tweets │ │ │ └─────────┬───────────────┘ │ │ ▼ │ │ ┌─────────────────────────┐ │ │ │ Step 2: Analyze 5 L4s │ │ │ │ 1. How they speak │ │ │ │ 2. How they think │ │ │ │ 3. How they decide │ │ │ │ 4. What they avoid │ │ │ │ 5. Their limitations │ │ │ └─────────┬───────────────┘ │ │ ▼ │ │ ┌─────────────────────────┐ │ │ │ Step 3: Generate SKILL │ │ │ │ .md with YAML front- │ │ │ │ matter + instructions │ │ │ └─────────┬───────────────┘ │ │ ▼ │ │ ┌─────────────────────────┐ │ │ │ Step 4: Deploy to any │ │ │ │ Agent Runtime │ │ │ │ (50+ compatible) │ │ │ └─────────────────────────┘ │ └──────────────────────────────────────────────┘ Nuwa-Skill (女娲) is a groundbreaking AI Agent Skills framework that lets you distill the thinking models of anyone — from Steve Jobs to Warren Buffett to your favorite podcast host — into reusable, deployable agent skills. With 23,500+ GitHub stars, it has become one of the most popular projects in the Agent Skills ecosystem.\nThe core insight is simple but profound: instead of asking an LLM to “roleplay as X,” Nuwa-Skill extracts five deep layers of cognitive operating systems — how they speak, how they think, how they decide, what they avoid, and their honest limitations — and encodes these into structured SKILL.md files that any compatible agent runtime can use.\nWhat Is Nuwa-Skill? Nuwa-Skill is built on the open Agent Skills protocol and works with 50+ compatible AI agent runtimes including Claude Code, Codex CLI, Cursor, OpenClaw, Hermes Agent, CodeBuddy, Gemini CLI, and OpenCode.\nUnlike traditional roleplay prompts that produce superficial imitations, Nuwa-Skill extracts five distinct cognitive layers: | Layer | What It Captures | Example | |\n|\n|\n| | 1. Expression DNA | Tone, rhythm, word choice preferences | Jobs’s “insanely great,” Naval’s parable-heavy style | | 2. Mental Models | Cognitive frameworks and thinking patterns | Musk’s “first principles,” Buffett’s “circle of competence” | | 3. Decision Heuristics | Rules for making choices under uncertainty | Bezos’s “one-way vs. two-way door” | | 4. Anti-Patterns | What they actively refuse to do | Jobs’s “focus means saying no” | | 5. Honest Boundaries | What they explicitly cannot do | Musk’s admission: “I don’t know about biology” |\nThis five-layer approach ensures the distillation goes far beyond surface-level mimicry into actual cognitive framework transfer.\nExample Outputs Here’s what distilling Naval Ravikant produces: ````` User ❯ I want to do self-media, write a book, and build a startup simultaneously\nNaval ❯ You listed three desires. Each desire is a contract you signed with unhappiness. It’s not that you lack energy — you have too many contracts.\nAsk yourself: which one makes you lose track of time? That's where your specific knowledge lives. Not pick one of three. First be one, then one, then one. Serial compounding, not parallel friction. And Musk on SaaS customer acquisition: ````` User ❯ Our SaaS customer acquisition cost is too high Musk ❯ Don't think about reducing yet. Calculate the physical limit first. What's the minimum necessary action for a user to discover and pay for you? What's the theoretical shortest path for information transfer? Now — how many times longer is your actual path compared to the theoretical minimum? If it's more than 3x, there are steps in the middle that should be eliminated. Don't optimize the funnel. Question whether the funnel should exist at all. How It Works The distillation process is fully automated. You provide a name, and Nuwa-Skill handles the research, analysis, generation, and deployment pipeline.\nStep 1: Research Phase The system gathers public content about the target person: books, speeches, interviews, podcasts, tweets, and articles. This forms the raw material for the five-layer analysis.\nStep 2: Five-Layer Analysis Each layer is analyzed independently: `````yaml\nExample SKILL.md structure generated by Nuwa name: “Steve Jobs” description: “Technical guide and comparison.” cognitive_layers: expression: tone: “direct, confident, sometimes abrasive” patterns: [“metaphors”, “binary framing”, “repetition”] signature_phrases: - “insanely great” - “the only way to do great work” - “stay hungry, stay foolish” mental_models: - “connect the dots looking backward” - “focus and simplify” - “reality distortion field (convince others of possibility)” - “端到端控制 (end-to-end control)” decision_heuristics: - “say no to 1000 things to focus on 3” - “people think focus means saying yes to the thing you’ve got to focus on” - “simplicity is the ultimate sophistication” anti_patterns: - “never compromise on quality for speed” - “avoid feature creep” - “don’t design for committees” limitations: - “not suited for collaborative team-building contexts” - “decisions made with incomplete data” - “highly personality-dependent, hard to scale”\n### Step 3: SKILL.md Generation The analysis is compiled into a ````SKILL.md```` file following the Agent Skills protocol specification. This file includes YAML frontmatter with metadata and structured instructions for the agent runtime. ### Step 4: Deployment The generated skill is deployed to your chosen agent runtime — Claude Code, Codex, Cursor, or any of 50+ compatible platforms. ## Installation \u0026 Setup ### Method 1: One-Command Install (Recommended) Open any compatible agent (Claude Code, Codex, Cursor, OpenClaw, Hermes, CodeBuddy, Workbuddy, Gemini CLI, OpenCode, etc.) and tell it: ````` Help me install this skill: https://github.com/alchaincyf/nuwa-skill The agent will automatically detect your runtime and install the skill to the correct directory.\nMethod 2: Universal CLI Installer Use the vercel-labs/skills universal CLI tool that supports 55+ runtimes: `````bash\nInstall Nuwa-Skill to your default runtime npx skills add alchaincyf/nuwa-skill\nSpecify a particular runtime npx skills add alchaincyf/nuwa-skill -a claude-code npx skills add alchaincyf/nuwa-skill -a codex npx skills add alchaincyf/nuwa-skill -a cursor npx skills add alchaincyf/nuwa-skill -a openclaw\n### Method 3: Manual Installation For advanced users who want to customize the installation: `````bash # Clone to the appropriate runtime's skills directory git clone https://github.com/alchaincyf/nuwa-skill ~/.claude/skills/nuwa-skill/ git clone https://github.com/alchaincyf/nuwa-skill ~/.codex/skills/nuwa-skill/ git clone https://github.com/alchaincyf/nuwa-skill ~/.cursor/skills/nuwa-skill/ git clone https://github.com/alchaincyf/nuwa-skill ~/.openclaw/workspace/skills/nuwa-skill/ Runtime-specific skill directories: | Runtime | Installation Path | |\n|\n| | Claude Code | ~/.claude/skills/nuwa-skill/ | | Codex CLI | ~/.codex/skills/nuwa-skill/ | | Cursor | ~/.cursor/skills/nuwa-skill/ | | OpenClaw | ~/.openclaw/workspace/skills/nuwa-skill/ | | Hermes Agent | Run tools/install_hermes_skill.py | | Other runtimes | Clone to their skills/ directory |\nMethod 4: Reference-Only Usage Even if your runtime doesn’t support automatic Agent Skills loading, you can paste the SKILL.md content directly into your conversation — it’s fundamentally just Markdown with YAML frontmatter.\nUsage Once installed, you can use Nuwa-Skill with natural language commands: `````\nCreate a distillation Distill Paul Graham Create a Zhang Xiaolong perspective Skill Help me make a Daniel Okun (段永平) Skill\nAfter creation, invoke the distillation Analyze this investment decision from Munger’s perspective How would Feynman explain quantum computing? Switch to Naval, I’m纠结 about three things\n### Creating Custom Distillations You can create skills for any person by providing their name and optionally additional context: `````yaml # Example: Custom distillation prompt \u003e Distill Linus Torvalds \u003e Context: Focus on his technical decision-making and Linux development philosophy \u003e Output: Include his anti-patterns (about religious coding and BDFL debates) \u003e Distill my manager \u003e Context: She's great at prioritization and stakeholder management \u003e Output: Capture her email writing patterns and meeting facilitation approach Integration with Agent Runtimes Claude Code # After installation, Claude Code automatically loads the skill # No additional configuration needed claude \u003e distill Elon Musk \u003e use Musk's framework to analyze this product decision Codex CLI # Codex detects and loads the skill automatically # If not auto-detected, specify explicitly codex --skill nuwa-skill \u003e distill Naval Ravikant \u003e analyze my startup strategy from Naval's perspective Cursor # In Cursor, the skill appears as a slash command /distill [person name] # Or use the skill directly in your conversation \u003e Switch to the Steve Jobs thinking model OpenClaw # OpenClaw loads skills from its workspace directory # Nuwa-Skill deploys there automatically \u003e Create a Jobs distillation \u003e Apply it to this code review Benchmarks \u0026 Use Cases Distillation Quality Comparison | Aspect | Traditional Roleplay | Nuwa-Skill 5-Layer | |\n|\n|\n| | Tone matching | Good | Excellent | | Decision framework | Poor | Excellent | | Limitation awareness | None | Full 5-layer | | Consistency | Variable | High | | Adaptability | Low | High (re-asks with context) |\nReal-World Use Cases 1. Product Strategy User: \"Should we add social features to our productivity app?\" Jobs Model: \"You're asking the wrong question. The real question is: what would happen if you removed ALL features except one?\" 2. Investment Analysis User: \"Is this crypto project worth investing in?\" Munger Model: \"Let me reframe: what are the incentives of the founders? Are they aligned with shareholders? Show me their skin in the game.\" 3. Technical Architecture User: \"Should we build monolith or microservices?\" Torvalds Model: \"I don't care about the architecture. I care about whether the code works. Start with what works. Refactor later if it actually breaks.\" Advanced Usage Customizing Distillations You can refine the distillation by adding specific instructions: `````\nDistill Tim Cook but focus specifically on supply chain management and operational excellence, not his public speaking style\nDistill my PhD advisor with emphasis on their experimental design methodology and paper review patterns\n### Combining Multiple Distillations First, analyze this from Buffett’s perspective on risk Then, from Musk’s perspective on first principles Finally, synthesize both viewpoints\n### Export and Share Generated skills can be exported and shared: `````bash # Export a skill cat ~/.claude/skills/nuwa-skill/SKILL.md \u003e jobs-distilled.md # Share with a team member scp jobs-distilled.md team@example.com:~/skills/ # They install by pointing to your URL npx skills add https://your-server.com/jobs-distilled.md Creating Skills for Personal Use Beyond famous people, Nuwa-Skill works for anyone whose thinking you want to capture: `````\nDistill my mentor Sarah — she’s great at system design and always asks “what breaks first?” when reviewing architecture\nDistill the engineering team’s decision-making patterns from our last 10 architecture review meetings\n## Comparison with Alternatives | Feature | Nuwa-Skill | Traditional Roleplay Prompt | Custom Fine-tuning | Character Cards | | * * * | * * * | * * * | * * * | * * * | | Setup time | 1 command | 5 min writing | 2-4 hours | 10-30 min | | Cognitive depth | 5 layers | Surface tone | Deep but static | Variable | | Multi-runtime | 50+ runtimes | Chat interface only | Model-specific | Platform-specific | | Update capability | Re-distill anytime | Rewrite prompt | Retraining needed | Edit JSON | | Limitation awareness | Built-in (Layer 5) | None | None | Rare | | Agent integration | Native (SKILL.md) | Chat message only | API call only | Chat message | ## Limitations / Honest Assessment Nuwa-Skill is innovative but has important limitations: 1. **Public information only** — The distillation is limited to what the person has publicly expressed. Private thoughts and unspoken frameworks cannot be captured. 2. **Snapshot in time** — Distillations capture the person's thinking at a point in time. People evolve, and the skill won't reflect that evolution unless re-distilled. 3. **No intuition transfer** — As the README states: \"Distillation can't capture intuition — frameworks can be extracted, inspiration cannot.\" The skill provides cognitive patterns, not creative sparks. 4. **Runtime dependency** — The quality of output depends on the underlying LLM. A weaker model may not faithfully follow the 5-layer instructions. 5. **Research quality varies** — The quality of distillation depends on the quality and quantity of public content available about the target person. Obscure figures with limited public records will produce thinner distillations. 6. **Not a replacement for the person** — The skill captures patterns of thought, not the full complexity of human cognition. It's a decision aid, not a psychic medium. ## Frequently Asked Questions **Q: How does Nuwa-Skill differ from simply using a roleplay prompt?** A: Traditional roleplay prompts only capture surface-level tone and vocabulary. Nuwa-Skill's five-layer extraction captures decision heuristics, anti-patterns, and honestly stated limitations — producing much more actionable cognitive frameworks. **Q: Can I distill myself?** A: Yes, this is one of the most practical use cases. The system analyzes your public content (blog posts, tweets, GitHub commits, interview transcripts) and distills your unique thinking patterns into a skill you can use across all your agent runtimes. **Q: Does Nuwa-Skill store my data?** A: Nuwa-Skill is a local-first framework. The SKILL.md files are stored in your local agent runtime's skills directory. No data is sent to external servers during distillation. **Q: How many distillations can I create?** A: There's no hard limit. You can create as many skills as you want. The [colleague-skill](https://github.com/titanwings/colleague-skill) project demonstrated that distilling colleagues is possible — but why stop at colleagues? **Q: What's the difference between Nuwa-Skill and MCP?** A: Nuwa-Skill uses the Agent Skills protocol (agentskills.io), which is a different standard than MCP. It's designed specifically for reusable cognitive frameworks rather than tool interfaces. It works alongside MCP, not instead of it. **Q: Can I use Nuwa-Skill with OpenAI's ChatGPT?** A: Not directly, as ChatGPT doesn't support the Agent Skills protocol. However, you can paste the SKILL.md content directly into a ChatGPT conversation, or use ChatGPT's custom instructions feature to achieve similar results. ## Conclusion Nuwa-Skill represents a new paradigm in AI agent augmentation — rather than asking \"what model should I use,\" it asks \"whose thinking should I borrow.\" By distilling the cognitive operating systems of experts, historical figures, and mentors into reusable, deployable skills, it gives you a superpower: instant access to the decision frameworks of the world's best thinkers. The beauty of Nuwa-Skill is its simplicity: one command, 50+ runtimes, and infinite distillation possibilities. From Steve Jobs's product philosophy to Warren Buffett's investment heuristics to your own manager's email patterns, the cognitive frameworks you need are one ````npx skills add``` away. **Try Nuwa-Skill:** [github.com/alchaincyf/nuwa-skill](https://github.com/alchaincyf/nuwa-skill) **Related articles:** - [Headroom](https://dibi8.com/headroom-token-compression-proxy-library-mcp-server) — Compress LLM inputs by 60-95% - [Matt Pocock\"s Skills](https://dibi8.com/mattpocock-skills-ai-agent-framework-guide) — CLI framework for AI agent superpowers **Sources \u0026 Further Reading:** - Agent Skills protocol: https://agentskills.io - Universal skills installer: https://github.com/vercel-labs/skills - Colleague-skill (predecessor): https://github.com/titanwings/colleague-skill - GitHub repository: https://github.com/alchaincyf/nuwa-skill * * * Join our community for more AI tool deep-dives: [t.me/DIBI8_Group](https://t.me/DIBI8_Group) **Disclaimer:** This article is for informational purposes only. Distillations are based on publicly available information and do not represent the actual thoughts of the individuals described. Always verify claims independently. Affiliate disclosure: Some links above may contain affiliate codes. We may earn a commission at no extra cost to you. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Nuwa-Skill: Distill Any Person Thinking Model into AI Agent Skill — 23,000 Stars — Guide 2026\", \"datePublished\": \"2026-06-09\", \"dateModified\": \"2026-06-09\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/nuwa-skill-distill-thinking-model-ai-agent-skills\" } } * * * ## Related Articles - [nuwa-skill-distill-thinking-model-ai-agent-skills](nuwa-skill-distill-thinking-model-ai-agent-skills) - [nuwa-skill-distill-thinking-model-ai-agent-skills](nuwa-skill-distill-thinking-model-ai-agent-skills) - [nuwa-skill-distill-thinking-model-ai-agent-skills](nuwa-skill-distill-thinking-model-ai-agent-skills) - [codebase-memory-mcp-high-performance-code-intelligence](nuwa-skill-distill-thinking-model-ai-agent-skills) - [free-mcp-tools-top10-2026](nuwa-skill-distill-thinking-model-ai-agent-skills) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
+  "wordCount" : "2581",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/nuwa-skill-distill-thinking-model-ai-agent-skills/">En</a>
@@ -209,46 +209,50 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#nuwa-skill%e5%b0%87%e4%bb%bb%e4%bd%95%e4%ba%ba%e7%9a%84%e6%80%9d%e7%b6%ad%e6%a8%a1%e5%9e%8b%e6%8f%90%e7%85%89%e7%82%ba-ai-agent-%e6%8a%80%e8%83%bd--23000-%e9%a1%86%e6%98%9f--2026-%e6%8c%87%e5%8d%97" aria-label="Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆星 — 2026 指南">Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆星 — 2026 指南</a><ul>
+                <a href="#nuwa-skill-distill-any-person-thinking-model-into-ai-agent-skill--23000-stars--guide-2026" aria-label="Nuwa-Skill: Distill Any Person Thinking Model into AI Agent Skill — 23,000 Stars — Guide 2026">Nuwa-Skill: Distill Any Person Thinking Model into AI Agent Skill — 23,000 Stars — Guide 2026</a><ul>
                     
             <li>
-                <a href="#%e4%bb%80%e9%ba%bc%e6%98%af-nuwa-skill" aria-label="什麼是 Nuwa-Skill？">什麼是 Nuwa-Skill？</a><ul>
+                <a href="#what-is-nuwa-skill" aria-label="What Is Nuwa-Skill?">What Is Nuwa-Skill?</a><ul>
                     
             <li>
-                <a href="#%e8%bc%b8%e5%87%ba%e7%af%84%e4%be%8b" aria-label="輸出範例">輸出範例</a></li></ul>
+                <a href="#example-outputs" aria-label="Example Outputs">Example Outputs</a></li></ul>
             </li>
             <li>
-                <a href="#%e9%81%8b%e4%bd%9c%e5%8e%9f%e7%90%86" aria-label="運作原理">運作原理</a><ul>
+                <a href="#how-it-works" aria-label="How It Works">How It Works</a><ul>
                     
             <li>
-                <a href="#%e7%ac%ac%e4%b8%80%e6%ad%a5%e7%a0%94%e7%a9%b6%e9%9a%8e%e6%ae%b5" aria-label="第一步：研究階段">第一步：研究階段</a></li>
+                <a href="#step-1-research-phase" aria-label="Step 1: Research Phase">Step 1: Research Phase</a></li>
             <li>
-                <a href="#%e7%ac%ac%e4%ba%8c%e6%ad%a5%e4%ba%94%e5%b1%a4%e5%88%86%e6%9e%90" aria-label="第二步：五層分析">第二步：五層分析</a></li>
-            <li>
-                <a href="#%e7%ac%ac%e4%b8%89%e6%ad%a5skillmd-%e7%94%9f%e6%88%90" aria-label="第三步：SKILL.md 生成">第三步：SKILL.md 生成</a></li>
-            <li>
-                <a href="#%e7%ac%ac%e5%9b%9b%e6%ad%a5%e9%83%a8%e7%bd%b2" aria-label="第四步：部署">第四步：部署</a></li></ul>
+                <a href="#step-2-five-layer-analysis" aria-label="Step 2: Five-Layer Analysis">Step 2: Five-Layer Analysis</a></li></ul>
+            </li></ul>
             </li>
             <li>
-                <a href="#%e5%ae%89%e8%a3%9d%e8%88%87%e8%a8%ad%e5%ae%9a" aria-label="安裝與設定">安裝與設定</a><ul>
+                <a href="#example-skillmd-structure-generated-by-nuwa" aria-label="Example SKILL.md structure generated by Nuwa">Example SKILL.md structure generated by Nuwa</a><ul>
+                    <ul>
                     
             <li>
-                <a href="#%e6%96%b9%e6%b3%95%e4%b8%80%e4%b8%80%e9%8d%b5%e5%ae%89%e8%a3%9d%e6%8e%a8%e8%96%a6" aria-label="方法一：一鍵安裝（推薦）">方法一：一鍵安裝（推薦）</a></li>
-            <li>
-                <a href="#%e6%96%b9%e6%b3%95%e4%ba%8c%e9%80%9a%e7%94%a8-cli-%e5%ae%89%e8%a3%9d%e5%99%a8" aria-label="方法二：通用 CLI 安裝器">方法二：通用 CLI 安裝器</a></li>
-            <li>
-                <a href="#%e6%96%b9%e6%b3%95%e4%b8%89%e6%89%8b%e5%8b%95%e5%ae%89%e8%a3%9d" aria-label="方法三：手動安裝">方法三：手動安裝</a></li>
-            <li>
-                <a href="#%e6%96%b9%e6%b3%95%e5%9b%9b%e5%83%85%e5%8f%83%e8%80%83%e4%bd%bf%e7%94%a8" aria-label="方法四：僅參考使用">方法四：僅參考使用</a></li></ul>
+                <a href="#method-2-universal-cli-installer" aria-label="Method 2: Universal CLI Installer">Method 2: Universal CLI Installer</a></li></ul>
+                </ul>
             </li>
             <li>
-                <a href="#%e4%bd%bf%e7%94%a8%e6%96%b9%e6%b3%95" aria-label="使用方法">使用方法</a><ul>
+                <a href="#install-nuwa-skill-to-your-default-runtime" aria-label="Install Nuwa-Skill to your default runtime">Install Nuwa-Skill to your default runtime</a></li>
+            <li>
+                <a href="#specify-a-particular-runtime" aria-label="Specify a particular runtime">Specify a particular runtime</a><ul>
+                    <ul>
                     
             <li>
-                <a href="#%e5%bb%ba%e7%ab%8b%e8%87%aa%e8%a8%82%e6%8f%90%e7%85%89" aria-label="建立自訂提煉">建立自訂提煉</a></li></ul>
+                <a href="#method-4-reference-only-usage" aria-label="Method 4: Reference-Only Usage">Method 4: Reference-Only Usage</a></li></ul>
+                
+            <li>
+                <a href="#usage" aria-label="Usage">Usage</a></li></ul>
             </li>
             <li>
-                <a href="#%e8%88%87-agent-%e5%9f%b7%e8%a1%8c%e7%92%b0%e5%a2%83%e6%95%b4%e5%90%88" aria-label="與 Agent 執行環境整合">與 Agent 執行環境整合</a><ul>
+                <a href="#create-a-distillation" aria-label="Create a distillation">Create a distillation</a></li>
+            <li>
+                <a href="#after-creation-invoke-the-distillation" aria-label="After creation, invoke the distillation">After creation, invoke the distillation</a><ul>
+                    
+            <li>
+                <a href="#integration-with-agent-runtimes" aria-label="Integration with Agent Runtimes">Integration with Agent Runtimes</a><ul>
                     
             <li>
                 <a href="#claude-code" aria-label="Claude Code">Claude Code</a></li>
@@ -260,63 +264,38 @@
                 <a href="#openclaw" aria-label="OpenClaw">OpenClaw</a></li></ul>
             </li>
             <li>
-                <a href="#%e6%95%88%e8%83%bd%e6%8c%87%e6%a8%99%e8%88%87%e6%87%89%e7%94%a8%e5%a0%b4%e6%99%af" aria-label="效能指標與應用場景">效能指標與應用場景</a><ul>
+                <a href="#benchmarks--use-cases" aria-label="Benchmarks &amp; Use Cases">Benchmarks &amp; Use Cases</a><ul>
                     
             <li>
-                <a href="#%e6%8f%90%e7%85%89%e5%93%81%e8%b3%aa%e6%af%94%e8%bc%83" aria-label="提煉品質比較">提煉品質比較</a></li>
+                <a href="#distillation-quality-comparison" aria-label="Distillation Quality Comparison">Distillation Quality Comparison</a></li>
             <li>
-                <a href="#%e5%af%a6%e9%9a%9b%e6%87%89%e7%94%a8%e5%a0%b4%e6%99%af" aria-label="實際應用場景">實際應用場景</a><ul>
+                <a href="#real-world-use-cases" aria-label="Real-World Use Cases">Real-World Use Cases</a><ul>
                     
             <li>
-                <a href="#1-%e7%94%a2%e5%93%81%e7%ad%96%e7%95%a5" aria-label="1. 產品策略">1. 產品策略</a></li>
+                <a href="#1-product-strategy" aria-label="1. Product Strategy">1. Product Strategy</a></li>
             <li>
-                <a href="#2-%e6%8a%95%e8%b3%87%e5%88%86%e6%9e%90" aria-label="2. 投資分析">2. 投資分析</a></li>
+                <a href="#2-investment-analysis" aria-label="2. Investment Analysis">2. Investment Analysis</a></li>
             <li>
-                <a href="#3-%e6%8a%80%e8%a1%93%e6%9e%b6%e6%a7%8b" aria-label="3. 技術架構">3. 技術架構</a></li></ul>
+                <a href="#3-technical-architecture" aria-label="3. Technical Architecture">3. Technical Architecture</a></li></ul>
             </li></ul>
             </li>
             <li>
-                <a href="#%e9%80%b2%e9%9a%8e%e7%94%a8%e6%b3%95" aria-label="進階用法">進階用法</a><ul>
+                <a href="#advanced-usage" aria-label="Advanced Usage">Advanced Usage</a><ul>
                     
             <li>
-                <a href="#%e8%87%aa%e8%a8%82%e6%8f%90%e7%85%89" aria-label="自訂提煉">自訂提煉</a></li>
+                <a href="#customizing-distillations" aria-label="Customizing Distillations">Customizing Distillations</a></li>
             <li>
-                <a href="#%e7%b5%84%e5%90%88%e5%a4%9a%e5%80%8b%e6%8f%90%e7%85%89" aria-label="組合多個提煉">組合多個提煉</a></li>
-            <li>
-                <a href="#%e5%8c%af%e5%87%ba%e8%88%87%e5%88%86%e4%ba%ab" aria-label="匯出與分享">匯出與分享</a></li>
-            <li>
-                <a href="#%e7%82%ba%e5%80%8b%e4%ba%ba%e7%94%a8%e9%80%94%e5%bb%ba%e7%ab%8b%e6%8a%80%e8%83%bd" aria-label="為個人用途建立技能">為個人用途建立技能</a></li></ul>
+                <a href="#creating-skills-for-personal-use" aria-label="Creating Skills for Personal Use">Creating Skills for Personal Use</a>
             </li>
-            <li>
-                <a href="#%e8%88%87%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88%e6%af%94%e8%bc%83" aria-label="與替代方案比較">與替代方案比較</a></li>
-            <li>
-                <a href="#%e5%b1%80%e9%99%90%e6%80%a7--%e8%aa%a0%e5%af%a6%e8%a9%95%e4%bc%b0" aria-label="局限性 / 誠實評估">局限性 / 誠實評估</a></li>
-            <li>
-                <a href="#%e5%b8%b8%e8%a6%8b%e5%95%8f%e9%a1%8c" aria-label="常見問題">常見問題</a></li>
-            <li>
-                <a href="#%e7%b5%90%e8%ab%96" aria-label="結論">結論</a></li>
-            <li>
-                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
-                    
-            <li>
-                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
-            <li>
-                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
-            </li>
-            <li>
-                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
-            <li>
-                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
-            <li>
-                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
-            </li>
+        </ul>
+        </li>
         </ul>
         </li>
         </ul>
     </div>
 </details>
 
-  <div class="post-content md-content"><h1 id="nuwa-skill將任何人的思維模型提煉為-ai-agent-技能--23000-顆星--2026-指南">Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆星 — 2026 指南<a hidden class="anchor" aria-hidden="true" href="#nuwa-skill將任何人的思維模型提煉為-ai-agent-技能--23000-顆星--2026-指南">#</a></h1>
+  <div class="post-content md-content"><h1 id="nuwa-skill-distill-any-person-thinking-model-into-ai-agent-skill--23000-stars--guide-2026">Nuwa-Skill: Distill Any Person Thinking Model into AI Agent Skill — 23,000 Stars — Guide 2026<a hidden class="anchor" aria-hidden="true" href="#nuwa-skill-distill-any-person-thinking-model-into-ai-agent-skill--23000-stars--guide-2026">#</a></h1>
 <pre tabindex="0"><code>┌──────────────────────────────────────────────┐
 │          Nuwa-Skill Pipeline                   │
 │                                                │
@@ -351,361 +330,392 @@
 │  │  (50+ compatible)       │                   │
 │  └─────────────────────────┘                   │
 └──────────────────────────────────────────────┘
-</code></pre><p>Nuwa-Skill（女媧）是一套開創性的 AI Agent 技能框架，讓你將任何人的思維模型——從史蒂夫·賈伯斯到華倫·巴菲特，再到你最喜歡的政治節目主持人——提煉為可複用、可部署的 Agent 技能。擁有 23,500+ 顆 GitHub 星，它已成為 Agent Skills 生態系中最受歡迎的專案之一。</p>
-<p>核心洞察簡單卻深刻：與其要求 LLM「扮演 X」，Nuwa-Skill 會提取五層深度的認知操作系統——他們如何說話、如何思考、如何決策、他們避開什麼，以及他們誠實的局限——並將這些編碼為結構化的 SKILL.md 檔案，任何相容的 Agent 執行環境都能使用。</p>
-<h2 id="什麼是-nuwa-skill">什麼是 Nuwa-Skill？<a hidden class="anchor" aria-hidden="true" href="#什麼是-nuwa-skill">#</a></h2>
-<p>Nuwa-Skill 建立在開放的 <a href="https://agentskills.io">Agent Skills 協議</a> 之上，與 50+ 相容的 AI Agent 執行環境配合運作，包括 Claude Code、Codex CLI、Cursor、OpenClaw、Hermes Agent、CodeBuddy、Gemini CLI 和 OpenCode。</p>
-<p>與只會產生表面模仿的傳統角色扮演提示不同，Nuwa-Skill 提取五個截然不同的認知層：</p>
-<p>|| 層 | 捕捉內容 | 範例 |
-||&mdash;&mdash;-|&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;|
-|| <strong>1. 表達 DNA</strong> | 語調、節奏、用字偏好 | 賈伯斯的「 insane really great」、Naval 豐富的寓言風格 |
-|| <strong>2. 心智模型</strong> | 認知框架與思考模式 | Musk 的「第一原理」、Buffett 的「能力圈」 |
-|| <strong>3. 決策經驗法則</strong> | 在不確定性下做出選擇的規則 | Bezos 的「單向門 vs 雙向門」 |
-|| <strong>4. 反模式</strong> | 他們明確拒絕做的事情 | 賈伯斯的「專注意味著說不」 |
-|| <strong>5. 誠實邊界</strong> | 他們明確無法做的事情 | Musk 的承認：「我不懂生物學」 |</p>
-<p>這種五層方法確保提煉超越表面模仿，進入真正的認知框架轉移。</p>
-<h3 id="輸出範例">輸出範例<a hidden class="anchor" aria-hidden="true" href="#輸出範例">#</a></h3>
-<p>以下是提煉 Naval Ravikant 的結果：</p>
-<pre tabindex="0"><code>User      ❯ 我想同時做自媒體、寫書和創業
+</code></pre><p>Nuwa-Skill (女娲) is a groundbreaking AI Agent Skills framework that lets you distill the thinking models of anyone — from Steve Jobs to Warren Buffett to your favorite podcast host — into reusable, deployable agent skills. With 23,500+ GitHub stars, it has become one of the most popular projects in the Agent Skills ecosystem.</p>
+<p>The core insight is simple but profound: instead of asking an LLM to &ldquo;roleplay as X,&rdquo; Nuwa-Skill extracts five deep layers of cognitive operating systems — how they speak, how they think, how they decide, what they avoid, and their honest limitations — and encodes these into structured SKILL.md files that any compatible agent runtime can use.</p>
+<h2 id="what-is-nuwa-skill">What Is Nuwa-Skill?<a hidden class="anchor" aria-hidden="true" href="#what-is-nuwa-skill">#</a></h2>
+<p>Nuwa-Skill is built on the open <a href="https://agentskills.io">Agent Skills protocol</a> and works with 50+ compatible AI agent runtimes including Claude Code, Codex CLI, Cursor, OpenClaw, Hermes Agent, CodeBuddy, Gemini CLI, and OpenCode.</p>
+<p>Unlike traditional roleplay prompts that produce superficial imitations, Nuwa-Skill extracts five distinct cognitive layers: | Layer | What It Captures | Example |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>1. Expression DNA</strong> | Tone, rhythm, word choice preferences | Jobs&rsquo;s &ldquo;insanely great,&rdquo; Naval&rsquo;s parable-heavy style |
+| <strong>2. Mental Models</strong> | Cognitive frameworks and thinking patterns | Musk&rsquo;s &ldquo;first principles,&rdquo; Buffett&rsquo;s &ldquo;circle of competence&rdquo; |
+| <strong>3. Decision Heuristics</strong> | Rules for making choices under uncertainty | Bezos&rsquo;s &ldquo;one-way vs. two-way door&rdquo; |
+| <strong>4. Anti-Patterns</strong> | What they actively refuse to do | Jobs&rsquo;s &ldquo;focus means saying no&rdquo; |
+| <strong>5. Honest Boundaries</strong> | What they explicitly cannot do | Musk&rsquo;s admission: &ldquo;I don&rsquo;t know about biology&rdquo; |</p>
+<p>This five-layer approach ensures the distillation goes far beyond surface-level mimicry into actual cognitive framework transfer.</p>
+<h3 id="example-outputs">Example Outputs<a hidden class="anchor" aria-hidden="true" href="#example-outputs">#</a></h3>
+<p>Here&rsquo;s what distilling Naval Ravikant produces: `````
+User      ❯ I want to do self-media, write a book, and build a startup simultaneously</p>
+<p>Naval     ❯ You listed three desires. Each desire is a contract you signed with unhappiness.
+It&rsquo;s not that you lack energy — you have too many contracts.</p>
+<pre><code>        Ask yourself: which one makes you lose track of time?
+        That's where your specific knowledge lives.
 
-Naval     ❯ 你列出了三個願望。每個願望都是你與不快樂簽下的契約。
-            不是你缺乏精力——是你簽了太多契約。
+        Not pick one of three. First be one, then one, then one.
+        Serial compounding, not parallel friction.
+</code></pre>
+<pre tabindex="0"><code>
+And Musk on SaaS customer acquisition: `````
+User      ❯ Our SaaS customer acquisition cost is too high
 
-            問問自己：哪一件事讓你忘卻時間？
-            那就是你的獨特知識所在。
+Musk      ❯ Don&#39;t think about reducing yet. Calculate the physical limit first.
+            What&#39;s the minimum necessary action for a user to discover and pay for you?
+            What&#39;s the theoretical shortest path for information transfer?
 
-            不要從三選一。先成為一個，然後再成為另一個。
-            串行複利，而非並行摩擦。
-</code></pre><p>以及 Musk 談 SaaS 客戶獲取：</p>
-<pre tabindex="0"><code>User      ❯ 我們的 SaaS 客戶獲取成本太高
-
-Musk      ❯ 別急著想如何降低。先算出物理極限。
-            使用者發現你並付費，最少必要動作是什麼？
-            資訊傳輸的理論最短路徑是什麼？
-
-            現在——你實際的路徑比理論極限長多少倍？
-            如果超過 3 倍，中間就有應該被刪掉的步驟。
-            別優化漏斗。質疑漏斗是否應該存在。
+            Now — how many times longer is your actual path compared to the theoretical minimum?
+            If it&#39;s more than 3x, there are steps in the middle that should be eliminated.
+            Don&#39;t optimize the funnel. Question whether the funnel should exist at all.
 </code></pre><p><img alt="Nuwa-Skill Hero" loading="lazy" src="https://raw.githubusercontent.com/alchaincyf/nuwa-skill/main/assets/hero.gif"></p>
 <p><img alt="Nuwa Distillation Pipeline" loading="lazy" src="https://raw.githubusercontent.com/alchaincyf/nuwa-skill/main/6-agents-parallel.png"></p>
 <p><img alt="Nuwa Advisory Board" loading="lazy" src="https://raw.githubusercontent.com/alchaincyf/nuwa-skill/main/advisory-board.png"></p>
-<h2 id="運作原理">運作原理<a hidden class="anchor" aria-hidden="true" href="#運作原理">#</a></h2>
-<p>提煉過程完全自動化。你提供一個名字，Nuwa-Skill 會處理研究、分析、生成和部署流程。</p>
-<h3 id="第一步研究階段">第一步：研究階段<a hidden class="anchor" aria-hidden="true" href="#第一步研究階段">#</a></h3>
-<p>系統會收集目標人物的公開內容：書籍、演講、訪談、 Podcast、推文和文章。這五層分析將以此作為原始材料。</p>
-<h3 id="第二步五層分析">第二步：五層分析<a hidden class="anchor" aria-hidden="true" href="#第二步五層分析">#</a></h3>
-<p>每一層獨立分析：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Nuwa 生成的範例 SKILL.md 結構</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;Steve Jobs&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Technical guide and comparison.&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">cognitive_layers: expression: tone</span>: <span style="color:#e6db74">&#34;直接、自信、有時尖銳&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">patterns</span>: [<span style="color:#e6db74">&#34;隱喻&#34;</span>, <span style="color:#e6db74">&#34;二元框架&#34;</span>, <span style="color:#e6db74">&#34;重複&#34;</span>]
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">signature_phrases</span>: - <span style="color:#e6db74">&#34;insanely great&#34;</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;the only way to do great work&#34;</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;stay hungry, stay foolish&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mental_models</span>: - <span style="color:#e6db74">&#34;connect the dots looking backward&#34;</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#e6db74">&#34;focus and simplify&#34;</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#e6db74">&#34;reality distortion field (convince others of possibility)&#34;</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#e6db74">&#34;端到端控制 (end-to-end control)&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">decision_heuristics</span>: - <span style="color:#e6db74">&#34;say no to 1000 things to focus on 3&#34;</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#e6db74">&#34;people think focus means saying yes to the thing you&#39;ve got to focus on&#34;</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#e6db74">&#34;simplicity is the ultimate sophistication&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">anti_patterns</span>: - <span style="color:#e6db74">&#34;never compromise on quality for speed&#34;</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#e6db74">&#34;avoid feature creep&#34;</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#e6db74">&#34;don&#39;t design for committees&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">limitations</span>: - <span style="color:#e6db74">&#34;not suited for collaborative team-building contexts&#34;</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#e6db74">&#34;decisions made with incomplete data&#34;</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#e6db74">&#34;highly personality-dependent, hard to scale&#34;</span>
-</span></span></code></pre></div><h3 id="第三步skillmd-生成">第三步：SKILL.md 生成<a hidden class="anchor" aria-hidden="true" href="#第三步skillmd-生成">#</a></h3>
-<p>分析結果會被編譯為 <code>SKILL.md</code> 檔案，遵循 Agent Skills 協議規範。該檔案包含 YAML frontmatter 元資料和供 Agent 執行環境使用的結構化指令。</p>
-<h3 id="第四步部署">第四步：部署<a hidden class="anchor" aria-hidden="true" href="#第四步部署">#</a></h3>
-<p>生成的技能會被部署到你選擇的 Agent 執行環境——Claude Code、Codex、Cursor，或 50+ 相容平台中的任何一個。</p>
-<h2 id="安裝與設定">安裝與設定<a hidden class="anchor" aria-hidden="true" href="#安裝與設定">#</a></h2>
-<h3 id="方法一一鍵安裝推薦">方法一：一鍵安裝（推薦）<a hidden class="anchor" aria-hidden="true" href="#方法一一鍵安裝推薦">#</a></h3>
-<p>開啟任何相容的 Agent（Claude Code、Codex、Cursor、OpenClaw、Hermes、CodeBuddy、Workbuddy、Gemini CLI、OpenCode 等），然後告訴它：</p>
-<pre tabindex="0"><code>Help me install this skill: https://github.com/alchaincyf/nuwa-skill
-</code></pre><p>Agent 會自動偵測你的執行環境並將技能安裝到正確的目錄。</p>
-<h3 id="方法二通用-cli-安裝器">方法二：通用 CLI 安裝器<a hidden class="anchor" aria-hidden="true" href="#方法二通用-cli-安裝器">#</a></h3>
-<p>使用 <a href="https://github.com/vercel-labs/skills">vercel-labs/skills</a> 通用 CLI 工具，支援 55+ 執行環境：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 將 Nuwa-Skill 安裝到預設執行環境</span>
-</span></span><span style="display:flex;"><span>npx skills add alchaincyf/nuwa-skill
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 指定特定執行環境</span>
-</span></span><span style="display:flex;"><span>npx skills add alchaincyf/nuwa-skill -a claude-code
-</span></span><span style="display:flex;"><span>npx skills add alchaincyf/nuwa-skill -a codex
-</span></span><span style="display:flex;"><span>npx skills add alchaincyf/nuwa-skill -a cursor
-</span></span><span style="display:flex;"><span>npx skills add alchaincyf/nuwa-skill -a openclaw
-</span></span></code></pre></div><h3 id="方法三手動安裝">方法三：手動安裝<a hidden class="anchor" aria-hidden="true" href="#方法三手動安裝">#</a></h3>
-<p>適合想要自訂安裝的進階使用者：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 複製到適當的執行環境技能目錄</span>
-</span></span><span style="display:flex;"><span>git clone https://github.com/alchaincyf/nuwa-skill ~/.claude/skills/nuwa-skill/
-</span></span><span style="display:flex;"><span>git clone https://github.com/alchaincyf/nuwa-skill ~/.codex/skills/nuwa-skill/
-</span></span><span style="display:flex;"><span>git clone https://github.com/alchaincyf/nuwa-skill ~/.cursor/skills/nuwa-skill/
-</span></span><span style="display:flex;"><span>git clone https://github.com/alchaincyf/nuwa-skill ~/.openclaw/workspace/skills/nuwa-skill/
-</span></span></code></pre></div><p>各執行環境的技能目錄：</p>
-<p>|| 執行環境 | 安裝路徑 |
-||&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
-|| Claude Code | <code>~/.claude/skills/nuwa-skill/</code> |
-|| Codex CLI | <code>~/.codex/skills/nuwa-skill/</code> |
-|| Cursor | <code>~/.cursor/skills/nuwa-skill/</code> |
-|| OpenClaw | <code>~/.openclaw/workspace/skills/nuwa-skill/</code> |
-|| Hermes Agent | 執行 <code>tools/install_hermes_skill.py</code> |
-|| 其他執行環境 | 複製到其 <code>skills/</code> 目錄 |</p>
-<h3 id="方法四僅參考使用">方法四：僅參考使用<a hidden class="anchor" aria-hidden="true" href="#方法四僅參考使用">#</a></h3>
-<p>即使你的執行環境不支援自動 Agent Skills 載入，你也可以將 <code>SKILL.md</code> 內容直接貼入對話中——它本質上只是帶有 YAML frontmatter 的 Markdown。</p>
-<h2 id="使用方法">使用方法<a hidden class="anchor" aria-hidden="true" href="#使用方法">#</a></h2>
-<p>安裝完成後，你可以使用自然語言指令來使用 Nuwa-Skill：</p>
-<pre tabindex="0"><code># 建立提煉
-&gt; Distill Paul Graham
-&gt; Create a Zhang Xiaolong perspective Skill
-&gt; Help me make a Daniel Okun (段永平) Skill
+<h2 id="how-it-works">How It Works<a hidden class="anchor" aria-hidden="true" href="#how-it-works">#</a></h2>
+<p>The distillation process is fully automated. You provide a name, and Nuwa-Skill handles the research, analysis, generation, and deployment pipeline.</p>
+<h3 id="step-1-research-phase">Step 1: Research Phase<a hidden class="anchor" aria-hidden="true" href="#step-1-research-phase">#</a></h3>
+<p>The system gathers public content about the target person: books, speeches, interviews, podcasts, tweets, and articles. This forms the raw material for the five-layer analysis.</p>
+<h3 id="step-2-five-layer-analysis">Step 2: Five-Layer Analysis<a hidden class="anchor" aria-hidden="true" href="#step-2-five-layer-analysis">#</a></h3>
+<p>Each layer is analyzed independently: `````yaml</p>
+<h1 id="example-skillmd-structure-generated-by-nuwa">Example SKILL.md structure generated by Nuwa<a hidden class="anchor" aria-hidden="true" href="#example-skillmd-structure-generated-by-nuwa">#</a></h1>
+<p>name: &ldquo;Steve Jobs&rdquo;
+description: &ldquo;Technical guide and comparison.&rdquo;
+cognitive_layers: expression: tone: &ldquo;direct, confident, sometimes abrasive&rdquo;
+patterns: [&ldquo;metaphors&rdquo;, &ldquo;binary framing&rdquo;, &ldquo;repetition&rdquo;]
+signature_phrases: - &ldquo;insanely great&rdquo;
+- &ldquo;the only way to do great work&rdquo;
+- &ldquo;stay hungry, stay foolish&rdquo;
+mental_models: - &ldquo;connect the dots looking backward&rdquo;
+- &ldquo;focus and simplify&rdquo;
+- &ldquo;reality distortion field (convince others of possibility)&rdquo;
+- &ldquo;端到端控制 (end-to-end control)&rdquo;
+decision_heuristics: - &ldquo;say no to 1000 things to focus on 3&rdquo;
+- &ldquo;people think focus means saying yes to the thing you&rsquo;ve got to focus on&rdquo;
+- &ldquo;simplicity is the ultimate sophistication&rdquo;
+anti_patterns: - &ldquo;never compromise on quality for speed&rdquo;
+- &ldquo;avoid feature creep&rdquo;
+- &ldquo;don&rsquo;t design for committees&rdquo;
+limitations: - &ldquo;not suited for collaborative team-building contexts&rdquo;
+- &ldquo;decisions made with incomplete data&rdquo;
+- &ldquo;highly personality-dependent, hard to scale&rdquo;</p>
+<pre tabindex="0"><code>
+### Step 3: SKILL.md Generation
 
-# 建立後，呼叫提煉
-&gt; Analyze this investment decision from Munger&#39;s perspective
-&gt; How would Feynman explain quantum computing?
-&gt; Switch to Naval, I&#39;m纠结 about three things
-</code></pre><h3 id="建立自訂提煉">建立自訂提煉<a hidden class="anchor" aria-hidden="true" href="#建立自訂提煉">#</a></h3>
-<p>你可以透過提供人名和可選的額外脈絡，為任何人物建立技能：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># 範例：自訂提煉提示</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">&gt; Distill Linus Torvalds</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt; Context</span>: <span style="color:#ae81ff">Focus on his technical decision-making and Linux development philosophy</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt; Output</span>: <span style="color:#ae81ff">Include his anti-patterns (about religious coding and BDFL debates)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">&gt; Distill my manager</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt; Context</span>: <span style="color:#ae81ff">She&#39;s great at prioritization and stakeholder management</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">&gt; Output</span>: <span style="color:#ae81ff">Capture her email writing patterns and meeting facilitation approach</span>
-</span></span></code></pre></div><h2 id="與-agent-執行環境整合">與 Agent 執行環境整合<a hidden class="anchor" aria-hidden="true" href="#與-agent-執行環境整合">#</a></h2>
+The analysis is compiled into a ````SKILL.md```` file following the Agent Skills protocol specification. This file includes YAML frontmatter with metadata and structured instructions for the agent runtime.
+
+### Step 4: Deployment
+
+The generated skill is deployed to your chosen agent runtime — Claude Code, Codex, Cursor, or any of 50+ compatible platforms.
+
+## Installation &amp; Setup
+
+### Method 1: One-Command Install (Recommended)
+
+Open any compatible agent (Claude Code, Codex, Cursor, OpenClaw, Hermes, CodeBuddy, Workbuddy, Gemini CLI, OpenCode, etc.) and tell it: `````
+Help me install this skill: https://github.com/alchaincyf/nuwa-skill
+</code></pre><p>The agent will automatically detect your runtime and install the skill to the correct directory.</p>
+<h3 id="method-2-universal-cli-installer">Method 2: Universal CLI Installer<a hidden class="anchor" aria-hidden="true" href="#method-2-universal-cli-installer">#</a></h3>
+<p>Use the <a href="https://github.com/vercel-labs/skills">vercel-labs/skills</a> universal CLI tool that supports 55+ runtimes: `````bash</p>
+<h1 id="install-nuwa-skill-to-your-default-runtime">Install Nuwa-Skill to your default runtime<a hidden class="anchor" aria-hidden="true" href="#install-nuwa-skill-to-your-default-runtime">#</a></h1>
+<p>npx skills add alchaincyf/nuwa-skill</p>
+<h1 id="specify-a-particular-runtime">Specify a particular runtime<a hidden class="anchor" aria-hidden="true" href="#specify-a-particular-runtime">#</a></h1>
+<p>npx skills add alchaincyf/nuwa-skill -a claude-code
+npx skills add alchaincyf/nuwa-skill -a codex
+npx skills add alchaincyf/nuwa-skill -a cursor
+npx skills add alchaincyf/nuwa-skill -a openclaw</p>
+<pre tabindex="0"><code>
+### Method 3: Manual Installation
+
+For advanced users who want to customize the installation: `````bash
+# Clone to the appropriate runtime&#39;s skills directory
+git clone https://github.com/alchaincyf/nuwa-skill ~/.claude/skills/nuwa-skill/
+git clone https://github.com/alchaincyf/nuwa-skill ~/.codex/skills/nuwa-skill/
+git clone https://github.com/alchaincyf/nuwa-skill ~/.cursor/skills/nuwa-skill/
+git clone https://github.com/alchaincyf/nuwa-skill ~/.openclaw/workspace/skills/nuwa-skill/
+</code></pre><p>Runtime-specific skill directories: | Runtime | Installation Path |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Claude Code | <code>~/.claude/skills/nuwa-skill/</code> |
+| Codex CLI | <code>~/.codex/skills/nuwa-skill/</code> |
+| Cursor | <code>~/.cursor/skills/nuwa-skill/</code> |
+| OpenClaw | <code>~/.openclaw/workspace/skills/nuwa-skill/</code> |
+| Hermes Agent | Run <code>tools/install_hermes_skill.py</code> |
+| Other runtimes | Clone to their <code>skills/</code> directory |</p>
+<h3 id="method-4-reference-only-usage">Method 4: Reference-Only Usage<a hidden class="anchor" aria-hidden="true" href="#method-4-reference-only-usage">#</a></h3>
+<p>Even if your runtime doesn&rsquo;t support automatic Agent Skills loading, you can paste the <code>SKILL.md</code> content directly into your conversation — it&rsquo;s fundamentally just Markdown with YAML frontmatter.</p>
+<h2 id="usage">Usage<a hidden class="anchor" aria-hidden="true" href="#usage">#</a></h2>
+<p>Once installed, you can use Nuwa-Skill with natural language commands: `````</p>
+<h1 id="create-a-distillation">Create a distillation<a hidden class="anchor" aria-hidden="true" href="#create-a-distillation">#</a></h1>
+<blockquote>
+<p>Distill Paul Graham
+Create a Zhang Xiaolong perspective Skill
+Help me make a Daniel Okun (段永平) Skill</p>
+</blockquote>
+<h1 id="after-creation-invoke-the-distillation">After creation, invoke the distillation<a hidden class="anchor" aria-hidden="true" href="#after-creation-invoke-the-distillation">#</a></h1>
+<blockquote>
+<p>Analyze this investment decision from Munger&rsquo;s perspective
+How would Feynman explain quantum computing?
+Switch to Naval, I&rsquo;m纠结 about three things</p>
+</blockquote>
+<pre tabindex="0"><code>
+### Creating Custom Distillations
+
+You can create skills for any person by providing their name and optionally additional context: `````yaml
+# Example: Custom distillation prompt
+&gt; Distill Linus Torvalds
+&gt; Context: Focus on his technical decision-making and Linux development philosophy
+&gt; Output: Include his anti-patterns (about religious coding and BDFL debates)
+
+&gt; Distill my manager
+&gt; Context: She&#39;s great at prioritization and stakeholder management
+&gt; Output: Capture her email writing patterns and meeting facilitation approach
+</code></pre><h2 id="integration-with-agent-runtimes">Integration with Agent Runtimes<a hidden class="anchor" aria-hidden="true" href="#integration-with-agent-runtimes">#</a></h2>
 <h3 id="claude-code">Claude Code<a hidden class="anchor" aria-hidden="true" href="#claude-code">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 安裝完成後，Claude Code 會自動載入技能</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 不需要額外的設定</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># After installation, Claude Code automatically loads the skill</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># No additional configuration needed</span>
 </span></span><span style="display:flex;"><span>claude
 </span></span><span style="display:flex;"><span>&gt; distill Elon Musk
 </span></span><span style="display:flex;"><span>&gt; use Musk<span style="color:#960050;background-color:#1e0010">&#39;</span>s framework to analyze this product decision
 </span></span></code></pre></div><h3 id="codex-cli">Codex CLI<a hidden class="anchor" aria-hidden="true" href="#codex-cli">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Codex 會自動偵測並載入技能</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 若未自動偵測，請明確指定</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Codex detects and loads the skill automatically</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># If not auto-detected, specify explicitly</span>
 </span></span><span style="display:flex;"><span>codex --skill nuwa-skill
 </span></span><span style="display:flex;"><span>&gt; distill Naval Ravikant
 </span></span><span style="display:flex;"><span>&gt; analyze my startup strategy from Naval<span style="color:#960050;background-color:#1e0010">&#39;</span>s perspective
 </span></span></code></pre></div><h3 id="cursor">Cursor<a hidden class="anchor" aria-hidden="true" href="#cursor">#</a></h3>
-<pre tabindex="0"><code># 在 Cursor 中，技能會作為斜線指令出現
+<pre tabindex="0"><code># In Cursor, the skill appears as a slash command
 /distill [person name]
 
-# 或在對話中直接使用技能
+# Or use the skill directly in your conversation
 &gt; Switch to the Steve Jobs thinking model
 </code></pre><h3 id="openclaw">OpenClaw<a hidden class="anchor" aria-hidden="true" href="#openclaw">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># OpenClaw 會從其工作區目錄載入技能</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Nuwa-Skill 會自動部署到那裡</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># OpenClaw loads skills from its workspace directory</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Nuwa-Skill deploys there automatically</span>
 </span></span><span style="display:flex;"><span>&gt; Create a Jobs distillation
 </span></span><span style="display:flex;"><span>&gt; Apply it to this code review
-</span></span></code></pre></div><h2 id="效能指標與應用場景">效能指標與應用場景<a hidden class="anchor" aria-hidden="true" href="#效能指標與應用場景">#</a></h2>
-<h3 id="提煉品質比較">提煉品質比較<a hidden class="anchor" aria-hidden="true" href="#提煉品質比較">#</a></h3>
-<p>|| 面向 | 傳統角色扮演 | Nuwa-Skill 五層 |
-||&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|
-|| 語調匹配 | 好 | 優秀 |
-|| 決策框架 | 差 | 優秀 |
-|| 局限意識 | 無 | 完整五層 |
-|| 一致性 | 不穩定 | 高 |
-|| 適應性 | 低 | 高（可結合脈絡重新提問） |</p>
-<h3 id="實際應用場景">實際應用場景<a hidden class="anchor" aria-hidden="true" href="#實際應用場景">#</a></h3>
-<h4 id="1-產品策略">1. 產品策略<a hidden class="anchor" aria-hidden="true" href="#1-產品策略">#</a></h4>
-<pre tabindex="0"><code>User: &#34;我們應該在生產力應用程式中加入社交功能嗎？&#34;
-
-Jobs 模型: &#34;你問錯了問題。真正的问题是：
-如果你除了其中一個功能外，移除所有功能，會發生什麼事？&#34;
-</code></pre><h4 id="2-投資分析">2. 投資分析<a hidden class="anchor" aria-hidden="true" href="#2-投資分析">#</a></h4>
-<pre tabindex="0"><code>User: &#34;這個加密貨幣專案值得投資嗎？&#34;
-
-Munger 模型: &#34;讓我重新框架：創辦人的誘因是什麼？
-他們與股東利益一致嗎？讓我看看他們的實際投入。&#34;
-</code></pre><h4 id="3-技術架構">3. 技術架構<a hidden class="anchor" aria-hidden="true" href="#3-技術架構">#</a></h4>
-<pre tabindex="0"><code>User: &#34;我們應該建構單體還是微服務？&#34;
-
-Torvalds 模型: &#34;我不在乎架構。我在乎的是
-程式碼能不能運作。從可行的開始。如果真的出問題了再重構。&#34;
-</code></pre><h2 id="進階用法">進階用法<a hidden class="anchor" aria-hidden="true" href="#進階用法">#</a></h2>
-<h3 id="自訂提煉">自訂提煉<a hidden class="anchor" aria-hidden="true" href="#自訂提煉">#</a></h3>
-<p>你可以透過添加特定指令來優化提煉：</p>
-<pre tabindex="0"><code>&gt; Distill Tim Cook but focus specifically on supply chain management
-&gt; and operational excellence, not his public speaking style
-
-&gt; Distill my PhD advisor with emphasis on their experimental design
-&gt; methodology and paper review patterns
-</code></pre><h3 id="組合多個提煉">組合多個提煉<a hidden class="anchor" aria-hidden="true" href="#組合多個提煉">#</a></h3>
-<pre tabindex="0"><code>&gt; First, analyze this from Buffett&#39;s perspective on risk
-&gt; Then, from Musk&#39;s perspective on first principles
-&gt; Finally, synthesize both viewpoints
-</code></pre><h3 id="匯出與分享">匯出與分享<a hidden class="anchor" aria-hidden="true" href="#匯出與分享">#</a></h3>
-<p>生成的技能可以匯出和分享：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 匯出技能</span>
-</span></span><span style="display:flex;"><span>cat ~/.claude/skills/nuwa-skill/SKILL.md &gt; jobs-distilled.md
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 與團隊成員分享</span>
-</span></span><span style="display:flex;"><span>scp jobs-distilled.md team@example.com:~/skills/
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 他們透過指向你的 URL 來安裝</span>
-</span></span><span style="display:flex;"><span>npx skills add https://your-server.com/jobs-distilled.md
-</span></span></code></pre></div><h3 id="為個人用途建立技能">為個人用途建立技能<a hidden class="anchor" aria-hidden="true" href="#為個人用途建立技能">#</a></h3>
-<p>除了知名人士，Nuwa-Skill 也可以捕捉任何你想保留思維模式的人：</p>
-<pre tabindex="0"><code>&gt; Distill my mentor Sarah — she&#39;s great at system design
-&gt; and always asks &#34;what breaks first?&#34; when reviewing architecture
-
-&gt; Distill the engineering team&#39;s decision-making patterns
-&gt; from our last 10 architecture review meetings
-</code></pre><h2 id="與替代方案比較">與替代方案比較<a hidden class="anchor" aria-hidden="true" href="#與替代方案比較">#</a></h2>
-<p>|| 功能 | Nuwa-Skill | 傳統角色扮演提示 | 自訂微調 | 角色卡 |
-||&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;&mdash;&mdash;-|
-|| 設定時間 | 1 個指令 | 5 分鐘撰寫 | 2-4 小時 | 10-30 分鐘 |
-|| 認知深度 | 5 層 | 表面語調 | 深但靜態 | 不穩定 |
-|| 多執行環境 | 50+ 執行環境 | 僅聊天介面 | 模型特定 | 平台特定 |
-|| 更新能力 | 隨時重新提煉 | 重寫提示 | 需要重新訓練 | 編輯 JSON |
-|| 局限意識 | 內建（第 5 層） | 無 | 無 | 罕見 |
-|| Agent 整合 | 原生（SKILL.md） | 僅聊天訊息 | 僅 API 呼叫 | 聊天訊息 |</p>
-<h2 id="局限性--誠實評估">局限性 / 誠實評估<a hidden class="anchor" aria-hidden="true" href="#局限性--誠實評估">#</a></h2>
-<p>Nuwa-Skill 雖然創新，但有重要的局限性：</p>
-<ol>
-<li>
-<p><strong>僅限公開資訊</strong> — 提煉受限於該人物已公開表達的內容。私密想法和未言明的框架無法被捕捉。</p>
-</li>
-<li>
-<p><strong>時間快照</strong> — 提煉捕捉的是人物在特定時間點的思維。人們會演變，除非重新提煉，否則技能不會反映這種演變。</p>
-</li>
-<li>
-<p><strong>無法轉移直覺</strong> — 正如 README 所述：「提煉無法捕捉直覺——框架可以被提取，靈感則不行。」技能提供認知模式，而非創意火花。</p>
-</li>
-<li>
-<p><strong>執行環境依賴</strong> — 輸出的品質取決於底層 LLM。較弱的模型可能無法忠實遵循五層指令。</p>
-</li>
-<li>
-<p><strong>研究品質參差不齊</strong> — 提煉的品質取決於目標人物公開內容的質量和數量。公眾記錄有限的冷門人物會產生較薄的提煉結果。</p>
-</li>
-<li>
-<p><strong>不是該人物的替代品</strong> — 技能捕捉思維模式，而非人類認知的全部複雜性。它是決策輔助工具，而非通靈媒介。</p>
-</li>
-</ol>
-<h2 id="常見問題">常見問題<a hidden class="anchor" aria-hidden="true" href="#常見問題">#</a></h2>
-<p><strong>Q：Nuwa-Skill 與單純使用角色扮演提示有何不同？</strong></p>
-<p>A：傳統角色扮演提示僅捕捉表面語調和詞彙。Nuwa-Skill 的五層提取會捕捉決策經驗法則、反模式和誠實聲明的局限性——產生更實用的認知框架。</p>
-<p><strong>Q：我可以提煉自己嗎？</strong></p>
-<p>A：可以，這是最實用的應用場景之一。系統會分析你的公開內容（部落格文章、推文、GitHub 提交、訪談記錄）並將你的獨特思維模式提煉為一個技能，你可以在所有 Agent 執行環境中使用。</p>
-<p><strong>Q：Nuwa-Skill 會儲存我的資料嗎？</strong></p>
-<p>A：Nuwa-Skill 是一個本機優先的框架。SKILL.md 檔案儲存在你本機 Agent 執行環境的技能目錄中。提煉過程中不會向外部伺服器發送任何資料。</p>
-<p><strong>Q：我可以建立多少提煉？</strong></p>
-<p>A：沒有硬性限制。你可以建立任意數量的技能。<a href="https://github.com/titanwings/colleague-skill">colleague-skill</a> 專案證明了提煉同事是可行的——但為何只停在同事？</p>
-<p><strong>Q：Nuwa-Skill 與 MCP 有什麼區別？</strong></p>
-<p>A：Nuwa-Skill 使用 Agent Skills 協議（agentskills.io），這是一個與 MCP 不同的標準。它專門為可複用的認知框架設計，而非工具介面。它與 MCP 並存運作，而非取代 MCP。</p>
-<p><strong>Q：我可以將 Nuwa-Skill 用於 OpenAI 的 ChatGPT 嗎？</strong></p>
-<p>A：不能直接使用，因為 ChatGPT 不支援 Agent Skills 協議。不過，你可以將 SKILL.md 內容直接貼入 ChatGPT 對話中，或使用 ChatGPT 的自訂指示功能來達到類似效果。</p>
-<h2 id="結論">結論<a hidden class="anchor" aria-hidden="true" href="#結論">#</a></h2>
-<p>Nuwa-Skill 代表了 AI Agent 增強的新範式——它不問「我應該使用哪種模型」，而是問「我應該借用誰的思維」。透過將專家、歷史人物和導師的認知操作系統提煉為可複用、可部署的技能，它賦予你一項超能力：即時存取世界上最佳思維者的決策框架。</p>
-<p>Nuwa-Skill 的美在於它的簡潔：一個指令、50+ 執行環境、無限的提煉可能性。從史蒂夫·賈伯斯的产品哲學、華倫·巴菲特的投資經驗法則，到你經理的電子郵件模式，你需要的認知框架只需一個 ````npx skills add``` 就能取得。</p>
-<p><strong>嘗試 Nuwa-Skill：</strong> <a href="https://github.com/alchaincyf/nuwa-skill">github.com/alchaincyf/nuwa-skill</a></p>
-<p><strong>相關文章：</strong></p>
-<ul>
-<li><a href="https://dibi8.com/headroom-token-compression-proxy-library-mcp-server">Headroom</a> — 將 LLM 輸入壓縮 60-95%</li>
-<li><a href="https://dibi8.com/mattpocock-skills-ai-agent-framework-guide">Matt Pocock 的技能</a> — AI Agent 超級能力的 CLI 框架</li>
-</ul>
-<p><strong>來源與延伸閱讀：</strong></p>
-<ul>
-<li>Agent Skills 協議：https://agentskills.io</li>
-<li>通用技能安裝器：https://github.com/vercel-labs/skills</li>
-<li>Colleague-skill（前身為）：https://github.com/titanwings/colleague-skill</li>
-<li>GitHub 儲存庫：https://github.com/alchaincyf/nuwa-skill</li>
-</ul>
+</span></span></code></pre></div><h2 id="benchmarks--use-cases">Benchmarks &amp; Use Cases<a hidden class="anchor" aria-hidden="true" href="#benchmarks--use-cases">#</a></h2>
+<h3 id="distillation-quality-comparison">Distillation Quality Comparison<a hidden class="anchor" aria-hidden="true" href="#distillation-quality-comparison">#</a></h3>
+<p>| Aspect | Traditional Roleplay | Nuwa-Skill 5-Layer |
+|</p>
 <hr>
-<p>加入我們的社群，取得更多 AI 工具深度解析：<a href="https://t.me/DIBI8_Group">t.me/DIBI8_Group</a></p>
-<p><strong>免責聲明：</strong> 本文僅供資訊用途。提煉基於公開可用的資訊，不代表所描述人物的真實想法。請獨立驗證所有聲明。附屬披露：上述部分連結可能包含附屬代碼。我們可能會獲得佣金，不會為你帶來額外成本。</p>
-<p>{
-&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
-&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆星 — 2026 指南&rdquo;,
-&ldquo;datePublished&rdquo;: &ldquo;2026-06-09&rdquo;,
-&ldquo;dateModified&rdquo;: &ldquo;2026-06-09&rdquo;,
-&ldquo;author&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
-&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
-},
-&ldquo;publisher&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
-&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
-&ldquo;logo&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Tone matching | Good | Excellent |
+| Decision framework | Poor | Excellent |
+| Limitation awareness | None | Full 5-layer |
+| Consistency | Variable | High |
+| Adaptability | Low | High (re-asks with context) |</p>
+<h3 id="real-world-use-cases">Real-World Use Cases<a hidden class="anchor" aria-hidden="true" href="#real-world-use-cases">#</a></h3>
+<h4 id="1-product-strategy">1. Product Strategy<a hidden class="anchor" aria-hidden="true" href="#1-product-strategy">#</a></h4>
+<pre tabindex="0"><code>User: &#34;Should we add social features to our productivity app?&#34;
+
+Jobs Model: &#34;You&#39;re asking the wrong question. The real question is: what would happen if you removed ALL features except one?&#34;
+</code></pre><h4 id="2-investment-analysis">2. Investment Analysis<a hidden class="anchor" aria-hidden="true" href="#2-investment-analysis">#</a></h4>
+<pre tabindex="0"><code>User: &#34;Is this crypto project worth investing in?&#34;
+
+Munger Model: &#34;Let me reframe: what are the incentives of the founders?
+Are they aligned with shareholders? Show me their skin in the game.&#34;
+</code></pre><h4 id="3-technical-architecture">3. Technical Architecture<a hidden class="anchor" aria-hidden="true" href="#3-technical-architecture">#</a></h4>
+<pre tabindex="0"><code>User: &#34;Should we build monolith or microservices?&#34;
+
+Torvalds Model: &#34;I don&#39;t care about the architecture. I care about whether
+the code works. Start with what works. Refactor later if it actually breaks.&#34;
+</code></pre><h2 id="advanced-usage">Advanced Usage<a hidden class="anchor" aria-hidden="true" href="#advanced-usage">#</a></h2>
+<h3 id="customizing-distillations">Customizing Distillations<a hidden class="anchor" aria-hidden="true" href="#customizing-distillations">#</a></h3>
+<p>You can refine the distillation by adding specific instructions: `````</p>
+<blockquote>
+<p>Distill Tim Cook but focus specifically on supply chain management
+and operational excellence, not his public speaking style</p>
+</blockquote>
+<blockquote>
+<p>Distill my PhD advisor with emphasis on their experimental design
+methodology and paper review patterns</p>
+</blockquote>
+<pre tabindex="0"><code>
+### Combining Multiple Distillations
+</code></pre><blockquote>
+<p>First, analyze this from Buffett&rsquo;s perspective on risk
+Then, from Musk&rsquo;s perspective on first principles
+Finally, synthesize both viewpoints</p>
+</blockquote>
+<pre tabindex="0"><code>
+### Export and Share
+
+Generated skills can be exported and shared: `````bash
+# Export a skill
+cat ~/.claude/skills/nuwa-skill/SKILL.md &gt; jobs-distilled.md
+
+# Share with a team member
+scp jobs-distilled.md team@example.com:~/skills/
+
+# They install by pointing to your URL
+npx skills add https://your-server.com/jobs-distilled.md
+</code></pre><h3 id="creating-skills-for-personal-use">Creating Skills for Personal Use<a hidden class="anchor" aria-hidden="true" href="#creating-skills-for-personal-use">#</a></h3>
+<p>Beyond famous people, Nuwa-Skill works for anyone whose thinking you want to capture: `````</p>
+<blockquote>
+<p>Distill my mentor Sarah — she&rsquo;s great at system design
+and always asks &ldquo;what breaks first?&rdquo; when reviewing architecture</p>
+</blockquote>
+<blockquote>
+<p>Distill the engineering team&rsquo;s decision-making patterns
+from our last 10 architecture review meetings</p>
+</blockquote>
+<pre tabindex="0"><code>
+## Comparison with Alternatives
+
+| Feature | Nuwa-Skill | Traditional Roleplay Prompt | Custom Fine-tuning | Character Cards |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Setup time | 1 command | 5 min writing | 2-4 hours | 10-30 min |
+| Cognitive depth | 5 layers | Surface tone | Deep but static | Variable |
+| Multi-runtime | 50+ runtimes | Chat interface only | Model-specific | Platform-specific |
+| Update capability | Re-distill anytime | Rewrite prompt | Retraining needed | Edit JSON |
+| Limitation awareness | Built-in (Layer 5) | None | None | Rare |
+| Agent integration | Native (SKILL.md) | Chat message only | API call only | Chat message |
+
+## Limitations / Honest Assessment
+
+Nuwa-Skill is innovative but has important limitations: 1. **Public information only** — The distillation is limited to what the person has publicly expressed. Private thoughts and unspoken frameworks cannot be captured.
+
+2. **Snapshot in time** — Distillations capture the person&#39;s thinking at a point in time. People evolve, and the skill won&#39;t reflect that evolution unless re-distilled.
+
+3. **No intuition transfer** — As the README states: &#34;Distillation can&#39;t capture intuition — frameworks can be extracted, inspiration cannot.&#34; The skill provides cognitive patterns, not creative sparks.
+
+4. **Runtime dependency** — The quality of output depends on the underlying LLM. A weaker model may not faithfully follow the 5-layer instructions.
+
+5. **Research quality varies** — The quality of distillation depends on the quality and quantity of public content available about the target person. Obscure figures with limited public records will produce thinner distillations.
+
+6. **Not a replacement for the person** — The skill captures patterns of thought, not the full complexity of human cognition. It&#39;s a decision aid, not a psychic medium.
+
+## Frequently Asked Questions
+
+**Q: How does Nuwa-Skill differ from simply using a roleplay prompt?**
+
+A: Traditional roleplay prompts only capture surface-level tone and vocabulary. Nuwa-Skill&#39;s five-layer extraction captures decision heuristics, anti-patterns, and honestly stated limitations — producing much more actionable cognitive frameworks.
+
+**Q: Can I distill myself?**
+
+A: Yes, this is one of the most practical use cases. The system analyzes your public content (blog posts, tweets, GitHub commits, interview transcripts) and distills your unique thinking patterns into a skill you can use across all your agent runtimes.
+
+**Q: Does Nuwa-Skill store my data?**
+
+A: Nuwa-Skill is a local-first framework. The SKILL.md files are stored in your local agent runtime&#39;s skills directory. No data is sent to external servers during distillation.
+
+**Q: How many distillations can I create?**
+
+A: There&#39;s no hard limit. You can create as many skills as you want. The [colleague-skill](https://github.com/titanwings/colleague-skill) project demonstrated that distilling colleagues is possible — but why stop at colleagues?
+
+**Q: What&#39;s the difference between Nuwa-Skill and MCP?**
+
+A: Nuwa-Skill uses the Agent Skills protocol (agentskills.io), which is a different standard than MCP. It&#39;s designed specifically for reusable cognitive frameworks rather than tool interfaces. It works alongside MCP, not instead of it.
+
+**Q: Can I use Nuwa-Skill with OpenAI&#39;s ChatGPT?**
+
+A: Not directly, as ChatGPT doesn&#39;t support the Agent Skills protocol. However, you can paste the SKILL.md content directly into a ChatGPT conversation, or use ChatGPT&#39;s custom instructions feature to achieve similar results.
+
+## Conclusion
+
+Nuwa-Skill represents a new paradigm in AI agent augmentation — rather than asking &#34;what model should I use,&#34; it asks &#34;whose thinking should I borrow.&#34; By distilling the cognitive operating systems of experts, historical figures, and mentors into reusable, deployable skills, it gives you a superpower: instant access to the decision frameworks of the world&#39;s best thinkers.
+
+The beauty of Nuwa-Skill is its simplicity: one command, 50+ runtimes, and infinite distillation possibilities. From Steve Jobs&#39;s product philosophy to Warren Buffett&#39;s investment heuristics to your own manager&#39;s email patterns, the cognitive frameworks you need are one ````npx skills add``` away.
+
+**Try Nuwa-Skill:** [github.com/alchaincyf/nuwa-skill](https://github.com/alchaincyf/nuwa-skill)
+
+**Related articles:**
+- [Headroom](https://dibi8.com/headroom-token-compression-proxy-library-mcp-server) — Compress LLM inputs by 60-95%
+- [Matt Pocock&#34;s Skills](https://dibi8.com/mattpocock-skills-ai-agent-framework-guide) — CLI framework for AI agent superpowers
+
+**Sources &amp; Further Reading:**
+- Agent Skills protocol: https://agentskills.io
+- Universal skills installer: https://github.com/vercel-labs/skills
+- Colleague-skill (predecessor): https://github.com/titanwings/colleague-skill
+- GitHub repository: https://github.com/alchaincyf/nuwa-skill
+
+
+* * *
+Join our community for more AI tool deep-dives: [t.me/DIBI8_Group](https://t.me/DIBI8_Group)
+
+**Disclaimer:** This article is for informational purposes only. Distillations are based on publicly available information and do not represent the actual thoughts of the individuals described. Always verify claims independently. Affiliate disclosure: Some links above may contain affiliate codes. We may earn a commission at no extra cost to you.
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;Nuwa-Skill: Distill Any Person Thinking Model into AI Agent Skill — 23,000 Stars — Guide 2026&#34;,
+  &#34;datePublished&#34;: &#34;2026-06-09&#34;,
+  &#34;dateModified&#34;: &#34;2026-06-09&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/nuwa-skill-distill-thinking-model-ai-agent-skills&#34;
+  }
 }
-},
-&ldquo;mainEntityOfPage&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/nuwa-skill-distill-thinking-model-ai-agent-skills%22">https://dibi8.com/kr/resources/nuwa-skill-distill-thinking-model-ai-agent-skills"</a>
-}
-}
-</script></p>
-<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
-<p>Understanding nuwa-skill：將任何人的思維模型提煉為 ai agent 技能 — 23,000 顆星 — 2026 指南 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
-<ul>
-<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
-<li><strong>Quality</strong>: Improve output consistency</li>
-<li><strong>Scalability</strong>: Handle larger workloads</li>
-<li><strong>Cost</strong>: Reduce operational expenses</li>
-</ul>
-<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
-<p>Organizations are using similar approaches to: 1. Automate code review processes
-2. Generate documentation automatically
-3. Build internal knowledge bases
-4. Streamline deployment pipelines</p>
-<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
-<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
-<ul>
-<li>Identify repetitive tasks</li>
-<li>Measure current time costs</li>
-<li>Define success metrics</li>
-</ul>
-<ol start="2">
-<li>
-<p><strong>Choose Your Approach</strong></p>
-<ul>
-<li>Start with simple automations</li>
-<li>Gradually increase complexity</li>
-<li>Test and iterate</li>
-</ul>
-</li>
-<li>
-<p><strong>Measure Results</strong></p>
-<ul>
-<li>Track time savings</li>
-<li>Monitor quality improvements</li>
-<li>Calculate ROI</li>
-</ul>
-</li>
-</ol>
-<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
-<p>Nuwa-Skill：將任何人的思維模型提煉為 AI Agent 技能 — 23,000 顆星 — 2026 指南 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
-<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
-<hr>
-<p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~6 minutes</em></p>
-<hr>
-<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
-<ul>
-<li><a href="/ko/ai-coding-agents/nuwa-skill-distill-thinking-model-ai-agent-skills/">nuwa-skill-distill-thinking-model-ai-agent-skills</a></li>
-<li><a href="/ko/ai-coding-agents/nuwa-skill-distill-thinking-model-ai-agent-skills/">nuwa-skill-distill-thinking-model-ai-agent-skills</a></li>
-<li><a href="/ko/ai-coding-agents/nuwa-skill-distill-thinking-model-ai-agent-skills/">free-mcp-tools-top10-2026</a></li>
-<li><a href="/ko/ai-coding-agents/nuwa-skill-distill-thinking-model-ai-agent-skills/">cc-switch-all-in-one-ai-coding-agent-manager</a></li>
-<li><a href="/ko/ai-coding-agents/nuwa-skill-distill-thinking-model-ai-agent-skills/">codebase-memory-mcp-high-performance-code-intelligence</a></li>
-</ul>
-<hr>
-<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
-<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
-<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
-<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
-<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
-<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
-<p><strong>问：AI Agent的安全性如何保证？</strong></p>
-<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
-<p><strong>问：AI Agent的学习成本有多高？</strong></p>
-<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
-<p><strong>问：能否自定义AI Agent的行为？</strong></p>
-<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+&lt;/script&gt;
 
+
+* * *
+## Related Articles
+
+- [nuwa-skill-distill-thinking-model-ai-agent-skills](nuwa-skill-distill-thinking-model-ai-agent-skills)
+- [nuwa-skill-distill-thinking-model-ai-agent-skills](nuwa-skill-distill-thinking-model-ai-agent-skills)
+- [nuwa-skill-distill-thinking-model-ai-agent-skills](nuwa-skill-distill-thinking-model-ai-agent-skills)
+- [codebase-memory-mcp-high-performance-code-intelligence](nuwa-skill-distill-thinking-model-ai-agent-skills)
+- [free-mcp-tools-top10-2026](nuwa-skill-distill-thinking-model-ai-agent-skills)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+
+## Frequently Asked Questions (FAQ)
+
+**问：AI Agent和传统自动化有什么区别？**
+
+AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+
+**问：如何选择合适的AI Agent框架？**
+
+考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+
+**问：AI Agent的安全性如何保证？**
+
+实施权限最小化、输入验证、审计日志、以及定期安全评估。
+
+**问：AI Agent的学习成本有多高？**
+
+入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+
+**问：能否自定义AI Agent的行为？**
+
+是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</code></pre>
 
   </div>
 
@@ -715,7 +725,7 @@ Torvalds 模型: &#34;我不在乎架構。我在乎的是
       <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://dibi8.com/ko/ai-coding-agents/noco-db-airtable-alternative/">
+  <a class="prev" href="https://dibi8.com/ko/ai-coding-agents/netdata/">
     <span class="title">« 이전 페이지</span>
     <span>AI Tool Guide</span>
   </a>
@@ -747,6 +757,81 @@ Torvalds 模型: &#34;我不在乎架構。我在乎的是
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

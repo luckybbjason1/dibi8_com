@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "TL;DR n8n은 직관적인 시각적 인터페이스로 400개 이상의 앱과 서비스를 연결할 수 있는 강력한 워크플로우 자동화 도구입니다. 2026년 n8n은 네이티브 LLM 통합, 자율 에이전트 지원 및 엔터프라이즈급 신뢰성을 갖춘 AI 자동화 파워하우스로 진화했습니다. 이 가이드에서는 설정, AI 노드 구성, 실제 워크플로우, 가격 및 지능형 자동화를 위한 고급 패턴을 다룹니다.\nn8n이란? n8n(“n-eight-n\"으로 발음)은 앱을 시각적으로 연결하여 앱, 데이터베이스, API 및 AI 모델을 연결할 수 있는 fair-code 워크플로우 자동화 도구입니다. Zapier나 Make와 달리 n8n은 자체 호스팅이 가능하여 데이터와 워크플로우에 대한 완전한 제어를 제공합니다.\n핵심 차별화: n8n은 전통적인 워크플로우 자동화와 네이티브 AI 기능을 결합합니다 — LLM 호출, 벡터 검색 및 AI 의사결정을 자동화 파이프라인에 직접 임베드할 수 있습니다.\n2026년 n8n 선택 이유 자동화 환경이 크게 변화했습니다: | 시대 | 접근 방식 | 제한사항 | |——|———-|———-| | 2020-2022 | 단순 트리거→액션 | 지능 없음, 선형만 | | 2023-2024 | API 연결 + 기본 로직 | 커스터마이징 제한 | | 2025-2026 | AI 네이티브 워크플로우 | 완전 자율, 추론, 메모리 |\nn8n은 코딩 없이 AI 워크플로우에 접근할 수 있게 함으로써 2026년의 흐름을 선도합니다.\n핵심 아키텍처 노드: 빌딩 블록 각 n8n 워크플로우는 노드로 구성됩니다 — 모듈식 처리 단위: ```` [트리거] → [HTTP 요청] → [AI 처리] → [데이터베이스] → [알림] │ │ │ │ │ 언제… 데이터 가져오기 LLM 분석 결과 저장 팀 알림\n노드 카테고리: - **트리거**: Webhook, 스케줄, 이메일 폴링, 데이터베이스 변경 - **작업**: HTTP 요청, CRUD 작업, 파일 처리 - **AI/ML**: LLM 호출, 임베딩, 벡터 검색, 이미지 생성 - **로직**: IF/ELSE, switch, merge, 배치 분할 - **출력**: 이메일, Slack, webhook, 파일 저장 ### 워크플로우 vs AI 에이전트 n8n은 두 가지 패러다임을 모두 지원합니다: `````python # 전통적 워크플로우 (결정론적) trigger: new_email_received → parse_subject → if \"invoice\" 포함: → save_to_drive → notify_accounting # AI 에이전트 (확률적, 추론 기반) trigger: new_support_ticket → AI_classify_priority(ticket) → if priority == \"high\": → AI_summarize(ticket) → AI_draft_response() → human_review_queue → else: → auto_reply_with_knowledge_base 시작하기 설치 옵션 # 옵션 1: Docker (자체 호스팅 권장) docker run -d \\ --name n8n \\ -p 5678:5678 \\ -v ~/.n8n:/home/node/.n8n \\ n8nio/n8n # 옵션 2: npm npm install -g n8n n8n start # 옵션 3: 클라우드 (관리형) # app.n8n.cloud 방문 첫 워크플로우 http://localhost:5678에서 n8n 열기 “워크플로우 생성” 클릭 트리거로 “Webhook” 노드 검색 “HTTP 요청” 노드 추가 드래그 앤 드롭 라인으로 노드 연결 “워크플로우 실행” 클릭하여 테스트 구성 { \"n8n\": { \"host\": \"0.0.0.0\", \"port\": 5678, \"security\": { \"authCookie\": true, \"disableCors\": false }, \"database\": { \"type\": \"sqlite\", \"path\": \"~/.n8n/database.sqlite\" }, \"ai\": { \"defaultProvider\": \"openai\", \"model\": \"gpt-4o-mini\", \"temperature\": 0.7 } } } AI 노드 심층 분석 LLM 노드 텍스트 생성, 분류 및 추출을 위한 핵심 AI 노드: `````python\nLLM 노드 구성 { “nodeType”: “aiLLM”, “parameters”: { “model”: “claude-sonnet-4-202603”, “prompt”: “이 고객 메시지를 분류하세요:\\n\\n\\n카테고리: 지원, 영업, 불만, 문의”, “outputKey”: “classification” } }\n사용 사례: - **텍스트 분류**: 이메일, 티켓, 메시지 라우팅 - **정보 추출**: 비정형 텍스트에서 구조화된 데이터 추출 - **요약**: 긴 문서, 회의 기록, 스레드 축약 - **감성 분석**: 기분, 긴급도, 만족도 감지 ### 임베딩 노드 시맨틱 검색을 위해 텍스트를 벡터 표현으로 변환: `````python # 임베딩 노드 구성 { \"nodeType\": \"aiEmbedding\", \"parameters\": { \"model\": \"text-embedding-3-large\", \"input\": \"\" } } 벡터 저장소 노드 임베딩 저장 및 쿼리: | 노드 | 용도 | 최적 용도 | |——|——|———-| | Pinecone | 클라우드 벡터 DB | 확장 가능한 시맨틱 검색 | | Qdrant | 자체 호스팅 | 프라이버시 중심 RAG | | Weaviate | 하이브리드 검색 | 텍스트+벡터 결합 쿼리 | | Chroma | 로컬/임베디드 | 소규모, 프로토타이핑 |\n이미지 생성 노드 텍스트 프롬프트에서 이미지 생성: `````python { “nodeType”: “aiImageGen”, “parameters”: { “provider”: “dall-e-3”, “prompt”: “”, “size”: “1024x1024”, “quality”: “hd” } }\n* * * ## 실제 워크플로우 ### 워크플로우 1: AI 기반 고객 지원 이메일 수신 (Gmail 트리거) ↓ AI 우선순위 분류 (LLM 노드) ↓ IF priority = “urgent” THEN → AI 응답 초안 작성 (LLM 노드) → 인간 검토 큐 (Slack) → 승인 후 자동 발송 ELSE → AI 지식 베이스로 답변 (벡터 검색) → 고객에 자동 응답 → CRM에 로그\n### 워크플로우 2: 자동화 콘텐츠 파이프라인 RSS 피드 새 게시물 (Webhook) ↓ AI 요약 (LLM 노드) ↓ AI 소셜 게시글 생성 (LLM 노드) ↓ Twitter 게시 예약 (Twitter API) LinkedIn 게시 예약 (LinkedIn API) 블로그 CMS 업데이트 (WordPress API)\n### 워크플로우 3: 데이터 풍부화 파이프라인 새 리드 (폼 제출) ↓ Clearbit API로 풍부화 (HTTP 노드) ↓ AI 리드 스코어링 (LLM 노드 — 매칭 분석) ↓ IF score \u003e 80 THEN → 영업 담당자에게 할당 (CRM) → 개인화된 이메일 발송 (SendGrid) ELSE → 넛쳐링 시퀀스 (Mailchimp) → 주간 요약 매니저에게 (Slack)\n### 워크플로우 4: 자율 연구 에이전트 스케줄된 트리거 (일일) ↓ 뉴스 API 검색 (HTTP 노드) ↓ AI 관련 artikel 필터링 (LLM 노드) ↓ AI 각 기사 요약 (LLM 노드) ↓ AI 액션 아이템 식별 (LLM 노드) ↓ 보고서 컴파일 → Google Drive에 저장 ↓ Slack으로 팀 알림\n* * * ## 고급 패턴 ### 패턴 1: Human-in-the-Loop 중요한 결정에는 항상 인간을 포함: `````python workflow = { \"auto_steps\": [ \"classify_ticket\", \"search_knowledge_base\", \"draft_response\" ], \"human_gate\": [ \"approve_response\", # 발송 전 인간 승인 필요 \"escalate_urgent\" # 인간이 escalatation 결정 ], \"final_auto\": [ \"send_approved_email\", \"log_to_crm\" ] } 패턴 2: 병렬 처리 여러 항목을 동시에 처리: `````python\n배치를 청크로 분할 items = split_in_batches(data, batch_size=10)\n각 배치 병렬 처리 parallel_results = [ process_batch(batch) for batch in items ]\n결과 병합 final_result = merge_parallel(parallel_results)\n### 패턴 3: 에러 처리 및 재시도 `````python workflow_config = { \"retry\": { \"maxAttempts\": 3, \"backoffMultiplier\": 2, \"initialDelayMs\": 1000 }, \"onError\": { \"strategy\": \"continue\", # 또는 \"stop\", \"send_alert\" \"alertChannel\": \"slack\", \"alertMessage\": \"워크플로우 실패: \" } } 패턴 4: 조건부 분기 if condition_a: execute_workflow_a() elif condition_b: execute_workflow_b() else: execute_default() n8n의 Switch 노드는 복잡한 분기를 시각적으로 처리합니다.\n통합 인기 연결 카테고리 예시 통신 Slack, Discord, Telegram, Microsoft Teams 이메일 Gmail, Outlook, SendGrid, Mailchimp CRM Salesforce, HubSpot, Pipedrive, Notion 스토리지 Google Drive, Dropbox, S3, OneDrive 데이터베이스 PostgreSQL, MySQL, MongoDB, Firebase AI/ML OpenAI, Anthropic, HuggingFace, Ollama 웹 Webhook, HTTP 요청, RSS 피드 커스텀 API 통합 # 모든 REST API용 일반 HTTP 노드 { \"nodeType\": \"httpRequest\", \"parameters\": { \"method\": \"POST\", \"url\": \"https://api.example.com/v1/data\", \"headers\": {\"Authorization\": \"Bearer \"}, \"body\": { \"input\": \"\", \"context\": \"\" } } } 가격 플랜 가격 기능 무료 $0 자체 호스팅, 무제한 워크플로우, 커뮤니티 지원 Pro (클라우드) $20/월 관리형 호스팅, 월 5K 워크플로우 실행 비즈니스 $50/사용자/월 SSO, 감사 로그, 우선 지원, 5만 실행 엔터프라이즈 커스텀 온프레미스, SLA, 커스텀 통합, 무제한 무료 자체 호스팅 플랜은 매우 관대합니다 — 무제한 워크플로우와 실행. 대부분의 사용자는 절대 유료로 전환할 필요가 없습니다.\n비용 비교 플랫폼 진입가 1만 실행 무제한 n8n (자체호스팅) $0 $0 $0 n8n Cloud Pro $20/월 $20/월 $20/월 Zapier $29/월 $29/월 $59/월 Make $9/월 $19/월 $29/월 성능 및 확장 실행 제한 플랜 최대 동시 워크플로우 실행 타임아웃 자체호스팅 무제한 구성 가능 Pro 클라우드 10 30초 비즈니스 50 60초 엔터프라이즈 무제한 120초 최적화 팁 # 느린 워크플로우 최적화 optimization_strategies = { \"batch_processing\": \"100개의 별도 실행 대신 한 번에 100개 처리\", \"caching\": \"동일 입력에 대한 LLM 응답 캐싱\", \"parallel_execution\": \"독립적 브랜치 병렬 실행\", \"selective_data\": \"API에서 필요한 필드만 가져오기\", \"webhook_filtering\": \"워크플로우 진입 전 이벤트 필터링\" } 문제 해결 문제 1: 워크플로우 “대기 중” 상태에 고정 문제: 워크플로우가 무기한 일시 중지됨 해결: 타임아웃 설정 확인, 실행 제한 증가 문제 2: AI 노드가 빈 결과 반환 문제: LLM 노드가 null 출력 해결: API 키 유효성 확인, 프롬프트 형식 검증, 최대 토큰 증가 문제 3: 속도 제한 오류 문제: HTTP 429 Too Many Requests 해결: API 호출 사이에 지연 노드 추가, 지수 백오프 사용 문제 4: 자체 호스팅 메모리 문제 문제: n8n이 메모리 부족으로 충돌 해결: NODE_OPTIONS 메모리 증가: NODE_OPTIONS=\"--max-old-space-size=4096\" 보안 모범 사례 자격 증명 관리 # 환경 변수에 비밀 저장 export N8N_ENCRYPTION_KEY=your-encryption-key export OPENAI_API_KEY=sk-... export DATABASE_URL=postgresql://... # 워크플로우에 자격 증명을 하드코딩하지 마세요 # n8n의 내장 자격 증명 시스템 사용 네트워크 보안 # TLS로反向代理 server { listen 443 ssl; server_name n8n.yourdomain.com; location / { proxy_pass http://localhost:5678; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; } } ```` ### 액세스 제어 - 관리자 계정에 2FA 활성화 - 팀원에게 역할 기반 액세스 사용 - IP 화이트리스트로 webhook 엔드포인트 제한 - 워크플로우 권한 정기 감사 * * * ## 미래 방향 ### n8n 2026 로드맵 1. **네이티브 에이전트 프레임워크** — 내장 다중 에이전트 오케스트레이션 2. **비주얼 코드 편집기** — 워크플로우 내에서 JavaScript/Python 직접 편집 3. **마켓플레이스 확장** — 500+ 사전 구축 AI 워크플로우 템플릿 4. **실시간 협업** — 다중 사용자 워크플로우 편집 5. **엣지 배포** — IoT 장치에서 경량 n8n 실행 ### 언제 n8n을 선택해야 하나요 **다음 경우에 n8n 선택:** - 자동화 인프라에 대한 완전한 제어 원함 - 워크플로우에 AI 기능 통합 필요 - 프라이버시와 비용 효율성을 위해 자체 호스팅 선호 - 복잡한 로직과 분기가 필요한 워크플로우 **대안 고려:** - 설정 불필요 — Zapier가 초보자에게 더 쉬움 - 단순 통합만 필요 — Make가 충분할 수 있음 - 특정 생태계 깊게 투자 — 네이티브 도구가 더 나을 수 있음 * * * ## 커뮤니티 리소스 - **n8n 공식 문서**: https://docs.n8n.io - **워크플로우 템플릿**: https://n8n.io/workflows - **커뮤니티 포럼**: https://community.n8n.io - **GitHub 저장소**: https://github.com/n8n-io/n8n - **Discord**: 20,000+ 회원 활성 커뮤니티 * * * ## FAQ ### Q: n8n은 정말 무료인가요? 예. 자체 호스팅 버전은 오픈소스이며 기능 제한 없이 완전히 무료입니다. 클라우드 플랜은 관리형 호스팅으로 월 $20부터 시작합니다. ### Q: n8n은 Zapier와 어떻게 다른가요? n8n은 더 큰 유연성, AI 통합 및 자체 호스팅을 제공합니다. Zapier는 비기술 사용자에게 더 쉽지만 비용이 더 들고 제어가 적습니다. ### Q: n8n을 LlamaFile 같은 로컬 LLM과 함께 사용할 수 있나요? 물론입니다. HTTP Request 노드를 사용하여 로컬 LlamaFile 서버의 API 엔드포인트를 호출하세요. 완전 사설 AI 자동화를 얻을 수 있습니다. ### Q: n8n은 Python 코드 실행을 지원하나요? 예. Code 노드는 사용자 정의 로직을 위해 워크플로우 내에서 JavaScript, Python 및 Go 코드를 직접 실행할 수 있게 합니다. ### Q: n8n에서 민감한 데이터를 어떻게 처리하나요? n8n의 암호화된 자격 증명 저장소, 환경 변수의 비밀, 그리고 모든 데이터를 인프라에 유지하는 자체 호스팅을 사용하세요. ### Q: n8n이 기존 CRM이나 마케팅 도구를 대체할 수 있나요? 완전히 대체하지는 않습니다 — n8n은 도구를 대체하는 것이 아니라 기존 시스템 간 데이터 흐름을 자동화합니다. * * * ## 참고자료 - [n8n 공식 문서](https://docs.n8n.io) - [n8n GitHub 저장소](https://github.com/n8n-io/n8n) - [n8n 워크플로우 템플릿](https://n8n.io/workflows) - [2026 AI 자동화 모범 사례](https://automationguide.ai/best-practices-2026) - [n8n 자체 호스팅 가이드](https://docs.n8n.io/hosting/) * * * *실시간 AI 도구 논의 및 배포 팁을 위해 Telegram 그룹에 가입하세요: [t.me/dibi8](https://t.me/dibi8)* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"n8n AI 자동화 — 코드 없이 지능형 워크플로우 구축\", \"datePublished\": \"2026-07-16\", \"dateModified\": \"2026-07-16\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/n8n-ai-automation-complete-guide\" } } * * * ## Related Articles - [n8n-ai-automation-complete-guide](n8n-ai-automation-complete-guide) - [n8n-vs-make-com-2026](n8n-ai-automation-complete-guide) - [n8n-vs-make-com-2026](n8n-ai-automation-complete-guide) - [n8n-vs-make-com-2026](n8n-ai-automation-complete-guide) - [n8n-ai-automation-complete-guide](n8n-ai-automation-complete-guide) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
-  "wordCount" : "1725",
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” apps with AI nodes, build autonomous agents, and automate complex business processes. Pricing, templates, and real-world examples. tags: - n8n\nworkflow-automation ai-automation no-code agent-automation business-process category: dev-utils date: 2026-07-16T00:00:00+00:00 lastmod: 2026-07-16T00:00:00+00:00slug: n8n-ai-automation-complete-guide— TL;DR n8n is a powerful workflow automation platform that lets you connect 400+ apps and services with an intuitive visual interface. In 2026, n8n has evolved into an AI automation powerhouse with native LLM integration, autonomous agent support, and enterprise-grade reliability. This guide covers setup, AI node configurations, real-world workflows, pricing, and advanced patterns for building intelligent automation.\nWhat Is n8n? n8n (pronounced “n-eight-n”) is a fair-code workflow automation tool that enables you to connect apps, databases, APIs, and AI models visually. Unlike Zapier or Make, n8n is self-hostable, giving you full control over your data and workflows.\nKey differentiator: n8n combines traditional workflow automation with native AI capabilities — you can embed LLM calls, vector searches, and AI decision-making directly into your automation pipelines.\nWhy n8n in 2026? The automation landscape has shifted dramatically: | Era | Approach | Limitation | |\n|\n|\n| | 2020-2022 | Simple trigger→action | No intelligence, linear only | | 2023-2024 | API connectors + basic logic | Limited customization | | 2025-2026 | AI-native workflows | Full autonomy, reasoning, memory |\nn8n leads the 2026 wave by making AI workflows accessible without coding.\nCore Architecture Nodes: The Building Blocks Every n8n workflow consists of nodes — modular processing units: ```` [Trigger] → [HTTP Request] → [AI Process] → [Database] → [Notification] │ │ │ │ │ When… Fetch data LLM analyzes Store result Alert team\nNode categories: - **Triggers**: Webhooks, schedules, email polling, database changes - **Operations**: HTTP requests, CRUD operations, file processing - **AI/ML**: LLM calls, embeddings, vector search, image generation - **Logic**: IF/ELSE, switch, merge, split in batches - **Output**: Email, Slack, webhooks, file saves ### Workflows vs. AI Agents n8n supports both paradigms: `````python # Traditional Workflow (deterministic) trigger: new_email_received → parse_subject → if contains \"invoice\": → save_to_drive → notify_accounting # AI Agent (probabilistic, reasoning-based) trigger: new_support_ticket → AI_classify_priority(ticket) → if priority == \"high\": → AI_summarize(ticket) → AI_draft_response() → human_review_queue → else: → auto_reply_with_knowledge_base Getting Started Installation Options # Option 1: Docker (recommended for self-hosting) docker run -d \\ --name n8n \\ -p 5678:5678 \\ -v ~/.n8n:/home/node/.n8n \\ n8nio/n8n # Option 2: npm npm install -g n8n n8n start # Option 3: Cloud (managed) # Visit app.n8n.cloud for hosted option First Workflow Open n8n at http://localhost:5678 Click “Create Workflow” Search for “Webhook” node as trigger Add “HTTP Request” node Connect nodes with draggable lines Click “Execute Workflow” to test Configuration { \"n8n\": { \"host\": \"0.0.0.0\", \"port\": 5678, \"security\": { \"authCookie\": true, \"disableCors\": false }, \"database\": { \"type\": \"sqlite\", \"path\": \"~/.n8n/database.sqlite\" }, \"ai\": { \"defaultProvider\": \"openai\", \"model\": \"gpt-4o-mini\", \"temperature\": 0.7 } } } AI Nodes Deep Dive LLM Node The core AI node for text generation, classification, and extraction: `````python\nLLM Node configuration { “nodeType”: “aiLLM”, “parameters”: { “model”: “claude-sonnet-4-202603”, “prompt”: “Classify this customer message:\\n\\n\\nCategories: support, sales, complaint, inquiry”, “outputKey”: “classification” } }\nUse cases: - **Text Classification**: Route emails, tickets, messages - **Information Extraction**: Pull structured data from unstructured text - **Summarization**: Condense long documents, meeting notes, threads - **Sentiment Analysis**: Detect mood, urgency, satisfaction ### Embedding Node Convert text to vector representations for semantic search: `````python # Embedding Node configuration { \"nodeType\": \"aiEmbedding\", \"parameters\": { \"model\": \"text-embedding-3-large\", \"input\": \"\" } } Vector Store Nodes Store and query embeddings: | Node | Purpose | Best For | |\n|\n|\n| | Pinecone | Cloud vector DB | Scalable semantic search | | Qdrant | Self-hosted | Privacy-focused RAG | | Weaviate | Hybrid search | Combined text+vector queries | | Chroma | Local/embedded | Small-scale, prototyping |\nImage Generation Node Generate images from text prompts: `````python { “nodeType”: “aiImageGen”, “parameters”: { “provider”: “dall-e-3”, “prompt”: “”, “size”: “1024x1024”, “quality”: “hd” } }\n* * * ## Real-World Workflows ### Workflow 1: AI-Powered Customer Support Email Received (Gmail Trigger) ↓ AI Classify Priority (LLM Node) ↓ IF priority = “urgent” THEN → AI Draft Response (LLM Node) → Human Review Queue (Slack) → Auto-send after approval ELSE → AI Answer from Knowledge Base (Vector Search) → Auto-reply to customer → Log to CRM\n**Implementation**: `````python # Step 1: Extract email content email_body = extract_gmail_body(message_id) # Step 2: Classify with LLM classification = llm_classify( email_body, categories=[\"support\", \"sales\", \"complaint\", \"inquiry\"], model=\"claude-sonnet-4-202603\" ) # Step 3: If urgent, draft response if classification.priority == \"urgent\": response = llm_draft_response( email_body, company_context=read_knowledge_base(), tone=\"professional\" ) send_to_human_review(response) else: answer = semantic_search_kb(email_body) auto_reply(answer) Workflow 2: Automated Content Pipeline RSS Feed New Post (Webhook) ↓ AI Summarize (LLM Node) ↓ AI Generate Social Posts (LLM Node) ↓ Schedule Twitter Post (Twitter API) Schedule LinkedIn Post (LinkedIn API) Update Blog CMS (WordPress API) Workflow 3: Data Enrichment Pipeline New Lead (Form Submit) ↓ Enrich with Clearbit API (HTTP Node) ↓ AI Score Lead (LLM Node — analyze fit) ↓ IF score \u003e 80 THEN → Assign to sales rep (CRM) → Send personalized email (SendGrid) ELSE → Nurture sequence (Mailchimp) → Weekly summary to manager (Slack) Workflow 4: Autonomous Research Agent Scheduled Trigger (Daily) ↓ Search News APIs (HTTP Node) ↓ AI Filter Relevant Articles (LLM Node) ↓ AI Summarize Each Article (LLM Node) ↓ AI Identify Action Items (LLM Node) ↓ Compile Report → Save to Google Drive ↓ Notify Team via Slack Advanced Patterns Pattern 1: Human-in-the-Loop Always keep humans in the loop for critical decisions: `````python workflow = { “auto_steps”: [ “classify_ticket”, “search_knowledge_base”, “draft_response” ], “human_gate”: [ “approve_response”, # Human must approve before sending “escalate_urgent” # Human decides on escalation ], “final_auto”: [ “send_approved_email”, “log_to_crm” ] }\n### Pattern 2: Parallel Processing Process multiple items simultaneously: `````python # Split batch into chunks items = split_in_batches(data, batch_size=10) # Process each batch in parallel parallel_results = [ process_batch(batch) for batch in items ] # Merge results final_result = merge_parallel(parallel_results) Pattern 3: Error Handling and Retry workflow_config = { \"retry\": { \"maxAttempts\": 3, \"backoffMultiplier\": 2, \"initialDelayMs\": 1000 }, \"onError\": { \"strategy\": \"continue\", # or \"stop\", \"send_alert\" \"alertChannel\": \"slack\", \"alertMessage\": \"Workflow failed: \" } } Pattern 4: Conditional Branching if condition_a: execute_workflow_a() elif condition_b: execute_workflow_b() else: execute_default() n8n’s Switch node handles complex branching visually.\nIntegrations Popular Connections | Category | Examples | |\n|\n| | Communication | Slack, Discord, Telegram, Microsoft Teams | | Email | Gmail, Outlook, SendGrid, Mailchimp | | CRM | Salesforce, HubSpot, Pipedrive, Notion | | Storage | Google Drive, Dropbox, S3, OneDrive | | Databases | PostgreSQL, MySQL, MongoDB, Firebase | | AI/ML | OpenAI, Anthropic, HuggingFace, Ollama | | Web | Webhooks, HTTP requests, RSS feeds |\nCustom API Integration # Generic HTTP node for any REST API { \"nodeType\": \"httpRequest\", \"parameters\": { \"method\": \"POST\", \"url\": \"https://api.example.com/v1/data\", \"headers\": {\"Authorization\": \"Bearer \"}, \"body\": { \"input\": \"\", \"context\": \"\" } } } Pricing | Plan | Price | Features | |\n|\n|\n| | Free | $0 | Self-hosted, unlimited workflows, community support | | Pro (Cloud) | $20/month | Managed hosting, 5K workflow executions/month | | Business | $50/user/month | SSO, audit logs, priority support, 50K executions | | Enterprise | Custom | On-premise, SLA, custom integrations, unlimited |\nThe free self-hosted plan is extremely generous — unlimited workflows and executions. Most users never need to pay.\nCost Comparison | Platform | Entry Price | 10K Executions | Unlimited | |\n|\n|\n|\n| | n8n (self-hosted) | $0 | $0 | $0 | | n8n Cloud Pro | $20/mo | $20/mo | $20/mo | | Zapier | $29/mo | $29/mo | $59/mo | | Make | $9/mo | $19/mo | $29/mo |\nPerformance and Scaling Execution Limits | Plan | Max Concurrent Workflows | Execution Timeout | |\n|\n|\n| | Self-hosted | Unlimited | Configurable | | Pro Cloud | 10 | 30 seconds | | Business | 50 | 60 seconds | | Enterprise | Unlimited | 120 seconds |\nOptimization Tips # Optimize slow workflows optimization_strategies = { \"batch_processing\": \"Process 100 items in one batch instead of 100 separate runs\", \"caching\": \"Cache LLM responses for identical inputs\", \"parallel_execution\": \"Run independent branches concurrently\", \"selective_data\": \"Only fetch required fields from APIs\", \"webhook_filtering\": \"Filter events before they enter the workflow\" } Troubleshooting Issue 1: Workflow Stuck in “Waiting” State Problem: Workflow pauses indefinitely Solution: Check timeout settings, increase execution limit Issue 2: AI Node Returns Empty Results Problem: LLM node outputs null Solution: Check API key validity, verify prompt format, increase max tokens Issue 3: Rate Limiting Errors Problem: HTTP 429 Too Many Requests Solution: Add delay nodes between API calls, use exponential backoff Issue 4: Memory Issues on Self-Hosted Problem: n8n crashes with out-of-memory Solution: Increase NODE_OPTIONS memory: NODE_OPTIONS=\"--max-old-space-size=4096\" Security Best Practices Credential Management # Store secrets in environment variables export N8N_ENCRYPTION_KEY=your-encryption-key export OPENAI_API_KEY=sk-... export DATABASE_URL=postgresql://... # Never hardcode credentials in workflows # Use n8n's built-in credential system Network Security # Reverse proxy with TLS server { listen 443 ssl; server_name n8n.yourdomain.com; location / { proxy_pass http://localhost:5678; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; } } ```` ### Access Control - Enable two-factor authentication for admin accounts - Use role-based access for team members - Restrict webhook endpoints with IP whitelisting - Regularly audit workflow permissions * * * ## Future Directions ### n8n 2026 Roadmap 1. **Native Agent Framework** — Built-in multi-agent orchestration 2. **Visual Code Editor** — Edit JavaScript/Python directly in workflows 3. **Marketplace Expansion** — 500+ pre-built AI workflow templates 4. **Real-time Collaboration** — Multi-user workflow editing 5. **Edge Deployment** — Run lightweight n8n on IoT devices ### When to Choose n8n **Choose n8n when:** - You want full control over your automation infrastructure - You need AI capabilities integrated into workflows - You prefer self-hosting for privacy and cost - Your workflows require complex logic and branching **Consider alternatives when:** - You need zero setup — Zapier is easier for beginners - You only need simple integrations — Make may suffice - You're heavily invested in a specific ecosystem — Native tools may be better * * * ## Community Resources - **n8n Official Docs**: https://docs.n8n.io - **Workflow Templates**: https://n8n.io/workflows - **Community Forum**: https://community.n8n.io - **GitHub Repository**: https://github.com/n8n-io/n8n - **Discord**: Active community with 20,000+ members * * * ## FAQ ### Q: Is n8n really free? Yes. The self-hosted version is open-source and completely free with no feature restrictions. Cloud plans start at $20/month for managed hosting. ### Q: How does n8n compare to Zapier? n8n offers more flexibility, AI integration, and self-hosting. Zapier is easier for non-technical users but costs more and has less control. ### Q: Can I use n8n with local LLMs like LlamaFile? Absolutely. Use the HTTP Request node to call your local LlamaFile server's API endpoint. This gives you fully private AI automation. ### Q: Does n8n support Python code execution? Yes. The Code node allows running JavaScript, Python, and Go code directly within workflows for custom logic. ### Q: How do I handle sensitive data in n8n? Use n8n's encrypted credential storage, environment variables for secrets, and self-hosting to keep all data on your infrastructure. ### Q: Can n8n replace my existing CRM or marketing tools? Not entirely — n8n connects tools rather than replacing them. It automates the flow of data between your existing systems. * * * ## References - [n8n Official Documentation](https://docs.n8n.io) - [n8n GitHub Repository](https://github.com/n8n-io/n8n) - [n8n Workflow Templates](https://n8n.io/workflows) - [AI Automation Best Practices 2026](https://automationguide.ai/best-practices-2026) - [Self-Hosting Guide for n8n](https://docs.n8n.io/hosting/) * * * *Join our Telegram group for real-time AI tool discussions and deployment tips: [t.me/dibi8](https://t.me/dibi8)* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"n8n AI Automation — Build Intelligent Workflows Without Code\", \"datePublished\": \"2026-07-16\", \"dateModified\": \"2026-07-16\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/n8n-ai-automation-complete-guide\" } } ",
+  "wordCount" : "1979",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/n8n-ai-automation-complete-guide/">En</a>
@@ -211,98 +211,100 @@
             <li>
                 <a href="#tldr" aria-label="TL;DR">TL;DR</a></li>
             <li>
-                <a href="#n8n%ec%9d%b4%eb%9e%80" aria-label="n8n이란?">n8n이란?</a><ul>
+                <a href="#what-is-n8n" aria-label="What Is n8n?">What Is n8n?</a><ul>
                     
             <li>
-                <a href="#2026%eb%85%84-n8n-%ec%84%a0%ed%83%9d-%ec%9d%b4%ec%9c%a0" aria-label="2026년 n8n 선택 이유">2026년 n8n 선택 이유</a></li></ul>
+                <a href="#why-n8n-in-2026" aria-label="Why n8n in 2026?">Why n8n in 2026?</a></li></ul>
             </li>
             <li>
-                <a href="#%ed%95%b5%ec%8b%ac-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98" aria-label="핵심 아키텍처">핵심 아키텍처</a><ul>
+                <a href="#core-architecture" aria-label="Core Architecture">Core Architecture</a><ul>
                     
             <li>
-                <a href="#%eb%85%b8%eb%93%9c-%eb%b9%8c%eb%94%a9-%eb%b8%94%eb%a1%9d" aria-label="노드: 빌딩 블록">노드: 빌딩 블록</a></li></ul>
+                <a href="#nodes-the-building-blocks" aria-label="Nodes: The Building Blocks">Nodes: The Building Blocks</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%8b%9c%ec%9e%91%ed%95%98%ea%b8%b0" aria-label="시작하기">시작하기</a><ul>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a><ul>
                     
             <li>
-                <a href="#%ec%84%a4%ec%b9%98-%ec%98%b5%ec%85%98" aria-label="설치 옵션">설치 옵션</a></li>
+                <a href="#installation-options" aria-label="Installation Options">Installation Options</a></li>
             <li>
-                <a href="#%ec%b2%ab-%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0" aria-label="첫 워크플로우">첫 워크플로우</a></li>
+                <a href="#first-workflow" aria-label="First Workflow">First Workflow</a></li>
             <li>
-                <a href="#%ea%b5%ac%ec%84%b1" aria-label="구성">구성</a></li></ul>
+                <a href="#configuration" aria-label="Configuration">Configuration</a></li></ul>
             </li>
             <li>
-                <a href="#ai-%eb%85%b8%eb%93%9c-%ec%8b%ac%ec%b8%b5-%eb%b6%84%ec%84%9d" aria-label="AI 노드 심층 분석">AI 노드 심층 분석</a><ul>
+                <a href="#ai-nodes-deep-dive" aria-label="AI Nodes Deep Dive">AI Nodes Deep Dive</a><ul>
                     
             <li>
-                <a href="#llm-%eb%85%b8%eb%93%9c" aria-label="LLM 노드">LLM 노드</a></li></ul>
+                <a href="#llm-node" aria-label="LLM Node">LLM Node</a></li></ul>
             </li></ul>
                 
             <li>
-                <a href="#llm-%eb%85%b8%eb%93%9c-%ea%b5%ac%ec%84%b1" aria-label="LLM 노드 구성">LLM 노드 구성</a><ul>
+                <a href="#llm-node-configuration" aria-label="LLM Node configuration">LLM Node configuration</a><ul>
                     <ul>
                     
             <li>
-                <a href="#%eb%b2%a1%ed%84%b0-%ec%a0%80%ec%9e%a5%ec%86%8c-%eb%85%b8%eb%93%9c" aria-label="벡터 저장소 노드">벡터 저장소 노드</a></li>
+                <a href="#vector-store-nodes" aria-label="Vector Store Nodes">Vector Store Nodes</a></li>
             <li>
-                <a href="#%ec%9d%b4%eb%af%b8%ec%a7%80-%ec%83%9d%ec%84%b1-%eb%85%b8%eb%93%9c" aria-label="이미지 생성 노드">이미지 생성 노드</a></li>
+                <a href="#image-generation-node" aria-label="Image Generation Node">Image Generation Node</a></li>
             <li>
-                <a href="#%ed%8c%a8%ed%84%b4-2-%eb%b3%91%eb%a0%ac-%ec%b2%98%eb%a6%ac" aria-label="패턴 2: 병렬 처리">패턴 2: 병렬 처리</a></li></ul>
-                </ul>
-            </li>
+                <a href="#workflow-2-automated-content-pipeline" aria-label="Workflow 2: Automated Content Pipeline">Workflow 2: Automated Content Pipeline</a></li>
             <li>
-                <a href="#%eb%b0%b0%ec%b9%98%eb%a5%bc-%ec%b2%ad%ed%81%ac%eb%a1%9c-%eb%b6%84%ed%95%a0" aria-label="배치를 청크로 분할">배치를 청크로 분할</a></li>
+                <a href="#workflow-3-data-enrichment-pipeline" aria-label="Workflow 3: Data Enrichment Pipeline">Workflow 3: Data Enrichment Pipeline</a></li>
             <li>
-                <a href="#%ea%b0%81-%eb%b0%b0%ec%b9%98-%eb%b3%91%eb%a0%ac-%ec%b2%98%eb%a6%ac" aria-label="각 배치 병렬 처리">각 배치 병렬 처리</a></li>
-            <li>
-                <a href="#%ea%b2%b0%ea%b3%bc-%eb%b3%91%ed%95%a9" aria-label="결과 병합">결과 병합</a><ul>
-                    <ul>
-                    
-            <li>
-                <a href="#%ed%8c%a8%ed%84%b4-4-%ec%a1%b0%ea%b1%b4%eb%b6%80-%eb%b6%84%ea%b8%b0" aria-label="패턴 4: 조건부 분기">패턴 4: 조건부 분기</a></li></ul>
+                <a href="#workflow-4-autonomous-research-agent" aria-label="Workflow 4: Autonomous Research Agent">Workflow 4: Autonomous Research Agent</a></li></ul>
                 
             <li>
-                <a href="#%ed%86%b5%ed%95%a9" aria-label="통합">통합</a><ul>
+                <a href="#advanced-patterns" aria-label="Advanced Patterns">Advanced Patterns</a><ul>
                     
             <li>
-                <a href="#%ec%9d%b8%ea%b8%b0-%ec%97%b0%ea%b2%b0" aria-label="인기 연결">인기 연결</a></li>
+                <a href="#pattern-1-human-in-the-loop" aria-label="Pattern 1: Human-in-the-Loop">Pattern 1: Human-in-the-Loop</a></li>
             <li>
-                <a href="#%ec%bb%a4%ec%8a%a4%ed%85%80-api-%ed%86%b5%ed%95%a9" aria-label="커스텀 API 통합">커스텀 API 통합</a></li></ul>
+                <a href="#pattern-3-error-handling-and-retry" aria-label="Pattern 3: Error Handling and Retry">Pattern 3: Error Handling and Retry</a></li>
+            <li>
+                <a href="#pattern-4-conditional-branching" aria-label="Pattern 4: Conditional Branching">Pattern 4: Conditional Branching</a></li></ul>
             </li>
             <li>
-                <a href="#%ea%b0%80%ea%b2%a9" aria-label="가격">가격</a><ul>
+                <a href="#integrations" aria-label="Integrations">Integrations</a><ul>
                     
             <li>
-                <a href="#%eb%b9%84%ec%9a%a9-%eb%b9%84%ea%b5%90" aria-label="비용 비교">비용 비교</a></li></ul>
+                <a href="#popular-connections" aria-label="Popular Connections">Popular Connections</a></li>
+            <li>
+                <a href="#custom-api-integration" aria-label="Custom API Integration">Custom API Integration</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%84%b1%eb%8a%a5-%eb%b0%8f-%ed%99%95%ec%9e%a5" aria-label="성능 및 확장">성능 및 확장</a><ul>
+                <a href="#pricing" aria-label="Pricing">Pricing</a><ul>
                     
             <li>
-                <a href="#%ec%8b%a4%ed%96%89-%ec%a0%9c%ed%95%9c" aria-label="실행 제한">실행 제한</a></li>
-            <li>
-                <a href="#%ec%b5%9c%ec%a0%81%ed%99%94-%ed%8c%81" aria-label="최적화 팁">최적화 팁</a></li></ul>
+                <a href="#cost-comparison" aria-label="Cost Comparison">Cost Comparison</a></li></ul>
             </li>
             <li>
-                <a href="#%eb%ac%b8%ec%a0%9c-%ed%95%b4%ea%b2%b0" aria-label="문제 해결">문제 해결</a><ul>
+                <a href="#performance-and-scaling" aria-label="Performance and Scaling">Performance and Scaling</a><ul>
                     
             <li>
-                <a href="#%eb%ac%b8%ec%a0%9c-1-%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0-%eb%8c%80%ea%b8%b0-%ec%a4%91-%ec%83%81%ed%83%9c%ec%97%90-%ea%b3%a0%ec%a0%95" aria-label="문제 1: 워크플로우 &ldquo;대기 중&rdquo; 상태에 고정">문제 1: 워크플로우 &ldquo;대기 중&rdquo; 상태에 고정</a></li>
+                <a href="#execution-limits" aria-label="Execution Limits">Execution Limits</a></li>
             <li>
-                <a href="#%eb%ac%b8%ec%a0%9c-2-ai-%eb%85%b8%eb%93%9c%ea%b0%80-%eb%b9%88-%ea%b2%b0%ea%b3%bc-%eb%b0%98%ed%99%98" aria-label="문제 2: AI 노드가 빈 결과 반환">문제 2: AI 노드가 빈 결과 반환</a></li>
-            <li>
-                <a href="#%eb%ac%b8%ec%a0%9c-3-%ec%86%8d%eb%8f%84-%ec%a0%9c%ed%95%9c-%ec%98%a4%eb%a5%98" aria-label="문제 3: 속도 제한 오류">문제 3: 속도 제한 오류</a></li>
-            <li>
-                <a href="#%eb%ac%b8%ec%a0%9c-4-%ec%9e%90%ec%b2%b4-%ed%98%b8%ec%8a%a4%ed%8c%85-%eb%a9%94%eb%aa%a8%eb%a6%ac-%eb%ac%b8%ec%a0%9c" aria-label="문제 4: 자체 호스팅 메모리 문제">문제 4: 자체 호스팅 메모리 문제</a></li></ul>
+                <a href="#optimization-tips" aria-label="Optimization Tips">Optimization Tips</a></li></ul>
             </li>
             <li>
-                <a href="#%eb%b3%b4%ec%95%88-%eb%aa%a8%eb%b2%94-%ec%82%ac%eb%a1%80" aria-label="보안 모범 사례">보안 모범 사례</a><ul>
+                <a href="#troubleshooting" aria-label="Troubleshooting">Troubleshooting</a><ul>
                     
             <li>
-                <a href="#%ec%9e%90%ea%b2%a9-%ec%a6%9d%eb%aa%85-%ea%b4%80%eb%a6%ac" aria-label="자격 증명 관리">자격 증명 관리</a></li>
+                <a href="#issue-1-workflow-stuck-in-waiting-state" aria-label="Issue 1: Workflow Stuck in &ldquo;Waiting&rdquo; State">Issue 1: Workflow Stuck in &ldquo;Waiting&rdquo; State</a></li>
             <li>
-                <a href="#%eb%84%a4%ed%8a%b8%ec%9b%8c%ed%81%ac-%eb%b3%b4%ec%95%88" aria-label="네트워크 보안">네트워크 보안</a>
+                <a href="#issue-2-ai-node-returns-empty-results" aria-label="Issue 2: AI Node Returns Empty Results">Issue 2: AI Node Returns Empty Results</a></li>
+            <li>
+                <a href="#issue-3-rate-limiting-errors" aria-label="Issue 3: Rate Limiting Errors">Issue 3: Rate Limiting Errors</a></li>
+            <li>
+                <a href="#issue-4-memory-issues-on-self-hosted" aria-label="Issue 4: Memory Issues on Self-Hosted">Issue 4: Memory Issues on Self-Hosted</a></li></ul>
+            </li>
+            <li>
+                <a href="#security-best-practices" aria-label="Security Best Practices">Security Best Practices</a><ul>
+                    
+            <li>
+                <a href="#credential-management" aria-label="Credential Management">Credential Management</a></li>
+            <li>
+                <a href="#network-security" aria-label="Network Security">Network Security</a>
             </li>
         </ul>
         </li>
@@ -312,43 +314,64 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
-<p>n8n은 직관적인 시각적 인터페이스로 400개 이상의 앱과 서비스를 연결할 수 있는 강력한 워크플로우 자동화 도구입니다. 2026년 n8n은 네이티브 LLM 통합, 자율 에이전트 지원 및 엔터프라이즈급 신뢰성을 갖춘 AI 자동화 파워하우스로 진화했습니다. 이 가이드에서는 설정, AI 노드 구성, 실제 워크플로우, 가격 및 지능형 자동화를 위한 고급 패턴을 다룹니다.</p>
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+description: &ldquo;Technical guide and comparison.&rdquo;
+apps with AI nodes, build autonomous agents, and automate complex business processes.
+Pricing, templates, and real-world examples.
+tags: - n8n</p>
+<ul>
+<li>workflow-automation</li>
+<li>ai-automation</li>
+<li>no-code</li>
+<li>agent-automation</li>
+<li>business-process
+category: dev-utils
+date: 2026-07-16T00:00:00+00:00
+lastmod: 2026-07-16T00:00:00+00:00slug: n8n-ai-automation-complete-guide&mdash;</li>
+</ul>
+<h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
+<p>n8n is a powerful workflow automation platform that lets you connect 400+ apps and services with an intuitive visual interface. In 2026, n8n has evolved into an AI automation powerhouse with native LLM integration, autonomous agent support, and enterprise-grade reliability. This guide covers setup, AI node configurations, real-world workflows, pricing, and advanced patterns for building intelligent automation.</p>
 <hr>
-<h2 id="n8n이란">n8n이란?<a hidden class="anchor" aria-hidden="true" href="#n8n이란">#</a></h2>
-<p>n8n(&ldquo;n-eight-n&quot;으로 발음)은 앱을 시각적으로 연결하여 앱, 데이터베이스, API 및 AI 모델을 연결할 수 있는 fair-code 워크플로우 자동화 도구입니다. Zapier나 Make와 달리 n8n은 자체 호스팅이 가능하여 데이터와 워크플로우에 대한 완전한 제어를 제공합니다.</p>
-<p><strong>핵심 차별화</strong>: n8n은 전통적인 워크플로우 자동화와 <strong>네이티브 AI 기능</strong>을 결합합니다 — LLM 호출, 벡터 검색 및 AI 의사결정을 자동화 파이프라인에 직접 임베드할 수 있습니다.</p>
-<h3 id="2026년-n8n-선택-이유">2026년 n8n 선택 이유<a hidden class="anchor" aria-hidden="true" href="#2026년-n8n-선택-이유">#</a></h3>
-<p>자동화 환경이 크게 변화했습니다: | 시대 | 접근 방식 | 제한사항 |
-|&mdash;&mdash;|&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;-|
-| 2020-2022 | 단순 트리거→액션 | 지능 없음, 선형만 |
-| 2023-2024 | API 연결 + 기본 로직 | 커스터마이징 제한 |
-| 2025-2026 | AI 네이티브 워크플로우 | 완전 자율, 추론, 메모리 |</p>
-<p>n8n은 코딩 없이 AI 워크플로우에 접근할 수 있게 함으로써 2026년의 흐름을 선도합니다.</p>
+<h2 id="what-is-n8n">What Is n8n?<a hidden class="anchor" aria-hidden="true" href="#what-is-n8n">#</a></h2>
+<p>n8n (pronounced &ldquo;n-eight-n&rdquo;) is a fair-code workflow automation tool that enables you to connect apps, databases, APIs, and AI models visually. Unlike Zapier or Make, n8n is self-hostable, giving you full control over your data and workflows.</p>
+<p><strong>Key differentiator</strong>: n8n combines traditional workflow automation with <strong>native AI capabilities</strong> — you can embed LLM calls, vector searches, and AI decision-making directly into your automation pipelines.</p>
+<h3 id="why-n8n-in-2026">Why n8n in 2026?<a hidden class="anchor" aria-hidden="true" href="#why-n8n-in-2026">#</a></h3>
+<p>The automation landscape has shifted dramatically: | Era | Approach | Limitation |
+|</p>
 <hr>
-<h2 id="핵심-아키텍처">핵심 아키텍처<a hidden class="anchor" aria-hidden="true" href="#핵심-아키텍처">#</a></h2>
-<h3 id="노드-빌딩-블록">노드: 빌딩 블록<a hidden class="anchor" aria-hidden="true" href="#노드-빌딩-블록">#</a></h3>
-<p>각 n8n 워크플로우는 <strong>노드</strong>로 구성됩니다 — 모듈식 처리 단위: ````
-[트리거] → [HTTP 요청] → [AI 처리] → [데이터베이스] → [알림]
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| 2020-2022 | Simple trigger→action | No intelligence, linear only |
+| 2023-2024 | API connectors + basic logic | Limited customization |
+| 2025-2026 | AI-native workflows | Full autonomy, reasoning, memory |</p>
+<p>n8n leads the 2026 wave by making AI workflows accessible without coding.</p>
+<hr>
+<h2 id="core-architecture">Core Architecture<a hidden class="anchor" aria-hidden="true" href="#core-architecture">#</a></h2>
+<h3 id="nodes-the-building-blocks">Nodes: The Building Blocks<a hidden class="anchor" aria-hidden="true" href="#nodes-the-building-blocks">#</a></h3>
+<p>Every n8n workflow consists of <strong>nodes</strong> — modular processing units: ````
+[Trigger] → [HTTP Request] → [AI Process] → [Database] → [Notification]
 │            │                 │              │              │
-언제&hellip;     데이터 가져오기   LLM 분석     결과 저장     팀 알림</p>
+When&hellip;     Fetch data      LLM analyzes   Store result    Alert team</p>
 <pre tabindex="0"><code>
-노드 카테고리: - **트리거**: Webhook, 스케줄, 이메일 폴링, 데이터베이스 변경
-- **작업**: HTTP 요청, CRUD 작업, 파일 처리
-- **AI/ML**: LLM 호출, 임베딩, 벡터 검색, 이미지 생성
-- **로직**: IF/ELSE, switch, merge, 배치 분할
-- **출력**: 이메일, Slack, webhook, 파일 저장
+Node categories: - **Triggers**: Webhooks, schedules, email polling, database changes
+- **Operations**: HTTP requests, CRUD operations, file processing
+- **AI/ML**: LLM calls, embeddings, vector search, image generation
+- **Logic**: IF/ELSE, switch, merge, split in batches
+- **Output**: Email, Slack, webhooks, file saves
 
-### 워크플로우 vs AI 에이전트
+### Workflows vs. AI Agents
 
-n8n은 두 가지 패러다임을 모두 지원합니다: `````python
-# 전통적 워크플로우 (결정론적)
+n8n supports both paradigms: `````python
+# Traditional Workflow (deterministic)
 trigger: new_email_received
   → parse_subject
-  → if &#34;invoice&#34; 포함: → save_to_drive
+  → if contains &#34;invoice&#34;: → save_to_drive
       → notify_accounting
 
-# AI 에이전트 (확률적, 추론 기반)
+# AI Agent (probabilistic, reasoning-based)
 trigger: new_support_ticket
   → AI_classify_priority(ticket)
   → if priority == &#34;high&#34;: → AI_summarize(ticket)
@@ -356,31 +379,31 @@ trigger: new_support_ticket
       → human_review_queue
   → else: → auto_reply_with_knowledge_base
 </code></pre><hr>
-<h2 id="시작하기">시작하기<a hidden class="anchor" aria-hidden="true" href="#시작하기">#</a></h2>
-<h3 id="설치-옵션">설치 옵션<a hidden class="anchor" aria-hidden="true" href="#설치-옵션">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 옵션 1: Docker (자체 호스팅 권장)</span>
+<h2 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h2>
+<h3 id="installation-options">Installation Options<a hidden class="anchor" aria-hidden="true" href="#installation-options">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Option 1: Docker (recommended for self-hosting)</span>
 </span></span><span style="display:flex;"><span>docker run -d <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --name n8n <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -p 5678:5678 <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -v ~/.n8n:/home/node/.n8n <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  n8nio/n8n
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 옵션 2: npm</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Option 2: npm</span>
 </span></span><span style="display:flex;"><span>npm install -g n8n
 </span></span><span style="display:flex;"><span>n8n start
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 옵션 3: 클라우드 (관리형)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># app.n8n.cloud 방문</span>
-</span></span></code></pre></div><h3 id="첫-워크플로우">첫 워크플로우<a hidden class="anchor" aria-hidden="true" href="#첫-워크플로우">#</a></h3>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Option 3: Cloud (managed)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Visit app.n8n.cloud for hosted option</span>
+</span></span></code></pre></div><h3 id="first-workflow">First Workflow<a hidden class="anchor" aria-hidden="true" href="#first-workflow">#</a></h3>
 <ol>
-<li><code>http://localhost:5678</code>에서 n8n 열기</li>
-<li>&ldquo;워크플로우 생성&rdquo; 클릭</li>
-<li>트리거로 &ldquo;Webhook&rdquo; 노드 검색</li>
-<li>&ldquo;HTTP 요청&rdquo; 노드 추가</li>
-<li>드래그 앤 드롭 라인으로 노드 연결</li>
-<li>&ldquo;워크플로우 실행&rdquo; 클릭하여 테스트</li>
+<li>Open n8n at <code>http://localhost:5678</code></li>
+<li>Click &ldquo;Create Workflow&rdquo;</li>
+<li>Search for &ldquo;Webhook&rdquo; node as trigger</li>
+<li>Add &ldquo;HTTP Request&rdquo; node</li>
+<li>Connect nodes with draggable lines</li>
+<li>Click &ldquo;Execute Workflow&rdquo; to test</li>
 </ol>
-<h3 id="구성">구성<a hidden class="anchor" aria-hidden="true" href="#구성">#</a></h3>
+<h3 id="configuration">Configuration<a hidden class="anchor" aria-hidden="true" href="#configuration">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;n8n&#34;</span>: {
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;host&#34;</span>: <span style="color:#e6db74">&#34;0.0.0.0&#34;</span>,
@@ -401,28 +424,28 @@ trigger: new_support_ticket
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><hr>
-<h2 id="ai-노드-심층-분석">AI 노드 심층 분석<a hidden class="anchor" aria-hidden="true" href="#ai-노드-심층-분석">#</a></h2>
-<h3 id="llm-노드">LLM 노드<a hidden class="anchor" aria-hidden="true" href="#llm-노드">#</a></h3>
-<p>텍스트 생성, 분류 및 추출을 위한 핵심 AI 노드: `````python</p>
-<h1 id="llm-노드-구성">LLM 노드 구성<a hidden class="anchor" aria-hidden="true" href="#llm-노드-구성">#</a></h1>
+<h2 id="ai-nodes-deep-dive">AI Nodes Deep Dive<a hidden class="anchor" aria-hidden="true" href="#ai-nodes-deep-dive">#</a></h2>
+<h3 id="llm-node">LLM Node<a hidden class="anchor" aria-hidden="true" href="#llm-node">#</a></h3>
+<p>The core AI node for text generation, classification, and extraction: `````python</p>
+<h1 id="llm-node-configuration">LLM Node configuration<a hidden class="anchor" aria-hidden="true" href="#llm-node-configuration">#</a></h1>
 <p>{
 &ldquo;nodeType&rdquo;: &ldquo;aiLLM&rdquo;,
 &ldquo;parameters&rdquo;: {
 &ldquo;model&rdquo;: &ldquo;claude-sonnet-4-202603&rdquo;,
-&ldquo;prompt&rdquo;: &ldquo;이 고객 메시지를 분류하세요:\n\n\n카테고리: 지원, 영업, 불만, 문의&rdquo;,
+&ldquo;prompt&rdquo;: &ldquo;Classify this customer message:\n\n\nCategories: support, sales, complaint, inquiry&rdquo;,
 &ldquo;outputKey&rdquo;: &ldquo;classification&rdquo;
 }
 }</p>
 <pre tabindex="0"><code>
-사용 사례: - **텍스트 분류**: 이메일, 티켓, 메시지 라우팅
-- **정보 추출**: 비정형 텍스트에서 구조화된 데이터 추출
-- **요약**: 긴 문서, 회의 기록, 스레드 축약
-- **감성 분석**: 기분, 긴급도, 만족도 감지
+Use cases: - **Text Classification**: Route emails, tickets, messages
+- **Information Extraction**: Pull structured data from unstructured text
+- **Summarization**: Condense long documents, meeting notes, threads
+- **Sentiment Analysis**: Detect mood, urgency, satisfaction
 
-### 임베딩 노드
+### Embedding Node
 
-시맨틱 검색을 위해 텍스트를 벡터 표현으로 변환: `````python
-# 임베딩 노드 구성
+Convert text to vector representations for semantic search: `````python
+# Embedding Node configuration
 {
   &#34;nodeType&#34;: &#34;aiEmbedding&#34;,
   &#34;parameters&#34;: {
@@ -430,15 +453,21 @@ trigger: new_support_ticket
     &#34;input&#34;: &#34;&#34;
   }
 }
-</code></pre><h3 id="벡터-저장소-노드">벡터 저장소 노드<a hidden class="anchor" aria-hidden="true" href="#벡터-저장소-노드">#</a></h3>
-<p>임베딩 저장 및 쿼리: | 노드 | 용도 | 최적 용도 |
-|&mdash;&mdash;|&mdash;&mdash;|&mdash;&mdash;&mdash;-|
-| Pinecone | 클라우드 벡터 DB | 확장 가능한 시맨틱 검색 |
-| Qdrant | 자체 호스팅 | 프라이버시 중심 RAG |
-| Weaviate | 하이브리드 검색 | 텍스트+벡터 결합 쿼리 |
-| Chroma | 로컬/임베디드 | 소규모, 프로토타이핑 |</p>
-<h3 id="이미지-생성-노드">이미지 생성 노드<a hidden class="anchor" aria-hidden="true" href="#이미지-생성-노드">#</a></h3>
-<p>텍스트 프롬프트에서 이미지 생성: `````python
+</code></pre><h3 id="vector-store-nodes">Vector Store Nodes<a hidden class="anchor" aria-hidden="true" href="#vector-store-nodes">#</a></h3>
+<p>Store and query embeddings: | Node | Purpose | Best For |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Pinecone | Cloud vector DB | Scalable semantic search |
+| Qdrant | Self-hosted | Privacy-focused RAG |
+| Weaviate | Hybrid search | Combined text+vector queries |
+| Chroma | Local/embedded | Small-scale, prototyping |</p>
+<h3 id="image-generation-node">Image Generation Node<a hidden class="anchor" aria-hidden="true" href="#image-generation-node">#</a></h3>
+<p>Generate images from text prompts: `````python
 {
 &ldquo;nodeType&rdquo;: &ldquo;aiImageGen&rdquo;,
 &ldquo;parameters&rdquo;: {
@@ -451,158 +480,148 @@ trigger: new_support_ticket
 <pre tabindex="0"><code>
 * * *
 
-## 실제 워크플로우
+## Real-World Workflows
 
-### 워크플로우 1: AI 기반 고객 지원
-</code></pre><p>이메일 수신 (Gmail 트리거)
+### Workflow 1: AI-Powered Customer Support
+</code></pre><p>Email Received (Gmail Trigger)
 ↓
-AI 우선순위 분류 (LLM 노드)
+AI Classify Priority (LLM Node)
 ↓
 IF priority = &ldquo;urgent&rdquo; THEN
-→ AI 응답 초안 작성 (LLM 노드)
-→ 인간 검토 큐 (Slack)
-→ 승인 후 자동 발송
+→ AI Draft Response (LLM Node)
+→ Human Review Queue (Slack)
+→ Auto-send after approval
 ELSE
-→ AI 지식 베이스로 답변 (벡터 검색)
-→ 고객에 자동 응답
-→ CRM에 로그</p>
+→ AI Answer from Knowledge Base (Vector Search)
+→ Auto-reply to customer
+→ Log to CRM</p>
 <pre tabindex="0"><code>
-### 워크플로우 2: 자동화 콘텐츠 파이프라인
-</code></pre><p>RSS 피드 새 게시물 (Webhook)
-↓
-AI 요약 (LLM 노드)
-↓
-AI 소셜 게시글 생성 (LLM 노드)
-↓
-Twitter 게시 예약 (Twitter API)
-LinkedIn 게시 예약 (LinkedIn API)
-블로그 CMS 업데이트 (WordPress API)</p>
-<pre tabindex="0"><code>
-### 워크플로우 3: 데이터 풍부화 파이프라인
-</code></pre><p>새 리드 (폼 제출)
-↓
-Clearbit API로 풍부화 (HTTP 노드)
-↓
-AI 리드 스코어링 (LLM 노드 — 매칭 분석)
-↓
+**Implementation**: `````python
+# Step 1: Extract email content
+email_body = extract_gmail_body(message_id)
+
+# Step 2: Classify with LLM
+classification = llm_classify(
+    email_body,
+    categories=[&#34;support&#34;, &#34;sales&#34;, &#34;complaint&#34;, &#34;inquiry&#34;],
+    model=&#34;claude-sonnet-4-202603&#34;
+)
+
+# Step 3: If urgent, draft response
+if classification.priority == &#34;urgent&#34;: response = llm_draft_response(
+        email_body,
+        company_context=read_knowledge_base(),
+        tone=&#34;professional&#34;
+    )
+    send_to_human_review(response)
+else: answer = semantic_search_kb(email_body)
+    auto_reply(answer)
+</code></pre><h3 id="workflow-2-automated-content-pipeline">Workflow 2: Automated Content Pipeline<a hidden class="anchor" aria-hidden="true" href="#workflow-2-automated-content-pipeline">#</a></h3>
+<pre tabindex="0"><code>RSS Feed New Post (Webhook)
+    ↓
+AI Summarize (LLM Node)
+    ↓
+AI Generate Social Posts (LLM Node)
+    ↓
+Schedule Twitter Post (Twitter API)
+    Schedule LinkedIn Post (LinkedIn API)
+    Update Blog CMS (WordPress API)
+</code></pre><h3 id="workflow-3-data-enrichment-pipeline">Workflow 3: Data Enrichment Pipeline<a hidden class="anchor" aria-hidden="true" href="#workflow-3-data-enrichment-pipeline">#</a></h3>
+<pre tabindex="0"><code>New Lead (Form Submit)
+    ↓
+Enrich with Clearbit API (HTTP Node)
+    ↓
+AI Score Lead (LLM Node — analyze fit)
+    ↓
 IF score &gt; 80 THEN
-→ 영업 담당자에게 할당 (CRM)
-→ 개인화된 이메일 발송 (SendGrid)
+    → Assign to sales rep (CRM)
+    → Send personalized email (SendGrid)
 ELSE
-→ 넛쳐링 시퀀스 (Mailchimp)
-→ 주간 요약 매니저에게 (Slack)</p>
-<pre tabindex="0"><code>
-### 워크플로우 4: 자율 연구 에이전트
-</code></pre><p>스케줄된 트리거 (일일)
-↓
-뉴스 API 검색 (HTTP 노드)
-↓
-AI 관련 artikel 필터링 (LLM 노드)
-↓
-AI 각 기사 요약 (LLM 노드)
-↓
-AI 액션 아이템 식별 (LLM 노드)
-↓
-보고서 컴파일 → Google Drive에 저장
-↓
-Slack으로 팀 알림</p>
-<pre tabindex="0"><code>
-* * *
-
-## 고급 패턴
-
-### 패턴 1: Human-in-the-Loop
-
-중요한 결정에는 항상 인간을 포함: `````python
+    → Nurture sequence (Mailchimp)
+    → Weekly summary to manager (Slack)
+</code></pre><h3 id="workflow-4-autonomous-research-agent">Workflow 4: Autonomous Research Agent<a hidden class="anchor" aria-hidden="true" href="#workflow-4-autonomous-research-agent">#</a></h3>
+<pre tabindex="0"><code>Scheduled Trigger (Daily)
+    ↓
+Search News APIs (HTTP Node)
+    ↓
+AI Filter Relevant Articles (LLM Node)
+    ↓
+AI Summarize Each Article (LLM Node)
+    ↓
+AI Identify Action Items (LLM Node)
+    ↓
+Compile Report → Save to Google Drive
+    ↓
+Notify Team via Slack
+</code></pre><hr>
+<h2 id="advanced-patterns">Advanced Patterns<a hidden class="anchor" aria-hidden="true" href="#advanced-patterns">#</a></h2>
+<h3 id="pattern-1-human-in-the-loop">Pattern 1: Human-in-the-Loop<a hidden class="anchor" aria-hidden="true" href="#pattern-1-human-in-the-loop">#</a></h3>
+<p>Always keep humans in the loop for critical decisions: `````python
 workflow = {
-    &#34;auto_steps&#34;: [
-        &#34;classify_ticket&#34;,
-        &#34;search_knowledge_base&#34;,
-        &#34;draft_response&#34;
-    ],
-    &#34;human_gate&#34;: [
-        &#34;approve_response&#34;,      # 발송 전 인간 승인 필요
-        &#34;escalate_urgent&#34;        # 인간이 escalatation 결정
-    ],
-    &#34;final_auto&#34;: [
-        &#34;send_approved_email&#34;,
-        &#34;log_to_crm&#34;
-    ]
-}
-</code></pre><h3 id="패턴-2-병렬-처리">패턴 2: 병렬 처리<a hidden class="anchor" aria-hidden="true" href="#패턴-2-병렬-처리">#</a></h3>
-<p>여러 항목을 동시에 처리: `````python</p>
-<h1 id="배치를-청크로-분할">배치를 청크로 분할<a hidden class="anchor" aria-hidden="true" href="#배치를-청크로-분할">#</a></h1>
-<p>items = split_in_batches(data, batch_size=10)</p>
-<h1 id="각-배치-병렬-처리">각 배치 병렬 처리<a hidden class="anchor" aria-hidden="true" href="#각-배치-병렬-처리">#</a></h1>
-<p>parallel_results = [
-process_batch(batch) for batch in items
-]</p>
-<h1 id="결과-병합">결과 병합<a hidden class="anchor" aria-hidden="true" href="#결과-병합">#</a></h1>
-<p>final_result = merge_parallel(parallel_results)</p>
+&ldquo;auto_steps&rdquo;: [
+&ldquo;classify_ticket&rdquo;,
+&ldquo;search_knowledge_base&rdquo;,
+&ldquo;draft_response&rdquo;
+],
+&ldquo;human_gate&rdquo;: [
+&ldquo;approve_response&rdquo;,      # Human must approve before sending
+&ldquo;escalate_urgent&rdquo;        # Human decides on escalation
+],
+&ldquo;final_auto&rdquo;: [
+&ldquo;send_approved_email&rdquo;,
+&ldquo;log_to_crm&rdquo;
+]
+}</p>
 <pre tabindex="0"><code>
-### 패턴 3: 에러 처리 및 재시도
+### Pattern 2: Parallel Processing
 
-`````python
-workflow_config = {
-    &#34;retry&#34;: {
-        &#34;maxAttempts&#34;: 3,
-        &#34;backoffMultiplier&#34;: 2,
-        &#34;initialDelayMs&#34;: 1000
-    },
-    &#34;onError&#34;: {
-        &#34;strategy&#34;: &#34;continue&#34;,  # 또는 &#34;stop&#34;, &#34;send_alert&#34;
-        &#34;alertChannel&#34;: &#34;slack&#34;,
-        &#34;alertMessage&#34;: &#34;워크플로우 실패: &#34;
-    }
-}
-</code></pre><h3 id="패턴-4-조건부-분기">패턴 4: 조건부 분기<a hidden class="anchor" aria-hidden="true" href="#패턴-4-조건부-분기">#</a></h3>
+Process multiple items simultaneously: `````python
+# Split batch into chunks
+items = split_in_batches(data, batch_size=10)
+
+# Process each batch in parallel
+parallel_results = [
+    process_batch(batch) for batch in items
+]
+
+# Merge results
+final_result = merge_parallel(parallel_results)
+</code></pre><h3 id="pattern-3-error-handling-and-retry">Pattern 3: Error Handling and Retry<a hidden class="anchor" aria-hidden="true" href="#pattern-3-error-handling-and-retry">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>workflow_config <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;retry&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;maxAttempts&#34;</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;backoffMultiplier&#34;</span>: <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;initialDelayMs&#34;</span>: <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;onError&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;strategy&#34;</span>: <span style="color:#e6db74">&#34;continue&#34;</span>,  <span style="color:#75715e"># or &#34;stop&#34;, &#34;send_alert&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;alertChannel&#34;</span>: <span style="color:#e6db74">&#34;slack&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;alertMessage&#34;</span>: <span style="color:#e6db74">&#34;Workflow failed: &#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="pattern-4-conditional-branching">Pattern 4: Conditional Branching<a hidden class="anchor" aria-hidden="true" href="#pattern-4-conditional-branching">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> condition_a: execute_workflow_a()
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">elif</span> condition_b: execute_workflow_b()
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>: execute_default()
-</span></span></code></pre></div><p>n8n의 Switch 노드는 복잡한 분기를 시각적으로 처리합니다.</p>
+</span></span></code></pre></div><p>n8n&rsquo;s Switch node handles complex branching visually.</p>
 <hr>
-<h2 id="통합">통합<a hidden class="anchor" aria-hidden="true" href="#통합">#</a></h2>
-<h3 id="인기-연결">인기 연결<a hidden class="anchor" aria-hidden="true" href="#인기-연결">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>카테고리</th>
-					<th>예시</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>통신</td>
-					<td>Slack, Discord, Telegram, Microsoft Teams</td>
-			</tr>
-			<tr>
-					<td>이메일</td>
-					<td>Gmail, Outlook, SendGrid, Mailchimp</td>
-			</tr>
-			<tr>
-					<td>CRM</td>
-					<td>Salesforce, HubSpot, Pipedrive, Notion</td>
-			</tr>
-			<tr>
-					<td>스토리지</td>
-					<td>Google Drive, Dropbox, S3, OneDrive</td>
-			</tr>
-			<tr>
-					<td>데이터베이스</td>
-					<td>PostgreSQL, MySQL, MongoDB, Firebase</td>
-			</tr>
-			<tr>
-					<td>AI/ML</td>
-					<td>OpenAI, Anthropic, HuggingFace, Ollama</td>
-			</tr>
-			<tr>
-					<td>웹</td>
-					<td>Webhook, HTTP 요청, RSS 피드</td>
-			</tr>
-	</tbody>
-</table>
-<h3 id="커스텀-api-통합">커스텀 API 통합<a hidden class="anchor" aria-hidden="true" href="#커스텀-api-통합">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 모든 REST API용 일반 HTTP 노드</span>
+<h2 id="integrations">Integrations<a hidden class="anchor" aria-hidden="true" href="#integrations">#</a></h2>
+<h3 id="popular-connections">Popular Connections<a hidden class="anchor" aria-hidden="true" href="#popular-connections">#</a></h3>
+<p>| Category | Examples |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Communication | Slack, Discord, Telegram, Microsoft Teams |
+| Email | Gmail, Outlook, SendGrid, Mailchimp |
+| CRM | Salesforce, HubSpot, Pipedrive, Notion |
+| Storage | Google Drive, Dropbox, S3, OneDrive |
+| Databases | PostgreSQL, MySQL, MongoDB, Firebase |
+| AI/ML | OpenAI, Anthropic, HuggingFace, Ollama |
+| Web | Webhooks, HTTP requests, RSS feeds |</p>
+<h3 id="custom-api-integration">Custom API Integration<a hidden class="anchor" aria-hidden="true" href="#custom-api-integration">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Generic HTTP node for any REST API</span>
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;nodeType&#34;</span>: <span style="color:#e6db74">&#34;httpRequest&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;parameters&#34;</span>: {
@@ -616,145 +635,85 @@ workflow_config = {
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><hr>
-<h2 id="가격">가격<a hidden class="anchor" aria-hidden="true" href="#가격">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>플랜</th>
-					<th>가격</th>
-					<th>기능</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>무료</td>
-					<td>$0</td>
-					<td>자체 호스팅, 무제한 워크플로우, 커뮤니티 지원</td>
-			</tr>
-			<tr>
-					<td>Pro (클라우드)</td>
-					<td>$20/월</td>
-					<td>관리형 호스팅, 월 5K 워크플로우 실행</td>
-			</tr>
-			<tr>
-					<td>비즈니스</td>
-					<td>$50/사용자/월</td>
-					<td>SSO, 감사 로그, 우선 지원, 5만 실행</td>
-			</tr>
-			<tr>
-					<td>엔터프라이즈</td>
-					<td>커스텀</td>
-					<td>온프레미스, SLA, 커스텀 통합, 무제한</td>
-			</tr>
-	</tbody>
-</table>
-<p>무료 자체 호스팅 플랜은 매우 관대합니다 — 무제한 워크플로우와 실행. 대부분의 사용자는 절대 유료로 전환할 필요가 없습니다.</p>
-<h3 id="비용-비교">비용 비교<a hidden class="anchor" aria-hidden="true" href="#비용-비교">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>플랫폼</th>
-					<th>진입가</th>
-					<th>1만 실행</th>
-					<th>무제한</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>n8n (자체호스팅)</td>
-					<td>$0</td>
-					<td>$0</td>
-					<td>$0</td>
-			</tr>
-			<tr>
-					<td>n8n Cloud Pro</td>
-					<td>$20/월</td>
-					<td>$20/월</td>
-					<td>$20/월</td>
-			</tr>
-			<tr>
-					<td>Zapier</td>
-					<td>$29/월</td>
-					<td>$29/월</td>
-					<td>$59/월</td>
-			</tr>
-			<tr>
-					<td>Make</td>
-					<td>$9/월</td>
-					<td>$19/월</td>
-					<td>$29/월</td>
-			</tr>
-	</tbody>
-</table>
+<h2 id="pricing">Pricing<a hidden class="anchor" aria-hidden="true" href="#pricing">#</a></h2>
+<p>| Plan | Price | Features |
+|</p>
 <hr>
-<h2 id="성능-및-확장">성능 및 확장<a hidden class="anchor" aria-hidden="true" href="#성능-및-확장">#</a></h2>
-<h3 id="실행-제한">실행 제한<a hidden class="anchor" aria-hidden="true" href="#실행-제한">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>플랜</th>
-					<th>최대 동시 워크플로우</th>
-					<th>실행 타임아웃</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>자체호스팅</td>
-					<td>무제한</td>
-					<td>구성 가능</td>
-			</tr>
-			<tr>
-					<td>Pro 클라우드</td>
-					<td>10</td>
-					<td>30초</td>
-			</tr>
-			<tr>
-					<td>비즈니스</td>
-					<td>50</td>
-					<td>60초</td>
-			</tr>
-			<tr>
-					<td>엔터프라이즈</td>
-					<td>무제한</td>
-					<td>120초</td>
-			</tr>
-	</tbody>
-</table>
-<h3 id="최적화-팁">최적화 팁<a hidden class="anchor" aria-hidden="true" href="#최적화-팁">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 느린 워크플로우 최적화</span>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Free | $0 | Self-hosted, unlimited workflows, community support |
+| Pro (Cloud) | $20/month | Managed hosting, 5K workflow executions/month |
+| Business | $50/user/month | SSO, audit logs, priority support, 50K executions |
+| Enterprise | Custom | On-premise, SLA, custom integrations, unlimited |</p>
+<p>The free self-hosted plan is extremely generous — unlimited workflows and executions. Most users never need to pay.</p>
+<h3 id="cost-comparison">Cost Comparison<a hidden class="anchor" aria-hidden="true" href="#cost-comparison">#</a></h3>
+<p>| Platform | Entry Price | 10K Executions | Unlimited |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| n8n (self-hosted) | $0 | $0 | $0 |
+| n8n Cloud Pro | $20/mo | $20/mo | $20/mo |
+| Zapier | $29/mo | $29/mo | $59/mo |
+| Make | $9/mo | $19/mo | $29/mo |</p>
+<hr>
+<h2 id="performance-and-scaling">Performance and Scaling<a hidden class="anchor" aria-hidden="true" href="#performance-and-scaling">#</a></h2>
+<h3 id="execution-limits">Execution Limits<a hidden class="anchor" aria-hidden="true" href="#execution-limits">#</a></h3>
+<p>| Plan | Max Concurrent Workflows | Execution Timeout |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Self-hosted | Unlimited | Configurable |
+| Pro Cloud | 10 | 30 seconds |
+| Business | 50 | 60 seconds |
+| Enterprise | Unlimited | 120 seconds |</p>
+<h3 id="optimization-tips">Optimization Tips<a hidden class="anchor" aria-hidden="true" href="#optimization-tips">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Optimize slow workflows</span>
 </span></span><span style="display:flex;"><span>optimization_strategies <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;batch_processing&#34;</span>: <span style="color:#e6db74">&#34;100개의 별도 실행 대신 한 번에 100개 처리&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;caching&#34;</span>: <span style="color:#e6db74">&#34;동일 입력에 대한 LLM 응답 캐싱&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;parallel_execution&#34;</span>: <span style="color:#e6db74">&#34;독립적 브랜치 병렬 실행&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;selective_data&#34;</span>: <span style="color:#e6db74">&#34;API에서 필요한 필드만 가져오기&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;webhook_filtering&#34;</span>: <span style="color:#e6db74">&#34;워크플로우 진입 전 이벤트 필터링&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;batch_processing&#34;</span>: <span style="color:#e6db74">&#34;Process 100 items in one batch instead of 100 separate runs&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;caching&#34;</span>: <span style="color:#e6db74">&#34;Cache LLM responses for identical inputs&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;parallel_execution&#34;</span>: <span style="color:#e6db74">&#34;Run independent branches concurrently&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;selective_data&#34;</span>: <span style="color:#e6db74">&#34;Only fetch required fields from APIs&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;webhook_filtering&#34;</span>: <span style="color:#e6db74">&#34;Filter events before they enter the workflow&#34;</span>
 </span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><hr>
-<h2 id="문제-해결">문제 해결<a hidden class="anchor" aria-hidden="true" href="#문제-해결">#</a></h2>
-<h3 id="문제-1-워크플로우-대기-중-상태에-고정">문제 1: 워크플로우 &ldquo;대기 중&rdquo; 상태에 고정<a hidden class="anchor" aria-hidden="true" href="#문제-1-워크플로우-대기-중-상태에-고정">#</a></h3>
-<pre tabindex="0"><code>문제: 워크플로우가 무기한 일시 중지됨
-해결: 타임아웃 설정 확인, 실행 제한 증가
-</code></pre><h3 id="문제-2-ai-노드가-빈-결과-반환">문제 2: AI 노드가 빈 결과 반환<a hidden class="anchor" aria-hidden="true" href="#문제-2-ai-노드가-빈-결과-반환">#</a></h3>
-<pre tabindex="0"><code>문제: LLM 노드가 null 출력
-해결: API 키 유효성 확인, 프롬프트 형식 검증, 최대 토큰 증가
-</code></pre><h3 id="문제-3-속도-제한-오류">문제 3: 속도 제한 오류<a hidden class="anchor" aria-hidden="true" href="#문제-3-속도-제한-오류">#</a></h3>
-<pre tabindex="0"><code>문제: HTTP 429 Too Many Requests
-해결: API 호출 사이에 지연 노드 추가, 지수 백오프 사용
-</code></pre><h3 id="문제-4-자체-호스팅-메모리-문제">문제 4: 자체 호스팅 메모리 문제<a hidden class="anchor" aria-hidden="true" href="#문제-4-자체-호스팅-메모리-문제">#</a></h3>
-<pre tabindex="0"><code>문제: n8n이 메모리 부족으로 충돌
-해결: NODE_OPTIONS 메모리 증가: NODE_OPTIONS=&#34;--max-old-space-size=4096&#34;
+<h2 id="troubleshooting">Troubleshooting<a hidden class="anchor" aria-hidden="true" href="#troubleshooting">#</a></h2>
+<h3 id="issue-1-workflow-stuck-in-waiting-state">Issue 1: Workflow Stuck in &ldquo;Waiting&rdquo; State<a hidden class="anchor" aria-hidden="true" href="#issue-1-workflow-stuck-in-waiting-state">#</a></h3>
+<pre tabindex="0"><code>Problem: Workflow pauses indefinitely
+Solution: Check timeout settings, increase execution limit
+</code></pre><h3 id="issue-2-ai-node-returns-empty-results">Issue 2: AI Node Returns Empty Results<a hidden class="anchor" aria-hidden="true" href="#issue-2-ai-node-returns-empty-results">#</a></h3>
+<pre tabindex="0"><code>Problem: LLM node outputs null
+Solution: Check API key validity, verify prompt format, increase max tokens
+</code></pre><h3 id="issue-3-rate-limiting-errors">Issue 3: Rate Limiting Errors<a hidden class="anchor" aria-hidden="true" href="#issue-3-rate-limiting-errors">#</a></h3>
+<pre tabindex="0"><code>Problem: HTTP 429 Too Many Requests
+Solution: Add delay nodes between API calls, use exponential backoff
+</code></pre><h3 id="issue-4-memory-issues-on-self-hosted">Issue 4: Memory Issues on Self-Hosted<a hidden class="anchor" aria-hidden="true" href="#issue-4-memory-issues-on-self-hosted">#</a></h3>
+<pre tabindex="0"><code>Problem: n8n crashes with out-of-memory
+Solution: Increase NODE_OPTIONS memory: NODE_OPTIONS=&#34;--max-old-space-size=4096&#34;
 </code></pre><hr>
-<h2 id="보안-모범-사례">보안 모범 사례<a hidden class="anchor" aria-hidden="true" href="#보안-모범-사례">#</a></h2>
-<h3 id="자격-증명-관리">자격 증명 관리<a hidden class="anchor" aria-hidden="true" href="#자격-증명-관리">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 환경 변수에 비밀 저장</span>
+<h2 id="security-best-practices">Security Best Practices<a hidden class="anchor" aria-hidden="true" href="#security-best-practices">#</a></h2>
+<h3 id="credential-management">Credential Management<a hidden class="anchor" aria-hidden="true" href="#credential-management">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Store secrets in environment variables</span>
 </span></span><span style="display:flex;"><span>export N8N_ENCRYPTION_KEY<span style="color:#f92672">=</span>your-encryption-key
 </span></span><span style="display:flex;"><span>export OPENAI_API_KEY<span style="color:#f92672">=</span>sk-...
 </span></span><span style="display:flex;"><span>export DATABASE_URL<span style="color:#f92672">=</span>postgresql://...
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 워크플로우에 자격 증명을 하드코딩하지 마세요</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># n8n의 내장 자격 증명 시스템 사용</span>
-</span></span></code></pre></div><h3 id="네트워크-보안">네트워크 보안<a hidden class="anchor" aria-hidden="true" href="#네트워크-보안">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#75715e"># TLS로反向代理
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Never hardcode credentials in workflows</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use n8n&#39;s built-in credential system</span>
+</span></span></code></pre></div><h3 id="network-security">Network Security<a hidden class="anchor" aria-hidden="true" href="#network-security">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#75715e"># Reverse proxy with TLS
 </span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">listen</span> <span style="color:#ae81ff">443</span> <span style="color:#e6db74">ssl</span>;
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">server_name</span> <span style="color:#e6db74">n8n.yourdomain.com</span>;
@@ -767,95 +726,95 @@ workflow_config = {
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">````</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">### 액세스 제어
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Access Control
 </span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">관리자</span> <span style="color:#e6db74">계정에</span> <span style="color:#e6db74">2FA</span> <span style="color:#e6db74">활성화</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">팀원에게</span> <span style="color:#e6db74">역할</span> <span style="color:#e6db74">기반</span> <span style="color:#e6db74">액세스</span> <span style="color:#e6db74">사용</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">IP</span> <span style="color:#e6db74">화이트리스트로</span> <span style="color:#e6db74">webhook</span> <span style="color:#e6db74">엔드포인트</span> <span style="color:#e6db74">제한</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">워크플로우</span> <span style="color:#e6db74">권한</span> <span style="color:#e6db74">정기</span> <span style="color:#e6db74">감사</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">Enable</span> <span style="color:#e6db74">two-factor</span> <span style="color:#e6db74">authentication</span> <span style="color:#e6db74">for</span> <span style="color:#e6db74">admin</span> <span style="color:#e6db74">accounts</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">Use</span> <span style="color:#e6db74">role-based</span> <span style="color:#e6db74">access</span> <span style="color:#e6db74">for</span> <span style="color:#e6db74">team</span> <span style="color:#e6db74">members</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">Restrict</span> <span style="color:#e6db74">webhook</span> <span style="color:#e6db74">endpoints</span> <span style="color:#e6db74">with</span> <span style="color:#e6db74">IP</span> <span style="color:#e6db74">whitelisting</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">Regularly</span> <span style="color:#e6db74">audit</span> <span style="color:#e6db74">workflow</span> <span style="color:#e6db74">permissions</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## 미래 방향
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Future Directions
 </span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">### n8n 2026 로드맵
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### n8n 2026 Roadmap
 </span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span><span style="color:#e6db74">.</span> <span style="color:#e6db74">**네이티브</span> <span style="color:#e6db74">에이전트</span> <span style="color:#e6db74">프레임워크**</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">내장</span> <span style="color:#e6db74">다중</span> <span style="color:#e6db74">에이전트</span> <span style="color:#e6db74">오케스트레이션</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2</span><span style="color:#e6db74">.</span> <span style="color:#e6db74">**비주얼</span> <span style="color:#e6db74">코드</span> <span style="color:#e6db74">편집기**</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">워크플로우</span> <span style="color:#e6db74">내에서</span> <span style="color:#e6db74">JavaScript/Python</span> <span style="color:#e6db74">직접</span> <span style="color:#e6db74">편집</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span><span style="color:#e6db74">.</span> <span style="color:#e6db74">**마켓플레이스</span> <span style="color:#e6db74">확장**</span> <span style="color:#e6db74">—</span> <span style="color:#ae81ff">500</span><span style="color:#e6db74">+</span> <span style="color:#e6db74">사전</span> <span style="color:#e6db74">구축</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">워크플로우</span> <span style="color:#e6db74">템플릿</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">4</span><span style="color:#e6db74">.</span> <span style="color:#e6db74">**실시간</span> <span style="color:#e6db74">협업**</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">다중</span> <span style="color:#e6db74">사용자</span> <span style="color:#e6db74">워크플로우</span> <span style="color:#e6db74">편집</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">5</span><span style="color:#e6db74">.</span> <span style="color:#e6db74">**엣지</span> <span style="color:#e6db74">배포**</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">IoT</span> <span style="color:#e6db74">장치에서</span> <span style="color:#e6db74">경량</span> <span style="color:#e6db74">n8n</span> <span style="color:#e6db74">실행</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span><span style="color:#e6db74">.</span> <span style="color:#e6db74">**Native</span> <span style="color:#e6db74">Agent</span> <span style="color:#e6db74">Framework**</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">Built-in</span> <span style="color:#e6db74">multi-agent</span> <span style="color:#e6db74">orchestration</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2</span><span style="color:#e6db74">.</span> <span style="color:#e6db74">**Visual</span> <span style="color:#e6db74">Code</span> <span style="color:#e6db74">Editor**</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">Edit</span> <span style="color:#e6db74">JavaScript/Python</span> <span style="color:#e6db74">directly</span> <span style="color:#e6db74">in</span> <span style="color:#e6db74">workflows</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3</span><span style="color:#e6db74">.</span> <span style="color:#e6db74">**Marketplace</span> <span style="color:#e6db74">Expansion**</span> <span style="color:#e6db74">—</span> <span style="color:#ae81ff">500</span><span style="color:#e6db74">+</span> <span style="color:#e6db74">pre-built</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">workflow</span> <span style="color:#e6db74">templates</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">4</span><span style="color:#e6db74">.</span> <span style="color:#e6db74">**Real-time</span> <span style="color:#e6db74">Collaboration**</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">Multi-user</span> <span style="color:#e6db74">workflow</span> <span style="color:#e6db74">editing</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">5</span><span style="color:#e6db74">.</span> <span style="color:#e6db74">**Edge</span> <span style="color:#e6db74">Deployment**</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">Run</span> <span style="color:#e6db74">lightweight</span> <span style="color:#e6db74">n8n</span> <span style="color:#66d9ef">on</span> <span style="color:#e6db74">IoT</span> <span style="color:#e6db74">devices</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">### 언제 n8n을 선택해야 하나요
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### When to Choose n8n
 </span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">**다음</span> <span style="color:#e6db74">경우에</span> <span style="color:#e6db74">n8n</span> <span style="color:#e6db74">선택:**</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">자동화</span> <span style="color:#e6db74">인프라에</span> <span style="color:#e6db74">대한</span> <span style="color:#e6db74">완전한</span> <span style="color:#e6db74">제어</span> <span style="color:#e6db74">원함</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">워크플로우에</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">기능</span> <span style="color:#e6db74">통합</span> <span style="color:#e6db74">필요</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">프라이버시와</span> <span style="color:#e6db74">비용</span> <span style="color:#e6db74">효율성을</span> <span style="color:#e6db74">위해</span> <span style="color:#e6db74">자체</span> <span style="color:#e6db74">호스팅</span> <span style="color:#e6db74">선호</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">복잡한</span> <span style="color:#e6db74">로직과</span> <span style="color:#e6db74">분기가</span> <span style="color:#e6db74">필요한</span> <span style="color:#e6db74">워크플로우</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">**Choose</span> <span style="color:#e6db74">n8n</span> <span style="color:#e6db74">when:**</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">You</span> <span style="color:#e6db74">want</span> <span style="color:#e6db74">full</span> <span style="color:#e6db74">control</span> <span style="color:#e6db74">over</span> <span style="color:#e6db74">your</span> <span style="color:#e6db74">automation</span> <span style="color:#e6db74">infrastructure</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">You</span> <span style="color:#e6db74">need</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">capabilities</span> <span style="color:#e6db74">integrated</span> <span style="color:#e6db74">into</span> <span style="color:#e6db74">workflows</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">You</span> <span style="color:#e6db74">prefer</span> <span style="color:#e6db74">self-hosting</span> <span style="color:#e6db74">for</span> <span style="color:#e6db74">privacy</span> <span style="color:#e6db74">and</span> <span style="color:#e6db74">cost</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">Your</span> <span style="color:#e6db74">workflows</span> <span style="color:#e6db74">require</span> <span style="color:#e6db74">complex</span> <span style="color:#e6db74">logic</span> <span style="color:#e6db74">and</span> <span style="color:#e6db74">branching</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">**대안</span> <span style="color:#e6db74">고려:**</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">설정</span> <span style="color:#e6db74">불필요</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">Zapier가</span> <span style="color:#e6db74">초보자에게</span> <span style="color:#e6db74">더</span> <span style="color:#e6db74">쉬움</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">단순</span> <span style="color:#e6db74">통합만</span> <span style="color:#e6db74">필요</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">Make가</span> <span style="color:#e6db74">충분할</span> <span style="color:#e6db74">수</span> <span style="color:#e6db74">있음</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">특정</span> <span style="color:#e6db74">생태계</span> <span style="color:#e6db74">깊게</span> <span style="color:#e6db74">투자</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">네이티브</span> <span style="color:#e6db74">도구가</span> <span style="color:#e6db74">더</span> <span style="color:#e6db74">나을</span> <span style="color:#e6db74">수</span> <span style="color:#e6db74">있음</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">**Consider</span> <span style="color:#e6db74">alternatives</span> <span style="color:#e6db74">when:**</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">You</span> <span style="color:#e6db74">need</span> <span style="color:#e6db74">zero</span> <span style="color:#e6db74">setup</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">Zapier</span> <span style="color:#e6db74">is</span> <span style="color:#e6db74">easier</span> <span style="color:#e6db74">for</span> <span style="color:#e6db74">beginners</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">You</span> <span style="color:#66d9ef">on</span><span style="color:#e6db74">ly</span> <span style="color:#e6db74">need</span> <span style="color:#e6db74">simple</span> <span style="color:#e6db74">integrations</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">Make</span> <span style="color:#e6db74">may</span> <span style="color:#e6db74">suffice</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">You&#39;re</span> <span style="color:#e6db74">heavily</span> <span style="color:#e6db74">invested</span> <span style="color:#e6db74">in</span> <span style="color:#e6db74">a</span> <span style="color:#e6db74">specific</span> <span style="color:#e6db74">ecosystem</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">Native</span> <span style="color:#e6db74">tools</span> <span style="color:#e6db74">may</span> <span style="color:#e6db74">be</span> <span style="color:#e6db74">better</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## 커뮤니티 리소스
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Community Resources
 </span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">**n8n</span> <span style="color:#e6db74">공식</span> <span style="color:#e6db74">문서**:</span> <span style="color:#e6db74">https://docs.n8n.io</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">**워크플로우</span> <span style="color:#e6db74">템플릿**:</span> <span style="color:#e6db74">https://n8n.io/workflows</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">**커뮤니티</span> <span style="color:#e6db74">포럼**:</span> <span style="color:#e6db74">https://community.n8n.io</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">**GitHub</span> <span style="color:#e6db74">저장소**:</span> <span style="color:#e6db74">https://github.com/n8n-io/n8n</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">**Discord**:</span> <span style="color:#ae81ff">20</span><span style="color:#e6db74">,000+</span> <span style="color:#e6db74">회원</span> <span style="color:#e6db74">활성</span> <span style="color:#e6db74">커뮤니티</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">**n8n</span> <span style="color:#e6db74">Official</span> <span style="color:#e6db74">Docs**:</span> <span style="color:#e6db74">https://docs.n8n.io</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">**Workflow</span> <span style="color:#e6db74">Templates**:</span> <span style="color:#e6db74">https://n8n.io/workflows</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">**Community</span> <span style="color:#e6db74">Forum**:</span> <span style="color:#e6db74">https://community.n8n.io</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">**GitHub</span> <span style="color:#e6db74">Repository**:</span> <span style="color:#e6db74">https://github.com/n8n-io/n8n</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">**Discord**:</span> <span style="color:#e6db74">Active</span> <span style="color:#e6db74">community</span> <span style="color:#e6db74">with</span> <span style="color:#ae81ff">20</span><span style="color:#e6db74">,000+</span> <span style="color:#e6db74">members</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">## FAQ
 </span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: n8n은 정말 무료인가요?
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: Is n8n really free?
 </span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">예.</span> <span style="color:#e6db74">자체</span> <span style="color:#e6db74">호스팅</span> <span style="color:#e6db74">버전은</span> <span style="color:#e6db74">오픈소스이며</span> <span style="color:#e6db74">기능</span> <span style="color:#e6db74">제한</span> <span style="color:#e6db74">없이</span> <span style="color:#e6db74">완전히</span> <span style="color:#e6db74">무료입니다.</span> <span style="color:#e6db74">클라우드</span> <span style="color:#e6db74">플랜은</span> <span style="color:#e6db74">관리형</span> <span style="color:#e6db74">호스팅으로</span> <span style="color:#e6db74">월</span> $20부터 <span style="color:#e6db74">시작합니다.</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">Yes.</span> <span style="color:#e6db74">The</span> <span style="color:#e6db74">self-hosted</span> <span style="color:#e6db74">version</span> <span style="color:#e6db74">is</span> <span style="color:#e6db74">open-source</span> <span style="color:#e6db74">and</span> <span style="color:#e6db74">completely</span> <span style="color:#e6db74">free</span> <span style="color:#e6db74">with</span> <span style="color:#e6db74">no</span> <span style="color:#e6db74">feature</span> <span style="color:#e6db74">restrictions.</span> <span style="color:#e6db74">Cloud</span> <span style="color:#e6db74">plans</span> <span style="color:#e6db74">start</span> <span style="color:#e6db74">at</span> $20/month <span style="color:#e6db74">for</span> <span style="color:#e6db74">managed</span> <span style="color:#e6db74">hosting.</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: n8n은 Zapier와 어떻게 다른가요?
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: How does n8n compare to Zapier?
 </span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">n8n은</span> <span style="color:#e6db74">더</span> <span style="color:#e6db74">큰</span> <span style="color:#e6db74">유연성,</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">통합</span> <span style="color:#e6db74">및</span> <span style="color:#e6db74">자체</span> <span style="color:#e6db74">호스팅을</span> <span style="color:#e6db74">제공합니다.</span> <span style="color:#e6db74">Zapier는</span> <span style="color:#e6db74">비기술</span> <span style="color:#e6db74">사용자에게</span> <span style="color:#e6db74">더</span> <span style="color:#e6db74">쉽지만</span> <span style="color:#e6db74">비용이</span> <span style="color:#e6db74">더</span> <span style="color:#e6db74">들고</span> <span style="color:#e6db74">제어가</span> <span style="color:#e6db74">적습니다.</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">n8n</span> <span style="color:#66d9ef">off</span><span style="color:#e6db74">ers</span> <span style="color:#e6db74">more</span> <span style="color:#e6db74">flexibility,</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">integration,</span> <span style="color:#e6db74">and</span> <span style="color:#e6db74">self-hosting.</span> <span style="color:#e6db74">Zapier</span> <span style="color:#e6db74">is</span> <span style="color:#e6db74">easier</span> <span style="color:#e6db74">for</span> <span style="color:#e6db74">non-technical</span> <span style="color:#e6db74">users</span> <span style="color:#e6db74">but</span> <span style="color:#e6db74">costs</span> <span style="color:#e6db74">more</span> <span style="color:#e6db74">and</span> <span style="color:#e6db74">has</span> <span style="color:#e6db74">less</span> <span style="color:#e6db74">control.</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: n8n을 LlamaFile 같은 로컬 LLM과 함께 사용할 수 있나요?
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: Can I use n8n with local LLMs like LlamaFile?
 </span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">물론입니다.</span> <span style="color:#e6db74">HTTP</span> <span style="color:#e6db74">Request</span> <span style="color:#e6db74">노드를</span> <span style="color:#e6db74">사용하여</span> <span style="color:#e6db74">로컬</span> <span style="color:#e6db74">LlamaFile</span> <span style="color:#e6db74">서버의</span> <span style="color:#e6db74">API</span> <span style="color:#e6db74">엔드포인트를</span> <span style="color:#e6db74">호출하세요.</span> <span style="color:#e6db74">완전</span> <span style="color:#e6db74">사설</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">자동화를</span> <span style="color:#e6db74">얻을</span> <span style="color:#e6db74">수</span> <span style="color:#e6db74">있습니다.</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">Absolutely.</span> <span style="color:#e6db74">Use</span> <span style="color:#e6db74">the</span> <span style="color:#e6db74">HTTP</span> <span style="color:#e6db74">Request</span> <span style="color:#e6db74">node</span> <span style="color:#e6db74">to</span> <span style="color:#e6db74">call</span> <span style="color:#e6db74">your</span> <span style="color:#e6db74">local</span> <span style="color:#e6db74">LlamaFile</span> <span style="color:#e6db74">server&#39;s</span> <span style="color:#e6db74">API</span> <span style="color:#e6db74">endpoint.</span> <span style="color:#e6db74">This</span> <span style="color:#e6db74">gives</span> <span style="color:#e6db74">you</span> <span style="color:#e6db74">fully</span> <span style="color:#e6db74">private</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">automation.</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: n8n은 Python 코드 실행을 지원하나요?
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: Does n8n support Python code execution?
 </span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">예.</span> <span style="color:#e6db74">Code</span> <span style="color:#e6db74">노드는</span> <span style="color:#e6db74">사용자</span> <span style="color:#e6db74">정의</span> <span style="color:#e6db74">로직을</span> <span style="color:#e6db74">위해</span> <span style="color:#e6db74">워크플로우</span> <span style="color:#e6db74">내에서</span> <span style="color:#e6db74">JavaScript,</span> <span style="color:#e6db74">Python</span> <span style="color:#e6db74">및</span> <span style="color:#e6db74">Go</span> <span style="color:#e6db74">코드를</span> <span style="color:#e6db74">직접</span> <span style="color:#e6db74">실행할</span> <span style="color:#e6db74">수</span> <span style="color:#e6db74">있게</span> <span style="color:#e6db74">합니다.</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">Yes.</span> <span style="color:#e6db74">The</span> <span style="color:#e6db74">Code</span> <span style="color:#e6db74">node</span> <span style="color:#e6db74">allows</span> <span style="color:#e6db74">running</span> <span style="color:#e6db74">JavaScript,</span> <span style="color:#e6db74">Python,</span> <span style="color:#e6db74">and</span> <span style="color:#e6db74">Go</span> <span style="color:#e6db74">code</span> <span style="color:#e6db74">directly</span> <span style="color:#e6db74">within</span> <span style="color:#e6db74">workflows</span> <span style="color:#e6db74">for</span> <span style="color:#e6db74">custom</span> <span style="color:#e6db74">logic.</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: n8n에서 민감한 데이터를 어떻게 처리하나요?
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: How do I handle sensitive data in n8n?
 </span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">n8n의</span> <span style="color:#e6db74">암호화된</span> <span style="color:#e6db74">자격</span> <span style="color:#e6db74">증명</span> <span style="color:#e6db74">저장소,</span> <span style="color:#e6db74">환경</span> <span style="color:#e6db74">변수의</span> <span style="color:#e6db74">비밀,</span> <span style="color:#e6db74">그리고</span> <span style="color:#e6db74">모든</span> <span style="color:#e6db74">데이터를</span> <span style="color:#e6db74">인프라에</span> <span style="color:#e6db74">유지하는</span> <span style="color:#e6db74">자체</span> <span style="color:#e6db74">호스팅을</span> <span style="color:#e6db74">사용하세요.</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">Use</span> <span style="color:#e6db74">n8n&#39;s</span> <span style="color:#e6db74">encrypted</span> <span style="color:#e6db74">credential</span> <span style="color:#e6db74">storage,</span> <span style="color:#e6db74">environment</span> <span style="color:#e6db74">variables</span> <span style="color:#e6db74">for</span> <span style="color:#e6db74">secrets,</span> <span style="color:#e6db74">and</span> <span style="color:#e6db74">self-hosting</span> <span style="color:#e6db74">to</span> <span style="color:#e6db74">keep</span> <span style="color:#e6db74">all</span> <span style="color:#e6db74">data</span> <span style="color:#66d9ef">on</span> <span style="color:#e6db74">your</span> <span style="color:#e6db74">infrastructure.</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: n8n이 기존 CRM이나 마케팅 도구를 대체할 수 있나요?
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: Can n8n replace my existing CRM or marketing tools?
 </span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">완전히</span> <span style="color:#e6db74">대체하지는</span> <span style="color:#e6db74">않습니다</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">n8n은</span> <span style="color:#e6db74">도구를</span> <span style="color:#e6db74">대체하는</span> <span style="color:#e6db74">것이</span> <span style="color:#e6db74">아니라</span> <span style="color:#e6db74">기존</span> <span style="color:#e6db74">시스템</span> <span style="color:#e6db74">간</span> <span style="color:#e6db74">데이터</span> <span style="color:#e6db74">흐름을</span> <span style="color:#e6db74">자동화합니다.</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">Not</span> <span style="color:#e6db74">entirely</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">n8n</span> <span style="color:#e6db74">connects</span> <span style="color:#e6db74">tools</span> <span style="color:#e6db74">rather</span> <span style="color:#e6db74">than</span> <span style="color:#e6db74">replacing</span> <span style="color:#e6db74">them.</span> <span style="color:#e6db74">It</span> <span style="color:#e6db74">automates</span> <span style="color:#e6db74">the</span> <span style="color:#e6db74">flow</span> <span style="color:#e6db74">of</span> <span style="color:#e6db74">data</span> <span style="color:#e6db74">between</span> <span style="color:#e6db74">your</span> <span style="color:#e6db74">existing</span> <span style="color:#e6db74">systems.</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## 참고자료
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## References
 </span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[n8n</span> <span style="color:#e6db74">공식</span> <span style="color:#e6db74">문서](https://docs.n8n.io)</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[n8n</span> <span style="color:#e6db74">GitHub</span> <span style="color:#e6db74">저장소](https://github.com/n8n-io/n8n)</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[n8n</span> <span style="color:#e6db74">워크플로우</span> <span style="color:#e6db74">템플릿](https://n8n.io/workflows)</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[2026</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">자동화</span> <span style="color:#e6db74">모범</span> <span style="color:#e6db74">사례](https://automationguide.ai/best-practices-2026)</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[n8n</span> <span style="color:#e6db74">자체</span> <span style="color:#e6db74">호스팅</span> <span style="color:#e6db74">가이드](https://docs.n8n.io/hosting/)</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[n8n</span> <span style="color:#e6db74">Official</span> <span style="color:#e6db74">Documentation](https://docs.n8n.io)</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[n8n</span> <span style="color:#e6db74">GitHub</span> <span style="color:#e6db74">Repository](https://github.com/n8n-io/n8n)</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[n8n</span> <span style="color:#e6db74">Workflow</span> <span style="color:#e6db74">Templates](https://n8n.io/workflows)</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[AI</span> <span style="color:#e6db74">Automation</span> <span style="color:#e6db74">Best</span> <span style="color:#e6db74">Practices</span> <span style="color:#ae81ff">2026</span><span style="color:#e6db74">](https://automationguide.ai/best-practices-2026)</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[Self-Hosting</span> <span style="color:#e6db74">Guide</span> <span style="color:#e6db74">for</span> <span style="color:#e6db74">n8n](https://docs.n8n.io/hosting/)</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">*실시간</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">도구</span> <span style="color:#e6db74">논의</span> <span style="color:#e6db74">및</span> <span style="color:#e6db74">배포</span> <span style="color:#e6db74">팁을</span> <span style="color:#e6db74">위해</span> <span style="color:#e6db74">Telegram</span> <span style="color:#e6db74">그룹에</span> <span style="color:#e6db74">가입하세요:</span> <span style="color:#e6db74">[t.me/dibi8](https://t.me/dibi8)*</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">*Join</span> <span style="color:#e6db74">our</span> <span style="color:#e6db74">Telegram</span> <span style="color:#e6db74">group</span> <span style="color:#e6db74">for</span> <span style="color:#e6db74">real-time</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">tool</span> <span style="color:#e6db74">discussions</span> <span style="color:#e6db74">and</span> <span style="color:#e6db74">deployment</span> <span style="color:#e6db74">tips:</span> <span style="color:#e6db74">[t.me/dibi8](https://t.me/dibi8)*</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;@context&#34;:</span> <span style="color:#e6db74">&#34;https://schema.org&#34;,</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;:</span> <span style="color:#e6db74">&#34;Article&#34;,</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;:</span> <span style="color:#e6db74">&#34;n8n</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">자동화</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">코드</span> <span style="color:#e6db74">없이</span> <span style="color:#e6db74">지능형</span> <span style="color:#e6db74">워크플로우</span> <span style="color:#e6db74">구축&#34;,</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;:</span> <span style="color:#e6db74">&#34;n8n</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">Automation</span> <span style="color:#e6db74">—</span> <span style="color:#e6db74">Build</span> <span style="color:#e6db74">Intelligent</span> <span style="color:#e6db74">Workflows</span> <span style="color:#e6db74">Without</span> <span style="color:#e6db74">Code&#34;,</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;:</span> <span style="color:#e6db74">&#34;2026-07-16&#34;,</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;:</span> <span style="color:#e6db74">&#34;2026-07-16&#34;,</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;:</span> {
@@ -872,24 +831,10 @@ workflow_config = {
 </span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">}</span><span style="color:#e6db74">,</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;:</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;@type&#34;:</span> <span style="color:#e6db74">&#34;WebPage&#34;,</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;:</span> <span style="color:#e6db74">&#34;https://dibi8.com/kr/resources/n8n-ai-automation-complete-guide&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;:</span> <span style="color:#e6db74">&#34;https://dibi8.com/resources/n8n-ai-automation-complete-guide&#34;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#960050;background-color:#1e0010">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;/script&gt;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles
-</span></span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[n8n-ai-automation-complete-guide](n8n-ai-automation-complete-guide)</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[n8n-vs-make-com-2026](n8n-ai-automation-complete-guide)</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[n8n-vs-make-com-2026](n8n-ai-automation-complete-guide)</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[n8n-vs-make-com-2026](n8n-ai-automation-complete-guide)</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">-</span> <span style="color:#e6db74">[n8n-ai-automation-complete-guide](n8n-ai-automation-complete-guide)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span> <span style="color:#e6db74">*</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">*Found</span> <span style="color:#e6db74">this</span> <span style="color:#e6db74">helpful?</span> <span style="color:#e6db74">[Join</span> <span style="color:#e6db74">our</span> <span style="color:#e6db74">Telegram</span> <span style="color:#e6db74">community](https://t.me/DIBI8_Group)</span> <span style="color:#e6db74">for</span> <span style="color:#e6db74">daily</span> <span style="color:#e6db74">AI</span> <span style="color:#e6db74">tool</span> <span style="color:#e6db74">updates!*</span>
 </span></span></code></pre></div>
 
   </div>
@@ -932,6 +877,81 @@ workflow_config = {
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

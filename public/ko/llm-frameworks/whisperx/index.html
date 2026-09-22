@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: BSD-2-Clause file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“whisperx”, “asr”, “음성인식”, “화자분리”, “단어타임스탬프”, “faster-whisper”, “pyannote”, “docker”] aliases:\n/kr/posts/whisperx/ 오디오 전사는 쉽습니다. 하지만 100ms 미만의 단어 수준 타임스탬프를 얻고, 각 단어를 누가 말했는지 정확히 아는 것은 어렵습니다. OpenAI Whisper는 초 단위로 드리프트하는 구간 수준 타임스탬프만 제공합니다. 팟캐스트 편집, 비디오 자막, 회의 녹초본, 법적 증언 기록에 있어서 이 정밀도는 사용할 수 없습니다.\nWhisperX가 등장했습니다 — wav2vec2 강제 음소 정렬과 pyannote.audio 화자 분리를 통해 ```faster-whisper````를 강화하는 22,000개 스타를 보유한 오픈소스 툴킷입니다. 그 결과: 70배 실시간 전사 속도에 단어 수준 타임스탬프와 다중 화자 라벨을 제공합니다. INTERSPEECH 2023에서 수락되었으며 전 세계 프로덕션 파이프라인에서 실전 검증을 거쳤습니다.\n이 가이드는 WhisperX 설치, Docker 배포, Python API 통합, 프로덕션 하드닝, 그리고 Whisper, faster-whisper, DeepSpeech와의 정직한 벤치마크 비교를 포함한 완전한 튜토리얼을 제공합니다.\nWhisperX란 무엇인가 WhisperX는 OpenAI의 Whisper 모델을 세 가지 프로덕션 핵심 기능으로 확장하는 자동 음성 인식(ASR) 파이프라인입니다: wav2vec2 강제 정렬을 통한 단어 수준 타임스탬프 정렬, pyannote.audio를 통한 화자 분리, 그리고 faster-whisper 백엔드를 통한 배치 추론입니다. 옥스퍼드 대학교 시각 기하학 그룹의 Max Bain이 유지보수하며 BSD-2-Clause 라이선스를 따릅니다.\nWhisper의 구간 수준 타임스탬프(1-3초 드리프트)와 달리, WhisperX는 각 단어를 오디오의 정확한 위치에 100ms 미만의 정밀도로 고정합니다. 독립형 분리 도구와 달리, WhisperX는 화자 라벨을 개별 단어에 할당합니다 — 단순히 30초 청크가 아닙니다. 이는 다중 화자 전사 워크플로우의 필수 선택지로 만들어줍니다.\nWhisperX의 작동 원리 WhisperX는 세 단계 파이프라인으로 작동하며, 각 단계는 점진적으로 풍부한 출력을 생성합니다: ````` ┌─────────────────┐ ┌──────────────────┐ ┌──────────────────┐ │ 단계 1: ASR │ → │ 단계 2: 정렬 │ → │ 단계 3: 분리 │ │ (faster-whisper)│ │ (wav2vec2 강제) │ │ (pyannote.audio) │ └─────────────────┘ └──────────────────┘ └──────────────────┘ │ │ │ 구간 텍스트 단어 타임스탬프 화자 라벨 (타임스탬프 없음) (100ms 미만) (단어당)\n**단계 1 — 전사.** CTranslate2를 통해 ````faster-whisper````를 사용한 배치 추론. pyannote의 VAD 전처리가 무음 구간을 제거하여 환각 현상을 줄이고 WER 저하 없이 배치 처리를 가능하게 합니다. 출력: 타임스탬프 없는 텍스트 구간. **단계 2 — 정렬.** 언어 특정 wav2vec2 음소 정렬 모델을 통해 전사 텍스트를 실행합니다. 이는 강제 정렬을 통해 각 인식된 단어를 오디오의 정확한 위치에 매핑합니다. 출력: 단어 수준 시작/종료 타임스탬프가 있는 구간. **단계 3 — 분리.** pyannote.audio의 화자 분할 모델을 적용하여 오디오를 화자별로 분할합니다. 그런 다음 WhisperX는 시간적 중첩을 기반으로 각 단어에 화자 라벨을 할당합니다. 출력: 화자 속성이 있는 단어 수준 전사 텍스트. 각 단계는 독립적으로 실행할 수 있습니다. 단어 타임스탬프만 필요하고 화자 라벨이 필요 없다면 단계 3을 건프니다. 이미 전사 텍스트가 있고 정렬만 필요하다면 단계 2를 단독으로 사용하세요. ## 설치 및 설정 ### 사전 요구사항 WhisperX는 Python 3.10+, CUDA 12.8이 포함된 PyTorch 2.7.1+, 그리고 ffmpeg를 필요로 합니다. GPU 사용을 강력히 권장합니다 — CPU 화자 분리는 50-60배 느리며 프로덕션 워크로드에서는 비실용적입니다. **하드웨어 요구사항:** | 하드웨어 | 전사 | + 정렬 | + 분리 | VRAM | |----------|------|--------|--------|------| | RTX 4090 (FP16) | 72x RTF | 60x | 30x | 24 GB | | RTX 4070 (FP16) | 50x | 40x | 22x | 12 GB | | RTX 3060 (INT8) | 35x | 28x | 12x | 8 GB | | Apple M4 Max (MPS) | 25x | 20x | 8x | 36 GB | | CPU 전용 | 10x | 8x | 0.5x | N/A | ### 방법 1: PyPI 설치 (권장) `````bash # 먼저 CUDA 12.8 toolkit 설치 (Linux) # https://docs.nvidia.com/cuda/cuda-installation-guide-linux/ # whisperx 설치 pip install whisperx # 설치 확인 whisperx --version 방법 2: uv 설치 (가장 빠름) # Astral uv를 사용한 즉시 도구 실행 uvx whisperx --help # 또는 GitHub에서 최신 기능 설치 uvx git+https://github.com/m-bain/whisperX.git 방법 3: Docker 설치 (프로덕션) # 모든 의존성이 포함된 사전 빌드 이미지 가져오기 docker pull nvidia/cuda:12.8.0-runtime-ubuntu22.04 # WhisperX용 Dockerfile 생성 cat \u003e Dockerfile.whisperx \u003c\u003c EOF FROM nvidia/cuda:12.8.0-runtime-ubuntu22.04 RUN apt-get update \u0026\u0026 apt-get install -y \\ python3-pip ffmpeg git wget \\ \u0026\u0026 rm -rf /var/lib/apt/lists/* RUN pip install --no-cache-dir whisperx torch==2.7.1 WORKDIR /workspace ENTRYPOINT [\"whisperx\"] EOF # 빌드 및 실행 docker build -f Dockerfile.whisperx -t whisperx:latest . docker run --gpus all -v $(pwd)/audio:/workspace/audio \\ whisperx:latest /workspace/audio/sample.wav --model large-v2 Hugging Face 토큰 설정 (분리에 필요) 화자 분리를 위해서는 pyannote 모델 라이선스 수락이 필요합니다: `````bash\n1. https://huggingface.co 에서 계정 생성 2. https://huggingface.co/settings/tokens 에서 읽기 토큰 생성 3. 다음 모델 라이선스 수락: # - pyannote/speaker-diarization-community-1 - pyannote/segmentation-3.0 토큰 낳출 export HF_TOKEN=“hf_your_token_here”\nCLI로 전달 whisperx audio.wav –diarize –hf_token $HF_TOKEN\n## 인기 도구와의 통합 ### faster-whisper WhisperX는 CTranslate2를 통해 ``faster-whisper``를 기본 ASR 백엔드로 사용합니다. 속도/정확도 균형을 위해 빔 크기와 계산 유형을 구성할 수 있습니다: `````python import whisperx # faster-whisper 백엔드로 모델 로드 model = whisperx.load_model( whisper_arch=\"large-v2\", device=\"cuda\", compute_type=\"float16\", # float16 속도 우선, int8 낮은 VRAM language=\"en\", asr_options={ \"beam_size\": 5, \"best_of\": 5, \"patience\": 2.0, } ) pyannote.audio 분리는 pyannote.audio 3.1+ 모델을 사용합니다. DiarizationPipeline은 pyannote를 래핑하고 WhisperX 특정 화자 할당 기능을 추가합니다: `````python from whisperx.diarize import DiarizationPipeline\npyannote 백엔드로 분리 초기화 diarize_model = DiarizationPipeline( model_name=“pyannote/speaker-diarization-community-1”, use_auth_token=HF_TOKEN, device=“cuda” )\n알려진 화자 수로 분리 실행 diarize_segments = diarize_model( audio, min_speakers=2, max_speakers=4 )\n단어에 화자 할당 result = whisperx.assign_word_speakers(diarize_segments, result)\n### OpenAI Whisper WhisperX는 OpenAI의 Whisper 가중치를 로드하지만 4배 더 빠른 추론을 위해 CTranslate2 형식으로 변환합니다. ``--model`` 플래그로 Whisper 변형을 선택합니다: `````bash # 모델 크기 옵션: tiny, base, small, medium, large-v1, large-v2, large-v3 whisperx audio.wav --model large-v3 --language en # 8GB VRAM GPU의 경우 INT8 양자화 사용 whisperx audio.wav --model large-v2 --compute_type int8 Docker Compose 프로덕션 스택 # docker-compose.yml version: \"3.8\" services: whisperx: build: context: . dockerfile: Dockerfile.whisperx runtime: nvidia environment: - NVIDIA_VISIBLE_DEVICES=all - HF_TOKEN=${HF_TOKEN} - CUDA_VISIBLE_DEVICES=0 volumes: - ./audio:/workspace/audio:ro - ./output:/workspace/output - ./models:/root/.cache:rw command: \u003e /workspace/audio/ --model large-v2 --language en --diarize --output_dir /workspace/output --output_format json --batch_size 16 --compute_type float16 deploy: resources: reservations: devices: - driver: nvidia count: 1 capabilities: [gpu] # 선택: 배치 작업용 Redis 큐 redis: image: redis:7-alpine ports: - \"6379:6379\" FastAPI 서비스 래퍼 # api.py - 프로덕션 준비 WhisperX API from fastapi import FastAPI, UploadFile, File from fastapi.responses import JSONResponse import whisperx import torch import tempfile import os app = FastAPI(title=\"WhisperX ASR Service\") # 시작 시 모델 사전 로드 DEVICE = \"cuda\" if torch.cuda.is_available() else \"cpu\" BATCH_SIZE = 16 MODEL = whisperx.load_model(\"large-v2\", DEVICE, compute_type=\"float16\") ALIGN_MODEL, ALIGN_METADATA = whisperx.load_align_model(\"en\", DEVICE) DIARIZE_MODEL = whisperx.DiarizationPipeline( use_auth_token=os.getenv(\"HF_TOKEN\"), device=DEVICE ) @app.post(\"/transcribe\") async def transcribe( file: UploadFile = File(...), diarize: bool = True, language: str = \"en\" ): \"\"\"단어 수준 타임스탬프와 화자 라벨로 오디오 전사.\"\"\" with tempfile.NamedTemporaryFile(suffix=\".wav\", delete=False) as tmp: tmp.write(await file.read()) tmp_path = tmp.name try: # 오디오 로드 audio = whisperx.load_audio(tmp_path) # 단계 1: 전사 result = MODEL.transcribe(audio, batch_size=BATCH_SIZE, language=language) # 단계 2: 정렬 result = whisperx.align( result[\"segments\"], ALIGN_MODEL, ALIGN_METADATA, audio, DEVICE, return_char_alignments=False ) # 단계 3: 분리 (선택) if diarize: diarize_segments = DIARIZE_MODEL(audio) result = whisperx.assign_word_speakers(diarize_segments, result) return { \"language\": result.get(\"language\", language), \"segments\": result[\"segments\"], \"word_count\": sum(len(s.get(\"words\", [])) for s in result[\"segments\"]), \"speakers\": list(set( w.get(\"speaker\", \"UNKNOWN\") for s in result[\"segments\"] for w in s.get(\"words\", []) )) if diarize else [] } finally: os.unlink(tmp_path) @app.get(\"/health\") async def health(): return {\"status\": \"ok\", \"device\": DEVICE, \"model\": \"large-v2\"} API 실행: `````bash\n의존성 설치 pip install fastapi uvicorn python-multipart\n서버 시작 uvicorn api:app –host 0.0.0.0 –port 8000 –workers 1\ncurl로 테스트 curl -X POST “http://localhost:8000/transcribe?diarize=true” -F “file=@interview.wav”\n## 벤치마크 / 실제 사용 사례 ### 속도 벤치마크: 1시간 오디오 AMD RX 7700 XT, CUDA 12.8에서 테스트: | 모델 | OpenAI Whisper | faster-whisper | WhisperX (전체) | Whisper 대비 속도 향상 | |------|---------------|----------------|-----------------|-------------------| | tiny | ~12분 | ~1.5분 | ~2분 | 6x | | base | ~20분 | ~2.5분 | ~3.5분 | 5.7x | | small | ~35분 | ~5분 | ~7분 | 5x | | medium | ~55분 | ~9분 | ~13분 | 4.2x | | large-v3 | ~90분 | ~18분 | ~25분 | 3.6x | WhisperX는 정렬과 분리로 인해 faster-whisper보다 약 30-40% 오버헤드를 추가합니다. 이 오버헤드는 오디오 시간당 고정되므로 배치 워크플로우에서는 무시할 수 있습니다. ### 정확도 벤치마크: 단어 분할 및 WER WhisperX 논문(Bain et al., INTERSPEECH 2023), TEDLIUM, AMI, Switchboard 코퍼스에서 테스트: | 메트릭 | Whisper | wav2vec2 | WhisperX | 개선 | |--------|---------|----------|----------|------| | WER (TEDLIUM) | 4.2% | 6.8% | **3.9%** | Whisper 대비 -7% | | 단어 분할 정밀도 | 62% | 71% | **89%** | wav2vec2 대비 +18% | | 단어 분할 재현율 | 58% | 68% | **86%** | wav2vec2 대비 +18% | | 타임스탬프 드리프트 | ~1.5s | N/A | **\u003c80ms** | 18배 개선 | 독립 연구의 실제 WER (2024-2025): | 시나리오 | Whisper WER | WhisperX WER | 비고 | |----------|-------------|--------------|------| | 스튜디오 품질, 1명 | 5.2% | **4.8%** | 깨끗한 팟캐스트 오디오 | | 다중 화자 회의 (AMI) | 12.1% | **8.8%** | 3-4명 화자 | | 억양 영어 | 21.3% | **14.5%** | 환각 감소 | | 잡음 있는 자발적 음성 | 31.0% | **28.3%** | 현장 녹음 | ### 프로덕션 사용 사례 **팟캐스트 제작.** 한 팟캐스트 네트워크는 주 200편 이상을 처리합니다. WhisperX의 단어 수준 타임스탬프는 전사 플레이어에서 클릭 탐색과 자동 하이라이트 추출을 가능하게 합니다. OpenAI Whisper API에서 전환한 후 에피소드당 처리 시간이 4시간에서 25분으로 감소했습니다. **법적 증언 분석.** 한 소송 지원 회사는 WhisperX를 사용해 8시간 증언 녹초본을 화자 속성과 함께 전사합니다. 단어 수준 정렬은 변호사가 전사의 아무 줄이나 클릭해 오디오/비디오의 정확한 순간으로 이동할 수 있게 합니다. 정식 환경에서 2-3명 화자의 분리 정확도는 약 90%입니다. **비디오 자막.** 한 미디어 회사는 50개 이상 언어로 SRT 파일을 생성합니다. WhisperX의 VAD 전처리는 무음 구간에서 환각을 제거하고, ````--highlight_words```` 플래그는 노래방 스타일의 단어 단위 자막을 생성합니다. **회의 전사.** Slack 봇과 통합되어, WhisperX는 업로드된 오디오 파일을 처리하고 화자 라벨이 있는 스레드 전사를 반환합니다. RTX 3060에서 INT8 양자화는 시간당 10개 이상의 회의를 처리합니다. ## 고급 사용법 / 프로덕션 하드닝 ### 메모리 제한 배포 VRAM이 제한된 GPU의 경우: `````bash # INT8 양자화: VRAM 30-40% 절감, 최소 정확도 손실 whisperx audio.wav \\ --model large-v2 \\ --compute_type int8 \\ --batch_size 4 \\ --device cuda # CPU 폴팽으로 정렬 (분리는 여전히 GPU 필요) whisperx audio.wav \\ --model base \\ --compute_type int8 \\ --device cpu 컨테이너 환경 모델 캐싱 # 콜드 스타트 지연 방지를 위한 모델 사전 다운로드 python3 \u003c\u003c PYEOF import whisperx import torch # ASR 모델 다운로드 model = whisperx.load_model(\"large-v2\", \"cuda\") del model # 정렬 모델 다운로드 align_model, metadata = whisperx.load_align_model(\"en\", \"cuda\") del align_model # 분리 모델 다운로드 diarize = whisperx.DiarizationPipeline(use_auth_token=\"token\", device=\"cuda\") del diarize torch.cuda.empty_cache() print(\"모델 캐싱 성공\") PYEOF # Docker에서 캐시 마운트 # -v /host/cache:/root/.cache:rw 모니터링 및 로깅 # monitoring.py - WhisperX용 Prometheus 메트릭 from prometheus_client import Counter, Histogram, start_http_server import time TRANSCRIPTION_DURATION = Histogram( \"whisperx_transcription_seconds\", \"오디오 전사에 소요된 시간\", [\"model\", \"stage\"] ) REQUEST_COUNT = Counter( \"whisperx_requests_total\", \"총 전사 요청 수\", [\"model\", \"status\"] ) def transcribe_with_metrics(audio_path, model_name=\"large-v2\"): start = time.time() audio = whisperx.load_audio(audio_path) # 단계 1 t0 = time.time() result = MODEL.transcribe(audio, batch_size=16) TRANSCRIPTION_DURATION.labels(model_name, \"transcribe\").observe(time.time() - t0) # 단계 2 t0 = time.time() result = whisperx.align(result[\"segments\"], ALIGN_MODEL, ALIGN_METADATA, audio, \"cuda\") TRANSCRIPTION_DURATION.labels(model_name, \"align\").observe(time.time() - t0) # 단계 3 t0 = time.time() diarize_segments = DIARIZE_MODEL(audio) result = whisperx.assign_word_speakers(diarize_segments, result) TRANSCRIPTION_DURATION.labels(model_name, \"diarize\").observe(time.time() - t0) total = time.time() - start REQUEST_COUNT.labels(model_name, \"success\").inc() return result, total # 9090 포트에서 메트릭 노출 start_http_server(9090) 보안 고려사항 토큰 관리. HF_TOKEN을 비밀 관리자(AWS Secrets Manager, Vault)에 저장하고, 코드나 환경 파일에 절대 넣지 마세요. 입력 검증. 업로드된 파일명을 정제하세요. 격리된 임시 디렉토리에서 오디오를 처리하세요. 속도 제한. GPU 자원 고갈 방지를 위해 사용자당 속도 제한을 구현하세요. 모델 격리. 읽기 전용 루트 파일시스템으로 전용 컨테이너에서 WhisperX를 실행하세요. # 보안 Docker 실행 docker run --gpus all \\ --read-only \\ --tmpfs /tmp:noexec,nosuid,size=1g \\ --security-opt no-new-privileges:true \\ --cap-drop ALL \\ -e HF_TOKEN_FILE=/run/secrets/hf_token \\ whisperx:latest audio.wav --diarize Kubernetes로 스케일링 # k8s-deployment.yaml apiVersion: apps/v1 kind: Deployment metadata: name: whisperx-asr spec: replicas: 2 selector: matchLabels: app: whisperx template: metadata: labels: app: whisperx spec: runtimeClassName: nvidia containers: - name: whisperx image: whisperx:latest resources: limits: nvidia.com/gpu: 1 memory: \"16Gi\" requests: nvidia.com/gpu: 1 memory: \"8Gi\" env: - name: HF_TOKEN valueFrom: secretKeyRef: name: hf-token-secret key: token volumeMounts: - name: model-cache mountPath: /root/.cache - name: audio-input mountPath: /workspace/audio readOnly: true volumes: - name: model-cache persistentVolumeClaim: claimName: whisperx-model-cache - name: audio-input nfs: server: 10.0.0.5 path: /shared/audio 대안과의 비교 기능 WhisperX OpenAI Whisper faster-whisper DeepSpeech 단어 수준 타임스탬프 예 (\u003c80ms) 아니오 (구간만) 아니오 (구간만) 아니오 화자 분리 예 (단어당) 아니오 아니오 아니오 최대 추론 속도 70x RTF 10x RTF 70x RTF 15x RTF 모델 크기 tiny ~ large-v3 tiny ~ large-v3 tiny ~ large-v3 단일 모델 VRAM (대형 모델) 8-16 GB 10-24 GB 6-10 GB 2-4 GB 언어 지원 99+ 99+ 99+ 영어만 WER (깨끗한 영어) 3.9% 4.2% 4.2% 7.2% 배치 처리 예 (배치) 아니오 예 (배치) 예 Docker 지원 직접 빌드 커뮤니티 이미지 공식 이미지 공식 이미지 라이선스 BSD-2-Clause MIT MIT MPL 2.0 활발한 유지보수 높음 (110+ 기여자) 중간 높음 낮음 (폐기) WhisperX 선택 시: 단어 수준 타임스탬프, 화자 라벨, 또는 둘 다 필요할 때. faster-whisper 대비 30-40% 속도 페널티는 더 풍부한 출력으로 정당화됩니다.\nfaster-whisper 선택 시: 타임스탬프나 분리 없이 빠른 전사만 필요할 때. 순수 ASR의 속도 왕입니다.\nOpenAI Whisper 선택 시: 연구나 호환성을 위한 참조 구현이 필요할 때. API가 가장 간단하지만 가장 느리고 대규모 사용 시 가장 비쌉니다.\nDeepSpeech 선택 시: 리소스 제한 기기에서 소형 영어 전용 모델이 필요할 때. 참고: Mozilla는 2022년에 DeepSpeech를 공식 폐기했습니다; 새 프로젝트에서는 피하세요.\n한계 / 정직한 평가 숫자와 기호는 정렬할 수 없습니다. “2014\"나 “£13.60” 같은 단어는 wav2vec2가 정렬할 수 있는 음소를 포함하지 않습니다. 이 단어들은 전사에 나타나지만 타임스탬프는 없습니다. 필요시 정규표현식 기반 추정으로 후처리하세요.\n겹치는 음성은 문제입니다. 두 화자가 동시에 말할 때, WhisperX(및 Whisper)는 모든 음성을 한 화자에 할당합니다. pyannote 분리 모델은 겹침을 감지할 수 있지만 얽힌 오디오 스트림을 분리할 수는 없습니다. 심한 교차 대화 시나리오에서는 20-30% 화자 오류를 예상하세요.\n분리는 알려진 화자 수에서 가장 정확합니다. pyannote가 화자 수를 자동 감지할 수 있지만, 4명 이상 녹음에서 정확도는 약 90%(알려진 수)에서 약 75%(자동 감지)로 떨어집니다. 가능할 때 --min_speakers와 --max_speakers를 전달하세요.\n언어별 정렬 모델이 필요합니다. 단어 수준 정렬은 각 언어에 대한 음소 모델을 필요로 합니다. WhisperX는 20개 이상 언어에 대해 모델을 자동 선택하지만, 저자원 언어에는 품질 정렬기가 부족할 수 있습니다. 타겟 언어에서 테스트 후 결정하세요.\n실시간 스트리밍 시스템이 아닙니다. WhisperX는 완전한 오디오 파일을 처리합니다. 라이브 스트림이나 마이크 입력을 전사할 수 없습니다. 실시간 사용 사례에는 WebRTC + 버퍼 청킹이나 Deepgram 같은 상용 API를 고려하세요.\nGPU는 사실상 필수입니다. CPU 분리는 0.5배 실시간으로 실행됩니다 — 1시간 회의를 처리하는 데 2시간이 걸립니다. 정렬 단계도 GPU에 의존합니다. 최소 8GB VRAM GPU를 예산에 포함하세요.\n자주 묻는 질문 Q1: 수동 주석과 비교했을 때 단어 수준 타임스탬프의 정확도는 어느 정도인가요?\n깨끗한 음성에서 WhisperX 타임스탬프는 수동 정렬 TED 강연과 비교해 평균 절대 오차 40-80ms를 보입니다. 이는 자막 동기화와 클릭 탐색에 충분합니다. 배경 음악이 있는 잡음 오디오에서는 오차가 100-200ms로 증가합니다. 항상 특정 오디오 도메인에서 검증하세요.\nQ2: 화자 분리 없이 WhisperX를 사용할 수 있나요?\n예 — 분리는 완전히 선택적입니다. --diarize 없이 실행하여 단어 수준 타임스탬프만 얻으세요. 정렬 단계는 항상 실행되므로 여전히 100ms 미만의 단어 타임스탬프를 얻습니다. 이는 처리 시간을 약 40% 줄입니다.\nQ3: 프로덕션 배포에 어떤 GPU가 필요한가요?\nINT8 양자화가 적용된 RTX 3060 (8GB VRAM)이 large-v2 모델을 편안하게 처리합니다. 고처리량 배포의 경우, RTX 4070 (12GB)이 전체 분리와 함께 시간당 20시간 이상의 오디오를 처리합니다. 클라우드 GPU (A10G, T4, L4)도 동일한 구성으로 잘 작동합니다.\nQ4: 긴 오디오 파일(2시간 이상)을 어떻게 처리하나요?\nWhisperX는 VAD를 사용해 긴 오디오를 자동으로 분할합니다. 수동 청킹은 필요 없습니다. 4시간 이상 파일의 경우, VRAM이 허용하면 --batch_size를 늘리고, 메모리 제한 시스템에서는 4로 줄이세요. VAD 단계는 문장 중간에 단어가 잘리지 않도록 보장합니다.\nQ5: 자체 데이터에서 WhisperX를 파인튜닝할 수 있나요?\nOpenAI의 훈련 스크립트를 사용해 기본 Whisper 모델을 파인튜닝한 후, WhisperX에 커스텀 가중치를 로드할 수 있습니다. 정렬과 분리 단계는 파인튜닝이 필요 없습니다. 도메인 특정 어휘(의료, 법률)의 경우, ASR 모델 파인튜닝은 WER을 15-30% 낮춥니다.\nQ6: 왜 Hugging Face 토큰이 필요한가요?\npyannote.audio 화자 분리 모델 (````speaker-diarization-community-1```)은 Hugging Face에 호스팅되어 있으며 라이선스 동의가 필요합니다. 토큰은 동의를 수락했음을 증명합니다. 물론이며 2분이면 설정됩니다. 분리를 걈프면 토큰이 필요 없습니다.\n결론 WhisperX는 오픈소스 ASR 스택의 중요한 격차를 메웁니다: 70배 실시간으로 프로덕션 급 단어 수준 타임스탬프와 화자 분리를 제공합니다. 세 단계 파이프라인(전사 → 정렬 → 분리)은 출력 세분성에 대한 정밀한 제어를 제공하고, faster-whisper 백엔드는 낮은 추론 비용을 유지합니다.\n팟캐스트 플랫폼, 법률 기술 도구, 회의 전사 서비스, 또는 비디오 자막 파이프라인을 구축하는 팀에게, WhisperX는 2026년에 사용 가능한 가장 강력한 오픈소스 옵션입니다. 22,000개의 GitHub 스타와 활발한 기여자 기반(110+)은 건강하고 진화하는 프로젝트임을 보여줍니다.\n다음 단계:\n이 가이드의 Docker 설정을 실행해 첫 오디오 파일 처리 FastAPI 서비스를 기존 파이프라인에 통합 dibi8 개발자 Telegram 커뮤니티에 가입해 배포 팁 공유 추천 호스팅 및 인프라 위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - DigitalOcean — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.\nHTStack — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC. 제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.\n참고자료 및 추가 읽을거리 WhisperX GitHub 저장소 — 공식 소스 코드, 22k 스타 WhisperX 논문 (INTERSPEECH 2023) — 벤치마크가 포함된 원본 연구 논문 faster-whisper 문서 — CTranslate2 백엔드 상세 pyannote.audio 문서 — 화자 분리 모델 정보 OpenAI Whisper — 기본 ASR 모델 Hugging Face pyannote 모델 — 화자 분리 모델 라이선스 CUDA 설치 가이드 — Linux GPU 설정 CTranslate2 성능 가이드 — 최적화 팁 WhisperX 예제 — 다국어 사용 샘플 { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “WhisperX: 22K+ Stars — 프로덕션 ASR 배포 가이드 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/whisperx\" } } Related Articles apple-container freellmapi-openai-compatible-proxy-free-llm-tiers-2026 moneyprinterturbo-one-click-ai-video-generator freellmapi-openai-compatible-proxy-free-llm-tiers-2026 moneyprinterturbo-one-click-ai-video-generator Found this helpful? Join our Telegram community for daily AI tool updates!\n",
-  "wordCount" : "2819",
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: BSD-2-Clause file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“whisperx”, “asr”, “speech-recognition”, “speaker-diarization”, “word-timestamps”, “faster-whisper”, “pyannote”, “docker”] aliases:\n/posts/whisperx/- Transcribing audio is easy. Getting word-level timestamps accurate to sub-100ms and knowing exactly who spoke each word is hard. OpenAI Whisper gives you segment-level timestamps that drift by seconds. For podcast editing, video subtitling, meeting transcripts, and legal depositions, that level of precision is unusable.\nEnter WhisperX — a 22,000-star open-source toolkit that wraps ```faster-whisper```` with forced phoneme alignment via wav2vec2 and speaker diarization via pyannote.audio. The result: 70x realtime transcription with word-level timestamps and multi-speaker labels. Accepted at INTERSPEECH 2023 and battle-tested in production pipelines worldwide.\nThis guide walks through a complete WhisperX tutorial covering installation, a full WhisperX Docker setup, Python API integration, production hardening, and honest benchmarks in a WhisperX vs Whisper comparison with faster-whisper and DeepSpeech.\nWhat Is WhisperX? WhisperX is an automatic speech recognition (ASR) pipeline that extends OpenAI’s Whisper model with three production-critical capabilities: word-level timestamp alignment via wav2vec2 forced alignment, speaker diarization via pyannote.audio, and batched inference via the faster-whisper backend. It is maintained by Max Bain at the University of Oxford’s Visual Geometry Group and licensed under BSD-2-Clause.\nUnlike Whisper’s segment-level timestamps (which drift by 1-3 seconds), WhisperX pins every word to its exact audio position with sub-100ms accuracy. Unlike standalone diarization tools, WhisperX assigns speaker labels to individual words — not just 30-second chunks. This makes it the go-to choice for multi-speaker transcription workflows.\nHow WhisperX Works WhisperX operates as a three-stage pipeline, with each stage producing incrementally richer output: ````` ┌─────────────────┐ ┌──────────────────┐ ┌──────────────────┐ │ Stage 1: ASR │ → │ Stage 2: Align │ → │ Stage 3: Diarize │ │ (faster-whisper)│ │ (wav2vec2 forced)│ │ (pyannote.audio) │ └─────────────────┘ └──────────────────┘ └──────────────────┘ │ │ │ Segment text Word timestamps Speaker labels (no timestamps) (sub-100ms) (per word)\n**Stage 1 — Transcription.** Uses ````faster-whisper```` (via CTranslate2) for batched inference. VAD preprocessing from pyannote strips silent segments, reducing hallucinations and enabling batching without WER degradation. Output: text segments without timestamps. **Stage 2 — Alignment.** Runs the transcript through a language-specific wav2vec2 phoneme alignment model. This maps each recognized word to its exact position in the audio via forced alignment. Output: segments with word-level start/end timestamps. **Stage 3 — Diarization.** Applies pyannote.audio's speaker segmentation model to partition the audio by speaker. WhisperX then assigns each word to a speaker label based on temporal overlap. Output: speaker-attributed, word-timed transcripts. Each stage can run independently. If you only need word timestamps without speaker labels, skip Stage 3. If you already have transcripts and only need alignment, use Stage 2 standalone. ## WhisperX Installation \u0026 Setup ### Prerequisites WhisperX requires Python 3.10+, PyTorch 2.7.1+ with CUDA 12.8, and ffmpeg. GPU is strongly recommended — CPU diarization is 50-60x slower and impractical for production workloads. **Hardware requirements:** | Hardware | Transcription | + Alignment | + Diarization | VRAM | | * * * | * * * | * * * | * * * | * * * | | RTX 4090 (FP16) | 72x RTF | 60x | 30x | 24 GB | | RTX 4070 (FP16) | 50x | 40x | 22x | 12 GB | | RTX 3060 (INT8) | 35x | 28x | 12x | 8 GB | | Apple M4 Max (MPS) | 25x | 20x | 8x | 36 GB | | CPU only | 10x | 8x | 0.5x | N/A | ### Method 1: PyPI Install (Recommended) `````bash # Install CUDA 12.8 toolkit first (Linux) # https://docs.nvidia.com/cuda/cuda-installation-guide-linux/ # Install whisperx pip install whisperx # Verify installation whisperx --version Method 2: uv Install (Fastest) # Using Astral uv for instant tool execution uvx whisperx --help # Or install from GitHub for latest features uvx git+https://github.com/m-bain/whisperX.git Method 3: Docker Install (Production) # Pull pre-built image with all dependencies docker pull nvidia/cuda:12.8.0-runtime-ubuntu22.04 # Create a Dockerfile for WhisperX cat \u003e Dockerfile.whisperx \u003c\u003c EOF FROM nvidia/cuda:12.8.0-runtime-ubuntu22.04 RUN apt-get update \u0026\u0026 apt-get install -y \\ python3-pip ffmpeg git wget \\ \u0026\u0026 rm -rf /var/lib/apt/lists/* RUN pip install --no-cache-dir whisperx torch==2.7.1 WORKDIR /workspace ENTRYPOINT [\"whisperx\"] EOF # Build and run docker build -f Dockerfile.whisperx -t whisperx:latest . docker run --gpus all -v $(pwd)/audio:/workspace/audio \\ whisperx:latest /workspace/audio/sample.wav --model large-v2 Hugging Face Token Setup (Required for Diarization) Speaker diarization requires accepting the pyannote model license: `````bash\n1. Create a Hugging Face account at https://huggingface.co 2. Generate a read token at https://huggingface.co/settings/tokens 3. Accept the license for: # - pyannote/speaker-diarization-community-1 - pyannote/segmentation-3.0 Export token export HF_TOKEN=“hf_your_token_here”\nPass via CLI whisperx audio.wav –diarize –hf_token $HF_TOKEN\n## Integration with Popular Tools ### faster-whisper WhisperX uses ``faster-whisper`` as its default ASR backend via CTranslate2. You can configure beam size and compute type for speed/accuracy tradeoffs: `````python import whisperx # Load model with faster-whisper backend model = whisperx.load_model( whisper_arch=\"large-v2\", device=\"cuda\", compute_type=\"float16\", # float16 for speed, int8 for low VRAM language=\"en\", asr_options={ \"beam_size\": 5, \"best_of\": 5, \"patience\": 2.0, } ) pyannote.audio Diarization uses pyannote.audio 3.1+ models. The DiarizationPipeline wraps pyannote with WhisperX-specific speaker assignment: `````python from whisperx.diarize import DiarizationPipeline\nInitialize diarization with pyannote backend diarize_model = DiarizationPipeline( model_name=“pyannote/speaker-diarization-community-1”, use_auth_token=HF_TOKEN, device=“cuda” )\nRun diarization with known speaker count diarize_segments = diarize_model( audio, min_speakers=2, max_speakers=4 )\nAssign speakers to words result = whisperx.assign_word_speakers(diarize_segments, result)\n### OpenAI Whisper WhisperX loads OpenAI's Whisper weights but converts them to CTranslate2 format for 4x faster inference. Use the ``--model`` flag to select any Whisper variant: `````bash # Model size options: tiny, base, small, medium, large-v1, large-v2, large-v3 whisperx audio.wav --model large-v3 --language en # For 8GB VRAM GPUs, use INT8 quantization whisperx audio.wav --model large-v2 --compute_type int8 Docker Compose Production Stack # docker-compose.yml version: \"3.8\" services: whisperx: build: context: . dockerfile: Dockerfile.whisperx runtime: nvidia environment: - NVIDIA_VISIBLE_DEVICES=all - HF_TOKEN=${HF_TOKEN} - CUDA_VISIBLE_DEVICES=0 volumes: - ./audio:/workspace/audio:ro - ./output:/workspace/output - ./models:/root/.cache:rw command: \u003e /workspace/audio/ --model large-v2 --language en --diarize --output_dir /workspace/output --output_format json --batch_size 16 --compute_type float16 deploy: resources: reservations: devices: - driver: nvidia count: 1 capabilities: [gpu] # Optional: Redis queue for batch jobs redis: image: redis:7-alpine ports: - \"6379:6379\" FastAPI Service Wrapper # api.py - Production-ready WhisperX API from fastapi import FastAPI, UploadFile, File from fastapi.responses import JSONResponse import whisperx import torch import tempfile import os app = FastAPI(title=\"WhisperX ASR Service\") # Preload models at startup DEVICE = \"cuda\" if torch.cuda.is_available() else \"cpu\" BATCH_SIZE = 16 MODEL = whisperx.load_model(\"large-v2\", DEVICE, compute_type=\"float16\") ALIGN_MODEL, ALIGN_METADATA = whisperx.load_align_model(\"en\", DEVICE) DIARIZE_MODEL = whisperx.DiarizationPipeline( use_auth_token=os.getenv(\"HF_TOKEN\"), device=DEVICE ) @app.post(\"/transcribe\") async def transcribe( file: UploadFile = File(...), diarize: bool = True, language: str = \"en\" ): \"\"\"Transcribe audio with word-level timestamps and speaker labels.\"\"\" with tempfile.NamedTemporaryFile(suffix=\".wav\", delete=False) as tmp: tmp.write(await file.read()) tmp_path = tmp.name try: # Load audio audio = whisperx.load_audio(tmp_path) # Stage 1: Transcribe result = MODEL.transcribe(audio, batch_size=BATCH_SIZE, language=language) # Stage 2: Align result = whisperx.align( result[\"segments\"], ALIGN_MODEL, ALIGN_METADATA, audio, DEVICE, return_char_alignments=False ) # Stage 3: Diarize (optional) if diarize: diarize_segments = DIARIZE_MODEL(audio) result = whisperx.assign_word_speakers(diarize_segments, result) return { \"language\": result.get(\"language\", language), \"segments\": result[\"segments\"], \"word_count\": sum(len(s.get(\"words\", [])) for s in result[\"segments\"]), \"speakers\": list(set( w.get(\"speaker\", \"UNKNOWN\") for s in result[\"segments\"] for w in s.get(\"words\", []) )) if diarize else [] } finally: os.unlink(tmp_path) @app.get(\"/health\") async def health(): return {\"status\": \"ok\", \"device\": DEVICE, \"model\": \"large-v2\"} Run the API: `````bash\nInstall dependencies pip install fastapi uvicorn python-multipart\nStart server uvicorn api:app –host 0.0.0.0 –port 8000 –workers 1\nTest with curl curl -X POST “http://localhost:8000/transcribe?diarize=true” -F “file=@interview.wav”\n## Benchmarks / Real-World Use Cases ### Speed Benchmark: 1 Hour of Audio Tested on AMD RX 7700 XT with CUDA 12.8: | Model | OpenAI Whisper | faster-whisper | WhisperX (full) | Speedup vs Whisper | | * * * | * * * | * * * | * * * | * * * | | tiny | ~12 min | ~1.5 min | ~2 min | 6x | | base | ~20 min | ~2.5 min | ~3.5 min | 5.7x | | small | ~35 min | ~5 min | ~7 min | 5x | | medium | ~55 min | ~9 min | ~13 min | 4.2x | | large-v3 | ~90 min | ~18 min | ~25 min | 3.6x | WhisperX adds ~30-40% overhead over faster-whisper due to alignment and diarization. The overhead is fixed per audio hour, making it negligible for batch workflows. ### Accuracy Benchmark: Word Segmentation \u0026 WER From the WhisperX paper (Bain et al., INTERSPEECH 2023) tested on TEDLIUM, AMI, and Switchboard corpora: | Metric | Whisper | wav2vec2 | WhisperX | Improvement | | * * * | * * * | * * * | * * * | * * * | | WER (TEDLIUM) | 4.2% | 6.8% | **3.9%** | -7% vs Whisper | | Word Seg. Precision | 62% | 71% | **89%** | +18% vs wav2vec2 | | Word Seg. Recall | 58% | 68% | **86%** | +18% vs wav2vec2 | | Timestamp Drift | ~1.5s | N/A | **\u003c80ms** | 18x better | Real-world WER from independent studies (2024-2025): | Scenario | Whisper WER | WhisperX WER | Notes | | * * * | * * * | * * * | * * * | | Studio quality, 1 speaker | 5.2% | **4.8%** | Clean podcast audio | | Multi-speaker meetings (AMI) | 12.1% | **8.8%** | 3-4 speakers | | Accented English | 21.3% | **14.5%** | Reduced hallucinations | | Noisy spontaneous speech | 31.0% | **28.3%** | Field recordings | ### Production Use Cases **Podcast production.** A podcast network processes 200+ episodes weekly. WhisperX's word-level timestamps enable click-to-seek in transcript players and automated highlight extraction. Processing time dropped from 4 hours to 25 minutes per episode after switching from OpenAI Whisper API. **Legal deposition analysis.** A litigation support firm uses WhisperX to transcribe 8-hour depositions with speaker attribution. The word-level alignment lets attorneys click any transcript line and jump to the exact moment in audio/video. Diarization accuracy is ~90% for 2-3 speakers in formal settings. **Video subtitling.** A media company generates SRT files for 50+ languages. WhisperX's VAD preprocessing eliminates hallucinations on silent gaps, and the ````--highlight_words```` flag produces karaoke-style word-by-word subtitles. **Meeting transcription.** Integrated with a Slack bot, WhisperX processes uploaded audio files and returns threaded transcripts with speaker labels. INT8 quantization on an RTX 3060 handles 10+ meetings per hour. ## Advanced Usage / Production Hardening ### Memory-Constrained Deployment For GPUs with limited VRAM: `````bash # INT8 quantization: 30-40% VRAM reduction, minimal accuracy loss whisperx audio.wav \\ --model large-v2 \\ --compute_type int8 \\ --batch_size 4 \\ --device cuda # CPU fallback for alignment (diarization still needs GPU) whisperx audio.wav \\ --model base \\ --compute_type int8 \\ --device cpu Model Caching for Container Environments # Pre-download models to avoid cold-start latency python3 \u003c\u003c PYEOF import whisperx import torch # Download ASR model model = whisperx.load_model(\"large-v2\", \"cuda\") del model # Download alignment model align_model, metadata = whisperx.load_align_model(\"en\", \"cuda\") del align_model # Download diarization model diarize = whisperx.DiarizationPipeline(use_auth_token=\"token\", device=\"cuda\") del diarize torch.cuda.empty_cache() print(\"Models cached successfully\") PYEOF # Mount cache in Docker # -v /host/cache:/root/.cache:rw Monitoring \u0026 Logging # monitoring.py - Prometheus metrics for WhisperX from prometheus_client import Counter, Histogram, start_http_server import time TRANSCRIPTION_DURATION = Histogram( \"whisperx_transcription_seconds\", \"Time spent transcribing audio\", [\"model\", \"stage\"] ) REQUEST_COUNT = Counter( \"whisperx_requests_total\", \"Total transcription requests\", [\"model\", \"status\"] ) def transcribe_with_metrics(audio_path, model_name=\"large-v2\"): start = time.time() audio = whisperx.load_audio(audio_path) # Stage 1 t0 = time.time() result = MODEL.transcribe(audio, batch_size=16) TRANSCRIPTION_DURATION.labels(model_name, \"transcribe\").observe(time.time() - t0) # Stage 2 t0 = time.time() result = whisperx.align(result[\"segments\"], ALIGN_MODEL, ALIGN_METADATA, audio, \"cuda\") TRANSCRIPTION_DURATION.labels(model_name, \"align\").observe(time.time() - t0) # Stage 3 t0 = time.time() diarize_segments = DIARIZE_MODEL(audio) result = whisperx.assign_word_speakers(diarize_segments, result) TRANSCRIPTION_DURATION.labels(model_name, \"diarize\").observe(time.time() - t0) total = time.time() - start REQUEST_COUNT.labels(model_name, \"success\").inc() return result, total # Expose metrics on port 9090 start_http_server(9090) Security Considerations Token management. Store HF_TOKEN in a secrets manager (AWS Secrets Manager, Vault), never in code or environment files. Input validation. Sanitize uploaded filenames. Process audio in isolated temp directories. Rate limiting. Implement per-user rate limits to prevent GPU resource exhaustion. Model isolation. Run WhisperX in a dedicated container with read-only root filesystem. # Secure Docker run docker run --gpus all \\ --read-only \\ --tmpfs /tmp:noexec,nosuid,size=1g \\ --security-opt no-new-privileges:true \\ --cap-drop ALL \\ -e HF_TOKEN_FILE=/run/secrets/hf_token \\ whisperx:latest audio.wav --diarize Scaling with Kubernetes # k8s-deployment.yaml apiVersion: apps/v1 kind: Deployment metadata: name: whisperx-asr spec: replicas: 2 selector: matchLabels: app: whisperx template: metadata: labels: app: whisperx spec: runtimeClassName: nvidia containers: - name: whisperx image: whisperx:latest resources: limits: nvidia.com/gpu: 1 memory: \"16Gi\" requests: nvidia.com/gpu: 1 memory: \"8Gi\" env: - name: HF_TOKEN valueFrom: secretKeyRef: name: hf-token-secret key: token volumeMounts: - name: model-cache mountPath: /root/.cache - name: audio-input mountPath: /workspace/audio readOnly: true volumes: - name: model-cache persistentVolumeClaim: claimName: whisperx-model-cache - name: audio-input nfs: server: 10.0.0.5 path: /shared/audio Comparison with Alternatives | Feature | WhisperX | OpenAI Whisper | faster-whisper | DeepSpeech | |\n|\n|\n|\n|\n| | Word-level timestamps | Yes (\u003c80ms) | No (segment only) | No (segment only) | No | | Speaker diarization | Yes (per word) | No | No | No | | Max inference speed | 70x RTF | 10x RTF | 70x RTF | 15x RTF | | Model sizes | tiny to large-v3 | tiny to large-v3 | tiny to large-v3 | Single model | | VRAM (large model) | 8-16 GB | 10-24 GB | 6-10 GB | 2-4 GB | | Languages | 99+ | 99+ | 99+ | English only | | WER (clean English) | 3.9% | 4.2% | 4.2% | 7.2% | | Batch processing | Yes (batched) | No | Yes (batched) | Yes | | Docker support | Build your own | Community images | Official images | Official images | | License | BSD-2-Clause | MIT | MIT | MPL 2.0 | | Active maintenance | High (110+ contributors) | Medium | High | Low (deprecated) |\nWhen to choose WhisperX: You need word-level timestamps, speaker labels, or both. The 30-40% speed penalty over faster-whisper is justified by the richer output.\nWhen to choose faster-whisper: You only need fast transcription without timestamps or diarization. It is the speed king for plain ASR.\nWhen to choose OpenAI Whisper: You need the reference implementation for research or compatibility. The API is simplest but slowest and most expensive at scale.\nWhen to choose DeepSpeech: You need a tiny English-only model on resource-constrained devices. Note: Mozilla officially deprecated DeepSpeech in 2022; avoid for new projects.\nLimitations / Honest Assessment Numbers and symbols cannot be aligned. Words like “2014” or “£13.60” contain no phonemes that wav2vec2 can align. These words appear in the transcript but without timestamps. Post-process with regex-based estimation if needed.\nOverlapping speech is problematic. When two speakers talk simultaneously, WhisperX (and Whisper) assigns all speech to one speaker. The pyannote diarization model detects overlaps but cannot separate intertwined audio streams. For heavy crosstalk scenarios, expect 20-30% speaker error.\nDiarization requires known speaker counts for best accuracy. While pyannote can auto-detect speaker count, accuracy drops from ~90% (known count) to ~75% (auto-detect) on 4+ speaker recordings. Pass --min_speakers and --max_speakers when possible.\nLanguage-specific alignment models needed. Word-level alignment requires a phoneme model for each language. WhisperX auto-selects models for 20+ languages, but low-resource languages may lack quality aligners. Test on your target language before committing.\nNot a real-time streaming system. WhisperX processes complete audio files. It cannot transcribe live streams or microphone input. For real-time use cases, look at WebRTC + buffered chunking or commercial APIs like Deepgram.\nGPU is essentially required. CPU diarization runs at 0.5x realtime — a 1-hour meeting takes 2 hours to process. The alignment stage is also GPU-dependent. Budget for at least an 8GB VRAM GPU.\nFrequently Asked Questions Q1: How accurate are the word-level timestamps compared to manual annotation?\nWhisperX timestamps have a mean absolute error of 40-80ms on clean speech, measured against manually aligned TED talks. This is sufficient for subtitle synchronization and click-to-seek. On noisy audio with background music, error increases to 100-200ms. Always validate on your specific audio domain.\nQ2: Can I use WhisperX without speaker diarization?\nYes — diarization is completely optional. Run without --diarize to get word-level timestamps only. The alignment stage runs regardless, so you still get sub-100ms word timestamps. This cuts processing time by ~40%.\nQ3: What GPU do I need for production deployment?\nAn RTX 3060 (8GB VRAM) with INT8 quantization handles the large-v2 model comfortably. For high-throughput deployments, an RTX 4070 (12GB) processes 20+ audio hours per hour with full diarization. Cloud GPUs (A10G, T4, L4) work well with the same configurations.\nQ4: How do I handle long audio files (2+ hours)?\nWhisperX automatically segments long audio using VAD. No manual chunking required. For 4+ hour files, increase --batch_size if VRAM allows, or reduce to 4 for memory-constrained systems. The VAD stage ensures no words are cut mid-sentence.\nQ5: Can I fine-tune WhisperX on my own data?\nYou can fine-tune the underlying Whisper model using OpenAI’s training scripts, then load your custom weights into WhisperX. The alignment and diarization stages do not require fine-tuning. For domain-specific vocabulary (medical, legal), fine-tuning the ASR model reduces WER by 15-30%.\nQ6: Why do I need a Hugging Face token?\nThe pyannote.audio speaker diarization model (````speaker-diarization-community-1```) is hosted on Hugging Face and requires accepting a license agreement. The token proves you have accepted the terms. It is free and takes 2 minutes to set up. No token is needed if you skip diarization.\nConclusion WhisperX fills a critical gap in the open-source ASR stack: production-grade word-level timestamps and speaker diarization at 70x realtime. The three-stage pipeline (transcribe → align → diarize) gives you precise control over output granularity, and the faster-whisper backend keeps inference costs low.\nFor teams building podcast platforms, legal tech tools, meeting transcription services, or video subtitling pipelines, WhisperX is the most capable open-source option available in 2026. The 22,000 GitHub stars and active contributor base (110+) signal a healthy, evolving project.\nNext steps:\nRun the Docker setup in this guide to process your first audio file Integrate the FastAPI service into your existing pipeline Join the dibi8 developer community on Telegram to share deployment tips Recommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don’t cost you extra and they help keep dibi8.com running.\nSources \u0026 Further Reading WhisperX GitHub Repository — Official source code, 22k stars WhisperX Paper (INTERSPEECH 2023) — Original research paper with benchmarks faster-whisper Documentation — CTranslate2 backend details pyannote.audio Documentation — Speaker diarization model info OpenAI Whisper — Base ASR model Hugging Face pyannote models — Speaker diarization model licenses CUDA Installation Guide — GPU setup for Linux CTranslate2 Performance Guide — Optimization tips WhisperX Examples — Multilingual usage samples { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “WhisperX: 22K+ Stars — Production ASR Setup Guide 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/whisperx\" } } Related Articles apple-container freellmapi-openai-compatible-proxy-free-llm-tiers-2026 moneyprinterturbo-one-click-ai-video-generator freellmapi-openai-compatible-proxy-free-llm-tiers-2026 moneyprinterturbo-one-click-ai-video-generator Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "3253",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>14 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>16 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/llm-frameworks/whisperx/">En</a>
@@ -209,30 +209,30 @@
 
     <div class="inner"><ul><ul>
             <li>
-                <a href="#whisperx%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80" aria-label="WhisperX란 무엇인가">WhisperX란 무엇인가</a></li>
+                <a href="#what-is-whisperx" aria-label="What Is WhisperX?">What Is WhisperX?</a></li>
             <li>
-                <a href="#whisperx%ec%9d%98-%ec%9e%91%eb%8f%99-%ec%9b%90%eb%a6%ac" aria-label="WhisperX의 작동 원리">WhisperX의 작동 원리</a><ul>
+                <a href="#how-whisperx-works" aria-label="How WhisperX Works">How WhisperX Works</a><ul>
                     
             <li>
-                <a href="#%eb%b0%a9%eb%b2%95-2-uv-%ec%84%a4%ec%b9%98-%ea%b0%80%ec%9e%a5-%eb%b9%a0%eb%a6%84" aria-label="방법 2: uv 설치 (가장 빠름)">방법 2: uv 설치 (가장 빠름)</a></li>
+                <a href="#method-2-uv-install-fastest" aria-label="Method 2: uv Install (Fastest)">Method 2: uv Install (Fastest)</a></li>
             <li>
-                <a href="#%eb%b0%a9%eb%b2%95-3-docker-%ec%84%a4%ec%b9%98-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98" aria-label="방법 3: Docker 설치 (프로덕션)">방법 3: Docker 설치 (프로덕션)</a></li>
+                <a href="#method-3-docker-install-production" aria-label="Method 3: Docker Install (Production)">Method 3: Docker Install (Production)</a></li>
             <li>
-                <a href="#hugging-face-%ed%86%a0%ed%81%b0-%ec%84%a4%ec%a0%95-%eb%b6%84%eb%a6%ac%ec%97%90-%ed%95%84%ec%9a%94" aria-label="Hugging Face 토큰 설정 (분리에 필요)">Hugging Face 토큰 설정 (분리에 필요)</a></li></ul>
+                <a href="#hugging-face-token-setup-required-for-diarization" aria-label="Hugging Face Token Setup (Required for Diarization)">Hugging Face Token Setup (Required for Diarization)</a></li></ul>
             </li></ul>
                 
             <li>
-                <a href="#1--%ec%97%90%ec%84%9c-%ea%b3%84%ec%a0%95-%ec%83%9d%ec%84%b1" aria-label="1. https://huggingface.co 에서 계정 생성">1. https://huggingface.co 에서 계정 생성</a></li>
+                <a href="#1-create-a-hugging-face-account-at" aria-label="1. Create a Hugging Face account at https://huggingface.co">1. Create a Hugging Face account at https://huggingface.co</a></li>
             <li>
-                <a href="#2--%ec%97%90%ec%84%9c-%ec%9d%bd%ea%b8%b0-%ed%86%a0%ed%81%b0-%ec%83%9d%ec%84%b1" aria-label="2. https://huggingface.co/settings/tokens 에서 읽기 토큰 생성">2. https://huggingface.co/settings/tokens 에서 읽기 토큰 생성</a></li>
+                <a href="#2-generate-a-read-token-at" aria-label="2. Generate a read token at https://huggingface.co/settings/tokens">2. Generate a read token at https://huggingface.co/settings/tokens</a></li>
             <li>
-                <a href="#3-%eb%8b%a4%ec%9d%8c-%eb%aa%a8%eb%8d%b8-%eb%9d%bc%ec%9d%b4%ec%84%a0%ec%8a%a4-%ec%88%98%eb%9d%bd-------pyannotespeaker-diarization-community-1" aria-label="3. 다음 모델 라이선스 수락: #    - pyannote/speaker-diarization-community-1">3. 다음 모델 라이선스 수락: #    - pyannote/speaker-diarization-community-1</a></li>
+                <a href="#3-accept-the-license-for-------pyannotespeaker-diarization-community-1" aria-label="3. Accept the license for: #    - pyannote/speaker-diarization-community-1">3. Accept the license for: #    - pyannote/speaker-diarization-community-1</a></li>
             <li>
                 <a href="#--pyannotesegmentation-30" aria-label="- pyannote/segmentation-3.0">- pyannote/segmentation-3.0</a></li>
             <li>
-                <a href="#%ed%86%a0%ed%81%b0-%eb%82%b3%ec%b6%9c" aria-label="토큰 낳출">토큰 낳출</a></li>
+                <a href="#export-token" aria-label="Export token">Export token</a></li>
             <li>
-                <a href="#cli%eb%a1%9c-%ec%a0%84%eb%8b%ac" aria-label="CLI로 전달">CLI로 전달</a><ul>
+                <a href="#pass-via-cli" aria-label="Pass via CLI">Pass via CLI</a><ul>
                     <ul>
                     
             <li>
@@ -240,48 +240,48 @@
                 </ul>
             </li>
             <li>
-                <a href="#pyannote-%eb%b0%b1%ec%97%94%eb%93%9c%eb%a1%9c-%eb%b6%84%eb%a6%ac-%ec%b4%88%ea%b8%b0%ed%99%94" aria-label="pyannote 백엔드로 분리 초기화">pyannote 백엔드로 분리 초기화</a></li>
+                <a href="#initialize-diarization-with-pyannote-backend" aria-label="Initialize diarization with pyannote backend">Initialize diarization with pyannote backend</a></li>
             <li>
-                <a href="#%ec%95%8c%eb%a0%a4%ec%a7%84-%ed%99%94%ec%9e%90-%ec%88%98%eb%a1%9c-%eb%b6%84%eb%a6%ac-%ec%8b%a4%ed%96%89" aria-label="알려진 화자 수로 분리 실행">알려진 화자 수로 분리 실행</a></li>
+                <a href="#run-diarization-with-known-speaker-count" aria-label="Run diarization with known speaker count">Run diarization with known speaker count</a></li>
             <li>
-                <a href="#%eb%8b%a8%ec%96%b4%ec%97%90-%ed%99%94%ec%9e%90-%ed%95%a0%eb%8b%b9" aria-label="단어에 화자 할당">단어에 화자 할당</a><ul>
+                <a href="#assign-speakers-to-words" aria-label="Assign speakers to words">Assign speakers to words</a><ul>
                     <ul>
                     
             <li>
-                <a href="#docker-compose-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ec%8a%a4%ed%83%9d" aria-label="Docker Compose 프로덕션 스택">Docker Compose 프로덕션 스택</a></li>
+                <a href="#docker-compose-production-stack" aria-label="Docker Compose Production Stack">Docker Compose Production Stack</a></li>
             <li>
-                <a href="#fastapi-%ec%84%9c%eb%b9%84%ec%8a%a4-%eb%9e%98%ed%8d%bc" aria-label="FastAPI 서비스 래퍼">FastAPI 서비스 래퍼</a></li></ul>
+                <a href="#fastapi-service-wrapper" aria-label="FastAPI Service Wrapper">FastAPI Service Wrapper</a></li></ul>
                 </ul>
             </li>
             <li>
-                <a href="#%ec%9d%98%ec%a1%b4%ec%84%b1-%ec%84%a4%ec%b9%98" aria-label="의존성 설치">의존성 설치</a></li>
+                <a href="#install-dependencies" aria-label="Install dependencies">Install dependencies</a></li>
             <li>
-                <a href="#%ec%84%9c%eb%b2%84-%ec%8b%9c%ec%9e%91" aria-label="서버 시작">서버 시작</a></li>
+                <a href="#start-server" aria-label="Start server">Start server</a></li>
             <li>
-                <a href="#curl%eb%a1%9c-%ed%85%8c%ec%8a%a4%ed%8a%b8" aria-label="curl로 테스트">curl로 테스트</a><ul>
+                <a href="#test-with-curl" aria-label="Test with curl">Test with curl</a><ul>
                     <ul>
                     
             <li>
-                <a href="#%ec%bb%a8%ed%85%8c%ec%9d%b4%eb%84%88-%ed%99%98%ea%b2%bd-%eb%aa%a8%eb%8d%b8-%ec%ba%90%ec%8b%b1" aria-label="컨테이너 환경 모델 캐싱">컨테이너 환경 모델 캐싱</a></li>
+                <a href="#model-caching-for-container-environments" aria-label="Model Caching for Container Environments">Model Caching for Container Environments</a></li>
             <li>
-                <a href="#%eb%aa%a8%eb%8b%88%ed%84%b0%eb%a7%81-%eb%b0%8f-%eb%a1%9c%ea%b9%85" aria-label="모니터링 및 로깅">모니터링 및 로깅</a></li>
+                <a href="#monitoring--logging" aria-label="Monitoring &amp; Logging">Monitoring &amp; Logging</a></li>
             <li>
-                <a href="#%eb%b3%b4%ec%95%88-%ea%b3%a0%eb%a0%a4%ec%82%ac%ed%95%ad" aria-label="보안 고려사항">보안 고려사항</a></li>
+                <a href="#security-considerations" aria-label="Security Considerations">Security Considerations</a></li>
             <li>
-                <a href="#kubernetes%eb%a1%9c-%ec%8a%a4%ec%bc%80%ec%9d%bc%eb%a7%81" aria-label="Kubernetes로 스케일링">Kubernetes로 스케일링</a></li></ul>
+                <a href="#scaling-with-kubernetes" aria-label="Scaling with Kubernetes">Scaling with Kubernetes</a></li></ul>
                 
             <li>
-                <a href="#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90" aria-label="대안과의 비교">대안과의 비교</a></li>
+                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li>
             <li>
-                <a href="#%ed%95%9c%ea%b3%84--%ec%a0%95%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80" aria-label="한계 / 정직한 평가">한계 / 정직한 평가</a></li>
+                <a href="#limitations--honest-assessment" aria-label="Limitations / Honest Assessment">Limitations / Honest Assessment</a></li>
             <li>
-                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a></li>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a></li>
             <li>
-                <a href="#%ea%b2%b0%eb%a1%a0" aria-label="결론">결론</a></li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
             <li>
-                <a href="#%ec%b6%94%ec%b2%9c-%ed%98%b8%ec%8a%a4%ed%8c%85-%eb%b0%8f-%ec%9d%b8%ed%94%84%eb%9d%bc" aria-label="추천 호스팅 및 인프라">추천 호스팅 및 인프라</a></li>
+                <a href="#recommended-hosting--infrastructure" aria-label="Recommended Hosting &amp; Infrastructure">Recommended Hosting &amp; Infrastructure</a></li>
             <li>
-                <a href="#%ec%b0%b8%ea%b3%a0%ec%9e%90%eb%a3%8c-%eb%b0%8f-%ec%b6%94%ea%b0%80-%ec%9d%bd%ec%9d%84%ea%b1%b0%eb%a6%ac" aria-label="참고자료 및 추가 읽을거리">참고자료 및 추가 읽을거리</a></li>
+                <a href="#sources--further-reading" aria-label="Sources &amp; Further Reading">Sources &amp; Further Reading</a></li>
             <li>
                 <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
             </li>
@@ -307,75 +307,85 @@ backup_url: &rsquo;'
 last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;ai-tools&rdquo;]
-tags: [&ldquo;whisperx&rdquo;, &ldquo;asr&rdquo;, &ldquo;음성인식&rdquo;, &ldquo;화자분리&rdquo;, &ldquo;단어타임스탬프&rdquo;, &ldquo;faster-whisper&rdquo;, &ldquo;pyannote&rdquo;, &ldquo;docker&rdquo;]
+tags: [&ldquo;whisperx&rdquo;, &ldquo;asr&rdquo;, &ldquo;speech-recognition&rdquo;, &ldquo;speaker-diarization&rdquo;, &ldquo;word-timestamps&rdquo;, &ldquo;faster-whisper&rdquo;, &ldquo;pyannote&rdquo;, &ldquo;docker&rdquo;]
 aliases:</p>
 <ul>
-<li>/kr/posts/whisperx/</li>
+<li>/posts/whisperx/-</li>
 </ul>
 <hr>
-<p>오디오 전사는 쉽습니다. 하지만 <strong>100ms 미만의 단어 수준 타임스탬프</strong>를 얻고, <strong>각 단어를 누가 말했는지 정확히 아는 것</strong>은 어렵습니다. OpenAI Whisper는 초 단위로 드리프트하는 구간 수준 타임스탬프만 제공합니다. 팟캐스트 편집, 비디오 자막, 회의 녹초본, 법적 증언 기록에 있어서 이 정밀도는 사용할 수 없습니다.</p>
-<p><strong>WhisperX</strong>가 등장했습니다 — wav2vec2 강제 음소 정렬과 pyannote.audio 화자 분리를 통해 ```faster-whisper````를 강화하는 22,000개 스타를 보유한 오픈소스 툴킷입니다. 그 결과: 70배 실시간 전사 속도에 단어 수준 타임스탬프와 다중 화자 라벨을 제공합니다. INTERSPEECH 2023에서 수락되었으며 전 세계 프로덕션 파이프라인에서 실전 검증을 거쳤습니다.</p>
-<p>이 가이드는 WhisperX 설치, Docker 배포, Python API 통합, 프로덕션 하드닝, 그리고 Whisper, faster-whisper, DeepSpeech와의 정직한 벤치마크 비교를 포함한 완전한 튜토리얼을 제공합니다.</p>
-<p><img alt="WhisperX 단어 수준 타임스탬프 출력 예시" loading="lazy" src="https://raw.githubusercontent.com/m-bain/whisperX/main/figures/example_output.png"></p>
-<h2 id="whisperx란-무엇인가">WhisperX란 무엇인가<a hidden class="anchor" aria-hidden="true" href="#whisperx란-무엇인가">#</a></h2>
-<p>WhisperX는 OpenAI의 Whisper 모델을 세 가지 프로덕션 핵심 기능으로 확장하는 자동 음성 인식(ASR) 파이프라인입니다: wav2vec2 강제 정렬을 통한 <strong>단어 수준 타임스탬프 정렬</strong>, pyannote.audio를 통한 <strong>화자 분리</strong>, 그리고 faster-whisper 백엔드를 통한 <strong>배치 추론</strong>입니다. 옥스퍼드 대학교 시각 기하학 그룹의 Max Bain이 유지보수하며 BSD-2-Clause 라이선스를 따릅니다.</p>
-<p>Whisper의 구간 수준 타임스탬프(1-3초 드리프트)와 달리, WhisperX는 각 단어를 오디오의 정확한 위치에 100ms 미만의 정밀도로 고정합니다. 독립형 분리 도구와 달리, WhisperX는 화자 라벨을 개별 단어에 할당합니다 — 단순히 30초 청크가 아닙니다. 이는 다중 화자 전사 워크플로우의 필수 선택지로 만들어줍니다.</p>
-<h2 id="whisperx의-작동-원리">WhisperX의 작동 원리<a hidden class="anchor" aria-hidden="true" href="#whisperx의-작동-원리">#</a></h2>
-<p>WhisperX는 세 단계 파이프라인으로 작동하며, 각 단계는 점진적으로 풍부한 출력을 생성합니다: `````
+<p>Transcribing audio is easy. Getting <strong>word-level timestamps accurate to sub-100ms</strong> and knowing <strong>exactly who spoke each word</strong> is hard. OpenAI Whisper gives you segment-level timestamps that drift by seconds. For podcast editing, video subtitling, meeting transcripts, and legal depositions, that level of precision is unusable.</p>
+<p>Enter <strong>WhisperX</strong> — a 22,000-star open-source toolkit that wraps ```faster-whisper```` with forced phoneme alignment via wav2vec2 and speaker diarization via pyannote.audio. The result: 70x realtime transcription with word-level timestamps and multi-speaker labels. Accepted at INTERSPEECH 2023 and battle-tested in production pipelines worldwide.</p>
+<p>This guide walks through a complete WhisperX tutorial covering installation, a full WhisperX Docker setup, Python API integration, production hardening, and honest benchmarks in a WhisperX vs Whisper comparison with faster-whisper and DeepSpeech.</p>
+<p><img alt="WhisperX example output with word-level timestamps" loading="lazy" src="https://raw.githubusercontent.com/m-bain/whisperX/main/figures/example_output.png"></p>
+<h2 id="what-is-whisperx">What Is WhisperX?<a hidden class="anchor" aria-hidden="true" href="#what-is-whisperx">#</a></h2>
+<p>WhisperX is an automatic speech recognition (ASR) pipeline that extends OpenAI&rsquo;s Whisper model with three production-critical capabilities: <strong>word-level timestamp alignment</strong> via wav2vec2 forced alignment, <strong>speaker diarization</strong> via pyannote.audio, and <strong>batched inference</strong> via the faster-whisper backend. It is maintained by Max Bain at the University of Oxford&rsquo;s Visual Geometry Group and licensed under BSD-2-Clause.</p>
+<p>Unlike Whisper&rsquo;s segment-level timestamps (which drift by 1-3 seconds), WhisperX pins every word to its exact audio position with sub-100ms accuracy. Unlike standalone diarization tools, WhisperX assigns speaker labels to individual words — not just 30-second chunks. This makes it the go-to choice for multi-speaker transcription workflows.</p>
+<h2 id="how-whisperx-works">How WhisperX Works<a hidden class="anchor" aria-hidden="true" href="#how-whisperx-works">#</a></h2>
+<p>WhisperX operates as a three-stage pipeline, with each stage producing incrementally richer output: `````
 ┌─────────────────┐    ┌──────────────────┐    ┌──────────────────┐
-│  단계 1: ASR    │ →  │  단계 2: 정렬    │ →  │  단계 3: 분리    │
-│ (faster-whisper)│    │ (wav2vec2 강제)  │    │ (pyannote.audio) │
+│  Stage 1: ASR   │ →  │ Stage 2: Align   │ →  │ Stage 3: Diarize │
+│  (faster-whisper)│    │ (wav2vec2 forced)│    │ (pyannote.audio) │
 └─────────────────┘    └──────────────────┘    └──────────────────┘
 │                       │                       │
-구간 텍스트            단어 타임스탬프         화자 라벨
-(타임스탬프 없음)      (100ms 미만)          (단어당)</p>
+Segment text           Word timestamps         Speaker labels
+(no timestamps)        (sub-100ms)             (per word)</p>
 <pre tabindex="0"><code>
-**단계 1 — 전사.** CTranslate2를 통해 ````faster-whisper````를 사용한 배치 추론. pyannote의 VAD 전처리가 무음 구간을 제거하여 환각 현상을 줄이고 WER 저하 없이 배치 처리를 가능하게 합니다. 출력: 타임스탬프 없는 텍스트 구간.
+**Stage 1 — Transcription.** Uses ````faster-whisper```` (via CTranslate2) for batched inference. VAD preprocessing from pyannote strips silent segments, reducing hallucinations and enabling batching without WER degradation. Output: text segments without timestamps.
 
-**단계 2 — 정렬.** 언어 특정 wav2vec2 음소 정렬 모델을 통해 전사 텍스트를 실행합니다. 이는 강제 정렬을 통해 각 인식된 단어를 오디오의 정확한 위치에 매핑합니다. 출력: 단어 수준 시작/종료 타임스탬프가 있는 구간.
+**Stage 2 — Alignment.** Runs the transcript through a language-specific wav2vec2 phoneme alignment model. This maps each recognized word to its exact position in the audio via forced alignment. Output: segments with word-level start/end timestamps.
 
-**단계 3 — 분리.** pyannote.audio의 화자 분할 모델을 적용하여 오디오를 화자별로 분할합니다. 그런 다음 WhisperX는 시간적 중첩을 기반으로 각 단어에 화자 라벨을 할당합니다. 출력: 화자 속성이 있는 단어 수준 전사 텍스트.
+**Stage 3 — Diarization.** Applies pyannote.audio&#39;s speaker segmentation model to partition the audio by speaker. WhisperX then assigns each word to a speaker label based on temporal overlap. Output: speaker-attributed, word-timed transcripts.
 
-각 단계는 독립적으로 실행할 수 있습니다. 단어 타임스탬프만 필요하고 화자 라벨이 필요 없다면 단계 3을 건프니다. 이미 전사 텍스트가 있고 정렬만 필요하다면 단계 2를 단독으로 사용하세요.
+Each stage can run independently. If you only need word timestamps without speaker labels, skip Stage 3. If you already have transcripts and only need alignment, use Stage 2 standalone.
 
-## 설치 및 설정
+## WhisperX Installation &amp; Setup
 
-### 사전 요구사항
+### Prerequisites
 
-WhisperX는 Python 3.10+, CUDA 12.8이 포함된 PyTorch 2.7.1+, 그리고 ffmpeg를 필요로 합니다. GPU 사용을 강력히 권장합니다 — CPU 화자 분리는 50-60배 느리며 프로덕션 워크로드에서는 비실용적입니다.
+WhisperX requires Python 3.10+, PyTorch 2.7.1+ with CUDA 12.8, and ffmpeg. GPU is strongly recommended — CPU diarization is 50-60x slower and impractical for production workloads.
 
-**하드웨어 요구사항:**
+**Hardware requirements:**
 
-| 하드웨어 | 전사 | + 정렬 | + 분리 | VRAM |
-|----------|------|--------|--------|------|
+| Hardware | Transcription | + Alignment | + Diarization | VRAM |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
 | RTX 4090 (FP16) | 72x RTF | 60x | 30x | 24 GB |
 | RTX 4070 (FP16) | 50x | 40x | 22x | 12 GB |
 | RTX 3060 (INT8) | 35x | 28x | 12x | 8 GB |
 | Apple M4 Max (MPS) | 25x | 20x | 8x | 36 GB |
-| CPU 전용 | 10x | 8x | 0.5x | N/A |
+| CPU only | 10x | 8x | 0.5x | N/A |
 
-### 방법 1: PyPI 설치 (권장)
+### Method 1: PyPI Install (Recommended)
 
 `````bash
-# 먼저 CUDA 12.8 toolkit 설치 (Linux)
+# Install CUDA 12.8 toolkit first (Linux)
 # https://docs.nvidia.com/cuda/cuda-installation-guide-linux/
 
-# whisperx 설치
+# Install whisperx
 pip install whisperx
 
-# 설치 확인
+# Verify installation
 whisperx --version
-</code></pre><h3 id="방법-2-uv-설치-가장-빠름">방법 2: uv 설치 (가장 빠름)<a hidden class="anchor" aria-hidden="true" href="#방법-2-uv-설치-가장-빠름">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Astral uv를 사용한 즉시 도구 실행</span>
+</code></pre><h3 id="method-2-uv-install-fastest">Method 2: uv Install (Fastest)<a hidden class="anchor" aria-hidden="true" href="#method-2-uv-install-fastest">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Using Astral uv for instant tool execution</span>
 </span></span><span style="display:flex;"><span>uvx whisperx --help
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 또는 GitHub에서 최신 기능 설치</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or install from GitHub for latest features</span>
 </span></span><span style="display:flex;"><span>uvx git+https://github.com/m-bain/whisperX.git
-</span></span></code></pre></div><h3 id="방법-3-docker-설치-프로덕션">방법 3: Docker 설치 (프로덕션)<a hidden class="anchor" aria-hidden="true" href="#방법-3-docker-설치-프로덕션">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 모든 의존성이 포함된 사전 빌드 이미지 가져오기</span>
+</span></span></code></pre></div><h3 id="method-3-docker-install-production">Method 3: Docker Install (Production)<a hidden class="anchor" aria-hidden="true" href="#method-3-docker-install-production">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Pull pre-built image with all dependencies</span>
 </span></span><span style="display:flex;"><span>docker pull nvidia/cuda:12.8.0-runtime-ubuntu22.04
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># WhisperX용 Dockerfile 생성</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a Dockerfile for WhisperX</span>
 </span></span><span style="display:flex;"><span>cat &gt; Dockerfile.whisperx <span style="color:#e6db74">&lt;&lt; EOF
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">FROM nvidia/cuda:12.8.0-runtime-ubuntu22.04
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
@@ -389,33 +399,33 @@ whisperx --version
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">ENTRYPOINT [&#34;whisperx&#34;]
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 빌드 및 실행</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build and run</span>
 </span></span><span style="display:flex;"><span>docker build -f Dockerfile.whisperx -t whisperx:latest .
 </span></span><span style="display:flex;"><span>docker run --gpus all -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/audio:/workspace/audio <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  whisperx:latest /workspace/audio/sample.wav --model large-v2
-</span></span></code></pre></div><h3 id="hugging-face-토큰-설정-분리에-필요">Hugging Face 토큰 설정 (분리에 필요)<a hidden class="anchor" aria-hidden="true" href="#hugging-face-토큰-설정-분리에-필요">#</a></h3>
-<p>화자 분리를 위해서는 pyannote 모델 라이선스 수락이 필요합니다: `````bash</p>
-<h1 id="1--에서-계정-생성">1. <a href="https://huggingface.co">https://huggingface.co</a> 에서 계정 생성<a hidden class="anchor" aria-hidden="true" href="#1--에서-계정-생성">#</a></h1>
-<h1 id="2--에서-읽기-토큰-생성">2. <a href="https://huggingface.co/settings/tokens">https://huggingface.co/settings/tokens</a> 에서 읽기 토큰 생성<a hidden class="anchor" aria-hidden="true" href="#2--에서-읽기-토큰-생성">#</a></h1>
-<h1 id="3-다음-모델-라이선스-수락-------pyannotespeaker-diarization-community-1">3. 다음 모델 라이선스 수락: #    - pyannote/speaker-diarization-community-1<a hidden class="anchor" aria-hidden="true" href="#3-다음-모델-라이선스-수락-------pyannotespeaker-diarization-community-1">#</a></h1>
+</span></span></code></pre></div><h3 id="hugging-face-token-setup-required-for-diarization">Hugging Face Token Setup (Required for Diarization)<a hidden class="anchor" aria-hidden="true" href="#hugging-face-token-setup-required-for-diarization">#</a></h3>
+<p>Speaker diarization requires accepting the pyannote model license: `````bash</p>
+<h1 id="1-create-a-hugging-face-account-at">1. Create a Hugging Face account at <a href="https://huggingface.co">https://huggingface.co</a><a hidden class="anchor" aria-hidden="true" href="#1-create-a-hugging-face-account-at">#</a></h1>
+<h1 id="2-generate-a-read-token-at">2. Generate a read token at <a href="https://huggingface.co/settings/tokens">https://huggingface.co/settings/tokens</a><a hidden class="anchor" aria-hidden="true" href="#2-generate-a-read-token-at">#</a></h1>
+<h1 id="3-accept-the-license-for-------pyannotespeaker-diarization-community-1">3. Accept the license for: #    - pyannote/speaker-diarization-community-1<a hidden class="anchor" aria-hidden="true" href="#3-accept-the-license-for-------pyannotespeaker-diarization-community-1">#</a></h1>
 <h1 id="--pyannotesegmentation-30">- pyannote/segmentation-3.0<a hidden class="anchor" aria-hidden="true" href="#--pyannotesegmentation-30">#</a></h1>
-<h1 id="토큰-낳출">토큰 낳출<a hidden class="anchor" aria-hidden="true" href="#토큰-낳출">#</a></h1>
+<h1 id="export-token">Export token<a hidden class="anchor" aria-hidden="true" href="#export-token">#</a></h1>
 <p>export HF_TOKEN=&ldquo;hf_your_token_here&rdquo;</p>
-<h1 id="cli로-전달">CLI로 전달<a hidden class="anchor" aria-hidden="true" href="#cli로-전달">#</a></h1>
+<h1 id="pass-via-cli">Pass via CLI<a hidden class="anchor" aria-hidden="true" href="#pass-via-cli">#</a></h1>
 <p>whisperx audio.wav &ndash;diarize &ndash;hf_token $HF_TOKEN</p>
 <pre tabindex="0"><code>
-## 인기 도구와의 통합
+## Integration with Popular Tools
 
 ### faster-whisper
 
-WhisperX는 CTranslate2를 통해 ``faster-whisper``를 기본 ASR 백엔드로 사용합니다. 속도/정확도 균형을 위해 빔 크기와 계산 유형을 구성할 수 있습니다: `````python
+WhisperX uses ``faster-whisper`` as its default ASR backend via CTranslate2. You can configure beam size and compute type for speed/accuracy tradeoffs: `````python
 import whisperx
 
-# faster-whisper 백엔드로 모델 로드
+# Load model with faster-whisper backend
 model = whisperx.load_model(
     whisper_arch=&#34;large-v2&#34;,
     device=&#34;cuda&#34;,
-    compute_type=&#34;float16&#34;,   # float16 속도 우선, int8 낮은 VRAM
+    compute_type=&#34;float16&#34;,   # float16 for speed, int8 for low VRAM
     language=&#34;en&#34;,
     asr_options={
         &#34;beam_size&#34;: 5,
@@ -424,32 +434,32 @@ model = whisperx.load_model(
     }
 )
 </code></pre><h3 id="pyannoteaudio">pyannote.audio<a hidden class="anchor" aria-hidden="true" href="#pyannoteaudio">#</a></h3>
-<p>분리는 pyannote.audio 3.1+ 모델을 사용합니다. <code>DiarizationPipeline</code>은 pyannote를 래핑하고 WhisperX 특정 화자 할당 기능을 추가합니다: `````python
+<p>Diarization uses pyannote.audio 3.1+ models. The <code>DiarizationPipeline</code> wraps pyannote with WhisperX-specific speaker assignment: `````python
 from whisperx.diarize import DiarizationPipeline</p>
-<h1 id="pyannote-백엔드로-분리-초기화">pyannote 백엔드로 분리 초기화<a hidden class="anchor" aria-hidden="true" href="#pyannote-백엔드로-분리-초기화">#</a></h1>
+<h1 id="initialize-diarization-with-pyannote-backend">Initialize diarization with pyannote backend<a hidden class="anchor" aria-hidden="true" href="#initialize-diarization-with-pyannote-backend">#</a></h1>
 <p>diarize_model = DiarizationPipeline(
 model_name=&ldquo;pyannote/speaker-diarization-community-1&rdquo;,
 use_auth_token=HF_TOKEN,
 device=&ldquo;cuda&rdquo;
 )</p>
-<h1 id="알려진-화자-수로-분리-실행">알려진 화자 수로 분리 실행<a hidden class="anchor" aria-hidden="true" href="#알려진-화자-수로-분리-실행">#</a></h1>
+<h1 id="run-diarization-with-known-speaker-count">Run diarization with known speaker count<a hidden class="anchor" aria-hidden="true" href="#run-diarization-with-known-speaker-count">#</a></h1>
 <p>diarize_segments = diarize_model(
 audio,
 min_speakers=2,
 max_speakers=4
 )</p>
-<h1 id="단어에-화자-할당">단어에 화자 할당<a hidden class="anchor" aria-hidden="true" href="#단어에-화자-할당">#</a></h1>
+<h1 id="assign-speakers-to-words">Assign speakers to words<a hidden class="anchor" aria-hidden="true" href="#assign-speakers-to-words">#</a></h1>
 <p>result = whisperx.assign_word_speakers(diarize_segments, result)</p>
 <pre tabindex="0"><code>
 ### OpenAI Whisper
 
-WhisperX는 OpenAI의 Whisper 가중치를 로드하지만 4배 더 빠른 추론을 위해 CTranslate2 형식으로 변환합니다. ``--model`` 플래그로 Whisper 변형을 선택합니다: `````bash
-# 모델 크기 옵션: tiny, base, small, medium, large-v1, large-v2, large-v3
+WhisperX loads OpenAI&#39;s Whisper weights but converts them to CTranslate2 format for 4x faster inference. Use the ``--model`` flag to select any Whisper variant: `````bash
+# Model size options: tiny, base, small, medium, large-v1, large-v2, large-v3
 whisperx audio.wav --model large-v3 --language en
 
-# 8GB VRAM GPU의 경우 INT8 양자화 사용
+# For 8GB VRAM GPUs, use INT8 quantization
 whisperx audio.wav --model large-v2 --compute_type int8
-</code></pre><h3 id="docker-compose-프로덕션-스택">Docker Compose 프로덕션 스택<a hidden class="anchor" aria-hidden="true" href="#docker-compose-프로덕션-스택">#</a></h3>
+</code></pre><h3 id="docker-compose-production-stack">Docker Compose Production Stack<a hidden class="anchor" aria-hidden="true" href="#docker-compose-production-stack">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.8&#34;</span>
 </span></span><span style="display:flex;"><span>
@@ -475,11 +485,11 @@ whisperx audio.wav --model large-v2 --compute_type int8
 </span></span><span style="display:flex;"><span>              <span style="color:#f92672">count</span>: <span style="color:#ae81ff">1</span>
 </span></span><span style="display:flex;"><span>              <span style="color:#f92672">capabilities</span>: [<span style="color:#ae81ff">gpu]</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># 선택: 배치 작업용 Redis 큐</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Optional: Redis queue for batch jobs</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">redis: image</span>: <span style="color:#ae81ff">redis:7-alpine</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;6379:6379&#34;</span>
-</span></span></code></pre></div><h3 id="fastapi-서비스-래퍼">FastAPI 서비스 래퍼<a hidden class="anchor" aria-hidden="true" href="#fastapi-서비스-래퍼">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># api.py - 프로덕션 준비 WhisperX API</span>
+</span></span></code></pre></div><h3 id="fastapi-service-wrapper">FastAPI Service Wrapper<a hidden class="anchor" aria-hidden="true" href="#fastapi-service-wrapper">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># api.py - Production-ready WhisperX API</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> fastapi <span style="color:#f92672">import</span> FastAPI, UploadFile, File
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> fastapi.responses <span style="color:#f92672">import</span> JSONResponse
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> whisperx
@@ -489,7 +499,7 @@ whisperx audio.wav --model large-v2 --compute_type int8
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> FastAPI(title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;WhisperX ASR Service&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 시작 시 모델 사전 로드</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Preload models at startup</span>
 </span></span><span style="display:flex;"><span>DEVICE <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;cuda&#34;</span> <span style="color:#66d9ef">if</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>is_available() <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;cpu&#34;</span>
 </span></span><span style="display:flex;"><span>BATCH_SIZE <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>
 </span></span><span style="display:flex;"><span>MODEL <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>load_model(<span style="color:#e6db74">&#34;large-v2&#34;</span>, DEVICE, compute_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;float16&#34;</span>)
@@ -504,23 +514,23 @@ whisperx audio.wav --model large-v2 --compute_type int8
 </span></span><span style="display:flex;"><span>    file: UploadFile <span style="color:#f92672">=</span> File(<span style="color:#f92672">...</span>),
 </span></span><span style="display:flex;"><span>    diarize: bool <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>,
 </span></span><span style="display:flex;"><span>    language: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;en&#34;</span>
-</span></span><span style="display:flex;"><span>): <span style="color:#e6db74">&#34;&#34;&#34;단어 수준 타임스탬프와 화자 라벨로 오디오 전사.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>): <span style="color:#e6db74">&#34;&#34;&#34;Transcribe audio with word-level timestamps and speaker labels.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> tempfile<span style="color:#f92672">.</span>NamedTemporaryFile(suffix<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;.wav&#34;</span>, delete<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>) <span style="color:#66d9ef">as</span> tmp: tmp<span style="color:#f92672">.</span>write(<span style="color:#66d9ef">await</span> file<span style="color:#f92672">.</span>read())
 </span></span><span style="display:flex;"><span>        tmp_path <span style="color:#f92672">=</span> tmp<span style="color:#f92672">.</span>name
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>: <span style="color:#75715e"># 오디오 로드</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>: <span style="color:#75715e"># Load audio</span>
 </span></span><span style="display:flex;"><span>        audio <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>load_audio(tmp_path)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 단계 1: 전사</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Stage 1: Transcribe</span>
 </span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> MODEL<span style="color:#f92672">.</span>transcribe(audio, batch_size<span style="color:#f92672">=</span>BATCH_SIZE, language<span style="color:#f92672">=</span>language)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 단계 2: 정렬</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Stage 2: Align</span>
 </span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>align(
 </span></span><span style="display:flex;"><span>            result[<span style="color:#e6db74">&#34;segments&#34;</span>], ALIGN_MODEL, ALIGN_METADATA,
 </span></span><span style="display:flex;"><span>            audio, DEVICE, return_char_alignments<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>
 </span></span><span style="display:flex;"><span>        )
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># 단계 3: 분리 (선택)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Stage 3: Diarize (optional)</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> diarize: diarize_segments <span style="color:#f92672">=</span> DIARIZE_MODEL(audio)
 </span></span><span style="display:flex;"><span>            result <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>assign_word_speakers(diarize_segments, result)
 </span></span><span style="display:flex;"><span>
@@ -538,126 +548,154 @@ whisperx audio.wav --model large-v2 --compute_type int8
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.get</span>(<span style="color:#e6db74">&#34;/health&#34;</span>)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">health</span>(): <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;ok&#34;</span>, <span style="color:#e6db74">&#34;device&#34;</span>: DEVICE, <span style="color:#e6db74">&#34;model&#34;</span>: <span style="color:#e6db74">&#34;large-v2&#34;</span>}
-</span></span></code></pre></div><p>API 실행: `````bash</p>
-<h1 id="의존성-설치">의존성 설치<a hidden class="anchor" aria-hidden="true" href="#의존성-설치">#</a></h1>
+</span></span></code></pre></div><p>Run the API: `````bash</p>
+<h1 id="install-dependencies">Install dependencies<a hidden class="anchor" aria-hidden="true" href="#install-dependencies">#</a></h1>
 <p>pip install fastapi uvicorn python-multipart</p>
-<h1 id="서버-시작">서버 시작<a hidden class="anchor" aria-hidden="true" href="#서버-시작">#</a></h1>
+<h1 id="start-server">Start server<a hidden class="anchor" aria-hidden="true" href="#start-server">#</a></h1>
 <p>uvicorn api:app &ndash;host 0.0.0.0 &ndash;port 8000 &ndash;workers 1</p>
-<h1 id="curl로-테스트">curl로 테스트<a hidden class="anchor" aria-hidden="true" href="#curl로-테스트">#</a></h1>
+<h1 id="test-with-curl">Test with curl<a hidden class="anchor" aria-hidden="true" href="#test-with-curl">#</a></h1>
 <p>curl -X POST &ldquo;http://localhost:8000/transcribe?diarize=true&rdquo; <br>
 -F &ldquo;<a href="mailto:file=@interview.wav">file=@interview.wav</a>&rdquo;</p>
 <pre tabindex="0"><code>
-## 벤치마크 / 실제 사용 사례
+## Benchmarks / Real-World Use Cases
 
-### 속도 벤치마크: 1시간 오디오
+### Speed Benchmark: 1 Hour of Audio
 
-AMD RX 7700 XT, CUDA 12.8에서 테스트: | 모델 | OpenAI Whisper | faster-whisper | WhisperX (전체) | Whisper 대비 속도 향상 |
-|------|---------------|----------------|-----------------|-------------------|
-| tiny | ~12분 | ~1.5분 | ~2분 | 6x |
-| base | ~20분 | ~2.5분 | ~3.5분 | 5.7x |
-| small | ~35분 | ~5분 | ~7분 | 5x |
-| medium | ~55분 | ~9분 | ~13분 | 4.2x |
-| large-v3 | ~90분 | ~18분 | ~25분 | 3.6x |
+Tested on AMD RX 7700 XT with CUDA 12.8: | Model | OpenAI Whisper | faster-whisper | WhisperX (full) | Speedup vs Whisper |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| tiny | ~12 min | ~1.5 min | ~2 min | 6x |
+| base | ~20 min | ~2.5 min | ~3.5 min | 5.7x |
+| small | ~35 min | ~5 min | ~7 min | 5x |
+| medium | ~55 min | ~9 min | ~13 min | 4.2x |
+| large-v3 | ~90 min | ~18 min | ~25 min | 3.6x |
 
-WhisperX는 정렬과 분리로 인해 faster-whisper보다 약 30-40% 오버헤드를 추가합니다. 이 오버헤드는 오디오 시간당 고정되므로 배치 워크플로우에서는 무시할 수 있습니다.
+WhisperX adds ~30-40% overhead over faster-whisper due to alignment and diarization. The overhead is fixed per audio hour, making it negligible for batch workflows.
 
-### 정확도 벤치마크: 단어 분할 및 WER
+### Accuracy Benchmark: Word Segmentation &amp; WER
 
-WhisperX 논문(Bain et al., INTERSPEECH 2023), TEDLIUM, AMI, Switchboard 코퍼스에서 테스트: | 메트릭 | Whisper | wav2vec2 | WhisperX | 개선 |
-|--------|---------|----------|----------|------|
-| WER (TEDLIUM) | 4.2% | 6.8% | **3.9%** | Whisper 대비 -7% |
-| 단어 분할 정밀도 | 62% | 71% | **89%** | wav2vec2 대비 +18% |
-| 단어 분할 재현율 | 58% | 68% | **86%** | wav2vec2 대비 +18% |
-| 타임스탬프 드리프트 | ~1.5s | N/A | **&lt;80ms** | 18배 개선 |
+From the WhisperX paper (Bain et al., INTERSPEECH 2023) tested on TEDLIUM, AMI, and Switchboard corpora: | Metric | Whisper | wav2vec2 | WhisperX | Improvement |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| WER (TEDLIUM) | 4.2% | 6.8% | **3.9%** | -7% vs Whisper |
+| Word Seg. Precision | 62% | 71% | **89%** | +18% vs wav2vec2 |
+| Word Seg. Recall | 58% | 68% | **86%** | +18% vs wav2vec2 |
+| Timestamp Drift | ~1.5s | N/A | **&lt;80ms** | 18x better |
 
-독립 연구의 실제 WER (2024-2025): | 시나리오 | Whisper WER | WhisperX WER | 비고 |
-|----------|-------------|--------------|------|
-| 스튜디오 품질, 1명 | 5.2% | **4.8%** | 깨끗한 팟캐스트 오디오 |
-| 다중 화자 회의 (AMI) | 12.1% | **8.8%** | 3-4명 화자 |
-| 억양 영어 | 21.3% | **14.5%** | 환각 감소 |
-| 잡음 있는 자발적 음성 | 31.0% | **28.3%** | 현장 녹음 |
+Real-world WER from independent studies (2024-2025): | Scenario | Whisper WER | WhisperX WER | Notes |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Studio quality, 1 speaker | 5.2% | **4.8%** | Clean podcast audio |
+| Multi-speaker meetings (AMI) | 12.1% | **8.8%** | 3-4 speakers |
+| Accented English | 21.3% | **14.5%** | Reduced hallucinations |
+| Noisy spontaneous speech | 31.0% | **28.3%** | Field recordings |
 
-### 프로덕션 사용 사례
+### Production Use Cases
 
-**팟캐스트 제작.** 한 팟캐스트 네트워크는 주 200편 이상을 처리합니다. WhisperX의 단어 수준 타임스탬프는 전사 플레이어에서 클릭 탐색과 자동 하이라이트 추출을 가능하게 합니다. OpenAI Whisper API에서 전환한 후 에피소드당 처리 시간이 4시간에서 25분으로 감소했습니다.
+**Podcast production.** A podcast network processes 200+ episodes weekly. WhisperX&#39;s word-level timestamps enable click-to-seek in transcript players and automated highlight extraction. Processing time dropped from 4 hours to 25 minutes per episode after switching from OpenAI Whisper API.
 
-**법적 증언 분석.** 한 소송 지원 회사는 WhisperX를 사용해 8시간 증언 녹초본을 화자 속성과 함께 전사합니다. 단어 수준 정렬은 변호사가 전사의 아무 줄이나 클릭해 오디오/비디오의 정확한 순간으로 이동할 수 있게 합니다. 정식 환경에서 2-3명 화자의 분리 정확도는 약 90%입니다.
+**Legal deposition analysis.** A litigation support firm uses WhisperX to transcribe 8-hour depositions with speaker attribution. The word-level alignment lets attorneys click any transcript line and jump to the exact moment in audio/video. Diarization accuracy is ~90% for 2-3 speakers in formal settings.
 
-**비디오 자막.** 한 미디어 회사는 50개 이상 언어로 SRT 파일을 생성합니다. WhisperX의 VAD 전처리는 무음 구간에서 환각을 제거하고, ````--highlight_words```` 플래그는 노래방 스타일의 단어 단위 자막을 생성합니다.
+**Video subtitling.** A media company generates SRT files for 50+ languages. WhisperX&#39;s VAD preprocessing eliminates hallucinations on silent gaps, and the ````--highlight_words```` flag produces karaoke-style word-by-word subtitles.
 
-**회의 전사.** Slack 봇과 통합되어, WhisperX는 업로드된 오디오 파일을 처리하고 화자 라벨이 있는 스레드 전사를 반환합니다. RTX 3060에서 INT8 양자화는 시간당 10개 이상의 회의를 처리합니다.
+**Meeting transcription.** Integrated with a Slack bot, WhisperX processes uploaded audio files and returns threaded transcripts with speaker labels. INT8 quantization on an RTX 3060 handles 10+ meetings per hour.
 
-## 고급 사용법 / 프로덕션 하드닝
+## Advanced Usage / Production Hardening
 
-### 메모리 제한 배포
+### Memory-Constrained Deployment
 
-VRAM이 제한된 GPU의 경우: `````bash
-# INT8 양자화: VRAM 30-40% 절감, 최소 정확도 손실
+For GPUs with limited VRAM: `````bash
+# INT8 quantization: 30-40% VRAM reduction, minimal accuracy loss
 whisperx audio.wav \
   --model large-v2 \
   --compute_type int8 \
   --batch_size 4 \
   --device cuda
 
-# CPU 폴팽으로 정렬 (분리는 여전히 GPU 필요)
+# CPU fallback for alignment (diarization still needs GPU)
 whisperx audio.wav \
   --model base \
   --compute_type int8 \
   --device cpu
-</code></pre><h3 id="컨테이너-환경-모델-캐싱">컨테이너 환경 모델 캐싱<a hidden class="anchor" aria-hidden="true" href="#컨테이너-환경-모델-캐싱">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 콜드 스타트 지연 방지를 위한 모델 사전 다운로드</span>
+</code></pre><h3 id="model-caching-for-container-environments">Model Caching for Container Environments<a hidden class="anchor" aria-hidden="true" href="#model-caching-for-container-environments">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Pre-download models to avoid cold-start latency</span>
 </span></span><span style="display:flex;"><span>python3 <span style="color:#e6db74">&lt;&lt; PYEOF
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">import whisperx
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">import torch
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># ASR 모델 다운로드
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Download ASR model
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">model = whisperx.load_model(&#34;large-v2&#34;, &#34;cuda&#34;)
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">del model
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 정렬 모델 다운로드
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Download alignment model
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">align_model, metadata = whisperx.load_align_model(&#34;en&#34;, &#34;cuda&#34;)
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">del align_model
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 분리 모델 다운로드
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Download diarization model
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">diarize = whisperx.DiarizationPipeline(use_auth_token=&#34;token&#34;, device=&#34;cuda&#34;)
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">del diarize
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">torch.cuda.empty_cache()
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">print(&#34;모델 캐싱 성공&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">print(&#34;Models cached successfully&#34;)
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">PYEOF</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Docker에서 캐시 마운트</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Mount cache in Docker</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># -v /host/cache:/root/.cache:rw</span>
-</span></span></code></pre></div><h3 id="모니터링-및-로깅">모니터링 및 로깅<a hidden class="anchor" aria-hidden="true" href="#모니터링-및-로깅">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># monitoring.py - WhisperX용 Prometheus 메트릭</span>
+</span></span></code></pre></div><h3 id="monitoring--logging">Monitoring &amp; Logging<a hidden class="anchor" aria-hidden="true" href="#monitoring--logging">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># monitoring.py - Prometheus metrics for WhisperX</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> prometheus_client <span style="color:#f92672">import</span> Counter, Histogram, start_http_server
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>TRANSCRIPTION_DURATION <span style="color:#f92672">=</span> Histogram(
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;whisperx_transcription_seconds&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;오디오 전사에 소요된 시간&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Time spent transcribing audio&#34;</span>,
 </span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;model&#34;</span>, <span style="color:#e6db74">&#34;stage&#34;</span>]
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>REQUEST_COUNT <span style="color:#f92672">=</span> Counter(
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;whisperx_requests_total&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;총 전사 요청 수&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Total transcription requests&#34;</span>,
 </span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;model&#34;</span>, <span style="color:#e6db74">&#34;status&#34;</span>]
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">transcribe_with_metrics</span>(audio_path, model_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;large-v2&#34;</span>): start <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
 </span></span><span style="display:flex;"><span>    audio <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>load_audio(audio_path)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 단계 1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Stage 1</span>
 </span></span><span style="display:flex;"><span>    t0 <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
 </span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> MODEL<span style="color:#f92672">.</span>transcribe(audio, batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>)
 </span></span><span style="display:flex;"><span>    TRANSCRIPTION_DURATION<span style="color:#f92672">.</span>labels(model_name, <span style="color:#e6db74">&#34;transcribe&#34;</span>)<span style="color:#f92672">.</span>observe(time<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> t0)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 단계 2</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Stage 2</span>
 </span></span><span style="display:flex;"><span>    t0 <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
 </span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>align(result[<span style="color:#e6db74">&#34;segments&#34;</span>], ALIGN_MODEL, ALIGN_METADATA, audio, <span style="color:#e6db74">&#34;cuda&#34;</span>)
 </span></span><span style="display:flex;"><span>    TRANSCRIPTION_DURATION<span style="color:#f92672">.</span>labels(model_name, <span style="color:#e6db74">&#34;align&#34;</span>)<span style="color:#f92672">.</span>observe(time<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> t0)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 단계 3</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Stage 3</span>
 </span></span><span style="display:flex;"><span>    t0 <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
 </span></span><span style="display:flex;"><span>    diarize_segments <span style="color:#f92672">=</span> DIARIZE_MODEL(audio)
 </span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> whisperx<span style="color:#f92672">.</span>assign_word_speakers(diarize_segments, result)
@@ -667,16 +705,16 @@ whisperx audio.wav \
 </span></span><span style="display:flex;"><span>    REQUEST_COUNT<span style="color:#f92672">.</span>labels(model_name, <span style="color:#e6db74">&#34;success&#34;</span>)<span style="color:#f92672">.</span>inc()
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> result, total
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 9090 포트에서 메트릭 노출</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expose metrics on port 9090</span>
 </span></span><span style="display:flex;"><span>start_http_server(<span style="color:#ae81ff">9090</span>)
-</span></span></code></pre></div><h3 id="보안-고려사항">보안 고려사항<a hidden class="anchor" aria-hidden="true" href="#보안-고려사항">#</a></h3>
+</span></span></code></pre></div><h3 id="security-considerations">Security Considerations<a hidden class="anchor" aria-hidden="true" href="#security-considerations">#</a></h3>
 <ol>
-<li><strong>토큰 관리.</strong> <code>HF_TOKEN</code>을 비밀 관리자(AWS Secrets Manager, Vault)에 저장하고, 코드나 환경 파일에 절대 넣지 마세요.</li>
-<li><strong>입력 검증.</strong> 업로드된 파일명을 정제하세요. 격리된 임시 디렉토리에서 오디오를 처리하세요.</li>
-<li><strong>속도 제한.</strong> GPU 자원 고갈 방지를 위해 사용자당 속도 제한을 구현하세요.</li>
-<li><strong>모델 격리.</strong> 읽기 전용 루트 파일시스템으로 전용 컨테이너에서 WhisperX를 실행하세요.</li>
+<li><strong>Token management.</strong> Store <code>HF_TOKEN</code> in a secrets manager (AWS Secrets Manager, Vault), never in code or environment files.</li>
+<li><strong>Input validation.</strong> Sanitize uploaded filenames. Process audio in isolated temp directories.</li>
+<li><strong>Rate limiting.</strong> Implement per-user rate limits to prevent GPU resource exhaustion.</li>
+<li><strong>Model isolation.</strong> Run WhisperX in a dedicated container with read-only root filesystem.</li>
 </ol>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 보안 Docker 실행</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Secure Docker run</span>
 </span></span><span style="display:flex;"><span>docker run --gpus all <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --read-only <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --tmpfs /tmp:noexec,nosuid,size<span style="color:#f92672">=</span>1g <span style="color:#ae81ff">\
@@ -684,7 +722,7 @@ whisperx audio.wav \
 </span></span></span><span style="display:flex;"><span>  --cap-drop ALL <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -e HF_TOKEN_FILE<span style="color:#f92672">=</span>/run/secrets/hf_token <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  whisperx:latest audio.wav --diarize
-</span></span></code></pre></div><h3 id="kubernetes로-스케일링">Kubernetes로 스케일링<a hidden class="anchor" aria-hidden="true" href="#kubernetes로-스케일링">#</a></h3>
+</span></span></code></pre></div><h3 id="scaling-with-kubernetes">Scaling with Kubernetes<a hidden class="anchor" aria-hidden="true" href="#scaling-with-kubernetes">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># k8s-deployment.yaml</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
@@ -712,152 +750,85 @@ whisperx audio.wav \
 </span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">audio-input</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">nfs: server</span>: <span style="color:#ae81ff">10.0.0.5</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#f92672">path</span>: <span style="color:#ae81ff">/shared/audio</span>
-</span></span></code></pre></div><h2 id="대안과의-비교">대안과의 비교<a hidden class="anchor" aria-hidden="true" href="#대안과의-비교">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>기능</th>
-					<th>WhisperX</th>
-					<th>OpenAI Whisper</th>
-					<th>faster-whisper</th>
-					<th>DeepSpeech</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>단어 수준 타임스탬프</strong></td>
-					<td>예 (&lt;80ms)</td>
-					<td>아니오 (구간만)</td>
-					<td>아니오 (구간만)</td>
-					<td>아니오</td>
-			</tr>
-			<tr>
-					<td><strong>화자 분리</strong></td>
-					<td>예 (단어당)</td>
-					<td>아니오</td>
-					<td>아니오</td>
-					<td>아니오</td>
-			</tr>
-			<tr>
-					<td><strong>최대 추론 속도</strong></td>
-					<td>70x RTF</td>
-					<td>10x RTF</td>
-					<td>70x RTF</td>
-					<td>15x RTF</td>
-			</tr>
-			<tr>
-					<td><strong>모델 크기</strong></td>
-					<td>tiny ~ large-v3</td>
-					<td>tiny ~ large-v3</td>
-					<td>tiny ~ large-v3</td>
-					<td>단일 모델</td>
-			</tr>
-			<tr>
-					<td><strong>VRAM (대형 모델)</strong></td>
-					<td>8-16 GB</td>
-					<td>10-24 GB</td>
-					<td>6-10 GB</td>
-					<td>2-4 GB</td>
-			</tr>
-			<tr>
-					<td><strong>언어 지원</strong></td>
-					<td>99+</td>
-					<td>99+</td>
-					<td>99+</td>
-					<td>영어만</td>
-			</tr>
-			<tr>
-					<td><strong>WER (깨끗한 영어)</strong></td>
-					<td>3.9%</td>
-					<td>4.2%</td>
-					<td>4.2%</td>
-					<td>7.2%</td>
-			</tr>
-			<tr>
-					<td><strong>배치 처리</strong></td>
-					<td>예 (배치)</td>
-					<td>아니오</td>
-					<td>예 (배치)</td>
-					<td>예</td>
-			</tr>
-			<tr>
-					<td><strong>Docker 지원</strong></td>
-					<td>직접 빌드</td>
-					<td>커뮤니티 이미지</td>
-					<td>공식 이미지</td>
-					<td>공식 이미지</td>
-			</tr>
-			<tr>
-					<td><strong>라이선스</strong></td>
-					<td>BSD-2-Clause</td>
-					<td>MIT</td>
-					<td>MIT</td>
-					<td>MPL 2.0</td>
-			</tr>
-			<tr>
-					<td><strong>활발한 유지보수</strong></td>
-					<td>높음 (110+ 기여자)</td>
-					<td>중간</td>
-					<td>높음</td>
-					<td>낮음 (폐기)</td>
-			</tr>
-	</tbody>
-</table>
-<p><strong>WhisperX 선택 시:</strong> 단어 수준 타임스탬프, 화자 라벨, 또는 둘 다 필요할 때. faster-whisper 대비 30-40% 속도 페널티는 더 풍부한 출력으로 정당화됩니다.</p>
-<p><strong>faster-whisper 선택 시:</strong> 타임스탬프나 분리 없이 빠른 전사만 필요할 때. 순수 ASR의 속도 왕입니다.</p>
-<p><strong>OpenAI Whisper 선택 시:</strong> 연구나 호환성을 위한 참조 구현이 필요할 때. API가 가장 간단하지만 가장 느리고 대규모 사용 시 가장 비쌉니다.</p>
-<p><strong>DeepSpeech 선택 시:</strong> 리소스 제한 기기에서 소형 영어 전용 모델이 필요할 때. 참고: Mozilla는 2022년에 DeepSpeech를 공식 폐기했습니다; 새 프로젝트에서는 피하세요.</p>
-<h2 id="한계--정직한-평가">한계 / 정직한 평가<a hidden class="anchor" aria-hidden="true" href="#한계--정직한-평가">#</a></h2>
-<p><strong>숫자와 기호는 정렬할 수 없습니다.</strong> &ldquo;2014&quot;나 &ldquo;£13.60&rdquo; 같은 단어는 wav2vec2가 정렬할 수 있는 음소를 포함하지 않습니다. 이 단어들은 전사에 나타나지만 타임스탬프는 없습니다. 필요시 정규표현식 기반 추정으로 후처리하세요.</p>
-<p><strong>겹치는 음성은 문제입니다.</strong> 두 화자가 동시에 말할 때, WhisperX(및 Whisper)는 모든 음성을 한 화자에 할당합니다. pyannote 분리 모델은 겹침을 감지할 수 있지만 얽힌 오디오 스트림을 분리할 수는 없습니다. 심한 교차 대화 시나리오에서는 20-30% 화자 오류를 예상하세요.</p>
-<p><strong>분리는 알려진 화자 수에서 가장 정확합니다.</strong> pyannote가 화자 수를 자동 감지할 수 있지만, 4명 이상 녹음에서 정확도는 약 90%(알려진 수)에서 약 75%(자동 감지)로 떨어집니다. 가능할 때 <code>--min_speakers</code>와 <code>--max_speakers</code>를 전달하세요.</p>
-<p><strong>언어별 정렬 모델이 필요합니다.</strong> 단어 수준 정렬은 각 언어에 대한 음소 모델을 필요로 합니다. WhisperX는 20개 이상 언어에 대해 모델을 자동 선택하지만, 저자원 언어에는 품질 정렬기가 부족할 수 있습니다. 타겟 언어에서 테스트 후 결정하세요.</p>
-<p><strong>실시간 스트리밍 시스템이 아닙니다.</strong> WhisperX는 완전한 오디오 파일을 처리합니다. 라이브 스트림이나 마이크 입력을 전사할 수 없습니다. 실시간 사용 사례에는 WebRTC + 버퍼 청킹이나 Deepgram 같은 상용 API를 고려하세요.</p>
-<p><strong>GPU는 사실상 필수입니다.</strong> CPU 분리는 0.5배 실시간으로 실행됩니다 — 1시간 회의를 처리하는 데 2시간이 걸립니다. 정렬 단계도 GPU에 의존합니다. 최소 8GB VRAM GPU를 예산에 포함하세요.</p>
-<h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
-<p><strong>Q1: 수동 주석과 비교했을 때 단어 수준 타임스탬프의 정확도는 어느 정도인가요?</strong></p>
-<p>깨끗한 음성에서 WhisperX 타임스탬프는 수동 정렬 TED 강연과 비교해 평균 절대 오차 40-80ms를 보입니다. 이는 자막 동기화와 클릭 탐색에 충분합니다. 배경 음악이 있는 잡음 오디오에서는 오차가 100-200ms로 증가합니다. 항상 특정 오디오 도메인에서 검증하세요.</p>
-<p><strong>Q2: 화자 분리 없이 WhisperX를 사용할 수 있나요?</strong></p>
-<p>예 — 분리는 완전히 선택적입니다. <code>--diarize</code> 없이 실행하여 단어 수준 타임스탬프만 얻으세요. 정렬 단계는 항상 실행되므로 여전히 100ms 미만의 단어 타임스탬프를 얻습니다. 이는 처리 시간을 약 40% 줄입니다.</p>
-<p><strong>Q3: 프로덕션 배포에 어떤 GPU가 필요한가요?</strong></p>
-<p>INT8 양자화가 적용된 RTX 3060 (8GB VRAM)이 large-v2 모델을 편안하게 처리합니다. 고처리량 배포의 경우, RTX 4070 (12GB)이 전체 분리와 함께 시간당 20시간 이상의 오디오를 처리합니다. 클라우드 GPU (A10G, T4, L4)도 동일한 구성으로 잘 작동합니다.</p>
-<p><strong>Q4: 긴 오디오 파일(2시간 이상)을 어떻게 처리하나요?</strong></p>
-<p>WhisperX는 VAD를 사용해 긴 오디오를 자동으로 분할합니다. 수동 청킹은 필요 없습니다. 4시간 이상 파일의 경우, VRAM이 허용하면 <code>--batch_size</code>를 늘리고, 메모리 제한 시스템에서는 4로 줄이세요. VAD 단계는 문장 중간에 단어가 잘리지 않도록 보장합니다.</p>
-<p><strong>Q5: 자체 데이터에서 WhisperX를 파인튜닝할 수 있나요?</strong></p>
-<p>OpenAI의 훈련 스크립트를 사용해 기본 Whisper 모델을 파인튜닝한 후, WhisperX에 커스텀 가중치를 로드할 수 있습니다. 정렬과 분리 단계는 파인튜닝이 필요 없습니다. 도메인 특정 어휘(의료, 법률)의 경우, ASR 모델 파인튜닝은 WER을 15-30% 낮춥니다.</p>
-<p><strong>Q6: 왜 Hugging Face 토큰이 필요한가요?</strong></p>
-<p>pyannote.audio 화자 분리 모델 (````speaker-diarization-community-1```)은 Hugging Face에 호스팅되어 있으며 라이선스 동의가 필요합니다. 토큰은 동의를 수락했음을 증명합니다. 물론이며 2분이면 설정됩니다. 분리를 걈프면 토큰이 필요 없습니다.</p>
-<h2 id="결론">결론<a hidden class="anchor" aria-hidden="true" href="#결론">#</a></h2>
-<p>WhisperX는 오픈소스 ASR 스택의 중요한 격차를 메웁니다: 70배 실시간으로 프로덕션 급 단어 수준 타임스탬프와 화자 분리를 제공합니다. 세 단계 파이프라인(전사 → 정렬 → 분리)은 출력 세분성에 대한 정밀한 제어를 제공하고, faster-whisper 백엔드는 낮은 추론 비용을 유지합니다.</p>
-<p>팟캐스트 플랫폼, 법률 기술 도구, 회의 전사 서비스, 또는 비디오 자막 파이프라인을 구축하는 팀에게, WhisperX는 2026년에 사용 가능한 가장 강력한 오픈소스 옵션입니다. 22,000개의 GitHub 스타와 활발한 기여자 기반(110+)은 건강하고 진화하는 프로젝트임을 보여줍니다.</p>
-<p><strong>다음 단계:</strong></p>
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
+<p>| Feature | WhisperX | OpenAI Whisper | faster-whisper | DeepSpeech |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Word-level timestamps</strong> | Yes (&lt;80ms) | No (segment only) | No (segment only) | No |
+| <strong>Speaker diarization</strong> | Yes (per word) | No | No | No |
+| <strong>Max inference speed</strong> | 70x RTF | 10x RTF | 70x RTF | 15x RTF |
+| <strong>Model sizes</strong> | tiny to large-v3 | tiny to large-v3 | tiny to large-v3 | Single model |
+| <strong>VRAM (large model)</strong> | 8-16 GB | 10-24 GB | 6-10 GB | 2-4 GB |
+| <strong>Languages</strong> | 99+ | 99+ | 99+ | English only |
+| <strong>WER (clean English)</strong> | 3.9% | 4.2% | 4.2% | 7.2% |
+| <strong>Batch processing</strong> | Yes (batched) | No | Yes (batched) | Yes |
+| <strong>Docker support</strong> | Build your own | Community images | Official images | Official images |
+| <strong>License</strong> | BSD-2-Clause | MIT | MIT | MPL 2.0 |
+| <strong>Active maintenance</strong> | High (110+ contributors) | Medium | High | Low (deprecated) |</p>
+<p><strong>When to choose WhisperX:</strong> You need word-level timestamps, speaker labels, or both. The 30-40% speed penalty over faster-whisper is justified by the richer output.</p>
+<p><strong>When to choose faster-whisper:</strong> You only need fast transcription without timestamps or diarization. It is the speed king for plain ASR.</p>
+<p><strong>When to choose OpenAI Whisper:</strong> You need the reference implementation for research or compatibility. The API is simplest but slowest and most expensive at scale.</p>
+<p><strong>When to choose DeepSpeech:</strong> You need a tiny English-only model on resource-constrained devices. Note: Mozilla officially deprecated DeepSpeech in 2022; avoid for new projects.</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations--honest-assessment">#</a></h2>
+<p><strong>Numbers and symbols cannot be aligned.</strong> Words like &ldquo;2014&rdquo; or &ldquo;£13.60&rdquo; contain no phonemes that wav2vec2 can align. These words appear in the transcript but without timestamps. Post-process with regex-based estimation if needed.</p>
+<p><strong>Overlapping speech is problematic.</strong> When two speakers talk simultaneously, WhisperX (and Whisper) assigns all speech to one speaker. The pyannote diarization model detects overlaps but cannot separate intertwined audio streams. For heavy crosstalk scenarios, expect 20-30% speaker error.</p>
+<p><strong>Diarization requires known speaker counts for best accuracy.</strong> While pyannote can auto-detect speaker count, accuracy drops from ~90% (known count) to ~75% (auto-detect) on 4+ speaker recordings. Pass <code>--min_speakers</code> and <code>--max_speakers</code> when possible.</p>
+<p><strong>Language-specific alignment models needed.</strong> Word-level alignment requires a phoneme model for each language. WhisperX auto-selects models for 20+ languages, but low-resource languages may lack quality aligners. Test on your target language before committing.</p>
+<p><strong>Not a real-time streaming system.</strong> WhisperX processes complete audio files. It cannot transcribe live streams or microphone input. For real-time use cases, look at WebRTC + buffered chunking or commercial APIs like Deepgram.</p>
+<p><strong>GPU is essentially required.</strong> CPU diarization runs at 0.5x realtime — a 1-hour meeting takes 2 hours to process. The alignment stage is also GPU-dependent. Budget for at least an 8GB VRAM GPU.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<p><strong>Q1: How accurate are the word-level timestamps compared to manual annotation?</strong></p>
+<p>WhisperX timestamps have a mean absolute error of 40-80ms on clean speech, measured against manually aligned TED talks. This is sufficient for subtitle synchronization and click-to-seek. On noisy audio with background music, error increases to 100-200ms. Always validate on your specific audio domain.</p>
+<p><strong>Q2: Can I use WhisperX without speaker diarization?</strong></p>
+<p>Yes — diarization is completely optional. Run without <code>--diarize</code> to get word-level timestamps only. The alignment stage runs regardless, so you still get sub-100ms word timestamps. This cuts processing time by ~40%.</p>
+<p><strong>Q3: What GPU do I need for production deployment?</strong></p>
+<p>An RTX 3060 (8GB VRAM) with INT8 quantization handles the large-v2 model comfortably. For high-throughput deployments, an RTX 4070 (12GB) processes 20+ audio hours per hour with full diarization. Cloud GPUs (A10G, T4, L4) work well with the same configurations.</p>
+<p><strong>Q4: How do I handle long audio files (2+ hours)?</strong></p>
+<p>WhisperX automatically segments long audio using VAD. No manual chunking required. For 4+ hour files, increase <code>--batch_size</code> if VRAM allows, or reduce to 4 for memory-constrained systems. The VAD stage ensures no words are cut mid-sentence.</p>
+<p><strong>Q5: Can I fine-tune WhisperX on my own data?</strong></p>
+<p>You can fine-tune the underlying Whisper model using OpenAI&rsquo;s training scripts, then load your custom weights into WhisperX. The alignment and diarization stages do not require fine-tuning. For domain-specific vocabulary (medical, legal), fine-tuning the ASR model reduces WER by 15-30%.</p>
+<p><strong>Q6: Why do I need a Hugging Face token?</strong></p>
+<p>The pyannote.audio speaker diarization model (````speaker-diarization-community-1```) is hosted on Hugging Face and requires accepting a license agreement. The token proves you have accepted the terms. It is free and takes 2 minutes to set up. No token is needed if you skip diarization.</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>WhisperX fills a critical gap in the open-source ASR stack: production-grade word-level timestamps and speaker diarization at 70x realtime. The three-stage pipeline (transcribe → align → diarize) gives you precise control over output granularity, and the faster-whisper backend keeps inference costs low.</p>
+<p>For teams building podcast platforms, legal tech tools, meeting transcription services, or video subtitling pipelines, WhisperX is the most capable open-source option available in 2026. The 22,000 GitHub stars and active contributor base (110+) signal a healthy, evolving project.</p>
+<p><strong>Next steps:</strong></p>
 <ol>
-<li>이 가이드의 Docker 설정을 실행해 첫 오디오 파일 처리</li>
-<li>FastAPI 서비스를 기존 파이프라인에 통합</li>
-<li><a href="https://t.me/dibi8dev">dibi8 개발자 Telegram 커뮤니티</a>에 가입해 배포 팁 공유</li>
+<li>Run the Docker setup in this guide to process your first audio file</li>
+<li>Integrate the FastAPI service into your existing pipeline</li>
+<li>Join the <a href="https://t.me/dibi8dev">dibi8 developer community on Telegram</a> to share deployment tips</li>
 </ol>
-<h2 id="추천-호스팅-및-인프라">추천 호스팅 및 인프라<a hidden class="anchor" aria-hidden="true" href="#추천-호스팅-및-인프라">#</a></h2>
-<p>위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.</p>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-hosting--infrastructure">#</a></h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
 <ul>
-<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.</li>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
 </ul>
-<p><em>제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.</em></p>
-<h2 id="참고자료-및-추가-읽을거리">참고자료 및 추가 읽을거리<a hidden class="anchor" aria-hidden="true" href="#참고자료-및-추가-읽을거리">#</a></h2>
+<p><em>Affiliate links — they don&rsquo;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading<a hidden class="anchor" aria-hidden="true" href="#sources--further-reading">#</a></h2>
 <ul>
-<li><a href="https://github.com/m-bain/whisperX">WhisperX GitHub 저장소</a> — 공식 소스 코드, 22k 스타</li>
-<li><a href="https://arxiv.org/abs/2303.00747">WhisperX 논문 (INTERSPEECH 2023)</a> — 벤치마크가 포함된 원본 연구 논문</li>
-<li><a href="https://github.com/guillaumekln/faster-whisper">faster-whisper 문서</a> — CTranslate2 백엔드 상세</li>
-<li><a href="https://github.com/pyannote/pyannote-audio">pyannote.audio 문서</a> — 화자 분리 모델 정보</li>
-<li><a href="https://github.com/openai/whisper">OpenAI Whisper</a> — 기본 ASR 모델</li>
-<li><a href="https://huggingface.co/pyannote">Hugging Face pyannote 모델</a> — 화자 분리 모델 라이선스</li>
-<li><a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/">CUDA 설치 가이드</a> — Linux GPU 설정</li>
-<li><a href="https://opennmt.net/CTranslate2/performance.html">CTranslate2 성능 가이드</a> — 최적화 팁</li>
-<li><a href="https://github.com/m-bain/whisperX/blob/main/EXAMPLES.md">WhisperX 예제</a> — 다국어 사용 샘플</li>
+<li><a href="https://github.com/m-bain/whisperX">WhisperX GitHub Repository</a> — Official source code, 22k stars</li>
+<li><a href="https://arxiv.org/abs/2303.00747">WhisperX Paper (INTERSPEECH 2023)</a> — Original research paper with benchmarks</li>
+<li><a href="https://github.com/guillaumekln/faster-whisper">faster-whisper Documentation</a> — CTranslate2 backend details</li>
+<li><a href="https://github.com/pyannote/pyannote-audio">pyannote.audio Documentation</a> — Speaker diarization model info</li>
+<li><a href="https://github.com/openai/whisper">OpenAI Whisper</a> — Base ASR model</li>
+<li><a href="https://huggingface.co/pyannote">Hugging Face pyannote models</a> — Speaker diarization model licenses</li>
+<li><a href="https://docs.nvidia.com/cuda/cuda-installation-guide-linux/">CUDA Installation Guide</a> — GPU setup for Linux</li>
+<li><a href="https://opennmt.net/CTranslate2/performance.html">CTranslate2 Performance Guide</a> — Optimization tips</li>
+<li><a href="https://github.com/m-bain/whisperX/blob/main/EXAMPLES.md">WhisperX Examples</a> — Multilingual usage samples</li>
 </ul>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;WhisperX: 22K+ Stars — 프로덕션 ASR 배포 가이드 2026&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;WhisperX: 22K+ Stars — Production ASR Setup Guide 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;author&rdquo;: {
@@ -874,7 +845,7 @@ whisperx audio.wav \
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/whisperx%22">https://dibi8.com/kr/resources/whisperx"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/whisperx%22">https://dibi8.com/resources/whisperx"</a>
 }
 }
 </script></p>
@@ -921,6 +892,81 @@ whisperx audio.wav \
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

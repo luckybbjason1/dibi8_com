@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "TL;DR Temporal은 신뢰할 수 있는 AI 워크플로우를 쉽게 구축할 수 있는 내구성 실행 플랫폼입니다. Kubernetes CronJob, 데드 레터 큐 및 수동 재시도 로직과 고군분투하는 대신, Temporal activity와 workflow로 데코레이터된 Python 함수를 작성합니다. Temporal은 정확히 한 번 실행 보장, 지수 백오프 자동 재시도 및 즉시 사용 가능한 전체 관찰성을 제공합니다.\nTemporal이란? Temporal은 규모에서 결함 허용 워크플로우를 실행하기 위한 오픈소스 분산 시스템입니다. 핵심적으로 내구성 실행을 제공하며 — 코드가 Temporal의 관리형 인프라 내에서 실행되며, 실패, 재시도, 체크포인트 및 상태 지속성을 자동으로 처리합니다.\nAI 워크로드에这意味着: - rate limit로 인해 실패하는 LLM 추론 호출이 백오프로 자동 재시도됨\n컨테이너 크래시가 발생해도 진행 상황을 잃지 않는 다단계 파인튜닝 파이프라인 각 단계의 출력이 지속되고 검사 가능한 agent 오케스트레이션 GPU 장애 후 마지막 체크포인트에서 재개되는 훈련 작업 전통적 AI 오케스트레이션의 문제 典型的인 AI 파이프라인을 고려해보세요: ```` [데이터 로드] → [전처리] → [문서 임베딩] → [벡터 DB 인덱싱] → [검색 테스트] → [팀 알림]\n전통적 도구(Airflow, Celery, cron 스크립트)로 구현하려면 각 단계가 필요합니다: - 네트워크 타임아웃용 커스텀 에러 핸들링 - 장애 시 재개를 위한 수동 체크포인팅 - 분산 worker 간 상태 관리 - 디버깅용 관찰성 대시보드 Temporal은 Python 코드를 **자동 재개 가능하게** 만들어 이를 모두 제거합니다. 3단계가 크래시하면, Temporal은 3단계만 동일한 입력으로 재시작합니다 — 1-2단계는 히스토리에서 리플레이됩니다. ### Temporal vs 대체方案 | 기능 | Temporal | Airflow | Celery + Redis | Kubernetes CronJob | |---------|----------|---------|----------------|--------------------| | 코드 as 워크플로우 정의 | ✅(Python decorator) | ❌(DAG YAML/Python) | ❌(Task queue only) | ❌(Shell script) | | 자동 재시도 | ✅(configurable policy) | ⚠️(basic) | ⚠️(manual config) | ❌(none) | | 상태 지속화 | ✅(built-in) | ⚠️(external DB) | ❌(in-memory) | ❌ | | 정확히 한 번 semantics | ✅ | ❌ | ❌ | ❌ | | 대화형 디버깅 | ✅(web UI + CLI) | ⚠️(limited) | ❌ | ❌ | | ML 친화적 통합 | ✅(native) | ⚠️(plugins) | ❌ | ❌ | * * * ## 시작하기 ### 1단계: Temporal Stack 설치 `````bash # Option A: Docker Compose(local dev 권장) git clone https://github.com/temporalio/docker-compose.git cd docker-compose docker compose up -d # Option B: Temporal Cloud(managed, infra 불필요) # cloud.temporal.io에서 가입하고 namespace 생성 # 서버 실행 확인 temporal cluster health 기본 Docker Compose 설정 포함: - Temporal Server(gRPC API + history)\nTemporal UI(localhost:8233) Elasticsearch(search/indexing) Temporal Frontend(port 7233) 2단계: Python SDK 설치 pip install temporalio 3단계: 첫 번째 Workflow import asyncio from temporalio import worker, workflow, activity from temporalio.client import Client from temporalio.common import RetryPolicy # activity 정의(개별 단계) @activity.defn async def load_dataset(dataset_name: str): \"\"\"데이터셋 로드 및 검증.\"\"\" print(f\"데이터셋 로드 중: {dataset_name}\") data = {\"samples\": 10000, \"features\": 128} activity.info(f\"{data['samples']} 샘플 로드 완료\") return data @activity.defn async def preprocess(data: dict): \"\"\"데이터 정리 및 정규화.\"\"\" print(\"데이터 전처리 중...\") processed = { \"cleaned_samples\": data[\"samples\"], \"normalized\": True, \"feature_count\": data[\"features\"] } return processed @activity.defn async def train_model(preprocessed_data: dict, epochs: int = 10): \"\"\"전처리 데이터로 모델 훈련.\"\"\" print(f\"{epochs} epoch 동안 모델 훈련 중...\") metrics = { \"final_loss\": 0.0234, \"final_accuracy\": 0.9456, \"epochs_trained\": epochs } activity.info(f\"훈련 완료: accuracy={metrics['final_accuracy']:.4f}\") return metrics @activity.defn async def deploy_model(metrics: dict): \"\"\"훈련된 모델을 프로덕션에 배포.\"\"\" print(\"모델을 프로덕션에 배포 중...\") deployment = { \"model_id\": f\"model-{metrics['final_accuracy']:.4f}\", \"status\": \"deployed\", \"endpoint\": \"https://api.example.com/v1/predict\" } activity.info(f\"모델 배포됨: {deployment['model_id']}\") return deployment # workflow 정의 @workflow.defn class MLTrainingPipeline: @workflow.run async def run(self, dataset_name: str, epochs: int = 10) -\u003e dict: # 각 단계는 activity 호출 data = await workflow.execute_activity( load_dataset, dataset_name, retry=RetryPolicy(max_attempts=3) ) processed = await workflow.execute_activity( preprocess, data, retry=RetryPolicy(max_attempts=2) ) metrics = await workflow.execute_activity( train_model, processed, epochs, retry=RetryPolicy(max_attempts=3, initial_interval=10) ) deployment = await workflow.execute_activity( deploy_model, metrics, retry=RetryPolicy(max_attempts=2) ) return deployment 4단계: Worker 및 Client 실행 # worker.py import asyncio from temporalio.worker import Worker from my_workflow import MLTrainingPipeline, load_dataset, preprocess, train_model, deploy_model async def main(): worker = Worker( client, # Temporal Client instance task_queue=\"ml-pipeline\", workflows=[MLTrainingPipeline], activities=[load_dataset, preprocess, train_model, deploy_model] ) print(\"Worker 시작됨. Ctrl+C를 눌러 종료.\") await worker.run() if __name__ == \"__main__\": asyncio.run(main()) AI 전용 워크플로우 패턴 패턴 1: 폴백이 있는 LLM 체인 여러 LLM 호출을 체인하고 더 저렴한 모델로 자동 폴백: `````python from temporalio import workflow, activity\n@activity.defn async def generate_with_gpt4(prompt: str) -\u003e str: “““먼저 GPT-4 시도.””” response = await call_openai(prompt, model=“gpt-4o”) return response\n@activity.defn async def generate_with_claude(prompt: str) -\u003e str: “““Claude로 폴백.””” response = await call_anthropic(prompt, model=“claude-sonnet-4”) return response\n@activity.defn async def generate_with_local(prompt: str) -\u003e str: “““마지막 수단: local 모델.””” response = await call_ollama(prompt, model=“llama3.2”) return response\n@workflow.defn class ResilientLLMChain: @workflow.run async def run(self, prompt: str) -\u003e dict: try: result = await workflow.execute_activity( generate_with_gpt4, prompt, timeout=timedelta(minutes=5), retry=RetryPolicy(max_attempts=2) ) model_used = “gpt-4o” except Exception: try: result = await workflow.execute_activity( generate_with_claude, prompt, timeout=timedelta(minutes=5), retry=RetryPolicy(max_attempts=2) ) model_used = “claude-sonnet-4” except Exception: result = await workflow.execute_activity( generate_with_local, prompt, timeout=timedelta(minutes=10), retry=RetryPolicy(max_attempts=3) ) model_used = “local-llama”\nreturn {\"response\": result, \"model_used\": model_used, \"fallback_chain\": True} ### 패턴 2: 비동기 멀티 에이전트 오케스트레이션 여러 AI agent를 병렬로 실행한 다음 결과 집계: `````python @activity.defn async def agent_research(query: str) -\u003e dict: \"\"\"연구 agent: 웹에서 정보 수집.\"\"\" results = await search_web(query) return {\"type\": \"research\", \"sources\": len(results), \"summary\": summarize(results)} @activity.defn async def agent_analysis(research_data: dict) -\u003e dict: \"\"\"분석 agent: 발견 사항 평가.\"\"\" analysis = await analyze_findings(research_data[\"summary\"]) return {\"type\": \"analysis\", \"confidence\": analysis[\"confidence_score\"]} @activity.defn async def agent_synthesis(research: dict, analysis: dict) -\u003e dict: \"\"\"합성 agent: 연구와 분석을 보고서로 결합.\"\"\" report = await synthesize_report(research, analysis) return {\"type\": \"synthesis\", \"report_length\": len(report)} @workflow.defn class MultiAgentResearch: @workflow.run async def run(self, query: str) -\u003e dict: research_handle = workflow.execute_activity( agent_research, query, start_to_close_timeout=timedelta(minutes=5) ) research_result = await research_handle analysis_handle = workflow.execute_activity( agent_analysis, research_result, start_to_close_timeout=timedelta(minutes=3) ) analysis_result = await analysis_handle final_report = await workflow.execute_activity( agent_synthesis, research_result, analysis_result, start_to_close_timeout=timedelta(minutes=5) ) return final_report 패턴 3: 체크포인트 복원이 있는 ML 훈련 어떤 장애 후에도 마지막 체크포인트에서 자동 재개: `````python @activity.defn async def save_checkpoint(epoch: int, model_state: dict) -\u003e str: “““훈련 체크포인트를 영구 저장소에 저장.””” checkpoint_path = f\"s3://my-bucket/checkpoints/epoch_{epoch}.pt\" await upload_to_s3(model_state, checkpoint_path) activity.info(f\"체크포인트 저장됨: {checkpoint_path}\") return checkpoint_path\n@activity.defn async def load_checkpoint(checkpoint_path: str) -\u003e dict: “““체크포인트에서 모델 상태 로드.””” model_state = await download_from_s3(checkpoint_path) activity.info(f\"체크포인트 로드됨: {checkpoint_path}\") return model_state\n@workflow.defn class ResumableTraining: @workflow.run async def run(self, dataset_url: str, total_epochs: int, lr: float = 0.001) -\u003e dict: checkpoint_path = workflow.info().get_memo_field(“last_checkpoint”)\nif checkpoint_path: model_state = await workflow.execute_activity( load_checkpoint, checkpoint_path, start_to_close_timeout=timedelta(minutes=2) ) start_epoch = int(checkpoint_path.split(\"_\")[-1].split(\".\")[0]) activity.info(f\"{start_epoch} epoch에서 재개\") else: model_state = initialize_model(dataset_url) start_epoch = 0 for epoch in range(start_epoch, total_epochs): result = await workflow.execute_activity( train_epoch, model_state, epoch, lr, start_to_close_timeout=timedelta(minutes=30), retry=RetryPolicy(max_attempts=3, backoff_coefficient=2.0) ) model_state = result[\"state\"] if (epoch + 1) % 5 == 0: cp_path = await workflow.execute_activity( save_checkpoint, epoch + 1, model_state, start_to_close_timeout=timedelta(minutes=5) ) workflow.set_memo({\"last_checkpoint\": cp_path}) return {\"final_state\": model_state, \"total_epochs\": total_epochs} ### 패턴 4: 스트리밍 LLM 출력 워크플로우 내에서 LLM의 스트리밍 응답 처리: `````python @activity.defn async def stream_llm_response(prompt: str, max_tokens: int = 1024) -\u003e list[str]: \"\"\"LLM에서 토큰을 스트리밍하여 리스트로 반환.\"\"\" tokens = [] async for token in call_streaming_api(prompt, max_tokens): tokens.append(token) await asyncio.sleep(0.01) return tokens AI 워크플로우 고급 기능 신호 기반 워크플로우 제어 외부에서 워크플로우에 신호를 보내 취소, 우선순위 업데이트 또는 새 데이터 주입: `````python @workflow.defn class PriorityWorkflow: def init(self): self.priority = “normal” self.cancel_requested = False\n@workflow.signal def set_priority(self, new_priority: str): self.priority = new_priority workflow.logger.info(f\"우선순위 {new_priority}(으)로 변경됨\") @workflow.signal def cancel_workflow(self): self.cancel_requested = True workflow.logger.info(\"취소 요청됨\") @workflow.run async def run(self, task_data: dict) -\u003e dict: while not self.cancel_requested: result = await process_task(task_data, self.priority) await asyncio.sleep(0.1) return {\"status\": \"cancelled\", \"partial_result\": result} ### 하위 워크플로우로 모듈식 설계 복잡한 파이프라인을 중첩 하위 워크플로우로 분해: `````python @workflow.defn class DataPreparation: @workflow.run async def run(self, raw_data: dict) -\u003e dict: cleaned = await workflow.execute_activity(clean_data, raw_data) validated = await workflow.execute_activity(validate_data, cleaned) return validated @workflow.defn class FullMLPipeline: @workflow.run async def run(self, raw_data: dict, model_config: dict) -\u003e dict: prepared_data = await workflow.child_execute(DataPreparation.run, raw_data) trained_model = await workflow.child_execute(ModelTraining.run, prepared_data, model_config) eval_results = await workflow.child_execute(ModelEvaluation.run, trained_model) return eval_results 워크플로우 상태 쿼리 중단 없이 실행 중인 워크플로우 검사: `````python from temporalio.client import Client\nclient = await Client.connect(“localhost:7233”) handle = client.get_workflow_handle(“training-job-001”)\nstate = await handle.query(lambda wf: wf.current_state) print(f\"현재 상태: {state}\")\ninfo = await handle.describe() print(f\"상태: {info.status}\") print(f\"시작 시간: {info.start_time}\")\n* * * ## 모니터링 및 디버깅 ### Temporal Web UI ````http://localhost:8233````에서 빌트인 Web UI 접근: - 실행 중 및 완료된 모든 워크플로우 보기 - 각 activity의 input/output 데이터 검사 - 단계별 워크플로우 히스토리 리플레이 - ID, 상태 또는 사용자 정의 속성으로 워크플로우 검색 ### CLI 디버깅 `````bash # 모든 워크플로우 나열 temporal workflow list --namespace default # 특정 워크플로우 설명 temporal workflow describe --workflow-id training-job-001 # 워크플로우 히스토리 표시(실행 추적) temporal workflow show --workflow-id training-job-001 # 워크플로우를 특정 지점으로 리셋 temporal workflow reset --workflow-id training-job-001 --reset-point LastAutoClose # 실행 중인 워크플로우 종료 temporal workflow terminate --workflow-id training-job-001 --reason \"사용자 요청\" 구조화된 로깅 import structlog from temporalio import activity logger = structlog.get_logger() @activity.defn async def train_with_logging(model_config: dict) -\u003e dict: logger.info(\"training_start\", config=model_config) for epoch in range(10): loss = perform_training_epoch(model_config) logger.info(\"epoch_complete\", epoch=epoch, loss=loss, learning_rate=model_config[\"lr\"]) logger.info(\"training_complete\", final_loss=loss) return {\"final_loss\": loss} 로그는 Temporal UI에 나타나며 Elasticsearch, Datadog 또는 어떤 SIEM으로도 내보낼 수 있습니다.\n비용 최적화 장기간 실행 작업을 위한 Activity Heartbeat 진행률 보고로 계산 낭비 방지: `````python @activity.defn async def long_training_job(config: dict): for epoch in range(100): activity.heartbeat(f\"{epoch}/100 epoch 완료\") loss = train_one_epoch(config) return {“final_loss”: loss}\n### 워커 리소스 적정 크기 조정 `````python worker = Worker( client, task_queue=\"ml-workers\", workflows=[MLTrainingPipeline], activities=[train_model, evaluate_model], max_concurrent_activities=50, max_concurrent_workflow_tasks=100, ) 비용 비교 방식 월 비용(월 100개 훈련 작업) ops 오버헤드 Kubernetes + CronJob $800(상시 노드) + 월 20시간 DevOps 높음 AWS Batch $450(spot instance) + 월 10시간 구성 중간 Temporal Cloud $200(compute) + $0 ops 없음 Self-hosted Temporal $150(2대 소형 VM) + 월 5시간 유지보수 낮음 미래 방향 Temporal의 AI 로드맵 Temporal은 AI 전용 기능을 적극적으로 구축 중: 1. 네이티브 LLM activity 템플릿: 공통 LLM 작업(채팅, completion, embedding)용 사전 구축 activity, 내장 재시도 및 rate-limit 처리 2. 벡터 메모리: 실행 간 워크플로우 컨텍스트 지속화를 위한 빌트인 벡터 저장소 3. Agent SDK: 공유 메모리 및 통신 프로토콜과 함께 퍼스트 클래스 멀티 에이전트 오케스트레이션 지원 4. GPU 인식 스케줄링: ML 워크로드를 위한 GPU 클러스터와의 네이티브 통합 5. Temporal Studio 향상: ML 메트릭 오버레이가 있는 실시간 워크플로우 시각화\n언제 Temporal을 사용할까 다음 경우 Temporal 선택:\nAI 파이프라인에 여러 의존 단계가 있는 경우 보장된 실행이 필요한 경우(크래시 시 작업 손실 없음) 워크플로우를 대화형으로 디버깅하고 싶은 경우 Python 네이티브 개발을 중요시하는 팀인 경우 복잡한 패턴(재시도, 타임아웃, 병렬화, 하위 워크플로우)이 필요한 경우 더 간단한 대체方案을 고려할 때:\n단일 단계 작업이 있는 경우 — cron 또는 직접 API 호출만 사용 실시간 스트리밍이 필요한 경우 — Temporal은 배치 중심 시각적 DAG 편집기를 선호하는 경우 — Apache Airflow 고려 AWS Step Functions에 깊이 투자된 경우 — 네이티브 통합이 더 간단할 수 있음 커뮤니티 업데이트 워크플로우 오케스트레이션 환경이 지속적으로 진화 중. 2026년 주목할 만한 발전: - Temporal Cloud가 GPU 최적화 워커 노드로 5개 지역으로 확장\n오픈소스 Temporal이 Python 3.12 및 PyPy 네이티브 지원 추가 커뮤니티 통합: LangChain, LlamaIndex, CrewAI가 공식 Temporal connector 릴리스 엔터프라이즈 채택: Scale AI 및 Hugging Face 등 주요 AI 회사가 프로덕션 ML 파이프라인에 Temporal 사용 Temporal 커뮤니티는 프로덕션 AI 시스템을 구축하는 회사의 활발한 기여와 함께 50,000개 이상의 GitHub star로 성장했습니다. 이cosystem에는 인기 ML 프레임워크용 connector, 모니터링 통합 및 일반 AI 워크플로우 패턴용 템플릿 레포지토리가 포함되어 있습니다.\nFAQ Q: Temporal은 LLM rate limiting을 어떻게 처리하나요? Temporal의 재시도 정책을 지수 백오프와 함께 사용합니다. initial_interval, maximum_interval, backoff_coefficient를 구성하여 정중한 재시도 전략을 구현합니다: `````python retry=RetryPolicy( initial_interval=timedelta(seconds=1), maximum_interval=timedelta(minutes=5), backoff_coefficient=2.0, maximum_attempts=5 )\n이는 naive 재시도 루프가 API를 혼란스럽게 하는 것과 달리 rate limit이 발생하면 자연스럽게 요청을 throttle합니다. ### Q: spot/preemptible 인스턴스에서 Temporal worker를 실행할 수 있나요? 예. Temporal의 아키텍처는 이를 위해 설계되었습니다. worker는 자유롭게 왔다 갔다 할 수 있습니다 — worker가 activity 중간에 죽으면 Temporal은 heartbeat timeout을 감지하고 사용 가능한 다른 worker에서 activity를 다시 예약합니다. 이는 비용 최적화된 spot instance 배포에 Temporal을 이상적으로 만듭니다. ### Q: Temporal에서 LLM 스트리밍 출력을 어떻게 처리하나요? Temporal activity는 전통적으로 request-response이지만, streaming 패턴을 사용할 수 있습니다: activity 실행 동안 메모리에서 스트리밍 토큰을 수집한 다음 완전한 결과를 반환합니다. 최종 사용자에게 진정한 스트리밍을 위해서는(Temporal(워크플로우 내구성용)와 워크플로우 상태를 polling하는 WebSocket 엔드포인트를 결합합니다. ### Q: Temporal 워크플로우의 최대 지속 시간은 어떻게 되나요? Temporal 워크플로우는 무기한 실행할 수 있습니다 — 하드 타임아웃이 없습니다. 기록된 가장 긴 Temporal 워크플로우는 14개월 연속 실행되어 수백만 이벤트를 처리했습니다. 실용적인 목적을 위해 individual activity에 합리적인 타임아웃을 설정하고 장기간 실행 작업에는 heartbeat를 사용합니다. ### Q: Temporal은 서버리스 GPU(Modal, RunPod)와 함께 작동하나요? 예. Temporal worker는 어디에서나 실행할 수 있습니다 — EC2, GKE, EKS 또는 심지어 서버리스 컨테이너. Modal function 또는 RunPod instance 옆에 Temporal worker를 배포합니다. 핵심 통찰: Temporal은 워크플로우 오케스트레이션을 관리하고, 실제 GPU 컴퓨팅은 가장 저렴한 곳에서 발생합니다. * * * ## 출처 - [Temporal 문서](https://docs.temporal.io) - [Temporal Python SDK](https://github.com/temporalio/sdk-python) - [Temporal AI 워크플로우 패턴 — Temporal 블로그 2026](https://temporal.io/blog/ai-workflow-patterns-2026) - [Temporal로 탄력적 ML 파이프라인 구축 — KubeCon 2026](https://kccna2026.sched.com/event/ml-temporal) - [AI용 워크플로우 오케스트레이터 비교 — ML 인프라 보고서 2026](https://mlinfra.report/workflow-comparison-2026) * * * *실시간 AI 도구 토론 및 배포 팁을 위한 Telegram 그룹 가입: [t.me/dibi8](https://t.me/dibi8)* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Temporal AI 워크플로우 오케스트레이션 — 신뢰할 수 있는 다단계 AI 파이프라인\", \"datePublished\": \"2026-07-15\", \"dateModified\": \"2026-07-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/temporal-ai-workflow-orchestration\" } } * * * ## Related Articles - [google-jax-complete-guide](temporal-ai-workflow-orchestration) - [ray-distributed-ai-framework-complete-guide](temporal-ai-workflow-orchestration) - [modal-serverless-gpu-compute](temporal-ai-workflow-orchestration) - [temporal-ai-workflow-orchestration](temporal-ai-workflow-orchestration) - [cleanlab-11k-star-ai-data-cleaning](temporal-ai-workflow-orchestration) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
-  "wordCount" : "2110",
+  "articleBody": "What Is Temporal? Temporal is an open-source distributed system for running fault-tolerant workflows at scale. At its core, it provides durable execution — your code runs inside Temporal’s managed infrastructure, which automatically handles failures, retries, checkpoints, and state persistence.\nFor AI workloads, this means: - LLM inference calls that fail due to rate limits automatically retry with backoff\nMulti-step fine-tuning pipelines that survive container crashes without losing progress Agent orchestration where each step’s output is persisted and can be inspected Training jobs that resume from the last checkpoint after GPU failures The Problem with Traditional AI Orchestration Consider a typical AI pipeline: ```` [Load Data] → [Preprocess] → [Embed Documents] → [Index in Vector DB] → [Test Retrieval] → [Notify Team]\nWith traditional tools (Airflow, Celery, cron scripts), each step requires: - Custom error handling for network timeouts - Manual checkpointing to resume on failure - State management across distributed workers - Observability dashboards for debugging Temporal eliminates all of this by making your Python code **naturally resumable**. If step 3 crashes, Temporal restarts only step 3 with the exact same inputs — steps 1-2 are replayed from history. ### Temporal vs Alternatives | Feature | Temporal | Airflow | Celery + Redis | Kubernetes CronJobs | | * * * | * * * | * * * | * * * | * * * | | Code as workflow definition | ✅ (Python decorators) | ❌ (DAG YAML/Python) | ❌ (Task queue only) | ❌ (Shell scripts) | | Automatic retries | ✅ (configurable policy) | ⚠️ (basic) | ⚠️ (manual config) | ❌ (none) | | State persistence | ✅ (built-in) | ⚠️ (external DB) | ❌ (in-memory) | ❌ | | Exactly-once semantics | ✅ | ❌ | ❌ | ❌ | | Interactive debugging | ✅ (web UI + CLI) | ⚠️ (limited) | ❌ | ❌ | | ML-friendly integrations | ✅ (native) | ⚠️ (plugins) | ❌ | ❌ | * * * ## Getting Started ### Step 1: Install Temporal Stack `````bash # Option A: Docker Compose (recommended for local dev) git clone https://github.com/temporalio/docker-compose.git cd docker-compose docker compose up -d # Option B: Temporal Cloud (managed, no infra to manage) # Sign up at cloud.temporal.io and create a namespace # Verify the server is running temporal cluster health The default Docker Compose setup includes: - Temporal Server (gRPC API + history)\nTemporal UI (localhost:8233) Elasticsearch (search/indexing) Temporal Frontend (port 7233) Step 2: Install the Python SDK pip install temporalio Step 3: Your First Workflow import asyncio from temporalio import worker, workflow, activity from temporalio.client import Client from temporalio.common import RetryPolicy # Define activities (the individual steps) @activity.defn async def load_dataset(dataset_name: str): \"\"\"Load and validate a dataset.\"\"\" print(f\"Loading dataset: {dataset_name}\") # Simulate data loading data = {\"samples\": 10000, \"features\": 128} activity.info(f\"Loaded {data[samples]} samples\") return data @activity.defn async def preprocess(data: dict): \"\"\"Clean and normalize the data.\"\"\" print(\"Preprocessing data...\") processed = { \"cleaned_samples\": data[\"samples\"], \"normalized\": True, \"feature_count\": data[\"features\"] } return processed @activity.defn async def train_model(preprocessed_data: dict, epochs: int = 10): \"\"\"Train a model on preprocessed data.\"\"\" print(f\"Training model for {epochs} epochs...\") # Simulate training metrics = { \"final_loss\": 0.0234, \"final_accuracy\": 0.9456, \"epochs_trained\": epochs } activity.info(f\"Training complete: accuracy={metrics[final_accuracy]:.4f}\") return metrics @activity.defn async def deploy_model(metrics: dict): \"\"\"Deploy the trained model to production.\"\"\" print(\"Deploying model to production...\") deployment = { \"model_id\": f\"model-{metrics[final_accuracy]:.4f}\", \"status\": \"deployed\", \"endpoint\": \"https://api.example.com/v1/predict\" } activity.info(f\"Model deployed: {deployment[model_id]}\") return deployment # Define the workflow @workflow.defn class MLTrainingPipeline: @workflow.run async def run(self, dataset_name: str, epochs: int = 10) -\u003e dict: # Each step is an activity call data = await workflow.execute_activity( load_dataset, dataset_name, retry=RetryPolicy(max_attempts=3) ) processed = await workflow.execute_activity( preprocess, data, retry=RetryPolicy(max_attempts=2) ) metrics = await workflow.execute_activity( train_model, processed, epochs, retry=RetryPolicy(max_attempts=3, initial_interval=10) ) deployment = await workflow.execute_activity( deploy_model, metrics, retry=RetryPolicy(max_attempts=2) ) return deployment Step 4: Run the Worker and Client # worker.py import asyncio from temporalio.worker import Worker from my_workflow import MLTrainingPipeline, load_dataset, preprocess, train_model, deploy_model async def main(): worker = Worker( client, # Temporal Client instance task_queue=\"ml-pipeline\", workflows=[MLTrainingPipeline], activities=[load_dataset, preprocess, train_model, deploy_model] ) print(\"Worker started. Press Ctrl+C to exit.\") await worker.run() if __name__ == \"__main__\": asyncio.run(main()) # client.py import asyncio from temporalio.client import Client from my_workflow import MLTrainingPipeline async def main(): client = await Client.connect(\"localhost:7233\") handle = await client.start_workflow( MLTrainingPipeline.run, \"imdb-dataset\", id=\"training-job-001\", task_queue=\"ml-pipeline\", retry_policy=RetryPolicy(max_attempts=5) ) result = await handle.result() print(f\"Pipeline result: {result}\") if __name__ == \"__main__\": asyncio.run(main()) AI-Specific Workflow Patterns Pattern 1: LLM Chain with Fallback Chain multiple LLM calls with automatic fallback to cheaper models: `````python from temporalio import workflow, activity import asyncio\n@activity.defn async def generate_with_gpt4(prompt: str) -\u003e str: “““Try GPT-4 first.””” response = await call_openai(prompt, model=“gpt-4o”) return response\n@activity.defn async def generate_with_claude(prompt: str) -\u003e str: “““Fallback to Claude.””” response = await call_anthropic(prompt, model=“claude-sonnet-4”) return response\n@activity.defn async def generate_with_local(prompt: str) -\u003e str: “““Last resort: local model.””” response = await call_ollama(prompt, model=“llama3.2”) return response\n@workflow.defn class ResilientLLMChain: @workflow.run async def run(self, prompt: str) -\u003e dict: try: # Try most expensive model first result = await workflow.execute_activity( generate_with_gpt4, prompt, timeout=timedelta(minutes=5), retry=RetryPolicy(max_attempts=2) ) model_used = “gpt-4o” except Exception: try: result = await workflow.execute_activity( generate_with_claude, prompt, timeout=timedelta(minutes=5), retry=RetryPolicy(max_attempts=2) ) model_used = “claude-sonnet-4” except Exception: result = await workflow.execute_activity( generate_with_local, prompt, timeout=timedelta(minutes=10), retry=RetryPolicy(max_attempts=3) ) model_used = “local-llama”\nreturn {\"response\": result, \"model_used\": model_used, \"fallback_chain\": True} ### Pattern 2: Async Multi-Agent Orchestration Run multiple AI agents in parallel, then aggregate results: `````python from temporalio import workflow, activity from temporalio.exceptions import TimeoutError @activity.defn async def agent_research(query: str) -\u003e dict: \"\"\"Research agent: gathers information from web.\"\"\" results = await search_web(query) return {\"type\": \"research\", \"sources\": len(results), \"summary\": summarize(results)} @activity.defn async def agent_analysis(research_data: dict) -\u003e dict: \"\"\"Analysis agent: evaluates findings.\"\"\" analysis = await analyze_findings(research_data[\"summary\"]) return {\"type\": \"analysis\", \"confidence\": analysis[\"confidence_score\"]} @activity.defn async def agent_synthesis(research: dict, analysis: dict) -\u003e dict: \"\"\"Synthesis agent: combines research and analysis into report.\"\"\" report = await synthesize_report(research, analysis) return {\"type\": \"synthesis\", \"report_length\": len(report)} @workflow.defn class MultiAgentResearch: @workflow.run async def run(self, query: str) -\u003e dict: # Run research and analysis in parallel research_handle = workflow.execute_activity( agent_research, query, start_to_close_timeout=timedelta(minutes=5) ) # Wait for research, then start analysis research_result = await research_handle analysis_handle = workflow.execute_activity( agent_analysis, research_result, start_to_close_timeout=timedelta(minutes=3) ) analysis_result = await analysis_handle # Final synthesis final_report = await workflow.execute_activity( agent_synthesis, research_result, analysis_result, start_to_close_timeout=timedelta(minutes=5) ) return final_report Pattern 3: ML Training with Checkpoint Recovery Automatically resume training from the last checkpoint after any failure: `````python @activity.defn async def save_checkpoint(epoch: int, model_state: dict) -\u003e str: “““Save training checkpoint to persistent storage.””” checkpoint_path = f\"s3://my-bucket/checkpoints/epoch_{epoch}.pt\" await upload_to_s3(model_state, checkpoint_path) activity.info(f\"Checkpoint saved: {checkpoint_path}\") return checkpoint_path\n@activity.defn async def load_checkpoint(checkpoint_path: str) -\u003e dict: “““Load model state from checkpoint.””” model_state = await download_from_s3(checkpoint_path) activity.info(f\"Checkpoint loaded: {checkpoint_path}\") return model_state\n@activity.defn async def train_epoch(model_state: dict, epoch: int, learning_rate: float) -\u003e dict: “““Train a single epoch.””” # Actual training logic here new_state = perform_training_step(model_state, learning_rate) metrics = compute_metrics(new_state) return {“state”: new_state, “metrics”: metrics}\n@workflow.defn class ResumableTraining: @workflow.run async def run(self, dataset_url: str, total_epochs: int, lr: float = 0.001) -\u003e dict: # Check if we have a previous checkpoint checkpoint_path = workflow.info().get_memo_field(“last_checkpoint”)\nif checkpoint_path: model_state = await workflow.execute_activity( load_checkpoint, checkpoint_path, start_to_close_timeout=timedelta(minutes=2) ) start_epoch = int(checkpoint_path.split(\"_\")[-1].split(\".\")[0]) activity.info(f\"Resuming from epoch {start_epoch}\") else: model_state = initialize_model(dataset_url) start_epoch = 0 # Train epochs with periodic checkpointing for epoch in range(start_epoch, total_epochs): result = await workflow.execute_activity( train_epoch, model_state, epoch, lr, start_to_close_timeout=timedelta(minutes=30), retry=RetryPolicy(max_attempts=3, backoff_coefficient=2.0) ) model_state = result[\"state\"] # Save checkpoint every 5 epochs if (epoch + 1) % 5 == 0: cp_path = await workflow.execute_activity( save_checkpoint, epoch + 1, model_state, start_to_close_timeout=timedelta(minutes=5) ) # Store in workflow memo for recovery workflow.set_memo({\"last_checkpoint\": cp_path}) return {\"final_state\": model_state, \"total_epochs\": total_epochs} ### Pattern 4: Streaming LLM Output Handle streaming responses from LLMs within a workflow: `````python @activity.defn async def stream_llm_response(prompt: str, max_tokens: int = 1024) -\u003e list[str]: \"\"\"Stream tokens from an LLM and return them as a list.\"\"\" tokens = [] async for token in call_streaming_api(prompt, max_tokens): tokens.append(token) # Small delay to simulate streaming await asyncio.sleep(0.01) return tokens @workflow.defn class StreamingChat: @workflow.run async def run(self, conversation_history: list[dict], user_message: str) -\u003e str: # Build the prompt from conversation history prompt = format_conversation(conversation_history, user_message) # Stream the response tokens = await workflow.execute_activity( stream_llm_response, prompt, start_to_close_timeout=timedelta(minutes=5), retry=RetryPolicy(max_attempts=2) ) response = \"\".join(tokens) # Update conversation history updated_history = conversation_history + [ {\"role\": \"user\", \"content\": user_message}, {\"role\": \"assistant\", \"content\": response} ] return {\"response\": response, \"history\": updated_history} Advanced Features for AI Workflows Signal-Based Workflow Control Signal workflows from outside to cancel, update priority, or inject new data: `````python @workflow.defn class PriorityWorkflow: def init(self): self.priority = “normal” self.cancel_requested = False\n@workflow.signal def set_priority(self, new_priority: str): \"\"\"Change workflow execution priority.\"\"\" self.priority = new_priority workflow.logger.info(f\"Priority changed to {new_priority}\") @workflow.signal def cancel_workflow(self): \"\"\"Request workflow cancellation.\"\"\" self.cancel_requested = True workflow.logger.info(\"Cancellation requested\") @workflow.run async def run(self, task_data: dict) -\u003e dict: while not self.cancel_requested: # Process based on current priority result = await process_task(task_data, self.priority) # Check for signals between steps await asyncio.sleep(0.1) return {\"status\": \"cancelled\", \"partial_result\": result} ### Child Workflows for Modular Design Break complex pipelines into nested child workflows: `````python @workflow.defn class DataPreparation: @workflow.run async def run(self, raw_data: dict) -\u003e dict: cleaned = await workflow.execute_activity(clean_data, raw_data) validated = await workflow.execute_activity(validate_data, cleaned) return validated @workflow.defn class ModelEvaluation: @workflow.run async def run(self, trained_model: dict) -\u003e dict: test_results = await workflow.execute_activity(evaluate_model, trained_model) benchmark = await workflow.execute_activity(run_benchmarks, trained_model) return {\"test_results\": test_results, \"benchmark\": benchmark} @workflow.defn class FullMLPipeline: @workflow.run async def run(self, raw_data: dict, model_config: dict) -\u003e dict: # Child workflow: data preparation prepared_data = await workflow.child_execute( DataPreparation.run, raw_data ) # Child workflow: model training trained_model = await workflow.child_execute( ModelTraining.run, prepared_data, model_config ) # Child workflow: evaluation eval_results = await workflow.child_execute( ModelEvaluation.run, trained_model ) return eval_results Querying Workflow State Inspect running workflows without stopping them: `````python from temporalio.client import Client\nclient = await Client.connect(“localhost:7233”)\nGet workflow handle handle = client.get_workflow_handle(“training-job-001”)\nQuery current state state = await handle.query(lambda wf: wf.current_state) print(f\"Current state: {state}\")\nDescribe running workflow info = await handle.describe() print(f\"Status: {info.status}\") print(f\"Start time: {info.start_time}\") print(f\"Execution time: {info.execution_time}\")\n### Workflow Timeouts and Schedules `````python # Set different timeout types for precise control await workflow.execute_activity( slow_activity, arg1, arg2, start_to_close_timeout=timedelta(minutes=30), # Total time allowed schedule_to_start_timeout=timedelta(minutes=5), # Time waiting for worker schedule_to_close_timeout=timedelta(minutes=35), # Total lifecycle heartbeat_timeout=timedelta(minutes=2), # Heartbeat interval ) # Schedule a recurring workflow schedule = await client.schedule.create( ScheduleSpec( interval=[timedelta(hours=6)], # Every 6 hours catchup_window=timedelta(hours=1) ), ScheduleActionStartWorkflow( \"daily-report-generation\", task_queue=\"reports\", retry_policy=RetryPolicy(max_attempts=3) ) ) Monitoring and Debugging Temporal Web UI Access the built-in web UI at http://localhost:8233 to: - View all running and completed workflows\nInspect input/output data for each activity Replay workflow history step-by-step Search workflows by ID, status, or custom attributes CLI Debugging # List all workflows temporal workflow list --namespace default # Describe a specific workflow temporal workflow describe --workflow-id training-job-001 # Show workflow history (execution trace) temporal workflow show --workflow-id training-job-001 # Reset a workflow to a specific point temporal workflow reset --workflow-id training-job-001 --reset-point LastAutoClose # Terminate a running workflow temporal workflow terminate --workflow-id training-job-001 --reason \"User requested\" Structured Logging import structlog from temporalio import activity logger = structlog.get_logger() @activity.defn async def train_with_logging(model_config: dict) -\u003e dict: logger.info(\"training_start\", config=model_config) for epoch in range(10): loss = perform_training_epoch(model_config) logger.info( \"epoch_complete\", epoch=epoch, loss=loss, learning_rate=model_config[\"lr\"] ) logger.info(\"training_complete\", final_loss=loss) return {\"final_loss\": loss} Logs appear in the Temporal UI and can be exported to Elasticsearch, Datadog, or any SIEM.\nCost Optimization Activity Heartbeats for Long-Running Jobs Prevent wasted compute by reporting progress: `````python @activity.defn async def long_training_job(config: dict): for epoch in range(100): # Report heartbeat every epoch activity.heartbeat(f\"Epoch {epoch}/100 complete\") loss = train_one_epoch(config)\nreturn {\"final_loss\": loss} With heartbeat detection, Temporal can mark activities as failed and retry only the current step, not the entire workflow ### Right-Sizing Worker Resources `````python worker = Worker( client, task_queue=\"ml-workers\", workflows=[MLTrainingPipeline], activities=[train_model, evaluate_model], max_concurrent_activities=50, # Limit concurrent activities max_concurrent_workflow_tasks=100, # Limit workflow task processing ) Cost Comparison | Approach | Monthly Cost (100 training jobs/mo) | Ops Overhead | |\n|\n|\n| | Kubernetes + CronJobs | $800 (always-on nodes) + 20 hrs/mo DevOps | High | | AWS Batch | $450 (spot instances) + 10 hrs/mo config | Medium | | Temporal Cloud | $200 (compute) + $0 ops | None | | Self-hosted Temporal | $150 (2 small VMs) + 5 hrs/mo maintenance | Low |\nFuture Directions Temporal’s AI Roadmap Temporal is actively building AI-specific features: 1. Native LLM activity templates: Pre-built activities for common LLM operations (chat, completion, embedding) with built-in retry and rate-limit handling 2. Vector memory: Built-in vector storage for persisting workflow context across executions 3. Agent SDK: First-class support for multi-agent orchestration with shared memory and communication protocols 4. GPU-aware scheduling: Native integration with GPU clusters for ML workloads 5. Temporal Studio enhancements: Real-time workflow visualization with ML metric overlays\nWhen to Use Temporal Choose Temporal when:\nYour AI pipeline has multiple dependent steps You need guaranteed execution (no lost jobs on crash) You want to debug workflows interactively Your team values Python-native development You need complex patterns (retry, timeout, parallelism, child workflows) Consider simpler alternatives when:\nYou have single-step jobs — just use a cron or direct API call You need real-time streaming — Temporal is batch-oriented Your team prefers visual DAG editors — consider Apache Airflow You’re already invested in AWS Step Functions — native integration may be simpler Community Updates The workflow orchestration landscape continues evolving. In 2026, notable developments include: - Temporal Cloud expanded to 5 regions with GPU-optimized worker nodes\nOpen-source Temporal added native support for Python 3.12 and PyPy Community integrations: LangChain, LlamaIndex, and CrewAI all released official Temporal connectors Enterprise adoption: Major AI companies like Scale AI and Hugging Face use Temporal for production ML pipelines The Temporal community has grown to over 50,000 GitHub stars, with active contributions from companies building production AI systems. The ecosystem includes connectors for popular ML frameworks, monitoring integrations, and template repositories for common AI workflow patterns.\nFAQ Q: How does Temporal handle LLM rate limiting? Use Temporal’s retry policy with exponential backoff. Configure initial_interval, maximum_interval, and backoff_coefficient to implement polite retry strategies: `````python retry=RetryPolicy( initial_interval=timedelta(seconds=1), maximum_interval=timedelta(minutes=5), backoff_coefficient=2.0, maximum_attempts=5 )\nThis naturally throttles requests when rate limits are hit, unlike naive retry loops that hammer the API. ### Q: Can I run Temporal workers on spot/preemptible instances? Yes. Temporal's architecture is designed for this. Workers can come and go freely — if a worker dies mid-activity, Temporal detects the heartbeat timeout and reschedules the activity on another available worker. This makes Temporal ideal for cost-optimized spot instance deployments. ### Q: How do I handle streaming LLM outputs in Temporal? While Temporal activities are traditionally request-response, you can use the streaming pattern shown above: collect streamed tokens in-memory during the activity execution, then return the complete result. For true streaming to end users, combine Temporal (for workflow durability) with WebSocket endpoints that poll the workflow's state. ### Q: What's the maximum duration for a Temporal workflow? Temporals workflows can run indefinitely — there's no hard timeout. The longest recorded Temporal workflow ran for 14 months continuously, processing millions of events. For practical purposes, set reasonable timeouts on individual activities and use heartbeats for long-running operations. ### Q: Does Temporal work with serverless GPUs (Modal, RunPod)? Yes. Temporal workers can run anywhere — EC2, GKE, EKS, or even serverless containers. Deploy Temporal workers alongside Modal functions or RunPod instances. The key insight: Temporal manages the workflow coordination, while the actual GPU compute happens wherever it's cheapest. * * * ## Sources - [Temporal Documentation](https://docs.temporal.io) - [Temporal Python SDK](https://github.com/temporalio/sdk-python) - [Temporal AI Workflow Patterns — Temporal Blog 2026](https://temporal.io/blog/ai-workflow-patterns-2026) - [Building Resilient ML Pipelines with Temporal — KubeCon 2026](https://kccna2026.sched.com/event/ml-temporal) - [Comparing Workflow Orchestrators for AI — ML Infrastructure Report 2026](https://mlinfra.report/workflow-comparison-2026) * * * *Join our Telegram Group for real-time AI tool discussions and deployment tips: [t.me/dibi8](https://t.me/dibi8)* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Temporal AI Workflow Orchestration — Reliable Multi-Step AI Pipelines\", \"datePublished\": \"2026-07-15\", \"dateModified\": \"2026-07-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/temporal-ai-workflow-orchestration\" } } * * * ## Related Articles - [google-jax-complete-guide](temporal-ai-workflow-orchestration) - [ray-distributed-ai-framework-complete-guide](temporal-ai-workflow-orchestration) - [modal-serverless-gpu-compute](temporal-ai-workflow-orchestration) - [cleanlab-11k-star-ai-data-cleaning](temporal-ai-workflow-orchestration) - [temporal-ai-workflow-orchestration](temporal-ai-workflow-orchestration) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
+  "wordCount" : "2651",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/temporal-ai-workflow-orchestration/">En</a>
@@ -207,144 +207,176 @@
         <span class="title">목차</span>
     </summary>
 
-    <div class="inner"><ul>
+    <div class="inner"><ul><ul>
             <li>
-                <a href="#tldr" aria-label="TL;DR">TL;DR</a></li>
-            <li>
-                <a href="#temporal%ec%9d%b4%eb%9e%80" aria-label="Temporal이란?">Temporal이란?</a><ul>
+                <a href="#what-is-temporal" aria-label="What Is Temporal?">What Is Temporal?</a><ul>
                     
             <li>
-                <a href="#%ec%a0%84%ed%86%b5%ec%a0%81-ai-%ec%98%a4%ec%bc%80%ec%8a%a4%ed%8a%b8%eb%a0%88%ec%9d%b4%ec%85%98%ec%9d%98-%eb%ac%b8%ec%a0%9c" aria-label="전통적 AI 오케스트레이션의 문제">전통적 AI 오케스트레이션의 문제</a></li>
+                <a href="#the-problem-with-traditional-ai-orchestration" aria-label="The Problem with Traditional AI Orchestration">The Problem with Traditional AI Orchestration</a></li>
             <li>
-                <a href="#2%eb%8b%a8%ea%b3%84-python-sdk-%ec%84%a4%ec%b9%98" aria-label="2단계: Python SDK 설치">2단계: Python SDK 설치</a></li>
+                <a href="#step-2-install-the-python-sdk" aria-label="Step 2: Install the Python SDK">Step 2: Install the Python SDK</a></li>
             <li>
-                <a href="#3%eb%8b%a8%ea%b3%84-%ec%b2%ab-%eb%b2%88%ec%a7%b8-workflow" aria-label="3단계: 첫 번째 Workflow">3단계: 첫 번째 Workflow</a></li>
+                <a href="#step-3-your-first-workflow" aria-label="Step 3: Your First Workflow">Step 3: Your First Workflow</a></li>
             <li>
-                <a href="#4%eb%8b%a8%ea%b3%84-worker-%eb%b0%8f-client-%ec%8b%a4%ed%96%89" aria-label="4단계: Worker 및 Client 실행">4단계: Worker 및 Client 실행</a></li></ul>
+                <a href="#step-4-run-the-worker-and-client" aria-label="Step 4: Run the Worker and Client">Step 4: Run the Worker and Client</a></li></ul>
             </li>
             <li>
-                <a href="#ai-%ec%a0%84%ec%9a%a9-%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0-%ed%8c%a8%ed%84%b4" aria-label="AI 전용 워크플로우 패턴">AI 전용 워크플로우 패턴</a><ul>
+                <a href="#ai-specific-workflow-patterns" aria-label="AI-Specific Workflow Patterns">AI-Specific Workflow Patterns</a><ul>
                     
             <li>
-                <a href="#%ed%8c%a8%ed%84%b4-1-%ed%8f%b4%eb%b0%b1%ec%9d%b4-%ec%9e%88%eb%8a%94-llm-%ec%b2%b4%ec%9d%b8" aria-label="패턴 1: 폴백이 있는 LLM 체인">패턴 1: 폴백이 있는 LLM 체인</a></li>
+                <a href="#pattern-1-llm-chain-with-fallback" aria-label="Pattern 1: LLM Chain with Fallback">Pattern 1: LLM Chain with Fallback</a></li>
             <li>
-                <a href="#%ed%8c%a8%ed%84%b4-3-%ec%b2%b4%ed%81%ac%ed%8f%ac%ec%9d%b8%ed%8a%b8-%eb%b3%b5%ec%9b%90%ec%9d%b4-%ec%9e%88%eb%8a%94-ml-%ed%9b%88%eb%a0%a8" aria-label="패턴 3: 체크포인트 복원이 있는 ML 훈련">패턴 3: 체크포인트 복원이 있는 ML 훈련</a></li></ul>
+                <a href="#pattern-3-ml-training-with-checkpoint-recovery" aria-label="Pattern 3: ML Training with Checkpoint Recovery">Pattern 3: ML Training with Checkpoint Recovery</a></li></ul>
             </li>
             <li>
-                <a href="#ai-%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0-%ea%b3%a0%ea%b8%89-%ea%b8%b0%eb%8a%a5" aria-label="AI 워크플로우 고급 기능">AI 워크플로우 고급 기능</a><ul>
+                <a href="#advanced-features-for-ai-workflows" aria-label="Advanced Features for AI Workflows">Advanced Features for AI Workflows</a><ul>
                     
             <li>
-                <a href="#%ec%8b%a0%ed%98%b8-%ea%b8%b0%eb%b0%98-%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0-%ec%a0%9c%ec%96%b4" aria-label="신호 기반 워크플로우 제어">신호 기반 워크플로우 제어</a></li>
+                <a href="#signal-based-workflow-control" aria-label="Signal-Based Workflow Control">Signal-Based Workflow Control</a></li>
             <li>
-                <a href="#%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0-%ec%83%81%ed%83%9c-%ec%bf%bc%eb%a6%ac" aria-label="워크플로우 상태 쿼리">워크플로우 상태 쿼리</a></li>
+                <a href="#querying-workflow-state" aria-label="Querying Workflow State">Querying Workflow State</a></li></ul>
+            </li></ul>
+                
             <li>
-                <a href="#%ea%b5%ac%ec%a1%b0%ed%99%94%eb%90%9c-%eb%a1%9c%ea%b9%85" aria-label="구조화된 로깅">구조화된 로깅</a></li></ul>
-            </li>
+                <a href="#get-workflow-handle" aria-label="Get workflow handle">Get workflow handle</a></li>
             <li>
-                <a href="#%eb%b9%84%ec%9a%a9-%ec%b5%9c%ec%a0%81%ed%99%94" aria-label="비용 최적화">비용 최적화</a><ul>
+                <a href="#query-current-state" aria-label="Query current state">Query current state</a></li>
+            <li>
+                <a href="#describe-running-workflow" aria-label="Describe running workflow">Describe running workflow</a><ul>
                     
             <li>
-                <a href="#%ec%9e%a5%ea%b8%b0%ea%b0%84-%ec%8b%a4%ed%96%89-%ec%9e%91%ec%97%85%ec%9d%84-%ec%9c%84%ed%95%9c-activity-heartbeat" aria-label="장기간 실행 작업을 위한 Activity Heartbeat">장기간 실행 작업을 위한 Activity Heartbeat</a></li>
-            <li>
-                <a href="#%eb%b9%84%ec%9a%a9-%eb%b9%84%ea%b5%90" aria-label="비용 비교">비용 비교</a></li></ul>
-            </li>
-            <li>
-                <a href="#%eb%af%b8%eb%9e%98-%eb%b0%a9%ed%96%a5" aria-label="미래 방향">미래 방향</a><ul>
+                <a href="#monitoring-and-debugging" aria-label="Monitoring and Debugging">Monitoring and Debugging</a><ul>
                     
             <li>
-                <a href="#temporal%ec%9d%98-ai-%eb%a1%9c%eb%93%9c%eb%a7%b5" aria-label="Temporal의 AI 로드맵">Temporal의 AI 로드맵</a></li>
+                <a href="#temporal-web-ui" aria-label="Temporal Web UI">Temporal Web UI</a></li>
             <li>
-                <a href="#%ec%96%b8%ec%a0%9c-temporal%ec%9d%84-%ec%82%ac%ec%9a%a9%ed%95%a0%ea%b9%8c" aria-label="언제 Temporal을 사용할까">언제 Temporal을 사용할까</a></li></ul>
+                <a href="#cli-debugging" aria-label="CLI Debugging">CLI Debugging</a></li>
+            <li>
+                <a href="#structured-logging" aria-label="Structured Logging">Structured Logging</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%bb%a4%eb%ae%a4%eb%8b%88%ed%8b%b0-%ec%97%85%eb%8d%b0%ec%9d%b4%ed%8a%b8" aria-label="커뮤니티 업데이트">커뮤니티 업데이트</a></li>
+                <a href="#cost-optimization" aria-label="Cost Optimization">Cost Optimization</a><ul>
+                    
+            <li>
+                <a href="#activity-heartbeats-for-long-running-jobs" aria-label="Activity Heartbeats for Long-Running Jobs">Activity Heartbeats for Long-Running Jobs</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#with-heartbeat-detection-temporal-can-mark-activities-as-failed" aria-label="With heartbeat detection, Temporal can mark activities as failed">With heartbeat detection, Temporal can mark activities as failed</a></li>
+            <li>
+                <a href="#and-retry-only-the-current-step-not-the-entire-workflow" aria-label="and retry only the current step, not the entire workflow">and retry only the current step, not the entire workflow</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#cost-comparison" aria-label="Cost Comparison">Cost Comparison</a></li></ul>
+                
+            <li>
+                <a href="#future-directions" aria-label="Future Directions">Future Directions</a><ul>
+                    
+            <li>
+                <a href="#temporals-ai-roadmap" aria-label="Temporal&rsquo;s AI Roadmap">Temporal&rsquo;s AI Roadmap</a></li>
+            <li>
+                <a href="#when-to-use-temporal" aria-label="When to Use Temporal">When to Use Temporal</a></li></ul>
+            </li>
+            <li>
+                <a href="#community-updates" aria-label="Community Updates">Community Updates</a></li>
             <li>
                 <a href="#faq" aria-label="FAQ">FAQ</a><ul>
                     
             <li>
-                <a href="#q-temporal%ec%9d%80-llm-rate-limiting%ec%9d%84-%ec%96%b4%eb%96%bb%ea%b2%8c-%ec%b2%98%eb%a6%ac%ed%95%98%eb%82%98%ec%9a%94" aria-label="Q: Temporal은 LLM rate limiting을 어떻게 처리하나요?">Q: Temporal은 LLM rate limiting을 어떻게 처리하나요?</a>
+                <a href="#q-how-does-temporal-handle-llm-rate-limiting" aria-label="Q: How does Temporal handle LLM rate limiting?">Q: How does Temporal handle LLM rate limiting?</a>
             </li>
+        </ul>
+        </li>
         </ul>
         </li>
         </ul>
     </div>
 </details>
 
-  <div class="post-content md-content"><h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
-<p>Temporal은 신뢰할 수 있는 AI 워크플로우를 쉽게 구축할 수 있는 내구성 실행 플랫폼입니다. Kubernetes CronJob, 데드 레터 큐 및 수동 재시도 로직과 고군분투하는 대신, Temporal activity와 workflow로 데코레이터된 Python 함수를 작성합니다. Temporal은 정확히 한 번 실행 보장, 지수 백오프 자동 재시도 및 즉시 사용 가능한 전체 관찰성을 제공합니다.</p>
-<hr>
-<h2 id="temporal이란">Temporal이란?<a hidden class="anchor" aria-hidden="true" href="#temporal이란">#</a></h2>
-<p>Temporal은 규모에서 결함 허용 워크플로우를 실행하기 위한 오픈소스 분산 시스템입니다. 핵심적으로 <strong>내구성 실행</strong>을 제공하며 — 코드가 Temporal의 관리형 인프라 내에서 실행되며, 실패, 재시도, 체크포인트 및 상태 지속성을 자동으로 처리합니다.</p>
-<p>AI 워크로드에这意味着: - rate limit로 인해 실패하는 LLM 추론 호출이 백오프로 자동 재시도됨</p>
+  <div class="post-content md-content"><h2 id="what-is-temporal">What Is Temporal?<a hidden class="anchor" aria-hidden="true" href="#what-is-temporal">#</a></h2>
+<p>Temporal is an open-source distributed system for running fault-tolerant workflows at scale. At its core, it provides <strong>durable execution</strong> — your code runs inside Temporal&rsquo;s managed infrastructure, which automatically handles failures, retries, checkpoints, and state persistence.</p>
+<p>For AI workloads, this means: - LLM inference calls that fail due to rate limits automatically retry with backoff</p>
 <ul>
-<li>컨테이너 크래시가 발생해도 진행 상황을 잃지 않는 다단계 파인튜닝 파이프라인</li>
-<li>각 단계의 출력이 지속되고 검사 가능한 agent 오케스트레이션</li>
-<li>GPU 장애 후 마지막 체크포인트에서 재개되는 훈련 작업</li>
+<li>Multi-step fine-tuning pipelines that survive container crashes without losing progress</li>
+<li>Agent orchestration where each step&rsquo;s output is persisted and can be inspected</li>
+<li>Training jobs that resume from the last checkpoint after GPU failures</li>
 </ul>
-<h3 id="전통적-ai-오케스트레이션의-문제">전통적 AI 오케스트레이션의 문제<a hidden class="anchor" aria-hidden="true" href="#전통적-ai-오케스트레이션의-문제">#</a></h3>
-<p>典型的인 AI 파이프라인을 고려해보세요: ````
-[데이터 로드] → [전처리] → [문서 임베딩] → [벡터 DB 인덱싱] → [검색 테스트] → [팀 알림]</p>
+<h3 id="the-problem-with-traditional-ai-orchestration">The Problem with Traditional AI Orchestration<a hidden class="anchor" aria-hidden="true" href="#the-problem-with-traditional-ai-orchestration">#</a></h3>
+<p>Consider a typical AI pipeline: ````
+[Load Data] → [Preprocess] → [Embed Documents] → [Index in Vector DB] → [Test Retrieval] → [Notify Team]</p>
 <pre tabindex="0"><code>
-전통적 도구(Airflow, Celery, cron 스크립트)로 구현하려면 각 단계가 필요합니다: - 네트워크 타임아웃용 커스텀 에러 핸들링
-- 장애 시 재개를 위한 수동 체크포인팅
-- 분산 worker 간 상태 관리
-- 디버깅용 관찰성 대시보드
+With traditional tools (Airflow, Celery, cron scripts), each step requires: - Custom error handling for network timeouts
+- Manual checkpointing to resume on failure
+- State management across distributed workers
+- Observability dashboards for debugging
 
-Temporal은 Python 코드를 **자동 재개 가능하게** 만들어 이를 모두 제거합니다. 3단계가 크래시하면, Temporal은 3단계만 동일한 입력으로 재시작합니다 — 1-2단계는 히스토리에서 리플레이됩니다.
+Temporal eliminates all of this by making your Python code **naturally resumable**. If step 3 crashes, Temporal restarts only step 3 with the exact same inputs — steps 1-2 are replayed from history.
 
-### Temporal vs 대체方案
+### Temporal vs Alternatives
 
-| 기능 | Temporal | Airflow | Celery + Redis | Kubernetes CronJob |
-|---------|----------|---------|----------------|--------------------|
-| 코드 as 워크플로우 정의 | ✅(Python decorator) | ❌(DAG YAML/Python) | ❌(Task queue only) | ❌(Shell script) |
-| 자동 재시도 | ✅(configurable policy) | ⚠️(basic) | ⚠️(manual config) | ❌(none) |
-| 상태 지속화 | ✅(built-in) | ⚠️(external DB) | ❌(in-memory) | ❌ |
-| 정확히 한 번 semantics | ✅ | ❌ | ❌ | ❌ |
-| 대화형 디버깅 | ✅(web UI + CLI) | ⚠️(limited) | ❌ | ❌ |
-| ML 친화적 통합 | ✅(native) | ⚠️(plugins) | ❌ | ❌ |
+| Feature | Temporal | Airflow | Celery + Redis | Kubernetes CronJobs |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Code as workflow definition | ✅ (Python decorators) | ❌ (DAG YAML/Python) | ❌ (Task queue only) | ❌ (Shell scripts) |
+| Automatic retries | ✅ (configurable policy) | ⚠️ (basic) | ⚠️ (manual config) | ❌ (none) |
+| State persistence | ✅ (built-in) | ⚠️ (external DB) | ❌ (in-memory) | ❌ |
+| Exactly-once semantics | ✅ | ❌ | ❌ | ❌ |
+| Interactive debugging | ✅ (web UI + CLI) | ⚠️ (limited) | ❌ | ❌ |
+| ML-friendly integrations | ✅ (native) | ⚠️ (plugins) | ❌ | ❌ |
+
 
 * * *
+## Getting Started
 
-## 시작하기
-
-### 1단계: Temporal Stack 설치
+### Step 1: Install Temporal Stack
 
 `````bash
-# Option A: Docker Compose(local dev 권장)
+# Option A: Docker Compose (recommended for local dev)
 git clone https://github.com/temporalio/docker-compose.git
 cd docker-compose
 docker compose up -d
 
-# Option B: Temporal Cloud(managed, infra 불필요)
-# cloud.temporal.io에서 가입하고 namespace 생성
+# Option B: Temporal Cloud (managed, no infra to manage)
+# Sign up at cloud.temporal.io and create a namespace
 
-# 서버 실행 확인
+# Verify the server is running
 temporal cluster health
-</code></pre><p>기본 Docker Compose 설정 포함: - Temporal Server(gRPC API + history)</p>
+</code></pre><p>The default Docker Compose setup includes: - Temporal Server (gRPC API + history)</p>
 <ul>
-<li>Temporal UI(localhost:8233)</li>
-<li>Elasticsearch(search/indexing)</li>
-<li>Temporal Frontend(port 7233)</li>
+<li>Temporal UI (localhost:8233)</li>
+<li>Elasticsearch (search/indexing)</li>
+<li>Temporal Frontend (port 7233)</li>
 </ul>
-<h3 id="2단계-python-sdk-설치">2단계: Python SDK 설치<a hidden class="anchor" aria-hidden="true" href="#2단계-python-sdk-설치">#</a></h3>
+<h3 id="step-2-install-the-python-sdk">Step 2: Install the Python SDK<a hidden class="anchor" aria-hidden="true" href="#step-2-install-the-python-sdk">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install temporalio
-</span></span></code></pre></div><h3 id="3단계-첫-번째-workflow">3단계: 첫 번째 Workflow<a hidden class="anchor" aria-hidden="true" href="#3단계-첫-번째-workflow">#</a></h3>
+</span></span></code></pre></div><h3 id="step-3-your-first-workflow">Step 3: Your First Workflow<a hidden class="anchor" aria-hidden="true" href="#step-3-your-first-workflow">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> temporalio <span style="color:#f92672">import</span> worker, workflow, activity
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> temporalio.client <span style="color:#f92672">import</span> Client
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> temporalio.common <span style="color:#f92672">import</span> RetryPolicy
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># activity 정의(개별 단계)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define activities (the individual steps)</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@activity.defn</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">load_dataset</span>(dataset_name: str): <span style="color:#e6db74">&#34;&#34;&#34;데이터셋 로드 및 검증.&#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;데이터셋 로드 중: </span><span style="color:#e6db74">{</span>dataset_name<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">load_dataset</span>(dataset_name: str): <span style="color:#e6db74">&#34;&#34;&#34;Load and validate a dataset.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Loading dataset: </span><span style="color:#e6db74">{</span>dataset_name<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Simulate data loading</span>
 </span></span><span style="display:flex;"><span>    data <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;samples&#34;</span>: <span style="color:#ae81ff">10000</span>, <span style="color:#e6db74">&#34;features&#34;</span>: <span style="color:#ae81ff">128</span>}
-</span></span><span style="display:flex;"><span>    activity<span style="color:#f92672">.</span>info(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>data[<span style="color:#e6db74">&#39;samples&#39;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74"> 샘플 로드 완료&#34;</span>)
+</span></span><span style="display:flex;"><span>    activity<span style="color:#f92672">.</span>info(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Loaded </span><span style="color:#e6db74">{</span>data[samples]<span style="color:#e6db74">}</span><span style="color:#e6db74"> samples&#34;</span>)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> data
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@activity.defn</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">preprocess</span>(data: dict): <span style="color:#e6db74">&#34;&#34;&#34;데이터 정리 및 정규화.&#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;데이터 전처리 중...&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">preprocess</span>(data: dict): <span style="color:#e6db74">&#34;&#34;&#34;Clean and normalize the data.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Preprocessing data...&#34;</span>)
 </span></span><span style="display:flex;"><span>    processed <span style="color:#f92672">=</span> {
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;cleaned_samples&#34;</span>: data[<span style="color:#e6db74">&#34;samples&#34;</span>],
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;normalized&#34;</span>: <span style="color:#66d9ef">True</span>,
@@ -353,53 +385,59 @@ temporal cluster health
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> processed
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@activity.defn</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">train_model</span>(preprocessed_data: dict, epochs: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>): <span style="color:#e6db74">&#34;&#34;&#34;전처리 데이터로 모델 훈련.&#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>epochs<span style="color:#e6db74">}</span><span style="color:#e6db74"> epoch 동안 모델 훈련 중...&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">train_model</span>(preprocessed_data: dict, epochs: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>): <span style="color:#e6db74">&#34;&#34;&#34;Train a model on preprocessed data.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Training model for </span><span style="color:#e6db74">{</span>epochs<span style="color:#e6db74">}</span><span style="color:#e6db74"> epochs...&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Simulate training</span>
 </span></span><span style="display:flex;"><span>    metrics <span style="color:#f92672">=</span> {
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;final_loss&#34;</span>: <span style="color:#ae81ff">0.0234</span>,
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;final_accuracy&#34;</span>: <span style="color:#ae81ff">0.9456</span>,
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;epochs_trained&#34;</span>: epochs
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    activity<span style="color:#f92672">.</span>info(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;훈련 완료: accuracy=</span><span style="color:#e6db74">{</span>metrics[<span style="color:#e6db74">&#39;final_accuracy&#39;</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    activity<span style="color:#f92672">.</span>info(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Training complete: accuracy=</span><span style="color:#e6db74">{</span>metrics[final_accuracy]<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> metrics
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@activity.defn</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">deploy_model</span>(metrics: dict): <span style="color:#e6db74">&#34;&#34;&#34;훈련된 모델을 프로덕션에 배포.&#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;모델을 프로덕션에 배포 중...&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">deploy_model</span>(metrics: dict): <span style="color:#e6db74">&#34;&#34;&#34;Deploy the trained model to production.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Deploying model to production...&#34;</span>)
 </span></span><span style="display:flex;"><span>    deployment <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;model_id&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;model-</span><span style="color:#e6db74">{</span>metrics[<span style="color:#e6db74">&#39;final_accuracy&#39;</span>]<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;model_id&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;model-</span><span style="color:#e6db74">{</span>metrics[final_accuracy]<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>,
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;deployed&#34;</span>,
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;endpoint&#34;</span>: <span style="color:#e6db74">&#34;https://api.example.com/v1/predict&#34;</span>
 </span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    activity<span style="color:#f92672">.</span>info(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;모델 배포됨: </span><span style="color:#e6db74">{</span>deployment[<span style="color:#e6db74">&#39;model_id&#39;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    activity<span style="color:#f92672">.</span>info(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Model deployed: </span><span style="color:#e6db74">{</span>deployment[model_id]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> deployment
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># workflow 정의</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the workflow</span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@workflow.defn</span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MLTrainingPipeline</span>: <span style="color:#a6e22e">@workflow.run</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run</span>(self, dataset_name: str, epochs: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>) <span style="color:#f92672">-&gt;</span> dict: <span style="color:#75715e"># 각 단계는 activity 호출</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run</span>(self, dataset_name: str, epochs: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>) <span style="color:#f92672">-&gt;</span> dict: <span style="color:#75715e"># Each step is an activity call</span>
 </span></span><span style="display:flex;"><span>        data <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> workflow<span style="color:#f92672">.</span>execute_activity(
-</span></span><span style="display:flex;"><span>            load_dataset, dataset_name,
+</span></span><span style="display:flex;"><span>            load_dataset,
+</span></span><span style="display:flex;"><span>            dataset_name,
 </span></span><span style="display:flex;"><span>            retry<span style="color:#f92672">=</span>RetryPolicy(max_attempts<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
 </span></span><span style="display:flex;"><span>        )
 </span></span><span style="display:flex;"><span>        
 </span></span><span style="display:flex;"><span>        processed <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> workflow<span style="color:#f92672">.</span>execute_activity(
-</span></span><span style="display:flex;"><span>            preprocess, data,
+</span></span><span style="display:flex;"><span>            preprocess,
+</span></span><span style="display:flex;"><span>            data,
 </span></span><span style="display:flex;"><span>            retry<span style="color:#f92672">=</span>RetryPolicy(max_attempts<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
 </span></span><span style="display:flex;"><span>        )
 </span></span><span style="display:flex;"><span>        
 </span></span><span style="display:flex;"><span>        metrics <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> workflow<span style="color:#f92672">.</span>execute_activity(
-</span></span><span style="display:flex;"><span>            train_model, processed, epochs,
+</span></span><span style="display:flex;"><span>            train_model,
+</span></span><span style="display:flex;"><span>            processed,
+</span></span><span style="display:flex;"><span>            epochs,
 </span></span><span style="display:flex;"><span>            retry<span style="color:#f92672">=</span>RetryPolicy(max_attempts<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, initial_interval<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
 </span></span><span style="display:flex;"><span>        )
 </span></span><span style="display:flex;"><span>        
 </span></span><span style="display:flex;"><span>        deployment <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> workflow<span style="color:#f92672">.</span>execute_activity(
-</span></span><span style="display:flex;"><span>            deploy_model, metrics,
+</span></span><span style="display:flex;"><span>            deploy_model,
+</span></span><span style="display:flex;"><span>            metrics,
 </span></span><span style="display:flex;"><span>            retry<span style="color:#f92672">=</span>RetryPolicy(max_attempts<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
 </span></span><span style="display:flex;"><span>        )
 </span></span><span style="display:flex;"><span>        
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> deployment
-</span></span></code></pre></div><h3 id="4단계-worker-및-client-실행">4단계: Worker 및 Client 실행<a hidden class="anchor" aria-hidden="true" href="#4단계-worker-및-client-실행">#</a></h3>
+</span></span></code></pre></div><h3 id="step-4-run-the-worker-and-client">Step 4: Run the Worker and Client<a hidden class="anchor" aria-hidden="true" href="#step-4-run-the-worker-and-client">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># worker.py</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> temporalio.worker <span style="color:#f92672">import</span> Worker
@@ -411,43 +449,67 @@ temporal cluster health
 </span></span><span style="display:flex;"><span>        workflows<span style="color:#f92672">=</span>[MLTrainingPipeline],
 </span></span><span style="display:flex;"><span>        activities<span style="color:#f92672">=</span>[load_dataset, preprocess, train_model, deploy_model]
 </span></span><span style="display:flex;"><span>    )
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Worker 시작됨. Ctrl+C를 눌러 종료.&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Worker started. Press Ctrl+C to exit.&#34;</span>)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> worker<span style="color:#f92672">.</span>run()
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>: asyncio<span style="color:#f92672">.</span>run(main())
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># client.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> temporalio.client <span style="color:#f92672">import</span> Client
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> my_workflow <span style="color:#f92672">import</span> MLTrainingPipeline
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(): client <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> Client<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;localhost:7233&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    handle <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> client<span style="color:#f92672">.</span>start_workflow(
+</span></span><span style="display:flex;"><span>        MLTrainingPipeline<span style="color:#f92672">.</span>run,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;imdb-dataset&#34;</span>,
+</span></span><span style="display:flex;"><span>        id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;training-job-001&#34;</span>,
+</span></span><span style="display:flex;"><span>        task_queue<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ml-pipeline&#34;</span>,
+</span></span><span style="display:flex;"><span>        retry_policy<span style="color:#f92672">=</span>RetryPolicy(max_attempts<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> handle<span style="color:#f92672">.</span>result()
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Pipeline result: </span><span style="color:#e6db74">{</span>result<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>: asyncio<span style="color:#f92672">.</span>run(main())
 </span></span></code></pre></div><hr>
-<h2 id="ai-전용-워크플로우-패턴">AI 전용 워크플로우 패턴<a hidden class="anchor" aria-hidden="true" href="#ai-전용-워크플로우-패턴">#</a></h2>
-<h3 id="패턴-1-폴백이-있는-llm-체인">패턴 1: 폴백이 있는 LLM 체인<a hidden class="anchor" aria-hidden="true" href="#패턴-1-폴백이-있는-llm-체인">#</a></h3>
-<p>여러 LLM 호출을 체인하고 더 저렴한 모델로 자동 폴백: `````python
-from temporalio import workflow, activity</p>
+<h2 id="ai-specific-workflow-patterns">AI-Specific Workflow Patterns<a hidden class="anchor" aria-hidden="true" href="#ai-specific-workflow-patterns">#</a></h2>
+<h3 id="pattern-1-llm-chain-with-fallback">Pattern 1: LLM Chain with Fallback<a hidden class="anchor" aria-hidden="true" href="#pattern-1-llm-chain-with-fallback">#</a></h3>
+<p>Chain multiple LLM calls with automatic fallback to cheaper models: `````python
+from temporalio import workflow, activity
+import asyncio</p>
 <p>@activity.defn
-async def generate_with_gpt4(prompt: str) -&gt; str: &ldquo;&ldquo;&ldquo;먼저 GPT-4 시도.&rdquo;&rdquo;&rdquo;
+async def generate_with_gpt4(prompt: str) -&gt; str: &ldquo;&ldquo;&ldquo;Try GPT-4 first.&rdquo;&rdquo;&rdquo;
 response = await call_openai(prompt, model=&ldquo;gpt-4o&rdquo;)
 return response</p>
 <p>@activity.defn
-async def generate_with_claude(prompt: str) -&gt; str: &ldquo;&ldquo;&ldquo;Claude로 폴백.&rdquo;&rdquo;&rdquo;
+async def generate_with_claude(prompt: str) -&gt; str: &ldquo;&ldquo;&ldquo;Fallback to Claude.&rdquo;&rdquo;&rdquo;
 response = await call_anthropic(prompt, model=&ldquo;claude-sonnet-4&rdquo;)
 return response</p>
 <p>@activity.defn
-async def generate_with_local(prompt: str) -&gt; str: &ldquo;&ldquo;&ldquo;마지막 수단: local 모델.&rdquo;&rdquo;&rdquo;
+async def generate_with_local(prompt: str) -&gt; str: &ldquo;&ldquo;&ldquo;Last resort: local model.&rdquo;&rdquo;&rdquo;
 response = await call_ollama(prompt, model=&ldquo;llama3.2&rdquo;)
 return response</p>
 <p>@workflow.defn
 class ResilientLLMChain: @workflow.run
-async def run(self, prompt: str) -&gt; dict: try: result = await workflow.execute_activity(
-generate_with_gpt4, prompt,
+async def run(self, prompt: str) -&gt; dict: try: # Try most expensive model first
+result = await workflow.execute_activity(
+generate_with_gpt4,
+prompt,
 timeout=timedelta(minutes=5),
 retry=RetryPolicy(max_attempts=2)
 )
 model_used = &ldquo;gpt-4o&rdquo;
 except Exception: try: result = await workflow.execute_activity(
-generate_with_claude, prompt,
+generate_with_claude,
+prompt,
 timeout=timedelta(minutes=5),
 retry=RetryPolicy(max_attempts=2)
 )
 model_used = &ldquo;claude-sonnet-4&rdquo;
 except Exception: result = await workflow.execute_activity(
-generate_with_local, prompt,
+generate_with_local,
+prompt,
 timeout=timedelta(minutes=10),
 retry=RetryPolicy(max_attempts=3)
 )
@@ -455,30 +517,35 @@ model_used = &ldquo;local-llama&rdquo;</p>
 <pre><code>    return {&quot;response&quot;: result, &quot;model_used&quot;: model_used, &quot;fallback_chain&quot;: True}
 </code></pre>
 <pre tabindex="0"><code>
-### 패턴 2: 비동기 멀티 에이전트 오케스트레이션
+### Pattern 2: Async Multi-Agent Orchestration
 
-여러 AI agent를 병렬로 실행한 다음 결과 집계: `````python
+Run multiple AI agents in parallel, then aggregate results: `````python
+from temporalio import workflow, activity
+from temporalio.exceptions import TimeoutError
+
 @activity.defn
-async def agent_research(query: str) -&gt; dict: &#34;&#34;&#34;연구 agent: 웹에서 정보 수집.&#34;&#34;&#34;
+async def agent_research(query: str) -&gt; dict: &#34;&#34;&#34;Research agent: gathers information from web.&#34;&#34;&#34;
     results = await search_web(query)
     return {&#34;type&#34;: &#34;research&#34;, &#34;sources&#34;: len(results), &#34;summary&#34;: summarize(results)}
 
 @activity.defn
-async def agent_analysis(research_data: dict) -&gt; dict: &#34;&#34;&#34;분석 agent: 발견 사항 평가.&#34;&#34;&#34;
+async def agent_analysis(research_data: dict) -&gt; dict: &#34;&#34;&#34;Analysis agent: evaluates findings.&#34;&#34;&#34;
     analysis = await analyze_findings(research_data[&#34;summary&#34;])
     return {&#34;type&#34;: &#34;analysis&#34;, &#34;confidence&#34;: analysis[&#34;confidence_score&#34;]}
 
 @activity.defn
-async def agent_synthesis(research: dict, analysis: dict) -&gt; dict: &#34;&#34;&#34;합성 agent: 연구와 분석을 보고서로 결합.&#34;&#34;&#34;
+async def agent_synthesis(research: dict, analysis: dict) -&gt; dict: &#34;&#34;&#34;Synthesis agent: combines research and analysis into report.&#34;&#34;&#34;
     report = await synthesize_report(research, analysis)
     return {&#34;type&#34;: &#34;synthesis&#34;, &#34;report_length&#34;: len(report)}
 
 @workflow.defn
 class MultiAgentResearch: @workflow.run
-    async def run(self, query: str) -&gt; dict: research_handle = workflow.execute_activity(
+    async def run(self, query: str) -&gt; dict: # Run research and analysis in parallel
+        research_handle = workflow.execute_activity(
             agent_research, query, start_to_close_timeout=timedelta(minutes=5)
         )
         
+        # Wait for research, then start analysis
         research_result = await research_handle
         analysis_handle = workflow.execute_activity(
             agent_analysis, research_result, start_to_close_timeout=timedelta(minutes=3)
@@ -486,37 +553,46 @@ class MultiAgentResearch: @workflow.run
         
         analysis_result = await analysis_handle
         
+        # Final synthesis
         final_report = await workflow.execute_activity(
             agent_synthesis, research_result, analysis_result,
             start_to_close_timeout=timedelta(minutes=5)
         )
         
         return final_report
-</code></pre><h3 id="패턴-3-체크포인트-복원이-있는-ml-훈련">패턴 3: 체크포인트 복원이 있는 ML 훈련<a hidden class="anchor" aria-hidden="true" href="#패턴-3-체크포인트-복원이-있는-ml-훈련">#</a></h3>
-<p>어떤 장애 후에도 마지막 체크포인트에서 자동 재개: `````python
+</code></pre><h3 id="pattern-3-ml-training-with-checkpoint-recovery">Pattern 3: ML Training with Checkpoint Recovery<a hidden class="anchor" aria-hidden="true" href="#pattern-3-ml-training-with-checkpoint-recovery">#</a></h3>
+<p>Automatically resume training from the last checkpoint after any failure: `````python
 @activity.defn
-async def save_checkpoint(epoch: int, model_state: dict) -&gt; str: &ldquo;&ldquo;&ldquo;훈련 체크포인트를 영구 저장소에 저장.&rdquo;&rdquo;&rdquo;
+async def save_checkpoint(epoch: int, model_state: dict) -&gt; str: &ldquo;&ldquo;&ldquo;Save training checkpoint to persistent storage.&rdquo;&rdquo;&rdquo;
 checkpoint_path = f&quot;s3://my-bucket/checkpoints/epoch_{epoch}.pt&quot;
 await upload_to_s3(model_state, checkpoint_path)
-activity.info(f&quot;체크포인트 저장됨: {checkpoint_path}&quot;)
+activity.info(f&quot;Checkpoint saved: {checkpoint_path}&quot;)
 return checkpoint_path</p>
 <p>@activity.defn
-async def load_checkpoint(checkpoint_path: str) -&gt; dict: &ldquo;&ldquo;&ldquo;체크포인트에서 모델 상태 로드.&rdquo;&rdquo;&rdquo;
+async def load_checkpoint(checkpoint_path: str) -&gt; dict: &ldquo;&ldquo;&ldquo;Load model state from checkpoint.&rdquo;&rdquo;&rdquo;
 model_state = await download_from_s3(checkpoint_path)
-activity.info(f&quot;체크포인트 로드됨: {checkpoint_path}&quot;)
+activity.info(f&quot;Checkpoint loaded: {checkpoint_path}&quot;)
 return model_state</p>
+<p>@activity.defn
+async def train_epoch(model_state: dict, epoch: int, learning_rate: float) -&gt; dict: &ldquo;&ldquo;&ldquo;Train a single epoch.&rdquo;&rdquo;&rdquo;
+# Actual training logic here
+new_state = perform_training_step(model_state, learning_rate)
+metrics = compute_metrics(new_state)
+return {&ldquo;state&rdquo;: new_state, &ldquo;metrics&rdquo;: metrics}</p>
 <p>@workflow.defn
 class ResumableTraining: @workflow.run
-async def run(self, dataset_url: str, total_epochs: int, lr: float = 0.001) -&gt; dict: checkpoint_path = workflow.info().get_memo_field(&ldquo;last_checkpoint&rdquo;)</p>
+async def run(self, dataset_url: str, total_epochs: int, lr: float = 0.001) -&gt; dict: # Check if we have a previous checkpoint
+checkpoint_path = workflow.info().get_memo_field(&ldquo;last_checkpoint&rdquo;)</p>
 <pre><code>    if checkpoint_path: model_state = await workflow.execute_activity(
             load_checkpoint, checkpoint_path,
             start_to_close_timeout=timedelta(minutes=2)
         )
         start_epoch = int(checkpoint_path.split(&quot;_&quot;)[-1].split(&quot;.&quot;)[0])
-        activity.info(f&quot;{start_epoch} epoch에서 재개&quot;)
+        activity.info(f&quot;Resuming from epoch {start_epoch}&quot;)
     else: model_state = initialize_model(dataset_url)
         start_epoch = 0
     
+    # Train epochs with periodic checkpointing
     for epoch in range(start_epoch, total_epochs): result = await workflow.execute_activity(
             train_epoch, model_state, epoch, lr,
             start_to_close_timeout=timedelta(minutes=30),
@@ -525,48 +601,80 @@ async def run(self, dataset_url: str, total_epochs: int, lr: float = 0.001) -&gt
         
         model_state = result[&quot;state&quot;]
         
+        # Save checkpoint every 5 epochs
         if (epoch + 1) % 5 == 0: cp_path = await workflow.execute_activity(
                 save_checkpoint, epoch + 1, model_state,
                 start_to_close_timeout=timedelta(minutes=5)
             )
+            # Store in workflow memo for recovery
             workflow.set_memo({&quot;last_checkpoint&quot;: cp_path})
     
     return {&quot;final_state&quot;: model_state, &quot;total_epochs&quot;: total_epochs}
 </code></pre>
 <pre tabindex="0"><code>
-### 패턴 4: 스트리밍 LLM 출력
+### Pattern 4: Streaming LLM Output
 
-워크플로우 내에서 LLM의 스트리밍 응답 처리: `````python
+Handle streaming responses from LLMs within a workflow: `````python
 @activity.defn
-async def stream_llm_response(prompt: str, max_tokens: int = 1024) -&gt; list[str]: &#34;&#34;&#34;LLM에서 토큰을 스트리밍하여 리스트로 반환.&#34;&#34;&#34;
+async def stream_llm_response(prompt: str, max_tokens: int = 1024) -&gt; list[str]: &#34;&#34;&#34;Stream tokens from an LLM and return them as a list.&#34;&#34;&#34;
     tokens = []
     async for token in call_streaming_api(prompt, max_tokens): tokens.append(token)
+        # Small delay to simulate streaming
         await asyncio.sleep(0.01)
     return tokens
+
+@workflow.defn
+class StreamingChat: @workflow.run
+    async def run(self, conversation_history: list[dict], user_message: str) -&gt; str: # Build the prompt from conversation history
+        prompt = format_conversation(conversation_history, user_message)
+        
+        # Stream the response
+        tokens = await workflow.execute_activity(
+            stream_llm_response,
+            prompt,
+            start_to_close_timeout=timedelta(minutes=5),
+            retry=RetryPolicy(max_attempts=2)
+        )
+        
+        response = &#34;&#34;.join(tokens)
+        
+        # Update conversation history
+        updated_history = conversation_history + [
+            {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: user_message},
+            {&#34;role&#34;: &#34;assistant&#34;, &#34;content&#34;: response}
+        ]
+        
+        return {&#34;response&#34;: response, &#34;history&#34;: updated_history}
 </code></pre><hr>
-<h2 id="ai-워크플로우-고급-기능">AI 워크플로우 고급 기능<a hidden class="anchor" aria-hidden="true" href="#ai-워크플로우-고급-기능">#</a></h2>
-<h3 id="신호-기반-워크플로우-제어">신호 기반 워크플로우 제어<a hidden class="anchor" aria-hidden="true" href="#신호-기반-워크플로우-제어">#</a></h3>
-<p>외부에서 워크플로우에 신호를 보내 취소, 우선순위 업데이트 또는 새 데이터 주입: `````python
+<h2 id="advanced-features-for-ai-workflows">Advanced Features for AI Workflows<a hidden class="anchor" aria-hidden="true" href="#advanced-features-for-ai-workflows">#</a></h2>
+<h3 id="signal-based-workflow-control">Signal-Based Workflow Control<a hidden class="anchor" aria-hidden="true" href="#signal-based-workflow-control">#</a></h3>
+<p>Signal workflows from outside to cancel, update priority, or inject new data: `````python
 @workflow.defn
 class PriorityWorkflow: def <strong>init</strong>(self): self.priority = &ldquo;normal&rdquo;
 self.cancel_requested = False</p>
 <pre><code>@workflow.signal
-def set_priority(self, new_priority: str): self.priority = new_priority
-    workflow.logger.info(f&quot;우선순위 {new_priority}(으)로 변경됨&quot;)
+def set_priority(self, new_priority: str): &quot;&quot;&quot;Change workflow execution priority.&quot;&quot;&quot;
+    self.priority = new_priority
+    workflow.logger.info(f&quot;Priority changed to {new_priority}&quot;)
 
 @workflow.signal
-def cancel_workflow(self): self.cancel_requested = True
-    workflow.logger.info(&quot;취소 요청됨&quot;)
+def cancel_workflow(self): &quot;&quot;&quot;Request workflow cancellation.&quot;&quot;&quot;
+    self.cancel_requested = True
+    workflow.logger.info(&quot;Cancellation requested&quot;)
 
 @workflow.run
-async def run(self, task_data: dict) -&gt; dict: while not self.cancel_requested: result = await process_task(task_data, self.priority)
+async def run(self, task_data: dict) -&gt; dict: while not self.cancel_requested: # Process based on current priority
+        result = await process_task(task_data, self.priority)
+        
+        # Check for signals between steps
         await asyncio.sleep(0.1)
+    
     return {&quot;status&quot;: &quot;cancelled&quot;, &quot;partial_result&quot;: result}
 </code></pre>
 <pre tabindex="0"><code>
-### 하위 워크플로우로 모듈식 설계
+### Child Workflows for Modular Design
 
-복잡한 파이프라인을 중첩 하위 워크플로우로 분해: `````python
+Break complex pipelines into nested child workflows: `````python
 @workflow.defn
 class DataPreparation: @workflow.run
     async def run(self, raw_data: dict) -&gt; dict: cleaned = await workflow.execute_activity(clean_data, raw_data)
@@ -574,51 +682,94 @@ class DataPreparation: @workflow.run
         return validated
 
 @workflow.defn
+class ModelEvaluation: @workflow.run
+    async def run(self, trained_model: dict) -&gt; dict: test_results = await workflow.execute_activity(evaluate_model, trained_model)
+        benchmark = await workflow.execute_activity(run_benchmarks, trained_model)
+        return {&#34;test_results&#34;: test_results, &#34;benchmark&#34;: benchmark}
+
+@workflow.defn
 class FullMLPipeline: @workflow.run
-    async def run(self, raw_data: dict, model_config: dict) -&gt; dict: prepared_data = await workflow.child_execute(DataPreparation.run, raw_data)
-        trained_model = await workflow.child_execute(ModelTraining.run, prepared_data, model_config)
-        eval_results = await workflow.child_execute(ModelEvaluation.run, trained_model)
+    async def run(self, raw_data: dict, model_config: dict) -&gt; dict: # Child workflow: data preparation
+        prepared_data = await workflow.child_execute(
+            DataPreparation.run, raw_data
+        )
+        
+        # Child workflow: model training
+        trained_model = await workflow.child_execute(
+            ModelTraining.run, prepared_data, model_config
+        )
+        
+        # Child workflow: evaluation
+        eval_results = await workflow.child_execute(
+            ModelEvaluation.run, trained_model
+        )
+        
         return eval_results
-</code></pre><h3 id="워크플로우-상태-쿼리">워크플로우 상태 쿼리<a hidden class="anchor" aria-hidden="true" href="#워크플로우-상태-쿼리">#</a></h3>
-<p>중단 없이 실행 중인 워크플로우 검사: `````python
+</code></pre><h3 id="querying-workflow-state">Querying Workflow State<a hidden class="anchor" aria-hidden="true" href="#querying-workflow-state">#</a></h3>
+<p>Inspect running workflows without stopping them: `````python
 from temporalio.client import Client</p>
-<p>client = await Client.connect(&ldquo;localhost:7233&rdquo;)
-handle = client.get_workflow_handle(&ldquo;training-job-001&rdquo;)</p>
+<p>client = await Client.connect(&ldquo;localhost:7233&rdquo;)</p>
+<h1 id="get-workflow-handle">Get workflow handle<a hidden class="anchor" aria-hidden="true" href="#get-workflow-handle">#</a></h1>
+<p>handle = client.get_workflow_handle(&ldquo;training-job-001&rdquo;)</p>
+<h1 id="query-current-state">Query current state<a hidden class="anchor" aria-hidden="true" href="#query-current-state">#</a></h1>
 <p>state = await handle.query(lambda wf: wf.current_state)
-print(f&quot;현재 상태: {state}&quot;)</p>
+print(f&quot;Current state: {state}&quot;)</p>
+<h1 id="describe-running-workflow">Describe running workflow<a hidden class="anchor" aria-hidden="true" href="#describe-running-workflow">#</a></h1>
 <p>info = await handle.describe()
-print(f&quot;상태: {info.status}&quot;)
-print(f&quot;시작 시간: {info.start_time}&quot;)</p>
+print(f&quot;Status: {info.status}&quot;)
+print(f&quot;Start time: {info.start_time}&quot;)
+print(f&quot;Execution time: {info.execution_time}&quot;)</p>
 <pre tabindex="0"><code>
-* * *
+### Workflow Timeouts and Schedules
 
-## 모니터링 및 디버깅
+`````python
+# Set different timeout types for precise control
+await workflow.execute_activity(
+    slow_activity,
+    arg1, arg2,
+    start_to_close_timeout=timedelta(minutes=30),  # Total time allowed
+    schedule_to_start_timeout=timedelta(minutes=5),  # Time waiting for worker
+    schedule_to_close_timeout=timedelta(minutes=35),  # Total lifecycle
+    heartbeat_timeout=timedelta(minutes=2),           # Heartbeat interval
+)
 
-### Temporal Web UI
-
-````http://localhost:8233````에서 빌트인 Web UI 접근: - 실행 중 및 완료된 모든 워크플로우 보기
-- 각 activity의 input/output 데이터 검사
-- 단계별 워크플로우 히스토리 리플레이
-- ID, 상태 또는 사용자 정의 속성으로 워크플로우 검색
-
-### CLI 디버깅
-
-`````bash
-# 모든 워크플로우 나열
-temporal workflow list --namespace default
-
-# 특정 워크플로우 설명
-temporal workflow describe --workflow-id training-job-001
-
-# 워크플로우 히스토리 표시(실행 추적)
-temporal workflow show --workflow-id training-job-001
-
-# 워크플로우를 특정 지점으로 리셋
-temporal workflow reset --workflow-id training-job-001 --reset-point LastAutoClose
-
-# 실행 중인 워크플로우 종료
-temporal workflow terminate --workflow-id training-job-001 --reason &#34;사용자 요청&#34;
-</code></pre><h3 id="구조화된-로깅">구조화된 로깅<a hidden class="anchor" aria-hidden="true" href="#구조화된-로깅">#</a></h3>
+# Schedule a recurring workflow
+schedule = await client.schedule.create(
+    ScheduleSpec(
+        interval=[timedelta(hours=6)],  # Every 6 hours
+        catchup_window=timedelta(hours=1)
+    ),
+    ScheduleActionStartWorkflow(
+        &#34;daily-report-generation&#34;,
+        task_queue=&#34;reports&#34;,
+        retry_policy=RetryPolicy(max_attempts=3)
+    )
+)
+</code></pre><hr>
+<h2 id="monitoring-and-debugging">Monitoring and Debugging<a hidden class="anchor" aria-hidden="true" href="#monitoring-and-debugging">#</a></h2>
+<h3 id="temporal-web-ui">Temporal Web UI<a hidden class="anchor" aria-hidden="true" href="#temporal-web-ui">#</a></h3>
+<p>Access the built-in web UI at <code>http://localhost:8233</code> to: - View all running and completed workflows</p>
+<ul>
+<li>Inspect input/output data for each activity</li>
+<li>Replay workflow history step-by-step</li>
+<li>Search workflows by ID, status, or custom attributes</li>
+</ul>
+<h3 id="cli-debugging">CLI Debugging<a hidden class="anchor" aria-hidden="true" href="#cli-debugging">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># List all workflows</span>
+</span></span><span style="display:flex;"><span>temporal workflow list --namespace default
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Describe a specific workflow</span>
+</span></span><span style="display:flex;"><span>temporal workflow describe --workflow-id training-job-001
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Show workflow history (execution trace)</span>
+</span></span><span style="display:flex;"><span>temporal workflow show --workflow-id training-job-001
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Reset a workflow to a specific point</span>
+</span></span><span style="display:flex;"><span>temporal workflow reset --workflow-id training-job-001 --reset-point LastAutoClose
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Terminate a running workflow</span>
+</span></span><span style="display:flex;"><span>temporal workflow terminate --workflow-id training-job-001 --reason <span style="color:#e6db74">&#34;User requested&#34;</span>
+</span></span></code></pre></div><h3 id="structured-logging">Structured Logging<a hidden class="anchor" aria-hidden="true" href="#structured-logging">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> structlog
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> temporalio <span style="color:#f92672">import</span> activity
 </span></span><span style="display:flex;"><span>
@@ -628,99 +779,90 @@ temporal workflow terminate --workflow-id training-job-001 --reason &#34;사용�
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">train_with_logging</span>(model_config: dict) <span style="color:#f92672">-&gt;</span> dict: logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">&#34;training_start&#34;</span>, config<span style="color:#f92672">=</span>model_config)
 </span></span><span style="display:flex;"><span>    
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> epoch <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10</span>): loss <span style="color:#f92672">=</span> perform_training_epoch(model_config)
-</span></span><span style="display:flex;"><span>        logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">&#34;epoch_complete&#34;</span>, epoch<span style="color:#f92672">=</span>epoch, loss<span style="color:#f92672">=</span>loss, learning_rate<span style="color:#f92672">=</span>model_config[<span style="color:#e6db74">&#34;lr&#34;</span>])
+</span></span><span style="display:flex;"><span>        logger<span style="color:#f92672">.</span>info(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;epoch_complete&#34;</span>,
+</span></span><span style="display:flex;"><span>            epoch<span style="color:#f92672">=</span>epoch,
+</span></span><span style="display:flex;"><span>            loss<span style="color:#f92672">=</span>loss,
+</span></span><span style="display:flex;"><span>            learning_rate<span style="color:#f92672">=</span>model_config[<span style="color:#e6db74">&#34;lr&#34;</span>]
+</span></span><span style="display:flex;"><span>        )
 </span></span><span style="display:flex;"><span>    
 </span></span><span style="display:flex;"><span>    logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">&#34;training_complete&#34;</span>, final_loss<span style="color:#f92672">=</span>loss)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;final_loss&#34;</span>: loss}
-</span></span></code></pre></div><p>로그는 Temporal UI에 나타나며 Elasticsearch, Datadog 또는 어떤 SIEM으로도 내보낼 수 있습니다.</p>
+</span></span></code></pre></div><p>Logs appear in the Temporal UI and can be exported to Elasticsearch, Datadog, or any SIEM.</p>
 <hr>
-<h2 id="비용-최적화">비용 최적화<a hidden class="anchor" aria-hidden="true" href="#비용-최적화">#</a></h2>
-<h3 id="장기간-실행-작업을-위한-activity-heartbeat">장기간 실행 작업을 위한 Activity Heartbeat<a hidden class="anchor" aria-hidden="true" href="#장기간-실행-작업을-위한-activity-heartbeat">#</a></h3>
-<p>진행률 보고로 계산 낭비 방지: `````python
+<h2 id="cost-optimization">Cost Optimization<a hidden class="anchor" aria-hidden="true" href="#cost-optimization">#</a></h2>
+<h3 id="activity-heartbeats-for-long-running-jobs">Activity Heartbeats for Long-Running Jobs<a hidden class="anchor" aria-hidden="true" href="#activity-heartbeats-for-long-running-jobs">#</a></h3>
+<p>Prevent wasted compute by reporting progress: `````python
 @activity.defn
-async def long_training_job(config: dict): for epoch in range(100): activity.heartbeat(f&quot;{epoch}/100 epoch 완료&quot;)
-loss = train_one_epoch(config)
-return {&ldquo;final_loss&rdquo;: loss}</p>
+async def long_training_job(config: dict): for epoch in range(100): # Report heartbeat every epoch
+activity.heartbeat(f&quot;Epoch {epoch}/100 complete&quot;)
+loss = train_one_epoch(config)</p>
+<pre><code>return {&quot;final_loss&quot;: loss}
+</code></pre>
+<h1 id="with-heartbeat-detection-temporal-can-mark-activities-as-failed">With heartbeat detection, Temporal can mark activities as failed<a hidden class="anchor" aria-hidden="true" href="#with-heartbeat-detection-temporal-can-mark-activities-as-failed">#</a></h1>
+<h1 id="and-retry-only-the-current-step-not-the-entire-workflow">and retry only the current step, not the entire workflow<a hidden class="anchor" aria-hidden="true" href="#and-retry-only-the-current-step-not-the-entire-workflow">#</a></h1>
 <pre tabindex="0"><code>
-### 워커 리소스 적정 크기 조정
+### Right-Sizing Worker Resources
 
 `````python
 worker = Worker(
-    client, task_queue=&#34;ml-workers&#34;,
+    client,
+    task_queue=&#34;ml-workers&#34;,
     workflows=[MLTrainingPipeline],
     activities=[train_model, evaluate_model],
-    max_concurrent_activities=50,
-    max_concurrent_workflow_tasks=100,
+    max_concurrent_activities=50,       # Limit concurrent activities
+    max_concurrent_workflow_tasks=100,   # Limit workflow task processing
 )
-</code></pre><h3 id="비용-비교">비용 비교<a hidden class="anchor" aria-hidden="true" href="#비용-비교">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>방식</th>
-					<th>월 비용(월 100개 훈련 작업)</th>
-					<th>ops 오버헤드</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>Kubernetes + CronJob</td>
-					<td>$800(상시 노드) + 월 20시간 DevOps</td>
-					<td>높음</td>
-			</tr>
-			<tr>
-					<td>AWS Batch</td>
-					<td>$450(spot instance) + 월 10시간 구성</td>
-					<td>중간</td>
-			</tr>
-			<tr>
-					<td>Temporal Cloud</td>
-					<td>$200(compute) + $0 ops</td>
-					<td>없음</td>
-			</tr>
-			<tr>
-					<td>Self-hosted Temporal</td>
-					<td>$150(2대 소형 VM) + 월 5시간 유지보수</td>
-					<td>낮음</td>
-			</tr>
-	</tbody>
-</table>
+</code></pre><h3 id="cost-comparison">Cost Comparison<a hidden class="anchor" aria-hidden="true" href="#cost-comparison">#</a></h3>
+<p>| Approach | Monthly Cost (100 training jobs/mo) | Ops Overhead |
+|</p>
 <hr>
-<h2 id="미래-방향">미래 방향<a hidden class="anchor" aria-hidden="true" href="#미래-방향">#</a></h2>
-<h3 id="temporal의-ai-로드맵">Temporal의 AI 로드맵<a hidden class="anchor" aria-hidden="true" href="#temporal의-ai-로드맵">#</a></h3>
-<p>Temporal은 AI 전용 기능을 적극적으로 구축 중: 1. <strong>네이티브 LLM activity 템플릿</strong>: 공통 LLM 작업(채팅, completion, embedding)용 사전 구축 activity, 내장 재시도 및 rate-limit 처리
-2. <strong>벡터 메모리</strong>: 실행 간 워크플로우 컨텍스트 지속화를 위한 빌트인 벡터 저장소
-3. <strong>Agent SDK</strong>: 공유 메모리 및 통신 프로토콜과 함께 퍼스트 클래스 멀티 에이전트 오케스트레이션 지원
-4. <strong>GPU 인식 스케줄링</strong>: ML 워크로드를 위한 GPU 클러스터와의 네이티브 통합
-5. <strong>Temporal Studio 향상</strong>: ML 메트릭 오버레이가 있는 실시간 워크플로우 시각화</p>
-<h3 id="언제-temporal을-사용할까">언제 Temporal을 사용할까<a hidden class="anchor" aria-hidden="true" href="#언제-temporal을-사용할까">#</a></h3>
-<p><strong>다음 경우 Temporal 선택:</strong></p>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Kubernetes + CronJobs | $800 (always-on nodes) + 20 hrs/mo DevOps | High |
+| AWS Batch | $450 (spot instances) + 10 hrs/mo config | Medium |
+| Temporal Cloud | $200 (compute) + $0 ops | None |
+| Self-hosted Temporal | $150 (2 small VMs) + 5 hrs/mo maintenance | Low |</p>
+<hr>
+<h2 id="future-directions">Future Directions<a hidden class="anchor" aria-hidden="true" href="#future-directions">#</a></h2>
+<h3 id="temporals-ai-roadmap">Temporal&rsquo;s AI Roadmap<a hidden class="anchor" aria-hidden="true" href="#temporals-ai-roadmap">#</a></h3>
+<p>Temporal is actively building AI-specific features: 1. <strong>Native LLM activity templates</strong>: Pre-built activities for common LLM operations (chat, completion, embedding) with built-in retry and rate-limit handling
+2. <strong>Vector memory</strong>: Built-in vector storage for persisting workflow context across executions
+3. <strong>Agent SDK</strong>: First-class support for multi-agent orchestration with shared memory and communication protocols
+4. <strong>GPU-aware scheduling</strong>: Native integration with GPU clusters for ML workloads
+5. <strong>Temporal Studio enhancements</strong>: Real-time workflow visualization with ML metric overlays</p>
+<h3 id="when-to-use-temporal">When to Use Temporal<a hidden class="anchor" aria-hidden="true" href="#when-to-use-temporal">#</a></h3>
+<p><strong>Choose Temporal when:</strong></p>
 <ul>
-<li>AI 파이프라인에 여러 의존 단계가 있는 경우</li>
-<li>보장된 실행이 필요한 경우(크래시 시 작업 손실 없음)</li>
-<li>워크플로우를 대화형으로 디버깅하고 싶은 경우</li>
-<li>Python 네이티브 개발을 중요시하는 팀인 경우</li>
-<li>복잡한 패턴(재시도, 타임아웃, 병렬화, 하위 워크플로우)이 필요한 경우</li>
+<li>Your AI pipeline has multiple dependent steps</li>
+<li>You need guaranteed execution (no lost jobs on crash)</li>
+<li>You want to debug workflows interactively</li>
+<li>Your team values Python-native development</li>
+<li>You need complex patterns (retry, timeout, parallelism, child workflows)</li>
 </ul>
-<p><strong>더 간단한 대체方案을 고려할 때:</strong></p>
+<p><strong>Consider simpler alternatives when:</strong></p>
 <ul>
-<li>단일 단계 작업이 있는 경우 — cron 또는 직접 API 호출만 사용</li>
-<li>실시간 스트리밍이 필요한 경우 — Temporal은 배치 중심</li>
-<li>시각적 DAG 편집기를 선호하는 경우 — Apache Airflow 고려</li>
-<li>AWS Step Functions에 깊이 투자된 경우 — 네이티브 통합이 더 간단할 수 있음</li>
+<li>You have single-step jobs — just use a cron or direct API call</li>
+<li>You need real-time streaming — Temporal is batch-oriented</li>
+<li>Your team prefers visual DAG editors — consider Apache Airflow</li>
+<li>You&rsquo;re already invested in AWS Step Functions — native integration may be simpler</li>
 </ul>
 <hr>
-<h2 id="커뮤니티-업데이트">커뮤니티 업데이트<a hidden class="anchor" aria-hidden="true" href="#커뮤니티-업데이트">#</a></h2>
-<p>워크플로우 오케스트레이션 환경이 지속적으로 진화 중. 2026년 주목할 만한 발전: - <strong>Temporal Cloud</strong>가 GPU 최적화 워커 노드로 5개 지역으로 확장</p>
+<h2 id="community-updates">Community Updates<a hidden class="anchor" aria-hidden="true" href="#community-updates">#</a></h2>
+<p>The workflow orchestration landscape continues evolving. In 2026, notable developments include: - <strong>Temporal Cloud</strong> expanded to 5 regions with GPU-optimized worker nodes</p>
 <ul>
-<li><strong>오픈소스 Temporal</strong>이 Python 3.12 및 PyPy 네이티브 지원 추가</li>
-<li><strong>커뮤니티 통합</strong>: LangChain, LlamaIndex, CrewAI가 공식 Temporal connector 릴리스</li>
-<li><strong>엔터프라이즈 채택</strong>: Scale AI 및 Hugging Face 등 주요 AI 회사가 프로덕션 ML 파이프라인에 Temporal 사용</li>
+<li><strong>Open-source Temporal</strong> added native support for Python 3.12 and PyPy</li>
+<li><strong>Community integrations</strong>: LangChain, LlamaIndex, and CrewAI all released official Temporal connectors</li>
+<li><strong>Enterprise adoption</strong>: Major AI companies like Scale AI and Hugging Face use Temporal for production ML pipelines</li>
 </ul>
-<p>Temporal 커뮤니티는 프로덕션 AI 시스템을 구축하는 회사의 활발한 기여와 함께 50,000개 이상의 GitHub star로 성장했습니다. 이cosystem에는 인기 ML 프레임워크용 connector, 모니터링 통합 및 일반 AI 워크플로우 패턴용 템플릿 레포지토리가 포함되어 있습니다.</p>
+<p>The Temporal community has grown to over 50,000 GitHub stars, with active contributions from companies building production AI systems. The ecosystem includes connectors for popular ML frameworks, monitoring integrations, and template repositories for common AI workflow patterns.</p>
 <hr>
 <h2 id="faq">FAQ<a hidden class="anchor" aria-hidden="true" href="#faq">#</a></h2>
-<h3 id="q-temporal은-llm-rate-limiting을-어떻게-처리하나요">Q: Temporal은 LLM rate limiting을 어떻게 처리하나요?<a hidden class="anchor" aria-hidden="true" href="#q-temporal은-llm-rate-limiting을-어떻게-처리하나요">#</a></h3>
-<p>Temporal의 재시도 정책을 지수 백오프와 함께 사용합니다. <code>initial_interval</code>, <code>maximum_interval</code>, <code>backoff_coefficient</code>를 구성하여 정중한 재시도 전략을 구현합니다: `````python
+<h3 id="q-how-does-temporal-handle-llm-rate-limiting">Q: How does Temporal handle LLM rate limiting?<a hidden class="anchor" aria-hidden="true" href="#q-how-does-temporal-handle-llm-rate-limiting">#</a></h3>
+<p>Use Temporal&rsquo;s retry policy with exponential backoff. Configure <code>initial_interval</code>, <code>maximum_interval</code>, and <code>backoff_coefficient</code> to implement polite retry strategies: `````python
 retry=RetryPolicy(
 initial_interval=timedelta(seconds=1),
 maximum_interval=timedelta(minutes=5),
@@ -728,43 +870,43 @@ backoff_coefficient=2.0,
 maximum_attempts=5
 )</p>
 <pre tabindex="0"><code>
-이는 naive 재시도 루프가 API를 혼란스럽게 하는 것과 달리 rate limit이 발생하면 자연스럽게 요청을 throttle합니다.
+This naturally throttles requests when rate limits are hit, unlike naive retry loops that hammer the API.
 
-### Q: spot/preemptible 인스턴스에서 Temporal worker를 실행할 수 있나요?
+### Q: Can I run Temporal workers on spot/preemptible instances?
 
-예. Temporal의 아키텍처는 이를 위해 설계되었습니다. worker는 자유롭게 왔다 갔다 할 수 있습니다 — worker가 activity 중간에 죽으면 Temporal은 heartbeat timeout을 감지하고 사용 가능한 다른 worker에서 activity를 다시 예약합니다. 이는 비용 최적화된 spot instance 배포에 Temporal을 이상적으로 만듭니다.
+Yes. Temporal&#39;s architecture is designed for this. Workers can come and go freely — if a worker dies mid-activity, Temporal detects the heartbeat timeout and reschedules the activity on another available worker. This makes Temporal ideal for cost-optimized spot instance deployments.
 
-### Q: Temporal에서 LLM 스트리밍 출력을 어떻게 처리하나요?
+### Q: How do I handle streaming LLM outputs in Temporal?
 
-Temporal activity는 전통적으로 request-response이지만, streaming 패턴을 사용할 수 있습니다: activity 실행 동안 메모리에서 스트리밍 토큰을 수집한 다음 완전한 결과를 반환합니다. 최종 사용자에게 진정한 스트리밍을 위해서는(Temporal(워크플로우 내구성용)와 워크플로우 상태를 polling하는 WebSocket 엔드포인트를 결합합니다.
+While Temporal activities are traditionally request-response, you can use the streaming pattern shown above: collect streamed tokens in-memory during the activity execution, then return the complete result. For true streaming to end users, combine Temporal (for workflow durability) with WebSocket endpoints that poll the workflow&#39;s state.
 
-### Q: Temporal 워크플로우의 최대 지속 시간은 어떻게 되나요?
+### Q: What&#39;s the maximum duration for a Temporal workflow?
 
-Temporal 워크플로우는 무기한 실행할 수 있습니다 — 하드 타임아웃이 없습니다. 기록된 가장 긴 Temporal 워크플로우는 14개월 연속 실행되어 수백만 이벤트를 처리했습니다. 실용적인 목적을 위해 individual activity에 합리적인 타임아웃을 설정하고 장기간 실행 작업에는 heartbeat를 사용합니다.
+Temporals workflows can run indefinitely — there&#39;s no hard timeout. The longest recorded Temporal workflow ran for 14 months continuously, processing millions of events. For practical purposes, set reasonable timeouts on individual activities and use heartbeats for long-running operations.
 
-### Q: Temporal은 서버리스 GPU(Modal, RunPod)와 함께 작동하나요?
+### Q: Does Temporal work with serverless GPUs (Modal, RunPod)?
 
-예. Temporal worker는 어디에서나 실행할 수 있습니다 — EC2, GKE, EKS 또는 심지어 서버리스 컨테이너. Modal function 또는 RunPod instance 옆에 Temporal worker를 배포합니다. 핵심 통찰: Temporal은 워크플로우 오케스트레이션을 관리하고, 실제 GPU 컴퓨팅은 가장 저렴한 곳에서 발생합니다.
+Yes. Temporal workers can run anywhere — EC2, GKE, EKS, or even serverless containers. Deploy Temporal workers alongside Modal functions or RunPod instances. The key insight: Temporal manages the workflow coordination, while the actual GPU compute happens wherever it&#39;s cheapest.
 
 * * *
 
-## 출처
+## Sources
 
-- [Temporal 문서](https://docs.temporal.io)
+- [Temporal Documentation](https://docs.temporal.io)
 - [Temporal Python SDK](https://github.com/temporalio/sdk-python)
-- [Temporal AI 워크플로우 패턴 — Temporal 블로그 2026](https://temporal.io/blog/ai-workflow-patterns-2026)
-- [Temporal로 탄력적 ML 파이프라인 구축 — KubeCon 2026](https://kccna2026.sched.com/event/ml-temporal)
-- [AI용 워크플로우 오케스트레이터 비교 — ML 인프라 보고서 2026](https://mlinfra.report/workflow-comparison-2026)
+- [Temporal AI Workflow Patterns — Temporal Blog 2026](https://temporal.io/blog/ai-workflow-patterns-2026)
+- [Building Resilient ML Pipelines with Temporal — KubeCon 2026](https://kccna2026.sched.com/event/ml-temporal)
+- [Comparing Workflow Orchestrators for AI — ML Infrastructure Report 2026](https://mlinfra.report/workflow-comparison-2026)
 
 * * *
 
-*실시간 AI 도구 토론 및 배포 팁을 위한 Telegram 그룹 가입: [t.me/dibi8](https://t.me/dibi8)*
+*Join our Telegram Group for real-time AI tool discussions and deployment tips: [t.me/dibi8](https://t.me/dibi8)*
 
 
 {
   &#34;@context&#34;: &#34;https://schema.org&#34;,
   &#34;@type&#34;: &#34;Article&#34;,
-  &#34;headline&#34;: &#34;Temporal AI 워크플로우 오케스트레이션 — 신뢰할 수 있는 다단계 AI 파이프라인&#34;,
+  &#34;headline&#34;: &#34;Temporal AI Workflow Orchestration — Reliable Multi-Step AI Pipelines&#34;,
   &#34;datePublished&#34;: &#34;2026-07-15&#34;,
   &#34;dateModified&#34;: &#34;2026-07-15&#34;,
   &#34;author&#34;: {
@@ -781,7 +923,7 @@ Temporal 워크플로우는 무기한 실행할 수 있습니다 — 하드 타�
   },
   &#34;mainEntityOfPage&#34;: {
     &#34;@type&#34;: &#34;WebPage&#34;,
-    &#34;@id&#34;: &#34;https://dibi8.com/kr/resources/temporal-ai-workflow-orchestration&#34;
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/temporal-ai-workflow-orchestration&#34;
   }
 }
 &lt;/script&gt;
@@ -793,8 +935,8 @@ Temporal 워크플로우는 무기한 실행할 수 있습니다 — 하드 타�
 - [google-jax-complete-guide](temporal-ai-workflow-orchestration)
 - [ray-distributed-ai-framework-complete-guide](temporal-ai-workflow-orchestration)
 - [modal-serverless-gpu-compute](temporal-ai-workflow-orchestration)
-- [temporal-ai-workflow-orchestration](temporal-ai-workflow-orchestration)
 - [cleanlab-11k-star-ai-data-cleaning](temporal-ai-workflow-orchestration)
+- [temporal-ai-workflow-orchestration](temporal-ai-workflow-orchestration)
 
 * * *
 
@@ -841,6 +983,81 @@ Temporal 워크플로우는 무기한 실행할 수 있습니다 — 하드 타�
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

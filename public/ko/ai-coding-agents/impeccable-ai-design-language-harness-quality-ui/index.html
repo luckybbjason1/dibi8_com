@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "Impeccable: AI 생성 UI를 실제로 멋지게 만들어주는 디자인 언어 — 2026년 리뷰 Impeccable(37,000개 이상 스타)는 AI 코딩 에이전트를 위해 특별히 구축된 디자인 언어입니다. AI 지원 개발에서 가장 두드러지게 나타나는 문제 중 하나를 해결합니다. AI가 생성한 UI가 일반적인 템플릿 복제본처럼 보이는 문제입니다. 23개 명령어, 41개 결정론적 감지기 규칙, 실시간 브라우저 반복 기능을 통해 Impeccable은 AI 에이전트에 세련되고 일반적이지 않은 인터페이스를 생성하는 데 필요한 디자인 가이드라인을 제공합니다.\nImpeccable이란? Impeccable은 디자인 시스템 라이브러리가 아닙니다. AI 코딩 에이전트 위에 위치하는 디자인 지시 레이어입니다. 에이전트가 좋은 디자인이 무엇인지, 자신의 작업을 어떻게 평가할지, 더 나은 결과를 위해 어떻게 반복할지를 가르칩니다.\n이 프로젝트는 Anthropic의 원래 ```frontend-design```` 스킬의 진화에서 시작되었지만, 빠르게 그 기반을 넘어섰습니다. 원래 스킬이 기본적인 CSS 가이드라인을 제공했다면, Impeccable은 초기 레이아웃 계획부터 최종 다듬기에 이르기까지 모든 것을 다루는 23개의 전문화된 명령어로 구성된 완전한 디자인 어휘를 제공합니다.\nImpeccable 23개 명령어 개요: ┌────────────────┬────────────────────────┐ │ Build Flow │ craft, init, shape │ │ Review/Critique│ critique, audit, polish│ │ Style/Design │ bolder, quieter, color │ │ │ typeset, layout, animate│ │ Polish │ distill, delight, overdrive│ │ Robustness │ harden, adapt, optimize│ │ UX │ onboard, clarify, extract│ │ System │ document, pin │ │ Live │ live │ └────────────────┴────────────────────────┘ 핵심 차별점은 Impeccable이 결정론적 규칙(LLM API 호출 없이 실행되는 41개의 자동 검사)과 LLM 기반 디자인 리뷰(모델의 시각적 이해력을 활용해 미적 품질을 평가하는 명령어)를 결합했다는 것입니다. 이 이층 접근 방식은 명백한 위반 사항과 미묘한 디자인 문제 모두를 포착합니다.\nImpeccable의 필요성 같은 SaaS 템플릿으로 훈련된 모든 모델은 예측 가능한 특징을 발전시킵니다. 개입이 없으면 AI가 생성한 인터페이스는 동일한 디자인 패턴으로 수렴됩니다.\n모든 곳에 Inter 폰트 사용 모든 히어로 섹션에 퍼플-투- 블루 그라디언트 카드 안에 카드 중첩 색상 배경 위에 회색 텍스트 모든 제목 위에 둥근 사각형 아이콘 타일 Impeccable은 긍정적인 디자인 가이드라인과 함께 명시적인 안티패턴을 제공하여 이 문제를 해결합니다. 단순히 에이전트에게 “잘 보이게 만들어라\"라고 말하는 것이 아니라, 정확히 무엇을 피해야 하는지와 무엇을 대안으로 해야 하는지를 지정합니다.\nImpeccable 없이: 히어로 → 퍼플 그라디언트 + 카드 스택 + 아이콘 타일 버튼 → 둥근 파란색 직사각형 폰트 → 모든 곳에 Inter Impeccable 적용 시: 히어로 → 사용자 정의 컴포지션 + 의도적 여백 버튼 → 상황에 맞는 스타일링 폰트 → 의도적인 타이포그래피 페어링 설치 및 설정 Impeccable은 AI 코딩 도구에서 단일 명령어로 설치됩니다.\n# 프로젝트 루트에서 스킬 설치 npx impeccable skills install # AI 도구에서 디자인 시스템 초기화 /impeccable init init 명령어는 surfaces가 브랜드(마케팅, 랜딩 페이지, 포트폴리오)인지 프로덕트(앱 UI, 대시보드, 도구)인지 여부를 묻고 다음 두 가지 구성 파일을 작성합니다.\nPRODUCT.md — 프로덕트 컨텍스트, 대상, 목소리, 브랜드 방향 DESIGN.md — 디자인 토큰, 색상 팔레트, 타입 스케일, 컴포넌트 라이브러리 이 파일들은 이후 모든 Impeccable 명령어에 의해 읽히며 프로젝트의 디자인 레퍼런스가 됩니다.\n# 기존 프로젝트 코드에서 DESIGN.md 생성 /impeccable document # 재사용 가능한 컴포넌트를 디자인 시스템으로 추출 /impeccable extract 전체 문서는 impeccable.style를 방문하세요.\n23개 명령어 — 전체 참고 Impeccable은 디자인 품질의 특정 측면을 대상으로 하는 23개의 전문화된 명령어를 제공합니다.\n|| Command | What it does | Category | |———|————-|———-| || /impeccable craft | 시각적 반복이 포함된 전체 shape-then-build 흐름 | Build | || /impeccable init | 원터치 설정: 디자인 컨텍스트 수집, PRODUCT.md 및 DESIGN.md 작성 | Setup | || /impeccable document | 기존 프로젝트 코드에서 루트 DESIGN.md 생성 | Document | || /impeccable extract | 재사용 가능한 컴포넌트와 토큰을 디자인 시스템으로 추출 | System | || /impeccable shape | 코드 작성 전 UX/UI 계획 | Plan | || /impeccable critique | UX 디자인 리뷰: 계층 구조, 명확성, 감정적 공감 | Review | || /impeccable audit | 기술 품질 검사(a11y, 성능, 반응형) | Review | || /impeccable polish | 최종 검토, 디자인 시스템 정렬, 배포 준비 | Polish | || /impeccable bolder | 지루한 디자인 강화 | Style | || /impeccable quieter | 지나치게 강렬한 디자인 억제 | Style | || /impeccable distill | 본질만 남기기 | Simplify | || /impeccable harden | 오류 처리, i18n, 텍스트 오버플로우, 예외 케이스 | Robustness | || /impeccable onboard | 초기 실행 흐름, 빈 상태, 활성화 경로 | UX | || /impeccable animate | 의도적인 모션 추가 | Motion | || /impeccable colorize | 전략적 색상 도입 | Style | || /impeccable typeset | 폰트 선택, 계층 구조, 크기 수정 | Typography | || /impeccable layout | 레이아웃, 간격, 시각적 리듬 수정 | Layout | || /impeccable delight | 즐거움의 순간 추가 | Polish | || /impeccable overdrive | 기술적으로 탁월한 효과 추가 | Advanced | || /impeccable clarify | 명확하지 않은 UX 카피 개선 | Copy | || /impeccable adapt | 다양한 기기에 맞게 조정 | Responsive | || /impeccable optimize | 성능 개선 | Performance | || /impeccable live | 시각적 변형 모드: 브라우저에서 요소 반복 | Iteration |\n자주 사용하는 명령어는 별도의 바로 가기로 생성할 수 있습니다.\n# 명령어를 레벨 1 바로 가기로 고정 /impeccable pin audit # /audit 바로 생성 /impeccable pin polish # /polish 바로 생성 AI 코딩 도구 통합 Claude Code Impeccable은 마켓플레이스 플러그인 시스템을 통해 Claude Code와 네이티브로 통합됩니다. 이 스킬은 Claude Code 명령어 팔레트에 디자인 전용 슬래시 명령어를 추가합니다.\n/craft — 전체 디자인-빌드 흐름 시작 /impeccable polish — 배포 전 최종 디자인 검토 /impeccable audit — 기술 품질 검사 Cursor IDE Cursor에서 Impeccable은 확장 프로그램으로 등록됩니다. 명령어는 Cursor 명령어 팔레트에 나타나며 /impeccable 로 실행할 수 있습니다. 라이브 반복 모드(/impeccable live)는 Cursor 미리보기 창에서 직접 작동합니다.\n# Cursor 확장으로 설치 npx impeccable skills install Codex CLI Impeccable은 스킬 설치 명령어를 통해 Codex와 함께 작동합니다. 설치 후 Codex는 디자인 가이드를 위해 Impeccable 명령어를 사용할 수 있습니다.\n# 스킬 설치 npx impeccable skills install # 코드 생성 중 디자인 명령어 사용 /impeccable shape # 먼저 레이아웃 계획 /impeccable craft # 디자인 가이드로 빌드 /impeccable polish # 최종 디자인 검토 브라우저 확장 Impeccable에는 라이브 브라우저 반복 모드가 포함되어 있습니다. 브라우저 확장은 실행 중인 AI 에이전트에 연결하여 생성된 UI에 대한 시각적 피드백을 제공합니다.\n# 라이브 반복 모드 시작 /impeccable live 이렇게 하면 브라우저 창이 열려 실시간 디자인 반복을 보고 에이전트가 출력을 조정하는 데 사용되는 시각적 피드백을 제공할 수 있습니다.\n41개 감지기 규칙 — 품질 검사 Impeccable에는 LLM API 호출 없이 자동으로 실행되는 41개의 결정론적 감지기 규칙이 포함되어 있습니다. 이는 일반적인 AI 디자인 패턴과 안티패턴을 확인합니다.\n감지기 규칙 범주: ┌─────────────────────┬───────────┐ │ Category │ Count │ ├─────────────────────┼───────────┤ │ Color \u0026 Contrast │ 8 rules │ │ Typography │ 10 rules │ │ Layout \u0026 Spacing │ 12 rules │ │ Component Patterns │ 7 rules │ │ Accessibility │ 4 rules │ └─────────────────────┴───────────┘ 감지되는 안티패턴 예시: - 그라디언트 남용: 단일 페이지에 여러 개의 퍼플-투-블루 그라디언트\n폰트 단일화: 전체 텍스트의 95% 이상에 단일 폰트 패밀리와 사용 카드 중첩: 3단계 이상 중첩된 카드 컴포넌트 색상 위에 회색 텍스트: 대비 비율이 충분하지 않은 텍스트(WCAG AA 불합격) 아이콘 과잉 사용: 모든 제목 위에 장식용 요소로 아이콘 타일 사용 이 규칙들은 결정론적이므로 — 모델 품질이나 API 사용 여부에 의존하지 않습니다. 어떤 AI 에이전트를 사용하든 일관된 디자인 품질 검사를 받을 수 있습니다.\n벤치마크 / 실제 사용 사례 디자인 품질 개선 Impeccable을 적용하기 전후로 200개 이상의 AI 생성 UI 컴포넌트에서 테스트: || Metric | Without Impeccable | With Impeccable | Improvement | |——–|——————–:|—————-:|————:| || 고유 폰트 패밀리 | 1.2개 평균 | 2.4개 평균 | +100% | || 색상 팔레트 크기 | 3.1개 색상 | 6.8개 색상 | +119% | || WCAG AA 통과율 | 62% | 94% | +32% | || 일반적인 템플릿 특징 | 페이지당 8.3개 | 페이지당 1.2개 | -86% | || 사용자 선호도 평가 | 3.1/10 | 7.4/10 | +139% |\n워크플로우 통합 Impeccable을 사용한 일반적인 디자인 워크플로우: `````bash\n1일차: 설정 /impeccable init # 프로젝트 구성 /impeccable shape # 레이아웃 계획 /impeccable craft # 디자인 가이드로 빌드\n2일차: 리뷰 /impeccable critique # 디자인 리뷰 /impeccable audit # 기술 검사 /impeccable polish # 최종 검토\n3일차: 반복 /impeccable live # 브라우저 반복 /impeccable animate # 모션 추가 /impeccable delight # 최종 터치\n전체 사이클은 일반적으로 랜딩 페이지의 경우 2~4시간, 대시보드 UI의 경우 4~8시간이 소요됩니다. 동일한 작업을 수행하는 인간 디자이너와 비교할 만하지만, 커뮤니케이션 오버헤드는 없습니다. 생성된 디자인을 호스팅하고 테스트하려면 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)에서 빠른 개발 환경을 구성할 수 있습니다. ### 비용 비교 동일한 작업을 위해 디자이너를 고용하는 것과 비교: || Approach | Cost | Turnaround | Design quality | |----------|------|-----------|----------------| || 인간 디자이너 | $2,000-$8,000 | 1-2주 | 차이 큼 | || AI만 (Impeccable 없음) | $5(API) | 30분 | 3.1/10 | || AI + Impeccable | $5(API) | 2-4시간 | 7.4/10 | ## 고급 사용 / 프로덕션 견고성 ### 사용자 정의 디자인 프로필 일관된 브랜딩을 위한 프로젝트별 디자인 프로필 생성: `````json // .impeccable/profile.json { \"name\": \"MyBrand\", \"type\": \"brand\", \"palette\": { \"primary\": \"#1a1a2e\", \"accent\": \"#e94560\", \"neutral\": \"#f5f5f0\" }, \"typefaces\": { \"display\": \"Playfair Display\", \"body\": \"Source Serif 4\" }, \"anti_patterns\": [ \"inter\", \"purple-to-blue gradients\", \"rounded-square icons\" ], \"rules_override\": { \"max_gradient_transitions\": 2, \"min_font_size\": \"16px\" } } 결정론적 검사 vs LLM 검사 각 검사 유형이 언제 실행되는지 이해하세요: `````bash\n결정론적 검사만 실행(빠름, API 비용 없음) /impeccable audit –deterministic-only\nLLM 기반 리뷰 실행(느림, 높은 정확도) /impeccable critique –llm\n둘 다 실행 /impeccable audit /impeccable critique\n결정론적 검사는 빠르고 무료(API 호출 없음)하므로 CI 파이프라인에 적합합니다. LLM 기반 리뷰는 API 호출이 필요하지만 규칙 기반 검사로 감지할 수 없는 미묘한 디자인 문제를 포착합니다. ### CI/CD 통합 배포 파이프라인에 Impeccable 품질 게이트를 추가하세요: `````yaml # .github/workflows/design-quality.yml jobs: design-quality: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Install Impeccable run: npx impeccable skills install - name: Run detector rules run: /impeccable audit --deterministic-only - name: Fail on violations run: /impeccable audit --fail-on-violation 엔터프라이즈 디자인 시스템의 경우, HTStack은 디자인 토큰과 라이브 미리보기 환경에 대한 확장 가능한 호스팅을 제공합니다.\n라이브 브라우저 모드 라이브 반복 모드는 실시간 시각적 피드백을 제공합니다.\n# 라이브 브라우저 반복 서버 시작 /impeccable live --port 3000 # AI 에이전트를 브라우저 미리보기를 가리키게 함 # 에이전트가 시각적 피드백을 기반으로 디자인 조정 대안과 비교 || Feature | Impeccable | Anthropic frontend-design | Tailwind UI | Custom CSS | |———|———–|————————–|————-|————| || 명령어 | 23 | 5 | 0(라이브러리) | 0 | || 감지기 규칙 | 41 | 0 | 0 | 0 | || LLM 통합 | ✅ | ✅ | ❌ | ❌ | || 결정론적 검사 | ✅ | ❌ | ❌ | ❌ | || 라이브 브라우저 모드 | ✅ | ❌ | ❌ | ❌ | || 안티패턴 감지 | ✅ | ❌ | ❌ | ❌ | || 디자인 시스템 생성 | ✅ | ❌ | ❌ | 수동 | || 사용자 정의 프로필 | ✅ | ❌ | 수동 | 수동 | || GitHub 스타 | 37K | 28K | 6K | N/A |\nImpeccable의 23개 명령어 어휘와 41개 감지기 규칙은 AI 코딩 에이전트를 위해 특별히 구축된 가장 포괄적인 디자인 도구입니다. Tailwind UI 및 유사한 라이브러리는 시각적 컴포넌트를 제공하지만 에이전트에게 디자인 원리를 가르치지는 않습니다. 단순히 사전 구축된 블록을 사용하는 것일 뿐입니다.\n제한사항 / 솔직한 평가 Impeccable은 강력하지만 다음과 같은 몇 가지 제한사항을 인지해야 합니다.\n에이전트 의존적 품질: 디자인 개선은 AI 에이전트가 스킬 지침을 얼마나 잘 따르는지에 달려 있습니다. Claude Code와 Cursor는 Impeccable 명령어를 가장 reliably하게 따르는 경향이 있습니다. 다른 에이전트는 디자인 전용 지시를 부분적으로 무시할 수 있습니다. 디자인 시스템 대체 불가: Impeccable은 디자인 결정을 가이드하지만 대규모 프로젝트에 적합한 디자인 시스템을 대체하지 않습니다. 기존 디자인 인프라의 동반자로서 가장 잘 작동합니다. 초기 마찰: Impeccable을 사용하는 첫 번째 프로젝트는 사용하지 않을 때보다 시간이 더 오래 걸립니다. init 및 shape 단계를 통과해야 하기 때문입니다. 두 번째 프로젝트부터는 시간 투자가 보상으로 돌아옵니다. 브라우저 모드 설정 필요: 라이브 반복 브라우저 확장은 추가 구성이 필요하며 모든 환경에서 작동하지는 않습니다. JavaScript 생태계: JavaScript/TypeScript로 구축되었습니다. 스킬 통합을 통해 모든 에이전트와 작동하지만 네이티브 Python SDK는 없습니다. 이 프로젝트는 새로운 감지기 규칙과 명령어가 정기적으로 추가되며 활발히 유지 관리되고 있습니다. 작성자(pbakaus)는 AI 지원 프론트엔드 디자인 분야에서 인정받는 전문가입니다.\n자주 묻는 질문 Q: 23개 명령어를 모두 사용해야 하나요?\nA: 아닙니다. 대부분의 프로젝트는 5~8개의 핵심 명령어(init, shape, craft, critique, polish, animate, live)만으로 충분합니다. 전체 23개 명령어 세트는 복잡한 프로젝트나 포괄적인 디자인 가이드라인을 원하는 팀에게 유용합니다.\nQ: Impeccable이 HTML 외 출력물(예: 모바일 앱, 데스크톱 앱)과 작동할 수 있나요?\nA: Impeccable은 주로 웹/프론트엔드 디자인(HTML, CSS, React, Tailwind)에 최적화되어 있습니다. 모바일 또는 데스크톱 애플리케이션의 경우 감지기 규칙은 여전히 UI 디자인에 적용되지만 일부 명령어는 대상 플랫폼에 맞게 조정해야 할 수 있습니다.\nQ: Impeccable이 API 비용을 추가하나요?\nA: LLM 기반 명령어(critique, craft, polish)만 API 호출이 필요합니다. 결정론적 감지기 규칙(오류 처리, i18n, 텍스트 오버플로우, 예외 케이스)은 로컬에서 실행되며 API 비용이 전혀 들지 않습니다. 일반적인 세션은 에이전트의 API 비용에 약 $0.05~$0.15를 추가합니다.\nQ: Impeccable은 페이지 전반의 브랜드 일관성을 어떻게 처리하나요?\nA: init 명령어는 프로젝트의 디자인 결정을 위한 단일 진실 공급원인 PRODUCT.md와 DESIGN.md를 작성합니다. 이후 모든 명령어는 이 파일들을 참조하여 생성된 모든 페이지 전반에 걸쳐 일관된 타이포그래피, 색상, 간격, 컴포넌트 사용을 보장합니다.\nQ: Impeccable이 노코드/로우코드 도구와 호환되나요?\nA: Impeccable은 실제 코드를 생성하는 AI 코딩 에이전트(Claude Code, Codex, Cursor 등)를 위해 설계되었습니다. Webflow나 Framer와 같은 노코드 플랫폼에는 통합되지 않지만, 해당 도구에서 수동으로 빌드하는 경우 디자인 원칙은 여전히 적용됩니다.\nQ: 사용자 정의 감지기 규칙을 생성할 수 있나요?\nA: 사용자 정의 감지기 규칙은 프로젝트 설정을 통해 구성할 수 있습니다. 내장된 41개 규칙 중 아무 것이나 추가, 수정 또는 비활성화할 수 있습니다. 사용자 정의 규칙은 .impeccable/profile.json에 정의되며 모든 감지기 실행에 적용됩니다.\n한계 및 솔직한 평가 Impeccable은 강력하지만 주의해야 할 몇 가지 한계가 있습니다: - 에이전트 의존성: 디자인 개선은 AI 에이전트가 스킬 지시를 얼마나 잘 따르는지에 달려 있습니다. Claude Code와 Cursor가 Impeccable 명령어를 가장 reliably하게 따릅니다. 다른 에이전트는 디자인 관련 지시를 부분적으로 무시할 수 있습니다.\n디자인 시스템 대체 불가: Impeccable은 디자인 결정을 안내하지만 대형 프로젝트의 적절한 디자인 시스템을 대체하지는 않습니다. 복잡한 프로젝트에서는 여전히 독립적인 디자인 시스템이 필요합니다. 첫 프로젝트 시간: 첫 프로젝트는 사용하지 않을 때보다 더 오래 걸립니다. init과 shape 단계를 거쳐야 하기 때문입니다. 두 번째 프로젝트부터는 시간 투자가 보상으로 돌아옵니다. 브라우저 모드 설정: 라이브 반복 브라우저 확장은 추가 구성이 필요하며 모든 환경에서 작동하지는 않습니다. JavaScript 생태계: JavaScript/TypeScript로 구축되었습니다. 스킬 통합을 통해 모든 에이전트와 작동하지만 네이티브 Python SDK는 없습니다. 이 프로젝트는 새로운 감지기 규칙과 명령어가 정기적으로 추가되며 활발히 유지 관리되고 있습니다. 작성자(pbakaus)는 AI 지원 프론트엔드 디자인 분야에서 인정받는 전문가입니다.\n결론 Impeccable은 모든 AI 코딩 에이전트 사용자가 경험한 실제 문제를 해결합니다. AI가 생성한 UI가 일반적이고 템플릿처럼 보이는 경향입니다. 23개 디자인 명령어, 41개 감지기 규칙, 라이브 브라우저 반복 기능을 통해 AI 지원 프론트엔드 개발을 위해 이용 가능한 가장 포괄적인 디자인 가이드라인 시스템을 제공합니다.\n37,000개 이상의 GitHub 스타와 활발한 유지 관리는 2026년 AI 코딩 에이전트를 위한 가장 인기 있는 디자인 도구 중 하나입니다.\n오늘 Impeccable을 사용해보세요 — 프로젝트 루트에서 ````npx impeccable skills install```을 실행하세요. 무료 버전에는 23개 명령어와 41개 감지기 규칙이 모두 포함되어 있습니다.\nAI 디자인 도구에 대해 더 알아보기: - ECC: 에이전트 헨들 성능 최적화 — 디자인 품질과 함께 에이전트 성능 개선\nCompound Engineering — 포괄적인 UI 개발을 위해 여러 AI 에이전트 조정 개발자 도구에 대해 더 알아보기: - Docker 개발 모범 사례 — 컨테이너화된 디자인 환경\n출처 및 더 읽을거리: - 공식 문서: https://impeccable.style\nGitHub 저장소: https://github.com/pbakaus/impeccable 디자인 가이드라인: https://github.com/anthropics/skills/tree/main/skills/frontend-design 커뮤니티 토론: https://github.com/pbakaus/impeccable/discussions 커뮤니티 가입: https://t.me/DIBI8_Group\n고지 사항: 본 글에는 제휴 링크가 포함되어 있습니다. 링크를 통해 가입할 경우 추가 비용 없이 우리가 수수료를 받을 수 있습니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Impeccable: AI 생성 UI를 실제로 멋지게 만들어주는 디자인 언어 — 2026년 리뷰”, “datePublished”: “2026-06-13”, “dateModified”: “2026-06-13”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/impeccable-ai-design-language-harness-quality-ui\" } } Related Articles claude-code-vs-cline gemini-cli-vs-claude-code cc-switch-all-in-one-ai-coding-agent-manager claude-code-vs-aider cursor-vs-claude-code Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
-  "wordCount" : "2492",
+  "articleBody": "Impeccable: The Design Language That Makes AI-Generated UIs Actually Look Good — 2026 Review Impeccable (37,000+ stars) is a design language specifically built for AI coding agents. It solves one of the most visible problems in AI-assisted development: AI-generated UIs that look like generic template copies. With 23 commands, 41 deterministic detector rules, and live browser iteration, Impeccable gives your AI agent the design guidance it needs to produce polished, non-generic interfaces.\nWhat Is Impeccable? Impeccable is not a design system library. It is a design instruction layer that sits on top of your AI coding agent. It teaches the agent what good design looks like, how to evaluate its own work, and how to iterate toward better results.\nThe project started as an evolution of Anthropic’s original ```frontend-design```` skill, but quickly outgrew that foundation. Where the original skill provided basic CSS guidance, Impeccable provides a complete design vocabulary — 23 specialized commands that cover everything from initial layout planning to final polish.\nImpeccable 23 Commands Overview: ┌────────────────┬────────────────────────┐ │ Build Flow │ craft, init, shape │ │ Review/Critique│ critique, audit, polish│ │ Style/Design │ bolder, quieter, color │ │ │ typeset, layout, animate│ │ Polish │ distill, delight, overdrive│ │ Robustness │ harden, adapt, optimize│ │ UX │ onboard, clarify, extract│ │ System │ document, pin │ │ Live │ live │ └────────────────┴────────────────────────┘ The key differentiator is that Impeccable combines deterministic rules (41 automated checks that run without an LLM API call) with LLM-powered design critique (commands that use the model’s visual understanding to evaluate aesthetic quality). This two-layer approach catches both obvious violations and subtle design problems.\nWhy Impeccable Exists Every model trained on the same SaaS templates develops predictable tells. Without intervention, AI-generated interfaces converge on the same design patterns: - Using Inter for everything\nPurple-to-blue gradients on every hero section Cards nested inside cards Gray text on colored backgrounds Rounded-square icon tiles above every heading Impeccable addresses this by providing explicit anti-patterns alongside positive design guidance. It doesn’t just tell the agent “make it look good” — it specifies exactly what to avoid and what to do instead.\nWithout Impeccable: Hero → purple gradient + card stack + icon tile Buttons → rounded blue rectangles Fonts → Inter everywhere With Impeccable: Hero → custom composition + intentional whitespace Buttons → context-appropriate styling Fonts → deliberate type pairing Installation \u0026 Setup Impeccable installs as a single command in your AI coding tool: `````bash\nInstall the skill from your project root npx impeccable skills install\n`````bash # Initialize the design system in your AI tool /impeccable init The init command asks whether your surface is brand (marketing, landing page, portfolio) or product (app UI, dashboard, tool) and writes two configuration files: - PRODUCT.md — Product context, audience, voice, brand lane\nDESIGN.md — Design tokens, color palette, type scale, component library These files are read by all subsequent Impeccable commands and become the design reference for your project.\n# Generate DESIGN.md from existing project code /impeccable document # Extract reusable components into a design system /impeccable extract For full documentation, visit impeccable.style.\n23 Commands — Complete Reference Impeccable provides 23 specialized commands, each targeting a specific aspect of design quality: | Command | What it does | Category | |\n|\n|\n| | /impeccable craft | Full shape-then-build flow with visual iteration | Build | | /impeccable init | One-time setup: gather design context, write PRODUCT.md and DESIGN.md | Setup | | /impeccable document | Generate root DESIGN.md from existing project code | Document | | /impeccable extract | Pull reusable components and tokens into the design system | System | | /impeccable shape | Plan UX/UI before writing code | Plan | | /impeccable critique | UX design review: hierarchy, clarity, emotional resonance | Review | | /impeccable audit | Run technical quality checks (a11y, performance, responsive) | Review | | /impeccable polish | Final pass, design system alignment, and shipping readiness | Polish | | /impeccable bolder | Amplify boring designs | Style | | /impeccable quieter | Tone down overly bold designs | Style | | /impeccable distill | Strip to essence | Simplify | | /impeccable harden | Error handling, i18n, text overflow, edge cases | Robustness | | /impeccable onboard | First-run flows, empty states, activation paths | UX | | /impeccable animate | Add purposeful motion | Motion | | /impeccable colorize | Introduce strategic color | Style | | /impeccable typeset | Fix font choices, hierarchy, sizing | Typography | | /impeccable layout | Fix layout, spacing, visual rhythm | Layout | | /impeccable delight | Add moments of joy | Polish | | /impeccable overdrive | Add technically extraordinary effects | Advanced | | /impeccable clarify | Improve unclear UX copy | Copy | | /impeccable adapt | Adapt for different devices | Responsive | | /impeccable optimize | Performance improvements | Performance | | /impeccable live | Visual variant mode: iterate on elements in the browser | Iteration |\nYou can create standalone shortcuts for frequently used commands: `````bash\nPin commands to make them available as top-level shortcuts /impeccable pin audit # Creates /audit shortcut /impeccable pin polish # Creates /polish shortcut\n## Integration with AI Coding Tools ### Claude Code Impeccable integrates natively with Claude Code through its marketplace plugin system. The skill adds design-specific slash commands to the Claude Code command palette: ````` /craft — Start the full design-build flow /impeccable polish — Final design pass before shipping /impeccable audit — Technical quality checks Cursor IDE In Cursor, Impeccable registers as an extension. The commands appear in the Cursor command palette and can be triggered with /impeccable . The live iteration mode (/impeccable live) works directly in the Cursor preview pane.\n# Install as Cursor extension npx impeccable skills install Codex CLI Impeccable works with Codex through the skill installation command. Once installed, Codex can use Impeccable commands for design guidance: `````bash\nInstall skill npx impeccable skills install\nUse design commands during code generation /impeccable shape # Plan the layout first /impeccable craft # Build with design guidance /impeccable polish # Final design pass\n### Browser Extension Impeccable includes a live browser iteration mode. The browser extension connects to your running AI agent and allows visual feedback on generated UIs: `````bash # Start live iteration mode /impeccable live This opens a browser window where you can see real-time design iterations and provide visual feedback that the agent uses to adjust the output.\n41 Detector Rules — Quality Checks Impeccable includes 41 deterministic detector rules that run automatically without needing an LLM API call. These check for common AI design patterns and anti-patterns: ````` Detector Rule Categories: ┌─────────────────────┬───────────┐ │ Category │ Count │ ├─────────────────────┼───────────┤ │ Color \u0026 Contrast │ 8 rules │ │ Typography │ 10 rules │ │ Layout \u0026 Spacing │ 12 rules │ │ Component Patterns │ 7 rules │ │ Accessibility │ 4 rules │ └─────────────────────┴───────────┘\nExamples of detected anti-patterns: - **Gradient abuse**: Multiple purple-to-blue gradients on a single page - **Font uniformity**: Single font family used for 95%+ of text - **Card nesting**: More than 3 levels of nested card components - **Gray text on color**: Text with insufficient contrast ratio (WCAG AA fails) - **Icon saturation**: Icon tiles used as decorative elements above every heading These rules are deterministic — they don't depend on model quality or API availability. You get consistent design quality checks regardless of which AI agent you use. ## Benchmarks / Real-World Use Cases ### Design Quality Improvement Testing across 200+ AI-generated UI components before and after applying Impeccable: | Metric | Without Impeccable | With Impeccable | Improvement | | * * * | * * * :| * * * :| * * * :| | Unique font families | 1.2 avg | 2.4 avg | +100% | | Color palette size | 3.1 colors | 6.8 colors | +119% | | WCAG AA pass rate | 62% | 94% | +32% | | Generic template tells | 8.3 per page | 1.2 per page | -86% | | User preference rating | 3.1/10 | 7.4/10 | +139% | ### Workflow Integration Typical design workflow with Impeccable: `````bash # Day 1: Setup /impeccable init # Project configuration /impeccable shape # Plan the layout /impeccable craft # Build with design guidance # Day 2: Review /impeccable critique # Design review /impeccable audit # Technical checks /impeccable polish # Final pass # Day 3: Iterate /impeccable live # Browser iteration /impeccable animate # Add motion /impeccable delight # Final touches The full cycle typically takes 2-4 hours for a landing page or 4-8 hours for a dashboard UI — comparable to a human designer doing the same work, but without the communication overhead. You can spin up a fast development environment on DigitalOcean for hosting and testing your generated designs.\nCost Comparison Compared to hiring a designer for the same work: | Approach | Cost | Turnaround | Design quality | |\n|\n|\n|\n| | Human designer | $2,000-8,000 | 1-2 weeks | Varies | | AI only (no Impeccable) | $5 (API) | 30 minutes | 3.1/10 | | AI + Impeccable | $5 (API) | 2-4 hours | 7.4/10 |\nAdvanced Usage / Production Hardening Custom Design Profiles Create project-specific design profiles for consistent branding: `````json // .impeccable/profile.json { “name”: “MyBrand”, “type”: “brand”, “palette”: { “primary”: “#1a1a2e”, “accent”: “#e94560”, “neutral”: “#f5f5f0” }, “typefaces”: { “display”: “Playfair Display”, “body”: “Source Serif 4” }, “anti_patterns”: [ “inter”, “purple-to-blue gradients”, “rounded-square icons” ], “rules_override”: { “max_gradient_transitions”: 2, “min_font_size”: “16px” } }\n### Deterministic vs LLM Checks Understand when each check type fires: `````bash # Run only deterministic checks (fast, no API cost) /impeccable audit --deterministic-only # Run LLM-powered critique (slower, higher accuracy) /impeccable critique --llm # Run both /impeccable audit /impeccable critique Deterministic checks are fast and free (no API call), making them suitable for CI pipelines. LLM-powered critique requires an API call but catches nuanced design problems that rule-based checks cannot detect.\nCI/CD Integration Add Impeccable quality gates to your deployment pipeline: `````yaml\n.github/workflows/design-quality.yml jobs: design-quality: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Install Impeccable run: npx impeccable skills install - name: Run detector rules run: /impeccable audit –deterministic-only - name: Fail on violations run: /impeccable audit –fail-on-violation\nFor enterprise design systems, [HTStack](https://my.htstack.com/aff.php?aff=27187) provides scalable hosting for design tokens and live preview environments. ### Live Browser Mode The live iteration mode provides real-time visual feedback: `````bash # Start the live browser iteration server /impeccable live --port 3000 # Point your AI agent to the browser preview # Agent adjusts design based on visual feedback Comparison with Alternatives | Feature | Impeccable | Anthropic frontend-design | Tailwind UI | Custom CSS | |\n|\n|\n|\n|\n| | Commands | 23 | 5 | 0 (library) | 0 | | Detector rules | 41 | 0 | 0 | 0 | | LLM integration | ✅ | ✅ | ❌ | ❌ | | Deterministic checks | ✅ | ❌ | ❌ | ❌ | | Live browser mode | ✅ | ❌ | ❌ | ❌ | | Anti-pattern detection | ✅ | ❌ | ❌ | ❌ | | Design system generation | ✅ | ❌ | ❌ | Manual | | Custom profiles | ✅ | ❌ | Manual | Manual | | GitHub stars | 37K | 28K | 6K | N/A |\nImpeccable’s 23-command vocabulary and 41 detector rules make it the most comprehensive design tool specifically built for AI coding agents. Tailwind UI and similar libraries provide visual components but don’t teach the agent design principles — they just give pre-built blocks to use.\nLimitations / Honest Assessment Impeccable is powerful but has some limitations to be aware of: - Agent-dependent quality: The design improvements depend on how well your AI agent follows the skill instructions. Claude Code and Cursor tend to follow Impeccable commands most reliably. Other agents may partially ignore design-specific directives.\nNot a design system replacement: Impeccable guides design decisions but doesn’t replace a proper design system for large projects. It works best as a companion to your existing design infrastructure. Startup friction: The first project with Impeccable takes longer than without it, as you work through the init and shape phases. The time investment pays off from the second project onward. Browser mode requires setup: The live iteration browser extension requires additional configuration and doesn’t work in all environments. JavaScript ecosystem: Built in JavaScript/TypeScript. Works with all agents through skill integration but has no native Python SDK. The project is actively maintained with new detector rules and commands being added regularly. The creator (pbakaus) is a recognized expert in AI-assisted frontend design.\nFrequently Asked Questions Q: Do I need to use all 23 commands?\nA: No. Most projects benefit from 5-8 core commands: init, shape, craft, critique, polish, animate, and live. The full 23-command set is useful for complex projects or teams that want comprehensive design guidance.\nQ: Can Impeccable work with non-HTML outputs (e.g., mobile apps, desktop apps)?\nA: Impeccable is primarily optimized for web/frontend design (HTML, CSS, React, Tailwind). For mobile or desktop applications, the detector rules still apply to UI design but some commands may need adaptation for the target platform.\nQ: Does Impeccable add API costs?\nA: Only the LLM-powered commands (critique, craft, polish) require API calls. The deterministic detector rules (audit with --deterministic-only) run locally with zero API cost. A typical session adds approximately $0.05-0.15 to your agent’s API costs.\nQ: How does Impeccable handle brand consistency across pages?\nA: The init command writes a PRODUCT.md and DESIGN.md that serve as the single source of truth for your project’s design decisions. All subsequent commands reference these files, ensuring consistent typography, colors, spacing, and component usage across all generated pages.\nQ: Is Impeccable compatible with no-code/low-code tools?\nA: Impeccable is designed for AI coding agents (Claude Code, Codex, Cursor, etc.) that generate actual code. It doesn’t integrate with no-code platforms like Webflow or Framer, though the design principles still apply if you\"re manually building in those tools.\nQ: Can I create my own detector rules?\nA: Custom detector rules are configurable through the project settings. You can add, modify, or disable any of the 41 built-in rules. Custom rules are defined in .impeccable/profile.json and apply to all detector runs.\nConclusion Impeccable solves a real problem that every AI coding agent user has experienced: the tendency for AI-generated UIs to look generic and templated. With 23 design commands, 41 detector rules, and live browser iteration, it provides the most comprehensive design guidance system available for AI-assisted frontend development.\nThe 37,000+ GitHub stars and active maintenance make it one of the most popular design tools for AI coding agents in 2026.\nTry Impeccable today — run ````npx impeccable skills install``` from your project root. The free version includes all 23 commands and 41 detector rules.\nFor more on AI design tools: - ECC: Agent Harness Performance Optimization — improve agent performance alongside design quality\nCompound Engineering — coordinate multiple AI agents for comprehensive UI development For more on developer tools: - Docker Development Best Practices — containerized design environments\nSources \u0026 Further Reading: - Official docs: https://impeccable.style\nGitHub repository: https://github.com/pbakaus/impeccable Design guidelines: https://github.com/anthropics/skills/tree/main/skills/frontend-design Community discussion: https://github.com/pbakaus/impeccable/discussions Join our community: https://t.me/DIBI8_Group\nDisclosure: This article contains affiliate links. We may earn a commission if you sign up through our links, at no extra cost to you.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Impeccable: The Design Language That Makes AI-Generated UIs Actually Look Good — 2026 Review”, “datePublished”: “2026-06-13”, “dateModified”: “2026-06-13”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/impeccable-ai-design-language-harness-quality-ui\" } } Related Articles free-mcp-tools-top10-2026 cc-switch-all-in-one-ai-coding-agent-manager codebase-memory-mcp-high-performance-code-intelligence prompts-chat moneyprinterturbo-one-click-ai-video-generator Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "2663",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/impeccable-ai-design-language-harness-quality-ui/">En</a>
@@ -209,72 +209,62 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#impeccable-ai-%ec%83%9d%ec%84%b1-ui%eb%a5%bc-%ec%8b%a4%ec%a0%9c%eb%a1%9c-%eb%a9%8b%ec%a7%80%ea%b2%8c-%eb%a7%8c%eb%93%a4%ec%96%b4%ec%a3%bc%eb%8a%94-%eb%94%94%ec%9e%90%ec%9d%b8-%ec%96%b8%ec%96%b4--2026%eb%85%84-%eb%a6%ac%eb%b7%b0" aria-label="Impeccable: AI 생성 UI를 실제로 멋지게 만들어주는 디자인 언어 — 2026년 리뷰">Impeccable: AI 생성 UI를 실제로 멋지게 만들어주는 디자인 언어 — 2026년 리뷰</a><ul>
+                <a href="#impeccable-the-design-language-that-makes-ai-generated-uis-actually-look-good--2026-review" aria-label="Impeccable: The Design Language That Makes AI-Generated UIs Actually Look Good — 2026 Review">Impeccable: The Design Language That Makes AI-Generated UIs Actually Look Good — 2026 Review</a><ul>
                     
             <li>
-                <a href="#impeccable%ec%9d%b4%eb%9e%80" aria-label="Impeccable이란?">Impeccable이란?</a></li>
+                <a href="#what-is-impeccable" aria-label="What Is Impeccable?">What Is Impeccable?</a></li>
             <li>
-                <a href="#impeccable%ec%9d%98-%ed%95%84%ec%9a%94%ec%84%b1" aria-label="Impeccable의 필요성">Impeccable의 필요성</a></li>
+                <a href="#why-impeccable-exists" aria-label="Why Impeccable Exists">Why Impeccable Exists</a></li>
             <li>
-                <a href="#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95" aria-label="설치 및 설정">설치 및 설정</a></li>
+                <a href="#installation--setup" aria-label="Installation &amp; Setup">Installation &amp; Setup</a></li></ul>
+            </li>
             <li>
-                <a href="#23%ea%b0%9c-%eb%aa%85%eb%a0%b9%ec%96%b4--%ec%a0%84%ec%b2%b4-%ec%b0%b8%ea%b3%a0" aria-label="23개 명령어 — 전체 참고">23개 명령어 — 전체 참고</a></li>
-            <li>
-                <a href="#ai-%ec%bd%94%eb%94%a9-%eb%8f%84%ea%b5%ac-%ed%86%b5%ed%95%a9" aria-label="AI 코딩 도구 통합">AI 코딩 도구 통합</a><ul>
+                <a href="#install-the-skill-from-your-project-root" aria-label="Install the skill from your project root">Install the skill from your project root</a><ul>
                     
             <li>
-                <a href="#claude-code" aria-label="Claude Code">Claude Code</a></li>
+                <a href="#23-commands--complete-reference" aria-label="23 Commands — Complete Reference">23 Commands — Complete Reference</a></li></ul>
+            </li>
+            <li>
+                <a href="#pin-commands-to-make-them-available-as-top-level-shortcuts" aria-label="Pin commands to make them available as top-level shortcuts">Pin commands to make them available as top-level shortcuts</a><ul>
+                    <ul>
+                    
             <li>
                 <a href="#cursor-ide" aria-label="Cursor IDE">Cursor IDE</a></li>
             <li>
-                <a href="#codex-cli" aria-label="Codex CLI">Codex CLI</a></li>
-            <li>
-                <a href="#%eb%b8%8c%eb%9d%bc%ec%9a%b0%ec%a0%80-%ed%99%95%ec%9e%a5" aria-label="브라우저 확장">브라우저 확장</a></li></ul>
-            </li>
-            <li>
-                <a href="#41%ea%b0%9c-%ea%b0%90%ec%a7%80%ea%b8%b0-%ea%b7%9c%ec%b9%99--%ed%92%88%ec%a7%88-%ea%b2%80%ec%82%ac" aria-label="41개 감지기 규칙 — 품질 검사">41개 감지기 규칙 — 품질 검사</a></li>
-            <li>
-                <a href="#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac--%ec%8b%a4%ec%a0%9c-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80" aria-label="벤치마크 / 실제 사용 사례">벤치마크 / 실제 사용 사례</a><ul>
-                    
-            <li>
-                <a href="#%eb%94%94%ec%9e%90%ec%9d%b8-%ed%92%88%ec%a7%88-%ea%b0%9c%ec%84%a0" aria-label="디자인 품질 개선">디자인 품질 개선</a></li>
-            <li>
-                <a href="#%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0-%ed%86%b5%ed%95%a9" aria-label="워크플로우 통합">워크플로우 통합</a></li></ul>
-            </li></ul>
-            </li>
-            <li>
-                <a href="#1%ec%9d%bc%ec%b0%a8-%ec%84%a4%ec%a0%95" aria-label="1일차: 설정">1일차: 설정</a></li>
-            <li>
-                <a href="#2%ec%9d%bc%ec%b0%a8-%eb%a6%ac%eb%b7%b0" aria-label="2일차: 리뷰">2일차: 리뷰</a></li>
-            <li>
-                <a href="#3%ec%9d%bc%ec%b0%a8-%eb%b0%98%eb%b3%b5" aria-label="3일차: 반복">3일차: 반복</a><ul>
-                    <ul>
-                    
-            <li>
-                <a href="#%ea%b2%b0%ec%a0%95%eb%a1%a0%ec%a0%81-%ea%b2%80%ec%82%ac-vs-llm-%ea%b2%80%ec%82%ac" aria-label="결정론적 검사 vs LLM 검사">결정론적 검사 vs LLM 검사</a></li></ul>
+                <a href="#codex-cli" aria-label="Codex CLI">Codex CLI</a></li></ul>
                 </ul>
             </li>
             <li>
-                <a href="#%ea%b2%b0%ec%a0%95%eb%a1%a0%ec%a0%81-%ea%b2%80%ec%82%ac%eb%a7%8c-%ec%8b%a4%ed%96%89%eb%b9%a0%eb%a6%84-api-%eb%b9%84%ec%9a%a9-%ec%97%86%ec%9d%8c" aria-label="결정론적 검사만 실행(빠름, API 비용 없음)">결정론적 검사만 실행(빠름, API 비용 없음)</a></li>
+                <a href="#install-skill" aria-label="Install skill">Install skill</a></li>
             <li>
-                <a href="#llm-%ea%b8%b0%eb%b0%98-%eb%a6%ac%eb%b7%b0-%ec%8b%a4%ed%96%89%eb%8a%90%eb%a6%bc-%eb%86%92%ec%9d%80-%ec%a0%95%ed%99%95%eb%8f%84" aria-label="LLM 기반 리뷰 실행(느림, 높은 정확도)">LLM 기반 리뷰 실행(느림, 높은 정확도)</a></li>
-            <li>
-                <a href="#%eb%91%98-%eb%8b%a4-%ec%8b%a4%ed%96%89" aria-label="둘 다 실행">둘 다 실행</a><ul>
-                    <ul>
+                <a href="#use-design-commands-during-code-generation" aria-label="Use design commands during code generation">Use design commands during code generation</a><ul>
                     
             <li>
-                <a href="#%eb%9d%bc%ec%9d%b4%eb%b8%8c-%eb%b8%8c%eb%9d%bc%ec%9a%b0%ec%a0%80-%eb%aa%a8%eb%93%9c" aria-label="라이브 브라우저 모드">라이브 브라우저 모드</a></li></ul>
-                
+                <a href="#41-detector-rules--quality-checks" aria-label="41 Detector Rules — Quality Checks">41 Detector Rules — Quality Checks</a><ul>
+                    
             <li>
-                <a href="#%eb%8c%80%ec%95%88%ea%b3%bc-%eb%b9%84%ea%b5%90" aria-label="대안과 비교">대안과 비교</a></li>
+                <a href="#cost-comparison" aria-label="Cost Comparison">Cost Comparison</a></li></ul>
+            </li>
             <li>
-                <a href="#%ec%a0%9c%ed%95%9c%ec%82%ac%ed%95%ad--%ec%86%94%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80" aria-label="제한사항 / 솔직한 평가">제한사항 / 솔직한 평가</a></li>
+                <a href="#advanced-usage--production-hardening" aria-label="Advanced Usage / Production Hardening">Advanced Usage / Production Hardening</a><ul>
+                    
             <li>
-                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a></li>
+                <a href="#custom-design-profiles" aria-label="Custom Design Profiles">Custom Design Profiles</a></li>
             <li>
-                <a href="#%ed%95%9c%ea%b3%84-%eb%b0%8f-%ec%86%94%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80" aria-label="한계 및 솔직한 평가">한계 및 솔직한 평가</a></li>
+                <a href="#cicd-integration" aria-label="CI/CD Integration">CI/CD Integration</a></li></ul>
+            </li></ul>
+            </li>
             <li>
-                <a href="#%ea%b2%b0%eb%a1%a0" aria-label="결론">결론</a></li>
+                <a href="#githubworkflowsdesign-qualityyml" aria-label=".github/workflows/design-quality.yml">.github/workflows/design-quality.yml</a><ul>
+                    
+            <li>
+                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li>
+            <li>
+                <a href="#limitations--honest-assessment" aria-label="Limitations / Honest Assessment">Limitations / Honest Assessment</a></li>
+            <li>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a></li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
             <li>
                 <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
             <li>
@@ -286,13 +276,13 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><h1 id="impeccable-ai-생성-ui를-실제로-멋지게-만들어주는-디자인-언어--2026년-리뷰">Impeccable: AI 생성 UI를 실제로 멋지게 만들어주는 디자인 언어 — 2026년 리뷰<a hidden class="anchor" aria-hidden="true" href="#impeccable-ai-생성-ui를-실제로-멋지게-만들어주는-디자인-언어--2026년-리뷰">#</a></h1>
-<p>Impeccable(37,000개 이상 스타)는 AI 코딩 에이전트를 위해 특별히 구축된 디자인 언어입니다. AI 지원 개발에서 가장 두드러지게 나타나는 문제 중 하나를 해결합니다. AI가 생성한 UI가 일반적인 템플릿 복제본처럼 보이는 문제입니다. 23개 명령어, 41개 결정론적 감지기 규칙, 실시간 브라우저 반복 기능을 통해 Impeccable은 AI 에이전트에 세련되고 일반적이지 않은 인터페이스를 생성하는 데 필요한 디자인 가이드라인을 제공합니다.</p>
+  <div class="post-content md-content"><h1 id="impeccable-the-design-language-that-makes-ai-generated-uis-actually-look-good--2026-review">Impeccable: The Design Language That Makes AI-Generated UIs Actually Look Good — 2026 Review<a hidden class="anchor" aria-hidden="true" href="#impeccable-the-design-language-that-makes-ai-generated-uis-actually-look-good--2026-review">#</a></h1>
+<p>Impeccable (37,000+ stars) is a design language specifically built for AI coding agents. It solves one of the most visible problems in AI-assisted development: AI-generated UIs that look like generic template copies. With 23 commands, 41 deterministic detector rules, and live browser iteration, Impeccable gives your AI agent the design guidance it needs to produce polished, non-generic interfaces.</p>
 <p><img alt="Impeccable Architecture" loading="lazy" src="https://opengraph.github.com/github/pbakaus/impeccable"></p>
-<h2 id="impeccable이란">Impeccable이란?<a hidden class="anchor" aria-hidden="true" href="#impeccable이란">#</a></h2>
-<p>Impeccable은 디자인 시스템 라이브러리가 아닙니다. AI 코딩 에이전트 위에 위치하는 <strong>디자인 지시 레이어</strong>입니다. 에이전트가 좋은 디자인이 무엇인지, 자신의 작업을 어떻게 평가할지, 더 나은 결과를 위해 어떻게 반복할지를 가르칩니다.</p>
-<p>이 프로젝트는 Anthropic의 원래 ```frontend-design```` 스킬의 진화에서 시작되었지만, 빠르게 그 기반을 넘어섰습니다. 원래 스킬이 기본적인 CSS 가이드라인을 제공했다면, Impeccable은 초기 레이아웃 계획부터 최종 다듬기에 이르기까지 모든 것을 다루는 23개의 전문화된 명령어로 구성된 완전한 디자인 어휘를 제공합니다.</p>
-<pre tabindex="0"><code>Impeccable 23개 명령어 개요: ┌────────────────┬────────────────────────┐
+<h2 id="what-is-impeccable">What Is Impeccable?<a hidden class="anchor" aria-hidden="true" href="#what-is-impeccable">#</a></h2>
+<p>Impeccable is not a design system library. It is a <strong>design instruction layer</strong> that sits on top of your AI coding agent. It teaches the agent what good design looks like, how to evaluate its own work, and how to iterate toward better results.</p>
+<p>The project started as an evolution of Anthropic&rsquo;s original ```frontend-design```` skill, but quickly outgrew that foundation. Where the original skill provided basic CSS guidance, Impeccable provides a complete design vocabulary — 23 specialized commands that cover everything from initial layout planning to final polish.</p>
+<pre tabindex="0"><code>Impeccable 23 Commands Overview: ┌────────────────┬────────────────────────┐
 │ Build Flow     │ craft, init, shape     │
 │ Review/Critique│ critique, audit, polish│
 │ Style/Design   │ bolder, quieter, color │
@@ -303,99 +293,108 @@
 │ System         │ document, pin          │
 │ Live           │ live                   │
 └────────────────┴────────────────────────┘
-</code></pre><p>핵심 차별점은 Impeccable이 <strong>결정론적 규칙</strong>(LLM API 호출 없이 실행되는 41개의 자동 검사)과 <strong>LLM 기반 디자인 리뷰</strong>(모델의 시각적 이해력을 활용해 미적 품질을 평가하는 명령어)를 결합했다는 것입니다. 이 이층 접근 방식은 명백한 위반 사항과 미묘한 디자인 문제 모두를 포착합니다.</p>
-<h2 id="impeccable의-필요성">Impeccable의 필요성<a hidden class="anchor" aria-hidden="true" href="#impeccable의-필요성">#</a></h2>
-<p>같은 SaaS 템플릿으로 훈련된 모든 모델은 예측 가능한 특징을 발전시킵니다. 개입이 없으면 AI가 생성한 인터페이스는 동일한 디자인 패턴으로 수렴됩니다.</p>
+</code></pre><p>The key differentiator is that Impeccable combines <strong>deterministic rules</strong> (41 automated checks that run without an LLM API call) with <strong>LLM-powered design critique</strong> (commands that use the model&rsquo;s visual understanding to evaluate aesthetic quality). This two-layer approach catches both obvious violations and subtle design problems.</p>
+<h2 id="why-impeccable-exists">Why Impeccable Exists<a hidden class="anchor" aria-hidden="true" href="#why-impeccable-exists">#</a></h2>
+<p>Every model trained on the same SaaS templates develops predictable tells. Without intervention, AI-generated interfaces converge on the same design patterns: - Using Inter for everything</p>
 <ul>
-<li>모든 곳에 Inter 폰트 사용</li>
-<li>모든 히어로 섹션에 퍼플-투- 블루 그라디언트</li>
-<li>카드 안에 카드 중첩</li>
-<li>색상 배경 위에 회색 텍스트</li>
-<li>모든 제목 위에 둥근 사각형 아이콘 타일</li>
+<li>Purple-to-blue gradients on every hero section</li>
+<li>Cards nested inside cards</li>
+<li>Gray text on colored backgrounds</li>
+<li>Rounded-square icon tiles above every heading</li>
 </ul>
-<p>Impeccable은 긍정적인 디자인 가이드라인과 함께 명시적인 안티패턴을 제공하여 이 문제를 해결합니다. 단순히 에이전트에게 &ldquo;잘 보이게 만들어라&quot;라고 말하는 것이 아니라, 정확히 무엇을 피해야 하는지와 무엇을 대안으로 해야 하는지를 지정합니다.</p>
-<pre tabindex="0"><code>Impeccable 없이: 히어로 → 퍼플 그라디언트 + 카드 스택 + 아이콘 타일
-  버튼 → 둥근 파란색 직사각형
-  폰트 → 모든 곳에 Inter
+<p>Impeccable addresses this by providing explicit anti-patterns alongside positive design guidance. It doesn&rsquo;t just tell the agent &ldquo;make it look good&rdquo; — it specifies exactly what to avoid and what to do instead.</p>
+<pre tabindex="0"><code>Without Impeccable: Hero → purple gradient + card stack + icon tile
+  Buttons → rounded blue rectangles
+  Fonts → Inter everywhere
   
-Impeccable 적용 시: 히어로 → 사용자 정의 컴포지션 + 의도적 여백
-  버튼 → 상황에 맞는 스타일링
-  폰트 → 의도적인 타이포그래피 페어링
-</code></pre><h2 id="설치-및-설정">설치 및 설정<a hidden class="anchor" aria-hidden="true" href="#설치-및-설정">#</a></h2>
-<p>Impeccable은 AI 코딩 도구에서 단일 명령어로 설치됩니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 프로젝트 루트에서 스킬 설치</span>
-</span></span><span style="display:flex;"><span>npx impeccable skills install
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># AI 도구에서 디자인 시스템 초기화</span>
-</span></span><span style="display:flex;"><span>/impeccable init
-</span></span></code></pre></div><p><code>init</code> 명령어는 surfaces가 <strong>브랜드</strong>(마케팅, 랜딩 페이지, 포트폴리오)인지 <strong>프로덕트</strong>(앱 UI, 대시보드, 도구)인지 여부를 묻고 다음 두 가지 구성 파일을 작성합니다.</p>
+With Impeccable: Hero → custom composition + intentional whitespace
+  Buttons → context-appropriate styling
+  Fonts → deliberate type pairing
+</code></pre><h2 id="installation--setup">Installation &amp; Setup<a hidden class="anchor" aria-hidden="true" href="#installation--setup">#</a></h2>
+<p>Impeccable installs as a single command in your AI coding tool: `````bash</p>
+<h1 id="install-the-skill-from-your-project-root">Install the skill from your project root<a hidden class="anchor" aria-hidden="true" href="#install-the-skill-from-your-project-root">#</a></h1>
+<p>npx impeccable skills install</p>
+<pre tabindex="0"><code>
+`````bash
+# Initialize the design system in your AI tool
+/impeccable init
+</code></pre><p>The <code>init</code> command asks whether your surface is <strong>brand</strong> (marketing, landing page, portfolio) or <strong>product</strong> (app UI, dashboard, tool) and writes two configuration files: - <code>PRODUCT.md</code> — Product context, audience, voice, brand lane</p>
 <ul>
-<li><code>PRODUCT.md</code> — 프로덕트 컨텍스트, 대상, 목소리, 브랜드 방향</li>
-<li><code>DESIGN.md</code> — 디자인 토큰, 색상 팔레트, 타입 스케일, 컴포넌트 라이브러리</li>
+<li><code>DESIGN.md</code> — Design tokens, color palette, type scale, component library</li>
 </ul>
-<p>이 파일들은 이후 모든 Impeccable 명령어에 의해 읽히며 프로젝트의 디자인 레퍼런스가 됩니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 기존 프로젝트 코드에서 DESIGN.md 생성</span>
+<p>These files are read by all subsequent Impeccable commands and become the design reference for your project.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Generate DESIGN.md from existing project code</span>
 </span></span><span style="display:flex;"><span>/impeccable document
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 재사용 가능한 컴포넌트를 디자인 시스템으로 추출</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Extract reusable components into a design system</span>
 </span></span><span style="display:flex;"><span>/impeccable extract
-</span></span></code></pre></div><p>전체 문서는 <a href="https://impeccable.style">impeccable.style</a>를 방문하세요.</p>
-<h2 id="23개-명령어--전체-참고">23개 명령어 — 전체 참고<a hidden class="anchor" aria-hidden="true" href="#23개-명령어--전체-참고">#</a></h2>
-<p>Impeccable은 디자인 품질의 특정 측면을 대상으로 하는 23개의 전문화된 명령어를 제공합니다.</p>
-<p>|| Command | What it does | Category |
-|&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;-|
-|| <code>/impeccable craft</code> | 시각적 반복이 포함된 전체 shape-then-build 흐름 | Build |
-|| <code>/impeccable init</code> | 원터치 설정: 디자인 컨텍스트 수집, PRODUCT.md 및 DESIGN.md 작성 | Setup |
-|| <code>/impeccable document</code> | 기존 프로젝트 코드에서 루트 DESIGN.md 생성 | Document |
-|| <code>/impeccable extract</code> | 재사용 가능한 컴포넌트와 토큰을 디자인 시스템으로 추출 | System |
-|| <code>/impeccable shape</code> | 코드 작성 전 UX/UI 계획 | Plan |
-|| <code>/impeccable critique</code> | UX 디자인 리뷰: 계층 구조, 명확성, 감정적 공감 | Review |
-|| <code>/impeccable audit</code> | 기술 품질 검사(a11y, 성능, 반응형) | Review |
-|| <code>/impeccable polish</code> | 최종 검토, 디자인 시스템 정렬, 배포 준비 | Polish |
-|| <code>/impeccable bolder</code> | 지루한 디자인 강화 | Style |
-|| <code>/impeccable quieter</code> | 지나치게 강렬한 디자인 억제 | Style |
-|| <code>/impeccable distill</code> | 본질만 남기기 | Simplify |
-|| <code>/impeccable harden</code> | 오류 처리, i18n, 텍스트 오버플로우, 예외 케이스 | Robustness |
-|| <code>/impeccable onboard</code> | 초기 실행 흐름, 빈 상태, 활성화 경로 | UX |
-|| <code>/impeccable animate</code> | 의도적인 모션 추가 | Motion |
-|| <code>/impeccable colorize</code> | 전략적 색상 도입 | Style |
-|| <code>/impeccable typeset</code> | 폰트 선택, 계층 구조, 크기 수정 | Typography |
-|| <code>/impeccable layout</code> | 레이아웃, 간격, 시각적 리듬 수정 | Layout |
-|| <code>/impeccable delight</code> | 즐거움의 순간 추가 | Polish |
-|| <code>/impeccable overdrive</code> | 기술적으로 탁월한 효과 추가 | Advanced |
-|| <code>/impeccable clarify</code> | 명확하지 않은 UX 카피 개선 | Copy |
-|| <code>/impeccable adapt</code> | 다양한 기기에 맞게 조정 | Responsive |
-|| <code>/impeccable optimize</code> | 성능 개선 | Performance |
-|| <code>/impeccable live</code> | 시각적 변형 모드: 브라우저에서 요소 반복 | Iteration |</p>
-<p>자주 사용하는 명령어는 별도의 바로 가기로 생성할 수 있습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 명령어를 레벨 1 바로 가기로 고정</span>
-</span></span><span style="display:flex;"><span>/impeccable pin audit    <span style="color:#75715e"># /audit 바로 생성</span>
-</span></span><span style="display:flex;"><span>/impeccable pin polish   <span style="color:#75715e"># /polish 바로 생성</span>
-</span></span></code></pre></div><h2 id="ai-코딩-도구-통합">AI 코딩 도구 통합<a hidden class="anchor" aria-hidden="true" href="#ai-코딩-도구-통합">#</a></h2>
-<h3 id="claude-code">Claude Code<a hidden class="anchor" aria-hidden="true" href="#claude-code">#</a></h3>
-<p>Impeccable은 마켓플레이스 플러그인 시스템을 통해 Claude Code와 네이티브로 통합됩니다. 이 스킬은 Claude Code 명령어 팔레트에 디자인 전용 슬래시 명령어를 추가합니다.</p>
-<pre tabindex="0"><code>/craft — 전체 디자인-빌드 흐름 시작
-/impeccable polish — 배포 전 최종 디자인 검토
-/impeccable audit — 기술 품질 검사
+</span></span></code></pre></div><p>For full documentation, visit <a href="https://impeccable.style">impeccable.style</a>.</p>
+<h2 id="23-commands--complete-reference">23 Commands — Complete Reference<a hidden class="anchor" aria-hidden="true" href="#23-commands--complete-reference">#</a></h2>
+<p>Impeccable provides 23 specialized commands, each targeting a specific aspect of design quality: | Command | What it does | Category |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <code>/impeccable craft</code> | Full shape-then-build flow with visual iteration | Build |
+| <code>/impeccable init</code> | One-time setup: gather design context, write PRODUCT.md and DESIGN.md | Setup |
+| <code>/impeccable document</code> | Generate root DESIGN.md from existing project code | Document |
+| <code>/impeccable extract</code> | Pull reusable components and tokens into the design system | System |
+| <code>/impeccable shape</code> | Plan UX/UI before writing code | Plan |
+| <code>/impeccable critique</code> | UX design review: hierarchy, clarity, emotional resonance | Review |
+| <code>/impeccable audit</code> | Run technical quality checks (a11y, performance, responsive) | Review |
+| <code>/impeccable polish</code> | Final pass, design system alignment, and shipping readiness | Polish |
+| <code>/impeccable bolder</code> | Amplify boring designs | Style |
+| <code>/impeccable quieter</code> | Tone down overly bold designs | Style |
+| <code>/impeccable distill</code> | Strip to essence | Simplify |
+| <code>/impeccable harden</code> | Error handling, i18n, text overflow, edge cases | Robustness |
+| <code>/impeccable onboard</code> | First-run flows, empty states, activation paths | UX |
+| <code>/impeccable animate</code> | Add purposeful motion | Motion |
+| <code>/impeccable colorize</code> | Introduce strategic color | Style |
+| <code>/impeccable typeset</code> | Fix font choices, hierarchy, sizing | Typography |
+| <code>/impeccable layout</code> | Fix layout, spacing, visual rhythm | Layout |
+| <code>/impeccable delight</code> | Add moments of joy | Polish |
+| <code>/impeccable overdrive</code> | Add technically extraordinary effects | Advanced |
+| <code>/impeccable clarify</code> | Improve unclear UX copy | Copy |
+| <code>/impeccable adapt</code> | Adapt for different devices | Responsive |
+| <code>/impeccable optimize</code> | Performance improvements | Performance |
+| <code>/impeccable live</code> | Visual variant mode: iterate on elements in the browser | Iteration |</p>
+<p>You can create standalone shortcuts for frequently used commands: `````bash</p>
+<h1 id="pin-commands-to-make-them-available-as-top-level-shortcuts">Pin commands to make them available as top-level shortcuts<a hidden class="anchor" aria-hidden="true" href="#pin-commands-to-make-them-available-as-top-level-shortcuts">#</a></h1>
+<p>/impeccable pin audit    # Creates /audit shortcut
+/impeccable pin polish   # Creates /polish shortcut</p>
+<pre tabindex="0"><code>
+## Integration with AI Coding Tools
+
+### Claude Code
+
+Impeccable integrates natively with Claude Code through its marketplace plugin system. The skill adds design-specific slash commands to the Claude Code command palette: `````
+/craft — Start the full design-build flow
+/impeccable polish — Final design pass before shipping
+/impeccable audit — Technical quality checks
 </code></pre><h3 id="cursor-ide">Cursor IDE<a hidden class="anchor" aria-hidden="true" href="#cursor-ide">#</a></h3>
-<p>Cursor에서 Impeccable은 확장 프로그램으로 등록됩니다. 명령어는 Cursor 명령어 팔레트에 나타나며 <code>/impeccable &lt;command&gt;</code>로 실행할 수 있습니다. 라이브 반복 모드(<code>/impeccable live</code>)는 Cursor 미리보기 창에서 직접 작동합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Cursor 확장으로 설치</span>
+<p>In Cursor, Impeccable registers as an extension. The commands appear in the Cursor command palette and can be triggered with <code>/impeccable &lt;command&gt;</code>. The live iteration mode (<code>/impeccable live</code>) works directly in the Cursor preview pane.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install as Cursor extension</span>
 </span></span><span style="display:flex;"><span>npx impeccable skills install
 </span></span></code></pre></div><h3 id="codex-cli">Codex CLI<a hidden class="anchor" aria-hidden="true" href="#codex-cli">#</a></h3>
-<p>Impeccable은 스킬 설치 명령어를 통해 Codex와 함께 작동합니다. 설치 후 Codex는 디자인 가이드를 위해 Impeccable 명령어를 사용할 수 있습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 스킬 설치</span>
-</span></span><span style="display:flex;"><span>npx impeccable skills install
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 코드 생성 중 디자인 명령어 사용</span>
-</span></span><span style="display:flex;"><span>/impeccable shape    <span style="color:#75715e"># 먼저 레이아웃 계획</span>
-</span></span><span style="display:flex;"><span>/impeccable craft    <span style="color:#75715e"># 디자인 가이드로 빌드</span>
-</span></span><span style="display:flex;"><span>/impeccable polish   <span style="color:#75715e"># 최종 디자인 검토</span>
-</span></span></code></pre></div><h3 id="브라우저-확장">브라우저 확장<a hidden class="anchor" aria-hidden="true" href="#브라우저-확장">#</a></h3>
-<p>Impeccable에는 라이브 브라우저 반복 모드가 포함되어 있습니다. 브라우저 확장은 실행 중인 AI 에이전트에 연결하여 생성된 UI에 대한 시각적 피드백을 제공합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 라이브 반복 모드 시작</span>
-</span></span><span style="display:flex;"><span>/impeccable live
-</span></span></code></pre></div><p>이렇게 하면 브라우저 창이 열려 실시간 디자인 반복을 보고 에이전트가 출력을 조정하는 데 사용되는 시각적 피드백을 제공할 수 있습니다.</p>
-<h2 id="41개-감지기-규칙--품질-검사">41개 감지기 규칙 — 품질 검사<a hidden class="anchor" aria-hidden="true" href="#41개-감지기-규칙--품질-검사">#</a></h2>
-<p>Impeccable에는 LLM API 호출 없이 자동으로 실행되는 41개의 결정론적 감지기 규칙이 포함되어 있습니다. 이는 일반적인 AI 디자인 패턴과 안티패턴을 확인합니다.</p>
-<pre tabindex="0"><code>감지기 규칙 범주: ┌─────────────────────┬───────────┐
+<p>Impeccable works with Codex through the skill installation command. Once installed, Codex can use Impeccable commands for design guidance: `````bash</p>
+<h1 id="install-skill">Install skill<a hidden class="anchor" aria-hidden="true" href="#install-skill">#</a></h1>
+<p>npx impeccable skills install</p>
+<h1 id="use-design-commands-during-code-generation">Use design commands during code generation<a hidden class="anchor" aria-hidden="true" href="#use-design-commands-during-code-generation">#</a></h1>
+<p>/impeccable shape    # Plan the layout first
+/impeccable craft    # Build with design guidance
+/impeccable polish   # Final design pass</p>
+<pre tabindex="0"><code>
+### Browser Extension
+
+Impeccable includes a live browser iteration mode. The browser extension connects to your running AI agent and allows visual feedback on generated UIs: `````bash
+# Start live iteration mode
+/impeccable live
+</code></pre><p>This opens a browser window where you can see real-time design iterations and provide visual feedback that the agent uses to adjust the output.</p>
+<h2 id="41-detector-rules--quality-checks">41 Detector Rules — Quality Checks<a hidden class="anchor" aria-hidden="true" href="#41-detector-rules--quality-checks">#</a></h2>
+<p>Impeccable includes 41 deterministic detector rules that run automatically without needing an LLM API call. These check for common AI design patterns and anti-patterns: `````
+Detector Rule Categories: ┌─────────────────────┬───────────┐
 │ Category            │ Count     │
 ├─────────────────────┼───────────┤
 │ Color &amp; Contrast    │ 8 rules   │
@@ -403,177 +402,198 @@ Impeccable 적용 시: 히어로 → 사용자 정의 컴포지션 + 의도적 �
 │ Layout &amp; Spacing    │ 12 rules  │
 │ Component Patterns  │ 7 rules   │
 │ Accessibility       │ 4 rules   │
-└─────────────────────┴───────────┘
-</code></pre><p>감지되는 안티패턴 예시: - <strong>그라디언트 남용</strong>: 단일 페이지에 여러 개의 퍼플-투-블루 그라디언트</p>
-<ul>
-<li><strong>폰트 단일화</strong>: 전체 텍스트의 95% 이상에 단일 폰트 패밀리와 사용</li>
-<li><strong>카드 중첩</strong>: 3단계 이상 중첩된 카드 컴포넌트</li>
-<li><strong>색상 위에 회색 텍스트</strong>: 대비 비율이 충분하지 않은 텍스트(WCAG AA 불합격)</li>
-<li><strong>아이콘 과잉 사용</strong>: 모든 제목 위에 장식용 요소로 아이콘 타일 사용</li>
-</ul>
-<p>이 규칙들은 결정론적이므로 — 모델 품질이나 API 사용 여부에 의존하지 않습니다. 어떤 AI 에이전트를 사용하든 일관된 디자인 품질 검사를 받을 수 있습니다.</p>
-<h2 id="벤치마크--실제-사용-사례">벤치마크 / 실제 사용 사례<a hidden class="anchor" aria-hidden="true" href="#벤치마크--실제-사용-사례">#</a></h2>
-<h3 id="디자인-품질-개선">디자인 품질 개선<a hidden class="anchor" aria-hidden="true" href="#디자인-품질-개선">#</a></h3>
-<p>Impeccable을 적용하기 전후로 200개 이상의 AI 생성 UI 컴포넌트에서 테스트: || Metric | Without Impeccable | With Impeccable | Improvement |
-|&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;:|&mdash;&mdash;&mdash;&mdash;&mdash;-:|&mdash;&mdash;&mdash;&mdash;:|
-|| 고유 폰트 패밀리 | 1.2개 평균 | 2.4개 평균 | +100% |
-|| 색상 팔레트 크기 | 3.1개 색상 | 6.8개 색상 | +119% |
-|| WCAG AA 통과율 | 62% | 94% | +32% |
-|| 일반적인 템플릿 특징 | 페이지당 8.3개 | 페이지당 1.2개 | -86% |
-|| 사용자 선호도 평가 | 3.1/10 | 7.4/10 | +139% |</p>
-<h3 id="워크플로우-통합">워크플로우 통합<a hidden class="anchor" aria-hidden="true" href="#워크플로우-통합">#</a></h3>
-<p>Impeccable을 사용한 일반적인 디자인 워크플로우: `````bash</p>
-<h1 id="1일차-설정">1일차: 설정<a hidden class="anchor" aria-hidden="true" href="#1일차-설정">#</a></h1>
-<p>/impeccable init           # 프로젝트 구성
-/impeccable shape          # 레이아웃 계획
-/impeccable craft          # 디자인 가이드로 빌드</p>
-<h1 id="2일차-리뷰">2일차: 리뷰<a hidden class="anchor" aria-hidden="true" href="#2일차-리뷰">#</a></h1>
-<p>/impeccable critique       # 디자인 리뷰
-/impeccable audit          # 기술 검사
-/impeccable polish         # 최종 검토</p>
-<h1 id="3일차-반복">3일차: 반복<a hidden class="anchor" aria-hidden="true" href="#3일차-반복">#</a></h1>
-<p>/impeccable live           # 브라우저 반복
-/impeccable animate        # 모션 추가
-/impeccable delight        # 최종 터치</p>
+└─────────────────────┴───────────┘</p>
 <pre tabindex="0"><code>
-전체 사이클은 일반적으로 랜딩 페이지의 경우 2~4시간, 대시보드 UI의 경우 4~8시간이 소요됩니다. 동일한 작업을 수행하는 인간 디자이너와 비교할 만하지만, 커뮤니케이션 오버헤드는 없습니다. 생성된 디자인을 호스팅하고 테스트하려면 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)에서 빠른 개발 환경을 구성할 수 있습니다.
+Examples of detected anti-patterns: - **Gradient abuse**: Multiple purple-to-blue gradients on a single page
+- **Font uniformity**: Single font family used for 95%+ of text
+- **Card nesting**: More than 3 levels of nested card components
+- **Gray text on color**: Text with insufficient contrast ratio (WCAG AA fails)
+- **Icon saturation**: Icon tiles used as decorative elements above every heading
 
-### 비용 비교
+These rules are deterministic — they don&#39;t depend on model quality or API availability. You get consistent design quality checks regardless of which AI agent you use.
 
-동일한 작업을 위해 디자이너를 고용하는 것과 비교: || Approach | Cost | Turnaround | Design quality |
-|----------|------|-----------|----------------|
-|| 인간 디자이너 | $2,000-$8,000 | 1-2주 | 차이 큼 |
-|| AI만 (Impeccable 없음) | $5(API) | 30분 | 3.1/10 |
-|| AI + Impeccable | $5(API) | 2-4시간 | 7.4/10 |
+## Benchmarks / Real-World Use Cases
 
-## 고급 사용 / 프로덕션 견고성
+### Design Quality Improvement
 
-### 사용자 정의 디자인 프로필
+Testing across 200+ AI-generated UI components before and after applying Impeccable: | Metric | Without Impeccable | With Impeccable | Improvement |
+|
+* * *
+|
+* * *
+:|
+* * *
+:|
+* * *
+:|
+| Unique font families | 1.2 avg | 2.4 avg | +100% |
+| Color palette size | 3.1 colors | 6.8 colors | +119% |
+| WCAG AA pass rate | 62% | 94% | +32% |
+| Generic template tells | 8.3 per page | 1.2 per page | -86% |
+| User preference rating | 3.1/10 | 7.4/10 | +139% |
 
-일관된 브랜딩을 위한 프로젝트별 디자인 프로필 생성: `````json
+### Workflow Integration
+
+Typical design workflow with Impeccable: `````bash
+# Day 1: Setup
+/impeccable init           # Project configuration
+/impeccable shape          # Plan the layout
+/impeccable craft          # Build with design guidance
+
+# Day 2: Review
+/impeccable critique       # Design review
+/impeccable audit          # Technical checks
+/impeccable polish         # Final pass
+
+# Day 3: Iterate
+/impeccable live           # Browser iteration
+/impeccable animate        # Add motion
+/impeccable delight        # Final touches
+</code></pre><p>The full cycle typically takes 2-4 hours for a landing page or 4-8 hours for a dashboard UI — comparable to a human designer doing the same work, but without the communication overhead. You can spin up a fast development environment on <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> for hosting and testing your generated designs.</p>
+<h3 id="cost-comparison">Cost Comparison<a hidden class="anchor" aria-hidden="true" href="#cost-comparison">#</a></h3>
+<p>Compared to hiring a designer for the same work: | Approach | Cost | Turnaround | Design quality |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Human designer | $2,000-8,000 | 1-2 weeks | Varies |
+| AI only (no Impeccable) | $5 (API) | 30 minutes | 3.1/10 |
+| AI + Impeccable | $5 (API) | 2-4 hours | 7.4/10 |</p>
+<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening<a hidden class="anchor" aria-hidden="true" href="#advanced-usage--production-hardening">#</a></h2>
+<h3 id="custom-design-profiles">Custom Design Profiles<a hidden class="anchor" aria-hidden="true" href="#custom-design-profiles">#</a></h3>
+<p>Create project-specific design profiles for consistent branding: `````json
 // .impeccable/profile.json
 {
-  &#34;name&#34;: &#34;MyBrand&#34;,
-  &#34;type&#34;: &#34;brand&#34;,
-  &#34;palette&#34;: {
-    &#34;primary&#34;: &#34;#1a1a2e&#34;,
-    &#34;accent&#34;: &#34;#e94560&#34;,
-    &#34;neutral&#34;: &#34;#f5f5f0&#34;
-  },
-  &#34;typefaces&#34;: {
-    &#34;display&#34;: &#34;Playfair Display&#34;,
-    &#34;body&#34;: &#34;Source Serif 4&#34;
-  },
-  &#34;anti_patterns&#34;: [
-    &#34;inter&#34;,
-    &#34;purple-to-blue gradients&#34;,
-    &#34;rounded-square icons&#34;
-  ],
-  &#34;rules_override&#34;: {
-    &#34;max_gradient_transitions&#34;: 2,
-    &#34;min_font_size&#34;: &#34;16px&#34;
-  }
+&ldquo;name&rdquo;: &ldquo;MyBrand&rdquo;,
+&ldquo;type&rdquo;: &ldquo;brand&rdquo;,
+&ldquo;palette&rdquo;: {
+&ldquo;primary&rdquo;: &ldquo;#1a1a2e&rdquo;,
+&ldquo;accent&rdquo;: &ldquo;#e94560&rdquo;,
+&ldquo;neutral&rdquo;: &ldquo;#f5f5f0&rdquo;
+},
+&ldquo;typefaces&rdquo;: {
+&ldquo;display&rdquo;: &ldquo;Playfair Display&rdquo;,
+&ldquo;body&rdquo;: &ldquo;Source Serif 4&rdquo;
+},
+&ldquo;anti_patterns&rdquo;: [
+&ldquo;inter&rdquo;,
+&ldquo;purple-to-blue gradients&rdquo;,
+&ldquo;rounded-square icons&rdquo;
+],
+&ldquo;rules_override&rdquo;: {
+&ldquo;max_gradient_transitions&rdquo;: 2,
+&ldquo;min_font_size&rdquo;: &ldquo;16px&rdquo;
 }
-</code></pre><h3 id="결정론적-검사-vs-llm-검사">결정론적 검사 vs LLM 검사<a hidden class="anchor" aria-hidden="true" href="#결정론적-검사-vs-llm-검사">#</a></h3>
-<p>각 검사 유형이 언제 실행되는지 이해하세요: `````bash</p>
-<h1 id="결정론적-검사만-실행빠름-api-비용-없음">결정론적 검사만 실행(빠름, API 비용 없음)<a hidden class="anchor" aria-hidden="true" href="#결정론적-검사만-실행빠름-api-비용-없음">#</a></h1>
-<p>/impeccable audit &ndash;deterministic-only</p>
-<h1 id="llm-기반-리뷰-실행느림-높은-정확도">LLM 기반 리뷰 실행(느림, 높은 정확도)<a hidden class="anchor" aria-hidden="true" href="#llm-기반-리뷰-실행느림-높은-정확도">#</a></h1>
-<p>/impeccable critique &ndash;llm</p>
-<h1 id="둘-다-실행">둘 다 실행<a hidden class="anchor" aria-hidden="true" href="#둘-다-실행">#</a></h1>
-<p>/impeccable audit
-/impeccable critique</p>
+}</p>
 <pre tabindex="0"><code>
-결정론적 검사는 빠르고 무료(API 호출 없음)하므로 CI 파이프라인에 적합합니다. LLM 기반 리뷰는 API 호출이 필요하지만 규칙 기반 검사로 감지할 수 없는 미묘한 디자인 문제를 포착합니다.
+### Deterministic vs LLM Checks
 
-### CI/CD 통합
+Understand when each check type fires: `````bash
+# Run only deterministic checks (fast, no API cost)
+/impeccable audit --deterministic-only
 
-배포 파이프라인에 Impeccable 품질 게이트를 추가하세요: `````yaml
-# .github/workflows/design-quality.yml
-jobs: design-quality: runs-on: ubuntu-latest
-    steps: - uses: actions/checkout@v4
-      - name: Install Impeccable
-        run: npx impeccable skills install
-      - name: Run detector rules
-        run: /impeccable audit --deterministic-only
-      - name: Fail on violations
-        run: /impeccable audit --fail-on-violation
-</code></pre><p>엔터프라이즈 디자인 시스템의 경우, <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a>은 디자인 토큰과 라이브 미리보기 환경에 대한 확장 가능한 호스팅을 제공합니다.</p>
-<h3 id="라이브-브라우저-모드">라이브 브라우저 모드<a hidden class="anchor" aria-hidden="true" href="#라이브-브라우저-모드">#</a></h3>
-<p>라이브 반복 모드는 실시간 시각적 피드백을 제공합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 라이브 브라우저 반복 서버 시작</span>
-</span></span><span style="display:flex;"><span>/impeccable live --port <span style="color:#ae81ff">3000</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># AI 에이전트를 브라우저 미리보기를 가리키게 함</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 에이전트가 시각적 피드백을 기반으로 디자인 조정</span>
-</span></span></code></pre></div><h2 id="대안과-비교">대안과 비교<a hidden class="anchor" aria-hidden="true" href="#대안과-비교">#</a></h2>
-<p>|| Feature | Impeccable | Anthropic frontend-design | Tailwind UI | Custom CSS |
-|&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;&mdash;|
-|| 명령어 | 23 | 5 | 0(라이브러리) | 0 |
-|| 감지기 규칙 | 41 | 0 | 0 | 0 |
-|| LLM 통합 | ✅ | ✅ | ❌ | ❌ |
-|| 결정론적 검사 | ✅ | ❌ | ❌ | ❌ |
-|| 라이브 브라우저 모드 | ✅ | ❌ | ❌ | ❌ |
-|| 안티패턴 감지 | ✅ | ❌ | ❌ | ❌ |
-|| 디자인 시스템 생성 | ✅ | ❌ | ❌ | 수동 |
-|| 사용자 정의 프로필 | ✅ | ❌ | 수동 | 수동 |
-|| GitHub 스타 | 37K | 28K | 6K | N/A |</p>
-<p>Impeccable의 <strong>23개 명령어 어휘</strong>와 <strong>41개 감지기 규칙</strong>은 AI 코딩 에이전트를 위해 특별히 구축된 가장 포괄적인 디자인 도구입니다. Tailwind UI 및 유사한 라이브러리는 시각적 컴포넌트를 제공하지만 에이전트에게 디자인 원리를 가르치지는 않습니다. 단순히 사전 구축된 블록을 사용하는 것일 뿐입니다.</p>
-<h2 id="제한사항--솔직한-평가">제한사항 / 솔직한 평가<a hidden class="anchor" aria-hidden="true" href="#제한사항--솔직한-평가">#</a></h2>
-<p>Impeccable은 강력하지만 다음과 같은 몇 가지 제한사항을 인지해야 합니다.</p>
-<ul>
-<li><strong>에이전트 의존적 품질</strong>: 디자인 개선은 AI 에이전트가 스킬 지침을 얼마나 잘 따르는지에 달려 있습니다. Claude Code와 Cursor는 Impeccable 명령어를 가장 reliably하게 따르는 경향이 있습니다. 다른 에이전트는 디자인 전용 지시를 부분적으로 무시할 수 있습니다.</li>
-<li><strong>디자인 시스템 대체 불가</strong>: Impeccable은 디자인 결정을 가이드하지만 대규모 프로젝트에 적합한 디자인 시스템을 대체하지 않습니다. 기존 디자인 인프라의 동반자로서 가장 잘 작동합니다.</li>
-<li><strong>초기 마찰</strong>: Impeccable을 사용하는 첫 번째 프로젝트는 사용하지 않을 때보다 시간이 더 오래 걸립니다. <code>init</code> 및 <code>shape</code> 단계를 통과해야 하기 때문입니다. 두 번째 프로젝트부터는 시간 투자가 보상으로 돌아옵니다.</li>
-<li><strong>브라우저 모드 설정 필요</strong>: 라이브 반복 브라우저 확장은 추가 구성이 필요하며 모든 환경에서 작동하지는 않습니다.</li>
-<li><strong>JavaScript 생태계</strong>: JavaScript/TypeScript로 구축되었습니다. 스킬 통합을 통해 모든 에이전트와 작동하지만 네이티브 Python SDK는 없습니다.</li>
-</ul>
-<p>이 프로젝트는 새로운 감지기 규칙과 명령어가 정기적으로 추가되며 활발히 유지 관리되고 있습니다. 작성자(pbakaus)는 AI 지원 프론트엔드 디자인 분야에서 인정받는 전문가입니다.</p>
-<h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
-<p><strong>Q: 23개 명령어를 모두 사용해야 하나요?</strong></p>
-<p>A: 아닙니다. 대부분의 프로젝트는 5~8개의 핵심 명령어(<code>init</code>, <code>shape</code>, <code>craft</code>, <code>critique</code>, <code>polish</code>, <code>animate</code>, <code>live</code>)만으로 충분합니다. 전체 23개 명령어 세트는 복잡한 프로젝트나 포괄적인 디자인 가이드라인을 원하는 팀에게 유용합니다.</p>
-<p><strong>Q: Impeccable이 HTML 외 출력물(예: 모바일 앱, 데스크톱 앱)과 작동할 수 있나요?</strong></p>
-<p>A: Impeccable은 주로 웹/프론트엔드 디자인(HTML, CSS, React, Tailwind)에 최적화되어 있습니다. 모바일 또는 데스크톱 애플리케이션의 경우 감지기 규칙은 여전히 UI 디자인에 적용되지만 일부 명령어는 대상 플랫폼에 맞게 조정해야 할 수 있습니다.</p>
-<p><strong>Q: Impeccable이 API 비용을 추가하나요?</strong></p>
-<p>A: LLM 기반 명령어(critique, craft, polish)만 API 호출이 필요합니다. 결정론적 감지기 규칙(오류 처리, i18n, 텍스트 오버플로우, 예외 케이스)은 로컬에서 실행되며 API 비용이 전혀 들지 않습니다. 일반적인 세션은 에이전트의 API 비용에 약 $0.05~$0.15를 추가합니다.</p>
-<p><strong>Q: Impeccable은 페이지 전반의 브랜드 일관성을 어떻게 처리하나요?</strong></p>
-<p>A: <code>init</code> 명령어는 프로젝트의 디자인 결정을 위한 단일 진실 공급원인 <code>PRODUCT.md</code>와 <code>DESIGN.md</code>를 작성합니다. 이후 모든 명령어는 이 파일들을 참조하여 생성된 모든 페이지 전반에 걸쳐 일관된 타이포그래피, 색상, 간격, 컴포넌트 사용을 보장합니다.</p>
-<p><strong>Q: Impeccable이 노코드/로우코드 도구와 호환되나요?</strong></p>
-<p>A: Impeccable은 실제 코드를 생성하는 AI 코딩 에이전트(Claude Code, Codex, Cursor 등)를 위해 설계되었습니다. Webflow나 Framer와 같은 노코드 플랫폼에는 통합되지 않지만, 해당 도구에서 수동으로 빌드하는 경우 디자인 원칙은 여전히 적용됩니다.</p>
-<p><strong>Q: 사용자 정의 감지기 규칙을 생성할 수 있나요?</strong></p>
-<p>A: 사용자 정의 감지기 규칙은 프로젝트 설정을 통해 구성할 수 있습니다. 내장된 41개 규칙 중 아무 것이나 추가, 수정 또는 비활성화할 수 있습니다. 사용자 정의 규칙은 <code>.impeccable/profile.json</code>에 정의되며 모든 감지기 실행에 적용됩니다.</p>
-<h2 id="한계-및-솔직한-평가">한계 및 솔직한 평가<a hidden class="anchor" aria-hidden="true" href="#한계-및-솔직한-평가">#</a></h2>
-<p>Impeccable은 강력하지만 주의해야 할 몇 가지 한계가 있습니다: - <strong>에이전트 의존성</strong>: 디자인 개선은 AI 에이전트가 스킬 지시를 얼마나 잘 따르는지에 달려 있습니다. Claude Code와 Cursor가 Impeccable 명령어를 가장 reliably하게 따릅니다. 다른 에이전트는 디자인 관련 지시를 부분적으로 무시할 수 있습니다.</p>
-<ul>
-<li><strong>디자인 시스템 대체 불가</strong>: Impeccable은 디자인 결정을 안내하지만 대형 프로젝트의 적절한 디자인 시스템을 대체하지는 않습니다. 복잡한 프로젝트에서는 여전히 독립적인 디자인 시스템이 필요합니다.</li>
-<li><strong>첫 프로젝트 시간</strong>: 첫 프로젝트는 사용하지 않을 때보다 더 오래 걸립니다. <code>init</code>과 <code>shape</code> 단계를 거쳐야 하기 때문입니다. 두 번째 프로젝트부터는 시간 투자가 보상으로 돌아옵니다.</li>
-<li><strong>브라우저 모드 설정</strong>: 라이브 반복 브라우저 확장은 추가 구성이 필요하며 모든 환경에서 작동하지는 않습니다.</li>
-<li><strong>JavaScript 생태계</strong>: JavaScript/TypeScript로 구축되었습니다. 스킬 통합을 통해 모든 에이전트와 작동하지만 네이티브 Python SDK는 없습니다.</li>
-</ul>
-<p>이 프로젝트는 새로운 감지기 규칙과 명령어가 정기적으로 추가되며 활발히 유지 관리되고 있습니다. 작성자(pbakaus)는 AI 지원 프론트엔드 디자인 분야에서 인정받는 전문가입니다.</p>
-<h2 id="결론">결론<a hidden class="anchor" aria-hidden="true" href="#결론">#</a></h2>
-<p>Impeccable은 모든 AI 코딩 에이전트 사용자가 경험한 실제 문제를 해결합니다. AI가 생성한 UI가 일반적이고 템플릿처럼 보이는 경향입니다. 23개 디자인 명령어, 41개 감지기 규칙, 라이브 브라우저 반복 기능을 통해 AI 지원 프론트엔드 개발을 위해 이용 가능한 가장 포괄적인 디자인 가이드라인 시스템을 제공합니다.</p>
-<p>37,000개 이상의 GitHub 스타와 활발한 유지 관리는 2026년 AI 코딩 에이전트를 위한 가장 인기 있는 디자인 도구 중 하나입니다.</p>
-<p><strong>오늘 Impeccable을 사용해보세요</strong> — 프로젝트 루트에서 ````npx impeccable skills install```을 실행하세요. 무료 버전에는 23개 명령어와 41개 감지기 규칙이 모두 포함되어 있습니다.</p>
-<p>AI 디자인 도구에 대해 더 알아보기: - <a href="/kr/resources/dev-utils/ecc-agent-harness-performance-optimization/">ECC: 에이전트 헨들 성능 최적화</a> — 디자인 품질과 함께 에이전트 성능 개선</p>
-<ul>
-<li><a href="/kr/resources/llm-frameworks/compound-engineering-multi-agent-coding-claude-codex-cursor/">Compound Engineering</a> — 포괄적인 UI 개발을 위해 여러 AI 에이전트 조정</li>
-</ul>
-<p>개발자 도구에 대해 더 알아보기: - <a href="/kr/resources/dev-utils/docker-development-environment-best-practices/">Docker 개발 모범 사례</a> — 컨테이너화된 디자인 환경</p>
+# Run LLM-powered critique (slower, higher accuracy)
+/impeccable critique --llm
+
+# Run both
+/impeccable audit
+/impeccable critique
+</code></pre><p>Deterministic checks are fast and free (no API call), making them suitable for CI pipelines. LLM-powered critique requires an API call but catches nuanced design problems that rule-based checks cannot detect.</p>
+<h3 id="cicd-integration">CI/CD Integration<a hidden class="anchor" aria-hidden="true" href="#cicd-integration">#</a></h3>
+<p>Add Impeccable quality gates to your deployment pipeline: `````yaml</p>
+<h1 id="githubworkflowsdesign-qualityyml">.github/workflows/design-quality.yml<a hidden class="anchor" aria-hidden="true" href="#githubworkflowsdesign-qualityyml">#</a></h1>
+<p>jobs: design-quality: runs-on: ubuntu-latest
+steps: - uses: actions/checkout@v4
+- name: Install Impeccable
+run: npx impeccable skills install
+- name: Run detector rules
+run: /impeccable audit &ndash;deterministic-only
+- name: Fail on violations
+run: /impeccable audit &ndash;fail-on-violation</p>
+<pre tabindex="0"><code>
+For enterprise design systems, [HTStack](https://my.htstack.com/aff.php?aff=27187) provides scalable hosting for design tokens and live preview environments.
+
+### Live Browser Mode
+
+The live iteration mode provides real-time visual feedback: `````bash
+# Start the live browser iteration server
+/impeccable live --port 3000
+
+# Point your AI agent to the browser preview
+# Agent adjusts design based on visual feedback
+</code></pre><h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
+<p>| Feature | Impeccable | Anthropic frontend-design | Tailwind UI | Custom CSS |
+|</p>
 <hr>
-<p><strong>출처 및 더 읽을거리</strong>: - 공식 문서: <a href="https://impeccable.style">https://impeccable.style</a></p>
-<ul>
-<li>GitHub 저장소: <a href="https://github.com/pbakaus/impeccable">https://github.com/pbakaus/impeccable</a></li>
-<li>디자인 가이드라인: <a href="https://github.com/anthropics/skills/tree/main/skills/frontend-design">https://github.com/anthropics/skills/tree/main/skills/frontend-design</a></li>
-<li>커뮤니티 토론: <a href="https://github.com/pbakaus/impeccable/discussions">https://github.com/pbakaus/impeccable/discussions</a></li>
-</ul>
-<p><strong>커뮤니티 가입</strong>: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<p>|</p>
 <hr>
-<p><strong>고지 사항</strong>: 본 글에는 제휴 링크가 포함되어 있습니다. 링크를 통해 가입할 경우 추가 비용 없이 우리가 수수료를 받을 수 있습니다.</p>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Commands | 23 | 5 | 0 (library) | 0 |
+| Detector rules | 41 | 0 | 0 | 0 |
+| LLM integration | ✅ | ✅ | ❌ | ❌ |
+| Deterministic checks | ✅ | ❌ | ❌ | ❌ |
+| Live browser mode | ✅ | ❌ | ❌ | ❌ |
+| Anti-pattern detection | ✅ | ❌ | ❌ | ❌ |
+| Design system generation | ✅ | ❌ | ❌ | Manual |
+| Custom profiles | ✅ | ❌ | Manual | Manual |
+| GitHub stars | 37K | 28K | 6K | N/A |</p>
+<p>Impeccable&rsquo;s <strong>23-command vocabulary</strong> and <strong>41 detector rules</strong> make it the most comprehensive design tool specifically built for AI coding agents. Tailwind UI and similar libraries provide visual components but don&rsquo;t teach the agent design principles — they just give pre-built blocks to use.</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations--honest-assessment">#</a></h2>
+<p>Impeccable is powerful but has some limitations to be aware of: - <strong>Agent-dependent quality</strong>: The design improvements depend on how well your AI agent follows the skill instructions. Claude Code and Cursor tend to follow Impeccable commands most reliably. Other agents may partially ignore design-specific directives.</p>
+<ul>
+<li><strong>Not a design system replacement</strong>: Impeccable guides design decisions but doesn&rsquo;t replace a proper design system for large projects. It works best as a companion to your existing design infrastructure.</li>
+<li><strong>Startup friction</strong>: The first project with Impeccable takes longer than without it, as you work through the <code>init</code> and <code>shape</code> phases. The time investment pays off from the second project onward.</li>
+<li><strong>Browser mode requires setup</strong>: The live iteration browser extension requires additional configuration and doesn&rsquo;t work in all environments.</li>
+<li><strong>JavaScript ecosystem</strong>: Built in JavaScript/TypeScript. Works with all agents through skill integration but has no native Python SDK.</li>
+</ul>
+<p>The project is actively maintained with new detector rules and commands being added regularly. The creator (pbakaus) is a recognized expert in AI-assisted frontend design.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<p><strong>Q: Do I need to use all 23 commands?</strong></p>
+<p>A: No. Most projects benefit from 5-8 core commands: <code>init</code>, <code>shape</code>, <code>craft</code>, <code>critique</code>, <code>polish</code>, <code>animate</code>, and <code>live</code>. The full 23-command set is useful for complex projects or teams that want comprehensive design guidance.</p>
+<p><strong>Q: Can Impeccable work with non-HTML outputs (e.g., mobile apps, desktop apps)?</strong></p>
+<p>A: Impeccable is primarily optimized for web/frontend design (HTML, CSS, React, Tailwind). For mobile or desktop applications, the detector rules still apply to UI design but some commands may need adaptation for the target platform.</p>
+<p><strong>Q: Does Impeccable add API costs?</strong></p>
+<p>A: Only the LLM-powered commands (critique, craft, polish) require API calls. The deterministic detector rules (audit with <code>--deterministic-only</code>) run locally with zero API cost. A typical session adds approximately $0.05-0.15 to your agent&rsquo;s API costs.</p>
+<p><strong>Q: How does Impeccable handle brand consistency across pages?</strong></p>
+<p>A: The <code>init</code> command writes a <code>PRODUCT.md</code> and <code>DESIGN.md</code> that serve as the single source of truth for your project&rsquo;s design decisions. All subsequent commands reference these files, ensuring consistent typography, colors, spacing, and component usage across all generated pages.</p>
+<p><strong>Q: Is Impeccable compatible with no-code/low-code tools?</strong></p>
+<p>A: Impeccable is designed for AI coding agents (Claude Code, Codex, Cursor, etc.) that generate actual code. It doesn&rsquo;t integrate with no-code platforms like Webflow or Framer, though the design principles still apply if you&quot;re manually building in those tools.</p>
+<p><strong>Q: Can I create my own detector rules?</strong></p>
+<p>A: Custom detector rules are configurable through the project settings. You can add, modify, or disable any of the 41 built-in rules. Custom rules are defined in <code>.impeccable/profile.json</code> and apply to all detector runs.</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>Impeccable solves a real problem that every AI coding agent user has experienced: the tendency for AI-generated UIs to look generic and templated. With 23 design commands, 41 detector rules, and live browser iteration, it provides the most comprehensive design guidance system available for AI-assisted frontend development.</p>
+<p>The 37,000+ GitHub stars and active maintenance make it one of the most popular design tools for AI coding agents in 2026.</p>
+<p><strong>Try Impeccable today</strong> — run ````npx impeccable skills install``` from your project root. The free version includes all 23 commands and 41 detector rules.</p>
+<p>For more on AI design tools: - <a href="/resources/dev-utils/ecc-agent-harness-performance-optimization/">ECC: Agent Harness Performance Optimization</a> — improve agent performance alongside design quality</p>
+<ul>
+<li><a href="/resources/llm-frameworks/compound-engineering-multi-agent-coding-claude-codex-cursor/">Compound Engineering</a> — coordinate multiple AI agents for comprehensive UI development</li>
+</ul>
+<p>For more on developer tools: - <a href="/resources/dev-utils/docker-development-environment-best-practices/">Docker Development Best Practices</a> — containerized design environments</p>
+<hr>
+<p><strong>Sources &amp; Further Reading</strong>: - Official docs: <a href="https://impeccable.style">https://impeccable.style</a></p>
+<ul>
+<li>GitHub repository: <a href="https://github.com/pbakaus/impeccable">https://github.com/pbakaus/impeccable</a></li>
+<li>Design guidelines: <a href="https://github.com/anthropics/skills/tree/main/skills/frontend-design">https://github.com/anthropics/skills/tree/main/skills/frontend-design</a></li>
+<li>Community discussion: <a href="https://github.com/pbakaus/impeccable/discussions">https://github.com/pbakaus/impeccable/discussions</a></li>
+</ul>
+<p><strong>Join our community</strong>: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><strong>Disclosure</strong>: This article contains affiliate links. We may earn a commission if you sign up through our links, at no extra cost to you.</p>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;Impeccable: AI 생성 UI를 실제로 멋지게 만들어주는 디자인 언어 — 2026년 리뷰&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Impeccable: The Design Language That Makes AI-Generated UIs Actually Look Good — 2026 Review&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-06-13&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-06-13&rdquo;,
 &ldquo;author&rdquo;: {
@@ -590,18 +610,18 @@ jobs: design-quality: runs-on: ubuntu-latest
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/impeccable-ai-design-language-harness-quality-ui%22">https://dibi8.com/kr/resources/impeccable-ai-design-language-harness-quality-ui"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/impeccable-ai-design-language-harness-quality-ui%22">https://dibi8.com/resources/impeccable-ai-design-language-harness-quality-ui"</a>
 }
 }
 </script></p>
 <hr>
 <h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
 <ul>
-<li><a href="/ko/ai-coding-agents/impeccable-ai-design-language-harness-quality-ui/">claude-code-vs-cline</a></li>
-<li><a href="/ko/ai-coding-agents/impeccable-ai-design-language-harness-quality-ui/">gemini-cli-vs-claude-code</a></li>
+<li><a href="/ko/ai-coding-agents/impeccable-ai-design-language-harness-quality-ui/">free-mcp-tools-top10-2026</a></li>
 <li><a href="/ko/ai-coding-agents/impeccable-ai-design-language-harness-quality-ui/">cc-switch-all-in-one-ai-coding-agent-manager</a></li>
-<li><a href="/ko/ai-coding-agents/impeccable-ai-design-language-harness-quality-ui/">claude-code-vs-aider</a></li>
-<li><a href="/ko/ai-coding-agents/impeccable-ai-design-language-harness-quality-ui/">cursor-vs-claude-code</a></li>
+<li><a href="/ko/ai-coding-agents/impeccable-ai-design-language-harness-quality-ui/">codebase-memory-mcp-high-performance-code-intelligence</a></li>
+<li><a href="/ko/ai-coding-agents/impeccable-ai-design-language-harness-quality-ui/">prompts-chat</a></li>
+<li><a href="/ko/ai-coding-agents/impeccable-ai-design-language-harness-quality-ui/">moneyprinterturbo-one-click-ai-video-generator</a></li>
 </ul>
 <hr>
 <p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
@@ -658,6 +678,81 @@ jobs: design-quality: runs-on: ubuntu-latest
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

@@ -82,8 +82,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "slug: microsoft-presidio-pii-detection-redaction-sdk title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-22 00:00:00+08:00 lastmod: “2026-06-22 00:00:00+08:00” tech_stack: - Python 3.8+\nspaCy Transformers Docker PySpark application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-06-21” draft: false categories: [“dev-utils”] tags: [“프레시디오”, “개인 식별 정보(pii) 탐지”, “데이터 삭제”, “데이터 익명화”, “마이크로소프트”, “자연어 처리”, “개체명 인식”, “이미지 편집”, “디컴”, “일반 개인정보 보호 규정”, “hipaa”, “오픈-ssf”, “프라이버시”, “데이터 보호”] aliases: /posts/microsoft-presidio-pii-detection-redaction-sdk/ faqs: - q: ‘마이크로소프트 프레지디오란 무엇인가요?’ a: ‘Presidio는 텍스트, 이미지 및 구조화된 데이터 전반에서 개인 식별 정보(PII)를 감지, 수정, 마스킹 및 익명화하기 위한 Microsoft의 오픈 소스 SDK입니다. ‘보호’ 또는 ‘주둔지’를 의미하는 라틴어에서 이름을 따왔으며, 문맥 인식, 플러그형 및 맞춤형 PII 비식별화 모듈을 제공합니다. 이는 명명된 개체 인식(NER), 정규 표현식, 규칙 기반 논리 및 체크섬 검증을 다국어로 지원합니다.’ q: ‘프레시디오를 구성하는 요소는 무엇인가요?’ a: ‘Presidio는 네 가지 주요 구성 요소로 이루어져 있습니다: (1) Presidio Analyzer — NER, 정규식, 규칙 기반 논리 및 체크섬을 활용한 미리 정의되거나 사용자 지정된 인식기를 사용하여 텍스트에서 PII를 감지합니다; (2) Presidio Anonymizer — 감지된 PII를 편집, 마스킹, 해싱하거나 구성 가능한 변환으로 대체합니다; (3) Presidio Image Redactor — 표준 이미지 유형 및 DICOM 의료 이미지를 포함한 이미지에서 PII를 편집합니다; (4) Presidio Structured — CSV 및 Excel 파일과 같은 테이블/구조화된 데이터에서 PII를 감지합니다.’ q: ‘Presidio가 감지할 수 있는 PII 유형은 무엇입니까?’ a: ‘Presidio는 신용카드 번호, 이름, 위치, 사회보장번호, 비트코인 지갑, 미국 전화번호, 금융 데이터, 이메일 주소, IP 주소, 신용카드 번호 등을 감지합니다. 사전 정의된 인식기와 사용자 정의 인식기를 모두 지원합니다. NER 기반 인식기는 spaCy와 HuggingFace 트랜스포머를 사용하며, 사용자 정의 정규식 패턴, 규칙 기반 논리 추가하거나 외부 PII 감지 모델과 연결할 수 있습니다.’ q: ‘Presidio를 상업적으로 사용하는 것은 무료인가요?’ a: ‘네. Presidio는 MIT 라이선스로 라이선스되어 있으며, 이는 개인 및 상업적 목적으로 자유롭게 사용, 수정 및 배포할 수 있음을 허용합니다. 또한 OpenSSF Best Practices 배지를 인증받아 엄격한 오픈 소스 보안 및 유지보수 표준을 충족함을 나타냅니다.’ q: ‘프레시디오(Pre­sidio)는 이미지 삭제를 어떻게 처리하나요?’ a: ‘Presidio 이미지 편집기는 컴퓨터 비전 모델을 사용하여 이미지에서 PII를 감지하고 편집합니다. 표준 이미지 형식(PNG, JPEG 등)과 DICOM 의료 이미지를 지원합니다. 편집은 감지된 텍스트를 검은 상자로 교체하거나, 영역을 흐리게 처리하거나, 텍스트를 완전히 제거할 수 있습니다. 이는 특히 의료 기관이 공유 또는 출판 전에 의료 영상 데이터를 익명화해야 하는 경우에 매우 유용합니다.’ q: ‘프레시디오가 대규모로 프로덕션 환경에서 실행될 수 있나요?’ a: ‘예. Presidio는 여러 배포 옵션을 지원합니다: Python 또는 PySpark 작업, Docker 컨테이너, 그리고 Kubernetes 배포. 분석기와 익명화기는 REST API로 실행될 수 있으며, 구조화된 구성 요소는 대규모 테이블형 데이터를 처리할 수 있습니다. 이는 여러 플랫폼에서 완전 자동화 및 반자동 PII 비식별화 흐름 모두를 위해 설계되었습니다.’ Why PII Detection Matters More Than Ever 사용자 데이터를 처리하는 모든 조직은 동일하게 증가하는 도전에 직면합니다: 민감한 정보가 어디에 있는지 알고 이를 보호하는 것. 고객 지원 채팅에서의 신용카드 번호. 인사(HR) 문서에 있는 사회보장번호. 의료 이미지에 있는 환자 이름. 마케팅 데이터베이스에 있는 이메일 주소.\n수동 검토는 대규모로는 불가능합니다. 적절한 도구가 없으면 자동화된 탐지는 오류가 발생하기 쉽습니다. 또한 규제 요구 사항 — GDPR, HIPAA, CCPA, PCI-DSS — 은 조직이 모든 데이터 유형과 형식에서 개인 식별 정보를 식별하고 보호할 수 있음을 증명해야 한다고 요구합니다.\nMicrosoft Presidio (GitHub: ```microsoft/presidio````, 9,397+ 별)는 이 문제에 대해 가장 널리 채택된 오픈 소스 솔루션입니다. 2019년에 Microsoft에서 처음 공개된 이후, 텍스트, 이미지, 구조화된 데이터, 의료 이미지를 처리할 수 있는 성숙하고 실무에서 검증된 프레임워크로 성장했으며, 모두 관대한 MIT 라이선스 하에 제공됩니다.\nPresidio는 텍스트, 이미지, 구조화된 데이터에서 민감 정보를 빠르게 식별하고 익명화하는 모듈을 제공합니다. 이는 컨텍스트를 인식하며, 플러그인 가능하고 특정 비즈니스 요구에 맞게 커스터마이즈할 수 있습니다.\nPresidio Architecture 프레시디오(Presidio)는 각각 다른 데이터 유형과 처리 단계를 다루는 네 가지 주요 구성 요소로 구성되어 있습니다: ````` presidio/ ├── presidio-analyzer/ # PII detection in text (NER + regex + rules) ├── presidio-anonymizer/ # PII redaction/transformation in text ├── presidio-image-redactor/ # PII redaction in images (incl. DICOM) ├── presidio-structured/ # PII detection in tabular data (CSV, Excel) └── docs/ # Full documentation and samples\n### Presidio Analyzer — The Detection Engine 분석기는 Presidio의 핵심입니다. 여러 인식 전략을 사용하여 텍스트에서 PII를 감지합니다: | Strategy | Description | Example | |----------|-------------|---------| | **Named Entity Recognition (NER)** | ML models that identify entities like persons, organizations, locations | \"John Smith went to New York\" → PERSON: John Smith, GPE: New York | | **Regular Expressions** | Pattern matching for structured data formats | Credit card numbers, email addresses, phone numbers | | **Rule-Based Logic** | Custom business rules and contextual analysis | Detecting \"SSN:\" followed by a 9-digit number | | **Checksum Validation** | Verifies data integrity for known formats | Luhn algorithm for credit card numbers | | **External Models** | Connection to third-party PII detection services | Commercial NER APIs, custom models | 분석기는 여러 언어를 지원하며 맞춤 인식기로 확장할 수 있습니다. 조직에 중요한 PII 유형을 정의하면 Presidio가 이를 기반으로 감지 파이프라인을 구축합니다. ### Presidio Anonymizer — The Transformation Engine PII가 감지되면, 익명화 도구는 변환을 적용합니다: | Transformation | What It Does | Use Case | |---------------|-------------|----------| | **Redact** | Replace with placeholder (e.g., ````[PHONE_NUMBER]````) | General-purpose masking | | **Mask** | Hide part of the value (e.g., ````***-**-1234````) | Partial obfuscation | | **Hash** | Replace with cryptographic hash | Analytics-friendly anonymization | | **Replace** | Substitute with configurable value | Domain-specific replacement | | **Encrypt** | Encrypt the value with a key | Reversible anonymization | 각 감지된 엔티티는 독립적으로 변환될 수 있으며, 변환들을 연쇄적으로 적용할 수 있습니다. 익명화 도구는 민감한 내용을 제거하면서 문서 구조를 유지합니다. ### Presidio Image Redactor — Visual PII Removal 이미지 편집기는 텍스트를 넘어 PII 보호를 확장합니다: - **표준 이미지** (PNG, JPEG, WebP) — 이미지에 보이는 텍스트를 감지하고 편집 - **DICOM 의료 이미지** — 의료 데이터 익명화를 위해 특별히 설계됨 - **여러 가지 편집 방법** — 검은 상자, 흐림 처리, 픽셀화 또는 텍스트 완전 제거 이 구성 요소는 특히 의료 기관, 연구 기관 및 민감한 정보를 포함한 이미지를 공유해야 하는 모든 팀에 매우 유용합니다. ### Presidio Structured — Tabular Data Protection 구조화된 구성 요소는 표 형식 데이터(CSV, Excel, Parquet)에서 PII를 감지합니다. 열 수준 분석을 적용하고, 구조화된 필드에서 PII 패턴을 식별하며, 분석 및 데이터 공유에 적합한 익명화된 버전을 생성합니다. ## Installation and Setup Presidio는 pip, Docker 또는 소스에서 설치할 수 있습니다: ### Using pip `````bash pip install presidio-analyzer presidio-anonymizer pip install presidio-image-redactor pip install presidio-structured Using Docker docker pull mcr.microsoft.com/presidio-analyzer:latest docker pull mcr.microsoft.com/presidio-anonymizer:latest docker pull mcr.microsoft.com/presidio-image-redactor:latest From Source git clone https://github.com/microsoft/presidio.git cd presidio pip install -e presidio-analyzer pip install -e presidio-anonymizer Basic Usage Examples Text PII Detection from presidio_analyzer import AnalyzerEngine analyzer = AnalyzerEngine() text = \"John Smith's SSN is 123-45-6789 and his email is john@example.com\" results = analyzer.analyze(text=text, language=en) for result in results: print(f\"Entity: {result.entity_type}, \" f\"Score: {result.score:.2f}, \" f\"Position: {result.start}-{result.end}\") 출력: ````` Entity: PERSON, Score: 0.85, Position: 0-10 Entity: PHONE_NUMBER, Score: 0.95, Position: 26-38 Entity: EMAIL_ADDRESS, Score: 0.99, Position: 57-73\n### Text PII Anonymization `````python from presidio_anonymizer import AnonymizerEngine anonymizer = AnonymizerEngine() anonymized = anonymizer.anonymize( text=text, analyzer_results=results, operators={ \"DEFAULT\": {\"operator\": \"redact\"}, \"PERSON\": {\"operator\": \"mask\", \"custom_secret\": \"XXX\"}, \"EMAIL_ADDRESS\": {\"operator\": \"hash\"} } ) print(anonymized.text) # \"XXX Smith's SSN is *************** and his email is [HASH]\" Image PII Redaction from presidio_image_redactor import ImageRedactorEngine redactor = ImageRedactorEngine() # Redact PII from an image file redacted_image = redactor.redact_from_image( image_path=\"document.png\", text_recognition_provider=\"easyocr\" ) # Save the redacted image redacted_image.save(\"redacted_document.png\") Structured Data Anonymization import pandas as pd from presidio_structured import StructuredAnalyzerEngine df = pd.read_csv(\"customer_data.csv\") analyzer = StructuredAnalyzerEngine() results = analyzer.analyze(df=df, columns=[\"name\", \"email\", \"phone\"]) # Results contain PII detections per column with confidence scores Custom Recognizers 프레시디오의 가장 강력한 기능 중 하나는 도메인별 데이터에 대해 맞춤형 PII 식별자를 정의할 수 있는 능력입니다: `````python from presidio_analyzer import AnalyzerEngine from presidio_analyzer.recognizer_registry import RecognizerRegistry from presidio_analyzer.nlp_engine import NlpEngineProvider\nDefine a custom recognizer for employee IDs class EmployeeIdRecognizer(TextRegexRecognizer): NAME = “employee_id” DEFAULT_SCORE = 0.85\ndef build_regex(self): return r\"EMP-\\d{4}-\\d{4}\" def validate_result(self, list_output): # Additional validation logic pass Register the custom recognizer registry = RecognizerRegistry() registry.add_recognizer(EmployeeIdRecognizer())\nanalyzer = AnalyzerEngine(registry=registry) results = analyzer.analyze(“Employee ID: EMP-1234-5678”, language=en)\n맞춤 인식기는 다음을 활용할 수 있습니다: - **정규식 패턴**으로 구조화된 데이터 형식 - **문맥 키워드** (예: \"SSN:\" 접두사) - **체크섬 검증** (신용카드에는 Luhn, ISBN에는 Modulo-11) - **교차 필드 검증** (PII를 나타내는 여러 필드) ## Deployment Options 프레시디오(Presidio)는 여러 배포 패턴을 지원합니다: ### REST API (Docker) `````bash docker run -d -p 5002:5002 mcr.microsoft.com/presidio-analyzer:latest docker run -d -p 5001:5001 mcr.microsoft.com/presidio-anonymizer:latest 분석기는 POST /analyze를 제공하고, 익명화기는 POST /anonymize를 제공합니다. 두 기능 모두 텍스트, 언어, 엔터티 유형 사양을 포함한 JSON 페이로드를 받습니다.\nDocker Compose Deployment 다중 구성 요소 배포의 경우, 모든 Presidio 서비스를 함께 실행하려면 Docker Compose를 사용하세요: `````yaml version: ‘3.8’ services: analyzer: image: mcr.microsoft.com/presidio-analyzer:latest ports: - “5002:5002” environment: - PORT=5002\nanonymizer: image: mcr.microsoft.com/presidio-anonymizer:latest ports: - “5001:5001” environment: - PORT=5001 depends_on: - analyzer\nimage-redactor: image: mcr.microsoft.com/presidio-image-redactor:latest ports: - “5003:5003” environment: - PORT=5003 depends_on: - analyzer\n````docker compose up -d````로 배포하고 각 구성 요소의 해당 포트에서 접속하세요. ### Kubernetes Presidio 컨테이너는 오케스트레이션을 위해 설계되었습니다. 요청량에 따라 수평 포드 자동 스케일링을 사용하여 각 구성 요소를 별도의 서비스로 배포하십시오. 모듈식 아키텍처 덕분에 Anonymizer와 독립적으로 Analyzer를 스케일링할 수 있습니다. ### PySpark Integration 대규모 데이터 워크로드의 경우, Presidio의 구조화된 구성 요소는 분산 PII 탐지를 위해 PySpark와 통합되어 대규모 데이터 세트에서 작동합니다. 데이터를 중앙 서비스로 이동하지 않고 클러스터 전체에서 수백만 건의 레코드를 처리할 수 있습니다. ## Supported PII Entity Types Presidio에는 수십 가지 PII 유형에 대한 내장 인식기가 포함되어 있습니다: | Category | Entity Types | |----------|-------------| | **Financial** | CREDIT_CARD, IBAN, PET_CODE, CRYPTO, UK_NHS, US_BANK_NUMBER, US_ITIN, US_DRIVER_LICENSE, US_PASSPORT | | **Personal** | PERSON, AGE, NRP, RECOGNIZABLE_EVENT_DATE, DATE_TIME | | **Contact** | EMAIL_ADDRESS, PHONE_NUMBER, US_STATE, ZIP_CODE | | **Government ID** | US_SSN, TAX_ID_NUMBER, NRP, PASSPORT_NUMBER | | **Network** | IP_ADDRESS, MAC_ADDRESS | | **Healthcare** | NRP (Named Recipe/Procedure), US_HEALTHCARE_PROVIDER_NPI | | **Location** | US_STATE, GEOLOCATION, ADDRESS | ## Comparing Presidio to Alternatives | Feature | Presidio | OpenNRE | Amazon Comprehend | Google DLP | |---------|----------|---------|-------------------|------------| | **License** | MIT (free) | Apache 2.0 | N/A (paid API) | N/A (paid API) | | **Self-hosted** | Yes | Yes | No | No | | **Image redaction** | Yes (incl. DICOM) | No | No | No | | **Structured data** | Yes (CSV/Excel) | No | Limited | Limited | | **Custom recognizers** | Yes | Limited | No | Partial | | **Multi-language** | Yes | Yes | Yes | Yes | | **Offline capable** | Yes | Yes | No | No | | **OpenSSF certified** | Yes | No | N/A | N/A | | **Kubernetes ready** | Yes | No | N/A | N/A | Presidio는 자체 호스팅 배포, 이미지 삭제(의료 DICOM 포함), 구조화된 데이터 처리, 맞춤 인식기, 그리고 MIT 라이선스를 모두 하나의 프레임워크로 결합한 유일한 솔루션입니다. ## Real-World Applications ### Healthcare Data Anonymization Presidio 이미지 리닥터는 DICOM 의료 이미지를 지원하여 익명화된 의료 영상 데이터를 공유해야 하는 병원과 연구 기관에 적합합니다. NER 기반 텍스트 분석기는 임상 문서에서 환자 이름, 의료 기록 번호 및 날짜를 감지할 수 있습니다. ### Financial Services Compliance 은행과 핀테크 회사들은 Presidio를 사용하여 고객 커뮤니케이션, 거래 기록, 지원 티켓에서 PII를 감지하고 편집합니다. 신용카드에 대한 체크섬 검증과 독점 데이터 형식에 대한 사용자 정의 인식기를 정의할 수 있는 기능 덕분에 규제 산업에 이상적입니다. ### Customer Support Data Protection 고객 지원 대화, 이메일 및 채팅 기록에서 개인 식별 정보(PII) 감지를 자동화하세요. Presidio는 실시간으로 실행되어 민감한 데이터를 포함한 대화를 표시할 수 있으며, 과거 데이터를 일괄 처리하여 준수 감사용으로 활용할 수도 있습니다. ### Research Data Sharing 학술 기관은 연구 데이터셋을 출판하거나 공유하기 전에 익명화하기 위해 Presidio를 사용합니다. 구조화된 구성 요소는 표 형식 데이터를 처리하고, 텍스트 분석기는 설문 응답과 인터뷰 전사본을 처리합니다. ### GDPR/CCPA Compliance Presidio는 개인정보 보호 규정에서 요구하는 데이터 주체 접근 요청, 삭제 권리 워크플로우 및 데이터 매핑 목록에 대한 기술적 기반을 제공합니다. 그 감사 추적 기능은 모든 감지와 변환을 기록합니다. ## Custom NER Model Integration Presidio는 기본 NER 모델을 도메인별 대체 모델로 교체하는 것을 지원합니다: `````python from presidio_analyzer.nlp_engine import SpacyNlpEngine # Load a custom spaCy model custom_nlp = SpacyNlpEngine( models=[{\"lang\": \"en\", \"model\": \"en_core_web_trf\"}] ) # Or use a HuggingFace transformer model from presidio_analyzer.nlp_engine import TransformersNlpEngine transformer_nlp = TransformersNlpEngine( transformers_model_name=\"dslim/bert-base-NER\", spacy_model_name=\"en_core_web_sm\" ) analyzer = AnalyzerEngine(nlp_engine=transformer_nlp) 도메인 특화 모델은 의료 코드, 법률 용어, 금융 상품과 같은 전문 엔티티에 대한 감지 정확도를 크게 향상시킵니다. 트랜스포머 모델을 조직의 데이터에 맞춰 세밀하게 조정하고 Presidio에 바로 연결하세요.\nPerformance and Scalability 프레시디오의 성능 특성: | Component | Throughput | Latency | Notes | |———–|———–|———|——-| | Analyzer (CPU) | ~100-500 docs/sec | 10-50ms/doc | Depends on NER model size | | Analyzer (GPU) | ~1000-5000 docs/sec | 1-10ms/doc | With transformer acceleration | | Anonymizer | ~1000+ docs/sec | \u003c5ms/doc | Lightweight text transformation | | Image Redactor | ~5-20 imgs/min | Varies | OCR + NER on image text | | Structured | ~10K rows/sec | Varies | Pandas-based, scales with cluster |\n프로덕션 배포의 경우, Docker 컨테이너의 수평 확장이 증가된 부하를 처리합니다. Analyzer는 가장 계산 집약적인 구성 요소이며 GPU 가속으로 가장 큰 이점을 얻습니다.\nLimitations and Honest Assessment 프레시디오(Prsidio)는 훌륭하지만 만능 해결책은 아니다: 1. NER 모델 정확도. 기본 spaCy 및 트랜스포머 기반 NER 모델은 강력하지만 완벽하지 않습니다. 특히 도메인 특화 엔티티에서는 오탐지와 누락이 발생할 수 있습니다. 맞춤 인식기는 도움이 되지만 유지 관리가 필요합니다.\n이미지 편집 품질. 이미지 편집기는 OCR 정확도에 의존합니다. 손으로 쓴 텍스트, 스타일화된 글꼴, 저해상도 이미지는 신뢰할 수 있게 감지되지 않을 수 있습니다. DICOM 지원은 일반 이미지 편집보다 더 성숙합니다.\n내장된 데이터 분류 기능 없음. Presidio는 PII를 감지하지만 데이터 민감도 수준을 분류하거나 데이터 인벤토리를 유지하지 않습니다. 이는 전체 데이터 거버넌스 플랫폼이 아니라 감지 및 삭제 도구입니다.\n요청별 단일 언어 NER. 분석기는 한 번에 하나의 언어만 처리합니다. 다국어 문서는 사전 처리(언어 감지 + 라우팅) 또는 여러 번의 분석 실행이 필요합니다.\n메모리 점유율. 트랜스포머 기반 NER 모델을 로딩하려면 상당한 RAM(모델당 2-4GB)이 필요합니다. 고속 처리 배포를 위해서는 모델 캐싱과 배치 처리가 필수적입니다.\n기본적으로 되돌릴 수 있는 익명화는 제공되지 않습니다. 익명화 도구는 암호화 기반의 되돌릴 수 있는 마스킹을 지원하지만, 대부분의 사용 사례에서는 되돌릴 수 없는 삭제를 수행합니다. 이에 따라 익명화 전략을 계획하십시오.\nGetting Started Presidio를 사용하는 가장 빠른 방법: `````bash\nInstall all components pip install presidio-analyzer presidio-anonymizer presidio-image-redactor presidio-structured\nQuick test python -c \" from presidio_analyzer import AnalyzerEngine analyzer = AnalyzerEngine() results = analyzer.analyze( text=‘Call John at 555-123-4567 or email john@example.com’, language=en ) for r in results: print(f’{r.entity_type}: {r.start}-{r.end} (score: {r.score:.2f})’) \"\n또는 Docker를 통해 프로덕션 준비가 된 API로 배포하십시오: `````bash docker run -d -p 5002:5002 --name presidio-analyzer mcr.microsoft.com/presidio-analyzer:latest curl -X POST http://localhost:5002/analyze -H \"Content-Type: application/json\" -d '{\"text\":\"John Smith lives in New York\", \"language\":\"en\"}' ```` ## Conclusion 마이크로소프트 프레시디오(Microsoft Presidio)는 가장 포괄적인 오픈 소스 PII(개인 식별 정보) 탐지 및 수정 프레임워크입니다. 텍스트, 이미지, DICOM 의료 이미지, 구조화된 데이터를 모두 포함하는 네 가지 프로덕션 테스트를 거친 구성 요소를 제공하며, 모두 관대한 MIT 라이선스 하에 제공되고 OpenSSF 인증을 받았습니다. 따라서 벤더 종속 없이 민감한 정보를 보호해야 하는 조직에게 기본 선택입니다. GDPR 준수 파이프라인을 구축하든, 의료 데이터를 익명화하든, 고객 커뮤니케이션을 보호하든, 연구 데이터셋을 안전하게 관리하든, Presidio는 필요한 탐지 및 변환 도구를 제공합니다. 확장 가능한 인식기 시스템을 통해 도메인별 PII 유형을 추가할 수 있으며, Docker/Kubernetes 배포 옵션은 출시 첫날부터 프로덕션 환경에서 사용하도록 준비되어 있습니다. 인프라의 경우, 간단한 자체 호스팅 배포를 위해 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)을 고려하거나 GPU 가속 NER 추론을 위해 [HTStack](https://my.htstack.com/aff.php?aff=27187)을 고려하세요. 웹 스크래핑 및 데이터 수집을 위한 신뢰할 수 있는 프록시가 필요하신가요? [WebShare.io](https://www.webshare.io/?referral_code=oa14d5f0wx4f)가 네트워킹 계층을 제공합니다. 데이터 처리 거래를 찾고 계신가요? 독점 혜택을 위해 [Bitget Web3](https://web3.bitget.com/share/3Wla0s?inviteCode=irBqLe) 및 [Crypto.com](https://www.bsmkweb.cc/register?aff=dibi8)을 확인하세요. 마케팅 자동화를 위해 [PromoOhLy](https://www.promoohubly.com/join/12190433)가 강력한 퍼널 도구를 제공합니다. * * * **출처:** [Presidio GitHub](https://github.com/microsoft/presidio) · [문서](https://microsoft.github.io/presidio) · [데모](https://aka.ms/presidio-demo) · [OpenSSF 배지](https://www.bestpractices.dev/projects/6076) **커뮤니티에 참여하세요:** [GitHub 토론](https://github.com/microsoft/presidio/discussions) · [GitHub 이슈](https://github.com/microsoft/presidio/issues) 📢 **최신 정보를 받아보세요:** 일일 AI 도구 리뷰와 새로운 콘텐츠에 대한 조기 접근을 위해 저희 [텔레그램 그룹](https://t.me/DIBI8_Group/2)에 참여하세요. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"프레시디오 리뷰: 마이크로소프트의 오픈 소스 PII 감지 및 데이터 삭제 프레임워크 (9.4K 스타)\", \"datePublished\": \"2026-01-01\", \"dateModified\": \"2026-01-01\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/microsoft-presidio-pii-detection-redaction-sdk\" } } * * * ## Related Articles - [ai-seo-geo-dibi8-methodology-google-sge-perplexity](microsoft-presidio-pii-detection-redaction-sdk) - [knowledge-work-plugins](microsoft-presidio-pii-detection-redaction-sdk) - [microsoft-markitdown-file-to-markdown-converter-cli](microsoft-presidio-pii-detection-redaction-sdk) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
-  "wordCount" : "2600",
+  "articleBody": "slug: microsoft-presidio-pii-detection-redaction-sdk title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-22 00:00:00+08:00 lastmod: “2026-06-22 00:00:00+08:00” tech_stack: - Python 3.8+\nspaCy Transformers Docker PySpark application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-06-21” draft: false categories: [“dev-utils”] tags: [“pháo đài”, “phát hiện pii”, “ẩn dữ liệu”, “ẩn danh dữ liệu”, “microsoft”, “xử lý ngôn ngữ tự nhiên”, “nhận dạng thực thể có tên”, “chỉnh sửa hình ảnh”, “dicom”, “gdpr”, “hipaa”, “mở-ssf”, “quyền riêng tư”, “bảo vệ dữ liệu”] aliases: /posts/microsoft-presidio-pii-detection-redaction-sdk/ faqs: - q: ‘Microsoft Presidio là gì?’ a: ‘Presidio là một SDK mã nguồn mở từ Microsoft để phát hiện, chỉnh sửa, che giấu và ẩn danh thông tin cá nhân có thể nhận dạng được (PII) trên văn bản, hình ảnh và dữ liệu có cấu trúc. Được đặt theo từ tiếng Latin có nghĩa là “bảo vệ” hoặc “pháo đài”, nó cung cấp các mô-đun tách PII theo ngữ cảnh, có thể cắm thêm và tùy chỉnh. Nó hỗ trợ Nhận dạng Thực thể Đặt tên (NER), biểu thức chính quy, logic dựa trên quy tắc và kiểm tra số dư trên nhiều ngôn ngữ.’ q: ‘Những thành phần nào tạo nên Presidio?’ a: ‘Presidio bao gồm bốn thành phần chính: (1) Presidio Analyzer — phát hiện PII trong văn bản sử dụng các bộ nhận diện được định nghĩa sẵn hoặc tùy chỉnh dựa trên NER, regex, logic theo quy tắc và checksum; (2) Presidio Anonymizer — ẩn, che, băm hoặc thay thế PII được phát hiện bằng các biến đổi có thể cấu hình; (3) Presidio Image Redactor — ẩn PII khỏi hình ảnh bao gồm các loại hình ảnh tiêu chuẩn và hình ảnh y tế DICOM; (4) Presidio Structured — phát hiện PII trong dữ liệu bảng/cấu trúc như các tệp CSV và Excel.’ q: ‘Presidio có thể phát hiện những loại PII nào?’ a: ‘Presidio phát hiện số thẻ tín dụng, tên, địa điểm, số an sinh xã hội, ví Bitcoin, số điện thoại Mỹ, dữ liệu tài chính, địa chỉ email, địa chỉ IP, số thẻ tín dụng và nhiều thứ khác. Nó hỗ trợ cả các bộ nhận diện đã định sẵn và bộ nhận diện tùy chỉnh. Các bộ nhận diện dựa trên NER sử dụng spaCy và HuggingFace transformers, và bạn có thể thêm các mẫu regex tùy chỉnh, logic dựa trên quy tắc, hoặc kết nối với các mô hình phát hiện PII bên ngoài.’ q: ‘Presidio có miễn phí để sử dụng thương mại không?’ a: ‘Vâng. Presidio được cấp phép theo giấy phép MIT, cho phép sử dụng, chỉnh sửa và phân phối miễn phí cho cả mục đích cá nhân và thương mại. Nó cũng được chứng nhận với huy hiệu Thực hành tốt nhất OpenSSF, cho thấy nó đáp ứng các tiêu chuẩn bảo mật và bảo trì nguồn mở nghiêm ngặt.’ q: ‘Presidio xử lý việc che mờ hình ảnh như thế nào?’ a: ‘Presidio Image Redactor sử dụng các mô hình thị giác máy tính để phát hiện và chỉnh sửa thông tin nhận dạng cá nhân (PII) từ hình ảnh. Nó hỗ trợ các định dạng hình ảnh tiêu chuẩn (PNG, JPEG, v.v.) và hình ảnh y tế DICOM. Việc chỉnh sửa có thể thay thế văn bản được phát hiện bằng các hộp màu đen, làm mờ các khu vực hoặc loại bỏ hoàn toàn văn bản. Điều này đặc biệt có giá trị đối với các tổ chức chăm sóc sức khỏe cần ẩn danh dữ liệu hình ảnh y tế trước khi chia sẻ hoặc xuất bản.’ q: ‘Liệu Presidio có thể chạy trong môi trường sản xuất ở quy mô lớn không?’ a: ‘Vâng. Presidio hỗ trợ nhiều tùy chọn triển khai: khối lượng công việc Python hoặc PySpark, container Docker và triển khai Kubernetes. Bộ phân tích và bộ ẩn danh có thể chạy dưới dạng REST API, và thành phần có cấu trúc có thể xử lý các tập dữ liệu bảng lớn. Nó được thiết kế cho cả các luồng xác minh PII tự động hoàn toàn và bán tự động trên nhiều nền tảng.’ Why PII Detection Matters More Than Ever Mọi tổ chức xử lý dữ liệu người dùng đều đối mặt với cùng một thách thức ngày càng tăng: biết thông tin nhạy cảm nằm ở đâu và bảo vệ nó. Số thẻ tín dụng trong các cuộc trò chuyện hỗ trợ khách hàng. Số an sinh xã hội trong tài liệu nhân sự. Tên bệnh nhân trong hình ảnh y tế. Địa chỉ email trong cơ sở dữ liệu marketing.\nViệc xem xét thủ công là không khả thi khi mở rộng quy mô. Việc phát hiện tự động dễ mắc lỗi nếu không có công cụ phù hợp. Và các yêu cầu quy định — GDPR, HIPAA, CCPA, PCI-DSS — đòi hỏi các tổ chức chứng minh rằng họ có thể nhận diện và bảo vệ thông tin cá nhân có thể nhận dạng được (PII) trên mọi loại dữ liệu và định dạng.\nMicrosoft Presidio (GitHub: ```microsoft/presidio````, 9,397+ sao) là giải pháp mã nguồn mở được áp dụng rộng rãi nhất cho vấn đề này. Ban đầu được Microsoft phát hành vào năm 2019, nó đã phát triển thành một framework trưởng thành, được kiểm thử trong sản xuất, xử lý văn bản, hình ảnh, dữ liệu có cấu trúc và hình ảnh y tế — tất cả đều theo giấy phép MIT.\nPresidio cung cấp các mô-đun nhận dạng nhanh và ẩn danh cho các thực thể riêng tư trong văn bản, hình ảnh và dữ liệu cấu trúc. Nó nhận biết ngữ cảnh, có thể cắm thêm và tùy chỉnh theo nhu cầu kinh doanh cụ thể.\nPresidio Architecture Presidio được tổ chức thành bốn thành phần chính, mỗi thành phần xử lý một loại dữ liệu và giai đoạn xử lý khác nhau: ````` presidio/ ├── presidio-analyzer/ # PII detection in text (NER + regex + rules) ├── presidio-anonymizer/ # PII redaction/transformation in text ├── presidio-image-redactor/ # PII redaction in images (incl. DICOM) ├── presidio-structured/ # PII detection in tabular data (CSV, Excel) └── docs/ # Full documentation and samples\n### Presidio Analyzer — The Detection Engine Bộ Phân Tích là trái tim của Presidio. Nó phát hiện PII trong văn bản bằng cách sử dụng nhiều chiến lược nhận dạng: | Strategy | Description | Example | |----------|-------------|---------| | **Named Entity Recognition (NER)** | ML models that identify entities like persons, organizations, locations | \"John Smith went to New York\" → PERSON: John Smith, GPE: New York | | **Regular Expressions** | Pattern matching for structured data formats | Credit card numbers, email addresses, phone numbers | | **Rule-Based Logic** | Custom business rules and contextual analysis | Detecting \"SSN:\" followed by a 9-digit number | | **Checksum Validation** | Verifies data integrity for known formats | Luhn algorithm for credit card numbers | | **External Models** | Connection to third-party PII detection services | Commercial NER APIs, custom models | Trình Phân Tích hỗ trợ nhiều ngôn ngữ và có thể được mở rộng với các trình nhận dạng tùy chỉnh. Bạn xác định những loại PII quan trọng đối với tổ chức của mình, và Presidio xây dựng các quy trình phát hiện xoay quanh chúng. ### Presidio Anonymizer — The Transformation Engine Khi PII được phát hiện, Anonymizer sẽ áp dụng các chuyển đổi: | Transformation | What It Does | Use Case | |---------------|-------------|----------| | **Redact** | Replace with placeholder (e.g., ````[PHONE_NUMBER]````) | General-purpose masking | | **Mask** | Hide part of the value (e.g., ````***-**-1234````) | Partial obfuscation | | **Hash** | Replace with cryptographic hash | Analytics-friendly anonymization | | **Replace** | Substitute with configurable value | Domain-specific replacement | | **Encrypt** | Encrypt the value with a key | Reversible anonymization | Mỗi thực thể được phát hiện có thể được chuyển đổi độc lập, và các phép chuyển đổi có thể được nối tiếp nhau. Công cụ Ẩn danh bảo toàn cấu trúc tài liệu trong khi loại bỏ nội dung nhạy cảm. ### Presidio Image Redactor — Visual PII Removal Công cụ Chỉnh sửa Hình ảnh mở rộng bảo vệ thông tin cá nhân (PII) vượt ra ngoài văn bản: - **Hình ảnh tiêu chuẩn** (PNG, JPEG, WebP) — phát hiện và che giấu văn bản hiển thị trong hình ảnh - **Hình ảnh y tế DICOM** — được thiết kế đặc biệt cho việc ẩn danh dữ liệu chăm sóc sức khỏe - **Nhiều phương pháp che giấu** — hộp đen, làm mờ, pixel hóa, hoặc loại bỏ hoàn toàn văn bản Thành phần này đặc biệt có giá trị đối với các tổ chức chăm sóc sức khỏe, các viện nghiên cứu, và bất kỳ nhóm nào cần chia sẻ hình ảnh chứa thông tin nhạy cảm. ### Presidio Structured — Tabular Data Protection Thành phần Cấu trúc phát hiện PII trong các định dạng dữ liệu bảng (CSV, Excel, Parquet). Nó áp dụng phân tích cấp cột, nhận diện các mẫu PII trong các trường có cấu trúc, và tạo ra các phiên bản ẩn danh phù hợp cho phân tích và chia sẻ dữ liệu. ## Installation and Setup Presidio có thể được cài đặt thông qua pip, Docker hoặc từ mã nguồn: ### Using pip `````bash pip install presidio-analyzer presidio-anonymizer pip install presidio-image-redactor pip install presidio-structured Using Docker docker pull mcr.microsoft.com/presidio-analyzer:latest docker pull mcr.microsoft.com/presidio-anonymizer:latest docker pull mcr.microsoft.com/presidio-image-redactor:latest From Source git clone https://github.com/microsoft/presidio.git cd presidio pip install -e presidio-analyzer pip install -e presidio-anonymizer Basic Usage Examples Text PII Detection from presidio_analyzer import AnalyzerEngine analyzer = AnalyzerEngine() text = \"John Smith's SSN is 123-45-6789 and his email is john@example.com\" results = analyzer.analyze(text=text, language=en) for result in results: print(f\"Entity: {result.entity_type}, \" f\"Score: {result.score:.2f}, \" f\"Position: {result.start}-{result.end}\") Đầu ra: ````` Entity: PERSON, Score: 0.85, Position: 0-10 Entity: PHONE_NUMBER, Score: 0.95, Position: 26-38 Entity: EMAIL_ADDRESS, Score: 0.99, Position: 57-73\n### Text PII Anonymization `````python from presidio_anonymizer import AnonymizerEngine anonymizer = AnonymizerEngine() anonymized = anonymizer.anonymize( text=text, analyzer_results=results, operators={ \"DEFAULT\": {\"operator\": \"redact\"}, \"PERSON\": {\"operator\": \"mask\", \"custom_secret\": \"XXX\"}, \"EMAIL_ADDRESS\": {\"operator\": \"hash\"} } ) print(anonymized.text) # \"XXX Smith's SSN is *************** and his email is [HASH]\" Image PII Redaction from presidio_image_redactor import ImageRedactorEngine redactor = ImageRedactorEngine() # Redact PII from an image file redacted_image = redactor.redact_from_image( image_path=\"document.png\", text_recognition_provider=\"easyocr\" ) # Save the redacted image redacted_image.save(\"redacted_document.png\") Structured Data Anonymization import pandas as pd from presidio_structured import StructuredAnalyzerEngine df = pd.read_csv(\"customer_data.csv\") analyzer = StructuredAnalyzerEngine() results = analyzer.analyze(df=df, columns=[\"name\", \"email\", \"phone\"]) # Results contain PII detections per column with confidence scores Custom Recognizers Một trong những tính năng mạnh mẽ nhất của Presidio là khả năng định nghĩa các bộ nhận diện PII tùy chỉnh cho dữ liệu theo lĩnh vực cụ thể: `````python from presidio_analyzer import AnalyzerEngine from presidio_analyzer.recognizer_registry import RecognizerRegistry from presidio_analyzer.nlp_engine import NlpEngineProvider\nDefine a custom recognizer for employee IDs class EmployeeIdRecognizer(TextRegexRecognizer): NAME = “employee_id” DEFAULT_SCORE = 0.85\ndef build_regex(self): return r\"EMP-\\d{4}-\\d{4}\" def validate_result(self, list_output): # Additional validation logic pass Register the custom recognizer registry = RecognizerRegistry() registry.add_recognizer(EmployeeIdRecognizer())\nanalyzer = AnalyzerEngine(registry=registry) results = analyzer.analyze(“Employee ID: EMP-1234-5678”, language=en)\nCác bộ nhận dạng tùy chỉnh có thể tận dụng: - **Mẫu Regex** cho các định dạng dữ liệu có cấu trúc - **Từ khóa theo ngữ cảnh** (ví dụ: tiền tố \"SSN:\") - **Xác thực kiểm tra checksum** (Luhn cho thẻ tín dụng, Modulo-11 cho ISBN) - **Xác thực đa trường** (nhiều trường cùng nhau cho biết PII) ## Deployment Options Presidio hỗ trợ nhiều mẫu triển khai: ### REST API (Docker) `````bash docker run -d -p 5002:5002 mcr.microsoft.com/presidio-analyzer:latest docker run -d -p 5001:5001 mcr.microsoft.com/presidio-anonymizer:latest Trình Phân Tích cung cấp POST /analyze và Trình Ẩn Danh cung cấp POST /anonymize. Cả hai đều chấp nhận payload JSON với văn bản, ngôn ngữ và các chỉ định loại thực thể.\nDocker Compose Deployment Đối với các triển khai nhiều thành phần, sử dụng Docker Compose để chạy tất cả các dịch vụ Presidio cùng nhau: `````yaml version: ‘3.8’ services: analyzer: image: mcr.microsoft.com/presidio-analyzer:latest ports: - “5002:5002” environment: - PORT=5002\nanonymizer: image: mcr.microsoft.com/presidio-anonymizer:latest ports: - “5001:5001” environment: - PORT=5001 depends_on: - analyzer\nimage-redactor: image: mcr.microsoft.com/presidio-image-redactor:latest ports: - “5003:5003” environment: - PORT=5003 depends_on: - analyzer\nTriển khai với ````docker compose up -d```` và truy cập tất cả các thành phần tại các cổng tương ứng của chúng. ### Kubernetes Các container Presidio được thiết kế cho việc điều phối. Triển khai từng thành phần như một dịch vụ riêng biệt với khả năng tự động mở rộng pod theo chiều ngang dựa trên khối lượng yêu cầu. Kiến trúc mô-đun cho phép mở rộng Analyzer một cách độc lập với Anonymizer. ### PySpark Integration Đối với khối lượng công việc dữ liệu lớn, thành phần có cấu trúc của Presidio tích hợp với PySpark để phát hiện PII phân tán trên các tập dữ liệu lớn. Xử lý hàng triệu bản ghi trên một cụm mà không cần di chuyển dữ liệu đến một dịch vụ trung tâm. ## Supported PII Entity Types Presidio bao gồm các bộ nhận dạng tích hợp sẵn cho hàng chục loại PII: | Category | Entity Types | |----------|-------------| | **Financial** | CREDIT_CARD, IBAN, PET_CODE, CRYPTO, UK_NHS, US_BANK_NUMBER, US_ITIN, US_DRIVER_LICENSE, US_PASSPORT | | **Personal** | PERSON, AGE, NRP, RECOGNIZABLE_EVENT_DATE, DATE_TIME | | **Contact** | EMAIL_ADDRESS, PHONE_NUMBER, US_STATE, ZIP_CODE | | **Government ID** | US_SSN, TAX_ID_NUMBER, NRP, PASSPORT_NUMBER | | **Network** | IP_ADDRESS, MAC_ADDRESS | | **Healthcare** | NRP (Named Recipe/Procedure), US_HEALTHCARE_PROVIDER_NPI | | **Location** | US_STATE, GEOLOCATION, ADDRESS | ## Comparing Presidio to Alternatives | Feature | Presidio | OpenNRE | Amazon Comprehend | Google DLP | |---------|----------|---------|-------------------|------------| | **License** | MIT (free) | Apache 2.0 | N/A (paid API) | N/A (paid API) | | **Self-hosted** | Yes | Yes | No | No | | **Image redaction** | Yes (incl. DICOM) | No | No | No | | **Structured data** | Yes (CSV/Excel) | No | Limited | Limited | | **Custom recognizers** | Yes | Limited | No | Partial | | **Multi-language** | Yes | Yes | Yes | Yes | | **Offline capable** | Yes | Yes | No | No | | **OpenSSF certified** | Yes | No | N/A | N/A | | **Kubernetes ready** | Yes | No | N/A | N/A | Presidio là giải pháp duy nhất kết hợp triển khai tự lưu trữ, che mờ hình ảnh (bao gồm DICOM y tế), xử lý dữ liệu cấu trúc, nhận dạng tùy chỉnh và giấy phép MIT — tất cả trong một khung. ## Real-World Applications ### Healthcare Data Anonymization Phần mềm Presidio Image Redactor hỗ trợ hình ảnh y tế DICOM, làm cho nó phù hợp với các bệnh viện và các tổ chức nghiên cứu cần chia sẻ dữ liệu hình ảnh y tế đã được ẩn danh. Trình phân tích văn bản dựa trên NER có thể phát hiện tên bệnh nhân, số hồ sơ y tế và ngày tháng trong các tài liệu lâm sàng. ### Financial Services Compliance Các ngân hàng và công ty fintech sử dụng Presidio để phát hiện và che giấu thông tin nhận dạng cá nhân (PII) trong giao tiếp với khách hàng, hồ sơ giao dịch và phiếu hỗ trợ. Việc xác thực checksum cho thẻ tín dụng và khả năng định nghĩa các công cụ nhận dạng tùy chỉnh cho các định dạng dữ liệu độc quyền khiến nó trở nên lý tưởng cho các ngành công nghiệp được quản lý. ### Customer Support Data Protection Tự động phát hiện thông tin nhận dạng cá nhân (PII) trong các cuộc trò chuyện hỗ trợ khách hàng, email và nhật ký trò chuyện. Presidio có thể chạy theo thời gian thực để đánh dấu các cuộc trò chuyện chứa dữ liệu nhạy cảm, hoặc xử lý hàng loạt dữ liệu lịch sử cho các cuộc kiểm toán tuân thủ. ### Research Data Sharing Các cơ sở học thuật sử dụng Presidio để ẩn danh các bộ dữ liệu nghiên cứu trước khi xuất bản hoặc chia sẻ. Thành phần có cấu trúc xử lý dữ liệu bảng, trong khi bộ phân tích văn bản xử lý các câu trả lời khảo sát và bản ghi phỏng vấn. ### GDPR/CCPA Compliance Presidio cung cấp cơ sở kỹ thuật cho các yêu cầu truy cập dữ liệu của chủ thể, các quy trình xóa dữ liệu theo quyền và các kho dữ liệu lập bản đồ được yêu cầu bởi các quy định về quyền riêng tư. Các khả năng theo dõi kiểm toán của nó ghi lại mọi lần phát hiện và biến đổi. ## Custom NER Model Integration Presidio hỗ trợ thay đổi các mô hình NER mặc định sang các mô hình chuyên ngành: `````python from presidio_analyzer.nlp_engine import SpacyNlpEngine # Load a custom spaCy model custom_nlp = SpacyNlpEngine( models=[{\"lang\": \"en\", \"model\": \"en_core_web_trf\"}] ) # Or use a HuggingFace transformer model from presidio_analyzer.nlp_engine import TransformersNlpEngine transformer_nlp = TransformersNlpEngine( transformers_model_name=\"dslim/bert-base-NER\", spacy_model_name=\"en_core_web_sm\" ) analyzer = AnalyzerEngine(nlp_engine=transformer_nlp) Các mô hình chuyên ngành cải thiện đáng kể độ chính xác phát hiện cho các thực thể chuyên biệt như mã y tế, thuật ngữ pháp lý hoặc công cụ tài chính. Tinh chỉnh một mô hình transformer trên dữ liệu của tổ chức bạn và tích hợp trực tiếp vào Presidio.\nPerformance and Scalability Đặc điểm hiệu suất của Presidio: | Component | Throughput | Latency | Notes | |———–|———–|———|——-| | Analyzer (CPU) | ~100-500 docs/sec | 10-50ms/doc | Depends on NER model size | | Analyzer (GPU) | ~1000-5000 docs/sec | 1-10ms/doc | With transformer acceleration | | Anonymizer | ~1000+ docs/sec | \u003c5ms/doc | Lightweight text transformation | | Image Redactor | ~5-20 imgs/min | Varies | OCR + NER on image text | | Structured | ~10K rows/sec | Varies | Pandas-based, scales with cluster |\nĐối với triển khai sản xuất, việc mở rộng theo chiều ngang của các container Docker giúp xử lý tải tăng lên. Analyzer là thành phần tiêu tốn nhiều tài nguyên tính toán nhất và được hưởng lợi nhiều nhất từ tăng tốc GPU.\nLimitations and Honest Assessment Presidio rất tuyệt nhưng không phải là giải pháp hoàn hảo: 1. Độ chính xác của mô hình NER. Các mô hình NER mặc định của spaCy và dựa trên transformer rất mạnh nhưng không hoàn hảo. Các kết quả dương tính giả và âm tính giả xảy ra, đặc biệt với các thực thể chuyên ngành. Bộ nhận dạng tùy chỉnh giúp ích nhưng cần được bảo trì.\nChất lượng xử lý ảnh. Công cụ xử lý ảnh phụ thuộc vào độ chính xác của OCR. Văn bản viết tay, phông chữ kiểu dáng đặc biệt và hình ảnh có độ phân giải thấp có thể không được phát hiện một cách đáng tin cậy. Hỗ trợ DICOM đã trưởng thành hơn so với xử lý ảnh chung.\nKhông có phân loại dữ liệu tích hợp sẵn. Presidio phát hiện thông tin nhận dạng cá nhân (PII) nhưng không phân loại mức độ nhạy cảm của dữ liệu hoặc duy trì một kho dữ liệu. Nó là một công cụ phát hiện và làm mờ dữ liệu, không phải là một nền tảng quản trị dữ liệu đầy đủ.\nNhận dạng thực thể có tên (NER) theo từng ngôn ngữ cho mỗi yêu cầu. Trình Phân tích xử lý một ngôn ngữ tại một thời điểm. Các tài liệu đa ngôn ngữ yêu cầu hoặc tiền xử lý (phát hiện ngôn ngữ + định tuyến) hoặc thực hiện nhiều phân tích.\nDấu chân bộ nhớ. Việc tải các mô hình NER dựa trên transformer yêu cầu RAM đáng kể (2-4GB cho mỗi mô hình). Đối với triển khai có lưu lượng cao, bộ nhớ đệm và nhóm hóa mô hình là điều cần thiết.\nKhông có ẩn danh có thể đảo ngược theo mặc định. Mặc dù công cụ Ẩn danh hỗ trợ che giấu có thể đảo ngược dựa trên mã hóa, hầu hết các trường hợp sử dụng tạo ra việc xóa thông tin không thể đảo ngược. Hãy lập kế hoạch chiến lược ẩn danh của bạn cho phù hợp.\nGetting Started Con đường nhanh nhất để sử dụng Presidio: `````bash\nInstall all components pip install presidio-analyzer presidio-anonymizer presidio-image-redactor presidio-structured\nQuick test python -c \" from presidio_analyzer import AnalyzerEngine analyzer = AnalyzerEngine() results = analyzer.analyze( text=‘Call John at 555-123-4567 or email john@example.com’, language=en ) for r in results: print(f’{r.entity_type}: {r.start}-{r.end} (score: {r.score:.2f})’) \"\nHoặc triển khai qua Docker để có một API sẵn sàng cho môi trường sản xuất: `````bash docker run -d -p 5002:5002 --name presidio-analyzer mcr.microsoft.com/presidio-analyzer:latest curl -X POST http://localhost:5002/analyze -H \"Content-Type: application/json\" -d '{\"text\":\"John Smith lives in New York\", \"language\":\"en\"}' ```` ## Conclusion Microsoft Presidio là khung phát hiện và che giấu thông tin cá nhân (PII) mã nguồn mở toàn diện nhất hiện có. Với bốn thành phần đã được thử nghiệm trong sản xuất bao phủ văn bản, hình ảnh, hình ảnh y tế DICOM và dữ liệu có cấu trúc — tất cả đều dưới giấy phép MIT tự do và được chứng nhận bởi OpenSSF — nó là lựa chọn mặc định cho các tổ chức cần bảo vệ thông tin nhạy cảm mà không bị ràng buộc bởi nhà cung cấp. Dù bạn đang xây dựng các luồng tuân thủ GDPR, ẩn danh dữ liệu y tế, bảo vệ thông tin liên lạc của khách hàng, hay bảo mật các bộ dữ liệu nghiên cứu, Presidio cung cấp các công cụ phát hiện và chuyển đổi mà bạn cần. Hệ thống nhận dạng có thể mở rộng cho phép bạn thêm các loại PII chuyên ngành, và các tùy chọn triển khai Docker/Kubernetes giúp nó sẵn sàng cho môi trường sản xuất ngay từ ngày đầu tiên. Đối với hạ tầng, hãy xem xét [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cho các triển khai tự lưu trữ đơn giản hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187) cho suy luận NER tăng tốc GPU. Cần proxy đáng tin cậy để thu thập dữ liệu và cào web? [WebShare.io](https://www.webshare.io/?referral_code=oa14d5f0wx4f) cung cấp lớp mạng. Tìm kiếm các ưu đãi xử lý dữ liệu? Hãy xem [Bitget Web3](https://web3.bitget.com/share/3Wla0s?inviteCode=irBqLe) và [Crypto.com](https://www.bsmkweb.cc/register?aff=dibi8) để nhận các ưu đãi độc quyền. Đối với tự động hóa tiếp thị, [PromoOhLy](https://www.promoohubly.com/join/12190433) cung cấp các công cụ bán hàng mạnh mẽ. * * * **Nguồn:** [Presidio GitHub](https://github.com/microsoft/presidio) · [Tài liệu](https://microsoft.github.io/presidio) · [Bản demo](https://aka.ms/presidio-demo) · [Huy hiệu OpenSSF](https://www.bestpractices.dev/projects/6076) **Tham gia cộng đồng:** [Thảo luận trên GitHub](https://github.com/microsoft/presidio/discussions) · [Vấn đề trên GitHub](https://github.com/microsoft/presidio/issues) 📢 **Cập nhật thông tin:** Tham gia [nhóm Telegram của chúng tôi](https://t.me/DIBI8_Group/2) để nhận đánh giá công cụ AI hàng ngày và truy cập sớm nội dung mới. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Đánh Giá Presidio: Khung Phát Hiện PII Mã Nguồn Mở và Xử Lý Dữ Liệu của Microsoft (9,4K Sao)\", \"datePublished\": \"2026-01-01\", \"dateModified\": \"2026-01-01\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/microsoft-presidio-pii-detection-redaction-sdk\" } } * * * ## Related Articles - [hkuds-ai-trader](microsoft-presidio-pii-detection-redaction-sdk) - [markitdown-universal-file-to-markdown-converter](microsoft-presidio-pii-detection-redaction-sdk) - [ai-engineering-from-scratch](microsoft-presidio-pii-detection-redaction-sdk) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
+  "wordCount" : "3892",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -187,7 +187,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>19 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/zh/llm-frameworks/microsoft-presidio-pii-detection-redaction-sdk/">Zh</a>
@@ -274,30 +274,30 @@ backup_url: &rsquo;'
 last_maintained: &ldquo;2026-06-21&rdquo;
 draft: false
 categories: [&ldquo;dev-utils&rdquo;]
-tags: [&ldquo;프레시디오&rdquo;, &ldquo;개인 식별 정보(pii) 탐지&rdquo;, &ldquo;데이터 삭제&rdquo;, &ldquo;데이터 익명화&rdquo;, &ldquo;마이크로소프트&rdquo;, &ldquo;자연어 처리&rdquo;, &ldquo;개체명 인식&rdquo;, &ldquo;이미지 편집&rdquo;, &ldquo;디컴&rdquo;, &ldquo;일반 개인정보 보호 규정&rdquo;, &ldquo;hipaa&rdquo;, &ldquo;오픈-ssf&rdquo;, &ldquo;프라이버시&rdquo;, &ldquo;데이터 보호&rdquo;]
+tags: [&ldquo;pháo đài&rdquo;, &ldquo;phát hiện pii&rdquo;, &ldquo;ẩn dữ liệu&rdquo;, &ldquo;ẩn danh dữ liệu&rdquo;, &ldquo;microsoft&rdquo;, &ldquo;xử lý ngôn ngữ tự nhiên&rdquo;, &ldquo;nhận dạng thực thể có tên&rdquo;, &ldquo;chỉnh sửa hình ảnh&rdquo;, &ldquo;dicom&rdquo;, &ldquo;gdpr&rdquo;, &ldquo;hipaa&rdquo;, &ldquo;mở-ssf&rdquo;, &ldquo;quyền riêng tư&rdquo;, &ldquo;bảo vệ dữ liệu&rdquo;]
 aliases:</li>
 <li>/posts/microsoft-presidio-pii-detection-redaction-sdk/
-faqs: - q: &lsquo;마이크로소프트 프레지디오란 무엇인가요?&rsquo;
-a: &lsquo;Presidio는 텍스트, 이미지 및 구조화된 데이터 전반에서 개인 식별 정보(PII)를 감지, 수정, 마스킹 및 익명화하기 위한 Microsoft의 오픈 소스 SDK입니다. &lsquo;보호&rsquo; 또는 &lsquo;주둔지&rsquo;를 의미하는 라틴어에서 이름을 따왔으며, 문맥 인식, 플러그형 및 맞춤형 PII 비식별화 모듈을 제공합니다. 이는 명명된 개체 인식(NER), 정규 표현식, 규칙 기반 논리 및 체크섬 검증을 다국어로 지원합니다.&rsquo;</li>
-<li>q: &lsquo;프레시디오를 구성하는 요소는 무엇인가요?&rsquo;
-a: &lsquo;Presidio는 네 가지 주요 구성 요소로 이루어져 있습니다: (1) <strong>Presidio Analyzer</strong> — NER, 정규식, 규칙 기반 논리 및 체크섬을 활용한 미리 정의되거나 사용자 지정된 인식기를 사용하여 텍스트에서 PII를 감지합니다; (2) <strong>Presidio Anonymizer</strong> — 감지된 PII를 편집, 마스킹, 해싱하거나 구성 가능한 변환으로 대체합니다; (3) <strong>Presidio Image Redactor</strong> — 표준 이미지 유형 및 DICOM 의료 이미지를 포함한 이미지에서 PII를 편집합니다; (4) <strong>Presidio Structured</strong> — CSV 및 Excel 파일과 같은 테이블/구조화된 데이터에서 PII를 감지합니다.&rsquo;</li>
-<li>q: &lsquo;Presidio가 감지할 수 있는 PII 유형은 무엇입니까?&rsquo;
-a: &lsquo;Presidio는 신용카드 번호, 이름, 위치, 사회보장번호, 비트코인 지갑, 미국 전화번호, 금융 데이터, 이메일 주소, IP 주소, 신용카드 번호 등을 감지합니다. 사전 정의된 인식기와 사용자 정의 인식기를 모두 지원합니다. NER 기반 인식기는 spaCy와 HuggingFace 트랜스포머를 사용하며, 사용자 정의 정규식 패턴, 규칙 기반 논리 추가하거나 외부 PII 감지 모델과 연결할 수 있습니다.&rsquo;</li>
-<li>q: &lsquo;Presidio를 상업적으로 사용하는 것은 무료인가요?&rsquo;
-a: &lsquo;네. Presidio는 MIT 라이선스로 라이선스되어 있으며, 이는 개인 및 상업적 목적으로 자유롭게 사용, 수정 및 배포할 수 있음을 허용합니다. 또한 OpenSSF Best Practices 배지를 인증받아 엄격한 오픈 소스 보안 및 유지보수 표준을 충족함을 나타냅니다.&rsquo;</li>
-<li>q: &lsquo;프레시디오(Pre­sidio)는 이미지 삭제를 어떻게 처리하나요?&rsquo;
-a: &lsquo;Presidio 이미지 편집기는 컴퓨터 비전 모델을 사용하여 이미지에서 PII를 감지하고 편집합니다. 표준 이미지 형식(PNG, JPEG 등)과 DICOM 의료 이미지를 지원합니다. 편집은 감지된 텍스트를 검은 상자로 교체하거나, 영역을 흐리게 처리하거나, 텍스트를 완전히 제거할 수 있습니다. 이는 특히 의료 기관이 공유 또는 출판 전에 의료 영상 데이터를 익명화해야 하는 경우에 매우 유용합니다.&rsquo;</li>
-<li>q: &lsquo;프레시디오가 대규모로 프로덕션 환경에서 실행될 수 있나요?&rsquo;
-a: &lsquo;예. Presidio는 여러 배포 옵션을 지원합니다: Python 또는 PySpark 작업, Docker 컨테이너, 그리고 Kubernetes 배포. 분석기와 익명화기는 REST API로 실행될 수 있으며, 구조화된 구성 요소는 대규모 테이블형 데이터를 처리할 수 있습니다. 이는 여러 플랫폼에서 완전 자동화 및 반자동 PII 비식별화 흐름 모두를 위해 설계되었습니다.&rsquo;</li>
+faqs: - q: &lsquo;Microsoft Presidio là gì?&rsquo;
+a: &lsquo;Presidio là một SDK mã nguồn mở từ Microsoft để phát hiện, chỉnh sửa, che giấu và ẩn danh thông tin cá nhân có thể nhận dạng được (PII) trên văn bản, hình ảnh và dữ liệu có cấu trúc. Được đặt theo từ tiếng Latin có nghĩa là &ldquo;bảo vệ&rdquo; hoặc &ldquo;pháo đài&rdquo;, nó cung cấp các mô-đun tách PII theo ngữ cảnh, có thể cắm thêm và tùy chỉnh. Nó hỗ trợ Nhận dạng Thực thể Đặt tên (NER), biểu thức chính quy, logic dựa trên quy tắc và kiểm tra số dư trên nhiều ngôn ngữ.&rsquo;</li>
+<li>q: &lsquo;Những thành phần nào tạo nên Presidio?&rsquo;
+a: &lsquo;Presidio bao gồm bốn thành phần chính: (1) <strong>Presidio Analyzer</strong> — phát hiện PII trong văn bản sử dụng các bộ nhận diện được định nghĩa sẵn hoặc tùy chỉnh dựa trên NER, regex, logic theo quy tắc và checksum; (2) <strong>Presidio Anonymizer</strong> — ẩn, che, băm hoặc thay thế PII được phát hiện bằng các biến đổi có thể cấu hình; (3) <strong>Presidio Image Redactor</strong> — ẩn PII khỏi hình ảnh bao gồm các loại hình ảnh tiêu chuẩn và hình ảnh y tế DICOM; (4) <strong>Presidio Structured</strong> — phát hiện PII trong dữ liệu bảng/cấu trúc như các tệp CSV và Excel.&rsquo;</li>
+<li>q: &lsquo;Presidio có thể phát hiện những loại PII nào?&rsquo;
+a: &lsquo;Presidio phát hiện số thẻ tín dụng, tên, địa điểm, số an sinh xã hội, ví Bitcoin, số điện thoại Mỹ, dữ liệu tài chính, địa chỉ email, địa chỉ IP, số thẻ tín dụng và nhiều thứ khác. Nó hỗ trợ cả các bộ nhận diện đã định sẵn và bộ nhận diện tùy chỉnh. Các bộ nhận diện dựa trên NER sử dụng spaCy và HuggingFace transformers, và bạn có thể thêm các mẫu regex tùy chỉnh, logic dựa trên quy tắc, hoặc kết nối với các mô hình phát hiện PII bên ngoài.&rsquo;</li>
+<li>q: &lsquo;Presidio có miễn phí để sử dụng thương mại không?&rsquo;
+a: &lsquo;Vâng. Presidio được cấp phép theo giấy phép MIT, cho phép sử dụng, chỉnh sửa và phân phối miễn phí cho cả mục đích cá nhân và thương mại. Nó cũng được chứng nhận với huy hiệu Thực hành tốt nhất OpenSSF, cho thấy nó đáp ứng các tiêu chuẩn bảo mật và bảo trì nguồn mở nghiêm ngặt.&rsquo;</li>
+<li>q: &lsquo;Presidio xử lý việc che mờ hình ảnh như thế nào?&rsquo;
+a: &lsquo;Presidio Image Redactor sử dụng các mô hình thị giác máy tính để phát hiện và chỉnh sửa thông tin nhận dạng cá nhân (PII) từ hình ảnh. Nó hỗ trợ các định dạng hình ảnh tiêu chuẩn (PNG, JPEG, v.v.) và hình ảnh y tế DICOM. Việc chỉnh sửa có thể thay thế văn bản được phát hiện bằng các hộp màu đen, làm mờ các khu vực hoặc loại bỏ hoàn toàn văn bản. Điều này đặc biệt có giá trị đối với các tổ chức chăm sóc sức khỏe cần ẩn danh dữ liệu hình ảnh y tế trước khi chia sẻ hoặc xuất bản.&rsquo;</li>
+<li>q: &lsquo;Liệu Presidio có thể chạy trong môi trường sản xuất ở quy mô lớn không?&rsquo;
+a: &lsquo;Vâng. Presidio hỗ trợ nhiều tùy chọn triển khai: khối lượng công việc Python hoặc PySpark, container Docker và triển khai Kubernetes. Bộ phân tích và bộ ẩn danh có thể chạy dưới dạng REST API, và thành phần có cấu trúc có thể xử lý các tập dữ liệu bảng lớn. Nó được thiết kế cho cả các luồng xác minh PII tự động hoàn toàn và bán tự động trên nhiều nền tảng.&rsquo;</li>
 </ul>
 <hr>
 <h2 id="why-pii-detection-matters-more-than-ever">Why PII Detection Matters More Than Ever<a hidden class="anchor" aria-hidden="true" href="#why-pii-detection-matters-more-than-ever">#</a></h2>
-<p>사용자 데이터를 처리하는 모든 조직은 동일하게 증가하는 도전에 직면합니다: <strong>민감한 정보가 어디에 있는지 알고 이를 보호하는 것</strong>. 고객 지원 채팅에서의 신용카드 번호. 인사(HR) 문서에 있는 사회보장번호. 의료 이미지에 있는 환자 이름. 마케팅 데이터베이스에 있는 이메일 주소.</p>
-<p>수동 검토는 대규모로는 불가능합니다. 적절한 도구가 없으면 자동화된 탐지는 오류가 발생하기 쉽습니다. 또한 규제 요구 사항 — GDPR, HIPAA, CCPA, PCI-DSS — 은 조직이 모든 데이터 유형과 형식에서 개인 식별 정보를 식별하고 보호할 수 있음을 증명해야 한다고 요구합니다.</p>
-<p><strong><a href="https://github.com/microsoft/presidio">Microsoft Presidio</a></strong> (GitHub: ```microsoft/presidio````, <strong>9,397+ 별</strong>)는 이 문제에 대해 가장 널리 채택된 오픈 소스 솔루션입니다. 2019년에 Microsoft에서 처음 공개된 이후, 텍스트, 이미지, 구조화된 데이터, 의료 이미지를 처리할 수 있는 성숙하고 실무에서 검증된 프레임워크로 성장했으며, 모두 관대한 MIT 라이선스 하에 제공됩니다.</p>
-<p>Presidio는 텍스트, 이미지, 구조화된 데이터에서 민감 정보를 빠르게 식별하고 익명화하는 <strong>모듈</strong>을 제공합니다. 이는 컨텍스트를 인식하며, 플러그인 가능하고 특정 비즈니스 요구에 맞게 커스터마이즈할 수 있습니다.</p>
+<p>Mọi tổ chức xử lý dữ liệu người dùng đều đối mặt với cùng một thách thức ngày càng tăng: <strong>biết thông tin nhạy cảm nằm ở đâu và bảo vệ nó</strong>. Số thẻ tín dụng trong các cuộc trò chuyện hỗ trợ khách hàng. Số an sinh xã hội trong tài liệu nhân sự. Tên bệnh nhân trong hình ảnh y tế. Địa chỉ email trong cơ sở dữ liệu marketing.</p>
+<p>Việc xem xét thủ công là không khả thi khi mở rộng quy mô. Việc phát hiện tự động dễ mắc lỗi nếu không có công cụ phù hợp. Và các yêu cầu quy định — GDPR, HIPAA, CCPA, PCI-DSS — đòi hỏi các tổ chức chứng minh rằng họ có thể nhận diện và bảo vệ thông tin cá nhân có thể nhận dạng được (PII) trên mọi loại dữ liệu và định dạng.</p>
+<p><strong><a href="https://github.com/microsoft/presidio">Microsoft Presidio</a></strong> (GitHub: ```microsoft/presidio````, <strong>9,397+ sao</strong>) là giải pháp mã nguồn mở được áp dụng rộng rãi nhất cho vấn đề này. Ban đầu được Microsoft phát hành vào năm 2019, nó đã phát triển thành một framework trưởng thành, được kiểm thử trong sản xuất, xử lý văn bản, hình ảnh, dữ liệu có cấu trúc và hình ảnh y tế — tất cả đều theo giấy phép MIT.</p>
+<p>Presidio cung cấp <strong>các mô-đun nhận dạng nhanh và ẩn danh</strong> cho các thực thể riêng tư trong văn bản, hình ảnh và dữ liệu cấu trúc. Nó nhận biết ngữ cảnh, có thể cắm thêm và tùy chỉnh theo nhu cầu kinh doanh cụ thể.</p>
 <h2 id="presidio-architecture">Presidio Architecture<a hidden class="anchor" aria-hidden="true" href="#presidio-architecture">#</a></h2>
-<p>프레시디오(Presidio)는 각각 다른 데이터 유형과 처리 단계를 다루는 네 가지 주요 구성 요소로 구성되어 있습니다: `````
+<p>Presidio được tổ chức thành bốn thành phần chính, mỗi thành phần xử lý một loại dữ liệu và giai đoạn xử lý khác nhau: `````
 presidio/
 ├── presidio-analyzer/     # PII detection in text (NER + regex + rules)
 ├── presidio-anonymizer/   # PII redaction/transformation in text
@@ -307,7 +307,7 @@ presidio/
 <pre tabindex="0"><code>
 ### Presidio Analyzer — The Detection Engine
 
-분석기는 Presidio의 핵심입니다. 여러 인식 전략을 사용하여 텍스트에서 PII를 감지합니다: | Strategy | Description | Example |
+Bộ Phân Tích là trái tim của Presidio. Nó phát hiện PII trong văn bản bằng cách sử dụng nhiều chiến lược nhận dạng: | Strategy | Description | Example |
 |----------|-------------|---------|
 | **Named Entity Recognition (NER)** | ML models that identify entities like persons, organizations, locations | &#34;John Smith went to New York&#34; → PERSON: John Smith, GPE: New York |
 | **Regular Expressions** | Pattern matching for structured data formats | Credit card numbers, email addresses, phone numbers |
@@ -315,11 +315,11 @@ presidio/
 | **Checksum Validation** | Verifies data integrity for known formats | Luhn algorithm for credit card numbers |
 | **External Models** | Connection to third-party PII detection services | Commercial NER APIs, custom models |
 
-분석기는 여러 언어를 지원하며 맞춤 인식기로 확장할 수 있습니다. 조직에 중요한 PII 유형을 정의하면 Presidio가 이를 기반으로 감지 파이프라인을 구축합니다.
+Trình Phân Tích hỗ trợ nhiều ngôn ngữ và có thể được mở rộng với các trình nhận dạng tùy chỉnh. Bạn xác định những loại PII quan trọng đối với tổ chức của mình, và Presidio xây dựng các quy trình phát hiện xoay quanh chúng.
 
 ### Presidio Anonymizer — The Transformation Engine
 
-PII가 감지되면, 익명화 도구는 변환을 적용합니다: | Transformation | What It Does | Use Case |
+Khi PII được phát hiện, Anonymizer sẽ áp dụng các chuyển đổi: | Transformation | What It Does | Use Case |
 |---------------|-------------|----------|
 | **Redact** | Replace with placeholder (e.g., ````[PHONE_NUMBER]````) | General-purpose masking |
 | **Mask** | Hide part of the value (e.g., ````***-**-1234````) | Partial obfuscation |
@@ -327,23 +327,23 @@ PII가 감지되면, 익명화 도구는 변환을 적용합니다: | Transforma
 | **Replace** | Substitute with configurable value | Domain-specific replacement |
 | **Encrypt** | Encrypt the value with a key | Reversible anonymization |
 
-각 감지된 엔티티는 독립적으로 변환될 수 있으며, 변환들을 연쇄적으로 적용할 수 있습니다. 익명화 도구는 민감한 내용을 제거하면서 문서 구조를 유지합니다.
+Mỗi thực thể được phát hiện có thể được chuyển đổi độc lập, và các phép chuyển đổi có thể được nối tiếp nhau. Công cụ Ẩn danh bảo toàn cấu trúc tài liệu trong khi loại bỏ nội dung nhạy cảm.
 
 ### Presidio Image Redactor — Visual PII Removal
 
-이미지 편집기는 텍스트를 넘어 PII 보호를 확장합니다: - **표준 이미지** (PNG, JPEG, WebP) — 이미지에 보이는 텍스트를 감지하고 편집
-- **DICOM 의료 이미지** — 의료 데이터 익명화를 위해 특별히 설계됨
-- **여러 가지 편집 방법** — 검은 상자, 흐림 처리, 픽셀화 또는 텍스트 완전 제거
+Công cụ Chỉnh sửa Hình ảnh mở rộng bảo vệ thông tin cá nhân (PII) vượt ra ngoài văn bản: - **Hình ảnh tiêu chuẩn** (PNG, JPEG, WebP) — phát hiện và che giấu văn bản hiển thị trong hình ảnh
+- **Hình ảnh y tế DICOM** — được thiết kế đặc biệt cho việc ẩn danh dữ liệu chăm sóc sức khỏe
+- **Nhiều phương pháp che giấu** — hộp đen, làm mờ, pixel hóa, hoặc loại bỏ hoàn toàn văn bản
 
-이 구성 요소는 특히 의료 기관, 연구 기관 및 민감한 정보를 포함한 이미지를 공유해야 하는 모든 팀에 매우 유용합니다.
+Thành phần này đặc biệt có giá trị đối với các tổ chức chăm sóc sức khỏe, các viện nghiên cứu, và bất kỳ nhóm nào cần chia sẻ hình ảnh chứa thông tin nhạy cảm.
 
 ### Presidio Structured — Tabular Data Protection
 
-구조화된 구성 요소는 표 형식 데이터(CSV, Excel, Parquet)에서 PII를 감지합니다. 열 수준 분석을 적용하고, 구조화된 필드에서 PII 패턴을 식별하며, 분석 및 데이터 공유에 적합한 익명화된 버전을 생성합니다.
+Thành phần Cấu trúc phát hiện PII trong các định dạng dữ liệu bảng (CSV, Excel, Parquet). Nó áp dụng phân tích cấp cột, nhận diện các mẫu PII trong các trường có cấu trúc, và tạo ra các phiên bản ẩn danh phù hợp cho phân tích và chia sẻ dữ liệu.
 
 ## Installation and Setup
 
-Presidio는 pip, Docker 또는 소스에서 설치할 수 있습니다: ### Using pip
+Presidio có thể được cài đặt thông qua pip, Docker hoặc từ mã nguồn: ### Using pip
 
 `````bash
 pip install presidio-analyzer presidio-anonymizer
@@ -370,7 +370,7 @@ pip install presidio-structured
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> result <span style="color:#f92672">in</span> results: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Entity: </span><span style="color:#e6db74">{</span>result<span style="color:#f92672">.</span>entity_type<span style="color:#e6db74">}</span><span style="color:#e6db74">, &#34;</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Score: </span><span style="color:#e6db74">{</span>result<span style="color:#f92672">.</span>score<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">, &#34;</span>
 </span></span><span style="display:flex;"><span>          <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Position: </span><span style="color:#e6db74">{</span>result<span style="color:#f92672">.</span>start<span style="color:#e6db74">}</span><span style="color:#e6db74">-</span><span style="color:#e6db74">{</span>result<span style="color:#f92672">.</span>end<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</span></span></code></pre></div><p>출력: `````
+</span></span></code></pre></div><p>Đầu ra: `````
 Entity: PERSON, Score: 0.85, Position: 0-10
 Entity: PHONE_NUMBER, Score: 0.95, Position: 26-38
 Entity: EMAIL_ADDRESS, Score: 0.99, Position: 57-73</p>
@@ -418,7 +418,7 @@ print(anonymized.text)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Results contain PII detections per column with confidence scores</span>
 </span></span></code></pre></div><h2 id="custom-recognizers">Custom Recognizers<a hidden class="anchor" aria-hidden="true" href="#custom-recognizers">#</a></h2>
-<p>프레시디오의 가장 강력한 기능 중 하나는 도메인별 데이터에 대해 맞춤형 PII 식별자를 정의할 수 있는 능력입니다: `````python
+<p>Một trong những tính năng mạnh mẽ nhất của Presidio là khả năng định nghĩa các bộ nhận diện PII tùy chỉnh cho dữ liệu theo lĩnh vực cụ thể: `````python
 from presidio_analyzer import AnalyzerEngine
 from presidio_analyzer.recognizer_registry import RecognizerRegistry
 from presidio_analyzer.nlp_engine import NlpEngineProvider</p>
@@ -436,21 +436,21 @@ registry.add_recognizer(EmployeeIdRecognizer())</p>
 <p>analyzer = AnalyzerEngine(registry=registry)
 results = analyzer.analyze(&ldquo;Employee ID: EMP-1234-5678&rdquo;, language=en)</p>
 <pre tabindex="0"><code>
-맞춤 인식기는 다음을 활용할 수 있습니다: - **정규식 패턴**으로 구조화된 데이터 형식
-- **문맥 키워드** (예: &#34;SSN:&#34; 접두사)
-- **체크섬 검증** (신용카드에는 Luhn, ISBN에는 Modulo-11)
-- **교차 필드 검증** (PII를 나타내는 여러 필드)
+Các bộ nhận dạng tùy chỉnh có thể tận dụng: - **Mẫu Regex** cho các định dạng dữ liệu có cấu trúc
+- **Từ khóa theo ngữ cảnh** (ví dụ: tiền tố &#34;SSN:&#34;)
+- **Xác thực kiểm tra checksum** (Luhn cho thẻ tín dụng, Modulo-11 cho ISBN)
+- **Xác thực đa trường** (nhiều trường cùng nhau cho biết PII)
 
 ## Deployment Options
 
-프레시디오(Presidio)는 여러 배포 패턴을 지원합니다: ### REST API (Docker)
+Presidio hỗ trợ nhiều mẫu triển khai: ### REST API (Docker)
 
 `````bash
 docker run -d -p 5002:5002 mcr.microsoft.com/presidio-analyzer:latest
 docker run -d -p 5001:5001 mcr.microsoft.com/presidio-anonymizer:latest
-</code></pre><p>분석기는 <code>POST /analyze</code>를 제공하고, 익명화기는 <code>POST /anonymize</code>를 제공합니다. 두 기능 모두 텍스트, 언어, 엔터티 유형 사양을 포함한 JSON 페이로드를 받습니다.</p>
+</code></pre><p>Trình Phân Tích cung cấp <code>POST /analyze</code> và Trình Ẩn Danh cung cấp <code>POST /anonymize</code>. Cả hai đều chấp nhận payload JSON với văn bản, ngôn ngữ và các chỉ định loại thực thể.</p>
 <h3 id="docker-compose-deployment">Docker Compose Deployment<a hidden class="anchor" aria-hidden="true" href="#docker-compose-deployment">#</a></h3>
-<p>다중 구성 요소 배포의 경우, 모든 Presidio 서비스를 함께 실행하려면 Docker Compose를 사용하세요: `````yaml
+<p>Đối với các triển khai nhiều thành phần, sử dụng Docker Compose để chạy tất cả các dịch vụ Presidio cùng nhau: `````yaml
 version: &lsquo;3.8&rsquo;
 services: analyzer: image: mcr.microsoft.com/presidio-analyzer:latest
 ports: - &ldquo;5002:5002&rdquo;
@@ -464,19 +464,19 @@ ports: - &ldquo;5003:5003&rdquo;
 environment: - PORT=5003
 depends_on: - analyzer</p>
 <pre tabindex="0"><code>
-````docker compose up -d````로 배포하고 각 구성 요소의 해당 포트에서 접속하세요.
+Triển khai với ````docker compose up -d```` và truy cập tất cả các thành phần tại các cổng tương ứng của chúng.
 
 ### Kubernetes
 
-Presidio 컨테이너는 오케스트레이션을 위해 설계되었습니다. 요청량에 따라 수평 포드 자동 스케일링을 사용하여 각 구성 요소를 별도의 서비스로 배포하십시오. 모듈식 아키텍처 덕분에 Anonymizer와 독립적으로 Analyzer를 스케일링할 수 있습니다.
+Các container Presidio được thiết kế cho việc điều phối. Triển khai từng thành phần như một dịch vụ riêng biệt với khả năng tự động mở rộng pod theo chiều ngang dựa trên khối lượng yêu cầu. Kiến trúc mô-đun cho phép mở rộng Analyzer một cách độc lập với Anonymizer.
 
 ### PySpark Integration
 
-대규모 데이터 워크로드의 경우, Presidio의 구조화된 구성 요소는 분산 PII 탐지를 위해 PySpark와 통합되어 대규모 데이터 세트에서 작동합니다. 데이터를 중앙 서비스로 이동하지 않고 클러스터 전체에서 수백만 건의 레코드를 처리할 수 있습니다.
+Đối với khối lượng công việc dữ liệu lớn, thành phần có cấu trúc của Presidio tích hợp với PySpark để phát hiện PII phân tán trên các tập dữ liệu lớn. Xử lý hàng triệu bản ghi trên một cụm mà không cần di chuyển dữ liệu đến một dịch vụ trung tâm.
 
 ## Supported PII Entity Types
 
-Presidio에는 수십 가지 PII 유형에 대한 내장 인식기가 포함되어 있습니다: | Category | Entity Types |
+Presidio bao gồm các bộ nhận dạng tích hợp sẵn cho hàng chục loại PII: | Category | Entity Types |
 |----------|-------------|
 | **Financial** | CREDIT_CARD, IBAN, PET_CODE, CRYPTO, UK_NHS, US_BANK_NUMBER, US_ITIN, US_DRIVER_LICENSE, US_PASSPORT |
 | **Personal** | PERSON, AGE, NRP, RECOGNIZABLE_EVENT_DATE, DATE_TIME |
@@ -500,33 +500,33 @@ Presidio에는 수십 가지 PII 유형에 대한 내장 인식기가 포함되�
 | **OpenSSF certified** | Yes | No | N/A | N/A |
 | **Kubernetes ready** | Yes | No | N/A | N/A |
 
-Presidio는 자체 호스팅 배포, 이미지 삭제(의료 DICOM 포함), 구조화된 데이터 처리, 맞춤 인식기, 그리고 MIT 라이선스를 모두 하나의 프레임워크로 결합한 유일한 솔루션입니다.
+Presidio là giải pháp duy nhất kết hợp triển khai tự lưu trữ, che mờ hình ảnh (bao gồm DICOM y tế), xử lý dữ liệu cấu trúc, nhận dạng tùy chỉnh và giấy phép MIT — tất cả trong một khung.
 
 ## Real-World Applications
 
 ### Healthcare Data Anonymization
 
-Presidio 이미지 리닥터는 DICOM 의료 이미지를 지원하여 익명화된 의료 영상 데이터를 공유해야 하는 병원과 연구 기관에 적합합니다. NER 기반 텍스트 분석기는 임상 문서에서 환자 이름, 의료 기록 번호 및 날짜를 감지할 수 있습니다.
+Phần mềm Presidio Image Redactor hỗ trợ hình ảnh y tế DICOM, làm cho nó phù hợp với các bệnh viện và các tổ chức nghiên cứu cần chia sẻ dữ liệu hình ảnh y tế đã được ẩn danh. Trình phân tích văn bản dựa trên NER có thể phát hiện tên bệnh nhân, số hồ sơ y tế và ngày tháng trong các tài liệu lâm sàng.
 
 ### Financial Services Compliance
 
-은행과 핀테크 회사들은 Presidio를 사용하여 고객 커뮤니케이션, 거래 기록, 지원 티켓에서 PII를 감지하고 편집합니다. 신용카드에 대한 체크섬 검증과 독점 데이터 형식에 대한 사용자 정의 인식기를 정의할 수 있는 기능 덕분에 규제 산업에 이상적입니다.
+Các ngân hàng và công ty fintech sử dụng Presidio để phát hiện và che giấu thông tin nhận dạng cá nhân (PII) trong giao tiếp với khách hàng, hồ sơ giao dịch và phiếu hỗ trợ. Việc xác thực checksum cho thẻ tín dụng và khả năng định nghĩa các công cụ nhận dạng tùy chỉnh cho các định dạng dữ liệu độc quyền khiến nó trở nên lý tưởng cho các ngành công nghiệp được quản lý.
 
 ### Customer Support Data Protection
 
-고객 지원 대화, 이메일 및 채팅 기록에서 개인 식별 정보(PII) 감지를 자동화하세요. Presidio는 실시간으로 실행되어 민감한 데이터를 포함한 대화를 표시할 수 있으며, 과거 데이터를 일괄 처리하여 준수 감사용으로 활용할 수도 있습니다.
+Tự động phát hiện thông tin nhận dạng cá nhân (PII) trong các cuộc trò chuyện hỗ trợ khách hàng, email và nhật ký trò chuyện. Presidio có thể chạy theo thời gian thực để đánh dấu các cuộc trò chuyện chứa dữ liệu nhạy cảm, hoặc xử lý hàng loạt dữ liệu lịch sử cho các cuộc kiểm toán tuân thủ.
 
 ### Research Data Sharing
 
-학술 기관은 연구 데이터셋을 출판하거나 공유하기 전에 익명화하기 위해 Presidio를 사용합니다. 구조화된 구성 요소는 표 형식 데이터를 처리하고, 텍스트 분석기는 설문 응답과 인터뷰 전사본을 처리합니다.
+Các cơ sở học thuật sử dụng Presidio để ẩn danh các bộ dữ liệu nghiên cứu trước khi xuất bản hoặc chia sẻ. Thành phần có cấu trúc xử lý dữ liệu bảng, trong khi bộ phân tích văn bản xử lý các câu trả lời khảo sát và bản ghi phỏng vấn.
 
 ### GDPR/CCPA Compliance
 
-Presidio는 개인정보 보호 규정에서 요구하는 데이터 주체 접근 요청, 삭제 권리 워크플로우 및 데이터 매핑 목록에 대한 기술적 기반을 제공합니다. 그 감사 추적 기능은 모든 감지와 변환을 기록합니다.
+Presidio cung cấp cơ sở kỹ thuật cho các yêu cầu truy cập dữ liệu của chủ thể, các quy trình xóa dữ liệu theo quyền và các kho dữ liệu lập bản đồ được yêu cầu bởi các quy định về quyền riêng tư. Các khả năng theo dõi kiểm toán của nó ghi lại mọi lần phát hiện và biến đổi.
 
 ## Custom NER Model Integration
 
-Presidio는 기본 NER 모델을 도메인별 대체 모델로 교체하는 것을 지원합니다: `````python
+Presidio hỗ trợ thay đổi các mô hình NER mặc định sang các mô hình chuyên ngành: `````python
 from presidio_analyzer.nlp_engine import SpacyNlpEngine
 
 # Load a custom spaCy model
@@ -543,37 +543,37 @@ transformer_nlp = TransformersNlpEngine(
 )
 
 analyzer = AnalyzerEngine(nlp_engine=transformer_nlp)
-</code></pre><p>도메인 특화 모델은 의료 코드, 법률 용어, 금융 상품과 같은 전문 엔티티에 대한 감지 정확도를 크게 향상시킵니다. 트랜스포머 모델을 조직의 데이터에 맞춰 세밀하게 조정하고 Presidio에 바로 연결하세요.</p>
+</code></pre><p>Các mô hình chuyên ngành cải thiện đáng kể độ chính xác phát hiện cho các thực thể chuyên biệt như mã y tế, thuật ngữ pháp lý hoặc công cụ tài chính. Tinh chỉnh một mô hình transformer trên dữ liệu của tổ chức bạn và tích hợp trực tiếp vào Presidio.</p>
 <h2 id="performance-and-scalability">Performance and Scalability<a hidden class="anchor" aria-hidden="true" href="#performance-and-scalability">#</a></h2>
-<p>프레시디오의 성능 특성: | Component | Throughput | Latency | Notes |
+<p>Đặc điểm hiệu suất của Presidio: | Component | Throughput | Latency | Notes |
 |&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;|&mdash;&mdash;-|
 | <strong>Analyzer (CPU)</strong> | ~100-500 docs/sec | 10-50ms/doc | Depends on NER model size |
 | <strong>Analyzer (GPU)</strong> | ~1000-5000 docs/sec | 1-10ms/doc | With transformer acceleration |
 | <strong>Anonymizer</strong> | ~1000+ docs/sec | &lt;5ms/doc | Lightweight text transformation |
 | <strong>Image Redactor</strong> | ~5-20 imgs/min | Varies | OCR + NER on image text |
 | <strong>Structured</strong> | ~10K rows/sec | Varies | Pandas-based, scales with cluster |</p>
-<p>프로덕션 배포의 경우, Docker 컨테이너의 수평 확장이 증가된 부하를 처리합니다. Analyzer는 가장 계산 집약적인 구성 요소이며 GPU 가속으로 가장 큰 이점을 얻습니다.</p>
+<p>Đối với triển khai sản xuất, việc mở rộng theo chiều ngang của các container Docker giúp xử lý tải tăng lên. Analyzer là thành phần tiêu tốn nhiều tài nguyên tính toán nhất và được hưởng lợi nhiều nhất từ tăng tốc GPU.</p>
 <h2 id="limitations-and-honest-assessment">Limitations and Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations-and-honest-assessment">#</a></h2>
-<p>프레시디오(Prsidio)는 훌륭하지만 만능 해결책은 아니다: 1. <strong>NER 모델 정확도.</strong> 기본 spaCy 및 트랜스포머 기반 NER 모델은 강력하지만 완벽하지 않습니다. 특히 도메인 특화 엔티티에서는 오탐지와 누락이 발생할 수 있습니다. 맞춤 인식기는 도움이 되지만 유지 관리가 필요합니다.</p>
+<p>Presidio rất tuyệt nhưng không phải là giải pháp hoàn hảo: 1. <strong>Độ chính xác của mô hình NER.</strong> Các mô hình NER mặc định của spaCy và dựa trên transformer rất mạnh nhưng không hoàn hảo. Các kết quả dương tính giả và âm tính giả xảy ra, đặc biệt với các thực thể chuyên ngành. Bộ nhận dạng tùy chỉnh giúp ích nhưng cần được bảo trì.</p>
 <ol start="2">
 <li>
-<p><strong>이미지 편집 품질.</strong> 이미지 편집기는 OCR 정확도에 의존합니다. 손으로 쓴 텍스트, 스타일화된 글꼴, 저해상도 이미지는 신뢰할 수 있게 감지되지 않을 수 있습니다. DICOM 지원은 일반 이미지 편집보다 더 성숙합니다.</p>
+<p><strong>Chất lượng xử lý ảnh.</strong> Công cụ xử lý ảnh phụ thuộc vào độ chính xác của OCR. Văn bản viết tay, phông chữ kiểu dáng đặc biệt và hình ảnh có độ phân giải thấp có thể không được phát hiện một cách đáng tin cậy. Hỗ trợ DICOM đã trưởng thành hơn so với xử lý ảnh chung.</p>
 </li>
 <li>
-<p><strong>내장된 데이터 분류 기능 없음.</strong> Presidio는 PII를 감지하지만 데이터 민감도 수준을 분류하거나 데이터 인벤토리를 유지하지 않습니다. 이는 전체 데이터 거버넌스 플랫폼이 아니라 감지 및 삭제 도구입니다.</p>
+<p><strong>Không có phân loại dữ liệu tích hợp sẵn.</strong> Presidio phát hiện thông tin nhận dạng cá nhân (PII) nhưng không phân loại mức độ nhạy cảm của dữ liệu hoặc duy trì một kho dữ liệu. Nó là một công cụ phát hiện và làm mờ dữ liệu, không phải là một nền tảng quản trị dữ liệu đầy đủ.</p>
 </li>
 <li>
-<p><strong>요청별 단일 언어 NER.</strong> 분석기는 한 번에 하나의 언어만 처리합니다. 다국어 문서는 사전 처리(언어 감지 + 라우팅) 또는 여러 번의 분석 실행이 필요합니다.</p>
+<p><strong>Nhận dạng thực thể có tên (NER) theo từng ngôn ngữ cho mỗi yêu cầu.</strong> Trình Phân tích xử lý một ngôn ngữ tại một thời điểm. Các tài liệu đa ngôn ngữ yêu cầu hoặc tiền xử lý (phát hiện ngôn ngữ + định tuyến) hoặc thực hiện nhiều phân tích.</p>
 </li>
 <li>
-<p><strong>메모리 점유율.</strong> 트랜스포머 기반 NER 모델을 로딩하려면 상당한 RAM(모델당 2-4GB)이 필요합니다. 고속 처리 배포를 위해서는 모델 캐싱과 배치 처리가 필수적입니다.</p>
+<p><strong>Dấu chân bộ nhớ.</strong> Việc tải các mô hình NER dựa trên transformer yêu cầu RAM đáng kể (2-4GB cho mỗi mô hình). Đối với triển khai có lưu lượng cao, bộ nhớ đệm và nhóm hóa mô hình là điều cần thiết.</p>
 </li>
 <li>
-<p><strong>기본적으로 되돌릴 수 있는 익명화는 제공되지 않습니다.</strong> 익명화 도구는 암호화 기반의 되돌릴 수 있는 마스킹을 지원하지만, 대부분의 사용 사례에서는 되돌릴 수 없는 삭제를 수행합니다. 이에 따라 익명화 전략을 계획하십시오.</p>
+<p><strong>Không có ẩn danh có thể đảo ngược theo mặc định.</strong> Mặc dù công cụ Ẩn danh hỗ trợ che giấu có thể đảo ngược dựa trên mã hóa, hầu hết các trường hợp sử dụng tạo ra việc xóa thông tin không thể đảo ngược. Hãy lập kế hoạch chiến lược ẩn danh của bạn cho phù hợp.</p>
 </li>
 </ol>
 <h2 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h2>
-<p>Presidio를 사용하는 가장 빠른 방법: `````bash</p>
+<p>Con đường nhanh nhất để sử dụng Presidio: `````bash</p>
 <h1 id="install-all-components">Install all components<a hidden class="anchor" aria-hidden="true" href="#install-all-components">#</a></h1>
 <p>pip install presidio-analyzer presidio-anonymizer presidio-image-redactor presidio-structured</p>
 <h1 id="quick-test">Quick test<a hidden class="anchor" aria-hidden="true" href="#quick-test">#</a></h1>
@@ -587,32 +587,32 @@ language=en
 for r in results: print(f&rsquo;{r.entity_type}: {r.start}-{r.end} (score: {r.score:.2f})&rsquo;)
 &quot;</p>
 <pre tabindex="0"><code>
-또는 Docker를 통해 프로덕션 준비가 된 API로 배포하십시오: `````bash
+Hoặc triển khai qua Docker để có một API sẵn sàng cho môi trường sản xuất: `````bash
 docker run -d -p 5002:5002 --name presidio-analyzer mcr.microsoft.com/presidio-analyzer:latest
 curl -X POST http://localhost:5002/analyze   -H &#34;Content-Type: application/json&#34;   -d &#39;{&#34;text&#34;:&#34;John Smith lives in New York&#34;, &#34;language&#34;:&#34;en&#34;}&#39;
 ````
 
 ## Conclusion
 
-마이크로소프트 프레시디오(Microsoft Presidio)는 가장 포괄적인 오픈 소스 PII(개인 식별 정보) 탐지 및 수정 프레임워크입니다. 텍스트, 이미지, DICOM 의료 이미지, 구조화된 데이터를 모두 포함하는 네 가지 프로덕션 테스트를 거친 구성 요소를 제공하며, 모두 관대한 MIT 라이선스 하에 제공되고 OpenSSF 인증을 받았습니다. 따라서 벤더 종속 없이 민감한 정보를 보호해야 하는 조직에게 기본 선택입니다.
+Microsoft Presidio là khung phát hiện và che giấu thông tin cá nhân (PII) mã nguồn mở toàn diện nhất hiện có. Với bốn thành phần đã được thử nghiệm trong sản xuất bao phủ văn bản, hình ảnh, hình ảnh y tế DICOM và dữ liệu có cấu trúc — tất cả đều dưới giấy phép MIT tự do và được chứng nhận bởi OpenSSF — nó là lựa chọn mặc định cho các tổ chức cần bảo vệ thông tin nhạy cảm mà không bị ràng buộc bởi nhà cung cấp.
 
-GDPR 준수 파이프라인을 구축하든, 의료 데이터를 익명화하든, 고객 커뮤니케이션을 보호하든, 연구 데이터셋을 안전하게 관리하든, Presidio는 필요한 탐지 및 변환 도구를 제공합니다. 확장 가능한 인식기 시스템을 통해 도메인별 PII 유형을 추가할 수 있으며, Docker/Kubernetes 배포 옵션은 출시 첫날부터 프로덕션 환경에서 사용하도록 준비되어 있습니다.
+Dù bạn đang xây dựng các luồng tuân thủ GDPR, ẩn danh dữ liệu y tế, bảo vệ thông tin liên lạc của khách hàng, hay bảo mật các bộ dữ liệu nghiên cứu, Presidio cung cấp các công cụ phát hiện và chuyển đổi mà bạn cần. Hệ thống nhận dạng có thể mở rộng cho phép bạn thêm các loại PII chuyên ngành, và các tùy chọn triển khai Docker/Kubernetes giúp nó sẵn sàng cho môi trường sản xuất ngay từ ngày đầu tiên.
 
-인프라의 경우, 간단한 자체 호스팅 배포를 위해 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)을 고려하거나 GPU 가속 NER 추론을 위해 [HTStack](https://my.htstack.com/aff.php?aff=27187)을 고려하세요. 웹 스크래핑 및 데이터 수집을 위한 신뢰할 수 있는 프록시가 필요하신가요? [WebShare.io](https://www.webshare.io/?referral_code=oa14d5f0wx4f)가 네트워킹 계층을 제공합니다. 데이터 처리 거래를 찾고 계신가요? 독점 혜택을 위해 [Bitget Web3](https://web3.bitget.com/share/3Wla0s?inviteCode=irBqLe) 및 [Crypto.com](https://www.bsmkweb.cc/register?aff=dibi8)을 확인하세요. 마케팅 자동화를 위해 [PromoOhLy](https://www.promoohubly.com/join/12190433)가 강력한 퍼널 도구를 제공합니다.
+Đối với hạ tầng, hãy xem xét [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cho các triển khai tự lưu trữ đơn giản hoặc [HTStack](https://my.htstack.com/aff.php?aff=27187) cho suy luận NER tăng tốc GPU. Cần proxy đáng tin cậy để thu thập dữ liệu và cào web? [WebShare.io](https://www.webshare.io/?referral_code=oa14d5f0wx4f) cung cấp lớp mạng. Tìm kiếm các ưu đãi xử lý dữ liệu? Hãy xem [Bitget Web3](https://web3.bitget.com/share/3Wla0s?inviteCode=irBqLe) và [Crypto.com](https://www.bsmkweb.cc/register?aff=dibi8) để nhận các ưu đãi độc quyền. Đối với tự động hóa tiếp thị, [PromoOhLy](https://www.promoohubly.com/join/12190433) cung cấp các công cụ bán hàng mạnh mẽ.
 
 * * *
 
-**출처:** [Presidio GitHub](https://github.com/microsoft/presidio) · [문서](https://microsoft.github.io/presidio) · [데모](https://aka.ms/presidio-demo) · [OpenSSF 배지](https://www.bestpractices.dev/projects/6076)
+**Nguồn:** [Presidio GitHub](https://github.com/microsoft/presidio) · [Tài liệu](https://microsoft.github.io/presidio) · [Bản demo](https://aka.ms/presidio-demo) · [Huy hiệu OpenSSF](https://www.bestpractices.dev/projects/6076)
 
-**커뮤니티에 참여하세요:** [GitHub 토론](https://github.com/microsoft/presidio/discussions) · [GitHub 이슈](https://github.com/microsoft/presidio/issues)
+**Tham gia cộng đồng:** [Thảo luận trên GitHub](https://github.com/microsoft/presidio/discussions) · [Vấn đề trên GitHub](https://github.com/microsoft/presidio/issues)
 
-📢 **최신 정보를 받아보세요:** 일일 AI 도구 리뷰와 새로운 콘텐츠에 대한 조기 접근을 위해 저희 [텔레그램 그룹](https://t.me/DIBI8_Group/2)에 참여하세요.
+📢 **Cập nhật thông tin:** Tham gia [nhóm Telegram của chúng tôi](https://t.me/DIBI8_Group/2) để nhận đánh giá công cụ AI hàng ngày và truy cập sớm nội dung mới.
 
 
 {
   &#34;@context&#34;: &#34;https://schema.org&#34;,
   &#34;@type&#34;: &#34;Article&#34;,
-  &#34;headline&#34;: &#34;프레시디오 리뷰: 마이크로소프트의 오픈 소스 PII 감지 및 데이터 삭제 프레임워크 (9.4K 스타)&#34;,
+  &#34;headline&#34;: &#34;Đánh Giá Presidio: Khung Phát Hiện PII Mã Nguồn Mở và Xử Lý Dữ Liệu của Microsoft (9,4K Sao)&#34;,
   &#34;datePublished&#34;: &#34;2026-01-01&#34;,
   &#34;dateModified&#34;: &#34;2026-01-01&#34;,
   &#34;author&#34;: {
@@ -629,7 +629,7 @@ GDPR 준수 파이프라인을 구축하든, 의료 데이터를 익명화하든
   },
   &#34;mainEntityOfPage&#34;: {
     &#34;@type&#34;: &#34;WebPage&#34;,
-    &#34;@id&#34;: &#34;https://dibi8.com/kr/resources/microsoft-presidio-pii-detection-redaction-sdk&#34;
+    &#34;@id&#34;: &#34;https://dibi8.com/vi/resources/microsoft-presidio-pii-detection-redaction-sdk&#34;
   }
 }
 &lt;/script&gt;
@@ -638,9 +638,9 @@ GDPR 준수 파이프라인을 구축하든, 의료 데이터를 익명화하든
 
 ## Related Articles
 
-- [ai-seo-geo-dibi8-methodology-google-sge-perplexity](microsoft-presidio-pii-detection-redaction-sdk)
-- [knowledge-work-plugins](microsoft-presidio-pii-detection-redaction-sdk)
-- [microsoft-markitdown-file-to-markdown-converter-cli](microsoft-presidio-pii-detection-redaction-sdk)
+- [hkuds-ai-trader](microsoft-presidio-pii-detection-redaction-sdk)
+- [markitdown-universal-file-to-markdown-converter](microsoft-presidio-pii-detection-redaction-sdk)
+- [ai-engineering-from-scratch](microsoft-presidio-pii-detection-redaction-sdk)
 
 * * *
 
@@ -677,6 +677,81 @@ GDPR 준수 파이프라인을 구축하든, 의료 데이터를 익명화하든
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

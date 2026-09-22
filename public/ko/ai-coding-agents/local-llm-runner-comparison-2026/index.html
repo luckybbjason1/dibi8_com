@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-21T00:00:00+08:00 lastmod: 2026-05-21T00:00:00+08:00 tech_stack: [Python, C++, CUDA, Metal] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-21” draft: false categories: [“llm-frameworks”] tags: [“local llm”, “ollama”, “vllm”, “llama.cpp”, “lm studio”, “비교”, “hub 글”] aliases:\n/posts/local-llm-runner-comparison-2026/ 2026년 “로컬에서 LLM 실행” 답이 명확한 스위트 스폿 가진 4가지 진지한 선택으로 파편화. 이게 우리가 진작 있었으면 했던 hub 글 — Ollama (137k 별, 기본), LM Studio (가장 예쁜 UI, 비코더에게 가장 쉬움), llama.cpp (112k 별, 대부분 다른 도구 안에 있는 C/C++ 엔진), vLLM (80.7k 별, 프로덕션 처리량 왕) 의 정면 대결.\n60초만 있으면 2절 읽고 행 따라 픽. 나머지는 팀이 “왜 이거?” 물을 때.\n1. 왜 “같은 일\"에 4가지 도구 존재 같은 일 하는 것 같음 — 모델 로드, 토큰 생성 — 그러나 근본 목표 발산: - Ollama는 “설치에서 첫 토큰까지 5분” 최적화\nLM Studio는 “비개발자가 이걸 쓸 수 있음” 최적화 llama.cpp는 “CPU 있는 어떤 장치에서도 실행” 최적화 vLLM은 “100 동시 사용자, 큰 GPU에서 최대 처리량” 최적화 잘못된 거 쓰고 작동시킬 수 있음 — 그러나 마찰 느끼거나 (vLLM 캐주얼 로컬 chat) 벽에 부딪침 (Ollama로 50 동시 사용자 서빙 시도). 2절에서 본인 행 매치하는 것 픽.\n2. 30초 결정 트리 상황 픽 솔로 dev, 5분 안에 로컬 LLM, CLI 괜찮 Ollama 비코더가 로컬 LLM과 chat할 데스크톱 앱 원함 LM Studio Raspberry Pi / 이상한 하드웨어 실행 / 최대 제어 원함 llama.cpp 직접 진짜 GPU에 10+ 동시 사용자 프로덕션 서빙 vLLM Apple Silicon Mac, 최고 M-시리즈 성능 원함 llama.cpp (Metal 지원 최고) 또는 LM Studio (밑에 llama.cpp 사용) 앱용 셀프호스트 멀티테넌트 LLM API LiteLLM 게이트웨이 뒤에 vLLM 하나 픽 했나? 나머지 글이 결정 정당화.\n3. Ollama — 솔로 dev 기본 소개: 한 설치 명령. ```ollama run llama3.2````. 5분 안에 채팅 중. 내부적으로 llama.cpp 위에 구축 — Ollama는 “좋은 UX와 모델 카탈로그 가진 llama.cpp”.\n실제 수치: - GitHub 별: 137k (네 가지 중 가장 별 많음)\nLicense: MIT 처리량: M2 / RTX 3060에서 7B 모델 ~20-25 tok/초 (단일 사용자 chat 좋음, 서빙엔 아님) 하드웨어: NVIDIA, AMD (ROCm), Apple Silicon (Metal). CPU 폴백 ok 킬러 기능: ollama.com/library에 거대한 모델 카탈로그 — 양자화 GGUF 모델 한 명령으로 풀 Ollama 이기는 곳: 솔로 dev 코딩 에이전트 (Continue / OpenCode와 페어), 단일 사용자 chat, 프로토타이핑. 우리 저렴한 LLM 스택과 셀프호스트 AI 코딩 워크플로우 컬렉션의 기본 정확히 5분 셋업 곡선 때문.\nOllama 안 이기는 곳: 멀티 사용자 서빙 (Ollama 기본 요청 순차 큐). 10+ 동시 사용자엔 vLLM 전환.\n# 설치 + 30초 안에 모델 실행 curl -fsSL https://ollama.com/install.sh | sh ollama run qwen3-coder:14b 4. LM Studio — 비코더용 데스크톱 앱 소개: 드래그 앤 드롭 데스크톱 앱 (Windows / macOS / Linux). 내장 모델 카탈로그 탐색, “다운로드” 클릭, “Chat” 클릭. CLI 노출 0.\n실제: - License: 클로즈드 소스 프리웨어 (개인 사용 무료; 상업 라이선스 필요)\n엔진: 밑에 llama.cpp 사용 (같은 GGUF 모델 포맷) 킬러 기능: 시각 모델 브라우저, 대화 기록 있는 chat UI, 드래그-드롭 통한 로컬 파일 RAG, OpenAI 호환 API 서버 (원클릭 “start server” → http://localhost:1234/v1 노출) 하드웨어: 같은 llama.cpp 커버리지 — NVIDIA, AMD, Apple Silicon (Metal 최적화), CPU 폴백 LM Studio 이기는 곳: 데이터 분석가 / PM / 임원이 터미널 배우지 않고 로컬 모델과 chat 원함. 또는 Ollama / vLLM 통해 앱에 통합 전 모델 테스트할 정돈된 데스크톱 UI 원함.\nLM Studio 안 이기는 곳: 서버 배포 (데스크톱 앱), 상업 사용 (라이선스 비용), 버전 관리 워크플로우 (Git 친화 config 없음).\n추천 페어링: 탐색용 LM Studio → 일상 서버용 Ollama → 프로덕션 스케일 vLLM.\n5. llama.cpp — 밑의 엔진 소개: Ollama, LM Studio, 수십 다른 프로젝트가 내부적으로 사용하는 C/C++ 추론 엔진. 직접 실행하면 최대 제어 + 래퍼에 노출된 것보다 1-2 버전 앞선 최첨단 기능 세트.\n실제 수치: - GitHub 별: 112k\nLicense: MIT 하드웨어: 말 그대로 모든 것 — Apple Metal (최고 M-시리즈 지원, NEON/Accelerate 통해 최적화), NVIDIA CUDA, AMD HIP, Intel/AMD CPU (AVX/AVX2/AVX512), Vulkan, SYCL, 브라우저의 WebGPU, RISC-V, ARM 양자화: GGUF 포맷, 1.5-bit ~ 8-bit, 사용 가능한 가장 넓은 양자화 옵션 킬러 기능: CPU+GPU 하이브리드 추론 (VRAM보다 큰 모델을 GPU와 시스템 RAM에 분할), 문법 제약 출력, llama-server OpenAI 호환 API llama.cpp 이기는 곳: - 이상한 하드웨어 (Raspberry Pi 5, RISC-V SBC, WebGPU 통한 브라우저)\nVRAM보다 큰 모델 (CPU+GPU 분할) 최첨단 양자화 필요 (1.5-bit, 2-bit 실험적 포맷) 의존성 0 원함 (단일 C++ 바이너리, ~10 MB) llama.cpp 안 이기는 곳: C++ 컴파일 플래그 읽기 즐기지 않음. 대부분 사용자는 Ollama / LM Studio 래퍼 원함.\n# 컴파일과 실행 git clone https://github.com/ggml-org/llama.cpp cd llama.cpp \u0026\u0026 make -j ./llama-cli -m model.gguf -p \"Hello\" 6. vLLM — 프로덕션 처리량 왕 소개: 진짜 GPU에서 10-1000 동시 사용자 서빙 필요할 때, vLLM의 PagedAttention + continuous batching + prefix caching이 처리량에서 모든 대안을 압도. “프로덕션에서 멀티테넌트 LLM API 실행 중\"에 대한 사실상 선택.\n실제 수치: - GitHub 별: 80.7k\nLicense: Apache-2.0 하드웨어: NVIDIA (최고), AMD ROCm, Apple Silicon, Intel Gaudi, Google TPU, Huawei Ascend, IBM Spyre, 심지어 ARM/RISC-V CPU 킬러 기능: PagedAttention (단순 서빙 대비 2-24× 처리량 개선), continuous batching, prefix caching, speculative decoding, multi-LoRA 핫스왑, OpenAI 호환 API 양자화: FP8, INT8, INT4, GPTQ, AWQ, GGUF — 가장 넓은 프로덕션 양자화 지원 vLLM 이기는 곳: 프로덕션 멀티테넌트 서빙. 셀프호스트 상업 LLM API. 모든 “이 4090에서 초당 50+ 요청 처리해야 함” 워크로드. Ollama의 단일 사용자 모델 벗어날 때 저렴한 LLM 스택과 페어.\nvLLM 안 이기는 곳: 솔로 dev 로컬 chat (Ollama가 더 빠른 셋업). CPU 전용 하드웨어 (vLLM CPU에서 작동하지만 llama.cpp처럼 최적화 안 됨).\n# 빠른 설치 + 서브 pip install vllm vllm serve meta-llama/Llama-3.2-3B-Instruct --port 8000 # OpenAI SDK로 http://localhost:8000/v1 hit 7. 정면 대결 — 숫자 테이블 메트릭 Ollama LM Studio llama.cpp vLLM GitHub 별 137k N/A (클로즈드) 112k 80.7k License MIT 클로즈드 프리웨어 MIT Apache-2.0 설치 난이도 ⭐ (한 명령) ⭐ (앱 다운로드) ⭐⭐⭐ (컴파일) ⭐⭐ (pip install) 단일 사용자 처리량 (7B, RTX 3060) ~20 tok/초 ~20 tok/초 ~22 tok/초 ~25 tok/초 멀티 사용자 처리량 (10 동시) ~25 tok/초 합계 N/A (데스크톱) ~30 tok/초 ~200 tok/초 ⭐ 하드웨어 폭 NVIDIA/AMD/Apple 같음 모든 것 NVIDIA/AMD/TPU/등 CPU+GPU 하이브리드 추론 ✅ (llama.cpp 통해) ✅ ✅ (최고) ⚠️ 제한 최고 Apple Silicon 성능 좋음 좋음 최고 좋음 프로덕션 멀티테넌시 ⚠️ 제한 ❌ (데스크톱) ⚠️ 수동 ✅ ⭐ 최적 사용처 솔로 dev CLI 비코더 GUI 이상한 하드웨어 / 최대 제어 프로덕션 서빙 행 단위로 읽고 지배적 제약으로 픽.\n8. 실제 시나리오 시나리오 A — AI로 코딩하는 솔로 파운더: 노트북에 Ollama. 끝. OpenAI 호환 API 통해 OpenCode / Continue / Cursor와 연결. 전체 스택은 셀프호스트 AI 코딩 워크플로우 참조.\n시나리오 B — 50 직원 회사 내부 챗봇: vLLM을 전용 24 GB GPU (RTX 4090 또는 A5000)에, 또는 . auth + 사용자별 지출 추적 위해 LiteLLM 게이트웨이로 fronted.\n시나리오 C — 마케팅 VP가 문서와 chat 원함: LM Studio. RAG 인터페이스에 PDF 드래그 앤 드롭. 훈련 0 필요. 실제로 엔지니어링 필요한 사용 사례 위해 엔지니어링 시간 저장.\n시나리오 D — Raspberry Pi 5에서 Qwen 3 14B 실행: llama.cpp 직접. Ollama 작동할 수 있지만 llama.cpp의 ARM 최적화와 ````–n-gpu-layers 0``` 순수 CPU가 가장 많이 짜냄.\n시나리오 E — 멀티모달 AI 콘텐츠 파이프라인: 멀티모달 콘텐츠 파이프라인에서 로컬 폴백용 Ollama 사용. 동시 생성 작업이 Ollama 직렬 큐 초과하면 vLLM으로 승급.\n9. “그냥 Ollama 쓰기” 기본은 보통 옳다 Ollama는 llama.cpp 위에 구축. LM Studio는 llama.cpp 위에 구축. 그래서 80% 사용자의 질문은 “어떤 추론 엔진\"이 아니라 — “어떤 래퍼 UX 선호”.\nCLI + 모델 카탈로그 좋음: Ollama 데스크톱 GUI + CLI 노출 0 좋음: LM Studio 둘 다 밑이 같음. 둘 다 동일 출력. 진짜 실제 선택해야 하는 사람만: - 하드웨어 손쟁이 (llama.cpp 직접)\n프로덕션 서빙 (vLLM) 나머지 모두: UI 선호에 따라 Ollama 또는 LM Studio 사용 10. 빠른 마이그레이션 경로 혼합과 전환 가능. 일반적 진화: 1. 1일차: Ollama 설치. 한 모델 실행 2. 1-4주: 에디터/에이전트와 Ollama. 비코딩 task용 데스크톱 chat UI 원함을 깨달음. LM Studio 추가 3. 3개월+: 실제 제품 구축. Ollama 요청 직렬 큐 깨달음. 프로덕션 tier에 LiteLLM 뒤에 vLLM 추가; 개발에 Ollama 유지 4. 1년+: 이상한 하드웨어 (RISC-V SBC, 브라우저 배포) 또는 최첨단 양자화 원함. 그 특정 워크로드에 대해 llama.cpp 직접으로 내려감\n“하나 고르고 고집해야” 함 없음. 같은 스택 다른 레이어가 행복하게 공존.\nTL;DR 4 로컬 LLM 러너, 4 스위트 스폿: - Ollama (137k 별) — 솔로 dev CLI 기본\nLM Studio — 비코더 데스크톱 GUI llama.cpp (112k 별) — 이상한 하드웨어 + 최대 제어 + 다른 것들 밑의 엔진 vLLM (80.7k 별) — 프로덕션 멀티테넌트 서빙 범용 최고 로컬 LLM 러너 없음. 2절의 본인 행과 매치하는 것 있음. 그것 픽, 출시, 동시 사용자 수가 10 넘으면 재평가 (Ollama → vLLM 신호).\n동반 콘텐츠: 저렴한 LLM 스택 컬렉션은 기본 로컬 러너로 Ollama 사용. 셀프호스트 AI 코딩 워크플로우와 지식 베이스 스택 모두 로컬 추론에 Ollama 타고 있음. 여러 러너 앞 게이트웨이 레이어용 Portkey vs LiteLLM vs OpenRouter.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Ollama vs LM Studio vs llama.cpp vs vLLM 2026: 정직한 로컬 LLM 러너 결정 가이드”, “datePublished”: “2026-05-21”, “dateModified”: “2026-05-21”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/local-llm-runner-comparison-2026\" } } Related Articles ollama-vs-vllm llm-inference-cost-optimization-guide-2026 nanochat-karpathy-100-chatgpt-single-gpu ollama-vs-vllm llm-inference-cost-optimization-guide-2026 Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n",
-  "wordCount" : "1503",
+  "articleBody": "title: “Ollama vs LM Studio vs llama.cpp vs vLLM 2026: The Hones… description: “Technical guide and comparison.” date: 2026-05-21T00:00:00+08:00 lastmod: 2026-05-21T00:00:00+08:00 tech_stack: - Python\nC++ CUDA Metal application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-21” draft: false categories: [“llm-frameworks”] tags: [“local llm”, “ollama”, “vllm”, “llama.cpp”, “lm studio”, “comparison”, “hub article”] aliases: /posts/local-llm-runner-comparison-2026/- The “run an LLM locally” answer in 2026 has fragmented into four serious choices, each with a clear sweet spot. This is the hub article we wish we’d had — a head-to-head between Ollama (137k stars, the default), LM Studio (prettiest UI, easiest for non-coders), llama.cpp (112k stars, the C/C++ engine literally under most of the others), and vLLM (80.7k stars, the production throughput king).\nIf you only have 60 seconds, read section 2 and pick by your row. Everything else is for when your team asks “why this one?”\n1. Why Four Tools Exist for “The Same Job” They look like they do the same thing — load a model, generate tokens — but the underlying goals diverge: - Ollama optimizes for “5 minutes from install to first token”\nLM Studio optimizes for “non-developer can use this” llama.cpp optimizes for “runs on literally every device with a CPU” vLLM optimizes for “100 concurrent users, max throughput on big GPUs” You can use the wrong one and have it work — but you’ll either feel friction (vLLM for a casual local chat) or hit a wall (Ollama trying to serve 50 concurrent users). Pick the one that matches your row in section 2.\n2. The 30-Second Decision Tree | Your situation | Pick | |\n|\n| | Solo dev, want local LLM in 5 minutes, CLI is fine | Ollama | | Non-coder wants a desktop app to chat with local LLMs | LM Studio | | Run on a Raspberry Pi / weird hardware / want max control | llama.cpp directly | | Production serving 10+ concurrent users on a real GPU | vLLM | | Apple Silicon Mac, want best M-series performance | llama.cpp (best Metal support) or LM Studio (uses llama.cpp under the hood) | | Self-hosted multi-tenant LLM API for an app | vLLM behind a LiteLLM gateway |\nPicked one? Rest of the article justifies the call.\n3. Ollama — The Default for Solo Devs The pitch: One install command. ```ollama run llama3.2````. You’re chatting in 5 minutes. Built on top of llama.cpp internally — Ollama is “llama.cpp with great UX and a model catalog.”\nReal numbers: - GitHub stars: 137k (the most-starred of the four)\nLicense: MIT Throughput: ~20-25 tok/s for 7B models on M2 / RTX 3060 (good for single-user chat, not for serving) Hardware: NVIDIA, AMD (ROCm), Apple Silicon (Metal). CPU fallback fine Killer feature: Massive model catalog at ollama.com/library — pulls quantized GGUF models with one command When Ollama wins: Solo dev coding agent (paired with Continue / OpenCode), single-user chat, prototyping. The default for our Cheap LLM Stack and Self-Hosted AI Coding Workflow collections precisely because of the 5-minute setup curve.\nWhen it doesn’t win: Multi-user serving (Ollama queues requests sequentially by default). For 10+ concurrent users, switch to vLLM.\n# Install + run a model in 30 seconds curl -fsSL https://ollama.com/install.sh | sh ollama run qwen3-coder:14b 4. LM Studio — The Desktop App for Non-Coders The pitch: Drag-and-drop desktop app (Windows / macOS / Linux). Browse a built-in model catalog, click “Download,” click “Chat.” Zero CLI exposure.\nReal reality: - License: Closed-source freeware (free for personal use; commercial needs license)\nEngine: Uses llama.cpp underneath (same GGUF model format) Killer features: Visual model browser, chat UI with conversation history, RAG over local files via drag-drop, OpenAI-compatible API server (one-click “start server” → expose http://localhost:1234/v1) Hardware: Same llama.cpp coverage — NVIDIA, AMD, Apple Silicon (Metal-optimized), CPU fallback When LM Studio wins: Your data analyst / PM / executive wants to chat with a local model without learning the terminal. Or you want a polished desktop UI to test models before integrating via Ollama / vLLM into your app.\nWhen it doesn’t win: Server deployment (it’s a desktop app), commercial use (license cost), version-controlled workflows (no Git-friendly config).\nRecommended pairing: LM Studio for exploration → Ollama for daily-driver server → vLLM for production scale.\n5. llama.cpp — The Engine Underneath The pitch: The C/C++ inference engine that Ollama, LM Studio, and dozens of other projects use internally. By running it directly you get max control + the bleeding-edge feature set 1-2 versions ahead of what’s exposed in wrappers.\nReal numbers: - GitHub stars: 112k\nLicense: MIT Hardware: Literally everything — Apple Metal (best M-series support, optimized via NEON/Accelerate), NVIDIA CUDA, AMD HIP, Intel/AMD CPU (AVX/AVX2/AVX512), Vulkan, SYCL, even WebGPU in browser, RISC-V, ARM Quantization: GGUF format, 1.5-bit to 8-bit, broadest quantization options available Killer features: CPU+GPU hybrid inference (split a model larger than VRAM between GPU and system RAM), grammar-constrained output, llama-server OpenAI-compatible API When llama.cpp wins: - Weird hardware (Raspberry Pi 5, RISC-V SBC, browser via WebGPU)\nModels bigger than your VRAM (CPU+GPU split) Need bleeding-edge quantization (1.5-bit, 2-bit experimental formats) Want zero dependencies (single C++ binary, ~10 MB) When it doesn’t win: You don’t enjoy reading C++ compile flags. Most users want the Ollama / LM Studio wrapper.\n# Compile and run git clone https://github.com/ggml-org/llama.cpp cd llama.cpp \u0026\u0026 make -j ./llama-cli -m model.gguf -p \"Hello\" 6. vLLM — The Production Throughput King The pitch: When you need to serve 10-1000 concurrent users on a real GPU, vLLM’s PagedAttention + continuous batching + prefix caching crush every alternative on throughput. The de-facto choice for “I’m running a multi-tenant LLM API in production.”\nReal numbers: - GitHub stars: 80.7k\nLicense: Apache-2.0 Hardware: NVIDIA (best), AMD ROCm, Apple Silicon, Intel Gaudi, Google TPU, Huawei Ascend, IBM Spyre, even ARM/RISC-V CPUs Killer features: PagedAttention (2-24× throughput improvement over naive serving), continuous batching, prefix caching, speculative decoding, multi-LoRA hot-swap, OpenAI-compatible API Quantization: FP8, INT8, INT4, GPTQ, AWQ, GGUF — broadest production-quant support When vLLM wins: Production multi-tenant serving. Self-hosted commercial LLM API. Any “I need to handle 50+ requests/sec on this 4090” workload. Pair with our Cheap LLM Stack when you outgrow Ollama’s single-user model.\nWhen it doesn’t win: Solo dev local chat (Ollama is faster to set up). CPU-only hardware (vLLM works on CPU but isn’t optimized for it like llama.cpp).\n# Quick install + serve pip install vllm vllm serve meta-llama/Llama-3.2-3B-Instruct --port 8000 # Now hit http://localhost:8000/v1 with OpenAI SDK 7. Head-to-Head — The Numbers Table | Metric | Ollama | LM Studio | llama.cpp | vLLM | |\n|\n|\n|\n|\n| | GitHub stars | 137k | N/A (closed) | 112k | 80.7k | | License | MIT | Closed freeware | MIT | Apache-2.0 | | Install difficulty | ⭐ (one command) | ⭐ (download app) | ⭐⭐⭐ (compile) | ⭐⭐ (pip install) | | Single-user throughput (7B, RTX 3060) | ~20 tok/s | ~20 tok/s | ~22 tok/s | ~25 tok/s | | Multi-user throughput (10 concurrent) | ~25 tok/s combined | N/A (desktop) | ~30 tok/s | ~200 tok/s ⭐ | | Hardware breadth | NVIDIA/AMD/Apple | Same | Everything | NVIDIA/AMD/TPU/etc. | | CPU+GPU hybrid inference | ✅ (via llama.cpp) | ✅ | ✅ (best) | ⚠️ Limited | | Best Apple Silicon perf | Good | Good | Best | Good | | Production multi-tenancy | ⚠️ Limited | ❌ (desktop) | ⚠️ Manual | ✅ ⭐ | | Best for | Solo dev CLI | Non-coder GUI | Weird hardware / max control | Production serving |\nRead by row, pick by dominant constraint.\n8. Real-World Scenarios Scenario A — Solo founder coding with AI: Ollama on your laptop. Done. Connect to OpenCode / Continue / Cursor via OpenAI-compatible API. See our Self-Hosted AI Coding Workflow for the full stack.\nScenario B — Internal company chatbot for 50 employees: vLLM on a dedicated 24 GB GPU (RTX 4090 or A5000) on a or . Fronted by LiteLLM gateway for auth + per-user spend tracking.\nScenario C — Your VP of Marketing wants to chat with documents: LM Studio. They drag and drop PDFs into the RAG interface. Zero training needed. Save your engineering time for the use cases that actually need engineering.\nScenario D — Run Qwen 3 14B on a Raspberry Pi 5: llama.cpp directly. Ollama might work, but llama.cpp’s ARM optimizations and ````–n-gpu-layers 0``` for pure CPU give you the most squeeze.\nScenario E — Multi-modal AI content pipeline: Use Ollama for local fallback in your Multi-Modal Content Pipeline. Promote to vLLM when concurrent generation jobs exceed Ollama’s serial queue.\n9. The “Just Use Ollama” Default Is Usually Right Ollama is built on llama.cpp. LM Studio is built on llama.cpp. So the question for 80% of users isn’t “which inference engine” — it’s “which wrapper UX do I prefer.”\nLike CLI + model catalog: Ollama Like desktop GUI + no-CLI exposure: LM Studio Both work the same underneath. Both produce identical output. The only people who genuinely need to make a real choice are: - Hardware tinkerers (llama.cpp direct)\nProduction serving (vLLM) Everyone else: use Ollama or LM Studio based on your UI preference 10. Quick Migration Path You can mix and switch. Common evolution: 1. Day 1: Install Ollama. Get one model running. 2. Week 1-4: Use Ollama with your editor / agent. Realize you want a desktop chat UI for non-coding tasks. Add LM Studio. 3. Month 3+: Building a real product. Realize Ollama queues requests serially. Add vLLM behind LiteLLM for the production tier; keep Ollama for development. 4. Year 1+: Hit weird hardware (RISC-V SBC, browser deployment) or want bleeding-edge quantization. Drop down to llama.cpp directly for that specific workload.\nYou never have to “pick one and stick with it.” Different layers of the same stack happily coexist.\nTL;DR Four local LLM runners, four sweet spots: - Ollama (137k stars) — solo dev CLI default\nLM Studio — non-coder desktop GUI llama.cpp (112k stars) — weird hardware + max control + the engine underneath the others vLLM (80.7k stars) — production multi-tenant serving There’s no universally best local LLM runner. There’s the one that matches your row in section 2. Pick that one, ship, and re-evaluate when your concurrent-user count crosses 10 (that\"s the Ollama → vLLM signal).\nCompanion content: Cheap LLM Stack collection uses Ollama as the default local runner. Self-Hosted AI Coding Workflow and Knowledge Base Stack both ride on Ollama for local inference. Portkey vs LiteLLM vs OpenRouter for the gateway layer in front of multiple runners.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Ollama vs LM Studio vs llama.cpp vs vLLM 2026: The Honest Local LLM Runner Decision Guide”, “datePublished”: “2026-05-21”, “dateModified”: “2026-05-21”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/local-llm-runner-comparison-2026\" } } Related Articles ollama-vs-vllm llm-inference-cost-optimization-guide-2026 nanochat-karpathy-100-chatgpt-single-gpu ollama-vs-vllm llm-inference-cost-optimization-guide-2026 Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n",
+  "wordCount" : "1855",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/local-llm-runner-comparison-2026/">En</a>
@@ -209,25 +209,25 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#1-%ec%99%9c-%ea%b0%99%ec%9d%80-%ec%9d%bc%ec%97%90-4%ea%b0%80%ec%a7%80-%eb%8f%84%ea%b5%ac-%ec%a1%b4%ec%9e%ac" aria-label="1. 왜 &ldquo;같은 일&quot;에 4가지 도구 존재">1. 왜 &ldquo;같은 일&quot;에 4가지 도구 존재</a></li>
+                <a href="#1-why-four-tools-exist-for-the-same-job" aria-label="1. Why Four Tools Exist for &ldquo;The Same Job&rdquo;">1. Why Four Tools Exist for &ldquo;The Same Job&rdquo;</a></li>
             <li>
-                <a href="#2-30%ec%b4%88-%ea%b2%b0%ec%a0%95-%ed%8a%b8%eb%a6%ac" aria-label="2. 30초 결정 트리">2. 30초 결정 트리</a></li>
+                <a href="#2-the-30-second-decision-tree" aria-label="2. The 30-Second Decision Tree">2. The 30-Second Decision Tree</a></li>
             <li>
-                <a href="#3-ollama--%ec%86%94%eb%a1%9c-dev-%ea%b8%b0%eb%b3%b8" aria-label="3. Ollama — 솔로 dev 기본">3. Ollama — 솔로 dev 기본</a></li>
+                <a href="#3-ollama--the-default-for-solo-devs" aria-label="3. Ollama — The Default for Solo Devs">3. Ollama — The Default for Solo Devs</a></li>
             <li>
-                <a href="#4-lm-studio--%eb%b9%84%ec%bd%94%eb%8d%94%ec%9a%a9-%eb%8d%b0%ec%8a%a4%ed%81%ac%ed%86%b1-%ec%95%b1" aria-label="4. LM Studio — 비코더용 데스크톱 앱">4. LM Studio — 비코더용 데스크톱 앱</a></li>
+                <a href="#4-lm-studio--the-desktop-app-for-non-coders" aria-label="4. LM Studio — The Desktop App for Non-Coders">4. LM Studio — The Desktop App for Non-Coders</a></li>
             <li>
-                <a href="#5-llamacpp--%eb%b0%91%ec%9d%98-%ec%97%94%ec%a7%84" aria-label="5. llama.cpp — 밑의 엔진">5. llama.cpp — 밑의 엔진</a></li>
+                <a href="#5-llamacpp--the-engine-underneath" aria-label="5. llama.cpp — The Engine Underneath">5. llama.cpp — The Engine Underneath</a></li>
             <li>
-                <a href="#6-vllm--%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ec%b2%98%eb%a6%ac%eb%9f%89-%ec%99%95" aria-label="6. vLLM — 프로덕션 처리량 왕">6. vLLM — 프로덕션 처리량 왕</a></li>
+                <a href="#6-vllm--the-production-throughput-king" aria-label="6. vLLM — The Production Throughput King">6. vLLM — The Production Throughput King</a></li>
             <li>
-                <a href="#7-%ec%a0%95%eb%a9%b4-%eb%8c%80%ea%b2%b0--%ec%88%ab%ec%9e%90-%ed%85%8c%ec%9d%b4%eb%b8%94" aria-label="7. 정면 대결 — 숫자 테이블">7. 정면 대결 — 숫자 테이블</a></li>
+                <a href="#7-head-to-head--the-numbers-table" aria-label="7. Head-to-Head — The Numbers Table">7. Head-to-Head — The Numbers Table</a></li>
             <li>
-                <a href="#8-%ec%8b%a4%ec%a0%9c-%ec%8b%9c%eb%82%98%eb%a6%ac%ec%98%a4" aria-label="8. 실제 시나리오">8. 실제 시나리오</a></li>
+                <a href="#8-real-world-scenarios" aria-label="8. Real-World Scenarios">8. Real-World Scenarios</a></li>
             <li>
-                <a href="#9-%ea%b7%b8%eb%83%a5-ollama-%ec%93%b0%ea%b8%b0-%ea%b8%b0%eb%b3%b8%ec%9d%80-%eb%b3%b4%ed%86%b5-%ec%98%b3%eb%8b%a4" aria-label="9. &ldquo;그냥 Ollama 쓰기&rdquo; 기본은 보통 옳다">9. &ldquo;그냥 Ollama 쓰기&rdquo; 기본은 보통 옳다</a></li>
+                <a href="#9-the-just-use-ollama-default-is-usually-right" aria-label="9. The &ldquo;Just Use Ollama&rdquo; Default Is Usually Right">9. The &ldquo;Just Use Ollama&rdquo; Default Is Usually Right</a></li>
             <li>
-                <a href="#10-%eb%b9%a0%eb%a5%b8-%eb%a7%88%ec%9d%b4%ea%b7%b8%eb%a0%88%ec%9d%b4%ec%85%98-%ea%b2%bd%eb%a1%9c" aria-label="10. 빠른 마이그레이션 경로">10. 빠른 마이그레이션 경로</a></li>
+                <a href="#10-quick-migration-path" aria-label="10. Quick Migration Path">10. Quick Migration Path</a></li>
             <li>
                 <a href="#tldr" aria-label="TL;DR">TL;DR</a></li>
             <li>
@@ -239,11 +239,15 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+  <div class="post-content md-content"><p>title: &ldquo;Ollama vs LM Studio vs llama.cpp vs vLLM 2026: The Hones&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
-tech_stack: [Python, C++, CUDA, Metal]
+tech_stack: - Python</p>
+<ul>
+<li>C++</li>
+<li>CUDA</li>
+<li>Metal
 application_domain: Llm Frameworks
 source_version: &rsquo;'
 licensing_model: Open Source
@@ -255,241 +259,157 @@ backup_url: &rsquo;'
 last_maintained: &ldquo;2026-05-21&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
-tags: [&ldquo;local llm&rdquo;, &ldquo;ollama&rdquo;, &ldquo;vllm&rdquo;, &ldquo;llama.cpp&rdquo;, &ldquo;lm studio&rdquo;, &ldquo;비교&rdquo;, &ldquo;hub 글&rdquo;]
-aliases:</p>
-<ul>
-<li>/posts/local-llm-runner-comparison-2026/</li>
+tags: [&ldquo;local llm&rdquo;, &ldquo;ollama&rdquo;, &ldquo;vllm&rdquo;, &ldquo;llama.cpp&rdquo;, &ldquo;lm studio&rdquo;, &ldquo;comparison&rdquo;, &ldquo;hub article&rdquo;]
+aliases:</li>
+<li>/posts/local-llm-runner-comparison-2026/-</li>
 </ul>
 <hr>
-<p>2026년 &ldquo;로컬에서 LLM 실행&rdquo; 답이 명확한 스위트 스폿 가진 4가지 진지한 선택으로 파편화. 이게 우리가 진작 있었으면 했던 hub 글 — <strong>Ollama</strong> (137k 별, 기본), <strong>LM Studio</strong> (가장 예쁜 UI, 비코더에게 가장 쉬움), <strong>llama.cpp</strong> (112k 별, 대부분 다른 도구 안에 있는 C/C++ 엔진), <strong>vLLM</strong> (80.7k 별, 프로덕션 처리량 왕) 의 정면 대결.</p>
-<p>60초만 있으면 2절 읽고 행 따라 픽. 나머지는 팀이 &ldquo;왜 이거?&rdquo; 물을 때.</p>
-<h2 id="1-왜-같은-일에-4가지-도구-존재">1. 왜 &ldquo;같은 일&quot;에 4가지 도구 존재<a hidden class="anchor" aria-hidden="true" href="#1-왜-같은-일에-4가지-도구-존재">#</a></h2>
-<p>같은 일 하는 것 같음 — 모델 로드, 토큰 생성 — 그러나 근본 목표 발산: - <strong>Ollama</strong>는 &ldquo;설치에서 첫 토큰까지 5분&rdquo; 최적화</p>
+<p>The &ldquo;run an LLM locally&rdquo; answer in 2026 has fragmented into four serious choices, each with a clear sweet spot. This is the hub article we wish we&rsquo;d had — a head-to-head between <strong>Ollama</strong> (137k stars, the default), <strong>LM Studio</strong> (prettiest UI, easiest for non-coders), <strong>llama.cpp</strong> (112k stars, the C/C++ engine literally under most of the others), and <strong>vLLM</strong> (80.7k stars, the production throughput king).</p>
+<p>If you only have 60 seconds, read section 2 and pick by your row. Everything else is for when your team asks &ldquo;why this one?&rdquo;</p>
+<h2 id="1-why-four-tools-exist-for-the-same-job">1. Why Four Tools Exist for &ldquo;The Same Job&rdquo;<a hidden class="anchor" aria-hidden="true" href="#1-why-four-tools-exist-for-the-same-job">#</a></h2>
+<p>They look like they do the same thing — load a model, generate tokens — but the underlying goals diverge: - <strong>Ollama</strong> optimizes for &ldquo;5 minutes from install to first token&rdquo;</p>
 <ul>
-<li><strong>LM Studio</strong>는 &ldquo;비개발자가 이걸 쓸 수 있음&rdquo; 최적화</li>
-<li><strong>llama.cpp</strong>는 &ldquo;CPU 있는 어떤 장치에서도 실행&rdquo; 최적화</li>
-<li><strong>vLLM</strong>은 &ldquo;100 동시 사용자, 큰 GPU에서 최대 처리량&rdquo; 최적화</li>
+<li><strong>LM Studio</strong> optimizes for &ldquo;non-developer can use this&rdquo;</li>
+<li><strong>llama.cpp</strong> optimizes for &ldquo;runs on literally every device with a CPU&rdquo;</li>
+<li><strong>vLLM</strong> optimizes for &ldquo;100 concurrent users, max throughput on big GPUs&rdquo;</li>
 </ul>
-<p>잘못된 거 쓰고 작동시킬 수 있음 — 그러나 마찰 느끼거나 (vLLM 캐주얼 로컬 chat) 벽에 부딪침 (Ollama로 50 동시 사용자 서빙 시도). 2절에서 본인 행 매치하는 것 픽.</p>
-<h2 id="2-30초-결정-트리">2. 30초 결정 트리<a hidden class="anchor" aria-hidden="true" href="#2-30초-결정-트리">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>상황</th>
-					<th>픽</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>솔로 dev, 5분 안에 로컬 LLM, CLI 괜찮</td>
-					<td><strong>Ollama</strong></td>
-			</tr>
-			<tr>
-					<td>비코더가 로컬 LLM과 chat할 데스크톱 앱 원함</td>
-					<td><strong>LM Studio</strong></td>
-			</tr>
-			<tr>
-					<td>Raspberry Pi / 이상한 하드웨어 실행 / 최대 제어 원함</td>
-					<td><strong>llama.cpp</strong> 직접</td>
-			</tr>
-			<tr>
-					<td>진짜 GPU에 10+ 동시 사용자 프로덕션 서빙</td>
-					<td><strong>vLLM</strong></td>
-			</tr>
-			<tr>
-					<td>Apple Silicon Mac, 최고 M-시리즈 성능 원함</td>
-					<td><strong>llama.cpp</strong> (Metal 지원 최고) 또는 <strong>LM Studio</strong> (밑에 llama.cpp 사용)</td>
-			</tr>
-			<tr>
-					<td>앱용 셀프호스트 멀티테넌트 LLM API</td>
-					<td><a href="/kr/resources/llm-frameworks/litellm/">LiteLLM 게이트웨이</a> 뒤에 <strong>vLLM</strong></td>
-			</tr>
-	</tbody>
-</table>
-<p>하나 픽 했나? 나머지 글이 결정 정당화.</p>
-<h2 id="3-ollama--솔로-dev-기본">3. Ollama — 솔로 dev 기본<a hidden class="anchor" aria-hidden="true" href="#3-ollama--솔로-dev-기본">#</a></h2>
-<p><strong>소개</strong>: 한 설치 명령. ```ollama run llama3.2````. 5분 안에 채팅 중. 내부적으로 llama.cpp 위에 구축 — Ollama는 &ldquo;좋은 UX와 모델 카탈로그 가진 llama.cpp&rdquo;.</p>
-<p><strong>실제 수치</strong>: - <strong>GitHub 별</strong>: 137k (네 가지 중 가장 별 많음)</p>
+<p>You can use the wrong one and have it work — but you&rsquo;ll either feel friction (vLLM for a casual local chat) or hit a wall (Ollama trying to serve 50 concurrent users). Pick the one that matches your row in section 2.</p>
+<h2 id="2-the-30-second-decision-tree">2. The 30-Second Decision Tree<a hidden class="anchor" aria-hidden="true" href="#2-the-30-second-decision-tree">#</a></h2>
+<p>| Your situation | Pick |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Solo dev, want local LLM in 5 minutes, CLI is fine | <strong>Ollama</strong> |
+| Non-coder wants a desktop app to chat with local LLMs | <strong>LM Studio</strong> |
+| Run on a Raspberry Pi / weird hardware / want max control | <strong>llama.cpp</strong> directly |
+| Production serving 10+ concurrent users on a real GPU | <strong>vLLM</strong> |
+| Apple Silicon Mac, want best M-series performance | <strong>llama.cpp</strong> (best Metal support) or <strong>LM Studio</strong> (uses llama.cpp under the hood) |
+| Self-hosted multi-tenant LLM API for an app | <strong>vLLM</strong> behind a <a href="/resources/llm-frameworks/litellm/">LiteLLM gateway</a> |</p>
+<p>Picked one? Rest of the article justifies the call.</p>
+<h2 id="3-ollama--the-default-for-solo-devs">3. Ollama — The Default for Solo Devs<a hidden class="anchor" aria-hidden="true" href="#3-ollama--the-default-for-solo-devs">#</a></h2>
+<p><strong>The pitch</strong>: One install command. ```ollama run llama3.2````. You&rsquo;re chatting in 5 minutes. Built on top of llama.cpp internally — Ollama is &ldquo;llama.cpp with great UX and a model catalog.&rdquo;</p>
+<p><strong>Real numbers</strong>: - <strong>GitHub stars</strong>: 137k (the most-starred of the four)</p>
 <ul>
 <li><strong>License</strong>: MIT</li>
-<li><strong>처리량</strong>: M2 / RTX 3060에서 7B 모델 ~20-25 tok/초 (단일 사용자 chat 좋음, 서빙엔 아님)</li>
-<li><strong>하드웨어</strong>: NVIDIA, AMD (ROCm), Apple Silicon (Metal). CPU 폴백 ok</li>
-<li><strong>킬러 기능</strong>: <code>ollama.com/library</code>에 거대한 모델 카탈로그 — 양자화 GGUF 모델 한 명령으로 풀</li>
+<li><strong>Throughput</strong>: ~20-25 tok/s for 7B models on M2 / RTX 3060 (good for single-user chat, not for serving)</li>
+<li><strong>Hardware</strong>: NVIDIA, AMD (ROCm), Apple Silicon (Metal). CPU fallback fine</li>
+<li><strong>Killer feature</strong>: Massive model catalog at <code>ollama.com/library</code> — pulls quantized GGUF models with one command</li>
 </ul>
-<p><strong>Ollama 이기는 곳</strong>: 솔로 dev 코딩 에이전트 (Continue / OpenCode와 페어), 단일 사용자 chat, 프로토타이핑. 우리 <a href="/kr/collections/cheap-llm-stack/">저렴한 LLM 스택</a>과 <a href="/kr/collections/self-hosted-ai-coding-workflow/">셀프호스트 AI 코딩 워크플로우</a> 컬렉션의 기본 정확히 5분 셋업 곡선 때문.</p>
-<p><strong>Ollama 안 이기는 곳</strong>: 멀티 사용자 서빙 (Ollama 기본 요청 순차 큐). 10+ 동시 사용자엔 vLLM 전환.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 설치 + 30초 안에 모델 실행</span>
+<p><strong>When Ollama wins</strong>: Solo dev coding agent (paired with Continue / OpenCode), single-user chat, prototyping. The default for our <a href="/collections/cheap-llm-stack/">Cheap LLM Stack</a> and <a href="/collections/self-hosted-ai-coding-workflow/">Self-Hosted AI Coding Workflow</a> collections precisely because of the 5-minute setup curve.</p>
+<p><strong>When it doesn&rsquo;t win</strong>: Multi-user serving (Ollama queues requests sequentially by default). For 10+ concurrent users, switch to vLLM.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install + run a model in 30 seconds</span>
 </span></span><span style="display:flex;"><span>curl -fsSL https://ollama.com/install.sh | sh
 </span></span><span style="display:flex;"><span>ollama run qwen3-coder:14b
-</span></span></code></pre></div><h2 id="4-lm-studio--비코더용-데스크톱-앱">4. LM Studio — 비코더용 데스크톱 앱<a hidden class="anchor" aria-hidden="true" href="#4-lm-studio--비코더용-데스크톱-앱">#</a></h2>
-<p><strong>소개</strong>: 드래그 앤 드롭 데스크톱 앱 (Windows / macOS / Linux). 내장 모델 카탈로그 탐색, &ldquo;다운로드&rdquo; 클릭, &ldquo;Chat&rdquo; 클릭. CLI 노출 0.</p>
-<p><strong>실제</strong>: - <strong>License</strong>: 클로즈드 소스 프리웨어 (개인 사용 무료; 상업 라이선스 필요)</p>
+</span></span></code></pre></div><h2 id="4-lm-studio--the-desktop-app-for-non-coders">4. LM Studio — The Desktop App for Non-Coders<a hidden class="anchor" aria-hidden="true" href="#4-lm-studio--the-desktop-app-for-non-coders">#</a></h2>
+<p><strong>The pitch</strong>: Drag-and-drop desktop app (Windows / macOS / Linux). Browse a built-in model catalog, click &ldquo;Download,&rdquo; click &ldquo;Chat.&rdquo; Zero CLI exposure.</p>
+<p><strong>Real reality</strong>: - <strong>License</strong>: Closed-source freeware (free for personal use; commercial needs license)</p>
 <ul>
-<li><strong>엔진</strong>: 밑에 llama.cpp 사용 (같은 GGUF 모델 포맷)</li>
-<li><strong>킬러 기능</strong>: 시각 모델 브라우저, 대화 기록 있는 chat UI, 드래그-드롭 통한 로컬 파일 RAG, OpenAI 호환 API 서버 (원클릭 &ldquo;start server&rdquo; → <code>http://localhost:1234/v1</code> 노출)</li>
-<li><strong>하드웨어</strong>: 같은 llama.cpp 커버리지 — NVIDIA, AMD, Apple Silicon (Metal 최적화), CPU 폴백</li>
+<li><strong>Engine</strong>: Uses llama.cpp underneath (same GGUF model format)</li>
+<li><strong>Killer features</strong>: Visual model browser, chat UI with conversation history, RAG over local files via drag-drop, OpenAI-compatible API server (one-click &ldquo;start server&rdquo; → expose <code>http://localhost:1234/v1</code>)</li>
+<li><strong>Hardware</strong>: Same llama.cpp coverage — NVIDIA, AMD, Apple Silicon (Metal-optimized), CPU fallback</li>
 </ul>
-<p><strong>LM Studio 이기는 곳</strong>: 데이터 분석가 / PM / 임원이 터미널 배우지 않고 로컬 모델과 chat 원함. 또는 Ollama / vLLM 통해 앱에 통합 전 모델 테스트할 정돈된 데스크톱 UI 원함.</p>
-<p><strong>LM Studio 안 이기는 곳</strong>: 서버 배포 (데스크톱 앱), 상업 사용 (라이선스 비용), 버전 관리 워크플로우 (Git 친화 config 없음).</p>
-<p><strong>추천 페어링</strong>: 탐색용 LM Studio → 일상 서버용 Ollama → 프로덕션 스케일 vLLM.</p>
-<h2 id="5-llamacpp--밑의-엔진">5. llama.cpp — 밑의 엔진<a hidden class="anchor" aria-hidden="true" href="#5-llamacpp--밑의-엔진">#</a></h2>
-<p><strong>소개</strong>: Ollama, LM Studio, 수십 다른 프로젝트가 내부적으로 사용하는 C/C++ 추론 엔진. 직접 실행하면 최대 제어 + 래퍼에 노출된 것보다 1-2 버전 앞선 최첨단 기능 세트.</p>
-<p><strong>실제 수치</strong>: - <strong>GitHub 별</strong>: 112k</p>
+<p><strong>When LM Studio wins</strong>: Your data analyst / PM / executive wants to chat with a local model without learning the terminal. Or you want a polished desktop UI to test models before integrating via Ollama / vLLM into your app.</p>
+<p><strong>When it doesn&rsquo;t win</strong>: Server deployment (it&rsquo;s a desktop app), commercial use (license cost), version-controlled workflows (no Git-friendly config).</p>
+<p><strong>Recommended pairing</strong>: LM Studio for exploration → Ollama for daily-driver server → vLLM for production scale.</p>
+<h2 id="5-llamacpp--the-engine-underneath">5. llama.cpp — The Engine Underneath<a hidden class="anchor" aria-hidden="true" href="#5-llamacpp--the-engine-underneath">#</a></h2>
+<p><strong>The pitch</strong>: The C/C++ inference engine that Ollama, LM Studio, and dozens of other projects use internally. By running it directly you get max control + the bleeding-edge feature set 1-2 versions ahead of what&rsquo;s exposed in wrappers.</p>
+<p><strong>Real numbers</strong>: - <strong>GitHub stars</strong>: 112k</p>
 <ul>
 <li><strong>License</strong>: MIT</li>
-<li><strong>하드웨어</strong>: 말 그대로 모든 것 — Apple Metal (최고 M-시리즈 지원, NEON/Accelerate 통해 최적화), NVIDIA CUDA, AMD HIP, Intel/AMD CPU (AVX/AVX2/AVX512), Vulkan, SYCL, 브라우저의 WebGPU, RISC-V, ARM</li>
-<li><strong>양자화</strong>: GGUF 포맷, 1.5-bit ~ 8-bit, 사용 가능한 가장 넓은 양자화 옵션</li>
-<li><strong>킬러 기능</strong>: CPU+GPU 하이브리드 추론 (VRAM보다 큰 모델을 GPU와 시스템 RAM에 분할), 문법 제약 출력, <code>llama-server</code> OpenAI 호환 API</li>
+<li><strong>Hardware</strong>: Literally everything — Apple Metal (best M-series support, optimized via NEON/Accelerate), NVIDIA CUDA, AMD HIP, Intel/AMD CPU (AVX/AVX2/AVX512), Vulkan, SYCL, even WebGPU in browser, RISC-V, ARM</li>
+<li><strong>Quantization</strong>: GGUF format, 1.5-bit to 8-bit, broadest quantization options available</li>
+<li><strong>Killer features</strong>: CPU+GPU hybrid inference (split a model larger than VRAM between GPU and system RAM), grammar-constrained output, <code>llama-server</code> OpenAI-compatible API</li>
 </ul>
-<p><strong>llama.cpp 이기는 곳</strong>: - 이상한 하드웨어 (Raspberry Pi 5, RISC-V SBC, WebGPU 통한 브라우저)</p>
+<p><strong>When llama.cpp wins</strong>: - Weird hardware (Raspberry Pi 5, RISC-V SBC, browser via WebGPU)</p>
 <ul>
-<li>VRAM보다 큰 모델 (CPU+GPU 분할)</li>
-<li>최첨단 양자화 필요 (1.5-bit, 2-bit 실험적 포맷)</li>
-<li>의존성 0 원함 (단일 C++ 바이너리, ~10 MB)</li>
+<li>Models bigger than your VRAM (CPU+GPU split)</li>
+<li>Need bleeding-edge quantization (1.5-bit, 2-bit experimental formats)</li>
+<li>Want zero dependencies (single C++ binary, ~10 MB)</li>
 </ul>
-<p><strong>llama.cpp 안 이기는 곳</strong>: C++ 컴파일 플래그 읽기 즐기지 않음. 대부분 사용자는 Ollama / LM Studio 래퍼 원함.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 컴파일과 실행</span>
+<p><strong>When it doesn&rsquo;t win</strong>: You don&rsquo;t enjoy reading C++ compile flags. Most users want the Ollama / LM Studio wrapper.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Compile and run</span>
 </span></span><span style="display:flex;"><span>git clone https://github.com/ggml-org/llama.cpp
 </span></span><span style="display:flex;"><span>cd llama.cpp <span style="color:#f92672">&amp;&amp;</span> make -j
 </span></span><span style="display:flex;"><span>./llama-cli -m model.gguf -p <span style="color:#e6db74">&#34;Hello&#34;</span>
-</span></span></code></pre></div><h2 id="6-vllm--프로덕션-처리량-왕">6. vLLM — 프로덕션 처리량 왕<a hidden class="anchor" aria-hidden="true" href="#6-vllm--프로덕션-처리량-왕">#</a></h2>
-<p><strong>소개</strong>: 진짜 GPU에서 10-1000 동시 사용자 서빙 필요할 때, vLLM의 <strong>PagedAttention</strong> + <strong>continuous batching</strong> + <strong>prefix caching</strong>이 처리량에서 모든 대안을 압도. &ldquo;프로덕션에서 멀티테넌트 LLM API 실행 중&quot;에 대한 사실상 선택.</p>
-<p><strong>실제 수치</strong>: - <strong>GitHub 별</strong>: 80.7k</p>
+</span></span></code></pre></div><h2 id="6-vllm--the-production-throughput-king">6. vLLM — The Production Throughput King<a hidden class="anchor" aria-hidden="true" href="#6-vllm--the-production-throughput-king">#</a></h2>
+<p><strong>The pitch</strong>: When you need to serve 10-1000 concurrent users on a real GPU, vLLM&rsquo;s <strong>PagedAttention</strong> + <strong>continuous batching</strong> + <strong>prefix caching</strong> crush every alternative on throughput. The de-facto choice for &ldquo;I&rsquo;m running a multi-tenant LLM API in production.&rdquo;</p>
+<p><strong>Real numbers</strong>: - <strong>GitHub stars</strong>: 80.7k</p>
 <ul>
 <li><strong>License</strong>: Apache-2.0</li>
-<li><strong>하드웨어</strong>: NVIDIA (최고), AMD ROCm, Apple Silicon, Intel Gaudi, Google TPU, Huawei Ascend, IBM Spyre, 심지어 ARM/RISC-V CPU</li>
-<li><strong>킬러 기능</strong>: PagedAttention (단순 서빙 대비 2-24× 처리량 개선), continuous batching, prefix caching, speculative decoding, multi-LoRA 핫스왑, OpenAI 호환 API</li>
-<li><strong>양자화</strong>: FP8, INT8, INT4, GPTQ, AWQ, GGUF — 가장 넓은 프로덕션 양자화 지원</li>
+<li><strong>Hardware</strong>: NVIDIA (best), AMD ROCm, Apple Silicon, Intel Gaudi, Google TPU, Huawei Ascend, IBM Spyre, even ARM/RISC-V CPUs</li>
+<li><strong>Killer features</strong>: PagedAttention (2-24× throughput improvement over naive serving), continuous batching, prefix caching, speculative decoding, multi-LoRA hot-swap, OpenAI-compatible API</li>
+<li><strong>Quantization</strong>: FP8, INT8, INT4, GPTQ, AWQ, GGUF — broadest production-quant support</li>
 </ul>
-<p><strong>vLLM 이기는 곳</strong>: 프로덕션 멀티테넌트 서빙. 셀프호스트 상업 LLM API. 모든 &ldquo;이 4090에서 초당 50+ 요청 처리해야 함&rdquo; 워크로드. Ollama의 단일 사용자 모델 벗어날 때 <a href="/kr/collections/cheap-llm-stack/">저렴한 LLM 스택</a>과 페어.</p>
-<p><strong>vLLM 안 이기는 곳</strong>: 솔로 dev 로컬 chat (Ollama가 더 빠른 셋업). CPU 전용 하드웨어 (vLLM CPU에서 작동하지만 llama.cpp처럼 최적화 안 됨).</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 빠른 설치 + 서브</span>
+<p><strong>When vLLM wins</strong>: Production multi-tenant serving. Self-hosted commercial LLM API. Any &ldquo;I need to handle 50+ requests/sec on this 4090&rdquo; workload. Pair with our <a href="/collections/cheap-llm-stack/">Cheap LLM Stack</a> when you outgrow Ollama&rsquo;s single-user model.</p>
+<p><strong>When it doesn&rsquo;t win</strong>: Solo dev local chat (Ollama is faster to set up). CPU-only hardware (vLLM works on CPU but isn&rsquo;t optimized for it like llama.cpp).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Quick install + serve</span>
 </span></span><span style="display:flex;"><span>pip install vllm
 </span></span><span style="display:flex;"><span>vllm serve meta-llama/Llama-3.2-3B-Instruct --port <span style="color:#ae81ff">8000</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># OpenAI SDK로 http://localhost:8000/v1 hit</span>
-</span></span></code></pre></div><h2 id="7-정면-대결--숫자-테이블">7. 정면 대결 — 숫자 테이블<a hidden class="anchor" aria-hidden="true" href="#7-정면-대결--숫자-테이블">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>메트릭</th>
-					<th>Ollama</th>
-					<th>LM Studio</th>
-					<th>llama.cpp</th>
-					<th>vLLM</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>GitHub 별</td>
-					<td><strong>137k</strong></td>
-					<td>N/A (클로즈드)</td>
-					<td>112k</td>
-					<td>80.7k</td>
-			</tr>
-			<tr>
-					<td>License</td>
-					<td>MIT</td>
-					<td>클로즈드 프리웨어</td>
-					<td>MIT</td>
-					<td>Apache-2.0</td>
-			</tr>
-			<tr>
-					<td>설치 난이도</td>
-					<td>⭐ (한 명령)</td>
-					<td>⭐ (앱 다운로드)</td>
-					<td>⭐⭐⭐ (컴파일)</td>
-					<td>⭐⭐ (pip install)</td>
-			</tr>
-			<tr>
-					<td>단일 사용자 처리량 (7B, RTX 3060)</td>
-					<td>~20 tok/초</td>
-					<td>~20 tok/초</td>
-					<td>~22 tok/초</td>
-					<td>~25 tok/초</td>
-			</tr>
-			<tr>
-					<td><strong>멀티 사용자 처리량 (10 동시)</strong></td>
-					<td>~25 tok/초 합계</td>
-					<td>N/A (데스크톱)</td>
-					<td>~30 tok/초</td>
-					<td><strong>~200 tok/초</strong> ⭐</td>
-			</tr>
-			<tr>
-					<td>하드웨어 폭</td>
-					<td>NVIDIA/AMD/Apple</td>
-					<td>같음</td>
-					<td><strong>모든 것</strong></td>
-					<td>NVIDIA/AMD/TPU/등</td>
-			</tr>
-			<tr>
-					<td>CPU+GPU 하이브리드 추론</td>
-					<td>✅ (llama.cpp 통해)</td>
-					<td>✅</td>
-					<td><strong>✅ (최고)</strong></td>
-					<td>⚠️ 제한</td>
-			</tr>
-			<tr>
-					<td>최고 Apple Silicon 성능</td>
-					<td>좋음</td>
-					<td>좋음</td>
-					<td><strong>최고</strong></td>
-					<td>좋음</td>
-			</tr>
-			<tr>
-					<td>프로덕션 멀티테넌시</td>
-					<td>⚠️ 제한</td>
-					<td>❌ (데스크톱)</td>
-					<td>⚠️ 수동</td>
-					<td><strong>✅</strong> ⭐</td>
-			</tr>
-			<tr>
-					<td>최적 사용처</td>
-					<td>솔로 dev CLI</td>
-					<td>비코더 GUI</td>
-					<td>이상한 하드웨어 / 최대 제어</td>
-					<td>프로덕션 서빙</td>
-			</tr>
-	</tbody>
-</table>
-<p>행 단위로 읽고 지배적 제약으로 픽.</p>
-<h2 id="8-실제-시나리오">8. 실제 시나리오<a hidden class="anchor" aria-hidden="true" href="#8-실제-시나리오">#</a></h2>
-<p><strong>시나리오 A — AI로 코딩하는 솔로 파운더</strong>: 노트북에 Ollama. 끝. OpenAI 호환 API 통해 OpenCode / Continue / Cursor와 연결. 전체 스택은 <a href="/kr/collections/self-hosted-ai-coding-workflow/">셀프호스트 AI 코딩 워크플로우</a> 참조.</p>
-<p><strong>시나리오 B — 50 직원 회사 내부 챗봇</strong>: vLLM을 전용 24 GB GPU (RTX 4090 또는 A5000)에,  또는 . auth + 사용자별 지출 추적 위해 <a href="/kr/resources/llm-frameworks/litellm/">LiteLLM 게이트웨이</a>로 fronted.</p>
-<p><strong>시나리오 C — 마케팅 VP가 문서와 chat 원함</strong>: LM Studio. RAG 인터페이스에 PDF 드래그 앤 드롭. 훈련 0 필요. 실제로 엔지니어링 필요한 사용 사례 위해 엔지니어링 시간 저장.</p>
-<p><strong>시나리오 D — Raspberry Pi 5에서 Qwen 3 14B 실행</strong>: llama.cpp 직접. Ollama 작동할 수 있지만 llama.cpp의 ARM 최적화와 ````&ndash;n-gpu-layers 0``` 순수 CPU가 가장 많이 짜냄.</p>
-<p><strong>시나리오 E — 멀티모달 AI 콘텐츠 파이프라인</strong>: <a href="/kr/collections/multi-modal-content-pipeline/">멀티모달 콘텐츠 파이프라인</a>에서 로컬 폴백용 Ollama 사용. 동시 생성 작업이 Ollama 직렬 큐 초과하면 vLLM으로 승급.</p>
-<h2 id="9-그냥-ollama-쓰기-기본은-보통-옳다">9. &ldquo;그냥 Ollama 쓰기&rdquo; 기본은 보통 옳다<a hidden class="anchor" aria-hidden="true" href="#9-그냥-ollama-쓰기-기본은-보통-옳다">#</a></h2>
-<p>Ollama는 llama.cpp 위에 구축. LM Studio는 llama.cpp 위에 구축. 그래서 80% 사용자의 질문은 &ldquo;어떤 추론 엔진&quot;이 아니라 — &ldquo;어떤 래퍼 UX 선호&rdquo;.</p>
-<ul>
-<li><strong>CLI + 모델 카탈로그 좋음</strong>: Ollama</li>
-<li><strong>데스크톱 GUI + CLI 노출 0 좋음</strong>: LM Studio</li>
-<li><strong>둘 다 밑이 같음. 둘 다 동일 출력.</strong></li>
-</ul>
-<p>진짜 실제 선택해야 하는 사람만: - 하드웨어 손쟁이 (llama.cpp 직접)</p>
-<ul>
-<li>프로덕션 서빙 (vLLM)</li>
-<li>나머지 모두: UI 선호에 따라 Ollama 또는 LM Studio 사용</li>
-</ul>
-<h2 id="10-빠른-마이그레이션-경로">10. 빠른 마이그레이션 경로<a hidden class="anchor" aria-hidden="true" href="#10-빠른-마이그레이션-경로">#</a></h2>
-<p>혼합과 전환 가능. 일반적 진화: 1. <strong>1일차</strong>: Ollama 설치. 한 모델 실행
-2. <strong>1-4주</strong>: 에디터/에이전트와 Ollama. 비코딩 task용 데스크톱 chat UI 원함을 깨달음. LM Studio 추가
-3. <strong>3개월+</strong>: 실제 제품 구축. Ollama 요청 직렬 큐 깨달음. 프로덕션 tier에 LiteLLM 뒤에 vLLM 추가; 개발에 Ollama 유지
-4. <strong>1년+</strong>: 이상한 하드웨어 (RISC-V SBC, 브라우저 배포) 또는 최첨단 양자화 원함. 그 특정 워크로드에 대해 llama.cpp 직접으로 내려감</p>
-<p>&ldquo;하나 고르고 고집해야&rdquo; 함 없음. 같은 스택 다른 레이어가 행복하게 공존.</p>
-<h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
-<p>4 로컬 LLM 러너, 4 스위트 스폿: - <strong>Ollama</strong> (137k 별) — 솔로 dev CLI 기본</p>
-<ul>
-<li><strong>LM Studio</strong> — 비코더 데스크톱 GUI</li>
-<li><strong>llama.cpp</strong> (112k 별) — 이상한 하드웨어 + 최대 제어 + 다른 것들 밑의 엔진</li>
-<li><strong>vLLM</strong> (80.7k 별) — 프로덕션 멀티테넌트 서빙</li>
-</ul>
-<p>범용 최고 로컬 LLM 러너 없음. 2절의 본인 행과 매치하는 것 있음. 그것 픽, 출시, 동시 사용자 수가 10 넘으면 재평가 (Ollama → vLLM 신호).</p>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Now hit http://localhost:8000/v1 with OpenAI SDK</span>
+</span></span></code></pre></div><h2 id="7-head-to-head--the-numbers-table">7. Head-to-Head — The Numbers Table<a hidden class="anchor" aria-hidden="true" href="#7-head-to-head--the-numbers-table">#</a></h2>
+<p>| Metric | Ollama | LM Studio | llama.cpp | vLLM |
+|</p>
 <hr>
-<p><em>동반 콘텐츠: <a href="/kr/collections/cheap-llm-stack/">저렴한 LLM 스택 컬렉션</a>은 기본 로컬 러너로 Ollama 사용. <a href="/kr/collections/self-hosted-ai-coding-workflow/">셀프호스트 AI 코딩 워크플로우</a>와 <a href="/kr/collections/knowledge-base-stack/">지식 베이스 스택</a> 모두 로컬 추론에 Ollama 타고 있음. 여러 러너 앞 게이트웨이 레이어용 <a href="/kr/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/">Portkey vs LiteLLM vs OpenRouter</a>.</em></p>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| GitHub stars | <strong>137k</strong> | N/A (closed) | 112k | 80.7k |
+| License | MIT | Closed freeware | MIT | Apache-2.0 |
+| Install difficulty | ⭐ (one command) | ⭐ (download app) | ⭐⭐⭐ (compile) | ⭐⭐ (pip install) |
+| Single-user throughput (7B, RTX 3060) | ~20 tok/s | ~20 tok/s | ~22 tok/s | ~25 tok/s |
+| <strong>Multi-user throughput (10 concurrent)</strong> | ~25 tok/s combined | N/A (desktop) | ~30 tok/s | <strong>~200 tok/s</strong> ⭐ |
+| Hardware breadth | NVIDIA/AMD/Apple | Same | <strong>Everything</strong> | NVIDIA/AMD/TPU/etc. |
+| CPU+GPU hybrid inference | ✅ (via llama.cpp) | ✅ | <strong>✅ (best)</strong> | ⚠️ Limited |
+| Best Apple Silicon perf | Good | Good | <strong>Best</strong> | Good |
+| Production multi-tenancy | ⚠️ Limited | ❌ (desktop) | ⚠️ Manual | <strong>✅</strong> ⭐ |
+| Best for | Solo dev CLI | Non-coder GUI | Weird hardware / max control | Production serving |</p>
+<p>Read by row, pick by dominant constraint.</p>
+<h2 id="8-real-world-scenarios">8. Real-World Scenarios<a hidden class="anchor" aria-hidden="true" href="#8-real-world-scenarios">#</a></h2>
+<p><strong>Scenario A — Solo founder coding with AI</strong>: Ollama on your laptop. Done. Connect to OpenCode / Continue / Cursor via OpenAI-compatible API. See our <a href="/collections/self-hosted-ai-coding-workflow/">Self-Hosted AI Coding Workflow</a> for the full stack.</p>
+<p><strong>Scenario B — Internal company chatbot for 50 employees</strong>: vLLM on a dedicated 24 GB GPU (RTX 4090 or A5000) on a  or . Fronted by <a href="/resources/llm-frameworks/litellm/">LiteLLM gateway</a> for auth + per-user spend tracking.</p>
+<p><strong>Scenario C — Your VP of Marketing wants to chat with documents</strong>: LM Studio. They drag and drop PDFs into the RAG interface. Zero training needed. Save your engineering time for the use cases that actually need engineering.</p>
+<p><strong>Scenario D — Run Qwen 3 14B on a Raspberry Pi 5</strong>: llama.cpp directly. Ollama might work, but llama.cpp&rsquo;s ARM optimizations and ````&ndash;n-gpu-layers 0``` for pure CPU give you the most squeeze.</p>
+<p><strong>Scenario E — Multi-modal AI content pipeline</strong>: Use Ollama for local fallback in your <a href="/collections/multi-modal-content-pipeline/">Multi-Modal Content Pipeline</a>. Promote to vLLM when concurrent generation jobs exceed Ollama&rsquo;s serial queue.</p>
+<h2 id="9-the-just-use-ollama-default-is-usually-right">9. The &ldquo;Just Use Ollama&rdquo; Default Is Usually Right<a hidden class="anchor" aria-hidden="true" href="#9-the-just-use-ollama-default-is-usually-right">#</a></h2>
+<p>Ollama is built on llama.cpp. LM Studio is built on llama.cpp. So the question for 80% of users isn&rsquo;t &ldquo;which inference engine&rdquo; — it&rsquo;s &ldquo;which wrapper UX do I prefer.&rdquo;</p>
+<ul>
+<li><strong>Like CLI + model catalog</strong>: Ollama</li>
+<li><strong>Like desktop GUI + no-CLI exposure</strong>: LM Studio</li>
+<li><strong>Both work the same underneath. Both produce identical output.</strong></li>
+</ul>
+<p>The only people who genuinely need to make a real choice are: - Hardware tinkerers (llama.cpp direct)</p>
+<ul>
+<li>Production serving (vLLM)</li>
+<li>Everyone else: use Ollama or LM Studio based on your UI preference</li>
+</ul>
+<h2 id="10-quick-migration-path">10. Quick Migration Path<a hidden class="anchor" aria-hidden="true" href="#10-quick-migration-path">#</a></h2>
+<p>You can mix and switch. Common evolution: 1. <strong>Day 1</strong>: Install Ollama. Get one model running.
+2. <strong>Week 1-4</strong>: Use Ollama with your editor / agent. Realize you want a desktop chat UI for non-coding tasks. Add LM Studio.
+3. <strong>Month 3+</strong>: Building a real product. Realize Ollama queues requests serially. Add vLLM behind LiteLLM for the production tier; keep Ollama for development.
+4. <strong>Year 1+</strong>: Hit weird hardware (RISC-V SBC, browser deployment) or want bleeding-edge quantization. Drop down to llama.cpp directly for that specific workload.</p>
+<p>You never have to &ldquo;pick one and stick with it.&rdquo; Different layers of the same stack happily coexist.</p>
+<h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
+<p>Four local LLM runners, four sweet spots: - <strong>Ollama</strong> (137k stars) — solo dev CLI default</p>
+<ul>
+<li><strong>LM Studio</strong> — non-coder desktop GUI</li>
+<li><strong>llama.cpp</strong> (112k stars) — weird hardware + max control + the engine underneath the others</li>
+<li><strong>vLLM</strong> (80.7k stars) — production multi-tenant serving</li>
+</ul>
+<p>There&rsquo;s no universally best local LLM runner. There&rsquo;s the one that matches your row in section 2. Pick that one, ship, and re-evaluate when your concurrent-user count crosses 10 (that&quot;s the Ollama → vLLM signal).</p>
+<hr>
+<p><em>Companion content: <a href="/collections/cheap-llm-stack/">Cheap LLM Stack collection</a> uses Ollama as the default local runner. <a href="/collections/self-hosted-ai-coding-workflow/">Self-Hosted AI Coding Workflow</a> and <a href="/collections/knowledge-base-stack/">Knowledge Base Stack</a> both ride on Ollama for local inference. <a href="/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/">Portkey vs LiteLLM vs OpenRouter</a> for the gateway layer in front of multiple runners.</em></p>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;Ollama vs LM Studio vs llama.cpp vs vLLM 2026: 정직한 로컬 LLM 러너 결정 가이드&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Ollama vs LM Studio vs llama.cpp vs vLLM 2026: The Honest Local LLM Runner Decision Guide&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-21&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-21&rdquo;,
 &ldquo;author&rdquo;: {
@@ -506,7 +426,7 @@ aliases:</p>
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/local-llm-runner-comparison-2026%22">https://dibi8.com/kr/resources/local-llm-runner-comparison-2026"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/local-llm-runner-comparison-2026%22">https://dibi8.com/resources/local-llm-runner-comparison-2026"</a>
 }
 }
 </script></p>
@@ -574,6 +494,81 @@ aliases:</p>
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

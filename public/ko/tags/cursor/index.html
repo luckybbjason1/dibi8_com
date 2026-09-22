@@ -98,7 +98,7 @@
                 </a>
             </li>
             <li>
-                <a href="https://dibi8.com/ko/" title="🛠 Tools">
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
                     <span>🛠 Tools</span>
                 </a>
             </li>
@@ -147,18 +147,18 @@
 
 <article class="post-entry tag-entry"> 
   <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor vs Codex
+    <h2 class="entry-hint-parent">AI 코딩 에이전트 2026: OpenCode vs Claude Code vs Cursor vs Codex
     </h2>
   </header>
   <div class="entry-content">
-    <p>AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor vs Codex Introduction The AI coding tool landscape has exploded in 2026, with four major players dominating the conversation:
-Claude Code (Anthropic) - Terminal-first coding agent Cursor - AI-native IDE built on VS Code Codex CLI (OpenAI) - Rust-based coding terminal OpenCode (OSS) - Open-source Go CLI (45K&#43; GitHub stars) Each takes a different philosophy on how AI should interact with code. Let’s break down the real differences.
+    <p>AI 코딩 에이전트 2026: OpenCode vs Claude Code vs Cursor vs Codex 소개 2026년 AI 코딩 도구 생태계는 폭발적으로 성장했으며, 4개의 주요 플레이어가 대화를 주도하고 있습니다:
+Claude Code (Anthropic) - 터미널 우선 코딩 에이전트 Cursor - VS Code 기반으로 구축된 AI 네이티브 IDE Codex CLI (OpenAI) - Rust 기반 코딩 터미널 OpenCode (OSS) - 오픈소스 Go CLI (45K&#43; GitHub 스타) 각각 AI가 코드와 상호작용하는 방식에 대해 서로 다른 철학을 가지고 있습니다. 실제 차이점을 분석해 보겠습니다.
 ...</p>
   </div>
   <footer class="entry-footer">
 
 <span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>5 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor vs Codex" href="https://dibi8.com/ko/ai-coding-agents-full-comparison/"></a>
+  <a class="entry-link" aria-label="post link to AI 코딩 에이전트 2026: OpenCode vs Claude Code vs Cursor vs Codex" href="https://dibi8.com/ko/ai-coding-agents-full-comparison/"></a>
 </article>
 
 <article class="post-entry tag-entry"> 
@@ -197,6 +197,81 @@ Addy Osmani는 누구입니까? 들어가기 앞서, 왜 이것이 중요한지 
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

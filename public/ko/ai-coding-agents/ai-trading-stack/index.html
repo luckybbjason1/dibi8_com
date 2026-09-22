@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-21T00:00:00+08:00 lastmod: 2026-05-21T00:00:00+08:00 tech_stack: [Python, Docker, PostgreSQL, WebSocket] application_domain: Collections source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-21” draft: false categories: [“collections”] tags: [“ai 트레이딩”, “퀀트”, “암호화폐”, “hyperliquid”, “polymarket”, “스택”, “컬렉션”] aliases:\n/posts/ai-trading-stack/ AI 트레이딩 스택 2026: 암호화폐 + 예측 시장용 7컴포넌트 오픈소스 퀀트 워크플로우 ⚠️ 면책 조항: 이는 AI 트레이딩 스택 구축 기술 가이드이지 투자 조언 아님. 퀀트 트레이딩은 실질적 자본 손실 위험. 실제 자본 배포 전 페이퍼/테스트넷에서 광범위하게 테스트. 과거 백테스트 성과는 미래 수익 예측 안 함.\n2026년 리테일 퀀트 환경이 마침내 2018년 헤지펀드 수준에 도달: 스택 모든 레이어에 오픈소스 프레임워크, AI 강화 전략, 브로커 게이트키퍼 없는 온체인 venue. SaaS 퀀트 플랫폼(3Commas $74/월, Cryptohopper $129/월, TradingView Premium $59/월)과의 트레이드오프는 학습 곡선 더 가파르지만 완전 제어 + per-trade 수수료 0 + alpha가 본인 머신 떠나지 않음.\n이 컬렉션은 7컴포넌트 조립, 신호 생성 → 백테스트 → 실시간 실행 → AI 전략 레이어 → venue → 예측 시장 → AI+crypto 사용자 친화 hub. 인프라 비용 $30-150/월. 실제 트레이딩 자본 투입 컴포넌트는 본인 책임.\nTL;DR — 한눈에 보는 스택 # 컴포넌트 레이어 역할 심층 가이드 1 ta-lib 신호 200+ 기술 지표 (RSI, MACD, Bollinger 등) ta-lib 가이드 2 vectorbt 백테스트 벡터화 Python 백테스팅, for-loop 보다 100× 빠름 vectorbt 2026 3 freqtrade 실행 프로덕션급 암호화폐 트레이딩 봇, 거래소 무관 freqtrade AI 전략 4 AI Trader AI 전략 LLM 주도 전략 생성 + 강화 학습 AI trader 가이드 5 Hyperliquid Venue 2026 최상 perp DEX, 온체인 order book, 저수수료 Hyperliquid perp 트레이딩 6 Polymarket Agents 예측 시장 AI 에이전트가 예측 시장 자율 트레이딩 Polymarket Agents 7 Minara AI+Crypto 허브 암호화폐/주식/원자재용 AI 인터페이스, Hyperliquid 기반 Minara AI 트레이딩 리뷰 총 인프라 비용 (트레이딩 자본 제외): 솔로 dev $30-80/월 • 멀티 전략 동시 작은 펀드 $80-150/월\nSaaS 퀀트 플랫폼 비교: 3Commas Pro ($74) + TradingView Premium ($59) + CoinTracking ($21) = $154/월, rate limit, IP 기반 실행 제한, 전략 코드 소스 액세스 없음.\n1. 2026에 자체 AI 트레이딩 스택 구축 이유 3 수렴 변화: 1. 온체인 perp DEX 메인스트림 깊이 도달 — Hyperliquid의 톱 페어 order book이 CEX급 유동성, 서브초 온체인 결제 2. AI 전략 생성 작동 — LLM (Claude 4 / GPT-5)이 백테스트 읽고 out-of-sample에서 유지되는 전략 파라미터 조정 제안 (커브 피팅 아님) 3. 무 API 키 venue + 암호화폐 레일 — 지갑 기반 트레이딩 = SaaS 제공자가 제한, 키 잠금, “컴플라이언스 리뷰” 빌미로 전략 수확 못 함\n2026 리테일 트레이더가 이 스택 구축하면 2018 헤지펀드가 좌석당 $50k 지불한 도구 보유.\n2. 아키텍처 — 신호 → 백테스트 → 실시간 → AI 루프 ┌──────────────────────────────────────────────────┐ │ 시장 데이터 (websocket / REST) │ │ - Hyperliquid order book + trade │ │ - Polymarket 예측 시장 odds │ │ - CEX (Binance, OKX) 크로스 venue 차익 │ └────────────────┬─────────────────────────────────┘ │ ▼ ┌──────────────────────────────────────────────────┐ │ 신호 레이어: ta-lib │ │ → RSI / MACD / Bollinger / 200+ 지표 │ └────────────────┬─────────────────────────────────┘ │ ▼ ┌──────────────────────────────────────────────────┐ │ 백테스트: vectorbt │ │ → 수년 데이터 벡터화, 초 단위 │ │ → Walk-forward 최적화 │ └────────────────┬─────────────────────────────────┘ │ (전략 검증) ▼ ┌──────────────────────────────────────────────────┐ │ 실행: freqtrade 또는 Hyperliquid 직접 │ │ → CEX: freqtrade (Binance/OKX/...) │ │ → DEX: Hyperliquid Python SDK 직접 │ │ → 예측: Polymarket Agents │ └────────────────┬─────────────────────────────────┘ │ ▼ ┌──────────────────────────────────────────────────┐ │ AI 루프: AI Trader │ │ → 실시간 PnL + 시장 데이터 읽음 │ │ → 전략 조정 제안 │ │ → 백테스트에 검증 위해 되돌림 │ └──────────────────────────────────────────────────┘ 코딩 없이 AI 에이전트 경험 원하는 비기술 사용자: Minara가 Hyperliquid 위 사용자 친화 hub 레이어 제공.\n3. 컴포넌트 1 — ta-lib (신호 생성) 역할: 신호 레이어. RSI, MACD, Bollinger Bands, ADX, 200+ 클래식 기술 지표 모두 빠른 C 라이브러리 + Python 바인딩.\n왜 이거: 30+ 년 전투 검증. 모든 퀀트 프레임워크가 ta-lib를 쓰거나 그 함수 재구현. 원본 사용.\n빠른 설치: `````bash apt install libta-lib-dev pip install TA-Lib\n전체 가이드 walk-forward 지표 조합 패턴 포함: [ta-lib 기술 분석 트레이딩](/kr/resources/ai-trading/ta-lib-technical-analysis-trading/). ## 4. 컴포넌트 2 — vectorbt (백테스팅) **역할**: 수년 데이터에서 초 단위 전략 백테스트, 분 단위 아님. 벡터화 numpy 연산이 Backtrader같은 for-loop 백테스트보다 50-100× 빠름. **왜 이거**: Walk-forward 최적화, 파라미터 스윕, 몬테카를로 시뮬레이션, Sharpe/Sortino/Calmar 메트릭, 포지션 사이징 — 모두 내장. 진지한 리테일 퀀트 사실상 선택. **빠른 설치**: `````bash pip install vectorbt 전체 가이드 walk-forward와 몬테카를로 포함: vectorbt 정량적 백테스팅.\n5. 컴포넌트 3 — freqtrade (CEX 실시간 실행) 역할: 중앙화 거래소 트레이딩 실행 레이어 (Binance, OKX, Kraken, KuCoin, Coinbase Pro, 20+ 기타). 프로덕션급 — 주문 관리, 오류 복구, 포지션 추적, 거래소 rate limit 처리.\n왜 이거: ~31k GitHub stars, 5+ 년 전투 검증. 전략 핫 리로드, dry-run 모드 (실시간 데이터에 페이퍼 트레이딩), Telegram 봇 통합, 웹 UI, Docker 배포. 기본 오픈소스 CEX 트레이딩 봇.\n빠른 설치: `````bash docker compose -f https://github.com/freqtrade/freqtrade/raw/stable/docker-compose.yml up -d\n낮은 레이턴시 VPS 배포 — 내부 freqtrade 인스턴스를 아시아 거래소 sub-50ms 레이턴시 위해 , 또는 미국 편향 venue 위해 NYC에 . 전체 셋업 AI 전략 패턴 포함: [freqtrade AI 트레이딩 전략](/kr/resources/llm-frameworks/freqtrade-ai-trading-strategies/). ## 6. 컴포넌트 4 — AI Trader (AI 전략 레이어) **역할**: \"AI 트레이딩\"의 \"AI\". 실시간 PnL, 시장 체제, 최근 백테스트 결과 읽음 — 파라미터 조정과 새 전략 후보 제안. 인간의 \"시장이 바뀐 것 같음\" 직관과 시스템 백테스트 파이프라인 다리. **왜 중요**: 정적 전략은 감쇠. 2026년 5월 암호화폐 시장은 2024년 1월 시장 아님. 조정 루프 없이는 전략 edge가 6-12개월 안에 침식. AI Trader는 이 루프에 특화된 유일한 널리 채택된 오픈소스 프레임워크. **빠른 설치**: `````bash pip install ai-trader 전체 셋업: AI Trader 가이드.\n7. 컴포넌트 5 — Hyperliquid (Perp DEX Venue) 역할: 온체인 perp DEX venue. 2026년에 Hyperliquid는 Binance 외 가장 깊은 perp order book — Binance와 달리 KYC 차단 없음, 출금 제한 없음, 감사 가능한 온체인 결제.\nAI 트레이딩에 중요한 이유: 지갑 서명으로 직접 Python SDK 액세스 = API 키 관리 없음, 가스 동등 온체인 제한 외 rate limit 없음. CEX 대시보드 안 만지고 코드에서 전략 실행.\n빠른 설치: `````bash pip install hyperliquid-python-sdk\n전체 가이드 지갑 셋업과 주문 타입 포함: [Hyperliquid perp DEX 트레이딩](/kr/resources/ai-trading/hyperliquid-perp-dex-trading/). ## 8. 컴포넌트 6 — Polymarket Agents (예측 시장) **역할**: 완전히 다른 alpha 소스 — 예측 시장. Polymarket은 결과가 실제 사건 (선거, 스포츠, 매크로)에 묶인 USDC 결제 예측 시장. 비효율 가격이 암호화폐 네이티브 시장에 없는 AI 이용 가능 edge 생성. **왜 슬리퍼 베팅**: 대부분 리테일 퀀트가 예측 시장 완전 무시. Polymarket Agents 프레임워크는 자율 AI 에이전트가 사건 리서치, 결과 모델링, 베팅 위해 목적 구축. 전체 셋업: [Polymarket Agents — AI 트레이딩 봇 프레임워크](/kr/resources/llm-frameworks/polymarket-agents-ai-trading-bot-framework/). ## 9. 컴포넌트 7 — Minara (비코더용 AI+Crypto 허브) **역할**: Python 안 쓰고 AI 주도 트레이딩 원하는 사용자 부분에 — Minara가 Hyperliquid 위 사용자 친화 대화형 인터페이스 제공. AI 질문 답변, 실시간 시장 분석, 암호화폐 + 주식 + 원자재 트레이드 실행, 모두 chat 같은 UI에서. **왜 이 스택에 맞나**: 하드코어 퀀트도 빠른 시장 체크인, 임시 질문, 수동 헤지용 \"두 번째 모니터\" 도구 필요. Minara가 AI 네이티브 답변 (vs TradingView 전통 차팅). 순수 비코더 사용자가 AI 주도 트레이딩 원함: Minara가 독립 진입점. **시작**: — Hyperliquid 기반이라 기본 실행이 위 기술 스택과 같은 DEX 레일. 대화 레이어로 사용; 시스템 전략용으로 기술 스택 (컴포넌트 1-6) 사용. 전체 리뷰: [Minara Hyperliquid AI 트레이딩 2026 리뷰](/kr/resources/ai-trading/minara-ai-trading-hyperliquid-review-2026/). ## 10. Day 1 셋업 순서 (4-5시간, 실제 자본 전) 1. **VPS + Python 환경** (15분) — 4 GB, Python 3.11 + Docker 설치 2. **ta-lib + vectorbt** (15분) — ````pip install```, 1년 BTC 데이터에 샘플 백테스트 실행 3. **freqtrade dry-run** (30분) — Docker compose, 읽기 전용 Binance API 키로 구성, 실시간 가기 전 2주 페이퍼에 기본 Bollinger 전략 배포 4. **Hyperliquid 테스트넷** (30분) — 테스트넷 USDC 받기, SDK 설치, 테스트넷에 테스트 주문, 실행 확인 5. **AI Trader 통합** (45분) — DeepSeek (저렴) 또는 Claude (premium) API 키로 구성, freqtrade dry-run 로그 가리킴 6. **Polymarket Agents** (30분) — 지갑 셋업, 테스트용 $50 USDC 펀딩, \"뉴스 주도 예측\" 에이전트 배포 7. **Minara 계정** (10분) — 대화 UI 위해; 시스템 가도 임시 시장 체크에 유용 8. **최소 2주 페이퍼 트레이딩** (실시간) — 실제 자본 배포 전, 모든 실시간 실행을 2주 dry-run / 테스트넷, 명백한 거 안 깨뜨렸음 증명 5시간 셋업 + 2주 페이퍼 트레이딩 후, 본인 소유 인프라에 진짜 프로덕션급 퀀트 스택 보유. ## 11. 비용 분석 | 항목 | 솔로 리테일 | 능동 전략 dev | 작은 펀드 (3 전략 실시간) | |---|---|---|---| | VPS | $12-24 | $24-48 | $60-120 | | 데이터 피드 (대부분 거래소 무료 websocket) | $0 | $0-20 | $50-150 | | LLM API (AI Trader 전략 생성) | $5-15 | $20-50 | $80-200 | | Hyperliquid (가스 동등 수수료) | per-trade | per-trade | per-trade | | Polymarket (per-trade) | per-trade | per-trade | per-trade | | Minara 구독 (사용 시) | $0 (무료 티어) | $0-30 | $0-50 | | **총 인프라** | **~$30-50/월** | **~$70-150/월** | **~$200-500/월** | **제외**: 트레이딩 자본 자체. Venue per-trade 수수료. 세금 소프트웨어 (별도 CoinTracking 또는 Koinly 권장). ## 12. 업그레이드 경로 이 스택 벗어날 때: - **\u003e10 동시 전략** — freqtrade를 전략별 격리 있는 Kubernetes 클러스터로 이동 - **\u003c50ms 레이턴시 중요** — 거래소 데이터 센터에 코로케이션 - **다자산 (암호화폐 + 주식 + 선물)** — Interactive Brokers 통합 추가 - **감사 등급 trade 기록** — immudb 또는 Apache Kafka 추가 - **자본 \u003e $1M** — 암호화폐 이해하는 CPA; 다른 사람 돈 관리면 펀드 (LP/GP)로 구조화 ## 13. 정직한 리스크 토론 이 스택은 퀀트 트레이딩 시스템 구축을 2018보다 10× 쉽게 만듦. **실제 전략 찾기를 더 쉽게 만들지 않음.** 백테스트에서 수익 보이는 대부분 퀀트 전략이 실시간 실행에서 실패하는 이유: - 역사 데이터의 **생존자 편향** (실패 거래소, 상장 폐지 페어) - **슬리피지** — 백테스트는 중간가 체결 가정; 실시간 실행이 spread 먹음 - **체제 변화** — 2022 약세장에서 작동한 게 2026 강세장에서 안 될 수 있음 - **집중 위험** — 단일 venue 100%는 단일 해킹/규제 조치가 청산 - **심리적 압박** — 실제 돈 변동 보는 게 백테스트 자기자본 곡선 보는 것과 다름 스택 구축. 1-3개월 페이퍼 트레이드. 완전히 잃을 수 있는 자본으로 시작. 천천히 스케일. ## TL;DR — 레시피 **셀프호스트 AI 퀀트 트레이딩용 7 컴포넌트, $30-150/월 인프라 (트레이딩 자본 제외)**: 1. **ta-lib** — 신호 생성 (200+ 지표) 2. **vectorbt** — 벡터화 백테스팅 3. **freqtrade** — 프로덕션 CEX 실행 4. **AI Trader** — AI 전략 조정 루프 5. **Hyperliquid** — 온체인 perp DEX venue 6. **Polymarket Agents** — 예측 시장 alpha 7. **Minara** — 비코더용 AI+crypto 대화 hub () 저레이턴시 실행 위해 띄우고, 실시간 가기 전 2-4주 페이퍼 트레이드, 잃을 수 있는 자본으로 시작, 실시간 성과가 백테스트 기대 일치 후만 스케일. * * * *동반 컬렉션: [저렴한 LLM 스택](/kr/collections/cheap-llm-stack/) AI Trader의 LLM API 비용 측. [AI Agent 도구 체인](/kr/collections/ai-agent-tool-chain/) 자율 에이전트가 트레이딩 루프 구동 원함. [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/) 전략 코드 개발 측.* *⚠️ 재진술: 투자 조언 아님. 본인 책임 트레이드.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"AI 트레이딩 스택 2026: 암호화폐 + 예측 시장용 7컴포넌트 오픈소스 퀀트 워크플로우\", \"datePublished\": \"2026-05-21\", \"dateModified\": \"2026-05-21\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/ai-trading-stack\" } } * * * ## Related Articles - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](ai-trading-stack) - [12-factor-agents](ai-trading-stack) - [2026-05-25-trending-ai-agents](ai-trading-stack) - [2026-06-01-trending-ai-agents](ai-trading-stack) - [2026-06-08-trending-ai-agents](ai-trading-stack) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
-  "wordCount" : "1835",
+  "articleBody": "title: “The AI Trading Stack 2026: 7-Component Open-Source Quant… description: “Technical guide and comparison.” date: 2026-05-21T00:00:00+08:00 lastmod: 2026-05-21T00:00:00+08:00 tech_stack: - Python\nDocker PostgreSQL WebSocket application_domain: Collections source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-21” draft: false categories: [“collections”] tags: [“ai trading”, “quant”, “crypto”, “hyperliquid”, “polymarket”, “stack”, “collection”] aliases: /posts/ai-trading-stack/- ⚠️ Disclaimer: This is a technical guide to building an AI trading stack, not investment advice. Quantitative trading carries substantial risk of capital loss. Test extensively on paper / testnet before deploying real capital. Past backtest performance does not predict future returns.\nThe 2026 retail quant landscape has finally caught up with what hedge funds had in 2018: open-source frameworks at every layer of the stack, AI-enhanced strategies, on-chain venues without a broker gatekeeper. The trade-off vs SaaS quant platforms (3Commas at $74/mo, Cryptohopper at $129/mo, TradingView Premium at $59/mo) is steeper learning curve but full control + zero per-trade fees + your alpha never leaves your machine.\nThis collection assembles 7 components spanning signal generation → backtest → live execution → AI strategy layer → venue → prediction markets → AI+crypto user-friendly hub. Infrastructure cost $30-150/mo. The component you actually fund trading capital with is on you.\nTL;DR — The Stack at a Glance | # | Component | Layer | Role | Deep dive | |\n|\n|\n|\n|\n| | 1 | ta-lib | Signal | 200+ technical indicators (RSI, MACD, Bollinger, etc.) | ta-lib guide | | 2 | vectorbt | Backtest | Vectorized Python backtesting, 100× faster than for-loops | vectorbt 2026 | | 3 | freqtrade | Execution | Production-grade crypto trading bot, exchange-agnostic | freqtrade AI strategies | | 4 | AI Trader | AI Strategy | LLM-driven strategy generation + reinforcement learning | AI trader guide | | 5 | Hyperliquid | Venue | Top perp DEX in 2026, on-chain order book, low fees | Hyperliquid perp trading | | 6 | Polymarket Agents | Prediction Markets | AI agents trading prediction markets autonomously | Polymarket Agents | | 7 | Minara | AI+Crypto Hub | AI interface for crypto/stocks/commodities, built on Hyperliquid | Minara AI trading review |\nTotal infrastructure cost (excluding trading capital): $30-80/mo solo dev • $80-150/mo small fund with multiple strategies concurrent\nCompare against SaaS quant platforms: 3Commas Pro ($74) + TradingView Premium ($59) + CoinTracking ($21) = $154/mo with rate limits, IP-based execution restrictions, no source access to your strategy code.\n1. Why Build Your Own AI Trading Stack in 2026 Three converging shifts: 1. On-chain perp DEXes hit mainstream depth — Hyperliquid’s order book has CEX-grade liquidity for the top pairs, with sub-second on-chain settlement 2. AI strategy generation works — LLMs (Claude 4 / GPT-5) can read backtests and propose strategy parameter adjustments that hold up out-of-sample, not just curve-fit 3. No-API-key venues + crypto rails — wallet-based trading means no SaaS provider can throttle you, lock your keys, or harvest your strategy via “compliance review”\nThe retail trader who builds this stack in 2026 has tools 2018 hedge funds paid $50k/seat for.\n2. Architecture — Signal → Backtest → Live → AI Loop ┌──────────────────────────────────────────────────┐ │ Market data (websocket / REST) │ │ - Hyperliquid order book + trades │ │ - Polymarket prediction market odds │ │ - CEX (Binance, OKX) for cross-venue arb │ └────────────────┬─────────────────────────────────┘ │ ▼ ┌──────────────────────────────────────────────────┐ │ Signal layer: ta-lib │ │ → RSI / MACD / Bollinger / 200+ indicators │ └────────────────┬─────────────────────────────────┘ │ ▼ ┌──────────────────────────────────────────────────┐ │ Backtest: vectorbt │ │ → Vectorized over years of data, second-level │ │ → Walk-forward optimization │ └────────────────┬─────────────────────────────────┘ │ (strategy validated) ▼ ┌──────────────────────────────────────────────────┐ │ Execution: freqtrade OR Hyperliquid direct │ │ → CEX: freqtrade (Binance/OKX/...) │ │ → DEX: Hyperliquid Python SDK direct │ │ → Prediction: Polymarket Agents │ └────────────────┬─────────────────────────────────┘ │ ▼ ┌──────────────────────────────────────────────────┐ │ AI loop: AI Trader │ │ → Read live PnL + market data │ │ → Propose strategy adjustments │ │ → Hand back to backtest for validation │ └──────────────────────────────────────────────────┘ For non-technical users who want the AI agent experience without coding: Minara provides the user-friendly hub layer on top of Hyperliquid.\n3. Component 1 — ta-lib (Signal Generation) The role: The signal layer. RSI, MACD, Bollinger Bands, ADX, all 200+ classical technical indicators in one fast C library with Python bindings.\nWhy this pick: 30+ years of battle-testing. Every quant framework either uses ta-lib or reimplements its functions. Use the original.\nQuick install: `````bash\nLinux apt install libta-lib-dev pip install TA-Lib\nOr via pre-built wheels: pip install TA-Lib-Precompiled **Hello world** — compute RSI on 1000 candles in \u003c10ms: `````python import talib import numpy as np close = np.random.random(1000) rsi = talib.RSI(close, timeperiod=14) Full guide including walk-forward indicator combination patterns: ta-lib technical analysis trading.\n4. Component 2 — vectorbt (Backtesting) The role: Backtest your strategy across years of data in seconds, not minutes. Vectorized numpy operations make it 50-100× faster than for-loop backtests like Backtrader.\nWhy this pick: Walk-forward optimization, parameter sweep, Monte Carlo simulation, Sharpe / Sortino / Calmar metrics, position sizing — all built-in. The de-facto choice for serious retail quants.\nQuick install: `````bash pip install vectorbt\n**Backtest example** — Bollinger Band squeeze on 1 year of BTCUSDT: `````python import vectorbt as vbt import yfinance as yf data = yf.download(\"BTC-USD\", start=\"2024-01-01\")[\"Close\"] bb = vbt.IndicatorFactory.from_talib(\"BBANDS\").run(data) entries = data \u003c bb.lowerband exits = data \u003e bb.upperband pf = vbt.Portfolio.from_signals(data, entries, exits, init_cash=10000, fees=0.001) print(pf.stats()) # Sharpe, drawdown, total return, etc. Full guide including walk-forward and Monte Carlo: vectorbt quantitative backtesting.\n5. Component 3 — freqtrade (Live Execution on CEX) The role: The execution layer for centralized exchange trading (Binance, OKX, Kraken, KuCoin, Coinbase Pro, 20+ others). Production-grade — handles order management, error recovery, position tracking, exchange rate limits.\nWhy this pick: ~31k GitHub stars, 5+ years of battle-testing. Strategy hot-reload, dry-run mode (paper trading on live data), Telegram bot integration, web UI, Docker deploy. The default open-source CEX trading bot.\nQuick install: `````bash docker compose -f https://github.com/freqtrade/freqtrade/raw/stable/docker-compose.yml up -d\nUI at http://localhost:8080 Drop your strategy ````.py```` into ````user_data/strategies/````, configure exchange API keys, start in dry-run, validate for 2 weeks, switch to live. Deploy on a low-latency VPS — we run our internal freqtrade instances on for sub-50ms latency to Asian exchanges, or in NYC for US-leaning venues. Full setup including AI strategy patterns: [freqtrade AI trading strategies](/resources/llm-frameworks/freqtrade-ai-trading-strategies/). ## 6. Component 4 — AI Trader (AI Strategy Layer) **The role**: The \"AI\" in \"AI trading.\" Reads live PnL, market regime, recent backtest results — proposes parameter adjustments and new strategy candidates. Bridges the human \"I think the market shifted\" intuition with the systematic backtest pipeline. **Why this matters**: Static strategies decay. The crypto market in May 2026 isn't the market of January 2024. Without an adjustment loop, your strategy's edge erodes within 6-12 months. AI Trader is the only widely-adopted open-source framework specifically for this loop. **Quick install**: `````bash pip install ai-trader # Configure with your LLM provider (Claude / DeepSeek / Gemini) The pattern: AI Trader runs nightly, reads the prior day’s PnL + market data, generates 5-10 strategy variant candidates, hands them to vectorbt for walk-forward validation, surfaces the top 1-2 for human review before deploying via freqtrade.\nFull setup: AI Trader guide.\n7. Component 5 — Hyperliquid (Perp DEX Venue) The role: The on-chain perp DEX venue. By 2026, Hyperliquid has the deepest perp order book outside Binance — and unlike Binance, no KYC blocking, no withdrawal limits, on-chain settlement you can audit.\nWhy this matters for AI trading: Direct Python SDK access via wallet signature means no API keys to manage, no rate limits beyond gas-equivalent on-chain limits. Execute strategies in code without touching a CEX dashboard.\nQuick install: `````bash pip install hyperliquid-python-sdk\n`````python from hyperliquid.exchange import Exchange from hyperliquid.info import Info info = Info(\"https://api.hyperliquid.xyz\") print(info.l2_snapshot(\"BTC\")) # Live order book # Trading requires wallet setup — see deep dive Full guide including wallet setup and order types: Hyperliquid perp DEX trading.\n8. Component 6 — Polymarket Agents (Prediction Markets) The role: An entirely different alpha source — prediction markets. Polymarket is a USDC-settled prediction market where outcomes are tied to real-world events (elections, sports, macro events). Inefficient pricing creates AI-exploitable edges that don’t exist in crypto-native markets.\nWhy this is the sleeper bet: Most retail quants ignore prediction markets entirely. The Polymarket Agents framework is purpose-built for autonomous AI agents to research events, model outcomes, and place bets.\nUse case examples: - News-driven trading (AI reads breaking news, updates probability estimates)\nCross-venue arb (Polymarket vs Kalshi pricing gaps) Event-conditional crypto positions (hedge BTC short via “Fed cuts in June” YES bet) Full setup: Polymarket Agents — AI trading bot framework.\n9. Component 7 — Minara (AI+Crypto Hub for Non-Coders) The role: For the portion of users who want AI-driven trading without writing Python — Minara provides the user-friendly conversational interface on top of Hyperliquid. AI question-answering, real-time market analysis, and trade execution across crypto + stocks + commodities, all in one chat-like UI.\nWhy this fits the stack: Even hardcore quants need a “second monitor” tool for fast market check-ins, ad-hoc questions, manual hedges. Minara is the AI-native answer (vs TradingView’s traditional charting). For pure non-coder users wanting AI-driven trading: Minara is the standalone entry point.\nGetting started: — built on Hyperliquid so the underlying execution is the same DEX rails as the technical stack above. Use it as the conversational layer; use the technical stack (components 1-6) for systematic strategies.\nFull review: Minara AI trading on Hyperliquid 2026 review.\n10. Day 1 Setup Order (4-5 hours, before any real capital) VPS + Python env (15 min) — 4 GB, install Python 3.11 + Docker ta-lib + vectorbt (15 min) — ````pip install```, run sample backtest on 1 year of BTC data freqtrade in dry-run (30 min) — Docker compose, configure with read-only Binance API key, deploy a basic Bollinger strategy on paper for 2 weeks before going live Hyperliquid testnet (30 min) — Get testnet USDC, install SDK, place a test order on testnet, verify execution AI Trader integration (45 min) — Configure with DeepSeek (cheap) or Claude (premium) API key, point at your freqtrade dry-run logs Polymarket Agents (30 min) — Wallet setup, fund with $50 USDC for testing, deploy a “news-driven prediction” agent Minara account (10 min) — for the conversational UI; useful for ad-hoc market checks even if you’re going systematic 2-week paper trading minimum (real-time) — Before deploying real capital, run all live execution in dry-run / testnet for 2 weeks, prove you didn’t break anything obvious After 5 hours of setup + 2 weeks of paper trading, you have a real production-grade quant stack on infrastructure you own.\n11. Cost Breakdown | Item | Solo retail | Active strategy dev | Small fund (3 strategies live) | |\n|\n|\n|\n| | VPS | $12-24 | $24-48 | $60-120 | | Data feed (most exchanges have free websocket) | $0 | $0-20 | $50-150 | | LLM API (AI Trader strategy generation) | $5-15 | $20-50 | $80-200 | | Hyperliquid (gas-equivalent fees) | per-trade | per-trade | per-trade | | Polymarket (per-trade) | per-trade | per-trade | per-trade | | Minara subscription (if used) | $0 (free tier) | $0-30 | $0-50 | | Total infrastructure | ~$30-50/mo | ~$70-150/mo | ~$200-500/mo |\nNot included: Trading capital itself. Per-trade fees on venues. Tax software (recommend separate CoinTracking or Koinly subscription).\nCompare against SaaS quant platforms: 3Commas Pro ($74) + TradingView Premium ($59) + CoinTracking ($21) = $154/mo with worse latency, no source code access, IP-based execution restrictions.\n12. Upgrade Path When you outgrow this stack: - Strategies \u003e 10 concurrent — Move freqtrade to Kubernetes cluster with per-strategy isolation\nLatency \u003c 50ms critical — Colocate at exchange data centers (AWS Tokyo for Binance Asia, AWS NYC for OKX US) Multi-asset (crypto + equities + futures) — Add Interactive Brokers integration; use a managed quant platform like QuantConnect alongside this stack Audit-grade trade records — Add immudb or Apache Kafka for tamper-proof trade logs Capital \u003e $1M — Get a CPA who understands crypto; structure as a fund (LP/GP) if managing others’ money 13. The Honest Risk Discussion This stack makes building a quant trading system 10× easier than 2018. It does not make the actual strategy any easier to find. Most quant strategies that look profitable in backtest fail in live execution due to: - Survivorship bias in historical data (failed exchanges, delisted pairs)\nSlippage — your backtest assumes filled at mid-price; live execution eats the spread Regime change — what worked in 2022 bear may not work in 2026 bull Concentration risk — being 100% in a single venue means a single hack/regulatory action wipes you Psychological pressure — watching real money fluctuate is different from watching backtest equity curves Build the stack. Paper trade for 1-3 months. Start with capital you can afford to lose entirely. Scale slowly. Read Marcos Lopez de Prado\"s “Advances in Financial Machine Learning” if you want to understand why most retail quants fail.\nTL;DR — The Recipe 7 components for self-hosted AI quant trading, $30-150/mo infrastructure (excluding trading capital): 1. ta-lib — signal generation (200+ indicators) 2. vectorbt — vectorized backtesting 3. freqtrade — production CEX execution 4. AI Trader — AI strategy adjustment loop 5. Hyperliquid — on-chain perp DEX venue 6. Polymarket Agents — prediction market alpha 7. Minara — AI+crypto conversational hub for non-coders ()\nSpin up an for low-latency execution, paper trade for 2-4 weeks before going live, start with capital you can lose, scale only after live performance matches backtest expectations.\nCompanion collections: Cheap LLM Stack for the LLM API cost side of AI Trader. AI Agent Tool Chain if you want autonomous agents driving the trading loop. Self-Hosted AI Coding Workflow for the strategy code development side.\n⚠️ Re-stating: Not investment advice. Trade at your own risk.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “The AI Trading Stack 2026: 7-Component Open-Source Quant Workflow for Crypto + Prediction Markets”, “datePublished”: “2026-05-21”, “dateModified”: “2026-05-21”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/ai-trading-stack\" } } Related Articles hkuds-ai-trader 12-factor-agents 2026-05-25-trending-ai-agents 2026-06-01-trending-ai-agents 2026-06-08-trending-ai-agents Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "2403",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/ai-trading-stack/">En</a>
@@ -207,22 +207,49 @@
         <span class="title">목차</span>
     </summary>
 
-    <div class="inner"><ul>
+    <div class="inner"><ul><ul>
             <li>
-                <a href="#ai-%ed%8a%b8%eb%a0%88%ec%9d%b4%eb%94%a9-%ec%8a%a4%ed%83%9d-2026-%ec%95%94%ed%98%b8%ed%99%94%ed%8f%90--%ec%98%88%ec%b8%a1-%ec%8b%9c%ec%9e%a5%ec%9a%a9-7%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8-%ec%98%a4%ed%94%88%ec%86%8c%ec%8a%a4-%ed%80%80%ed%8a%b8-%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0" aria-label="AI 트레이딩 스택 2026: 암호화폐 &#43; 예측 시장용 7컴포넌트 오픈소스 퀀트 워크플로우">AI 트레이딩 스택 2026: 암호화폐 + 예측 시장용 7컴포넌트 오픈소스 퀀트 워크플로우</a><ul>
+                <a href="#tldr--the-stack-at-a-glance" aria-label="TL;DR — The Stack at a Glance">TL;DR — The Stack at a Glance</a></li>
+            <li>
+                <a href="#1-why-build-your-own-ai-trading-stack-in-2026" aria-label="1. Why Build Your Own AI Trading Stack in 2026">1. Why Build Your Own AI Trading Stack in 2026</a></li>
+            <li>
+                <a href="#2-architecture--signal--backtest--live--ai-loop" aria-label="2. Architecture — Signal → Backtest → Live → AI Loop">2. Architecture — Signal → Backtest → Live → AI Loop</a></li>
+            <li>
+                <a href="#3-component-1--ta-lib-signal-generation" aria-label="3. Component 1 — ta-lib (Signal Generation)">3. Component 1 — ta-lib (Signal Generation)</a></li></ul>
+                
+            <li>
+                <a href="#linux" aria-label="Linux">Linux</a></li>
+            <li>
+                <a href="#or-via-pre-built-wheels-pip-install-ta-lib-precompiled" aria-label="Or via pre-built wheels: pip install TA-Lib-Precompiled">Or via pre-built wheels: pip install TA-Lib-Precompiled</a><ul>
                     
             <li>
-                <a href="#tldr--%ed%95%9c%eb%88%88%ec%97%90-%eb%b3%b4%eb%8a%94-%ec%8a%a4%ed%83%9d" aria-label="TL;DR — 한눈에 보는 스택">TL;DR — 한눈에 보는 스택</a></li>
+                <a href="#4-component-2--vectorbt-backtesting" aria-label="4. Component 2 — vectorbt (Backtesting)">4. Component 2 — vectorbt (Backtesting)</a></li>
             <li>
-                <a href="#1-2026%ec%97%90-%ec%9e%90%ec%b2%b4-ai-%ed%8a%b8%eb%a0%88%ec%9d%b4%eb%94%a9-%ec%8a%a4%ed%83%9d-%ea%b5%ac%ec%b6%95-%ec%9d%b4%ec%9c%a0" aria-label="1. 2026에 자체 AI 트레이딩 스택 구축 이유">1. 2026에 자체 AI 트레이딩 스택 구축 이유</a></li>
+                <a href="#5-component-3--freqtrade-live-execution-on-cex" aria-label="5. Component 3 — freqtrade (Live Execution on CEX)">5. Component 3 — freqtrade (Live Execution on CEX)</a></li></ul>
+            </li>
             <li>
-                <a href="#2-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98--%ec%8b%a0%ed%98%b8--%eb%b0%b1%ed%85%8c%ec%8a%a4%ed%8a%b8--%ec%8b%a4%ec%8b%9c%ea%b0%84--ai-%eb%a3%a8%ed%94%84" aria-label="2. 아키텍처 — 신호 → 백테스트 → 실시간 → AI 루프">2. 아키텍처 — 신호 → 백테스트 → 실시간 → AI 루프</a></li>
+                <a href="#ui-at-httplocalhost8080" aria-label="UI at http://localhost:8080">UI at http://localhost:8080</a><ul>
+                    
             <li>
-                <a href="#3-%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8-1--ta-lib-%ec%8b%a0%ed%98%b8-%ec%83%9d%ec%84%b1" aria-label="3. 컴포넌트 1 — ta-lib (신호 생성)">3. 컴포넌트 1 — ta-lib (신호 생성)</a></li>
+                <a href="#7-component-5--hyperliquid-perp-dex-venue" aria-label="7. Component 5 — Hyperliquid (Perp DEX Venue)">7. Component 5 — Hyperliquid (Perp DEX Venue)</a></li>
             <li>
-                <a href="#5-%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8-3--freqtrade-cex-%ec%8b%a4%ec%8b%9c%ea%b0%84-%ec%8b%a4%ed%96%89" aria-label="5. 컴포넌트 3 — freqtrade (CEX 실시간 실행)">5. 컴포넌트 3 — freqtrade (CEX 실시간 실행)</a></li>
+                <a href="#8-component-6--polymarket-agents-prediction-markets" aria-label="8. Component 6 — Polymarket Agents (Prediction Markets)">8. Component 6 — Polymarket Agents (Prediction Markets)</a></li>
             <li>
-                <a href="#7-%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8-5--hyperliquid-perp-dex-venue" aria-label="7. 컴포넌트 5 — Hyperliquid (Perp DEX Venue)">7. 컴포넌트 5 — Hyperliquid (Perp DEX Venue)</a>
+                <a href="#9-component-7--minara-aicrypto-hub-for-non-coders" aria-label="9. Component 7 — Minara (AI&#43;Crypto Hub for Non-Coders)">9. Component 7 — Minara (AI+Crypto Hub for Non-Coders)</a></li>
+            <li>
+                <a href="#10-day-1-setup-order-4-5-hours-before-any-real-capital" aria-label="10. Day 1 Setup Order (4-5 hours, before any real capital)">10. Day 1 Setup Order (4-5 hours, before any real capital)</a></li>
+            <li>
+                <a href="#11-cost-breakdown" aria-label="11. Cost Breakdown">11. Cost Breakdown</a></li>
+            <li>
+                <a href="#12-upgrade-path" aria-label="12. Upgrade Path">12. Upgrade Path</a></li>
+            <li>
+                <a href="#13-the-honest-risk-discussion" aria-label="13. The Honest Risk Discussion">13. The Honest Risk Discussion</a></li>
+            <li>
+                <a href="#tldr--the-recipe" aria-label="TL;DR — The Recipe">TL;DR — The Recipe</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
             </li>
         </ul>
         </li>
@@ -230,11 +257,15 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+  <div class="post-content md-content"><p>title: &ldquo;The AI Trading Stack 2026: 7-Component Open-Source Quant&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
-tech_stack: [Python, Docker, PostgreSQL, WebSocket]
+tech_stack: - Python</p>
+<ul>
+<li>Docker</li>
+<li>PostgreSQL</li>
+<li>WebSocket
 application_domain: Collections
 source_version: &rsquo;'
 licensing_model: Open Source
@@ -246,313 +277,273 @@ backup_url: &rsquo;'
 last_maintained: &ldquo;2026-05-21&rdquo;
 draft: false
 categories: [&ldquo;collections&rdquo;]
-tags: [&ldquo;ai 트레이딩&rdquo;, &ldquo;퀀트&rdquo;, &ldquo;암호화폐&rdquo;, &ldquo;hyperliquid&rdquo;, &ldquo;polymarket&rdquo;, &ldquo;스택&rdquo;, &ldquo;컬렉션&rdquo;]
-aliases:</p>
-<ul>
-<li>/posts/ai-trading-stack/</li>
+tags: [&ldquo;ai trading&rdquo;, &ldquo;quant&rdquo;, &ldquo;crypto&rdquo;, &ldquo;hyperliquid&rdquo;, &ldquo;polymarket&rdquo;, &ldquo;stack&rdquo;, &ldquo;collection&rdquo;]
+aliases:</li>
+<li>/posts/ai-trading-stack/-</li>
 </ul>
 <hr>
-<h1 id="ai-트레이딩-스택-2026-암호화폐--예측-시장용-7컴포넌트-오픈소스-퀀트-워크플로우">AI 트레이딩 스택 2026: 암호화폐 + 예측 시장용 7컴포넌트 오픈소스 퀀트 워크플로우<a hidden class="anchor" aria-hidden="true" href="#ai-트레이딩-스택-2026-암호화폐--예측-시장용-7컴포넌트-오픈소스-퀀트-워크플로우">#</a></h1>
 <blockquote>
-<p>⚠️ <strong>면책 조항</strong>: 이는 AI 트레이딩 스택 구축 기술 가이드이지 투자 조언 아님. 퀀트 트레이딩은 실질적 자본 손실 위험. 실제 자본 배포 전 페이퍼/테스트넷에서 광범위하게 테스트. 과거 백테스트 성과는 미래 수익 예측 안 함.</p>
+<p>⚠️ <strong>Disclaimer</strong>: This is a technical guide to building an AI trading stack, not investment advice. Quantitative trading carries substantial risk of capital loss. Test extensively on paper / testnet before deploying real capital. Past backtest performance does not predict future returns.</p>
 </blockquote>
-<p>2026년 리테일 퀀트 환경이 마침내 2018년 헤지펀드 수준에 도달: 스택 모든 레이어에 오픈소스 프레임워크, AI 강화 전략, 브로커 게이트키퍼 없는 온체인 venue. SaaS 퀀트 플랫폼(3Commas $74/월, Cryptohopper $129/월, TradingView Premium $59/월)과의 트레이드오프는 학습 곡선 더 가파르지만 <strong>완전 제어 + per-trade 수수료 0 + alpha가 본인 머신 떠나지 않음</strong>.</p>
-<p>이 컬렉션은 <strong>7컴포넌트</strong> 조립, 신호 생성 → 백테스트 → 실시간 실행 → AI 전략 레이어 → venue → 예측 시장 → AI+crypto 사용자 친화 hub. 인프라 비용 $30-150/월. 실제 트레이딩 자본 투입 컴포넌트는 본인 책임.</p>
-<h2 id="tldr--한눈에-보는-스택">TL;DR — 한눈에 보는 스택<a hidden class="anchor" aria-hidden="true" href="#tldr--한눈에-보는-스택">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>#</th>
-					<th>컴포넌트</th>
-					<th>레이어</th>
-					<th>역할</th>
-					<th>심층 가이드</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>1</td>
-					<td><strong>ta-lib</strong></td>
-					<td>신호</td>
-					<td>200+ 기술 지표 (RSI, MACD, Bollinger 등)</td>
-					<td><a href="/kr/resources/ai-trading/ta-lib-technical-analysis-trading/">ta-lib 가이드</a></td>
-			</tr>
-			<tr>
-					<td>2</td>
-					<td><strong>vectorbt</strong></td>
-					<td>백테스트</td>
-					<td>벡터화 Python 백테스팅, for-loop 보다 100× 빠름</td>
-					<td><a href="/kr/resources/ai-trading/vectorbt-quantitative-backtesting/">vectorbt 2026</a></td>
-			</tr>
-			<tr>
-					<td>3</td>
-					<td><strong>freqtrade</strong></td>
-					<td>실행</td>
-					<td>프로덕션급 암호화폐 트레이딩 봇, 거래소 무관</td>
-					<td><a href="/kr/resources/llm-frameworks/freqtrade-ai-trading-strategies/">freqtrade AI 전략</a></td>
-			</tr>
-			<tr>
-					<td>4</td>
-					<td><strong>AI Trader</strong></td>
-					<td>AI 전략</td>
-					<td>LLM 주도 전략 생성 + 강화 학습</td>
-					<td><a href="/kr/resources/llm-frameworks/ai-trader/">AI trader 가이드</a></td>
-			</tr>
-			<tr>
-					<td>5</td>
-					<td><strong>Hyperliquid</strong></td>
-					<td>Venue</td>
-					<td>2026 최상 perp DEX, 온체인 order book, 저수수료</td>
-					<td><a href="/kr/resources/ai-trading/hyperliquid-perp-dex-trading/">Hyperliquid perp 트레이딩</a></td>
-			</tr>
-			<tr>
-					<td>6</td>
-					<td><strong>Polymarket Agents</strong></td>
-					<td>예측 시장</td>
-					<td>AI 에이전트가 예측 시장 자율 트레이딩</td>
-					<td><a href="/kr/resources/llm-frameworks/polymarket-agents-ai-trading-bot-framework/">Polymarket Agents</a></td>
-			</tr>
-			<tr>
-					<td>7</td>
-					<td><strong>Minara</strong></td>
-					<td>AI+Crypto 허브</td>
-					<td>암호화폐/주식/원자재용 AI 인터페이스, Hyperliquid 기반</td>
-					<td><a href="/kr/resources/ai-trading/minara-ai-trading-hyperliquid-review-2026/">Minara AI 트레이딩 리뷰</a></td>
-			</tr>
-	</tbody>
-</table>
-<p><strong>총 인프라 비용</strong> (트레이딩 자본 제외): 솔로 dev <strong>$30-80/월</strong> • 멀티 전략 동시 작은 펀드 <strong>$80-150/월</strong></p>
-<p>SaaS 퀀트 플랫폼 비교: 3Commas Pro ($74) + TradingView Premium ($59) + CoinTracking ($21) = $154/월, rate limit, IP 기반 실행 제한, 전략 코드 소스 액세스 없음.</p>
-<h2 id="1-2026에-자체-ai-트레이딩-스택-구축-이유">1. 2026에 자체 AI 트레이딩 스택 구축 이유<a hidden class="anchor" aria-hidden="true" href="#1-2026에-자체-ai-트레이딩-스택-구축-이유">#</a></h2>
-<p>3 수렴 변화: 1. <strong>온체인 perp DEX 메인스트림 깊이 도달</strong> — Hyperliquid의 톱 페어 order book이 CEX급 유동성, 서브초 온체인 결제
-2. <strong>AI 전략 생성 작동</strong> — LLM (Claude 4 / GPT-5)이 백테스트 읽고 out-of-sample에서 유지되는 전략 파라미터 조정 제안 (커브 피팅 아님)
-3. <strong>무 API 키 venue + 암호화폐 레일</strong> — 지갑 기반 트레이딩 = SaaS 제공자가 제한, 키 잠금, &ldquo;컴플라이언스 리뷰&rdquo; 빌미로 전략 수확 못 함</p>
-<p>2026 리테일 트레이더가 이 스택 구축하면 2018 헤지펀드가 좌석당 $50k 지불한 도구 보유.</p>
-<h2 id="2-아키텍처--신호--백테스트--실시간--ai-루프">2. 아키텍처 — 신호 → 백테스트 → 실시간 → AI 루프<a hidden class="anchor" aria-hidden="true" href="#2-아키텍처--신호--백테스트--실시간--ai-루프">#</a></h2>
+<p>The 2026 retail quant landscape has finally caught up with what hedge funds had in 2018: open-source frameworks at every layer of the stack, AI-enhanced strategies, on-chain venues without a broker gatekeeper. The trade-off vs SaaS quant platforms (3Commas at $74/mo, Cryptohopper at $129/mo, TradingView Premium at $59/mo) is steeper learning curve but <strong>full control + zero per-trade fees + your alpha never leaves your machine</strong>.</p>
+<p>This collection assembles <strong>7 components</strong> spanning signal generation → backtest → live execution → AI strategy layer → venue → prediction markets → AI+crypto user-friendly hub. Infrastructure cost $30-150/mo. The component you actually fund trading capital with is on you.</p>
+<h2 id="tldr--the-stack-at-a-glance">TL;DR — The Stack at a Glance<a hidden class="anchor" aria-hidden="true" href="#tldr--the-stack-at-a-glance">#</a></h2>
+<p>| # | Component | Layer | Role | Deep dive |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| 1 | <strong>ta-lib</strong> | Signal | 200+ technical indicators (RSI, MACD, Bollinger, etc.) | <a href="/resources/ai-trading/ta-lib-technical-analysis-trading/">ta-lib guide</a> |
+| 2 | <strong>vectorbt</strong> | Backtest | Vectorized Python backtesting, 100× faster than for-loops | <a href="/resources/ai-trading/vectorbt-quantitative-backtesting/">vectorbt 2026</a> |
+| 3 | <strong>freqtrade</strong> | Execution | Production-grade crypto trading bot, exchange-agnostic | <a href="/resources/llm-frameworks/freqtrade-ai-trading-strategies/">freqtrade AI strategies</a> |
+| 4 | <strong>AI Trader</strong> | AI Strategy | LLM-driven strategy generation + reinforcement learning | <a href="/resources/llm-frameworks/ai-trader/">AI trader guide</a> |
+| 5 | <strong>Hyperliquid</strong> | Venue | Top perp DEX in 2026, on-chain order book, low fees | <a href="/resources/ai-trading/hyperliquid-perp-dex-trading/">Hyperliquid perp trading</a> |
+| 6 | <strong>Polymarket Agents</strong> | Prediction Markets | AI agents trading prediction markets autonomously | <a href="/resources/llm-frameworks/polymarket-agents-ai-trading-bot-framework/">Polymarket Agents</a> |
+| 7 | <strong>Minara</strong> | AI+Crypto Hub | AI interface for crypto/stocks/commodities, built on Hyperliquid | <a href="/resources/ai-trading/minara-ai-trading-hyperliquid-review-2026/">Minara AI trading review</a> |</p>
+<p><strong>Total infrastructure cost</strong> (excluding trading capital): <strong>$30-80/mo</strong> solo dev • <strong>$80-150/mo</strong> small fund with multiple strategies concurrent</p>
+<p>Compare against SaaS quant platforms: 3Commas Pro ($74) + TradingView Premium ($59) + CoinTracking ($21) = $154/mo with rate limits, IP-based execution restrictions, no source access to your strategy code.</p>
+<h2 id="1-why-build-your-own-ai-trading-stack-in-2026">1. Why Build Your Own AI Trading Stack in 2026<a hidden class="anchor" aria-hidden="true" href="#1-why-build-your-own-ai-trading-stack-in-2026">#</a></h2>
+<p>Three converging shifts: 1. <strong>On-chain perp DEXes hit mainstream depth</strong> — Hyperliquid&rsquo;s order book has CEX-grade liquidity for the top pairs, with sub-second on-chain settlement
+2. <strong>AI strategy generation works</strong> — LLMs (Claude 4 / GPT-5) can read backtests and propose strategy parameter adjustments that hold up out-of-sample, not just curve-fit
+3. <strong>No-API-key venues + crypto rails</strong> — wallet-based trading means no SaaS provider can throttle you, lock your keys, or harvest your strategy via &ldquo;compliance review&rdquo;</p>
+<p>The retail trader who builds this stack in 2026 has tools 2018 hedge funds paid $50k/seat for.</p>
+<h2 id="2-architecture--signal--backtest--live--ai-loop">2. Architecture — Signal → Backtest → Live → AI Loop<a hidden class="anchor" aria-hidden="true" href="#2-architecture--signal--backtest--live--ai-loop">#</a></h2>
 <pre tabindex="0"><code>   ┌──────────────────────────────────────────────────┐
-   │ 시장 데이터 (websocket / REST)                   │
-   │  - Hyperliquid order book + trade                │
-   │  - Polymarket 예측 시장 odds                     │
-   │  - CEX (Binance, OKX) 크로스 venue 차익          │
+   │ Market data (websocket / REST)                   │
+   │  - Hyperliquid order book + trades               │
+   │  - Polymarket prediction market odds             │
+   │  - CEX (Binance, OKX) for cross-venue arb        │
    └────────────────┬─────────────────────────────────┘
                     │
                     ▼
    ┌──────────────────────────────────────────────────┐
-   │ 신호 레이어: ta-lib                              │
-   │  → RSI / MACD / Bollinger / 200+ 지표            │
+   │ Signal layer: ta-lib                             │
+   │  → RSI / MACD / Bollinger / 200+ indicators      │
    └────────────────┬─────────────────────────────────┘
                     │
                     ▼
    ┌──────────────────────────────────────────────────┐
-   │ 백테스트: vectorbt                               │
-   │  → 수년 데이터 벡터화, 초 단위                   │
-   │  → Walk-forward 최적화                            │
+   │ Backtest: vectorbt                               │
+   │  → Vectorized over years of data, second-level   │
+   │  → Walk-forward optimization                     │
    └────────────────┬─────────────────────────────────┘
-                    │ (전략 검증)
+                    │ (strategy validated)
                     ▼
    ┌──────────────────────────────────────────────────┐
-   │ 실행: freqtrade 또는 Hyperliquid 직접            │
+   │ Execution: freqtrade OR Hyperliquid direct       │
    │  → CEX: freqtrade (Binance/OKX/...)              │
-   │  → DEX: Hyperliquid Python SDK 직접              │
-   │  → 예측: Polymarket Agents                       │
+   │  → DEX: Hyperliquid Python SDK direct            │
+   │  → Prediction: Polymarket Agents                 │
    └────────────────┬─────────────────────────────────┘
                     │
                     ▼
    ┌──────────────────────────────────────────────────┐
-   │ AI 루프: AI Trader                                │
-   │  → 실시간 PnL + 시장 데이터 읽음                 │
-   │  → 전략 조정 제안                                │
-   │  → 백테스트에 검증 위해 되돌림                   │
+   │ AI loop: AI Trader                               │
+   │  → Read live PnL + market data                   │
+   │  → Propose strategy adjustments                  │
+   │  → Hand back to backtest for validation          │
    └──────────────────────────────────────────────────┘
-</code></pre><p>코딩 없이 AI 에이전트 경험 원하는 비기술 사용자: <strong>Minara</strong>가 Hyperliquid 위 사용자 친화 hub 레이어 제공.</p>
-<h2 id="3-컴포넌트-1--ta-lib-신호-생성">3. 컴포넌트 1 — ta-lib (신호 생성)<a hidden class="anchor" aria-hidden="true" href="#3-컴포넌트-1--ta-lib-신호-생성">#</a></h2>
-<p><strong>역할</strong>: 신호 레이어. RSI, MACD, Bollinger Bands, ADX, 200+ 클래식 기술 지표 모두 빠른 C 라이브러리 + Python 바인딩.</p>
-<p><strong>왜 이거</strong>: 30+ 년 전투 검증. 모든 퀀트 프레임워크가 ta-lib를 쓰거나 그 함수 재구현. 원본 사용.</p>
-<p><strong>빠른 설치</strong>: `````bash
-apt install libta-lib-dev
+</code></pre><p>For non-technical users who want the AI agent experience without coding: <strong>Minara</strong> provides the user-friendly hub layer on top of Hyperliquid.</p>
+<h2 id="3-component-1--ta-lib-signal-generation">3. Component 1 — ta-lib (Signal Generation)<a hidden class="anchor" aria-hidden="true" href="#3-component-1--ta-lib-signal-generation">#</a></h2>
+<p><strong>The role</strong>: The signal layer. RSI, MACD, Bollinger Bands, ADX, all 200+ classical technical indicators in one fast C library with Python bindings.</p>
+<p><strong>Why this pick</strong>: 30+ years of battle-testing. Every quant framework either uses ta-lib or reimplements its functions. Use the original.</p>
+<p><strong>Quick install</strong>: `````bash</p>
+<h1 id="linux">Linux<a hidden class="anchor" aria-hidden="true" href="#linux">#</a></h1>
+<p>apt install libta-lib-dev
 pip install TA-Lib</p>
+<h1 id="or-via-pre-built-wheels-pip-install-ta-lib-precompiled">Or via pre-built wheels: pip install TA-Lib-Precompiled<a hidden class="anchor" aria-hidden="true" href="#or-via-pre-built-wheels-pip-install-ta-lib-precompiled">#</a></h1>
 <pre tabindex="0"><code>
-전체 가이드 walk-forward 지표 조합 패턴 포함: [ta-lib 기술 분석 트레이딩](/kr/resources/ai-trading/ta-lib-technical-analysis-trading/).
+**Hello world** — compute RSI on 1000 candles in &lt;10ms: `````python
+import talib
+import numpy as np
+close = np.random.random(1000)
+rsi = talib.RSI(close, timeperiod=14)
+</code></pre><p>Full guide including walk-forward indicator combination patterns: <a href="/resources/ai-trading/ta-lib-technical-analysis-trading/">ta-lib technical analysis trading</a>.</p>
+<h2 id="4-component-2--vectorbt-backtesting">4. Component 2 — vectorbt (Backtesting)<a hidden class="anchor" aria-hidden="true" href="#4-component-2--vectorbt-backtesting">#</a></h2>
+<p><strong>The role</strong>: Backtest your strategy across years of data in seconds, not minutes. Vectorized numpy operations make it 50-100× faster than for-loop backtests like Backtrader.</p>
+<p><strong>Why this pick</strong>: Walk-forward optimization, parameter sweep, Monte Carlo simulation, Sharpe / Sortino / Calmar metrics, position sizing — all built-in. The de-facto choice for serious retail quants.</p>
+<p><strong>Quick install</strong>: `````bash
+pip install vectorbt</p>
+<pre tabindex="0"><code>
+**Backtest example** — Bollinger Band squeeze on 1 year of BTCUSDT: `````python
+import vectorbt as vbt
+import yfinance as yf
 
-## 4. 컴포넌트 2 — vectorbt (백테스팅)
+data = yf.download(&#34;BTC-USD&#34;, start=&#34;2024-01-01&#34;)[&#34;Close&#34;]
+bb = vbt.IndicatorFactory.from_talib(&#34;BBANDS&#34;).run(data)
+entries = data &lt; bb.lowerband
+exits = data &gt; bb.upperband
 
-**역할**: 수년 데이터에서 초 단위 전략 백테스트, 분 단위 아님. 벡터화 numpy 연산이 Backtrader같은 for-loop 백테스트보다 50-100× 빠름.
-
-**왜 이거**: Walk-forward 최적화, 파라미터 스윕, 몬테카를로 시뮬레이션, Sharpe/Sortino/Calmar 메트릭, 포지션 사이징 — 모두 내장. 진지한 리테일 퀀트 사실상 선택.
-
-**빠른 설치**: `````bash
-pip install vectorbt
-</code></pre><p>전체 가이드 walk-forward와 몬테카를로 포함: <a href="/kr/resources/ai-trading/vectorbt-quantitative-backtesting/">vectorbt 정량적 백테스팅</a>.</p>
-<h2 id="5-컴포넌트-3--freqtrade-cex-실시간-실행">5. 컴포넌트 3 — freqtrade (CEX 실시간 실행)<a hidden class="anchor" aria-hidden="true" href="#5-컴포넌트-3--freqtrade-cex-실시간-실행">#</a></h2>
-<p><strong>역할</strong>: 중앙화 거래소 트레이딩 실행 레이어 (Binance, OKX, Kraken, KuCoin, Coinbase Pro, 20+ 기타). 프로덕션급 — 주문 관리, 오류 복구, 포지션 추적, 거래소 rate limit 처리.</p>
-<p><strong>왜 이거</strong>: ~31k GitHub stars, 5+ 년 전투 검증. 전략 핫 리로드, dry-run 모드 (실시간 데이터에 페이퍼 트레이딩), Telegram 봇 통합, 웹 UI, Docker 배포. 기본 오픈소스 CEX 트레이딩 봇.</p>
-<p><strong>빠른 설치</strong>: `````bash
+pf = vbt.Portfolio.from_signals(data, entries, exits, init_cash=10000, fees=0.001)
+print(pf.stats())  # Sharpe, drawdown, total return, etc.
+</code></pre><p>Full guide including walk-forward and Monte Carlo: <a href="/resources/ai-trading/vectorbt-quantitative-backtesting/">vectorbt quantitative backtesting</a>.</p>
+<h2 id="5-component-3--freqtrade-live-execution-on-cex">5. Component 3 — freqtrade (Live Execution on CEX)<a hidden class="anchor" aria-hidden="true" href="#5-component-3--freqtrade-live-execution-on-cex">#</a></h2>
+<p><strong>The role</strong>: The execution layer for centralized exchange trading (Binance, OKX, Kraken, KuCoin, Coinbase Pro, 20+ others). Production-grade — handles order management, error recovery, position tracking, exchange rate limits.</p>
+<p><strong>Why this pick</strong>: ~31k GitHub stars, 5+ years of battle-testing. Strategy hot-reload, dry-run mode (paper trading on live data), Telegram bot integration, web UI, Docker deploy. The default open-source CEX trading bot.</p>
+<p><strong>Quick install</strong>: `````bash
 docker compose -f <a href="https://github.com/freqtrade/freqtrade/raw/stable/docker-compose.yml">https://github.com/freqtrade/freqtrade/raw/stable/docker-compose.yml</a> up -d</p>
+<h1 id="ui-at-httplocalhost8080">UI at http://localhost:8080<a hidden class="anchor" aria-hidden="true" href="#ui-at-httplocalhost8080">#</a></h1>
 <pre tabindex="0"><code>
-낮은 레이턴시 VPS 배포 — 내부 freqtrade 인스턴스를 아시아 거래소 sub-50ms 레이턴시 위해 , 또는 미국 편향 venue 위해 NYC에 .
+Drop your strategy ````.py```` into ````user_data/strategies/````, configure exchange API keys, start in dry-run, validate for 2 weeks, switch to live.
 
-전체 셋업 AI 전략 패턴 포함: [freqtrade AI 트레이딩 전략](/kr/resources/llm-frameworks/freqtrade-ai-trading-strategies/).
+Deploy on a low-latency VPS — we run our internal freqtrade instances on  for sub-50ms latency to Asian exchanges, or  in NYC for US-leaning venues.
 
-## 6. 컴포넌트 4 — AI Trader (AI 전략 레이어)
+Full setup including AI strategy patterns: [freqtrade AI trading strategies](/resources/llm-frameworks/freqtrade-ai-trading-strategies/).
 
-**역할**: &#34;AI 트레이딩&#34;의 &#34;AI&#34;. 실시간 PnL, 시장 체제, 최근 백테스트 결과 읽음 — 파라미터 조정과 새 전략 후보 제안. 인간의 &#34;시장이 바뀐 것 같음&#34; 직관과 시스템 백테스트 파이프라인 다리.
+## 6. Component 4 — AI Trader (AI Strategy Layer)
 
-**왜 중요**: 정적 전략은 감쇠. 2026년 5월 암호화폐 시장은 2024년 1월 시장 아님. 조정 루프 없이는 전략 edge가 6-12개월 안에 침식. AI Trader는 이 루프에 특화된 유일한 널리 채택된 오픈소스 프레임워크.
+**The role**: The &#34;AI&#34; in &#34;AI trading.&#34; Reads live PnL, market regime, recent backtest results — proposes parameter adjustments and new strategy candidates. Bridges the human &#34;I think the market shifted&#34; intuition with the systematic backtest pipeline.
 
-**빠른 설치**: `````bash
+**Why this matters**: Static strategies decay. The crypto market in May 2026 isn&#39;t the market of January 2024. Without an adjustment loop, your strategy&#39;s edge erodes within 6-12 months. AI Trader is the only widely-adopted open-source framework specifically for this loop.
+
+**Quick install**: `````bash
 pip install ai-trader
-</code></pre><p>전체 셋업: <a href="/kr/resources/llm-frameworks/ai-trader/">AI Trader 가이드</a>.</p>
-<h2 id="7-컴포넌트-5--hyperliquid-perp-dex-venue">7. 컴포넌트 5 — Hyperliquid (Perp DEX Venue)<a hidden class="anchor" aria-hidden="true" href="#7-컴포넌트-5--hyperliquid-perp-dex-venue">#</a></h2>
-<p><strong>역할</strong>: 온체인 perp DEX venue. 2026년에 Hyperliquid는 Binance 외 가장 깊은 perp order book — Binance와 달리 KYC 차단 없음, 출금 제한 없음, 감사 가능한 온체인 결제.</p>
-<p><strong>AI 트레이딩에 중요한 이유</strong>: 지갑 서명으로 직접 Python SDK 액세스 = API 키 관리 없음, 가스 동등 온체인 제한 외 rate limit 없음. CEX 대시보드 안 만지고 코드에서 전략 실행.</p>
-<p><strong>빠른 설치</strong>: `````bash
+# Configure with your LLM provider (Claude / DeepSeek / Gemini)
+</code></pre><p>The pattern: AI Trader runs nightly, reads the prior day&rsquo;s PnL + market data, generates 5-10 strategy variant candidates, hands them to vectorbt for walk-forward validation, surfaces the top 1-2 for human review before deploying via freqtrade.</p>
+<p>Full setup: <a href="/resources/llm-frameworks/ai-trader/">AI Trader guide</a>.</p>
+<h2 id="7-component-5--hyperliquid-perp-dex-venue">7. Component 5 — Hyperliquid (Perp DEX Venue)<a hidden class="anchor" aria-hidden="true" href="#7-component-5--hyperliquid-perp-dex-venue">#</a></h2>
+<p><strong>The role</strong>: The on-chain perp DEX venue. By 2026, Hyperliquid has the deepest perp order book outside Binance — and unlike Binance, no KYC blocking, no withdrawal limits, on-chain settlement you can audit.</p>
+<p><strong>Why this matters for AI trading</strong>: Direct Python SDK access via wallet signature means no API keys to manage, no rate limits beyond gas-equivalent on-chain limits. Execute strategies in code without touching a CEX dashboard.</p>
+<p><strong>Quick install</strong>: `````bash
 pip install hyperliquid-python-sdk</p>
 <pre tabindex="0"><code>
-전체 가이드 지갑 셋업과 주문 타입 포함: [Hyperliquid perp DEX 트레이딩](/kr/resources/ai-trading/hyperliquid-perp-dex-trading/).
+`````python
+from hyperliquid.exchange import Exchange
+from hyperliquid.info import Info
 
-## 8. 컴포넌트 6 — Polymarket Agents (예측 시장)
-
-**역할**: 완전히 다른 alpha 소스 — 예측 시장. Polymarket은 결과가 실제 사건 (선거, 스포츠, 매크로)에 묶인 USDC 결제 예측 시장. 비효율 가격이 암호화폐 네이티브 시장에 없는 AI 이용 가능 edge 생성.
-
-**왜 슬리퍼 베팅**: 대부분 리테일 퀀트가 예측 시장 완전 무시. Polymarket Agents 프레임워크는 자율 AI 에이전트가 사건 리서치, 결과 모델링, 베팅 위해 목적 구축.
-
-전체 셋업: [Polymarket Agents — AI 트레이딩 봇 프레임워크](/kr/resources/llm-frameworks/polymarket-agents-ai-trading-bot-framework/).
-
-## 9. 컴포넌트 7 — Minara (비코더용 AI+Crypto 허브)
-
-**역할**: Python 안 쓰고 AI 주도 트레이딩 원하는 사용자 부분에 — Minara가 Hyperliquid 위 사용자 친화 대화형 인터페이스 제공. AI 질문 답변, 실시간 시장 분석, 암호화폐 + 주식 + 원자재 트레이드 실행, 모두 chat 같은 UI에서.
-
-**왜 이 스택에 맞나**: 하드코어 퀀트도 빠른 시장 체크인, 임시 질문, 수동 헤지용 &#34;두 번째 모니터&#34; 도구 필요. Minara가 AI 네이티브 답변 (vs TradingView 전통 차팅). 순수 비코더 사용자가 AI 주도 트레이딩 원함: Minara가 독립 진입점.
-
-**시작**:  — Hyperliquid 기반이라 기본 실행이 위 기술 스택과 같은 DEX 레일. 대화 레이어로 사용; 시스템 전략용으로 기술 스택 (컴포넌트 1-6) 사용.
-
-전체 리뷰: [Minara Hyperliquid AI 트레이딩 2026 리뷰](/kr/resources/ai-trading/minara-ai-trading-hyperliquid-review-2026/).
-
-## 10. Day 1 셋업 순서 (4-5시간, 실제 자본 전)
-
-1. **VPS + Python 환경** (15분) —  4 GB, Python 3.11 + Docker 설치
-2. **ta-lib + vectorbt** (15분) — ````pip install```, 1년 BTC 데이터에 샘플 백테스트 실행
-3. **freqtrade dry-run** (30분) — Docker compose, 읽기 전용 Binance API 키로 구성, 실시간 가기 전 2주 페이퍼에 기본 Bollinger 전략 배포
-4. **Hyperliquid 테스트넷** (30분) — 테스트넷 USDC 받기, SDK 설치, 테스트넷에 테스트 주문, 실행 확인
-5. **AI Trader 통합** (45분) — DeepSeek (저렴) 또는 Claude (premium) API 키로 구성, freqtrade dry-run 로그 가리킴
-6. **Polymarket Agents** (30분) — 지갑 셋업, 테스트용 $50 USDC 펀딩, &#34;뉴스 주도 예측&#34; 에이전트 배포
-7. **Minara 계정** (10분) —  대화 UI 위해; 시스템 가도 임시 시장 체크에 유용
-8. **최소 2주 페이퍼 트레이딩** (실시간) — 실제 자본 배포 전, 모든 실시간 실행을 2주 dry-run / 테스트넷, 명백한 거 안 깨뜨렸음 증명
-
-5시간 셋업 + 2주 페이퍼 트레이딩 후, 본인 소유 인프라에 진짜 프로덕션급 퀀트 스택 보유.
-
-## 11. 비용 분석
-
-| 항목 | 솔로 리테일 | 능동 전략 dev | 작은 펀드 (3 전략 실시간) |
-|---|---|---|---|
+info = Info(&#34;https://api.hyperliquid.xyz&#34;)
+print(info.l2_snapshot(&#34;BTC&#34;))  # Live order book
+# Trading requires wallet setup — see deep dive
+</code></pre><p>Full guide including wallet setup and order types: <a href="/resources/ai-trading/hyperliquid-perp-dex-trading/">Hyperliquid perp DEX trading</a>.</p>
+<h2 id="8-component-6--polymarket-agents-prediction-markets">8. Component 6 — Polymarket Agents (Prediction Markets)<a hidden class="anchor" aria-hidden="true" href="#8-component-6--polymarket-agents-prediction-markets">#</a></h2>
+<p><strong>The role</strong>: An entirely different alpha source — prediction markets. Polymarket is a USDC-settled prediction market where outcomes are tied to real-world events (elections, sports, macro events). Inefficient pricing creates AI-exploitable edges that don&rsquo;t exist in crypto-native markets.</p>
+<p><strong>Why this is the sleeper bet</strong>: Most retail quants ignore prediction markets entirely. The Polymarket Agents framework is purpose-built for autonomous AI agents to research events, model outcomes, and place bets.</p>
+<p><strong>Use case examples</strong>: - News-driven trading (AI reads breaking news, updates probability estimates)</p>
+<ul>
+<li>Cross-venue arb (Polymarket vs Kalshi pricing gaps)</li>
+<li>Event-conditional crypto positions (hedge BTC short via &ldquo;Fed cuts in June&rdquo; YES bet)</li>
+</ul>
+<p>Full setup: <a href="/resources/llm-frameworks/polymarket-agents-ai-trading-bot-framework/">Polymarket Agents — AI trading bot framework</a>.</p>
+<h2 id="9-component-7--minara-aicrypto-hub-for-non-coders">9. Component 7 — Minara (AI+Crypto Hub for Non-Coders)<a hidden class="anchor" aria-hidden="true" href="#9-component-7--minara-aicrypto-hub-for-non-coders">#</a></h2>
+<p><strong>The role</strong>: For the portion of users who want AI-driven trading without writing Python — Minara provides the user-friendly conversational interface on top of Hyperliquid. AI question-answering, real-time market analysis, and trade execution across crypto + stocks + commodities, all in one chat-like UI.</p>
+<p><strong>Why this fits the stack</strong>: Even hardcore quants need a &ldquo;second monitor&rdquo; tool for fast market check-ins, ad-hoc questions, manual hedges. Minara is the AI-native answer (vs TradingView&rsquo;s traditional charting). For pure non-coder users wanting AI-driven trading: Minara is the standalone entry point.</p>
+<p><strong>Getting started</strong>:  — built on Hyperliquid so the underlying execution is the same DEX rails as the technical stack above. Use it as the conversational layer; use the technical stack (components 1-6) for systematic strategies.</p>
+<p>Full review: <a href="/resources/ai-trading/minara-ai-trading-hyperliquid-review-2026/">Minara AI trading on Hyperliquid 2026 review</a>.</p>
+<h2 id="10-day-1-setup-order-4-5-hours-before-any-real-capital">10. Day 1 Setup Order (4-5 hours, before any real capital)<a hidden class="anchor" aria-hidden="true" href="#10-day-1-setup-order-4-5-hours-before-any-real-capital">#</a></h2>
+<ol>
+<li><strong>VPS + Python env</strong> (15 min) —  4 GB, install Python 3.11 + Docker</li>
+<li><strong>ta-lib + vectorbt</strong> (15 min) — ````pip install```, run sample backtest on 1 year of BTC data</li>
+<li><strong>freqtrade in dry-run</strong> (30 min) — Docker compose, configure with read-only Binance API key, deploy a basic Bollinger strategy on paper for 2 weeks before going live</li>
+<li><strong>Hyperliquid testnet</strong> (30 min) — Get testnet USDC, install SDK, place a test order on testnet, verify execution</li>
+<li><strong>AI Trader integration</strong> (45 min) — Configure with DeepSeek (cheap) or Claude (premium) API key, point at your freqtrade dry-run logs</li>
+<li><strong>Polymarket Agents</strong> (30 min) — Wallet setup, fund with $50 USDC for testing, deploy a &ldquo;news-driven prediction&rdquo; agent</li>
+<li><strong>Minara account</strong> (10 min) —  for the conversational UI; useful for ad-hoc market checks even if you&rsquo;re going systematic</li>
+<li><strong>2-week paper trading minimum</strong> (real-time) — Before deploying real capital, run all live execution in dry-run / testnet for 2 weeks, prove you didn&rsquo;t break anything obvious</li>
+</ol>
+<p>After 5 hours of setup + 2 weeks of paper trading, you have a real production-grade quant stack on infrastructure you own.</p>
+<h2 id="11-cost-breakdown">11. Cost Breakdown<a hidden class="anchor" aria-hidden="true" href="#11-cost-breakdown">#</a></h2>
+<p>| Item | Solo retail | Active strategy dev | Small fund (3 strategies live) |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | VPS | $12-24 | $24-48 | $60-120 |
-| 데이터 피드 (대부분 거래소 무료 websocket) | $0 | $0-20 | $50-150 |
-| LLM API (AI Trader 전략 생성) | $5-15 | $20-50 | $80-200 |
-| Hyperliquid (가스 동등 수수료) | per-trade | per-trade | per-trade |
+| Data feed (most exchanges have free websocket) | $0 | $0-20 | $50-150 |
+| LLM API (AI Trader strategy generation) | $5-15 | $20-50 | $80-200 |
+| Hyperliquid (gas-equivalent fees) | per-trade | per-trade | per-trade |
 | Polymarket (per-trade) | per-trade | per-trade | per-trade |
-| Minara 구독 (사용 시) | $0 (무료 티어) | $0-30 | $0-50 |
-| **총 인프라** | **~$30-50/월** | **~$70-150/월** | **~$200-500/월** |
-
-**제외**: 트레이딩 자본 자체. Venue per-trade 수수료. 세금 소프트웨어 (별도 CoinTracking 또는 Koinly 권장).
-
-## 12. 업그레이드 경로
-
-이 스택 벗어날 때: - **&gt;10 동시 전략** — freqtrade를 전략별 격리 있는 Kubernetes 클러스터로 이동
-- **&lt;50ms 레이턴시 중요** — 거래소 데이터 센터에 코로케이션
-- **다자산 (암호화폐 + 주식 + 선물)** — Interactive Brokers 통합 추가
-- **감사 등급 trade 기록** — immudb 또는 Apache Kafka 추가
-- **자본 &gt; $1M** — 암호화폐 이해하는 CPA; 다른 사람 돈 관리면 펀드 (LP/GP)로 구조화
-
-## 13. 정직한 리스크 토론
-
-이 스택은 퀀트 트레이딩 시스템 구축을 2018보다 10× 쉽게 만듦. **실제 전략 찾기를 더 쉽게 만들지 않음.** 백테스트에서 수익 보이는 대부분 퀀트 전략이 실시간 실행에서 실패하는 이유: - 역사 데이터의 **생존자 편향** (실패 거래소, 상장 폐지 페어)
-- **슬리피지** — 백테스트는 중간가 체결 가정; 실시간 실행이 spread 먹음
-- **체제 변화** — 2022 약세장에서 작동한 게 2026 강세장에서 안 될 수 있음
-- **집중 위험** — 단일 venue 100%는 단일 해킹/규제 조치가 청산
-- **심리적 압박** — 실제 돈 변동 보는 게 백테스트 자기자본 곡선 보는 것과 다름
-
-스택 구축. 1-3개월 페이퍼 트레이드. 완전히 잃을 수 있는 자본으로 시작. 천천히 스케일.
-
-## TL;DR — 레시피
-
-**셀프호스트 AI 퀀트 트레이딩용 7 컴포넌트, $30-150/월 인프라 (트레이딩 자본 제외)**: 1. **ta-lib** — 신호 생성 (200+ 지표)
-2. **vectorbt** — 벡터화 백테스팅
-3. **freqtrade** — 프로덕션 CEX 실행
-4. **AI Trader** — AI 전략 조정 루프
-5. **Hyperliquid** — 온체인 perp DEX venue
-6. **Polymarket Agents** — 예측 시장 alpha
-7. **Minara** — 비코더용 AI+crypto 대화 hub ()
-
-저레이턴시 실행 위해  띄우고, 실시간 가기 전 2-4주 페이퍼 트레이드, 잃을 수 있는 자본으로 시작, 실시간 성과가 백테스트 기대 일치 후만 스케일.
-
-* * *
-
-*동반 컬렉션: [저렴한 LLM 스택](/kr/collections/cheap-llm-stack/) AI Trader의 LLM API 비용 측. [AI Agent 도구 체인](/kr/collections/ai-agent-tool-chain/) 자율 에이전트가 트레이딩 루프 구동 원함. [셀프호스트 AI 코딩 워크플로우](/kr/collections/self-hosted-ai-coding-workflow/) 전략 코드 개발 측.*
-
-*⚠️ 재진술: 투자 조언 아님. 본인 책임 트레이드.*
-
-
-{
-  &#34;@context&#34;: &#34;https://schema.org&#34;,
-  &#34;@type&#34;: &#34;Article&#34;,
-  &#34;headline&#34;: &#34;AI 트레이딩 스택 2026: 암호화폐 + 예측 시장용 7컴포넌트 오픈소스 퀀트 워크플로우&#34;,
-  &#34;datePublished&#34;: &#34;2026-05-21&#34;,
-  &#34;dateModified&#34;: &#34;2026-05-21&#34;,
-  &#34;author&#34;: {
-    &#34;@type&#34;: &#34;Organization&#34;,
-    &#34;name&#34;: &#34;Dibi8&#34;
-  },
-  &#34;publisher&#34;: {
-    &#34;@type&#34;: &#34;Organization&#34;,
-    &#34;name&#34;: &#34;Dibi8&#34;,
-    &#34;logo&#34;: {
-      &#34;@type&#34;: &#34;ImageObject&#34;,
-      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
-    }
-  },
-  &#34;mainEntityOfPage&#34;: {
-    &#34;@type&#34;: &#34;WebPage&#34;,
-    &#34;@id&#34;: &#34;https://dibi8.com/kr/resources/ai-trading-stack&#34;
-  }
+| Minara subscription (if used) | $0 (free tier) | $0-30 | $0-50 |
+| <strong>Total infrastructure</strong> | <strong>~$30-50/mo</strong> | <strong>~$70-150/mo</strong> | <strong>~$200-500/mo</strong> |</p>
+<p><strong>Not included</strong>: Trading capital itself. Per-trade fees on venues. Tax software (recommend separate CoinTracking or Koinly subscription).</p>
+<p>Compare against SaaS quant platforms: 3Commas Pro ($74) + TradingView Premium ($59) + CoinTracking ($21) = $154/mo with worse latency, no source code access, IP-based execution restrictions.</p>
+<h2 id="12-upgrade-path">12. Upgrade Path<a hidden class="anchor" aria-hidden="true" href="#12-upgrade-path">#</a></h2>
+<p>When you outgrow this stack: - <strong>Strategies &gt; 10 concurrent</strong> — Move freqtrade to Kubernetes cluster with per-strategy isolation</p>
+<ul>
+<li><strong>Latency &lt; 50ms critical</strong> — Colocate at exchange data centers (AWS Tokyo for Binance Asia, AWS NYC for OKX US)</li>
+<li><strong>Multi-asset (crypto + equities + futures)</strong> — Add Interactive Brokers integration; use a managed quant platform like QuantConnect alongside this stack</li>
+<li><strong>Audit-grade trade records</strong> — Add immudb or Apache Kafka for tamper-proof trade logs</li>
+<li><strong>Capital &gt; $1M</strong> — Get a CPA who understands crypto; structure as a fund (LP/GP) if managing others&rsquo; money</li>
+</ul>
+<h2 id="13-the-honest-risk-discussion">13. The Honest Risk Discussion<a hidden class="anchor" aria-hidden="true" href="#13-the-honest-risk-discussion">#</a></h2>
+<p>This stack makes building a quant trading system 10× easier than 2018. <strong>It does not make the actual strategy any easier to find.</strong> Most quant strategies that look profitable in backtest fail in live execution due to: - <strong>Survivorship bias</strong> in historical data (failed exchanges, delisted pairs)</p>
+<ul>
+<li><strong>Slippage</strong> — your backtest assumes filled at mid-price; live execution eats the spread</li>
+<li><strong>Regime change</strong> — what worked in 2022 bear may not work in 2026 bull</li>
+<li><strong>Concentration risk</strong> — being 100% in a single venue means a single hack/regulatory action wipes you</li>
+<li><strong>Psychological pressure</strong> — watching real money fluctuate is different from watching backtest equity curves</li>
+</ul>
+<p>Build the stack. Paper trade for 1-3 months. Start with capital you can afford to lose entirely. Scale slowly. Read <a href="https://www.amazon.com/Advances-Financial-Machine-Learning-Marcos/dp/1119482089">Marcos Lopez de Prado&quot;s &ldquo;Advances in Financial Machine Learning&rdquo;</a> if you want to understand why most retail quants fail.</p>
+<h2 id="tldr--the-recipe">TL;DR — The Recipe<a hidden class="anchor" aria-hidden="true" href="#tldr--the-recipe">#</a></h2>
+<p><strong>7 components for self-hosted AI quant trading, $30-150/mo infrastructure (excluding trading capital)</strong>: 1. <strong>ta-lib</strong> — signal generation (200+ indicators)
+2. <strong>vectorbt</strong> — vectorized backtesting
+3. <strong>freqtrade</strong> — production CEX execution
+4. <strong>AI Trader</strong> — AI strategy adjustment loop
+5. <strong>Hyperliquid</strong> — on-chain perp DEX venue
+6. <strong>Polymarket Agents</strong> — prediction market alpha
+7. <strong>Minara</strong> — AI+crypto conversational hub for non-coders ()</p>
+<p>Spin up an  for low-latency execution, paper trade for 2-4 weeks before going live, start with capital you can lose, scale only after live performance matches backtest expectations.</p>
+<hr>
+<p><em>Companion collections: <a href="/collections/cheap-llm-stack/">Cheap LLM Stack</a> for the LLM API cost side of AI Trader. <a href="/collections/ai-agent-tool-chain/">AI Agent Tool Chain</a> if you want autonomous agents driving the trading loop. <a href="/collections/self-hosted-ai-coding-workflow/">Self-Hosted AI Coding Workflow</a> for the strategy code development side.</em></p>
+<p><em>⚠️ Re-stating: Not investment advice. Trade at your own risk.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;The AI Trading Stack 2026: 7-Component Open-Source Quant Workflow for Crypto + Prediction Markets&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-21&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-21&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
-&lt;/script&gt;
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/ai-trading-stack%22">https://dibi8.com/resources/ai-trading-stack"</a>
+}
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/ko/ai-coding-agents/ai-trading-stack/">hkuds-ai-trader</a></li>
+<li><a href="/ko/ai-coding-agents/ai-trading-stack/">12-factor-agents</a></li>
+<li><a href="/ko/ai-coding-agents/ai-trading-stack/">2026-05-25-trending-ai-agents</a></li>
+<li><a href="/ko/ai-coding-agents/ai-trading-stack/">2026-06-01-trending-ai-agents</a></li>
+<li><a href="/ko/ai-coding-agents/ai-trading-stack/">2026-06-08-trending-ai-agents</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
 
-* * *
-
-## Related Articles
-
-- [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](ai-trading-stack)
-- [12-factor-agents](ai-trading-stack)
-- [2026-05-25-trending-ai-agents](ai-trading-stack)
-- [2026-06-01-trending-ai-agents](ai-trading-stack)
-- [2026-06-08-trending-ai-agents](ai-trading-stack)
-
-* * *
-
-*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
-
-## Frequently Asked Questions (FAQ)
-
-**问：AI Agent和传统自动化有什么区别？**
-
-AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
-
-**问：如何选择合适的AI Agent框架？**
-
-考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
-
-**问：AI Agent的安全性如何保证？**
-
-实施权限最小化、输入验证、审计日志、以及定期安全评估。
-
-**问：AI Agent的学习成本有多高？**
-
-入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
-
-**问：能否自定义AI Agent的行为？**
-
-是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</code></pre>
 
   </div>
 
@@ -594,6 +585,81 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

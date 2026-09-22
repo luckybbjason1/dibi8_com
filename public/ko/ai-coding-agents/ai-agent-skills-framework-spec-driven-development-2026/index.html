@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "AI 에이전트 스킬이란? 블랙박스에서 조립형 행동 레고로 핵심 개념: 전문가의 직관을 에이전트 제약 조건으로 인코딩하기 전통적인 AI 코딩 어시스턴트의 근본적인 문제는 무상태성, 제약 부재, 기억 없음이다. 모든 대화는 백지 상태에서 시작된다. AI는 같은 실수를 반복하고, 메인 브랜치에 force push하고, 프로덕션에서 ```rm -rf````를 실행한다.\n스킬 패턴은 이 문제를 해결한다: 특정 도메인의 워크플로우, 가드레일(guardrails), 디버깅 방법론을 구조화된 구성 파일로 인코딩한다. AI 에이전트는 어떤 작업을 실행하기 전에 이 “행동 패턴\"을 로드한다.\n┌────────────────────────────────────────────────────────────────┐ │ AI 에이전트 스킬 아키텍처 │ ├────────────────────────────────────────────────────────────────┤ │ │ │ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ │ │ │ AI 코딩 │ │ 스킬 │ │ 신뢰할 수 │ │ │ │ 에이전트 │◄────│ (설정과 │────►│ 있는 제약 │ │ │ │ (Claude, │ │ 패턴) │ │ 출력 │ │ │ │ Codex) │ │ │ │ │ │ │ └─────────────┘ └─────────────┘ └─────────────┘ │ │ │ │ 스킬 예시: │ │ ├─ 가드레일: git push --force / rm -rf 차단 │ │ ├─ TDD 패턴: 구현 전 테스트 요구 │ │ ├─ 디버그 워크플로우: 구조화된 오류 조사 │ │ ├─ 도메인 패턴: TypeScript/React/Python 베스트 프랙티스 │ │ └─ 리뷰 체크리스트: PR 템플릿, 코드 스타일 가이드 │ │ │ └────────────────────────────────────────────────────────────────┘ 왜 스킬이 프롬프트보다 강력한가 차원 기존 프롬프트 AI 에이전트 스킬 재사용성 매번 다시 작성 한 번 작성, 프로젝트 전체 재사용 일관성 기억에 의존 파일 기반, 버전 관리 팀 온보딩 구두 전달 저장소에 포함, 신규 개발자 즉시 적용 유지보수성 채팅 기록에 흩어짐 구조화된 SKILL.md + 스크립트 트리거 수동 붙여넣기 컨텍스트 자동 감지, 조건부 활성화 Matt Pocock의 mattpocock/skills 저장소는 이 운동의 도화선이 되었다. 그는 개인 .claude 디렉토리를 오픈소스로 공개했는데, 여기에는 다음이 포함된다: - TDD 스킬: RED-GREEN-REFACTOR 사이클 강제\n가드레일 스킬: git push --force 가로채기, 확인 요구 디버그 스킬: 구조화된 조사 — 재현 → 로그 → 근본 원인 → 수정 → 회귀 테스트 TypeScript 심화 패턴: 타입 시스템 깊이에 최적화된 AI 출력 이것은 “프롬프트 엔지니어링 팁\"이 아니다. 실행 가능한 엔지니어링 규율이다.\n2026년 상위 5대 스킬 저장소 심층 분석 1. mattpocock/skills — 진짜 엔지니어를 위한 스킬 주간 stars 증가: +1,618 핵심 가치: 개인 .claude 디렉토리를 프로덕션용으로 엔지니어링 추천 대상: TypeScript/React 개발자, 코드 품질을 추구하는 팀 킬러 기능: 위험한 작업 실행 전 가드레일이 가로채고, TDD 모드가 테스트 선행 개발을 강제 2. NousResearch/hermes-agent — 함께 성장하는 에이전트 주간 stars 증가: +1,332 핵심 가치: 자기 개선 메모리, 세션 간 지속적 컨텍스트 추천 대상: 복잡하고 장기적인 코드베이스를 유지보수하는 개발자 킬러 기능: 크로스 세션 메모리 축적 — 에이전트가 시간이 지날수록 당신의 선호도를 학습 3. multica-ai/andrej-karpathy-skills — 천재의 워크플로우 재현 주간 stars 증가: +1,117 핵심 가치: Andrej Karpathy의 AI 엔지니어링 철학을 재사용 가능한 스킬로 패키징 추천 대상: ML 엔지니어, 딥러닝 연구자 킬러 기능: 신경망 구현 패턴, 훈련 워크플로우, 실험 추적 4. github/spec-kit — GitHub 공식 SDD 툴킷 주간 stars 증가: +736 핵심 가치: SPEC → PLAN → TASKS → IMPLEMENTATION 워크플로우 규율 추천 대상: 바이브 코딩의 혼란에 지친 팀 킬러 기능: AI가 즉흥 프롬프트가 아닌 계획에 기반하여 코드를 작성 — 추적 가능, 리뷰 가능 5. obra/superpowers — 가장 완전한 멀티 에이전트 워크플로우 주간 stars 증가: +951 핵심 가치: 40.9k stars 커뮤니티 스킬 라이브러리 추천 대상: 멀티 에이전트 오케스트레이션이 필요한 복잡한 프로젝트 킬러 기능: /brainstorm → /write-plan → /execute-plan 전체 라이프사이클 스펙 기반 개발: AI 코딩을 위한 엔지니어링 규율 왜 바이브 코딩이 코드 품질을 죽이는가 “바이브 코딩\"은 2025~2026년의 유행어였다: 직관과 즉흥적 프롬프트로 AI를 구동하는 개발 방식이다. 문제는 구조적이다: 1. 추적 불가: 코드가 왜 이렇게 작성되었는가? “그때 느낌이 좋아서.” 2. 리뷰 불가: 설계 문서가 없으면 코드 리뷰는 표면만 긁는다. 3. 유지보수 불가: 3개월 후, AI조차 원래 로직을 잊었다. 4. 협업 불가: 팀원마다 “바이브\"가 다르다.\n스펙킷 4단계 워크플로우 GitHub의 spec-kit은 간단한 4단계로 혼란을 규율로 바꾼다: ````` ┌──────────────────────────────────────────────────────────────┐ │ 스펙 기반 개발 워크플로우 │ ├──────────────────────────────────────────────────────────────┤ │ │ │ Step 1: 스펙 정의 (SPECIFICATION) │ │ └─ 자연어로 요구사항 작성 (“무엇을” \u0026 “왜”) │ │ │ │ │ ▼ │ │ Step 2: 계획 (PLAN) │ │ └─ AI가 스펙을 실행 가능한 작업 목록으로 분해 │ │ │ │ │ ▼ │ │ Step 3: 작업 (TASKS) │ │ └─ 구조화된, 리뷰 가능한 작업 체크리스트 │ │ │ │ │ ▼ │ │ Step 4: 구현 (IMPLEMENTATION) │ │ └─ AI가 즉흥 프롬프트가 아닌 계획에 기반하여 코드 작성 │ │ │ └──────────────────────────────────────────────────────────────┘\n**실전 예시**: `````markdown ## 스펙 정의 (SPECIFICATION) 전자상거래 앱에 장바구니 지속성 기능 추가. 이유: 사용자가 페이지를 새로고침해도 장바구니가 유실되지 않아야 함. 제약: localStorage 사용. Safari 프라이빗 모드에서 우아한 폴백 필요. ## 계획 (AI 생성) 1. CartStorage 인터페이스 추상화 레이어 생성 2. LocalStorageProvider 구현 3. MemoryFallbackProvider 구현 (Safari 프라이빗 모드) 4. CartContext에 저장소 레이어 통합 5. 두 프로바이더 모두 커버하는 단위 테스트 작성 ## 작업 (TASKS) - [ ] CartStorage 인터페이스 정의 (types/cart.ts) - [ ] LocalStorageProvider 구현 (providers/localStorage.ts) - [ ] MemoryFallbackProvider 구현 (providers/memory.ts) - [ ] CartContext 수정 (contexts/cart.tsx) - [ ] 테스트 작성 (__tests__/cart-storage.test.ts) ## 구현 (IMPLEMENTATION) AI가 위 계획에 따라 각 작업을 구현하며, 완료 시 체크. 실전: 첫 번째 AI 에이전트 스킬 직접 만들기 Step 1: 스킬 디렉토리 구조 생성 프로젝트나 글로벌 설정에서: ````` .claude/ └── skills/ └── safe-git/ ├── SKILL.md # 스킬 정의 파일 ├── guardrails.md # 구체적 규칙 └── hooks/ └── pre-push.sh # 선택사항: 커스텀 스크립트\n### Step 2: SKILL.md 작성 `````markdown * * * name: safe-git trigger: [git, push, commit] priority: high * * * # 세이프 Git 스킬 ## 가드레일 - main/master 브랜치로의 ````git push --force```` 차단 - 사용자가 명시적으로 확인하지 않는 한 ````git push --force-with-lease```` 차단 - ````git commit```` 전 린터 통과 요구 - \"WIP\" 또는 \"TODO\"를 포함한 커밋 메시지를 메인 브랜치에 푸시 차단 ## 워크플로우 ### Force Push 보호 force push 의도가 감지되면: 1. 작업 일시 중지 2. 영향받는 브랜치와 커밋 표시 3. 사용자가 \"I understand the risks\" 입력하여 확인 요구 4. .claude/safe-git.log에 기록 ### Pre-commit Lint 커밋 전 자동 실행: `````bash npm run lint \u0026\u0026 npm run typecheck 실패 시 커밋 차단 및 오류 표시.\n### Step 3: Claude Code에 설치 `````bash # 개인 스킬 (모든 프로젝트에서 사용 가능) cp -r safe-git ~/.claude/skills/ # 프로젝트 스킬 (저장소와 공유) cp -r safe-git .claude/skills/ Claude Code는 .claude/skills/ 디렉토리를 자동 감지하고 매칭되는 스킬을 로드한다.\n역할별 스킬 도입 로드맵 개인 개발자 (오늘부터 시작) 오늘: mattpocock/skills에서 TDD 및 가드레일 스킬 설치 이번 주: 가장 고통스러운 디버깅 시나리오를 위한 커스텀 디버그 스킬 작성 이번 달: 개인 .claude/skills/ 저장소를 git으로 버전 관리 엔지니어링 팀 (팀 합의 필요) 1주차: 공식/커뮤니티 스킬 2~3개 선택, 파일럿 프로젝트에서 시험 2주차: 팀 코딩 스탠다드를 기반으로 커스텀 Lint + 리뷰 스킬 작성 3주차: 프로젝트 스킬을 저장소에 커밋, 온보딩의 일부로 통합 지속적: 월간 스킬 효과성 리뷰, 반복 개선 기업 / 플랫폼 (인프라 필요) 내부 스킬 레지스트리: npm 레지스트리와 유사하지만 AI 스킬 전용 CI 통합: CI 파이프라인에서 스킬 컴플라이언스 체크 실행 보안 감사: 서드파티 스킬의 권한 범위 검토 (Trail of Bits 보안 스킬 참고) 교육 프로그램: 스킬 사용을 개발자 승진 기준에 포함 흔한 함정과 피하는 방법 함정 1: 스킬 비대증 증상: 50개 스킬 작성, 80%는 한 번도 트리거되지 않음.\n해결: “3회 트리거 규칙” — 지난 주에 3회 이상 트리거되지 않은 스킬은 제거.\n함정 2: AI를 과도하게 제약 증상: AI가 마비됨, 정상적인 git push에도 3번 확인 요구.\n해결: 가드레일은 되돌릴 수 없는 작업만 차단 (force push, 프로덕션 배포, 데이터베이스 삭제).\n함정 3: 스킬-프롬프트 충돌 증상: 스킬은 TDD를 요구하지만, 프롬프트는 “빨리 써, 테스트는 나중에.”\n해결: 우선순위 규칙 설정 — 스킬 제약 \u003e 단일 프롬프트 지시.\n함정 4: 버전 관리 무시 증상: 팀원마다 다른 스킬 버전을 실행, AI 행동이 제각각.\n해결: 프로젝트 스킬은 코드 저장소와 함께 버전 관리. 개인 스킬은 전용 저장소에서 관리.\n전망: 2026년 하반기 스킬 생태계 현재 궤적을 기반으로 세 가지 방향은 불가피하다: 1. 스킬 마켓플레이스: AI 에이전트 행동을 위한 전용 배포 플랫폼이 등장할 것이다 (ClawHub가 이미 개척 중). VS Code 확장 마켓플레이스를 상상하되, AI 에이전트 행동용으로.\n도메인 특화 스킬 폭발: 금융 규제, 헬스케어 프라이버시, 법률 검토 등 수직적 스킬이 필수가 될 것이다 (anthropics/financial-services의 +1,075 stars를 참고).\nAI 생성 스킬: Anthropic의 Skill Creator 같은 도구가 반복해서 설명하는 워크플로우를 AI가 자동으로 스킬로 생성하게 될 것이다.\n핵심 요약: “AI로 코드 짓기\"에서 “AI 작동 방식 엔지니어링하기\"로 2026년의 개발자 분열은 AI를 쓰느냐 마느냐가 아니다. 어떻게 쓰느냐이다.\n주니어: AI를 검색엔진처럼 사용 — “이 버그 어떻게 고치지?” 미드레벨: AI를 페어 프로그래머로 사용 — 프롬프트 기반 코딩 시니어: AI를 설정 가능한 실행 엔진으로 사용 — 스킬이 행동 경계를 정의하고, 스펙이 작업 목표를 정의 AI 에이전트 스킬 패턴과 스펙 기반 개발은 복잡성을 추가하지 않는다. 암묵적 전문 지식을 명시화하고, 즉흥적 바이브를 재현 가능한 엔지니어링 규율로 변환한다.\n터미널을 열어라. 첫 번째 ````.claude/skills/``` 디렉토리를 생성하라. 지금 시작하라.\n리소스 인덱스 mattpocock/skills — 가장 기본적인 스킬 참고 github/spec-kit — GitHub 공식 SDD 툴킷 obra/superpowers — 멀티 에이전트 워크플로우 프레임워크 anthropics/skills — Anthropic 공식 스킬 ClawHub — OpenClaw 스킬 마켓플레이스 Agent Skills Hub — 커뮤니티 스킬 평가 및 인덱스 2026년 5월 GitHub 트렌딩 데이터, Hacker News 기술 논의, 커뮤니티 실천을 기반으로 작성. 스킬 프레임워크 버전은 Claude Code 2026.05 기준.\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
-  "wordCount" : "1433",
+  "articleBody": "What Are AI Agent Skills? From Black Boxes to Composable Behavioral Lego Core Concept: Encoding Expert Intuition into Agent Constraints The fundamental problem with traditional AI coding assistants is statelessness, lack of constraints, and no memory. Every conversation starts from a blank slate. The AI repeats the same mistakes, pushes force to your main branch, and runs ```rm -rf```` in production.\nThe Skills pattern solves this by encoding domain-specific workflows, guardrails, and debugging methodologies into structured configuration files. The AI agent loads these “behavioral patterns” before executing any task.\n┌─────────────────────────────────────────────────────────────────┐ │ AI Agent Skills Architecture │ ├─────────────────────────────────────────────────────────────────┤ │ │ │ ┌──────────────┐ ┌──────────────┐ ┌──────────────┐ │ │ │ AI Coding │ │ Skills │ │ Reliable │ │ │ │ Agent │◄────│ (Config \u0026 │────►│ Constrained │ │ │ │ (Claude, │ │ Patterns) │ │ Output │ │ │ │ Codex) │ │ │ │ │ │ │ └──────────────┘ └──────────────┘ └──────────────┘ │ │ │ │ Skills Examples: │ │ ├─ Guardrails: Block dangerous git push --force / rm -rf │ │ ├─ TDD Patterns: Require tests before implementation │ │ ├─ Debug Workflows: Structured error investigation │ │ ├─ Domain Patterns: TypeScript/React/Python best practices │ │ └─ Review Checklists: PR templates, code style guides │ │ │ └─────────────────────────────────────────────────────────────────┘ Why Skills Dominate Raw Prompting | Dimension | Traditional Prompting | AI Agent Skills | |\n|\n|\n| | Reusability | Rewrite every time | Write once, reuse across projects | | Consistency | Memory-dependent | File-based, version-controlled | | Team Onboarding | Word of mouth | Ship with repo, new devs get it instantly | | Maintainability | Scattered in chat history | Structured SKILL.md + scripts | | Triggering | Manual paste | Auto-detect context, conditional activation |\nMatt Pocock’s mattpocock/skills repository was the spark that ignited this movement. He open-sourced his personal .claude directory containing: - TDD Skill: Enforces RED-GREEN-REFACTOR cycles\nGuardrail Skill: Intercepts git push --force, requires confirmation Debug Skill: Structured investigation — reproduce → logs → root cause → fix → regression test TypeScript Deep Patterns: AI output optimized for type system depth These aren’t “prompt engineering tricks.” They are executable engineering discipline.\nTop 5 Skills Repositories of 2026: A Deep Dive 1. mattpocock/skills — Skills for Real Engineers Weekly star gain: +1,618 Core value: Engineering a personal .claude directory for production use Best for: TypeScript/React developers, teams chasing code quality Killer feature: Guardrail intercepts dangerous operations before execution; TDD mode forces test-first development 2. NousResearch/hermes-agent — The Agent That Grows With You Weekly star gain: +1,332 Core value: Self-improving memory, persistent context across sessions Best for: Developers maintaining complex, long-lived codebases Killer feature: Cross-session memory accumulation — the agent learns your preferences over time 3. multica-ai/andrej-karpathy-skills — Packaging Genius Weekly star gain: +1,117 Core value: Andrej Karpathy’s AI engineering philosophy as reusable skills Best for: ML engineers, deep learning researchers Killer feature: Neural network implementation patterns, training workflows, experiment tracking 4. github/spec-kit — GitHub’s Official SDD Toolkit Weekly star gain: +736 Core value: SPEC → PLAN → TASKS → IMPLEMENTATION workflow discipline Best for: Teams tired of vibe coding chaos Killer feature: AI writes code from the plan, not from improvised prompts — traceable, reviewable 5. obra/superpowers — The Most Complete Multi-Agent Workflow Weekly star gain: +951 Core value: 40.9k stars community skill library Best for: Complex projects requiring multi-agent orchestration Killer feature: /brainstorm → /write-plan → /execute-plan full lifecycle Spec-Driven Development: Engineering Discipline for AI Coding Why Vibe Coding Is Killing Code Quality “Vibe coding” was the buzzword of 2025–2026: a development approach driven by intuition and improvised prompts. The problems are structural: 1. Not traceable: Why was the code written this way? “It felt right at the time.” 2. Not reviewable: No design document means code review only scratches the surface. 3. Not maintainable: Three months later, even the AI forgot the original logic. 4. Not collaborative: Every team member’s “vibe” is different.\nThe Spec-Kit Four-Step Workflow GitHub’s spec-kit transforms chaos into discipline with a simple four-step process: ````` ┌──────────────────────────────────────────────────────────────┐ │ Spec-Driven Development Workflow │ ├──────────────────────────────────────────────────────────────┤ │ │ │ Step 1: SPECIFICATION │ │ └─ Write natural-language requirements (what \u0026 why) │ │ │ │ │ ▼ │ │ Step 2: PLAN │ │ └─ AI breaks spec into implementable task list │ │ │ │ │ ▼ │ │ Step 3: TASKS │ │ └─ Structured, reviewable task checklist │ │ │ │ │ ▼ │ │ Step 4: IMPLEMENTATION │ │ └─ AI writes code based on the plan, not the prompt │ │ │ └──────────────────────────────────────────────────────────────┘\n**Practical Example**: `````markdown ## SPECIFICATION Add shopping cart persistence to the e-commerce app. Why: Users should not lose their cart on page refresh. Constraints: Use localStorage. Gracefully degrade in Safari Private Mode. ## PLAN (generated by AI) 1. Create CartStorage interface abstraction layer 2. Implement LocalStorageProvider 3. Implement MemoryFallbackProvider (Safari Private Mode) 4. Integrate storage layer into CartContext 5. Write unit tests covering both providers ## TASKS - [ ] Define CartStorage interface (types/cart.ts) - [ ] Implement LocalStorageProvider (providers/localStorage.ts) - [ ] Implement MemoryFallbackProvider (providers/memory.ts) - [ ] Modify CartContext (contexts/cart.tsx) - [ ] Write tests (__tests__/cart-storage.test.ts) ## IMPLEMENTATION AI implements each task based on the plan above, checking items off as completed. Hands-On: Building Your First AI Agent Skill Step 1: Create the Skill Directory Structure In your project or global config: ````` .claude/ └── skills/ └── safe-git/ ├── SKILL.md # Skill definition file ├── guardrails.md # Specific rules └── hooks/ └── pre-push.sh # Optional: custom scripts\n### Step 2: Write SKILL.md `````markdown * * * name: safe-git trigger: [git, push, commit] priority: high * * * # Safe Git Skill ## Guardrails - Block ````git push --force```` to main/master branches - Block ````git push --force-with-lease```` unless user explicitly confirms - Require linter to pass before ````git commit```` - Block commit messages containing \"WIP\" or \"TODO\" on main branches ## Workflows ### Force Push Protection When force push intent is detected: 1. Pause operation 2. Display affected branches and commits 3. Require user to type \"I understand the risks\" to confirm 4. Log to .claude/safe-git.log ### Pre-commit Lint Auto-run before commit: `````bash npm run lint \u0026\u0026 npm run typecheck Block commit and display errors on failure.\n### Step 3: Install to Claude Code `````bash # Personal skill (available across projects) cp -r safe-git ~/.claude/skills/ # Project skill (shared with repo) cp -r safe-git .claude/skills/ Claude Code auto-detects .claude/skills/ and loads matching skills.\nSkills Adoption Roadmap by Role Individual Developer (Start Today) Today: Install TDD and Guardrail skills from mattpocock/skills This week: Write a custom Debug Skill for your most painful debugging scenario This month: Establish a personal .claude/skills/ repository, version-controlled with git Engineering Team (Requires Consensus) Week 1: Select 2–3 official/community skills, pilot in one project Week 2: Based on team coding standards, write a custom Lint + Review Skill Week 3: Commit project skills to the repo, make them part of onboarding Ongoing: Monthly review of skill effectiveness, iterate Enterprise / Platform (Requires Infrastructure) Internal Skills Registry: Like npm registry, but for AI skills CI Integration: Run skills compliance checks in CI pipelines Security Audit: Review third-party skills’ permission scope (see Trail of Bits security skills) Training Program: Make skills usage part of developer promotion criteria Common Pitfalls and How to Avoid Them Pitfall 1: Skills Bloat Symptom: 50 skills written, 80% never triggered.\nFix: Follow the “Three-Trigger Rule” — keep a skill only if it was triggered three times in the past week.\nPitfall 2: Over-Constraining the AI Symptom: AI becomes paralyzed, asks for confirmation three times for a normal git push.\nFix: Guardrails only block irreversible operations (force push, production deploy, database deletion).\nPitfall 3: Skills-Prompt Conflict Symptom: Skill demands TDD, but prompt says “just write it fast, tests later.”\nFix: Establish priority rules — skill constraints \u003e single-prompt instructions.\nPitfall 4: Ignoring Version Management Symptom: Team members run different skill versions; AI behavior diverges wildly.\nFix: Project skills must be version-controlled with the code repo. Personal skills managed in a dedicated repo.\nWhat’s Next: Skills in H2 2026 Based on current trajectories, three directions are inevitable: 1. Skills Marketplaces: Dedicated skill distribution platforms will emerge (ClawHub is already pioneering this). Think VS Code Extensions marketplace, but for AI agent behavior.\nDomain-Specific Skills Explosion: Financial compliance, healthcare privacy, legal review — vertical skills will become mandatory (see anthropics/financial-services at +1,075 stars).\nAI-Generated Skills: Tools like Anthropic’s Skill Creator will let AI auto-generate skills from workflows you keep explaining repeatedly.\nThe Bottom Line: From “Using AI to Write Code” to “Engineering How AI Works” The developer divide in 2026 isn’t about whether you use AI. It’s about how you use AI.\nJunior: Uses AI like a search engine — “how do I fix this bug?” Mid-level: Uses AI as a pair programmer — prompt-driven coding Senior: Uses AI as a configurable execution engine — skills define behavioral boundaries, specs define work objectives The AI Agent Skills pattern and Spec-Driven Development don’t add complexity. They make implicit expert knowledge explicit, and transform improvised vibes into reproducible engineering discipline.\nOpen your terminal. Create your first ````.claude/skills/``` directory. Start now.\nResource Index mattpocock/skills — The canonical skills reference github/spec-kit — Official SDD toolkit from GitHub obra/superpowers — Multi-agent workflow framework anthropics/skills — Anthropic’s official skills ClawHub — OpenClaw skills marketplace Agent Skills Hub — Community skill ratings and index Based on May 2026 GitHub Trending data, Hacker News technical discussions, and community practice. Skill framework versions referenced to Claude Code 2026.05.\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "1597",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/ai-agent-skills-framework-spec-driven-development-2026/">En</a>
@@ -209,69 +209,69 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#ai-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ec%8a%a4%ed%82%ac%ec%9d%b4%eb%9e%80-%eb%b8%94%eb%9e%99%eb%b0%95%ec%8a%a4%ec%97%90%ec%84%9c-%ec%a1%b0%eb%a6%bd%ed%98%95-%ed%96%89%eb%8f%99-%eb%a0%88%ea%b3%a0%eb%a1%9c" aria-label="AI 에이전트 스킬이란? 블랙박스에서 조립형 행동 레고로">AI 에이전트 스킬이란? 블랙박스에서 조립형 행동 레고로</a><ul>
+                <a href="#what-are-ai-agent-skills-from-black-boxes-to-composable-behavioral-lego" aria-label="What Are AI Agent Skills? From Black Boxes to Composable Behavioral Lego">What Are AI Agent Skills? From Black Boxes to Composable Behavioral Lego</a><ul>
                     
             <li>
-                <a href="#%ed%95%b5%ec%8b%ac-%ea%b0%9c%eb%85%90-%ec%a0%84%eb%ac%b8%ea%b0%80%ec%9d%98-%ec%a7%81%ea%b4%80%ec%9d%84-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ec%a0%9c%ec%95%bd-%ec%a1%b0%ea%b1%b4%ec%9c%bc%eb%a1%9c-%ec%9d%b8%ec%bd%94%eb%94%a9%ed%95%98%ea%b8%b0" aria-label="핵심 개념: 전문가의 직관을 에이전트 제약 조건으로 인코딩하기">핵심 개념: 전문가의 직관을 에이전트 제약 조건으로 인코딩하기</a></li>
+                <a href="#core-concept-encoding-expert-intuition-into-agent-constraints" aria-label="Core Concept: Encoding Expert Intuition into Agent Constraints">Core Concept: Encoding Expert Intuition into Agent Constraints</a></li>
             <li>
-                <a href="#%ec%99%9c-%ec%8a%a4%ed%82%ac%ec%9d%b4-%ed%94%84%eb%a1%ac%ed%94%84%ed%8a%b8%eb%b3%b4%eb%8b%a4-%ea%b0%95%eb%a0%a5%ed%95%9c%ea%b0%80" aria-label="왜 스킬이 프롬프트보다 강력한가">왜 스킬이 프롬프트보다 강력한가</a></li></ul>
+                <a href="#why-skills-dominate-raw-prompting" aria-label="Why Skills Dominate Raw Prompting">Why Skills Dominate Raw Prompting</a></li></ul>
             </li>
             <li>
-                <a href="#2026%eb%85%84-%ec%83%81%ec%9c%84-5%eb%8c%80-%ec%8a%a4%ed%82%ac-%ec%a0%80%ec%9e%a5%ec%86%8c-%ec%8b%ac%ec%b8%b5-%eb%b6%84%ec%84%9d" aria-label="2026년 상위 5대 스킬 저장소 심층 분석">2026년 상위 5대 스킬 저장소 심층 분석</a><ul>
+                <a href="#top-5-skills-repositories-of-2026-a-deep-dive" aria-label="Top 5 Skills Repositories of 2026: A Deep Dive">Top 5 Skills Repositories of 2026: A Deep Dive</a><ul>
                     
             <li>
-                <a href="#1-mattpocockskills--%ec%a7%84%ec%a7%9c-%ec%97%94%ec%a7%80%eb%8b%88%ec%96%b4%eb%a5%bc-%ec%9c%84%ed%95%9c-%ec%8a%a4%ed%82%ac" aria-label="1. mattpocock/skills — 진짜 엔지니어를 위한 스킬">1. mattpocock/skills — 진짜 엔지니어를 위한 스킬</a></li>
+                <a href="#1-mattpocockskills--skills-for-real-engineers" aria-label="1. mattpocock/skills — Skills for Real Engineers">1. mattpocock/skills — Skills for Real Engineers</a></li>
             <li>
-                <a href="#2-nousresearchhermes-agent--%ed%95%a8%ea%bb%98-%ec%84%b1%ec%9e%a5%ed%95%98%eb%8a%94-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8" aria-label="2. NousResearch/hermes-agent — 함께 성장하는 에이전트">2. NousResearch/hermes-agent — 함께 성장하는 에이전트</a></li>
+                <a href="#2-nousresearchhermes-agent--the-agent-that-grows-with-you" aria-label="2. NousResearch/hermes-agent — The Agent That Grows With You">2. NousResearch/hermes-agent — The Agent That Grows With You</a></li>
             <li>
-                <a href="#3-multica-aiandrej-karpathy-skills--%ec%b2%9c%ec%9e%ac%ec%9d%98-%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0-%ec%9e%ac%ed%98%84" aria-label="3. multica-ai/andrej-karpathy-skills — 천재의 워크플로우 재현">3. multica-ai/andrej-karpathy-skills — 천재의 워크플로우 재현</a></li>
+                <a href="#3-multica-aiandrej-karpathy-skills--packaging-genius" aria-label="3. multica-ai/andrej-karpathy-skills — Packaging Genius">3. multica-ai/andrej-karpathy-skills — Packaging Genius</a></li>
             <li>
-                <a href="#4-githubspec-kit--github-%ea%b3%b5%ec%8b%9d-sdd-%ed%88%b4%ed%82%b7" aria-label="4. github/spec-kit — GitHub 공식 SDD 툴킷">4. github/spec-kit — GitHub 공식 SDD 툴킷</a></li>
+                <a href="#4-githubspec-kit--githubs-official-sdd-toolkit" aria-label="4. github/spec-kit — GitHub&rsquo;s Official SDD Toolkit">4. github/spec-kit — GitHub&rsquo;s Official SDD Toolkit</a></li>
             <li>
-                <a href="#5-obrasuperpowers--%ea%b0%80%ec%9e%a5-%ec%99%84%ec%a0%84%ed%95%9c-%eb%a9%80%ed%8b%b0-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0" aria-label="5. obra/superpowers — 가장 완전한 멀티 에이전트 워크플로우">5. obra/superpowers — 가장 완전한 멀티 에이전트 워크플로우</a></li></ul>
+                <a href="#5-obrasuperpowers--the-most-complete-multi-agent-workflow" aria-label="5. obra/superpowers — The Most Complete Multi-Agent Workflow">5. obra/superpowers — The Most Complete Multi-Agent Workflow</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%8a%a4%ed%8e%99-%ea%b8%b0%eb%b0%98-%ea%b0%9c%eb%b0%9c-ai-%ec%bd%94%eb%94%a9%ec%9d%84-%ec%9c%84%ed%95%9c-%ec%97%94%ec%a7%80%eb%8b%88%ec%96%b4%eb%a7%81-%ea%b7%9c%ec%9c%a8" aria-label="스펙 기반 개발: AI 코딩을 위한 엔지니어링 규율">스펙 기반 개발: AI 코딩을 위한 엔지니어링 규율</a><ul>
+                <a href="#spec-driven-development-engineering-discipline-for-ai-coding" aria-label="Spec-Driven Development: Engineering Discipline for AI Coding">Spec-Driven Development: Engineering Discipline for AI Coding</a><ul>
                     
             <li>
-                <a href="#%ec%99%9c-%eb%b0%94%ec%9d%b4%eb%b8%8c-%ec%bd%94%eb%94%a9%ec%9d%b4-%ec%bd%94%eb%93%9c-%ed%92%88%ec%a7%88%ec%9d%84-%ec%a3%bd%ec%9d%b4%eb%8a%94%ea%b0%80" aria-label="왜 바이브 코딩이 코드 품질을 죽이는가">왜 바이브 코딩이 코드 품질을 죽이는가</a></li>
+                <a href="#why-vibe-coding-is-killing-code-quality" aria-label="Why Vibe Coding Is Killing Code Quality">Why Vibe Coding Is Killing Code Quality</a></li>
             <li>
-                <a href="#%ec%8a%a4%ed%8e%99%ed%82%b7-4%eb%8b%a8%ea%b3%84-%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0" aria-label="스펙킷 4단계 워크플로우">스펙킷 4단계 워크플로우</a></li></ul>
+                <a href="#the-spec-kit-four-step-workflow" aria-label="The Spec-Kit Four-Step Workflow">The Spec-Kit Four-Step Workflow</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%8b%a4%ec%a0%84-%ec%b2%ab-%eb%b2%88%ec%a7%b8-ai-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ec%8a%a4%ed%82%ac-%ec%a7%81%ec%a0%91-%eb%a7%8c%eb%93%a4%ea%b8%b0" aria-label="실전: 첫 번째 AI 에이전트 스킬 직접 만들기">실전: 첫 번째 AI 에이전트 스킬 직접 만들기</a><ul>
+                <a href="#hands-on-building-your-first-ai-agent-skill" aria-label="Hands-On: Building Your First AI Agent Skill">Hands-On: Building Your First AI Agent Skill</a><ul>
                     
             <li>
-                <a href="#step-1-%ec%8a%a4%ed%82%ac-%eb%94%94%eb%a0%89%ed%86%a0%eb%a6%ac-%ea%b5%ac%ec%a1%b0-%ec%83%9d%ec%84%b1" aria-label="Step 1: 스킬 디렉토리 구조 생성">Step 1: 스킬 디렉토리 구조 생성</a></li></ul>
+                <a href="#step-1-create-the-skill-directory-structure" aria-label="Step 1: Create the Skill Directory Structure">Step 1: Create the Skill Directory Structure</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%97%ad%ed%95%a0%eb%b3%84-%ec%8a%a4%ed%82%ac-%eb%8f%84%ec%9e%85-%eb%a1%9c%eb%93%9c%eb%a7%b5" aria-label="역할별 스킬 도입 로드맵">역할별 스킬 도입 로드맵</a><ul>
+                <a href="#skills-adoption-roadmap-by-role" aria-label="Skills Adoption Roadmap by Role">Skills Adoption Roadmap by Role</a><ul>
                     
             <li>
-                <a href="#%ea%b0%9c%ec%9d%b8-%ea%b0%9c%eb%b0%9c%ec%9e%90-%ec%98%a4%eb%8a%98%eb%b6%80%ed%84%b0-%ec%8b%9c%ec%9e%91" aria-label="개인 개발자 (오늘부터 시작)">개인 개발자 (오늘부터 시작)</a></li>
+                <a href="#individual-developer-start-today" aria-label="Individual Developer (Start Today)">Individual Developer (Start Today)</a></li>
             <li>
-                <a href="#%ec%97%94%ec%a7%80%eb%8b%88%ec%96%b4%eb%a7%81-%ed%8c%80-%ed%8c%80-%ed%95%a9%ec%9d%98-%ed%95%84%ec%9a%94" aria-label="엔지니어링 팀 (팀 합의 필요)">엔지니어링 팀 (팀 합의 필요)</a></li>
+                <a href="#engineering-team-requires-consensus" aria-label="Engineering Team (Requires Consensus)">Engineering Team (Requires Consensus)</a></li>
             <li>
-                <a href="#%ea%b8%b0%ec%97%85--%ed%94%8c%eb%9e%ab%ed%8f%bc-%ec%9d%b8%ed%94%84%eb%9d%bc-%ed%95%84%ec%9a%94" aria-label="기업 / 플랫폼 (인프라 필요)">기업 / 플랫폼 (인프라 필요)</a></li></ul>
+                <a href="#enterprise--platform-requires-infrastructure" aria-label="Enterprise / Platform (Requires Infrastructure)">Enterprise / Platform (Requires Infrastructure)</a></li></ul>
             </li>
             <li>
-                <a href="#%ed%9d%94%ed%95%9c-%ed%95%a8%ec%a0%95%ea%b3%bc-%ed%94%bc%ed%95%98%eb%8a%94-%eb%b0%a9%eb%b2%95" aria-label="흔한 함정과 피하는 방법">흔한 함정과 피하는 방법</a><ul>
+                <a href="#common-pitfalls-and-how-to-avoid-them" aria-label="Common Pitfalls and How to Avoid Them">Common Pitfalls and How to Avoid Them</a><ul>
                     
             <li>
-                <a href="#%ed%95%a8%ec%a0%95-1-%ec%8a%a4%ed%82%ac-%eb%b9%84%eb%8c%80%ec%a6%9d" aria-label="함정 1: 스킬 비대증">함정 1: 스킬 비대증</a></li>
+                <a href="#pitfall-1-skills-bloat" aria-label="Pitfall 1: Skills Bloat">Pitfall 1: Skills Bloat</a></li>
             <li>
-                <a href="#%ed%95%a8%ec%a0%95-2-ai%eb%a5%bc-%ea%b3%bc%eb%8f%84%ed%95%98%ea%b2%8c-%ec%a0%9c%ec%95%bd" aria-label="함정 2: AI를 과도하게 제약">함정 2: AI를 과도하게 제약</a></li>
+                <a href="#pitfall-2-over-constraining-the-ai" aria-label="Pitfall 2: Over-Constraining the AI">Pitfall 2: Over-Constraining the AI</a></li>
             <li>
-                <a href="#%ed%95%a8%ec%a0%95-3-%ec%8a%a4%ed%82%ac-%ed%94%84%eb%a1%ac%ed%94%84%ed%8a%b8-%ec%b6%a9%eb%8f%8c" aria-label="함정 3: 스킬-프롬프트 충돌">함정 3: 스킬-프롬프트 충돌</a></li>
+                <a href="#pitfall-3-skills-prompt-conflict" aria-label="Pitfall 3: Skills-Prompt Conflict">Pitfall 3: Skills-Prompt Conflict</a></li>
             <li>
-                <a href="#%ed%95%a8%ec%a0%95-4-%eb%b2%84%ec%a0%84-%ea%b4%80%eb%a6%ac-%eb%ac%b4%ec%8b%9c" aria-label="함정 4: 버전 관리 무시">함정 4: 버전 관리 무시</a></li></ul>
+                <a href="#pitfall-4-ignoring-version-management" aria-label="Pitfall 4: Ignoring Version Management">Pitfall 4: Ignoring Version Management</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%a0%84%eb%a7%9d-2026%eb%85%84-%ed%95%98%eb%b0%98%ea%b8%b0-%ec%8a%a4%ed%82%ac-%ec%83%9d%ed%83%9c%ea%b3%84" aria-label="전망: 2026년 하반기 스킬 생태계">전망: 2026년 하반기 스킬 생태계</a></li>
+                <a href="#whats-next-skills-in-h2-2026" aria-label="What&rsquo;s Next: Skills in H2 2026">What&rsquo;s Next: Skills in H2 2026</a></li>
             <li>
-                <a href="#%ed%95%b5%ec%8b%ac-%ec%9a%94%ec%95%bd-ai%eb%a1%9c-%ec%bd%94%eb%93%9c-%ec%a7%93%ea%b8%b0%ec%97%90%ec%84%9c-ai-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d-%ec%97%94%ec%a7%80%eb%8b%88%ec%96%b4%eb%a7%81%ed%95%98%ea%b8%b0%eb%a1%9c" aria-label="핵심 요약: &ldquo;AI로 코드 짓기&quot;에서 &ldquo;AI 작동 방식 엔지니어링하기&quot;로">핵심 요약: &ldquo;AI로 코드 짓기&quot;에서 &ldquo;AI 작동 방식 엔지니어링하기&quot;로</a></li>
+                <a href="#the-bottom-line-from-using-ai-to-write-code-to-engineering-how-ai-works" aria-label="The Bottom Line: From &ldquo;Using AI to Write Code&rdquo; to &ldquo;Engineering How AI Works&rdquo;">The Bottom Line: From &ldquo;Using AI to Write Code&rdquo; to &ldquo;Engineering How AI Works&rdquo;</a></li>
             <li>
-                <a href="#%eb%a6%ac%ec%86%8c%ec%8a%a4-%ec%9d%b8%eb%8d%b1%ec%8a%a4" aria-label="리소스 인덱스">리소스 인덱스</a></li>
+                <a href="#resource-index" aria-label="Resource Index">Resource Index</a></li>
             <li>
                 <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
             </li>
@@ -279,175 +279,152 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><h2 id="ai-에이전트-스킬이란-블랙박스에서-조립형-행동-레고로">AI 에이전트 스킬이란? 블랙박스에서 조립형 행동 레고로<a hidden class="anchor" aria-hidden="true" href="#ai-에이전트-스킬이란-블랙박스에서-조립형-행동-레고로">#</a></h2>
-<h3 id="핵심-개념-전문가의-직관을-에이전트-제약-조건으로-인코딩하기">핵심 개념: 전문가의 직관을 에이전트 제약 조건으로 인코딩하기<a hidden class="anchor" aria-hidden="true" href="#핵심-개념-전문가의-직관을-에이전트-제약-조건으로-인코딩하기">#</a></h3>
-<p>전통적인 AI 코딩 어시스턴트의 근본적인 문제는 <strong>무상태성, 제약 부재, 기억 없음</strong>이다. 모든 대화는 백지 상태에서 시작된다. AI는 같은 실수를 반복하고, 메인 브랜치에 force push하고, 프로덕션에서 ```rm -rf````를 실행한다.</p>
-<p><strong>스킬 패턴</strong>은 이 문제를 해결한다: 특정 도메인의 워크플로우, 가드레일(guardrails), 디버깅 방법론을 구조화된 구성 파일로 인코딩한다. AI 에이전트는 어떤 작업을 실행하기 전에 이 &ldquo;행동 패턴&quot;을 로드한다.</p>
-<pre tabindex="0"><code>┌────────────────────────────────────────────────────────────────┐
-│                   AI 에이전트 스킬 아키텍처                     │
-├────────────────────────────────────────────────────────────────┤
-│                                                                │
-│   ┌─────────────┐     ┌─────────────┐     ┌─────────────┐      │
-│   │  AI 코딩    │     │   스킬      │     │  신뢰할 수   │      │
-│   │  에이전트   │◄────│ (설정과     │────►│  있는 제약   │      │
-│   │ (Claude,    │     │  패턴)      │     │  출력       │      │
-│   │  Codex)     │     │             │     │             │      │
-│   └─────────────┘     └─────────────┘     └─────────────┘      │
-│                                                                │
-│   스킬 예시: │
-│   ├─ 가드레일: git push --force / rm -rf 차단                │
-│   ├─ TDD 패턴: 구현 전 테스트 요구                             │
-│   ├─ 디버그 워크플로우: 구조화된 오류 조사                      │
-│   ├─ 도메인 패턴: TypeScript/React/Python 베스트 프랙티스      │
-│   └─ 리뷰 체크리스트: PR 템플릿, 코드 스타일 가이드             │
-│                                                                │
-└────────────────────────────────────────────────────────────────┘
-</code></pre><h3 id="왜-스킬이-프롬프트보다-강력한가">왜 스킬이 프롬프트보다 강력한가<a hidden class="anchor" aria-hidden="true" href="#왜-스킬이-프롬프트보다-강력한가">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>차원</th>
-					<th>기존 프롬프트</th>
-					<th>AI 에이전트 스킬</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>재사용성</td>
-					<td>매번 다시 작성</td>
-					<td>한 번 작성, 프로젝트 전체 재사용</td>
-			</tr>
-			<tr>
-					<td>일관성</td>
-					<td>기억에 의존</td>
-					<td>파일 기반, 버전 관리</td>
-			</tr>
-			<tr>
-					<td>팀 온보딩</td>
-					<td>구두 전달</td>
-					<td>저장소에 포함, 신규 개발자 즉시 적용</td>
-			</tr>
-			<tr>
-					<td>유지보수성</td>
-					<td>채팅 기록에 흩어짐</td>
-					<td>구조화된 SKILL.md + 스크립트</td>
-			</tr>
-			<tr>
-					<td>트리거</td>
-					<td>수동 붙여넣기</td>
-					<td>컨텍스트 자동 감지, 조건부 활성화</td>
-			</tr>
-	</tbody>
-</table>
-<p>Matt Pocock의 <a href="https://github.com/mattpocock/skills">mattpocock/skills</a> 저장소는 이 운동의 도화선이 되었다. 그는 개인 <code>.claude</code> 디렉토리를 오픈소스로 공개했는데, 여기에는 다음이 포함된다: - <strong>TDD 스킬</strong>: RED-GREEN-REFACTOR 사이클 강제</p>
-<ul>
-<li><strong>가드레일 스킬</strong>: <code>git push --force</code> 가로채기, 확인 요구</li>
-<li><strong>디버그 스킬</strong>: 구조화된 조사 — 재현 → 로그 → 근본 원인 → 수정 → 회귀 테스트</li>
-<li><strong>TypeScript 심화 패턴</strong>: 타입 시스템 깊이에 최적화된 AI 출력</li>
-</ul>
-<p>이것은 &ldquo;프롬프트 엔지니어링 팁&quot;이 아니다. <strong>실행 가능한 엔지니어링 규율</strong>이다.</p>
+  <div class="post-content md-content"><h2 id="what-are-ai-agent-skills-from-black-boxes-to-composable-behavioral-lego">What Are AI Agent Skills? From Black Boxes to Composable Behavioral Lego<a hidden class="anchor" aria-hidden="true" href="#what-are-ai-agent-skills-from-black-boxes-to-composable-behavioral-lego">#</a></h2>
+<h3 id="core-concept-encoding-expert-intuition-into-agent-constraints">Core Concept: Encoding Expert Intuition into Agent Constraints<a hidden class="anchor" aria-hidden="true" href="#core-concept-encoding-expert-intuition-into-agent-constraints">#</a></h3>
+<p>The fundamental problem with traditional AI coding assistants is <strong>statelessness, lack of constraints, and no memory</strong>. Every conversation starts from a blank slate. The AI repeats the same mistakes, pushes force to your main branch, and runs ```rm -rf```` in production.</p>
+<p>The <strong>Skills pattern</strong> solves this by encoding domain-specific workflows, guardrails, and debugging methodologies into structured configuration files. The AI agent loads these &ldquo;behavioral patterns&rdquo; before executing any task.</p>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────────────────┐
+│                   AI Agent Skills Architecture                   │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│   ┌──────────────┐     ┌──────────────┐     ┌──────────────┐    │
+│   │  AI Coding   │     │   Skills     │     │  Reliable    │    │
+│   │   Agent      │◄────│ (Config &amp;    │────►│  Constrained │    │
+│   │ (Claude,     │     │  Patterns)   │     │   Output     │    │
+│   │  Codex)      │     │              │     │              │    │
+│   └──────────────┘     └──────────────┘     └──────────────┘    │
+│                                                                 │
+│   Skills Examples: │
+│   ├─ Guardrails: Block dangerous git push --force / rm -rf     │
+│   ├─ TDD Patterns: Require tests before implementation         │
+│   ├─ Debug Workflows: Structured error investigation           │
+│   ├─ Domain Patterns: TypeScript/React/Python best practices   │
+│   └─ Review Checklists: PR templates, code style guides        │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+</code></pre><h3 id="why-skills-dominate-raw-prompting">Why Skills Dominate Raw Prompting<a hidden class="anchor" aria-hidden="true" href="#why-skills-dominate-raw-prompting">#</a></h3>
+<p>| Dimension | Traditional Prompting | AI Agent Skills |
+|</p>
 <hr>
-<h2 id="2026년-상위-5대-스킬-저장소-심층-분석">2026년 상위 5대 스킬 저장소 심층 분석<a hidden class="anchor" aria-hidden="true" href="#2026년-상위-5대-스킬-저장소-심층-분석">#</a></h2>
-<h3 id="1-mattpocockskills--진짜-엔지니어를-위한-스킬">1. mattpocock/skills — 진짜 엔지니어를 위한 스킬<a hidden class="anchor" aria-hidden="true" href="#1-mattpocockskills--진짜-엔지니어를-위한-스킬">#</a></h3>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Reusability | Rewrite every time | Write once, reuse across projects |
+| Consistency | Memory-dependent | File-based, version-controlled |
+| Team Onboarding | Word of mouth | Ship with repo, new devs get it instantly |
+| Maintainability | Scattered in chat history | Structured SKILL.md + scripts |
+| Triggering | Manual paste | Auto-detect context, conditional activation |</p>
+<p>Matt Pocock&rsquo;s <a href="https://github.com/mattpocock/skills">mattpocock/skills</a> repository was the spark that ignited this movement. He open-sourced his personal <code>.claude</code> directory containing: - <strong>TDD Skill</strong>: Enforces RED-GREEN-REFACTOR cycles</p>
 <ul>
-<li><strong>주간 stars 증가</strong>: +1,618</li>
-<li><strong>핵심 가치</strong>: 개인 <code>.claude</code> 디렉토리를 프로덕션용으로 엔지니어링</li>
-<li><strong>추천 대상</strong>: TypeScript/React 개발자, 코드 품질을 추구하는 팀</li>
-<li><strong>킬러 기능</strong>: 위험한 작업 실행 전 가드레일이 가로채고, TDD 모드가 테스트 선행 개발을 강제</li>
+<li><strong>Guardrail Skill</strong>: Intercepts <code>git push --force</code>, requires confirmation</li>
+<li><strong>Debug Skill</strong>: Structured investigation — reproduce → logs → root cause → fix → regression test</li>
+<li><strong>TypeScript Deep Patterns</strong>: AI output optimized for type system depth</li>
 </ul>
-<h3 id="2-nousresearchhermes-agent--함께-성장하는-에이전트">2. NousResearch/hermes-agent — 함께 성장하는 에이전트<a hidden class="anchor" aria-hidden="true" href="#2-nousresearchhermes-agent--함께-성장하는-에이전트">#</a></h3>
+<p>These aren&rsquo;t &ldquo;prompt engineering tricks.&rdquo; They are <strong>executable engineering discipline</strong>.</p>
+<hr>
+<h2 id="top-5-skills-repositories-of-2026-a-deep-dive">Top 5 Skills Repositories of 2026: A Deep Dive<a hidden class="anchor" aria-hidden="true" href="#top-5-skills-repositories-of-2026-a-deep-dive">#</a></h2>
+<h3 id="1-mattpocockskills--skills-for-real-engineers">1. mattpocock/skills — Skills for Real Engineers<a hidden class="anchor" aria-hidden="true" href="#1-mattpocockskills--skills-for-real-engineers">#</a></h3>
 <ul>
-<li><strong>주간 stars 증가</strong>: +1,332</li>
-<li><strong>핵심 가치</strong>: 자기 개선 메모리, 세션 간 지속적 컨텍스트</li>
-<li><strong>추천 대상</strong>: 복잡하고 장기적인 코드베이스를 유지보수하는 개발자</li>
-<li><strong>킬러 기능</strong>: 크로스 세션 메모리 축적 — 에이전트가 시간이 지날수록 당신의 선호도를 학습</li>
+<li><strong>Weekly star gain</strong>: +1,618</li>
+<li><strong>Core value</strong>: Engineering a personal <code>.claude</code> directory for production use</li>
+<li><strong>Best for</strong>: TypeScript/React developers, teams chasing code quality</li>
+<li><strong>Killer feature</strong>: Guardrail intercepts dangerous operations before execution; TDD mode forces test-first development</li>
 </ul>
-<h3 id="3-multica-aiandrej-karpathy-skills--천재의-워크플로우-재현">3. multica-ai/andrej-karpathy-skills — 천재의 워크플로우 재현<a hidden class="anchor" aria-hidden="true" href="#3-multica-aiandrej-karpathy-skills--천재의-워크플로우-재현">#</a></h3>
+<h3 id="2-nousresearchhermes-agent--the-agent-that-grows-with-you">2. NousResearch/hermes-agent — The Agent That Grows With You<a hidden class="anchor" aria-hidden="true" href="#2-nousresearchhermes-agent--the-agent-that-grows-with-you">#</a></h3>
 <ul>
-<li><strong>주간 stars 증가</strong>: +1,117</li>
-<li><strong>핵심 가치</strong>: Andrej Karpathy의 AI 엔지니어링 철학을 재사용 가능한 스킬로 패키징</li>
-<li><strong>추천 대상</strong>: ML 엔지니어, 딥러닝 연구자</li>
-<li><strong>킬러 기능</strong>: 신경망 구현 패턴, 훈련 워크플로우, 실험 추적</li>
+<li><strong>Weekly star gain</strong>: +1,332</li>
+<li><strong>Core value</strong>: Self-improving memory, persistent context across sessions</li>
+<li><strong>Best for</strong>: Developers maintaining complex, long-lived codebases</li>
+<li><strong>Killer feature</strong>: Cross-session memory accumulation — the agent learns your preferences over time</li>
 </ul>
-<h3 id="4-githubspec-kit--github-공식-sdd-툴킷">4. github/spec-kit — GitHub 공식 SDD 툴킷<a hidden class="anchor" aria-hidden="true" href="#4-githubspec-kit--github-공식-sdd-툴킷">#</a></h3>
+<h3 id="3-multica-aiandrej-karpathy-skills--packaging-genius">3. multica-ai/andrej-karpathy-skills — Packaging Genius<a hidden class="anchor" aria-hidden="true" href="#3-multica-aiandrej-karpathy-skills--packaging-genius">#</a></h3>
 <ul>
-<li><strong>주간 stars 증가</strong>: +736</li>
-<li><strong>핵심 가치</strong>: <code>SPEC → PLAN → TASKS → IMPLEMENTATION</code> 워크플로우 규율</li>
-<li><strong>추천 대상</strong>: 바이브 코딩의 혼란에 지친 팀</li>
-<li><strong>킬러 기능</strong>: AI가 즉흥 프롬프트가 아닌 계획에 기반하여 코드를 작성 — 추적 가능, 리뷰 가능</li>
+<li><strong>Weekly star gain</strong>: +1,117</li>
+<li><strong>Core value</strong>: Andrej Karpathy&rsquo;s AI engineering philosophy as reusable skills</li>
+<li><strong>Best for</strong>: ML engineers, deep learning researchers</li>
+<li><strong>Killer feature</strong>: Neural network implementation patterns, training workflows, experiment tracking</li>
 </ul>
-<h3 id="5-obrasuperpowers--가장-완전한-멀티-에이전트-워크플로우">5. obra/superpowers — 가장 완전한 멀티 에이전트 워크플로우<a hidden class="anchor" aria-hidden="true" href="#5-obrasuperpowers--가장-완전한-멀티-에이전트-워크플로우">#</a></h3>
+<h3 id="4-githubspec-kit--githubs-official-sdd-toolkit">4. github/spec-kit — GitHub&rsquo;s Official SDD Toolkit<a hidden class="anchor" aria-hidden="true" href="#4-githubspec-kit--githubs-official-sdd-toolkit">#</a></h3>
 <ul>
-<li><strong>주간 stars 증가</strong>: +951</li>
-<li><strong>핵심 가치</strong>: 40.9k stars 커뮤니티 스킬 라이브러리</li>
-<li><strong>추천 대상</strong>: 멀티 에이전트 오케스트레이션이 필요한 복잡한 프로젝트</li>
-<li><strong>킬러 기능</strong>: <code>/brainstorm</code> → <code>/write-plan</code> → <code>/execute-plan</code> 전체 라이프사이클</li>
+<li><strong>Weekly star gain</strong>: +736</li>
+<li><strong>Core value</strong>: <code>SPEC → PLAN → TASKS → IMPLEMENTATION</code> workflow discipline</li>
+<li><strong>Best for</strong>: Teams tired of vibe coding chaos</li>
+<li><strong>Killer feature</strong>: AI writes code from the plan, not from improvised prompts — traceable, reviewable</li>
+</ul>
+<h3 id="5-obrasuperpowers--the-most-complete-multi-agent-workflow">5. obra/superpowers — The Most Complete Multi-Agent Workflow<a hidden class="anchor" aria-hidden="true" href="#5-obrasuperpowers--the-most-complete-multi-agent-workflow">#</a></h3>
+<ul>
+<li><strong>Weekly star gain</strong>: +951</li>
+<li><strong>Core value</strong>: 40.9k stars community skill library</li>
+<li><strong>Best for</strong>: Complex projects requiring multi-agent orchestration</li>
+<li><strong>Killer feature</strong>: <code>/brainstorm</code> → <code>/write-plan</code> → <code>/execute-plan</code> full lifecycle</li>
 </ul>
 <hr>
-<h2 id="스펙-기반-개발-ai-코딩을-위한-엔지니어링-규율">스펙 기반 개발: AI 코딩을 위한 엔지니어링 규율<a hidden class="anchor" aria-hidden="true" href="#스펙-기반-개발-ai-코딩을-위한-엔지니어링-규율">#</a></h2>
-<h3 id="왜-바이브-코딩이-코드-품질을-죽이는가">왜 바이브 코딩이 코드 품질을 죽이는가<a hidden class="anchor" aria-hidden="true" href="#왜-바이브-코딩이-코드-품질을-죽이는가">#</a></h3>
-<p>&ldquo;바이브 코딩&quot;은 2025~2026년의 유행어였다: 직관과 즉흥적 프롬프트로 AI를 구동하는 개발 방식이다. 문제는 구조적이다: 1. <strong>추적 불가</strong>: 코드가 왜 이렇게 작성되었는가? &ldquo;그때 느낌이 좋아서.&rdquo;
-2. <strong>리뷰 불가</strong>: 설계 문서가 없으면 코드 리뷰는 표면만 긁는다.
-3. <strong>유지보수 불가</strong>: 3개월 후, AI조차 원래 로직을 잊었다.
-4. <strong>협업 불가</strong>: 팀원마다 &ldquo;바이브&quot;가 다르다.</p>
-<h3 id="스펙킷-4단계-워크플로우">스펙킷 4단계 워크플로우<a hidden class="anchor" aria-hidden="true" href="#스펙킷-4단계-워크플로우">#</a></h3>
-<p>GitHub의 <a href="https://github.com/github/spec-kit">spec-kit</a>은 간단한 4단계로 혼란을 규율로 바꾼다: `````
+<h2 id="spec-driven-development-engineering-discipline-for-ai-coding">Spec-Driven Development: Engineering Discipline for AI Coding<a hidden class="anchor" aria-hidden="true" href="#spec-driven-development-engineering-discipline-for-ai-coding">#</a></h2>
+<h3 id="why-vibe-coding-is-killing-code-quality">Why Vibe Coding Is Killing Code Quality<a hidden class="anchor" aria-hidden="true" href="#why-vibe-coding-is-killing-code-quality">#</a></h3>
+<p>&ldquo;Vibe coding&rdquo; was the buzzword of 2025–2026: a development approach driven by intuition and improvised prompts. The problems are structural: 1. <strong>Not traceable</strong>: Why was the code written this way? &ldquo;It felt right at the time.&rdquo;
+2. <strong>Not reviewable</strong>: No design document means code review only scratches the surface.
+3. <strong>Not maintainable</strong>: Three months later, even the AI forgot the original logic.
+4. <strong>Not collaborative</strong>: Every team member&rsquo;s &ldquo;vibe&rdquo; is different.</p>
+<h3 id="the-spec-kit-four-step-workflow">The Spec-Kit Four-Step Workflow<a hidden class="anchor" aria-hidden="true" href="#the-spec-kit-four-step-workflow">#</a></h3>
+<p>GitHub&rsquo;s <a href="https://github.com/github/spec-kit">spec-kit</a> transforms chaos into discipline with a simple four-step process: `````
 ┌──────────────────────────────────────────────────────────────┐
-│           스펙 기반 개발 워크플로우                             │
+│          Spec-Driven Development Workflow                   │
 ├──────────────────────────────────────────────────────────────┤
 │                                                              │
-│   Step 1: 스펙 정의 (SPECIFICATION)                           │
-│   └─ 자연어로 요구사항 작성 (&ldquo;무엇을&rdquo; &amp; &ldquo;왜&rdquo;)               │
+│   Step 1: SPECIFICATION                                      │
+│   └─ Write natural-language requirements (what &amp; why)        │
 │            │                                                 │
 │            ▼                                                 │
-│   Step 2: 계획 (PLAN)                                        │
-│   └─ AI가 스펙을 실행 가능한 작업 목록으로 분해              │
+│   Step 2: PLAN                                               │
+│   └─ AI breaks spec into implementable task list             │
 │            │                                                 │
 │            ▼                                                 │
-│   Step 3: 작업 (TASKS)                                      │
-│   └─ 구조화된, 리뷰 가능한 작업 체크리스트                    │
+│   Step 3: TASKS                                              │
+│   └─ Structured, reviewable task checklist                 │
 │            │                                                 │
 │            ▼                                                 │
-│   Step 4: 구현 (IMPLEMENTATION)                              │
-│   └─ AI가 즉흥 프롬프트가 아닌 계획에 기반하여 코드 작성    │
+│   Step 4: IMPLEMENTATION                                     │
+│   └─ AI writes code based on the plan, not the prompt      │
 │                                                              │
 └──────────────────────────────────────────────────────────────┘</p>
 <pre tabindex="0"><code>
-**실전 예시**: `````markdown
-## 스펙 정의 (SPECIFICATION)
-전자상거래 앱에 장바구니 지속성 기능 추가.
-이유: 사용자가 페이지를 새로고침해도 장바구니가 유실되지 않아야 함.
-제약: localStorage 사용. Safari 프라이빗 모드에서 우아한 폴백 필요.
+**Practical Example**: `````markdown
+## SPECIFICATION
+Add shopping cart persistence to the e-commerce app.
+Why: Users should not lose their cart on page refresh.
+Constraints: Use localStorage. Gracefully degrade in Safari Private Mode.
 
-## 계획 (AI 생성)
-1. CartStorage 인터페이스 추상화 레이어 생성
-2. LocalStorageProvider 구현
-3. MemoryFallbackProvider 구현 (Safari 프라이빗 모드)
-4. CartContext에 저장소 레이어 통합
-5. 두 프로바이더 모두 커버하는 단위 테스트 작성
+## PLAN (generated by AI)
+1. Create CartStorage interface abstraction layer
+2. Implement LocalStorageProvider
+3. Implement MemoryFallbackProvider (Safari Private Mode)
+4. Integrate storage layer into CartContext
+5. Write unit tests covering both providers
 
-## 작업 (TASKS)
-- [ ] CartStorage 인터페이스 정의 (types/cart.ts)
-- [ ] LocalStorageProvider 구현 (providers/localStorage.ts)
-- [ ] MemoryFallbackProvider 구현 (providers/memory.ts)
-- [ ] CartContext 수정 (contexts/cart.tsx)
-- [ ] 테스트 작성 (__tests__/cart-storage.test.ts)
+## TASKS
+- [ ] Define CartStorage interface (types/cart.ts)
+- [ ] Implement LocalStorageProvider (providers/localStorage.ts)
+- [ ] Implement MemoryFallbackProvider (providers/memory.ts)
+- [ ] Modify CartContext (contexts/cart.tsx)
+- [ ] Write tests (__tests__/cart-storage.test.ts)
 
-## 구현 (IMPLEMENTATION)
-AI가 위 계획에 따라 각 작업을 구현하며, 완료 시 체크.
+## IMPLEMENTATION
+AI implements each task based on the plan above, checking items off as completed.
 </code></pre><hr>
-<h2 id="실전-첫-번째-ai-에이전트-스킬-직접-만들기">실전: 첫 번째 AI 에이전트 스킬 직접 만들기<a hidden class="anchor" aria-hidden="true" href="#실전-첫-번째-ai-에이전트-스킬-직접-만들기">#</a></h2>
-<h3 id="step-1-스킬-디렉토리-구조-생성">Step 1: 스킬 디렉토리 구조 생성<a hidden class="anchor" aria-hidden="true" href="#step-1-스킬-디렉토리-구조-생성">#</a></h3>
-<p>프로젝트나 글로벌 설정에서: `````
+<h2 id="hands-on-building-your-first-ai-agent-skill">Hands-On: Building Your First AI Agent Skill<a hidden class="anchor" aria-hidden="true" href="#hands-on-building-your-first-ai-agent-skill">#</a></h2>
+<h3 id="step-1-create-the-skill-directory-structure">Step 1: Create the Skill Directory Structure<a hidden class="anchor" aria-hidden="true" href="#step-1-create-the-skill-directory-structure">#</a></h3>
+<p>In your project or global config: `````
 .claude/
 └── skills/
 └── safe-git/
-├── SKILL.md          # 스킬 정의 파일
-├── guardrails.md     # 구체적 규칙
+├── SKILL.md          # Skill definition file
+├── guardrails.md     # Specific rules
 └── hooks/
-└── pre-push.sh   # 선택사항: 커스텀 스크립트</p>
+└── pre-push.sh   # Optional: custom scripts</p>
 <pre tabindex="0"><code>
-### Step 2: SKILL.md 작성
+### Step 2: Write SKILL.md
 
 `````markdown
 * * *
@@ -456,104 +433,104 @@ trigger: [git, push, commit]
 priority: high
 * * *
 
-# 세이프 Git 스킬
+# Safe Git Skill
 
-## 가드레일
-- main/master 브랜치로의 ````git push --force```` 차단
-- 사용자가 명시적으로 확인하지 않는 한 ````git push --force-with-lease```` 차단
-- ````git commit```` 전 린터 통과 요구
-- &#34;WIP&#34; 또는 &#34;TODO&#34;를 포함한 커밋 메시지를 메인 브랜치에 푸시 차단
+## Guardrails
+- Block ````git push --force```` to main/master branches
+- Block ````git push --force-with-lease```` unless user explicitly confirms
+- Require linter to pass before ````git commit````
+- Block commit messages containing &#34;WIP&#34; or &#34;TODO&#34; on main branches
 
-## 워크플로우
-### Force Push 보호
-force push 의도가 감지되면: 1. 작업 일시 중지
-2. 영향받는 브랜치와 커밋 표시
-3. 사용자가 &#34;I understand the risks&#34; 입력하여 확인 요구
-4. .claude/safe-git.log에 기록
+## Workflows
+### Force Push Protection
+When force push intent is detected: 1. Pause operation
+2. Display affected branches and commits
+3. Require user to type &#34;I understand the risks&#34; to confirm
+4. Log to .claude/safe-git.log
 
 ### Pre-commit Lint
-커밋 전 자동 실행: `````bash
+Auto-run before commit: `````bash
 npm run lint &amp;&amp; npm run typecheck
-</code></pre><p>실패 시 커밋 차단 및 오류 표시.</p>
+</code></pre><p>Block commit and display errors on failure.</p>
 <pre tabindex="0"><code>
-### Step 3: Claude Code에 설치
+### Step 3: Install to Claude Code
 
 `````bash
-# 개인 스킬 (모든 프로젝트에서 사용 가능)
+# Personal skill (available across projects)
 cp -r safe-git ~/.claude/skills/
 
-# 프로젝트 스킬 (저장소와 공유)
+# Project skill (shared with repo)
 cp -r safe-git .claude/skills/
-</code></pre><p>Claude Code는 <code>.claude/skills/</code> 디렉토리를 자동 감지하고 매칭되는 스킬을 로드한다.</p>
+</code></pre><p>Claude Code auto-detects <code>.claude/skills/</code> and loads matching skills.</p>
 <hr>
-<h2 id="역할별-스킬-도입-로드맵">역할별 스킬 도입 로드맵<a hidden class="anchor" aria-hidden="true" href="#역할별-스킬-도입-로드맵">#</a></h2>
-<h3 id="개인-개발자-오늘부터-시작">개인 개발자 (오늘부터 시작)<a hidden class="anchor" aria-hidden="true" href="#개인-개발자-오늘부터-시작">#</a></h3>
+<h2 id="skills-adoption-roadmap-by-role">Skills Adoption Roadmap by Role<a hidden class="anchor" aria-hidden="true" href="#skills-adoption-roadmap-by-role">#</a></h2>
+<h3 id="individual-developer-start-today">Individual Developer (Start Today)<a hidden class="anchor" aria-hidden="true" href="#individual-developer-start-today">#</a></h3>
 <ol>
-<li><strong>오늘</strong>: <a href="https://github.com/mattpocock/skills">mattpocock/skills</a>에서 TDD 및 가드레일 스킬 설치</li>
-<li><strong>이번 주</strong>: 가장 고통스러운 디버깅 시나리오를 위한 커스텀 디버그 스킬 작성</li>
-<li><strong>이번 달</strong>: 개인 <code>.claude/skills/</code> 저장소를 git으로 버전 관리</li>
+<li><strong>Today</strong>: Install TDD and Guardrail skills from <a href="https://github.com/mattpocock/skills">mattpocock/skills</a></li>
+<li><strong>This week</strong>: Write a custom Debug Skill for your most painful debugging scenario</li>
+<li><strong>This month</strong>: Establish a personal <code>.claude/skills/</code> repository, version-controlled with git</li>
 </ol>
-<h3 id="엔지니어링-팀-팀-합의-필요">엔지니어링 팀 (팀 합의 필요)<a hidden class="anchor" aria-hidden="true" href="#엔지니어링-팀-팀-합의-필요">#</a></h3>
+<h3 id="engineering-team-requires-consensus">Engineering Team (Requires Consensus)<a hidden class="anchor" aria-hidden="true" href="#engineering-team-requires-consensus">#</a></h3>
 <ol>
-<li><strong>1주차</strong>: 공식/커뮤니티 스킬 2~3개 선택, 파일럿 프로젝트에서 시험</li>
-<li><strong>2주차</strong>: 팀 코딩 스탠다드를 기반으로 커스텀 Lint + 리뷰 스킬 작성</li>
-<li><strong>3주차</strong>: 프로젝트 스킬을 저장소에 커밋, 온보딩의 일부로 통합</li>
-<li><strong>지속적</strong>: 월간 스킬 효과성 리뷰, 반복 개선</li>
+<li><strong>Week 1</strong>: Select 2–3 official/community skills, pilot in one project</li>
+<li><strong>Week 2</strong>: Based on team coding standards, write a custom Lint + Review Skill</li>
+<li><strong>Week 3</strong>: Commit project skills to the repo, make them part of onboarding</li>
+<li><strong>Ongoing</strong>: Monthly review of skill effectiveness, iterate</li>
 </ol>
-<h3 id="기업--플랫폼-인프라-필요">기업 / 플랫폼 (인프라 필요)<a hidden class="anchor" aria-hidden="true" href="#기업--플랫폼-인프라-필요">#</a></h3>
+<h3 id="enterprise--platform-requires-infrastructure">Enterprise / Platform (Requires Infrastructure)<a hidden class="anchor" aria-hidden="true" href="#enterprise--platform-requires-infrastructure">#</a></h3>
 <ol>
-<li><strong>내부 스킬 레지스트리</strong>: npm 레지스트리와 유사하지만 AI 스킬 전용</li>
-<li><strong>CI 통합</strong>: CI 파이프라인에서 스킬 컴플라이언스 체크 실행</li>
-<li><strong>보안 감사</strong>: 서드파티 스킬의 권한 범위 검토 (Trail of Bits 보안 스킬 참고)</li>
-<li><strong>교육 프로그램</strong>: 스킬 사용을 개발자 승진 기준에 포함</li>
+<li><strong>Internal Skills Registry</strong>: Like npm registry, but for AI skills</li>
+<li><strong>CI Integration</strong>: Run skills compliance checks in CI pipelines</li>
+<li><strong>Security Audit</strong>: Review third-party skills&rsquo; permission scope (see Trail of Bits security skills)</li>
+<li><strong>Training Program</strong>: Make skills usage part of developer promotion criteria</li>
 </ol>
 <hr>
-<h2 id="흔한-함정과-피하는-방법">흔한 함정과 피하는 방법<a hidden class="anchor" aria-hidden="true" href="#흔한-함정과-피하는-방법">#</a></h2>
-<h3 id="함정-1-스킬-비대증">함정 1: 스킬 비대증<a hidden class="anchor" aria-hidden="true" href="#함정-1-스킬-비대증">#</a></h3>
-<p><strong>증상</strong>: 50개 스킬 작성, 80%는 한 번도 트리거되지 않음.<br>
-<strong>해결</strong>: &ldquo;3회 트리거 규칙&rdquo; — 지난 주에 3회 이상 트리거되지 않은 스킬은 제거.</p>
-<h3 id="함정-2-ai를-과도하게-제약">함정 2: AI를 과도하게 제약<a hidden class="anchor" aria-hidden="true" href="#함정-2-ai를-과도하게-제약">#</a></h3>
-<p><strong>증상</strong>: AI가 마비됨, 정상적인 <code>git push</code>에도 3번 확인 요구.<br>
-<strong>해결</strong>: 가드레일은 <strong>되돌릴 수 없는 작업</strong>만 차단 (force push, 프로덕션 배포, 데이터베이스 삭제).</p>
-<h3 id="함정-3-스킬-프롬프트-충돌">함정 3: 스킬-프롬프트 충돌<a hidden class="anchor" aria-hidden="true" href="#함정-3-스킬-프롬프트-충돌">#</a></h3>
-<p><strong>증상</strong>: 스킬은 TDD를 요구하지만, 프롬프트는 &ldquo;빨리 써, 테스트는 나중에.&rdquo;<br>
-<strong>해결</strong>: 우선순위 규칙 설정 — <strong>스킬 제약 &gt; 단일 프롬프트 지시</strong>.</p>
-<h3 id="함정-4-버전-관리-무시">함정 4: 버전 관리 무시<a hidden class="anchor" aria-hidden="true" href="#함정-4-버전-관리-무시">#</a></h3>
-<p><strong>증상</strong>: 팀원마다 다른 스킬 버전을 실행, AI 행동이 제각각.<br>
-<strong>해결</strong>: 프로젝트 스킬은 코드 저장소와 함께 버전 관리. 개인 스킬은 전용 저장소에서 관리.</p>
+<h2 id="common-pitfalls-and-how-to-avoid-them">Common Pitfalls and How to Avoid Them<a hidden class="anchor" aria-hidden="true" href="#common-pitfalls-and-how-to-avoid-them">#</a></h2>
+<h3 id="pitfall-1-skills-bloat">Pitfall 1: Skills Bloat<a hidden class="anchor" aria-hidden="true" href="#pitfall-1-skills-bloat">#</a></h3>
+<p><strong>Symptom</strong>: 50 skills written, 80% never triggered.<br>
+<strong>Fix</strong>: Follow the &ldquo;Three-Trigger Rule&rdquo; — keep a skill only if it was triggered three times in the past week.</p>
+<h3 id="pitfall-2-over-constraining-the-ai">Pitfall 2: Over-Constraining the AI<a hidden class="anchor" aria-hidden="true" href="#pitfall-2-over-constraining-the-ai">#</a></h3>
+<p><strong>Symptom</strong>: AI becomes paralyzed, asks for confirmation three times for a normal <code>git push</code>.<br>
+<strong>Fix</strong>: Guardrails only block <strong>irreversible operations</strong> (force push, production deploy, database deletion).</p>
+<h3 id="pitfall-3-skills-prompt-conflict">Pitfall 3: Skills-Prompt Conflict<a hidden class="anchor" aria-hidden="true" href="#pitfall-3-skills-prompt-conflict">#</a></h3>
+<p><strong>Symptom</strong>: Skill demands TDD, but prompt says &ldquo;just write it fast, tests later.&rdquo;<br>
+<strong>Fix</strong>: Establish priority rules — <strong>skill constraints &gt; single-prompt instructions</strong>.</p>
+<h3 id="pitfall-4-ignoring-version-management">Pitfall 4: Ignoring Version Management<a hidden class="anchor" aria-hidden="true" href="#pitfall-4-ignoring-version-management">#</a></h3>
+<p><strong>Symptom</strong>: Team members run different skill versions; AI behavior diverges wildly.<br>
+<strong>Fix</strong>: Project skills must be version-controlled with the code repo. Personal skills managed in a dedicated repo.</p>
 <hr>
-<h2 id="전망-2026년-하반기-스킬-생태계">전망: 2026년 하반기 스킬 생태계<a hidden class="anchor" aria-hidden="true" href="#전망-2026년-하반기-스킬-생태계">#</a></h2>
-<p>현재 궤적을 기반으로 세 가지 방향은 불가피하다: 1. <strong>스킬 마켓플레이스</strong>: AI 에이전트 행동을 위한 전용 배포 플랫폼이 등장할 것이다 (ClawHub가 이미 개척 중). VS Code 확장 마켓플레이스를 상상하되, AI 에이전트 행동용으로.</p>
+<h2 id="whats-next-skills-in-h2-2026">What&rsquo;s Next: Skills in H2 2026<a hidden class="anchor" aria-hidden="true" href="#whats-next-skills-in-h2-2026">#</a></h2>
+<p>Based on current trajectories, three directions are inevitable: 1. <strong>Skills Marketplaces</strong>: Dedicated skill distribution platforms will emerge (ClawHub is already pioneering this). Think VS Code Extensions marketplace, but for AI agent behavior.</p>
 <ol start="2">
 <li>
-<p><strong>도메인 특화 스킬 폭발</strong>: 금융 규제, 헬스케어 프라이버시, 법률 검토 등 수직적 스킬이 필수가 될 것이다 (<code>anthropics/financial-services</code>의 +1,075 stars를 참고).</p>
+<p><strong>Domain-Specific Skills Explosion</strong>: Financial compliance, healthcare privacy, legal review — vertical skills will become mandatory (see <code>anthropics/financial-services</code> at +1,075 stars).</p>
 </li>
 <li>
-<p><strong>AI 생성 스킬</strong>: Anthropic의 Skill Creator 같은 도구가 반복해서 설명하는 워크플로우를 AI가 자동으로 스킬로 생성하게 될 것이다.</p>
+<p><strong>AI-Generated Skills</strong>: Tools like Anthropic&rsquo;s Skill Creator will let AI auto-generate skills from workflows you keep explaining repeatedly.</p>
 </li>
 </ol>
 <hr>
-<h2 id="핵심-요약-ai로-코드-짓기에서-ai-작동-방식-엔지니어링하기로">핵심 요약: &ldquo;AI로 코드 짓기&quot;에서 &ldquo;AI 작동 방식 엔지니어링하기&quot;로<a hidden class="anchor" aria-hidden="true" href="#핵심-요약-ai로-코드-짓기에서-ai-작동-방식-엔지니어링하기로">#</a></h2>
-<p>2026년의 개발자 분열은 AI를 쓰느냐 마느냐가 아니다. <strong>어떻게 쓰느냐</strong>이다.</p>
+<h2 id="the-bottom-line-from-using-ai-to-write-code-to-engineering-how-ai-works">The Bottom Line: From &ldquo;Using AI to Write Code&rdquo; to &ldquo;Engineering How AI Works&rdquo;<a hidden class="anchor" aria-hidden="true" href="#the-bottom-line-from-using-ai-to-write-code-to-engineering-how-ai-works">#</a></h2>
+<p>The developer divide in 2026 isn&rsquo;t about whether you use AI. It&rsquo;s about <strong>how you use AI</strong>.</p>
 <ul>
-<li><strong>주니어</strong>: AI를 검색엔진처럼 사용 — &ldquo;이 버그 어떻게 고치지?&rdquo;</li>
-<li><strong>미드레벨</strong>: AI를 페어 프로그래머로 사용 — 프롬프트 기반 코딩</li>
-<li><strong>시니어</strong>: AI를 <strong>설정 가능한 실행 엔진</strong>으로 사용 — 스킬이 행동 경계를 정의하고, 스펙이 작업 목표를 정의</li>
+<li><strong>Junior</strong>: Uses AI like a search engine — &ldquo;how do I fix this bug?&rdquo;</li>
+<li><strong>Mid-level</strong>: Uses AI as a pair programmer — prompt-driven coding</li>
+<li><strong>Senior</strong>: Uses AI as a <strong>configurable execution engine</strong> — skills define behavioral boundaries, specs define work objectives</li>
 </ul>
-<p>AI 에이전트 스킬 패턴과 스펙 기반 개발은 복잡성을 추가하지 않는다. <strong>암묵적 전문 지식을 명시화하고, 즉흥적 바이브를 재현 가능한 엔지니어링 규율로 변환</strong>한다.</p>
-<p>터미널을 열어라. 첫 번째 ````.claude/skills/``` 디렉토리를 생성하라. 지금 시작하라.</p>
+<p>The AI Agent Skills pattern and Spec-Driven Development don&rsquo;t add complexity. They <strong>make implicit expert knowledge explicit, and transform improvised vibes into reproducible engineering discipline</strong>.</p>
+<p>Open your terminal. Create your first ````.claude/skills/``` directory. Start now.</p>
 <hr>
-<h2 id="리소스-인덱스">리소스 인덱스<a hidden class="anchor" aria-hidden="true" href="#리소스-인덱스">#</a></h2>
+<h2 id="resource-index">Resource Index<a hidden class="anchor" aria-hidden="true" href="#resource-index">#</a></h2>
 <ul>
-<li><a href="https://github.com/mattpocock/skills">mattpocock/skills</a> — 가장 기본적인 스킬 참고</li>
-<li><a href="https://github.com/github/spec-kit">github/spec-kit</a> — GitHub 공식 SDD 툴킷</li>
-<li><a href="https://github.comobra/superpowers">obra/superpowers</a> — 멀티 에이전트 워크플로우 프레임워크</li>
-<li><a href="https://github.com/anthropics/skills">anthropics/skills</a> — Anthropic 공식 스킬</li>
-<li><a href="https://clawhub.ai">ClawHub</a> — OpenClaw 스킬 마켓플레이스</li>
-<li><a href="https://agentskillshub.top">Agent Skills Hub</a> — 커뮤니티 스킬 평가 및 인덱스</li>
+<li><a href="https://github.com/mattpocock/skills">mattpocock/skills</a> — The canonical skills reference</li>
+<li><a href="https://github.com/github/spec-kit">github/spec-kit</a> — Official SDD toolkit from GitHub</li>
+<li><a href="https://github.com/obra/superpowers">obra/superpowers</a> — Multi-agent workflow framework</li>
+<li><a href="https://github.com/anthropics/skills">anthropics/skills</a> — Anthropic&rsquo;s official skills</li>
+<li><a href="https://clawhub.ai">ClawHub</a> — OpenClaw skills marketplace</li>
+<li><a href="https://agentskillshub.top">Agent Skills Hub</a> — Community skill ratings and index</li>
 </ul>
 <hr>
-<p><em>2026년 5월 GitHub 트렌딩 데이터, Hacker News 기술 논의, 커뮤니티 실천을 기반으로 작성. 스킬 프레임워크 버전은 Claude Code 2026.05 기준.</em></p>
+<p><em>Based on May 2026 GitHub Trending data, Hacker News technical discussions, and community practice. Skill framework versions referenced to Claude Code 2026.05.</em></p>
 <h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
 <p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
 <p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
@@ -607,6 +584,81 @@ cp -r safe-git .claude/skills/
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

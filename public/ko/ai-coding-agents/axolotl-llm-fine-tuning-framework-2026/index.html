@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-21T00:00:00+08:00 lastmod: 2026-05-21T00:00:00+08:00 tech_stack: [Python, PyTorch, CUDA, YAML] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-21” draft: false categories: [“llm-frameworks”] tags: [“axolotl”, “파인튜닝”, “lora”, “qlora”, “dpo”, “오픈소스”] aliases:\n/posts/axolotl-llm-fine-tuning-framework-2026/ Llama 모델 파인튜닝 시도하고 300줄 PyTorch + DeepSpeed config + Hugging Face Trainer 래퍼 작성한 적 있다면 Axolotl이 채우는 갭을 느낌. 한 YAML 파일이 전체 파인튜닝 실행 설명 — 모델, 데이터셋, LoRA config, 하이퍼파라미터, 분산 전략 — 그리고 Axolotl이 나머지 처리.\n12k GitHub 별, Apache 2.0, 모든 주요 LLM 패밀리 지원 (Llama, Mistral, Mixtral, Qwen, GLM, GPT-OSS, HunYuan 등) 및 2026에 중요한 모든 파인튜닝 방법 (full, LoRA, QLoRA, GPTQ, QAT, DPO/IPO/KTO/ORPO 선호 튜닝, GRPO/GDPO 강화 학습, 보상 모델링).\n대부분 프로덕션 파인튜닝 파이프라인이 Hugging Face TRL 벗어나지만 클로즈드 클라우드 플랫폼에 헌신하고 싶지 않을 때 정착하는 프레임워크.\nTL;DR 무엇: YAML 주도 오픈소스 LLM 파인튜닝 프레임워크 GitHub: 12k 별 License: Apache 2.0 (상업 사용 안전) 모델: Llama, Mistral, Mixtral, Qwen, GLM, GPT-OSS, HunYuan, Granite, Pythia, 등 방법: Full / LoRA / QLoRA / GPTQ / QAT / DPO / IPO / KTO / ORPO / GRPO / GDPO / 보상 모델링 하드웨어: NVIDIA Ampere+ 또는 AMD GPU, Python 3.11+, PyTorch ≥2.9.1 1. Axolotl 존재 이유 (해결 문제) 대체하는 3가지 일반 패턴: 1. 커스텀 HF Trainer 스크립트 — 실험당 300줄 보일러플레이트, 깨지기 쉬움, 프레임워크 버전 bump 안 견딤 2. DeepSpeed config 고고학 — 모델 크기 + GPU에 어떤 조합 ```zero_stage, offload_optimizer, gradient_checkpointing```` 작동하는지 알아내기 3. 클라우드 파인튜닝 플랫폼 (Together, Fireworks 등) — 쉽지만 결과 가중치나 프로세스 소유 안 함\nAxolotl은 “클라우드 플랫폼” UX (한 config 파일, 한 명령) 주면서 본인 소유 인프라에 두고 본인 통제 가중치 유지.\n2. 하드웨어 현실 셋업 파인튜닝 가능 모델 24 GB GPU (RTX 4090 / 3090) Llama 3.2 8B QLoRA, Mistral 7B QLoRA 48 GB GPU (A6000) Llama 3.2 8B LoRA, Mistral 7B full fine-tune 80 GB GPU (A100 / H100) Llama 3.3 70B QLoRA, Mistral 8x7B QLoRA 2× 80 GB (2× H100) Llama 3.3 70B LoRA, Mixtral full fine-tune 8× H100 클러스터 프런티어급 full fine-tune 클라우드 임대 옵션: Vast.ai에 H100 $1.50-2/시간, 또는 지속 워크로드용 . 데이터 준비 + 모니터링 측은 이 중국 친화 레이턴시 작동 (실제 훈련은 임대 GPU에 머무름).\n3. 빠른 설치 (15분) git clone https://github.com/axolotl-ai-cloud/axolotl cd axolotl pip install -e '.[flash-attn,deepspeed]' 최소 훈련 실행 — 샘플 데이터셋에 QLoRA로 Llama 3.2 8B 파인튜닝: `````yaml\nconfig.yml base_model: meta-llama/Llama-3.2-8B datasets: - path: tatsu-lab/alpaca type: alpaca adapter: qlora lora_r: 16 lora_alpha: 32 load_in_4bit: true num_epochs: 3 output_dir: ./outputs/llama-alpaca\n`````bash axolotl train config.yml 그게 다. 같은 YAML이 1 GPU, 8 GPU, 또는 멀티 노드에서 작동 — Axolotl이 accelerate/DeepSpeed 통해 자동 감지.\n4. YAML 구성이 킬러 기능 YAML이 여기서 진짜 올바른 추상화인 이유: - Git 친화: 모든 파인튜닝이 repo의 config 파일. 체크아웃으로 재현 가능\n실험 매트릭스: yq 치환 또는 W\u0026B sweep 통한 파라미터 sweep. 복사-붙여넣기 50 스크립트 없음 팀 핸드오프: ML 엔지니어 YAML 작성, ops 엔지니어 실행. 명확한 계약 자동 업그레이드: Axolotl이 버전 간 config 하위 호환 유지, 6개월 전 실험도 여전히 실행 커스텀 스크립트와 비교: 모든 파인튜닝이 눈송이, 버전 bump가 깨뜨림, 팀 간 공유는 “여기 내 노트북 복사”.\n5. 파인튜닝 방법 치트 시트 방법 언제 사용 VRAM (8B 모델) Full fine-tune 컴퓨트 많음, 최고 품질 원함 ~80 GB LoRA 대부분 케이스, 비용/품질 균형 ~24-32 GB QLoRA 저렴 실험, 빠듯 VRAM ~12-16 GB GPTQ 이미 양자화된 모델, 추론 초점 ~8 GB DPO 선호 데이터 (chosen/rejected 페어), RL 없이 정렬 LoRA + ~30% GRPO 보상 신호 있는 진짜 RL, 수학/코드 도메인 LoRA + ~50% KTO 바이너리 선호 (좋아요/싫어요), DPO보다 단순 LoRA + ~30% 2026 대부분 팀: 실험에 QLoRA, 프로덕션 배포에 LoRA, 정렬 실행에 DPO.\n6. 실제 워크플로우 1. 데이터셋 준비 (JSONL, prompt/response 또는 messages 포맷) └─\u003e 버전 관리 위해 HuggingFace Hub에 push 2. Axolotl config.yml 작성 (모델 + 데이터셋 + 방법 + 하이퍼파라미터) └─\u003e git commit (이제 재현 가능) 3. GPU 인스턴스 띄우기 (Vast.ai / DigitalOcean / HTStack) └─\u003e repo 클론, pip install Axolotl 4. axolotl preprocess config.yml (한 번 토큰화, 캐시) └─\u003e 데이터셋 통계 예상과 일치 확인 5. axolotl train config.yml └─\u003e W\u0026B가 손실 곡선 로그. N epoch 훈련. 6. axolotl inference --base-model llama3-8b --lora ./outputs/lora └─\u003e held-out prompt에 응답 정상 확인 7. LoRA + base 머지 → HuggingFace Hub에 push 또는 vLLM 통해 서빙 “30줄 YAML + 한 명령” 워크플로우가 파인튜닝을 연구 프로젝트에서 배포 가능 엔지니어링 실천으로 바꿈.\n7. Axolotl vs Unsloth vs HuggingFace TRL 선택 언제 Axolotl 프로덕션 파인튜닝 파이프라인, 멀티 노드, 넓은 방법 지원 (DPO/GRPO/KTO/ORPO), YAML-config-as-code 워크플로우 Unsloth 단일 GPU, 2× 속도 + 70% VRAM 절감 원함, RL 파인튜닝 특별히. Unsloth 심층 가이드 참조 HuggingFace TRL 저레벨 제어, 커스텀 루프, 연구 논문. 대부분 프로덕션 코드는 이제 Axolotl 또는 Unsloth 통해 TRL 래핑 Together / Fireworks / OpenAI 파인튜닝 인프라 소유 원하지 않음, 가중치 이식성 신경 안 씀, $$$ 프리미엄 가격 2026 기본 추천: 프로덕션 멀티 GPU에 Axolotl + 빠른 단일 GPU 실험에 Unsloth. 보완적, 경쟁자 아님.\n8. 프로덕션 팁 Axolotl 첫 사용자가 처음 부딪히는 5가지: 1. Tokenizer pad token — 많은 config가 tokenizer.pad_token = eos_token 누락. Axolotl 기본값이 알려진 모델 처리; 새 모델은 직접 verify 2. max_seq_length와 OOM — 작게 시작 (1024), OOM까지 올림, 그 후 10% 후퇴. 추측하지 마세요 3. Flash Attention 컴파일 시간 — 첫 설치가 FA2 컴파일에 20-30분 걸릴 수 있음. 인내 4. 데이터셋 포맷 불일치 — type 필드가 데이터와 매치해야 함. alpaca ≠ sharegpt ≠ ````chat_template```. 문서 읽기 5. DeepSpeed ZeRO stage 혼동 — Stage 1 = offload 없음 (가장 빠름, 가장 많은 VRAM). Stage 2 = optimizer offload. Stage 3 = full param offload (가장 느림, 가장 적은 VRAM). VRAM 예산에 맞춤\n9. Axolotl을 사용하지 않을 때 로컬 모델과 채팅만 원함 — 파인튜닝 불필요. 기본 instruct 모델로 Ollama 작은 데이터셋 (\u003c 1000 예제) — Few-shot prompting이 파인튜닝 이길 가능성, 또는 RAG 사용 (지식 베이스 스택 참조) 이미 작업에서 기본 모델에 만족 — 파인튜닝 위해 파인튜닝하지 마세요. 비용 \u003e 이익, 벤치마크 개선 증명 가능까지 노트북 GPU에서 \u003c24시간 반복 사이클 필요 — Unsloth의 2× 속도와 70% VRAM 감소가 더 적합 TL;DR Axolotl = YAML 주도 LLM 파인튜닝 프레임워크, 2026 프로덕션 멀티 GPU 기본. 12k 별, Apache 2.0, 모든 주요 모델 패밀리 + 중요한 모든 파인튜닝 방법 지원. Unsloth (단일 GPU 속도)와 페어로 완전 실험-프로덕션 파인튜닝 파이프라인.\nH100 인스턴스 띄우고, 3절의 20줄 YAML 작성하고, 15분 후 파인튜닝 실행 중.\ndibi8의 Fine-Tuning Stack 일부 — 빠른 단일 GPU 반복용 Unsloth와 페어. 전체 LLM ops 그림은 다가오는 Fine-Tuning Stack 컬렉션 참조.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Axolotl 2026: 12k 별 YAML 주도 LLM 파인튜닝 프레임워크 완전 가이드”, “datePublished”: “2026-05-21”, “dateModified”: “2026-05-21”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/axolotl-llm-fine-tuning-framework-2026\" } } Why This Matters Understanding axolotl 2026: 12k 별 yaml 주도 llm 파인튜닝 프레임워크 완전 가이드 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Axolotl 2026: 12k 별 YAML 주도 LLM 파인튜닝 프레임워크 완전 가이드 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nRelated Articles ai-engineering-from-scratch egonex-understand-anything-interactive-knowledge-graph-ai bytedance-ui-tars-desktop-ai-agent-guide mattpocock-skills-ai-agent-framework-guide microsoft-markitdown-file-to-markdown-converter-cli Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n",
-  "wordCount" : "1303",
+  "articleBody": "title: “Axolotl 2026: The 12k-Star YAML-Driven LLM Fine-Tuning F… description: “Technical guide and comparison.” date: 2026-05-21T00:00:00+08:00 lastmod: 2026-05-21T00:00:00+08:00 tech_stack: - Python\nPyTorch CUDA YAML application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-21” draft: false categories: [“llm-frameworks”] tags: [“axolotl”, “fine-tuning”, “lora”, “qlora”, “dpo”, “open-source”] aliases: /posts/axolotl-llm-fine-tuning-framework-2026/- If you’ve ever tried to fine-tune a Llama model and ended up writing 300 lines of PyTorch + DeepSpeed config + Hugging Face Trainer wrapper, you’ve felt the gap Axolotl fills. One YAML file describes your entire fine-tuning run — model, dataset, LoRA config, hyperparams, distributed strategy — and Axolotl handles the rest.\n12k GitHub stars, Apache 2.0, supports every major LLM family (Llama, Mistral, Mixtral, Qwen, GLM, GPT-OSS, HunYuan, etc.) and every fine-tuning method that matters in 2026 (full, LoRA, QLoRA, GPTQ, QAT, DPO/IPO/KTO/ORPO preference tuning, GRPO/GDPO reinforcement learning, reward modeling).\nThis is the framework most production fine-tuning pipelines settle on when they outgrow Hugging Face TRL but don’t want to commit to a closed cloud platform.\nTL;DR What: Open-source LLM fine-tuning framework, YAML-driven GitHub: 12k stars License: Apache 2.0 (safe for commercial use) Models: Llama, Mistral, Mixtral, Qwen, GLM, GPT-OSS, HunYuan, Granite, Pythia, more Methods: Full / LoRA / QLoRA / GPTQ / QAT / DPO / IPO / KTO / ORPO / GRPO / GDPO / reward modeling Hardware: NVIDIA Ampere+ or AMD GPUs, Python 3.11+, PyTorch ≥2.9.1 1. Why Axolotl Exists (the problem it solves) Three common patterns Axolotl replaces: 1. Custom HF Trainer scripts — 300 lines of boilerplate per experiment, brittle, doesn’t survive a framework version bump 2. DeepSpeed config archaeology — figuring out which combination of ```zero_stage, offload_optimizer, gradient_checkpointing```` works for your model size + GPU 3. Cloud fine-tuning platforms (Together, Fireworks, etc.) — easy but you don’t own the resulting weights or the process\nAxolotl gives you the “cloud platform” UX (one config file, one command) while keeping you on infrastructure you own and weights you control.\n2. Hardware Reality | Setup | Models you can fine-tune | |\n|\n| | 24 GB GPU (RTX 4090 / 3090) | Llama 3.2 8B QLoRA, Mistral 7B QLoRA | | 48 GB GPU (A6000) | Llama 3.2 8B LoRA, Mistral 7B full fine-tune | | 80 GB GPU (A100 / H100) | Llama 3.3 70B QLoRA, Mistral 8x7B QLoRA | | 2× 80 GB (2× H100) | Llama 3.3 70B LoRA, Mixtral full fine-tune | | 8× H100 cluster | Frontier-class full fine-tunes |\nCloud rental option: H100 on Vast.ai $1.50-2/hr, or for sustained workloads grab a . For shorter China-friendly latency, works for the data prep + monitoring side (the actual training stays on rented GPUs).\n3. Quick Install (15 min) git clone https://github.com/axolotl-ai-cloud/axolotl cd axolotl pip install -e '.[flash-attn,deepspeed]' A minimal training run — QLoRA fine-tune Llama 3.2 8B on a sample dataset: `````yaml\nconfig.yml base_model: meta-llama/Llama-3.2-8B datasets: - path: tatsu-lab/alpaca type: alpaca adapter: qlora lora_r: 16 lora_alpha: 32 load_in_4bit: true num_epochs: 3 output_dir: ./outputs/llama-alpaca\n`````bash axolotl train config.yml That’s it. The same YAML works on 1 GPU, 8 GPUs, or multi-node — Axolotl auto-detects via accelerate/DeepSpeed.\n4. The YAML Config Is the Killer Feature Why YAML is genuinely the right abstraction here: - Git-friendly: every fine-tune is a config file in your repo. Reproducible by checkout.\nExperiment matrix: parameter sweeps via yq substitution or W\u0026B sweeps. No 50 copy-pasted scripts. Team handoff: ML engineer writes the YAML, ops engineer runs it. Clear contract. Auto-upgrade: Axolotl maintains backwards compat for configs across versions, so your 6-month-old experiments still run. Compare against custom scripts: every fine-tune was a snowflake, version bumps broke things, sharing across team was “here, copy my notebook.”\n5. Fine-Tuning Methods Cheat Sheet | Method | When to use | VRAM (8B model) | |\n|\n|\n| | Full fine-tune | Have lots of compute, want best quality | ~80 GB | | LoRA | Most cases, balanced cost/quality | ~24-32 GB | | QLoRA | Cheap experiments, tight VRAM | ~12-16 GB | | GPTQ | Already-quantized models, inference-focused | ~8 GB | | DPO | Preference data (chosen/rejected pairs), align without RL | LoRA + ~30% more | | GRPO | Real RL with reward signal, math/code domains | LoRA + ~50% more | | KTO | Binary preference (thumbs up/down), simpler than DPO | LoRA + ~30% more |\nFor most teams in 2026: QLoRA for experiments, LoRA for production deploys, DPO for alignment runs.\n6. Real-World Workflow 1. Prepare dataset (JSONL with prompt/response or messages format) └─\u003e push to HuggingFace Hub for versioning 2. Write Axolotl config.yml (model + dataset + method + hyperparams) └─\u003e git commit (now reproducible) 3. Spin up GPU instance (Vast.ai / DigitalOcean / HTStack) └─\u003e clone repo, pip install Axolotl 4. axolotl preprocess config.yml (tokenize once, cache) └─\u003e verify dataset stats match expectations 5. axolotl train config.yml └─\u003e W\u0026B logs PnL... err, loss curves. Train for N epochs. 6. axolotl inference --base-model llama3-8b --lora ./outputs/lora └─\u003e Sanity-check responses on held-out prompts 7. Merge LoRA + base → push to HuggingFace Hub or serve via vLLM The “30-line YAML + one command” workflow is what turns fine-tuning from a research project into a deployable engineering practice.\n7. Axolotl vs Unsloth vs HuggingFace TRL | Pick | When | |\n|\n| | Axolotl | Production fine-tuning pipelines, multi-node, broad method support (DPO/GRPO/KTO/ORPO), YAML-config-as-code workflow | | Unsloth | Single-GPU, want 2× speed + 70% less VRAM, RL fine-tuning specifically. See our Unsloth deep-dive | | HuggingFace TRL | Low-level control, custom loops, research papers. Most production code now wraps TRL via Axolotl or Unsloth | | Together / Fireworks / OpenAI fine-tuning | Don’t want to own infra, don’t care about weight portability, $$$ premium pricing |\nDefault 2026 recommendation: Axolotl for production multi-GPU + Unsloth for fast single-GPU experiments. They’re complementary, not competitors.\n8. Production Tips The 5 things that bite first-time Axolotl users: 1. Tokenizer pad token — many configs miss tokenizer.pad_token = eos_token. Axolotl’s defaults handle this for known models; verify for new ones 2. max_seq_length and OOM — start small (1024), bump until you OOM, then back off 10%. Don’t guess 3. Flash Attention compile time — first install can take 20-30 min compiling FA2. Be patient 4. Dataset format mismatch — the type field must match your data. alpaca ≠ sharegpt ≠ ````chat_template```. Read the docs 5. DeepSpeed ZeRO stage confusion — Stage 1 = no offload (fastest, most VRAM). Stage 2 = optimizer offload. Stage 3 = full param offload (slowest, least VRAM). Match to your VRAM budget\n9. When NOT to Use Axolotl You just want to chat with a local model — Fine-tuning isn’t needed. Use Ollama with a base instruct model Tiny dataset (\u003c 1000 examples) — Few-shot prompting will probably beat fine-tuning, or use RAG (see our Knowledge Base Stack) Already happy with the base model on your task — Don’t fine-tune just to fine-tune. Cost \u003e benefit until you can prove benchmark improvement You need \u003c24 hour iteration cycles on a laptop GPU — Unsloth’s 2× speed and 70% VRAM reduction is the better fit TL;DR Axolotl = YAML-driven LLM fine-tuning framework, production multi-GPU default in 2026. 12k stars, Apache 2.0, supports every major model family + every fine-tuning method that matters. Pairs with Unsloth (single-GPU speed) for a full experiment-to-production fine-tuning pipeline.\nSpin up an H100 instance, write the 20-line YAML in section 3, and 15 minutes later you have a fine-tuning run going.\nPart of dibi8’s Fine-Tuning Stack — pairs with Unsloth for fast single-GPU iteration. For the full LLM ops picture see the upcoming Fine-Tuning Stack collection.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Axolotl 2026: The 12k-Star YAML-Driven LLM Fine-Tuning Framework — Complete Production Guide”, “datePublished”: “2026-05-21”, “dateModified”: “2026-05-21”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/axolotl-llm-fine-tuning-framework-2026\" } } Why This Matters Understanding axolotl 2026: the 12k-star yaml-driven llm fine-tuning framework — complete production guide is crucial for modern AI development. Here\"s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Axolotl 2026: The 12k-Star YAML-Driven LLM Fine-Tuning Framework — Complete Production Guide represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\nRelated Articles 2026-05-25-trending-ai-agents 2026-06-01-trending-ai-agents 2026-06-08-trending-ai-agents 2026-06-15-trending-ai-agents 2026-06-22-trending-ai-agents Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n",
+  "wordCount" : "1531",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/axolotl-llm-fine-tuning-framework-2026/">En</a>
@@ -211,27 +211,27 @@
             <li>
                 <a href="#tldr" aria-label="TL;DR">TL;DR</a></li>
             <li>
-                <a href="#1-axolotl-%ec%a1%b4%ec%9e%ac-%ec%9d%b4%ec%9c%a0-%ed%95%b4%ea%b2%b0-%eb%ac%b8%ec%a0%9c" aria-label="1. Axolotl 존재 이유 (해결 문제)">1. Axolotl 존재 이유 (해결 문제)</a></li>
+                <a href="#1-why-axolotl-exists-the-problem-it-solves" aria-label="1. Why Axolotl Exists (the problem it solves)">1. Why Axolotl Exists (the problem it solves)</a></li>
             <li>
-                <a href="#2-%ed%95%98%eb%93%9c%ec%9b%a8%ec%96%b4-%ed%98%84%ec%8b%a4" aria-label="2. 하드웨어 현실">2. 하드웨어 현실</a></li>
+                <a href="#2-hardware-reality" aria-label="2. Hardware Reality">2. Hardware Reality</a></li>
             <li>
-                <a href="#3-%eb%b9%a0%eb%a5%b8-%ec%84%a4%ec%b9%98-15%eb%b6%84" aria-label="3. 빠른 설치 (15분)">3. 빠른 설치 (15분)</a></li></ul>
+                <a href="#3-quick-install-15-min" aria-label="3. Quick Install (15 min)">3. Quick Install (15 min)</a></li></ul>
                 
             <li>
                 <a href="#configyml" aria-label="config.yml">config.yml</a><ul>
                     
             <li>
-                <a href="#4-yaml-%ea%b5%ac%ec%84%b1%ec%9d%b4-%ed%82%ac%eb%9f%ac-%ea%b8%b0%eb%8a%a5" aria-label="4. YAML 구성이 킬러 기능">4. YAML 구성이 킬러 기능</a></li>
+                <a href="#4-the-yaml-config-is-the-killer-feature" aria-label="4. The YAML Config Is the Killer Feature">4. The YAML Config Is the Killer Feature</a></li>
             <li>
-                <a href="#5-%ed%8c%8c%ec%9d%b8%ed%8a%9c%eb%8b%9d-%eb%b0%a9%eb%b2%95-%ec%b9%98%ed%8a%b8-%ec%8b%9c%ed%8a%b8" aria-label="5. 파인튜닝 방법 치트 시트">5. 파인튜닝 방법 치트 시트</a></li>
+                <a href="#5-fine-tuning-methods-cheat-sheet" aria-label="5. Fine-Tuning Methods Cheat Sheet">5. Fine-Tuning Methods Cheat Sheet</a></li>
             <li>
-                <a href="#6-%ec%8b%a4%ec%a0%9c-%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0" aria-label="6. 실제 워크플로우">6. 실제 워크플로우</a></li>
+                <a href="#6-real-world-workflow" aria-label="6. Real-World Workflow">6. Real-World Workflow</a></li>
             <li>
                 <a href="#7-axolotl-vs-unsloth-vs-huggingface-trl" aria-label="7. Axolotl vs Unsloth vs HuggingFace TRL">7. Axolotl vs Unsloth vs HuggingFace TRL</a></li>
             <li>
-                <a href="#8-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ed%8c%81" aria-label="8. 프로덕션 팁">8. 프로덕션 팁</a></li>
+                <a href="#8-production-tips" aria-label="8. Production Tips">8. Production Tips</a></li>
             <li>
-                <a href="#9-axolotl%ec%9d%84-%ec%82%ac%ec%9a%a9%ed%95%98%ec%a7%80-%ec%95%8a%ec%9d%84-%eb%95%8c" aria-label="9. Axolotl을 사용하지 않을 때">9. Axolotl을 사용하지 않을 때</a></li>
+                <a href="#9-when-not-to-use-axolotl" aria-label="9. When NOT to Use Axolotl">9. When NOT to Use Axolotl</a></li>
             <li>
                 <a href="#tldr-1" aria-label="TL;DR">TL;DR</a></li>
             <li>
@@ -255,11 +255,15 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+  <div class="post-content md-content"><p>title: &ldquo;Axolotl 2026: The 12k-Star YAML-Driven LLM Fine-Tuning F&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
-tech_stack: [Python, PyTorch, CUDA, YAML]
+tech_stack: - Python</p>
+<ul>
+<li>PyTorch</li>
+<li>CUDA</li>
+<li>YAML
 application_domain: Llm Frameworks
 source_version: &rsquo;'
 licensing_model: Open Source
@@ -271,66 +275,46 @@ backup_url: &rsquo;'
 last_maintained: &ldquo;2026-05-21&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
-tags: [&ldquo;axolotl&rdquo;, &ldquo;파인튜닝&rdquo;, &ldquo;lora&rdquo;, &ldquo;qlora&rdquo;, &ldquo;dpo&rdquo;, &ldquo;오픈소스&rdquo;]
-aliases:</p>
-<ul>
-<li>/posts/axolotl-llm-fine-tuning-framework-2026/</li>
+tags: [&ldquo;axolotl&rdquo;, &ldquo;fine-tuning&rdquo;, &ldquo;lora&rdquo;, &ldquo;qlora&rdquo;, &ldquo;dpo&rdquo;, &ldquo;open-source&rdquo;]
+aliases:</li>
+<li>/posts/axolotl-llm-fine-tuning-framework-2026/-</li>
 </ul>
 <hr>
-<p>Llama 모델 파인튜닝 시도하고 300줄 PyTorch + DeepSpeed config + Hugging Face Trainer 래퍼 작성한 적 있다면 <strong>Axolotl</strong>이 채우는 갭을 느낌. 한 YAML 파일이 전체 파인튜닝 실행 설명 — 모델, 데이터셋, LoRA config, 하이퍼파라미터, 분산 전략 — 그리고 Axolotl이 나머지 처리.</p>
-<p>12k GitHub 별, Apache 2.0, 모든 주요 LLM 패밀리 지원 (Llama, Mistral, Mixtral, Qwen, GLM, GPT-OSS, HunYuan 등) 및 2026에 중요한 모든 파인튜닝 방법 (full, LoRA, QLoRA, GPTQ, QAT, DPO/IPO/KTO/ORPO 선호 튜닝, GRPO/GDPO 강화 학습, 보상 모델링).</p>
-<p>대부분 프로덕션 파인튜닝 파이프라인이 Hugging Face TRL 벗어나지만 클로즈드 클라우드 플랫폼에 헌신하고 싶지 않을 때 정착하는 프레임워크.</p>
+<p>If you&rsquo;ve ever tried to fine-tune a Llama model and ended up writing 300 lines of PyTorch + DeepSpeed config + Hugging Face Trainer wrapper, you&rsquo;ve felt the gap <strong>Axolotl</strong> fills. One YAML file describes your entire fine-tuning run — model, dataset, LoRA config, hyperparams, distributed strategy — and Axolotl handles the rest.</p>
+<p>12k GitHub stars, Apache 2.0, supports every major LLM family (Llama, Mistral, Mixtral, Qwen, GLM, GPT-OSS, HunYuan, etc.) and every fine-tuning method that matters in 2026 (full, LoRA, QLoRA, GPTQ, QAT, DPO/IPO/KTO/ORPO preference tuning, GRPO/GDPO reinforcement learning, reward modeling).</p>
+<p>This is the framework most production fine-tuning pipelines settle on when they outgrow Hugging Face TRL but don&rsquo;t want to commit to a closed cloud platform.</p>
 <h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
 <ul>
-<li><strong>무엇</strong>: YAML 주도 오픈소스 LLM 파인튜닝 프레임워크</li>
-<li><strong>GitHub</strong>: 12k 별</li>
-<li><strong>License</strong>: Apache 2.0 (상업 사용 안전)</li>
-<li><strong>모델</strong>: Llama, Mistral, Mixtral, Qwen, GLM, GPT-OSS, HunYuan, Granite, Pythia, 등</li>
-<li><strong>방법</strong>: Full / LoRA / QLoRA / GPTQ / QAT / DPO / IPO / KTO / ORPO / GRPO / GDPO / 보상 모델링</li>
-<li><strong>하드웨어</strong>: NVIDIA Ampere+ 또는 AMD GPU, Python 3.11+, PyTorch ≥2.9.1</li>
+<li><strong>What</strong>: Open-source LLM fine-tuning framework, YAML-driven</li>
+<li><strong>GitHub</strong>: 12k stars</li>
+<li><strong>License</strong>: Apache 2.0 (safe for commercial use)</li>
+<li><strong>Models</strong>: Llama, Mistral, Mixtral, Qwen, GLM, GPT-OSS, HunYuan, Granite, Pythia, more</li>
+<li><strong>Methods</strong>: Full / LoRA / QLoRA / GPTQ / QAT / DPO / IPO / KTO / ORPO / GRPO / GDPO / reward modeling</li>
+<li><strong>Hardware</strong>: NVIDIA Ampere+ or AMD GPUs, Python 3.11+, PyTorch ≥2.9.1</li>
 </ul>
-<h2 id="1-axolotl-존재-이유-해결-문제">1. Axolotl 존재 이유 (해결 문제)<a hidden class="anchor" aria-hidden="true" href="#1-axolotl-존재-이유-해결-문제">#</a></h2>
-<p>대체하는 3가지 일반 패턴: 1. <strong>커스텀 HF Trainer 스크립트</strong> — 실험당 300줄 보일러플레이트, 깨지기 쉬움, 프레임워크 버전 bump 안 견딤
-2. <strong>DeepSpeed config 고고학</strong> — 모델 크기 + GPU에 어떤 조합 ```zero_stage<code>, </code>offload_optimizer<code>, </code>gradient_checkpointing```` 작동하는지 알아내기
-3. <strong>클라우드 파인튜닝 플랫폼</strong> (Together, Fireworks 등) — 쉽지만 결과 가중치나 프로세스 소유 안 함</p>
-<p>Axolotl은 &ldquo;클라우드 플랫폼&rdquo; UX (한 config 파일, 한 명령) 주면서 본인 소유 인프라에 두고 본인 통제 가중치 유지.</p>
-<h2 id="2-하드웨어-현실">2. 하드웨어 현실<a hidden class="anchor" aria-hidden="true" href="#2-하드웨어-현실">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>셋업</th>
-					<th>파인튜닝 가능 모델</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>24 GB GPU (RTX 4090 / 3090)</td>
-					<td>Llama 3.2 8B QLoRA, Mistral 7B QLoRA</td>
-			</tr>
-			<tr>
-					<td>48 GB GPU (A6000)</td>
-					<td>Llama 3.2 8B LoRA, Mistral 7B full fine-tune</td>
-			</tr>
-			<tr>
-					<td>80 GB GPU (A100 / H100)</td>
-					<td>Llama 3.3 70B QLoRA, Mistral 8x7B QLoRA</td>
-			</tr>
-			<tr>
-					<td>2× 80 GB (2× H100)</td>
-					<td>Llama 3.3 70B LoRA, Mixtral full fine-tune</td>
-			</tr>
-			<tr>
-					<td>8× H100 클러스터</td>
-					<td>프런티어급 full fine-tune</td>
-			</tr>
-	</tbody>
-</table>
-<p>클라우드 임대 옵션: Vast.ai에 H100 $1.50-2/시간, 또는 지속 워크로드용 . 데이터 준비 + 모니터링 측은 이 중국 친화 레이턴시 작동 (실제 훈련은 임대 GPU에 머무름).</p>
-<h2 id="3-빠른-설치-15분">3. 빠른 설치 (15분)<a hidden class="anchor" aria-hidden="true" href="#3-빠른-설치-15분">#</a></h2>
+<h2 id="1-why-axolotl-exists-the-problem-it-solves">1. Why Axolotl Exists (the problem it solves)<a hidden class="anchor" aria-hidden="true" href="#1-why-axolotl-exists-the-problem-it-solves">#</a></h2>
+<p>Three common patterns Axolotl replaces: 1. <strong>Custom HF Trainer scripts</strong> — 300 lines of boilerplate per experiment, brittle, doesn&rsquo;t survive a framework version bump
+2. <strong>DeepSpeed config archaeology</strong> — figuring out which combination of ```zero_stage<code>, </code>offload_optimizer<code>, </code>gradient_checkpointing```` works for your model size + GPU
+3. <strong>Cloud fine-tuning platforms</strong> (Together, Fireworks, etc.) — easy but you don&rsquo;t own the resulting weights or the process</p>
+<p>Axolotl gives you the &ldquo;cloud platform&rdquo; UX (one config file, one command) while keeping you on infrastructure you own and weights you control.</p>
+<h2 id="2-hardware-reality">2. Hardware Reality<a hidden class="anchor" aria-hidden="true" href="#2-hardware-reality">#</a></h2>
+<p>| Setup | Models you can fine-tune |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| 24 GB GPU (RTX 4090 / 3090) | Llama 3.2 8B QLoRA, Mistral 7B QLoRA |
+| 48 GB GPU (A6000) | Llama 3.2 8B LoRA, Mistral 7B full fine-tune |
+| 80 GB GPU (A100 / H100) | Llama 3.3 70B QLoRA, Mistral 8x7B QLoRA |
+| 2× 80 GB (2× H100) | Llama 3.3 70B LoRA, Mixtral full fine-tune |
+| 8× H100 cluster | Frontier-class full fine-tunes |</p>
+<p>Cloud rental option: H100 on Vast.ai $1.50-2/hr, or for sustained workloads grab a . For shorter China-friendly latency,  works for the data prep + monitoring side (the actual training stays on rented GPUs).</p>
+<h2 id="3-quick-install-15-min">3. Quick Install (15 min)<a hidden class="anchor" aria-hidden="true" href="#3-quick-install-15-min">#</a></h2>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/axolotl-ai-cloud/axolotl
 </span></span><span style="display:flex;"><span>cd axolotl
 </span></span><span style="display:flex;"><span>pip install -e <span style="color:#e6db74">&#39;.[flash-attn,deepspeed]&#39;</span>
-</span></span></code></pre></div><p>최소 훈련 실행 — 샘플 데이터셋에 QLoRA로 Llama 3.2 8B 파인튜닝: `````yaml</p>
+</span></span></code></pre></div><p>A minimal training run — QLoRA fine-tune Llama 3.2 8B on a sample dataset: `````yaml</p>
 <h1 id="configyml">config.yml<a hidden class="anchor" aria-hidden="true" href="#configyml">#</a></h1>
 <p>base_model: meta-llama/Llama-3.2-8B
 datasets: - path: tatsu-lab/alpaca
@@ -344,134 +328,87 @@ output_dir: ./outputs/llama-alpaca</p>
 <pre tabindex="0"><code>
 `````bash
 axolotl train config.yml
-</code></pre><p>그게 다. 같은 YAML이 1 GPU, 8 GPU, 또는 멀티 노드에서 작동 — Axolotl이 accelerate/DeepSpeed 통해 자동 감지.</p>
-<h2 id="4-yaml-구성이-킬러-기능">4. YAML 구성이 킬러 기능<a hidden class="anchor" aria-hidden="true" href="#4-yaml-구성이-킬러-기능">#</a></h2>
-<p>YAML이 여기서 진짜 올바른 추상화인 이유: - <strong>Git 친화</strong>: 모든 파인튜닝이 repo의 config 파일. 체크아웃으로 재현 가능</p>
+</code></pre><p>That&rsquo;s it. The same YAML works on 1 GPU, 8 GPUs, or multi-node — Axolotl auto-detects via accelerate/DeepSpeed.</p>
+<h2 id="4-the-yaml-config-is-the-killer-feature">4. The YAML Config Is the Killer Feature<a hidden class="anchor" aria-hidden="true" href="#4-the-yaml-config-is-the-killer-feature">#</a></h2>
+<p>Why YAML is genuinely the right abstraction here: - <strong>Git-friendly</strong>: every fine-tune is a config file in your repo. Reproducible by checkout.</p>
 <ul>
-<li><strong>실험 매트릭스</strong>: <code>yq</code> 치환 또는 W&amp;B sweep 통한 파라미터 sweep. 복사-붙여넣기 50 스크립트 없음</li>
-<li><strong>팀 핸드오프</strong>: ML 엔지니어 YAML 작성, ops 엔지니어 실행. 명확한 계약</li>
-<li><strong>자동 업그레이드</strong>: Axolotl이 버전 간 config 하위 호환 유지, 6개월 전 실험도 여전히 실행</li>
+<li><strong>Experiment matrix</strong>: parameter sweeps via <code>yq</code> substitution or W&amp;B sweeps. No 50 copy-pasted scripts.</li>
+<li><strong>Team handoff</strong>: ML engineer writes the YAML, ops engineer runs it. Clear contract.</li>
+<li><strong>Auto-upgrade</strong>: Axolotl maintains backwards compat for configs across versions, so your 6-month-old experiments still run.</li>
 </ul>
-<p>커스텀 스크립트와 비교: 모든 파인튜닝이 눈송이, 버전 bump가 깨뜨림, 팀 간 공유는 &ldquo;여기 내 노트북 복사&rdquo;.</p>
-<h2 id="5-파인튜닝-방법-치트-시트">5. 파인튜닝 방법 치트 시트<a hidden class="anchor" aria-hidden="true" href="#5-파인튜닝-방법-치트-시트">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>방법</th>
-					<th>언제 사용</th>
-					<th>VRAM (8B 모델)</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>Full</strong> fine-tune</td>
-					<td>컴퓨트 많음, 최고 품질 원함</td>
-					<td>~80 GB</td>
-			</tr>
-			<tr>
-					<td><strong>LoRA</strong></td>
-					<td>대부분 케이스, 비용/품질 균형</td>
-					<td>~24-32 GB</td>
-			</tr>
-			<tr>
-					<td><strong>QLoRA</strong></td>
-					<td>저렴 실험, 빠듯 VRAM</td>
-					<td>~12-16 GB</td>
-			</tr>
-			<tr>
-					<td><strong>GPTQ</strong></td>
-					<td>이미 양자화된 모델, 추론 초점</td>
-					<td>~8 GB</td>
-			</tr>
-			<tr>
-					<td><strong>DPO</strong></td>
-					<td>선호 데이터 (chosen/rejected 페어), RL 없이 정렬</td>
-					<td>LoRA + ~30%</td>
-			</tr>
-			<tr>
-					<td><strong>GRPO</strong></td>
-					<td>보상 신호 있는 진짜 RL, 수학/코드 도메인</td>
-					<td>LoRA + ~50%</td>
-			</tr>
-			<tr>
-					<td><strong>KTO</strong></td>
-					<td>바이너리 선호 (좋아요/싫어요), DPO보다 단순</td>
-					<td>LoRA + ~30%</td>
-			</tr>
-	</tbody>
-</table>
-<p>2026 대부분 팀: 실험에 QLoRA, 프로덕션 배포에 LoRA, 정렬 실행에 DPO.</p>
-<h2 id="6-실제-워크플로우">6. 실제 워크플로우<a hidden class="anchor" aria-hidden="true" href="#6-실제-워크플로우">#</a></h2>
-<pre tabindex="0"><code>1. 데이터셋 준비 (JSONL, prompt/response 또는 messages 포맷)
-   └─&gt; 버전 관리 위해 HuggingFace Hub에 push
+<p>Compare against custom scripts: every fine-tune was a snowflake, version bumps broke things, sharing across team was &ldquo;here, copy my notebook.&rdquo;</p>
+<h2 id="5-fine-tuning-methods-cheat-sheet">5. Fine-Tuning Methods Cheat Sheet<a hidden class="anchor" aria-hidden="true" href="#5-fine-tuning-methods-cheat-sheet">#</a></h2>
+<p>| Method | When to use | VRAM (8B model) |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Full</strong> fine-tune | Have lots of compute, want best quality | ~80 GB |
+| <strong>LoRA</strong> | Most cases, balanced cost/quality | ~24-32 GB |
+| <strong>QLoRA</strong> | Cheap experiments, tight VRAM | ~12-16 GB |
+| <strong>GPTQ</strong> | Already-quantized models, inference-focused | ~8 GB |
+| <strong>DPO</strong> | Preference data (chosen/rejected pairs), align without RL | LoRA + ~30% more |
+| <strong>GRPO</strong> | Real RL with reward signal, math/code domains | LoRA + ~50% more |
+| <strong>KTO</strong> | Binary preference (thumbs up/down), simpler than DPO | LoRA + ~30% more |</p>
+<p>For most teams in 2026: QLoRA for experiments, LoRA for production deploys, DPO for alignment runs.</p>
+<h2 id="6-real-world-workflow">6. Real-World Workflow<a hidden class="anchor" aria-hidden="true" href="#6-real-world-workflow">#</a></h2>
+<pre tabindex="0"><code>1. Prepare dataset (JSONL with prompt/response or messages format)
+   └─&gt; push to HuggingFace Hub for versioning
 
-2. Axolotl config.yml 작성 (모델 + 데이터셋 + 방법 + 하이퍼파라미터)
-   └─&gt; git commit (이제 재현 가능)
+2. Write Axolotl config.yml (model + dataset + method + hyperparams)
+   └─&gt; git commit (now reproducible)
 
-3. GPU 인스턴스 띄우기 (Vast.ai / DigitalOcean / HTStack)
-   └─&gt; repo 클론, pip install Axolotl
+3. Spin up GPU instance (Vast.ai / DigitalOcean / HTStack)
+   └─&gt; clone repo, pip install Axolotl
 
-4. axolotl preprocess config.yml (한 번 토큰화, 캐시)
-   └─&gt; 데이터셋 통계 예상과 일치 확인
+4. axolotl preprocess config.yml  (tokenize once, cache)
+   └─&gt; verify dataset stats match expectations
 
 5. axolotl train config.yml
-   └─&gt; W&amp;B가 손실 곡선 로그. N epoch 훈련.
+   └─&gt; W&amp;B logs PnL... err, loss curves. Train for N epochs.
 
 6. axolotl inference --base-model llama3-8b --lora ./outputs/lora
-   └─&gt; held-out prompt에 응답 정상 확인
+   └─&gt; Sanity-check responses on held-out prompts
 
-7. LoRA + base 머지 → HuggingFace Hub에 push 또는 vLLM 통해 서빙
-</code></pre><p>&ldquo;30줄 YAML + 한 명령&rdquo; 워크플로우가 파인튜닝을 연구 프로젝트에서 배포 가능 엔지니어링 실천으로 바꿈.</p>
+7. Merge LoRA + base → push to HuggingFace Hub or serve via vLLM
+</code></pre><p>The &ldquo;30-line YAML + one command&rdquo; workflow is what turns fine-tuning from a research project into a deployable engineering practice.</p>
 <h2 id="7-axolotl-vs-unsloth-vs-huggingface-trl">7. Axolotl vs Unsloth vs HuggingFace TRL<a hidden class="anchor" aria-hidden="true" href="#7-axolotl-vs-unsloth-vs-huggingface-trl">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>선택</th>
-					<th>언제</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>Axolotl</strong></td>
-					<td>프로덕션 파인튜닝 파이프라인, 멀티 노드, 넓은 방법 지원 (DPO/GRPO/KTO/ORPO), YAML-config-as-code 워크플로우</td>
-			</tr>
-			<tr>
-					<td><strong>Unsloth</strong></td>
-					<td>단일 GPU, 2× 속도 + 70% VRAM 절감 원함, RL 파인튜닝 특별히. <a href="/kr/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/">Unsloth 심층 가이드</a> 참조</td>
-			</tr>
-			<tr>
-					<td><strong>HuggingFace TRL</strong></td>
-					<td>저레벨 제어, 커스텀 루프, 연구 논문. 대부분 프로덕션 코드는 이제 Axolotl 또는 Unsloth 통해 TRL 래핑</td>
-			</tr>
-			<tr>
-					<td><strong>Together / Fireworks / OpenAI 파인튜닝</strong></td>
-					<td>인프라 소유 원하지 않음, 가중치 이식성 신경 안 씀, $$$ 프리미엄 가격</td>
-			</tr>
-	</tbody>
-</table>
-<p>2026 기본 추천: <strong>프로덕션 멀티 GPU에 Axolotl + 빠른 단일 GPU 실험에 Unsloth</strong>. 보완적, 경쟁자 아님.</p>
-<h2 id="8-프로덕션-팁">8. 프로덕션 팁<a hidden class="anchor" aria-hidden="true" href="#8-프로덕션-팁">#</a></h2>
-<p>Axolotl 첫 사용자가 처음 부딪히는 5가지: 1. <strong>Tokenizer pad token</strong> — 많은 config가 <code>tokenizer.pad_token = eos_token</code> 누락. Axolotl 기본값이 알려진 모델 처리; 새 모델은 직접 verify
-2. <strong><code>max_seq_length</code>와 OOM</strong> — 작게 시작 (1024), OOM까지 올림, 그 후 10% 후퇴. 추측하지 마세요
-3. <strong>Flash Attention 컴파일 시간</strong> — 첫 설치가 FA2 컴파일에 20-30분 걸릴 수 있음. 인내
-4. <strong>데이터셋 포맷 불일치</strong> — <code>type</code> 필드가 데이터와 매치해야 함. <code>alpaca</code> ≠ <code>sharegpt</code> ≠ ````chat_template```. 문서 읽기
-5. <strong>DeepSpeed ZeRO stage 혼동</strong> — Stage 1 = offload 없음 (가장 빠름, 가장 많은 VRAM). Stage 2 = optimizer offload. Stage 3 = full param offload (가장 느림, 가장 적은 VRAM). VRAM 예산에 맞춤</p>
-<h2 id="9-axolotl을-사용하지-않을-때">9. Axolotl을 사용하지 <em>않을</em> 때<a hidden class="anchor" aria-hidden="true" href="#9-axolotl을-사용하지-않을-때">#</a></h2>
+<p>| Pick | When |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Axolotl</strong> | Production fine-tuning pipelines, multi-node, broad method support (DPO/GRPO/KTO/ORPO), YAML-config-as-code workflow |
+| <strong>Unsloth</strong> | Single-GPU, want 2× speed + 70% less VRAM, RL fine-tuning specifically. See our <a href="/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/">Unsloth deep-dive</a> |
+| <strong>HuggingFace TRL</strong> | Low-level control, custom loops, research papers. Most production code now wraps TRL via Axolotl or Unsloth |
+| <strong>Together / Fireworks / OpenAI fine-tuning</strong> | Don&rsquo;t want to own infra, don&rsquo;t care about weight portability, $$$ premium pricing |</p>
+<p>Default 2026 recommendation: <strong>Axolotl for production multi-GPU + Unsloth for fast single-GPU experiments</strong>. They&rsquo;re complementary, not competitors.</p>
+<h2 id="8-production-tips">8. Production Tips<a hidden class="anchor" aria-hidden="true" href="#8-production-tips">#</a></h2>
+<p>The 5 things that bite first-time Axolotl users: 1. <strong>Tokenizer pad token</strong> — many configs miss <code>tokenizer.pad_token = eos_token</code>. Axolotl&rsquo;s defaults handle this for known models; verify for new ones
+2. <strong><code>max_seq_length</code> and OOM</strong> — start small (1024), bump until you OOM, then back off 10%. Don&rsquo;t guess
+3. <strong>Flash Attention compile time</strong> — first install can take 20-30 min compiling FA2. Be patient
+4. <strong>Dataset format mismatch</strong> — the <code>type</code> field must match your data. <code>alpaca</code> ≠ <code>sharegpt</code> ≠ ````chat_template```. Read the docs
+5. <strong>DeepSpeed ZeRO stage confusion</strong> — Stage 1 = no offload (fastest, most VRAM). Stage 2 = optimizer offload. Stage 3 = full param offload (slowest, least VRAM). Match to your VRAM budget</p>
+<h2 id="9-when-not-to-use-axolotl">9. When NOT to Use Axolotl<a hidden class="anchor" aria-hidden="true" href="#9-when-not-to-use-axolotl">#</a></h2>
 <ul>
-<li><strong>로컬 모델과 채팅만 원함</strong> — 파인튜닝 불필요. 기본 instruct 모델로 <a href="/kr/resources/llm-frameworks/local-llm-runner-comparison-2026/">Ollama</a></li>
-<li><strong>작은 데이터셋 (&lt; 1000 예제)</strong> — Few-shot prompting이 파인튜닝 이길 가능성, 또는 RAG 사용 (<a href="/kr/collections/knowledge-base-stack/">지식 베이스 스택</a> 참조)</li>
-<li><strong>이미 작업에서 기본 모델에 만족</strong> — 파인튜닝 위해 파인튜닝하지 마세요. 비용 &gt; 이익, 벤치마크 개선 증명 가능까지</li>
-<li><strong>노트북 GPU에서 &lt;24시간 반복 사이클 필요</strong> — Unsloth의 2× 속도와 70% VRAM 감소가 더 적합</li>
+<li><strong>You just want to chat with a local model</strong> — Fine-tuning isn&rsquo;t needed. Use <a href="/resources/ai-tools/local-llm-runner-comparison-2026/">Ollama</a> with a base instruct model</li>
+<li><strong>Tiny dataset (&lt; 1000 examples)</strong> — Few-shot prompting will probably beat fine-tuning, or use RAG (see our <a href="/collections/knowledge-base-stack/">Knowledge Base Stack</a>)</li>
+<li><strong>Already happy with the base model on your task</strong> — Don&rsquo;t fine-tune just to fine-tune. Cost &gt; benefit until you can prove benchmark improvement</li>
+<li><strong>You need &lt;24 hour iteration cycles on a laptop GPU</strong> — Unsloth&rsquo;s 2× speed and 70% VRAM reduction is the better fit</li>
 </ul>
 <h2 id="tldr-1">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr-1">#</a></h2>
-<p>Axolotl = <strong>YAML 주도 LLM 파인튜닝 프레임워크, 2026 프로덕션 멀티 GPU 기본</strong>. 12k 별, Apache 2.0, 모든 주요 모델 패밀리 + 중요한 모든 파인튜닝 방법 지원. Unsloth (단일 GPU 속도)와 페어로 완전 실험-프로덕션 파인튜닝 파이프라인.</p>
-<p>H100 인스턴스 띄우고, 3절의 20줄 YAML 작성하고, 15분 후 파인튜닝 실행 중.</p>
+<p>Axolotl = <strong>YAML-driven LLM fine-tuning framework, production multi-GPU default in 2026</strong>. 12k stars, Apache 2.0, supports every major model family + every fine-tuning method that matters. Pairs with Unsloth (single-GPU speed) for a full experiment-to-production fine-tuning pipeline.</p>
+<p>Spin up an H100 instance, write the 20-line YAML in section 3, and 15 minutes later you have a fine-tuning run going.</p>
 <hr>
-<p><em>dibi8의 Fine-Tuning Stack 일부 — <a href="/kr/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/">빠른 단일 GPU 반복용 Unsloth</a>와 페어. 전체 LLM ops 그림은 다가오는 Fine-Tuning Stack 컬렉션 참조.</em></p>
+<p><em>Part of dibi8&rsquo;s Fine-Tuning Stack — pairs with <a href="/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/">Unsloth for fast single-GPU iteration</a>. For the full LLM ops picture see the upcoming Fine-Tuning Stack collection.</em></p>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;Axolotl 2026: 12k 별 YAML 주도 LLM 파인튜닝 프레임워크 완전 가이드&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Axolotl 2026: The 12k-Star YAML-Driven LLM Fine-Tuning Framework — Complete Production Guide&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-21&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-21&rdquo;,
 &ldquo;author&rdquo;: {
@@ -488,12 +425,12 @@ axolotl train config.yml
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/axolotl-llm-fine-tuning-framework-2026%22">https://dibi8.com/kr/resources/axolotl-llm-fine-tuning-framework-2026"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/axolotl-llm-fine-tuning-framework-2026%22">https://dibi8.com/resources/axolotl-llm-fine-tuning-framework-2026"</a>
 }
 }
 </script></p>
 <h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
-<p>Understanding axolotl 2026: 12k 별 yaml 주도 llm 파인튜닝 프레임워크 완전 가이드 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
+<p>Understanding axolotl 2026: the 12k-star yaml-driven llm fine-tuning framework — complete production guide is crucial for modern AI development. Here&quot;s why: ### Key Benefits</p>
 <ul>
 <li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
 <li><strong>Quality</strong>: Improve output consistency</li>
@@ -531,19 +468,19 @@ axolotl train config.yml
 </li>
 </ol>
 <h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
-<p>Axolotl 2026: 12k 별 YAML 주도 LLM 파인튜닝 프레임워크 완전 가이드 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>Axolotl 2026: The 12k-Star YAML-Driven LLM Fine-Tuning Framework — Complete Production Guide represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
 <p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
 <hr>
 <p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~5 minutes</em></p>
+<em>Read time: ~6 minutes</em></p>
 <hr>
 <h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
 <ul>
-<li><a href="/ko/ai-coding-agents/axolotl-llm-fine-tuning-framework-2026/">ai-engineering-from-scratch</a></li>
-<li><a href="/ko/ai-coding-agents/axolotl-llm-fine-tuning-framework-2026/">egonex-understand-anything-interactive-knowledge-graph-ai</a></li>
-<li><a href="/ko/ai-coding-agents/axolotl-llm-fine-tuning-framework-2026/">bytedance-ui-tars-desktop-ai-agent-guide</a></li>
-<li><a href="/ko/ai-coding-agents/axolotl-llm-fine-tuning-framework-2026/">mattpocock-skills-ai-agent-framework-guide</a></li>
-<li><a href="/ko/ai-coding-agents/axolotl-llm-fine-tuning-framework-2026/">microsoft-markitdown-file-to-markdown-converter-cli</a></li>
+<li><a href="/ko/ai-coding-agents/axolotl-llm-fine-tuning-framework-2026/">2026-05-25-trending-ai-agents</a></li>
+<li><a href="/ko/ai-coding-agents/axolotl-llm-fine-tuning-framework-2026/">2026-06-01-trending-ai-agents</a></li>
+<li><a href="/ko/ai-coding-agents/axolotl-llm-fine-tuning-framework-2026/">2026-06-08-trending-ai-agents</a></li>
+<li><a href="/ko/ai-coding-agents/axolotl-llm-fine-tuning-framework-2026/">2026-06-15-trending-ai-agents</a></li>
+<li><a href="/ko/ai-coding-agents/axolotl-llm-fine-tuning-framework-2026/">2026-06-22-trending-ai-agents</a></li>
 </ul>
 <hr>
 <p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
@@ -600,6 +537,81 @@ axolotl train config.yml
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "일일 주식 분석: LLM 기반 다시장 주식 인텔리전스 일일 주식 분석 은 LLM 기반의 오픈소스 주식 분석 시스템으로, 실시간 뉴스 집계, 자동화된 의사결정 대시보드 및 지능형 알림 시스템을 갖춘 다시장 인텔리전스를 제공합니다. 48,278개의 GitHub 스타를 달성하며, 기관급 분석을 추구하는 개인 투자자들을 위한 가장 인기 있는 퀀트 트레이딩 도구 중 하나가 되었습니다.\n이 글은 설치, 시장 데이터 소스, LLM 통합, 대시보드 구성, 자동 분석 및 배포 전략을 다룹니다.\nTL;DR 일일 주식 분석은 실시간 시장 데이터, 뉴스 감정 분석 및 LLM 기반 통찰력을 통합 의사결정 플랫폼으로 결합합니다. 미국 주식, A주식, 암호화폐 및 선물 등 여러 시장을 지원합니다. 시스템은 예약된 자동 분석으로 완전히 무료로 실행할 수 있어, 누구나 기관급 주식 연구를 활용할 수 있습니다.\n일일 주식 분석이란? 일일 주식 분석은 대형 언어 모델을 활용하여 시장 데이터, 뉴스 감정 및 기술적 지표를 분석하는 포괄적인 주식 인텔리전스 플랫폼입니다. 단순히 가격 움직임을 보여주는 전통적인 차트 도구와 달리, 이 시스템은 시장이 왜 움직이고 있는지에 대한 문맥 분석과 다음 무엇을 일어날 수 있는지에 대한 통찰력을 제공합니다.\n플랫폼은 여러 시장과 데이터 소스를 지원합니다: - 미국 시장: NYSE, NASDAQ, 실시간 및 지연 데이터 지원\nA주식: 상하이 및 선전 거래소 포괄적 커버리지 암호화폐: 바이낸스, Coinbase, Kraken 등 주요 거래소 선물 및 상품: 유류, 금, 농산물 및 지수 외환: 실시간 환율 주요 통화쌍 설치 가이드 사전 요구사항 Python: 3.10+ (3.11 권장) 데이터베이스: PostgreSQL 14+ 또는 SQLite (경량 설정용) LLM API: OpenAI, Anthropic 또는 Ollama를 통한 로컬 모델 시장 데이터 API: Tushare (A주식), AKShare (무료) 또는 유료 제공자 시스템: 최소 8GB RAM, SQLite 모드에서 4GB 옵션 1: Docker 배포 (가장 쉬움) # 저장소 복제 git clone https://github.com/ZhuLinsen/daily_stock_analysis.git cd daily_stock_analysis # 환경 변수 구성 cp .env.example .env # API 키로 .env 편집 # 모든 서비스 시작 docker compose up -d # 상태 확인 docker compose ps 옵션 2: 수동 설치 # 저장소 복제 git clone https://github.com/ZhuLinsen/daily_stock_analysis.git cd daily_stock_analysis # 가상 환경 생성 python -m venv venv source venv/bin/activate # Linux/Mac # 또는 venv\\Scripts\\activate # Windows # 종속성 설치 pip install -r requirements.txt # 데이터베이스 설정 python setup_database.py --init # LLM 및 데이터 소스 구성 cp config.example.yaml config.yaml # 설정으로 config.yaml 편집 # 첫 번째 분석 실행 python main.py --market us --date $(date +%Y-%m-%d) 옵션 3: 로컬 LLM 설정 (무료) API 비용을 완전히 피하고 싶은 사용자를 위한 방법: `````bash\n로컬 LLM 추론을 위해 Ollama 설치 curl -fsSL https://ollama.ai/install.sh | sh\n적합한 모델 풀 ollama pull qwen2.5:14b\nconfig.yaml을 로컬 모델 사용으로 업데이트 cat » config.yaml « EOF llm: provider: ollama model: qwen2.5:14b base_url: http://localhost:11434 EOF\n제로 API 비용으로 분석 실행 python main.py –market a_shares –date $(date +%Y-%m-%d)\n## 시장 데이터 통합 ### AKShare 통합 (무료 A주식 데이터) AKShare는 API 키 없이 중국 시장 데이터에 대한 무료 접근을 제공합니다: `````python import akshare as ak # 일일 A주식 시장 데이터 가져오기 df = ak.stock_zh_a_spot_em() print(df.head()) # 역사적 가격 데이터 가져오기 hist_df = ak.stock_zh_a_hist( symbol=\"000001\", period=\"daily\", start_date=\"20260101\", end_date=\"20260625\", adjust=\"qfq\" ) # 섹터 성과 가져오기 sector_df = ak.stock_board_industry_name_em() print(sector_df) Tushare 통합 (프리미엄 A주식 데이터) 기본 정보를 포함한 더 포괄적인 A주식 데이터를 위한: `````python import tushare as ts\nAPI 토큰으로 초기화 pro = ts.pro_api(“YOUR_TUSHARE_TOKEN”)\n일일 A주식 데이터 가져오기 df = pro.daily( ts_code=“000001.SZ”, start_date=“20260101”, end_date=“20260625” )\n재무제표 가져오기 income_df = pro.income( ts_code=“000001.SZ”, period=“20260331”, fields=“total_operating_income,net_profit,total_expense” )\n주주 정보 가져오기 holder_df = pro.stock_holder_top10( ts_code=“000001.SZ”, ann_date=“20260331” )\n### 미국 시장 데이터 `````python import yfinance as yf # 미국 주식 데이터 가져오기 ticker = yf.Ticker(\"AAPL\") df = ticker.history(period=\"3mo\") # 옵션 체인 가져오기 options = ticker.options # 애널리스트 추천 가져오기 recommendations = ticker.recommendations # 뉴스 감정 가져오기 news = ticker.news for item in news: print(f\"{item[title]}: {item[providerPublishTime]}\") 암호화폐 데이터 import ccxt # 거래소 연결 exchange = ccxt.binance({ 'apiKey': 'YOUR_API_KEY', 'secret': 'YOUR_SECRET', }) # 티커 데이터 가져오기 ticker = exchange.fetch_ticker('BTC/USDT') print(f\"가격: {ticker[last]}\") print(f\"거래량: {ticker[quoteVolume]}\") # 호가창 가져오기 order_book = exchange.fetch_order_book('ETH/USDT') print(f\"매수: {order_book[bids][0][0]}\") print(f\"매도: {order_book[asks][0][0]}\") LLM 기반 분석 감정 분석 파이프라인 일일 주식 분석의 핵심은 LLM 기반 감정 분석 파이프라인입니다: `````python from daily_stock_analysis.llm import LLMAnalyzer from daily_stock_analysis.data import MarketDataProvider\n컴포넌트 초기화 llm = LLMAnalyzer(model=“gpt-4o”, temperature=0.3) data_provider = MarketDataProvider(source=“akshare”)\n시장 데이터 및 뉴스 가져오기 market_data = data_provider.get_market_data( symbol=“000001.SZ”, period=“1d”, indicators=[“rsi”, “macd”, “bollinger”] )\nnews_data = data_provider.get_news( symbol=“000001.SZ”, days=7, sources=[“eastmoney”, “cls”, “cnbc”] )\nLLM 분석 실행 analysis = llm.analyze_market( market_data=market_data, news_data=news_data, prompt_template=“comprehensive_analysis” )\nprint(f\"전체 감정: {analysis.sentiment}\") print(f\"신뢰도: {analysis.confidence:.1%}\") print(f\"핵심 요소: {’, ‘.join(analysis.key_factors)}\") print(f\"위험 수준: {analysis.risk_level}\")\n### 사용자 정의 분석 프롬프트 다양한 사용 사례에 대해 LLM 분석 프롬프트를 사용자 정의할 수 있습니다: `````python # 기술 분석 프롬프트 tech_prompt = \"\"\" 다음 주식 기술적 지표를 분석하고 다음을 제공하세요: 1. 추세 방향 (강세/약세/중립) 2. 주요 지지 및 저항 수준 3. 모멘텀 평가 4. 거래량 분석 해석 5. 전체 기술적 평가 (1-10) 데이터: {market_data} \"\"\" # 기본 분석 프롬프트 fund_prompt = \"\"\" 다음 기본 데이터를 분석하고 다음을 제공하세요: 1. 매출 성장 평가 2. 수익성 평가 3. 부채 지속 가능성 4. 가치 평가 비교 5. 전체 기본 평가 (1-10) 데이터: {fundamental_data} \"\"\" # 종합 분석 combined = llm.analyze( prompt_template=\"combined_analysis\", market_data=market_data, fundamental_data=fundamental_data, news_data=news_data ) 다시장 비교 분석 서로 다른 시장의 주식을 동시에 비교: `````python\n미국 기술주 비교 us_techs = llm.compare_stocks( symbols=[“AAPL”, “MSFT”, “GOOGL”, “AMZN”, “META”], market=“us”, comparison_metrics=[“pe_ratio”, “revenue_growth”, “profit_margin”] )\nA주식 섹터 비교 a_share_sectors = llm.compare_sectors( sectors=[“신에너지”, “반도체”, “의약품”, “소비재”], market=“a_shares”, time_period=“1m” )\n## 대시보드 구성 ### 웹 대시보드 설정 일일 주식 분석은 내장 웹 대시보드를 포함합니다: `````bash # 대시보드 서버 시작 python dashboard.py --host 0.0.0.0 --port 8080 # http://localhost:8080에서 접근 대시보드는 다음을 제공합니다: - 히트맵과 함께하는 실시간 시장 개요\n대화형 차트와 함께하는 개별 주식 분석 섹터 성과 비교 뉴스 감정 타임라인 자동화된 분석 보고서 대시보드 사용자 정의 # dashboard_config.yaml dashboard: refresh_interval: 300 # 5분 default_market: \"a_shares\" charts: - type: \"heatmap\" title: \"AI Tool Guide\" data_source: \"sector_performance\" - type: \"line\" title: \"AI Tool Guide\" data_source: \"historical_prices\" - type: \"sentiment\" title: \"AI Tool Guide\" data_source: \"llm_sentiment\" alerts: - threshold: 0.8 action: \"notification\" channels: [\"email\", \"telegram\"] 보고서 내보내기 # PDF 형식으로 일일 보고서 생성 python report_generator.py --format pdf --output daily_report.pdf # 차트가 포함된 HTML 보고서 생성 python report_generator.py --format html --output daily_report.html # 분석 데이터를 CSV로 내보내기 python report_generator.py --format csv --output analysis_data.csv 자동 스케줄링 크론 작업 설정 자동 분석 실행 예약: `````bash\ncrontab 편집 crontab -e\n매일 아침 7시에 일일 분석 추가 0 7 * * * cd /path/to/daily_stock_analysis \u0026\u0026 python main.py –market a_shares –auto\n장 개장 후 미국 시장 분석 추가 0 21 * * 1-5 cd /path/to/daily_stock_analysis \u0026\u0026 python main.py –market us –auto\n일요일에 주간 종합 보고서 0 9 * * 0 cd /path/to/daily_stock_analysis \u0026\u0026 python weekly_report.py\n### systemd 서비스 지속적인 백그라운드 작동을 위한: `````ini # /etc/systemd/system/daily-stock-analysis.service [Unit] Description=일일 주식 분석 서비스 After=network.target postgresql.service [Service] Type=simple User=stockuser WorkingDirectory=/opt/daily_stock_analysis ExecStart=/opt/daily_stock_analysis/venv/bin/python main.py --daemon Restart=always RestartSec=30 [Install] WantedBy=multi-user.target # 서비스 활성화 및 시작 sudo systemctl enable daily-stock-analysis sudo systemctl start daily-stock-analysis sudo systemctl status daily-stock-analysis 알림 시스템 Telegram 알림 # Telegram 봇 구성 python notify.py --setup telegram \\ --bot-token \"${TELEGRAM_BOT_TOKEN}\" \\ --chat-id \"${TELEGRAM_CHAT_ID}\" # 테스트 알림 보내기 python notify.py --send \"AAPL 일일 분석 완료\" \\ --channel telegram 이메일 알림 from daily_stock_analysis.notify import Notifier # 이메일 알림기 구성 notifier = Notifier( provider=\"smtp\", smtp_server=\"smtp.gmail.com\", smtp_port=587, username=\"your_email@gmail.com\", password=\"your_app_password\" ) # 분석 보고서 보내기 notifier.send_email( to=\"your_email@gmail.com\", subject=\"일일 주식 분석 보고서\", body=analysis_report, attach_pdf=True ) 사용자 정의 웹훅 알림 # 사용자 정의 웹훅으로 보내기 (예: Slack, Discord) notifier.send_webhook( url=\"https://hooks.slack.com/services/YOUR/WEBHOOK/URL\", payload={ \"text\": f\"{symbol} 분석 완료\", \"blocks\": [ { \"type\": \"section\", \"text\": { \"type\": \"mrkdwn\", \"text\": f\"*{symbol}* - 감정: {sentiment}\" } } ] } ) ```` ## 비교: 일일 주식 분석 vs 대안 | 기능 | 일일 주식 분석 | TradingView | 윈드 금융 | Choice Info | | 커뮤니티 가입: [Telegram](https://t.me/DIBI8_Group) · [HuggingFace](https://huggingface.co/collections/nvidia/cosmos3) 내부 링크: [nvidia-cosmos-world-models-platform-2026](https://dibi8.com/kr/resources/ai-tools/nvidia-cosmos-world-models-platform-2026) · [bytedance-ui-tars-desktop-ai-agent-guide](https://dibi8.com/kr/resources/ai-tools/bytedance-ui-tars-desktop-ai-agent-guide) **고지 사항**: 본 기사는 제휴 관계가 있을 수 있는 도구를 언급합니다. 우리는 리뷰에 대한 대가를 받지 않습니다. 모든 의견은 우리 자신의 것입니다. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"일일 주식 분석: LLM 기반 다시장 주식 인텔리전스 시스템\", \"datePublished\": \"2026-06-25\", \"dateModified\": \"2026-06-25\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/daily-stock-analysis-llm-powered-multi-market-stock-intelligence\" } } \u003c/script\u003e ## Why This Matters Understanding 일일 주식 분석: llm 기반 다시장 주식 인텔리전스 시스템 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion 일일 주식 분석: LLM 기반 다시장 주식 인텔리전스 시스템 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~6 minutes* * * * ## Related Articles - [12-factor-agents-production-llm-software-2026](daily-stock-analysis-llm-powered-multi-market-stock-intelligence) - [12-factor-agents](daily-stock-analysis-llm-powered-multi-market-stock-intelligence) - [1m-context-window-llm-2026-real-test](daily-stock-analysis-llm-powered-multi-market-stock-intelligence) - [9router-smart-llm-proxy-token-saver-free-coding](daily-stock-analysis-llm-powered-multi-market-stock-intelligence) - [ai-engineering-from-scratch](daily-stock-analysis-llm-powered-multi-market-stock-intelligence) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：量化交易的风险有多大？** 取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。 **问：如何选择适合的交易策略？** 根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。 **问：回测结果可信吗？** 回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。 **问：需要编程基础吗？** 基础策略可使用低代码平台，高级策略需要Python/C++编程能力。 **问：交易系统的维护成本？** 包括服务器费用、数据订阅、算法更新、以及监控维护时间。 ",
-  "wordCount" : "1513",
+  "articleBody": "title: “Daily Stock Analysis: LLM-Powered Multi-Market Stock Int… description: “Technical guide and comparison.” date: 2026-06-25 lastmod: 2026-06-25 draft: false lang: en category: ai-trading tags: [“stock-analysis”, “llm”, “quantitative-trading”, “ai-agent”, “multi-market”, “a-stock”, “sentiment-analysis”, “automated-trading”] slug: daily-stock-analysis-llm-powered-multi-market-stock-intelligence\nDaily Stock Analysis: LLM-Powered Multi-Market Stock Intelligence Daily Stock Analysis is an open-source, LLM-driven stock analysis system that provides multi-market intelligence with real-time news aggregation, automated decision dashboards, and intelligent notification systems. With 48,278 GitHub stars, it has become one of the most popular quantitative trading tools for retail investors seeking institutional-grade analysis.\nThis article covers installation, market data sources, LLM integration, dashboard configuration, automated analysis, and deployment strategies.\nTL;DR Daily Stock Analysis combines real-time market data, news sentiment analysis, and LLM-powered insights into a unified decision-making platform. It supports multiple markets including US stocks, A-shares, cryptocurrencies, and futures. The system can run entirely for free with scheduled automated analysis, making institutional-quality stock research accessible to everyone.\nWhat Is Daily Stock Analysis? Daily Stock Analysis is a comprehensive stock intelligence platform that leverages large language models to analyze market data, news sentiment, and technical indicators. Unlike traditional charting tools that only show price movements, this system provides contextual analysis that explains WHY markets are moving and WHAT might happen next.\nThe platform supports multiple markets and data sources: - US Markets: NYSE, NASDAQ, with real-time and delayed data\nA-Shares: Shanghai and Shenzhen exchanges with comprehensive coverage Cryptocurrency: Major exchanges including Binance, Coinbase, and Kraken Futures \u0026 Commodities: Oil, gold, agricultural products, and indices Forex: Major currency pairs with real-time exchange rates Installation Guide Prerequisites Python: 3.10+ (3.11 recommended) Database: PostgreSQL 14+ or SQLite (for lightweight setups) LLM API: OpenAI, Anthropic, or local models via Ollama Market Data API: Tushare (A-shares), AKShare (free), or paid providers System: 8GB RAM minimum, 4GB for SQLite mode Option 1: Docker Deployment (Easiest) # Clone the repository git clone https://github.com/ZhuLinsen/daily_stock_analysis.git cd daily_stock_analysis # Configure environment variables cp .env.example .env # Edit .env with your API keys # Start all services docker compose up -d # Check status docker compose ps Option 2: Manual Installation # Clone the repository git clone https://github.com/ZhuLinsen/daily_stock_analysis.git cd daily_stock_analysis # Create virtual environment python -m venv venv source venv/bin/activate # Linux/Mac # or venv\\Scripts\\activate # Windows # Install dependencies pip install -r requirements.txt # Set up the database python setup_database.py --init # Configure LLM and data sources cp config.example.yaml config.yaml # Edit config.yaml with your settings # Run the first analysis python main.py --market us --date $(date +%Y-%m-%d) Option 3: Local LLM Setup (Free) For users who want to avoid API costs entirely: `````bash\nInstall Ollama for local LLM inference curl -fsSL https://ollama.ai/install.sh | sh\nPull a suitable model ollama pull qwen2.5:14b\nUpdate config.yaml to use local model cat » config.yaml « EOF llm: provider: ollama model: qwen2.5:14b base_url: http://localhost:11434 EOF\nRun analysis with zero API costs python main.py –market a_shares –date $(date +%Y-%m-%d)\n## Market Data Integration ### AKShare Integration (Free A-Share Data) AKShare provides free access to Chinese market data without any API key: `````python import akshare as ak # Get daily A-share market data df = ak.stock_zh_a_spot_em() print(df.head()) # Get historical price data hist_df = ak.stock_zh_a_hist( symbol=\"000001\", period=\"daily\", start_date=\"20260101\", end_date=\"20260625\", adjust=\"qfq\" ) # Get sector performance sector_df = ak.stock_board_industry_name_em() print(sector_df) Tushare Integration (Premium A-Share Data) For more comprehensive A-share data including fundamentals: `````python import tushare as ts\nInitialize with your API token pro = ts.pro_api(“YOUR_TUSHARE_TOKEN”)\nGet daily A-share data df = pro.daily( ts_code=“000001.SZ”, start_date=“20260101”, end_date=“20260625” )\nGet financial statements income_df = pro.income( ts_code=“000001.SZ”, period=“20260331”, fields=“total_operating_income,net_profit,total_expense” )\nGet shareholder information holder_df = pro.stock_holder_top10( ts_code=“000001.SZ”, ann_date=“20260331” )\n### US Market Data `````python import yfinance as yf # Get US stock data ticker = yf.Ticker(\"AAPL\") df = ticker.history(period=\"3mo\") # Get options chain options = ticker.options # Get analyst recommendations recommendations = ticker.recommendations # Get news sentiment news = ticker.news for item in news: print(f\"{item[title]}: {item[providerPublishTime]}\") Cryptocurrency Data import ccxt # Connect to exchange exchange = ccxt.binance({ 'apiKey': 'YOUR_API_KEY', 'secret': 'YOUR_SECRET', }) # Get ticker data ticker = exchange.fetch_ticker('BTC/USDT') print(f\"Price: {ticker[last]}\") print(f\"Volume: {ticker[quoteVolume]}\") # Get order book order_book = exchange.fetch_order_book('ETH/USDT') print(f\"Bid: {order_book[bids][0][0]}\") print(f\"Ask: {order_book[asks][0][0]}\") LLM-Powered Analysis Sentiment Analysis Pipeline The core of Daily Stock Analysis is its LLM-powered sentiment analysis pipeline: `````python from daily_stock_analysis.llm import LLMAnalyzer from daily_stock_analysis.data import MarketDataProvider\nInitialize components llm = LLMAnalyzer(model=“gpt-4o”, temperature=0.3) data_provider = MarketDataProvider(source=“akshare”)\nFetch market data and news market_data = data_provider.get_market_data( symbol=“000001.SZ”, period=“1d”, indicators=[“rsi”, “macd”, “bollinger”] )\nnews_data = data_provider.get_news( symbol=“000001.SZ”, days=7, sources=[“eastmoney”, “cls”, “cnbc”] )\nRun LLM analysis analysis = llm.analyze_market( market_data=market_data, news_data=news_data, prompt_template=“comprehensive_analysis” )\nprint(f\"Overall Sentiment: {analysis.sentiment}”) print(f\"Confidence: {analysis.confidence:.1%}\") print(f\"Key Factors: {’, ‘.join.analysis.key_factors)}\") print(f\"Risk Level: {analysis.risk_level}\")\n### Custom Analysis Prompts You can customize the LLM analysis prompts for different use cases: `````python # Technical analysis prompt tech_prompt = \"\"\" Analyze the following stock technical indicators and provide: 1. Trend direction (bullish/bearish/neutral) 2. Key support and resistance levels 3. Momentum assessment 4. Volume analysis interpretation 5. Overall technical rating (1-10) Data: {market_data} \"\"\" # Fundamental analysis prompt fund_prompt = \"\"\" Analyze the following fundamental data and provide: 1. Revenue growth assessment 2. Profitability evaluation 3. Debt sustainability 4. Valuation comparison 5. Overall fundamental rating (1-10) Data: {fundamental_data} \"\"\" # Combined analysis combined = llm.analyze( prompt_template=\"combined_analysis\", market_data=market_data, fundamental_data=fundamental_data, news_data=news_data ) Multi-Market Comparative Analysis Compare stocks across different markets simultaneously: `````python\nCompare US tech stocks us_techs = llm.compare_stocks( symbols=[“AAPL”, “MSFT”, “GOOGL”, “AMZN”, “META”], market=“us”, comparison_metrics=[“pe_ratio”, “revenue_growth”, “profit_margin”] )\nCompare A-share sectors a_share_sectors = llm.compare_sectors( sectors=[“新能源”, “半导体”, “医药”, “消费”], market=“a_shares”, time_period=“1m” )\n## Dashboard Configuration ### Web Dashboard Setup Daily Stock Analysis includes a built-in web dashboard: `````bash # Start the dashboard server python dashboard.py --host 0.0.0.0 --port 8080 # Access at http://localhost:8080 The dashboard provides: - Real-time market overview with heat maps\nIndividual stock analysis with interactive charts Sector performance comparisons News sentiment timeline Automated analysis reports Dashboard Customization # dashboard_config.yaml dashboard: refresh_interval: 300 # 5 minutes default_market: \"a_shares\" charts: - type: \"heatmap\" title: \"Market Heatmap\" data_source: \"sector_performance\" - type: \"line\" title: \"Stock Price History\" data_source: \"historical_prices\" - type: \"sentiment\" title: \"News Sentiment\" data_source: \"llm_sentiment\" alerts: - threshold: 0.8 action: \"notification\" channels: [\"email\", \"telegram\"] Exporting Reports # Generate daily report in PDF python report_generator.py --format pdf --output daily_report.pdf # Generate HTML report with charts python report_generator.py --format html --output daily_report.html # Export analysis data as CSV python report_generator.py --format csv --output analysis_data.csv Automated Scheduling Cron Job Setup Schedule automatic analysis runs: `````bash\nEdit crontab crontab -e\nAdd daily analysis at 7 AM 0 7 * * * cd /path/to/daily_stock_analysis \u0026\u0026 python main.py –market a_shares –auto\nAdd US market analysis after market open 0 21 * * 1-5 cd /path/to/daily_stock_analysis \u0026\u0026 python main.py –market us –auto\nWeekly comprehensive report on Sunday 0 9 * * 0 cd /path/to/daily_stock_analysis \u0026\u0026 python weekly_report.py\n### Systemd Service For persistent background operation: `````ini # /etc/systemd/system/daily-stock-analysis.service [Unit] Description=Daily Stock Analysis Service After=network.target postgresql.service [Service] Type=simple User=stockuser WorkingDirectory=/opt/daily_stock_analysis ExecStart=/opt/daily_stock_analysis/venv/bin/python main.py --daemon Restart=always RestartSec=30 [Install] WantedBy=multi-user.target # Enable and start the service sudo systemctl enable daily-stock-analysis sudo systemctl start daily-stock-analysis sudo systemctl status daily-stock-analysis Notification System Telegram Notifications # Configure Telegram bot python notify.py --setup telegram \\ --bot-token \"${TELEGRAM_BOT_TOKEN}\" \\ --chat-id \"${TELEGRAM_CHAT_ID}\" # Send test notification python notify.py --send \"Daily analysis complete for AAPL\" \\ --channel telegram Email Notifications from daily_stock_analysis.notify import Notifier # Configure email notifier notifier = Notifier( provider=\"smtp\", smtp_server=\"smtp.gmail.com\", smtp_port=587, username=\"your_email@gmail.com\", password=\"your_app_password\" ) # Send analysis report notifier.send_email( to=\"your_email@gmail.com\", subject=\"Daily Stock Analysis Report\", body=analysis_report, attach_pdf=True ) Custom Webhook Notifications # Send to custom webhook (e.g., Slack, Discord) notifier.send_webhook( url=\"https://hooks.slack.com/services/YOUR/WEBHOOK/URL\", payload={ \"text\": f\"Analysis complete for {symbol}\", \"blocks\": [ { \"type\": \"section\", \"text\": { \"type\": \"mrkdwn\", \"text\": f\"*{symbol}* - Sentiment: {sentiment}\" } } ] } ) ```` ## Comparison: Daily Stock Analysis vs Alternatives | Feature | Daily Stock Analysis | TradingView | Wind Financial | Choice Info | | Join the community: [Telegram](https://t.me/DIBI8_Group) · [HuggingFace](https://huggingface.co/collections/nvidia/cosmos3) Internal links: [nvidia-cosmos-world-models-platform-2026](https://dibi8.com/en/resources/ai-tools/nvidia-cosmos-world-models-platform-2026) · [bytedance-ui-tars-desktop-ai-agent-guide](https://dibi8.com/en/resources/ai-tools/bytedance-ui-tars-desktop-ai-agent-guide) **Disclosure**: This article mentions tools that may have affiliate relationships. We do not accept payment for reviews. All opinions are our own. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Daily Stock Analysis: LLM-Powered Multi-Market Stock Intelligence System\", \"datePublished\": \"2026-06-25\", \"dateModified\": \"2026-06-25\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/daily-stock-analysis-llm-powered-multi-market-stock-intelligence\" } } \u003c/script\u003e ## Why This Matters Understanding daily stock analysis: llm-powered multi-market stock intelligence system is crucial for modern AI development. Here\"s why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Daily Stock Analysis: LLM-Powered Multi-Market Stock Intelligence System represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group --- *Last updated: 2026-09-20* *Read time: ~7 minutes* * * * ## Related Articles - [12-factor-agents-production-llm-software-2026](daily-stock-analysis-llm-powered-multi-market-stock-intelligence) - [12-factor-agents](daily-stock-analysis-llm-powered-multi-market-stock-intelligence) - [1m-context-window-llm-2026-real-test](daily-stock-analysis-llm-powered-multi-market-stock-intelligence) - [9router-smart-llm-proxy-token-saver-free-coding](daily-stock-analysis-llm-powered-multi-market-stock-intelligence) - [ai-engineering-from-scratch](daily-stock-analysis-llm-powered-multi-market-stock-intelligence) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
+  "wordCount" : "1595",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -209,107 +209,107 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#%ec%9d%bc%ec%9d%bc-%ec%a3%bc%ec%8b%9d-%eb%b6%84%ec%84%9d-llm-%ea%b8%b0%eb%b0%98-%eb%8b%a4%ec%8b%9c%ec%9e%a5-%ec%a3%bc%ec%8b%9d-%ec%9d%b8%ed%85%94%eb%a6%ac%ec%a0%84%ec%8a%a4" aria-label="일일 주식 분석: LLM 기반 다시장 주식 인텔리전스">일일 주식 분석: LLM 기반 다시장 주식 인텔리전스</a><ul>
+                <a href="#daily-stock-analysis-llm-powered-multi-market-stock-intelligence" aria-label="Daily Stock Analysis: LLM-Powered Multi-Market Stock Intelligence">Daily Stock Analysis: LLM-Powered Multi-Market Stock Intelligence</a><ul>
                     
             <li>
                 <a href="#tldr" aria-label="TL;DR">TL;DR</a></li>
             <li>
-                <a href="#%ec%9d%bc%ec%9d%bc-%ec%a3%bc%ec%8b%9d-%eb%b6%84%ec%84%9d%ec%9d%b4%eb%9e%80" aria-label="일일 주식 분석이란?">일일 주식 분석이란?</a></li>
+                <a href="#what-is-daily-stock-analysis" aria-label="What Is Daily Stock Analysis?">What Is Daily Stock Analysis?</a></li>
             <li>
-                <a href="#%ec%84%a4%ec%b9%98-%ea%b0%80%ec%9d%b4%eb%93%9c" aria-label="설치 가이드">설치 가이드</a><ul>
+                <a href="#installation-guide" aria-label="Installation Guide">Installation Guide</a><ul>
                     
             <li>
-                <a href="#%ec%82%ac%ec%a0%84-%ec%9a%94%ea%b5%ac%ec%82%ac%ed%95%ad" aria-label="사전 요구사항">사전 요구사항</a></li>
+                <a href="#prerequisites" aria-label="Prerequisites">Prerequisites</a></li>
             <li>
-                <a href="#%ec%98%b5%ec%85%98-1-docker-%eb%b0%b0%ed%8f%ac-%ea%b0%80%ec%9e%a5-%ec%89%ac%ec%9b%80" aria-label="옵션 1: Docker 배포 (가장 쉬움)">옵션 1: Docker 배포 (가장 쉬움)</a></li>
+                <a href="#option-1-docker-deployment-easiest" aria-label="Option 1: Docker Deployment (Easiest)">Option 1: Docker Deployment (Easiest)</a></li>
             <li>
-                <a href="#%ec%98%b5%ec%85%98-2-%ec%88%98%eb%8f%99-%ec%84%a4%ec%b9%98" aria-label="옵션 2: 수동 설치">옵션 2: 수동 설치</a></li>
+                <a href="#option-2-manual-installation" aria-label="Option 2: Manual Installation">Option 2: Manual Installation</a></li>
             <li>
-                <a href="#%ec%98%b5%ec%85%98-3-%eb%a1%9c%ec%bb%ac-llm-%ec%84%a4%ec%a0%95-%eb%ac%b4%eb%a3%8c" aria-label="옵션 3: 로컬 LLM 설정 (무료)">옵션 3: 로컬 LLM 설정 (무료)</a></li></ul>
+                <a href="#option-3-local-llm-setup-free" aria-label="Option 3: Local LLM Setup (Free)">Option 3: Local LLM Setup (Free)</a></li></ul>
             </li></ul>
             </li>
             <li>
-                <a href="#%eb%a1%9c%ec%bb%ac-llm-%ec%b6%94%eb%a1%a0%ec%9d%84-%ec%9c%84%ed%95%b4-ollama-%ec%84%a4%ec%b9%98" aria-label="로컬 LLM 추론을 위해 Ollama 설치">로컬 LLM 추론을 위해 Ollama 설치</a></li>
+                <a href="#install-ollama-for-local-llm-inference" aria-label="Install Ollama for local LLM inference">Install Ollama for local LLM inference</a></li>
             <li>
-                <a href="#%ec%a0%81%ed%95%a9%ed%95%9c-%eb%aa%a8%eb%8d%b8-%ed%92%80" aria-label="적합한 모델 풀">적합한 모델 풀</a></li>
+                <a href="#pull-a-suitable-model" aria-label="Pull a suitable model">Pull a suitable model</a></li>
             <li>
-                <a href="#configyaml%ec%9d%84-%eb%a1%9c%ec%bb%ac-%eb%aa%a8%eb%8d%b8-%ec%82%ac%ec%9a%a9%ec%9c%bc%eb%a1%9c-%ec%97%85%eb%8d%b0%ec%9d%b4%ed%8a%b8" aria-label="config.yaml을 로컬 모델 사용으로 업데이트">config.yaml을 로컬 모델 사용으로 업데이트</a></li>
+                <a href="#update-configyaml-to-use-local-model" aria-label="Update config.yaml to use local model">Update config.yaml to use local model</a></li>
             <li>
-                <a href="#%ec%a0%9c%eb%a1%9c-api-%eb%b9%84%ec%9a%a9%ec%9c%bc%eb%a1%9c-%eb%b6%84%ec%84%9d-%ec%8b%a4%ed%96%89" aria-label="제로 API 비용으로 분석 실행">제로 API 비용으로 분석 실행</a><ul>
+                <a href="#run-analysis-with-zero-api-costs" aria-label="Run analysis with zero API costs">Run analysis with zero API costs</a><ul>
                     <ul>
                     
             <li>
-                <a href="#tushare-%ed%86%b5%ed%95%a9-%ed%94%84%eb%a6%ac%eb%af%b8%ec%97%84-a%ec%a3%bc%ec%8b%9d-%eb%8d%b0%ec%9d%b4%ed%84%b0" aria-label="Tushare 통합 (프리미엄 A주식 데이터)">Tushare 통합 (프리미엄 A주식 데이터)</a></li></ul>
+                <a href="#tushare-integration-premium-a-share-data" aria-label="Tushare Integration (Premium A-Share Data)">Tushare Integration (Premium A-Share Data)</a></li></ul>
                 </ul>
             </li>
             <li>
-                <a href="#api-%ed%86%a0%ed%81%b0%ec%9c%bc%eb%a1%9c-%ec%b4%88%ea%b8%b0%ed%99%94" aria-label="API 토큰으로 초기화">API 토큰으로 초기화</a></li>
+                <a href="#initialize-with-your-api-token" aria-label="Initialize with your API token">Initialize with your API token</a></li>
             <li>
-                <a href="#%ec%9d%bc%ec%9d%bc-a%ec%a3%bc%ec%8b%9d-%eb%8d%b0%ec%9d%b4%ed%84%b0-%ea%b0%80%ec%a0%b8%ec%98%a4%ea%b8%b0" aria-label="일일 A주식 데이터 가져오기">일일 A주식 데이터 가져오기</a></li>
+                <a href="#get-daily-a-share-data" aria-label="Get daily A-share data">Get daily A-share data</a></li>
             <li>
-                <a href="#%ec%9e%ac%eb%ac%b4%ec%a0%9c%ed%91%9c-%ea%b0%80%ec%a0%b8%ec%98%a4%ea%b8%b0" aria-label="재무제표 가져오기">재무제표 가져오기</a></li>
+                <a href="#get-financial-statements" aria-label="Get financial statements">Get financial statements</a></li>
             <li>
-                <a href="#%ec%a3%bc%ec%a3%bc-%ec%a0%95%eb%b3%b4-%ea%b0%80%ec%a0%b8%ec%98%a4%ea%b8%b0" aria-label="주주 정보 가져오기">주주 정보 가져오기</a><ul>
+                <a href="#get-shareholder-information" aria-label="Get shareholder information">Get shareholder information</a><ul>
                     <ul>
                     
             <li>
-                <a href="#%ec%95%94%ed%98%b8%ed%99%94%ed%8f%90-%eb%8d%b0%ec%9d%b4%ed%84%b0" aria-label="암호화폐 데이터">암호화폐 데이터</a></li></ul>
+                <a href="#cryptocurrency-data" aria-label="Cryptocurrency Data">Cryptocurrency Data</a></li></ul>
                 
             <li>
-                <a href="#llm-%ea%b8%b0%eb%b0%98-%eb%b6%84%ec%84%9d" aria-label="LLM 기반 분석">LLM 기반 분석</a><ul>
+                <a href="#llm-powered-analysis" aria-label="LLM-Powered Analysis">LLM-Powered Analysis</a><ul>
                     
             <li>
-                <a href="#%ea%b0%90%ec%a0%95-%eb%b6%84%ec%84%9d-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8" aria-label="감정 분석 파이프라인">감정 분석 파이프라인</a></li></ul>
+                <a href="#sentiment-analysis-pipeline" aria-label="Sentiment Analysis Pipeline">Sentiment Analysis Pipeline</a></li></ul>
             </li></ul>
             </li>
             <li>
-                <a href="#%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8-%ec%b4%88%ea%b8%b0%ed%99%94" aria-label="컴포넌트 초기화">컴포넌트 초기화</a></li>
+                <a href="#initialize-components" aria-label="Initialize components">Initialize components</a></li>
             <li>
-                <a href="#%ec%8b%9c%ec%9e%a5-%eb%8d%b0%ec%9d%b4%ed%84%b0-%eb%b0%8f-%eb%89%b4%ec%8a%a4-%ea%b0%80%ec%a0%b8%ec%98%a4%ea%b8%b0" aria-label="시장 데이터 및 뉴스 가져오기">시장 데이터 및 뉴스 가져오기</a></li>
+                <a href="#fetch-market-data-and-news" aria-label="Fetch market data and news">Fetch market data and news</a></li>
             <li>
-                <a href="#llm-%eb%b6%84%ec%84%9d-%ec%8b%a4%ed%96%89" aria-label="LLM 분석 실행">LLM 분석 실행</a><ul>
+                <a href="#run-llm-analysis" aria-label="Run LLM analysis">Run LLM analysis</a><ul>
                     <ul>
                     
             <li>
-                <a href="#%eb%8b%a4%ec%8b%9c%ec%9e%a5-%eb%b9%84%ea%b5%90-%eb%b6%84%ec%84%9d" aria-label="다시장 비교 분석">다시장 비교 분석</a></li></ul>
+                <a href="#multi-market-comparative-analysis" aria-label="Multi-Market Comparative Analysis">Multi-Market Comparative Analysis</a></li></ul>
                 </ul>
             </li>
             <li>
-                <a href="#%eb%af%b8%ea%b5%ad-%ea%b8%b0%ec%88%a0%ec%a3%bc-%eb%b9%84%ea%b5%90" aria-label="미국 기술주 비교">미국 기술주 비교</a></li>
+                <a href="#compare-us-tech-stocks" aria-label="Compare US tech stocks">Compare US tech stocks</a></li>
             <li>
-                <a href="#a%ec%a3%bc%ec%8b%9d-%ec%84%b9%ed%84%b0-%eb%b9%84%ea%b5%90" aria-label="A주식 섹터 비교">A주식 섹터 비교</a><ul>
+                <a href="#compare-a-share-sectors" aria-label="Compare A-share sectors">Compare A-share sectors</a><ul>
                     <ul>
                     
             <li>
-                <a href="#%eb%8c%80%ec%8b%9c%eb%b3%b4%eb%93%9c-%ec%82%ac%ec%9a%a9%ec%9e%90-%ec%a0%95%ec%9d%98" aria-label="대시보드 사용자 정의">대시보드 사용자 정의</a></li>
+                <a href="#dashboard-customization" aria-label="Dashboard Customization">Dashboard Customization</a></li>
             <li>
-                <a href="#%eb%b3%b4%ea%b3%a0%ec%84%9c-%eb%82%b4%eb%b3%b4%eb%82%b4%ea%b8%b0" aria-label="보고서 내보내기">보고서 내보내기</a></li></ul>
+                <a href="#exporting-reports" aria-label="Exporting Reports">Exporting Reports</a></li></ul>
                 
             <li>
-                <a href="#%ec%9e%90%eb%8f%99-%ec%8a%a4%ec%bc%80%ec%a4%84%eb%a7%81" aria-label="자동 스케줄링">자동 스케줄링</a><ul>
+                <a href="#automated-scheduling" aria-label="Automated Scheduling">Automated Scheduling</a><ul>
                     
             <li>
-                <a href="#%ed%81%ac%eb%a1%a0-%ec%9e%91%ec%97%85-%ec%84%a4%ec%a0%95" aria-label="크론 작업 설정">크론 작업 설정</a></li></ul>
+                <a href="#cron-job-setup" aria-label="Cron Job Setup">Cron Job Setup</a></li></ul>
             </li></ul>
             </li>
             <li>
-                <a href="#crontab-%ed%8e%b8%ec%a7%91" aria-label="crontab 편집">crontab 편집</a></li>
+                <a href="#edit-crontab" aria-label="Edit crontab">Edit crontab</a></li>
             <li>
-                <a href="#%eb%a7%a4%ec%9d%bc-%ec%95%84%ec%b9%a8-7%ec%8b%9c%ec%97%90-%ec%9d%bc%ec%9d%bc-%eb%b6%84%ec%84%9d-%ec%b6%94%ea%b0%80" aria-label="매일 아침 7시에 일일 분석 추가">매일 아침 7시에 일일 분석 추가</a></li>
+                <a href="#add-daily-analysis-at-7-am" aria-label="Add daily analysis at 7 AM">Add daily analysis at 7 AM</a></li>
             <li>
-                <a href="#%ec%9e%a5-%ea%b0%9c%ec%9e%a5-%ed%9b%84-%eb%af%b8%ea%b5%ad-%ec%8b%9c%ec%9e%a5-%eb%b6%84%ec%84%9d-%ec%b6%94%ea%b0%80" aria-label="장 개장 후 미국 시장 분석 추가">장 개장 후 미국 시장 분석 추가</a></li>
+                <a href="#add-us-market-analysis-after-market-open" aria-label="Add US market analysis after market open">Add US market analysis after market open</a></li>
             <li>
-                <a href="#%ec%9d%bc%ec%9a%94%ec%9d%bc%ec%97%90-%ec%a3%bc%ea%b0%84-%ec%a2%85%ed%95%a9-%eb%b3%b4%ea%b3%a0%ec%84%9c" aria-label="일요일에 주간 종합 보고서">일요일에 주간 종합 보고서</a><ul>
+                <a href="#weekly-comprehensive-report-on-sunday" aria-label="Weekly comprehensive report on Sunday">Weekly comprehensive report on Sunday</a><ul>
                     
             <li>
-                <a href="#%ec%95%8c%eb%a6%bc-%ec%8b%9c%ec%8a%a4%ed%85%9c" aria-label="알림 시스템">알림 시스템</a><ul>
+                <a href="#notification-system" aria-label="Notification System">Notification System</a><ul>
                     
             <li>
-                <a href="#telegram-%ec%95%8c%eb%a6%bc" aria-label="Telegram 알림">Telegram 알림</a></li>
+                <a href="#telegram-notifications" aria-label="Telegram Notifications">Telegram Notifications</a></li>
             <li>
-                <a href="#%ec%9d%b4%eb%a9%94%ec%9d%bc-%ec%95%8c%eb%a6%bc" aria-label="이메일 알림">이메일 알림</a></li>
+                <a href="#email-notifications" aria-label="Email Notifications">Email Notifications</a></li>
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9%ec%9e%90-%ec%a0%95%ec%9d%98-%ec%9b%b9%ed%9b%85-%ec%95%8c%eb%a6%bc" aria-label="사용자 정의 웹훅 알림">사용자 정의 웹훅 알림</a>
+                <a href="#custom-webhook-notifications" aria-label="Custom Webhook Notifications">Custom Webhook Notifications</a>
             </li>
         </ul>
         </li>
@@ -319,93 +319,102 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><h1 id="일일-주식-분석-llm-기반-다시장-주식-인텔리전스">일일 주식 분석: LLM 기반 다시장 주식 인텔리전스<a hidden class="anchor" aria-hidden="true" href="#일일-주식-분석-llm-기반-다시장-주식-인텔리전스">#</a></h1>
-<p><strong>일일 주식 분석</strong> 은 LLM 기반의 오픈소스 주식 분석 시스템으로, 실시간 뉴스 집계, 자동화된 의사결정 대시보드 및 지능형 알림 시스템을 갖춘 다시장 인텔리전스를 제공합니다. <strong>48,278개의 GitHub 스타</strong>를 달성하며, 기관급 분석을 추구하는 개인 투자자들을 위한 가장 인기 있는 퀀트 트레이딩 도구 중 하나가 되었습니다.</p>
-<p>이 글은 설치, 시장 데이터 소스, LLM 통합, 대시보드 구성, 자동 분석 및 배포 전략을 다룹니다.</p>
+  <div class="post-content md-content"><p>title: &ldquo;Daily Stock Analysis: LLM-Powered Multi-Market Stock Int&hellip;
+description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-06-25
+lastmod: 2026-06-25
+draft: false
+lang: en
+category: ai-trading
+tags: [&ldquo;stock-analysis&rdquo;, &ldquo;llm&rdquo;, &ldquo;quantitative-trading&rdquo;, &ldquo;ai-agent&rdquo;, &ldquo;multi-market&rdquo;, &ldquo;a-stock&rdquo;, &ldquo;sentiment-analysis&rdquo;, &ldquo;automated-trading&rdquo;]
+slug: daily-stock-analysis-llm-powered-multi-market-stock-intelligence</p>
+<h1 id="daily-stock-analysis-llm-powered-multi-market-stock-intelligence">Daily Stock Analysis: LLM-Powered Multi-Market Stock Intelligence<a hidden class="anchor" aria-hidden="true" href="#daily-stock-analysis-llm-powered-multi-market-stock-intelligence">#</a></h1>
+<p><strong>Daily Stock Analysis</strong> is an open-source, LLM-driven stock analysis system that provides multi-market intelligence with real-time news aggregation, automated decision dashboards, and intelligent notification systems. With <strong>48,278 GitHub stars</strong>, it has become one of the most popular quantitative trading tools for retail investors seeking institutional-grade analysis.</p>
+<p>This article covers installation, market data sources, LLM integration, dashboard configuration, automated analysis, and deployment strategies.</p>
 <h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
-<p>일일 주식 분석은 실시간 시장 데이터, 뉴스 감정 분석 및 LLM 기반 통찰력을 통합 의사결정 플랫폼으로 결합합니다. 미국 주식, A주식, 암호화폐 및 선물 등 여러 시장을 지원합니다. 시스템은 예약된 자동 분석으로 완전히 무료로 실행할 수 있어, 누구나 기관급 주식 연구를 활용할 수 있습니다.</p>
-<h2 id="일일-주식-분석이란">일일 주식 분석이란?<a hidden class="anchor" aria-hidden="true" href="#일일-주식-분석이란">#</a></h2>
-<p>일일 주식 분석은 대형 언어 모델을 활용하여 시장 데이터, 뉴스 감정 및 기술적 지표를 분석하는 포괄적인 주식 인텔리전스 플랫폼입니다. 단순히 가격 움직임을 보여주는 전통적인 차트 도구와 달리, 이 시스템은 시장이 왜 움직이고 있는지에 대한 문맥 분석과 다음 무엇을 일어날 수 있는지에 대한 통찰력을 제공합니다.</p>
-<p>플랫폼은 여러 시장과 데이터 소스를 지원합니다: - <strong>미국 시장</strong>: NYSE, NASDAQ, 실시간 및 지연 데이터 지원</p>
+<p>Daily Stock Analysis combines real-time market data, news sentiment analysis, and LLM-powered insights into a unified decision-making platform. It supports multiple markets including US stocks, A-shares, cryptocurrencies, and futures. The system can run entirely for free with scheduled automated analysis, making institutional-quality stock research accessible to everyone.</p>
+<h2 id="what-is-daily-stock-analysis">What Is Daily Stock Analysis?<a hidden class="anchor" aria-hidden="true" href="#what-is-daily-stock-analysis">#</a></h2>
+<p>Daily Stock Analysis is a comprehensive stock intelligence platform that leverages large language models to analyze market data, news sentiment, and technical indicators. Unlike traditional charting tools that only show price movements, this system provides contextual analysis that explains WHY markets are moving and WHAT might happen next.</p>
+<p>The platform supports multiple markets and data sources: - <strong>US Markets</strong>: NYSE, NASDAQ, with real-time and delayed data</p>
 <ul>
-<li><strong>A주식</strong>: 상하이 및 선전 거래소 포괄적 커버리지</li>
-<li><strong>암호화폐</strong>: 바이낸스, Coinbase, Kraken 등 주요 거래소</li>
-<li><strong>선물 및 상품</strong>: 유류, 금, 농산물 및 지수</li>
-<li><strong>외환</strong>: 실시간 환율 주요 통화쌍</li>
+<li><strong>A-Shares</strong>: Shanghai and Shenzhen exchanges with comprehensive coverage</li>
+<li><strong>Cryptocurrency</strong>: Major exchanges including Binance, Coinbase, and Kraken</li>
+<li><strong>Futures &amp; Commodities</strong>: Oil, gold, agricultural products, and indices</li>
+<li><strong>Forex</strong>: Major currency pairs with real-time exchange rates</li>
 </ul>
-<h2 id="설치-가이드">설치 가이드<a hidden class="anchor" aria-hidden="true" href="#설치-가이드">#</a></h2>
-<h3 id="사전-요구사항">사전 요구사항<a hidden class="anchor" aria-hidden="true" href="#사전-요구사항">#</a></h3>
+<h2 id="installation-guide">Installation Guide<a hidden class="anchor" aria-hidden="true" href="#installation-guide">#</a></h2>
+<h3 id="prerequisites">Prerequisites<a hidden class="anchor" aria-hidden="true" href="#prerequisites">#</a></h3>
 <ul>
-<li><strong>Python</strong>: 3.10+ (3.11 권장)</li>
-<li><strong>데이터베이스</strong>: PostgreSQL 14+ 또는 SQLite (경량 설정용)</li>
-<li><strong>LLM API</strong>: OpenAI, Anthropic 또는 Ollama를 통한 로컬 모델</li>
-<li><strong>시장 데이터 API</strong>: Tushare (A주식), AKShare (무료) 또는 유료 제공자</li>
-<li><strong>시스템</strong>: 최소 8GB RAM, SQLite 모드에서 4GB</li>
+<li><strong>Python</strong>: 3.10+ (3.11 recommended)</li>
+<li><strong>Database</strong>: PostgreSQL 14+ or SQLite (for lightweight setups)</li>
+<li><strong>LLM API</strong>: OpenAI, Anthropic, or local models via Ollama</li>
+<li><strong>Market Data API</strong>: Tushare (A-shares), AKShare (free), or paid providers</li>
+<li><strong>System</strong>: 8GB RAM minimum, 4GB for SQLite mode</li>
 </ul>
-<h3 id="옵션-1-docker-배포-가장-쉬움">옵션 1: Docker 배포 (가장 쉬움)<a hidden class="anchor" aria-hidden="true" href="#옵션-1-docker-배포-가장-쉬움">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 저장소 복제</span>
+<h3 id="option-1-docker-deployment-easiest">Option 1: Docker Deployment (Easiest)<a hidden class="anchor" aria-hidden="true" href="#option-1-docker-deployment-easiest">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone the repository</span>
 </span></span><span style="display:flex;"><span>git clone https://github.com/ZhuLinsen/daily_stock_analysis.git
 </span></span><span style="display:flex;"><span>cd daily_stock_analysis
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 환경 변수 구성</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Configure environment variables</span>
 </span></span><span style="display:flex;"><span>cp .env.example .env
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># API 키로 .env 편집</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Edit .env with your API keys</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 모든 서비스 시작</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start all services</span>
 </span></span><span style="display:flex;"><span>docker compose up -d
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 상태 확인</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check status</span>
 </span></span><span style="display:flex;"><span>docker compose ps
-</span></span></code></pre></div><h3 id="옵션-2-수동-설치">옵션 2: 수동 설치<a hidden class="anchor" aria-hidden="true" href="#옵션-2-수동-설치">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 저장소 복제</span>
+</span></span></code></pre></div><h3 id="option-2-manual-installation">Option 2: Manual Installation<a hidden class="anchor" aria-hidden="true" href="#option-2-manual-installation">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone the repository</span>
 </span></span><span style="display:flex;"><span>git clone https://github.com/ZhuLinsen/daily_stock_analysis.git
 </span></span><span style="display:flex;"><span>cd daily_stock_analysis
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 가상 환경 생성</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create virtual environment</span>
 </span></span><span style="display:flex;"><span>python -m venv venv
 </span></span><span style="display:flex;"><span>source venv/bin/activate  <span style="color:#75715e"># Linux/Mac</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 또는</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># or</span>
 </span></span><span style="display:flex;"><span>venv<span style="color:#ae81ff">\S</span>cripts<span style="color:#ae81ff">\a</span>ctivate     <span style="color:#75715e"># Windows</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 종속성 설치</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install dependencies</span>
 </span></span><span style="display:flex;"><span>pip install -r requirements.txt
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 데이터베이스 설정</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set up the database</span>
 </span></span><span style="display:flex;"><span>python setup_database.py --init
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># LLM 및 데이터 소스 구성</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Configure LLM and data sources</span>
 </span></span><span style="display:flex;"><span>cp config.example.yaml config.yaml
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 설정으로 config.yaml 편집</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Edit config.yaml with your settings</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 첫 번째 분석 실행</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run the first analysis</span>
 </span></span><span style="display:flex;"><span>python main.py --market us --date <span style="color:#66d9ef">$(</span>date +%Y-%m-%d<span style="color:#66d9ef">)</span>
-</span></span></code></pre></div><h3 id="옵션-3-로컬-llm-설정-무료">옵션 3: 로컬 LLM 설정 (무료)<a hidden class="anchor" aria-hidden="true" href="#옵션-3-로컬-llm-설정-무료">#</a></h3>
-<p>API 비용을 완전히 피하고 싶은 사용자를 위한 방법: `````bash</p>
-<h1 id="로컬-llm-추론을-위해-ollama-설치">로컬 LLM 추론을 위해 Ollama 설치<a hidden class="anchor" aria-hidden="true" href="#로컬-llm-추론을-위해-ollama-설치">#</a></h1>
+</span></span></code></pre></div><h3 id="option-3-local-llm-setup-free">Option 3: Local LLM Setup (Free)<a hidden class="anchor" aria-hidden="true" href="#option-3-local-llm-setup-free">#</a></h3>
+<p>For users who want to avoid API costs entirely: `````bash</p>
+<h1 id="install-ollama-for-local-llm-inference">Install Ollama for local LLM inference<a hidden class="anchor" aria-hidden="true" href="#install-ollama-for-local-llm-inference">#</a></h1>
 <p>curl -fsSL <a href="https://ollama.ai/install.sh">https://ollama.ai/install.sh</a> | sh</p>
-<h1 id="적합한-모델-풀">적합한 모델 풀<a hidden class="anchor" aria-hidden="true" href="#적합한-모델-풀">#</a></h1>
+<h1 id="pull-a-suitable-model">Pull a suitable model<a hidden class="anchor" aria-hidden="true" href="#pull-a-suitable-model">#</a></h1>
 <p>ollama pull qwen2.5:14b</p>
-<h1 id="configyaml을-로컬-모델-사용으로-업데이트">config.yaml을 로컬 모델 사용으로 업데이트<a hidden class="anchor" aria-hidden="true" href="#configyaml을-로컬-모델-사용으로-업데이트">#</a></h1>
+<h1 id="update-configyaml-to-use-local-model">Update config.yaml to use local model<a hidden class="anchor" aria-hidden="true" href="#update-configyaml-to-use-local-model">#</a></h1>
 <p>cat &raquo; config.yaml &laquo; EOF
 llm: provider: ollama
 model: qwen2.5:14b
 base_url: http://localhost:11434
 EOF</p>
-<h1 id="제로-api-비용으로-분석-실행">제로 API 비용으로 분석 실행<a hidden class="anchor" aria-hidden="true" href="#제로-api-비용으로-분석-실행">#</a></h1>
+<h1 id="run-analysis-with-zero-api-costs">Run analysis with zero API costs<a hidden class="anchor" aria-hidden="true" href="#run-analysis-with-zero-api-costs">#</a></h1>
 <p>python main.py &ndash;market a_shares &ndash;date $(date +%Y-%m-%d)</p>
 <pre tabindex="0"><code>
-## 시장 데이터 통합
+## Market Data Integration
 
-### AKShare 통합 (무료 A주식 데이터)
+### AKShare Integration (Free A-Share Data)
 
-AKShare는 API 키 없이 중국 시장 데이터에 대한 무료 접근을 제공합니다: `````python
+AKShare provides free access to Chinese market data without any API key: `````python
 import akshare as ak
 
-# 일일 A주식 시장 데이터 가져오기
+# Get daily A-share market data
 df = ak.stock_zh_a_spot_em()
 print(df.head())
 
-# 역사적 가격 데이터 가져오기
+# Get historical price data
 hist_df = ak.stock_zh_a_hist(
     symbol=&#34;000001&#34;,
     period=&#34;daily&#34;,
@@ -414,77 +423,77 @@ hist_df = ak.stock_zh_a_hist(
     adjust=&#34;qfq&#34;
 )
 
-# 섹터 성과 가져오기
+# Get sector performance
 sector_df = ak.stock_board_industry_name_em()
 print(sector_df)
-</code></pre><h3 id="tushare-통합-프리미엄-a주식-데이터">Tushare 통합 (프리미엄 A주식 데이터)<a hidden class="anchor" aria-hidden="true" href="#tushare-통합-프리미엄-a주식-데이터">#</a></h3>
-<p>기본 정보를 포함한 더 포괄적인 A주식 데이터를 위한: `````python
+</code></pre><h3 id="tushare-integration-premium-a-share-data">Tushare Integration (Premium A-Share Data)<a hidden class="anchor" aria-hidden="true" href="#tushare-integration-premium-a-share-data">#</a></h3>
+<p>For more comprehensive A-share data including fundamentals: `````python
 import tushare as ts</p>
-<h1 id="api-토큰으로-초기화">API 토큰으로 초기화<a hidden class="anchor" aria-hidden="true" href="#api-토큰으로-초기화">#</a></h1>
+<h1 id="initialize-with-your-api-token">Initialize with your API token<a hidden class="anchor" aria-hidden="true" href="#initialize-with-your-api-token">#</a></h1>
 <p>pro = ts.pro_api(&ldquo;YOUR_TUSHARE_TOKEN&rdquo;)</p>
-<h1 id="일일-a주식-데이터-가져오기">일일 A주식 데이터 가져오기<a hidden class="anchor" aria-hidden="true" href="#일일-a주식-데이터-가져오기">#</a></h1>
+<h1 id="get-daily-a-share-data">Get daily A-share data<a hidden class="anchor" aria-hidden="true" href="#get-daily-a-share-data">#</a></h1>
 <p>df = pro.daily(
 ts_code=&ldquo;000001.SZ&rdquo;,
 start_date=&ldquo;20260101&rdquo;,
 end_date=&ldquo;20260625&rdquo;
 )</p>
-<h1 id="재무제표-가져오기">재무제표 가져오기<a hidden class="anchor" aria-hidden="true" href="#재무제표-가져오기">#</a></h1>
+<h1 id="get-financial-statements">Get financial statements<a hidden class="anchor" aria-hidden="true" href="#get-financial-statements">#</a></h1>
 <p>income_df = pro.income(
 ts_code=&ldquo;000001.SZ&rdquo;,
 period=&ldquo;20260331&rdquo;,
 fields=&ldquo;total_operating_income,net_profit,total_expense&rdquo;
 )</p>
-<h1 id="주주-정보-가져오기">주주 정보 가져오기<a hidden class="anchor" aria-hidden="true" href="#주주-정보-가져오기">#</a></h1>
+<h1 id="get-shareholder-information">Get shareholder information<a hidden class="anchor" aria-hidden="true" href="#get-shareholder-information">#</a></h1>
 <p>holder_df = pro.stock_holder_top10(
 ts_code=&ldquo;000001.SZ&rdquo;,
 ann_date=&ldquo;20260331&rdquo;
 )</p>
 <pre tabindex="0"><code>
-### 미국 시장 데이터
+### US Market Data
 
 `````python
 import yfinance as yf
 
-# 미국 주식 데이터 가져오기
+# Get US stock data
 ticker = yf.Ticker(&#34;AAPL&#34;)
 df = ticker.history(period=&#34;3mo&#34;)
 
-# 옵션 체인 가져오기
+# Get options chain
 options = ticker.options
 
-# 애널리스트 추천 가져오기
+# Get analyst recommendations
 recommendations = ticker.recommendations
 
-# 뉴스 감정 가져오기
+# Get news sentiment
 news = ticker.news
 for item in news: print(f&#34;{item[title]}: {item[providerPublishTime]}&#34;)
-</code></pre><h3 id="암호화폐-데이터">암호화폐 데이터<a hidden class="anchor" aria-hidden="true" href="#암호화폐-데이터">#</a></h3>
+</code></pre><h3 id="cryptocurrency-data">Cryptocurrency Data<a hidden class="anchor" aria-hidden="true" href="#cryptocurrency-data">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> ccxt
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 거래소 연결</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Connect to exchange</span>
 </span></span><span style="display:flex;"><span>exchange <span style="color:#f92672">=</span> ccxt<span style="color:#f92672">.</span>binance({
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;apiKey&#39;</span>: <span style="color:#e6db74">&#39;YOUR_API_KEY&#39;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;secret&#39;</span>: <span style="color:#e6db74">&#39;YOUR_SECRET&#39;</span>,
 </span></span><span style="display:flex;"><span>})
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 티커 데이터 가져오기</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get ticker data</span>
 </span></span><span style="display:flex;"><span>ticker <span style="color:#f92672">=</span> exchange<span style="color:#f92672">.</span>fetch_ticker(<span style="color:#e6db74">&#39;BTC/USDT&#39;</span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;가격: </span><span style="color:#e6db74">{</span>ticker[last]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;거래량: </span><span style="color:#e6db74">{</span>ticker[quoteVolume]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Price: </span><span style="color:#e6db74">{</span>ticker[last]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Volume: </span><span style="color:#e6db74">{</span>ticker[quoteVolume]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 호가창 가져오기</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get order book</span>
 </span></span><span style="display:flex;"><span>order_book <span style="color:#f92672">=</span> exchange<span style="color:#f92672">.</span>fetch_order_book(<span style="color:#e6db74">&#39;ETH/USDT&#39;</span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;매수: </span><span style="color:#e6db74">{</span>order_book[bids][<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;매도: </span><span style="color:#e6db74">{</span>order_book[asks][<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
-</span></span></code></pre></div><h2 id="llm-기반-분석">LLM 기반 분석<a hidden class="anchor" aria-hidden="true" href="#llm-기반-분석">#</a></h2>
-<h3 id="감정-분석-파이프라인">감정 분석 파이프라인<a hidden class="anchor" aria-hidden="true" href="#감정-분석-파이프라인">#</a></h3>
-<p>일일 주식 분석의 핵심은 LLM 기반 감정 분석 파이프라인입니다: `````python
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Bid: </span><span style="color:#e6db74">{</span>order_book[bids][<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Ask: </span><span style="color:#e6db74">{</span>order_book[asks][<span style="color:#ae81ff">0</span>][<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h2 id="llm-powered-analysis">LLM-Powered Analysis<a hidden class="anchor" aria-hidden="true" href="#llm-powered-analysis">#</a></h2>
+<h3 id="sentiment-analysis-pipeline">Sentiment Analysis Pipeline<a hidden class="anchor" aria-hidden="true" href="#sentiment-analysis-pipeline">#</a></h3>
+<p>The core of Daily Stock Analysis is its LLM-powered sentiment analysis pipeline: `````python
 from daily_stock_analysis.llm import LLMAnalyzer
 from daily_stock_analysis.data import MarketDataProvider</p>
-<h1 id="컴포넌트-초기화">컴포넌트 초기화<a hidden class="anchor" aria-hidden="true" href="#컴포넌트-초기화">#</a></h1>
+<h1 id="initialize-components">Initialize components<a hidden class="anchor" aria-hidden="true" href="#initialize-components">#</a></h1>
 <p>llm = LLMAnalyzer(model=&ldquo;gpt-4o&rdquo;, temperature=0.3)
 data_provider = MarketDataProvider(source=&ldquo;akshare&rdquo;)</p>
-<h1 id="시장-데이터-및-뉴스-가져오기">시장 데이터 및 뉴스 가져오기<a hidden class="anchor" aria-hidden="true" href="#시장-데이터-및-뉴스-가져오기">#</a></h1>
+<h1 id="fetch-market-data-and-news">Fetch market data and news<a hidden class="anchor" aria-hidden="true" href="#fetch-market-data-and-news">#</a></h1>
 <p>market_data = data_provider.get_market_data(
 symbol=&ldquo;000001.SZ&rdquo;,
 period=&ldquo;1d&rdquo;,
@@ -495,123 +504,123 @@ symbol=&ldquo;000001.SZ&rdquo;,
 days=7,
 sources=[&ldquo;eastmoney&rdquo;, &ldquo;cls&rdquo;, &ldquo;cnbc&rdquo;]
 )</p>
-<h1 id="llm-분석-실행">LLM 분석 실행<a hidden class="anchor" aria-hidden="true" href="#llm-분석-실행">#</a></h1>
+<h1 id="run-llm-analysis">Run LLM analysis<a hidden class="anchor" aria-hidden="true" href="#run-llm-analysis">#</a></h1>
 <p>analysis = llm.analyze_market(
 market_data=market_data,
 news_data=news_data,
 prompt_template=&ldquo;comprehensive_analysis&rdquo;
 )</p>
-<p>print(f&quot;전체 감정: {analysis.sentiment}&quot;)
-print(f&quot;신뢰도: {analysis.confidence:.1%}&quot;)
-print(f&quot;핵심 요소: {&rsquo;, &lsquo;.join(analysis.key_factors)}&quot;)
-print(f&quot;위험 수준: {analysis.risk_level}&quot;)</p>
+<p>print(f&quot;Overall Sentiment: {analysis.sentiment}&rdquo;)
+print(f&quot;Confidence: {analysis.confidence:.1%}&quot;)
+print(f&quot;Key Factors: {&rsquo;, &lsquo;.join.analysis.key_factors)}&quot;)
+print(f&quot;Risk Level: {analysis.risk_level}&quot;)</p>
 <pre tabindex="0"><code>
-### 사용자 정의 분석 프롬프트
+### Custom Analysis Prompts
 
-다양한 사용 사례에 대해 LLM 분석 프롬프트를 사용자 정의할 수 있습니다: `````python
-# 기술 분석 프롬프트
+You can customize the LLM analysis prompts for different use cases: `````python
+# Technical analysis prompt
 tech_prompt = &#34;&#34;&#34;
-다음 주식 기술적 지표를 분석하고 다음을 제공하세요: 1. 추세 방향 (강세/약세/중립)
-2. 주요 지지 및 저항 수준
-3. 모멘텀 평가
-4. 거래량 분석 해석
-5. 전체 기술적 평가 (1-10)
+Analyze the following stock technical indicators and provide: 1. Trend direction (bullish/bearish/neutral)
+2. Key support and resistance levels
+3. Momentum assessment
+4. Volume analysis interpretation
+5. Overall technical rating (1-10)
 
-데이터: {market_data}
+Data: {market_data}
 &#34;&#34;&#34;
 
-# 기본 분석 프롬프트
+# Fundamental analysis prompt
 fund_prompt = &#34;&#34;&#34;
-다음 기본 데이터를 분석하고 다음을 제공하세요: 1. 매출 성장 평가
-2. 수익성 평가
-3. 부채 지속 가능성
-4. 가치 평가 비교
-5. 전체 기본 평가 (1-10)
+Analyze the following fundamental data and provide: 1. Revenue growth assessment
+2. Profitability evaluation
+3. Debt sustainability
+4. Valuation comparison
+5. Overall fundamental rating (1-10)
 
-데이터: {fundamental_data}
+Data: {fundamental_data}
 &#34;&#34;&#34;
 
-# 종합 분석
+# Combined analysis
 combined = llm.analyze(
     prompt_template=&#34;combined_analysis&#34;,
     market_data=market_data,
     fundamental_data=fundamental_data,
     news_data=news_data
 )
-</code></pre><h3 id="다시장-비교-분석">다시장 비교 분석<a hidden class="anchor" aria-hidden="true" href="#다시장-비교-분석">#</a></h3>
-<p>서로 다른 시장의 주식을 동시에 비교: `````python</p>
-<h1 id="미국-기술주-비교">미국 기술주 비교<a hidden class="anchor" aria-hidden="true" href="#미국-기술주-비교">#</a></h1>
+</code></pre><h3 id="multi-market-comparative-analysis">Multi-Market Comparative Analysis<a hidden class="anchor" aria-hidden="true" href="#multi-market-comparative-analysis">#</a></h3>
+<p>Compare stocks across different markets simultaneously: `````python</p>
+<h1 id="compare-us-tech-stocks">Compare US tech stocks<a hidden class="anchor" aria-hidden="true" href="#compare-us-tech-stocks">#</a></h1>
 <p>us_techs = llm.compare_stocks(
 symbols=[&ldquo;AAPL&rdquo;, &ldquo;MSFT&rdquo;, &ldquo;GOOGL&rdquo;, &ldquo;AMZN&rdquo;, &ldquo;META&rdquo;],
 market=&ldquo;us&rdquo;,
 comparison_metrics=[&ldquo;pe_ratio&rdquo;, &ldquo;revenue_growth&rdquo;, &ldquo;profit_margin&rdquo;]
 )</p>
-<h1 id="a주식-섹터-비교">A주식 섹터 비교<a hidden class="anchor" aria-hidden="true" href="#a주식-섹터-비교">#</a></h1>
+<h1 id="compare-a-share-sectors">Compare A-share sectors<a hidden class="anchor" aria-hidden="true" href="#compare-a-share-sectors">#</a></h1>
 <p>a_share_sectors = llm.compare_sectors(
-sectors=[&ldquo;신에너지&rdquo;, &ldquo;반도체&rdquo;, &ldquo;의약품&rdquo;, &ldquo;소비재&rdquo;],
+sectors=[&ldquo;新能源&rdquo;, &ldquo;半导体&rdquo;, &ldquo;医药&rdquo;, &ldquo;消费&rdquo;],
 market=&ldquo;a_shares&rdquo;,
 time_period=&ldquo;1m&rdquo;
 )</p>
 <pre tabindex="0"><code>
-## 대시보드 구성
+## Dashboard Configuration
 
-### 웹 대시보드 설정
+### Web Dashboard Setup
 
-일일 주식 분석은 내장 웹 대시보드를 포함합니다: `````bash
-# 대시보드 서버 시작
+Daily Stock Analysis includes a built-in web dashboard: `````bash
+# Start the dashboard server
 python dashboard.py --host 0.0.0.0 --port 8080
 
-# http://localhost:8080에서 접근
-</code></pre><p>대시보드는 다음을 제공합니다: - 히트맵과 함께하는 실시간 시장 개요</p>
+# Access at http://localhost:8080
+</code></pre><p>The dashboard provides: - Real-time market overview with heat maps</p>
 <ul>
-<li>대화형 차트와 함께하는 개별 주식 분석</li>
-<li>섹터 성과 비교</li>
-<li>뉴스 감정 타임라인</li>
-<li>자동화된 분석 보고서</li>
+<li>Individual stock analysis with interactive charts</li>
+<li>Sector performance comparisons</li>
+<li>News sentiment timeline</li>
+<li>Automated analysis reports</li>
 </ul>
-<h3 id="대시보드-사용자-정의">대시보드 사용자 정의<a hidden class="anchor" aria-hidden="true" href="#대시보드-사용자-정의">#</a></h3>
+<h3 id="dashboard-customization">Dashboard Customization<a hidden class="anchor" aria-hidden="true" href="#dashboard-customization">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># dashboard_config.yaml</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">dashboard: refresh_interval</span>: <span style="color:#ae81ff">300</span>  <span style="color:#75715e"># 5분</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">dashboard: refresh_interval</span>: <span style="color:#ae81ff">300</span>  <span style="color:#75715e"># 5 minutes</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">default_market</span>: <span style="color:#e6db74">&#34;a_shares&#34;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">charts: - type</span>: <span style="color:#e6db74">&#34;heatmap&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">title</span>: <span style="color:#e6db74">&#34;AI Tool Guide&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">title</span>: <span style="color:#e6db74">&#34;Market Heatmap&#34;</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">data_source</span>: <span style="color:#e6db74">&#34;sector_performance&#34;</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#f92672">type</span>: <span style="color:#e6db74">&#34;line&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">title</span>: <span style="color:#e6db74">&#34;AI Tool Guide&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">title</span>: <span style="color:#e6db74">&#34;Stock Price History&#34;</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">data_source</span>: <span style="color:#e6db74">&#34;historical_prices&#34;</span>
 </span></span><span style="display:flex;"><span>    - <span style="color:#f92672">type</span>: <span style="color:#e6db74">&#34;sentiment&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">title</span>: <span style="color:#e6db74">&#34;AI Tool Guide&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">title</span>: <span style="color:#e6db74">&#34;News Sentiment&#34;</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">data_source</span>: <span style="color:#e6db74">&#34;llm_sentiment&#34;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">alerts: - threshold</span>: <span style="color:#ae81ff">0.8</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">action</span>: <span style="color:#e6db74">&#34;notification&#34;</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#f92672">channels</span>: [<span style="color:#e6db74">&#34;email&#34;</span>, <span style="color:#e6db74">&#34;telegram&#34;</span>]
-</span></span></code></pre></div><h3 id="보고서-내보내기">보고서 내보내기<a hidden class="anchor" aria-hidden="true" href="#보고서-내보내기">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># PDF 형식으로 일일 보고서 생성</span>
+</span></span></code></pre></div><h3 id="exporting-reports">Exporting Reports<a hidden class="anchor" aria-hidden="true" href="#exporting-reports">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Generate daily report in PDF</span>
 </span></span><span style="display:flex;"><span>python report_generator.py --format pdf --output daily_report.pdf
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 차트가 포함된 HTML 보고서 생성</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate HTML report with charts</span>
 </span></span><span style="display:flex;"><span>python report_generator.py --format html --output daily_report.html
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 분석 데이터를 CSV로 내보내기</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Export analysis data as CSV</span>
 </span></span><span style="display:flex;"><span>python report_generator.py --format csv --output analysis_data.csv
-</span></span></code></pre></div><h2 id="자동-스케줄링">자동 스케줄링<a hidden class="anchor" aria-hidden="true" href="#자동-스케줄링">#</a></h2>
-<h3 id="크론-작업-설정">크론 작업 설정<a hidden class="anchor" aria-hidden="true" href="#크론-작업-설정">#</a></h3>
-<p>자동 분석 실행 예약: `````bash</p>
-<h1 id="crontab-편집">crontab 편집<a hidden class="anchor" aria-hidden="true" href="#crontab-편집">#</a></h1>
+</span></span></code></pre></div><h2 id="automated-scheduling">Automated Scheduling<a hidden class="anchor" aria-hidden="true" href="#automated-scheduling">#</a></h2>
+<h3 id="cron-job-setup">Cron Job Setup<a hidden class="anchor" aria-hidden="true" href="#cron-job-setup">#</a></h3>
+<p>Schedule automatic analysis runs: `````bash</p>
+<h1 id="edit-crontab">Edit crontab<a hidden class="anchor" aria-hidden="true" href="#edit-crontab">#</a></h1>
 <p>crontab -e</p>
-<h1 id="매일-아침-7시에-일일-분석-추가">매일 아침 7시에 일일 분석 추가<a hidden class="anchor" aria-hidden="true" href="#매일-아침-7시에-일일-분석-추가">#</a></h1>
+<h1 id="add-daily-analysis-at-7-am">Add daily analysis at 7 AM<a hidden class="anchor" aria-hidden="true" href="#add-daily-analysis-at-7-am">#</a></h1>
 <p>0 7 * * * cd /path/to/daily_stock_analysis &amp;&amp; python main.py &ndash;market a_shares &ndash;auto</p>
-<h1 id="장-개장-후-미국-시장-분석-추가">장 개장 후 미국 시장 분석 추가<a hidden class="anchor" aria-hidden="true" href="#장-개장-후-미국-시장-분석-추가">#</a></h1>
+<h1 id="add-us-market-analysis-after-market-open">Add US market analysis after market open<a hidden class="anchor" aria-hidden="true" href="#add-us-market-analysis-after-market-open">#</a></h1>
 <p>0 21 * * 1-5 cd /path/to/daily_stock_analysis &amp;&amp; python main.py &ndash;market us &ndash;auto</p>
-<h1 id="일요일에-주간-종합-보고서">일요일에 주간 종합 보고서<a hidden class="anchor" aria-hidden="true" href="#일요일에-주간-종합-보고서">#</a></h1>
+<h1 id="weekly-comprehensive-report-on-sunday">Weekly comprehensive report on Sunday<a hidden class="anchor" aria-hidden="true" href="#weekly-comprehensive-report-on-sunday">#</a></h1>
 <p>0 9 * * 0 cd /path/to/daily_stock_analysis &amp;&amp; python weekly_report.py</p>
 <pre tabindex="0"><code>
-### systemd 서비스
+### Systemd Service
 
-지속적인 백그라운드 작동을 위한: `````ini
+For persistent background operation: `````ini
 # /etc/systemd/system/daily-stock-analysis.service
 [Unit]
-Description=일일 주식 분석 서비스
+Description=Daily Stock Analysis Service
 After=network.target postgresql.service
 
 [Service]
@@ -624,24 +633,24 @@ RestartSec=30
 
 [Install]
 WantedBy=multi-user.target
-</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 서비스 활성화 및 시작</span>
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Enable and start the service</span>
 </span></span><span style="display:flex;"><span>sudo systemctl enable daily-stock-analysis
 </span></span><span style="display:flex;"><span>sudo systemctl start daily-stock-analysis
 </span></span><span style="display:flex;"><span>sudo systemctl status daily-stock-analysis
-</span></span></code></pre></div><h2 id="알림-시스템">알림 시스템<a hidden class="anchor" aria-hidden="true" href="#알림-시스템">#</a></h2>
-<h3 id="telegram-알림">Telegram 알림<a hidden class="anchor" aria-hidden="true" href="#telegram-알림">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Telegram 봇 구성</span>
+</span></span></code></pre></div><h2 id="notification-system">Notification System<a hidden class="anchor" aria-hidden="true" href="#notification-system">#</a></h2>
+<h3 id="telegram-notifications">Telegram Notifications<a hidden class="anchor" aria-hidden="true" href="#telegram-notifications">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Configure Telegram bot</span>
 </span></span><span style="display:flex;"><span>python notify.py --setup telegram <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --bot-token <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>TELEGRAM_BOT_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --chat-id <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>TELEGRAM_CHAT_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 테스트 알림 보내기</span>
-</span></span><span style="display:flex;"><span>python notify.py --send <span style="color:#e6db74">&#34;AAPL 일일 분석 완료&#34;</span> <span style="color:#ae81ff">\
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Send test notification</span>
+</span></span><span style="display:flex;"><span>python notify.py --send <span style="color:#e6db74">&#34;Daily analysis complete for AAPL&#34;</span> <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --channel telegram
-</span></span></code></pre></div><h3 id="이메일-알림">이메일 알림<a hidden class="anchor" aria-hidden="true" href="#이메일-알림">#</a></h3>
+</span></span></code></pre></div><h3 id="email-notifications">Email Notifications<a hidden class="anchor" aria-hidden="true" href="#email-notifications">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> daily_stock_analysis.notify <span style="color:#f92672">import</span> Notifier
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 이메일 알림기 구성</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Configure email notifier</span>
 </span></span><span style="display:flex;"><span>notifier <span style="color:#f92672">=</span> Notifier(
 </span></span><span style="display:flex;"><span>    provider<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;smtp&#34;</span>,
 </span></span><span style="display:flex;"><span>    smtp_server<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;smtp.gmail.com&#34;</span>,
@@ -650,25 +659,25 @@ WantedBy=multi-user.target
 </span></span><span style="display:flex;"><span>    password<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your_app_password&#34;</span>
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 분석 보고서 보내기</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Send analysis report</span>
 </span></span><span style="display:flex;"><span>notifier<span style="color:#f92672">.</span>send_email(
 </span></span><span style="display:flex;"><span>    to<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your_email@gmail.com&#34;</span>,
-</span></span><span style="display:flex;"><span>    subject<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;일일 주식 분석 보고서&#34;</span>,
+</span></span><span style="display:flex;"><span>    subject<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Daily Stock Analysis Report&#34;</span>,
 </span></span><span style="display:flex;"><span>    body<span style="color:#f92672">=</span>analysis_report,
 </span></span><span style="display:flex;"><span>    attach_pdf<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
 </span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><h3 id="사용자-정의-웹훅-알림">사용자 정의 웹훅 알림<a hidden class="anchor" aria-hidden="true" href="#사용자-정의-웹훅-알림">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 사용자 정의 웹훅으로 보내기 (예: Slack, Discord)</span>
+</span></span></code></pre></div><h3 id="custom-webhook-notifications">Custom Webhook Notifications<a hidden class="anchor" aria-hidden="true" href="#custom-webhook-notifications">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Send to custom webhook (e.g., Slack, Discord)</span>
 </span></span><span style="display:flex;"><span>notifier<span style="color:#f92672">.</span>send_webhook(
 </span></span><span style="display:flex;"><span>    url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://hooks.slack.com/services/YOUR/WEBHOOK/URL&#34;</span>,
 </span></span><span style="display:flex;"><span>    payload<span style="color:#f92672">=</span>{
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;text&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>symbol<span style="color:#e6db74">}</span><span style="color:#e6db74"> 분석 완료&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;text&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Analysis complete for </span><span style="color:#e6db74">{</span>symbol<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>,
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;blocks&#34;</span>: [
 </span></span><span style="display:flex;"><span>            {
 </span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;section&#34;</span>,
 </span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;text&#34;</span>: {
 </span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;mrkdwn&#34;</span>,
-</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;text&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;*</span><span style="color:#e6db74">{</span>symbol<span style="color:#e6db74">}</span><span style="color:#e6db74">* - 감정: </span><span style="color:#e6db74">{</span>sentiment<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;text&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;*</span><span style="color:#e6db74">{</span>symbol<span style="color:#e6db74">}</span><span style="color:#e6db74">* - Sentiment: </span><span style="color:#e6db74">{</span>sentiment<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
 </span></span><span style="display:flex;"><span>                }
 </span></span><span style="display:flex;"><span>            }
 </span></span><span style="display:flex;"><span>        ]
@@ -676,21 +685,21 @@ WantedBy=multi-user.target
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">````</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## 비교: 일일 주식 분석 vs 대안</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Comparison: Daily Stock Analysis vs Alternatives</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> 기능 <span style="color:#f92672">|</span> 일일 주식 분석 <span style="color:#f92672">|</span> TradingView <span style="color:#f92672">|</span> 윈드 금융 <span style="color:#f92672">|</span> Choice Info <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> Feature <span style="color:#f92672">|</span> Daily Stock Analysis <span style="color:#f92672">|</span> TradingView <span style="color:#f92672">|</span> Wind Financial <span style="color:#f92672">|</span> Choice Info <span style="color:#f92672">|</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
-</span></span><span style="display:flex;"><span>커뮤니티 가입: [Telegram](https:<span style="color:#f92672">//</span>t<span style="color:#f92672">.</span>me<span style="color:#f92672">/</span>DIBI8_Group) <span style="color:#960050;background-color:#1e0010">·</span> [HuggingFace](https:<span style="color:#f92672">//</span>huggingface<span style="color:#f92672">.</span>co<span style="color:#f92672">/</span>collections<span style="color:#f92672">/</span>nvidia<span style="color:#f92672">/</span>cosmos3)
+</span></span><span style="display:flex;"><span>Join the community: [Telegram](https:<span style="color:#f92672">//</span>t<span style="color:#f92672">.</span>me<span style="color:#f92672">/</span>DIBI8_Group) <span style="color:#960050;background-color:#1e0010">·</span> [HuggingFace](https:<span style="color:#f92672">//</span>huggingface<span style="color:#f92672">.</span>co<span style="color:#f92672">/</span>collections<span style="color:#f92672">/</span>nvidia<span style="color:#f92672">/</span>cosmos3)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>내부 링크: [nvidia<span style="color:#f92672">-</span>cosmos<span style="color:#f92672">-</span>world<span style="color:#f92672">-</span>models<span style="color:#f92672">-</span>platform<span style="color:#f92672">-</span><span style="color:#ae81ff">2026</span>](https:<span style="color:#f92672">//</span>dibi8<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>kr<span style="color:#f92672">/</span>resources<span style="color:#f92672">/</span>ai<span style="color:#f92672">-</span>tools<span style="color:#f92672">/</span>nvidia<span style="color:#f92672">-</span>cosmos<span style="color:#f92672">-</span>world<span style="color:#f92672">-</span>models<span style="color:#f92672">-</span>platform<span style="color:#f92672">-</span><span style="color:#ae81ff">2026</span>) <span style="color:#960050;background-color:#1e0010">·</span> [bytedance<span style="color:#f92672">-</span>ui<span style="color:#f92672">-</span>tars<span style="color:#f92672">-</span>desktop<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>agent<span style="color:#f92672">-</span>guide](https:<span style="color:#f92672">//</span>dibi8<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>kr<span style="color:#f92672">/</span>resources<span style="color:#f92672">/</span>ai<span style="color:#f92672">-</span>tools<span style="color:#f92672">/</span>bytedance<span style="color:#f92672">-</span>ui<span style="color:#f92672">-</span>tars<span style="color:#f92672">-</span>desktop<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>agent<span style="color:#f92672">-</span>guide)
+</span></span><span style="display:flex;"><span>Internal links: [nvidia<span style="color:#f92672">-</span>cosmos<span style="color:#f92672">-</span>world<span style="color:#f92672">-</span>models<span style="color:#f92672">-</span>platform<span style="color:#f92672">-</span><span style="color:#ae81ff">2026</span>](https:<span style="color:#f92672">//</span>dibi8<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>en<span style="color:#f92672">/</span>resources<span style="color:#f92672">/</span>ai<span style="color:#f92672">-</span>tools<span style="color:#f92672">/</span>nvidia<span style="color:#f92672">-</span>cosmos<span style="color:#f92672">-</span>world<span style="color:#f92672">-</span>models<span style="color:#f92672">-</span>platform<span style="color:#f92672">-</span><span style="color:#ae81ff">2026</span>) <span style="color:#960050;background-color:#1e0010">·</span> [bytedance<span style="color:#f92672">-</span>ui<span style="color:#f92672">-</span>tars<span style="color:#f92672">-</span>desktop<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>agent<span style="color:#f92672">-</span>guide](https:<span style="color:#f92672">//</span>dibi8<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>en<span style="color:#f92672">/</span>resources<span style="color:#f92672">/</span>ai<span style="color:#f92672">-</span>tools<span style="color:#f92672">/</span>bytedance<span style="color:#f92672">-</span>ui<span style="color:#f92672">-</span>tars<span style="color:#f92672">-</span>desktop<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>agent<span style="color:#f92672">-</span>guide)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>고지 사항<span style="color:#f92672">**</span>: 본 기사는 제휴 관계가 있을 수 있는 도구를 언급합니다<span style="color:#f92672">.</span> 우리는 리뷰에 대한 대가를 받지 않습니다<span style="color:#f92672">.</span> 모든 의견은 우리 자신의 것입니다<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>Disclosure<span style="color:#f92672">**</span>: This article mentions tools that may have affiliate relationships<span style="color:#f92672">.</span> We do <span style="color:#f92672">not</span> accept payment <span style="color:#66d9ef">for</span> reviews<span style="color:#f92672">.</span> All opinions are our own<span style="color:#f92672">.</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>{
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;일일 주식 분석: LLM 기반 다시장 주식 인텔리전스 시스템&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;Daily Stock Analysis: LLM-Powered Multi-Market Stock Intelligence System&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-06-25&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-06-25&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: {
@@ -707,14 +716,14 @@ WantedBy=multi-user.target
 </span></span><span style="display:flex;"><span>  },
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: {
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/kr/resources/daily-stock-analysis-llm-powered-multi-market-stock-intelligence&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/resources/daily-stock-analysis-llm-powered-multi-market-stock-intelligence&#34;</span>
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>script<span style="color:#f92672">&gt;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">## Why This Matters</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Understanding 일일 주식 분석: llm 기반 다시장 주식 인텔리전스 시스템 <span style="color:#f92672">is</span> crucial <span style="color:#66d9ef">for</span> modern AI development<span style="color:#f92672">.</span> Here<span style="color:#e6db74">&#39;s why: ### Key Benefits</span>
+</span></span><span style="display:flex;"><span>Understanding daily stock analysis: llm<span style="color:#f92672">-</span>powered multi<span style="color:#f92672">-</span>market stock intelligence system <span style="color:#f92672">is</span> crucial <span style="color:#66d9ef">for</span> modern AI development<span style="color:#f92672">.</span> Here<span style="color:#e6db74">&#34;s why: ### Key Benefits</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">**</span>Efficiency<span style="color:#f92672">**</span>: Save time on repetitive tasks
 </span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">**</span>Quality<span style="color:#f92672">**</span>: Improve output consistency  
 </span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">**</span>Scalability<span style="color:#f92672">**</span>: Handle larger workloads
@@ -744,17 +753,17 @@ WantedBy=multi-user.target
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">## Conclusion</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>일일 주식 분석: LLM 기반 다시장 주식 인텔리전스 시스템 represents an important step forward <span style="color:#f92672">in</span> AI<span style="color:#f92672">-</span>powered development<span style="color:#f92672">.</span> As the ecosystem matures, we expect to see even more powerful capabilities emerge<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>Daily Stock Analysis: LLM<span style="color:#f92672">-</span>Powered Multi<span style="color:#f92672">-</span>Market Stock Intelligence System represents an important step forward <span style="color:#f92672">in</span> AI<span style="color:#f92672">-</span>powered development<span style="color:#f92672">.</span> As the ecosystem matures, we expect to see even more powerful capabilities emerge<span style="color:#f92672">.</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>For the latest updates <span style="color:#f92672">and</span> community discussions, join our Telegram channel: https:<span style="color:#f92672">//</span>t<span style="color:#f92672">.</span>me<span style="color:#f92672">/</span>DIBI8_Group
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
 </span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>Last updated: <span style="color:#ae81ff">2026</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span><span style="color:#f92672">-</span><span style="color:#ae81ff">20</span><span style="color:#f92672">*</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>Read time: <span style="color:#f92672">~</span><span style="color:#ae81ff">6</span> minutes<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>Read time: <span style="color:#f92672">~</span><span style="color:#ae81ff">7</span> minutes<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
-</span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [<span style="color:#ae81ff">12</span><span style="color:#f92672">-</span>factor<span style="color:#f92672">-</span>agents<span style="color:#f92672">-</span>production<span style="color:#f92672">-</span>llm<span style="color:#f92672">-</span>software<span style="color:#f92672">-</span><span style="color:#ae81ff">2026</span>](daily<span style="color:#f92672">-</span>stock<span style="color:#f92672">-</span>analysis<span style="color:#f92672">-</span>llm<span style="color:#f92672">-</span>powered<span style="color:#f92672">-</span>multi<span style="color:#f92672">-</span>market<span style="color:#f92672">-</span>stock<span style="color:#f92672">-</span>intelligence)
@@ -769,25 +778,25 @@ WantedBy=multi-user.target
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions (FAQ)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>问<span style="color:#960050;background-color:#1e0010">：</span>量化交易的风险有多大<span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>问<span style="color:#960050;background-color:#1e0010">：</span>AI Agent和传统自动化有什么区别<span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>取决于策略设计<span style="color:#960050;background-color:#1e0010">、</span>资金管理<span style="color:#960050;background-color:#1e0010">、</span>市场波动<span style="color:#960050;background-color:#1e0010">。</span>建议先用模拟账户测试<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>AI Agent具有自主决策能力<span style="color:#960050;background-color:#1e0010">，</span>能够根据环境变化调整策略<span style="color:#960050;background-color:#1e0010">，</span>而传统自动化只能执行预设规则<span style="color:#960050;background-color:#1e0010">。</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>问<span style="color:#960050;background-color:#1e0010">：</span>如何选择适合的交易策略<span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>问<span style="color:#960050;background-color:#1e0010">：</span>如何选择合适的AI Agent框架<span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>根据风险承受能力<span style="color:#960050;background-color:#1e0010">、</span>时间投入<span style="color:#960050;background-color:#1e0010">、</span>资金规模选择<span style="color:#960050;background-color:#1e0010">。</span>高频需要技术<span style="color:#960050;background-color:#1e0010">，</span>低频需要分析<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>考虑因素包括<span style="color:#960050;background-color:#1e0010">：</span>部署难度<span style="color:#960050;background-color:#1e0010">、</span>社区活跃度<span style="color:#960050;background-color:#1e0010">、</span>扩展性<span style="color:#960050;background-color:#1e0010">、</span>成本<span style="color:#960050;background-color:#1e0010">。</span>Claude Code适合开发者<span style="color:#960050;background-color:#1e0010">，</span>AutoGen适合复杂多智能体场景<span style="color:#960050;background-color:#1e0010">。</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>问<span style="color:#960050;background-color:#1e0010">：</span>回测结果可信吗<span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>问<span style="color:#960050;background-color:#1e0010">：</span>AI Agent的安全性如何保证<span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>回测有局限性<span style="color:#960050;background-color:#1e0010">，</span>需警惕过拟合<span style="color:#960050;background-color:#1e0010">、</span>前视偏差<span style="color:#960050;background-color:#1e0010">、</span>忽略滑点和手续费<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>实施权限最小化<span style="color:#960050;background-color:#1e0010">、</span>输入验证<span style="color:#960050;background-color:#1e0010">、</span>审计日志<span style="color:#960050;background-color:#1e0010">、</span>以及定期安全评估<span style="color:#960050;background-color:#1e0010">。</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>问<span style="color:#960050;background-color:#1e0010">：</span>需要编程基础吗<span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>问<span style="color:#960050;background-color:#1e0010">：</span>AI Agent的学习成本有多高<span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>基础策略可使用低代码平台<span style="color:#960050;background-color:#1e0010">，</span>高级策略需要Python<span style="color:#f92672">/</span>C<span style="color:#f92672">++</span>编程能力<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>入门级使用3<span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>天<span style="color:#960050;background-color:#1e0010">，</span>高级配置需要2<span style="color:#f92672">-</span><span style="color:#ae81ff">4</span>周<span style="color:#960050;background-color:#1e0010">，</span>取决于团队技术基础<span style="color:#960050;background-color:#1e0010">。</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>问<span style="color:#960050;background-color:#1e0010">：</span>交易系统的维护成本<span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>问<span style="color:#960050;background-color:#1e0010">：</span>能否自定义AI Agent的行为<span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>包括服务器费用<span style="color:#960050;background-color:#1e0010">、</span>数据订阅<span style="color:#960050;background-color:#1e0010">、</span>算法更新<span style="color:#960050;background-color:#1e0010">、</span>以及监控维护时间<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>是的<span style="color:#960050;background-color:#1e0010">，</span>通过提示工程<span style="color:#960050;background-color:#1e0010">、</span>工具定义<span style="color:#960050;background-color:#1e0010">、</span>记忆系统<span style="color:#960050;background-color:#1e0010">、</span>以及行为约束来定制<span style="color:#960050;background-color:#1e0010">。</span>
 </span></span></code></pre></div>
 
   </div>
@@ -830,6 +839,81 @@ WantedBy=multi-user.target
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

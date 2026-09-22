@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-09T00:00:00+08:00 lastmod: 2026-06-09T00:00:00+08:00 tech_stack: [‘Node.js’, TypeScript, CLI] application_domain: Dev Utils source_version: “v0.3” licensing_model: Open Source license_type: MIT file_size: ’’ file_md5: ’' download_url: “https://github.com/yamadashy/repomix\" backup_url: ’' last_maintained: “2026-06-01” draft: false categories: [“dev-utils”] tags: [“repomix”, “repopack”, “ai코딩”, “llm컨텍스트”, “코드베이스패킹”, “claude”, “chatgpt”, “개발자도구”, “오픈소스”] aliases:\n/kr/posts/repomix-pack-repo-for-llm-context-2026/ faqs: - q: ‘repomix란 무엇이며 이전 이름은 무엇이었습니까?’ a: ‘repomix(구 repopack)는 전체 Git 저장소를 LLM 컨텍스트 창에 최적화된 단일 구조화 텍스트 파일로 패킹하는 오픈소스 CLI 도구입니다. npm의 기존 “repack” 명령과의 혼동을 피하기 위해 2025년에 “repopack\"에서 “repomix\"로 이름이 변경되었습니다. yamadashy가 개발했으며 MIT 라이선스입니다.’ q: ‘repomix가 지원하는 출력 형식은 무엇입니까?’ a: ‘repomix는 세 가지 출력 형식을 지원합니다: 일반 텍스트(기본값, ChatGPT 등 일반 LLM에 적합), XML(Claude에 최적 — Claude는 XML을 기본으로 사용), 마크다운(Copilot, 문서 워크플로에 적합). –style plain|xml|markdown으로 선택합니다.’ q: ‘repomix는 얼마나 큰 코드베이스를 처리할 수 있습니까?’ a: ‘repomix는 약 100,000–200,000 토큰(대략 5,000–10,000개 파일 프로젝트)까지 잘 작동합니다. 더 큰 저장소의 경우 –include 패턴을 사용하여 관련 서브시스템만 전송하세요. –output-show-line-numbers 플래그는 LLM이 정확한 줄 참조로 편집 제안을 하는 데 도움이 됩니다.’ Claude나 ChatGPT에게 멀티파일 이슈를 디버깅해달라고 할 때, 코드 스니펫을 하나씩 붙여넣으면 금방 컨텍스트를 잃게 됩니다. repomix는 전체 저장소를 하나의 구조화된 파일로 변환해 이 문제를 해결합니다.\nrepomix가 하는 일 repomix는 저장소를 스캔하고, ```.gitignore````의 파일을 제외한 후, 다음을 포함하는 단일 텍스트 파일을 출력합니다: 1. 저장소 요약 — 전체 파일 수, 토큰 추정치, 언어 분포 2. 디렉토리 트리 — 전체 폴더 구조 3. 모든 소스 파일 — 각 파일 앞에 경로 헤더와 선택적 줄 번호\n제로 설정 시작 # 설치 없이 npx로 실행 npx repomix # 전역 설치 npm install -g repomix # 특정 디렉토리 패킹 repomix ./src # 원격 GitHub 저장소 직접 패킹 (git clone 불필요) npx repomix --remote https://github.com/user/repo 출력 형식 형식 플래그 최적 용도 일반 텍스트 --style plain (기본값) ChatGPT, 일반 LLM XML --style xml Claude (기본 XML 사용), 구조화 파싱 마크다운 --style markdown Copilot, 문서 워크플로 출력 필터링 (대규모 프로젝트용) # src/의 TypeScript 파일만 포함 repomix --include \"src/**/*.ts\" # 테스트 파일과 빌드 산출물 제외 repomix --ignore \"**/*.test.ts,dist/**\" # 줄 번호 표시 (LLM이 정확한 편집 위치 제공에 유용) repomix --output-show-line-numbers 일반적인 LLM 워크플로 # 전체 코드베이스 코드 리뷰 repomix --style xml --output review.xml # → Claude Project에 업로드 # → \"이 코드베이스의 보안 문제와 아키텍처 이슈를 검토해주세요\" # 원격 저장소 분석 (클론 불필요) npx repomix --remote https://github.com/some-org/some-project # → \"이 프로젝트의 아키텍처를 요약하고 어떤 디자인 패턴을 사용하는지 설명해주세요\" 보안: .repomixignore repomix는 기본적으로 .gitignore를 존중하지만, gitignore되지 않은 민감한 파일(로컬 .env 파일 등)이 출력에 포함될 수 있습니다. 프로젝트 루트에 .repomixignore 파일을 생성하여 민감한 파일을 명시적으로 제외하세요: ````` .env .env.local config/credentials.json\n\u003e **AI 개발 도구를 구축할 서버가 필요하신가요?** [DigitalOcean 신규 사용자는 $200 크레딧을 받습니다](https://m.do.co/c/eca87ac14ee0) — 개발 서버를 실행하거나 AI 지원 코드베이스를 배포하기에 충분합니다. **GitHub:** [yamadashy/repomix](https://github.com/yamadashy/repomix) · 14.2k ⭐ · MIT { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"repomix 2026: 전체 코드베이스를 LLM 컨텍스트용 단일 파일로 패킹 — 제로 설정\", \"datePublished\": \"2026-06-09\", \"dateModified\": \"2026-06-09\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/repomix-pack-repo-for-llm-context-2026\" } } ## Why This Matters Understanding repomix 2026: 전체 코드베이스를 llm 컨텍스트용 단일 파일로 패킹 — 제로 설정 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion repomix 2026: 전체 코드베이스를 LLM 컨텍스트용 단일 파일로 패킹 — 제로 설정 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* * * * ## Related Articles - [chatgpt-pro-vs-claude-pro](repomix-pack-repo-for-llm-context-2026) - [ai-seo-geo-dibi8-methodology-google-sge-perplexity](repomix-pack-repo-for-llm-context-2026) - [chatgpt-pro-vs-claude-pro](repomix-pack-repo-for-llm-context-2026) - [nanochat-karpathy-100-chatgpt-single-gpu](repomix-pack-repo-for-llm-context-2026) - [ai-seo-geo-dibi8-methodology-google-sge-perplexity](repomix-pack-repo-for-llm-context-2026) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces 2. **Composition**: Build complex systems from simple parts 3. **Immutability**: Prefer immutable data structures 4. **Error Handling**: Handle failures gracefully 5. **Performance**: Optimize for your specific use case ### Architecture Overview ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ │ Client │────▶│ API │────▶│ Database │ │ (UI) │ │ Server │ │ │ └─────────────┘ └─────────────┘ └─────────────┘ │ ▼ ┌─────────────┐ │ Cache │ │ (Redis) │ └─────────────┘\n",
-  "wordCount" : "799",
+  "articleBody": "title: “repomix 2026: Pack Your Entire Codebase into One LLM-Rea… description: “Technical guide and comparison.” date: 2026-06-09T00:00:00+08:00 lastmod: 2026-06-09T00:00:00+08:00 tech_stack: [‘Node.js’, TypeScript, CLI] application_domain: Dev Utils source_version: “v0.3” licensing_model: Open Source license_type: MIT file_size: ’’ file_md5: ’' download_url: ‘https://github.com/yamadashy/repomix' backup_url: ’’ last_maintained: “2026-06-01” draft: false categories: [“dev-utils”] tags: [“repomix”, “repopack”, “ai-coding”, “llm-context”, “codebase-packing”, “claude”, “chatgpt”, “developer-tools”, “open-source”] aliases:\n/posts/repomix-pack-repo-for-llm-context-2026/ faqs: - q: ‘What is repomix and what was it called before?’ a: ‘repomix (formerly repopack) is an open-source CLI tool that packs an entire Git repository into a single structured text file, optimized for LLM context windows. It was renamed from “repopack” to “repomix” in 2025 to avoid confusion with npm’’s existing “repack” command. Built by yamadashy and released under MIT.’ q: ‘What output formats does repomix support?’ a: ‘repomix supports three output formats: plain text (default), XML (structured with file tags, best for Claude which uses XML natively), and Markdown (best for documentation workflows and GitHub Copilot). You select the format with –style plain|xml|markdown.’ q: ‘How does repomix differ from just copying all files manually?’ a: ‘repomix automatically respects .gitignore rules, adds a token count estimate per file, generates a repository summary and directory tree at the top, handles binary file exclusion, and supports custom include/exclude glob patterns — all in one command. The output is formatted specifically for LLMs with file separators that the model can parse reliably.’ q: ‘How large a codebase can repomix handle?’ a: ‘repomix works well up to around 100,000–200,000 tokens (roughly a 5,000–10,000 file project). For larger repos, use –include patterns to send only the relevant subsystem. The –output-show-line-numbers flag helps LLMs give accurate line references for edits.’ q: ‘Can I use repomix with Claude Projects or ChatGPT memory?’ a: ‘Yes — the most common workflow is to run repomix, then paste or upload the output file to a Claude Project or a custom GPT. This gives the AI full codebase context for debugging, code review, documentation, or architecture discussions without iterating over dozens of files.’— When you ask Claude or ChatGPT to debug a multi-file issue or refactor a complex function, pasting code snippets one-by-one loses context fast. repomix solves this by turning your entire repository into one structured file — ready to drop into any LLM’s context window in seconds.\nWhat repomix Does repomix scans your repository, excludes files in .gitignore, and outputs a single text file containing: 1. Repository summary — total files, token estimate, language breakdown 2. Directory tree — full folder structure at a glance 3. All source files — each prefixed with a path header and optional line numbers\nThe result is immediately usable with Claude, ChatGPT, Gemini, Cursor, or any LLM that accepts file upload or long-form pasting.\nZero Config Start # Run without installing — uses npx npx repomix # Install globally npm install -g repomix # Pack specific directory repomix ./src # Pack remote GitHub repo directly (no git clone needed) npx repomix --remote https://github.com/user/repo That’s it. repomix output.txt is created in the current directory.\nOutput Formats | Format | Flag | Best For | | |\n|\n| | Plain text | --style plain (default) | ChatGPT, general LLMs | | XML | --style xml | Claude (uses XML natively), structured parsing | | Markdown | --style markdown | Copilot, documentation workflows |\n# XML output for Claude repomix --style xml --output repo-context.xml # Markdown output repomix --style markdown Filtering the Output For large projects, include only what’s relevant: `````bash\nInclude only TypeScript files in src/ repomix –include “src/**/*.ts”\nExclude test files and generated code repomix –ignore “/*.test.ts,dist/,node_modules/**”\nShow line numbers (helps LLMs give accurate edit suggestions) repomix –output-show-line-numbers\n## repomix.config.json (Persistent Settings) Create ``repomix.config.json`` in your repo root to save preferences: `````json { \"output\": { \"style\": \"xml\", \"filePath\": \"context.xml\", \"showLineNumbers\": true, \"removeComments\": false }, \"ignore\": { \"useGitignore\": true, \"customPatterns\": [\"*.test.ts\", \"dist/**\", \"*.lock\"] } } Typical LLM Workflows Full Codebase Code Review # Pack the repo, then paste into Claude repomix --style xml --output review.xml # → Upload to Claude Project or paste into conversation # → \"Review this codebase for security issues, architecture problems, and dead code.\" Bug Diagnosis Across Multiple Files # Include only the affected subsystem repomix --include \"src/auth/**,src/middleware/**\" --style xml # → \"Here's my authentication code. The JWT is being rejected on mobile but not desktop. Find the bug.\" Generating Documentation repomix --style markdown --output docs-context.md # → \"Generate comprehensive JSDoc for every exported function in this codebase.\" Remote Repo Analysis (No Clone Required) # Analyze an open-source project without cloning npx repomix --remote https://github.com/some-org/some-project # → \"Summarize the architecture. What design patterns does this project use?\" Security Note: .repomixignore repomix respects .gitignore by default, but secrets that aren’t gitignored (local .env files, API keys in config) can end up in output. Add a .repomixignore file to explicitly exclude sensitive files: ````` .env .env.local secrets/** config/credentials.json\n## repomix vs. Similar Tools | Tool | Approach | Best For | | * * * | * * * | * * * | | **repomix** | Single file, LLM-optimized, XML/plain/MD | Any LLM, fastest start | | Cursor | IDE-native context | Cursor users only | | Aider | Adds LLM to git workflow | Git-integrated coding sessions | | [Ollama](/resources/llm-frameworks/ollama/) | Runs local models | Self-hosted inference | repomix doesn't replace any of these — it complements them by providing clean context input. \u003e **Need a server to build AI developer tools?** [DigitalOcean new users get $200 in credits](https://m.do.co/c/eca87ac14ee0) — enough to run a development server, host a private repomix pipeline, or deploy your AI-assisted codebase. No long-term commitment. ## Who Should Use repomix **Use repomix if you:** - Regularly ask LLMs to help debug multi-file issues - Want to give Claude or ChatGPT full context for architecture reviews - Need to onboard a new AI tool to a project quickly - Work with large codebases that exceed typical snippet-pasting approaches **GitHub:** [yamadashy/repomix](https://github.com/yamadashy/repomix) · 14.2k ⭐ · MIT { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"repomix 2026: Pack Your Entire Codebase into One LLM-Ready File — Zero Config\", \"datePublished\": \"2026-06-09\", \"dateModified\": \"2026-06-09\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/repomix-pack-repo-for-llm-context-2026\" } } ## Why This Matters Understanding repomix 2026: pack your entire codebase into one llm-ready file — zero config is crucial for modern AI development. Here\"s why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion repomix 2026: Pack Your Entire Codebase into One LLM-Ready File — Zero Config represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* * * * ## Related Articles - [superpowers](repomix-pack-repo-for-llm-context-2026) - [superpowers](repomix-pack-repo-for-llm-context-2026) - [superpowers](repomix-pack-repo-for-llm-context-2026) - [chatgpt-pro-vs-claude-pro](repomix-pack-repo-for-llm-context-2026) - [ai-seo-geo-dibi8-methodology-google-sge-perplexity](repomix-pack-repo-for-llm-context-2026) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ## Tool Comparison | Feature | Claude Code | Cursor | Codex CLI | OpenCode | | * * * | * * * | * * * | * * * | * * * | | **Price** | $20/month | $20/month | Free | Free | | **Interface** | CLI + IDE | Full IDE | CLI | CLI | | **License** | Proprietary | Commercial | Apache 2.0 | MIT | | **GitHub Stars** | N/A | N/A | N/A | 45,000+ | | **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization | ",
+  "wordCount" : "1389",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>4 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/repomix-pack-repo-for-llm-context-2026/">En</a>
@@ -207,25 +207,45 @@
         <span class="title">목차</span>
     </summary>
 
-    <div class="inner"><ul>
+    <div class="inner"><ul><ul>
             <li>
-                <a href="#repomix%ea%b0%80-%ed%95%98%eb%8a%94-%ec%9d%bc" aria-label="repomix가 하는 일">repomix가 하는 일</a></li>
+                <a href="#what-repomix-does" aria-label="What repomix Does">What repomix Does</a></li>
             <li>
-                <a href="#%ec%a0%9c%eb%a1%9c-%ec%84%a4%ec%a0%95-%ec%8b%9c%ec%9e%91" aria-label="제로 설정 시작">제로 설정 시작</a></li>
+                <a href="#zero-config-start" aria-label="Zero Config Start">Zero Config Start</a></li>
             <li>
-                <a href="#%ec%b6%9c%eb%a0%a5-%ed%98%95%ec%8b%9d" aria-label="출력 형식">출력 형식</a></li>
+                <a href="#output-formats" aria-label="Output Formats">Output Formats</a></li>
             <li>
-                <a href="#%ec%b6%9c%eb%a0%a5-%ed%95%84%ed%84%b0%eb%a7%81-%eb%8c%80%ea%b7%9c%eb%aa%a8-%ed%94%84%eb%a1%9c%ec%a0%9d%ed%8a%b8%ec%9a%a9" aria-label="출력 필터링 (대규모 프로젝트용)">출력 필터링 (대규모 프로젝트용)</a></li>
+                <a href="#filtering-the-output" aria-label="Filtering the Output">Filtering the Output</a></li></ul>
+                
             <li>
-                <a href="#%ec%9d%bc%eb%b0%98%ec%a0%81%ec%9d%b8-llm-%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c" aria-label="일반적인 LLM 워크플로">일반적인 LLM 워크플로</a></li>
+                <a href="#include-only-typescript-files-in-src" aria-label="Include only TypeScript files in src/">Include only TypeScript files in src/</a></li>
             <li>
-                <a href="#%eb%b3%b4%ec%95%88-repomixignore" aria-label="보안: .repomixignore">보안: .repomixignore</a>
+                <a href="#exclude-test-files-and-generated-code" aria-label="Exclude test files and generated code">Exclude test files and generated code</a></li>
+            <li>
+                <a href="#show-line-numbers-helps-llms-give-accurate-edit-suggestions" aria-label="Show line numbers (helps LLMs give accurate edit suggestions)">Show line numbers (helps LLMs give accurate edit suggestions)</a><ul>
+                    
+            <li>
+                <a href="#typical-llm-workflows" aria-label="Typical LLM Workflows">Typical LLM Workflows</a><ul>
+                    
+            <li>
+                <a href="#full-codebase-code-review" aria-label="Full Codebase Code Review">Full Codebase Code Review</a></li>
+            <li>
+                <a href="#bug-diagnosis-across-multiple-files" aria-label="Bug Diagnosis Across Multiple Files">Bug Diagnosis Across Multiple Files</a></li>
+            <li>
+                <a href="#generating-documentation" aria-label="Generating Documentation">Generating Documentation</a></li>
+            <li>
+                <a href="#remote-repo-analysis-no-clone-required" aria-label="Remote Repo Analysis (No Clone Required)">Remote Repo Analysis (No Clone Required)</a></li></ul>
             </li>
+            <li>
+                <a href="#security-note-repomixignore" aria-label="Security Note: .repomixignore">Security Note: .repomixignore</a>
+            </li>
+        </ul>
+        </li>
         </ul>
     </div>
 </details>
 
-  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+  <div class="post-content md-content"><p>title: &ldquo;repomix 2026: Pack Your Entire Codebase into One LLM-Rea&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-06-09T00:00:00+08:00
 lastmod: 2026-06-09T00:00:00+08:00
@@ -236,93 +256,136 @@ licensing_model: Open Source
 license_type: MIT
 file_size: &rsquo;&rsquo;
 file_md5: &rsquo;'
-download_url: &ldquo;<a href="https://github.com/yamadashy/repomix%22">https://github.com/yamadashy/repomix"</a>
-backup_url: &rsquo;'
+download_url: &lsquo;<a href="https://github.com/yamadashy/repomix%27">https://github.com/yamadashy/repomix'</a>
+backup_url: &rsquo;&rsquo;
 last_maintained: &ldquo;2026-06-01&rdquo;
 draft: false
 categories: [&ldquo;dev-utils&rdquo;]
-tags: [&ldquo;repomix&rdquo;, &ldquo;repopack&rdquo;, &ldquo;ai코딩&rdquo;, &ldquo;llm컨텍스트&rdquo;, &ldquo;코드베이스패킹&rdquo;, &ldquo;claude&rdquo;, &ldquo;chatgpt&rdquo;, &ldquo;개발자도구&rdquo;, &ldquo;오픈소스&rdquo;]
+tags: [&ldquo;repomix&rdquo;, &ldquo;repopack&rdquo;, &ldquo;ai-coding&rdquo;, &ldquo;llm-context&rdquo;, &ldquo;codebase-packing&rdquo;, &ldquo;claude&rdquo;, &ldquo;chatgpt&rdquo;, &ldquo;developer-tools&rdquo;, &ldquo;open-source&rdquo;]
 aliases:</p>
 <ul>
-<li>/kr/posts/repomix-pack-repo-for-llm-context-2026/
-faqs: - q: &lsquo;repomix란 무엇이며 이전 이름은 무엇이었습니까?&rsquo;
-a: &lsquo;repomix(구 repopack)는 전체 Git 저장소를 LLM 컨텍스트 창에 최적화된 단일 구조화 텍스트 파일로 패킹하는 오픈소스 CLI 도구입니다. npm의 기존 &ldquo;repack&rdquo; 명령과의 혼동을 피하기 위해 2025년에 &ldquo;repopack&quot;에서 &ldquo;repomix&quot;로 이름이 변경되었습니다. yamadashy가 개발했으며 MIT 라이선스입니다.&rsquo;</li>
-<li>q: &lsquo;repomix가 지원하는 출력 형식은 무엇입니까?&rsquo;
-a: &lsquo;repomix는 세 가지 출력 형식을 지원합니다: 일반 텍스트(기본값, ChatGPT 등 일반 LLM에 적합), XML(Claude에 최적 — Claude는 XML을 기본으로 사용), 마크다운(Copilot, 문서 워크플로에 적합). &ndash;style plain|xml|markdown으로 선택합니다.&rsquo;</li>
-<li>q: &lsquo;repomix는 얼마나 큰 코드베이스를 처리할 수 있습니까?&rsquo;
-a: &lsquo;repomix는 약 100,000–200,000 토큰(대략 5,000–10,000개 파일 프로젝트)까지 잘 작동합니다. 더 큰 저장소의 경우 &ndash;include 패턴을 사용하여 관련 서브시스템만 전송하세요. &ndash;output-show-line-numbers 플래그는 LLM이 정확한 줄 참조로 편집 제안을 하는 데 도움이 됩니다.&rsquo;</li>
+<li>/posts/repomix-pack-repo-for-llm-context-2026/
+faqs: - q: &lsquo;What is repomix and what was it called before?&rsquo;
+a: &lsquo;repomix (formerly repopack) is an open-source CLI tool that packs an entire Git repository into a single structured text file, optimized for LLM context windows. It was renamed from &ldquo;repopack&rdquo; to &ldquo;repomix&rdquo; in 2025 to avoid confusion with npm&rsquo;&rsquo;s existing &ldquo;repack&rdquo; command. Built by yamadashy and released under MIT.&rsquo;</li>
+<li>q: &lsquo;What output formats does repomix support?&rsquo;
+a: &lsquo;repomix supports three output formats: plain text (default), XML (structured with file tags, best for Claude which uses XML natively), and Markdown (best for documentation workflows and GitHub Copilot). You select the format with &ndash;style plain|xml|markdown.&rsquo;</li>
+<li>q: &lsquo;How does repomix differ from just copying all files manually?&rsquo;
+a: &lsquo;repomix automatically respects .gitignore rules, adds a token count estimate per file, generates a repository summary and directory tree at the top, handles binary file exclusion, and supports custom include/exclude glob patterns — all in one command. The output is formatted specifically for LLMs with file separators that the model can parse reliably.&rsquo;</li>
+<li>q: &lsquo;How large a codebase can repomix handle?&rsquo;
+a: &lsquo;repomix works well up to around 100,000–200,000 tokens (roughly a 5,000–10,000 file project). For larger repos, use &ndash;include patterns to send only the relevant subsystem. The &ndash;output-show-line-numbers flag helps LLMs give accurate line references for edits.&rsquo;</li>
+<li>q: &lsquo;Can I use repomix with Claude Projects or ChatGPT memory?&rsquo;
+a: &lsquo;Yes — the most common workflow is to run repomix, then paste or upload the output file to a Claude Project or a custom GPT. This gives the AI full codebase context for debugging, code review, documentation, or architecture discussions without iterating over dozens of files.&rsquo;&mdash;</li>
 </ul>
-<hr>
-<p><img alt="repomix 2026: 코드베이스를 LLM 컨텍스트로 패킹 — dibi8.com" loading="lazy" src="/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg"></p>
-<p>Claude나 ChatGPT에게 멀티파일 이슈를 디버깅해달라고 할 때, 코드 스니펫을 하나씩 붙여넣으면 금방 컨텍스트를 잃게 됩니다. <a href="https://github.com/yamadashy/repomix">repomix</a>는 전체 저장소를 하나의 구조화된 파일로 변환해 이 문제를 해결합니다.</p>
-<h2 id="repomix가-하는-일">repomix가 하는 일<a hidden class="anchor" aria-hidden="true" href="#repomix가-하는-일">#</a></h2>
-<p>repomix는 저장소를 스캔하고, ```.gitignore````의 파일을 제외한 후, 다음을 포함하는 단일 텍스트 파일을 출력합니다: 1. <strong>저장소 요약</strong> — 전체 파일 수, 토큰 추정치, 언어 분포
-2. <strong>디렉토리 트리</strong> — 전체 폴더 구조
-3. <strong>모든 소스 파일</strong> — 각 파일 앞에 경로 헤더와 선택적 줄 번호</p>
-<h2 id="제로-설정-시작">제로 설정 시작<a hidden class="anchor" aria-hidden="true" href="#제로-설정-시작">#</a></h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 설치 없이 npx로 실행</span>
+<p><img alt="repomix 2026: Pack Your Codebase for LLM Context — dibi8.com" loading="lazy" src="/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg"></p>
+<p>When you ask Claude or ChatGPT to debug a multi-file issue or refactor a complex function, pasting code snippets one-by-one loses context fast. <a href="https://github.com/yamadashy/repomix">repomix</a> solves this by turning your entire repository into one structured file — ready to drop into any LLM&rsquo;s context window in seconds.</p>
+<h2 id="what-repomix-does">What repomix Does<a hidden class="anchor" aria-hidden="true" href="#what-repomix-does">#</a></h2>
+<p>repomix scans your repository, excludes files in <code>.gitignore</code>, and outputs a single text file containing: 1. <strong>Repository summary</strong> — total files, token estimate, language breakdown
+2. <strong>Directory tree</strong> — full folder structure at a glance
+3. <strong>All source files</strong> — each prefixed with a path header and optional line numbers</p>
+<p>The result is immediately usable with Claude, ChatGPT, Gemini, Cursor, or any LLM that accepts file upload or long-form pasting.</p>
+<h2 id="zero-config-start">Zero Config Start<a hidden class="anchor" aria-hidden="true" href="#zero-config-start">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Run without installing — uses npx</span>
 </span></span><span style="display:flex;"><span>npx repomix
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 전역 설치</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install globally</span>
 </span></span><span style="display:flex;"><span>npm install -g repomix
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 특정 디렉토리 패킹</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Pack specific directory</span>
 </span></span><span style="display:flex;"><span>repomix ./src
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 원격 GitHub 저장소 직접 패킹 (git clone 불필요)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Pack remote GitHub repo directly (no git clone needed)</span>
 </span></span><span style="display:flex;"><span>npx repomix --remote https://github.com/user/repo
-</span></span></code></pre></div><h2 id="출력-형식">출력 형식<a hidden class="anchor" aria-hidden="true" href="#출력-형식">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>형식</th>
-					<th>플래그</th>
-					<th>최적 용도</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>일반 텍스트</td>
-					<td><code>--style plain</code> (기본값)</td>
-					<td>ChatGPT, 일반 LLM</td>
-			</tr>
-			<tr>
-					<td>XML</td>
-					<td><code>--style xml</code></td>
-					<td>Claude (기본 XML 사용), 구조화 파싱</td>
-			</tr>
-			<tr>
-					<td>마크다운</td>
-					<td><code>--style markdown</code></td>
-					<td>Copilot, 문서 워크플로</td>
-			</tr>
-	</tbody>
-</table>
-<h2 id="출력-필터링-대규모-프로젝트용">출력 필터링 (대규모 프로젝트용)<a hidden class="anchor" aria-hidden="true" href="#출력-필터링-대규모-프로젝트용">#</a></h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># src/의 TypeScript 파일만 포함</span>
-</span></span><span style="display:flex;"><span>repomix --include <span style="color:#e6db74">&#34;src/**/*.ts&#34;</span>
+</span></span></code></pre></div><p>That&rsquo;s it. <code>repomix output.txt</code> is created in the current directory.</p>
+<h2 id="output-formats">Output Formats<a hidden class="anchor" aria-hidden="true" href="#output-formats">#</a></h2>
+<h2 id="heading">| Format | Flag | Best For |
+|</h2>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Plain text | <code>--style plain</code> (default) | ChatGPT, general LLMs |
+| XML | <code>--style xml</code> | Claude (uses XML natively), structured parsing |
+| Markdown | <code>--style markdown</code> | Copilot, documentation workflows |</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># XML output for Claude</span>
+</span></span><span style="display:flex;"><span>repomix --style xml --output repo-context.xml
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 테스트 파일과 빌드 산출물 제외</span>
-</span></span><span style="display:flex;"><span>repomix --ignore <span style="color:#e6db74">&#34;**/*.test.ts,dist/**&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 줄 번호 표시 (LLM이 정확한 편집 위치 제공에 유용)</span>
-</span></span><span style="display:flex;"><span>repomix --output-show-line-numbers
-</span></span></code></pre></div><h2 id="일반적인-llm-워크플로">일반적인 LLM 워크플로<a hidden class="anchor" aria-hidden="true" href="#일반적인-llm-워크플로">#</a></h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 전체 코드베이스 코드 리뷰</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Markdown output</span>
+</span></span><span style="display:flex;"><span>repomix --style markdown
+</span></span></code></pre></div><h2 id="filtering-the-output">Filtering the Output<a hidden class="anchor" aria-hidden="true" href="#filtering-the-output">#</a></h2>
+<p>For large projects, include only what&rsquo;s relevant: `````bash</p>
+<h1 id="include-only-typescript-files-in-src">Include only TypeScript files in src/<a hidden class="anchor" aria-hidden="true" href="#include-only-typescript-files-in-src">#</a></h1>
+<p>repomix &ndash;include &ldquo;src/**/*.ts&rdquo;</p>
+<h1 id="exclude-test-files-and-generated-code">Exclude test files and generated code<a hidden class="anchor" aria-hidden="true" href="#exclude-test-files-and-generated-code">#</a></h1>
+<p>repomix &ndash;ignore &ldquo;<strong>/*.test.ts,dist/</strong>,node_modules/**&rdquo;</p>
+<h1 id="show-line-numbers-helps-llms-give-accurate-edit-suggestions">Show line numbers (helps LLMs give accurate edit suggestions)<a hidden class="anchor" aria-hidden="true" href="#show-line-numbers-helps-llms-give-accurate-edit-suggestions">#</a></h1>
+<p>repomix &ndash;output-show-line-numbers</p>
+<pre tabindex="0"><code>
+## repomix.config.json (Persistent Settings)
+
+Create ``repomix.config.json`` in your repo root to save preferences: `````json
+{
+  &#34;output&#34;: {
+    &#34;style&#34;: &#34;xml&#34;,
+    &#34;filePath&#34;: &#34;context.xml&#34;,
+    &#34;showLineNumbers&#34;: true,
+    &#34;removeComments&#34;: false
+  },
+  &#34;ignore&#34;: {
+    &#34;useGitignore&#34;: true,
+    &#34;customPatterns&#34;: [&#34;*.test.ts&#34;, &#34;dist/**&#34;, &#34;*.lock&#34;]
+  }
+}
+</code></pre><h2 id="typical-llm-workflows">Typical LLM Workflows<a hidden class="anchor" aria-hidden="true" href="#typical-llm-workflows">#</a></h2>
+<h3 id="full-codebase-code-review">Full Codebase Code Review<a hidden class="anchor" aria-hidden="true" href="#full-codebase-code-review">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Pack the repo, then paste into Claude</span>
 </span></span><span style="display:flex;"><span>repomix --style xml --output review.xml
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># → Claude Project에 업로드</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># → &#34;이 코드베이스의 보안 문제와 아키텍처 이슈를 검토해주세요&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 원격 저장소 분석 (클론 불필요)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># → Upload to Claude Project or paste into conversation</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># → &#34;Review this codebase for security issues, architecture problems, and dead code.&#34;</span>
+</span></span></code></pre></div><h3 id="bug-diagnosis-across-multiple-files">Bug Diagnosis Across Multiple Files<a hidden class="anchor" aria-hidden="true" href="#bug-diagnosis-across-multiple-files">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Include only the affected subsystem</span>
+</span></span><span style="display:flex;"><span>repomix --include <span style="color:#e6db74">&#34;src/auth/**,src/middleware/**&#34;</span> --style xml
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># → &#34;Here&#39;s my authentication code. The JWT is being rejected on mobile but not desktop. Find the bug.&#34;</span>
+</span></span></code></pre></div><h3 id="generating-documentation">Generating Documentation<a hidden class="anchor" aria-hidden="true" href="#generating-documentation">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>repomix --style markdown --output docs-context.md
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># → &#34;Generate comprehensive JSDoc for every exported function in this codebase.&#34;</span>
+</span></span></code></pre></div><h3 id="remote-repo-analysis-no-clone-required">Remote Repo Analysis (No Clone Required)<a hidden class="anchor" aria-hidden="true" href="#remote-repo-analysis-no-clone-required">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Analyze an open-source project without cloning</span>
 </span></span><span style="display:flex;"><span>npx repomix --remote https://github.com/some-org/some-project
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># → &#34;이 프로젝트의 아키텍처를 요약하고 어떤 디자인 패턴을 사용하는지 설명해주세요&#34;</span>
-</span></span></code></pre></div><h2 id="보안-repomixignore">보안: <code>.repomixignore</code><a hidden class="anchor" aria-hidden="true" href="#보안-repomixignore">#</a></h2>
-<p>repomix는 기본적으로 <code>.gitignore</code>를 존중하지만, gitignore되지 않은 민감한 파일(로컬 <code>.env</code> 파일 등)이 출력에 포함될 수 있습니다. 프로젝트 루트에 <code>.repomixignore</code> 파일을 생성하여 민감한 파일을 명시적으로 제외하세요: `````
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># → &#34;Summarize the architecture. What design patterns does this project use?&#34;</span>
+</span></span></code></pre></div><h2 id="security-note-repomixignore">Security Note: <code>.repomixignore</code><a hidden class="anchor" aria-hidden="true" href="#security-note-repomixignore">#</a></h2>
+<p>repomix respects <code>.gitignore</code> by default, but secrets that aren&rsquo;t gitignored (local <code>.env</code> files, API keys in config) can end up in output. Add a <code>.repomixignore</code> file to explicitly exclude sensitive files: `````
 .env
 .env.local
+secrets/**
 config/credentials.json</p>
 <pre tabindex="0"><code>
-&gt; **AI 개발 도구를 구축할 서버가 필요하신가요?** [DigitalOcean 신규 사용자는 $200 크레딧을 받습니다](https://m.do.co/c/eca87ac14ee0) — 개발 서버를 실행하거나 AI 지원 코드베이스를 배포하기에 충분합니다.
+## repomix vs. Similar Tools
+
+| Tool | Approach | Best For |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| **repomix** | Single file, LLM-optimized, XML/plain/MD | Any LLM, fastest start |
+| Cursor | IDE-native context | Cursor users only |
+| Aider | Adds LLM to git workflow | Git-integrated coding sessions |
+| [Ollama](/resources/llm-frameworks/ollama/) | Runs local models | Self-hosted inference |
+
+repomix doesn&#39;t replace any of these — it complements them by providing clean context input.
+
+&gt; **Need a server to build AI developer tools?** [DigitalOcean new users get $200 in credits](https://m.do.co/c/eca87ac14ee0) — enough to run a development server, host a private repomix pipeline, or deploy your AI-assisted codebase. No long-term commitment.
+
+## Who Should Use repomix
+
+**Use repomix if you:**
+- Regularly ask LLMs to help debug multi-file issues
+- Want to give Claude or ChatGPT full context for architecture reviews
+- Need to onboard a new AI tool to a project quickly
+- Work with large codebases that exceed typical snippet-pasting approaches
 
 **GitHub:** [yamadashy/repomix](https://github.com/yamadashy/repomix) · 14.2k ⭐ · MIT
 
@@ -330,7 +393,7 @@ config/credentials.json</p>
 {
   &#34;@context&#34;: &#34;https://schema.org&#34;,
   &#34;@type&#34;: &#34;Article&#34;,
-  &#34;headline&#34;: &#34;repomix 2026: 전체 코드베이스를 LLM 컨텍스트용 단일 파일로 패킹 — 제로 설정&#34;,
+  &#34;headline&#34;: &#34;repomix 2026: Pack Your Entire Codebase into One LLM-Ready File — Zero Config&#34;,
   &#34;datePublished&#34;: &#34;2026-06-09&#34;,
   &#34;dateModified&#34;: &#34;2026-06-09&#34;,
   &#34;author&#34;: {
@@ -347,14 +410,14 @@ config/credentials.json</p>
   },
   &#34;mainEntityOfPage&#34;: {
     &#34;@type&#34;: &#34;WebPage&#34;,
-    &#34;@id&#34;: &#34;https://dibi8.com/kr/resources/repomix-pack-repo-for-llm-context-2026&#34;
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/repomix-pack-repo-for-llm-context-2026&#34;
   }
 }
 &lt;/script&gt;
 
 ## Why This Matters
 
-Understanding repomix 2026: 전체 코드베이스를 llm 컨텍스트용 단일 파일로 패킹 — 제로 설정 is crucial for modern AI development. Here&#39;s why: ### Key Benefits
+Understanding repomix 2026: pack your entire codebase into one llm-ready file — zero config is crucial for modern AI development. Here&#34;s why: ### Key Benefits
 - **Efficiency**: Save time on repetitive tasks
 - **Quality**: Improve output consistency  
 - **Scalability**: Handle larger workloads
@@ -384,47 +447,72 @@ To implement this in your workflow: 1. **Assess Your Needs**
 
 ## Conclusion
 
-repomix 2026: 전체 코드베이스를 LLM 컨텍스트용 단일 파일로 패킹 — 제로 설정 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
+repomix 2026: Pack Your Entire Codebase into One LLM-Ready File — Zero Config represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
 
 For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
 
-* * *
 
+* * *
 *Last updated: 2026-09-20*
 *Read time: ~5 minutes*
 
-* * *
 
+* * *
 ## Related Articles
 
+- [superpowers](repomix-pack-repo-for-llm-context-2026)
+- [superpowers](repomix-pack-repo-for-llm-context-2026)
+- [superpowers](repomix-pack-repo-for-llm-context-2026)
 - [chatgpt-pro-vs-claude-pro](repomix-pack-repo-for-llm-context-2026)
-- [ai-seo-geo-dibi8-methodology-google-sge-perplexity](repomix-pack-repo-for-llm-context-2026)
-- [chatgpt-pro-vs-claude-pro](repomix-pack-repo-for-llm-context-2026)
-- [nanochat-karpathy-100-chatgpt-single-gpu](repomix-pack-repo-for-llm-context-2026)
 - [ai-seo-geo-dibi8-methodology-google-sge-perplexity](repomix-pack-repo-for-llm-context-2026)
 
 * * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
 
-Understanding these core concepts will help you master the topic: 1. **Abstraction**: Hide complexity behind simple interfaces
-2. **Composition**: Build complex systems from simple parts
-3. **Immutability**: Prefer immutable data structures
-4. **Error Handling**: Handle failures gracefully
-5. **Performance**: Optimize for your specific use case
+## Frequently Asked Questions (FAQ)
 
-### Architecture Overview
-</code></pre><p>┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Client    │────▶│   API       │────▶│   Database  │
-│   (UI)      │     │   Server    │     │             │
-└─────────────┘     └─────────────┘     └─────────────┘
-│
-▼
-┌─────────────┐
-│   Cache     │
-│  (Redis)    │
-└─────────────┘</p>
-<pre tabindex="0"><code></code></pre>
+**问：AI Agent和传统自动化有什么区别？**
+
+AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+
+**问：如何选择合适的AI Agent框架？**
+
+考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+
+**问：AI Agent的安全性如何保证？**
+
+实施权限最小化、输入验证、审计日志、以及定期安全评估。
+
+**问：AI Agent的学习成本有多高？**
+
+入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+
+**问：能否自定义AI Agent的行为？**
+
+是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+
+
+## Tool Comparison
+
+| Feature | Claude Code | Cursor | Codex CLI | OpenCode |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| **Price** | $20/month | $20/month | Free | Free |
+| **Interface** | CLI + IDE | Full IDE | CLI | CLI |
+| **License** | Proprietary | Commercial | Apache 2.0 | MIT |
+| **GitHub Stars** | N/A | N/A | N/A | 45,000+ |
+| **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization |
+</code></pre>
 
   </div>
 
@@ -466,6 +554,81 @@ Understanding these core concepts will help you master the topic: 1. **Abstracti
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

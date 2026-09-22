@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“mem0”, “ai-agent-memory”, “지속-메모리”, “langchain”, “벡터-스토어”, “메모리-튜닝”, “mem0-튜토리얼”, “mem0-vs-langchain”, “crewai”, “오픈소스”] aliases:\n/kr/posts/mem0/ 소개 모든 AI 에이전트 개발자는 같은 벽에 부딪힙니다: 에이전트가 잊어버리는 것입니다. 사용자가 한 세션에서 챗봇에게 자신이 채식주의자이고 견과류 알레르기가 있다고 말했는데, 두 시간 후 에이전트가 땅콩 칠리를 추천합니다. 이는 프롬프트 엔지니어링 문제가 아닙니다 — 메모리 아키텍처 문제입니다. 상태 비저장 LLM은 세션 간에 사실을 지속할 내장 메커니즘이 없습니다. Mem0 (mem0ai/mem0)은 플러그 앤 플레이 메모리 레이어로 이 문제를 해결했으며, 56,205개 이상의 GitHub 스타와 90,000명 이상의 개발자가 채택했습니다. 이 가이드는 LangChain, CrewAI 및 OpenAI 에이전트와의 벡터 스토어 구성, 실제 벤치마크, 통합 코드를 포함한 설치부터 프로덕션 튜닝까지의 완전한 mem0 설정을 다룹니다.\nMem0이란? Mem0은 LLM 애플리케이션과 AI 에이전트를 위한 오픈소스 범용 메모리 레이어입니다. 벡터 유사성 검색과 구조화된 메모리 추출을 결합한 하이브리드 아키텍처를 사용하여 대화 전반에 걸쳐 사용자 특정 사실을 추출, 저장 및 검색합니다. 시스템은 원시 채팅 메시지를 의미론적 사실( “사용자가 채식주의자”)으로 자동 정제하고, 중복을 제거하며, 추론 시 REST API 또는 Python/TypeScript SDK를 통해 가장 관련성 높은 메모리를 제공합니다.\nMem0의 작동 방식 Mem0의 아키텍처는 메모리를 네 가지 운영 계층으로 분리합니다: 1. 추출 계층: LLM(구성 가능, 기본값 GPT-4o-mini)이 들어오는 메시지를 처리하고 구조화된 사실을 추출합니다. 2026년 4월 토큰 효율 알고리즘은 전체 컨텍스트 기선 대비 토큰 사용량을 3-4배 줄이는 단일 패스 계층적 추출을 사용합니다.\n2. 임베딩 계층: 추출된 사실은 임베딩 모델(기본값: text-embedding-3-small)을 사용하여 벡터화되어 벡터 데이터베이스에 저장됩니다. Mem0은 Qdrant, Chroma, PGVector, Pinecone, Weaviate, Milvus, Azure AI Search를 포함한 19개 벡터 스토어 백엔드를 지원합니다.\n3. 검색 계층: 쿼리 시 Mem0은 벡터 유사성과 메타데이터 필터링, 재순위, 다중 신호 스코어링을 결합한 하이브리드 검색을 수행합니다. 다중 신호 검색은 최적의 메모리를 제공하기 위해 최근성, 관련성 및 중요성을 고려합니다.\n4. 그래프 계층(Pro 티어): 평면 벡터 저장을 넘어 Mem0 Pro는 엔터티 관계를 이해하는 지식 그래프를 구축합니다 — 멀티 홉 추론을 활성화합니다( “James가 누구와 일합니까?“는 “James가 TechCorp에서 일함” + “Sarah가 TechCorp에서 일함\"을 연결해야 합니다).\n┌──────────────────────────────────────────────────────┐ │ 사용자 메시지 │ └──────────────────────┬───────────────────────────────┘ │ ┌────────────▼────────────┐ │ 추출 계층 (LLM) │ ← 사실 추출 └────────────┬────────────┘ │ ┌────────────▼────────────┐ │ 임베딩 모델 │ ← 벡터화 └────────────┬────────────┘ │ ┌────────────▼────────────┐ │ 벡터 스토어 │ ← Qdrant/Chroma/PGVector └────────────┬────────────┘ │ ┌────────────▼────────────┐ │ 하이브리드 검색 │ ← 검색 + 재순위 └────────────┬────────────┘ │ ┌────────────▼────────────┐ │ 프롬프트에 주입 │ ← 컨텍스트 강화 └─────────────────────────┘ 설치 및 설정 클라우드 설정 (가장 빠른 경로) # Python 클라이언트 설치 pip install mem0ai # API 키 설정 (https://app.mem0.ai에서 가져오기) export MEM0_API_KEY=\"m0-your-key-here\" # mem0_quickstart.py import os from mem0 import MemoryClient client = MemoryClient(api_key=os.getenv(\"MEM0_API_KEY\")) # 대화에서 메모리 저장 messages = [ {\"role\": \"user\", \"content\": \"I'm a vegetarian and allergic to nuts.\"}, {\"role\": \"assistant\", \"content\": \"Got it! I'll remember your dietary preferences.\"}, ] client.add(messages, user_id=\"user123\") # 관련 메모리 검색 results = client.search( \"What are my dietary restrictions?\", user_id=\"user123\" ) print(results) 셀프 호스팅 설정 (Docker) 데이터 레지던시 또는 에어갭 배포가 필요한 팀을 위한 설정: `````bash\n리포지토리 클론 git clone https://github.com/mem0ai/mem0.git cd mem0\nDocker로 부트스트랩 make bootstrap\n관리자 생성, API 키 생성, 서버 + 대시보드 시작 `````yaml # docker-compose.yml 프로덕션용 docker run -d \\ -p 8000:8000 \\ -e MEM0_API_KEY=your-admin-key \\ -e VECTOR_STORE_PROVIDER=qdrant \\ -e VECTOR_STORE_URL=http://qdrant:6333 \\ -e LLM_PROVIDER=openai \\ -e OPENAI_API_KEY=$OPENAI_API_KEY \\ mem0/mem0-server:latest 오픈소스 SDK (로컬) pip install mem0ai openai chromadb from mem0 import Memory # 사용자 정의 벡터 스토어로 초기화 m = Memory() # 대화 추가 messages = [ {\"role\": \"user\", \"content\": \"I'm planning to watch a movie tonight.\"}, {\"role\": \"assistant\", \"content\": \"How about thrillers?\"}, {\"role\": \"user\", \"content\": \"I love sci-fi but hate horror.\"}, ] m.add(messages, user_id=\"alice\", metadata={\"category\": \"movies\"}) # 메타데이터 필터링으로 검색 results = m.search(\"movie recommendations\", filters={\"user_id\": \"alice\"}) 메모리 구성 및 성능 튜닝 YAML을 사용한 사용자 정의 구성 mem0config.yaml 파일은 메모리 파이프라인의 모든 구성 요소를 제어합니다: `````yaml\nmem0config.yaml — 프로덕션 튜닝 구성 llm: provider: openai config: model: “gpt-4o-mini” temperature: 0.1 max_tokens: 2000\nembedder: provider: openai config: model: “text-embedding-3-small” embedding_dims: 1536\nvector_store: provider: qdrant config: host: “localhost” port: 6333 collection_name: “mem0” on_disk: true # 영구 저장소 활성화\nreranker: provider: cohere config: model: “rerank-multilingual-v3.0”\ncustom_instructions: | 사용자 선호도, 개인 사실, 컨텍스트를 추출합니다. 식이 제한, 알레르기, 기술적 선호도에 중점을 둡니다. 임시 상태와 일회성 요청은 무시합니다.\n`````python from mem0 import Memory # 사용자 정의 구성 로드 config_path = \"mem0config.yaml\" m = Memory.from_config(config_path) 벡터 스토어 백엔드 비교 백엔드 적합한 용도 지연 시간 지속성 확장성 Qdrant 프로덕션, 하이브리드 검색 \u003c10ms 디스크 수평 확장 Chroma 로컬 개발, 프로토타이핑 \u003c20ms 파일 기반 단일 노드 PGVector Postgres 생태계 \u003c30ms 데이터베이스 관리 읽기 복제 Pinecone 서버리스, 관리형 \u003c15ms 클라우드 자동 확장 Milvus 10억 규모 \u003c20ms 분산형 샤딩 성능 튜닝 체크리스트 # 1. 고처리량 앱을 위한 비동기 메모리 활성화 from mem0 import MemoryClient import asyncio client = MemoryClient() async def batch_store(messages_list): tasks = [client.add_async(msgs, user_id=f\"user_{i}\") for i, msgs in enumerate(messages_list)] return await asyncio.gather(*tasks) # 2. 검색 범위를 제한하기 위한 메타데이터 필터링 사용 results = client.search( \"project updates\", filters={ \"user_id\": \"alice\", \"metadata.category\": \"work\" }, limit=10 ) # 3. top_k으로 검색 깊이 조정 results = client.search( \"dietary preferences\", user_id=\"alice\", top_k=5, # 속도를 위해 줄이고, 범위를 위해 늘리기 rerank=True ) 사용자 정의 지침이 있는 메모리 # 어떤 사실을 추출하고 저장할지 안내 m = Memory.from_config({ \"custom_instructions\": \"\"\" 추출하고 저장할 항목: - 사용자의 이름, 직업, 위치 - 기술적 선호도(언어, 프레임워크, 도구) - 식이 제한과 알레르기 - 커뮤니케이션 선호도 저장하지 않을 항목: - 임시 기분이나 감정 상태 - 일회성 요청 - 동의 없는 타인 정보 \"\"\" }) LangChain, CrewAI 및 OpenAI와의 통합 LangChain 통합 pip install langchain langchain-openai mem0ai # langchain_mem0_agent.py import os from typing import List, Dict from langchain_openai import ChatOpenAI from langchain_core.messages import SystemMessage, HumanMessage, AIMessage from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder from mem0 import MemoryClient # 초기화 llm = ChatOpenAI(model=\"gpt-4o-mini\") mem0 = MemoryClient(api_key=os.getenv(\"MEM0_API_KEY\")) # 메모리 주입이 있는 프롬프트 템플릿 prompt = ChatPromptTemplate.from_messages([ (\"system\", \"\"\"장기 기억을 가진 유용한 어시스턴트입니다. 사용자에 대한 관련 과거 컨텍스트: {memories} 이 컨텍스트를 사용하여 응답을 개인화하세요.\"\"\"), MessagesPlaceholder(variable_name=\"history\"), (\"human\", \"{input}\") ]) def get_memories(user_id: str, query: str) -\u003e str: \"\"\"관련 메모리를 포맷된 문자열로 검색합니다.\"\"\" results = mem0.search(query, user_id=user_id, limit=5) return \"\\n\".join([r[\"memory\"] for r in results]) def chat(user_id: str, message: str, history: List = None): \"\"\"메모리 강화 컨텍스트로 채팅합니다.\"\"\" if history is None: history = [] memories = get_memories(user_id, message) formatted_prompt = prompt.format_messages( memories=memories, history=history, input=message ) response = llm.invoke(formatted_prompt) # 상호작용 저장 messages = [ {\"role\": \"user\", \"content\": message}, {\"role\": \"assistant\", \"content\": response.content} ] mem0.add(messages, user_id=user_id) return response.content # 대화 실행 user_id = \"traveler_42\" response1 = chat(user_id, \"I'm planning a trip to Tokyo next month.\") print(response1) # 이후 세션 — 에이전트가 기억함 response2 = chat(user_id, \"What should I pack for my trip?\") # 출력은 도쿄, 계절, 여행자의 선호도를 참조합니다 CrewAI 통합 pip install crewai mem0ai # crewai_mem0_crew.py import os from crewai import Agent, Task, Crew from crewai_tools import tool from mem0 import MemoryClient mem0 = MemoryClient(api_key=os.getenv(\"MEM0_API_KEY\")) @tool def retrieve_user_context(user_id: str, query: str) -\u003e str: \"\"\"개인화를 위한 사용자에 대한 메모리를 검색합니다.\"\"\" results = mem0.search(query, user_id=user_id, limit=5) return \"\\n\".join([f\"- {r[memory]}\" for r in results]) @tool def store_interaction(user_id: str, content: str) -\u003e str: \"\"\"에이전트 상호작용에서 배운 사실을 저장합니다.\"\"\" messages = [{\"role\": \"assistant\", \"content\": content}] mem0.add(messages, user_id=user_id) return \"Stored.\" # 메모리 도구로 에이전트 정의 researcher = Agent( role=\"Personal Researcher\", goal=\"Provide personalized research based on user history\", backstory=\"You remember user preferences and tailor research accordingly.\", tools=[retrieve_user_context, store_interaction], verbose=True, memory=True ) # 메모리를 사용하는 작업 task = Task( description=\"\"\"Research travel options for user . First retrieve their preferences, then provide personalized recommendations. Query: travel preferences\"\"\", expected_output=\"Personalized travel recommendations\", agent=researcher ) crew = Crew(agents=[researcher], tasks=[task]) result = crew.kickoff(inputs={\"user_id\": \"user123\"}) print(result) OpenAI Agents SDK 통합 pip install openai-agents mem0ai # openai_agents_mem0.py import os from dataclasses import dataclass from agents import Agent, Runner, function_tool from mem0 import MemoryClient mem0 = MemoryClient(api_key=os.getenv(\"MEM0_API_KEY\")) @dataclass class UserContext: user_id: str @function_tool def add_to_memory(ctx, messages: str) -\u003e str: \"\"\"사용자에 대한 사실을 저장합니다.\"\"\" parsed = [{\"role\": \"user\", \"content\": m} for m in messages.split(\"\\n\")] mem0.add(parsed, user_id=ctx.context.user_id) return \"Memory stored.\" @function_tool def search_memory(ctx, query: str) -\u003e str: \"\"\"관련 메모리를 검색합니다.\"\"\" results = mem0.search(query, user_id=ctx.context.user_id, limit=5) return \"\\n\".join([r[\"memory\"] for r in results]) memory_agent = Agent( name=\"MemoryAgent\", instructions=\"You are a helpful assistant that remembers user preferences.\", tools=[add_to_memory, search_memory], model=\"gpt-4o-mini\" ) async def run_agent(): context = UserContext(user_id=\"user_42\") result = await Runner.run( memory_agent, \"I'm a vegetarian who loves Italian food.\", context=context ) print(result.final_output) # asyncio.run(run_agent()) Docker Compose 프로덕션 스택 # mem0-production-stack.yml version: \"3.8\" services: qdrant: image: qdrant/qdrant:latest ports: - \"6333:6333\" - \"6334:6334\" volumes: - qdrant_storage:/qdrant/storage environment: - QDRANT__SERVICE__GRPC_PORT=6334 mem0-server: image: mem0/mem0-server:latest ports: - \"8000:8000\" environment: - MEM0_API_KEY=${MEM0_API_KEY} - VECTOR_STORE_PROVIDER=qdrant - VECTOR_STORE_URL=http://qdrant:6333 - LLM_PROVIDER=openai - OPENAI_API_KEY=${OPENAI_API_KEY} - EMBEDDER_PROVIDER=openai - OPENAI_EMBEDDING_MODEL=text-embedding-3-small depends_on: - qdrant mem0-dashboard: image: mem0/mem0-dashboard:latest ports: - \"3000:3000\" environment: - MEM0_API_URL=http://mem0-server:8000 - MEM0_API_KEY=${MEM0_API_KEY} volumes: qdrant_storage: ````` ## 벤치마크 / 실제 사용 사례 ### LoCoMo 및 LongMemEval 결과 Mem0의 새로운 토큰 효율 알고리즘(2026년 4월 릴리스)은 더 낮은 토큰 비용으로 상당한 정확도 향상을 제공합니다: | 벤치마크 | 지표 | 이전 알고리즘 | 새 알고리즘 (2026년 4월) | 개선 | |----------|------|--------------|------------------------|------| | LoCoMo | 전체 정확도 | 66.9% | **92.5%** | +25.6 포인트 | | LoCoMo | 평균 토큰/쿼리 | ~26,000 | **6,956** | 3.7배 감소 | | LongMemEval | 전체 정확도 | 65.3% | **94.4%** | +29.1 포인트 | | LongMemEval | 평균 토큰/쿼리 | ~25,000 | **6,787** | 3.7배 감소 | | BEAM (1M) | 정확도 | 42.5% | **64.1%** | +21.6 포인트 | | BEAM (10M) | 정확도 | 30.2% | **48.6%** | +18.4 포인트 | ### 카테고리별 세부 분석 (LoCoMo) | 카테고리 | 이전 점수 | 새 점수 | 변화 | |----------|----------|---------|------| | 단일 홉 | 76.6% | 94.6% | +18.0 | | 멀티 홉 | 70.2% | 95.4% | +25.2 | | 오픈 도메인 | 57.3% | 82.3% | +25.0 | | 시간적 | 63.2% | 92.5% | +29.3 | ### 프로덕션 사용 사례 **사례 연구: 고객 지원 에이전트** - 회사: 50K+ 사용자의 SaaS 플랫폼 - 설정: Mem0 OSS + Qdrant + GPT-4o-mini - 결과: 반복 질문 40% 감소, 해결 속도 25% 향상 - 저장된 메모리: 180K 대화에서 2.3M 사실 **사례 연구: AI 코딩 어시스턴트** - 설정: Claude Code용 Mem0 플러그인 - 결과: 에이전트가 코딩 선호도(탭 대 공백, 선호 라이브러리), 프로젝트 구조 컨텍스트를 기억 - 핵심 기능: 재인덱싱 없이 세션 간 파일 컨텍스트 **사례 연구: 헬스케어 예약 봇** - 설정: Mem0 Enterprise (HIPAA 준수) - 결과: 지속적인 환자 선호도, 예약 기록, 보험 검증 상태 - 규정 준수: SOC 2 Type I + HIPAA BAA ## 고급 사용법 / 프로덕션 강화 ### 보안 구성 `````python # 메타데이터를 사용한 메모리 액세스 제어 def store_sensitive_memory(user_id: str, fact: str, classification: str): \"\"\"보안 분류가 있는 메모리를 저장합니다.\"\"\" messages = [{\"role\": \"user\", \"content\": fact}] mem0.add( messages, user_id=user_id, metadata={ \"classification\": classification, # \"public\", \"internal\", \"confidential\" \"encrypted\": True, \"retention_days\": 90 } ) # 분류 필터가 있는 검색 results = client.search( \"project preferences\", filters={ \"user_id\": \"alice\", \"metadata.classification\": [\"public\", \"internal\"] } ) 멀티 테넌트 격리 # SaaS 애플리케이션을 위한 조직 범위 메모리 def add_org_scoped_memory(org_id: str, user_id: str, messages: list): \"\"\"조직과 사용자 모두에 범위가 지정된 메모리를 저장합니다.\"\"\" client.add( messages, user_id=f\"{org_id}:{user_id}\", metadata={\"org_id\": org_id, \"isolation\": \"org-scoped\"} ) # 조직의 모든 사용자에 대한 관리자 쿼리 results = client.get_all( filters={\"metadata.org_id\": \"org_123\"}, limit=100 ) 메모리 모니터링 및 관찰 가능성 # 메모리 메트릭 추적 import time def timed_search(user_id: str, query: str): \"\"\"지연 시간 로깅이 있는 검색.\"\"\" start = time.time() results = client.search(query, user_id=user_id) latency = (time.time() - start) * 1000 print(f\"검색 지연 시간: {latency:.1f}ms | 결과: {len(results)}\") # 모니터링 시스템에 로그 # prometheus_histogram.observe(latency) return results # 주기적인 메모리 상태 확인 def memory_health_check(user_id: str): \"\"\"사용자에 대한 메모리 무결성을 확인합니다.\"\"\" all_memories = client.get_all(filters={\"user_id\": user_id}) return { \"total_memories\": len(all_memories), \"oldest_memory\": min(m[\"created_at\"] for m in all_memories) if all_memories else None, \"categories\": len(set(m.get(\"metadata\", {}).get(\"category\", \"\") for m in all_memories)), \"avg_score\": sum(m.get(\"score\", 0) for m in all_memories) / len(all_memories) if all_memories else 0 } 속도 제한 및 비용 제어 # 클라이언트 측 속도 제한 구현 from functools import wraps import time class Mem0RateLimiter: \"\"\"Mem0 API 호출을 위한 간단한 속도 제한기.\"\"\" def __init__(self, max_calls_per_minute=100): self.max_calls = max_calls_per_minute self.calls = [] def can_call(self) -\u003e bool: now = time.time() self.calls = [c for c in self.calls if now - c \u003c 60] return len(self.calls) \u003c self.max_calls def record_call(self): self.calls.append(time.time()) limiter = Mem0RateLimiter(max_calls_per_minute=60) def rate_limited_add(messages, user_id): if not limiter.can_call(): # 나중을 위해 대기열에 넣거나 중요하지 않은 메모리 건跳过 print(\"속도 제한 도달, 메모리 대기열에 추가\") return {\"status\": \"queued\"} limiter.record_call() return client.add(messages, user_id=user_id) 대안과의 비교 기능 Mem0 LangChain Memory LlamaIndex Memory Chroma (원시) 아키텍처 하이브리드 벡터+그래프+KV 키-값+벡터 벡터+인덱스 순수 벡터 DB GitHub Stars 56,205 100K+ (LangChain) 41,000 18,500 LOCOMO 점수 92.5% (새 알고리즘) 58.10% 62.47% N/A (저장소만) LongMemEval 점수 94.4% 49.0% 52.9% N/A 그래프 메모리 Pro 티어 ($249/월) 없음 부분 없음 관리 서비스 예 (app.mem0.ai) 아니요 아니요 아니요 셀프 호스팅 Docker, 전체 스택 라이브러리만 라이브러리만 Docker SOC 2 / HIPAA 예 (Enterprise) 아니요 아니요 아니요 벡터 백엔드 19개 지원 10+ 15+ 자첸만 멀티 에이전트 공유 예 (OSS) 제한적 아니요 수동 입문 가격 물뇌 (10K 메모리) 물뇌 (OSS) 물뇌 (OSS) 물뇌 (OSS) 시간 추론 우수 (82.3% 오픈 도메인) 제한적 기본 없음 LLM 추출 자동 사실 추출 수동/요약 수동 없음 통합 범위 20+ 프레임워크 LangChain 네이티브 LlamaIndex 네이티브 모든 선택 가이드 Mem0 선택: 자동 사실 추출, 광범위한 프레임워크 지원, 프로덕션급 규정 준수가 있는 관리형 메모리 서비스가 필요할 때 LangChain Memory 선택: LangGraph 전용이고 제로 추가 인프라와 절차적 메모리 지원이 필요할 때 LlamaIndex Memory 선택: 주요 요구사항이 대화 지속성이 아닌 문서 중심 RAG에 메모리 증강을 원할 때 Chroma 선택: 벡터 데이터베이스만 필요하고 모든 메모리 로직을 직접 구축할 계획일 때 한계 / 정직한 평가 Mem0은 모든 사용 사례에 적합한 도구는 아닙니다. 잘 수행되지 않는 영역은 다음과 같습니다: 1. 시간 추론 격차: LongMemEval 시간 하위 작업에서 Mem0은 49-82%를 기록합니다. Zep과 Graphiti는 명시적 시간 앵커 그래프 저장으로 63.8-71.2%를 달성합니다. 에이전트가 이벤트 시퀀스(“X 전에 무슨 일이 있었습니까?\")에 대해 추론해야 하는 경우 Mem0이 부족할 수 있습니다.\n2. 그래프 메모리 가격: 그래프 기능은 월 $249의 Pro 티어로 잠겨 있습니다. $19/월의 Starter 티어는 벡터 유사성 검색만 제공합니다. 예산 내에서 관계 인식 메모리가 필요한 팀을 위해 Zep($25/월) 또는 Cognee(묾 호스팅)와 같은 대안이 더 낮은 가격에 그래프를 제공합니다.\n3. 손실성 추출: Mem0은 대화에서 구조화된 사실을 추출하므로 일부 뉘앙스가 손실됩니다 — 말하는 사람 귀속, 정확한 타임스탬프, 중간 추론 단계가 폐기될 수 있습니다. 문자 그대로의 대화 회상의 경우, 저장된 메시지에 대한 원시 RAG가 Mem0보다 우수합니다(문자 그대로 회상 벤치마크에서 61.4% 대 86%+).\n4. 완전한 에이전트 프레임워크가 아님: Mem0은 메모리 레이어이지 에이전트 오케스트레이션 프레임워크가 아닙니다. 도구 호출, 계획 및 멀티 스텝 추론에는 여전히 LangChain, CrewAI 또는 OpenAI Agents SDK가 필요합니다.\n5. 셀프 호스팅 복잡성: Docker 설정은 간단하지만 프로덕션 셀프 호스팅에는 벡터 스토어(Qdrant/Chroma), LLM API 키, 임베딩 파이프라인 및 모니터링을 관리해야 합니다. 관리형 플랫폼은 이 부담을 제거하지만 데이터 레지던시 문제가 발생합니다.\n자주 묻는 질문 Q: Mem0 Platform과 Mem0 Open Source의 차이점은 무엇입니까?\nA: Mem0 Platform(app.mem0.ai)은 자동 확장, 대시보드 분석 및 SOC 2 준수를 갖춘 관리형 클라우드 서비스입니다. Mem0 Open Source는 데이터와 인프라를 완전히 제어할 수 있는 셀프 호스팅 버전입니다. OSS 버전은 동일한 핵심 메모리 엔진을 갖지만 벡터 스토어, LLM 제공자 및 확장성을 직접 관리해야 합니다.\nQ: 프로덕션에서 mem0과 langchain memory를 어떻게 비교합니까?\nA: LangChain Memory(LangMem)는 물뇌이고 LangGraph와 기본 통합되지만 관리 서비스, 자동 사실 추출 및 엔터프라이즈 규정 준수 인증이 없습니다. Mem0은 모든 프레임워크에서 작동하는 독립형 API를 제공하며 자동 메모리 추출 및 엔터프라이즈 플랜에서 SOC 2/HIPAA 준수를 제공합니다. LangGraph를 전용으로 사용하지 않는 경우 Mem0이 더 유연한 선택입니다.\nQ: 외부 API에 데이터를 전송하지 않고 Mem0을 사용할 수 있습니까?\nA: 예. Mem0 Open Source는 Ollama를 LLM 추론 및 Chroma나 Qdrant와 같은 로컬 벡터 스토어로 완전히 로컬 배포를 지원합니다. LLM 제공자를 로컬 모델(예: llama3)이 있는 “ollama\"로 구성하고 임베더를 로컬 sentence-transformers 모델로 구성합니다. 데이터가 네트워크를 떠나지 않습니다.\nQ: 프로덕션에 어떤 벡터 스토어를 사용해야 합니까?\nA: Qdrant는 하이브리드 검색 기능(밀집+희소 벡터), 수평 확장 지원 및 10ms 이하 쿼리 지연 시간으로 프로덕션 배포에 권장됩니다. PostgreSQL을 이미 실행 중인 경우 PGVector가 이상적입니다. Pinecone은 운영 오버헤드 없이 자동 확장이 필요한 서버리스 배포에 적합합니다.\nQ: LangChain Memory에서 Mem0으로 마이그레이션하려면 어떻게 합니까?\nA: 마이그레이션은 점진적입니다. 기존 LangChain 메모리와 함께 Mem0을 초기화합니다. 두 시스템에 새 대화를 저장합니다. Mem0의 search() API를 사용하여 메모리를 검색하고 memories 변수를 통해 LangChain 프롬프트에 주입합니다. 신뢰도가 높아지면 메모리 소스를 Mem0으로 전환합니다. Mem0 문서에서 마이그레이션 가이드를 제공합니다.\nQ: 대규모에서 Mem0의 가격은 얼마입니까?\nA: Hobby 티어는 월 10K 메모리 및 1K 검색이 물뇌입니다. Starter는 월 $19에 50K 메모리 및 5K 검색을 제공합니다. Pro는 월 $249에 무제한 메모리, 그래프 메모리 및 분석을 제공합니다. Enterprise는 맞춤형 가격으로 온프레미스 배포, SSO 및 SLA 보장을 제공합니다. 그래프 기능이 필요한 팀의 주요 가격 우려는 Starter에서 Pro로의 전환입니다.\nQ: Mem0은 멀티모달 메모리(이미지, 오디오)를 지원합니까?\nA: 예, Mem0 Open Source는 이미지와 오디오 파일을 포함한 멀티모달 입력을 지원합니다. 멀티모달 기능은 텍스트가 아닌 콘텐츠에서 의미 정보를 추출하고 검색 가능한 메모리 항목으로 저장합니다. 이에는 GPT-4o 또는 Claude 3.5 Sonnet과 같은 멀티모달 LLM이 필요합니다.\n결론 Mem0은 AI 에이전트 개발에서 가장 지속적인 문제 중 하나를 해결합니다: 세션 간 메모리입니다. 56,205개의 GitHub Stars, 19개의 벡터 스토어 백엔드, 그리고 전체 컨텍스트 기선 대비 토큰 비용이 3.7배 낮은 LoCoMo에서 92.5%를 달성하는 새로운 토큰 효율 알고리즘을 갖춘 Mem0은 프로덕션에서 가장 널리 채택된 오픈소스 메모리 레이어입니다. 물뇌 티어는 프로토타이핑을 위해 10K 메모리를 처리하고, 셀프 호스팅 Docker 스택은 엔터프라이즈 배포를 위한 완전한 데이터 제어를 제공합니다.\n액션 아이템:\nmem0ai/mem0 리포지토리를 클론하고 ````pip install mem0ai```로 퀵스타트 실행 app.mem0.ai에서 물뇌 API 키 등록 LangChain 또는 CrewAI 에이전트 프롬프트에 Mem0 검색 통합 자체 대화 데이터셋에서 현재 메모리 솔루션을 Mem0 검색과 벤치마크 비교 커뮤니티 가입: t.me/dibi8community — Mem0 배포 경험을 공유하고 메모리 기반 에이전트를 구축하는 다른 개발자들로부터 도움을 받으세요.\n이 기사의 일부 링크는 제휴 링크입니다. 이 링크를 통해 구매하면 추가 비용 없이 커미션을 받을 수 있습니다. 이는 dibi8.com을 유지하고 오픈소스 연구를 자금하는 데 도움이 됩니다.\n추천 호스팅 및 인프라 위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - DigitalOcean — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.\nHTStack — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC. 제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.\n출처 및 추가 자료 Mem0 공식 문서: https://docs.mem0.ai/introduction Mem0 GitHub 리포지토리: https://github.com/mem0ai/mem0 Mem0 연구 — 벤치마킹: https://mem0.ai/research LangChain 통합 가이드: https://docs.mem0.ai/integrations/langchain CrewAI 통합: https://docs.mem0.ai/integrations/crewai OpenAI Agents SDK 통합: https://docs.mem0.ai/integrations/openai-agents-sdk Mem0 플랫폼 가격: https://mem0.ai/pricing LoCoMo 벤치마크 논문: https://arxiv.org/abs/2402.03771 LongMemEval 벤치마크: https://github.com/memory-benchmark/LongMemEval PRISM 논문(파레토 효율 검색): https://arxiv.org/html/2605.12260v1 AWS Agent SDK + Mem0 발표: https://aws.amazon.com/blogs/machine-learning Atlan — 2026년 최고의 AI 에이전트 메모리 프레임워크: https://atlan.com/know/best-ai-agent-memory-frameworks-2026/ Evermind — Mem0 대안 2026: https://evermind.ai/blogs/mem0-alternative { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Mem0: 56K+ Stars — AI 에이전트 메모리 성능 튜닝 가이드 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/mem0\" } } Related Articles ai-agent-frameworks-comparison-2026 flowise-ai-workflow-builder-lowcode llamaindex-vs-langchain docker-genai-stack-local-development langchain-complete-guide Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
-  "wordCount" : "3040",
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“mem0”, “ai-agent-memory”, “persistent-memory”, “langchain”, “vector-store”, “memory-tuning”, “mem0-tutorial”, “mem0-vs-langchain”, “crewai”, “open-source”] aliases:\n/posts/mem0/- Introduction Every AI agent developer hits the same wall: the agent forgets. A user tells your chatbot they are vegetarian and allergic to nuts in one session, and two hours later the agent recommends a peanut curry. This is not a prompt engineering problem — it is a memory architecture problem. State-free LLMs have no built-in mechanism to persist facts across sessions. Mem0 (mem0ai/mem0) fixes this with a drop-in memory layer that 56,205+ GitHub stars and 90,000+ developers have adopted. This guide covers the complete mem0 setup from installation to production tuning, with real benchmarks, vector store configuration, and integration code for LangChain, CrewAI, and OpenAI agents.\nWhat Is Mem0? Mem0 is an open-source universal memory layer for LLM applications and AI agents. It extracts, stores, and retrieves user-specific facts across conversations using a hybrid architecture that combines vector similarity search with structured memory extraction. The system automatically distills raw chat messages into semantic facts (“User is a vegetarian”), deduplicates them, and surfaces the most relevant memories at inference time — all through a REST API or Python/TypeScript SDK.\nHow Mem0 Works Mem0’s architecture separates memory into four operational layers: 1. Extraction Layer: An LLM (configurable, default GPT-4o-mini) processes incoming messages and extracts structured facts. The April 2026 token-efficient algorithm uses single-pass hierarchical extraction that reduces token usage by 3-4x compared to full-context baselines.\n2. Embedding Layer: Extracted facts are vectorized using an embedding model (default: text-embedding-3-small) and stored in a vector database. Mem0 supports 19 vector store backends including Qdrant, Chroma, PGVector, Pinecone, Weaviate, Milvus, and Azure AI Search.\n3. Retrieval Layer: At query time, Mem0 performs hybrid retrieval combining vector similarity with metadata filtering, reranking, and multi-signal scoring. The multi-signal retrieval considers recency, relevance, and importance to surface the best memories.\n4. Graph Layer (Pro tier): Beyond flat vector storage, Mem0 Pro builds a knowledge graph that understands entity relationships — enabling multi-hop reasoning (“Who does James work with?” requires connecting “James works at TechCorp” + “Sarah works at TechCorp”).\n┌──────────────────────────────────────────────────────┐ │ User Message │ └──────────────────────┬───────────────────────────────┘ │ ┌────────────▼────────────┐ │ Extraction (LLM) │ ← Extract facts └────────────┬────────────┘ │ ┌────────────▼────────────┐ │ Embedding Model │ ← Vectorize └────────────┬────────────┘ │ ┌────────────▼────────────┐ │ Vector Store │ ← Qdrant/Chroma/PGVector └────────────┬────────────┘ │ ┌────────────▼────────────┐ │ Hybrid Retrieval │ ← Search + Rerank └────────────┬────────────┘ │ ┌────────────▼────────────┐ │ Injected into Prompt │ ← Context enrichment └─────────────────────────┘ Installation \u0026 Setup Cloud Setup (Fastest Path) # Install the Python client pip install mem0ai # Set your API key from https://app.mem0.ai export MEM0_API_KEY=\"m0-your-key-here\" # mem0_quickstart.py import os from mem0 import MemoryClient client = MemoryClient(api_key=os.getenv(\"MEM0_API_KEY\")) # Store a memory from a conversation messages = [ {\"role\": \"user\", \"content\": \"I'm a vegetarian and allergic to nuts.\"}, {\"role\": \"assistant\", \"content\": \"Got it! I'll remember your dietary preferences.\"}, ] client.add(messages, user_id=\"user123\") # Retrieve relevant memories results = client.search( \"What are my dietary restrictions?\", user_id=\"user123\" ) print(results) Self-Hosted Setup (Docker) For teams that need data residency or air-gapped deployments: `````bash\nClone the repository git clone https://github.com/mem0ai/mem0.git cd mem0\nBootstrap with Docker make bootstrap\nCreates admin user, generates API key, starts server + dashboard `````yaml # docker-compose.yml for production docker run -d \\ -p 8000:8000 \\ -e MEM0_API_KEY=your-admin-key \\ -e VECTOR_STORE_PROVIDER=qdrant \\ -e VECTOR_STORE_URL=http://qdrant:6333 \\ -e LLM_PROVIDER=openai \\ -e OPENAI_API_KEY=$OPENAI_API_KEY \\ mem0/mem0-server:latest Open Source SDK (Local) pip install mem0ai openai chromadb from mem0 import Memory # Initialize with custom vector store m = Memory() # Add a conversation messages = [ {\"role\": \"user\", \"content\": \"I'm planning to watch a movie tonight.\"}, {\"role\": \"assistant\", \"content\": \"How about thrillers?\"}, {\"role\": \"user\", \"content\": \"I love sci-fi but hate horror.\"}, ] m.add(messages, user_id=\"alice\", metadata={\"category\": \"movies\"}) # Search with metadata filtering results = m.search(\"movie recommendations\", filters={\"user_id\": \"alice\"}) Memory Configuration \u0026 Performance Tuning Custom Configuration with YAML The mem0config.yaml file controls every component of the memory pipeline: `````yaml\nmem0config.yaml — Production tuning config llm: provider: openai config: model: “gpt-4o-mini” temperature: 0.1 max_tokens: 2000\nembedder: provider: openai config: model: “text-embedding-3-small” embedding_dims: 1536\nvector_store: provider: qdrant config: host: “localhost” port: 6333 collection_name: “mem0” on_disk: true # Enable persistent storage\nreranker: provider: cohere config: model: “rerank-multilingual-v3.0”\ncustom_instructions: | Extract user preferences, personal facts, and context. Focus on dietary restrictions, allergies, and technical preferences. Ignore temporary states and one-time requests.\n`````python from mem0 import Memory # Load custom configuration config_path = \"mem0config.yaml\" m = Memory.from_config(config_path) Vector Store Backend Comparison | Backend | Best For | Latency | Persistence | Scaling | |\n|\n|\n|\n|\n| | Qdrant | Production, hybrid search | \u003c10ms | On-disk | Horizontal | | Chroma | Local dev, prototyping | \u003c20ms | File-based | Single node | | PGVector | Postgres ecosystems | \u003c30ms | Database-managed | Read replicas | | Pinecone | Serverless, managed | \u003c15ms | Cloud | Auto-scaling | | Milvus | Billion-scale | \u003c20ms | Distributed | Sharding |\nPerformance Tuning Checklist # 1. Enable async memory for high-throughput apps from mem0 import MemoryClient import asyncio client = MemoryClient() async def batch_store(messages_list): tasks = [client.add_async(msgs, user_id=f\"user_{i}\") for i, msgs in enumerate(messages_list)] return await asyncio.gather(*tasks) # 2. Use metadata filtering to scope searches results = client.search( \"project updates\", filters={ \"user_id\": \"alice\", \"metadata.category\": \"work\" }, limit=10 ) # 3. Adjust retrieval depth with top_k results = client.search( \"dietary preferences\", user_id=\"alice\", top_k=5, # Reduce for speed, increase for coverage rerank=True ) Memory with Custom Instructions # Guide what facts get extracted and stored m = Memory.from_config({ \"custom_instructions\": \"\"\" Extract and store: - User's name, profession, location - Technical preferences (languages, frameworks, tools) - Dietary restrictions and allergies - Communication preferences Do NOT store: - Temporary mood or emotional states - One-time requests - Third-party information without consent \"\"\" }) Integration with LangChain, CrewAI, and OpenAI LangChain Integration pip install langchain langchain-openai mem0ai # langchain_mem0_agent.py import os from typing import List, Dict from langchain_openai import ChatOpenAI from langchain_core.messages import SystemMessage, HumanMessage, AIMessage from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder from mem0 import MemoryClient # Initialize llm = ChatOpenAI(model=\"gpt-4o-mini\") mem0 = MemoryClient(api_key=os.getenv(\"MEM0_API_KEY\")) # Prompt template with memory injection prompt = ChatPromptTemplate.from_messages([ (\"system\", \"\"\"You are a helpful assistant with long-term memory. Relevant past context about the user: {memories} Use this context to personalize your responses.\"\"\"), MessagesPlaceholder(variable_name=\"history\"), (\"human\", \"{input}\") ]) def get_memories(user_id: str, query: str) -\u003e str: \"\"\"Retrieve relevant memories as formatted string.\"\"\" results = mem0.search(query, user_id=user_id, limit=5) return \"\\n\".join([r[\"memory\"] for r in results]) def chat(user_id: str, message: str, history: List = None): \"\"\"Chat with memory-augmented context.\"\"\" if history is None: history = [] memories = get_memories(user_id, message) formatted_prompt = prompt.format_messages( memories=memories, history=history, input=message ) response = llm.invoke(formatted_prompt) # Store the interaction messages = [ {\"role\": \"user\", \"content\": message}, {\"role\": \"assistant\", \"content\": response.content} ] mem0.add(messages, user_id=user_id) return response.content # Run a conversation user_id = \"traveler_42\" response1 = chat(user_id, \"I'm planning a trip to Tokyo next month.\") print(response1) # Later session — agent remembers response2 = chat(user_id, \"What should I pack for my trip?\") # Output references Tokyo, time of year, traveler's preferences CrewAI Integration pip install crewai mem0ai # crewai_mem0_crew.py import os from crewai import Agent, Task, Crew from crewai_tools import tool from mem0 import MemoryClient mem0 = MemoryClient(api_key=os.getenv(\"MEM0_API_KEY\")) @tool def retrieve_user_context(user_id: str, query: str) -\u003e str: \"\"\"Retrieve memories about the user for personalization.\"\"\" results = mem0.search(query, user_id=user_id, limit=5) return \"\\n\".join([f\"- {r[memory]}\" for r in results]) @tool def store_interaction(user_id: str, content: str) -\u003e str: \"\"\"Store facts learned during agent interaction.\"\"\" messages = [{\"role\": \"assistant\", \"content\": content}] mem0.add(messages, user_id=user_id) return \"Stored.\" # Define agents with memory tools researcher = Agent( role=\"Personal Researcher\", goal=\"Provide personalized research based on user history\", backstory=\"You remember user preferences and tailor research accordingly.\", tools=[retrieve_user_context, store_interaction], verbose=True, memory=True ) # Task that uses memory task = Task( description=\"\"\"Research travel options for user . First retrieve their preferences, then provide personalized recommendations. Query: travel preferences\"\"\", expected_output=\"Personalized travel recommendations\", agent=researcher ) crew = Crew(agents=[researcher], tasks=[task]) result = crew.kickoff(inputs={\"user_id\": \"user123\"}) print(result) OpenAI Agents SDK Integration pip install openai-agents mem0ai # openai_agents_mem0.py import os from dataclasses import dataclass from agents import Agent, Runner, function_tool from mem0 import MemoryClient mem0 = MemoryClient(api_key=os.getenv(\"MEM0_API_KEY\")) @dataclass class UserContext: user_id: str @function_tool def add_to_memory(ctx, messages: str) -\u003e str: \"\"\"Store facts about the user.\"\"\" parsed = [{\"role\": \"user\", \"content\": m} for m in messages.split(\"\\n\")] mem0.add(parsed, user_id=ctx.context.user_id) return \"Memory stored.\" @function_tool def search_memory(ctx, query: str) -\u003e str: \"\"\"Search for relevant memories.\"\"\" results = mem0.search(query, user_id=ctx.context.user_id, limit=5) return \"\\n\".join([r[\"memory\"] for r in results]) memory_agent = Agent( name=\"MemoryAgent\", instructions=\"You are a helpful assistant that remembers user preferences.\", tools=[add_to_memory, search_memory], model=\"gpt-4o-mini\" ) async def run_agent(): context = UserContext(user_id=\"user_42\") result = await Runner.run( memory_agent, \"I'm a vegetarian who loves Italian food.\", context=context ) print(result.final_output) # asyncio.run(run_agent()) Docker Compose Production Stack # mem0-production-stack.yml version: \"3.8\" services: qdrant: image: qdrant/qdrant:latest ports: - \"6333:6333\" - \"6334:6334\" volumes: - qdrant_storage:/qdrant/storage environment: - QDRANT__SERVICE__GRPC_PORT=6334 mem0-server: image: mem0/mem0-server:latest ports: - \"8000:8000\" environment: - MEM0_API_KEY=${MEM0_API_KEY} - VECTOR_STORE_PROVIDER=qdrant - VECTOR_STORE_URL=http://qdrant:6333 - LLM_PROVIDER=openai - OPENAI_API_KEY=${OPENAI_API_KEY} - EMBEDDER_PROVIDER=openai - OPENAI_EMBEDDING_MODEL=text-embedding-3-small depends_on: - qdrant mem0-dashboard: image: mem0/mem0-dashboard:latest ports: - \"3000:3000\" environment: - MEM0_API_URL=http://mem0-server:8000 - MEM0_API_KEY=${MEM0_API_KEY} volumes: qdrant_storage: ````` ## Benchmarks / Real-World Use Cases ### LoCoMo and LongMemEval Results Mem0's new token-efficient algorithm (released April 2026) delivers significant accuracy improvements at lower token cost: | Benchmark | Metric | Old Algorithm | New Algorithm (April 2026) | Improvement | | * * * | * * * | * * * | * * * | * * * | | LoCoMo | Overall Accuracy | 66.9% | **92.5%** | +25.6 points | | LoCoMo | Mean Tokens/Query | ~26,000 | **6,956** | 3.7x reduction | | LongMemEval | Overall Accuracy | 65.3% | **94.4%** | +29.1 points | | LongMemEval | Mean Tokens/Query | ~25,000 | **6,787** | 3.7x reduction | | BEAM (1M) | Accuracy | 42.5% | **64.1%** | +21.6 points | | BEAM (10M) | Accuracy | 30.2% | **48.6%** | +18.4 points | ### Per-Category Breakdown (LoCoMo) | Category | Old Score | New Score | Delta | | * * * | * * * | * * * | * * * | | Single-hop | 76.6% | 94.6% | +18.0 | | Multi-hop | 70.2% | 95.4% | +25.2 | | Open-domain | 57.3% | 82.3% | +25.0 | | Temporal | 63.2% | 92.5% | +29.3 | ### Production Use Cases **Case Study: Customer Support Agent** - Company: SaaS platform with 50K+ users - Setup: Mem0 OSS + Qdrant + GPT-4o-mini - Results: 40% reduction in repeat questions, 25% faster resolution - Memory stored: 2.3M facts across 180K conversations **Case Study: AI Coding Assistant** - Setup: Mem0 plugin for Claude Code - Results: Agent remembers coding preferences (tabs vs spaces, preferred libraries), project structure context - Key feature: Cross-session file context without re-indexing **Case Study: Healthcare Scheduling Bot** - Setup: Mem0 Enterprise (HIPAA compliant) - Results: Persistent patient preferences, appointment history, insurance verification status - Compliance: SOC 2 Type I + HIPAA BAA ## Advanced Usage / Production Hardening ### Security Configuration `````python # Memory access control with metadata def store_sensitive_memory(user_id: str, fact: str, classification: str): \"\"\"Store memory with security classification.\"\"\" messages = [{\"role\": \"user\", \"content\": fact}] mem0.add( messages, user_id=user_id, metadata={ \"classification\": classification, # \"public\", \"internal\", \"confidential\" \"encrypted\": True, \"retention_days\": 90 } ) # Search with classification filter results = client.search( \"project preferences\", filters={ \"user_id\": \"alice\", \"metadata.classification\": [\"public\", \"internal\"] } ) Multi-Tenant Isolation # Organization-scoped memory for SaaS applications def add_org_scoped_memory(org_id: str, user_id: str, messages: list): \"\"\"Store memory scoped to both organization and user.\"\"\" client.add( messages, user_id=f\"{org_id}:{user_id}\", metadata={\"org_id\": org_id, \"isolation\": \"org-scoped\"} ) # Admin query across all users in org results = client.get_all( filters={\"metadata.org_id\": \"org_123\"}, limit=100 ) Memory Monitoring and Observability # Track memory metrics import time def timed_search(user_id: str, query: str): \"\"\"Search with latency logging.\"\"\" start = time.time() results = client.search(query, user_id=user_id) latency = (time.time() - start) * 1000 print(f\"Search latency: {latency:.1f}ms | Results: {len(results)}\") # Log to your monitoring system # prometheus_histogram.observe(latency) return results # Periodic memory health check def memory_health_check(user_id: str): \"\"\"Verify memory integrity for a user.\"\"\" all_memories = client.get_all(filters={\"user_id\": user_id}) return { \"total_memories\": len(all_memories), \"oldest_memory\": min(m[\"created_at\"] for m in all_memories) if all_memories else None, \"categories\": len(set(m.get(\"metadata\", {}).get(\"category\", \"\") for m in all_memories)), \"avg_score\": sum(m.get(\"score\", 0) for m in all_memories) / len(all_memories) if all_memories else 0 } Rate Limiting and Cost Control # Implement client-side rate limiting from functools import wraps import time class Mem0RateLimiter: \"\"\"Simple rate limiter for Mem0 API calls.\"\"\" def __init__(self, max_calls_per_minute=100): self.max_calls = max_calls_per_minute self.calls = [] def can_call(self) -\u003e bool: now = time.time() self.calls = [c for c in self.calls if now - c \u003c 60] return len(self.calls) \u003c self.max_calls def record_call(self): self.calls.append(time.time()) limiter = Mem0RateLimiter(max_calls_per_minute=60) def rate_limited_add(messages, user_id): if not limiter.can_call(): # Queue for later or skip non-critical memories print(\"Rate limit hit, queuing memory\") return {\"status\": \"queued\"} limiter.record_call() return client.add(messages, user_id=user_id) Comparison with Alternatives | Feature | Mem0 | LangChain Memory | LlamaIndex Memory | Chroma (Raw) | |\n|\n|\n|\n|\n| | Architecture | Hybrid Vector + Graph + KV | Key-value + Vector | Vector + Index | Pure Vector DB | | GitHub Stars | 56,205 | 100K+ (LangChain) | 41,000 | 18,500 | | LOCOMO Score | 92.5% (new algo) | 58.10% | 62.47% | N/A (just storage) | | LongMemEval Score | 94.4% | 49.0% | 52.9% | N/A | | Graph Memory | Pro tier ($249/mo) | No | Partial | No | | Managed Service | Yes (app.mem0.ai) | No | No | No | | Self-Hosted | Docker, full stack | Library only | Library only | Docker | | SOC 2 / HIPAA | Yes (Enterprise) | No | No | No | | Vector Backends | 19 supported | 10+ | 15+ | Self only | | Multi-Agent Sharing | Yes (OSS) | Limited | No | Manual | | Pricing Entry | Free (10K memories) | Free (OSS) | Free (OSS) | Free (OSS) | | Temporal Reasoning | Good (82.3% open-domain) | Limited | Basic | No | | LLM Extraction | Automatic fact extraction | Manual/Summary | Manual | None | | Integration Scope | 20+ frameworks | LangChain-native | LlamaIndex-native | Any |\nWhen to Choose What Choose Mem0 when you want a managed memory service with automatic fact extraction, broad framework support, and production-grade compliance. Choose LangChain Memory when you are all-in on LangGraph and want zero additional infrastructure with procedural memory support. Choose LlamaIndex Memory when your primary need is document-centric RAG with memory augmentation, not conversational persistence. Choose Chroma when you only need a vector database and plan to build all memory logic yourself. Limitations / Honest Assessment Mem0 is not the right tool for every use case. Here is what it does not do well: 1. Temporal reasoning gap: On LongMemEval temporal sub-tasks, Mem0 scores 49-82% depending on the category. Zep with Graphiti hits 63.8-71.2% on temporal tasks due to explicit time-anchored graph storage. If your agent needs to reason about sequences of events (“what happened before X?”), Mem0 may fall short.\n2. Graph memory pricing: Graph features are locked behind the $249/month Pro tier. The Starter tier at $19/month only gets vector similarity search. For teams that need relationship-aware memory on a budget, alternatives like Zep ($25/month) or Cognee (free self-hosted) offer graph at lower price points.\n3. Lossy extraction: Mem0 extracts structured facts from conversations, which means some nuance is lost — speaker attribution, exact timestamps, and intermediate reasoning steps can be discarded. For verbatim conversation recall, raw RAG over stored messages outperforms Mem0 (61.4% vs 86%+ on verbatim recall benchmarks).\n4. Not a full agent framework: Mem0 is a memory layer, not an agent orchestration framework. You still need LangChain, CrewAI, or OpenAI Agents SDK for tool calling, planning, and multi-step reasoning.\n5. Self-hosted complexity: The Docker setup is straightforward, but production self-hosting requires managing the vector store (Qdrant/Chroma), LLM API keys, embedding pipelines, and monitoring. The managed platform removes this burden but introduces data residency concerns.\nFrequently Asked Questions Q: What is the difference between Mem0 Platform and Mem0 Open Source?\nA: Mem0 Platform (app.mem0.ai) is the managed cloud service with automatic scaling, dashboard analytics, and SOC 2 compliance. Mem0 Open Source is the self-hosted version that gives you full control over data and infrastructure. The OSS version has the same core memory engine but requires you to manage the vector store, LLM provider, and scaling yourself.\nQ: How does mem0 compare to langchain memory for production use?\nA: LangChain Memory (LangMem) is free and integrates natively with LangGraph, but lacks a managed service, automatic fact extraction, and enterprise compliance certifications. Mem0 provides a standalone API that works across any framework, with automatic memory extraction and SOC 2/HIPAA compliance on Enterprise plans. If you are not using LangGraph exclusively, Mem0 is the more flexible choice.\nQ: Can I use Mem0 without sending data to external APIs?\nA: Yes. Mem0 Open Source supports fully local deployments using Ollama for LLM inference and local vector stores like Chroma or Qdrant. Configure the LLM provider as “ollama” with a local model (e.g., llama3) and the embedder as a local sentence-transformers model. No data leaves your network.\nQ: What vector store should I use for production?\nA: Qdrant is the recommended choice for production deployments due to its hybrid search capabilities (dense + sparse vectors), horizontal scaling support, and sub-10ms query latency. PGVector is ideal if you already run PostgreSQL. Pinecone works well for serverless deployments that need auto-scaling without ops overhead.\nQ: How do I migrate from LangChain Memory to Mem0?\nA: The migration is incremental. Start by initializing Mem0 alongside your existing LangChain memory. Store new conversations in both systems. Use Mem0’s search() API to retrieve memories and inject them into your LangChain prompts via the memories variable. Once confidence is high, switch the memory source exclusively to Mem0. The Mem0 docs provide a migration guide at mem0.ai/migration.\nQ: What is the pricing for Mem0 at scale?\nA: The Hobby tier is free with 10K memories and 1K retrievals per month. Starter at $19/month gives 50K memories and 5K retrievals. Pro at $249/month adds unlimited memories, graph memory, and analytics. Enterprise plans are custom-priced with on-prem deployment, SSO, and SLA guarantees. The jump from Starter to Pro is the main pricing concern for teams that need graph features.\nQ: Does Mem0 support multi-modal memory (images, audio)?\nA: Yes, Mem0 Open Source supports multi-modal inputs including images and audio files. The multi-modal feature extracts semantic information from non-text content and stores it as retriably memory entries. This requires a multi-modal LLM like GPT-4o or Claude 3.5 Sonnet.\nConclusion Mem0 solves one of the most persistent problems in AI agent development: cross-session memory. With 56,205 GitHub stars, 19 vector store backends, and a new token-efficient algorithm that hits 92.5% on LoCoMo at 3.7x lower token cost than full-context baselines, it is the most adopted open-source memory layer in production. The free tier handles 10K memories for prototyping, and the self-hosted Docker stack gives full data control for enterprise deployments.\nAction items:\nClone the mem0ai/mem0 repo and run the quickstart with ````pip install mem0ai``` Sign up for a free API key at app.mem0.ai Integrate Mem0 search into your LangChain or CrewAI agent prompts Benchmark your current memory solution against Mem0’s retrieval on your own conversation dataset Join the community: t.me/dibi8community — share your Mem0 deployment experience and get help from other developers building memory-powered agents.\nSome links in this article are affiliate links. We may earn a commission if you purchase through these links, at no extra cost to you. This helps us maintain dibi8.com and fund open-source research.\nRecommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.\nSources \u0026 Further Reading Mem0 Official Documentation: https://docs.mem0.ai/introduction Mem0 GitHub Repository: https://github.com/mem0ai/mem0 Mem0 Research — Benchmarking: https://mem0.ai/research LangChain Integration Guide: https://docs.mem0.ai/integrations/langchain CrewAI Integration: https://docs.mem0.ai/integrations/crewai OpenAI Agents SDK Integration: https://docs.mem0.ai/integrations/openai-agents-sdk Mem0 Platform Pricing: https://mem0.ai/pricing LoCoMo Benchmark Paper: https://arxiv.org/abs/2402.03771 LongMemEval Benchmark: https://github.com/memory-benchmark/LongMemEval PRISM Paper (Pareto-Efficient Retrieval): https://arxiv.org/html/2605.12260v1 AWS Agent SDK + Mem0 Announcement: https://aws.amazon.com/blogs/machine-learning Atlan — Best AI Agent Memory Frameworks 2026: https://atlan.com/know/best-ai-agent-memory-frameworks-2026/ Evermind — Mem0 Alternatives 2026: https://evermind.ai/blogs/mem0-alternative { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Mem0: 56K+ Stars — AI Agent Memory Performance Tuning Guide 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/mem0\" } } Related Articles ai-agent-frameworks-comparison-2026 flowise-ai-workflow-builder-lowcode llamaindex-vs-langchain docker-genai-stack-local-development langchain-complete-guide Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "3521",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>15 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>17 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/mem0/">En</a>
@@ -209,83 +209,83 @@
 
     <div class="inner"><ul><ul>
             <li>
-                <a href="#%ec%86%8c%ea%b0%9c" aria-label="소개">소개</a></li>
+                <a href="#introduction" aria-label="Introduction">Introduction</a></li>
             <li>
-                <a href="#mem0%ec%9d%b4%eb%9e%80" aria-label="Mem0이란?">Mem0이란?</a></li>
+                <a href="#what-is-mem0" aria-label="What Is Mem0?">What Is Mem0?</a></li>
             <li>
-                <a href="#mem0%ec%9d%98-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d" aria-label="Mem0의 작동 방식">Mem0의 작동 방식</a></li>
+                <a href="#how-mem0-works" aria-label="How Mem0 Works">How Mem0 Works</a></li>
             <li>
-                <a href="#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95" aria-label="설치 및 설정">설치 및 설정</a><ul>
+                <a href="#installation--setup" aria-label="Installation &amp; Setup">Installation &amp; Setup</a><ul>
                     
             <li>
-                <a href="#%ed%81%b4%eb%9d%bc%ec%9a%b0%eb%93%9c-%ec%84%a4%ec%a0%95-%ea%b0%80%ec%9e%a5-%eb%b9%a0%eb%a5%b8-%ea%b2%bd%eb%a1%9c" aria-label="클라우드 설정 (가장 빠른 경로)">클라우드 설정 (가장 빠른 경로)</a></li>
+                <a href="#cloud-setup-fastest-path" aria-label="Cloud Setup (Fastest Path)">Cloud Setup (Fastest Path)</a></li>
             <li>
-                <a href="#%ec%85%80%ed%94%84-%ed%98%b8%ec%8a%a4%ed%8c%85-%ec%84%a4%ec%a0%95-docker" aria-label="셀프 호스팅 설정 (Docker)">셀프 호스팅 설정 (Docker)</a></li></ul>
+                <a href="#self-hosted-setup-docker" aria-label="Self-Hosted Setup (Docker)">Self-Hosted Setup (Docker)</a></li></ul>
             </li></ul>
                 
             <li>
-                <a href="#%eb%a6%ac%ed%8f%ac%ec%a7%80%ed%86%a0%eb%a6%ac-%ed%81%b4%eb%a1%a0" aria-label="리포지토리 클론">리포지토리 클론</a></li>
+                <a href="#clone-the-repository" aria-label="Clone the repository">Clone the repository</a></li>
             <li>
-                <a href="#docker%eb%a1%9c-%eb%b6%80%ed%8a%b8%ec%8a%a4%ed%8a%b8%eb%9e%a9" aria-label="Docker로 부트스트랩">Docker로 부트스트랩</a></li>
+                <a href="#bootstrap-with-docker" aria-label="Bootstrap with Docker">Bootstrap with Docker</a></li>
             <li>
-                <a href="#%ea%b4%80%eb%a6%ac%ec%9e%90-%ec%83%9d%ec%84%b1-api-%ed%82%a4-%ec%83%9d%ec%84%b1-%ec%84%9c%eb%b2%84--%eb%8c%80%ec%8b%9c%eb%b3%b4%eb%93%9c-%ec%8b%9c%ec%9e%91" aria-label="관리자 생성, API 키 생성, 서버 &#43; 대시보드 시작">관리자 생성, API 키 생성, 서버 + 대시보드 시작</a><ul>
+                <a href="#creates-admin-user-generates-api-key-starts-server--dashboard" aria-label="Creates admin user, generates API key, starts server &#43; dashboard">Creates admin user, generates API key, starts server + dashboard</a><ul>
                     <ul>
                     
             <li>
-                <a href="#%ec%98%a4%ed%94%88%ec%86%8c%ec%8a%a4-sdk-%eb%a1%9c%ec%bb%ac" aria-label="오픈소스 SDK (로컬)">오픈소스 SDK (로컬)</a></li></ul>
+                <a href="#open-source-sdk-local" aria-label="Open Source SDK (Local)">Open Source SDK (Local)</a></li></ul>
                 
             <li>
-                <a href="#%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b5%ac%ec%84%b1-%eb%b0%8f-%ec%84%b1%eb%8a%a5-%ed%8a%9c%eb%8b%9d" aria-label="메모리 구성 및 성능 튜닝">메모리 구성 및 성능 튜닝</a><ul>
+                <a href="#memory-configuration--performance-tuning" aria-label="Memory Configuration &amp; Performance Tuning">Memory Configuration &amp; Performance Tuning</a><ul>
                     
             <li>
-                <a href="#yaml%ec%9d%84-%ec%82%ac%ec%9a%a9%ed%95%9c-%ec%82%ac%ec%9a%a9%ec%9e%90-%ec%a0%95%ec%9d%98-%ea%b5%ac%ec%84%b1" aria-label="YAML을 사용한 사용자 정의 구성">YAML을 사용한 사용자 정의 구성</a></li></ul>
+                <a href="#custom-configuration-with-yaml" aria-label="Custom Configuration with YAML">Custom Configuration with YAML</a></li></ul>
             </li></ul>
             </li>
             <li>
-                <a href="#mem0configyaml--%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ed%8a%9c%eb%8b%9d-%ea%b5%ac%ec%84%b1" aria-label="mem0config.yaml — 프로덕션 튜닝 구성">mem0config.yaml — 프로덕션 튜닝 구성</a><ul>
+                <a href="#mem0configyaml--production-tuning-config" aria-label="mem0config.yaml — Production tuning config">mem0config.yaml — Production tuning config</a><ul>
                     <ul>
                     
             <li>
-                <a href="#%eb%b2%a1%ed%84%b0-%ec%8a%a4%ed%86%a0%ec%96%b4-%eb%b0%b1%ec%97%94%eb%93%9c-%eb%b9%84%ea%b5%90" aria-label="벡터 스토어 백엔드 비교">벡터 스토어 백엔드 비교</a></li>
+                <a href="#vector-store-backend-comparison" aria-label="Vector Store Backend Comparison">Vector Store Backend Comparison</a></li>
             <li>
-                <a href="#%ec%84%b1%eb%8a%a5-%ed%8a%9c%eb%8b%9d-%ec%b2%b4%ed%81%ac%eb%a6%ac%ec%8a%a4%ed%8a%b8" aria-label="성능 튜닝 체크리스트">성능 튜닝 체크리스트</a></li>
+                <a href="#performance-tuning-checklist" aria-label="Performance Tuning Checklist">Performance Tuning Checklist</a></li>
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9%ec%9e%90-%ec%a0%95%ec%9d%98-%ec%a7%80%ec%b9%a8%ec%9d%b4-%ec%9e%88%eb%8a%94-%eb%a9%94%eb%aa%a8%eb%a6%ac" aria-label="사용자 정의 지침이 있는 메모리">사용자 정의 지침이 있는 메모리</a></li></ul>
+                <a href="#memory-with-custom-instructions" aria-label="Memory with Custom Instructions">Memory with Custom Instructions</a></li></ul>
                 
             <li>
-                <a href="#langchain-crewai-%eb%b0%8f-openai%ec%99%80%ec%9d%98-%ed%86%b5%ed%95%a9" aria-label="LangChain, CrewAI 및 OpenAI와의 통합">LangChain, CrewAI 및 OpenAI와의 통합</a><ul>
+                <a href="#integration-with-langchain-crewai-and-openai" aria-label="Integration with LangChain, CrewAI, and OpenAI">Integration with LangChain, CrewAI, and OpenAI</a><ul>
                     
             <li>
-                <a href="#langchain-%ed%86%b5%ed%95%a9" aria-label="LangChain 통합">LangChain 통합</a></li>
+                <a href="#langchain-integration" aria-label="LangChain Integration">LangChain Integration</a></li>
             <li>
-                <a href="#crewai-%ed%86%b5%ed%95%a9" aria-label="CrewAI 통합">CrewAI 통합</a></li>
+                <a href="#crewai-integration" aria-label="CrewAI Integration">CrewAI Integration</a></li>
             <li>
-                <a href="#openai-agents-sdk-%ed%86%b5%ed%95%a9" aria-label="OpenAI Agents SDK 통합">OpenAI Agents SDK 통합</a></li>
+                <a href="#openai-agents-sdk-integration" aria-label="OpenAI Agents SDK Integration">OpenAI Agents SDK Integration</a></li>
             <li>
-                <a href="#docker-compose-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ec%8a%a4%ed%83%9d" aria-label="Docker Compose 프로덕션 스택">Docker Compose 프로덕션 스택</a></li>
+                <a href="#docker-compose-production-stack" aria-label="Docker Compose Production Stack">Docker Compose Production Stack</a></li>
             <li>
-                <a href="#%eb%a9%80%ed%8b%b0-%ed%85%8c%eb%84%8c%ed%8a%b8-%ea%b2%a9%eb%a6%ac" aria-label="멀티 테넌트 격리">멀티 테넌트 격리</a></li>
+                <a href="#multi-tenant-isolation" aria-label="Multi-Tenant Isolation">Multi-Tenant Isolation</a></li>
             <li>
-                <a href="#%eb%a9%94%eb%aa%a8%eb%a6%ac-%eb%aa%a8%eb%8b%88%ed%84%b0%eb%a7%81-%eb%b0%8f-%ea%b4%80%ec%b0%b0-%ea%b0%80%eb%8a%a5%ec%84%b1" aria-label="메모리 모니터링 및 관찰 가능성">메모리 모니터링 및 관찰 가능성</a></li>
+                <a href="#memory-monitoring-and-observability" aria-label="Memory Monitoring and Observability">Memory Monitoring and Observability</a></li>
             <li>
-                <a href="#%ec%86%8d%eb%8f%84-%ec%a0%9c%ed%95%9c-%eb%b0%8f-%eb%b9%84%ec%9a%a9-%ec%a0%9c%ec%96%b4" aria-label="속도 제한 및 비용 제어">속도 제한 및 비용 제어</a></li></ul>
+                <a href="#rate-limiting-and-cost-control" aria-label="Rate Limiting and Cost Control">Rate Limiting and Cost Control</a></li></ul>
             </li>
             <li>
-                <a href="#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90" aria-label="대안과의 비교">대안과의 비교</a><ul>
+                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a><ul>
                     
             <li>
-                <a href="#%ec%84%a0%ed%83%9d-%ea%b0%80%ec%9d%b4%eb%93%9c" aria-label="선택 가이드">선택 가이드</a></li></ul>
+                <a href="#when-to-choose-what" aria-label="When to Choose What">When to Choose What</a></li></ul>
             </li>
             <li>
-                <a href="#%ed%95%9c%ea%b3%84--%ec%a0%95%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80" aria-label="한계 / 정직한 평가">한계 / 정직한 평가</a></li>
+                <a href="#limitations--honest-assessment" aria-label="Limitations / Honest Assessment">Limitations / Honest Assessment</a></li>
             <li>
-                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a></li>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a></li>
             <li>
-                <a href="#%ea%b2%b0%eb%a1%a0" aria-label="결론">결론</a></li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
             <li>
-                <a href="#%ec%b6%94%ec%b2%9c-%ed%98%b8%ec%8a%a4%ed%8c%85-%eb%b0%8f-%ec%9d%b8%ed%94%84%eb%9d%bc" aria-label="추천 호스팅 및 인프라">추천 호스팅 및 인프라</a></li>
+                <a href="#recommended-hosting--infrastructure" aria-label="Recommended Hosting &amp; Infrastructure">Recommended Hosting &amp; Infrastructure</a></li>
             <li>
-                <a href="#%ec%b6%9c%ec%b2%98-%eb%b0%8f-%ec%b6%94%ea%b0%80-%ec%9e%90%eb%a3%8c" aria-label="출처 및 추가 자료">출처 및 추가 자료</a></li>
+                <a href="#sources--further-reading" aria-label="Sources &amp; Further Reading">Sources &amp; Further Reading</a></li>
             <li>
                 <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
             <li>
@@ -313,50 +313,50 @@ backup_url: &rsquo;'
 last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
-tags: [&ldquo;mem0&rdquo;, &ldquo;ai-agent-memory&rdquo;, &ldquo;지속-메모리&rdquo;, &ldquo;langchain&rdquo;, &ldquo;벡터-스토어&rdquo;, &ldquo;메모리-튜닝&rdquo;, &ldquo;mem0-튜토리얼&rdquo;, &ldquo;mem0-vs-langchain&rdquo;, &ldquo;crewai&rdquo;, &ldquo;오픈소스&rdquo;]
+tags: [&ldquo;mem0&rdquo;, &ldquo;ai-agent-memory&rdquo;, &ldquo;persistent-memory&rdquo;, &ldquo;langchain&rdquo;, &ldquo;vector-store&rdquo;, &ldquo;memory-tuning&rdquo;, &ldquo;mem0-tutorial&rdquo;, &ldquo;mem0-vs-langchain&rdquo;, &ldquo;crewai&rdquo;, &ldquo;open-source&rdquo;]
 aliases:</p>
 <ul>
-<li>/kr/posts/mem0/</li>
+<li>/posts/mem0/-</li>
 </ul>
 <hr>
-<h2 id="소개">소개<a hidden class="anchor" aria-hidden="true" href="#소개">#</a></h2>
-<p>모든 AI 에이전트 개발자는 같은 벽에 부딪힙니다: 에이전트가 잊어버리는 것입니다. 사용자가 한 세션에서 챗봇에게 자신이 채식주의자이고 견과류 알레르기가 있다고 말했는데, 두 시간 후 에이전트가 땅콩 칠리를 추천합니다. 이는 프롬프트 엔지니어링 문제가 아닙니다 — 메모리 아키텍처 문제입니다. 상태 비저장 LLM은 세션 간에 사실을 지속할 내장 메커니즘이 없습니다. Mem0 (mem0ai/mem0)은 플러그 앤 플레이 메모리 레이어로 이 문제를 해결했으며, 56,205개 이상의 GitHub 스타와 90,000명 이상의 개발자가 채택했습니다. 이 가이드는 LangChain, CrewAI 및 OpenAI 에이전트와의 벡터 스토어 구성, 실제 벤치마크, 통합 코드를 포함한 설치부터 프로덕션 튜닝까지의 완전한 mem0 설정을 다룹니다.</p>
-<h2 id="mem0이란">Mem0이란?<a hidden class="anchor" aria-hidden="true" href="#mem0이란">#</a></h2>
-<p>Mem0은 LLM 애플리케이션과 AI 에이전트를 위한 오픈소스 범용 메모리 레이어입니다. 벡터 유사성 검색과 구조화된 메모리 추출을 결합한 하이브리드 아키텍처를 사용하여 대화 전반에 걸쳐 사용자 특정 사실을 추출, 저장 및 검색합니다. 시스템은 원시 채팅 메시지를 의미론적 사실( &ldquo;사용자가 채식주의자&rdquo;)으로 자동 정제하고, 중복을 제거하며, 추론 시 REST API 또는 Python/TypeScript SDK를 통해 가장 관련성 높은 메모리를 제공합니다.</p>
-<h2 id="mem0의-작동-방식">Mem0의 작동 방식<a hidden class="anchor" aria-hidden="true" href="#mem0의-작동-방식">#</a></h2>
-<p>Mem0의 아키텍처는 메모리를 네 가지 운영 계층으로 분리합니다: <strong>1. 추출 계층</strong>: LLM(구성 가능, 기본값 GPT-4o-mini)이 들어오는 메시지를 처리하고 구조화된 사실을 추출합니다. 2026년 4월 토큰 효율 알고리즘은 전체 컨텍스트 기선 대비 토큰 사용량을 3-4배 줄이는 단일 패스 계층적 추출을 사용합니다.</p>
-<p><strong>2. 임베딩 계층</strong>: 추출된 사실은 임베딩 모델(기본값: text-embedding-3-small)을 사용하여 벡터화되어 벡터 데이터베이스에 저장됩니다. Mem0은 Qdrant, Chroma, PGVector, Pinecone, Weaviate, Milvus, Azure AI Search를 포함한 19개 벡터 스토어 백엔드를 지원합니다.</p>
-<p><strong>3. 검색 계층</strong>: 쿼리 시 Mem0은 벡터 유사성과 메타데이터 필터링, 재순위, 다중 신호 스코어링을 결합한 하이브리드 검색을 수행합니다. 다중 신호 검색은 최적의 메모리를 제공하기 위해 최근성, 관련성 및 중요성을 고려합니다.</p>
-<p><strong>4. 그래프 계층(Pro 티어)</strong>: 평면 벡터 저장을 넘어 Mem0 Pro는 엔터티 관계를 이해하는 지식 그래프를 구축합니다 — 멀티 홉 추론을 활성화합니다( &ldquo;James가 누구와 일합니까?&ldquo;는 &ldquo;James가 TechCorp에서 일함&rdquo; + &ldquo;Sarah가 TechCorp에서 일함&quot;을 연결해야 합니다).</p>
+<h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
+<p>Every AI agent developer hits the same wall: the agent forgets. A user tells your chatbot they are vegetarian and allergic to nuts in one session, and two hours later the agent recommends a peanut curry. This is not a prompt engineering problem — it is a memory architecture problem. State-free LLMs have no built-in mechanism to persist facts across sessions. Mem0 (mem0ai/mem0) fixes this with a drop-in memory layer that 56,205+ GitHub stars and 90,000+ developers have adopted. This guide covers the complete mem0 setup from installation to production tuning, with real benchmarks, vector store configuration, and integration code for LangChain, CrewAI, and OpenAI agents.</p>
+<h2 id="what-is-mem0">What Is Mem0?<a hidden class="anchor" aria-hidden="true" href="#what-is-mem0">#</a></h2>
+<p>Mem0 is an open-source universal memory layer for LLM applications and AI agents. It extracts, stores, and retrieves user-specific facts across conversations using a hybrid architecture that combines vector similarity search with structured memory extraction. The system automatically distills raw chat messages into semantic facts (&ldquo;User is a vegetarian&rdquo;), deduplicates them, and surfaces the most relevant memories at inference time — all through a REST API or Python/TypeScript SDK.</p>
+<h2 id="how-mem0-works">How Mem0 Works<a hidden class="anchor" aria-hidden="true" href="#how-mem0-works">#</a></h2>
+<p>Mem0&rsquo;s architecture separates memory into four operational layers: <strong>1. Extraction Layer</strong>: An LLM (configurable, default GPT-4o-mini) processes incoming messages and extracts structured facts. The April 2026 token-efficient algorithm uses single-pass hierarchical extraction that reduces token usage by 3-4x compared to full-context baselines.</p>
+<p><strong>2. Embedding Layer</strong>: Extracted facts are vectorized using an embedding model (default: text-embedding-3-small) and stored in a vector database. Mem0 supports 19 vector store backends including Qdrant, Chroma, PGVector, Pinecone, Weaviate, Milvus, and Azure AI Search.</p>
+<p><strong>3. Retrieval Layer</strong>: At query time, Mem0 performs hybrid retrieval combining vector similarity with metadata filtering, reranking, and multi-signal scoring. The multi-signal retrieval considers recency, relevance, and importance to surface the best memories.</p>
+<p><strong>4. Graph Layer (Pro tier)</strong>: Beyond flat vector storage, Mem0 Pro builds a knowledge graph that understands entity relationships — enabling multi-hop reasoning (&ldquo;Who does James work with?&rdquo; requires connecting &ldquo;James works at TechCorp&rdquo; + &ldquo;Sarah works at TechCorp&rdquo;).</p>
 <pre tabindex="0"><code>┌──────────────────────────────────────────────────────┐
-│                    사용자 메시지                       │
+│                    User Message                       │
 └──────────────────────┬───────────────────────────────┘
                        │
           ┌────────────▼────────────┐
-          │   추출 계층 (LLM)        │  ← 사실 추출
+          │   Extraction (LLM)      │  ← Extract facts
           └────────────┬────────────┘
                        │
           ┌────────────▼────────────┐
-          │   임베딩 모델            │  ← 벡터화
+          │   Embedding Model       │  ← Vectorize
           └────────────┬────────────┘
                        │
           ┌────────────▼────────────┐
-          │   벡터 스토어            │  ← Qdrant/Chroma/PGVector
+          │   Vector Store          │  ← Qdrant/Chroma/PGVector
           └────────────┬────────────┘
                        │
           ┌────────────▼────────────┐
-          │   하이브리드 검색         │  ← 검색 + 재순위
+          │   Hybrid Retrieval      │  ← Search + Rerank
           └────────────┬────────────┘
                        │
           ┌────────────▼────────────┐
-          │   프롬프트에 주입         │  ← 컨텍스트 강화
+          │   Injected into Prompt  │  ← Context enrichment
           └─────────────────────────┘
-</code></pre><h2 id="설치-및-설정">설치 및 설정<a hidden class="anchor" aria-hidden="true" href="#설치-및-설정">#</a></h2>
-<h3 id="클라우드-설정-가장-빠른-경로">클라우드 설정 (가장 빠른 경로)<a hidden class="anchor" aria-hidden="true" href="#클라우드-설정-가장-빠른-경로">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Python 클라이언트 설치</span>
+</code></pre><h2 id="installation--setup">Installation &amp; Setup<a hidden class="anchor" aria-hidden="true" href="#installation--setup">#</a></h2>
+<h3 id="cloud-setup-fastest-path">Cloud Setup (Fastest Path)<a hidden class="anchor" aria-hidden="true" href="#cloud-setup-fastest-path">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install the Python client</span>
 </span></span><span style="display:flex;"><span>pip install mem0ai
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># API 키 설정 (https://app.mem0.ai에서 가져오기)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set your API key from https://app.mem0.ai</span>
 </span></span><span style="display:flex;"><span>export MEM0_API_KEY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;m0-your-key-here&#34;</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># mem0_quickstart.py</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
@@ -364,30 +364,30 @@ aliases:</p>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> MemoryClient(api_key<span style="color:#f92672">=</span>os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#34;MEM0_API_KEY&#34;</span>))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 대화에서 메모리 저장</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Store a memory from a conversation</span>
 </span></span><span style="display:flex;"><span>messages <span style="color:#f92672">=</span> [
 </span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;I&#39;m a vegetarian and allergic to nuts.&#34;</span>},
 </span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;assistant&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Got it! I&#39;ll remember your dietary preferences.&#34;</span>},
 </span></span><span style="display:flex;"><span>]
 </span></span><span style="display:flex;"><span>client<span style="color:#f92672">.</span>add(messages, user_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user123&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 관련 메모리 검색</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Retrieve relevant memories</span>
 </span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>search(
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;What are my dietary restrictions?&#34;</span>,
 </span></span><span style="display:flex;"><span>    user_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user123&#34;</span>
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>print(results)
-</span></span></code></pre></div><h3 id="셀프-호스팅-설정-docker">셀프 호스팅 설정 (Docker)<a hidden class="anchor" aria-hidden="true" href="#셀프-호스팅-설정-docker">#</a></h3>
-<p>데이터 레지던시 또는 에어갭 배포가 필요한 팀을 위한 설정: `````bash</p>
-<h1 id="리포지토리-클론">리포지토리 클론<a hidden class="anchor" aria-hidden="true" href="#리포지토리-클론">#</a></h1>
+</span></span></code></pre></div><h3 id="self-hosted-setup-docker">Self-Hosted Setup (Docker)<a hidden class="anchor" aria-hidden="true" href="#self-hosted-setup-docker">#</a></h3>
+<p>For teams that need data residency or air-gapped deployments: `````bash</p>
+<h1 id="clone-the-repository">Clone the repository<a hidden class="anchor" aria-hidden="true" href="#clone-the-repository">#</a></h1>
 <p>git clone <a href="https://github.com/mem0ai/mem0.git">https://github.com/mem0ai/mem0.git</a>
 cd mem0</p>
-<h1 id="docker로-부트스트랩">Docker로 부트스트랩<a hidden class="anchor" aria-hidden="true" href="#docker로-부트스트랩">#</a></h1>
+<h1 id="bootstrap-with-docker">Bootstrap with Docker<a hidden class="anchor" aria-hidden="true" href="#bootstrap-with-docker">#</a></h1>
 <p>make bootstrap</p>
-<h1 id="관리자-생성-api-키-생성-서버--대시보드-시작">관리자 생성, API 키 생성, 서버 + 대시보드 시작<a hidden class="anchor" aria-hidden="true" href="#관리자-생성-api-키-생성-서버--대시보드-시작">#</a></h1>
+<h1 id="creates-admin-user-generates-api-key-starts-server--dashboard">Creates admin user, generates API key, starts server + dashboard<a hidden class="anchor" aria-hidden="true" href="#creates-admin-user-generates-api-key-starts-server--dashboard">#</a></h1>
 <pre tabindex="0"><code>
 `````yaml
-# docker-compose.yml 프로덕션용
+# docker-compose.yml for production
 docker run -d \
   -p 8000:8000 \
   -e MEM0_API_KEY=your-admin-key \
@@ -396,14 +396,14 @@ docker run -d \
   -e LLM_PROVIDER=openai \
   -e OPENAI_API_KEY=$OPENAI_API_KEY \
   mem0/mem0-server:latest
-</code></pre><h3 id="오픈소스-sdk-로컬">오픈소스 SDK (로컬)<a hidden class="anchor" aria-hidden="true" href="#오픈소스-sdk-로컬">#</a></h3>
+</code></pre><h3 id="open-source-sdk-local">Open Source SDK (Local)<a hidden class="anchor" aria-hidden="true" href="#open-source-sdk-local">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install mem0ai openai chromadb
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> mem0 <span style="color:#f92672">import</span> Memory
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 사용자 정의 벡터 스토어로 초기화</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize with custom vector store</span>
 </span></span><span style="display:flex;"><span>m <span style="color:#f92672">=</span> Memory()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 대화 추가</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add a conversation</span>
 </span></span><span style="display:flex;"><span>messages <span style="color:#f92672">=</span> [
 </span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;I&#39;m planning to watch a movie tonight.&#34;</span>},
 </span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;assistant&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;How about thrillers?&#34;</span>},
@@ -411,12 +411,12 @@ docker run -d \
 </span></span><span style="display:flex;"><span>]
 </span></span><span style="display:flex;"><span>m<span style="color:#f92672">.</span>add(messages, user_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alice&#34;</span>, metadata<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;category&#34;</span>: <span style="color:#e6db74">&#34;movies&#34;</span>})
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 메타데이터 필터링으로 검색</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Search with metadata filtering</span>
 </span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> m<span style="color:#f92672">.</span>search(<span style="color:#e6db74">&#34;movie recommendations&#34;</span>, filters<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;user_id&#34;</span>: <span style="color:#e6db74">&#34;alice&#34;</span>})
-</span></span></code></pre></div><h2 id="메모리-구성-및-성능-튜닝">메모리 구성 및 성능 튜닝<a hidden class="anchor" aria-hidden="true" href="#메모리-구성-및-성능-튜닝">#</a></h2>
-<h3 id="yaml을-사용한-사용자-정의-구성">YAML을 사용한 사용자 정의 구성<a hidden class="anchor" aria-hidden="true" href="#yaml을-사용한-사용자-정의-구성">#</a></h3>
-<p><code>mem0config.yaml</code> 파일은 메모리 파이프라인의 모든 구성 요소를 제어합니다: `````yaml</p>
-<h1 id="mem0configyaml--프로덕션-튜닝-구성">mem0config.yaml — 프로덕션 튜닝 구성<a hidden class="anchor" aria-hidden="true" href="#mem0configyaml--프로덕션-튜닝-구성">#</a></h1>
+</span></span></code></pre></div><h2 id="memory-configuration--performance-tuning">Memory Configuration &amp; Performance Tuning<a hidden class="anchor" aria-hidden="true" href="#memory-configuration--performance-tuning">#</a></h2>
+<h3 id="custom-configuration-with-yaml">Custom Configuration with YAML<a hidden class="anchor" aria-hidden="true" href="#custom-configuration-with-yaml">#</a></h3>
+<p>The <code>mem0config.yaml</code> file controls every component of the memory pipeline: `````yaml</p>
+<h1 id="mem0configyaml--production-tuning-config">mem0config.yaml — Production tuning config<a hidden class="anchor" aria-hidden="true" href="#mem0configyaml--production-tuning-config">#</a></h1>
 <p>llm: provider: openai
 config: model: &ldquo;gpt-4o-mini&rdquo;
 temperature: 0.1
@@ -428,71 +428,40 @@ embedding_dims: 1536</p>
 config: host: &ldquo;localhost&rdquo;
 port: 6333
 collection_name: &ldquo;mem0&rdquo;
-on_disk: true  # 영구 저장소 활성화</p>
+on_disk: true  # Enable persistent storage</p>
 <p>reranker: provider: cohere
 config: model: &ldquo;rerank-multilingual-v3.0&rdquo;</p>
 <p>custom_instructions: |
-사용자 선호도, 개인 사실, 컨텍스트를 추출합니다.
-식이 제한, 알레르기, 기술적 선호도에 중점을 둡니다.
-임시 상태와 일회성 요청은 무시합니다.</p>
+Extract user preferences, personal facts, and context.
+Focus on dietary restrictions, allergies, and technical preferences.
+Ignore temporary states and one-time requests.</p>
 <pre tabindex="0"><code>
 `````python
 from mem0 import Memory
 
-# 사용자 정의 구성 로드
+# Load custom configuration
 config_path = &#34;mem0config.yaml&#34;
 m = Memory.from_config(config_path)
-</code></pre><h3 id="벡터-스토어-백엔드-비교">벡터 스토어 백엔드 비교<a hidden class="anchor" aria-hidden="true" href="#벡터-스토어-백엔드-비교">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>백엔드</th>
-					<th>적합한 용도</th>
-					<th>지연 시간</th>
-					<th>지속성</th>
-					<th>확장성</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>Qdrant</td>
-					<td>프로덕션, 하이브리드 검색</td>
-					<td>&lt;10ms</td>
-					<td>디스크</td>
-					<td>수평 확장</td>
-			</tr>
-			<tr>
-					<td>Chroma</td>
-					<td>로컬 개발, 프로토타이핑</td>
-					<td>&lt;20ms</td>
-					<td>파일 기반</td>
-					<td>단일 노드</td>
-			</tr>
-			<tr>
-					<td>PGVector</td>
-					<td>Postgres 생태계</td>
-					<td>&lt;30ms</td>
-					<td>데이터베이스 관리</td>
-					<td>읽기 복제</td>
-			</tr>
-			<tr>
-					<td>Pinecone</td>
-					<td>서버리스, 관리형</td>
-					<td>&lt;15ms</td>
-					<td>클라우드</td>
-					<td>자동 확장</td>
-			</tr>
-			<tr>
-					<td>Milvus</td>
-					<td>10억 규모</td>
-					<td>&lt;20ms</td>
-					<td>분산형</td>
-					<td>샤딩</td>
-			</tr>
-	</tbody>
-</table>
-<h3 id="성능-튜닝-체크리스트">성능 튜닝 체크리스트<a hidden class="anchor" aria-hidden="true" href="#성능-튜닝-체크리스트">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 1. 고처리량 앱을 위한 비동기 메모리 활성화</span>
+</code></pre><h3 id="vector-store-backend-comparison">Vector Store Backend Comparison<a hidden class="anchor" aria-hidden="true" href="#vector-store-backend-comparison">#</a></h3>
+<p>| Backend | Best For | Latency | Persistence | Scaling |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Qdrant | Production, hybrid search | &lt;10ms | On-disk | Horizontal |
+| Chroma | Local dev, prototyping | &lt;20ms | File-based | Single node |
+| PGVector | Postgres ecosystems | &lt;30ms | Database-managed | Read replicas |
+| Pinecone | Serverless, managed | &lt;15ms | Cloud | Auto-scaling |
+| Milvus | Billion-scale | &lt;20ms | Distributed | Sharding |</p>
+<h3 id="performance-tuning-checklist">Performance Tuning Checklist<a hidden class="anchor" aria-hidden="true" href="#performance-tuning-checklist">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 1. Enable async memory for high-throughput apps</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> mem0 <span style="color:#f92672">import</span> MemoryClient
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
 </span></span><span style="display:flex;"><span>
@@ -502,7 +471,7 @@ m = Memory.from_config(config_path)
 </span></span><span style="display:flex;"><span>             <span style="color:#66d9ef">for</span> i, msgs <span style="color:#f92672">in</span> enumerate(messages_list)]
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>gather(<span style="color:#f92672">*</span>tasks)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. 검색 범위를 제한하기 위한 메타데이터 필터링 사용</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Use metadata filtering to scope searches</span>
 </span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>search(
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;project updates&#34;</span>,
 </span></span><span style="display:flex;"><span>    filters<span style="color:#f92672">=</span>{
@@ -512,29 +481,29 @@ m = Memory.from_config(config_path)
 </span></span><span style="display:flex;"><span>    limit<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. top_k으로 검색 깊이 조정</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Adjust retrieval depth with top_k</span>
 </span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>search(
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;dietary preferences&#34;</span>,
 </span></span><span style="display:flex;"><span>    user_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;alice&#34;</span>,
-</span></span><span style="display:flex;"><span>    top_k<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>,  <span style="color:#75715e"># 속도를 위해 줄이고, 범위를 위해 늘리기</span>
+</span></span><span style="display:flex;"><span>    top_k<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>,  <span style="color:#75715e"># Reduce for speed, increase for coverage</span>
 </span></span><span style="display:flex;"><span>    rerank<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
 </span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><h3 id="사용자-정의-지침이-있는-메모리">사용자 정의 지침이 있는 메모리<a hidden class="anchor" aria-hidden="true" href="#사용자-정의-지침이-있는-메모리">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 어떤 사실을 추출하고 저장할지 안내</span>
+</span></span></code></pre></div><h3 id="memory-with-custom-instructions">Memory with Custom Instructions<a hidden class="anchor" aria-hidden="true" href="#memory-with-custom-instructions">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Guide what facts get extracted and stored</span>
 </span></span><span style="display:flex;"><span>m <span style="color:#f92672">=</span> Memory<span style="color:#f92672">.</span>from_config({
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;custom_instructions&#34;</span>: <span style="color:#e6db74">&#34;&#34;&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    추출하고 저장할 항목: - 사용자의 이름, 직업, 위치
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    - 기술적 선호도(언어, 프레임워크, 도구)
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    - 식이 제한과 알레르기
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    - 커뮤니케이션 선호도
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Extract and store: - User&#39;s name, profession, location
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    - Technical preferences (languages, frameworks, tools)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    - Dietary restrictions and allergies
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    - Communication preferences
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    저장하지 않을 항목: - 임시 기분이나 감정 상태
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    - 일회성 요청
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    - 동의 없는 타인 정보
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Do NOT store: - Temporary mood or emotional states
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    - One-time requests
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    - Third-party information without consent
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>})
-</span></span></code></pre></div><h2 id="langchain-crewai-및-openai와의-통합">LangChain, CrewAI 및 OpenAI와의 통합<a hidden class="anchor" aria-hidden="true" href="#langchain-crewai-및-openai와의-통합">#</a></h2>
-<h3 id="langchain-통합">LangChain 통합<a hidden class="anchor" aria-hidden="true" href="#langchain-통합">#</a></h3>
+</span></span></code></pre></div><h2 id="integration-with-langchain-crewai-and-openai">Integration with LangChain, CrewAI, and OpenAI<a hidden class="anchor" aria-hidden="true" href="#integration-with-langchain-crewai-and-openai">#</a></h2>
+<h3 id="langchain-integration">LangChain Integration<a hidden class="anchor" aria-hidden="true" href="#langchain-integration">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install langchain langchain-openai mem0ai
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># langchain_mem0_agent.py</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
@@ -544,25 +513,25 @@ m = Memory.from_config(config_path)
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.prompts <span style="color:#f92672">import</span> ChatPromptTemplate, MessagesPlaceholder
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> mem0 <span style="color:#f92672">import</span> MemoryClient
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 초기화</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize</span>
 </span></span><span style="display:flex;"><span>llm <span style="color:#f92672">=</span> ChatOpenAI(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o-mini&#34;</span>)
 </span></span><span style="display:flex;"><span>mem0 <span style="color:#f92672">=</span> MemoryClient(api_key<span style="color:#f92672">=</span>os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#34;MEM0_API_KEY&#34;</span>))
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 메모리 주입이 있는 프롬프트 템플릿</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Prompt template with memory injection</span>
 </span></span><span style="display:flex;"><span>prompt <span style="color:#f92672">=</span> ChatPromptTemplate<span style="color:#f92672">.</span>from_messages([
-</span></span><span style="display:flex;"><span>    (<span style="color:#e6db74">&#34;system&#34;</span>, <span style="color:#e6db74">&#34;&#34;&#34;장기 기억을 가진 유용한 어시스턴트입니다.
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    사용자에 대한 관련 과거 컨텍스트: </span><span style="color:#e6db74">{memories}</span><span style="color:#e6db74">
+</span></span><span style="display:flex;"><span>    (<span style="color:#e6db74">&#34;system&#34;</span>, <span style="color:#e6db74">&#34;&#34;&#34;You are a helpful assistant with long-term memory.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Relevant past context about the user: </span><span style="color:#e6db74">{memories}</span><span style="color:#e6db74">
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    이 컨텍스트를 사용하여 응답을 개인화하세요.&#34;&#34;&#34;</span>),
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Use this context to personalize your responses.&#34;&#34;&#34;</span>),
 </span></span><span style="display:flex;"><span>    MessagesPlaceholder(variable_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;history&#34;</span>),
 </span></span><span style="display:flex;"><span>    (<span style="color:#e6db74">&#34;human&#34;</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{input}</span><span style="color:#e6db74">&#34;</span>)
 </span></span><span style="display:flex;"><span>])
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_memories</span>(user_id: str, query: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;관련 메모리를 포맷된 문자열로 검색합니다.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_memories</span>(user_id: str, query: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;Retrieve relevant memories as formatted string.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>    results <span style="color:#f92672">=</span> mem0<span style="color:#f92672">.</span>search(query, user_id<span style="color:#f92672">=</span>user_id, limit<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>join([r[<span style="color:#e6db74">&#34;memory&#34;</span>] <span style="color:#66d9ef">for</span> r <span style="color:#f92672">in</span> results])
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">chat</span>(user_id: str, message: str, history: List <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>): <span style="color:#e6db74">&#34;&#34;&#34;메모리 강화 컨텍스트로 채팅합니다.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">chat</span>(user_id: str, message: str, history: List <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>): <span style="color:#e6db74">&#34;&#34;&#34;Chat with memory-augmented context.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> history <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>: history <span style="color:#f92672">=</span> []
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    memories <span style="color:#f92672">=</span> get_memories(user_id, message)
@@ -574,7 +543,7 @@ m = Memory.from_config(config_path)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> llm<span style="color:#f92672">.</span>invoke(formatted_prompt)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 상호작용 저장</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Store the interaction</span>
 </span></span><span style="display:flex;"><span>    messages <span style="color:#f92672">=</span> [
 </span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: message},
 </span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;assistant&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: response<span style="color:#f92672">.</span>content}
@@ -583,15 +552,15 @@ m = Memory.from_config(config_path)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> response<span style="color:#f92672">.</span>content
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 대화 실행</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run a conversation</span>
 </span></span><span style="display:flex;"><span>user_id <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;traveler_42&#34;</span>
 </span></span><span style="display:flex;"><span>response1 <span style="color:#f92672">=</span> chat(user_id, <span style="color:#e6db74">&#34;I&#39;m planning a trip to Tokyo next month.&#34;</span>)
 </span></span><span style="display:flex;"><span>print(response1)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 이후 세션 — 에이전트가 기억함</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Later session — agent remembers</span>
 </span></span><span style="display:flex;"><span>response2 <span style="color:#f92672">=</span> chat(user_id, <span style="color:#e6db74">&#34;What should I pack for my trip?&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 출력은 도쿄, 계절, 여행자의 선호도를 참조합니다</span>
-</span></span></code></pre></div><h3 id="crewai-통합">CrewAI 통합<a hidden class="anchor" aria-hidden="true" href="#crewai-통합">#</a></h3>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output references Tokyo, time of year, traveler&#39;s preferences</span>
+</span></span></code></pre></div><h3 id="crewai-integration">CrewAI Integration<a hidden class="anchor" aria-hidden="true" href="#crewai-integration">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install crewai mem0ai
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># crewai_mem0_crew.py</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
@@ -602,17 +571,17 @@ m = Memory.from_config(config_path)
 </span></span><span style="display:flex;"><span>mem0 <span style="color:#f92672">=</span> MemoryClient(api_key<span style="color:#f92672">=</span>os<span style="color:#f92672">.</span>getenv(<span style="color:#e6db74">&#34;MEM0_API_KEY&#34;</span>))
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@tool</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">retrieve_user_context</span>(user_id: str, query: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;개인화를 위한 사용자에 대한 메모리를 검색합니다.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">retrieve_user_context</span>(user_id: str, query: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;Retrieve memories about the user for personalization.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>    results <span style="color:#f92672">=</span> mem0<span style="color:#f92672">.</span>search(query, user_id<span style="color:#f92672">=</span>user_id, limit<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>join([<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;- </span><span style="color:#e6db74">{</span>r[memory]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#66d9ef">for</span> r <span style="color:#f92672">in</span> results])
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@tool</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">store_interaction</span>(user_id: str, content: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;에이전트 상호작용에서 배운 사실을 저장합니다.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">store_interaction</span>(user_id: str, content: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;Store facts learned during agent interaction.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>    messages <span style="color:#f92672">=</span> [{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;assistant&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: content}]
 </span></span><span style="display:flex;"><span>    mem0<span style="color:#f92672">.</span>add(messages, user_id<span style="color:#f92672">=</span>user_id)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Stored.&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 메모리 도구로 에이전트 정의</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define agents with memory tools</span>
 </span></span><span style="display:flex;"><span>researcher <span style="color:#f92672">=</span> Agent(
 </span></span><span style="display:flex;"><span>    role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Personal Researcher&#34;</span>,
 </span></span><span style="display:flex;"><span>    goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Provide personalized research based on user history&#34;</span>,
@@ -622,7 +591,7 @@ m = Memory.from_config(config_path)
 </span></span><span style="display:flex;"><span>    memory<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 메모리를 사용하는 작업</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Task that uses memory</span>
 </span></span><span style="display:flex;"><span>task <span style="color:#f92672">=</span> Task(
 </span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;Research travel options for user .
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    First retrieve their preferences, then provide personalized recommendations.
@@ -634,7 +603,7 @@ m = Memory.from_config(config_path)
 </span></span><span style="display:flex;"><span>crew <span style="color:#f92672">=</span> Crew(agents<span style="color:#f92672">=</span>[researcher], tasks<span style="color:#f92672">=</span>[task])
 </span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> crew<span style="color:#f92672">.</span>kickoff(inputs<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;user_id&#34;</span>: <span style="color:#e6db74">&#34;user123&#34;</span>})
 </span></span><span style="display:flex;"><span>print(result)
-</span></span></code></pre></div><h3 id="openai-agents-sdk-통합">OpenAI Agents SDK 통합<a hidden class="anchor" aria-hidden="true" href="#openai-agents-sdk-통합">#</a></h3>
+</span></span></code></pre></div><h3 id="openai-agents-sdk-integration">OpenAI Agents SDK Integration<a hidden class="anchor" aria-hidden="true" href="#openai-agents-sdk-integration">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install openai-agents mem0ai
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># openai_agents_mem0.py</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
@@ -648,13 +617,13 @@ m = Memory.from_config(config_path)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserContext</span>: user_id: str
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@function_tool</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_to_memory</span>(ctx, messages: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;사용자에 대한 사실을 저장합니다.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_to_memory</span>(ctx, messages: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;Store facts about the user.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>    parsed <span style="color:#f92672">=</span> [{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: m} <span style="color:#66d9ef">for</span> m <span style="color:#f92672">in</span> messages<span style="color:#f92672">.</span>split(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)]
 </span></span><span style="display:flex;"><span>    mem0<span style="color:#f92672">.</span>add(parsed, user_id<span style="color:#f92672">=</span>ctx<span style="color:#f92672">.</span>context<span style="color:#f92672">.</span>user_id)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Memory stored.&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#a6e22e">@function_tool</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">search_memory</span>(ctx, query: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;관련 메모리를 검색합니다.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">search_memory</span>(ctx, query: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;Search for relevant memories.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>    results <span style="color:#f92672">=</span> mem0<span style="color:#f92672">.</span>search(query, user_id<span style="color:#f92672">=</span>ctx<span style="color:#f92672">.</span>context<span style="color:#f92672">.</span>user_id, limit<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>join([r[<span style="color:#e6db74">&#34;memory&#34;</span>] <span style="color:#66d9ef">for</span> r <span style="color:#f92672">in</span> results])
 </span></span><span style="display:flex;"><span>
@@ -674,7 +643,7 @@ m = Memory.from_config(config_path)
 </span></span><span style="display:flex;"><span>    print(result<span style="color:#f92672">.</span>final_output)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># asyncio.run(run_agent())</span>
-</span></span></code></pre></div><h3 id="docker-compose-프로덕션-스택">Docker Compose 프로덕션 스택<a hidden class="anchor" aria-hidden="true" href="#docker-compose-프로덕션-스택">#</a></h3>
+</span></span></code></pre></div><h3 id="docker-compose-production-stack">Docker Compose Production Stack<a hidden class="anchor" aria-hidden="true" href="#docker-compose-production-stack">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># mem0-production-stack.yml</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.8&#34;</span>
 </span></span><span style="display:flex;"><span>
@@ -702,53 +671,71 @@ m = Memory.from_config(config_path)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">volumes: qdrant_storage</span>: <span style="color:#ae81ff">`````</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## 벤치마크 / 실제 사용 사례</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Benchmarks / Real-World Use Cases</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">### LoCoMo 및 LongMemEval 결과</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### LoCoMo and LongMemEval Results</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">Mem0의 새로운 토큰 효율 알고리즘(2026년 4월 릴리스)은 더 낮은 토큰 비용으로 상당한 정확도 향상을 제공합니다</span>: <span style="color:#ae81ff">| 벤치마크 | 지표 | 이전 알고리즘 | 새 알고리즘 (2026년 4월) | 개선 |</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">|----------|------|--------------|------------------------|------|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| LoCoMo | 전체 정확도 | 66.9% | **92.5%** | +25.6 포인트 |</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| LoCoMo | 평균 토큰/쿼리 | ~26,000 | **6,956** | 3.7배 감소 |</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| LongMemEval | 전체 정확도 | 65.3% | **94.4%** | +29.1 포인트 |</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| LongMemEval | 평균 토큰/쿼리 | ~25,000 | **6,787** | 3.7배 감소 |</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| BEAM (1M) | 정확도 | 42.5% | **64.1%** | +21.6 포인트 |</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| BEAM (10M) | 정확도 | 30.2% | **48.6%** | +18.4 포인트 |</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Mem0&#39;s new token-efficient algorithm (released April 2026) delivers significant accuracy improvements at lower token cost</span>: <span style="color:#ae81ff">| Benchmark | Metric | Old Algorithm | New Algorithm (April 2026) | Improvement |</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">|</span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">|</span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">|</span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">|</span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">|</span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| LoCoMo | Overall Accuracy | 66.9% | **92.5%** | +25.6 points |</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| LoCoMo | Mean Tokens/Query | ~26,000 | **6,956** | 3.7x reduction |</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| LongMemEval | Overall Accuracy | 65.3% | **94.4%** | +29.1 points |</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| LongMemEval | Mean Tokens/Query | ~25,000 | **6,787** | 3.7x reduction |</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| BEAM (1M) | Accuracy | 42.5% | **64.1%** | +21.6 points |</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| BEAM (10M) | Accuracy | 30.2% | **48.6%** | +18.4 points |</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">### 카테고리별 세부 분석 (LoCoMo)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Per-Category Breakdown (LoCoMo)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| 카테고리 | 이전 점수 | 새 점수 | 변화 |</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">|----------|----------|---------|------|</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| 단일 홉 | 76.6% | 94.6% | +18.0 |</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| 멀티 홉 | 70.2% | 95.4% | +25.2 |</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| 오픈 도메인 | 57.3% | 82.3% | +25.0 |</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| 시간적 | 63.2% | 92.5% | +29.3 |</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| Category | Old Score | New Score | Delta |</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">|</span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">|</span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">|</span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">|</span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| Single-hop | 76.6% | 94.6% | +18.0 |</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| Multi-hop | 70.2% | 95.4% | +25.2 |</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| Open-domain | 57.3% | 82.3% | +25.0 |</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| Temporal | 63.2% | 92.5% | +29.3 |</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">### 프로덕션 사용 사례</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Production Use Cases</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">**사례</span> <span style="color:#f92672">연구</span>: <span style="color:#ae81ff">고객 지원 에이전트**</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">회사</span>: <span style="color:#ae81ff">50K+ 사용자의 SaaS 플랫폼</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">설정</span>: <span style="color:#ae81ff">Mem0 OSS + Qdrant + GPT-4o-mini</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">결과</span>: <span style="color:#ae81ff">반복 질문 40% 감소, 해결 속도 25% 향상</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">저장된 메모리</span>: <span style="color:#ae81ff">180K 대화에서 2.3M 사실</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">**Case</span> <span style="color:#f92672">Study</span>: <span style="color:#ae81ff">Customer Support Agent**</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">Company</span>: <span style="color:#ae81ff">SaaS platform with 50K+ users</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">Setup</span>: <span style="color:#ae81ff">Mem0 OSS + Qdrant + GPT-4o-mini</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">Results</span>: <span style="color:#ae81ff">40</span><span style="color:#ae81ff">% reduction in repeat questions, 25% faster resolution</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">Memory stored</span>: <span style="color:#ae81ff">2.</span><span style="color:#ae81ff">3M facts across 180K conversations</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">**사례</span> <span style="color:#f92672">연구</span>: <span style="color:#ae81ff">AI 코딩 어시스턴트**</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">설정</span>: <span style="color:#ae81ff">Claude Code용 Mem0 플러그인</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">결과</span>: <span style="color:#ae81ff">에이전트가 코딩 선호도(탭 대 공백, 선호 라이브러리), 프로젝트 구조 컨텍스트를 기억</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">핵심 기능</span>: <span style="color:#ae81ff">재인덱싱 없이 세션 간 파일 컨텍스트</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">**Case</span> <span style="color:#f92672">Study</span>: <span style="color:#ae81ff">AI Coding Assistant**</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">Setup</span>: <span style="color:#ae81ff">Mem0 plugin for Claude Code</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">Results</span>: <span style="color:#ae81ff">Agent remembers coding preferences (tabs vs spaces, preferred libraries), project structure context</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">Key feature</span>: <span style="color:#ae81ff">Cross-session file context without re-indexing</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">**사례</span> <span style="color:#f92672">연구</span>: <span style="color:#ae81ff">헬스케어 예약 봇**</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">설정</span>: <span style="color:#ae81ff">Mem0 Enterprise (HIPAA 준수)</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">결과</span>: <span style="color:#ae81ff">지속적인 환자 선호도, 예약 기록, 보험 검증 상태</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">규정 준수</span>: <span style="color:#ae81ff">SOC 2 Type I + HIPAA BAA</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">**Case</span> <span style="color:#f92672">Study</span>: <span style="color:#ae81ff">Healthcare Scheduling Bot**</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">Setup</span>: <span style="color:#ae81ff">Mem0 Enterprise (HIPAA compliant)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">Results</span>: <span style="color:#ae81ff">Persistent patient preferences, appointment history, insurance verification status</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">Compliance</span>: <span style="color:#ae81ff">SOC 2 Type I + HIPAA BAA</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## 고급 사용법 / 프로덕션 강화</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Advanced Usage / Production Hardening</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">### 보안 구성</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Security Configuration</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">`````python</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 메타데이터를 사용한 메모리 액세스 제어</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">def store_sensitive_memory(user_id: str, fact: str, classification: str)</span>: <span style="color:#e6db74">&#34;&#34;&#34;보안 분류가 있는 메모리를 저장합니다.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Memory access control with metadata</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">def store_sensitive_memory(user_id: str, fact: str, classification: str)</span>: <span style="color:#e6db74">&#34;&#34;&#34;Store memory with security classification.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">messages = [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: fact}]</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">mem0.add(</span>
 </span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">messages,</span>
@@ -760,7 +747,7 @@ m = Memory.from_config(config_path)
 </span></span><span style="display:flex;"><span>        }
 </span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 분류 필터가 있는 검색</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Search with classification filter</span>
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">results = client.search(</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;project preferences&#34;</span>,
 </span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">filters={</span>
@@ -768,37 +755,37 @@ m = Memory.from_config(config_path)
 </span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;metadata.classification&#34;: </span>[<span style="color:#e6db74">&#34;public&#34;</span>, <span style="color:#e6db74">&#34;internal&#34;</span>]
 </span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span><span style="color:#ae81ff">)</span>
-</span></span></code></pre></div><h3 id="멀티-테넌트-격리">멀티 테넌트 격리<a hidden class="anchor" aria-hidden="true" href="#멀티-테넌트-격리">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># SaaS 애플리케이션을 위한 조직 범위 메모리</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_org_scoped_memory</span>(org_id: str, user_id: str, messages: list): <span style="color:#e6db74">&#34;&#34;&#34;조직과 사용자 모두에 범위가 지정된 메모리를 저장합니다.&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="multi-tenant-isolation">Multi-Tenant Isolation<a hidden class="anchor" aria-hidden="true" href="#multi-tenant-isolation">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Organization-scoped memory for SaaS applications</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_org_scoped_memory</span>(org_id: str, user_id: str, messages: list): <span style="color:#e6db74">&#34;&#34;&#34;Store memory scoped to both organization and user.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>    client<span style="color:#f92672">.</span>add(
 </span></span><span style="display:flex;"><span>        messages,
 </span></span><span style="display:flex;"><span>        user_id<span style="color:#f92672">=</span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>org_id<span style="color:#e6db74">}</span><span style="color:#e6db74">:</span><span style="color:#e6db74">{</span>user_id<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>,
 </span></span><span style="display:flex;"><span>        metadata<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;org_id&#34;</span>: org_id, <span style="color:#e6db74">&#34;isolation&#34;</span>: <span style="color:#e6db74">&#34;org-scoped&#34;</span>}
 </span></span><span style="display:flex;"><span>    )
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 조직의 모든 사용자에 대한 관리자 쿼리</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Admin query across all users in org</span>
 </span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_all(
 </span></span><span style="display:flex;"><span>    filters<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;metadata.org_id&#34;</span>: <span style="color:#e6db74">&#34;org_123&#34;</span>},
 </span></span><span style="display:flex;"><span>    limit<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>
 </span></span><span style="display:flex;"><span>)
-</span></span></code></pre></div><h3 id="메모리-모니터링-및-관찰-가능성">메모리 모니터링 및 관찰 가능성<a hidden class="anchor" aria-hidden="true" href="#메모리-모니터링-및-관찰-가능성">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 메모리 메트릭 추적</span>
+</span></span></code></pre></div><h3 id="memory-monitoring-and-observability">Memory Monitoring and Observability<a hidden class="anchor" aria-hidden="true" href="#memory-monitoring-and-observability">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Track memory metrics</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">timed_search</span>(user_id: str, query: str): <span style="color:#e6db74">&#34;&#34;&#34;지연 시간 로깅이 있는 검색.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">timed_search</span>(user_id: str, query: str): <span style="color:#e6db74">&#34;&#34;&#34;Search with latency logging.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>    start <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
 </span></span><span style="display:flex;"><span>    results <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>search(query, user_id<span style="color:#f92672">=</span>user_id)
 </span></span><span style="display:flex;"><span>    latency <span style="color:#f92672">=</span> (time<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> start) <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;검색 지연 시간: </span><span style="color:#e6db74">{</span>latency<span style="color:#e6db74">:</span><span style="color:#e6db74">.1f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">ms | 결과: </span><span style="color:#e6db74">{</span>len(results)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Search latency: </span><span style="color:#e6db74">{</span>latency<span style="color:#e6db74">:</span><span style="color:#e6db74">.1f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">ms | Results: </span><span style="color:#e6db74">{</span>len(results)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 모니터링 시스템에 로그</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Log to your monitoring system</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#75715e"># prometheus_histogram.observe(latency)</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> results
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 주기적인 메모리 상태 확인</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">memory_health_check</span>(user_id: str): <span style="color:#e6db74">&#34;&#34;&#34;사용자에 대한 메모리 무결성을 확인합니다.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Periodic memory health check</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">memory_health_check</span>(user_id: str): <span style="color:#e6db74">&#34;&#34;&#34;Verify memory integrity for a user.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>    all_memories <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_all(filters<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;user_id&#34;</span>: user_id})
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
@@ -807,12 +794,12 @@ m = Memory.from_config(config_path)
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;categories&#34;</span>: len(set(m<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;metadata&#34;</span>, {})<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;category&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>) <span style="color:#66d9ef">for</span> m <span style="color:#f92672">in</span> all_memories)),
 </span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;avg_score&#34;</span>: sum(m<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;score&#34;</span>, <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">for</span> m <span style="color:#f92672">in</span> all_memories) <span style="color:#f92672">/</span> len(all_memories) <span style="color:#66d9ef">if</span> all_memories <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">0</span>
 </span></span><span style="display:flex;"><span>    }
-</span></span></code></pre></div><h3 id="속도-제한-및-비용-제어">속도 제한 및 비용 제어<a hidden class="anchor" aria-hidden="true" href="#속도-제한-및-비용-제어">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 클라이언트 측 속도 제한 구현</span>
+</span></span></code></pre></div><h3 id="rate-limiting-and-cost-control">Rate Limiting and Cost Control<a hidden class="anchor" aria-hidden="true" href="#rate-limiting-and-cost-control">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Implement client-side rate limiting</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> functools <span style="color:#f92672">import</span> wraps
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Mem0RateLimiter</span>: <span style="color:#e6db74">&#34;&#34;&#34;Mem0 API 호출을 위한 간단한 속도 제한기.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Mem0RateLimiter</span>: <span style="color:#e6db74">&#34;&#34;&#34;Simple rate limiter for Mem0 API calls.&#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, max_calls_per_minute<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>): self<span style="color:#f92672">.</span>max_calls <span style="color:#f92672">=</span> max_calls_per_minute
 </span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>calls <span style="color:#f92672">=</span> []
 </span></span><span style="display:flex;"><span>
@@ -824,188 +811,103 @@ m = Memory.from_config(config_path)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>limiter <span style="color:#f92672">=</span> Mem0RateLimiter(max_calls_per_minute<span style="color:#f92672">=</span><span style="color:#ae81ff">60</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">rate_limited_add</span>(messages, user_id): <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> limiter<span style="color:#f92672">.</span>can_call(): <span style="color:#75715e"># 나중을 위해 대기열에 넣거나 중요하지 않은 메모리 건跳过</span>
-</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;속도 제한 도달, 메모리 대기열에 추가&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">rate_limited_add</span>(messages, user_id): <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> limiter<span style="color:#f92672">.</span>can_call(): <span style="color:#75715e"># Queue for later or skip non-critical memories</span>
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;Rate limit hit, queuing memory&#34;</span>)
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;queued&#34;</span>}
 </span></span><span style="display:flex;"><span>    limiter<span style="color:#f92672">.</span>record_call()
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> client<span style="color:#f92672">.</span>add(messages, user_id<span style="color:#f92672">=</span>user_id)
-</span></span></code></pre></div><h2 id="대안과의-비교">대안과의 비교<a hidden class="anchor" aria-hidden="true" href="#대안과의-비교">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>기능</th>
-					<th>Mem0</th>
-					<th>LangChain Memory</th>
-					<th>LlamaIndex Memory</th>
-					<th>Chroma (원시)</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>아키텍처</strong></td>
-					<td>하이브리드 벡터+그래프+KV</td>
-					<td>키-값+벡터</td>
-					<td>벡터+인덱스</td>
-					<td>순수 벡터 DB</td>
-			</tr>
-			<tr>
-					<td><strong>GitHub Stars</strong></td>
-					<td>56,205</td>
-					<td>100K+ (LangChain)</td>
-					<td>41,000</td>
-					<td>18,500</td>
-			</tr>
-			<tr>
-					<td><strong>LOCOMO 점수</strong></td>
-					<td>92.5% (새 알고리즘)</td>
-					<td>58.10%</td>
-					<td>62.47%</td>
-					<td>N/A (저장소만)</td>
-			</tr>
-			<tr>
-					<td><strong>LongMemEval 점수</strong></td>
-					<td>94.4%</td>
-					<td>49.0%</td>
-					<td>52.9%</td>
-					<td>N/A</td>
-			</tr>
-			<tr>
-					<td><strong>그래프 메모리</strong></td>
-					<td>Pro 티어 ($249/월)</td>
-					<td>없음</td>
-					<td>부분</td>
-					<td>없음</td>
-			</tr>
-			<tr>
-					<td><strong>관리 서비스</strong></td>
-					<td>예 (app.mem0.ai)</td>
-					<td>아니요</td>
-					<td>아니요</td>
-					<td>아니요</td>
-			</tr>
-			<tr>
-					<td><strong>셀프 호스팅</strong></td>
-					<td>Docker, 전체 스택</td>
-					<td>라이브러리만</td>
-					<td>라이브러리만</td>
-					<td>Docker</td>
-			</tr>
-			<tr>
-					<td><strong>SOC 2 / HIPAA</strong></td>
-					<td>예 (Enterprise)</td>
-					<td>아니요</td>
-					<td>아니요</td>
-					<td>아니요</td>
-			</tr>
-			<tr>
-					<td><strong>벡터 백엔드</strong></td>
-					<td>19개 지원</td>
-					<td>10+</td>
-					<td>15+</td>
-					<td>자첸만</td>
-			</tr>
-			<tr>
-					<td><strong>멀티 에이전트 공유</strong></td>
-					<td>예 (OSS)</td>
-					<td>제한적</td>
-					<td>아니요</td>
-					<td>수동</td>
-			</tr>
-			<tr>
-					<td><strong>입문 가격</strong></td>
-					<td>물뇌 (10K 메모리)</td>
-					<td>물뇌 (OSS)</td>
-					<td>물뇌 (OSS)</td>
-					<td>물뇌 (OSS)</td>
-			</tr>
-			<tr>
-					<td><strong>시간 추론</strong></td>
-					<td>우수 (82.3% 오픈 도메인)</td>
-					<td>제한적</td>
-					<td>기본</td>
-					<td>없음</td>
-			</tr>
-			<tr>
-					<td><strong>LLM 추출</strong></td>
-					<td>자동 사실 추출</td>
-					<td>수동/요약</td>
-					<td>수동</td>
-					<td>없음</td>
-			</tr>
-			<tr>
-					<td><strong>통합 범위</strong></td>
-					<td>20+ 프레임워크</td>
-					<td>LangChain 네이티브</td>
-					<td>LlamaIndex 네이티브</td>
-					<td>모든</td>
-			</tr>
-	</tbody>
-</table>
-<h3 id="선택-가이드">선택 가이드<a hidden class="anchor" aria-hidden="true" href="#선택-가이드">#</a></h3>
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
+<p>| Feature | Mem0 | LangChain Memory | LlamaIndex Memory | Chroma (Raw) |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Architecture</strong> | Hybrid Vector + Graph + KV | Key-value + Vector | Vector + Index | Pure Vector DB |
+| <strong>GitHub Stars</strong> | 56,205 | 100K+ (LangChain) | 41,000 | 18,500 |
+| <strong>LOCOMO Score</strong> | 92.5% (new algo) | 58.10% | 62.47% | N/A (just storage) |
+| <strong>LongMemEval Score</strong> | 94.4% | 49.0% | 52.9% | N/A |
+| <strong>Graph Memory</strong> | Pro tier ($249/mo) | No | Partial | No |
+| <strong>Managed Service</strong> | Yes (app.mem0.ai) | No | No | No |
+| <strong>Self-Hosted</strong> | Docker, full stack | Library only | Library only | Docker |
+| <strong>SOC 2 / HIPAA</strong> | Yes (Enterprise) | No | No | No |
+| <strong>Vector Backends</strong> | 19 supported | 10+ | 15+ | Self only |
+| <strong>Multi-Agent Sharing</strong> | Yes (OSS) | Limited | No | Manual |
+| <strong>Pricing Entry</strong> | Free (10K memories) | Free (OSS) | Free (OSS) | Free (OSS) |
+| <strong>Temporal Reasoning</strong> | Good (82.3% open-domain) | Limited | Basic | No |
+| <strong>LLM Extraction</strong> | Automatic fact extraction | Manual/Summary | Manual | None |
+| <strong>Integration Scope</strong> | 20+ frameworks | LangChain-native | LlamaIndex-native | Any |</p>
+<h3 id="when-to-choose-what">When to Choose What<a hidden class="anchor" aria-hidden="true" href="#when-to-choose-what">#</a></h3>
 <ul>
-<li><strong>Mem0 선택</strong>: 자동 사실 추출, 광범위한 프레임워크 지원, 프로덕션급 규정 준수가 있는 관리형 메모리 서비스가 필요할 때</li>
-<li><strong>LangChain Memory 선택</strong>: LangGraph 전용이고 제로 추가 인프라와 절차적 메모리 지원이 필요할 때</li>
-<li><strong>LlamaIndex Memory 선택</strong>: 주요 요구사항이 대화 지속성이 아닌 문서 중심 RAG에 메모리 증강을 원할 때</li>
-<li><strong>Chroma 선택</strong>: 벡터 데이터베이스만 필요하고 모든 메모리 로직을 직접 구축할 계획일 때</li>
+<li><strong>Choose Mem0</strong> when you want a managed memory service with automatic fact extraction, broad framework support, and production-grade compliance.</li>
+<li><strong>Choose LangChain Memory</strong> when you are all-in on LangGraph and want zero additional infrastructure with procedural memory support.</li>
+<li><strong>Choose LlamaIndex Memory</strong> when your primary need is document-centric RAG with memory augmentation, not conversational persistence.</li>
+<li><strong>Choose Chroma</strong> when you only need a vector database and plan to build all memory logic yourself.</li>
 </ul>
-<h2 id="한계--정직한-평가">한계 / 정직한 평가<a hidden class="anchor" aria-hidden="true" href="#한계--정직한-평가">#</a></h2>
-<p>Mem0은 모든 사용 사례에 적합한 도구는 아닙니다. 잘 수행되지 않는 영역은 다음과 같습니다: <strong>1. 시간 추론 격차</strong>: LongMemEval 시간 하위 작업에서 Mem0은 49-82%를 기록합니다. Zep과 Graphiti는 명시적 시간 앵커 그래프 저장으로 63.8-71.2%를 달성합니다. 에이전트가 이벤트 시퀀스(&ldquo;X 전에 무슨 일이 있었습니까?&quot;)에 대해 추론해야 하는 경우 Mem0이 부족할 수 있습니다.</p>
-<p><strong>2. 그래프 메모리 가격</strong>: 그래프 기능은 월 $249의 Pro 티어로 잠겨 있습니다. $19/월의 Starter 티어는 벡터 유사성 검색만 제공합니다. 예산 내에서 관계 인식 메모리가 필요한 팀을 위해 Zep($25/월) 또는 Cognee(묾 호스팅)와 같은 대안이 더 낮은 가격에 그래프를 제공합니다.</p>
-<p><strong>3. 손실성 추출</strong>: Mem0은 대화에서 구조화된 사실을 추출하므로 일부 뉘앙스가 손실됩니다 — 말하는 사람 귀속, 정확한 타임스탬프, 중간 추론 단계가 폐기될 수 있습니다. 문자 그대로의 대화 회상의 경우, 저장된 메시지에 대한 원시 RAG가 Mem0보다 우수합니다(문자 그대로 회상 벤치마크에서 61.4% 대 86%+).</p>
-<p><strong>4. 완전한 에이전트 프레임워크가 아님</strong>: Mem0은 메모리 레이어이지 에이전트 오케스트레이션 프레임워크가 아닙니다. 도구 호출, 계획 및 멀티 스텝 추론에는 여전히 LangChain, CrewAI 또는 OpenAI Agents SDK가 필요합니다.</p>
-<p><strong>5. 셀프 호스팅 복잡성</strong>: Docker 설정은 간단하지만 프로덕션 셀프 호스팅에는 벡터 스토어(Qdrant/Chroma), LLM API 키, 임베딩 파이프라인 및 모니터링을 관리해야 합니다. 관리형 플랫폼은 이 부담을 제거하지만 데이터 레지던시 문제가 발생합니다.</p>
-<h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
-<p><strong>Q: Mem0 Platform과 Mem0 Open Source의 차이점은 무엇입니까?</strong></p>
-<p>A: Mem0 Platform(app.mem0.ai)은 자동 확장, 대시보드 분석 및 SOC 2 준수를 갖춘 관리형 클라우드 서비스입니다. Mem0 Open Source는 데이터와 인프라를 완전히 제어할 수 있는 셀프 호스팅 버전입니다. OSS 버전은 동일한 핵심 메모리 엔진을 갖지만 벡터 스토어, LLM 제공자 및 확장성을 직접 관리해야 합니다.</p>
-<p><strong>Q: 프로덕션에서 mem0과 langchain memory를 어떻게 비교합니까?</strong></p>
-<p>A: LangChain Memory(LangMem)는 물뇌이고 LangGraph와 기본 통합되지만 관리 서비스, 자동 사실 추출 및 엔터프라이즈 규정 준수 인증이 없습니다. Mem0은 모든 프레임워크에서 작동하는 독립형 API를 제공하며 자동 메모리 추출 및 엔터프라이즈 플랜에서 SOC 2/HIPAA 준수를 제공합니다. LangGraph를 전용으로 사용하지 않는 경우 Mem0이 더 유연한 선택입니다.</p>
-<p><strong>Q: 외부 API에 데이터를 전송하지 않고 Mem0을 사용할 수 있습니까?</strong></p>
-<p>A: 예. Mem0 Open Source는 Ollama를 LLM 추론 및 Chroma나 Qdrant와 같은 로컬 벡터 스토어로 완전히 로컬 배포를 지원합니다. LLM 제공자를 로컬 모델(예: llama3)이 있는 &ldquo;ollama&quot;로 구성하고 임베더를 로컬 sentence-transformers 모델로 구성합니다. 데이터가 네트워크를 떠나지 않습니다.</p>
-<p><strong>Q: 프로덕션에 어떤 벡터 스토어를 사용해야 합니까?</strong></p>
-<p>A: Qdrant는 하이브리드 검색 기능(밀집+희소 벡터), 수평 확장 지원 및 10ms 이하 쿼리 지연 시간으로 프로덕션 배포에 권장됩니다. PostgreSQL을 이미 실행 중인 경우 PGVector가 이상적입니다. Pinecone은 운영 오버헤드 없이 자동 확장이 필요한 서버리스 배포에 적합합니다.</p>
-<p><strong>Q: LangChain Memory에서 Mem0으로 마이그레이션하려면 어떻게 합니까?</strong></p>
-<p>A: 마이그레이션은 점진적입니다. 기존 LangChain 메모리와 함께 Mem0을 초기화합니다. 두 시스템에 새 대화를 저장합니다. Mem0의 <code>search()</code> API를 사용하여 메모리를 검색하고 <code>memories</code> 변수를 통해 LangChain 프롬프트에 주입합니다. 신뢰도가 높아지면 메모리 소스를 Mem0으로 전환합니다. Mem0 문서에서 마이그레이션 가이드를 제공합니다.</p>
-<p><strong>Q: 대규모에서 Mem0의 가격은 얼마입니까?</strong></p>
-<p>A: Hobby 티어는 월 10K 메모리 및 1K 검색이 물뇌입니다. Starter는 월 $19에 50K 메모리 및 5K 검색을 제공합니다. Pro는 월 $249에 무제한 메모리, 그래프 메모리 및 분석을 제공합니다. Enterprise는 맞춤형 가격으로 온프레미스 배포, SSO 및 SLA 보장을 제공합니다. 그래프 기능이 필요한 팀의 주요 가격 우려는 Starter에서 Pro로의 전환입니다.</p>
-<p><strong>Q: Mem0은 멀티모달 메모리(이미지, 오디오)를 지원합니까?</strong></p>
-<p>A: 예, Mem0 Open Source는 이미지와 오디오 파일을 포함한 멀티모달 입력을 지원합니다. 멀티모달 기능은 텍스트가 아닌 콘텐츠에서 의미 정보를 추출하고 검색 가능한 메모리 항목으로 저장합니다. 이에는 GPT-4o 또는 Claude 3.5 Sonnet과 같은 멀티모달 LLM이 필요합니다.</p>
-<h2 id="결론">결론<a hidden class="anchor" aria-hidden="true" href="#결론">#</a></h2>
-<p>Mem0은 AI 에이전트 개발에서 가장 지속적인 문제 중 하나를 해결합니다: 세션 간 메모리입니다. 56,205개의 GitHub Stars, 19개의 벡터 스토어 백엔드, 그리고 전체 컨텍스트 기선 대비 토큰 비용이 3.7배 낮은 LoCoMo에서 92.5%를 달성하는 새로운 토큰 효율 알고리즘을 갖춘 Mem0은 프로덕션에서 가장 널리 채택된 오픈소스 메모리 레이어입니다. 물뇌 티어는 프로토타이핑을 위해 10K 메모리를 처리하고, 셀프 호스팅 Docker 스택은 엔터프라이즈 배포를 위한 완전한 데이터 제어를 제공합니다.</p>
-<p><strong>액션 아이템:</strong></p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations--honest-assessment">#</a></h2>
+<p>Mem0 is not the right tool for every use case. Here is what it does not do well: <strong>1. Temporal reasoning gap</strong>: On LongMemEval temporal sub-tasks, Mem0 scores 49-82% depending on the category. Zep with Graphiti hits 63.8-71.2% on temporal tasks due to explicit time-anchored graph storage. If your agent needs to reason about sequences of events (&ldquo;what happened before X?&rdquo;), Mem0 may fall short.</p>
+<p><strong>2. Graph memory pricing</strong>: Graph features are locked behind the $249/month Pro tier. The Starter tier at $19/month only gets vector similarity search. For teams that need relationship-aware memory on a budget, alternatives like Zep ($25/month) or Cognee (free self-hosted) offer graph at lower price points.</p>
+<p><strong>3. Lossy extraction</strong>: Mem0 extracts structured facts from conversations, which means some nuance is lost — speaker attribution, exact timestamps, and intermediate reasoning steps can be discarded. For verbatim conversation recall, raw RAG over stored messages outperforms Mem0 (61.4% vs 86%+ on verbatim recall benchmarks).</p>
+<p><strong>4. Not a full agent framework</strong>: Mem0 is a memory layer, not an agent orchestration framework. You still need LangChain, CrewAI, or OpenAI Agents SDK for tool calling, planning, and multi-step reasoning.</p>
+<p><strong>5. Self-hosted complexity</strong>: The Docker setup is straightforward, but production self-hosting requires managing the vector store (Qdrant/Chroma), LLM API keys, embedding pipelines, and monitoring. The managed platform removes this burden but introduces data residency concerns.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<p><strong>Q: What is the difference between Mem0 Platform and Mem0 Open Source?</strong></p>
+<p>A: Mem0 Platform (app.mem0.ai) is the managed cloud service with automatic scaling, dashboard analytics, and SOC 2 compliance. Mem0 Open Source is the self-hosted version that gives you full control over data and infrastructure. The OSS version has the same core memory engine but requires you to manage the vector store, LLM provider, and scaling yourself.</p>
+<p><strong>Q: How does mem0 compare to langchain memory for production use?</strong></p>
+<p>A: LangChain Memory (LangMem) is free and integrates natively with LangGraph, but lacks a managed service, automatic fact extraction, and enterprise compliance certifications. Mem0 provides a standalone API that works across any framework, with automatic memory extraction and SOC 2/HIPAA compliance on Enterprise plans. If you are not using LangGraph exclusively, Mem0 is the more flexible choice.</p>
+<p><strong>Q: Can I use Mem0 without sending data to external APIs?</strong></p>
+<p>A: Yes. Mem0 Open Source supports fully local deployments using Ollama for LLM inference and local vector stores like Chroma or Qdrant. Configure the LLM provider as &ldquo;ollama&rdquo; with a local model (e.g., llama3) and the embedder as a local sentence-transformers model. No data leaves your network.</p>
+<p><strong>Q: What vector store should I use for production?</strong></p>
+<p>A: Qdrant is the recommended choice for production deployments due to its hybrid search capabilities (dense + sparse vectors), horizontal scaling support, and sub-10ms query latency. PGVector is ideal if you already run PostgreSQL. Pinecone works well for serverless deployments that need auto-scaling without ops overhead.</p>
+<p><strong>Q: How do I migrate from LangChain Memory to Mem0?</strong></p>
+<p>A: The migration is incremental. Start by initializing Mem0 alongside your existing LangChain memory. Store new conversations in both systems. Use Mem0&rsquo;s <code>search()</code> API to retrieve memories and inject them into your LangChain prompts via the <code>memories</code> variable. Once confidence is high, switch the memory source exclusively to Mem0. The Mem0 docs provide a migration guide at mem0.ai/migration.</p>
+<p><strong>Q: What is the pricing for Mem0 at scale?</strong></p>
+<p>A: The Hobby tier is free with 10K memories and 1K retrievals per month. Starter at $19/month gives 50K memories and 5K retrievals. Pro at $249/month adds unlimited memories, graph memory, and analytics. Enterprise plans are custom-priced with on-prem deployment, SSO, and SLA guarantees. The jump from Starter to Pro is the main pricing concern for teams that need graph features.</p>
+<p><strong>Q: Does Mem0 support multi-modal memory (images, audio)?</strong></p>
+<p>A: Yes, Mem0 Open Source supports multi-modal inputs including images and audio files. The multi-modal feature extracts semantic information from non-text content and stores it as retriably memory entries. This requires a multi-modal LLM like GPT-4o or Claude 3.5 Sonnet.</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>Mem0 solves one of the most persistent problems in AI agent development: cross-session memory. With 56,205 GitHub stars, 19 vector store backends, and a new token-efficient algorithm that hits 92.5% on LoCoMo at 3.7x lower token cost than full-context baselines, it is the most adopted open-source memory layer in production. The free tier handles 10K memories for prototyping, and the self-hosted Docker stack gives full data control for enterprise deployments.</p>
+<p><strong>Action items:</strong></p>
 <ol>
-<li>mem0ai/mem0 리포지토리를 클론하고 ````pip install mem0ai```로 퀵스타트 실행</li>
-<li>app.mem0.ai에서 물뇌 API 키 등록</li>
-<li>LangChain 또는 CrewAI 에이전트 프롬프트에 Mem0 검색 통합</li>
-<li>자체 대화 데이터셋에서 현재 메모리 솔루션을 Mem0 검색과 벤치마크 비교</li>
+<li>Clone the mem0ai/mem0 repo and run the quickstart with ````pip install mem0ai```</li>
+<li>Sign up for a free API key at app.mem0.ai</li>
+<li>Integrate Mem0 search into your LangChain or CrewAI agent prompts</li>
+<li>Benchmark your current memory solution against Mem0&rsquo;s retrieval on your own conversation dataset</li>
 </ol>
-<p><strong>커뮤니티 가입:</strong> <a href="https://t.me/dibi8community">t.me/dibi8community</a> — Mem0 배포 경험을 공유하고 메모리 기반 에이전트를 구축하는 다른 개발자들로부터 도움을 받으세요.</p>
-<p><em>이 기사의 일부 링크는 제휴 링크입니다. 이 링크를 통해 구매하면 추가 비용 없이 커미션을 받을 수 있습니다. 이는 dibi8.com을 유지하고 오픈소스 연구를 자금하는 데 도움이 됩니다.</em></p>
-<h2 id="추천-호스팅-및-인프라">추천 호스팅 및 인프라<a hidden class="anchor" aria-hidden="true" href="#추천-호스팅-및-인프라">#</a></h2>
-<p>위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.</p>
+<p><strong>Join the community:</strong> <a href="https://t.me/dibi8community">t.me/dibi8community</a> — share your Mem0 deployment experience and get help from other developers building memory-powered agents.</p>
+<p><em>Some links in this article are affiliate links. We may earn a commission if you purchase through these links, at no extra cost to you. This helps us maintain dibi8.com and fund open-source research.</em></p>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-hosting--infrastructure">#</a></h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
 <ul>
-<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.</li>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
 </ul>
-<p><em>제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.</em></p>
-<h2 id="출처-및-추가-자료">출처 및 추가 자료<a hidden class="anchor" aria-hidden="true" href="#출처-및-추가-자료">#</a></h2>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading<a hidden class="anchor" aria-hidden="true" href="#sources--further-reading">#</a></h2>
 <ul>
-<li>Mem0 공식 문서: <a href="https://docs.mem0.ai/introduction">https://docs.mem0.ai/introduction</a></li>
-<li>Mem0 GitHub 리포지토리: <a href="https://github.com/mem0ai/mem0">https://github.com/mem0ai/mem0</a></li>
-<li>Mem0 연구 — 벤치마킹: <a href="https://mem0.ai/research">https://mem0.ai/research</a></li>
-<li>LangChain 통합 가이드: <a href="https://docs.mem0.ai/integrations/langchain">https://docs.mem0.ai/integrations/langchain</a></li>
-<li>CrewAI 통합: <a href="https://docs.mem0.ai/integrations/crewai">https://docs.mem0.ai/integrations/crewai</a></li>
-<li>OpenAI Agents SDK 통합: <a href="https://docs.mem0.ai/integrations/openai-agents-sdk">https://docs.mem0.ai/integrations/openai-agents-sdk</a></li>
-<li>Mem0 플랫폼 가격: <a href="https://mem0.ai/pricing">https://mem0.ai/pricing</a></li>
-<li>LoCoMo 벤치마크 논문: <a href="https://arxiv.org/abs/2402.03771">https://arxiv.org/abs/2402.03771</a></li>
-<li>LongMemEval 벤치마크: <a href="https://github.com/memory-benchmark/LongMemEval">https://github.com/memory-benchmark/LongMemEval</a></li>
-<li>PRISM 논문(파레토 효율 검색): <a href="https://arxiv.org/html/2605.12260v1">https://arxiv.org/html/2605.12260v1</a></li>
-<li>AWS Agent SDK + Mem0 발표: <a href="https://aws.amazon.com/blogs/machine-learning">https://aws.amazon.com/blogs/machine-learning</a></li>
-<li>Atlan — 2026년 최고의 AI 에이전트 메모리 프레임워크: <a href="https://atlan.com/know/best-ai-agent-memory-frameworks-2026/">https://atlan.com/know/best-ai-agent-memory-frameworks-2026/</a></li>
-<li>Evermind — Mem0 대안 2026: <a href="https://evermind.ai/blogs/mem0-alternative">https://evermind.ai/blogs/mem0-alternative</a></li>
+<li>Mem0 Official Documentation: <a href="https://docs.mem0.ai/introduction">https://docs.mem0.ai/introduction</a></li>
+<li>Mem0 GitHub Repository: <a href="https://github.com/mem0ai/mem0">https://github.com/mem0ai/mem0</a></li>
+<li>Mem0 Research — Benchmarking: <a href="https://mem0.ai/research">https://mem0.ai/research</a></li>
+<li>LangChain Integration Guide: <a href="https://docs.mem0.ai/integrations/langchain">https://docs.mem0.ai/integrations/langchain</a></li>
+<li>CrewAI Integration: <a href="https://docs.mem0.ai/integrations/crewai">https://docs.mem0.ai/integrations/crewai</a></li>
+<li>OpenAI Agents SDK Integration: <a href="https://docs.mem0.ai/integrations/openai-agents-sdk">https://docs.mem0.ai/integrations/openai-agents-sdk</a></li>
+<li>Mem0 Platform Pricing: <a href="https://mem0.ai/pricing">https://mem0.ai/pricing</a></li>
+<li>LoCoMo Benchmark Paper: <a href="https://arxiv.org/abs/2402.03771">https://arxiv.org/abs/2402.03771</a></li>
+<li>LongMemEval Benchmark: <a href="https://github.com/memory-benchmark/LongMemEval">https://github.com/memory-benchmark/LongMemEval</a></li>
+<li>PRISM Paper (Pareto-Efficient Retrieval): <a href="https://arxiv.org/html/2605.12260v1">https://arxiv.org/html/2605.12260v1</a></li>
+<li>AWS Agent SDK + Mem0 Announcement: <a href="https://aws.amazon.com/blogs/machine-learning">https://aws.amazon.com/blogs/machine-learning</a></li>
+<li>Atlan — Best AI Agent Memory Frameworks 2026: <a href="https://atlan.com/know/best-ai-agent-memory-frameworks-2026/">https://atlan.com/know/best-ai-agent-memory-frameworks-2026/</a></li>
+<li>Evermind — Mem0 Alternatives 2026: <a href="https://evermind.ai/blogs/mem0-alternative">https://evermind.ai/blogs/mem0-alternative</a></li>
 </ul>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;Mem0: 56K+ Stars — AI 에이전트 메모리 성능 튜닝 가이드 2026&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Mem0: 56K+ Stars — AI Agent Memory Performance Tuning Guide 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;author&rdquo;: {
@@ -1022,7 +924,7 @@ m = Memory.from_config(config_path)
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/mem0%22">https://dibi8.com/kr/resources/mem0"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/mem0%22">https://dibi8.com/resources/mem0"</a>
 }
 }
 </script></p>
@@ -1090,6 +992,81 @@ m = Memory.from_config(config_path)
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

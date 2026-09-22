@@ -1,0 +1,25 @@
+<!-- GTranslate Widget for dibi8.com -->
+<!-- Add before </body> tag -->
+<script type="text/javascript">
+(function() {
+    var s = document.createElement('script');
+    s.type = 'text/javascript';
+    s.async = true;
+    s.src = '//translate.googleapis.com/translate_bridge.js';
+    document.head.appendChild(s);
+})();
+</script>
+<script type="text/javascript">
+    google_translate_element();
+</script>
+<script type="text/javascript">
+    function google_translate_element() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'zh',
+            includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,hi,pt,ru',
+            layout: google.translate.TranslateElement.FloatPosition.TOP_RIGHT,
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
+</script>
+<div id="google_translate_element"></div>

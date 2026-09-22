@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Python\nRust TypeScript application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MIT file_size: “1.1 GB” file_md5: ’' download_url: https://github.com/QwenLM/Qwen3-Coder backup_url: ’' last_maintained: “2026-03-24” draft: false aliases: /ko/posts/polymarket-trading-bot-framework/ /ko/posts/polymarket-trading-bot-stack/ faqs: - q: ‘봇이 Binance와 Polymarket 간의 차익거래로 수익을 낼 수 있는 이유는 무엇인가요?’ a: ‘Polymarket의 가격 업데이트 속도는 기초 자산이 Binance에서 움직이는 속도보다 느립니다. 2024년에는 이 지연이 평균 12초였고, 2026년 1분기에는 경쟁으로 인해 약 2.7초로 단축되었습니다. 봇은 Binance의 실제 가격 변동을 읽고, 시장이 정정되기 전에 Polymarket의 뒤처진 가격으로 거래를 체결할 수 있습니다.’ q: ‘자동 거래에 가장 적합한 Polymarket 계약 유형은 무엇인가요?’ a: ‘단기 암호화폐 계약, 구체적으로는 5분 및 15분 BTC/ETH 상승/하락 질문입니다. 결제가 빠르고 즉각적인 피드백을 제공하며, Binance 대비 가격 지연이 가장 크게 나타납니다. 바로 이 지점에 차익거래 우위가 존재합니다.’ q: ‘Polymarket 차익거래 봇은 포지션 크기를 어떻게 결정하나요?’ a: ‘Kelly Criterion을 사용해 엣지 크기를 계산합니다. Binance와 Polymarket 간의 가격 괴리를 감지한 후, 봇은 켈리 기준에 따라 베팅 규모를 산정하고 Polymarket의 CLOB API를 통해 주문을 실행한 다음, 시장이 정정되면 포지션을 청산합니다. 이 과정을 하루 200~500회 반복합니다.’ q: ‘Polymarket은 거래 봇 구축을 위해 어떤 API를 제공하나요?’ a: ‘Polymarket은 네 가지 API를 제공합니다: 시장 데이터/가격/메타데이터를 위한 Gamma API, 오더북과 거래 실행을 위한 CLOB API, Polygon(체인 ID 137)에서 USDC로 이루어지는 온체인 결제, 그리고 실시간 가격 업데이트를 위한 WebSocket 피드. 공식 Python 클라이언트 py-clob-client가 이 모든 기능을 래핑합니다.’ q: ‘동일한 Polymarket 전략을 사용할 때 거래 봇이 인간보다 뛰어난 성과를 내는 이유는 무엇인가요?’ a: ‘추적 기간 동안 봇은 약 $206,000를 벌어들인 반면, 동일한 로직을 사용한 인간은 약 $100,000에 그쳐 2배의 격차가 발생했습니다. 인간이 범하는 네 가지 구조적 오류가 있습니다: 창이 닫힌 후의 늦은 진입, 감정적이고 일관성 없는 포지션 크기 결정, 약 8시간 후 나타나는 피로, 그리고 전략을 포기하거나 무리하게 추가 투자하게 만드는 손실 심리입니다.’ Polymarket 트레이딩 봇 기술 스택: 28개 도구로 100만 달러 벌기 {\u003c/* resource-info */\u003e}\n소개 1,003,450달러 수익. 3,062개 예측. 하나의 지갑.\n트레이더들이 Polymarket에서 지갑 주소 ```0x55be7aa03ecfbe37aa5460db791205f7ac9ddca3````의 성장 궤적을 처음 보았을 때, 첫 반응은 간단했습니다: 가짜다. 소매 투자자 지갑으로 7자리 수익을 낸다는 것은 Telegram 사기 그룹의 이야기처럼 들리지, 검증 가능한 온체인 데이터가 아닙니다.\n하지만 블록체인은 거짓말하지 않습니다. 모든 거래는 공개적입니다. 모든 결제는 검증 가능합니다.\n이 글은 이 모든 것을 가능하게 한 28개 도구 기술 스택을 완전히 매핑합니다 — AI 추론부터 프로덕션 실행까지 6개 레이어. 자신만의 봇을 구축하든, 수익성 있는 트레이더를 단순히 복사하든, 이것이 청사진입니다.\n![Polymarket 트레이딩 대시보드](https://picsum.photos/seed/crypto-trading/800/450\nPolymarket이란 무엇이며, 엣지는 어디에 있는가 Polymarket은 이진 결과에 대해 거래하는 예측 시장입니다. 각 계약은 1.00달러(정답) 또는 0.00달러(오답)로 결제됩니다. 0.73달러에 거래되는 계약은 시장이 “예” 결과가 73% 확률로 발생한다고 믿는다는 의미입니다.\n해당 플랫폼은 2026년 초 주간 거래량이 20억 달러를 초과했습니다.\n구조적 취약점 자동화 트레이딩의 핵심 카테고리는 단기 암호화폐 계약 — 5분 및 15분 BTC와 ETH 상승/하락 문제입니다. 빠르게 결제되고, 즉각적인 피드백을 제공하며, 중요한 취약점이 있습니다: \u003e Polymarket의 가격 업데이트 속도가 Binance의 기초 자산 이동 속도보다 느립니다.\n2024년, 이 지연은 평균 12초였습니다. 2026년 1분기까지 경쟁이 이를 2.7초로 압축했습니다.\n기계에게 2.7초는 영원입니다.\n이 격차 — Binance가 이미 아는 가격과 Polymarket이 여전히 표시하는 가격 사이의 격차 — 이 모든 전략의 기반입니다.\n브라우저가 비디오 태그를 지원하지 않습니다. 차익거래 메커니즘, 단계별 설명 15분 BTC 계약이 50/50으로 시작합니다. 10분 후, 비트코인이 30초 만에 Binance에서 0.6% 하락합니다. 만기 시 BTC가 더 낮을 “실제” 확률이 대략 78%로 변했습니다. Polymarket은 여전히 54/46을 표시합니다.\n이것은 이진 계약에서 24포인트의 엣지입니다.\nBinance WebSocket 피드를 50ms 미만의 지연으로 모니터링하는 봇: 1. 가격 차이를 감지합니다 2. 켈리 기준을 사용하여 엣지 크기를 계산합니다 3. Polymarket의 CLOB API를 통해 실행합니다 4. 2초 후, 시장이 수정됩니다 5. 포지션이 수익적으로 청산됩니다\n하루에 200-500회 반복합니다. 이것이 coinman2의 결과입니다. 마법이 아닙니다 — 여전히 존재하는 격차의 산업 규모 이용입니다.\n![지연 차익거래 다이어그램](https://picsum.photos/seed/crypto-trading/800/450\n완전한 기술 스택: 6레이어, 28개 도구 레이어 1 - 브레인: AI 추론 coinman2 봇은 Anthropic의 Claude에서 실행되었습니다. 2026년 3월, 통제 실험에서 Claude를 OpenClaw 프레임워크와 비교했습니다 — 동일한 시작 자본(1,000달러), 동일한 시장 조건, 48시간: - Claude: +1,322% 수익률\nOpenClaw: 완전 청산 격차는? 리스크 관리 품질. Claude가 생성한 코드는 더 보수적인 기본 매개변수, 더 나은 엣지 케이스, 더 깔끔한 오류 처리를 포함했습니다.\n도구 용도 링크 Claude (Anthropic) 주요 전략가. 시장 문제를 추론하고, 현재 가격 대비 확률을 추정합니다 anthropic.com Qwen3-Coder 오픈소스 코딩 LLM. 실시간 성능을 모니터링하고, 자율적으로 모듈을 재작성합니다 GitHub G0DM0D3 검열되지 않은 AI 인터페이스, 불편한 시장 주장을 처리합니다 GitHub Claude Squad 여러 Claude 인스턴스를 병렬로 실행하여 다양한 시장 부문을 커버합니다 GitHub 레이어 2 - 오케스트레이션: 에이전트가 실행하게 만들기 실행 레이어가 없는 추론 엔진은 단순한 의견 생성기입니다.\n도구 용도 링크 Agency Agents 불 vs 곰 토론, 리스크 매니저 거부권 GitHub ClaudeAgent OneClick 원클릭 배포. 24/7 시장 감시, 몇 분 안에 시작 GitHub MiroThinker 필수 사고의 사슬 레이어. 봇은 진입 전 모든 포지션을 정당화해야 합니다 GitHub Superpowers 에이전트에 웹 접근, 파일 작업, 임의 API 호출 확장 GitHub TradingAgents 다중 에이전트 프레임워크: 펀더멘탈 + 기술적 + 감성 분석가 GitHub ![다중 에이전트 트레이딩 아키텍처](https://picsum.photos/seed/crypto-trading/800/450\n레이어 3 - 데이터 \u0026 시장 신호: 눈 봇은 볼 수 있는 것만큼만 좋습니다.\n도구 용도 링크 OpenBB 오픈소스 블룸버그. 100+ 데이터 소스 통합 GitHub Dexter 자율 심층 연구. SEC 파일, 실적 전화 회의록 GitHub MCP Server MCP 프로토콜을 통해 Claude의 컨텍스트에 금융 데이터 세트 GitHub Crucix 온체인 집계기. Polygon의 고래 지갑 움직임 GitHub fredapi 연방준비제도 데이터 세트: CPI, 실업률, 수익률 곡선 GitHub Binance Collector 단기 BTC/ETH 계약의 시장 방향 예측 GitHub Polymarket Assistant Tool 라이브 시장에서 방향 편향을 표시하는 지표 엔진 GitHub lightweight-charts TradingView의 차팅 라이브러리. 14k 스타, 45KB GitHub ![트레이딩 데이터 대시보드](https://picsum.photos/seed/crypto-trading/800/450\n레이어 4 - 시장 인텔리전스: 타인의 성과 모든 것을 처음부터 구축할 필요는 없습니다.\n도구 용도 링크 Polyscope 2,000+ 시장 스캔. 고래 알림을 Telegram으로 thepolyscope.com Polywhaler 10,000달러+ 고래 거래 추적기, AI 신호 포함 polywhaler.com WHALES tracker 스마트 머니 컨센서스, 건강 점수, 신뢰 점수 Apify HyperBuildX bot Rust 기반, 100ms 미만 지연. AI 카피 트레이드 순위 GitHub polymarketanalytics.com 오픈 트레이더 분석, 상위 지갑 P\u0026L polymarketanalytics.com polyrec 실시간 터미널, 70+ 지표, 내장 백테스터 GitHub Polymarket-Trading-Bot 53,000줄 TypeScript. 7개 사전 구축 전략 GitHub ![Polymarket 분석 대시보드](https://picsum.photos/seed/crypto-trading/800/450\n레이어 5 - 백테스트 \u0026 시뮬레이션: 실행 전에 증명 이것은 대부분의 소매 봇이 건너뛰는 레이어 — 그리고 대부분이 폭발하는 이유입니다.\n도구 용도 링크 prediction-market-backtesting 실제 역사적 Polymarket/Kalshi 데이터에 대해 전략 백테스트 GitHub polybot 모의 트레이딩이 있는 전체 실행 인프라. Kafka, ClickHouse, Grafana GitHub ![백테스트 결과 차트](https://picsum.photos/seed/crypto-trading/800/450\n레이어 6 - 실행 인프라 Polymarket은 4개 API 표면을 노출합니다: 1. Gamma API - 시장 데이터, 가격, 메타데이터 2. CLOB API - 주문장, 거래 실행 3. 온체인 결제 - Polygon(체인 ID 137), USDC 4. WebSocket 피드 - 실시간 가격 업데이트\n공식 Python 클라이언트 py-clob-client는 이 모든 것을 래핑합니다. 주문장을 가져오는 데 3줄. 서명된 한도 주문을 하는 데 5줄.\n핵심 저장소:\nPolymarket/agents - LangChain이 이미 통합된 공식 AI 에이전트 프레임워크 polyterm - 고래 추적기가 있는 터미널 대시보드 완전한 신호 흐름 세계 이벤트 → Binance WebSocket (50ms) → AI 분석 → 켈리 사이징 → CLOB API 주문 → Polygon 결제 → 포지션 모니터링 → 수익/손실 ```` **이상적인 경로의 총 지연: 10초 미만.** ## 인간 vs 봇: 성능 격차 봇은 추적 기간 동안 약 **206,000달러**를 생성했습니다. 동일한 로직을 사용하는 인간은 약 **100,000달러**를 생성했습니다. **2배 격차. 동일한 시장. 동일한 전략. 동일한 시간 창.** 인간이 저지르는 4가지 체계적 오류: 1. **늦은 진입** - 인간이 움직임을 확인할 때쯤이면 창이 이미 닫혔습니다 2. **일관성 없는 사이징** - 감정적 사이징은 수천 건의 거래에서 기대 가치를 파괴합니다 3. **피로** - 인간은 8시간 후에 성능이 저하됩니다. 봇은 72시간째에도 1시간째와 동일합니다 4. **드로다운 심리** - 인간은 작동하는 전략을 포기하거나 배팅을 두 배로 늘립니다 ![인간 vs 봇 성능 비교](https://picsum.photos/seed/crypto-trading/800/450 ## 왜 지금이 기회인가 이미 실행 중인 봇은 복리 이점을 가지고 있습니다. 엣지는 오늘도 존재합니다. 창은 12초에서 2.7초로 좁혀지고 있지만, 완전히 닫히지는 않았습니다. **이 스택을 이해할 최적의 시기는 6개월 전이었습니다. 두 번째로 좋은 시기는 바로 지금입니다.** ## 시작하기: 당신의 첫 1,000달러 전체 스택을 구축하는 것이 너무 복잡하게 느껴진다면, 더 간단하게 시작하세요: 1. **Polymarket 계정 개설**: [polymarket.com](https://polymarket.com) 2. **coinman2 지갑 연구**: [polymarket.com/@coinman2](https://polymarket.com/@coinman2) 3. **Telegram 봇으로 거래 복사**: [kreo.app/@cvxv666](https://kreo.app/@cvxv666) 4. **이 글을 북마크하세요** - 구축할 때 이러한 도구 참조가 필요할 것입니다 ## 결론 이것은 빠른 부의 스킴이 아닙니다. 이것은 예측 시장의 구조적 비효율을 이용하는 **산업급 차익거래 작전**입니다. 100만 달러의 수익은 한 번의 운 좋은 거래가 아닌, 3,062개의 예측에서 나왔습니다. 기술 스택은 열려 있습니다. 도구는 무료입니다. 엣지는 실제입니다. 유일한 질문은, 당신이 **실제로 구축할 0.01%**가 될 것인지, 아니면 가짜라고 외치고 떠날 99.9%가 될 것인지입니다. **기억하세요**: 경쟁은 보이는 것보다 약합니다. 대부분의 사람들은 \"너무 어렵다\"고 외치며 가짜라고 할 것입니다. 구축자만이 먹습니다. * * * ## 리소스 및 링크 - [Polymarket 공식](https://polymarket.com) - [coinman2 지갑 프로필](https://polymarket.com/@coinman2) - [Polymarket/agents GitHub](https://github.com/Polymarket/agents) - [OpenBB 터미널](https://github.com/OpenBB-finance/OpenBB) - [원본 X 글 @antpalkin](https://x.com/antpalkin/status/2046654122892403188) *면책 조항: 이 글은 교육 목적으로만 작성되었습니다. 예측 시장 트레이딩은 상당한 위험을 수반합니다. 과거 성과가 미래 결과를 보장하지 않습니다. 트레이딩 전 반드시 자체 연구를 수행하세요.* * * * ## 추천 도구 오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet. - **** — 세계 최대 암호화폐 거래소. 스팟·선물·스테이블코인 변환 깊은 유동성 — 위의 온체인 DeFi 도구·결제·토큰 운영과 자연스럽게 페어링. *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Polymarket 트레이딩 봇 기술 스택: 28개 도구로 100만 달러 벌기\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/polymarket-trading-bot-stack\" } } ## Why This Matters Understanding polymarket 트레이딩 봇 기술 스택: 28개 도구로 100만 달러 벌기 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Polymarket 트레이딩 봇 기술 스택: 28개 도구로 100만 달러 벌기 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~6 minutes* ## Frequently Asked Questions (FAQ) **问：量化交易的风险有多大？** 取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。 **问：如何选择适合的交易策略？** 根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。 **问：回测结果可信吗？** 回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。 **问：需要编程基础吗？** 基础策略可使用低代码平台，高级策略需要Python/C++编程能力。 **问：交易系统的维护成本？** 包括服务器费用、数据订阅、算法更新、以及监控维护时间。 ",
-  "wordCount" : "1696",
+  "articleBody": "title: “28 Tools Behind a $1M Polymarket Trading Bot: Full Stack… description: “Technical guide and comparison.” $1M. Learn latency arbitrage, AI reasoning, and the complete tech stack for prediction market trading. date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Go\nJavaScript Python Rust TypeScript application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MIT file_size: “1.1 GB” file_md5: ’' download_url: https://github.com/QwenLM/Qwen3-Coder backup_url: ’' last_maintained: “2026-03-24” draft: false aliases: /en/posts/polymarket-trading-bot-stack/ /posts/polymarket-trading-bot-automated/ /posts/polymarket-trading-bot-framework/ /posts/polymarket-trading-bot-stack/ faqs: - q: ‘Why can a bot profit from arbitrage between Binance and Polymarket?’ a: ‘Polymarket updates its prices slower than the underlying asset moves on Binance. In 2024 that lag averaged 12 seconds, and by Q1 2026 competition had compressed it to about 2.7 seconds. A bot can read the real price move on Binance and trade the stale Polymarket price before the market corrects.’ q: ‘What types of Polymarket contracts are best suited for automated trading?’ a: ‘Short-duration crypto contracts, specifically 5-minute and 15-minute BTC and ETH up/down questions. They resolve fast, give immediate feedback, and exhibit the largest price lag relative to Binance, which is where the arbitrage edge lives.’ q: ‘How does a Polymarket arbitrage bot decide its position size?’ a: ‘It calculates the edge size using the Kelly Criterion. After detecting a price discrepancy between Binance and Polymarket, the bot sizes the bet by Kelly, executes through Polymarket’’s CLOB API, and closes the position once the market corrects, repeating 200 to 500 times per day.’ q: ‘What API surfaces does Polymarket expose for building a trading bot?’ a: ‘Polymarket exposes four: the Gamma API for market data, prices, and metadata; the CLOB API for the order book and trade execution; on-chain settlement on Polygon (chain ID 137) in USDC; and WebSocket feeds for real-time price updates. The official py-clob-client Python client wraps all of these.’ q: ‘Why do trading bots outperform humans using the same Polymarket strategy?’ a: ‘In a tracked period bots generated about $206,000 versus roughly $100,000 for humans using the same logic, a 2x gap. Humans lose to four systematic errors: late entries after the window closes, emotional and inconsistent position sizing, fatigue after about 8 hours, and drawdown psychology that makes them abandon or double down on strategies.’ 28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown {\u003c/* resource-info */\u003e}\nIntroduction $1,003,450 in profit. 3,062 predictions. One wallet.\nWhen traders first saw the growth trajectory of wallet ```0x55be7aa03ecfbe37aa5460db791205f7ac9ddca3```` on Polymarket, the reaction was simple: fake. A seven-figure PnL from a retail-profile wallet belongs in a Telegram scam group, not on a verifiable on-chain dashboard.\nBut the blockchain doesn’t lie. Every trade is public. Every settlement is verifiable.\nThis article maps the complete 28-tool tech stack that makes this possible - 6 layers from AI reasoning to production execution. Whether you want to build your own bot or simply copy profitable traders, this is the blueprint.\n![Polymarket Trading Dashboard](https://picsum.photos/seed/crypto-trading/800/450\nWhat Polymarket Is and Where the Edge Lives Polymarket is a prediction market where users trade on binary outcomes. Each contract resolves at $1.00 (correct) or $0.00 (wrong). A contract priced at $0.73 means the market believes there’s a 73% chance the “Yes” outcome happens.\nThe platform’s weekly volume exceeded $2 billion in early 2026.\nThe Structural Vulnerability The key category for automated trading is short-duration crypto contracts - 5-minute and 15-minute BTC and ETH up/down questions. They resolve fast, provide immediate feedback, and have a critical vulnerability: \u003e Polymarket updates prices slower than the underlying asset moves on Binance.\nIn 2024, that lag averaged 12 seconds. By Q1 2026, competition compressed it to 2.7 seconds.\n2.7 seconds is an eternity for a machine.\nThat gap - between what Binance knows and what Polymarket still shows - is where every strategy lives.\nYour browser does not support the video tag. The Arbitrage Mechanism, Step by Step A 15-minute BTC contract opens at 50/50. Ten minutes in, Bitcoin drops 0.6% on Binance in 30 seconds. The “real” probability that BTC will be lower at expiry just shifted to roughly 78%. Polymarket still shows 54/46.\nThat’s a 24-point edge on a binary contract.\nA bot monitoring Binance’s WebSocket feed with under 50ms latency: 1. Detects the price discrepancy 2. Calculates edge size using Kelly Criterion 3. Executes via Polymarket’s CLOB API 4. Two seconds later, the market corrects 5. Position closes profitable\nRepeat 200-500 times per day. That’s the coinman2 result. Not magic - industrial-scale exploitation of a gap that still exists.\n![Latency Arbitrage Diagram](https://picsum.photos/seed/crypto-trading/800/450\nThe Complete Stack: 6 Layers, 28 Tools Layer 1 - Brain: AI Reasoning The coinman2 bot ran on Anthropic’s Claude. In March 2026, a controlled experiment ran Claude against OpenClaw framework - same starting capital ($1,000), same market conditions, 48 hours: - Claude: +1,322% return\nOpenClaw: Fully liquidated The gap? Risk management quality. Claude’s generated code included more conservative defaults, better edge cases, and cleaner error handling.\n| Tool | Purpose | Link | |\n|\n|\n| | Claude (Anthropic) | Primary strategist. Reasons about market questions, estimates probability vs current price | anthropic.com | | Qwen3-Coder | Open source coding LLM. Watches live performance, rewrites modules autonomously | GitHub | | G0DM0D3 | Uncensored AI interface for uncomfortable market theses | GitHub | | Claude Squad | Runs multiple Claude instances in parallel across market sectors | GitHub |\nLayer 2 - Orchestration: Making Agents Execute A reasoning engine with no execution layer is just an opinion generator.\n| Tool | Purpose | Link | |\n|\n|\n| | Agency Agents | Bull vs Bear debate with Risk Manager veto | GitHub | | ClaudeAgent OneClick | One-click deploy. 24/7 market watcher in minutes | GitHub | | MiroThinker | Mandatory chain-of-thought layer. Bot must justify every position | GitHub | | Superpowers | Extends agents with web access, file ops, arbitrary API calls | GitHub | | TradingAgents | Multi-agent framework: fundamental + technical + sentiment analyst | GitHub |\n![Multi-Agent Trading Architecture](https://picsum.photos/seed/crypto-trading/800/450\nLayer 3 - Data \u0026 Market Signals: The Eyes The bot is only as good as what it can see.\n| Tool | Purpose | Link | |\n|\n|\n| | OpenBB | Open source Bloomberg. 100+ data sources unified | GitHub | | Dexter | Autonomous deep research. SEC filings, earnings transcripts | GitHub | | MCP Server | Financial datasets via MCP protocol into Claude’s context | GitHub | | Crucix | On-chain aggregator. Whale wallet movements on Polygon | GitHub | | fredapi | Federal Reserve datasets: CPI, unemployment, yield curves | GitHub | | Binance Collector | Predicts market direction for short-duration BTC/ETH contracts | GitHub | | Polymarket Assistant Tool | Indicator engine for directional bias on live markets | GitHub | | lightweight-charts | TradingView’s charting library. 14k stars, 45KB | GitHub |\n![Trading Data Dashboard](https://picsum.photos/seed/crypto-trading/800/450\nLayer 4 - Market Intelligence: What Others Built You don’t have to build everything from scratch.\n| Tool | Purpose | Link | |\n|\n|\n| | Polyscope | Scans 2,000+ markets. Whale alerts to Telegram | thepolyscope.com | | Polywhaler | $10k+ whale trade tracker with AI signals | polywhaler.com | | WHALES tracker | Smart Money Consensus, Health Score, Conviction Score | Apify | | HyperBuildX bot | Rust-based, sub-100ms latency. AI copy-trade ranking | GitHub | | polymarketanalytics.com | Open trader analytics, top wallet P\u0026L | polymarketanalytics.com | | polyrec | Real-time terminal with 70+ indicators, backtester | GitHub | | Polymarket-Trading-Bot | 53k lines TypeScript. 7 prebuilt strategies | GitHub |\n![Polymarket Analytics Dashboard](https://picsum.photos/seed/crypto-trading/800/450\nLayer 5 - Backtest \u0026 Simulation: Prove Before You Run This is the layer most retail bots skip - and the reason most blow up.\n| Tool | Purpose | Link | |\n|\n|\n| | prediction-market-backtesting | Backtests against real historical Polymarket/Kalshi data | GitHub | | polybot | Full execution infrastructure with paper trading. Kafka, ClickHouse, Grafana | GitHub |\n![Backtesting Results Chart](https://picsum.photos/seed/crypto-trading/800/450\nLayer 6 - Execution Infrastructure Polymarket exposes four API surfaces: 1. Gamma API - Market data, prices, metadata 2. CLOB API - Order book, trade execution 3. On-chain settlement - Polygon (chain ID 137), USDC 4. WebSocket feeds - Real-time price updates\nThe official Python client py-clob-client wraps all of this. Three lines to fetch an order book. Five to place a signed limit order.\nKey repos:\nPolymarket/agents - Official AI agent framework with LangChain polyterm - Terminal dashboard with whale tracker The Complete Signal Flow World Event → Binance WebSocket (50ms) → AI Analysis → Kelly Sizing → CLOB API Order → Polygon Settlement → Position Monitoring → Profit/Loss ```` **Total latency: Under 10 seconds** in the ideal path. ## Humans vs Bots: The Performance Gap Bots generated approximately **$206,000** during a tracked period. Humans using the same logic generated roughly **$100,000**. **2× gap. Same market. Same strategy. Same time window.** Four systematic errors humans make: 1. **Late entries** - By the time a human confirms the move, the window closed 2. **Inconsistent sizing** - Emotional sizing destroys expected value 3. **Fatigue** - A human degrades after 8 hours. A bot is identical at hour 72 4. **Drawdown psychology** - Humans abandon working strategies or double down ![Human vs Bot Performance Comparison](https://picsum.photos/seed/crypto-trading/800/450 ## Why Now Is the Window The bots already running have a compounding advantage. The edge exists today. The window is narrowing from 12 seconds to 2.7 seconds, but it hasn't closed. **The best time to understand this stack was six months ago. The second best time is right now.** ## Getting Started: Your First $1,000 If building the full stack feels overwhelming, start simpler: 1. **Open a Polymarket account**: [polymarket.com](https://polymarket.com) 2. **Study the coinman2 wallet**: [polymarket.com/@coinman2](https://polymarket.com/@coinman2) 3. **Copy trades via Telegram bot**: [kreo.app/@cvxv666](https://kreo.app/@cvxv666) 4. **Bookmark this article** - you'll need the tool references when building ## Conclusion This isn't a get-rich-quick scheme. It's an **industrial-grade arbitrage operation** that exploits a structural inefficiency in prediction markets. The $1M PnL came from 3,062 predictions, not one lucky trade. The stack is open. The tools are free. The edge is real. The only question is whether you'll be in the **0.01% who actually build** or the 99.9% who call it fake and move on. **Remember**: Competition is weaker than it looks. Most people will scream \"too hard\" and call it cap. Only the builders eat. * * * ## Resources \u0026 Links - [Polymarket Official](https://polymarket.com) - [coinman2 Wallet Profile](https://polymarket.com/@coinman2) - [Polymarket/agents GitHub](https://github.com/Polymarket/agents) - [OpenBB Terminal](https://github.com/OpenBB-finance/OpenBB) - [Original X Article by @antpalkin](https://x.com/antpalkin/status/2046654122892403188) *Disclaimer: This article is for educational purposes only. Prediction market trading carries significant risk. Past performance does not guarantee future results. Always conduct your own research before trading.* * * * ## Recommended Tools For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads. - **** — World\"s largest crypto exchange. Deep liquidity for spot, futures, and stablecoin conversions — pairs naturally with on-chain DeFi tools, payments, or token operations covered above. *Affiliate link — supports dibi8.com at no cost to you.* ## References \u0026 Sources - [py-clob-client](https://github.com/Polymarket/py-clob-client) - [Polymarket/agents](https://github.com/Polymarket/agents) - [OpenBB](https://github.com/OpenBB-finance/OpenBB) - [lightweight-charts](https://github.com/tradingview/lightweight-charts) - [Qwen3-Coder](https://github.com/QwenLM/Qwen3-Coder) - [fredapi](https://github.com/mortada/fredapi) - [TradingAgents](https://github.com/TauricResearch/TradingAgents) { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/polymarket-trading-bot-stack\" } } ## Frequently Asked Questions (FAQ) **问：量化交易的风险有多大？** 取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。 **问：如何选择适合的交易策略？** 根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。 **问：回测结果可信吗？** 回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。 **问：需要编程基础吗？** 基础策略可使用低代码平台，高级策略需要Python/C++编程能力。 **问：交易系统的维护成本？** 包括服务器费用、数据订阅、算法更新、以及监控维护时间。 ",
+  "wordCount" : "1924",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/polymarket-trading-bot-stack/">En</a>
@@ -209,36 +209,36 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#polymarket-%ed%8a%b8%eb%a0%88%ec%9d%b4%eb%94%a9-%eb%b4%87-%ea%b8%b0%ec%88%a0-%ec%8a%a4%ed%83%9d-28%ea%b0%9c-%eb%8f%84%ea%b5%ac%eb%a1%9c-100%eb%a7%8c-%eb%8b%ac%eb%9f%ac-%eb%b2%8c%ea%b8%b0" aria-label="Polymarket 트레이딩 봇 기술 스택: 28개 도구로 100만 달러 벌기">Polymarket 트레이딩 봇 기술 스택: 28개 도구로 100만 달러 벌기</a><ul>
+                <a href="#28-tools-behind-a-1m-polymarket-trading-bot-full-stack-breakdown" aria-label="28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown">28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown</a><ul>
                     
             <li>
-                <a href="#%ec%86%8c%ea%b0%9c" aria-label="소개">소개</a></li>
+                <a href="#introduction" aria-label="Introduction">Introduction</a></li>
             <li>
-                <a href="#polymarket%ec%9d%b4%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b4%eb%a9%b0-%ec%97%a3%ec%a7%80%eb%8a%94-%ec%96%b4%eb%94%94%ec%97%90-%ec%9e%88%eb%8a%94%ea%b0%80" aria-label="Polymarket이란 무엇이며, 엣지는 어디에 있는가">Polymarket이란 무엇이며, 엣지는 어디에 있는가</a><ul>
+                <a href="#what-polymarket-is-and-where-the-edge-lives" aria-label="What Polymarket Is and Where the Edge Lives">What Polymarket Is and Where the Edge Lives</a><ul>
                     
             <li>
-                <a href="#%ea%b5%ac%ec%a1%b0%ec%a0%81-%ec%b7%a8%ec%95%bd%ec%a0%90" aria-label="구조적 취약점">구조적 취약점</a></li></ul>
+                <a href="#the-structural-vulnerability" aria-label="The Structural Vulnerability">The Structural Vulnerability</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%b0%a8%ec%9d%b5%ea%b1%b0%eb%9e%98-%eb%a9%94%ec%bb%a4%eb%8b%88%ec%a6%98-%eb%8b%a8%ea%b3%84%eb%b3%84-%ec%84%a4%eb%aa%85" aria-label="차익거래 메커니즘, 단계별 설명">차익거래 메커니즘, 단계별 설명</a></li>
+                <a href="#the-arbitrage-mechanism-step-by-step" aria-label="The Arbitrage Mechanism, Step by Step">The Arbitrage Mechanism, Step by Step</a></li>
             <li>
-                <a href="#%ec%99%84%ec%a0%84%ed%95%9c-%ea%b8%b0%ec%88%a0-%ec%8a%a4%ed%83%9d-6%eb%a0%88%ec%9d%b4%ec%96%b4-28%ea%b0%9c-%eb%8f%84%ea%b5%ac" aria-label="완전한 기술 스택: 6레이어, 28개 도구">완전한 기술 스택: 6레이어, 28개 도구</a><ul>
+                <a href="#the-complete-stack-6-layers-28-tools" aria-label="The Complete Stack: 6 Layers, 28 Tools">The Complete Stack: 6 Layers, 28 Tools</a><ul>
                     
             <li>
-                <a href="#%eb%a0%88%ec%9d%b4%ec%96%b4-1---%eb%b8%8c%eb%a0%88%ec%9d%b8-ai-%ec%b6%94%eb%a1%a0" aria-label="레이어 1 - 브레인: AI 추론">레이어 1 - 브레인: AI 추론</a></li>
+                <a href="#layer-1---brain-ai-reasoning" aria-label="Layer 1 - Brain: AI Reasoning">Layer 1 - Brain: AI Reasoning</a></li>
             <li>
-                <a href="#%eb%a0%88%ec%9d%b4%ec%96%b4-2---%ec%98%a4%ec%bc%80%ec%8a%a4%ed%8a%b8%eb%a0%88%ec%9d%b4%ec%85%98-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8%ea%b0%80-%ec%8b%a4%ed%96%89%ed%95%98%ea%b2%8c-%eb%a7%8c%eb%93%a4%ea%b8%b0" aria-label="레이어 2 - 오케스트레이션: 에이전트가 실행하게 만들기">레이어 2 - 오케스트레이션: 에이전트가 실행하게 만들기</a></li>
+                <a href="#layer-2---orchestration-making-agents-execute" aria-label="Layer 2 - Orchestration: Making Agents Execute">Layer 2 - Orchestration: Making Agents Execute</a></li>
             <li>
-                <a href="#%eb%a0%88%ec%9d%b4%ec%96%b4-3---%eb%8d%b0%ec%9d%b4%ed%84%b0--%ec%8b%9c%ec%9e%a5-%ec%8b%a0%ed%98%b8-%eb%88%88" aria-label="레이어 3 - 데이터 &amp; 시장 신호: 눈">레이어 3 - 데이터 &amp; 시장 신호: 눈</a></li>
+                <a href="#layer-3---data--market-signals-the-eyes" aria-label="Layer 3 - Data &amp; Market Signals: The Eyes">Layer 3 - Data &amp; Market Signals: The Eyes</a></li>
             <li>
-                <a href="#%eb%a0%88%ec%9d%b4%ec%96%b4-4---%ec%8b%9c%ec%9e%a5-%ec%9d%b8%ed%85%94%eb%a6%ac%ec%a0%84%ec%8a%a4-%ed%83%80%ec%9d%b8%ec%9d%98-%ec%84%b1%ea%b3%bc" aria-label="레이어 4 - 시장 인텔리전스: 타인의 성과">레이어 4 - 시장 인텔리전스: 타인의 성과</a></li>
+                <a href="#layer-4---market-intelligence-what-others-built" aria-label="Layer 4 - Market Intelligence: What Others Built">Layer 4 - Market Intelligence: What Others Built</a></li>
             <li>
-                <a href="#%eb%a0%88%ec%9d%b4%ec%96%b4-5---%eb%b0%b1%ed%85%8c%ec%8a%a4%ed%8a%b8--%ec%8b%9c%eb%ae%ac%eb%a0%88%ec%9d%b4%ec%85%98-%ec%8b%a4%ed%96%89-%ec%a0%84%ec%97%90-%ec%a6%9d%eb%aa%85" aria-label="레이어 5 - 백테스트 &amp; 시뮬레이션: 실행 전에 증명">레이어 5 - 백테스트 &amp; 시뮬레이션: 실행 전에 증명</a></li>
+                <a href="#layer-5---backtest--simulation-prove-before-you-run" aria-label="Layer 5 - Backtest &amp; Simulation: Prove Before You Run">Layer 5 - Backtest &amp; Simulation: Prove Before You Run</a></li>
             <li>
-                <a href="#%eb%a0%88%ec%9d%b4%ec%96%b4-6---%ec%8b%a4%ed%96%89-%ec%9d%b8%ed%94%84%eb%9d%bc" aria-label="레이어 6 - 실행 인프라">레이어 6 - 실행 인프라</a></li></ul>
+                <a href="#layer-6---execution-infrastructure" aria-label="Layer 6 - Execution Infrastructure">Layer 6 - Execution Infrastructure</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%99%84%ec%a0%84%ed%95%9c-%ec%8b%a0%ed%98%b8-%ed%9d%90%eb%a6%84" aria-label="완전한 신호 흐름">완전한 신호 흐름</a>
+                <a href="#the-complete-signal-flow" aria-label="The Complete Signal Flow">The Complete Signal Flow</a>
             </li>
         </ul>
         </li>
@@ -246,12 +246,16 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+  <div class="post-content md-content"><p>title: &ldquo;28 Tools Behind a $1M Polymarket Trading Bot: Full Stack&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
+$1M. Learn latency arbitrage, AI reasoning, and the complete tech stack for prediction
+market trading.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Python</p>
+tech_stack: - Go</p>
 <ul>
+<li>JavaScript</li>
+<li>Python</li>
 <li>Rust</li>
 <li>TypeScript
 application_domain: Dev Utils
@@ -266,338 +270,230 @@ last_maintained: &ldquo;2026-03-24&rdquo;
 draft: false
 aliases:
 <ul>
-<li>/ko/posts/polymarket-trading-bot-framework/</li>
+<li>/en/posts/polymarket-trading-bot-stack/</li>
 </ul>
 </li>
-<li>/ko/posts/polymarket-trading-bot-stack/
-faqs: - q: &lsquo;봇이 Binance와 Polymarket 간의 차익거래로 수익을 낼 수 있는 이유는 무엇인가요?&rsquo;
-a: &lsquo;Polymarket의 가격 업데이트 속도는 기초 자산이 Binance에서 움직이는 속도보다 느립니다. 2024년에는 이 지연이 평균 12초였고, 2026년 1분기에는 경쟁으로 인해 약 2.7초로 단축되었습니다. 봇은 Binance의 실제 가격 변동을 읽고, 시장이 정정되기 전에 Polymarket의 뒤처진 가격으로 거래를 체결할 수 있습니다.&rsquo;
+<li>/posts/polymarket-trading-bot-automated/</li>
+<li>/posts/polymarket-trading-bot-framework/</li>
+<li>/posts/polymarket-trading-bot-stack/
+faqs: - q: &lsquo;Why can a bot profit from arbitrage between Binance and Polymarket?&rsquo;
+a: &lsquo;Polymarket updates its prices slower than the underlying asset moves on Binance. In 2024 that lag averaged 12 seconds, and by Q1 2026 competition had compressed it to about 2.7 seconds. A bot can read the real price move on Binance and trade the stale Polymarket price before the market corrects.&rsquo;
 <ul>
-<li>q: &lsquo;자동 거래에 가장 적합한 Polymarket 계약 유형은 무엇인가요?&rsquo;
-a: &lsquo;단기 암호화폐 계약, 구체적으로는 5분 및 15분 BTC/ETH 상승/하락 질문입니다. 결제가 빠르고 즉각적인 피드백을 제공하며, Binance 대비 가격 지연이 가장 크게 나타납니다. 바로 이 지점에 차익거래 우위가 존재합니다.&rsquo;</li>
-<li>q: &lsquo;Polymarket 차익거래 봇은 포지션 크기를 어떻게 결정하나요?&rsquo;
-a: &lsquo;Kelly Criterion을 사용해 엣지 크기를 계산합니다. Binance와 Polymarket 간의 가격 괴리를 감지한 후, 봇은 켈리 기준에 따라 베팅 규모를 산정하고 Polymarket의 CLOB API를 통해 주문을 실행한 다음, 시장이 정정되면 포지션을 청산합니다. 이 과정을 하루 200~500회 반복합니다.&rsquo;</li>
-<li>q: &lsquo;Polymarket은 거래 봇 구축을 위해 어떤 API를 제공하나요?&rsquo;
-a: &lsquo;Polymarket은 네 가지 API를 제공합니다: 시장 데이터/가격/메타데이터를 위한 Gamma API, 오더북과 거래 실행을 위한 CLOB API, Polygon(체인 ID 137)에서 USDC로 이루어지는 온체인 결제, 그리고 실시간 가격 업데이트를 위한 WebSocket 피드. 공식 Python 클라이언트 py-clob-client가 이 모든 기능을 래핑합니다.&rsquo;</li>
-<li>q: &lsquo;동일한 Polymarket 전략을 사용할 때 거래 봇이 인간보다 뛰어난 성과를 내는 이유는 무엇인가요?&rsquo;
-a: &lsquo;추적 기간 동안 봇은 약 $206,000를 벌어들인 반면, 동일한 로직을 사용한 인간은 약 $100,000에 그쳐 2배의 격차가 발생했습니다. 인간이 범하는 네 가지 구조적 오류가 있습니다: 창이 닫힌 후의 늦은 진입, 감정적이고 일관성 없는 포지션 크기 결정, 약 8시간 후 나타나는 피로, 그리고 전략을 포기하거나 무리하게 추가 투자하게 만드는 손실 심리입니다.&rsquo;</li>
+<li>q: &lsquo;What types of Polymarket contracts are best suited for automated trading?&rsquo;
+a: &lsquo;Short-duration crypto contracts, specifically 5-minute and 15-minute BTC and ETH up/down questions. They resolve fast, give immediate feedback, and exhibit the largest price lag relative to Binance, which is where the arbitrage edge lives.&rsquo;</li>
+<li>q: &lsquo;How does a Polymarket arbitrage bot decide its position size?&rsquo;
+a: &lsquo;It calculates the edge size using the Kelly Criterion. After detecting a price discrepancy between Binance and Polymarket, the bot sizes the bet by Kelly, executes through Polymarket&rsquo;&rsquo;s CLOB API, and closes the position once the market corrects, repeating 200 to 500 times per day.&rsquo;</li>
+<li>q: &lsquo;What API surfaces does Polymarket expose for building a trading bot?&rsquo;
+a: &lsquo;Polymarket exposes four: the Gamma API for market data, prices, and metadata; the CLOB API for the order book and trade execution; on-chain settlement on Polygon (chain ID 137) in USDC; and WebSocket feeds for real-time price updates. The official py-clob-client Python client wraps all of these.&rsquo;</li>
+<li>q: &lsquo;Why do trading bots outperform humans using the same Polymarket strategy?&rsquo;
+a: &lsquo;In a tracked period bots generated about $206,000 versus roughly $100,000 for humans using the same logic, a 2x gap. Humans lose to four systematic errors: late entries after the window closes, emotional and inconsistent position sizing, fatigue after about 8 hours, and drawdown psychology that makes them abandon or double down on strategies.&rsquo;</li>
 </ul>
 </li>
 </ul>
 <hr>
-<h1 id="polymarket-트레이딩-봇-기술-스택-28개-도구로-100만-달러-벌기">Polymarket 트레이딩 봇 기술 스택: 28개 도구로 100만 달러 벌기<a hidden class="anchor" aria-hidden="true" href="#polymarket-트레이딩-봇-기술-스택-28개-도구로-100만-달러-벌기">#</a></h1>
+<h1 id="28-tools-behind-a-1m-polymarket-trading-bot-full-stack-breakdown">28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown<a hidden class="anchor" aria-hidden="true" href="#28-tools-behind-a-1m-polymarket-trading-bot-full-stack-breakdown">#</a></h1>
 <p>{&lt;/* resource-info */&gt;}</p>
-<h2 id="소개">소개<a hidden class="anchor" aria-hidden="true" href="#소개">#</a></h2>
-<p><strong>1,003,450달러 수익. 3,062개 예측. 하나의 지갑.</strong></p>
-<p>트레이더들이 Polymarket에서 지갑 주소 ```0x55be7aa03ecfbe37aa5460db791205f7ac9ddca3````의 성장 궤적을 처음 보았을 때, 첫 반응은 간단했습니다: <em>가짜다</em>. 소매 투자자 지갑으로 7자리 수익을 낸다는 것은 Telegram 사기 그룹의 이야기처럼 들리지, 검증 가능한 온체인 데이터가 아닙니다.</p>
-<p>하지만 블록체인은 거짓말하지 않습니다. 모든 거래는 공개적입니다. 모든 결제는 검증 가능합니다.</p>
-<p>이 글은 이 모든 것을 가능하게 한 <strong>28개 도구 기술 스택</strong>을 완전히 매핑합니다 — AI 추론부터 프로덕션 실행까지 6개 레이어. 자신만의 봇을 구축하든, 수익성 있는 트레이더를 단순히 복사하든, 이것이 청사진입니다.</p>
-<p>![Polymarket 트레이딩 대시보드](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
-<h2 id="polymarket이란-무엇이며-엣지는-어디에-있는가">Polymarket이란 무엇이며, 엣지는 어디에 있는가<a hidden class="anchor" aria-hidden="true" href="#polymarket이란-무엇이며-엣지는-어디에-있는가">#</a></h2>
-<p><strong>Polymarket</strong>은 이진 결과에 대해 거래하는 예측 시장입니다. 각 계약은 1.00달러(정답) 또는 0.00달러(오답)로 결제됩니다. 0.73달러에 거래되는 계약은 시장이 &ldquo;예&rdquo; 결과가 73% 확률로 발생한다고 믿는다는 의미입니다.</p>
-<p>해당 플랫폼은 2026년 초 <strong>주간 거래량이 20억 달러를 초과</strong>했습니다.</p>
-<h3 id="구조적-취약점">구조적 취약점<a hidden class="anchor" aria-hidden="true" href="#구조적-취약점">#</a></h3>
-<p>자동화 트레이딩의 핵심 카테고리는 <strong>단기 암호화폐 계약</strong> — 5분 및 15분 BTC와 ETH 상승/하락 문제입니다. 빠르게 결제되고, 즉각적인 피드백을 제공하며, 중요한 취약점이 있습니다: &gt; <strong>Polymarket의 가격 업데이트 속도가 Binance의 기초 자산 이동 속도보다 느립니다.</strong></p>
-<p>2024년, 이 지연은 평균 12초였습니다. 2026년 1분기까지 경쟁이 이를 <strong>2.7초</strong>로 압축했습니다.</p>
-<p><strong>기계에게 2.7초는 영원입니다.</strong></p>
-<p>이 격차 — Binance가 이미 아는 가격과 Polymarket이 여전히 표시하는 가격 사이의 격차 — 이 모든 전략의 기반입니다.</p>
+<h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
+<p><strong>$1,003,450 in profit. 3,062 predictions. One wallet.</strong></p>
+<p>When traders first saw the growth trajectory of wallet ```0x55be7aa03ecfbe37aa5460db791205f7ac9ddca3```` on Polymarket, the reaction was simple: <em>fake</em>. A seven-figure PnL from a retail-profile wallet belongs in a Telegram scam group, not on a verifiable on-chain dashboard.</p>
+<p>But the blockchain doesn&rsquo;t lie. Every trade is public. Every settlement is verifiable.</p>
+<p>This article maps the <strong>complete 28-tool tech stack</strong> that makes this possible - 6 layers from AI reasoning to production execution. Whether you want to build your own bot or simply copy profitable traders, this is the blueprint.</p>
+<p>![Polymarket Trading Dashboard](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
+<h2 id="what-polymarket-is-and-where-the-edge-lives">What Polymarket Is and Where the Edge Lives<a hidden class="anchor" aria-hidden="true" href="#what-polymarket-is-and-where-the-edge-lives">#</a></h2>
+<p><strong>Polymarket</strong> is a prediction market where users trade on binary outcomes. Each contract resolves at $1.00 (correct) or $0.00 (wrong). A contract priced at $0.73 means the market believes there&rsquo;s a 73% chance the &ldquo;Yes&rdquo; outcome happens.</p>
+<p>The platform&rsquo;s weekly volume exceeded <strong>$2 billion</strong> in early 2026.</p>
+<h3 id="the-structural-vulnerability">The Structural Vulnerability<a hidden class="anchor" aria-hidden="true" href="#the-structural-vulnerability">#</a></h3>
+<p>The key category for automated trading is <strong>short-duration crypto contracts</strong> - 5-minute and 15-minute BTC and ETH up/down questions. They resolve fast, provide immediate feedback, and have a critical vulnerability: &gt; <strong>Polymarket updates prices slower than the underlying asset moves on Binance.</strong></p>
+<p>In 2024, that lag averaged 12 seconds. By Q1 2026, competition compressed it to <strong>2.7 seconds</strong>.</p>
+<p><strong>2.7 seconds is an eternity for a machine.</strong></p>
+<p>That gap - between what Binance knows and what Polymarket still shows - is where every strategy lives.</p>
 <source src="https://www.youtube.com/embed/dQw4w9WgXcQ" type="video/mp4">
-  브라우저가 비디오 태그를 지원하지 않습니다.
+  Your browser does not support the video tag.
 </video>
-<h2 id="차익거래-메커니즘-단계별-설명">차익거래 메커니즘, 단계별 설명<a hidden class="anchor" aria-hidden="true" href="#차익거래-메커니즘-단계별-설명">#</a></h2>
-<p>15분 BTC 계약이 50/50으로 시작합니다. 10분 후, 비트코인이 30초 만에 Binance에서 0.6% 하락합니다. 만기 시 BTC가 더 낮을 &ldquo;실제&rdquo; 확률이 대략 78%로 변했습니다. Polymarket은 여전히 54/46을 표시합니다.</p>
-<p><strong>이것은 이진 계약에서 24포인트의 엣지입니다.</strong></p>
-<p>Binance WebSocket 피드를 50ms 미만의 지연으로 모니터링하는 봇: 1. 가격 차이를 감지합니다
-2. 켈리 기준을 사용하여 엣지 크기를 계산합니다
-3. Polymarket의 CLOB API를 통해 실행합니다
-4. 2초 후, 시장이 수정됩니다
-5. 포지션이 수익적으로 청산됩니다</p>
-<p><strong>하루에 200-500회 반복합니다.</strong> 이것이 coinman2의 결과입니다. 마법이 아닙니다 — 여전히 존재하는 격차의 산업 규모 이용입니다.</p>
-<p>![지연 차익거래 다이어그램](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
-<h2 id="완전한-기술-스택-6레이어-28개-도구">완전한 기술 스택: 6레이어, 28개 도구<a hidden class="anchor" aria-hidden="true" href="#완전한-기술-스택-6레이어-28개-도구">#</a></h2>
-<h3 id="레이어-1---브레인-ai-추론">레이어 1 - 브레인: AI 추론<a hidden class="anchor" aria-hidden="true" href="#레이어-1---브레인-ai-추론">#</a></h3>
-<p>coinman2 봇은 <strong>Anthropic의 Claude</strong>에서 실행되었습니다. 2026년 3월, 통제 실험에서 Claude를 OpenClaw 프레임워크와 비교했습니다 — 동일한 시작 자본(1,000달러), 동일한 시장 조건, 48시간: - <strong>Claude</strong>: +1,322% 수익률</p>
+<h2 id="the-arbitrage-mechanism-step-by-step">The Arbitrage Mechanism, Step by Step<a hidden class="anchor" aria-hidden="true" href="#the-arbitrage-mechanism-step-by-step">#</a></h2>
+<p>A 15-minute BTC contract opens at 50/50. Ten minutes in, Bitcoin drops 0.6% on Binance in 30 seconds. The &ldquo;real&rdquo; probability that BTC will be lower at expiry just shifted to roughly 78%. Polymarket still shows 54/46.</p>
+<p><strong>That&rsquo;s a 24-point edge on a binary contract.</strong></p>
+<p>A bot monitoring Binance&rsquo;s WebSocket feed with under 50ms latency: 1. Detects the price discrepancy
+2. Calculates edge size using Kelly Criterion
+3. Executes via Polymarket&rsquo;s CLOB API
+4. Two seconds later, the market corrects
+5. Position closes profitable</p>
+<p><strong>Repeat 200-500 times per day.</strong> That&rsquo;s the coinman2 result. Not magic - industrial-scale exploitation of a gap that still exists.</p>
+<p>![Latency Arbitrage Diagram](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
+<h2 id="the-complete-stack-6-layers-28-tools">The Complete Stack: 6 Layers, 28 Tools<a hidden class="anchor" aria-hidden="true" href="#the-complete-stack-6-layers-28-tools">#</a></h2>
+<h3 id="layer-1---brain-ai-reasoning">Layer 1 - Brain: AI Reasoning<a hidden class="anchor" aria-hidden="true" href="#layer-1---brain-ai-reasoning">#</a></h3>
+<p>The coinman2 bot ran on <strong>Anthropic&rsquo;s Claude</strong>. In March 2026, a controlled experiment ran Claude against OpenClaw framework - same starting capital ($1,000), same market conditions, 48 hours: - <strong>Claude</strong>: +1,322% return</p>
 <ul>
-<li><strong>OpenClaw</strong>: 완전 청산</li>
+<li><strong>OpenClaw</strong>: Fully liquidated</li>
 </ul>
-<p>격차는? 리스크 관리 품질. Claude가 생성한 코드는 더 보수적인 기본 매개변수, 더 나은 엣지 케이스, 더 깔끔한 오류 처리를 포함했습니다.</p>
-<table>
-	<thead>
-			<tr>
-					<th>도구</th>
-					<th>용도</th>
-					<th>링크</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>Claude (Anthropic)</strong></td>
-					<td>주요 전략가. 시장 문제를 추론하고, 현재 가격 대비 확률을 추정합니다</td>
-					<td><a href="https://anthropic.com">anthropic.com</a></td>
-			</tr>
-			<tr>
-					<td><strong>Qwen3-Coder</strong></td>
-					<td>오픈소스 코딩 LLM. 실시간 성능을 모니터링하고, 자율적으로 모듈을 재작성합니다</td>
-					<td><a href="https://github.com/QwenLM/Qwen3-Coder">GitHub</a></td>
-			</tr>
-			<tr>
-					<td><strong>G0DM0D3</strong></td>
-					<td>검열되지 않은 AI 인터페이스, 불편한 시장 주장을 처리합니다</td>
-					<td><a href="https://github.com/elder-plinius/G0DM0D3">GitHub</a></td>
-			</tr>
-			<tr>
-					<td><strong>Claude Squad</strong></td>
-					<td>여러 Claude 인스턴스를 병렬로 실행하여 다양한 시장 부문을 커버합니다</td>
-					<td><a href="https://github.com/smtg-ai/claude-squad">GitHub</a></td>
-			</tr>
-	</tbody>
-</table>
+<p>The gap? Risk management quality. Claude&rsquo;s generated code included more conservative defaults, better edge cases, and cleaner error handling.</p>
+<p>| Tool | Purpose | Link |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Claude (Anthropic)</strong> | Primary strategist. Reasons about market questions, estimates probability vs current price | <a href="https://anthropic.com">anthropic.com</a> |
+| <strong>Qwen3-Coder</strong> | Open source coding LLM. Watches live performance, rewrites modules autonomously | <a href="https://github.com/QwenLM/Qwen3-Coder">GitHub</a> |
+| <strong>G0DM0D3</strong> | Uncensored AI interface for uncomfortable market theses | <a href="https://github.com/elder-plinius/G0DM0D3">GitHub</a> |
+| <strong>Claude Squad</strong> | Runs multiple Claude instances in parallel across market sectors | <a href="https://github.com/smtg-ai/claude-squad">GitHub</a> |</p>
 </iframe>
-<h3 id="레이어-2---오케스트레이션-에이전트가-실행하게-만들기">레이어 2 - 오케스트레이션: 에이전트가 실행하게 만들기<a hidden class="anchor" aria-hidden="true" href="#레이어-2---오케스트레이션-에이전트가-실행하게-만들기">#</a></h3>
-<p>실행 레이어가 없는 추론 엔진은 단순한 의견 생성기입니다.</p>
-<table>
-	<thead>
-			<tr>
-					<th>도구</th>
-					<th>용도</th>
-					<th>링크</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>Agency Agents</strong></td>
-					<td>불 vs 곰 토론, 리스크 매니저 거부권</td>
-					<td><a href="https://github.com/msitarzewski/agency-agents">GitHub</a></td>
-			</tr>
-			<tr>
-					<td><strong>ClaudeAgent OneClick</strong></td>
-					<td>원클릭 배포. 24/7 시장 감시, 몇 분 안에 시작</td>
-					<td><a href="https://github.com/cvxv666/ClaudeAgentOneClick">GitHub</a></td>
-			</tr>
-			<tr>
-					<td><strong>MiroThinker</strong></td>
-					<td>필수 사고의 사슬 레이어. 봇은 진입 전 모든 포지션을 정당화해야 합니다</td>
-					<td><a href="https://github.com/MiroMindAI/MiroThinker">GitHub</a></td>
-			</tr>
-			<tr>
-					<td><strong>Superpowers</strong></td>
-					<td>에이전트에 웹 접근, 파일 작업, 임의 API 호출 확장</td>
-					<td><a href="https://github.com/obra/superpowers">GitHub</a></td>
-			</tr>
-			<tr>
-					<td><strong>TradingAgents</strong></td>
-					<td>다중 에이전트 프레임워크: 펀더멘탈 + 기술적 + 감성 분석가</td>
-					<td><a href="https://github.com/TauricResearch/TradingAgents">GitHub</a></td>
-			</tr>
-	</tbody>
-</table>
-<p>![다중 에이전트 트레이딩 아키텍처](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
-<h3 id="레이어-3---데이터--시장-신호-눈">레이어 3 - 데이터 &amp; 시장 신호: 눈<a hidden class="anchor" aria-hidden="true" href="#레이어-3---데이터--시장-신호-눈">#</a></h3>
-<p>봇은 볼 수 있는 것만큼만 좋습니다.</p>
-<table>
-	<thead>
-			<tr>
-					<th>도구</th>
-					<th>용도</th>
-					<th>링크</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>OpenBB</strong></td>
-					<td>오픈소스 블룸버그. 100+ 데이터 소스 통합</td>
-					<td><a href="https://github.com/OpenBB-finance/OpenBB">GitHub</a></td>
-			</tr>
-			<tr>
-					<td><strong>Dexter</strong></td>
-					<td>자율 심층 연구. SEC 파일, 실적 전화 회의록</td>
-					<td><a href="https://github.com/virattt/dexter">GitHub</a></td>
-			</tr>
-			<tr>
-					<td><strong>MCP Server</strong></td>
-					<td>MCP 프로토콜을 통해 Claude의 컨텍스트에 금융 데이터 세트</td>
-					<td><a href="https://github.com/financial-datasets/mcp-server">GitHub</a></td>
-			</tr>
-			<tr>
-					<td><strong>Crucix</strong></td>
-					<td>온체인 집계기. Polygon의 고래 지갑 움직임</td>
-					<td><a href="https://github.com/calesthio/Crucix">GitHub</a></td>
-			</tr>
-			<tr>
-					<td><strong>fredapi</strong></td>
-					<td>연방준비제도 데이터 세트: CPI, 실업률, 수익률 곡선</td>
-					<td><a href="https://github.com/mortada/fredapi">GitHub</a></td>
-			</tr>
-			<tr>
-					<td><strong>Binance Collector</strong></td>
-					<td>단기 BTC/ETH 계약의 시장 방향 예측</td>
-					<td><a href="https://github.com/txbabaxyz/mlmodelpoly">GitHub</a></td>
-			</tr>
-			<tr>
-					<td><strong>Polymarket Assistant Tool</strong></td>
-					<td>라이브 시장에서 방향 편향을 표시하는 지표 엔진</td>
-					<td><a href="https://github.com/FiatFiorino/polymarket-assistant-tool">GitHub</a></td>
-			</tr>
-			<tr>
-					<td><strong>lightweight-charts</strong></td>
-					<td>TradingView의 차팅 라이브러리. 14k 스타, 45KB</td>
-					<td><a href="https://github.com/tradingview/lightweight-charts">GitHub</a></td>
-			</tr>
-	</tbody>
-</table>
-<p>![트레이딩 데이터 대시보드](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
-<h3 id="레이어-4---시장-인텔리전스-타인의-성과">레이어 4 - 시장 인텔리전스: 타인의 성과<a hidden class="anchor" aria-hidden="true" href="#레이어-4---시장-인텔리전스-타인의-성과">#</a></h3>
-<p>모든 것을 처음부터 구축할 필요는 없습니다.</p>
-<table>
-	<thead>
-			<tr>
-					<th>도구</th>
-					<th>용도</th>
-					<th>링크</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>Polyscope</strong></td>
-					<td>2,000+ 시장 스캔. 고래 알림을 Telegram으로</td>
-					<td><a href="https://thepolyscope.com">thepolyscope.com</a></td>
-			</tr>
-			<tr>
-					<td><strong>Polywhaler</strong></td>
-					<td>10,000달러+ 고래 거래 추적기, AI 신호 포함</td>
-					<td><a href="https://polywhaler.com">polywhaler.com</a></td>
-			</tr>
-			<tr>
-					<td><strong>WHALES tracker</strong></td>
-					<td>스마트 머니 컨센서스, 건강 점수, 신뢰 점수</td>
-					<td><a href="https://apify.com">Apify</a></td>
-			</tr>
-			<tr>
-					<td><strong>HyperBuildX bot</strong></td>
-					<td>Rust 기반, 100ms 미만 지연. AI 카피 트레이드 순위</td>
-					<td><a href="https://github.com/HyperBuildX/Polymarket-Trading-Bot">GitHub</a></td>
-			</tr>
-			<tr>
-					<td><strong>polymarketanalytics.com</strong></td>
-					<td>오픈 트레이더 분석, 상위 지갑 P&amp;L</td>
-					<td><a href="https://polymarketanalytics.com">polymarketanalytics.com</a></td>
-			</tr>
-			<tr>
-					<td><strong>polyrec</strong></td>
-					<td>실시간 터미널, 70+ 지표, 내장 백테스터</td>
-					<td><a href="https://github.com/txbabaxyz/polyrec">GitHub</a></td>
-			</tr>
-			<tr>
-					<td><strong>Polymarket-Trading-Bot</strong></td>
-					<td>53,000줄 TypeScript. 7개 사전 구축 전략</td>
-					<td><a href="https://github.com/dylanpersonguy/Polymarket-Trading-Bot">GitHub</a></td>
-			</tr>
-	</tbody>
-</table>
-<p>![Polymarket 분석 대시보드](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
-<h3 id="레이어-5---백테스트--시뮬레이션-실행-전에-증명">레이어 5 - 백테스트 &amp; 시뮬레이션: 실행 전에 증명<a hidden class="anchor" aria-hidden="true" href="#레이어-5---백테스트--시뮬레이션-실행-전에-증명">#</a></h3>
-<p>이것은 대부분의 소매 봇이 건너뛰는 레이어 — 그리고 대부분이 폭발하는 이유입니다.</p>
-<table>
-	<thead>
-			<tr>
-					<th>도구</th>
-					<th>용도</th>
-					<th>링크</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>prediction-market-backtesting</strong></td>
-					<td>실제 역사적 Polymarket/Kalshi 데이터에 대해 전략 백테스트</td>
-					<td><a href="https://github.com/evan-kolberg/prediction-market-backtesting">GitHub</a></td>
-			</tr>
-			<tr>
-					<td><strong>polybot</strong></td>
-					<td>모의 트레이딩이 있는 전체 실행 인프라. Kafka, ClickHouse, Grafana</td>
-					<td><a href="https://github.com/ent0n29/polybot">GitHub</a></td>
-			</tr>
-	</tbody>
-</table>
-<p>![백테스트 결과 차트](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
-<h3 id="레이어-6---실행-인프라">레이어 6 - 실행 인프라<a hidden class="anchor" aria-hidden="true" href="#레이어-6---실행-인프라">#</a></h3>
-<p>Polymarket은 4개 API 표면을 노출합니다: 1. <strong>Gamma API</strong> - 시장 데이터, 가격, 메타데이터
-2. <strong>CLOB API</strong> - 주문장, 거래 실행
-3. <strong>온체인 결제</strong> - Polygon(체인 ID 137), USDC
-4. <strong>WebSocket 피드</strong> - 실시간 가격 업데이트</p>
-<p>공식 Python 클라이언트 <code>py-clob-client</code>는 이 모든 것을 래핑합니다. 주문장을 가져오는 데 3줄. 서명된 한도 주문을 하는 데 5줄.</p>
-<p><strong>핵심 저장소:</strong></p>
+<h3 id="layer-2---orchestration-making-agents-execute">Layer 2 - Orchestration: Making Agents Execute<a hidden class="anchor" aria-hidden="true" href="#layer-2---orchestration-making-agents-execute">#</a></h3>
+<p>A reasoning engine with no execution layer is just an opinion generator.</p>
+<p>| Tool | Purpose | Link |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Agency Agents</strong> | Bull vs Bear debate with Risk Manager veto | <a href="https://github.com/msitarzewski/agency-agents">GitHub</a> |
+| <strong>ClaudeAgent OneClick</strong> | One-click deploy. 24/7 market watcher in minutes | <a href="https://github.com/cvxv666/ClaudeAgentOneClick">GitHub</a> |
+| <strong>MiroThinker</strong> | Mandatory chain-of-thought layer. Bot must justify every position | <a href="https://github.com/MiroMindAI/MiroThinker">GitHub</a> |
+| <strong>Superpowers</strong> | Extends agents with web access, file ops, arbitrary API calls | <a href="https://github.com/obra/superpowers">GitHub</a> |
+| <strong>TradingAgents</strong> | Multi-agent framework: fundamental + technical + sentiment analyst | <a href="https://github.com/TauricResearch/TradingAgents">GitHub</a> |</p>
+<p>![Multi-Agent Trading Architecture](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
+<h3 id="layer-3---data--market-signals-the-eyes">Layer 3 - Data &amp; Market Signals: The Eyes<a hidden class="anchor" aria-hidden="true" href="#layer-3---data--market-signals-the-eyes">#</a></h3>
+<p>The bot is only as good as what it can see.</p>
+<p>| Tool | Purpose | Link |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>OpenBB</strong> | Open source Bloomberg. 100+ data sources unified | <a href="https://github.com/OpenBB-finance/OpenBB">GitHub</a> |
+| <strong>Dexter</strong> | Autonomous deep research. SEC filings, earnings transcripts | <a href="https://github.com/virattt/dexter">GitHub</a> |
+| <strong>MCP Server</strong> | Financial datasets via MCP protocol into Claude&rsquo;s context | <a href="https://github.com/financial-datasets/mcp-server">GitHub</a> |
+| <strong>Crucix</strong> | On-chain aggregator. Whale wallet movements on Polygon | <a href="https://github.com/calesthio/Crucix">GitHub</a> |
+| <strong>fredapi</strong> | Federal Reserve datasets: CPI, unemployment, yield curves | <a href="https://github.com/mortada/fredapi">GitHub</a> |
+| <strong>Binance Collector</strong> | Predicts market direction for short-duration BTC/ETH contracts | <a href="https://github.com/txbabaxyz/mlmodelpoly">GitHub</a> |
+| <strong>Polymarket Assistant Tool</strong> | Indicator engine for directional bias on live markets | <a href="https://github.com/FiatFiorino/polymarket-assistant-tool">GitHub</a> |
+| <strong>lightweight-charts</strong> | TradingView&rsquo;s charting library. 14k stars, 45KB | <a href="https://github.com/tradingview/lightweight-charts">GitHub</a> |</p>
+<p>![Trading Data Dashboard](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
+<h3 id="layer-4---market-intelligence-what-others-built">Layer 4 - Market Intelligence: What Others Built<a hidden class="anchor" aria-hidden="true" href="#layer-4---market-intelligence-what-others-built">#</a></h3>
+<p>You don&rsquo;t have to build everything from scratch.</p>
+<p>| Tool | Purpose | Link |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Polyscope</strong> | Scans 2,000+ markets. Whale alerts to Telegram | <a href="https://thepolyscope.com">thepolyscope.com</a> |
+| <strong>Polywhaler</strong> | $10k+ whale trade tracker with AI signals | <a href="https://polywhaler.com">polywhaler.com</a> |
+| <strong>WHALES tracker</strong> | Smart Money Consensus, Health Score, Conviction Score | <a href="https://apify.com">Apify</a> |
+| <strong>HyperBuildX bot</strong> | Rust-based, sub-100ms latency. AI copy-trade ranking | <a href="https://github.com/HyperBuildX/Polymarket-Trading-Bot">GitHub</a> |
+| <strong>polymarketanalytics.com</strong> | Open trader analytics, top wallet P&amp;L | <a href="https://polymarketanalytics.com">polymarketanalytics.com</a> |
+| <strong>polyrec</strong> | Real-time terminal with 70+ indicators, backtester | <a href="https://github.com/txbabaxyz/polyrec">GitHub</a> |
+| <strong>Polymarket-Trading-Bot</strong> | 53k lines TypeScript. 7 prebuilt strategies | <a href="https://github.com/dylanpersonguy/Polymarket-Trading-Bot">GitHub</a> |</p>
+<p>![Polymarket Analytics Dashboard](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
+<h3 id="layer-5---backtest--simulation-prove-before-you-run">Layer 5 - Backtest &amp; Simulation: Prove Before You Run<a hidden class="anchor" aria-hidden="true" href="#layer-5---backtest--simulation-prove-before-you-run">#</a></h3>
+<p>This is the layer most retail bots skip - and the reason most blow up.</p>
+<p>| Tool | Purpose | Link |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>prediction-market-backtesting</strong> | Backtests against real historical Polymarket/Kalshi data | <a href="https://github.com/evan-kolberg/prediction-market-backtesting">GitHub</a> |
+| <strong>polybot</strong> | Full execution infrastructure with paper trading. Kafka, ClickHouse, Grafana | <a href="https://github.com/ent0n29/polybot">GitHub</a> |</p>
+<p>![Backtesting Results Chart](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
+<h3 id="layer-6---execution-infrastructure">Layer 6 - Execution Infrastructure<a hidden class="anchor" aria-hidden="true" href="#layer-6---execution-infrastructure">#</a></h3>
+<p>Polymarket exposes four API surfaces: 1. <strong>Gamma API</strong> - Market data, prices, metadata
+2. <strong>CLOB API</strong> - Order book, trade execution
+3. <strong>On-chain settlement</strong> - Polygon (chain ID 137), USDC
+4. <strong>WebSocket feeds</strong> - Real-time price updates</p>
+<p>The official Python client <code>py-clob-client</code> wraps all of this. Three lines to fetch an order book. Five to place a signed limit order.</p>
+<p><strong>Key repos:</strong></p>
 <ul>
-<li><a href="https://github.com/Polymarket/agents">Polymarket/agents</a> - LangChain이 이미 통합된 공식 AI 에이전트 프레임워크</li>
-<li><a href="https://github.com/NYTEMODEONLY/polyterm">polyterm</a> - 고래 추적기가 있는 터미널 대시보드</li>
+<li><a href="https://github.com/Polymarket/agents">Polymarket/agents</a> - Official AI agent framework with LangChain</li>
+<li><a href="https://github.com/NYTEMODEONLY/polyterm">polyterm</a> - Terminal dashboard with whale tracker</li>
 </ul>
-<h2 id="완전한-신호-흐름">완전한 신호 흐름<a hidden class="anchor" aria-hidden="true" href="#완전한-신호-흐름">#</a></h2>
-<pre tabindex="0"><code>세계 이벤트 → Binance WebSocket (50ms) → AI 분석 → 켈리 사이징 → 
-CLOB API 주문 → Polygon 결제 → 포지션 모니터링 → 수익/손실
+<h2 id="the-complete-signal-flow">The Complete Signal Flow<a hidden class="anchor" aria-hidden="true" href="#the-complete-signal-flow">#</a></h2>
+<pre tabindex="0"><code>World Event → Binance WebSocket (50ms) → AI Analysis → Kelly Sizing → 
+CLOB API Order → Polygon Settlement → Position Monitoring → Profit/Loss
 ````
 
-**이상적인 경로의 총 지연: 10초 미만.**
+**Total latency: Under 10 seconds** in the ideal path.
 
-## 인간 vs 봇: 성능 격차
+## Humans vs Bots: The Performance Gap
 
-봇은 추적 기간 동안 약 **206,000달러**를 생성했습니다. 동일한 로직을 사용하는 인간은 약 **100,000달러**를 생성했습니다.
+Bots generated approximately **$206,000** during a tracked period. Humans using the same logic generated roughly **$100,000**.
 
-**2배 격차. 동일한 시장. 동일한 전략. 동일한 시간 창.**
+**2× gap. Same market. Same strategy. Same time window.**
 
-인간이 저지르는 4가지 체계적 오류: 1. **늦은 진입** - 인간이 움직임을 확인할 때쯤이면 창이 이미 닫혔습니다
-2. **일관성 없는 사이징** - 감정적 사이징은 수천 건의 거래에서 기대 가치를 파괴합니다
-3. **피로** - 인간은 8시간 후에 성능이 저하됩니다. 봇은 72시간째에도 1시간째와 동일합니다
-4. **드로다운 심리** - 인간은 작동하는 전략을 포기하거나 배팅을 두 배로 늘립니다
+Four systematic errors humans make: 1. **Late entries** - By the time a human confirms the move, the window closed
+2. **Inconsistent sizing** - Emotional sizing destroys expected value
+3. **Fatigue** - A human degrades after 8 hours. A bot is identical at hour 72
+4. **Drawdown psychology** - Humans abandon working strategies or double down
 
-![인간 vs 봇 성능 비교](https://picsum.photos/seed/crypto-trading/800/450
+![Human vs Bot Performance Comparison](https://picsum.photos/seed/crypto-trading/800/450
 
-## 왜 지금이 기회인가
+## Why Now Is the Window
 
-이미 실행 중인 봇은 복리 이점을 가지고 있습니다. 엣지는 오늘도 존재합니다. 창은 12초에서 2.7초로 좁혀지고 있지만, 완전히 닫히지는 않았습니다.
+The bots already running have a compounding advantage. The edge exists today. The window is narrowing from 12 seconds to 2.7 seconds, but it hasn&#39;t closed.
 
-**이 스택을 이해할 최적의 시기는 6개월 전이었습니다. 두 번째로 좋은 시기는 바로 지금입니다.**
+**The best time to understand this stack was six months ago. The second best time is right now.**
 
-## 시작하기: 당신의 첫 1,000달러
+## Getting Started: Your First $1,000
 
-전체 스택을 구축하는 것이 너무 복잡하게 느껴진다면, 더 간단하게 시작하세요: 1. **Polymarket 계정 개설**: [polymarket.com](https://polymarket.com)
-2. **coinman2 지갑 연구**: [polymarket.com/@coinman2](https://polymarket.com/@coinman2)
-3. **Telegram 봇으로 거래 복사**: [kreo.app/@cvxv666](https://kreo.app/@cvxv666)
-4. **이 글을 북마크하세요** - 구축할 때 이러한 도구 참조가 필요할 것입니다
+If building the full stack feels overwhelming, start simpler: 1. **Open a Polymarket account**: [polymarket.com](https://polymarket.com)
+2. **Study the coinman2 wallet**: [polymarket.com/@coinman2](https://polymarket.com/@coinman2)
+3. **Copy trades via Telegram bot**: [kreo.app/@cvxv666](https://kreo.app/@cvxv666)
+4. **Bookmark this article** - you&#39;ll need the tool references when building
 
-## 결론
+## Conclusion
 
-이것은 빠른 부의 스킴이 아닙니다. 이것은 예측 시장의 구조적 비효율을 이용하는 **산업급 차익거래 작전**입니다. 100만 달러의 수익은 한 번의 운 좋은 거래가 아닌, 3,062개의 예측에서 나왔습니다.
+This isn&#39;t a get-rich-quick scheme. It&#39;s an **industrial-grade arbitrage operation** that exploits a structural inefficiency in prediction markets. The $1M PnL came from 3,062 predictions, not one lucky trade.
 
-기술 스택은 열려 있습니다. 도구는 무료입니다. 엣지는 실제입니다. 유일한 질문은, 당신이 **실제로 구축할 0.01%**가 될 것인지, 아니면 가짜라고 외치고 떠날 99.9%가 될 것인지입니다.
+The stack is open. The tools are free. The edge is real. The only question is whether you&#39;ll be in the **0.01% who actually build** or the 99.9% who call it fake and move on.
 
-**기억하세요**: 경쟁은 보이는 것보다 약합니다. 대부분의 사람들은 &#34;너무 어렵다&#34;고 외치며 가짜라고 할 것입니다. 구축자만이 먹습니다.
+**Remember**: Competition is weaker than it looks. Most people will scream &#34;too hard&#34; and call it cap. Only the builders eat.
+
 
 * * *
+## Resources &amp; Links
 
-## 리소스 및 링크
-
-- [Polymarket 공식](https://polymarket.com)
-- [coinman2 지갑 프로필](https://polymarket.com/@coinman2)
+- [Polymarket Official](https://polymarket.com)
+- [coinman2 Wallet Profile](https://polymarket.com/@coinman2)
 - [Polymarket/agents GitHub](https://github.com/Polymarket/agents)
-- [OpenBB 터미널](https://github.com/OpenBB-finance/OpenBB)
-- [원본 X 글 @antpalkin](https://x.com/antpalkin/status/2046654122892403188)
+- [OpenBB Terminal](https://github.com/OpenBB-finance/OpenBB)
+- [Original X Article by @antpalkin](https://x.com/antpalkin/status/2046654122892403188)
 
-*면책 조항: 이 글은 교육 목적으로만 작성되었습니다. 예측 시장 트레이딩은 상당한 위험을 수반합니다. 과거 성과가 미래 결과를 보장하지 않습니다. 트레이딩 전 반드시 자체 연구를 수행하세요.*
+*Disclaimer: This article is for educational purposes only. Prediction market trading carries significant risk. Past performance does not guarantee future results. Always conduct your own research before trading.*
+
 
 * * *
+## Recommended Tools
 
-## 추천 도구
+For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+- **** — World&#34;s largest crypto exchange. Deep liquidity for spot, futures, and stablecoin conversions — pairs naturally with on-chain DeFi tools, payments, or token operations covered above.
 
-오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
-- **** — 세계 최대 암호화폐 거래소. 스팟·선물·스테이블코인 변환 깊은 유동성 — 위의 온체인 DeFi 도구·결제·토큰 운영과 자연스럽게 페어링.
+*Affiliate link — supports dibi8.com at no cost to you.*
 
-*추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
+## References &amp; Sources
 
+- [py-clob-client](https://github.com/Polymarket/py-clob-client)
+- [Polymarket/agents](https://github.com/Polymarket/agents)
+- [OpenBB](https://github.com/OpenBB-finance/OpenBB)
+- [lightweight-charts](https://github.com/tradingview/lightweight-charts)
+- [Qwen3-Coder](https://github.com/QwenLM/Qwen3-Coder)
+- [fredapi](https://github.com/mortada/fredapi)
+- [TradingAgents](https://github.com/TauricResearch/TradingAgents)
 
 
 {
   &#34;@context&#34;: &#34;https://schema.org&#34;,
   &#34;@type&#34;: &#34;Article&#34;,
-  &#34;headline&#34;: &#34;Polymarket 트레이딩 봇 기술 스택: 28개 도구로 100만 달러 벌기&#34;,
+  &#34;headline&#34;: &#34;28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown&#34;,
   &#34;datePublished&#34;: &#34;2026-05-15&#34;,
   &#34;dateModified&#34;: &#34;2026-05-15&#34;,
   &#34;author&#34;: {
@@ -614,52 +510,10 @@ CLOB API 주문 → Polygon 결제 → 포지션 모니터링 → 수익/손실
   },
   &#34;mainEntityOfPage&#34;: {
     &#34;@type&#34;: &#34;WebPage&#34;,
-    &#34;@id&#34;: &#34;https://dibi8.com/kr/resources/polymarket-trading-bot-stack&#34;
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/polymarket-trading-bot-stack&#34;
   }
 }
 &lt;/script&gt;
-
-## Why This Matters
-
-Understanding polymarket 트레이딩 봇 기술 스택: 28개 도구로 100만 달러 벌기 is crucial for modern AI development. Here&#39;s why: ### Key Benefits
-- **Efficiency**: Save time on repetitive tasks
-- **Quality**: Improve output consistency  
-- **Scalability**: Handle larger workloads
-- **Cost**: Reduce operational expenses
-
-### Real-World Applications
-Organizations are using similar approaches to: 1. Automate code review processes
-2. Generate documentation automatically
-3. Build internal knowledge bases
-4. Streamline deployment pipelines
-
-### Getting Started
-To implement this in your workflow: 1. **Assess Your Needs**
-   - Identify repetitive tasks
-   - Measure current time costs
-   - Define success metrics
-
-2. **Choose Your Approach**
-   - Start with simple automations
-   - Gradually increase complexity
-   - Test and iterate
-
-3. **Measure Results**
-   - Track time savings
-   - Monitor quality improvements
-   - Calculate ROI
-
-## Conclusion
-
-Polymarket 트레이딩 봇 기술 스택: 28개 도구로 100만 달러 벌기 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
-
-For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
-
-* * *
-
-*Last updated: 2026-09-20*
-*Read time: ~6 minutes*
-
 ## Frequently Asked Questions (FAQ)
 
 **问：量化交易的风险有多大？**
@@ -723,6 +577,81 @@ For the latest updates and community discussions, join our Telegram channel: htt
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

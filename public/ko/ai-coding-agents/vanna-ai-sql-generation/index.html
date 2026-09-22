@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "데이터베이스와 자연어를 사용하여 상호작용하는 능력은 오랫동안 데이터 분석의 성배로 여겨져 왔습니다. 매일 무수한 시간이 비즈니스 질문을 SQL 쿼리로 번역하는 데 낭비됩니다 — 이 과정은 데이터베이스 스키마, 테이블 관계 및 SQL 구문에 대한 깊은 지식을 요구합니다. 2026년, 이 병목 현상은 Vanna AI 덕분에 빠르게 사라지고 있습니다. Vanna AI는 데이터베이스 스키마에서 학습하여 평범한 영어로 90% 이상의 정확도로 프로덕션 수준의 SQL을 생성하는 오픈소스 Python 라이브러리입니다.\n18,000개 이상의 GitHub 스타와 MIT 라이선스를 보유한 Vanna AI는 정확성과 데이터 프라이버시를 모두 요구하는 팀을 위한 선도적인 Text-to-SQL 솔루션으로 부상했습니다. SQL 생성을 또 다른 번역 작업으로 취급하는 범용 LLM 접근 방식과 달리, Vanna는 데이터베이스 쿼리를 위해 특별히 설계된 검색 증강 생성(RAG) 아키텍처를 사용합니다. 스키마를 학습하고, 비즈니스 로직을 이해하며, 실제로 실행되는 SQL을 생성합니다 — 검증되고, 최적화되며, 프로덕션에 바로 사용할 준비가 되어 있습니다.\n이 포괄적인 가이드에서는 설치 및 스키마 학습부터 고급 SQL 생성, 검증, 분석 워크플로우에의 통합까지 Vanna AI에 대해 알아야 할 모든 것을 살펴 보겠습니다. 영어로 질문하고 싶은 데이터 분석가이든, 데이터 플랫폼을 위한 자연어 인터페이스를 구축하는 엔지니어이든, Vanna AI는 Text-to-SQL을 현실로 만드는 데 필요한 도구를 제공합니다.\nVanna AI란? 자연어가 SQL을 만나다 Vanna AI는 인간의 언어와 구조화된 쿼리 언어 사이의 간극을 메우는 오픈소스 Python 라이브러리입니다. 핵심적으로 Vanna는 SQL 생성을 위해 특별히 구축된 검색 증강 생성(RAG) 프레임워크입니다. 때때로 테이블 이름을 환각하거나 열 참조를 지어내는 범용 LLM 챗봇과 달리, Vanna는 실제 데이터베이스 스키마에서 학습하여 — 테이블, 열, 관계, 심지어 조직의 명명 규칙까지 학습합니다.\n워크플로우는 우아하게 단순합니다: 1. 데이터베이스에 Vanna 연결 2. 스키마에 대해 학습 (DDL 문, 문서, 샘플 쿼리) 3. 자연어로 질문 4. 정확하고 실행 가능한 SQL 수신\nimport vanna as vn from vanna.remote import VannaDefault # API 키로 Vanna 초기화 vn = VannaDefault(model=\"my-model\", api_key=\"vn-...\") # 데이터베이스에 연결 vn.connect_to_postgres(host=\"localhost\", dbname=\"analytics\", user=\"analyst\", password=\"secret\", port=5432) # 스키마에 대해 학습 vn.train(ddl=\"\"\" CREATE TABLE sales ( id SERIAL PRIMARY KEY, customer_id INT REFERENCES customers(id), amount DECIMAL(10,2), sale_date TIMESTAMP, region VARCHAR(50) ); \"\"\") # 평범한 영어로 질문 sql = vn.generate_sql(\"What are the top 5 regions by total sales in 2026?\") print(sql) 생성된 SQL은 구문적으로 올바를 뿐만 아니라 — 실제 스키마에서 올바른 테이블, 열, 관계를 참조하는 의미적으로 정확합니다.\n2026년에 Vanna AI가 중요한 이유 최근 몇 년간 대형 언어 모델의 폭발적인 성장은 자연어 인터페이스에 엄청난 기회를 창출했습니다. 그러나 범용 LLM은 SQL 생성에 있어 몇 가지 중요한 이유로 어려움을 겪습니다: 스키마 요소를 환각하고, 데이터베이스별 구문을 무시하며, 실제 데이터 모델에 대한 인식이 없습니다. 원시 데이터를 타사 API 엔드포인트로 본낼 때 심각한 프라이버시 및 규정 준수 문제도 발생합니다.\nVanna AI는 이러한 모든 과제에 정면으로 대응합니다: - 스키마 인식 생성: Vanna는 특정 스키마를 학습하여 환각을 제거합니다\n프라이버시 우선 설계: 원하는 경우가 아니면 데이터가 인프라를 벗어나지 않습니다 자체 호스팅 옵션: 오픈소스 LLM으로 모든 것을 로컬에서 실행 SQL 검증: 생성된 모든 쿼리가 반환되기 전에 데이터베이스에 대해 검증됩니다 다중 LLM 백엔드: OpenAI, Anthropic, Google 또는 Ollama와 같은 로컬 모델 사용 # Vanna는 다중 LLM 백엔드를 지원합니다 from vanna.ollama import Ollama from vanna.chromadb import ChromaDB_VectorStore class MyVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config) Ollama.__init__(self, config={\"model\": \"llama3\"}) # 완전 로컬, 자체 호스팅 설정 vn = MyVanna() vn.connect_to_sqlite(\"my_database.db\") vn.train(ddl=\"SELECT sql FROM sqlite_master WHERE type=table;\") 2026년, 조직이 점점 더 복잡한 데이터 스키마와 더 엄격한 규정 준수 요구 사항에 대응하면서, Vanna의 접근 방식 — 클라우드로 데이터를 본내는 대신 스키마에서 학습 — 은 안전하고 정확한 Text-to-SQL을 위한 골드 스탠다드를 대표합니다.\nVanna AI 설치 및 구성 Vanna는 빠르게 생산성을 높일 수 있는 합리적인 기본값을 통해 쉽게 설치하고 구성할 수 있도록 설계되었습니다.\n# Vanna 핵심 설치 pip install vanna # 특정 LLM 백엔드 지원 설치 pip install \"vanna[openai]\" pip install \"vanna[anthropic]\" pip install \"vanna[google]\" pip install \"vanna[ollama]\" # 데이터베이스 드라이버 설치 pip install \"vanna[postgres]\" pip install \"vanna[mysql]\" pip install \"vanna[snowflake]\" pip install \"vanna[bigquery]\" # 모두 설치 pip install \"vanna[all]\" 가장 일반적인 설정에 대한 빠른 구성: `````python from vanna.remote import VannaDefault\nVanna의 호스팅 서비스 사용 (가장 쉬운 설정) vn = VannaDefault( model=“my-database-model”, api_key=“vn-your-api-key” )\nPostgreSQL에 연결 vn.connect_to_postgres( host=“db.company.com”, dbname=“analytics”, user=“analyst”, password=“secure-password”, port=5432 )\n로컬 LLM을 사용하는 완전 자체 호스팅 설정의 경우: `````python from vanna.ollama import Ollama from vanna.chromadb import ChromaDB_VectorStore class LocalVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config) Ollama.__init__(self, config={\"model\": \"codellama:13b\"}) vn = LocalVanna() vn.connect_to_postgres(host=\"localhost\", dbname=\"sales\", user=\"admin\", password=\"admin\", port=5432) 데이터베이스 스키마에서 Vanna 학습시키기 학습은 Vanna가 진정으로 빛나는 부분입니다. Vanna를 스키마에 대해 더 많이 학습시킬수록 SQL 생성이 더 정확해집니다. 제공할 수 있는 세 가지 주요 유형의 학습 데이터가 있습니다.\nDDL 문으로 학습 가장 기본적인 학습 방법은 데이터베이스의 DDL(데이터 정의 언어) — 스키마를 정의하는 CREATE TABLE 문 — 을 제공하는 것입니다.\n# 개별 DDL 문으로 학습 vn.train(ddl=\"\"\" CREATE TABLE customers ( id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, email VARCHAR(255) UNIQUE, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, segment VARCHAR(50) ); \"\"\") vn.train(ddl=\"\"\" CREATE TABLE orders ( id SERIAL PRIMARY KEY, customer_id INT REFERENCES customers(id), total_amount DECIMAL(12,2), order_date TIMESTAMP, status VARCHAR(20) ); \"\"\") vn.train(ddl=\"\"\" CREATE TABLE order_items ( id SERIAL PRIMARY KEY, order_id INT REFERENCES orders(id), product_name VARCHAR(255), quantity INT, unit_price DECIMAL(10,2) ); \"\"\") 스키마 자동 검색으로 학습 대형 데이터베이스의 경우 수동으로 DDL을 작성하는 것은 비현실적입니다. Vanna는 데이터베이스에서 자동으로 스키마 정보를 추출할 수 있습니다.\n# PostgreSQL: information_schema에서 스키마 추출 import psycopg2 conn = psycopg2.connect( host=\"localhost\", dbname=\"analytics\", user=\"analyst\", password=\"secret\" ) cursor = conn.cursor() # 모든 테이블 정의 가져오기 cursor.execute(\"\"\" SELECT table_name FROM information_schema.tables WHERE table_schema = public; \"\"\") tables = cursor.fetchall() for (table_name,) in tables: cursor.execute(f\"\"\" SELECT column_name, data_type, is_nullable FROM information_schema.columns WHERE table_name = '{table_name}'; \"\"\") columns = cursor.fetchall() ddl = f\"CREATE TABLE {table_name} (\\n\" ddl += \",\\n\".join([ f\" {col[0]} {col[1]}{'' if col[2] == YES else ' NOT NULL'}\" for col in columns ]) ddl += \"\\n);\" vn.train(ddl=ddl) conn.close() 문서 및 비즈니스 로직으로 학습 원시 스키마를 넘어 비즈니스 맥락에서 Vanna를 학습시킬 수 있습니다 — 열이 실제로 무엇을 의미하는지 이해하도록 돕습니다.\n# 문서로 학습 vn.train(documentation=\"\"\" The sales table records all completed transactions. The amount column is in USD and includes tax. The region column uses standard US Census regions: Northeast, Midwest, South, and West. A high_value_customer is anyone with lifetime purchases \u003e $10,000. \"\"\") # 예제 SQL 쿼리로 학습 vn.train(sql=\"\"\" SELECT region, SUM(amount) as total_sales, COUNT(*) as order_count FROM sales WHERE sale_date \u003e= '2026-01-01' GROUP BY region ORDER BY total_sales DESC; \"\"\") vn.train(sql=\"\"\" SELECT c.name, COUNT(o.id) as order_count, SUM(o.total_amount) as lifetime_value FROM customers c JOIN orders o ON c.id = o.customer_id WHERE o.status = completed GROUP BY c.id, c.name HAVING SUM(o.total_amount) \u003e 10000; \"\"\") 질문-SQL 쌍으로 학습 최대 정확도를 위해 자연어 질문과 해당 SQL 쿼리의 쌍을 제공합니다.\n# 골드 스탠다드 학습 데이터 vn.train( question=\"What are the top 10 customers by lifetime value?\", sql=\"\"\" SELECT c.name, SUM(o.total_amount) as lifetime_value FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.id, c.name ORDER BY lifetime_value DESC LIMIT 10; \"\"\" ) vn.train( question=\"How many orders were placed each month in 2026?\", sql=\"\"\" SELECT DATE_TRUNC(month, order_date) as month, COUNT(*) as order_count FROM orders WHERE order_date \u003e= '2026-01-01' AND order_date \u003c '2027-01-01' GROUP BY month ORDER BY month; \"\"\" ) 자연어에서 SQL 생성하기 학습이 완료되면 Vanna는 놀라운 정확도로 자연어 질문에서 SQL을 생성할 수 있습니다. generate_sql 메서드가 주요 인터페이스입니다.\n# 간단한 질문 sql = vn.generate_sql(\"Show me all customers from the West region\") print(sql) # 출력: SELECT * FROM customers WHERE region = West; # 집계 쿼리 sql = vn.generate_sql(\"What is the average order value by customer segment?\") print(sql) # 출력: SELECT c.segment, AVG(o.total_amount) as avg_order_value # FROM customers c JOIN orders o ON c.id = o.customer_id # GROUP BY c.segment; # 복잡한 다중 테이블 조인 sql = vn.generate_sql( \"Find the top 5 products by revenue in Q2 2026, \" \"including how many unique customers bought each product\" ) print(sql) # 시간 기반 필터링 sql = vn.generate_sql( \"Compare monthly sales between 2025 and 2026, \" \"showing year-over-year growth percentage\" ) print(sql) Vanna는 특정 제약이나 패턴이 있는 SQL 생성도 지원합니다: `````python\n설명이 포함된 SQL 생성 sql, explanation = vn.generate_sql( “Which customers haven’t placed an order in the last 90 days?”, explain=True ) print(f\"SQL: {sql}\") print(f\"Explanation: {explanation}\")\nSQL을 생성하고 실행도 합니다 result_df = vn.ask(“What are the monthly sales trends?”) print(result_df)\nask() 메서드는 SQL을 생성하고, 검증하고, 실행하고, pandas DataFrame을 반환합니다 — 한 번의 호출로 모두 수행 * * * ## SQL 검증 및 오류 처리 Vanna의 두드러진 기능 중 하나는 **자동 SQL 검증**입니다. 쿼리를 반환하기 전에 Vanna는 실제로 데이터베이스에서 실행되는지 확인하여 구문 오류와 스키마 불일치를 포착할 수 있습니다. `````python # 자동 검증 활성화 vn = VannaDefault(model=\"my-model\", api_key=\"vn-...\", config={\"validate_sql\": True}) # 잘못된 쿼리가 포착되고 수정됩니다 try: sql = vn.generate_sql(\"Show me the top 10 products by revenue\") print(f\"Validated SQL: {sql}\") except Exception as e: print(f\"Validation failed: {e}\") # Vanna는 수정하고 재생성을 시도할 것입니다 sql = vn.generate_sql_with_retry( \"Show me the top 10 products by revenue\", max_retries=3 ) Vanna는 이전 맥락을 참조하는 후속 질문도 처리할 수 있습니다: `````python\n첫 번째 질문 result1 = vn.ask(“What were total sales in 2026?”)\n후속 질문 (Vanna는 맥락을 유지합니다) result2 = vn.ask(“Break that down by region”)\n생성: SELECT region, SUM(amount) FROM sales WHERE sale_date \u003e= ‘2026-01-01’ GROUP BY region 또 다른 후속 질문 result3 = vn.ask(“Now show only regions with more than $1M in sales”)\n생성: SELECT region, SUM(amount) as total FROM sales WHERE sale_date \u003e= ‘2026-01-01’ GROUP BY region HAVING SUM(amount) \u003e 1000000 * * * ## 고급 기능 및 사용자 정의 Vanna는 고급 사용자와 프로덕션 배포를 위해 광범위한 사용자 정의 옵션을 제공합니다. ### 사용자 정의 프롬프트 템플릿 `````python # 기본 프롬프트 템플릿 재정의 vn.set_prompt_template(\"\"\" You are an expert SQL analyst. Given the following database schema, generate a PostgreSQL-compatible query to answer the user's question. Schema: {schema} User Question: {question} Generate only the SQL query, with no additional explanation. \"\"\") sql = vn.generate_sql(\"List all high-value customers\") 여러 데이터베이스 작업 # 다른 데이터베이스에 대해 별도의 Vanna 인스턴스 생성 vn_sales = VannaDefault(model=\"sales-model\", api_key=\"vn-...\") vn_sales.connect_to_postgres(host=\"sales-db\", dbname=\"sales\") vn_hr = VannaDefault(model=\"hr-model\", api_key=\"vn-...\") vn_hr.connect_to_mysql(host=\"hr-db\", dbname=\"human_resources\") # 적절한 데이터베이스에 쿼리 sales_sql = vn_sales.generate_sql(\"Total revenue by quarter\") hr_sql = vn_hr.generate_sql(\"Employee count by department\") 사용자 정의 벡터 저장소 사용 from vanna.pinecone import Pinecone_VectorStore from vanna.openai import OpenAI_Chat class PineconeVanna(Pinecone_VectorStore, OpenAI_Chat): def __init__(self, config=None): Pinecone_VectorStore.__init__(self, config=config) OpenAI_Chat.__init__(self, config=config) vn = PineconeVanna(config={ \"api_key\": \"your-openai-key\", \"pinecone_api_key\": \"your-pinecone-key\", \"pinecone_index\": \"vanna-index\" }) Jupyter 통합 및 대화형 워크플로우 Vanna는 Jupyter 노트북에서 풍부한 대화형 위젯과 시각화 기능을 제공하며 빛을 발합니다.\nfrom vanna.remote import VannaDefault import vanna as vn vn = VannaDefault(model=\"my-model\", api_key=\"vn-...\") vn.connect_to_postgres(host=\"localhost\", dbname=\"analytics\", user=\"analyst\", password=\"secret\") # Jupyter에서 대화형 채팅 인터페이스 시작 vn.ask(\"What are the top selling products?\") Jupyter에서 ask() 메서드는 생성된 SQL, 설명 및 결과 테이블을 포함한 풍부한 출력을 반환합니다. 완전한 대화형 경험을 위해: `````python\nJupyter 내에서 대화형 Web UI 시작 from vanna.flask import VannaFlaskApp\napp = VannaFlaskApp(vn) app.run()\nVanna는 적절할 때 자동으로 시각화도 생성합니다: `````python # SQL을 생성하고 자동으로 차트 생성 vn.ask(\"Plot monthly sales trends for 2026\") # SQL을 생성하고, 실행하고, 시계열 결과에서 # 자동으로 라인 차트를 만듭니다 Vanna AI 아키텍처 및 프라이버시 모델 Vanna의 아키텍처를 이해하는 것은 프로덕션 환경에 안전하게 배포하는 데 핵심입니다.\n┌─────────────────────────────────────────────────────────────┐ │ Vanna AI 아키텍처 │ ├─────────────────────────────────────────────────────────────┤ │ │ │ 사용자 질문 ──▶ 벡터 저장소 (스키마/예제) │ │ │ │ │ │ │ ▼ │ │ │ 관련 컨텍스트 │ │ │ RAG를 통해 검색 │ │ │ │ │ │ ▼ ▼ │ │ ┌──────────────────────────────────────┐ │ │ │ LLM 백엔드 │ │ │ │ (OpenAI / Anthropic / Ollama / ...) │ │ │ │ │ │ │ │ 프롬프트: 질문 + 스키마 컨텍스트 │ │ │ │ 출력: 생성된 SQL │ │ │ └──────────────────────────────────────┘ │ │ │ │ │ ▼ │ │ SQL 검증 │ │ │ │ │ ▼ │ │ DB에서 실행 │ │ │ │ │ ▼ │ │ 결과 반환 │ └─────────────────────────────────────────────────────────────┘ 프라이버시 모델은 다음과 같이 작동합니다: `````python\n프라이버시 우선 구성 (권장) from vanna.ollama import Ollama from vanna.chromadb import ChromaDB_VectorStore\nclass PrivateVanna(ChromaDB_VectorStore, Ollama): “““완전히 자체 호스팅. 데이터가 네트워크를 벗어나지 않습니다.””” def init(self, config=None): ChromaDB_VectorStore.init(self, config=config) Ollama.init(self, config={“model”: “llama3:70b”})\nvn = PrivateVanna() vn.connect_to_postgres(host=“internal-db”, dbname=“analytics”, user=“readonly”, password=“secret”)\n스키마 메타데이터는 로컬 ChromaDB에 저장됩니다 LLM은 Ollama를 통해 로컬에서 실행됩니다 데이터베이스 쿼리는 낶부 데이터베이스에 대해 실행됩니다 데이터는 외부 API에 도달하지 않습니다 * * * ## 벤치마크 및 정확도 Vanna의 정확도는 학습 데이터의 품질과 양에 크게 의존합니다. 2026년에 관찰된 전형적인 성능 특성은 다음과 같습니다: `````python # 정확도 평가 스크립트 import pandas as pd test_cases = [ { \"question\": \"Total sales in 2026\", \"expected_sql\": \"SELECT SUM(amount) FROM sales WHERE sale_date \u003e= '2026-01-01'\" }, { \"question\": \"Top 5 customers by order count\", \"expected_sql\": \"\"\" SELECT customer_id, COUNT(*) as order_count FROM orders GROUP BY customer_id ORDER BY order_count DESC LIMIT 5 \"\"\" }, { \"question\": \"Average order value by region\", \"expected_sql\": \"\"\" SELECT region, AVG(total_amount) FROM orders GROUP BY region \"\"\" } ] correct = 0 for test in test_cases: generated = vn.generate_sql(test[\"question\"]) # 의미론적 비교 (정규화됨) if normalize_sql(generated) == normalize_sql(test[\"expected_sql\"]): correct += 1 accuracy = correct / len(test_cases) * 100 print(f\"정확도: {accuracy:.1f}%\") 포괄적인 학습 (DDL + 문서 + 예제 쿼리)을 통해 Vanna는 일관되게 다음을 달성합니다: - 일반적인 분석 쿼리에 대해 90-95% 정확도\n복잡한 다중 테이블 조인에 대해 85-90% 정확도 비즈니스 맥락이 필요한 쿼리에 대해 80-85% 정확도 질문-SQL 쌍이 학습 데이터로 제공될 때 거의 100% 정확도 높은 정확도의 핵심은 철저한 학습입니다. 50개 이상의 DDL 문, 20개 이상의 예제 쿼리, 관련 문서가 있는 잘 훈련된 Vanna 인스턴스는 범용 LLM 접근 방식보다 상당한 차이로 뛰어납니다.\n자주 묻는 질문 (FAQ) Vanna AI는 완전히 묶음인가요? 예, Vanna AI는 MIT 라이선스 하에 오픈소스이며 묶음으로 사용할 수 있습니다. 핵심 라이브러리, 모든 통합, RAG 기반 학습 시스템은 비용 없이 사용할 수 있습니다. Vanna는 소규모 프로젝트를 위한 묶음 티어가 있는 호스팅 클라우드 서비스도 제공하며, 팀 협업 및 고급 분석과 같은 엔터프라이즈 기능에 대해서는 유료 계획이 있습니다. Ollama를 통한 로컬 LLM과 ChromaDB를 통한 로컬 벡터 저장소를 사용하는 자체 호스팅 옵션은 사용 제한 없이 완전히 묶음입니다.\n# 묶음, 완전히 자체 호스팅 설정 from vanna.ollama import Ollama from vanna.chromadb import ChromaDB_VectorStore class FreeVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config) Ollama.__init__(self, config={\"model\": \"llama3\"}) Vanna는 스키마 변경을 어떻게 처리합니까? 데이터베이스 스키마가 변경되면 업데이트된 DDL 문으로 Vanna를 재학습해야 합니다. 권장되는 접근 방식은 학습 데이터를 버전 관리하고 최신 스키마를 추출하고 배포 시 Vanna를 재학습하는 자동화된 파이프라인을 설정하는 것입니다.\n# 자동화된 재학습 파이프라인 import subprocess # 최신 스키마 추출 result = subprocess.run( [\"pg_dump\", \"--schema-only\", \"mydb\"], capture_output=True, text=True ) new_ddl = result.stdout # 이전 학습 데이터 지우고 재학습 vn.remove_training_data() vn.train(ddl=new_ddl) 비영어 언어로 Vanna를 사용할 수 있나요? 예, Vanna는 여러 언어의 자연어 질문을 지원합니다. LLM 백엔드가 SQL 생성으로의 번역을 처리합니다. 선호하는 언어로 문서와 예제를 사용하여 Vanna를 학습시킬 수 있습니다.\n# 중국어 문서로 학습 vn.train(documentation=\"\"\" 销售额表记录所有完成的交易。 amount 列单位为美元，含税。 大客户定义为累计购买超过 $10,000 的客户。 \"\"\") sql = vn.generate_sql(\"显示2026年每个区域的总销售额\") Vanna는 어떤 데이터베이스를 지원합니까? Vanna는 유연한 연결 시스템을 통해 거의 모든 주요 데이터베이스를 지원합니다: PostgreSQL, MySQL, SQLite, SQL Server, Snowflake, BigQuery, Redshift, Oracle, DuckDB, ClickHouse 및 Python DB-API 드라이버가 있는 모든 데이터베이스. 사용자 정의 커넥터도 특수 시스템에 대해 구현할 수 있습니다.\n# SQLite vn.connect_to_sqlite(\"mydb.sqlite\") # Snowflake vn.connect_to_snowflake( account=\"myaccount\", username=\"user\", password=\"pass\", database=\"analytics\" ) # BigQuery vn.connect_to_bigquery(project_id=\"my-project\") # DuckDB vn.connect_to_duckdb(\"mydb.duckdb\") 내 특정 사용 사례에서 Vanna의 정확도를 어떻게 향상시킬 수 있나요? 정확도를 향상시키는 가장 효과적인 방법은 포괄적인 학습을 통하는 것입니다. 다음 학습 데이터 품질 계층 구조를 따르세요: 1. 질문-SQL 쌍 (가장 높은 영향 — 거의 100% 정확도) 2. 예제 SQL 쿼리 (높은 영향 — 패턴 가르침) 3. 비즈니스 문서 (중간 영향 — 맥락 추가) 4. DDL 문 (기초 — 환각 제거)\n# 최대 정확도 학습 요법 vn.train(ddl=all_schema_ddl) vn.train(documentation=business_context) for example in curated_sql_examples: vn.train(sql=example) for qa in historical_question_sql_pairs: vn.train(question=qa[\"question\"], sql=qa[\"sql\"]) ```` * * * ## 추천 호스팅 및 인프라 - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. *제휴 링크 — 추가 비용 없이 dibi8.com 운영을 지원합니다.* ## 마지막 생각 Vanna AI는 데이터베이스 접근 대중화에서 중대한 도약을 대표합니다. 현대적 대형 언어 모델의 성능과 SQL 생성을 위해 특별히 구축된 RAG 아키텍처를 결합함으로써, 자연어 쿼리를 실제 프로덕션 환경에서 실용적으로 만드는 정확도 수준을 제공합니다. 적절한 학습을 통해 달성된 90%+ 정확도와 프라이버시 우선 설계 및 자체 호스팅 기능의 결합은 데이터 보안을 손상시키지 않고 팀에 Text-to-SQL 기능을 제공하려는 조직을 위한 도구로 Vanna를 만듭니다. 2026년, 데이터 분석가와 데이터베이스 전문가 사이의 간격이 계속 좁아지면서, Vanna AI는 최전선에 서 있습니다 — \"우리 지역별 Q2 매출은 얼마입니까?\"를 몇 분이 아닌 몇 초 내에 실행 가능한 SQL로 변환합니다. SQL 병목 현상을 줄이고 사람들이 생각하는 언어로 질문할 수 있게 하려는 모든 팀에게 Vanna AI는 즉시 배당금을 지불하는 투자입니다. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"vanna-ai-sql-generation\", \"datePublished\": \"2026-05-20\", \"dateModified\": \"2026-05-20\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/vanna-ai-sql-generation\" } } \u003c/script\u003e * * * ## Related Articles - [12-factor-agents](vanna-ai-sql-generation) - [2026-05-25-trending-ai-agents](vanna-ai-sql-generation) - [2026-06-01-trending-ai-agents](vanna-ai-sql-generation) - [2026-06-08-trending-ai-agents](vanna-ai-sql-generation) - [2026-06-15-trending-ai-agents](vanna-ai-sql-generation) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：LangChain和LlamaIndex哪个更好？** LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。 **问：如何评估LLM框架的性能？** 基准测试包括：推理速度、准确率、资源消耗、可扩展性。 **问：开源LLM框架的商业使用限制？** 大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。 **问：是否需要GPU才能运行LLM框架？** 推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。 **问：企业级部署的最佳实践？** 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。 ",
-  "wordCount" : "2674",
+  "articleBody": "The ability to interact with databases using natural language has long been the holy grail of data analytics. Every day, countless hours are lost translating business questions into SQL queries — a process that requires deep knowledge of database schemas, table relationships, and SQL syntax. In 2026, this bottleneck is rapidly dissolving thanks to Vanna AI, an open-source Python library that trains on your database schema and generates production-ready SQL from plain English with over 90% accuracy.\nWith more than 18,000 GitHub stars and an MIT license, Vanna AI has emerged as the leading text-to-SQL solution for teams that demand both accuracy and data privacy. Unlike generic LLM approaches that treat SQL generation as just another translation task, Vanna uses a Retrieval-Augmented Generation (RAG) architecture specifically designed for database querying. It learns your schema, understands your business logic, and produces SQL that actually runs — validated, optimized, and ready for production.\nIn this comprehensive guide, we will walk through everything you need to know about Vanna AI: from installation and schema training to advanced SQL generation, validation, and integration into your analytics workflows. Whether you are a data analyst who wants to ask questions in English, or an engineer building natural language interfaces for your data platform, Vanna AI provides the tools you need to make text-to-SQL a reality.\nWhat Is Vanna AI? Natural Language Meets SQL Vanna AI is an open-source Python library that bridges the gap between human language and structured query language. At its core, Vanna is a ** Retrieval-Augmented Generation (RAG) ** framework built specifically for SQL generation. Unlike generic LLM chatbots that occasionally hallucinate table names or invent column references, Vanna trains on your actual database schema — learning your tables, columns, relationships, and even your organization’s naming conventions.\nThe workflow is elegantly simple: 1. Connect Vanna to your database 2. Train it on your schema (DDL statements, documentation, sample queries) 3. Ask questions in natural language 4. Receive accurate, executable SQL\nimport vanna as vn from vanna.remote import VannaDefault # Initialize Vanna with your API key vn = VannaDefault(model=\"my-model\", api_key=\"vn-...\") # Connect to your database vn.connect_to_postgres(host=\"localhost\", dbname=\"analytics\", user=\"analyst\", password=\"secret\", port=5432) # Train on your schema vn.train(ddl=\"\"\" CREATE TABLE sales ( id SERIAL PRIMARY KEY, customer_id INT REFERENCES customers(id), amount DECIMAL(10,2), sale_date TIMESTAMP, region VARCHAR(50) ); \"\"\") # Ask a question in plain English sql = vn.generate_sql(\"What are the top 5 regions by total sales in 2026?\") print(sql) The generated SQL is not just syntactically correct — it is semantically accurate, referencing the correct tables, columns, and relationships from your actual schema.\nWhy Vanna AI Matters in 2026 The explosion of Large Language Models in recent years has created enormous opportunities for natural language interfaces. However, generic LLMs struggle with SQL generation for several critical reasons: they hallucinate schema elements, ignore database-specific syntax, and have no awareness of your actual data model. Sending your raw data to third-party API endpoints also raises serious privacy and compliance concerns.\nVanna AI addresses all of these challenges head-on: - Schema-Aware Generation: Vanna learns your specific schema, eliminating hallucination\nPrivacy-First Design: Your data never leaves your infrastructure unless you choose otherwise Self-Hosted Option: Run everything locally with open-source LLMs SQL Validation: Every generated query is validated against your database before being returned Multiple LLM Backends: Use OpenAI, Anthropic, Google, or local models like Ollama # Vanna supports multiple LLM backends from vanna.ollama import Ollama from vanna.chromadb import ChromaDB_VectorStore class MyVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config) Ollama.__init__(self, config={\"model\": \"llama3\"}) # Fully local, self-hosted setup vn = MyVanna() vn.connect_to_sqlite(\"my_database.db\") vn.train(ddl=\"SELECT sql FROM sqlite_master WHERE type=table;\") In 2026, as organizations grapple with increasingly complex data schemas and stricter compliance requirements, Vanna’s approach — training on schema rather than sending data to the cloud — represents the gold standard for secure, accurate text-to-SQL.\nInstalling and Configuring Vanna AI Vanna is designed to be easy to install and configure, with sensible defaults that get you productive quickly.\n# Install Vanna core pip install vanna # Install with specific LLM backend support pip install \"vanna[openai]\" pip install \"vanna[anthropic]\" pip install \"vanna[google]\" pip install \"vanna[ollama]\" # Install with database drivers pip install \"vanna[postgres]\" pip install \"vanna[mysql]\" pip install \"vanna[snowflake]\" pip install \"vanna[bigquery]\" # Install everything pip install \"vanna[all]\" Quick configuration for the most common setup: `````python from vanna.remote import VannaDefault\nUse Vanna’s hosted service (easiest setup) vn = VannaDefault( model=“my-database-model”, api_key=“vn-your-api-key” )\nConnect to PostgreSQL vn.connect_to_postgres( host=“db.company.com”, dbname=“analytics”, user=“analyst”, password=“secure-password”, port=5432 )\nFor a fully self-hosted setup with local LLMs: `````python from vanna.ollama import Ollama from vanna.chromadb import ChromaDB_VectorStore class LocalVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config) Ollama.__init__(self, config={\"model\": \"codellama:13b\"}) vn = LocalVanna() vn.connect_to_postgres(host=\"localhost\", dbname=\"sales\", user=\"admin\", password=\"admin\", port=5432) Training Vanna on Your Database Schema Training is where Vanna truly shines. The more you train Vanna on your schema, the more accurate its SQL generation becomes. There are three primary types of training data you can provide.\nTraining with DDL Statements The most fundamental training method is providing your database’s DDL (Data Definition Language) — the CREATE TABLE statements that define your schema.\n# Train with individual DDL statements vn.train(ddl=\"\"\" CREATE TABLE customers ( id SERIAL PRIMARY KEY, name VARCHAR(255) NOT NULL, email VARCHAR(255) UNIQUE, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, segment VARCHAR(50) ); \"\"\") vn.train(ddl=\"\"\" CREATE TABLE orders ( id SERIAL PRIMARY KEY, customer_id INT REFERENCES customers(id), total_amount DECIMAL(12,2), order_date TIMESTAMP, status VARCHAR(20) ); \"\"\") vn.train(ddl=\"\"\" CREATE TABLE order_items ( id SERIAL PRIMARY KEY, order_id INT REFERENCES orders(id), product_name VARCHAR(255), quantity INT, unit_price DECIMAL(10,2) ); \"\"\") Training with Schema Auto-Discovery For large databases, manually writing DDL is impractical. Vanna can automatically extract schema information from your database.\n# PostgreSQL: extract schema from information_schema import psycopg2 conn = psycopg2.connect( host=\"localhost\", dbname=\"analytics\", user=\"analyst\", password=\"secret\" ) cursor = conn.cursor() # Get all table definitions cursor.execute(\"\"\" SELECT table_name FROM information_schema.tables WHERE table_schema = public; \"\"\") tables = cursor.fetchall() for (table_name,) in tables: cursor.execute(f\"\"\" SELECT column_name, data_type, is_nullable FROM information_schema.columns WHERE table_name = '{table_name}'; \"\"\") columns = cursor.fetchall() ddl = f\"CREATE TABLE {table_name} (\\n\" ddl += \",\\n\".join([ f\" {col[0]} {col[1]}{'' if col[2] == YES else ' NOT NULL'}\" for col in columns ]) ddl += \"\\n);\" vn.train(ddl=ddl) conn.close() Training with Documentation and Business Logic Beyond raw schema, you can train Vanna on business context — helping it understand what your columns actually mean.\n# Train with documentation vn.train(documentation=\"\"\" The sales table records all completed transactions. The amount column is in USD and includes tax. The region column uses standard US Census regions: Northeast, Midwest, South, and West. A high_value_customer is anyone with lifetime purchases \u003e $10,000. \"\"\") # Train with example SQL queries vn.train(sql=\"\"\" SELECT region, SUM(amount) as total_sales, COUNT(*) as order_count FROM sales WHERE sale_date \u003e= '2026-01-01' GROUP BY region ORDER BY total_sales DESC; \"\"\") vn.train(sql=\"\"\" SELECT c.name, COUNT(o.id) as order_count, SUM(o.total_amount) as lifetime_value FROM customers c JOIN orders o ON c.id = o.customer_id WHERE o.status = completed GROUP BY c.id, c.name HAVING SUM(o.total_amount) \u003e 10000; \"\"\") Training with Question-SQL Pairs For maximum accuracy, provide pairs of natural language questions and their corresponding SQL queries.\n# Gold-standard training data vn.train( question=\"What are the top 10 customers by lifetime value?\", sql=\"\"\" SELECT c.name, SUM(o.total_amount) as lifetime_value FROM customers c JOIN orders o ON c.id = o.customer_id GROUP BY c.id, c.name ORDER BY lifetime_value DESC LIMIT 10; \"\"\" ) vn.train( question=\"How many orders were placed each month in 2026?\", sql=\"\"\" SELECT DATE_TRUNC(month, order_date) as month, COUNT(*) as order_count FROM orders WHERE order_date \u003e= '2026-01-01' AND order_date \u003c '2027-01-01' GROUP BY month ORDER BY month; \"\"\" ) Generating SQL from Natural Language Once trained, Vanna can generate SQL from natural language questions with remarkable accuracy. The generate_sql method is the primary interface.\n# Simple questions sql = vn.generate_sql(\"Show me all customers from the West region\") print(sql) # Output: SELECT * FROM customers WHERE region = West; # Aggregation queries sql = vn.generate_sql(\"What is the average order value by customer segment?\") print(sql) # Output: SELECT c.segment, AVG(o.total_amount) as avg_order_value # FROM customers c JOIN orders o ON c.id = o.customer_id # GROUP BY c.segment; # Complex multi-table joins sql = vn.generate_sql( \"Find the top 5 products by revenue in Q2 2026, \" \"including how many unique customers bought each product\" ) print(sql) # Time-based filtering sql = vn.generate_sql( \"Compare monthly sales between 2025 and 2026, \" \"showing year-over-year growth percentage\" ) print(sql) Vanna also supports generating SQL with specific constraints or patterns: `````python\nGenerate SQL with explanation sql, explanation = vn.generate_sql( “Which customers haven’t placed an order in the last 90 days?”, explain=True ) print(f\"SQL: {sql}\") print(f\"Explanation: {explanation}\")\nGenerate SQL and also run it result_df = vn.ask(“What are the monthly sales trends?”) print(result_df)\nThe ask() method generates SQL, validates it, executes it, and returns a pandas DataFrame — all in one call * * * ## SQL Validation and Error Handling One of Vanna's standout features is its **automatic SQL validation**. Before returning a query to you, Vanna can check that it actually runs against your database, catching syntax errors and schema mismatches. `````python # Enable automatic validation vn = VannaDefault(model=\"my-model\", api_key=\"vn-...\", config={\"validate_sql\": True}) # Invalid queries are caught and corrected try: sql = vn.generate_sql(\"Show me the top 10 products by revenue\") print(f\"Validated SQL: {sql}\") except Exception as e: print(f\"Validation failed: {e}\") # Vanna will attempt to fix and regenerate sql = vn.generate_sql_with_retry( \"Show me the top 10 products by revenue\", max_retries=3 ) Vanna can also handle follow-up questions that reference previous context: `````python\nFirst question result1 = vn.ask(“What were total sales in 2026?”)\nFollow-up question (Vanna maintains context) result2 = vn.ask(“Break that down by region”)\nGenerates: SELECT region, SUM(amount) FROM sales WHERE sale_date \u003e= ‘2026-01-01’ GROUP BY region Another follow-up result3 = vn.ask(“Now show only regions with more than $1M in sales”)\nGenerates: SELECT region, SUM(amount) as total FROM sales WHERE sale_date \u003e= ‘2026-01-01’ GROUP BY region HAVING SUM(amount) \u003e 1000000 * * * ## Advanced Features and Customization Vanna offers extensive customization options for advanced users and production deployments. ### Custom Prompt Templates `````python # Override the default prompt template vn.set_prompt_template(\"\"\" You are an expert SQL analyst. Given the following database schema, generate a PostgreSQL-compatible query to answer the user's question. Schema: {schema} User Question: {question} Generate only the SQL query, with no additional explanation. \"\"\") sql = vn.generate_sql(\"List all high-value customers\") Working with Multiple Databases # Create separate Vanna instances for different databases vn_sales = VannaDefault(model=\"sales-model\", api_key=\"vn-...\") vn_sales.connect_to_postgres(host=\"sales-db\", dbname=\"sales\") vn_hr = VannaDefault(model=\"hr-model\", api_key=\"vn-...\") vn_hr.connect_to_mysql(host=\"hr-db\", dbname=\"human_resources\") # Query the appropriate database sales_sql = vn_sales.generate_sql(\"Total revenue by quarter\") hr_sql = vn_hr.generate_sql(\"Employee count by department\") Using Custom Vector Stores from vanna.pinecone import Pinecone_VectorStore from vanna.openai import OpenAI_Chat class PineconeVanna(Pinecone_VectorStore, OpenAI_Chat): def __init__(self, config=None): Pinecone_VectorStore.__init__(self, config=config) OpenAI_Chat.__init__(self, config=config) vn = PineconeVanna(config={ \"api_key\": \"your-openai-key\", \"pinecone_api_key\": \"your-pinecone-key\", \"pinecone_index\": \"vanna-index\" }) Jupyter Integration and Interactive Workflows Vanna shines in Jupyter notebooks, offering rich interactive widgets and visualization capabilities.\nfrom vanna.remote import VannaDefault import vanna as vn vn = VannaDefault(model=\"my-model\", api_key=\"vn-...\") vn.connect_to_postgres(host=\"localhost\", dbname=\"analytics\", user=\"analyst\", password=\"secret\") # Launch the interactive chat interface in Jupyter vn.ask(\"What are the top selling products?\") The ask() method in Jupyter returns rich output including the generated SQL, explanation, and results table. For a full interactive experience: `````python\nLaunch the interactive web UI within Jupyter from vanna.flask import VannaFlaskApp\napp = VannaFlaskApp(vn) app.run()\nVanna also generates visualizations automatically when appropriate: `````python # Generate SQL and auto-create chart vn.ask(\"Plot monthly sales trends for 2026\") # Generates SQL, executes it, and creates a line chart # from the time-series results automatically Vanna AI Architecture and Privacy Model Understanding Vanna’s architecture is key to deploying it securely in production environments.\n┌─────────────────────────────────────────────────────────────┐ │ Vanna AI Architecture │ ├─────────────────────────────────────────────────────────────┤ │ │ │ User Question ──▶ Vector Store (Schema/Examples) │ │ │ │ │ │ │ ▼ │ │ │ Relevant Context │ │ │ Retrieved via RAG │ │ │ │ │ │ ▼ ▼ │ │ ┌──────────────────────────────────────┐ │ │ │ LLM Backend │ │ │ │ (OpenAI / Anthropic / Ollama / ...) │ │ │ │ │ │ │ │ Prompt: Question + Schema Context │ │ │ │ Output: Generated SQL │ │ │ └──────────────────────────────────────┘ │ │ │ │ │ ▼ │ │ SQL Validation │ │ │ │ │ ▼ │ │ Execute Against DB │ │ │ │ │ ▼ │ │ Return Results │ └─────────────────────────────────────────────────────────────┘ The privacy model works as follows: `````python\nPrivacy-First Configuration (Recommended) from vanna.ollama import Ollama from vanna.chromadb import ChromaDB_VectorStore\nclass PrivateVanna(ChromaDB_VectorStore, Ollama): “““Fully self-hosted. Zero data leaves your network.””” def init(self, config=None): ChromaDB_VectorStore.init(self, config=config) Ollama.init(self, config={“model”: “llama3:70b”})\nvn = PrivateVanna() vn.connect_to_postgres(host=“internal-db”, dbname=“analytics”, user=“readonly”, password=“secret”)\nSchema metadata is stored locally in ChromaDB LLM runs locally via Ollama Database queries execute against your internal database No data ever reaches external APIs * * * ## Benchmarks and Accuracy Vanna's accuracy depends heavily on the quality and quantity of training data. Here are typical performance characteristics observed in 2026: `````python # Accuracy evaluation script import pandas as pd test_cases = [ { \"question\": \"Total sales in 2026\", \"expected_sql\": \"SELECT SUM(amount) FROM sales WHERE sale_date \u003e= '2026-01-01'\" }, { \"question\": \"Top 5 customers by order count\", \"expected_sql\": \"\"\" SELECT customer_id, COUNT(*) as order_count FROM orders GROUP BY customer_id ORDER BY order_count DESC LIMIT 5 \"\"\" }, { \"question\": \"Average order value by region\", \"expected_sql\": \"\"\" SELECT region, AVG(total_amount) FROM orders GROUP BY region \"\"\" } ] correct = 0 for test in test_cases: generated = vn.generate_sql(test[\"question\"]) # Semantic comparison (normalized) if normalize_sql(generated) == normalize_sql(test[\"expected_sql\"]): correct += 1 accuracy = correct / len(test_cases) * 100 print(f\"Accuracy: {accuracy:.1f}%\") With comprehensive training (DDL + documentation + example queries), Vanna consistently achieves: - 90-95% accuracy on common analytical queries\n85-90% accuracy on complex multi-table joins 80-85% accuracy on queries requiring business context Near 100% accuracy when question-SQL pairs are provided as training data The key to high accuracy is thorough training. A well-trained Vanna instance with 50+ DDL statements, 20+ example queries, and relevant documentation outperforms generic LLM approaches by a significant margin.\nFrequently Asked Questions (FAQ) Is Vanna AI completely free to use? Yes, Vanna AI is open-source under the MIT license and free to use. The core library, all integrations, and the RAG-based training system are available at no cost. Vanna also offers a hosted cloud service with a free tier for small projects, with paid plans for enterprise features like team collaboration and advanced analytics. The self-hosted option using local LLMs (via Ollama) and local vector stores (via ChromaDB) is entirely free with no usage limits.\n# Free, fully self-hosted setup from vanna.ollama import Ollama from vanna.chromadb import ChromaDB_VectorStore class FreeVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config) Ollama.__init__(self, config={\"model\": \"llama3\"}) How does Vanna handle schema changes? When your database schema changes, you need to retrain Vanna with the updated DDL statements. The recommended approach is to version your training data and set up an automated pipeline that extracts the latest schema and retrains Vanna on deployment.\n# Automated retraining pipeline import subprocess # Extract latest schema result = subprocess.run( [\"pg_dump\", \"--schema-only\", \"mydb\"], capture_output=True, text=True ) new_ddl = result.stdout # Clear old training and retrain vn.remove_training_data() vn.train(ddl=new_ddl) Can I use Vanna with non-English languages? Yes, Vanna supports natural language questions in multiple languages. The LLM backend handles the translation to SQL generation. You can train Vanna with documentation and examples in your preferred language.\n# Training with Chinese documentation vn.train(documentation=\"\"\" 销售额表记录所有完成的交易。 amount 列单位为美元，含税。 大客户定义为累计购买超过 $10,000 的客户。 \"\"\") sql = vn.generate_sql(\"显示2026年每个区域的总销售额\") What databases does Vanna support? Vanna supports virtually all major databases through its flexible connection system: PostgreSQL, MySQL, SQLite, SQL Server, Snowflake, BigQuery, Redshift, Oracle, DuckDB, ClickHouse, and any database with a Python DB-API driver. Custom connectors can also be implemented for specialized systems.\n# SQLite vn.connect_to_sqlite(\"mydb.sqlite\") # Snowflake vn.connect_to_snowflake( account=\"myaccount\", username=\"user\", password=\"pass\", database=\"analytics\" ) # BigQuery vn.connect_to_bigquery(project_id=\"my-project\") # DuckDB vn.connect_to_duckdb(\"mydb.duckdb\") How can I improve Vanna’s accuracy for my specific use case? The most effective way to improve accuracy is through comprehensive training. Follow this hierarchy of training data quality: 1. Question-SQL pairs (highest impact — near 100% accuracy) 2. Example SQL queries (high impact — teaches patterns) 3. Business documentation (medium impact — adds context) 4. DDL statements (foundational — eliminates hallucination)\n# Maximum accuracy training regimen vn.train(ddl=all_schema_ddl) vn.train(documentation=business_context) for example in curated_sql_examples: vn.train(sql=example) for qa in historical_question_sql_pairs: vn.train(question=qa[\"question\"], sql=qa[\"sql\"]) ```` * * * ## Recommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com. *Affiliate links — they don't cost you extra and they help keep dibi8.com running.* ## Final Thoughts Vanna AI represents a significant leap forward in democratizing database access. By combining the power of modern Large Language Models with a purpose-built RAG architecture for SQL generation, it delivers an accuracy level that makes natural language querying practical for real-world production environments. The 90%+ accuracy achieved with proper training, combined with its privacy-first design and self-hosting capabilities, makes Vanna the tool of choice for organizations that want to empower their teams with text-to-SQL without compromising data security. In 2026, as the gap between data analysts and database experts continues to narrow, Vanna AI stands at the forefront — turning \"What were our Q2 sales by region?\" into executable SQL in seconds, not minutes. For any team looking to reduce the SQL bottleneck and let people ask questions in the language they think in, Vanna AI is an investment that pays dividends immediately. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"vanna-ai-sql-generation\", \"datePublished\": \"2026-05-20\", \"dateModified\": \"2026-05-20\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/vanna-ai-sql-generation\" } } \u003c/script\u003e * * * ## Related Articles - [12-factor-agents](vanna-ai-sql-generation) - [2026-05-25-trending-ai-agents](vanna-ai-sql-generation) - [2026-06-01-trending-ai-agents](vanna-ai-sql-generation) - [2026-06-08-trending-ai-agents](vanna-ai-sql-generation) - [2026-06-15-trending-ai-agents](vanna-ai-sql-generation) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：LangChain和LlamaIndex哪个更好？** LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。 **问：如何评估LLM框架的性能？** 基准测试包括：推理速度、准确率、资源消耗、可扩展性。 **问：开源LLM框架的商业使用限制？** 大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。 **问：是否需要GPU才能运行LLM框架？** 推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。 **问：企业级部署的最佳实践？** 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。 ",
+  "wordCount" : "2993",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>15 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/vanna-ai-sql-generation/">En</a>
@@ -209,52 +209,52 @@
 
     <div class="inner"><ul><ul>
             <li>
-                <a href="#vanna-ai%eb%9e%80-%ec%9e%90%ec%97%b0%ec%96%b4%ea%b0%80-sql%ec%9d%84-%eb%a7%8c%eb%82%98%eb%8b%a4" aria-label="Vanna AI란? 자연어가 SQL을 만나다">Vanna AI란? 자연어가 SQL을 만나다</a></li>
+                <a href="#what-is-vanna-ai-natural-language-meets-sql" aria-label="What Is Vanna AI? Natural Language Meets SQL">What Is Vanna AI? Natural Language Meets SQL</a></li>
             <li>
-                <a href="#2026%eb%85%84%ec%97%90-vanna-ai%ea%b0%80-%ec%a4%91%ec%9a%94%ed%95%9c-%ec%9d%b4%ec%9c%a0" aria-label="2026년에 Vanna AI가 중요한 이유">2026년에 Vanna AI가 중요한 이유</a></li>
+                <a href="#why-vanna-ai-matters-in-2026" aria-label="Why Vanna AI Matters in 2026">Why Vanna AI Matters in 2026</a></li>
             <li>
-                <a href="#vanna-ai-%ec%84%a4%ec%b9%98-%eb%b0%8f-%ea%b5%ac%ec%84%b1" aria-label="Vanna AI 설치 및 구성">Vanna AI 설치 및 구성</a></li></ul>
+                <a href="#installing-and-configuring-vanna-ai" aria-label="Installing and Configuring Vanna AI">Installing and Configuring Vanna AI</a></li></ul>
                 
             <li>
-                <a href="#vanna%ec%9d%98-%ed%98%b8%ec%8a%a4%ed%8c%85-%ec%84%9c%eb%b9%84%ec%8a%a4-%ec%82%ac%ec%9a%a9-%ea%b0%80%ec%9e%a5-%ec%89%ac%ec%9a%b4-%ec%84%a4%ec%a0%95" aria-label="Vanna의 호스팅 서비스 사용 (가장 쉬운 설정)">Vanna의 호스팅 서비스 사용 (가장 쉬운 설정)</a></li>
+                <a href="#use-vannas-hosted-service-easiest-setup" aria-label="Use Vanna&rsquo;s hosted service (easiest setup)">Use Vanna&rsquo;s hosted service (easiest setup)</a></li>
             <li>
-                <a href="#postgresql%ec%97%90-%ec%97%b0%ea%b2%b0" aria-label="PostgreSQL에 연결">PostgreSQL에 연결</a><ul>
+                <a href="#connect-to-postgresql" aria-label="Connect to PostgreSQL">Connect to PostgreSQL</a><ul>
                     
             <li>
-                <a href="#%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4-%ec%8a%a4%ed%82%a4%eb%a7%88%ec%97%90%ec%84%9c-vanna-%ed%95%99%ec%8a%b5%ec%8b%9c%ed%82%a4%ea%b8%b0" aria-label="데이터베이스 스키마에서 Vanna 학습시키기">데이터베이스 스키마에서 Vanna 학습시키기</a><ul>
+                <a href="#training-vanna-on-your-database-schema" aria-label="Training Vanna on Your Database Schema">Training Vanna on Your Database Schema</a><ul>
                     
             <li>
-                <a href="#ddl-%eb%ac%b8%ec%9c%bc%eb%a1%9c-%ed%95%99%ec%8a%b5" aria-label="DDL 문으로 학습">DDL 문으로 학습</a></li>
+                <a href="#training-with-ddl-statements" aria-label="Training with DDL Statements">Training with DDL Statements</a></li>
             <li>
-                <a href="#%ec%8a%a4%ed%82%a4%eb%a7%88-%ec%9e%90%eb%8f%99-%ea%b2%80%ec%83%89%ec%9c%bc%eb%a1%9c-%ed%95%99%ec%8a%b5" aria-label="스키마 자동 검색으로 학습">스키마 자동 검색으로 학습</a></li>
+                <a href="#training-with-schema-auto-discovery" aria-label="Training with Schema Auto-Discovery">Training with Schema Auto-Discovery</a></li>
             <li>
-                <a href="#%eb%ac%b8%ec%84%9c-%eb%b0%8f-%eb%b9%84%ec%a6%88%eb%8b%88%ec%8a%a4-%eb%a1%9c%ec%a7%81%ec%9c%bc%eb%a1%9c-%ed%95%99%ec%8a%b5" aria-label="문서 및 비즈니스 로직으로 학습">문서 및 비즈니스 로직으로 학습</a></li>
+                <a href="#training-with-documentation-and-business-logic" aria-label="Training with Documentation and Business Logic">Training with Documentation and Business Logic</a></li>
             <li>
-                <a href="#%ec%a7%88%eb%ac%b8-sql-%ec%8c%8d%ec%9c%bc%eb%a1%9c-%ed%95%99%ec%8a%b5" aria-label="질문-SQL 쌍으로 학습">질문-SQL 쌍으로 학습</a></li></ul>
+                <a href="#training-with-question-sql-pairs" aria-label="Training with Question-SQL Pairs">Training with Question-SQL Pairs</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%9e%90%ec%97%b0%ec%96%b4%ec%97%90%ec%84%9c-sql-%ec%83%9d%ec%84%b1%ed%95%98%ea%b8%b0" aria-label="자연어에서 SQL 생성하기">자연어에서 SQL 생성하기</a></li></ul>
+                <a href="#generating-sql-from-natural-language" aria-label="Generating SQL from Natural Language">Generating SQL from Natural Language</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%84%a4%eb%aa%85%ec%9d%b4-%ed%8f%ac%ed%95%a8%eb%90%9c-sql-%ec%83%9d%ec%84%b1" aria-label="설명이 포함된 SQL 생성">설명이 포함된 SQL 생성</a></li>
+                <a href="#generate-sql-with-explanation" aria-label="Generate SQL with explanation">Generate SQL with explanation</a></li>
             <li>
-                <a href="#sql%ec%9d%84-%ec%83%9d%ec%84%b1%ed%95%98%ea%b3%a0-%ec%8b%a4%ed%96%89%eb%8f%84-%ed%95%a9%eb%8b%88%eb%8b%a4" aria-label="SQL을 생성하고 실행도 합니다">SQL을 생성하고 실행도 합니다</a></li>
+                <a href="#generate-sql-and-also-run-it" aria-label="Generate SQL and also run it">Generate SQL and also run it</a></li>
             <li>
-                <a href="#ask-%eb%a9%94%ec%84%9c%eb%93%9c%eb%8a%94-sql%ec%9d%84-%ec%83%9d%ec%84%b1%ed%95%98%ea%b3%a0-%ea%b2%80%ec%a6%9d%ed%95%98%ea%b3%a0-%ec%8b%a4%ed%96%89%ed%95%98%ea%b3%a0" aria-label="ask() 메서드는 SQL을 생성하고, 검증하고, 실행하고,">ask() 메서드는 SQL을 생성하고, 검증하고, 실행하고,</a></li>
+                <a href="#the-ask-method-generates-sql-validates-it-executes-it" aria-label="The ask() method generates SQL, validates it, executes it,">The ask() method generates SQL, validates it, executes it,</a></li>
             <li>
-                <a href="#pandas-dataframe%ec%9d%84-%eb%b0%98%ed%99%98%ed%95%a9%eb%8b%88%eb%8b%a4--%ed%95%9c-%eb%b2%88%ec%9d%98-%ed%98%b8%ec%b6%9c%eb%a1%9c-%eb%aa%a8%eb%91%90-%ec%88%98%ed%96%89" aria-label="pandas DataFrame을 반환합니다 — 한 번의 호출로 모두 수행">pandas DataFrame을 반환합니다 — 한 번의 호출로 모두 수행</a></li>
+                <a href="#and-returns-a-pandas-dataframe--all-in-one-call" aria-label="and returns a pandas DataFrame — all in one call">and returns a pandas DataFrame — all in one call</a></li>
             <li>
-                <a href="#%ec%b2%ab-%eb%b2%88%ec%a7%b8-%ec%a7%88%eb%ac%b8" aria-label="첫 번째 질문">첫 번째 질문</a></li>
+                <a href="#first-question" aria-label="First question">First question</a></li>
             <li>
-                <a href="#%ed%9b%84%ec%86%8d-%ec%a7%88%eb%ac%b8-vanna%eb%8a%94-%eb%a7%a5%eb%9d%bd%ec%9d%84-%ec%9c%a0%ec%a7%80%ed%95%a9%eb%8b%88%eb%8b%a4" aria-label="후속 질문 (Vanna는 맥락을 유지합니다)">후속 질문 (Vanna는 맥락을 유지합니다)</a></li>
+                <a href="#follow-up-question-vanna-maintains-context" aria-label="Follow-up question (Vanna maintains context)">Follow-up question (Vanna maintains context)</a></li>
             <li>
-                <a href="#%ec%83%9d%ec%84%b1-select-region-sumamount-from-sales" aria-label="생성: SELECT region, SUM(amount) FROM sales">생성: SELECT region, SUM(amount) FROM sales</a></li>
+                <a href="#generates-select-region-sumamount-from-sales" aria-label="Generates: SELECT region, SUM(amount) FROM sales">Generates: SELECT region, SUM(amount) FROM sales</a></li>
             <li>
                 <a href="#where-sale_date--2026-01-01-group-by-region" aria-label="WHERE sale_date &gt;= &lsquo;2026-01-01&rsquo; GROUP BY region">WHERE sale_date &gt;= &lsquo;2026-01-01&rsquo; GROUP BY region</a></li>
             <li>
-                <a href="#%eb%98%90-%eb%8b%a4%eb%a5%b8-%ed%9b%84%ec%86%8d-%ec%a7%88%eb%ac%b8" aria-label="또 다른 후속 질문">또 다른 후속 질문</a></li>
+                <a href="#another-follow-up" aria-label="Another follow-up">Another follow-up</a></li>
             <li>
-                <a href="#%ec%83%9d%ec%84%b1-select-region-sumamount-as-total" aria-label="생성: SELECT region, SUM(amount) as total">생성: SELECT region, SUM(amount) as total</a></li>
+                <a href="#generates-select-region-sumamount-as-total" aria-label="Generates: SELECT region, SUM(amount) as total">Generates: SELECT region, SUM(amount) as total</a></li>
             <li>
                 <a href="#from-sales-where-sale_date--2026-01-01" aria-label="FROM sales WHERE sale_date &gt;= &lsquo;2026-01-01&rsquo;">FROM sales WHERE sale_date &gt;= &lsquo;2026-01-01&rsquo;</a></li>
             <li>
@@ -262,43 +262,43 @@
                     <ul>
                     
             <li>
-                <a href="#%ec%97%ac%eb%9f%ac-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4-%ec%9e%91%ec%97%85" aria-label="여러 데이터베이스 작업">여러 데이터베이스 작업</a></li>
+                <a href="#working-with-multiple-databases" aria-label="Working with Multiple Databases">Working with Multiple Databases</a></li>
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9%ec%9e%90-%ec%a0%95%ec%9d%98-%eb%b2%a1%ed%84%b0-%ec%a0%80%ec%9e%a5%ec%86%8c-%ec%82%ac%ec%9a%a9" aria-label="사용자 정의 벡터 저장소 사용">사용자 정의 벡터 저장소 사용</a></li></ul>
+                <a href="#using-custom-vector-stores" aria-label="Using Custom Vector Stores">Using Custom Vector Stores</a></li></ul>
                 
             <li>
-                <a href="#jupyter-%ed%86%b5%ed%95%a9-%eb%b0%8f-%eb%8c%80%ed%99%94%ed%98%95-%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0" aria-label="Jupyter 통합 및 대화형 워크플로우">Jupyter 통합 및 대화형 워크플로우</a></li></ul>
+                <a href="#jupyter-integration-and-interactive-workflows" aria-label="Jupyter Integration and Interactive Workflows">Jupyter Integration and Interactive Workflows</a></li></ul>
             </li>
             <li>
-                <a href="#jupyter-%eb%82%b4%ec%97%90%ec%84%9c-%eb%8c%80%ed%99%94%ed%98%95-web-ui-%ec%8b%9c%ec%9e%91" aria-label="Jupyter 내에서 대화형 Web UI 시작">Jupyter 내에서 대화형 Web UI 시작</a><ul>
+                <a href="#launch-the-interactive-web-ui-within-jupyter" aria-label="Launch the interactive web UI within Jupyter">Launch the interactive web UI within Jupyter</a><ul>
                     
             <li>
-                <a href="#vanna-ai-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98-%eb%b0%8f-%ed%94%84%eb%9d%bc%ec%9d%b4%eb%b2%84%ec%8b%9c-%eb%aa%a8%eb%8d%b8" aria-label="Vanna AI 아키텍처 및 프라이버시 모델">Vanna AI 아키텍처 및 프라이버시 모델</a></li></ul>
+                <a href="#vanna-ai-architecture-and-privacy-model" aria-label="Vanna AI Architecture and Privacy Model">Vanna AI Architecture and Privacy Model</a></li></ul>
             </li>
             <li>
-                <a href="#%ed%94%84%eb%9d%bc%ec%9d%b4%eb%b2%84%ec%8b%9c-%ec%9a%b0%ec%84%a0-%ea%b5%ac%ec%84%b1-%ea%b6%8c%ec%9e%a5" aria-label="프라이버시 우선 구성 (권장)">프라이버시 우선 구성 (권장)</a></li>
+                <a href="#privacy-first-configuration-recommended" aria-label="Privacy-First Configuration (Recommended)">Privacy-First Configuration (Recommended)</a></li>
             <li>
-                <a href="#%ec%8a%a4%ed%82%a4%eb%a7%88-%eb%a9%94%ed%83%80%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%8a%94-%eb%a1%9c%ec%bb%ac-chromadb%ec%97%90-%ec%a0%80%ec%9e%a5%eb%90%a9%eb%8b%88%eb%8b%a4" aria-label="스키마 메타데이터는 로컬 ChromaDB에 저장됩니다">스키마 메타데이터는 로컬 ChromaDB에 저장됩니다</a></li>
+                <a href="#schema-metadata-is-stored-locally-in-chromadb" aria-label="Schema metadata is stored locally in ChromaDB">Schema metadata is stored locally in ChromaDB</a></li>
             <li>
-                <a href="#llm%ec%9d%80-ollama%eb%a5%bc-%ed%86%b5%ed%95%b4-%eb%a1%9c%ec%bb%ac%ec%97%90%ec%84%9c-%ec%8b%a4%ed%96%89%eb%90%a9%eb%8b%88%eb%8b%a4" aria-label="LLM은 Ollama를 통해 로컬에서 실행됩니다">LLM은 Ollama를 통해 로컬에서 실행됩니다</a></li>
+                <a href="#llm-runs-locally-via-ollama" aria-label="LLM runs locally via Ollama">LLM runs locally via Ollama</a></li>
             <li>
-                <a href="#%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4-%ec%bf%bc%eb%a6%ac%eb%8a%94-%eb%82%b6%eb%b6%80-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4%ec%97%90-%eb%8c%80%ed%95%b4-%ec%8b%a4%ed%96%89%eb%90%a9%eb%8b%88%eb%8b%a4" aria-label="데이터베이스 쿼리는 낶부 데이터베이스에 대해 실행됩니다">데이터베이스 쿼리는 낶부 데이터베이스에 대해 실행됩니다</a></li>
+                <a href="#database-queries-execute-against-your-internal-database" aria-label="Database queries execute against your internal database">Database queries execute against your internal database</a></li>
             <li>
-                <a href="#%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%8a%94-%ec%99%b8%eb%b6%80-api%ec%97%90-%eb%8f%84%eb%8b%ac%ed%95%98%ec%a7%80-%ec%95%8a%ec%8a%b5%eb%8b%88%eb%8b%a4" aria-label="데이터는 외부 API에 도달하지 않습니다">데이터는 외부 API에 도달하지 않습니다</a><ul>
+                <a href="#no-data-ever-reaches-external-apis" aria-label="No data ever reaches external APIs">No data ever reaches external APIs</a><ul>
                     
             <li>
-                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8-faq" aria-label="자주 묻는 질문 (FAQ)">자주 묻는 질문 (FAQ)</a><ul>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a><ul>
                     
             <li>
-                <a href="#vanna-ai%eb%8a%94-%ec%99%84%ec%a0%84%ed%9e%88-%eb%ac%b6%ec%9d%8c%ec%9d%b8%ea%b0%80%ec%9a%94" aria-label="Vanna AI는 완전히 묶음인가요?">Vanna AI는 완전히 묶음인가요?</a></li>
+                <a href="#is-vanna-ai-completely-free-to-use" aria-label="Is Vanna AI completely free to use?">Is Vanna AI completely free to use?</a></li>
             <li>
-                <a href="#vanna%eb%8a%94-%ec%8a%a4%ed%82%a4%eb%a7%88-%eb%b3%80%ea%b2%bd%ec%9d%84-%ec%96%b4%eb%96%bb%ea%b2%8c-%ec%b2%98%eb%a6%ac%ed%95%a9%eb%8b%88%ea%b9%8c" aria-label="Vanna는 스키마 변경을 어떻게 처리합니까?">Vanna는 스키마 변경을 어떻게 처리합니까?</a></li>
+                <a href="#how-does-vanna-handle-schema-changes" aria-label="How does Vanna handle schema changes?">How does Vanna handle schema changes?</a></li>
             <li>
-                <a href="#%eb%b9%84%ec%98%81%ec%96%b4-%ec%96%b8%ec%96%b4%eb%a1%9c-vanna%eb%a5%bc-%ec%82%ac%ec%9a%a9%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98%ec%9a%94" aria-label="비영어 언어로 Vanna를 사용할 수 있나요?">비영어 언어로 Vanna를 사용할 수 있나요?</a></li>
+                <a href="#can-i-use-vanna-with-non-english-languages" aria-label="Can I use Vanna with non-English languages?">Can I use Vanna with non-English languages?</a></li>
             <li>
-                <a href="#vanna%eb%8a%94-%ec%96%b4%eb%96%a4-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4%eb%a5%bc-%ec%a7%80%ec%9b%90%ed%95%a9%eb%8b%88%ea%b9%8c" aria-label="Vanna는 어떤 데이터베이스를 지원합니까?">Vanna는 어떤 데이터베이스를 지원합니까?</a></li>
+                <a href="#what-databases-does-vanna-support" aria-label="What databases does Vanna support?">What databases does Vanna support?</a></li>
             <li>
-                <a href="#%eb%82%b4-%ed%8a%b9%ec%a0%95-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80%ec%97%90%ec%84%9c-vanna%ec%9d%98-%ec%a0%95%ed%99%95%eb%8f%84%eb%a5%bc-%ec%96%b4%eb%96%bb%ea%b2%8c-%ed%96%a5%ec%83%81%ec%8b%9c%ed%82%ac-%ec%88%98-%ec%9e%88%eb%82%98%ec%9a%94" aria-label="내 특정 사용 사례에서 Vanna의 정확도를 어떻게 향상시킬 수 있나요?">내 특정 사용 사례에서 Vanna의 정확도를 어떻게 향상시킬 수 있나요?</a>
+                <a href="#how-can-i-improve-vannas-accuracy-for-my-specific-use-case" aria-label="How can I improve Vanna&rsquo;s accuracy for my specific use case?">How can I improve Vanna&rsquo;s accuracy for my specific use case?</a>
             </li>
         </ul>
         </li>
@@ -308,27 +308,27 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><p>데이터베이스와 자연어를 사용하여 상호작용하는 능력은 오랫동안 데이터 분석의 성배로 여겨져 왔습니다. 매일 무수한 시간이 비즈니스 질문을 SQL 쿼리로 번역하는 데 낭비됩니다 — 이 과정은 데이터베이스 스키마, 테이블 관계 및 SQL 구문에 대한 깊은 지식을 요구합니다. 2026년, 이 병목 현상은 <strong>Vanna AI</strong> 덕분에 빠르게 사라지고 있습니다. Vanna AI는 데이터베이스 스키마에서 학습하여 평범한 영어로 90% 이상의 정확도로 프로덕션 수준의 SQL을 생성하는 오픈소스 Python 라이브러리입니다.</p>
-<p>18,000개 이상의 GitHub 스타와 MIT 라이선스를 보유한 Vanna AI는 정확성과 데이터 프라이버시를 모두 요구하는 팀을 위한 선도적인 Text-to-SQL 솔루션으로 부상했습니다. SQL 생성을 또 다른 번역 작업으로 취급하는 범용 LLM 접근 방식과 달리, Vanna는 데이터베이스 쿼리를 위해 특별히 설계된 <strong>검색 증강 생성(RAG)</strong> 아키텍처를 사용합니다. 스키마를 학습하고, 비즈니스 로직을 이해하며, 실제로 실행되는 SQL을 생성합니다 — 검증되고, 최적화되며, 프로덕션에 바로 사용할 준비가 되어 있습니다.</p>
-<p>이 포괄적인 가이드에서는 설치 및 스키마 학습부터 고급 SQL 생성, 검증, 분석 워크플로우에의 통합까지 Vanna AI에 대해 알아야 할 모든 것을 살펴 보겠습니다. 영어로 질문하고 싶은 데이터 분석가이든, 데이터 플랫폼을 위한 자연어 인터페이스를 구축하는 엔지니어이든, Vanna AI는 Text-to-SQL을 현실로 만드는 데 필요한 도구를 제공합니다.</p>
+  <div class="post-content md-content"><p>The ability to interact with databases using natural language has long been the holy grail of data analytics. Every day, countless hours are lost translating business questions into SQL queries — a process that requires deep knowledge of database schemas, table relationships, and SQL syntax. In 2026, this bottleneck is rapidly dissolving thanks to <strong>Vanna AI</strong>, an open-source Python library that trains on your database schema and generates production-ready SQL from plain English with over 90% accuracy.</p>
+<p>With more than 18,000 GitHub stars and an MIT license, Vanna AI has emerged as the leading text-to-SQL solution for teams that demand both accuracy and data privacy. Unlike generic LLM approaches that treat SQL generation as just another translation task, Vanna uses a <strong>Retrieval-Augmented Generation (RAG)</strong> architecture specifically designed for database querying. It learns your schema, understands your business logic, and produces SQL that actually runs — validated, optimized, and ready for production.</p>
+<p>In this comprehensive guide, we will walk through everything you need to know about Vanna AI: from installation and schema training to advanced SQL generation, validation, and integration into your analytics workflows. Whether you are a data analyst who wants to ask questions in English, or an engineer building natural language interfaces for your data platform, Vanna AI provides the tools you need to make text-to-SQL a reality.</p>
 <hr>
-<h2 id="vanna-ai란-자연어가-sql을-만나다">Vanna AI란? 자연어가 SQL을 만나다<a hidden class="anchor" aria-hidden="true" href="#vanna-ai란-자연어가-sql을-만나다">#</a></h2>
-<p>Vanna AI는 인간의 언어와 구조화된 쿼리 언어 사이의 간극을 메우는 오픈소스 Python 라이브러리입니다. 핵심적으로 Vanna는 SQL 생성을 위해 특별히 구축된 <strong>검색 증강 생성(RAG)</strong> 프레임워크입니다. 때때로 테이블 이름을 환각하거나 열 참조를 지어내는 범용 LLM 챗봇과 달리, Vanna는 실제 데이터베이스 스키마에서 학습하여 — 테이블, 열, 관계, 심지어 조직의 명명 규칙까지 학습합니다.</p>
-<p>워크플로우는 우아하게 단순합니다: 1. 데이터베이스에 Vanna <strong>연결</strong>
-2. 스키마에 대해 <strong>학습</strong> (DDL 문, 문서, 샘플 쿼리)
-3. 자연어로 <strong>질문</strong>
-4. 정확하고 실행 가능한 SQL <strong>수신</strong></p>
+<h2 id="what-is-vanna-ai-natural-language-meets-sql">What Is Vanna AI? Natural Language Meets SQL<a hidden class="anchor" aria-hidden="true" href="#what-is-vanna-ai-natural-language-meets-sql">#</a></h2>
+<p>Vanna AI is an open-source Python library that bridges the gap between human language and structured query language. At its core, Vanna is a ** Retrieval-Augmented Generation (RAG) ** framework built specifically for SQL generation. Unlike generic LLM chatbots that occasionally hallucinate table names or invent column references, Vanna trains on your actual database schema — learning your tables, columns, relationships, and even your organization&rsquo;s naming conventions.</p>
+<p>The workflow is elegantly simple: 1. <strong>Connect</strong> Vanna to your database
+2. <strong>Train</strong> it on your schema (DDL statements, documentation, sample queries)
+3. <strong>Ask</strong> questions in natural language
+4. <strong>Receive</strong> accurate, executable SQL</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> vanna <span style="color:#66d9ef">as</span> vn
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> vanna.remote <span style="color:#f92672">import</span> VannaDefault
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># API 키로 Vanna 초기화</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize Vanna with your API key</span>
 </span></span><span style="display:flex;"><span>vn <span style="color:#f92672">=</span> VannaDefault(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;my-model&#34;</span>, api_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;vn-...&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 데이터베이스에 연결</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Connect to your database</span>
 </span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>connect_to_postgres(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;localhost&#34;</span>, dbname<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;analytics&#34;</span>,
 </span></span><span style="display:flex;"><span>                       user<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;analyst&#34;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;secret&#34;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">5432</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 스키마에 대해 학습</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Train on your schema</span>
 </span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(ddl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">CREATE TABLE sales (
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    id SERIAL PRIMARY KEY,
@@ -339,60 +339,60 @@
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">);
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 평범한 영어로 질문</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ask a question in plain English</span>
 </span></span><span style="display:flex;"><span>sql <span style="color:#f92672">=</span> vn<span style="color:#f92672">.</span>generate_sql(<span style="color:#e6db74">&#34;What are the top 5 regions by total sales in 2026?&#34;</span>)
 </span></span><span style="display:flex;"><span>print(sql)
-</span></span></code></pre></div><p>생성된 SQL은 구문적으로 올바를 뿐만 아니라 — 실제 스키마에서 올바른 테이블, 열, 관계를 참조하는 의미적으로 정확합니다.</p>
+</span></span></code></pre></div><p>The generated SQL is not just syntactically correct — it is semantically accurate, referencing the correct tables, columns, and relationships from your actual schema.</p>
 <hr>
-<h2 id="2026년에-vanna-ai가-중요한-이유">2026년에 Vanna AI가 중요한 이유<a hidden class="anchor" aria-hidden="true" href="#2026년에-vanna-ai가-중요한-이유">#</a></h2>
-<p>최근 몇 년간 대형 언어 모델의 폭발적인 성장은 자연어 인터페이스에 엄청난 기회를 창출했습니다. 그러나 범용 LLM은 SQL 생성에 있어 몇 가지 중요한 이유로 어려움을 겪습니다: 스키마 요소를 환각하고, 데이터베이스별 구문을 무시하며, 실제 데이터 모델에 대한 인식이 없습니다. 원시 데이터를 타사 API 엔드포인트로 본낼 때 심각한 프라이버시 및 규정 준수 문제도 발생합니다.</p>
-<p>Vanna AI는 이러한 모든 과제에 정면으로 대응합니다: - <strong>스키마 인식 생성</strong>: Vanna는 특정 스키마를 학습하여 환각을 제거합니다</p>
+<h2 id="why-vanna-ai-matters-in-2026">Why Vanna AI Matters in 2026<a hidden class="anchor" aria-hidden="true" href="#why-vanna-ai-matters-in-2026">#</a></h2>
+<p>The explosion of Large Language Models in recent years has created enormous opportunities for natural language interfaces. However, generic LLMs struggle with SQL generation for several critical reasons: they hallucinate schema elements, ignore database-specific syntax, and have no awareness of your actual data model. Sending your raw data to third-party API endpoints also raises serious privacy and compliance concerns.</p>
+<p>Vanna AI addresses all of these challenges head-on: - <strong>Schema-Aware Generation</strong>: Vanna learns your specific schema, eliminating hallucination</p>
 <ul>
-<li><strong>프라이버시 우선 설계</strong>: 원하는 경우가 아니면 데이터가 인프라를 벗어나지 않습니다</li>
-<li><strong>자체 호스팅 옵션</strong>: 오픈소스 LLM으로 모든 것을 로컬에서 실행</li>
-<li><strong>SQL 검증</strong>: 생성된 모든 쿼리가 반환되기 전에 데이터베이스에 대해 검증됩니다</li>
-<li><strong>다중 LLM 백엔드</strong>: OpenAI, Anthropic, Google 또는 Ollama와 같은 로컬 모델 사용</li>
+<li><strong>Privacy-First Design</strong>: Your data never leaves your infrastructure unless you choose otherwise</li>
+<li><strong>Self-Hosted Option</strong>: Run everything locally with open-source LLMs</li>
+<li><strong>SQL Validation</strong>: Every generated query is validated against your database before being returned</li>
+<li><strong>Multiple LLM Backends</strong>: Use OpenAI, Anthropic, Google, or local models like Ollama</li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Vanna는 다중 LLM 백엔드를 지원합니다</span>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Vanna supports multiple LLM backends</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> vanna.ollama <span style="color:#f92672">import</span> Ollama
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> vanna.chromadb <span style="color:#f92672">import</span> ChromaDB_VectorStore
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyVanna</span>(ChromaDB_VectorStore, Ollama): <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, config<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>): ChromaDB_VectorStore<span style="color:#f92672">.</span><span style="color:#a6e22e">__init__</span>(self, config<span style="color:#f92672">=</span>config)
 </span></span><span style="display:flex;"><span>        Ollama<span style="color:#f92672">.</span><span style="color:#a6e22e">__init__</span>(self, config<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;model&#34;</span>: <span style="color:#e6db74">&#34;llama3&#34;</span>})
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 완전 로컬, 자체 호스팅 설정</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Fully local, self-hosted setup</span>
 </span></span><span style="display:flex;"><span>vn <span style="color:#f92672">=</span> MyVanna()
 </span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>connect_to_sqlite(<span style="color:#e6db74">&#34;my_database.db&#34;</span>)
 </span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(ddl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;SELECT sql FROM sqlite_master WHERE type=table;&#34;</span>)
-</span></span></code></pre></div><p>2026년, 조직이 점점 더 복잡한 데이터 스키마와 더 엄격한 규정 준수 요구 사항에 대응하면서, Vanna의 접근 방식 — 클라우드로 데이터를 본내는 대신 스키마에서 학습 — 은 안전하고 정확한 Text-to-SQL을 위한 골드 스탠다드를 대표합니다.</p>
+</span></span></code></pre></div><p>In 2026, as organizations grapple with increasingly complex data schemas and stricter compliance requirements, Vanna&rsquo;s approach — training on schema rather than sending data to the cloud — represents the gold standard for secure, accurate text-to-SQL.</p>
 <hr>
-<h2 id="vanna-ai-설치-및-구성">Vanna AI 설치 및 구성<a hidden class="anchor" aria-hidden="true" href="#vanna-ai-설치-및-구성">#</a></h2>
-<p>Vanna는 빠르게 생산성을 높일 수 있는 합리적인 기본값을 통해 쉽게 설치하고 구성할 수 있도록 설계되었습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Vanna 핵심 설치</span>
+<h2 id="installing-and-configuring-vanna-ai">Installing and Configuring Vanna AI<a hidden class="anchor" aria-hidden="true" href="#installing-and-configuring-vanna-ai">#</a></h2>
+<p>Vanna is designed to be easy to install and configure, with sensible defaults that get you productive quickly.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install Vanna core</span>
 </span></span><span style="display:flex;"><span>pip install vanna
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 특정 LLM 백엔드 지원 설치</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install with specific LLM backend support</span>
 </span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;vanna[openai]&#34;</span>
 </span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;vanna[anthropic]&#34;</span>
 </span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;vanna[google]&#34;</span>
 </span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;vanna[ollama]&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 데이터베이스 드라이버 설치</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install with database drivers</span>
 </span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;vanna[postgres]&#34;</span>
 </span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;vanna[mysql]&#34;</span>
 </span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;vanna[snowflake]&#34;</span>
 </span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;vanna[bigquery]&#34;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 모두 설치</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install everything</span>
 </span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;vanna[all]&#34;</span>
-</span></span></code></pre></div><p>가장 일반적인 설정에 대한 빠른 구성: `````python
+</span></span></code></pre></div><p>Quick configuration for the most common setup: `````python
 from vanna.remote import VannaDefault</p>
-<h1 id="vanna의-호스팅-서비스-사용-가장-쉬운-설정">Vanna의 호스팅 서비스 사용 (가장 쉬운 설정)<a hidden class="anchor" aria-hidden="true" href="#vanna의-호스팅-서비스-사용-가장-쉬운-설정">#</a></h1>
+<h1 id="use-vannas-hosted-service-easiest-setup">Use Vanna&rsquo;s hosted service (easiest setup)<a hidden class="anchor" aria-hidden="true" href="#use-vannas-hosted-service-easiest-setup">#</a></h1>
 <p>vn = VannaDefault(
 model=&ldquo;my-database-model&rdquo;,
 api_key=&ldquo;vn-your-api-key&rdquo;
 )</p>
-<h1 id="postgresql에-연결">PostgreSQL에 연결<a hidden class="anchor" aria-hidden="true" href="#postgresql에-연결">#</a></h1>
+<h1 id="connect-to-postgresql">Connect to PostgreSQL<a hidden class="anchor" aria-hidden="true" href="#connect-to-postgresql">#</a></h1>
 <p>vn.connect_to_postgres(
 host=&ldquo;db.company.com&rdquo;,
 dbname=&ldquo;analytics&rdquo;,
@@ -401,7 +401,7 @@ password=&ldquo;secure-password&rdquo;,
 port=5432
 )</p>
 <pre tabindex="0"><code>
-로컬 LLM을 사용하는 완전 자체 호스팅 설정의 경우: `````python
+For a fully self-hosted setup with local LLMs: `````python
 from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore
 
@@ -412,11 +412,11 @@ vn = LocalVanna()
 vn.connect_to_postgres(host=&#34;localhost&#34;, dbname=&#34;sales&#34;,
                        user=&#34;admin&#34;, password=&#34;admin&#34;, port=5432)
 </code></pre><hr>
-<h2 id="데이터베이스-스키마에서-vanna-학습시키기">데이터베이스 스키마에서 Vanna 학습시키기<a hidden class="anchor" aria-hidden="true" href="#데이터베이스-스키마에서-vanna-학습시키기">#</a></h2>
-<p>학습은 Vanna가 진정으로 빛나는 부분입니다. Vanna를 스키마에 대해 더 많이 학습시킬수록 SQL 생성이 더 정확해집니다. 제공할 수 있는 세 가지 주요 유형의 학습 데이터가 있습니다.</p>
-<h3 id="ddl-문으로-학습">DDL 문으로 학습<a hidden class="anchor" aria-hidden="true" href="#ddl-문으로-학습">#</a></h3>
-<p>가장 기본적인 학습 방법은 데이터베이스의 DDL(데이터 정의 언어) — 스키마를 정의하는 CREATE TABLE 문 — 을 제공하는 것입니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 개별 DDL 문으로 학습</span>
+<h2 id="training-vanna-on-your-database-schema">Training Vanna on Your Database Schema<a hidden class="anchor" aria-hidden="true" href="#training-vanna-on-your-database-schema">#</a></h2>
+<p>Training is where Vanna truly shines. The more you train Vanna on your schema, the more accurate its SQL generation becomes. There are three primary types of training data you can provide.</p>
+<h3 id="training-with-ddl-statements">Training with DDL Statements<a hidden class="anchor" aria-hidden="true" href="#training-with-ddl-statements">#</a></h3>
+<p>The most fundamental training method is providing your database&rsquo;s DDL (Data Definition Language) — the CREATE TABLE statements that define your schema.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Train with individual DDL statements</span>
 </span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(ddl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">CREATE TABLE customers (
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    id SERIAL PRIMARY KEY,
@@ -446,9 +446,9 @@ vn.connect_to_postgres(host=&#34;localhost&#34;, dbname=&#34;sales&#34;,
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    unit_price DECIMAL(10,2)
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">);
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>)
-</span></span></code></pre></div><h3 id="스키마-자동-검색으로-학습">스키마 자동 검색으로 학습<a hidden class="anchor" aria-hidden="true" href="#스키마-자동-검색으로-학습">#</a></h3>
-<p>대형 데이터베이스의 경우 수동으로 DDL을 작성하는 것은 비현실적입니다. Vanna는 데이터베이스에서 자동으로 스키마 정보를 추출할 수 있습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># PostgreSQL: information_schema에서 스키마 추출</span>
+</span></span></code></pre></div><h3 id="training-with-schema-auto-discovery">Training with Schema Auto-Discovery<a hidden class="anchor" aria-hidden="true" href="#training-with-schema-auto-discovery">#</a></h3>
+<p>For large databases, manually writing DDL is impractical. Vanna can automatically extract schema information from your database.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># PostgreSQL: extract schema from information_schema</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> psycopg2
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>conn <span style="color:#f92672">=</span> psycopg2<span style="color:#f92672">.</span>connect(
@@ -457,7 +457,7 @@ vn.connect_to_postgres(host=&#34;localhost&#34;, dbname=&#34;sales&#34;,
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>cursor <span style="color:#f92672">=</span> conn<span style="color:#f92672">.</span>cursor()
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 모든 테이블 정의 가져오기</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get all table definitions</span>
 </span></span><span style="display:flex;"><span>cursor<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;&#34;&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    SELECT table_name
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    FROM information_schema.tables
@@ -480,9 +480,9 @@ vn.connect_to_postgres(host=&#34;localhost&#34;, dbname=&#34;sales&#34;,
 </span></span><span style="display:flex;"><span>    vn<span style="color:#f92672">.</span>train(ddl<span style="color:#f92672">=</span>ddl)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>conn<span style="color:#f92672">.</span>close()
-</span></span></code></pre></div><h3 id="문서-및-비즈니스-로직으로-학습">문서 및 비즈니스 로직으로 학습<a hidden class="anchor" aria-hidden="true" href="#문서-및-비즈니스-로직으로-학습">#</a></h3>
-<p>원시 스키마를 넘어 비즈니스 맥락에서 Vanna를 학습시킬 수 있습니다 — 열이 실제로 무엇을 의미하는지 이해하도록 돕습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 문서로 학습</span>
+</span></span></code></pre></div><h3 id="training-with-documentation-and-business-logic">Training with Documentation and Business Logic<a hidden class="anchor" aria-hidden="true" href="#training-with-documentation-and-business-logic">#</a></h3>
+<p>Beyond raw schema, you can train Vanna on business context — helping it understand what your columns actually mean.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Train with documentation</span>
 </span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(documentation<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">The sales table records all completed transactions.
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">The amount column is in USD and includes tax.
@@ -490,7 +490,7 @@ vn.connect_to_postgres(host=&#34;localhost&#34;, dbname=&#34;sales&#34;,
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">A high_value_customer is anyone with lifetime purchases &gt; $10,000.
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 예제 SQL 쿼리로 학습</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Train with example SQL queries</span>
 </span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(sql<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">SELECT region, SUM(amount) as total_sales, COUNT(*) as order_count
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">FROM sales
@@ -507,9 +507,9 @@ vn.connect_to_postgres(host=&#34;localhost&#34;, dbname=&#34;sales&#34;,
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">GROUP BY c.id, c.name
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">HAVING SUM(o.total_amount) &gt; 10000;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>)
-</span></span></code></pre></div><h3 id="질문-sql-쌍으로-학습">질문-SQL 쌍으로 학습<a hidden class="anchor" aria-hidden="true" href="#질문-sql-쌍으로-학습">#</a></h3>
-<p>최대 정확도를 위해 자연어 질문과 해당 SQL 쿼리의 쌍을 제공합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 골드 스탠다드 학습 데이터</span>
+</span></span></code></pre></div><h3 id="training-with-question-sql-pairs">Training with Question-SQL Pairs<a hidden class="anchor" aria-hidden="true" href="#training-with-question-sql-pairs">#</a></h3>
+<p>For maximum accuracy, provide pairs of natural language questions and their corresponding SQL queries.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Gold-standard training data</span>
 </span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(
 </span></span><span style="display:flex;"><span>    question<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;What are the top 10 customers by lifetime value?&#34;</span>,
 </span></span><span style="display:flex;"><span>    sql<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
@@ -533,90 +533,90 @@ vn.connect_to_postgres(host=&#34;localhost&#34;, dbname=&#34;sales&#34;,
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
 </span></span><span style="display:flex;"><span>)
 </span></span></code></pre></div><hr>
-<h2 id="자연어에서-sql-생성하기">자연어에서 SQL 생성하기<a hidden class="anchor" aria-hidden="true" href="#자연어에서-sql-생성하기">#</a></h2>
-<p>학습이 완료되면 Vanna는 놀라운 정확도로 자연어 질문에서 SQL을 생성할 수 있습니다. <code>generate_sql</code> 메서드가 주요 인터페이스입니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 간단한 질문</span>
+<h2 id="generating-sql-from-natural-language">Generating SQL from Natural Language<a hidden class="anchor" aria-hidden="true" href="#generating-sql-from-natural-language">#</a></h2>
+<p>Once trained, Vanna can generate SQL from natural language questions with remarkable accuracy. The <code>generate_sql</code> method is the primary interface.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Simple questions</span>
 </span></span><span style="display:flex;"><span>sql <span style="color:#f92672">=</span> vn<span style="color:#f92672">.</span>generate_sql(<span style="color:#e6db74">&#34;Show me all customers from the West region&#34;</span>)
 </span></span><span style="display:flex;"><span>print(sql)
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 출력: SELECT * FROM customers WHERE region = West;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: SELECT * FROM customers WHERE region = West;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 집계 쿼리</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Aggregation queries</span>
 </span></span><span style="display:flex;"><span>sql <span style="color:#f92672">=</span> vn<span style="color:#f92672">.</span>generate_sql(<span style="color:#e6db74">&#34;What is the average order value by customer segment?&#34;</span>)
 </span></span><span style="display:flex;"><span>print(sql)
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 출력: SELECT c.segment, AVG(o.total_amount) as avg_order_value</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: SELECT c.segment, AVG(o.total_amount) as avg_order_value</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#         FROM customers c JOIN orders o ON c.id = o.customer_id</span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e">#         GROUP BY c.segment;</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 복잡한 다중 테이블 조인</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Complex multi-table joins</span>
 </span></span><span style="display:flex;"><span>sql <span style="color:#f92672">=</span> vn<span style="color:#f92672">.</span>generate_sql(
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Find the top 5 products by revenue in Q2 2026, &#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;including how many unique customers bought each product&#34;</span>
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>print(sql)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 시간 기반 필터링</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Time-based filtering</span>
 </span></span><span style="display:flex;"><span>sql <span style="color:#f92672">=</span> vn<span style="color:#f92672">.</span>generate_sql(
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Compare monthly sales between 2025 and 2026, &#34;</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;showing year-over-year growth percentage&#34;</span>
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>print(sql)
-</span></span></code></pre></div><p>Vanna는 특정 제약이나 패턴이 있는 SQL 생성도 지원합니다: `````python</p>
-<h1 id="설명이-포함된-sql-생성">설명이 포함된 SQL 생성<a hidden class="anchor" aria-hidden="true" href="#설명이-포함된-sql-생성">#</a></h1>
+</span></span></code></pre></div><p>Vanna also supports generating SQL with specific constraints or patterns: `````python</p>
+<h1 id="generate-sql-with-explanation">Generate SQL with explanation<a hidden class="anchor" aria-hidden="true" href="#generate-sql-with-explanation">#</a></h1>
 <p>sql, explanation = vn.generate_sql(
 &ldquo;Which customers haven&rsquo;t placed an order in the last 90 days?&rdquo;,
 explain=True
 )
 print(f&quot;SQL: {sql}&quot;)
 print(f&quot;Explanation: {explanation}&quot;)</p>
-<h1 id="sql을-생성하고-실행도-합니다">SQL을 생성하고 실행도 합니다<a hidden class="anchor" aria-hidden="true" href="#sql을-생성하고-실행도-합니다">#</a></h1>
+<h1 id="generate-sql-and-also-run-it">Generate SQL and also run it<a hidden class="anchor" aria-hidden="true" href="#generate-sql-and-also-run-it">#</a></h1>
 <p>result_df = vn.ask(&ldquo;What are the monthly sales trends?&rdquo;)
 print(result_df)</p>
-<h1 id="ask-메서드는-sql을-생성하고-검증하고-실행하고">ask() 메서드는 SQL을 생성하고, 검증하고, 실행하고,<a hidden class="anchor" aria-hidden="true" href="#ask-메서드는-sql을-생성하고-검증하고-실행하고">#</a></h1>
-<h1 id="pandas-dataframe을-반환합니다--한-번의-호출로-모두-수행">pandas DataFrame을 반환합니다 — 한 번의 호출로 모두 수행<a hidden class="anchor" aria-hidden="true" href="#pandas-dataframe을-반환합니다--한-번의-호출로-모두-수행">#</a></h1>
+<h1 id="the-ask-method-generates-sql-validates-it-executes-it">The ask() method generates SQL, validates it, executes it,<a hidden class="anchor" aria-hidden="true" href="#the-ask-method-generates-sql-validates-it-executes-it">#</a></h1>
+<h1 id="and-returns-a-pandas-dataframe--all-in-one-call">and returns a pandas DataFrame — all in one call<a hidden class="anchor" aria-hidden="true" href="#and-returns-a-pandas-dataframe--all-in-one-call">#</a></h1>
 <pre tabindex="0"><code>
 * * *
 
-## SQL 검증 및 오류 처리
+## SQL Validation and Error Handling
 
-Vanna의 두드러진 기능 중 하나는 **자동 SQL 검증**입니다. 쿼리를 반환하기 전에 Vanna는 실제로 데이터베이스에서 실행되는지 확인하여 구문 오류와 스키마 불일치를 포착할 수 있습니다.
+One of Vanna&#39;s standout features is its **automatic SQL validation**. Before returning a query to you, Vanna can check that it actually runs against your database, catching syntax errors and schema mismatches.
 
 `````python
-# 자동 검증 활성화
+# Enable automatic validation
 vn = VannaDefault(model=&#34;my-model&#34;, api_key=&#34;vn-...&#34;, 
                   config={&#34;validate_sql&#34;: True})
 
-# 잘못된 쿼리가 포착되고 수정됩니다
+# Invalid queries are caught and corrected
 try: sql = vn.generate_sql(&#34;Show me the top 10 products by revenue&#34;)
     print(f&#34;Validated SQL: {sql}&#34;)
 except Exception as e: print(f&#34;Validation failed: {e}&#34;)
-    # Vanna는 수정하고 재생성을 시도할 것입니다
+    # Vanna will attempt to fix and regenerate
     sql = vn.generate_sql_with_retry(
         &#34;Show me the top 10 products by revenue&#34;,
         max_retries=3
     )
-</code></pre><p>Vanna는 이전 맥락을 참조하는 후속 질문도 처리할 수 있습니다: `````python</p>
-<h1 id="첫-번째-질문">첫 번째 질문<a hidden class="anchor" aria-hidden="true" href="#첫-번째-질문">#</a></h1>
+</code></pre><p>Vanna can also handle follow-up questions that reference previous context: `````python</p>
+<h1 id="first-question">First question<a hidden class="anchor" aria-hidden="true" href="#first-question">#</a></h1>
 <p>result1 = vn.ask(&ldquo;What were total sales in 2026?&rdquo;)</p>
-<h1 id="후속-질문-vanna는-맥락을-유지합니다">후속 질문 (Vanna는 맥락을 유지합니다)<a hidden class="anchor" aria-hidden="true" href="#후속-질문-vanna는-맥락을-유지합니다">#</a></h1>
+<h1 id="follow-up-question-vanna-maintains-context">Follow-up question (Vanna maintains context)<a hidden class="anchor" aria-hidden="true" href="#follow-up-question-vanna-maintains-context">#</a></h1>
 <p>result2 = vn.ask(&ldquo;Break that down by region&rdquo;)</p>
-<h1 id="생성-select-region-sumamount-from-sales">생성: SELECT region, SUM(amount) FROM sales<a hidden class="anchor" aria-hidden="true" href="#생성-select-region-sumamount-from-sales">#</a></h1>
+<h1 id="generates-select-region-sumamount-from-sales">Generates: SELECT region, SUM(amount) FROM sales<a hidden class="anchor" aria-hidden="true" href="#generates-select-region-sumamount-from-sales">#</a></h1>
 <h1 id="where-sale_date--2026-01-01-group-by-region">WHERE sale_date &gt;= &lsquo;2026-01-01&rsquo; GROUP BY region<a hidden class="anchor" aria-hidden="true" href="#where-sale_date--2026-01-01-group-by-region">#</a></h1>
-<h1 id="또-다른-후속-질문">또 다른 후속 질문<a hidden class="anchor" aria-hidden="true" href="#또-다른-후속-질문">#</a></h1>
+<h1 id="another-follow-up">Another follow-up<a hidden class="anchor" aria-hidden="true" href="#another-follow-up">#</a></h1>
 <p>result3 = vn.ask(&ldquo;Now show only regions with more than $1M in sales&rdquo;)</p>
-<h1 id="생성-select-region-sumamount-as-total">생성: SELECT region, SUM(amount) as total<a hidden class="anchor" aria-hidden="true" href="#생성-select-region-sumamount-as-total">#</a></h1>
+<h1 id="generates-select-region-sumamount-as-total">Generates: SELECT region, SUM(amount) as total<a hidden class="anchor" aria-hidden="true" href="#generates-select-region-sumamount-as-total">#</a></h1>
 <h1 id="from-sales-where-sale_date--2026-01-01">FROM sales WHERE sale_date &gt;= &lsquo;2026-01-01&rsquo;<a hidden class="anchor" aria-hidden="true" href="#from-sales-where-sale_date--2026-01-01">#</a></h1>
 <h1 id="group-by-region-having-sumamount--1000000">GROUP BY region HAVING SUM(amount) &gt; 1000000<a hidden class="anchor" aria-hidden="true" href="#group-by-region-having-sumamount--1000000">#</a></h1>
 <pre tabindex="0"><code>
 * * *
 
-## 고급 기능 및 사용자 정의
+## Advanced Features and Customization
 
-Vanna는 고급 사용자와 프로덕션 배포를 위해 광범위한 사용자 정의 옵션을 제공합니다.
+Vanna offers extensive customization options for advanced users and production deployments.
 
-### 사용자 정의 프롬프트 템플릿
+### Custom Prompt Templates
 
 `````python
-# 기본 프롬프트 템플릿 재정의
+# Override the default prompt template
 vn.set_prompt_template(&#34;&#34;&#34;
 You are an expert SQL analyst. Given the following database schema,
 generate a PostgreSQL-compatible query to answer the user&#39;s question.
@@ -629,18 +629,18 @@ Generate only the SQL query, with no additional explanation.
 &#34;&#34;&#34;)
 
 sql = vn.generate_sql(&#34;List all high-value customers&#34;)
-</code></pre><h3 id="여러-데이터베이스-작업">여러 데이터베이스 작업<a hidden class="anchor" aria-hidden="true" href="#여러-데이터베이스-작업">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 다른 데이터베이스에 대해 별도의 Vanna 인스턴스 생성</span>
+</code></pre><h3 id="working-with-multiple-databases">Working with Multiple Databases<a hidden class="anchor" aria-hidden="true" href="#working-with-multiple-databases">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Create separate Vanna instances for different databases</span>
 </span></span><span style="display:flex;"><span>vn_sales <span style="color:#f92672">=</span> VannaDefault(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sales-model&#34;</span>, api_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;vn-...&#34;</span>)
 </span></span><span style="display:flex;"><span>vn_sales<span style="color:#f92672">.</span>connect_to_postgres(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sales-db&#34;</span>, dbname<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sales&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>vn_hr <span style="color:#f92672">=</span> VannaDefault(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hr-model&#34;</span>, api_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;vn-...&#34;</span>)
 </span></span><span style="display:flex;"><span>vn_hr<span style="color:#f92672">.</span>connect_to_mysql(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hr-db&#34;</span>, dbname<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;human_resources&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 적절한 데이터베이스에 쿼리</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Query the appropriate database</span>
 </span></span><span style="display:flex;"><span>sales_sql <span style="color:#f92672">=</span> vn_sales<span style="color:#f92672">.</span>generate_sql(<span style="color:#e6db74">&#34;Total revenue by quarter&#34;</span>)
 </span></span><span style="display:flex;"><span>hr_sql <span style="color:#f92672">=</span> vn_hr<span style="color:#f92672">.</span>generate_sql(<span style="color:#e6db74">&#34;Employee count by department&#34;</span>)
-</span></span></code></pre></div><h3 id="사용자-정의-벡터-저장소-사용">사용자 정의 벡터 저장소 사용<a hidden class="anchor" aria-hidden="true" href="#사용자-정의-벡터-저장소-사용">#</a></h3>
+</span></span></code></pre></div><h3 id="using-custom-vector-stores">Using Custom Vector Stores<a hidden class="anchor" aria-hidden="true" href="#using-custom-vector-stores">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> vanna.pinecone <span style="color:#f92672">import</span> Pinecone_VectorStore
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> vanna.openai <span style="color:#f92672">import</span> OpenAI_Chat
 </span></span><span style="display:flex;"><span>
@@ -653,8 +653,8 @@ sql = vn.generate_sql(&#34;List all high-value customers&#34;)
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;pinecone_index&#34;</span>: <span style="color:#e6db74">&#34;vanna-index&#34;</span>
 </span></span><span style="display:flex;"><span>})
 </span></span></code></pre></div><hr>
-<h2 id="jupyter-통합-및-대화형-워크플로우">Jupyter 통합 및 대화형 워크플로우<a hidden class="anchor" aria-hidden="true" href="#jupyter-통합-및-대화형-워크플로우">#</a></h2>
-<p>Vanna는 Jupyter 노트북에서 풍부한 대화형 위젯과 시각화 기능을 제공하며 빛을 발합니다.</p>
+<h2 id="jupyter-integration-and-interactive-workflows">Jupyter Integration and Interactive Workflows<a hidden class="anchor" aria-hidden="true" href="#jupyter-integration-and-interactive-workflows">#</a></h2>
+<p>Vanna shines in Jupyter notebooks, offering rich interactive widgets and visualization capabilities.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> vanna.remote <span style="color:#f92672">import</span> VannaDefault
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> vanna <span style="color:#66d9ef">as</span> vn
 </span></span><span style="display:flex;"><span>
@@ -662,72 +662,72 @@ sql = vn.generate_sql(&#34;List all high-value customers&#34;)
 </span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>connect_to_postgres(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;localhost&#34;</span>, dbname<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;analytics&#34;</span>,
 </span></span><span style="display:flex;"><span>                       user<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;analyst&#34;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;secret&#34;</span>)
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Jupyter에서 대화형 채팅 인터페이스 시작</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Launch the interactive chat interface in Jupyter</span>
 </span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>ask(<span style="color:#e6db74">&#34;What are the top selling products?&#34;</span>)
-</span></span></code></pre></div><p>Jupyter에서 <code>ask()</code> 메서드는 생성된 SQL, 설명 및 결과 테이블을 포함한 풍부한 출력을 반환합니다. 완전한 대화형 경험을 위해: `````python</p>
-<h1 id="jupyter-내에서-대화형-web-ui-시작">Jupyter 내에서 대화형 Web UI 시작<a hidden class="anchor" aria-hidden="true" href="#jupyter-내에서-대화형-web-ui-시작">#</a></h1>
+</span></span></code></pre></div><p>The <code>ask()</code> method in Jupyter returns rich output including the generated SQL, explanation, and results table. For a full interactive experience: `````python</p>
+<h1 id="launch-the-interactive-web-ui-within-jupyter">Launch the interactive web UI within Jupyter<a hidden class="anchor" aria-hidden="true" href="#launch-the-interactive-web-ui-within-jupyter">#</a></h1>
 <p>from vanna.flask import VannaFlaskApp</p>
 <p>app = VannaFlaskApp(vn)
 app.run()</p>
 <pre tabindex="0"><code>
-Vanna는 적절할 때 자동으로 시각화도 생성합니다: `````python
-# SQL을 생성하고 자동으로 차트 생성
+Vanna also generates visualizations automatically when appropriate: `````python
+# Generate SQL and auto-create chart
 vn.ask(&#34;Plot monthly sales trends for 2026&#34;)
 
-# SQL을 생성하고, 실행하고, 시계열 결과에서
-# 자동으로 라인 차트를 만듭니다
+# Generates SQL, executes it, and creates a line chart
+# from the time-series results automatically
 </code></pre><hr>
-<h2 id="vanna-ai-아키텍처-및-프라이버시-모델">Vanna AI 아키텍처 및 프라이버시 모델<a hidden class="anchor" aria-hidden="true" href="#vanna-ai-아키텍처-및-프라이버시-모델">#</a></h2>
-<p>Vanna의 아키텍처를 이해하는 것은 프로덕션 환경에 안전하게 배포하는 데 핵심입니다.</p>
+<h2 id="vanna-ai-architecture-and-privacy-model">Vanna AI Architecture and Privacy Model<a hidden class="anchor" aria-hidden="true" href="#vanna-ai-architecture-and-privacy-model">#</a></h2>
+<p>Understanding Vanna&rsquo;s architecture is key to deploying it securely in production environments.</p>
 <pre tabindex="0"><code>┌─────────────────────────────────────────────────────────────┐
-│                    Vanna AI 아키텍처                         │
+│                    Vanna AI Architecture                     │
 ├─────────────────────────────────────────────────────────────┤
 │                                                             │
-│   사용자 질문  ──▶  벡터 저장소 (스키마/예제)               │
+│   User Question  ──▶  Vector Store (Schema/Examples)       │
 │       │                       │                            │
 │       │                       ▼                            │
-│       │              관련 컨텍스트                         │
-│       │              RAG를 통해 검색                       │
+│       │              Relevant Context                      │
+│       │              Retrieved via RAG                     │
 │       │                       │                            │
 │       ▼                       ▼                            │
 │   ┌──────────────────────────────────────┐                │
-│   │        LLM 백엔드                      │                │
+│   │        LLM Backend                   │                │
 │   │  (OpenAI / Anthropic / Ollama / ...) │                │
 │   │                                      │                │
-│   │  프롬프트: 질문 + 스키마 컨텍스트     │                │
-│   │  출력: 생성된 SQL                     │                │
+│   │  Prompt: Question + Schema Context   │                │
+│   │  Output: Generated SQL               │                │
 │   └──────────────────────────────────────┘                │
 │                       │                                     │
 │                       ▼                                     │
-│              SQL 검증                                       │
+│              SQL Validation                                 │
 │                       │                                     │
 │                       ▼                                     │
-│              DB에서 실행                                    │
+│              Execute Against DB                             │
 │                       │                                     │
 │                       ▼                                     │
-│               결과 반환                                     │
+│               Return Results                                │
 └─────────────────────────────────────────────────────────────┘
-</code></pre><p>프라이버시 모델은 다음과 같이 작동합니다: `````python</p>
-<h1 id="프라이버시-우선-구성-권장">프라이버시 우선 구성 (권장)<a hidden class="anchor" aria-hidden="true" href="#프라이버시-우선-구성-권장">#</a></h1>
+</code></pre><p>The privacy model works as follows: `````python</p>
+<h1 id="privacy-first-configuration-recommended">Privacy-First Configuration (Recommended)<a hidden class="anchor" aria-hidden="true" href="#privacy-first-configuration-recommended">#</a></h1>
 <p>from vanna.ollama import Ollama
 from vanna.chromadb import ChromaDB_VectorStore</p>
-<p>class PrivateVanna(ChromaDB_VectorStore, Ollama): &ldquo;&ldquo;&ldquo;완전히 자체 호스팅. 데이터가 네트워크를 벗어나지 않습니다.&rdquo;&rdquo;&rdquo;
+<p>class PrivateVanna(ChromaDB_VectorStore, Ollama): &ldquo;&ldquo;&ldquo;Fully self-hosted. Zero data leaves your network.&rdquo;&rdquo;&rdquo;
 def <strong>init</strong>(self, config=None): ChromaDB_VectorStore.<strong>init</strong>(self, config=config)
 Ollama.<strong>init</strong>(self, config={&ldquo;model&rdquo;: &ldquo;llama3:70b&rdquo;})</p>
 <p>vn = PrivateVanna()
 vn.connect_to_postgres(host=&ldquo;internal-db&rdquo;, dbname=&ldquo;analytics&rdquo;,
 user=&ldquo;readonly&rdquo;, password=&ldquo;secret&rdquo;)</p>
-<h1 id="스키마-메타데이터는-로컬-chromadb에-저장됩니다">스키마 메타데이터는 로컬 ChromaDB에 저장됩니다<a hidden class="anchor" aria-hidden="true" href="#스키마-메타데이터는-로컬-chromadb에-저장됩니다">#</a></h1>
-<h1 id="llm은-ollama를-통해-로컬에서-실행됩니다">LLM은 Ollama를 통해 로컬에서 실행됩니다<a hidden class="anchor" aria-hidden="true" href="#llm은-ollama를-통해-로컬에서-실행됩니다">#</a></h1>
-<h1 id="데이터베이스-쿼리는-낶부-데이터베이스에-대해-실행됩니다">데이터베이스 쿼리는 낶부 데이터베이스에 대해 실행됩니다<a hidden class="anchor" aria-hidden="true" href="#데이터베이스-쿼리는-낶부-데이터베이스에-대해-실행됩니다">#</a></h1>
-<h1 id="데이터는-외부-api에-도달하지-않습니다">데이터는 외부 API에 도달하지 않습니다<a hidden class="anchor" aria-hidden="true" href="#데이터는-외부-api에-도달하지-않습니다">#</a></h1>
+<h1 id="schema-metadata-is-stored-locally-in-chromadb">Schema metadata is stored locally in ChromaDB<a hidden class="anchor" aria-hidden="true" href="#schema-metadata-is-stored-locally-in-chromadb">#</a></h1>
+<h1 id="llm-runs-locally-via-ollama">LLM runs locally via Ollama<a hidden class="anchor" aria-hidden="true" href="#llm-runs-locally-via-ollama">#</a></h1>
+<h1 id="database-queries-execute-against-your-internal-database">Database queries execute against your internal database<a hidden class="anchor" aria-hidden="true" href="#database-queries-execute-against-your-internal-database">#</a></h1>
+<h1 id="no-data-ever-reaches-external-apis">No data ever reaches external APIs<a hidden class="anchor" aria-hidden="true" href="#no-data-ever-reaches-external-apis">#</a></h1>
 <pre tabindex="0"><code>
 * * *
 
-## 벤치마크 및 정확도
+## Benchmarks and Accuracy
 
-Vanna의 정확도는 학습 데이터의 품질과 양에 크게 의존합니다. 2026년에 관찰된 전형적인 성능 특성은 다음과 같습니다: `````python
-# 정확도 평가 스크립트
+Vanna&#39;s accuracy depends heavily on the quality and quantity of training data. Here are typical performance characteristics observed in 2026: `````python
+# Accuracy evaluation script
 import pandas as pd
 
 test_cases = [
@@ -753,46 +753,46 @@ test_cases = [
 
 correct = 0
 for test in test_cases: generated = vn.generate_sql(test[&#34;question&#34;])
-    # 의미론적 비교 (정규화됨)
+    # Semantic comparison (normalized)
     if normalize_sql(generated) == normalize_sql(test[&#34;expected_sql&#34;]): correct += 1
 
 accuracy = correct / len(test_cases) * 100
-print(f&#34;정확도: {accuracy:.1f}%&#34;)
-</code></pre><p>포괄적인 학습 (DDL + 문서 + 예제 쿼리)을 통해 Vanna는 일관되게 다음을 달성합니다: - 일반적인 분석 쿼리에 대해 <strong>90-95% 정확도</strong></p>
+print(f&#34;Accuracy: {accuracy:.1f}%&#34;)
+</code></pre><p>With comprehensive training (DDL + documentation + example queries), Vanna consistently achieves: - <strong>90-95% accuracy</strong> on common analytical queries</p>
 <ul>
-<li>복잡한 다중 테이블 조인에 대해 <strong>85-90% 정확도</strong></li>
-<li>비즈니스 맥락이 필요한 쿼리에 대해 <strong>80-85% 정확도</strong></li>
-<li>질문-SQL 쌍이 학습 데이터로 제공될 때 거의 <strong>100% 정확도</strong></li>
+<li><strong>85-90% accuracy</strong> on complex multi-table joins</li>
+<li><strong>80-85% accuracy</strong> on queries requiring business context</li>
+<li>Near <strong>100% accuracy</strong> when question-SQL pairs are provided as training data</li>
 </ul>
-<p>높은 정확도의 핵심은 철저한 학습입니다. 50개 이상의 DDL 문, 20개 이상의 예제 쿼리, 관련 문서가 있는 잘 훈련된 Vanna 인스턴스는 범용 LLM 접근 방식보다 상당한 차이로 뛰어납니다.</p>
+<p>The key to high accuracy is thorough training. A well-trained Vanna instance with 50+ DDL statements, 20+ example queries, and relevant documentation outperforms generic LLM approaches by a significant margin.</p>
 <hr>
-<h2 id="자주-묻는-질문-faq">자주 묻는 질문 (FAQ)<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문-faq">#</a></h2>
-<h3 id="vanna-ai는-완전히-묶음인가요">Vanna AI는 완전히 묶음인가요?<a hidden class="anchor" aria-hidden="true" href="#vanna-ai는-완전히-묶음인가요">#</a></h3>
-<p>예, Vanna AI는 MIT 라이선스 하에 오픈소스이며 묶음으로 사용할 수 있습니다. 핵심 라이브러리, 모든 통합, RAG 기반 학습 시스템은 비용 없이 사용할 수 있습니다. Vanna는 소규모 프로젝트를 위한 묶음 티어가 있는 호스팅 클라우드 서비스도 제공하며, 팀 협업 및 고급 분석과 같은 엔터프라이즈 기능에 대해서는 유료 계획이 있습니다. Ollama를 통한 로컬 LLM과 ChromaDB를 통한 로컬 벡터 저장소를 사용하는 자체 호스팅 옵션은 사용 제한 없이 완전히 묶음입니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 묶음, 완전히 자체 호스팅 설정</span>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<h3 id="is-vanna-ai-completely-free-to-use">Is Vanna AI completely free to use?<a hidden class="anchor" aria-hidden="true" href="#is-vanna-ai-completely-free-to-use">#</a></h3>
+<p>Yes, Vanna AI is open-source under the MIT license and free to use. The core library, all integrations, and the RAG-based training system are available at no cost. Vanna also offers a hosted cloud service with a free tier for small projects, with paid plans for enterprise features like team collaboration and advanced analytics. The self-hosted option using local LLMs (via Ollama) and local vector stores (via ChromaDB) is entirely free with no usage limits.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Free, fully self-hosted setup</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> vanna.ollama <span style="color:#f92672">import</span> Ollama
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> vanna.chromadb <span style="color:#f92672">import</span> ChromaDB_VectorStore
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FreeVanna</span>(ChromaDB_VectorStore, Ollama): <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, config<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>): ChromaDB_VectorStore<span style="color:#f92672">.</span><span style="color:#a6e22e">__init__</span>(self, config<span style="color:#f92672">=</span>config)
 </span></span><span style="display:flex;"><span>        Ollama<span style="color:#f92672">.</span><span style="color:#a6e22e">__init__</span>(self, config<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;model&#34;</span>: <span style="color:#e6db74">&#34;llama3&#34;</span>})
-</span></span></code></pre></div><h3 id="vanna는-스키마-변경을-어떻게-처리합니까">Vanna는 스키마 변경을 어떻게 처리합니까?<a hidden class="anchor" aria-hidden="true" href="#vanna는-스키마-변경을-어떻게-처리합니까">#</a></h3>
-<p>데이터베이스 스키마가 변경되면 업데이트된 DDL 문으로 Vanna를 재학습해야 합니다. 권장되는 접근 방식은 학습 데이터를 버전 관리하고 최신 스키마를 추출하고 배포 시 Vanna를 재학습하는 자동화된 파이프라인을 설정하는 것입니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 자동화된 재학습 파이프라인</span>
+</span></span></code></pre></div><h3 id="how-does-vanna-handle-schema-changes">How does Vanna handle schema changes?<a hidden class="anchor" aria-hidden="true" href="#how-does-vanna-handle-schema-changes">#</a></h3>
+<p>When your database schema changes, you need to retrain Vanna with the updated DDL statements. The recommended approach is to version your training data and set up an automated pipeline that extracts the latest schema and retrains Vanna on deployment.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Automated retraining pipeline</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> subprocess
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 최신 스키마 추출</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Extract latest schema</span>
 </span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> subprocess<span style="color:#f92672">.</span>run(
 </span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;pg_dump&#34;</span>, <span style="color:#e6db74">&#34;--schema-only&#34;</span>, <span style="color:#e6db74">&#34;mydb&#34;</span>],
 </span></span><span style="display:flex;"><span>    capture_output<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, text<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
 </span></span><span style="display:flex;"><span>)
 </span></span><span style="display:flex;"><span>new_ddl <span style="color:#f92672">=</span> result<span style="color:#f92672">.</span>stdout
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 이전 학습 데이터 지우고 재학습</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Clear old training and retrain</span>
 </span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>remove_training_data()
 </span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(ddl<span style="color:#f92672">=</span>new_ddl)
-</span></span></code></pre></div><h3 id="비영어-언어로-vanna를-사용할-수-있나요">비영어 언어로 Vanna를 사용할 수 있나요?<a hidden class="anchor" aria-hidden="true" href="#비영어-언어로-vanna를-사용할-수-있나요">#</a></h3>
-<p>예, Vanna는 여러 언어의 자연어 질문을 지원합니다. LLM 백엔드가 SQL 생성으로의 번역을 처리합니다. 선호하는 언어로 문서와 예제를 사용하여 Vanna를 학습시킬 수 있습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 중국어 문서로 학습</span>
+</span></span></code></pre></div><h3 id="can-i-use-vanna-with-non-english-languages">Can I use Vanna with non-English languages?<a hidden class="anchor" aria-hidden="true" href="#can-i-use-vanna-with-non-english-languages">#</a></h3>
+<p>Yes, Vanna supports natural language questions in multiple languages. The LLM backend handles the translation to SQL generation. You can train Vanna with documentation and examples in your preferred language.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Training with Chinese documentation</span>
 </span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(documentation<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">销售额表记录所有完成的交易。
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">amount 列单位为美元，含税。
@@ -800,8 +800,8 @@ print(f&#34;정확도: {accuracy:.1f}%&#34;)
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>sql <span style="color:#f92672">=</span> vn<span style="color:#f92672">.</span>generate_sql(<span style="color:#e6db74">&#34;显示2026年每个区域的总销售额&#34;</span>)
-</span></span></code></pre></div><h3 id="vanna는-어떤-데이터베이스를-지원합니까">Vanna는 어떤 데이터베이스를 지원합니까?<a hidden class="anchor" aria-hidden="true" href="#vanna는-어떤-데이터베이스를-지원합니까">#</a></h3>
-<p>Vanna는 유연한 연결 시스템을 통해 거의 모든 주요 데이터베이스를 지원합니다: PostgreSQL, MySQL, SQLite, SQL Server, Snowflake, BigQuery, Redshift, Oracle, DuckDB, ClickHouse 및 Python DB-API 드라이버가 있는 모든 데이터베이스. 사용자 정의 커넥터도 특수 시스템에 대해 구현할 수 있습니다.</p>
+</span></span></code></pre></div><h3 id="what-databases-does-vanna-support">What databases does Vanna support?<a hidden class="anchor" aria-hidden="true" href="#what-databases-does-vanna-support">#</a></h3>
+<p>Vanna supports virtually all major databases through its flexible connection system: PostgreSQL, MySQL, SQLite, SQL Server, Snowflake, BigQuery, Redshift, Oracle, DuckDB, ClickHouse, and any database with a Python DB-API driver. Custom connectors can also be implemented for specialized systems.</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># SQLite</span>
 </span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>connect_to_sqlite(<span style="color:#e6db74">&#34;mydb.sqlite&#34;</span>)
 </span></span><span style="display:flex;"><span>
@@ -816,12 +816,12 @@ print(f&#34;정확도: {accuracy:.1f}%&#34;)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># DuckDB</span>
 </span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>connect_to_duckdb(<span style="color:#e6db74">&#34;mydb.duckdb&#34;</span>)
-</span></span></code></pre></div><h3 id="내-특정-사용-사례에서-vanna의-정확도를-어떻게-향상시킬-수-있나요">내 특정 사용 사례에서 Vanna의 정확도를 어떻게 향상시킬 수 있나요?<a hidden class="anchor" aria-hidden="true" href="#내-특정-사용-사례에서-vanna의-정확도를-어떻게-향상시킬-수-있나요">#</a></h3>
-<p>정확도를 향상시키는 가장 효과적인 방법은 포괄적인 학습을 통하는 것입니다. 다음 학습 데이터 품질 계층 구조를 따르세요: 1. <strong>질문-SQL 쌍</strong> (가장 높은 영향 — 거의 100% 정확도)
-2. <strong>예제 SQL 쿼리</strong> (높은 영향 — 패턴 가르침)
-3. <strong>비즈니스 문서</strong> (중간 영향 — 맥락 추가)
-4. <strong>DDL 문</strong> (기초 — 환각 제거)</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 최대 정확도 학습 요법</span>
+</span></span></code></pre></div><h3 id="how-can-i-improve-vannas-accuracy-for-my-specific-use-case">How can I improve Vanna&rsquo;s accuracy for my specific use case?<a hidden class="anchor" aria-hidden="true" href="#how-can-i-improve-vannas-accuracy-for-my-specific-use-case">#</a></h3>
+<p>The most effective way to improve accuracy is through comprehensive training. Follow this hierarchy of training data quality: 1. <strong>Question-SQL pairs</strong> (highest impact — near 100% accuracy)
+2. <strong>Example SQL queries</strong> (high impact — teaches patterns)
+3. <strong>Business documentation</strong> (medium impact — adds context)
+4. <strong>DDL statements</strong> (foundational — eliminates hallucination)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Maximum accuracy training regimen</span>
 </span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(ddl<span style="color:#f92672">=</span>all_schema_ddl)
 </span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(documentation<span style="color:#f92672">=</span>business_context)
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> example <span style="color:#f92672">in</span> curated_sql_examples: vn<span style="color:#f92672">.</span>train(sql<span style="color:#f92672">=</span>example)
@@ -832,18 +832,18 @@ print(f&#34;정확도: {accuracy:.1f}%&#34;)
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## 추천 호스팅 및 인프라</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Recommended Hosting &amp; Infrastructure</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">**</span>[DigitalOcean](https:<span style="color:#f92672">//</span>m<span style="color:#f92672">.</span>do<span style="color:#f92672">.</span>co<span style="color:#f92672">/</span>c<span style="color:#f92672">/</span>eca87ac14ee0)<span style="color:#f92672">**</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#ae81ff">60</span>일 <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">200</span> 무료 크레딧<span style="color:#f92672">.</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">**</span>[HTStack](https:<span style="color:#f92672">//</span>my<span style="color:#f92672">.</span>htstack<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>aff<span style="color:#f92672">.</span>php<span style="color:#960050;background-color:#1e0010">?</span>aff<span style="color:#f92672">=</span><span style="color:#ae81ff">27187</span>)<span style="color:#f92672">**</span> <span style="color:#960050;background-color:#1e0010">—</span> 홍콩 VPS, 중국 본토 저지연 접속<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>Before you deploy any of the tools above into production, you<span style="color:#e6db74">&#39;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">**</span>[HTStack](https:<span style="color:#f92672">//</span>my<span style="color:#f92672">.</span>htstack<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>aff<span style="color:#f92672">.</span>php<span style="color:#960050;background-color:#1e0010">?</span>aff<span style="color:#f92672">=</span><span style="color:#ae81ff">27187</span>)<span style="color:#f92672">**</span> <span style="color:#960050;background-color:#1e0010">—</span> Hong Kong VPS <span style="color:#66d9ef">with</span> low<span style="color:#f92672">-</span>latency access <span style="color:#f92672">from</span> mainland China<span style="color:#f92672">.</span> This <span style="color:#f92672">is</span> the same IDC that hosts dibi8<span style="color:#f92672">.</span>com<span style="color:#f92672">.</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>제휴 링크 <span style="color:#960050;background-color:#1e0010">—</span> 추가 비용 없이 dibi8<span style="color:#f92672">.</span>com 운영을 지원합니다<span style="color:#f92672">.*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>Affiliate links <span style="color:#960050;background-color:#1e0010">—</span> they don<span style="color:#e6db74">&#39;t cost you extra and they help keep dibi8.com running.*</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## 마지막 생각</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Final Thoughts</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Vanna AI는 데이터베이스 접근 대중화에서 중대한 도약을 대표합니다<span style="color:#f92672">.</span> 현대적 대형 언어 모델의 성능과 SQL 생성을 위해 특별히 구축된 RAG 아키텍처를 결합함으로써, 자연어 쿼리를 실제 프로덕션 환경에서 실용적으로 만드는 정확도 수준을 제공합니다<span style="color:#f92672">.</span> 적절한 학습을 통해 달성된 <span style="color:#ae81ff">90</span><span style="color:#f92672">%+</span> 정확도와 프라이버시 우선 설계 및 자체 호스팅 기능의 결합은 데이터 보안을 손상시키지 않고 팀에 Text<span style="color:#f92672">-</span>to<span style="color:#f92672">-</span>SQL 기능을 제공하려는 조직을 위한 도구로 Vanna를 만듭니다<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>Vanna AI represents a significant leap forward <span style="color:#f92672">in</span> democratizing database access<span style="color:#f92672">.</span> By combining the power of modern Large Language Models <span style="color:#66d9ef">with</span> a purpose<span style="color:#f92672">-</span>built RAG architecture <span style="color:#66d9ef">for</span> SQL generation, it delivers an accuracy level that makes natural language querying practical <span style="color:#66d9ef">for</span> real<span style="color:#f92672">-</span>world production environments<span style="color:#f92672">.</span> The <span style="color:#ae81ff">90</span><span style="color:#f92672">%+</span> accuracy achieved <span style="color:#66d9ef">with</span> proper training, combined <span style="color:#66d9ef">with</span> its privacy<span style="color:#f92672">-</span>first design <span style="color:#f92672">and</span> self<span style="color:#f92672">-</span>hosting capabilities, makes Vanna the tool of choice <span style="color:#66d9ef">for</span> organizations that want to empower their teams <span style="color:#66d9ef">with</span> text<span style="color:#f92672">-</span>to<span style="color:#f92672">-</span>SQL without compromising data security<span style="color:#f92672">.</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2026</span>년, 데이터 분석가와 데이터베이스 전문가 사이의 간격이 계속 좁아지면서, Vanna AI는 최전선에 서 있습니다 <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#e6db74">&#34;우리 지역별 Q2 매출은 얼마입니까?&#34;</span>를 몇 분이 아닌 몇 초 내에 실행 가능한 SQL로 변환합니다<span style="color:#f92672">.</span> SQL 병목 현상을 줄이고 사람들이 생각하는 언어로 질문할 수 있게 하려는 모든 팀에게 Vanna AI는 즉시 배당금을 지불하는 투자입니다<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>In <span style="color:#ae81ff">2026</span>, <span style="color:#66d9ef">as</span> the gap between data analysts <span style="color:#f92672">and</span> database experts continues to narrow, Vanna AI stands at the forefront <span style="color:#960050;background-color:#1e0010">—</span> turning <span style="color:#e6db74">&#34;What were our Q2 sales by region?&#34;</span> into executable SQL <span style="color:#f92672">in</span> seconds, <span style="color:#f92672">not</span> minutes<span style="color:#f92672">.</span> For any team looking to reduce the SQL bottleneck <span style="color:#f92672">and</span> let people ask questions <span style="color:#f92672">in</span> the language they think <span style="color:#f92672">in</span>, Vanna AI <span style="color:#f92672">is</span> an investment that pays dividends immediately<span style="color:#f92672">.</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>{
@@ -866,7 +866,7 @@ print(f&#34;정확도: {accuracy:.1f}%&#34;)
 </span></span><span style="display:flex;"><span>  },
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: {
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/kr/resources/vanna-ai-sql-generation&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/resources/vanna-ai-sql-generation&#34;</span>
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>}
 </span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>script<span style="color:#f92672">&gt;</span>
@@ -948,6 +948,81 @@ print(f&#34;정확도: {accuracy:.1f}%&#34;)
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

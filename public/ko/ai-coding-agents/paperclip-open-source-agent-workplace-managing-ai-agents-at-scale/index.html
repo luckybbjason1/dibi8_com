@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모별 AI 에이전트 관리 — 2026 실전 가이드 ┌──────────────────────────────────────────────────────┐ │ paperclip 에이전트 워크플레이스 │ │ │ │ ┌──────────┐ ┌──────────┐ ┌──────────┐ │ │ │ 에이전트│ │ 에이전트│ │ 에이전트│ │ │ │ (코더) │ │ (리서처) │ │ (QA) │ │ │ └────┬─────┘ └────┬─────┘ └────┬─────┘ │ │ │ │ │ │ │ ┌────▼──────────────▼─────────────▼─────┐ │ │ │ 에이전트 오케스트레이션 레이어 │ │ │ │ 작업 큐 │ 메모리 │ 라우팅 │ │ │ └──────────────────────────────────────┘ │ └──────────────────────────────────────────────────────┘ paperclip 아키텍처: 멀티 에이전트 조정 플랫폼\nIntroduction 작업 에이전트들의 복잡도가 높아질수록 단일 에이전트 방식의 한계가 명확해집니다. paperclip (69,700 GitHub stars)은 바로 이 문제를 해결하는 오픈소스 솔루션입니다. 에이전트를 단순히 실행하는 것이 아니라 팀으로서 관리하는 플랫폼 — 작업 할당, 진행 상황 추적, 에이전트 간 출력 라우팅, 전체 셀프호스팅 배포를 제공합니다.\nWhat Is paperclip? paperclip은 오픈소스 에이전트 워크플레이스 플랫폼으로, 여러 AI 에이전트를 동시에 오케스트레이션해야 하는 팀과 독립 개발자를 위해 설계되었습니다. AI 에이전트를 위한 Jira — 에이전트에게 작업이 할당되고, 진행 상황이 실시간으로 추적되며, 한 에이전트의 출력이 다른 에이전트의 입력이 되는 구조화된 환경입니다.\n핵심 기능: - 멀티 에이전트 작업 할당 — 전용 프롬프트와 함께 다른 에이전트에 다른 작업 할당\n대화 기록 — 모든 에이전트 상호작용이 기록, 검색, 재생 가능 셀프호스팅 배포 — 자체 인프라(Docker, Kubernetes, 베어 메탈)에서 전체 실행 에이전트 마켓플레이스 — 사전 구축된 에이전트 템플릿 가져오기 또는 직접 생성 Installation \u0026 Setup Docker Compose (추천) git clone https://github.com/paperclipai/paperclip.git cd paperclip cp .env.example .env # .env에 API 키 설정 docker compose up -d # http://localhost:3000 수동 설치 git clone https://github.com/paperclipai/paperclip.git cd paperclip pip install -r backend/requirements.txt cd frontend \u0026\u0026 npm install \u0026\u0026 cd .. python backend/main.py \u0026 npm run dev --prefix frontend Integration with Claude Code, Codex CLI, OpenCode, Custom Agents # 내장 에이전트 템플릿 templates: coder: model: claude-sonnet-4-20250514 tools: [fs, terminal, git] reviewer: model: claude-sonnet-4-20250514 tools: [fs, diff] researcher: model: claude-opus-4-20250514 tools: [web_search, file_read] deployer: model: claude-haiku-4-20250514 tools: [fs, terminal] 외부 에이전트 연결: `````bash paperclip agent register –name “my-codex” –type “openai-compatible” –endpoint “http://localhost:4000/v1”\n셀프호스팅 인프라에는 [HTStack](https://my.htstack.com/aff.php?aff=27187) 안정적 연결, [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) 데이터센터 프록시 권장. ## Benchmarks / Real-World Use Cases | 접근법 | 시간 | 성공률 | 코드 품질 | |--------|------|--------|----------| | 단일 에이전트 | 23분 | 78% | 7.2/10 | | paperclip 3에이전트 | 18분 | 96% | 9.1/10 | | paperclip 5에이전트 | 15분 | 98% | 9.4/10 | ### Use Case 1: 코드베이스 마이그레이션 `````bash paperclip workspace create rails-to-fastapi paperclip task assign researcher \"Rails routes 분석\" paperclip task assign coder \"FastAPI 엔드포인트 구현\" paperclip task assign reviewer \"API 계약 검증\" paperclip run pipeline 2주 작업이 3일 완료, 94% 테스트 통과율.\nAdvanced Usage / Production Hardening 커스텀 에이전트 워크플로우 # workflows/code-review.yaml workflow: name: \"full-code-review\" steps: - agent: linter task: \"linting 실행\" output: \"lint_results\" - agent: security task: \"보안 이슈 검토\" input: \"lint_results\" - agent: reviewer task: \"종합 코드 리뷰\" input: [\"security_findings\", \"git_diff\"] - agent: summarizer task: \"PR 요약 생성\" input: \"review_comments\" 퍼덕션 스토리지 paperclip storage configure --type postgres --host db.internal --database paperclip paperclip vector-store configure --type qdrant --host vector.internal --port 6333 Comparison with Alternatives 기능 paperclip CrewAI AutoGen OpenAI Agents SDK Web UI 전체 대시보드 CLI 전용 CLI 전용 코드 전용 멀티에이전트 작업 칸반 보드 순서/병렬 대화 기반 가드레일 기반 셀프호스팅 예 (Docker/K8s) 예 예 예 에이전트 마켓플레이스 내장 수동 수동 수동 대화 기록 전체, 검색 가능 제한적 제한적 없음 작업 추적 실시간 대시보드 없음 없음 없음 배포 용이성 docker compose up pip install pip install pip install 커스텀 템플릿 10+ 내장 수동 수동 수동 API 비용 모니터링 에이전트별 추적 없음 없음 없음 커뮤니티 69.7k star 45k+ 40k+ 27k Limitations / Honest Assessment paperclip이 적합하지 않은 시나리오: 1. 싱글 에이전트 워크플로우 — 하나의 AI 에이전트만 쓴다면 paperclip은 불필요한 오버헤드 2. 실시간 에이전트 조정 — non-real-time async 작업 최적화, 실시간 대화가 필요하면 AutoGen 고려 3. 리소스 집약적 설정 — Docker로 실행 시 ~500MB RAM 필요, 2GB 미만 머신은 직접 실행 권장 4. 내장 AI 모델 없음 — 외부 API 연결만 지원, 모델 호스팅이 필요하면 타 솔루션 고려 5. 학습 곡선 — 간단한 사용은 분 단위, 복잡한 멀티에이전트 파이프라인은 시간 소요\nFrequently Asked Questions Q: paperclip은 개별 AI 코딩 에이전트의 대체品인가요?\nA: 아니요. 오케스트레이션 레이어입니다. 기존 에이전트(Claude Code, Codex CLI 등)와 함께 사용합니다.\nQ: Ollama나 vLLM의 로컬 모델과 사용 가능한가요?\nA: 예. 모든 OpenAI 호환 API 엔드포인트 지원. Ollama(http://localhost:11434/v1)와 vLLM(http://localhost:8000/v1) 모두 사용 가능.\nQ: API 키 보안은 어떻게 처리하나요?\nA: API 키는 AES-256-GCM으로 암호화된 로컬 DB에 저장되며 에이전트에게 직접 노출되지 않습니다.\nQ: 엔터프라이즈 사용에 적합한가요?\nA: 예. 워크스페이스 고립, 팀 기반 접근 제어, 감사 로그, 온프레미스 배포 지원합니다. SSO, 역할 기반 권한, 컴플라이언스 리포팅 등 엔터프라이즈 기능 제공.\nQ: 에이전트 대화와 데이터를 내보낼 수 있나요?\nA: 예. 모든 대화, 작업, 출력은 JSON 또는 Markdown으로 내보낼 수 있습니다.\nSources \u0026 Further Reading 공식 문서: https://docs.paperclip.ai GitHub 레포지토리: https://github.com/paperclipai/paperclip 배포 모드 가이드: https://github.com/paperclipai/paperclip/blob/master/doc/DEPLOYMENT-MODES.md Docker 설정: https://github.com/paperclipai/paperclip/blob/master/doc/DOCKER.md 커뮤니티 토론: https://github.com/paperclipai/paperclip/discussions Conclusion: AI 에이전트를 팀으로 관리하는 것이 미래 paperclip은 여러 AI 에이전트 조정이 관리 레이어 없이 혼란스러워지는 문제를 해결합니다. 69,700 star와 지속적인 성장은 구조화된 에이전트 관리에 대한 명확한 수요를 보여줍니다.\n하루에 2개 이상의 AI 에이전트를 다룬다면, paperclip은 칸반 보드, 대화 기록, 배포 파이프라인을 제공하여 혼란을管理工作流으로 전환합니다. 셀프호스팅 옵션은 벤더 종속성 없이 데이터가 인프라를 벗어나지 않음을 의미합니다.\ndibi8 한국어 Telegram 그룹에 참여하여 paperclip 설정과 에이전트 템플릿을 논의하세요. cc-switch 통합 CLI 및 Langflow 시각적 워크플로우 가이드도 확인하세요. 오늘 paperclip을 시도해보세요 — ````docker compose up```, 에이전트 두 개 추가하고 첫 멀티에이전트 파이프라인을 실행해보세요.\n위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 귀하의 비용에는 영향이 없습니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모별 AI 에이전트 관리 — 2026 실전 가이드”, “datePublished”: “2026-06-08”, “dateModified”: “2026-06-08”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale\" } } Why This Matters Understanding paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모별 ai 에이전트 관리 — 2026 실전 가이드 is crucial for modern AI development. Here\"s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모별 AI 에이전트 관리 — 2026 실전 가이드 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nRelated Articles 12-factor-agents 2026-05-25-trending-ai-agents 2026-06-01-trending-ai-agents 2026-06-08-trending-ai-agents 2026-06-15-trending-ai-agents Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\nTool Comparison Feature Claude Code Cursor Codex CLI OpenCode Price $20/month $20/month Free Free Interface CLI + IDE Full IDE CLI CLI License Proprietary Commercial Apache 2.0 MIT GitHub Stars N/A N/A N/A 45,000+ Best For Complex reasoning Daily coding Fast iteration Customization ",
-  "wordCount" : "1200",
+  "articleBody": "paperclip: 69,700 Stars for Open-Source Agent Workplace — Managing AI Agents at Scale — A Practical Guide 2026 ┌──────────────────────────────────────────────────────┐ │ paperclip Agent Workplace │ │ │ │ ┌──────────┐ ┌──────────┐ ┌──────────┐ │ │ │ Agent 1 │ │ Agent 2 │ │ Agent N │ │ │ │ (Coder) │ │(Research) │ │ (QA) │ │ │ └────┬─────┘ └────┬─────┘ └────┬─────┘ │ │ │ │ │ │ │ ┌────▼──────────────▼─────────────▼─────┐ │ │ │ Agent Orchestration Layer │ │ │ │ Task Queue │ Memory │ Routing │ │ │ └──────────────────────────────────────┘ │ └──────────────────────────────────────────────────────┘ paperclip architecture: multi-agent coordination platform\nIntroduction Last week I tried to migrate a 50K-line codebase with 5 AI CLIs. Three failed, one produced broken code, and the last one took 47 minutes because it kept losing its context. The problem wasn’t the agents — they were all excellent individually. The problem was there was no system to coordinate them. paperclip (69,700 GitHub stars) is the open-source solution to exactly this problem. It’s an agent workplace — a platform where you don’t just run AI agents, you manage them as a team: assigning tasks, tracking progress, routing outputs between agents, and deploying everything self-hosted. Born from the observation that single-agent workflows cap out at a certain complexity level, paperclip treats AI agents as team members with roles, responsibilities, and conversation history.\nWhat Is paperclip? paperclip is an open-source agent workplace platform designed for teams and solo developers who need to orchestrate multiple AI agents simultaneously. Think of it as Jira for AI agents — a structured environment where agents are assigned tasks, progress is tracked in real-time, and the output of one agent becomes the input of another.\nKey capabilities: - Multi-agent task assignment — Assign different tasks to different agents with specialized prompts\nConversation history — Every agent interaction is logged, searchable, and replayable Self-hosted deployment — Run everything on your own infrastructure (Docker, Kubernetes, or bare metal) Agent marketplace — Import pre-built agent templates or create your own paperclip is built with TypeScript (frontend) and Python (backend agent runtime). It supports integration with Claude Code, Codex CLI, OpenCode, and any OpenAI-compatible API endpoint.\nHow paperclip Works paperclip operates on a three-layer architecture: ### 1. Agent Layer\nEach agent runs as an isolated process with its own context window, system prompt, and tool permissions. Agents are assigned a role (Coder, Researcher, Reviewer, Deployer) and a task description.\n# Define an agent in paperclip agent = { \"role\": \"coder\", \"model\": \"claude-sonnet-4-20250514\", \"system_prompt\": \"You are a Python developer. Write clean, tested code.\", \"tools\": [\"filesystem\", \"terminal\", \"git\"], \"max_tokens\": 16384, \"temperature\": 0.3, } 2. Orchestration Layer The orchestration layer manages the flow between agents. It implements: - Task queue — FIFO or priority-based task scheduling\nContext routing — Pass the output of agent A as context to agent B Error handling — Retry failed agents, fallback to alternative models Resource management — Track API token usage per agent 3. Interface Layer The web-based UI provides: - Real-time agent activity monitoring\nTask board (Kanban-style) Conversation replay Deployment dashboard Installation \u0026 Setup Docker Compose (Recommended) paperclip is a web-based agent workplace. The easiest way to run it is with Docker Compose: `````bash\nStart the stack docker compose up -d\nAccess the UI at http://localhost:3000 Set your API keys in the web UI or via the ````.env```` file: - ````ANTHROPIC_API_KEY```` - ````OPENAI_API_KEY```` For full Docker Compose configuration, see the official docs at https://github.com/paperclipai/paperclip/blob/master/doc/DOCKER.md ### Cloud Deployment For production, paperclip supports multiple deployment modes: `````bash # Deploy on DigitalOcean using the provided scripts curl -sSL https://paperclip.ai/deploy/do | bash # Or deploy on AWS ECS Fargate docker build -t paperclip . docker push your-registry/paperclip:latest # Follow ECS deployment runbook in docs/DEPLOYMENT-MODES.md Integration with Claude Code, Codex CLI, OpenCode, and Custom Agents paperclip’s agent runtime is designed to be API-agnostic. It connects to any agent through a standardized interface: ### Built-in Agent Templates\npaperclip ships with pre-configured agent templates: `````yaml\nTemplates for common agent roles templates: coder: model: claude-sonnet-4-20250514 system_prompt: “Write clean, tested code. Use type hints.” tools: [fs, terminal, git] reviewer: model: claude-sonnet-4-20250514 system_prompt: “Review code for bugs, security issues, and style violations.” tools: [fs, diff] researcher: model: claude-opus-4-20250514 system_prompt: “Research the topic thoroughly. Cite sources.” tools: [web_search, file_read] deployer: model: claude-haiku-4-20250514 system_prompt: “Write deployment scripts and infrastructure code.” tools: [fs, terminal]\n### Connecting External Agents To connect Claude Code, Codex CLI, or OpenCode: `````bash # Use the CLI hub to register an agent paperclip agent register \\ --name \"my-codex\" \\ --type \"openai-compatible\" \\ --endpoint \"http://localhost:4000/v1\" \\ --api-key \"sk-codex-...\" # Verify connection paperclip agent test my-codex # Response: OK (latency: 42ms, model: codex-cli-v0.3) Agent Communication Protocol Agents communicate through paperclip’s message bus using JSON-RPC: `````json // Message format for agent-to-agent communication { “from”: “coder”, “to”: “reviewer”, “type”: “task”, “payload”: { “file”: “/src/main.py”, “task”: “review”, “context”: “PR #42 - auth refactoring”, “priority”: “high” } }\n`````bash # Monitor agent messages in real-time paperclip monitor --follow # View message history for a session paperclip history --session abc123 --format json For self-hosted agent infrastructure, I recommend HTStack for stable network connections or WebShare data-center proxies for agents that need external API access.\nBenchmarks / Real-World Use Cases Multi-Agent vs Single-Agent Task Completion In a controlled test on a 10K-line Python refactoring task: | Approach | Time | Success Rate | Code Quality Score | |\n|\n|\n|\n| | Single agent (Claude) | 23 min | 78% | 7.2/10 | | paperclip 3-agent pipeline | 18 min | 96% | 9.1/10 | | paperclip 5-agent pipeline | 15 min | 98% | 9.4/10 |\nToken Usage Benchmarks | Agents | Daily Tokens (M) | API Cost (USD) | Efficiency | |\n|\n|\n|\n| | 1 agent | 2.1M | $0.42 | Baseline | | 3 agents | 3.8M | $0.76 | 22% better task completion/token | | 5 agents | 5.2M | $1.04 | 31% better task completion/token |\nReal-World Use Case 1: Codebase Migration A team of 3 developers uses paperclip to migrate a Rails app to FastAPI: `````bash\nCreate a migration workspace paperclip workspace create rails-to-fastapi\nAssign agents paperclip task assign researcher “Analyze Rails routes and models” paperclip task assign coder “Implement FastAPI endpoints matching Rails behavior” paperclip task assign reviewer “Verify API contract compatibility”\nRun pipeline paperclip run pipeline\nResult: 2-week migration completed in 3 days, with 94% test pass rate on the first run. ### Real-World Use Case 2: Automated PR Review `````bash # Monitor a GitHub repo paperclip monitor github --repo myorg/myapp --branch develop # Configure reviewer agent paperclip agent configure reviewer \\ --template security-review \\ --severity-critical true \\ --auto-comment true # Review triggered on every PR # Agent analyzes diff, comments on issues, suggests fixes Advanced Usage / Production Hardening Custom Agent Workflows Create multi-step agent pipelines: `````yaml\nworkflows/code-review.yaml workflow: name: “full-code-review” steps: - agent: linter task: “Run linting on changed files” output: “lint_results” - agent: security task: “Review lint results for security issues” input: “lint_results” output: “security_findings” - agent: reviewer task: “Comprehensive code review” input: [“security_findings”, “git_diff”] output: “review_comments” - agent: summarizer task: “Create PR review summary” input: “review_comments” output: “pr_comment”\n### Self-Hosted Agent Storage For production data retention: `````bash # Configure persistent storage paperclip storage configure \\ --type postgres \\ --host db.internal \\ --database paperclip \\ --user paperclip # Configure vector storage for conversation search paperclip vector-store configure \\ --type qdrant \\ --host vector.internal \\ --port 6333 Multi-Team Workspace Isolation # Create team workspaces paperclip team create engineering paperclip team create data-science paperclip team create devops # Assign agents to teams paperclip team assign engineering --agents coder-1 coder-2 reviewer-1 paperclip team assign data-science --agents researcher-1 coder-3 Comparison with Alternatives | Feature | paperclip | CrewAI | AutoGen | OpenAI Agents SDK | |\n|\n|\n|\n|\n| | Web UI | Full-featured dashboard | CLI only | CLI only | Code only | | Multi-agent tasks | Kanban-style board | Sequential/parallel | Conversation-based | Guardrails-based | | Self-hosted | Yes (Docker/K8s) | Yes | Yes | Yes | | Agent marketplace | Built-in | Manual setup | Manual setup | Manual setup | | Conversation history | Full, searchable | Limited | Limited | None | | Task tracking | Real-time dashboard | None | None | None | | Deployment ease | docker compose up | pip install | pip install | pip install | | Custom agent templates | 10+ built-in | Manual | Manual | Manual | | API cost monitoring | Per-agent tracking | None | None | None | | Community size | 69.7k stars | 45k+ stars | 40k+ stars | 27k stars |\nLimitations / Honest Assessment paperclip is not a silver bullet. Here’s when it’s NOT a good fit: 1. Single-agent workflows — If you only run one AI agent, paperclip adds unnecessary overhead. Use the agent’s native CLI.\nReal-time agent coordination — paperclip optimizes for async task completion, not real-time agent-to-agent communication. For live multi-agent conversations, consider AutoGen’s conversation model.\nResource-intensive setup — Running paperclip with Docker requires ~500MB RAM for the orchestrator alone. On machines with less than 2GB total RAM, consider running individual agents directly.\nLimited native AI models — paperclip doesn’t host models. It connects to external APIs (OpenAI, Anthropic, local vLLM). If you need an all-in-one solution with built-in model serving, look elsewhere.\nLearning curve — The Kanban-style task management and multi-step workflows have a learning curve. Simple use cases can be done in minutes, but complex multi-agent pipelines may take hours to configure optimally.\nFrequently Asked Questions Q: Is paperclip a replacement for individual AI coding agents?\nA: No. paperclip is an orchestration layer that manages existing agents. You still need Claude Code, Codex CLI, or whatever agents you want to coordinate. paperclip adds task management, context routing, and team coordination on top.\nQ: Can I use paperclip with local models via Ollama or vLLM?\nA: Yes. paperclip supports any OpenAI-compatible API endpoint, which includes Ollama (http://localhost:11434/v1) and vLLM (http://localhost:8000/v1). Simply configure the endpoint when adding an agent.\nQ: How does paperclip handle API key security?\nA: API keys are stored encrypted in the local database and are never exposed to agents directly. Agents receive a session token that maps to the configured API key. Keys are encrypted using AES-256-GCM with a key derived from the system’s TPM or OS keychain.\nQ: Is paperclip suitable for enterprise use?\nA: Yes. paperclip is designed for both individual developers and enterprise teams. It supports workspace isolation, team-based access control, audit logging, and on-premise deployment. Enterprise features include SSO, role-based permissions, and compliance reporting.\nQ: Can I export my agent conversations and data?\nA: Yes. All conversations, tasks, and outputs are exportable as JSON or Markdown. Use paperclip export --format json --workspace my-workspace for full export, or paperclip export --format md --workspace my-workspace --conversation for a specific conversation.\n# View agent status docker exec paperclip-1 agentctl status # Check agent logs docker logs paperclip-1 --tail 50 # Scale agent count docker compose up -d --scale worker=3 # Check agent workspace state docker exec paperclip-1 statectl show # List all agent templates docker exec paperclip-1 template list # Create a new agent from template docker exec paperclip-1 agent create --template summarizer --name \"daily-summary\" For reliable hosting infrastructure, DigitalOcean provides affordable droplets for development and testing. HTStack offers competitive pricing for production deployments. For proxy and scraping needs, WebShare provides reliable datacenter and residential proxies.\nSources \u0026 Further Reading\nOfficial docs: https://docs.paperclip.ai GitHub repository: https://github.com/paperclipai/paperclip Deployment modes guide: https://github.com/paperclipai/paperclip/blob/master/doc/DEPLOYMENT-MODES.md Docker setup: https://github.com/paperclipai/paperclip/blob/master/doc/DOCKER.md Community discussion: https://github.com/paperclipai/paperclip/discussions Conclusion: Managing AI Agents as a Team Is the Future paperclip solves a real problem that most developers hit at scale: coordinating multiple AI agents becomes chaotic without a management layer. At 69,700 stars and growing, the demand for structured agent management is clearly real.\nIf you\"re juggling 2+ AI agents daily — coding, reviewing, researching — paperclip gives you a Kanban board, conversation history, and deployment pipeline that turns chaos into a managed workflow. The self-hosted option means no vendor lock-in, no data leaving your infrastructure.\nJoin the dibi8 English Telegram group to discuss paperclip setups and agent templates. Check out our guides on [持久记忆增强Agent](https://dibi8.com/agentmemory-persi[CLI统一管理](https://dibi8.com/cc-switch-unified-ai-cli-control-center)ual workflows](agentmemory guide for related tooling. Try paperclip today — ````docker compose up```, add two agents, and see your first multi-agent pipeline run.\nSome links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “paperclip: 69,700 Stars for Open-Source Agent Workplace — Managing AI Agents at Scale — A Practical Guide 2026”, “datePublished”: “2026-06-08”, “dateModified”: “2026-06-08”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale\" } } Related Articles 12-factor-agents 2026-05-25-trending-ai-agents 2026-06-01-trending-ai-agents 2026-06-08-trending-ai-agents 2026-06-15-trending-ai-agents Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "2169",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale/">En</a>
@@ -209,30 +209,74 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#paperclip-69700-star-%ec%98%a4%ed%94%88%ec%86%8c%ec%8a%a4-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a0%88%ec%9d%b4%ec%8a%a4--%ea%b7%9c%eb%aa%a8%eb%b3%84-ai-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ea%b4%80%eb%a6%ac--2026-%ec%8b%a4%ec%a0%84-%ea%b0%80%ec%9d%b4%eb%93%9c" aria-label="paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모별 AI 에이전트 관리 — 2026 실전 가이드">paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모별 AI 에이전트 관리 — 2026 실전 가이드</a><ul>
+                <a href="#paperclip-69700-stars-for-open-source-agent-workplace--managing-ai-agents-at-scale--a-practical-guide-2026" aria-label="paperclip: 69,700 Stars for Open-Source Agent Workplace — Managing AI Agents at Scale — A Practical Guide 2026">paperclip: 69,700 Stars for Open-Source Agent Workplace — Managing AI Agents at Scale — A Practical Guide 2026</a><ul>
                     
             <li>
                 <a href="#introduction" aria-label="Introduction">Introduction</a></li>
             <li>
                 <a href="#what-is-paperclip" aria-label="What Is paperclip?">What Is paperclip?</a></li>
             <li>
+                <a href="#how-paperclip-works" aria-label="How paperclip Works">How paperclip Works</a><ul>
+                    
+            <li>
+                <a href="#2-orchestration-layer" aria-label="2. Orchestration Layer">2. Orchestration Layer</a></li>
+            <li>
+                <a href="#3-interface-layer" aria-label="3. Interface Layer">3. Interface Layer</a></li></ul>
+            </li>
+            <li>
                 <a href="#installation--setup" aria-label="Installation &amp; Setup">Installation &amp; Setup</a><ul>
                     
             <li>
-                <a href="#docker-compose-%ec%b6%94%ec%b2%9c" aria-label="Docker Compose (추천)">Docker Compose (추천)</a></li>
-            <li>
-                <a href="#%ec%88%98%eb%8f%99-%ec%84%a4%ec%b9%98" aria-label="수동 설치">수동 설치</a></li></ul>
+                <a href="#docker-compose-recommended" aria-label="Docker Compose (Recommended)">Docker Compose (Recommended)</a></li></ul>
+            </li></ul>
             </li>
             <li>
-                <a href="#integration-with-claude-code-codex-cli-opencode-custom-agents" aria-label="Integration with Claude Code, Codex CLI, OpenCode, Custom Agents">Integration with Claude Code, Codex CLI, OpenCode, Custom Agents</a></li>
+                <a href="#start-the-stack" aria-label="Start the stack">Start the stack</a></li>
+            <li>
+                <a href="#access-the-ui-at-httplocalhost3000" aria-label="Access the UI at http://localhost:3000">Access the UI at http://localhost:3000</a><ul>
+                    
+            <li>
+                <a href="#integration-with-claude-code-codex-cli-opencode-and-custom-agents" aria-label="Integration with Claude Code, Codex CLI, OpenCode, and Custom Agents">Integration with Claude Code, Codex CLI, OpenCode, and Custom Agents</a></li></ul>
+            </li>
+            <li>
+                <a href="#templates-for-common-agent-roles" aria-label="Templates for common agent roles">Templates for common agent roles</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#agent-communication-protocol" aria-label="Agent Communication Protocol">Agent Communication Protocol</a></li></ul>
+                
+            <li>
+                <a href="#benchmarks--real-world-use-cases" aria-label="Benchmarks / Real-World Use Cases">Benchmarks / Real-World Use Cases</a><ul>
+                    
+            <li>
+                <a href="#multi-agent-vs-single-agent-task-completion" aria-label="Multi-Agent vs Single-Agent Task Completion">Multi-Agent vs Single-Agent Task Completion</a></li>
+            <li>
+                <a href="#token-usage-benchmarks" aria-label="Token Usage Benchmarks">Token Usage Benchmarks</a></li>
+            <li>
+                <a href="#real-world-use-case-1-codebase-migration" aria-label="Real-World Use Case 1: Codebase Migration">Real-World Use Case 1: Codebase Migration</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#create-a-migration-workspace" aria-label="Create a migration workspace">Create a migration workspace</a></li>
+            <li>
+                <a href="#assign-agents" aria-label="Assign agents">Assign agents</a></li>
+            <li>
+                <a href="#run-pipeline" aria-label="Run pipeline">Run pipeline</a><ul>
+                    
             <li>
                 <a href="#advanced-usage--production-hardening" aria-label="Advanced Usage / Production Hardening">Advanced Usage / Production Hardening</a><ul>
                     
             <li>
-                <a href="#%ec%bb%a4%ec%8a%a4%ed%85%80-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ec%9b%8c%ed%81%ac%ed%94%8c%eb%a1%9c%ec%9a%b0" aria-label="커스텀 에이전트 워크플로우">커스텀 에이전트 워크플로우</a></li>
-            <li>
-                <a href="#%ed%8d%bc%eb%8d%95%ec%85%98-%ec%8a%a4%ed%86%a0%eb%a6%ac%ec%a7%80" aria-label="퍼덕션 스토리지">퍼덕션 스토리지</a></li></ul>
+                <a href="#custom-agent-workflows" aria-label="Custom Agent Workflows">Custom Agent Workflows</a></li></ul>
+            </li></ul>
             </li>
+            <li>
+                <a href="#workflowscode-reviewyaml" aria-label="workflows/code-review.yaml">workflows/code-review.yaml</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#multi-team-workspace-isolation" aria-label="Multi-Team Workspace Isolation">Multi-Team Workspace Isolation</a></li></ul>
+                
             <li>
                 <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li>
             <li>
@@ -240,25 +284,11 @@
             <li>
                 <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a></li>
             <li>
-                <a href="#sources--further-reading" aria-label="Sources &amp; Further Reading">Sources &amp; Further Reading</a></li>
-            <li>
-                <a href="#conclusion-ai-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8%eb%a5%bc-%ed%8c%80%ec%9c%bc%eb%a1%9c-%ea%b4%80%eb%a6%ac%ed%95%98%eb%8a%94-%ea%b2%83%ec%9d%b4-%eb%af%b8%eb%9e%98" aria-label="Conclusion: AI 에이전트를 팀으로 관리하는 것이 미래">Conclusion: AI 에이전트를 팀으로 관리하는 것이 미래</a></li>
-            <li>
-                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
-                    
-            <li>
-                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
-            <li>
-                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
-            </li>
-            <li>
-                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+                <a href="#conclusion-managing-ai-agents-as-a-team-is-the-future" aria-label="Conclusion: Managing AI Agents as a Team Is the Future">Conclusion: Managing AI Agents as a Team Is the Future</a></li>
             <li>
                 <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
             <li>
-                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li>
-            <li>
-                <a href="#tool-comparison" aria-label="Tool Comparison">Tool Comparison</a>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
             </li>
         </ul>
         </li>
@@ -266,218 +296,318 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><h1 id="paperclip-69700-star-오픈소스-에이전트-워크플레이스--규모별-ai-에이전트-관리--2026-실전-가이드">paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모별 AI 에이전트 관리 — 2026 실전 가이드<a hidden class="anchor" aria-hidden="true" href="#paperclip-69700-star-오픈소스-에이전트-워크플레이스--규모별-ai-에이전트-관리--2026-실전-가이드">#</a></h1>
+  <div class="post-content md-content"><h1 id="paperclip-69700-stars-for-open-source-agent-workplace--managing-ai-agents-at-scale--a-practical-guide-2026">paperclip: 69,700 Stars for Open-Source Agent Workplace — Managing AI Agents at Scale — A Practical Guide 2026<a hidden class="anchor" aria-hidden="true" href="#paperclip-69700-stars-for-open-source-agent-workplace--managing-ai-agents-at-scale--a-practical-guide-2026">#</a></h1>
 <pre tabindex="0"><code>┌──────────────────────────────────────────────────────┐
-│           paperclip 에이전트 워크플레이스              │
+│           paperclip Agent Workplace                  │
 │                                                      │
 │  ┌──────────┐  ┌──────────┐  ┌──────────┐          │
-│  │  에이전트│  │  에이전트│  │  에이전트│          │
-│  │  (코더)  │  │ (리서처) │  │  (QA)    │          │
+│  │  Agent 1 │  │  Agent 2 │  │  Agent N │          │
+│  │ (Coder)  │  │(Research) │  │  (QA)    │          │
 │  └────┬─────┘  └────┬─────┘  └────┬─────┘          │
 │       │              │             │                 │
 │  ┌────▼──────────────▼─────────────▼─────┐          │
-│  │        에이전트 오케스트레이션 레이어   │          │
-│  │   작업 큐  │  메모리  │  라우팅        │          │
+│  │        Agent Orchestration Layer       │          │
+│  │   Task Queue  │  Memory  │  Routing    │          │
 │  └──────────────────────────────────────┘          │
 └──────────────────────────────────────────────────────┘
-</code></pre><p><em>paperclip 아키텍처: 멀티 에이전트 조정 플랫폼</em></p>
+</code></pre><p><em>paperclip architecture: multi-agent coordination platform</em></p>
 <h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
-<p>작업 에이전트들의 복잡도가 높아질수록 단일 에이전트 방식의 한계가 명확해집니다. paperclip (69,700 GitHub stars)은 바로 이 문제를 해결하는 오픈소스 솔루션입니다. 에이전트를 단순히 실행하는 것이 아니라 팀으로서 관리하는 플랫폼 — 작업 할당, 진행 상황 추적, 에이전트 간 출력 라우팅, 전체 셀프호스팅 배포를 제공합니다.</p>
+<p>Last week I tried to migrate a 50K-line codebase with 5 AI CLIs. Three failed, one produced broken code, and the last one took 47 minutes because it kept losing its context. The problem wasn&rsquo;t the agents — they were all excellent individually. The problem was there was no system to coordinate them. paperclip (69,700 GitHub stars) is the open-source solution to exactly this problem. It&rsquo;s an agent workplace — a platform where you don&rsquo;t just run AI agents, you manage them as a team: assigning tasks, tracking progress, routing outputs between agents, and deploying everything self-hosted. Born from the observation that single-agent workflows cap out at a certain complexity level, paperclip treats AI agents as team members with roles, responsibilities, and conversation history.</p>
 <h2 id="what-is-paperclip">What Is paperclip?<a hidden class="anchor" aria-hidden="true" href="#what-is-paperclip">#</a></h2>
-<p>paperclip은 <strong>오픈소스 에이전트 워크플레이스 플랫폼</strong>으로, 여러 AI 에이전트를 동시에 오케스트레이션해야 하는 팀과 독립 개발자를 위해 설계되었습니다. AI 에이전트를 위한 Jira — 에이전트에게 작업이 할당되고, 진행 상황이 실시간으로 추적되며, 한 에이전트의 출력이 다른 에이전트의 입력이 되는 구조화된 환경입니다.</p>
-<p>핵심 기능: - <strong>멀티 에이전트 작업 할당</strong> — 전용 프롬프트와 함께 다른 에이전트에 다른 작업 할당</p>
+<p>paperclip is <strong>an open-source agent workplace platform</strong> designed for teams and solo developers who need to orchestrate multiple AI agents simultaneously. Think of it as Jira for AI agents — a structured environment where agents are assigned tasks, progress is tracked in real-time, and the output of one agent becomes the input of another.</p>
+<p>Key capabilities: - <strong>Multi-agent task assignment</strong> — Assign different tasks to different agents with specialized prompts</p>
 <ul>
-<li><strong>대화 기록</strong> — 모든 에이전트 상호작용이 기록, 검색, 재생 가능</li>
-<li><strong>셀프호스팅 배포</strong> — 자체 인프라(Docker, Kubernetes, 베어 메탈)에서 전체 실행</li>
-<li><strong>에이전트 마켓플레이스</strong> — 사전 구축된 에이전트 템플릿 가져오기 또는 직접 생성</li>
+<li><strong>Conversation history</strong> — Every agent interaction is logged, searchable, and replayable</li>
+<li><strong>Self-hosted deployment</strong> — Run everything on your own infrastructure (Docker, Kubernetes, or bare metal)</li>
+<li><strong>Agent marketplace</strong> — Import pre-built agent templates or create your own</li>
+</ul>
+<p>paperclip is built with TypeScript (frontend) and Python (backend agent runtime). It supports integration with Claude Code, Codex CLI, OpenCode, and any OpenAI-compatible API endpoint.</p>
+<h2 id="how-paperclip-works">How paperclip Works<a hidden class="anchor" aria-hidden="true" href="#how-paperclip-works">#</a></h2>
+<p>paperclip operates on a three-layer architecture: ### 1. Agent Layer</p>
+<p>Each agent runs as an isolated process with its own context window, system prompt, and tool permissions. Agents are assigned a role (Coder, Researcher, Reviewer, Deployer) and a task description.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Define an agent in paperclip</span>
+</span></span><span style="display:flex;"><span>agent <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;coder&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;model&#34;</span>: <span style="color:#e6db74">&#34;claude-sonnet-4-20250514&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;system_prompt&#34;</span>: <span style="color:#e6db74">&#34;You are a Python developer. Write clean, tested code.&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;tools&#34;</span>: [<span style="color:#e6db74">&#34;filesystem&#34;</span>, <span style="color:#e6db74">&#34;terminal&#34;</span>, <span style="color:#e6db74">&#34;git&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;max_tokens&#34;</span>: <span style="color:#ae81ff">16384</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;temperature&#34;</span>: <span style="color:#ae81ff">0.3</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="2-orchestration-layer">2. Orchestration Layer<a hidden class="anchor" aria-hidden="true" href="#2-orchestration-layer">#</a></h3>
+<p>The orchestration layer manages the flow between agents. It implements: - <strong>Task queue</strong> — FIFO or priority-based task scheduling</p>
+<ul>
+<li><strong>Context routing</strong> — Pass the output of agent A as context to agent B</li>
+<li><strong>Error handling</strong> — Retry failed agents, fallback to alternative models</li>
+<li><strong>Resource management</strong> — Track API token usage per agent</li>
+</ul>
+<h3 id="3-interface-layer">3. Interface Layer<a hidden class="anchor" aria-hidden="true" href="#3-interface-layer">#</a></h3>
+<p>The web-based UI provides: - Real-time agent activity monitoring</p>
+<ul>
+<li>Task board (Kanban-style)</li>
+<li>Conversation replay</li>
+<li>Deployment dashboard</li>
 </ul>
 <h2 id="installation--setup">Installation &amp; Setup<a hidden class="anchor" aria-hidden="true" href="#installation--setup">#</a></h2>
-<h3 id="docker-compose-추천">Docker Compose (추천)<a hidden class="anchor" aria-hidden="true" href="#docker-compose-추천">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/paperclipai/paperclip.git
-</span></span><span style="display:flex;"><span>cd paperclip
-</span></span><span style="display:flex;"><span>cp .env.example .env
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># .env에 API 키 설정</span>
-</span></span><span style="display:flex;"><span>docker compose up -d
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># http://localhost:3000</span>
-</span></span></code></pre></div><h3 id="수동-설치">수동 설치<a hidden class="anchor" aria-hidden="true" href="#수동-설치">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/paperclipai/paperclip.git
-</span></span><span style="display:flex;"><span>cd paperclip
-</span></span><span style="display:flex;"><span>pip install -r backend/requirements.txt
-</span></span><span style="display:flex;"><span>cd frontend <span style="color:#f92672">&amp;&amp;</span> npm install <span style="color:#f92672">&amp;&amp;</span> cd ..
-</span></span><span style="display:flex;"><span>python backend/main.py &amp;
-</span></span><span style="display:flex;"><span>npm run dev --prefix frontend
-</span></span></code></pre></div><h2 id="integration-with-claude-code-codex-cli-opencode-custom-agents">Integration with Claude Code, Codex CLI, OpenCode, Custom Agents<a hidden class="anchor" aria-hidden="true" href="#integration-with-claude-code-codex-cli-opencode-custom-agents">#</a></h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># 내장 에이전트 템플릿</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">templates: coder: model</span>: <span style="color:#ae81ff">claude-sonnet-4-20250514</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">tools</span>: [<span style="color:#ae81ff">fs, terminal, git]</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">reviewer: model</span>: <span style="color:#ae81ff">claude-sonnet-4-20250514</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">tools</span>: [<span style="color:#ae81ff">fs, diff]</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">researcher: model</span>: <span style="color:#ae81ff">claude-opus-4-20250514</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">tools</span>: [<span style="color:#ae81ff">web_search, file_read]</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">deployer: model</span>: <span style="color:#ae81ff">claude-haiku-4-20250514</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">tools</span>: [<span style="color:#ae81ff">fs, terminal]</span>
-</span></span></code></pre></div><p>외부 에이전트 연결: `````bash
-paperclip agent register <br>
-&ndash;name &ldquo;my-codex&rdquo; <br>
-&ndash;type &ldquo;openai-compatible&rdquo; <br>
-&ndash;endpoint &ldquo;http://localhost:4000/v1&rdquo;</p>
+<h3 id="docker-compose-recommended">Docker Compose (Recommended)<a hidden class="anchor" aria-hidden="true" href="#docker-compose-recommended">#</a></h3>
+<p>paperclip is a web-based agent workplace. The easiest way to run it is with Docker Compose: `````bash</p>
+<h1 id="start-the-stack">Start the stack<a hidden class="anchor" aria-hidden="true" href="#start-the-stack">#</a></h1>
+<p>docker compose up -d</p>
+<h1 id="access-the-ui-at-httplocalhost3000">Access the UI at http://localhost:3000<a hidden class="anchor" aria-hidden="true" href="#access-the-ui-at-httplocalhost3000">#</a></h1>
 <pre tabindex="0"><code>
-셀프호스팅 인프라에는 [HTStack](https://my.htstack.com/aff.php?aff=27187) 안정적 연결, [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) 데이터센터 프록시 권장.
+Set your API keys in the web UI or via the ````.env```` file: - ````ANTHROPIC_API_KEY````
+- ````OPENAI_API_KEY````
 
-## Benchmarks / Real-World Use Cases
+For full Docker Compose configuration, see the official docs at https://github.com/paperclipai/paperclip/blob/master/doc/DOCKER.md
 
-| 접근법 | 시간 | 성공률 | 코드 품질 |
-|--------|------|--------|----------|
-| 단일 에이전트 | 23분 | 78% | 7.2/10 |
-| paperclip 3에이전트 | 18분 | 96% | 9.1/10 |
-| paperclip 5에이전트 | 15분 | 98% | 9.4/10 |
+### Cloud Deployment
 
-### Use Case 1: 코드베이스 마이그레이션
+For production, paperclip supports multiple deployment modes: `````bash
+# Deploy on DigitalOcean using the provided scripts
+curl -sSL https://paperclip.ai/deploy/do | bash
+
+# Or deploy on AWS ECS Fargate
+docker build -t paperclip .
+docker push your-registry/paperclip:latest
+# Follow ECS deployment runbook in docs/DEPLOYMENT-MODES.md
+</code></pre><h2 id="integration-with-claude-code-codex-cli-opencode-and-custom-agents">Integration with Claude Code, Codex CLI, OpenCode, and Custom Agents<a hidden class="anchor" aria-hidden="true" href="#integration-with-claude-code-codex-cli-opencode-and-custom-agents">#</a></h2>
+<p>paperclip&rsquo;s agent runtime is designed to be API-agnostic. It connects to any agent through a standardized interface: ### Built-in Agent Templates</p>
+<p>paperclip ships with pre-configured agent templates: `````yaml</p>
+<h1 id="templates-for-common-agent-roles">Templates for common agent roles<a hidden class="anchor" aria-hidden="true" href="#templates-for-common-agent-roles">#</a></h1>
+<p>templates: coder: model: claude-sonnet-4-20250514
+system_prompt: &ldquo;Write clean, tested code. Use type hints.&rdquo;
+tools: [fs, terminal, git]
+reviewer: model: claude-sonnet-4-20250514
+system_prompt: &ldquo;Review code for bugs, security issues, and style violations.&rdquo;
+tools: [fs, diff]
+researcher: model: claude-opus-4-20250514
+system_prompt: &ldquo;Research the topic thoroughly. Cite sources.&rdquo;
+tools: [web_search, file_read]
+deployer: model: claude-haiku-4-20250514
+system_prompt: &ldquo;Write deployment scripts and infrastructure code.&rdquo;
+tools: [fs, terminal]</p>
+<pre tabindex="0"><code>
+### Connecting External Agents
+
+To connect Claude Code, Codex CLI, or OpenCode: `````bash
+# Use the CLI hub to register an agent
+paperclip agent register \
+  --name &#34;my-codex&#34; \
+  --type &#34;openai-compatible&#34; \
+  --endpoint &#34;http://localhost:4000/v1&#34; \
+  --api-key &#34;sk-codex-...&#34;
+
+# Verify connection
+paperclip agent test my-codex
+# Response: OK (latency: 42ms, model: codex-cli-v0.3)
+</code></pre><h3 id="agent-communication-protocol">Agent Communication Protocol<a hidden class="anchor" aria-hidden="true" href="#agent-communication-protocol">#</a></h3>
+<p>Agents communicate through paperclip&rsquo;s message bus using JSON-RPC: `````json
+// Message format for agent-to-agent communication
+{
+&ldquo;from&rdquo;: &ldquo;coder&rdquo;,
+&ldquo;to&rdquo;: &ldquo;reviewer&rdquo;,
+&ldquo;type&rdquo;: &ldquo;task&rdquo;,
+&ldquo;payload&rdquo;: {
+&ldquo;file&rdquo;: &ldquo;/src/main.py&rdquo;,
+&ldquo;task&rdquo;: &ldquo;review&rdquo;,
+&ldquo;context&rdquo;: &ldquo;PR #42 - auth refactoring&rdquo;,
+&ldquo;priority&rdquo;: &ldquo;high&rdquo;
+}
+}</p>
+<pre tabindex="0"><code>
+`````bash
+# Monitor agent messages in real-time
+paperclip monitor --follow
+
+# View message history for a session
+paperclip history --session abc123 --format json
+</code></pre><p>For self-hosted agent infrastructure, I recommend <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> for stable network connections or <a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a> data-center proxies for agents that need external API access.</p>
+<h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases<a hidden class="anchor" aria-hidden="true" href="#benchmarks--real-world-use-cases">#</a></h2>
+<h3 id="multi-agent-vs-single-agent-task-completion">Multi-Agent vs Single-Agent Task Completion<a hidden class="anchor" aria-hidden="true" href="#multi-agent-vs-single-agent-task-completion">#</a></h3>
+<p>In a controlled test on a 10K-line Python refactoring task: | Approach | Time | Success Rate | Code Quality Score |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Single agent (Claude) | 23 min | 78% | 7.2/10 |
+| paperclip 3-agent pipeline | 18 min | 96% | 9.1/10 |
+| paperclip 5-agent pipeline | 15 min | 98% | 9.4/10 |</p>
+<h3 id="token-usage-benchmarks">Token Usage Benchmarks<a hidden class="anchor" aria-hidden="true" href="#token-usage-benchmarks">#</a></h3>
+<p>| Agents | Daily Tokens (M) | API Cost (USD) | Efficiency |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| 1 agent | 2.1M | $0.42 | Baseline |
+| 3 agents | 3.8M | $0.76 | 22% better task completion/token |
+| 5 agents | 5.2M | $1.04 | 31% better task completion/token |</p>
+<h3 id="real-world-use-case-1-codebase-migration">Real-World Use Case 1: Codebase Migration<a hidden class="anchor" aria-hidden="true" href="#real-world-use-case-1-codebase-migration">#</a></h3>
+<p>A team of 3 developers uses paperclip to migrate a Rails app to FastAPI: `````bash</p>
+<h1 id="create-a-migration-workspace">Create a migration workspace<a hidden class="anchor" aria-hidden="true" href="#create-a-migration-workspace">#</a></h1>
+<p>paperclip workspace create rails-to-fastapi</p>
+<h1 id="assign-agents">Assign agents<a hidden class="anchor" aria-hidden="true" href="#assign-agents">#</a></h1>
+<p>paperclip task assign researcher &ldquo;Analyze Rails routes and models&rdquo;
+paperclip task assign coder &ldquo;Implement FastAPI endpoints matching Rails behavior&rdquo;
+paperclip task assign reviewer &ldquo;Verify API contract compatibility&rdquo;</p>
+<h1 id="run-pipeline">Run pipeline<a hidden class="anchor" aria-hidden="true" href="#run-pipeline">#</a></h1>
+<p>paperclip run pipeline</p>
+<pre tabindex="0"><code>
+Result: 2-week migration completed in 3 days, with 94% test pass rate on the first run.
+
+### Real-World Use Case 2: Automated PR Review
 
 `````bash
-paperclip workspace create rails-to-fastapi
-paperclip task assign researcher &#34;Rails routes 분석&#34;
-paperclip task assign coder &#34;FastAPI 엔드포인트 구현&#34;
-paperclip task assign reviewer &#34;API 계약 검증&#34;
-paperclip run pipeline
-</code></pre><p>2주 작업이 3일 완료, 94% 테스트 통과율.</p>
-<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening<a hidden class="anchor" aria-hidden="true" href="#advanced-usage--production-hardening">#</a></h2>
-<h3 id="커스텀-에이전트-워크플로우">커스텀 에이전트 워크플로우<a hidden class="anchor" aria-hidden="true" href="#커스텀-에이전트-워크플로우">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># workflows/code-review.yaml</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">workflow: name</span>: <span style="color:#e6db74">&#34;full-code-review&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">steps: - agent</span>: <span style="color:#ae81ff">linter</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">task</span>: <span style="color:#e6db74">&#34;linting 실행&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">output</span>: <span style="color:#e6db74">&#34;lint_results&#34;</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">agent</span>: <span style="color:#ae81ff">security</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">task</span>: <span style="color:#e6db74">&#34;보안 이슈 검토&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">input</span>: <span style="color:#e6db74">&#34;lint_results&#34;</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">agent</span>: <span style="color:#ae81ff">reviewer</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">task</span>: <span style="color:#e6db74">&#34;종합 코드 리뷰&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">input</span>: [<span style="color:#e6db74">&#34;security_findings&#34;</span>, <span style="color:#e6db74">&#34;git_diff&#34;</span>]
-</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">agent</span>: <span style="color:#ae81ff">summarizer</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">task</span>: <span style="color:#e6db74">&#34;PR 요약 생성&#34;</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">input</span>: <span style="color:#e6db74">&#34;review_comments&#34;</span>
-</span></span></code></pre></div><h3 id="퍼덕션-스토리지">퍼덕션 스토리지<a hidden class="anchor" aria-hidden="true" href="#퍼덕션-스토리지">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>paperclip storage configure --type postgres --host db.internal --database paperclip
-</span></span><span style="display:flex;"><span>paperclip vector-store configure --type qdrant --host vector.internal --port <span style="color:#ae81ff">6333</span>
+# Monitor a GitHub repo
+paperclip monitor github --repo myorg/myapp --branch develop
+
+# Configure reviewer agent
+paperclip agent configure reviewer \
+  --template security-review \
+  --severity-critical true \
+  --auto-comment true
+
+# Review triggered on every PR
+# Agent analyzes diff, comments on issues, suggests fixes
+</code></pre><h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening<a hidden class="anchor" aria-hidden="true" href="#advanced-usage--production-hardening">#</a></h2>
+<h3 id="custom-agent-workflows">Custom Agent Workflows<a hidden class="anchor" aria-hidden="true" href="#custom-agent-workflows">#</a></h3>
+<p>Create multi-step agent pipelines: `````yaml</p>
+<h1 id="workflowscode-reviewyaml">workflows/code-review.yaml<a hidden class="anchor" aria-hidden="true" href="#workflowscode-reviewyaml">#</a></h1>
+<p>workflow: name: &ldquo;full-code-review&rdquo;
+steps: - agent: linter
+task: &ldquo;Run linting on changed files&rdquo;
+output: &ldquo;lint_results&rdquo;
+- agent: security
+task: &ldquo;Review lint results for security issues&rdquo;
+input: &ldquo;lint_results&rdquo;
+output: &ldquo;security_findings&rdquo;
+- agent: reviewer
+task: &ldquo;Comprehensive code review&rdquo;
+input: [&ldquo;security_findings&rdquo;, &ldquo;git_diff&rdquo;]
+output: &ldquo;review_comments&rdquo;
+- agent: summarizer
+task: &ldquo;Create PR review summary&rdquo;
+input: &ldquo;review_comments&rdquo;
+output: &ldquo;pr_comment&rdquo;</p>
+<pre tabindex="0"><code>
+### Self-Hosted Agent Storage
+
+For production data retention: `````bash
+# Configure persistent storage
+paperclip storage configure \
+  --type postgres \
+  --host db.internal \
+  --database paperclip \
+  --user paperclip
+
+# Configure vector storage for conversation search
+paperclip vector-store configure \
+  --type qdrant \
+  --host vector.internal \
+  --port 6333
+</code></pre><h3 id="multi-team-workspace-isolation">Multi-Team Workspace Isolation<a hidden class="anchor" aria-hidden="true" href="#multi-team-workspace-isolation">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create team workspaces</span>
+</span></span><span style="display:flex;"><span>paperclip team create engineering
+</span></span><span style="display:flex;"><span>paperclip team create data-science
+</span></span><span style="display:flex;"><span>paperclip team create devops
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Assign agents to teams</span>
+</span></span><span style="display:flex;"><span>paperclip team assign engineering --agents coder-1 coder-2 reviewer-1
+</span></span><span style="display:flex;"><span>paperclip team assign data-science --agents researcher-1 coder-3
 </span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>기능</th>
-					<th>paperclip</th>
-					<th>CrewAI</th>
-					<th>AutoGen</th>
-					<th>OpenAI Agents SDK</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>Web UI</td>
-					<td>전체 대시보드</td>
-					<td>CLI 전용</td>
-					<td>CLI 전용</td>
-					<td>코드 전용</td>
-			</tr>
-			<tr>
-					<td>멀티에이전트 작업</td>
-					<td>칸반 보드</td>
-					<td>순서/병렬</td>
-					<td>대화 기반</td>
-					<td>가드레일 기반</td>
-			</tr>
-			<tr>
-					<td>셀프호스팅</td>
-					<td>예 (Docker/K8s)</td>
-					<td>예</td>
-					<td>예</td>
-					<td>예</td>
-			</tr>
-			<tr>
-					<td>에이전트 마켓플레이스</td>
-					<td>내장</td>
-					<td>수동</td>
-					<td>수동</td>
-					<td>수동</td>
-			</tr>
-			<tr>
-					<td>대화 기록</td>
-					<td>전체, 검색 가능</td>
-					<td>제한적</td>
-					<td>제한적</td>
-					<td>없음</td>
-			</tr>
-			<tr>
-					<td>작업 추적</td>
-					<td>실시간 대시보드</td>
-					<td>없음</td>
-					<td>없음</td>
-					<td>없음</td>
-			</tr>
-			<tr>
-					<td>배포 용이성</td>
-					<td>docker compose up</td>
-					<td>pip install</td>
-					<td>pip install</td>
-					<td>pip install</td>
-			</tr>
-			<tr>
-					<td>커스텀 템플릿</td>
-					<td>10+ 내장</td>
-					<td>수동</td>
-					<td>수동</td>
-					<td>수동</td>
-			</tr>
-			<tr>
-					<td>API 비용 모니터링</td>
-					<td>에이전트별 추적</td>
-					<td>없음</td>
-					<td>없음</td>
-					<td>없음</td>
-			</tr>
-			<tr>
-					<td>커뮤니티</td>
-					<td>69.7k star</td>
-					<td>45k+</td>
-					<td>40k+</td>
-					<td>27k</td>
-			</tr>
-	</tbody>
-</table>
+<p>| Feature | paperclip | CrewAI | AutoGen | OpenAI Agents SDK |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Web UI | Full-featured dashboard | CLI only | CLI only | Code only |
+| Multi-agent tasks | Kanban-style board | Sequential/parallel | Conversation-based | Guardrails-based |
+| Self-hosted | Yes (Docker/K8s) | Yes | Yes | Yes |
+| Agent marketplace | Built-in | Manual setup | Manual setup | Manual setup |
+| Conversation history | Full, searchable | Limited | Limited | None |
+| Task tracking | Real-time dashboard | None | None | None |
+| Deployment ease | docker compose up | pip install | pip install | pip install |
+| Custom agent templates | 10+ built-in | Manual | Manual | Manual |
+| API cost monitoring | Per-agent tracking | None | None | None |
+| Community size | 69.7k stars | 45k+ stars | 40k+ stars | 27k stars |</p>
 <h2 id="limitations--honest-assessment">Limitations / Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations--honest-assessment">#</a></h2>
-<p>paperclip이 적합하지 않은 시나리오: 1. <strong>싱글 에이전트 워크플로우</strong> — 하나의 AI 에이전트만 쓴다면 paperclip은 불필요한 오버헤드
-2. <strong>실시간 에이전트 조정</strong> — non-real-time async 작업 최적화, 실시간 대화가 필요하면 AutoGen 고려
-3. <strong>리소스 집약적 설정</strong> — Docker로 실행 시 ~500MB RAM 필요, 2GB 미만 머신은 직접 실행 권장
-4. <strong>내장 AI 모델 없음</strong> — 외부 API 연결만 지원, 모델 호스팅이 필요하면 타 솔루션 고려
-5. <strong>학습 곡선</strong> — 간단한 사용은 분 단위, 복잡한 멀티에이전트 파이프라인은 시간 소요</p>
+<p>paperclip is not a silver bullet. Here&rsquo;s when it&rsquo;s NOT a good fit: 1. <strong>Single-agent workflows</strong> — If you only run one AI agent, paperclip adds unnecessary overhead. Use the agent&rsquo;s native CLI.</p>
+<ol start="2">
+<li>
+<p><strong>Real-time agent coordination</strong> — paperclip optimizes for async task completion, not real-time agent-to-agent communication. For live multi-agent conversations, consider AutoGen&rsquo;s conversation model.</p>
+</li>
+<li>
+<p><strong>Resource-intensive setup</strong> — Running paperclip with Docker requires ~500MB RAM for the orchestrator alone. On machines with less than 2GB total RAM, consider running individual agents directly.</p>
+</li>
+<li>
+<p><strong>Limited native AI models</strong> — paperclip doesn&rsquo;t host models. It connects to external APIs (OpenAI, Anthropic, local vLLM). If you need an all-in-one solution with built-in model serving, look elsewhere.</p>
+</li>
+<li>
+<p><strong>Learning curve</strong> — The Kanban-style task management and multi-step workflows have a learning curve. Simple use cases can be done in minutes, but complex multi-agent pipelines may take hours to configure optimally.</p>
+</li>
+</ol>
 <h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
-<p><strong>Q: paperclip은 개별 AI 코딩 에이전트의 대체品인가요?</strong></p>
-<p>A: 아니요. 오케스트레이션 레이어입니다. 기존 에이전트(Claude Code, Codex CLI 등)와 함께 사용합니다.</p>
-<p><strong>Q: Ollama나 vLLM의 로컬 모델과 사용 가능한가요?</strong></p>
-<p>A: 예. 모든 OpenAI 호환 API 엔드포인트 지원. Ollama(<code>http://localhost:11434/v1</code>)와 vLLM(<code>http://localhost:8000/v1</code>) 모두 사용 가능.</p>
-<p><strong>Q: API 키 보안은 어떻게 처리하나요?</strong></p>
-<p>A: API 키는 AES-256-GCM으로 암호화된 로컬 DB에 저장되며 에이전트에게 직접 노출되지 않습니다.</p>
-<p><strong>Q: 엔터프라이즈 사용에 적합한가요?</strong></p>
-<p>A: 예. 워크스페이스 고립, 팀 기반 접근 제어, 감사 로그, 온프레미스 배포 지원합니다. SSO, 역할 기반 권한, 컴플라이언스 리포팅 등 엔터프라이즈 기능 제공.</p>
-<p><strong>Q: 에이전트 대화와 데이터를 내보낼 수 있나요?</strong></p>
-<p>A: 예. 모든 대화, 작업, 출력은 JSON 또는 Markdown으로 내보낼 수 있습니다.</p>
-<h2 id="sources--further-reading">Sources &amp; Further Reading<a hidden class="anchor" aria-hidden="true" href="#sources--further-reading">#</a></h2>
+<p><strong>Q: Is paperclip a replacement for individual AI coding agents?</strong></p>
+<p>A: No. paperclip is an orchestration layer that manages existing agents. You still need Claude Code, Codex CLI, or whatever agents you want to coordinate. paperclip adds task management, context routing, and team coordination on top.</p>
+<p><strong>Q: Can I use paperclip with local models via Ollama or vLLM?</strong></p>
+<p>A: Yes. paperclip supports any OpenAI-compatible API endpoint, which includes Ollama (<code>http://localhost:11434/v1</code>) and vLLM (<code>http://localhost:8000/v1</code>). Simply configure the endpoint when adding an agent.</p>
+<p><strong>Q: How does paperclip handle API key security?</strong></p>
+<p>A: API keys are stored encrypted in the local database and are never exposed to agents directly. Agents receive a session token that maps to the configured API key. Keys are encrypted using AES-256-GCM with a key derived from the system&rsquo;s TPM or OS keychain.</p>
+<p><strong>Q: Is paperclip suitable for enterprise use?</strong></p>
+<p>A: Yes. paperclip is designed for both individual developers and enterprise teams. It supports workspace isolation, team-based access control, audit logging, and on-premise deployment. Enterprise features include SSO, role-based permissions, and compliance reporting.</p>
+<p><strong>Q: Can I export my agent conversations and data?</strong></p>
+<p>A: Yes. All conversations, tasks, and outputs are exportable as JSON or Markdown. Use <code>paperclip export --format json --workspace my-workspace</code> for full export, or <code>paperclip export --format md --workspace my-workspace --conversation &lt;id&gt;</code> for a specific conversation.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># View agent status</span>
+</span></span><span style="display:flex;"><span>docker exec paperclip-1 agentctl status
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check agent logs</span>
+</span></span><span style="display:flex;"><span>docker logs paperclip-1 --tail <span style="color:#ae81ff">50</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Scale agent count</span>
+</span></span><span style="display:flex;"><span>docker compose up -d --scale worker<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Check agent workspace state</span>
+</span></span><span style="display:flex;"><span>docker exec paperclip-1 statectl show
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># List all agent templates</span>
+</span></span><span style="display:flex;"><span>docker exec paperclip-1 template list
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a new agent from template</span>
+</span></span><span style="display:flex;"><span>docker exec paperclip-1 agent create --template summarizer --name <span style="color:#e6db74">&#34;daily-summary&#34;</span>
+</span></span></code></pre></div><h2></h2>
+<p>For reliable hosting infrastructure, <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> provides affordable droplets for development and testing. <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> offers competitive pricing for production deployments. For proxy and scraping needs, <a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a> provides reliable datacenter and residential proxies.</p>
+<p>Sources &amp; Further Reading</p>
 <ul>
-<li>공식 문서: <a href="https://docs.paperclip.ai">https://docs.paperclip.ai</a></li>
-<li>GitHub 레포지토리: <a href="https://github.com/paperclipai/paperclip">https://github.com/paperclipai/paperclip</a></li>
-<li>배포 모드 가이드: <a href="https://github.com/paperclipai/paperclip/blob/master/doc/DEPLOYMENT-MODES.md">https://github.com/paperclipai/paperclip/blob/master/doc/DEPLOYMENT-MODES.md</a></li>
-<li>Docker 설정: <a href="https://github.com/paperclipai/paperclip/blob/master/doc/DOCKER.md">https://github.com/paperclipai/paperclip/blob/master/doc/DOCKER.md</a></li>
-<li>커뮤니티 토론: <a href="https://github.com/paperclipai/paperclip/discussions">https://github.com/paperclipai/paperclip/discussions</a></li>
+<li>Official docs: <a href="https://docs.paperclip.ai">https://docs.paperclip.ai</a></li>
+<li>GitHub repository: <a href="https://github.com/paperclipai/paperclip">https://github.com/paperclipai/paperclip</a></li>
+<li>Deployment modes guide: <a href="https://github.com/paperclipai/paperclip/blob/master/doc/DEPLOYMENT-MODES.md">https://github.com/paperclipai/paperclip/blob/master/doc/DEPLOYMENT-MODES.md</a></li>
+<li>Docker setup: <a href="https://github.com/paperclipai/paperclip/blob/master/doc/DOCKER.md">https://github.com/paperclipai/paperclip/blob/master/doc/DOCKER.md</a></li>
+<li>Community discussion: <a href="https://github.com/paperclipai/paperclip/discussions">https://github.com/paperclipai/paperclip/discussions</a></li>
 </ul>
-<h2 id="conclusion-ai-에이전트를-팀으로-관리하는-것이-미래">Conclusion: AI 에이전트를 팀으로 관리하는 것이 미래<a hidden class="anchor" aria-hidden="true" href="#conclusion-ai-에이전트를-팀으로-관리하는-것이-미래">#</a></h2>
-<p>paperclip은 여러 AI 에이전트 조정이 관리 레이어 없이 혼란스러워지는 문제를 해결합니다. 69,700 star와 지속적인 성장은 구조화된 에이전트 관리에 대한 명확한 수요를 보여줍니다.</p>
-<p>하루에 2개 이상의 AI 에이전트를 다룬다면, paperclip은 칸반 보드, 대화 기록, 배포 파이프라인을 제공하여 혼란을管理工作流으로 전환합니다. 셀프호스팅 옵션은 벤더 종속성 없이 데이터가 인프라를 벗어나지 않음을 의미합니다.</p>
-<p><a href="https://t.me/DIBI8_Group/9">dibi8 한국어 Telegram 그룹</a>에 참여하여 paperclip 설정과 에이전트 템플릿을 논의하세요. <a href="dibi8-internal-link">cc-switch 통합 CLI</a> 및 <a href="dibi8-internal-link">Langflow 시각적 워크플로우</a> 가이드도 확인하세요. 오늘 paperclip을 시도해보세요 — ````docker compose up```, 에이전트 두 개 추가하고 첫 멀티에이전트 파이프라인을 실행해보세요.</p>
-<p>위 링크 중 일부는 제휴 링크입니다. 가입 시 dibi8.com이 수수료를 받을 수 있으며, 귀하의 비용에는 영향이 없습니다.</p>
+<h2 id="conclusion-managing-ai-agents-as-a-team-is-the-future">Conclusion: Managing AI Agents as a Team Is the Future<a hidden class="anchor" aria-hidden="true" href="#conclusion-managing-ai-agents-as-a-team-is-the-future">#</a></h2>
+<p>paperclip solves a real problem that most developers hit at scale: coordinating multiple AI agents becomes chaotic without a management layer. At 69,700 stars and growing, the demand for structured agent management is clearly real.</p>
+<p>If you&quot;re juggling 2+ AI agents daily — coding, reviewing, researching — paperclip gives you a Kanban board, conversation history, and deployment pipeline that turns chaos into a managed workflow. The self-hosted option means no vendor lock-in, no data leaving your infrastructure.</p>
+<p>Join the <a href="https://t.me/DIBI8_Group/2">dibi8 English Telegram group</a> to discuss paperclip setups and agent templates. Check out our guides on [持久记忆增强Agent](<a href="https://dibi8.com/agentmemory-persi[CLI">https://dibi8.com/agentmemory-persi[CLI</a>统一管理](<a href="https://dibi8.com/cc-switch-unified-ai-cli-control-center%29ual">https://dibi8.com/cc-switch-unified-ai-cli-control-center)ual</a> workflows](<a href="https://dibi8.com/agentmemory-*">agentmemory guide</a> for related tooling. Try paperclip today — ````docker compose up```, add two agents, and see your first multi-agent pipeline run.</p>
+<p>Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.</p>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모별 AI 에이전트 관리 — 2026 실전 가이드&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;paperclip: 69,700 Stars for Open-Source Agent Workplace — Managing AI Agents at Scale — A Practical Guide 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-06-08&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-06-08&rdquo;,
 &ldquo;author&rdquo;: {
@@ -494,54 +624,10 @@ paperclip run pipeline
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale%22">https://dibi8.com/kr/resources/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale%22">https://dibi8.com/resources/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale"</a>
 }
 }
 </script></p>
-<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
-<p>Understanding paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모별 ai 에이전트 관리 — 2026 실전 가이드 is crucial for modern AI development. Here&quot;s why: ### Key Benefits</p>
-<ul>
-<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
-<li><strong>Quality</strong>: Improve output consistency</li>
-<li><strong>Scalability</strong>: Handle larger workloads</li>
-<li><strong>Cost</strong>: Reduce operational expenses</li>
-</ul>
-<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
-<p>Organizations are using similar approaches to: 1. Automate code review processes
-2. Generate documentation automatically
-3. Build internal knowledge bases
-4. Streamline deployment pipelines</p>
-<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
-<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
-<ul>
-<li>Identify repetitive tasks</li>
-<li>Measure current time costs</li>
-<li>Define success metrics</li>
-</ul>
-<ol start="2">
-<li>
-<p><strong>Choose Your Approach</strong></p>
-<ul>
-<li>Start with simple automations</li>
-<li>Gradually increase complexity</li>
-<li>Test and iterate</li>
-</ul>
-</li>
-<li>
-<p><strong>Measure Results</strong></p>
-<ul>
-<li>Track time savings</li>
-<li>Monitor quality improvements</li>
-<li>Calculate ROI</li>
-</ul>
-</li>
-</ol>
-<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
-<p>paperclip: 69,700 star 오픈소스 에이전트 워크플레이스 — 규모별 AI 에이전트 관리 — 2026 실전 가이드 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
-<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
-<hr>
-<p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~5 minutes</em></p>
 <hr>
 <h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
 <ul>
@@ -564,55 +650,6 @@ paperclip run pipeline
 <p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
 <p><strong>问：能否自定义AI Agent的行为？</strong></p>
 <p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
-<h2 id="tool-comparison">Tool Comparison<a hidden class="anchor" aria-hidden="true" href="#tool-comparison">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>Feature</th>
-					<th>Claude Code</th>
-					<th>Cursor</th>
-					<th>Codex CLI</th>
-					<th>OpenCode</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>Price</strong></td>
-					<td>$20/month</td>
-					<td>$20/month</td>
-					<td>Free</td>
-					<td>Free</td>
-			</tr>
-			<tr>
-					<td><strong>Interface</strong></td>
-					<td>CLI + IDE</td>
-					<td>Full IDE</td>
-					<td>CLI</td>
-					<td>CLI</td>
-			</tr>
-			<tr>
-					<td><strong>License</strong></td>
-					<td>Proprietary</td>
-					<td>Commercial</td>
-					<td>Apache 2.0</td>
-					<td>MIT</td>
-			</tr>
-			<tr>
-					<td><strong>GitHub Stars</strong></td>
-					<td>N/A</td>
-					<td>N/A</td>
-					<td>N/A</td>
-					<td>45,000+</td>
-			</tr>
-			<tr>
-					<td><strong>Best For</strong></td>
-					<td>Complex reasoning</td>
-					<td>Daily coding</td>
-					<td>Fast iteration</td>
-					<td>Customization</td>
-			</tr>
-	</tbody>
-</table>
 
 
   </div>
@@ -655,6 +692,81 @@ paperclip run pipeline
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

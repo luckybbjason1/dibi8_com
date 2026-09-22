@@ -132,45 +132,13 @@
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-20T00:00:00&#43;08:00 lastmod: 2026-05-20T00:00:00&#43;08:00 tech_stack: - TypeScript
-Python Docker application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-20” draft: false categories: [“llm-frameworks”] tags: [“mcp”, “model context protocol”, “레지스트리”, “hub 글”] aliases: /posts/mcp-server-registry-comprehensive-guide-2026/ MCP Server 레지스트리 가이드 2026: 19,700&#43; 서버, 7개 공식 픽, 60초 안에 맞는 거 찾는 법 2026년 1월, 공개된 모든 MCP server를 GitHub README 하나에 다 담을 수 있었습니다. 2026년 5월, mcp.so는 19,700&#43; 개를 나열합니다. 병목은 더 이상 “어떻게 하나 만들지&#34;가 아닙니다 — “19,700개 중 뭘 실제로 꽂을지&#34;입니다.
+    <p>title: “MCP Servers 2026: The 100&#43; Server Ecosystem Map and a De… description: “Technical guide and comparison.” date: 2026-05-26T00:00:00&#43;08:00 lastmod: 2026-05-26T00:00:00&#43;08:00 tech_stack: [MCP, ‘Claude Code’, Cursor, TypeScript, Python] application_domain: LLM Frameworks source_version: “MCP 2025-06 spec” licensing_model: Open Source / Mixed license_type: ‘Various (mostly MIT / Apache-2.0)’ file_size: ’’ file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“mcp”, “model-context-protocol”, “claude-code”, “ai-agents”, “developer-tools”, “integration”, “2026”] aliases:
+/posts/mcp-servers-2026-rankings-selection-guide/ faq: - q: “What is MCP and why does it matter in 2026?” a: “Model Context Protocol (MCP) is Anthropic’s open spec for connecting AI agents to external tools, data sources, and services. In 2026 it became the de facto plug-in standard supported by Claude Code, Cursor, Codex CLI, Gemini CLI, and most major AI coding agents. The ecosystem grew from ~30 servers in late 2024 to 1000&#43; public servers by mid-2026.” q: “Should I use stdio, HTTP, or SSE-based MCP servers?” a: “stdio for local-only servers running on your machine (filesystem, git, databases on localhost) — lowest latency, zero network. HTTP/SSE for remote SaaS integrations (GitHub, Linear, Notion) where the server is hosted by a third party. New MCP 2025-06 spec adds OAuth bridge for credential-managed servers. Most production setups use a mix: 80% stdio local, 20% HTTP for SaaS.” q: “What’s the security risk of installing community MCP servers?” a: “Significant. MCP servers run with your full local permissions — they can read files, exec commands, and make network calls. The Anthropic-maintained reference servers are audited. Community servers vary: always read the source, prefer servers with active maintainers and recent commits, never grant a server credentials you wouldn’t paste in plain text.” q: “Which MCP servers do most professional developers actually use?” a: “Based on usage telemetry from major MCP registries (mid-2026): filesystem, github, git, postgres, sqlite top the local stdio category. For SaaS: linear, slack, sentry, supabase. For specialized: playwright, puppeteer, brave-search, fetch. The long tail of 900&#43; community servers covers niche integrations but most developers use 5-10 core servers.” q: “How do I avoid MCP server hell (too many servers, slow startup)?” a: “Three rules: (1) Install only servers you use weekly — rare integrations are better as one-off scripts. (2) Use per-project MCP config (.cursor/mcp.json, .claude/mcp.json) instead of global, so unrelated agents don’t load 30 servers. (3) Audit startup time — if a server takes &gt;500ms to initialize, it’s slowing every agent session. The MCP spec doesn’t enforce this, your discipline does.” q: “Is MCP going to be replaced by something else soon?” a: “Unlikely in 2026-2027. MCP has cross-vendor adoption (Anthropic, OpenAI’s reference implementations, Google’s Gemini), an open spec, and &gt;1000 public servers. The next layer above MCP — agent-to-agent protocols, capability discovery — is still emerging. MCP is the integration layer; expect it to remain stable for at least 18-24 months.” MCP Servers 2026: The 100&#43; Server Ecosystem Map and a Decision Tree for Picking the Right Ones Meta Description: The Model Context Protocol ecosystem crossed 1000&#43; public servers by mid-2026. This guide ranks the top 30 by category, explains the architectural trade-offs between stdio, HTTP/SSE, and OAuth-bridged servers, and gives you a decision tree for selecting servers without drowning in registries.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/mcp-server-registry-comprehensive-guide-2026/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Tool Guide
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-25T00:00:00&#43;08:00 lastmod: 2026-05-25T00:00:00&#43;08:00 tech_stack: [MCP, Security, ‘Claude Code’, TypeScript, Python] application_domain: LLM Frameworks source_version: “MCP 2025-06 spec” licensing_model: Open Source / Mixed license_type: Various last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“mcp”, “security”, “audit”, “claude-code”, “supply-chain”, “agent-security”, “2026”] aliases:
-/kr/posts/mcp-server-security-audit-2026-real-cases/ faq: - q: “Anthropic이 유지보수하는 MCP 서버가 커뮤니티 서버보다 안전한가?” a: “그렇다, 실질적으로 안전하다. Anthropic 참조 서버(filesystem, git, github, fetch, sequentialthinking)는 내부 리뷰, 서명된 릴리스, 정의된 보안 모델을 갖고 있다. 커뮤니티 서버는 편차가 크다 — 일부는 감사를 받았지만 대부분은 그렇지 않다. Anthropic 버전이 있다면 기본값으로 선택하고, 커뮤니티 대안은 검증 전까지는 전체 로컬 권한을 가진 신뢰할 수 없는 코드로 취급하라.” q: “2026년 실제로 가장 큰 MCP 공격 패턴은 무엇인가?” a: “세 가지가 공동 1위: (1) 타이포스쿼팅 — github-mcp-server-v2 같은 가짜 패키지가 토큰을 빼낸다. (2) 유지보수자 이전 &#43; 텔레메트리 — 인기 커뮤니티 서버가 손을 바꿔 파일 경로나 환경 변수를 유출하는 분석 기능을 추가한다. (3) 가져온 콘텐츠를 통한 프롬프트 인젝션 — fetch 서버가 적대적 마크다운을 가져오고, 에이전트는 프롬프트에 속아 ~/.ssh/id_rsa를 유출한다.” q: “제대로 된 설치 전 감사는 얼마나 걸리나?” a: “무엇을 봐야 할지 알면 5분이다. 이 글의 8단계 체크리스트는 유지보수자 활성도, 의존성 트리, 네트워크 호출, 파일 시스템 범위, 시크릿 처리, 공급망 추적, 취약점 이력, 샌드박스 호환성을 다룬다. 대부분의 커뮤니티 서버는 8개 중 최소 2개를 통과하지 못한다.” q: “MCP 서버에 fine-grained GitHub PAT를 써야 하나?” a: “항상. github MCP 서버는 당신이 허용한 특정 저장소와 작업에 대한 scope만 필요하다. 절대 full-access PAT를 주지 마라 — 단 한 번의 프롬프트 인젝션으로 저장소를 삭제하거나, 비공개 코드를 유출하거나, 가짜 PR을 올릴 수 있다. 명시적 저장소 &#43; scope 목록을 가진 fine-grained 토큰은 어떤 침해의 폭발 반경도 제한한다.” q: “MCP 서버를 컨테이너에서 실행하는 게 셋업 비용 대비 가치가 있나?” a: “고위험 서버(네트워크, 자격증명, fetch처럼 신뢰할 수 없는 콘텐츠를 다루는 모든 것)에는 — 그렇다. 컨테이너나 firejail 격리는 침해된 MCP 서버가 SSH 키, .env 파일, 브라우저 쿠키를 읽는 것을 방지한다. 범위가 제한된 디렉터리에서만 동작하는 신뢰된 Anthropic stdio 서버는 오버헤드만큼 가치가 없다.” q: “MCP 서버가 악성임을 알리는 ‘탄광의 카나리아’는 무엇인가?” a: “의존성 분석에서 설명되지 않는 네트워크 호출이다. filesystem이나 git MCP 서버는 HTTP 호출이 0이어야 한다. fetch나 github 서버는 명확하게 정의된 엔드포인트를 갖는다. 알 수 없는 도메인(특히 임의의 서브도메인이나 IP 리터럴을 통한)으로 호출하는 모든 것은 적신호이며 — 커뮤니티 서버가 데이터를 유출하는 가장 흔한 방식이다.” MCP 서버 보안 감사 2026: 실제 커뮤니티 서버 5종 리뷰 &#43; 함정 패턴 Meta Description: 프로덕션에서 인기 커뮤니티 MCP 서버 5종을 감사했다. 구체적 취약점, 익스플로잇 시연, 서버당 5분이면 끝나는 8단계 체크리스트.
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer>
-  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/mcp-server-security-audit-2026-real-cases/"></a>
-</article>
-
-<article class="post-entry"> 
-  <header class="entry-header">
-    <h2 class="entry-hint-parent">AI Tool Guide
-    </h2>
-  </header>
-  <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-26T00:00:00&#43;08:00 lastmod: 2026-05-26T00:00:00&#43;08:00 tech_stack: [MCP, ‘Claude Code’, Cursor, TypeScript, Python] application_domain: LLM Frameworks source_version: “MCP 2025-06 spec” licensing_model: Open Source / Mixed license_type: Various last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“mcp”, “model-context-protocol”, “claude-code”, “ai-agents”, “개발자도구”, “통합”, “2026”] aliases:
-/kr/posts/mcp-servers-2026-rankings-selection-guide/ faq: - q: “MCP는 무엇이고 2026년에 왜 중요한가요?” a: “Model Context Protocol(MCP)은 Anthropic이 2024년 말 오픈한 프로토콜로, AI 에이전트를 외부 도구/데이터 소스/서비스에 연결합니다. 2026년에는 사실상 AI 에이전트 플러그인 표준이 되어 Claude Code, Cursor, Codex CLI, Gemini CLI 등 주요 AI 코딩 에이전트가 모두 지원합니다. 2024년 말 약 30개에서 2026년 중반 1000&#43; 공개 서버로 성장.” q: “stdio, HTTP, SSE-based 중 어떤 MCP 서버를 사용해야 하나요?” a: “stdio는 로컬 서버(filesystem, git, localhost DB) — 최저 지연, 네트워크 제로. HTTP/SSE는 원격 SaaS 통합(GitHub, Linear, Notion). MCP 2025-06 스펙은 OAuth bridge를 추가. 대부분 프로덕션은 혼합: 80% stdio 로컬 &#43; 20% HTTP SaaS.” q: “커뮤니티 MCP 서버 설치의 보안 위험은?” a: “심각합니다. MCP 서버는 완전한 로컬 권한으로 실행 — 파일 읽기, 명령 실행, 네트워크 호출 가능. Anthropic 유지 참조 서버는 감사됨. 커뮤니티 서버는 다양: 항상 소스 읽기, 활성 maintainer &#43; 최근 commit 우선, plain text 붙여넣기 못할 자격증명은 절대 부여하지 마세요.” q: “전문 개발자들이 실제 어떤 MCP 서버를 사용하나요?” a: “주요 MCP registry 사용량 데이터(2026 중반): filesystem, github, git, postgres, sqlite가 로컬 stdio 상위. SaaS: linear, slack, sentry, supabase. 특화: playwright, puppeteer, brave-search, fetch. 900&#43; long tail 커뮤니티 서버가 niche 통합을 cover하지만 대부분 개발자는 5-10개 핵심만 사용.” q: “MCP 서버 hell(너무 많음, 시작 느림)을 어떻게 피하나요?” a: “세 가지 규칙: (1) 매주 사용하는 것만 설치. (2) per-project MCP config(.cursor/mcp.json, .claude/mcp.json) 사용해 전역 30개 로드 방지. (3) 시작 시간 감사 — 500ms 이상 초기화 서버는 모든 agent 세션을 늦춤. MCP spec이 강제하지 않음; 당신의 규율이 강제.” MCP 서버 2026: 100&#43; 생태계 지도 &#43; 선정 결정 트리 Meta Description: Model Context Protocol 생태계가 2026년 중반 1000&#43; 공개 서버를 돌파. 카테고리별 상위 30개, stdio/HTTP-SSE/OAuth-bridged 서버의 아키텍처 트레이드오프, registry에 빠지지 않는 결정 트리.
-...</p>
-  </div>
-  <footer class="entry-footer">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/"></a>
 </article>
 
@@ -180,13 +148,13 @@ Python Docker application_domain: Llm Frameworks source_version: ’&#39; licens
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Ai Tools source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“melotts”, “텍스트음성변환”, “tts”, “다국어”, “python”, “음성합성”, “오픈소스”, “cpu추론”] aliases:
-/kr/posts/melotts/ 대부분의 오픈소스 TTS 라이브러리는 품질과 속도 사이에서 선택을 강요합니다: 고품질을 위해서는 GPU가 필요하고, CPU 친화적인 옵션은 로봇처럼 들립니다. MIT와 MyShell.ai 연구원들이 개발한 MeloTTS는 이 트레이드오프를 깨뜨립니다. 7,400개 이상의 GitHub Stars와 MIT 라이선스를 보유한 이 라이브러리는 CPU에서 6개 언어와 여러 영어 억양으로 실시간 다국어 음성 합성을 제공합니다. 이 가이드에서는 MeloTTS의 완전한 설치 설정, Coqui TTS, ChatTTS, Bark와의 벤치마크 비교, 그리고 프로덕션 배포 구성을 다룹니다.
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Ai Tools source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“melotts”, “text-to-speech”, “tts”, “multilingual”, “python”, “voice-synthesis”, “open-source”, “cpu-inference”] aliases:
+/posts/melotts/- Most open-source TTS libraries force a choice: high quality demands a GPU, and CPU-friendly options sound robotic. MeloTTS, developed by MIT and MyShell.ai researchers, breaks this trade-off. With 7,400&#43; GitHub stars and an MIT license, it delivers real-time, multi-lingual speech synthesis on CPU across 6 languages and multiple English accents. This guide walks through the complete MeloTTS setup, benchmarks it against Coqui TTS, ChatTTS, and Bark, and provides production-ready deployment configs.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>14 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/melotts/"></a>
 </article>
 
@@ -196,13 +164,13 @@ Python Docker application_domain: Llm Frameworks source_version: ’&#39; licens
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“mem0”, “ai-agent-memory”, “지속-메모리”, “langchain”, “벡터-스토어”, “메모리-튜닝”, “mem0-튜토리얼”, “mem0-vs-langchain”, “crewai”, “오픈소스”] aliases:
-/kr/posts/mem0/ 소개 모든 AI 에이전트 개발자는 같은 벽에 부딪힙니다: 에이전트가 잊어버리는 것입니다. 사용자가 한 세션에서 챗봇에게 자신이 채식주의자이고 견과류 알레르기가 있다고 말했는데, 두 시간 후 에이전트가 땅콩 칠리를 추천합니다. 이는 프롬프트 엔지니어링 문제가 아닙니다 — 메모리 아키텍처 문제입니다. 상태 비저장 LLM은 세션 간에 사실을 지속할 내장 메커니즘이 없습니다. Mem0 (mem0ai/mem0)은 플러그 앤 플레이 메모리 레이어로 이 문제를 해결했으며, 56,205개 이상의 GitHub 스타와 90,000명 이상의 개발자가 채택했습니다. 이 가이드는 LangChain, CrewAI 및 OpenAI 에이전트와의 벡터 스토어 구성, 실제 벤치마크, 통합 코드를 포함한 설치부터 프로덕션 튜닝까지의 완전한 mem0 설정을 다룹니다.
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“mem0”, “ai-agent-memory”, “persistent-memory”, “langchain”, “vector-store”, “memory-tuning”, “mem0-tutorial”, “mem0-vs-langchain”, “crewai”, “open-source”] aliases:
+/posts/mem0/- Introduction Every AI agent developer hits the same wall: the agent forgets. A user tells your chatbot they are vegetarian and allergic to nuts in one session, and two hours later the agent recommends a peanut curry. This is not a prompt engineering problem — it is a memory architecture problem. State-free LLMs have no built-in mechanism to persist facts across sessions. Mem0 (mem0ai/mem0) fixes this with a drop-in memory layer that 56,205&#43; GitHub stars and 90,000&#43; developers have adopted. This guide covers the complete mem0 setup from installation to production tuning, with real benchmarks, vector store configuration, and integration code for LangChain, CrewAI, and OpenAI agents.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>15 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>17 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/mem0/"></a>
 </article>
 
@@ -212,13 +180,13 @@ Python Docker application_domain: Llm Frameworks source_version: ’&#39; licens
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” source_version: &#34;&#34; licensing_model: “Open Source” license_type: “MIT” file_size: &#34;&#34; file_md5: &#34;&#34; download_url: &#34;&#34; backup_url: &#34;&#34; last_maintained: “2026-05-15” draft: false aliases:
-/kr/posts/mempalace-guide/ faqs: - q: ‘Claude Code에 영구 메모리를 추가하는 방법은?’ a: ‘MemPalace를 로컬에서 실행한 후, claude_code_config.json을 설정해 http://localhost:8787/mcp 엔드포인트를 읽기/쓰기 권한으로 가리키도록 하면 Claude Code에 연결됩니다. 이후 Claude는 과거 컨텍스트가 필요할 때마다 MemPalace를 시맨틱 벡터 데이터베이스로 조회합니다.’ q: ‘Claude Code의 메모리는 세션 종료 및 재부팅 후에도 유지되나요?’ a: ‘네. MemPalace는 데이터를 로컬 SQLite/ChromaDB 디스크 인스턴스에 기록하기 때문에, AI의 메모리는 재부팅, 크래시, 완전히 새로운 터미널 세션에서도 유지되며 터미널을 닫아도 사라지지 않습니다.’ q: ‘MemPalace는 LongMemEval 벤치마크에서 얼마의 recall rate를 달성하나요?’ a: ‘MemPalace는 LongMemEval 벤치마크에서 96.6%의 recall rate를 달성합니다. 이는 Pinecone 클라우드 설정의 81.2%, 종료 시 모든 것을 잊는 순수 Claude Code의 0%와 비교됩니다.’ q: ‘MemPalace 데이터는 로컬에 저장되나요, 아니면 클라우드로 전송되나요?’ a: ‘MemPalace는 ChromaDB를 사용해 데이터를 100% 로컬에 저장하므로, 프로젝트 컨텍스트가 외부 클라우드 서버로 전송되지 않습니다. 이는 데이터를 클라우드 서버로 전송하는 Pinecone과 다른 점입니다.’ q: ‘MemPalace는 무료로 사용할 수 있나요?’ a: ‘네. MemPalace는 MIT 라이선스 하에 오픈소스로 제공되며 $0의 비용으로 API 요금이나 구독료가 없습니다. 구독 또는 사용 요금을 부과하는 Pinecone과 달리 완전 무료입니다.’ {&lt;/* resource-info */&gt;}
+    <p>title: “Claude Code Session Memory: How to Integrate MemPalace f…” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - Go application_domain: “Ai Tools” source_version: &#34;&#34; licensing_model: “Open Source” license_type: “MIT” file_size: &#34;&#34; file_md5: &#34;&#34; download_url: &#34;&#34; backup_url: &#34;&#34; last_maintained: “2026-05-15” draft: false aliases:
+/posts/mempalace-guide/ faqs: - q: ‘How do you add persistent memory to Claude Code?’ a: ‘Run MemPalace locally and pass its MCP endpoint to Claude Code by configuring claude_code_config.json to point at http://localhost:8787/mcp with read/write access. Claude then queries MemPalace as a semantic vector database whenever it needs historical context.’ q: ‘Does Claude Code memory persist across sessions and reboots?’ a: ‘Yes. Because MemPalace writes data to a local SQLite/ChromaDB disk instance, the AI’’s memory persists across reboots, crashes, and entirely new terminal sessions, rather than being lost when the terminal closes.’ q: ‘What recall rate does MemPalace achieve on the LongMemEval benchmark?’ a: ‘MemPalace achieves a 96.6% recall rate on the LongMemEval benchmark, compared to 81.2% for a Pinecone cloud setup and 0% for raw Claude Code, which forgets everything on exit.’ q: ‘Is MemPalace data stored locally or sent to the cloud?’ a: ‘MemPalace stores data 100% locally using ChromaDB, so no project context is sent to external cloud servers. This differs from Pinecone, which sends data to cloud servers.’ q: ‘Is MemPalace free to use?’ a: ‘Yes. MemPalace is open source under the MIT license and costs $0 with no API or subscription fees, unlike Pinecone which charges subscription or usage fees.’— {&lt;/* resource-info */&gt;}
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>4 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>5 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/mempalace-guide/"></a>
 </article>
 
@@ -228,13 +196,12 @@ Python Docker application_domain: Llm Frameworks source_version: ’&#39; licens
     </h2>
   </header>
   <div class="entry-content">
-    <p>MemPalace: 최고의 벤치마크를 갖춘 오픈소스 AI 메모리 시스템, LongMemEval에서 R@5 96.6% 절약 — API 호출 제로 요약 MemPalace는 대화 기록을 원문 그대로 저장하고 의미 기반 검색으로 검색하는 로컬 우선 AI 메모리 시스템입니다. LongMemEval에서 96.6%의 원시 R@5를 달성했습니다 — 모든 오픈소스 메모리 시스템 중 최고의 벤치마크 점수이며, API 호출 제로입니다. 외부 서비스에 데이터를 보내지 않고도 AI 에이전트가 모든 것을 기억하기를 원하는 개발자를 위해 만들어졌습니다.
-|| 지표 | MemPalace | Mem0 | Memory Bank | |——–|———–|——|————-| || 벤치마크 | 96.6% 원시 R@5 | 78.2% R@5 | 71.4% R@5 | || API 호출 | 0 | 세션당 1-3회 | 세션당 5-8회 | || 저장 방식 | 로컬 우선 | 클라우드 의존 | 하이브리드 | || 설치 | ```uv tool install mempalace|pip install mem0```` | Docker 전용 |
+    <p>MemPalace: The Best-Benchmarked Open-Source AI Memory System Saves 96.6% of R@5 on LongMemEval — Zero API Calls TL;DR MemPalace is a local-first AI memory system that stores conversation history as verbatim text and retrieves it with semantic search. It achieves 96.6% R@5 raw on LongMemEval — the best benchmarked score for any open-source memory system — with zero API calls. It’s built for developers who want their AI agents to remember everything without sending data to any external service.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/mempalace-open-source-ai-memory-system/"></a>
 </article>
 
@@ -244,8 +211,8 @@ Python Docker application_domain: Llm Frameworks source_version: ’&#39; licens
     </h2>
   </header>
   <div class="entry-content">
-    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - Go
-JavaScript Python application_domain: “Ai Tools” source_version: &#34;&#34; licensing_model: “Open Source” license_type: “MIT” file_size: &#34;&#34; file_md5: &#34;&#34; download_url: “https://github.com/MemPalace/mempalace.git&#34; backup_url: &#34;” last_maintained: “2026-05-15” draft: false aliases: /kr/posts/mempalace/ faqs: - q: ‘MemPalace란 무엇이며, AI에게 어떻게 기억 기능을 부여하나요?’ a: ‘MemPalace는 무료 오픈소스 로컬 우선 AI 메모리 시스템으로, 대화와 프로젝트 이력을 원문 그대로 저장하고 시맨틱 검색으로 불러옵니다. 모델 외부에 구조화된 메모리 레이어를 만들어, AI 어시스턴트가 매번 새 대화를 처음부터 시작하는 대신 과거의 정확한 맥락을 기억할 수 있게 합니다.’ q: ‘MemPalace는 어떻게 설치하나요?’ a: ‘MemPalace는 Python 도구로, uv（uv tool install mempalace）또는 pip（pip install mempalace）를 통해 설치할 수 있습니다. 설치 후 mempalace init ~/projects/myapp 명령을 실행하면 프로젝트에 대한 초기화가 완료됩니다.’ q: ‘MemPalace와 Mem0의 리콜 정확도는 어떻게 다른가요?’ a: ‘LongMemEval 벤치마크에서 MemPalace는 96.6%의 리콜률을 기록한 반면, Mem0는 89.2%였습니다. MemPalace는 API 호출 없이 완전히 로컬에서 실행되지만, Mem0는 유료 OpenAI API가 필요합니다.’ q: ‘MemPalace는 저장된 메모리를 어떻게 구성하나요?’ a: ‘MemPalace는 궁전 은유를 사용해 세 단계로 메모리를 구성합니다. Wings는 사람과 프로젝트, Rooms는 해당 프로젝트 내의 주제, Drawers는 원문 그대로 저장된 실제 내용을 담습니다. 이 구조 덕분에 평평한 벡터 데이터베이스 전체를 조회하는 대신, 특정 프로젝트 윙이나 주제 룸으로 검색 범위를 정밀하게 좁힐 수 있습니다.’ q: ‘MemPalace는 Claude Code 및 다른 AI 도구와 함께 사용할 수 있나요?’ a: ‘네. MemPalace는 Claude Code를 위한 .claude-plugin 디렉터리, OpenAI Codex를 위한 .codex-plugin 디렉터리, MCP 호환 도구를 위한 .agents/plugins 디렉터리, 그리고 Gemini CLI 및 로컬 모델 지원을 포함한 네이티브 플러그인을 기본 제공합니다. 기본적으로 MCP 호환 엔드포인트를 노출해 지속적인 코딩 에이전트 메모리를 지원합니다.’ {&lt;/* resource-info */&gt;}
+    <p>title: “MemPalace vs Mem0: 96.6% Recall Benchmark &amp; Best AI Memo…” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - Go
+Python application_domain: “Ai Tools” source_version: &#34;&#34; licensing_model: “Open Source” license_type: “MIT” file_size: &#34;&#34; file_md5: &#34;&#34; download_url: &#34;&#34; backup_url: &#34;&#34; last_maintained: “2026-05-15” draft: false aliases: /posts/mempalace/ faqs: - q: ‘What is MemPalace and how does it give an AI memory?’ a: ‘MemPalace is a free, open-source, local-first AI memory system that stores your conversation and project history as verbatim text and retrieves it with semantic search. It creates a structured memory layer outside the model so your AI assistant can recall exact past context instead of starting every chat from zero.’ q: ‘How do you install MemPalace?’ a: ‘MemPalace is a Python tool that installs via uv (uv tool install mempalace) or pip (pip install mempalace). After installing, run mempalace init ~/projects/myapp to initialize it for your project.’ q: ‘How does MemPalace compare to Mem0 on recall accuracy?’ a: ‘On the LongMemEval benchmark, MemPalace reports a 96.6% recall rate versus 89.2% for Mem0. MemPalace also runs fully locally with zero API calls, while Mem0 requires a paid OpenAI API.’ q: ‘How does MemPalace organize stored memory?’ a: ‘MemPalace uses a palace metaphor with three levels: Wings for people and projects, Rooms for topics within those projects, and Drawers that hold the original content stored verbatim. This lets you scope a search to a specific project wing or topic room instead of querying a flat vector database.’ q: ‘Does MemPalace work with Claude Code and other AI tools?’ a: ‘Yes. MemPalace ships native plugins including a .claude-plugin directory for Claude Code, a .codex-plugin directory for OpenAI Codex, and a .agents/plugins directory for MCP-compatible tools, plus support for Gemini CLI and local models. It exposes an MCP-compatible endpoint out of the box for persistent coding-agent memory.’— {&lt;/* resource-info */&gt;}
 ...</p>
   </div>
   <footer class="entry-footer">
@@ -260,13 +227,13 @@ JavaScript Python application_domain: “Ai Tools” source_version: &#34;&#34; 
     </h2>
   </header>
   <div class="entry-content">
-    <p>소개: $50,000 Tableau 갱신 청구서의 문제 스타트업이 시리즈 A 펀딩을 마쳤다. 데이터 팀은 5명이다. 그때 Tableau 갱신 안내가 도착했다: 20개 Creator 라이선스 $47,000, 100개 Explorer 라이선스 $15,000, 서버 유지보수 $8,000. 매년 대시보드에 $70,000을 지불하는데, 팀의 절반은 인증 과정이 필요한 인터페이스가 무서워서 손을 대지 못한다.
-이것이 엔터프라이즈 BI의 숨겨진 진실이다: 파워 유저가 대시보드를 구축하는 라이선스 비용을 지불하지만, 비기술 팀은 셀프 서비스를 할 수 없다. “지난주 독일에서 몇 명이 가입했는지” 알고 싶은 비즈니스 분석가는 Jira 티켓을 제출하거나 데이터 웨어하우스를 직접 쿼리할 만큼의 SQL을 독학해야 한다.
+    <p>title: “Metabase 2026: The Open-Source Business Intelligence Too… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Data Science source_version: ’&#39; licensing_model: Open Source license_type: AGPL-3.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“data-science”] tags: [“metabase”, “bi”, “business-intelligence”, “open-source”, “tableau”, “dashboards”, “sql”, “docker”, “self-hosted”, “analytics”, “data-visualization”, “apache-superset”] aliases:
+/posts/metabase-business-intelligence-open/- Introduction: The $50,000 Tableau Invoice Problem Your startup just closed Series A. The data team is five people. Then the Tableau renewal lands in your inbox: $47,000 for 20 Creator licenses, $15,000 for 100 Explorer licenses, plus $8,000 for server maintenance. $70,000 a year for dashboards that half your team is afraid to touch because the interface requires a certification course.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>14 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>17 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/metabase-business-intelligence-open/"></a>
 </article>
 
@@ -276,13 +243,45 @@ JavaScript Python application_domain: “Ai Tools” source_version: &#34;&#34; 
     </h2>
   </header>
   <div class="entry-content">
-    <p>소개 오늘날 데이터 중심 세계에서 문서를 구조화되고 읽기 가능하며 휴대 가능한 형식으로 변환하는 능력은 그 어느 때보다 중요합니다. 검색 증강 생성(RAG) 파이프라인을 구축 중이든, AI 지식베이스에 문서를 주입하든, 단순히 복잡한 PDF에서 깨끗한 텍스트를 추출하든, 모든 파일 형식을 Markdown으로 변환할 수 있는 신뢰할 수 있는 도구는 매우 가치가 있습니다. 마이크로소프트 MarkItDown은 바로 이런 목적으로 개발된 오픈소스 Python 도구입니다. PDF, Word 문서, PowerPoint 프레젠테이션, 이미지, HTML 페이지, 스프레드시트, ZIP 아카이브를 깨끗하고 일관된 Markdown 출력으로 변환합니다.
+    <p>Introduction In today’s data-driven world, the ability to convert documents into structured, readable, and portable formats is more critical than ever. Whether you are building a Retrieval-Augmented Generation (RAG) pipeline, ingesting documents into an AI knowledge base, or simply trying to extract clean text from complex PDFs, having a reliable tool that converts any file format to Markdown is invaluable. Microsoft MarkItDown is an open-source Python tool built exactly for this purpose — it turns PDFs, Word documents, PowerPoint presentations, images, HTML pages, spreadsheets, and ZIP archives into clean, consistent Markdown output.
 ...</p>
   </div>
   <footer class="entry-footer">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span></footer>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>14 분</span></footer>
   <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/microsoft-markitdown-file-to-markdown-converter-cli/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>slug: microsoft-presidio-pii-detection-redaction-sdk title: “Presidio Review: Microsoft’s Open-Source PII Detection a…” description: “Technical guide and comparison.” tags: [“open-source”, “self-hosted”] date: 2026-06-22 00:00:00&#43;08:00 lastmod: “2026-06-22 00:00:00&#43;08:00” tech_stack: - Python 3.8&#43;
+spaCy Transformers Docker PySpark application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-06-21” draft: false categories: [“dev-utils”] aliases: /posts/microsoft-presidio-pii-detection-redaction-sdk/ faqs: - q: ‘What is Microsoft Presidio?’ a: ‘Presidio is an open-source SDK from Microsoft for detecting, redacting, masking, and anonymizing personally identifiable information (PII) across text, images, and structured data. Named after the Latin word for “protection” or “garrison,” it provides context-aware, pluggable, and customizable PII de-identification modules. It supports Named Entity Recognition (NER), regular expressions, rule-based logic, and checksum validation across multiple languages.’ q: ‘What components make up Presidio?’ a: ‘Presidio consists of four main components: (1) Presidio Analyzer — detects PII in text using predefined or custom recognizers leveraging NER, regex, rule-based logic, and checksums; (2) Presidio Anonymizer — redacts, masks, hashes, or replaces detected PII with configurable transformations; (3) Presidio Image Redactor — redacts PII from images including standard image types and DICOM medical images; (4) Presidio Structured — detects PII in tabular/structured data like CSV and Excel files.’ q: ‘What types of PII can Presidio detect?’ a: ‘Presidio detects credit card numbers, names, locations, social security numbers, Bitcoin wallets, US phone numbers, financial data, email addresses, IP addresses, credit card numbers, and more. It supports both predefined recognizers and custom ones. The NER-based recognizers use spaCy and HuggingFace transformers, and you can add custom regex patterns, rule-based logic, or connect to external PII detection models.’ q: ‘Is Presidio free to use commercially?’ a: ‘Yes. Presidio is licensed under the MIT license, which allows free use, modification, and distribution for both personal and commercial purposes. It is also certified with the OpenSSF Best Practices badge, indicating it meets rigorous open-source security and maintenance standards.’ q: ‘How does Presidio handle image redaction?’ a: ‘Presidio Image Redactor uses computer vision models to detect and redact PII from images. It supports standard image formats (PNG, JPEG, etc.) and DICOM medical images. The redaction can replace detected text with black boxes, blur regions, or remove the text entirely. This is particularly valuable for healthcare organizations that need to anonymize medical imaging data before sharing or publication.’ q: ‘Can Presidio run in production at scale?’ a: ‘Yes. Presidio supports multiple deployment options: Python or PySpark workloads, Docker containers, and Kubernetes deployments. The analyzer and anonymizer can run as REST APIs, and the structured component can process large tabular datasets. It is designed for both fully automated and semi-automated PII de-identification flows across multiple platforms.’ Why PII Detection Matters More Than Ever Every organization that processes user data faces the same growing challenge: knowing where sensitive information lives and protecting it. Credit card numbers in customer support chats. Social security numbers in HR documents. Patient names in medical images. Email addresses in marketing databases.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>14 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/microsoft-presidio-pii-detection-redaction-sdk/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Minara Review 2026: The AI Trading Platform on Hyperliquid That Compresses Your Bloomberg Terminal Into One Chat Box Meta Description: Minara is the AI-native trading platform built on Hyperliquid that lets you ask questions, get real-time market analysis, and execute crypto / stocks / commodities trades in a single chat interface. Hands-on review with setup, five use cases, and an honest take on whether it replaces your current stack.
+If you’re still juggling TradingView for charts, Bloomberg for news, a perp DEX UI for trades, and a Telegram bot for execution — congratulations, you’re living in 2024. In 2026 the edge belongs to the people who collapsed all four into one conversation.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>15 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/minara-ai-trading-hyperliquid-review-2026/"></a>
 </article>
 <footer class="page-footer">
   <nav class="pagination">
@@ -313,6 +312,81 @@ JavaScript Python application_domain: “Ai Tools” source_version: &#34;&#34; 
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

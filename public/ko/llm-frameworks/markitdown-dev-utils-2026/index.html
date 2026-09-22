@@ -81,8 +81,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-02T00:00:00+08:00 lastmod: 2026-06-02T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-06-02” draft: false categories: [“dev-utils”] tags: [\"] aliases:\n/posts/markitdown-dev-utils-2026/ faqs: - q: ‘markitdown은 어떻게 설치하나요?’ a: ‘pip로 설치합니다. 보통은 모든 포맷 extras를 함께 설치합니다. bash pip install ''markitdown[all\"]'' ’ q: ‘markitdown은 모든 종류의 오피스 문서를 변환할 수 있나요?’ a: ‘Word(.docx), Excel(.xlsx), PowerPoint(.pptx), PDF, HTML, 이미지, 오디오 등 매우 다양한 포맷을 지원하지만, 모든 포맷의 모든 기능이 보존되는 것은 아닙니다. 지원되는 유형과 필요한 extras는 문서를 확인하세요.’ q: ‘markitdown은 어떤 라이선스로 배포되나요?’ a: ‘markitdown은 MIT 라이선스로 배포되어, 어떤 용도로든 자유롭게 사용하고 수정할 수 있습니다.’ q: ‘프로젝트에 어떻게 기여하나요?’ a: ‘이슈를 보고하거나 풀 리퀘스트를 보낼 수 있습니다. 기여 가이드라인은 GitHub 저장소를 확인하세요.’ q: ‘markitdown에 알려진 한계가 있나요?’ a: ‘네, 일부 고급 기능과 복잡한 문서 구조는 완전히 보존되지 않을 수 있습니다. 프로젝트는 활발히 유지보수되지만, 시각적 재현보다 텍스트 정확성을 우선합니다.’ markitdown: 파일과 오피스 문서를 마크다운으로 변환 (141K Stars) — 2026 실전 가이드 들어가며 오피스 문서를 마크다운으로 변환하는 일은 꽤 번거롭습니다. 특히 여러 파일과 다양한 포맷을 한꺼번에 다뤄야 할 때는 더 그렇죠. 마이크로소프트의 ```markitdown도구가 바로 이 작업을 도와줍니다. GitHub 스타 14만 1천 개를 넘기며, 문서 변환이 필요한 개발자들에게 인기 있는 선택지가 되었습니다. 이 가이드에서는 설치, 사용법, 그리고 다른 도구들과의 비교를 차례로 살펴보면서markitdown````이 여러분의 작업 흐름에 맞는지 판단할 수 있도록 돕겠습니다.\nmarkitdown이란? markitdown은 마이크로소프트가 개발한 파이썬 도구로, 각종 파일과 오피스 문서를 마크다운으로 변환합니다. 다양한 문서 유형을 순수 마크다운 텍스트로 바꿔 주기 때문에, 풍부한 문서를 LLM 파이프라인, 위키, 정적 사이트 생성기에 넣어야 하는 개발자와 콘텐츠 제작자에게 특히 유용합니다. 주된 목표는 원본의 외관을 픽셀 단위로 재현하는 것이 아니라, 후속 처리를 위해 텍스트의 정확성을 보존하는 데 있습니다.\nmarkitdown의 동작 방식 markitdown은 원본 파일을 읽어 유형을 판별한 뒤, 마크다운을 표준 출력(또는 지정한 파일)으로 내보냅니다. 실제 동작은 다음과 같습니다.\n파일 변환: markitdown은 입력 파일(.docx, .xlsx, .pptx 등)을 받아 마크다운 구조의 텍스트로 변환합니다. 구조 처리: 제목, 목록, 표 같은 원본 문서의 구조 요소를 보존해 출력이 읽기 좋게 유지됩니다. 선택적 확장: 이미지와 오디오의 경우, markitdown에 LLM 클라이언트(이미지 설명 생성용)를 연결하거나 Azure Document Intelligence를 사용할 수 있으며, 이는 생성자 인자나 CLI 플래그로 설정합니다. 가장 간단한 호출은 마크다운을 터미널에 바로 출력하는 것입니다.\nmarkitdown example.docx 결과를 파일로 저장하려면 -o 플래그를 사용합니다.\nmarkitdown example.docx -o output.md 이 명령은 문서를 변환해 output.md로 저장합니다.\n설치 및 설정 markitdown을 정기적인 프로덕션 작업으로 돌리려면 항상 켜져 있는 머신이 필요합니다. DigitalOcean(신규 계정은 무료 체험 크레딧 제공)에서 하나 띄우거나, HTStack의 저지연 홍콩 VPS(dibi8.com을 호스팅하는 것과 같은 IDC)를 쓰면 됩니다.\nmarkitdown을 시작하려면 파이썬 패키지 관리자 pip로 설치합니다. 이 패키지는 선택적 추가 기능(extras) 방식을 쓰므로, 가장 흔한 선택은 전부 설치하는 것입니다.\npip로 설치 (모든 포맷 지원):\npip install 'markitdown[all]' 특정 포맷만 필요하다면 해당 extras만 설치하면 됩니다. 예를 들면 이렇게요.\npip install 'markitdown[pdf, docx, pptx]' GitHub에서 저장소 직접 클론 (선택): 소스 코드를 새로 받거나 기여하고 싶다면 Git으로 저장소를 클론합니다.\ngit clone https://github.com/microsoft/markitdown.git cd markitdown pip install -e 'packages/markitdown[all]' Docker 사용 (컨테이너 환경을 선호하는 경우): 저장소에 Dockerfile이 포함되어 있으므로, 로컬에서 이미지를 빌드한 뒤 파일을 파이프로 흘려보냅니다.\ndocker build -t markitdown:latest . docker run --rm -i markitdown:latest \u003c example.docx \u003e output.md 자주 겪는 문제 하나는, 변환하려는 포맷에 맞는 extra를 설치하지 않은 경우입니다. PDF나 오피스 파일을 변환할 때 ImportError나 의존성 누락 메시지가 뜨면, 해당 extra가 설치되어 있는지 확인하세요.\npip install --upgrade 'markitdown[all]' 가상 환경을 쓰고 있다면, 설치 명령을 실행하기 전에 먼저 활성화해 두세요.\n핵심 사용법 markitdown을 설치했다면 이제 실제로 어떻게 쓰는지 살펴봅시다.\nWord 문서 변환 먼저 .docx 파일이 있어야 합니다. 이 예제에서는 파일 이름을 example.docx로 가정하겠습니다. 다음과 같이 변환해 결과를 파일에 쓸 수 있습니다.\nmarkitdown example.docx -o output.md 현재 디렉터리에 output.md 파일이 생성됩니다. -o를 생략하면 마크다운이 표준 출력으로 대신 출력됩니다.\n여러 파일 한꺼번에 변환 여러 파일을 한 번에 처리하고 싶을 때가 있죠. 간단한 셸 루프로 해결할 수 있습니다.\nfor file in *.docx; do markitdown \"$file\" -o \"${file%.docx}.md\" done 이 스크립트는 현재 디렉터리의 모든 .docx 파일을 변환해 각각 대응하는 .md 파일로 저장합니다.\n표준 입력에서 읽기 markitdown은 표준 입력에서도 읽어 들이므로 파이프라인에서 유용합니다.\ncat example.docx | markitdown \u003e output.md API 예제 파이썬으로 markitdown을 프로그래밍 방식으로 쓰고 싶다면, 아래 간단한 예제를 참고하세요. convert()는 결과 객체를 반환하며, 마크다운 내용은 그 객체의 .text_content 속성에 들어 있다는 점에 유의하세요.\nfrom markitdown import MarkItDown md = MarkItDown() result = md.convert('example.docx') with open('output.md', w) as file: file.write(result.text_content) 이 파이썬 스크립트는 앞서 본 명령줄 예제와 같은 일을 하지만, 더 통합된 방식으로 동작합니다.\n이 예제들이면 markitdown을 시작하기에 충분할 겁니다. 이 도구는 활발히 유지보수되고 있고, 든든한 커뮤니티가 뒷받침하고 있습니다.\n통합 markitdown은 큰 마찰 없이 대부분의 기존 도구 체인에 끼워 넣을 수 있습니다. 문서를 변환하든, 마크다운 기반 파이프라인에 콘텐츠를 흘려보내든, 여러분의 작업 흐름 안에 자연스럽게 자리 잡습니다.\n일반 도구와의 호환성 markitdown이 다른 도구와 어떻게 어우러지는지 보기 위해, 오피스 문서를 마크다운으로 변환한 뒤 후처리하는 간단한 예제를 살펴봅시다.\n먼저 시스템에 파이썬이 설치되어 있는지 확인하세요. pip로 markitdown을 설치합니다.\npip install 'markitdown[all]' 설치 후에는 pandoc 같은 도구와 함께 써서 추가 처리나 포맷팅을 할 수 있습니다. 예를 들어, Word 문서를 마크다운으로 변환한 다음 pandoc으로 출력을 정규화하려면 이렇게 합니다.\nmarkitdown input.docx -o temp.md pandoc temp.md -s -t gfm \u003e final_output.md 이 예제에서 markitdown은 Word를 마크다운으로 변환하고, pandoc은 그 결과를 GitHub 스타일 마크다운으로 다시 렌더링합니다.\nJupyter Notebook에서 사용하기 Jupyter Notebook 환경에서 작업한다면, markitdown으로 원본 문서를 마크다운 텍스트로 바로 변환하는 게 편리합니다.\n!pip install 'markitdown[all]' from markitdown import MarkItDown def convert_to_markdown(path): md = MarkItDown() return md.convert(path).text_content content = convert_to_markdown('example.docx') print(content) 이 코드는 문서를 변환해 마크다운 내용을 반환하므로, 문서화 자료나 블로그 글에 손쉽게 녹여 넣을 수 있습니다.\nmarkitdown을 pandoc 같은 도구와 짝지으면, 파이프라인 전반에 걸쳐 문서를 일관된 마크다운 형식으로 유지할 수 있습니다.\n성능과 실제 활용 markitdown은 탄탄한 기능과 사용 편의성 덕분에 폭넓게 채택되어 왔습니다. 아래는 대표적인 활용 사례들입니다. (아래 수치는 정식 벤치마크가 아니라 일반적인 작업 흐름을 보여 주기 위한 예시입니다.)\n활용 사례: 문서팀의 마이그레이션 문서팀은 markitdown을 사용해 방대한 오피스 문서 모음을 마크다운으로 변환함으로써, 내부 위키에 더 쉽게 통합할 수 있습니다. 이런 마이그레이션을 해 본 팀들은 원본 파일을 일일이 손으로 다시 정리하는 데 드는 시간이 눈에 띄게 줄었다고 전합니다.\n변환 과정 예시 markitdown은 .docx, .pptx, .xlsx, PDF 등 매우 다양한 파일 유형을 처리할 수 있습니다. Word 문서를 마크다운으로 변환하는 전형적인 명령은 다음과 같습니다.\nmarkitdown input.docx -o output.md 구조가 단순한 문서라면 변환이 빠릅니다. 변환 시간은 문서의 크기와 복잡도에 따라 늘어납니다.\nCI/CD 파이프라인과의 통합 markitdown은 지속적 통합·배포(CI/CD) 파이프라인 안에서도 잘 동작하므로, 문서 자동 업데이트가 가능합니다. 예를 들어, 새 문서가 커밋될 때마다 자동으로 마크다운으로 변환하는 GitHub Actions 워크플로를 구성할 수 있습니다.\nname: Convert Docs to Markdown on: push: branches: - main jobs: build: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Install MarkItDown run: pip install 'markitdown[all]\" - name: Convert Docs to Markdown run: | for f in docs/*.docx; do markitdown \"$f\" -o \"${f%.docx}.md\" done 이렇게 구성해 두면 수작업을 최소화하면서 문서를 최신 상태로 유지할 수 있습니다.\n커뮤니티 피드백 커뮤니티는 도구의 지속적인 발전을 이끄는 값진 피드백을 제공해 왔습니다. 예를 들어, .docx 파일의 복잡한 표가 깔끔하게 변환되지 않는다는 보고가 있었는데, 유지보수자들은 이런 이슈를 GitHub에서 추적하고 이후 릴리스에서 해결합니다. 바로 이런 개선들이 시간이 지나면서 도구를 점점 더 안정적으로 만들어 왔습니다.\n대안과의 비교 관련 오픈소스 도구에 대한 글도 함께 확인해 보세요.\n파일과 오피스 문서를 마크다운으로 변환할 도구를 고를 때, 마이크로소프트의 markitdown은 든든한 선택지입니다. 아래는 markitdown을 또 다른 인기 대안인 pandoc, docx2txt와 비교한 표입니다. 스타 수, 언어, 사용 편의성, 기능 면의 핵심 차이를 정리했습니다.\n항목 markitdown pandoc docx2txt Stars 141,153 709,865 N/A 언어 Python Haskell Python 기본 브랜치 main master master 미해결 이슈 797 2,264 N/A 변환 초점 LLM용 텍스트 정확성 충실한 포맷 간 변환 순수 텍스트 추출 포맷 커버리지 넓음(Office, PDF, 오디오, 이미지, HTML) 매우 넓음(LaTeX 포함) .docx 전용 부가 기능 LLM 이미지 캡션, Azure Doc Intelligence 인용, LaTeX, 사용자 정의 템플릿 없음 사용 편의성 간단한 CLI 명령줄(진입 장벽 있음) 간단한 CLI 커뮤니티 지원 활발함 큼 작음 혼합된 문서 유형에서 깔끔하고 읽기 좋은 마크다운을 뽑아내는 게 목표라면—특히 LLM이나 검색 인덱스의 입력으로 쓸 거라면—markitdown은 무난한 선택입니다. 파이썬으로 구현되어 스크립트와 서비스에 쉽게 끼워 넣을 수 있고, 활발한 커뮤니티가 발전을 이어 갑니다.\n반면 pandoc은 충실한 문서 간 변환에서 단연 헤비급입니다. 매우 다양한 입출력 포맷과 인용, LaTeX를 지원하므로, 정밀하고 세밀하게 설정 가능한 조판 출력이 필요할 때 더 잘 맞습니다. 다만 Haskell 구현과 방대한 옵션 탓에 진입 장벽이 다소 높습니다.\ndocx2txt는 훨씬 좁습니다. .docx 파일에서 순수 텍스트를 추출하는 것, 딱 그뿐입니다. 빠른 텍스트 추출용으로는 괜찮지만, 포맷 커버리지나 마크다운 구조 면에서는 앞의 두 도구에 미치지 못합니다.\n요약하면, 넓은 포맷 커버리지와 LLM·문서화 파이프라인에 바로 쓸 수 있는 마크다운이 필요하다면 markitdown이 합리적인 기본값이고, 정밀하고 세밀하게 설정 가능한 변환이 필요하다면 pandoc을 고르면 됩니다.\n한계와 솔직한 평가 markitdown은 유능한 도구지만, 나름의 한계와 트레이드오프가 있습니다. 다음과 같은 상황에서는 덜 적합할 수 있습니다.\n복잡한 문서 구조: 깊게 중첩된 표나 얽히고설킨 상호 참조가 있는 문서라면, markitdown이 원본 구조를 정확히 재현하지 못할 수 있습니다. 사용자 정의 오피스 매크로와 VBA 스크립트: 문서가 동작을 위해 매크로나 VBA에 의존한다면, 그 로직은 옮겨지지 않습니다. 마크다운에는 대응물이 없으므로 수작업 재작업을 각오해야 합니다. 시각적 충실도: 사용자 정의 스타일, 정밀한 레이아웃, 복잡한 서식에 크게 의존하는 문서는 시각적 디테일을 잃습니다. markitdown은 외관이 아니라 텍스트와 구조를 겨냥하기 때문입니다. 협업 기능: 오피스 포맷에는 주석, 변경 내용 추적, 실시간 협업이 들어 있는데, 이는 마크다운으로 깔끔하게 옮겨지지 않습니다. 이런 기능이 중요하다면 원본 포맷을 유지하세요. 대량 처리: 매우 큰 문서나 대규모 일괄 처리에서는 변환이 리소스를 많이 쓰고 느려질 수 있어, 사양이 낮은 머신에서는 신경 쓸 부분입니다. markitdown이 여러분의 구체적인 요구에 맞는지 판단할 때 이런 한계들을 함께 따져 볼 만합니다.\n맺음말 markitdown은 GitHub 스타 14만 1천 개를 넘기며 상당한 입지를 다진 탄탄한 파이썬 도구로, 마이크로소프트가 유지보수합니다. 파일과 오피스 문서를 효율적으로 마크다운으로 변환하며, 후속 활용을 위한 깔끔한 텍스트 출력에 초점을 둡니다. 문서 처리 흐름을 간소화하려는 개발자라면—특히 LLM과 문서화 파이프라인을 다룬다면—````markitdown```을 도구함에 넣어 둘 만합니다.\n다음으로, pip로 설치해서 여러분의 프로젝트에 직접 변환 기능을 적용해 보세요.\ndibi8 영어 Telegram 그룹에 참여해 오픈소스 AI 도구 소식을 가장 먼저 받아 보세요. 이어 읽기: dibi8의 관련 가이드. 출처 및 더 읽을거리: - GitHub 저장소: https://github.com/microsoft/markitdown\n공식 문서 / README: https://github.com/microsoft/markitdown#readme 위 링크 중 일부는 제휴(affiliate) 링크입니다. 여러분이 가입하면 dibi8.com이 수수료를 받을 수 있으며, 추가 비용은 들지 않습니다. 사이트 운영과 무료 콘텐츠 유지에 도움이 됩니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “markitdown: 파일과 오피스 문서를 마크다운으로 변환 (141K Stars) — 2026 실전 가이드”, “datePublished”: “2026-06-02”, “dateModified”: “2026-06-02”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/markitdown-dev-utils-2026\" } } ",
-  "wordCount" : "1655",
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-02T00:00:00+08:00 lastmod: 2026-06-02T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-06-02” draft: false categories: [“dev-utils”] tags: [\"] aliases:\n/posts/markitdown-dev-utils-2026/ faqs: - q: ‘Cài markitdown thế nào?’ a: ‘Cài bằng pip. Lựa chọn phổ biến là kéo về tất cả extras định dạng: bash pip install ''markitdown[all\"]'' ’ q: ‘markitdown có chuyển được mọi loại tài liệu Office không?’ a: ‘Nó hỗ trợ rất nhiều định dạng — Word (.docx), Excel (.xlsx), PowerPoint (.pptx), PDF, HTML, ảnh và âm thanh — nhưng không phải tính năng nào của mọi định dạng cũng được giữ lại. Hãy xem tài liệu để biết danh sách các loại được hỗ trợ và extras cần thiết.’ q: ‘markitdown phát hành theo giấy phép nào?’ a: ‘markitdown được phát hành theo giấy phép MIT, nên có thể sử dụng và chỉnh sửa tự do cho mọi mục đích.’ q: ‘Đóng góp cho dự án thế nào?’ a: ‘Bạn có thể báo lỗi (issue) hoặc gửi pull request. Xem hướng dẫn đóng góp tại repository GitHub.’ q: ‘markitdown có hạn chế nào đã biết không?’ a: ‘Có — một số tính năng nâng cao và cấu trúc tài liệu phức tạp có thể không được giữ lại đầy đủ. Dự án được bảo trì tích cực, nhưng nó ưu tiên độ chính xác văn bản hơn là tái tạo hình thức.’ markitdown: Chuyển file và tài liệu Office sang Markdown (141K Stars) — Hướng dẫn thực chiến 2026 Giới thiệu Chuyển tài liệu Office sang Markdown có thể là một việc khá nhọc, nhất là khi phải xử lý nhiều file và nhiều định dạng khác nhau. Công cụ ```markitdowncủa Microsoft sinh ra để giúp việc đó, với hơn 141 nghìn sao trên GitHub, trở thành lựa chọn quen thuộc của các lập trình viên khi cần chuyển đổi tài liệu. Bài viết này sẽ dẫn bạn qua phần cài đặt, cách dùng và so sánh với các công cụ khác, giúp bạn quyết định liệumarkitdown```` có hợp với quy trình của mình hay không.\nmarkitdown là gì? markitdown là một công cụ Python do Microsoft phát triển, dùng để chuyển các loại file và tài liệu Office sang Markdown. Nó biến nhiều kiểu tài liệu khác nhau thành văn bản Markdown thuần, nên đặc biệt hữu ích với lập trình viên và người làm nội dung cần đưa tài liệu giàu định dạng vào các pipeline LLM, wiki hay trình tạo trang tĩnh. Mục tiêu chính của nó là giữ độ chính xác của văn bản cho các bước xử lý sau, chứ không phải tái tạo y hệt giao diện gốc đến từng pixel.\nmarkitdown hoạt động thế nào markitdown đọc file nguồn, nhận diện loại file, rồi xuất Markdown ra đầu ra chuẩn (hoặc ra file bạn chỉ định). Trên thực tế, nó hoạt động như sau: 1. Chuyển đổi file: markitdown nhận file đầu vào (như .docx, .xlsx hay .pptx) và chuyển chúng thành văn bản theo cấu trúc Markdown. 2. Xử lý cấu trúc: Nó giữ lại các thành phần cấu trúc như tiêu đề, danh sách và bảng từ tài liệu gốc, để kết quả vẫn dễ đọc. 3. Tùy chọn mở rộng: Với hình ảnh và âm thanh, markitdown có thể gắn một LLM client (để sinh mô tả ảnh) hoặc dùng Azure Document Intelligence, được cấu hình qua tham số của constructor hoặc cờ CLI.\nCách gọi đơn giản nhất là in thẳng Markdown ra terminal: `````bash markitdown example.docx\nĐể lưu kết quả ra file, dùng cờ ``-o``: `````bash markitdown example.docx -o output.md Lệnh này sẽ chuyển đổi tài liệu của bạn và lưu thành output.md.\nCài đặt \u0026 Thiết lập Nếu muốn chạy markitdown như một tác vụ sản xuất theo lịch, bạn cần một máy luôn bật — có thể dựng một con trên DigitalOcean (tài khoản mới có credit dùng thử miễn phí), hoặc dùng HTStack với VPS Hong Kong độ trễ thấp (cùng IDC đang host dibi8.com).\nĐể bắt đầu với markitdown, hãy cài bằng trình quản lý gói của Python là pip. Gói này dùng cơ chế phần mở rộng tùy chọn (extras), nên lựa chọn phổ biến nhất là cài hết: 1. Dùng pip (hỗ trợ mọi định dạng):\npip install 'markitdown[all]' Nếu chỉ cần một số định dạng nhất định, chỉ cài các extras tương ứng, ví dụ: `````sh pip install ‘markitdown[pdf, docx, pptx]’\n2. **Clone trực tiếp repository từ GitHub (tùy chọn):** Nếu bạn muốn một bản mã nguồn mới hoặc muốn đóng góp, hãy clone repository bằng Git: `````sh git clone https://github.com/microsoft/markitdown.git cd markitdown pip install -e 'packages/markitdown[all]' Dùng Docker (cho ai thích môi trường container): Repository có sẵn Dockerfile, nên bạn build image tại máy rồi đẩy file qua pipe: `````sh docker build -t markitdown:latest . docker run –rm -i markitdown:latest \u003c example.docx \u003e output.md Một lỗi thường gặp là quên cài extra tương ứng với định dạng cần chuyển. Nếu bạn gặp ImportError hoặc thông báo thiếu phụ thuộc khi chuyển PDF hay file Office, hãy chắc chắn extra liên quan đã được cài: `````sh pip install –upgrade ‘markitdown[all]’\nNếu đang dùng môi trường ảo (virtual environment), hãy nhớ kích hoạt nó trước khi chạy các lệnh cài đặt. ## Cách dùng cốt lõi Khi ````markitdown```` đã được cài, hãy xem cách dùng nó trong thực tế. ### Chuyển đổi tài liệu Word Trước tiên, bạn cần một file ``.docx``. Trong ví dụ này, ta giả định file tên là ``example.docx``. Bạn có thể chuyển đổi và ghi kết quả ra file như sau: `````sh markitdown example.docx -o output.md Lệnh này tạo ra file output.md trong thư mục hiện tại. Bỏ -o đi thì Markdown sẽ được in ra đầu ra chuẩn thay vì ghi file.\nChuyển đổi nhiều file cùng lúc Đôi khi bạn muốn xử lý nhiều file một lần. Một vòng lặp shell đơn giản là đủ: `````sh for file in *.docx; do markitdown “$file” -o “${file%.docx}.md” done\nScript này sẽ chuyển đổi mọi file ````.docx```` trong thư mục hiện tại và lưu thành các file ````.md```` tương ứng. ### Đọc từ đầu vào chuẩn ``markitdown`` cũng đọc được từ đầu vào chuẩn, rất tiện khi dùng trong pipeline: `````sh cat example.docx | markitdown \u003e output.md Ví dụ API Nếu bạn làm việc với Python và muốn dùng markitdown theo kiểu lập trình, đây là một ví dụ đơn giản. Lưu ý rằng convert() trả về một đối tượng kết quả — nội dung Markdown nằm ở thuộc tính .text_content của nó: `````python from markitdown import MarkItDown\nmd = MarkItDown() result = md.convert(’example.docx')\nwith open(‘output.md’, w) as file: file.write(result.text_content)\nScript Python này làm đúng việc mà các ví dụ dòng lệnh phía trên làm, nhưng theo cách tích hợp hơn. Những ví dụ này đủ để bạn bắt đầu với ````markitdown````. Công cụ được bảo trì tích cực và có một cộng đồng lớn hậu thuẫn. ## Tích hợp ````markitdown```` lắp vào hầu hết các chuỗi công cụ sẵn có mà không vướng víu nhiều. Dù bạn đang chuyển đổi tài liệu hay đưa nội dung vào một pipeline dựa trên Markdown, nó đều có thể hòa vào quy trình của bạn. ### Tương thích với các công cụ phổ biến Để thấy ````markitdown```` phối hợp với công cụ khác ra sao, hãy xét một ví dụ đơn giản: chuyển một tài liệu Office sang Markdown rồi hậu xử lý. Trước tiên, đảm bảo hệ thống đã cài Python. Bạn cài ``markitdown`` bằng pip: `````bash pip install 'markitdown[all]' Sau khi cài, bạn có thể dùng nó cùng các công cụ như pandoc để xử lý hoặc định dạng thêm. Ví dụ, để chuyển một tài liệu Word sang Markdown rồi chuẩn hóa kết quả bằng pandoc: `````bash markitdown input.docx -o temp.md pandoc temp.md -s -t gfm \u003e final_output.md\nTrong ví dụ này, ````markitdown```` lo phần chuyển Word sang Markdown, còn ````pandoc```` render lại kết quả thành Markdown kiểu GitHub. ### Làm việc với Jupyter Notebook Nếu bạn làm việc trong môi trường Jupyter Notebook, dùng ``markitdown`` để chuyển trực tiếp tài liệu nguồn sang văn bản Markdown rất tiện: `````python !pip install 'markitdown[all]' from markitdown import MarkItDown def convert_to_markdown(path): md = MarkItDown() return md.convert(path).text_content content = convert_to_markdown('example.docx') print(content) Đoạn code này chuyển một tài liệu và trả về nội dung Markdown của nó, giúp bạn dễ dàng đưa vào tài liệu hướng dẫn hay bài blog.\nBằng cách kết hợp markitdown với các công cụ như pandoc, bạn có thể giữ tài liệu ở định dạng Markdown nhất quán trong suốt pipeline.\nHiệu năng \u0026 Sử dụng thực tế markitdown được áp dụng rộng rãi nhờ chức năng chắc chắn và dễ dùng. Dưới đây là vài tình huống tiêu biểu. (Các con số bên dưới chỉ mang tính minh họa cho các quy trình thông thường, không phải benchmark chính thức.)\nTình huống: Đội tài liệu di chuyển dữ liệu Một đội làm tài liệu có thể dùng markitdown để chuyển một kho tài liệu Office đồ sộ sang Markdown nhằm tích hợp dễ hơn vào wiki nội bộ. Các đội từng làm việc này cho biết thời gian phải định dạng lại file nguồn bằng tay giảm đi đáng kể.\nVí dụ quy trình chuyển đổi markitdown xử lý được rất nhiều loại file, bao gồm .docx, .pptx, .xlsx và PDF. Đây là lệnh điển hình để chuyển một tài liệu Word sang Markdown: `````bash markitdown input.docx -o output.md\nVới tài liệu đơn giản thì rất nhanh; thời gian chuyển đổi tăng theo kích thước và độ phức tạp của tài liệu. ### Tích hợp với pipeline CI/CD ``markitdown`` chạy tốt trong các pipeline tích hợp và triển khai liên tục (CI/CD), nhờ đó có thể tự động cập nhật tài liệu. Chẳng hạn, bạn có thể thiết lập một workflow GitHub Actions để tự chuyển tài liệu mới sang Markdown mỗi khi chúng được commit: `````yaml name: Convert Docs to Markdown on: push: branches: - main jobs: build: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Install MarkItDown run: pip install 'markitdown[all]\" - name: Convert Docs to Markdown run: | for f in docs/*.docx; do markitdown \"$f\" -o \"${f%.docx}.md\" done Cách thiết lập này giúp tài liệu luôn được cập nhật mà gần như không cần can thiệp thủ công.\nPhản hồi từ cộng đồng Cộng đồng đã đóng góp những phản hồi giá trị, thúc đẩy công cụ phát triển liên tục. Ví dụ, người dùng từng báo cáo các trường hợp bảng phức tạp trong file .docx không được chuyển đổi sạch sẽ; nhóm bảo trì theo dõi những vấn đề như vậy trên GitHub và xử lý trong các bản phát hành sau, nhờ đó công cụ ngày càng đáng tin cậy hơn theo thời gian.\nSo sánh với các lựa chọn thay thế Bạn cũng có thể xem thêm bài viết về các công cụ mã nguồn mở liên quan của chúng tôi.\nKhi chọn một công cụ để chuyển file và tài liệu Office sang Markdown, markitdown của Microsoft là một lựa chọn mạnh. Dưới đây là bảng so sánh markitdown với hai lựa chọn phổ biến khác: pandoc và docx2txt. Bảng nêu bật những khác biệt chính về số sao, ngôn ngữ, độ dễ dùng và tính năng.\nTiêu chí markitdown pandoc docx2txt Stars 141.153 709.865 N/A Ngôn ngữ Python Haskell Python Nhánh mặc định main master master Issue đang mở 797 2.264 N/A Trọng tâm chuyển đổi Độ chính xác văn bản cho LLM Chuyển đổi trung thực giữa các định dạng Trích xuất văn bản thuần Độ phủ định dạng Rộng (Office, PDF, audio, ảnh, HTML) Rất rộng (gồm cả LaTeX) Chỉ .docx Tính năng bổ sung Chú thích ảnh bằng LLM, Azure Doc Intelligence Trích dẫn, LaTeX, template tùy biến Không Độ dễ dùng CLI đơn giản Dòng lệnh (khó hơn) CLI đơn giản Hỗ trợ cộng đồng Tích cực Lớn Nhỏ markitdown là lựa chọn vững chắc khi mục tiêu của bạn là lấy được Markdown sạch, dễ đọc từ nhiều kiểu tài liệu khác nhau — đặc biệt khi dùng làm đầu vào cho LLM và chỉ mục tìm kiếm. Được viết bằng Python nên nó dễ nhúng vào script và dịch vụ, còn cộng đồng tích cực giúp nó tiến lên đều đặn.\nNgược lại, pandoc là tay chơi hạng nặng cho việc chuyển đổi tài liệu sang tài liệu một cách trung thực. Nó hỗ trợ rất nhiều định dạng đầu vào và đầu ra, có trích dẫn và LaTeX, nên phù hợp hơn khi bạn cần đầu ra dàn trang chính xác và cấu hình được chi tiết. Tuy nhiên, việc viết bằng Haskell cùng kho tùy chọn đồ sộ khiến đường học hơi dốc.\ndocx2txt thì hẹp hơn nhiều: nó chỉ trích xuất văn bản thuần từ file .docx, vậy thôi. Để trích xuất văn bản nhanh thì cũng được, nhưng về độ phủ định dạng và cấu trúc Markdown thì kém hơn hai công cụ kia.\nTóm lại, nếu bạn cần độ phủ định dạng rộng và Markdown sẵn sàng cho pipeline LLM cũng như tài liệu, markitdown là lựa chọn mặc định hợp lý; còn khi cần chuyển đổi chính xác và cấu hình được chi tiết, hãy chọn pandoc.\nHạn chế \u0026 Đánh giá thẳng thắn markitdown là một công cụ có năng lực, nhưng vẫn có những hạn chế và đánh đổi. Dưới đây là vài tình huống mà nó có thể không phù hợp lắm: 1. Cấu trúc tài liệu phức tạp: Với tài liệu có bảng lồng nhau sâu hoặc tham chiếu chéo rối rắm, markitdown có thể không tái tạo chính xác cấu trúc gốc. 2. Macro Office tùy biến và script VBA: Nếu tài liệu dựa vào macro hoặc VBA để hoạt động, phần logic đó sẽ không được mang theo — Markdown không có thứ tương đương, nên hãy chuẩn bị làm lại bằng tay. 3. Độ trung thực về thị giác: Tài liệu lệ thuộc nhiều vào style tùy biến, bố cục chính xác hay định dạng phức tạp sẽ mất chi tiết hình thức, vì markitdown nhắm tới văn bản và cấu trúc chứ không phải giao diện. 4. Tính năng cộng tác: Định dạng Office có chú thích, theo dõi thay đổi và cộng tác thời gian thực, những thứ này không ánh xạ gọn gàng sang Markdown. Nếu chúng quan trọng, hãy giữ định dạng gốc. 5. Khối lượng lớn: Với tài liệu rất lớn hoặc lô file đồ sộ, việc chuyển đổi có thể ngốn tài nguyên và chậm hơn, điều cần lưu ý trên máy cấu hình thấp.\nNhững hạn chế này đáng cân nhắc khi bạn quyết định liệu markitdown có hợp với nhu cầu cụ thể của mình không.\nKết luận markitdown là một công cụ Python chắc chắn, đã tạo được chỗ đứng đáng kể với hơn 141 nghìn sao trên GitHub và do Microsoft bảo trì. Nó chuyển file và tài liệu Office sang Markdown một cách hiệu quả, tập trung vào đầu ra văn bản sạch cho các bước xử lý về sau. Với lập trình viên muốn tinh gọn quy trình xử lý tài liệu — đặc biệt cho các pipeline LLM và tài liệu — ````markitdown``` đáng được thêm vào bộ công cụ.\nTiếp theo, hãy thử cài nó bằng pip và nghịch thử khả năng chuyển đổi trên chính các dự án của bạn.\nTham gia nhóm Telegram tiếng Anh của dibi8 để nhận tin về các công cụ AI mã nguồn mở. Đọc tiếp: các hướng dẫn liên quan trên dibi8. Nguồn \u0026 Đọc thêm: - Repository GitHub: https://github.com/microsoft/markitdown\nTài liệu chính thức / README: https://github.com/microsoft/markitdown#readme Một số liên kết phía trên là liên kết tiếp thị (affiliate). dibi8.com có thể nhận hoa hồng nếu bạn đăng ký, mà bạn không phải trả thêm chi phí nào. Điều này giúp duy trì website và giữ nội dung miễn phí.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “markitdown: Chuyển file và tài liệu Office sang Markdown (141K Stars) — Hướng dẫn thực chiến 2026”, “datePublished”: “2026-06-02”, “dateModified”: “2026-06-02”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/markitdown-dev-utils-2026\" } } ",
+  "wordCount" : "2746",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -186,7 +186,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/vi/llm-frameworks/markitdown-dev-utils-2026/">Vi</a>
@@ -201,54 +201,38 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#markitdown-%ed%8c%8c%ec%9d%bc%ea%b3%bc-%ec%98%a4%ed%94%bc%ec%8a%a4-%eb%ac%b8%ec%84%9c%eb%a5%bc-%eb%a7%88%ed%81%ac%eb%8b%a4%ec%9a%b4%ec%9c%bc%eb%a1%9c-%eb%b3%80%ed%99%98-141k-stars--2026-%ec%8b%a4%ec%a0%84-%ea%b0%80%ec%9d%b4%eb%93%9c" aria-label="markitdown: 파일과 오피스 문서를 마크다운으로 변환 (141K Stars) — 2026 실전 가이드">markitdown: 파일과 오피스 문서를 마크다운으로 변환 (141K Stars) — 2026 실전 가이드</a><ul>
+                <a href="#markitdown-chuy%e1%bb%83n-file-v%c3%a0-t%c3%a0i-li%e1%bb%87u-office-sang-markdown-141k-stars--h%c6%b0%e1%bb%9bng-d%e1%ba%abn-th%e1%bb%b1c-chi%e1%ba%bfn-2026" aria-label="markitdown: Chuyển file và tài liệu Office sang Markdown (141K Stars) — Hướng dẫn thực chiến 2026">markitdown: Chuyển file và tài liệu Office sang Markdown (141K Stars) — Hướng dẫn thực chiến 2026</a><ul>
                     
             <li>
-                <a href="#%eb%93%a4%ec%96%b4%ea%b0%80%eb%a9%b0" aria-label="들어가며">들어가며</a></li>
+                <a href="#gi%e1%bb%9bi-thi%e1%bb%87u" aria-label="Giới thiệu">Giới thiệu</a></li>
             <li>
-                <a href="#markitdown%ec%9d%b4%eb%9e%80" aria-label="markitdown이란?">markitdown이란?</a></li>
+                <a href="#markitdown-l%c3%a0-g%c3%ac" aria-label="markitdown là gì?">markitdown là gì?</a></li>
             <li>
-                <a href="#markitdown%ec%9d%98-%eb%8f%99%ec%9e%91-%eb%b0%a9%ec%8b%9d" aria-label="markitdown의 동작 방식">markitdown의 동작 방식</a></li>
+                <a href="#markitdown-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-th%e1%ba%bf-n%c3%a0o" aria-label="markitdown hoạt động thế nào">markitdown hoạt động thế nào</a></li>
             <li>
-                <a href="#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95" aria-label="설치 및 설정">설치 및 설정</a></li>
-            <li>
-                <a href="#%ed%95%b5%ec%8b%ac-%ec%82%ac%ec%9a%a9%eb%b2%95" aria-label="핵심 사용법">핵심 사용법</a><ul>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp" aria-label="Cài đặt &amp; Thiết lập">Cài đặt &amp; Thiết lập</a><ul>
                     
             <li>
-                <a href="#word-%eb%ac%b8%ec%84%9c-%eb%b3%80%ed%99%98" aria-label="Word 문서 변환">Word 문서 변환</a></li>
+                <a href="#chuy%e1%bb%83n-%c4%91%e1%bb%95i-nhi%e1%bb%81u-file-c%c3%b9ng-l%c3%bac" aria-label="Chuyển đổi nhiều file cùng lúc">Chuyển đổi nhiều file cùng lúc</a></li>
             <li>
-                <a href="#%ec%97%ac%eb%9f%ac-%ed%8c%8c%ec%9d%bc-%ed%95%9c%ea%ba%bc%eb%b2%88%ec%97%90-%eb%b3%80%ed%99%98" aria-label="여러 파일 한꺼번에 변환">여러 파일 한꺼번에 변환</a></li>
-            <li>
-                <a href="#%ed%91%9c%ec%a4%80-%ec%9e%85%eb%a0%a5%ec%97%90%ec%84%9c-%ec%9d%bd%ea%b8%b0" aria-label="표준 입력에서 읽기">표준 입력에서 읽기</a></li>
-            <li>
-                <a href="#api-%ec%98%88%ec%a0%9c" aria-label="API 예제">API 예제</a></li></ul>
+                <a href="#v%c3%ad-d%e1%bb%a5-api" aria-label="Ví dụ API">Ví dụ API</a></li></ul>
             </li>
             <li>
-                <a href="#%ed%86%b5%ed%95%a9" aria-label="통합">통합</a><ul>
+                <a href="#hi%e1%bb%87u-n%c4%83ng--s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Hiệu năng &amp; Sử dụng thực tế">Hiệu năng &amp; Sử dụng thực tế</a><ul>
                     
             <li>
-                <a href="#%ec%9d%bc%eb%b0%98-%eb%8f%84%ea%b5%ac%ec%99%80%ec%9d%98-%ed%98%b8%ed%99%98%ec%84%b1" aria-label="일반 도구와의 호환성">일반 도구와의 호환성</a></li>
+                <a href="#t%c3%acnh-hu%e1%bb%91ng-%c4%91%e1%bb%99i-t%c3%a0i-li%e1%bb%87u-di-chuy%e1%bb%83n-d%e1%bb%af-li%e1%bb%87u" aria-label="Tình huống: Đội tài liệu di chuyển dữ liệu">Tình huống: Đội tài liệu di chuyển dữ liệu</a></li>
             <li>
-                <a href="#jupyter-notebook%ec%97%90%ec%84%9c-%ec%82%ac%ec%9a%a9%ed%95%98%ea%b8%b0" aria-label="Jupyter Notebook에서 사용하기">Jupyter Notebook에서 사용하기</a></li></ul>
+                <a href="#v%c3%ad-d%e1%bb%a5-quy-tr%c3%acnh-chuy%e1%bb%83n-%c4%91%e1%bb%95i" aria-label="Ví dụ quy trình chuyển đổi">Ví dụ quy trình chuyển đổi</a></li>
+            <li>
+                <a href="#ph%e1%ba%a3n-h%e1%bb%93i-t%e1%bb%ab-c%e1%bb%99ng-%c4%91%e1%bb%93ng" aria-label="Phản hồi từ cộng đồng">Phản hồi từ cộng đồng</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%84%b1%eb%8a%a5%ea%b3%bc-%ec%8b%a4%ec%a0%9c-%ed%99%9c%ec%9a%a9" aria-label="성능과 실제 활용">성능과 실제 활용</a><ul>
-                    
+                <a href="#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-l%e1%bb%b1a-ch%e1%bb%8dn-thay-th%e1%ba%bf" aria-label="So sánh với các lựa chọn thay thế">So sánh với các lựa chọn thay thế</a></li>
             <li>
-                <a href="#%ed%99%9c%ec%9a%a9-%ec%82%ac%eb%a1%80-%eb%ac%b8%ec%84%9c%ed%8c%80%ec%9d%98-%eb%a7%88%ec%9d%b4%ea%b7%b8%eb%a0%88%ec%9d%b4%ec%85%98" aria-label="활용 사례: 문서팀의 마이그레이션">활용 사례: 문서팀의 마이그레이션</a></li>
+                <a href="#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-th%e1%ba%b3ng-th%e1%ba%afn" aria-label="Hạn chế &amp; Đánh giá thẳng thắn">Hạn chế &amp; Đánh giá thẳng thắn</a></li>
             <li>
-                <a href="#%eb%b3%80%ed%99%98-%ea%b3%bc%ec%a0%95-%ec%98%88%ec%8b%9c" aria-label="변환 과정 예시">변환 과정 예시</a></li>
-            <li>
-                <a href="#cicd-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8%ea%b3%bc%ec%9d%98-%ed%86%b5%ed%95%a9" aria-label="CI/CD 파이프라인과의 통합">CI/CD 파이프라인과의 통합</a></li>
-            <li>
-                <a href="#%ec%bb%a4%eb%ae%a4%eb%8b%88%ed%8b%b0-%ed%94%bc%eb%93%9c%eb%b0%b1" aria-label="커뮤니티 피드백">커뮤니티 피드백</a></li></ul>
-            </li>
-            <li>
-                <a href="#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90" aria-label="대안과의 비교">대안과의 비교</a></li>
-            <li>
-                <a href="#%ed%95%9c%ea%b3%84%ec%99%80-%ec%86%94%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80" aria-label="한계와 솔직한 평가">한계와 솔직한 평가</a></li>
-            <li>
-                <a href="#%eb%a7%ba%ec%9d%8c%eb%a7%90" aria-label="맺음말">맺음말</a>
+                <a href="#k%e1%ba%bft-lu%e1%ba%adn" aria-label="Kết luận">Kết luận</a>
             </li>
         </ul>
         </li>
@@ -276,143 +260,155 @@ tags: [&quot;]
 aliases:</p>
 <ul>
 <li>/posts/markitdown-dev-utils-2026/
-faqs: - q: &lsquo;markitdown은 어떻게 설치하나요?&rsquo;
-a: &lsquo;pip로 설치합니다. 보통은 모든 포맷 extras를 함께 설치합니다. <code>bash pip install ''markitdown[all&quot;]'' </code>&rsquo;</li>
-<li>q: &lsquo;markitdown은 모든 종류의 오피스 문서를 변환할 수 있나요?&rsquo;
-a: &lsquo;Word(.docx), Excel(.xlsx), PowerPoint(.pptx), PDF, HTML, 이미지, 오디오 등 매우 다양한 포맷을 지원하지만, 모든 포맷의 모든 기능이 보존되는 것은 아닙니다. 지원되는 유형과 필요한 extras는 문서를 확인하세요.&rsquo;</li>
-<li>q: &lsquo;markitdown은 어떤 라이선스로 배포되나요?&rsquo;
-a: &lsquo;<code>markitdown</code>은 MIT 라이선스로 배포되어, 어떤 용도로든 자유롭게 사용하고 수정할 수 있습니다.&rsquo;</li>
-<li>q: &lsquo;프로젝트에 어떻게 기여하나요?&rsquo;
-a: &lsquo;이슈를 보고하거나 풀 리퀘스트를 보낼 수 있습니다. 기여 가이드라인은 <a href="https://github.com/microsoft/markitdown">GitHub 저장소</a>를 확인하세요.&rsquo;</li>
-<li>q: &lsquo;markitdown에 알려진 한계가 있나요?&rsquo;
-a: &lsquo;네, 일부 고급 기능과 복잡한 문서 구조는 완전히 보존되지 않을 수 있습니다. 프로젝트는 활발히 유지보수되지만, 시각적 재현보다 텍스트 정확성을 우선합니다.&rsquo;</li>
+faqs: - q: &lsquo;Cài markitdown thế nào?&rsquo;
+a: &lsquo;Cài bằng pip. Lựa chọn phổ biến là kéo về tất cả extras định dạng: <code>bash pip install ''markitdown[all&quot;]'' </code>&rsquo;</li>
+<li>q: &lsquo;markitdown có chuyển được mọi loại tài liệu Office không?&rsquo;
+a: &lsquo;Nó hỗ trợ rất nhiều định dạng — Word (.docx), Excel (.xlsx), PowerPoint (.pptx), PDF, HTML, ảnh và âm thanh — nhưng không phải tính năng nào của mọi định dạng cũng được giữ lại. Hãy xem tài liệu để biết danh sách các loại được hỗ trợ và extras cần thiết.&rsquo;</li>
+<li>q: &lsquo;markitdown phát hành theo giấy phép nào?&rsquo;
+a: &lsquo;<code>markitdown</code> được phát hành theo giấy phép MIT, nên có thể sử dụng và chỉnh sửa tự do cho mọi mục đích.&rsquo;</li>
+<li>q: &lsquo;Đóng góp cho dự án thế nào?&rsquo;
+a: &lsquo;Bạn có thể báo lỗi (issue) hoặc gửi pull request. Xem hướng dẫn đóng góp tại <a href="https://github.com/microsoft/markitdown">repository GitHub</a>.&rsquo;</li>
+<li>q: &lsquo;markitdown có hạn chế nào đã biết không?&rsquo;
+a: &lsquo;Có — một số tính năng nâng cao và cấu trúc tài liệu phức tạp có thể không được giữ lại đầy đủ. Dự án được bảo trì tích cực, nhưng nó ưu tiên độ chính xác văn bản hơn là tái tạo hình thức.&rsquo;</li>
 </ul>
 <hr>
-<h1 id="markitdown-파일과-오피스-문서를-마크다운으로-변환-141k-stars--2026-실전-가이드">markitdown: 파일과 오피스 문서를 마크다운으로 변환 (141K Stars) — 2026 실전 가이드<a hidden class="anchor" aria-hidden="true" href="#markitdown-파일과-오피스-문서를-마크다운으로-변환-141k-stars--2026-실전-가이드">#</a></h1>
-<h2 id="들어가며">들어가며<a hidden class="anchor" aria-hidden="true" href="#들어가며">#</a></h2>
-<p>오피스 문서를 마크다운으로 변환하는 일은 꽤 번거롭습니다. 특히 여러 파일과 다양한 포맷을 한꺼번에 다뤄야 할 때는 더 그렇죠. 마이크로소프트의 ```markitdown<code>도구가 바로 이 작업을 도와줍니다. GitHub 스타 14만 1천 개를 넘기며, 문서 변환이 필요한 개발자들에게 인기 있는 선택지가 되었습니다. 이 가이드에서는 설치, 사용법, 그리고 다른 도구들과의 비교를 차례로 살펴보면서</code>markitdown````이 여러분의 작업 흐름에 맞는지 판단할 수 있도록 돕겠습니다.</p>
-<h2 id="markitdown이란">markitdown이란?<a hidden class="anchor" aria-hidden="true" href="#markitdown이란">#</a></h2>
-<p><code>markitdown</code>은 마이크로소프트가 개발한 파이썬 도구로, 각종 파일과 오피스 문서를 마크다운으로 변환합니다. 다양한 문서 유형을 순수 마크다운 텍스트로 바꿔 주기 때문에, 풍부한 문서를 LLM 파이프라인, 위키, 정적 사이트 생성기에 넣어야 하는 개발자와 콘텐츠 제작자에게 특히 유용합니다. 주된 목표는 원본의 외관을 픽셀 단위로 재현하는 것이 아니라, 후속 처리를 위해 텍스트의 정확성을 보존하는 데 있습니다.</p>
-<h2 id="markitdown의-동작-방식">markitdown의 동작 방식<a hidden class="anchor" aria-hidden="true" href="#markitdown의-동작-방식">#</a></h2>
-<p><code>markitdown</code>은 원본 파일을 읽어 유형을 판별한 뒤, 마크다운을 표준 출력(또는 지정한 파일)으로 내보냅니다. 실제 동작은 다음과 같습니다.</p>
-<ol>
-<li><strong>파일 변환</strong>: <code>markitdown</code>은 입력 파일(<code>.docx</code>, <code>.xlsx</code>, <code>.pptx</code> 등)을 받아 마크다운 구조의 텍스트로 변환합니다.</li>
-<li><strong>구조 처리</strong>: 제목, 목록, 표 같은 원본 문서의 구조 요소를 보존해 출력이 읽기 좋게 유지됩니다.</li>
-<li><strong>선택적 확장</strong>: 이미지와 오디오의 경우, <code>markitdown</code>에 LLM 클라이언트(이미지 설명 생성용)를 연결하거나 Azure Document Intelligence를 사용할 수 있으며, 이는 생성자 인자나 CLI 플래그로 설정합니다.</li>
-</ol>
-<p>가장 간단한 호출은 마크다운을 터미널에 바로 출력하는 것입니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>markitdown example.docx
-</span></span></code></pre></div><p>결과를 파일로 저장하려면 <code>-o</code> 플래그를 사용합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>markitdown example.docx -o output.md
-</span></span></code></pre></div><p>이 명령은 문서를 변환해 <code>output.md</code>로 저장합니다.</p>
-<h2 id="설치-및-설정">설치 및 설정<a hidden class="anchor" aria-hidden="true" href="#설치-및-설정">#</a></h2>
-<p>markitdown을 정기적인 프로덕션 작업으로 돌리려면 항상 켜져 있는 머신이 필요합니다. <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a>(신규 계정은 무료 체험 크레딧 제공)에서 하나 띄우거나, <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a>의 저지연 홍콩 VPS(dibi8.com을 호스팅하는 것과 같은 IDC)를 쓰면 됩니다.</p>
-<p><code>markitdown</code>을 시작하려면 파이썬 패키지 관리자 <code>pip</code>로 설치합니다. 이 패키지는 선택적 추가 기능(extras) 방식을 쓰므로, 가장 흔한 선택은 전부 설치하는 것입니다.</p>
-<ol>
-<li>
-<p><strong>pip로 설치 (모든 포맷 지원):</strong></p>
+<h1 id="markitdown-chuyển-file-và-tài-liệu-office-sang-markdown-141k-stars--hướng-dẫn-thực-chiến-2026">markitdown: Chuyển file và tài liệu Office sang Markdown (141K Stars) — Hướng dẫn thực chiến 2026<a hidden class="anchor" aria-hidden="true" href="#markitdown-chuyển-file-và-tài-liệu-office-sang-markdown-141k-stars--hướng-dẫn-thực-chiến-2026">#</a></h1>
+<h2 id="giới-thiệu">Giới thiệu<a hidden class="anchor" aria-hidden="true" href="#giới-thiệu">#</a></h2>
+<p>Chuyển tài liệu Office sang Markdown có thể là một việc khá nhọc, nhất là khi phải xử lý nhiều file và nhiều định dạng khác nhau. Công cụ ```markitdown<code>của Microsoft sinh ra để giúp việc đó, với hơn 141 nghìn sao trên GitHub, trở thành lựa chọn quen thuộc của các lập trình viên khi cần chuyển đổi tài liệu. Bài viết này sẽ dẫn bạn qua phần cài đặt, cách dùng và so sánh với các công cụ khác, giúp bạn quyết định liệu</code>markitdown```` có hợp với quy trình của mình hay không.</p>
+<h2 id="markitdown-là-gì">markitdown là gì?<a hidden class="anchor" aria-hidden="true" href="#markitdown-là-gì">#</a></h2>
+<p><code>markitdown</code> là một công cụ Python do Microsoft phát triển, dùng để chuyển các loại file và tài liệu Office sang Markdown. Nó biến nhiều kiểu tài liệu khác nhau thành văn bản Markdown thuần, nên đặc biệt hữu ích với lập trình viên và người làm nội dung cần đưa tài liệu giàu định dạng vào các pipeline LLM, wiki hay trình tạo trang tĩnh. Mục tiêu chính của nó là giữ độ chính xác của văn bản cho các bước xử lý sau, chứ không phải tái tạo y hệt giao diện gốc đến từng pixel.</p>
+<h2 id="markitdown-hoạt-động-thế-nào">markitdown hoạt động thế nào<a hidden class="anchor" aria-hidden="true" href="#markitdown-hoạt-động-thế-nào">#</a></h2>
+<p><code>markitdown</code> đọc file nguồn, nhận diện loại file, rồi xuất Markdown ra đầu ra chuẩn (hoặc ra file bạn chỉ định). Trên thực tế, nó hoạt động như sau: 1. <strong>Chuyển đổi file</strong>: <code>markitdown</code> nhận file đầu vào (như <code>.docx</code>, <code>.xlsx</code> hay <code>.pptx</code>) và chuyển chúng thành văn bản theo cấu trúc Markdown.
+2. <strong>Xử lý cấu trúc</strong>: Nó giữ lại các thành phần cấu trúc như tiêu đề, danh sách và bảng từ tài liệu gốc, để kết quả vẫn dễ đọc.
+3. <strong>Tùy chọn mở rộng</strong>: Với hình ảnh và âm thanh, <code>markitdown</code> có thể gắn một LLM client (để sinh mô tả ảnh) hoặc dùng Azure Document Intelligence, được cấu hình qua tham số của constructor hoặc cờ CLI.</p>
+<p>Cách gọi đơn giản nhất là in thẳng Markdown ra terminal: `````bash
+markitdown example.docx</p>
+<pre tabindex="0"><code>
+Để lưu kết quả ra file, dùng cờ ``-o``: `````bash
+markitdown example.docx -o output.md
+</code></pre><p>Lệnh này sẽ chuyển đổi tài liệu của bạn và lưu thành <code>output.md</code>.</p>
+<h2 id="cài-đặt--thiết-lập">Cài đặt &amp; Thiết lập<a hidden class="anchor" aria-hidden="true" href="#cài-đặt--thiết-lập">#</a></h2>
+<p>Nếu muốn chạy markitdown như một tác vụ sản xuất theo lịch, bạn cần một máy luôn bật — có thể dựng một con trên <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> (tài khoản mới có credit dùng thử miễn phí), hoặc dùng <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> với VPS Hong Kong độ trễ thấp (cùng IDC đang host dibi8.com).</p>
+<p>Để bắt đầu với <code>markitdown</code>, hãy cài bằng trình quản lý gói của Python là <code>pip</code>. Gói này dùng cơ chế phần mở rộng tùy chọn (extras), nên lựa chọn phổ biến nhất là cài hết: 1. <strong>Dùng pip (hỗ trợ mọi định dạng):</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#39;markitdown[all]&#39;</span>
-</span></span></code></pre></div><p>특정 포맷만 필요하다면 해당 extras만 설치하면 됩니다. 예를 들면 이렇게요.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#39;markitdown[pdf, docx, pptx]&#39;</span>
-</span></span></code></pre></div></li>
-<li>
-<p><strong>GitHub에서 저장소 직접 클론 (선택):</strong>
-소스 코드를 새로 받거나 기여하고 싶다면 Git으로 저장소를 클론합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>git clone https://github.com/microsoft/markitdown.git
-</span></span><span style="display:flex;"><span>cd markitdown
-</span></span><span style="display:flex;"><span>pip install -e <span style="color:#e6db74">&#39;packages/markitdown[all]&#39;</span>
-</span></span></code></pre></div></li>
-<li>
-<p><strong>Docker 사용 (컨테이너 환경을 선호하는 경우):</strong>
-저장소에 Dockerfile이 포함되어 있으므로, 로컬에서 이미지를 빌드한 뒤 파일을 파이프로 흘려보냅니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>docker build -t markitdown:latest .
-</span></span><span style="display:flex;"><span>docker run --rm -i markitdown:latest &lt; example.docx &gt; output.md
-</span></span></code></pre></div></li>
+</span></span></code></pre></div><p>Nếu chỉ cần một số định dạng nhất định, chỉ cài các extras tương ứng, ví dụ: `````sh
+pip install &lsquo;markitdown[pdf, docx, pptx]&rsquo;</p>
+<pre tabindex="0"><code>
+2. **Clone trực tiếp repository từ GitHub (tùy chọn):**
+Nếu bạn muốn một bản mã nguồn mới hoặc muốn đóng góp, hãy clone repository bằng Git: `````sh
+git clone https://github.com/microsoft/markitdown.git
+cd markitdown
+pip install -e &#39;packages/markitdown[all]&#39;
+</code></pre><ol start="3">
+<li><strong>Dùng Docker (cho ai thích môi trường container):</strong>
+Repository có sẵn Dockerfile, nên bạn build image tại máy rồi đẩy file qua pipe: `````sh
+docker build -t markitdown:latest .
+docker run &ndash;rm -i markitdown:latest &lt; example.docx &gt; output.md
+<pre tabindex="0"><code></code></pre></li>
 </ol>
-<p>자주 겪는 문제 하나는, 변환하려는 포맷에 맞는 extra를 설치하지 않은 경우입니다. PDF나 오피스 파일을 변환할 때 <code>ImportError</code>나 의존성 누락 메시지가 뜨면, 해당 extra가 설치되어 있는지 확인하세요.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>pip install --upgrade <span style="color:#e6db74">&#39;markitdown[all]&#39;</span>
-</span></span></code></pre></div><p>가상 환경을 쓰고 있다면, 설치 명령을 실행하기 전에 먼저 활성화해 두세요.</p>
-<h2 id="핵심-사용법">핵심 사용법<a hidden class="anchor" aria-hidden="true" href="#핵심-사용법">#</a></h2>
-<p><code>markitdown</code>을 설치했다면 이제 실제로 어떻게 쓰는지 살펴봅시다.</p>
-<h3 id="word-문서-변환">Word 문서 변환<a hidden class="anchor" aria-hidden="true" href="#word-문서-변환">#</a></h3>
-<p>먼저 <code>.docx</code> 파일이 있어야 합니다. 이 예제에서는 파일 이름을 <code>example.docx</code>로 가정하겠습니다. 다음과 같이 변환해 결과를 파일에 쓸 수 있습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>markitdown example.docx -o output.md
-</span></span></code></pre></div><p>현재 디렉터리에 <code>output.md</code> 파일이 생성됩니다. <code>-o</code>를 생략하면 마크다운이 표준 출력으로 대신 출력됩니다.</p>
-<h3 id="여러-파일-한꺼번에-변환">여러 파일 한꺼번에 변환<a hidden class="anchor" aria-hidden="true" href="#여러-파일-한꺼번에-변환">#</a></h3>
-<p>여러 파일을 한 번에 처리하고 싶을 때가 있죠. 간단한 셸 루프로 해결할 수 있습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> file in *.docx; <span style="color:#66d9ef">do</span>
-</span></span><span style="display:flex;"><span>    markitdown <span style="color:#e6db74">&#34;</span>$file<span style="color:#e6db74">&#34;</span> -o <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>file%.docx<span style="color:#e6db74">}</span><span style="color:#e6db74">.md&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
-</span></span></code></pre></div><p>이 스크립트는 현재 디렉터리의 모든 <code>.docx</code> 파일을 변환해 각각 대응하는 <code>.md</code> 파일로 저장합니다.</p>
-<h3 id="표준-입력에서-읽기">표준 입력에서 읽기<a hidden class="anchor" aria-hidden="true" href="#표준-입력에서-읽기">#</a></h3>
-<p><code>markitdown</code>은 표준 입력에서도 읽어 들이므로 파이프라인에서 유용합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>cat example.docx | markitdown &gt; output.md
-</span></span></code></pre></div><h3 id="api-예제">API 예제<a hidden class="anchor" aria-hidden="true" href="#api-예제">#</a></h3>
-<p>파이썬으로 <code>markitdown</code>을 프로그래밍 방식으로 쓰고 싶다면, 아래 간단한 예제를 참고하세요. <code>convert()</code>는 결과 객체를 반환하며, 마크다운 내용은 그 객체의 <code>.text_content</code> 속성에 들어 있다는 점에 유의하세요.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> markitdown <span style="color:#f92672">import</span> MarkItDown
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>md <span style="color:#f92672">=</span> MarkItDown()
-</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> md<span style="color:#f92672">.</span>convert(<span style="color:#e6db74">&#39;example.docx&#39;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#39;output.md&#39;</span>, w) <span style="color:#66d9ef">as</span> file: file<span style="color:#f92672">.</span>write(result<span style="color:#f92672">.</span>text_content)
-</span></span></code></pre></div><p>이 파이썬 스크립트는 앞서 본 명령줄 예제와 같은 일을 하지만, 더 통합된 방식으로 동작합니다.</p>
-<p>이 예제들이면 <code>markitdown</code>을 시작하기에 충분할 겁니다. 이 도구는 활발히 유지보수되고 있고, 든든한 커뮤니티가 뒷받침하고 있습니다.</p>
-<h2 id="통합">통합<a hidden class="anchor" aria-hidden="true" href="#통합">#</a></h2>
-<p><code>markitdown</code>은 큰 마찰 없이 대부분의 기존 도구 체인에 끼워 넣을 수 있습니다. 문서를 변환하든, 마크다운 기반 파이프라인에 콘텐츠를 흘려보내든, 여러분의 작업 흐름 안에 자연스럽게 자리 잡습니다.</p>
-<h3 id="일반-도구와의-호환성">일반 도구와의 호환성<a hidden class="anchor" aria-hidden="true" href="#일반-도구와의-호환성">#</a></h3>
-<p><code>markitdown</code>이 다른 도구와 어떻게 어우러지는지 보기 위해, 오피스 문서를 마크다운으로 변환한 뒤 후처리하는 간단한 예제를 살펴봅시다.</p>
-<p>먼저 시스템에 파이썬이 설치되어 있는지 확인하세요. pip로 <code>markitdown</code>을 설치합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#39;markitdown[all]&#39;</span>
-</span></span></code></pre></div><p>설치 후에는 <code>pandoc</code> 같은 도구와 함께 써서 추가 처리나 포맷팅을 할 수 있습니다. 예를 들어, Word 문서를 마크다운으로 변환한 다음 <code>pandoc</code>으로 출력을 정규화하려면 이렇게 합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>markitdown input.docx -o temp.md
-</span></span><span style="display:flex;"><span>pandoc temp.md -s -t gfm &gt; final_output.md
-</span></span></code></pre></div><p>이 예제에서 <code>markitdown</code>은 Word를 마크다운으로 변환하고, <code>pandoc</code>은 그 결과를 GitHub 스타일 마크다운으로 다시 렌더링합니다.</p>
-<h3 id="jupyter-notebook에서-사용하기">Jupyter Notebook에서 사용하기<a hidden class="anchor" aria-hidden="true" href="#jupyter-notebook에서-사용하기">#</a></h3>
-<p>Jupyter Notebook 환경에서 작업한다면, <code>markitdown</code>으로 원본 문서를 마크다운 텍스트로 바로 변환하는 게 편리합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">!</span>pip install <span style="color:#e6db74">&#39;markitdown[all]&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> markitdown <span style="color:#f92672">import</span> MarkItDown
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">convert_to_markdown</span>(path): md <span style="color:#f92672">=</span> MarkItDown()
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> md<span style="color:#f92672">.</span>convert(path)<span style="color:#f92672">.</span>text_content
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>content <span style="color:#f92672">=</span> convert_to_markdown(<span style="color:#e6db74">&#39;example.docx&#39;</span>)
-</span></span><span style="display:flex;"><span>print(content)
-</span></span></code></pre></div><p>이 코드는 문서를 변환해 마크다운 내용을 반환하므로, 문서화 자료나 블로그 글에 손쉽게 녹여 넣을 수 있습니다.</p>
-<p><code>markitdown</code>을 <code>pandoc</code> 같은 도구와 짝지으면, 파이프라인 전반에 걸쳐 문서를 일관된 마크다운 형식으로 유지할 수 있습니다.</p>
-<h2 id="성능과-실제-활용">성능과 실제 활용<a hidden class="anchor" aria-hidden="true" href="#성능과-실제-활용">#</a></h2>
-<p><code>markitdown</code>은 탄탄한 기능과 사용 편의성 덕분에 폭넓게 채택되어 왔습니다. 아래는 대표적인 활용 사례들입니다. (아래 수치는 정식 벤치마크가 아니라 일반적인 작업 흐름을 보여 주기 위한 예시입니다.)</p>
-<h3 id="활용-사례-문서팀의-마이그레이션">활용 사례: 문서팀의 마이그레이션<a hidden class="anchor" aria-hidden="true" href="#활용-사례-문서팀의-마이그레이션">#</a></h3>
-<p>문서팀은 <code>markitdown</code>을 사용해 방대한 오피스 문서 모음을 마크다운으로 변환함으로써, 내부 위키에 더 쉽게 통합할 수 있습니다. 이런 마이그레이션을 해 본 팀들은 원본 파일을 일일이 손으로 다시 정리하는 데 드는 시간이 눈에 띄게 줄었다고 전합니다.</p>
-<h3 id="변환-과정-예시">변환 과정 예시<a hidden class="anchor" aria-hidden="true" href="#변환-과정-예시">#</a></h3>
-<p><code>markitdown</code>은 <code>.docx</code>, <code>.pptx</code>, <code>.xlsx</code>, PDF 등 매우 다양한 파일 유형을 처리할 수 있습니다. Word 문서를 마크다운으로 변환하는 전형적인 명령은 다음과 같습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>markitdown input.docx -o output.md
-</span></span></code></pre></div><p>구조가 단순한 문서라면 변환이 빠릅니다. 변환 시간은 문서의 크기와 복잡도에 따라 늘어납니다.</p>
-<h3 id="cicd-파이프라인과의-통합">CI/CD 파이프라인과의 통합<a hidden class="anchor" aria-hidden="true" href="#cicd-파이프라인과의-통합">#</a></h3>
-<p><code>markitdown</code>은 지속적 통합·배포(CI/CD) 파이프라인 안에서도 잘 동작하므로, 문서 자동 업데이트가 가능합니다. 예를 들어, 새 문서가 커밋될 때마다 자동으로 마크다운으로 변환하는 GitHub Actions 워크플로를 구성할 수 있습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Convert Docs to Markdown</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">on: push: branches</span>: - <span style="color:#ae81ff">main</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs: build: runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps: - uses</span>: <span style="color:#ae81ff">actions/checkout@v4</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Install MarkItDown</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">run</span>: <span style="color:#ae81ff">pip install &#39;markitdown[all]&#34;</span>
-</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Convert Docs to Markdown</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        for f in docs/*.docx; do
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          markitdown &#34;$f&#34; -o &#34;${f%.docx}.md&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        done</span>
-</span></span></code></pre></div><p>이렇게 구성해 두면 수작업을 최소화하면서 문서를 최신 상태로 유지할 수 있습니다.</p>
-<h3 id="커뮤니티-피드백">커뮤니티 피드백<a hidden class="anchor" aria-hidden="true" href="#커뮤니티-피드백">#</a></h3>
-<p>커뮤니티는 도구의 지속적인 발전을 이끄는 값진 피드백을 제공해 왔습니다. 예를 들어, <code>.docx</code> 파일의 복잡한 표가 깔끔하게 변환되지 않는다는 보고가 있었는데, 유지보수자들은 이런 이슈를 GitHub에서 추적하고 이후 릴리스에서 해결합니다. 바로 이런 개선들이 시간이 지나면서 도구를 점점 더 안정적으로 만들어 왔습니다.</p>
-<h2 id="대안과의-비교">대안과의 비교<a hidden class="anchor" aria-hidden="true" href="#대안과의-비교">#</a></h2>
-<p><a href="dibi8-internal-link">관련 오픈소스 도구</a>에 대한 글도 함께 확인해 보세요.</p>
-<p>파일과 오피스 문서를 마크다운으로 변환할 도구를 고를 때, 마이크로소프트의 <code>markitdown</code>은 든든한 선택지입니다. 아래는 <code>markitdown</code>을 또 다른 인기 대안인 <code>pandoc</code>, <code>docx2txt</code>와 비교한 표입니다. 스타 수, 언어, 사용 편의성, 기능 면의 핵심 차이를 정리했습니다.</p>
+<p>Một lỗi thường gặp là quên cài extra tương ứng với định dạng cần chuyển. Nếu bạn gặp <code>ImportError</code> hoặc thông báo thiếu phụ thuộc khi chuyển PDF hay file Office, hãy chắc chắn extra liên quan đã được cài: `````sh
+pip install &ndash;upgrade &lsquo;markitdown[all]&rsquo;</p>
+<pre tabindex="0"><code>
+Nếu đang dùng môi trường ảo (virtual environment), hãy nhớ kích hoạt nó trước khi chạy các lệnh cài đặt.
+
+## Cách dùng cốt lõi
+
+Khi ````markitdown```` đã được cài, hãy xem cách dùng nó trong thực tế.
+
+### Chuyển đổi tài liệu Word
+
+Trước tiên, bạn cần một file ``.docx``. Trong ví dụ này, ta giả định file tên là ``example.docx``. Bạn có thể chuyển đổi và ghi kết quả ra file như sau: `````sh
+markitdown example.docx -o output.md
+</code></pre><p>Lệnh này tạo ra file <code>output.md</code> trong thư mục hiện tại. Bỏ <code>-o</code> đi thì Markdown sẽ được in ra đầu ra chuẩn thay vì ghi file.</p>
+<h3 id="chuyển-đổi-nhiều-file-cùng-lúc">Chuyển đổi nhiều file cùng lúc<a hidden class="anchor" aria-hidden="true" href="#chuyển-đổi-nhiều-file-cùng-lúc">#</a></h3>
+<p>Đôi khi bạn muốn xử lý nhiều file một lần. Một vòng lặp shell đơn giản là đủ: `````sh
+for file in *.docx; do
+markitdown &ldquo;$file&rdquo; -o &ldquo;${file%.docx}.md&rdquo;
+done</p>
+<pre tabindex="0"><code>
+Script này sẽ chuyển đổi mọi file ````.docx```` trong thư mục hiện tại và lưu thành các file ````.md```` tương ứng.
+
+### Đọc từ đầu vào chuẩn
+
+``markitdown`` cũng đọc được từ đầu vào chuẩn, rất tiện khi dùng trong pipeline: `````sh
+cat example.docx | markitdown &gt; output.md
+</code></pre><h3 id="ví-dụ-api">Ví dụ API<a hidden class="anchor" aria-hidden="true" href="#ví-dụ-api">#</a></h3>
+<p>Nếu bạn làm việc với Python và muốn dùng <code>markitdown</code> theo kiểu lập trình, đây là một ví dụ đơn giản. Lưu ý rằng <code>convert()</code> trả về một đối tượng kết quả — nội dung Markdown nằm ở thuộc tính <code>.text_content</code> của nó: `````python
+from markitdown import MarkItDown</p>
+<p>md = MarkItDown()
+result = md.convert(&rsquo;example.docx')</p>
+<p>with open(&lsquo;output.md&rsquo;, w) as file: file.write(result.text_content)</p>
+<pre tabindex="0"><code>
+Script Python này làm đúng việc mà các ví dụ dòng lệnh phía trên làm, nhưng theo cách tích hợp hơn.
+
+Những ví dụ này đủ để bạn bắt đầu với ````markitdown````. Công cụ được bảo trì tích cực và có một cộng đồng lớn hậu thuẫn.
+
+## Tích hợp
+
+````markitdown```` lắp vào hầu hết các chuỗi công cụ sẵn có mà không vướng víu nhiều. Dù bạn đang chuyển đổi tài liệu hay đưa nội dung vào một pipeline dựa trên Markdown, nó đều có thể hòa vào quy trình của bạn.
+
+### Tương thích với các công cụ phổ biến
+
+Để thấy ````markitdown```` phối hợp với công cụ khác ra sao, hãy xét một ví dụ đơn giản: chuyển một tài liệu Office sang Markdown rồi hậu xử lý.
+
+Trước tiên, đảm bảo hệ thống đã cài Python. Bạn cài ``markitdown`` bằng pip: `````bash
+pip install &#39;markitdown[all]&#39;
+</code></pre><p>Sau khi cài, bạn có thể dùng nó cùng các công cụ như <code>pandoc</code> để xử lý hoặc định dạng thêm. Ví dụ, để chuyển một tài liệu Word sang Markdown rồi chuẩn hóa kết quả bằng <code>pandoc</code>: `````bash
+markitdown input.docx -o temp.md
+pandoc temp.md -s -t gfm &gt; final_output.md</p>
+<pre tabindex="0"><code>
+Trong ví dụ này, ````markitdown```` lo phần chuyển Word sang Markdown, còn ````pandoc```` render lại kết quả thành Markdown kiểu GitHub.
+
+### Làm việc với Jupyter Notebook
+
+Nếu bạn làm việc trong môi trường Jupyter Notebook, dùng ``markitdown`` để chuyển trực tiếp tài liệu nguồn sang văn bản Markdown rất tiện: `````python
+!pip install &#39;markitdown[all]&#39;
+from markitdown import MarkItDown
+
+def convert_to_markdown(path): md = MarkItDown()
+    return md.convert(path).text_content
+
+content = convert_to_markdown(&#39;example.docx&#39;)
+print(content)
+</code></pre><p>Đoạn code này chuyển một tài liệu và trả về nội dung Markdown của nó, giúp bạn dễ dàng đưa vào tài liệu hướng dẫn hay bài blog.</p>
+<p>Bằng cách kết hợp <code>markitdown</code> với các công cụ như <code>pandoc</code>, bạn có thể giữ tài liệu ở định dạng Markdown nhất quán trong suốt pipeline.</p>
+<h2 id="hiệu-năng--sử-dụng-thực-tế">Hiệu năng &amp; Sử dụng thực tế<a hidden class="anchor" aria-hidden="true" href="#hiệu-năng--sử-dụng-thực-tế">#</a></h2>
+<p><code>markitdown</code> được áp dụng rộng rãi nhờ chức năng chắc chắn và dễ dùng. Dưới đây là vài tình huống tiêu biểu. (Các con số bên dưới chỉ mang tính minh họa cho các quy trình thông thường, không phải benchmark chính thức.)</p>
+<h3 id="tình-huống-đội-tài-liệu-di-chuyển-dữ-liệu">Tình huống: Đội tài liệu di chuyển dữ liệu<a hidden class="anchor" aria-hidden="true" href="#tình-huống-đội-tài-liệu-di-chuyển-dữ-liệu">#</a></h3>
+<p>Một đội làm tài liệu có thể dùng <code>markitdown</code> để chuyển một kho tài liệu Office đồ sộ sang Markdown nhằm tích hợp dễ hơn vào wiki nội bộ. Các đội từng làm việc này cho biết thời gian phải định dạng lại file nguồn bằng tay giảm đi đáng kể.</p>
+<h3 id="ví-dụ-quy-trình-chuyển-đổi">Ví dụ quy trình chuyển đổi<a hidden class="anchor" aria-hidden="true" href="#ví-dụ-quy-trình-chuyển-đổi">#</a></h3>
+<p><code>markitdown</code> xử lý được rất nhiều loại file, bao gồm <code>.docx</code>, <code>.pptx</code>, <code>.xlsx</code> và PDF. Đây là lệnh điển hình để chuyển một tài liệu Word sang Markdown: `````bash
+markitdown input.docx -o output.md</p>
+<pre tabindex="0"><code>
+Với tài liệu đơn giản thì rất nhanh; thời gian chuyển đổi tăng theo kích thước và độ phức tạp của tài liệu.
+
+### Tích hợp với pipeline CI/CD
+
+``markitdown`` chạy tốt trong các pipeline tích hợp và triển khai liên tục (CI/CD), nhờ đó có thể tự động cập nhật tài liệu. Chẳng hạn, bạn có thể thiết lập một workflow GitHub Actions để tự chuyển tài liệu mới sang Markdown mỗi khi chúng được commit: `````yaml
+name: Convert Docs to Markdown
+
+on: push: branches: - main
+
+jobs: build: runs-on: ubuntu-latest
+
+    steps: - uses: actions/checkout@v4
+    - name: Install MarkItDown
+      run: pip install &#39;markitdown[all]&#34;
+    - name: Convert Docs to Markdown
+      run: |
+        for f in docs/*.docx; do
+          markitdown &#34;$f&#34; -o &#34;${f%.docx}.md&#34;
+        done
+</code></pre><p>Cách thiết lập này giúp tài liệu luôn được cập nhật mà gần như không cần can thiệp thủ công.</p>
+<h3 id="phản-hồi-từ-cộng-đồng">Phản hồi từ cộng đồng<a hidden class="anchor" aria-hidden="true" href="#phản-hồi-từ-cộng-đồng">#</a></h3>
+<p>Cộng đồng đã đóng góp những phản hồi giá trị, thúc đẩy công cụ phát triển liên tục. Ví dụ, người dùng từng báo cáo các trường hợp bảng phức tạp trong file <code>.docx</code> không được chuyển đổi sạch sẽ; nhóm bảo trì theo dõi những vấn đề như vậy trên GitHub và xử lý trong các bản phát hành sau, nhờ đó công cụ ngày càng đáng tin cậy hơn theo thời gian.</p>
+<h2 id="so-sánh-với-các-lựa-chọn-thay-thế">So sánh với các lựa chọn thay thế<a hidden class="anchor" aria-hidden="true" href="#so-sánh-với-các-lựa-chọn-thay-thế">#</a></h2>
+<p>Bạn cũng có thể xem thêm bài viết về <a href="dibi8-internal-link">các công cụ mã nguồn mở liên quan</a> của chúng tôi.</p>
+<p>Khi chọn một công cụ để chuyển file và tài liệu Office sang Markdown, <code>markitdown</code> của Microsoft là một lựa chọn mạnh. Dưới đây là bảng so sánh <code>markitdown</code> với hai lựa chọn phổ biến khác: <code>pandoc</code> và <code>docx2txt</code>. Bảng nêu bật những khác biệt chính về số sao, ngôn ngữ, độ dễ dùng và tính năng.</p>
 <table>
 	<thead>
 			<tr>
-					<th>항목</th>
+					<th>Tiêu chí</th>
 					<th>markitdown</th>
 					<th>pandoc</th>
 					<th>docx2txt</th>
@@ -421,91 +417,88 @@ a: &lsquo;네, 일부 고급 기능과 복잡한 문서 구조는 완전히 보�
 	<tbody>
 			<tr>
 					<td>Stars</td>
-					<td>141,153</td>
-					<td>709,865</td>
+					<td>141.153</td>
+					<td>709.865</td>
 					<td>N/A</td>
 			</tr>
 			<tr>
-					<td>언어</td>
+					<td>Ngôn ngữ</td>
 					<td>Python</td>
 					<td>Haskell</td>
 					<td>Python</td>
 			</tr>
 			<tr>
-					<td>기본 브랜치</td>
+					<td>Nhánh mặc định</td>
 					<td>main</td>
 					<td>master</td>
 					<td>master</td>
 			</tr>
 			<tr>
-					<td>미해결 이슈</td>
+					<td>Issue đang mở</td>
 					<td>797</td>
-					<td>2,264</td>
+					<td>2.264</td>
 					<td>N/A</td>
 			</tr>
 			<tr>
-					<td>변환 초점</td>
-					<td>LLM용 텍스트 정확성</td>
-					<td>충실한 포맷 간 변환</td>
-					<td>순수 텍스트 추출</td>
+					<td>Trọng tâm chuyển đổi</td>
+					<td>Độ chính xác văn bản cho LLM</td>
+					<td>Chuyển đổi trung thực giữa các định dạng</td>
+					<td>Trích xuất văn bản thuần</td>
 			</tr>
 			<tr>
-					<td>포맷 커버리지</td>
-					<td>넓음(Office, PDF, 오디오, 이미지, HTML)</td>
-					<td>매우 넓음(LaTeX 포함)</td>
-					<td>.docx 전용</td>
+					<td>Độ phủ định dạng</td>
+					<td>Rộng (Office, PDF, audio, ảnh, HTML)</td>
+					<td>Rất rộng (gồm cả LaTeX)</td>
+					<td>Chỉ .docx</td>
 			</tr>
 			<tr>
-					<td>부가 기능</td>
-					<td>LLM 이미지 캡션, Azure Doc Intelligence</td>
-					<td>인용, LaTeX, 사용자 정의 템플릿</td>
-					<td>없음</td>
+					<td>Tính năng bổ sung</td>
+					<td>Chú thích ảnh bằng LLM, Azure Doc Intelligence</td>
+					<td>Trích dẫn, LaTeX, template tùy biến</td>
+					<td>Không</td>
 			</tr>
 			<tr>
-					<td>사용 편의성</td>
-					<td>간단한 CLI</td>
-					<td>명령줄(진입 장벽 있음)</td>
-					<td>간단한 CLI</td>
+					<td>Độ dễ dùng</td>
+					<td>CLI đơn giản</td>
+					<td>Dòng lệnh (khó hơn)</td>
+					<td>CLI đơn giản</td>
 			</tr>
 			<tr>
-					<td>커뮤니티 지원</td>
-					<td>활발함</td>
-					<td>큼</td>
-					<td>작음</td>
+					<td>Hỗ trợ cộng đồng</td>
+					<td>Tích cực</td>
+					<td>Lớn</td>
+					<td>Nhỏ</td>
 			</tr>
 	</tbody>
 </table>
-<p>혼합된 문서 유형에서 깔끔하고 읽기 좋은 마크다운을 뽑아내는 게 목표라면—특히 LLM이나 검색 인덱스의 입력으로 쓸 거라면—<code>markitdown</code>은 무난한 선택입니다. 파이썬으로 구현되어 스크립트와 서비스에 쉽게 끼워 넣을 수 있고, 활발한 커뮤니티가 발전을 이어 갑니다.</p>
-<p>반면 <code>pandoc</code>은 충실한 문서 간 변환에서 단연 헤비급입니다. 매우 다양한 입출력 포맷과 인용, LaTeX를 지원하므로, 정밀하고 세밀하게 설정 가능한 조판 출력이 필요할 때 더 잘 맞습니다. 다만 Haskell 구현과 방대한 옵션 탓에 진입 장벽이 다소 높습니다.</p>
-<p><code>docx2txt</code>는 훨씬 좁습니다. <code>.docx</code> 파일에서 순수 텍스트를 추출하는 것, 딱 그뿐입니다. 빠른 텍스트 추출용으로는 괜찮지만, 포맷 커버리지나 마크다운 구조 면에서는 앞의 두 도구에 미치지 못합니다.</p>
-<p>요약하면, 넓은 포맷 커버리지와 LLM·문서화 파이프라인에 바로 쓸 수 있는 마크다운이 필요하다면 <code>markitdown</code>이 합리적인 기본값이고, 정밀하고 세밀하게 설정 가능한 변환이 필요하다면 <code>pandoc</code>을 고르면 됩니다.</p>
-<h2 id="한계와-솔직한-평가">한계와 솔직한 평가<a hidden class="anchor" aria-hidden="true" href="#한계와-솔직한-평가">#</a></h2>
-<p><code>markitdown</code>은 유능한 도구지만, 나름의 한계와 트레이드오프가 있습니다. 다음과 같은 상황에서는 덜 적합할 수 있습니다.</p>
-<ol>
-<li><strong>복잡한 문서 구조</strong>: 깊게 중첩된 표나 얽히고설킨 상호 참조가 있는 문서라면, <code>markitdown</code>이 원본 구조를 정확히 재현하지 못할 수 있습니다.</li>
-<li><strong>사용자 정의 오피스 매크로와 VBA 스크립트</strong>: 문서가 동작을 위해 매크로나 VBA에 의존한다면, 그 로직은 옮겨지지 않습니다. 마크다운에는 대응물이 없으므로 수작업 재작업을 각오해야 합니다.</li>
-<li><strong>시각적 충실도</strong>: 사용자 정의 스타일, 정밀한 레이아웃, 복잡한 서식에 크게 의존하는 문서는 시각적 디테일을 잃습니다. <code>markitdown</code>은 외관이 아니라 텍스트와 구조를 겨냥하기 때문입니다.</li>
-<li><strong>협업 기능</strong>: 오피스 포맷에는 주석, 변경 내용 추적, 실시간 협업이 들어 있는데, 이는 마크다운으로 깔끔하게 옮겨지지 않습니다. 이런 기능이 중요하다면 원본 포맷을 유지하세요.</li>
-<li><strong>대량 처리</strong>: 매우 큰 문서나 대규모 일괄 처리에서는 변환이 리소스를 많이 쓰고 느려질 수 있어, 사양이 낮은 머신에서는 신경 쓸 부분입니다.</li>
-</ol>
-<p><code>markitdown</code>이 여러분의 구체적인 요구에 맞는지 판단할 때 이런 한계들을 함께 따져 볼 만합니다.</p>
-<h2 id="맺음말">맺음말<a hidden class="anchor" aria-hidden="true" href="#맺음말">#</a></h2>
-<p><code>markitdown</code>은 GitHub 스타 14만 1천 개를 넘기며 상당한 입지를 다진 탄탄한 파이썬 도구로, 마이크로소프트가 유지보수합니다. 파일과 오피스 문서를 효율적으로 마크다운으로 변환하며, 후속 활용을 위한 깔끔한 텍스트 출력에 초점을 둡니다. 문서 처리 흐름을 간소화하려는 개발자라면—특히 LLM과 문서화 파이프라인을 다룬다면—````markitdown```을 도구함에 넣어 둘 만합니다.</p>
-<p>다음으로, pip로 설치해서 여러분의 프로젝트에 직접 변환 기능을 적용해 보세요.</p>
+<p><code>markitdown</code> là lựa chọn vững chắc khi mục tiêu của bạn là lấy được Markdown sạch, dễ đọc từ nhiều kiểu tài liệu khác nhau — đặc biệt khi dùng làm đầu vào cho LLM và chỉ mục tìm kiếm. Được viết bằng Python nên nó dễ nhúng vào script và dịch vụ, còn cộng đồng tích cực giúp nó tiến lên đều đặn.</p>
+<p>Ngược lại, <code>pandoc</code> là tay chơi hạng nặng cho việc chuyển đổi tài liệu sang tài liệu một cách trung thực. Nó hỗ trợ rất nhiều định dạng đầu vào và đầu ra, có trích dẫn và LaTeX, nên phù hợp hơn khi bạn cần đầu ra dàn trang chính xác và cấu hình được chi tiết. Tuy nhiên, việc viết bằng Haskell cùng kho tùy chọn đồ sộ khiến đường học hơi dốc.</p>
+<p><code>docx2txt</code> thì hẹp hơn nhiều: nó chỉ trích xuất văn bản thuần từ file <code>.docx</code>, vậy thôi. Để trích xuất văn bản nhanh thì cũng được, nhưng về độ phủ định dạng và cấu trúc Markdown thì kém hơn hai công cụ kia.</p>
+<p>Tóm lại, nếu bạn cần độ phủ định dạng rộng và Markdown sẵn sàng cho pipeline LLM cũng như tài liệu, <code>markitdown</code> là lựa chọn mặc định hợp lý; còn khi cần chuyển đổi chính xác và cấu hình được chi tiết, hãy chọn <code>pandoc</code>.</p>
+<h2 id="hạn-chế--đánh-giá-thẳng-thắn">Hạn chế &amp; Đánh giá thẳng thắn<a hidden class="anchor" aria-hidden="true" href="#hạn-chế--đánh-giá-thẳng-thắn">#</a></h2>
+<p><code>markitdown</code> là một công cụ có năng lực, nhưng vẫn có những hạn chế và đánh đổi. Dưới đây là vài tình huống mà nó có thể không phù hợp lắm: 1. <strong>Cấu trúc tài liệu phức tạp</strong>: Với tài liệu có bảng lồng nhau sâu hoặc tham chiếu chéo rối rắm, <code>markitdown</code> có thể không tái tạo chính xác cấu trúc gốc.
+2. <strong>Macro Office tùy biến và script VBA</strong>: Nếu tài liệu dựa vào macro hoặc VBA để hoạt động, phần logic đó sẽ không được mang theo — Markdown không có thứ tương đương, nên hãy chuẩn bị làm lại bằng tay.
+3. <strong>Độ trung thực về thị giác</strong>: Tài liệu lệ thuộc nhiều vào style tùy biến, bố cục chính xác hay định dạng phức tạp sẽ mất chi tiết hình thức, vì <code>markitdown</code> nhắm tới văn bản và cấu trúc chứ không phải giao diện.
+4. <strong>Tính năng cộng tác</strong>: Định dạng Office có chú thích, theo dõi thay đổi và cộng tác thời gian thực, những thứ này không ánh xạ gọn gàng sang Markdown. Nếu chúng quan trọng, hãy giữ định dạng gốc.
+5. <strong>Khối lượng lớn</strong>: Với tài liệu rất lớn hoặc lô file đồ sộ, việc chuyển đổi có thể ngốn tài nguyên và chậm hơn, điều cần lưu ý trên máy cấu hình thấp.</p>
+<p>Những hạn chế này đáng cân nhắc khi bạn quyết định liệu <code>markitdown</code> có hợp với nhu cầu cụ thể của mình không.</p>
+<h2 id="kết-luận">Kết luận<a hidden class="anchor" aria-hidden="true" href="#kết-luận">#</a></h2>
+<p><code>markitdown</code> là một công cụ Python chắc chắn, đã tạo được chỗ đứng đáng kể với hơn 141 nghìn sao trên GitHub và do Microsoft bảo trì. Nó chuyển file và tài liệu Office sang Markdown một cách hiệu quả, tập trung vào đầu ra văn bản sạch cho các bước xử lý về sau. Với lập trình viên muốn tinh gọn quy trình xử lý tài liệu — đặc biệt cho các pipeline LLM và tài liệu — ````markitdown``` đáng được thêm vào bộ công cụ.</p>
+<p>Tiếp theo, hãy thử cài nó bằng pip và nghịch thử khả năng chuyển đổi trên chính các dự án của bạn.</p>
 <ul>
-<li><a href="https://t.me/DIBI8_Group/2">dibi8 영어 Telegram 그룹</a>에 참여해 오픈소스 AI 도구 소식을 가장 먼저 받아 보세요.</li>
-<li>이어 읽기: <a href="dibi8-internal-link">dibi8의 관련 가이드</a>.</li>
+<li>Tham gia <a href="https://t.me/DIBI8_Group/2">nhóm Telegram tiếng Anh của dibi8</a> để nhận tin về các công cụ AI mã nguồn mở.</li>
+<li>Đọc tiếp: <a href="dibi8-internal-link">các hướng dẫn liên quan trên dibi8</a>.</li>
 </ul>
 <hr>
-<p><strong>출처 및 더 읽을거리</strong>: - GitHub 저장소: <a href="https://github.com/microsoft/markitdown">https://github.com/microsoft/markitdown</a></p>
+<p><strong>Nguồn &amp; Đọc thêm</strong>: - Repository GitHub: <a href="https://github.com/microsoft/markitdown">https://github.com/microsoft/markitdown</a></p>
 <ul>
-<li>공식 문서 / README: <a href="https://github.com/microsoft/markitdown#readme">https://github.com/microsoft/markitdown#readme</a></li>
+<li>Tài liệu chính thức / README: <a href="https://github.com/microsoft/markitdown#readme">https://github.com/microsoft/markitdown#readme</a></li>
 </ul>
-<p><em>위 링크 중 일부는 제휴(affiliate) 링크입니다. 여러분이 가입하면 dibi8.com이 수수료를 받을 수 있으며, 추가 비용은 들지 않습니다. 사이트 운영과 무료 콘텐츠 유지에 도움이 됩니다.</em></p>
+<p><em>Một số liên kết phía trên là liên kết tiếp thị (affiliate). dibi8.com có thể nhận hoa hồng nếu bạn đăng ký, mà bạn không phải trả thêm chi phí nào. Điều này giúp duy trì website và giữ nội dung miễn phí.</em></p>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;markitdown: 파일과 오피스 문서를 마크다운으로 변환 (141K Stars) — 2026 실전 가이드&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;markitdown: Chuyển file và tài liệu Office sang Markdown (141K Stars) — Hướng dẫn thực chiến 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-06-02&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-06-02&rdquo;,
 &ldquo;author&rdquo;: {
@@ -522,7 +515,7 @@ a: &lsquo;네, 일부 고급 기능과 복잡한 문서 구조는 완전히 보�
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/markitdown-dev-utils-2026%22">https://dibi8.com/kr/resources/markitdown-dev-utils-2026"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/vi/resources/markitdown-dev-utils-2026%22">https://dibi8.com/vi/resources/markitdown-dev-utils-2026"</a>
 }
 }
 </script></p>
@@ -558,6 +551,81 @@ a: &lsquo;네, 일부 고급 기능과 복잡한 문서 구조는 완전히 보�
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

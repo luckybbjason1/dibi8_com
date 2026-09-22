@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: “50.9 MB” file_md5: \"\" download_url: “https://github.com/vasu-devs/JustHireMe.git\" backup_url: \"” last_maintained: “2026-05-15” draft: false aliases:\n/kr/posts/justhireme-ai-job-search-workbench/ faqs: - q: ‘JustHireMe는 무료 오픈 소스인가요?’ a: ‘네. JustHireMe는 MIT 라이선스 하에 오픈 소스로 공개되어 있으며, 구독료나 숨겨진 비용이 전혀 없습니다. 이력서와 데이터의 소유권은 전적으로 사용자에게 있으며, 점수 산출 알고리즘도 투명하게 공개되어 있습니다.’ q: ‘JustHireMe를 사용하려면 AI API 키가 필요하거나 데이터가 클라우드로 전송되나요?’ a: ‘아닙니다. JustHireMe는 로컬 우선 방식으로 동작합니다. 모든 AI 연산은 로컬에서 실행되므로 API 키가 필요 없으며, 데이터는 클라우드에 업로드되지 않고 사용자 기기의 로컬 SQLite 데이터베이스에 저장됩니다.’ q: ‘JustHireMe는 어떤 채용 플랫폼에서 공고를 수집할 수 있나요?’ a: ‘LinkedIn, Indeed, Glassdoor, AngelList, Hacker News, 기업 채용 페이지, 원격 근무 전용 섹션에서 자동으로 채용 공고를 수집합니다. 중복 제거 알고리즘이 여러 플랫폼에 동일하게 게재된 포지션을 자동으로 하나로 통합합니다.’ q: ‘JustHireMe의 채용 공고 매칭 점수는 어떻게 산출되나요?’ a: ‘키워드 매칭이 아닌 시맨틱 이해 방식을 사용합니다. 사용자의 기술, 경력, 연봉 기대치, 커리어 목표를 각 공고의 요구 사항과 비교 분석하여 0-100 점수를 부여하므로, 80점 이상의 포지션에 집중할 수 있습니다.’ q: ‘JustHireMe는 어떤 기술 스택으로 개발되었나요?’ a: ‘데스크톱 앱은 React 19와 TypeScript를 결합한 Tauri 2로 구축되었으며, 백엔드는 FastAPI와 WebSockets를 사용하는 Python 3.13으로 실행됩니다. 데이터는 SQLite와 Kuzu 그래프 데이터베이스, LanceDB 벡터 저장소에 보관되며, Playwright가 스크래핑 및 지원서 제출을 위한 브라우저 자동화를 담당합니다.’ {\u003c/* resource-info */\u003e}\n문제: 구직은 풀타임 직업입니다 이력서 100통을 제출하고, 면접 2개를 받고, Offer 0개. 이는 당신의 문제가 아니라 시스템의 문제입니다.\n각 채용 사이트는 섬입니다: - LinkedIn: 고급 검색은 유료\nIndeed: 중복 포지션, 만료된 정보 Glassdoor: 급여 데이터 지연 회사 홈페이지: 각각 다시 작성해야 함 채용 이메일: 99% 읽음 확인 없음 더 고통스러운 것은: 제출할 때마다 이력서를 다시 쓰고, 자기소개서를 다시 쓰고, 회사를 다시 연구해야 합니다.\n해결책: JustHireMe JustHireMe는 오픈소스 AI 구직 인텔리전스 워크벤치입니다. 로컬 우선, 프라이버시 안전, 원클릭 자동 제출.\n핵심 철학: AI가 반복 작업을 하고, 당신은 의사결정만 합니다.\n핵심 기능 1. 스마트 포지션 크롤링 여러 플랫폼에서 자동으로 포지션을 크롤링합니다: - LinkedIn, Indeed, Glassdoor\nAngelList, Hacker News 회사 채용 페이지 원격 근무 전용 구역 중복 제거 알고리즘: 동일한 포지션이 다른 플랫폼에 나타나면 자동으로 병합합니다.\n2. AI 매칭도 평가 키워드 매칭이 아닌 진정한 의미 이해: - 당신의 기술 vs 포지션 요구사항\n당신의 경험 vs 포지션 레벨 당신의 급여 기대치 vs 예산 범위 당신의 커리어 목표 vs 회사 방향 점수 0-100, 80점 이상의 포지션만 봅니다.\n3. 이력서 자동 맞춤화 각 포지션에 따라 이력서를 재작성합니다: - 관련 기술 강조\n프로젝트 설명 조정 키워드 매칭 레이아웃 포맷 최적화 템플릿 채우기가 아닌, 진정한 AI 재작성입니다.\n4. 자기소개서 생성 각 자기소개서는 유니크합니다: - 회사 배경 연구\n구체적인 프로젝트 인용 관련 경험 제시 진정한 관심 표현 HR은 템플릿과 진심 어린 글을 구분할 수 있습니다.\n5. 로컬 CRM 관리 모든 데이터는 로컬에 저장됩니다: - SQLite 데이터베이스\n포지션 이력 기록 제출 상태 추적 면접 일정 관리 프라이버시 우선: 당신의 데이터는 클라우드에 업로드되지 않습니다.\n기술 아키텍처 레이어 기술 데스크톱 Tauri 2 + React 19 + TypeScript 백엔드 Python 3.13 + FastAPI + WebSockets 데이터베이스 SQLite + Kuzu 그래프 DB + LanceDB 벡터 DB AI 모델 로컬 LLM + 의미 검색 자동화 Playwright 브라우저 자동화 로컬 우선: 모든 AI 계산은 로컬에서 완료되며, API Key가 필요 없습니다.\n설치 및 사용 # 저장소 클론 git clone https://github.com/vasu-devs/JustHireMe.git cd JustHireMe # 프론트엔드 의존성 설치 npm install # 개발 서버 시작 npm run dev # 데스크톱 앱 시작 npm run tauri dev 사용 프로세스 프로필 설정: 이력서 업로드, 기술과 목표 입력 크롤링 소스 구성: 모니터링할 채용 플랫폼 선택 크롤링 실행: AI가 최신 포지션을 자동으로 크롤링 매칭 보기: 매칭도순 정렬, 고점수 포지션 필터링 원클릭 지원: AI가 맞춤형 자료 생성, 자동 제출 진행 상황 추적: CRM으로 모든 지원 상태 관리 왜 오픈소스인가? 구직은 플랫폼에 의해 독점되어서는 안 됩니다: - 데이터 소유권: 당신의 이력서, 당신의 데이터\n알고리즘 투명성: AI가 어떻게 평가하는지 알 수 있음 무료 사용: 구독료 없음, 숨겨진 비용 없음 커뮤니티 주도: 모두가 함께 개선 누구에게 적합한가? 구직자: 더 많이, 더 잘, 더 빠르게 지원하고 싶은 사람 프리랜서: 계약과 프로젝트를 찾는 사람 전환 희망자: 맞춤형 이력서가 필요한 사람 신입: 어디서 시작해야 할지 모르는 사람 시니어: 고품질 기회를 수동적으로 받고 싶은 사람 관련 기사 Agent Reach：AI 에이전트를 인터넷 마스터로 만드는 원클릭 솔루션 Free Claude Code：비용 부담 없이 Claude Code 사용하기 OpenClaw 42개 실제 사용 사례：AI 에이전트가 이미 이렇게 우리의 삶을 바꾸고 있습니다 프로젝트 주소: github.com/vasu-devs/JustHireMe\nStars: 471 ⭐ | Forks: 91 | 언어: Python 47.3%, TypeScript 27.5%\n추천 도구 오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.\n**** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%. 추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “JustHireMe：AI가 당신의 취업을 자동화합니다”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/justhireme-ai-job-search-workbench\" } } Why This Matters Understanding justhireme：ai가 당신의 취업을 자동화합니다 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion JustHireMe：AI가 당신의 취업을 자동화합니다 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\n",
-  "wordCount" : "970",
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - JavaScript\nPython TypeScript application_domain: “Ai Tools” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: “50.9 MB” file_md5: \"\" download_url: “https://github.com/vasu-devs/JustHireMe.git\" backup_url: \"” last_maintained: “2026-05-15” draft: false aliases: /posts/justhireme-ai-job-search-workbench/ faqs: - q: ‘Is JustHireMe free and open source?’ a: ‘Yes. JustHireMe is open source under the MIT license, with no subscription fees or hidden costs. You own your resume and data, and the scoring algorithm is transparent.’ q: ‘Does JustHireMe require an AI API key or send my data to the cloud?’ a: ‘No. JustHireMe is local-first: all AI computation runs locally with no API key required, and your data is stored on your machine in a local SQLite database rather than uploaded to the cloud.’ q: ‘Which job platforms can JustHireMe scrape listings from?’ a: ‘It automatically aggregates jobs from LinkedIn, Indeed, Glassdoor, AngelList, Hacker News, company career pages, and remote-work sections. A deduplication algorithm merges the same role when it appears across multiple platforms.’ q: ‘How does JustHireMe’’s job matching score work?’ a: ‘It uses semantic understanding rather than keyword matching, comparing your skills, experience, salary expectations, and career goals against each job’’s requirements. Each listing receives a 0-100 score so you can focus on roles above 80.’ q: ‘What technology stack is JustHireMe built on?’ a: ‘The desktop app uses Tauri 2 with React 19 and TypeScript; the backend runs Python 3.13 with FastAPI and WebSockets; data is stored in SQLite plus a Kuzu graph database and LanceDB vector store; and Playwright handles browser automation for scraping and applying.’ {\u003c/* resource-info */\u003e}\n问题：找工作就是一份全职工作 投 100 份简历，收到 2 个面试，0 个 Offer。这不是你的问题，是系统的问题。\n每个招聘网站都是孤岛：\nLinkedIn：高级搜索要付费 Indeed：重复职位、过期信息 Glassdoor：薪资数据滞后 公司官网：每个都要重新填写 招聘邮件：99% 已读不回 更痛苦的是：每投一份都要重新写简历、重新写求职信、重新研究公司。\n解决方案：JustHireMe JustHireMe 是一个开源的 AI 求职智能工作台。本地优先、隐私安全、一键自动投递。\n核心理念：让 AI 做重复工作，你只做决策。\n核心功能 1. 智能职位抓取 自动从多个平台抓取职位：\nLinkedIn、Indeed、Glassdoor AngelList、Hacker News 公司招聘页面 远程工作专区 去重算法：同一职位在不同平台出现，自动合并。\n2. AI 匹配度评分 不是关键词匹配，是真正的语义理解：\n你的技能 vs 职位要求 你的经验 vs 职位级别 你的薪资期望 vs 预算范围 你的职业目标 vs 公司方向 评分 0-100，只看 80 分以上的职位。\n3. 简历自动定制 根据每个职位重写简历：\n突出相关技能 调整项目描述 匹配关键词 优化排版格式 不是模板填充，是真正的 AI 重写。\n4. 求职信生成 每封求职信都是独一无二的：\n研究公司背景 引用具体项目 展示相关经验 表达真诚兴趣 HR 看得出来是模板还是用心写的。\n5. 本地 CRM 管理 所有数据存在本地：\nSQLite 数据库 职位历史记录 投递状态跟踪 面试日程管理 隐私优先：你的数据不会上传到云端。\n技术架构 | 层级 | 技术 | |\n|\n| | 桌面端 | Tauri 2 + React 19 + TypeScript | | 后端 | Python 3.13 + FastAPI + WebSockets | | 数据库 | SQLite + Kuzu 图数据库 + LanceDB 向量库 | | AI 模型 | 本地 LLM + 语义搜索 | | 自动化 | Playwright 浏览器自动化 |\n本地优先：所有 AI 计算在本地完成，无需 API Key。\n安装使用 # 克隆仓库 git clone https://github.com/vasu-devs/JustHireMe.git cd JustHireMe # 安装前端依赖 npm install # 启动开发服务器 npm run dev # 启动桌面应用 npm run tauri dev 使用流程 设置 profile：上传简历，填写技能和目标 配置抓取源：选择要监控的招聘平台 运行抓取：AI 自动抓取最新职位 查看匹配：按匹配度排序，筛选高分配职位 一键申请：AI 生成定制材料，自动投递 跟踪进度：CRM 管理所有申请状态 为什么开源？ 求职不应该被平台垄断：\n数据所有权：你的简历、你的数据 算法透明：知道 AI 如何评分 免费使用：没有订阅费、没有隐藏费用 社区驱动：大家一起改进 适合谁用？ 求职者：想投更多、更好、更快 自由职业者：寻找合同和项目 转行人士：需要针对性定制简历 应届生：不知道从何开始 资深人士：想被动接收高质量机会 相关文章 Agent Reach：让你的 AI Agent 一键连接互联网 Free Claude Code：不花一分钱，让顶级 AI 帮你写代码 OpenClaw 42 个真实用例：AI 代理已经这样改变我们的生活 项目地址：github.com/vasu-devs/JustHireMe\nStars：471 ⭐ | Forks：91 | 语言：Python 47.3%, TypeScript 27.5%\nRecommended Tools For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.\n**** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing. Affiliate link — supports dibi8.com at no cost to you.\nReferences \u0026 Sources JustHireMe Tauri React FastAPI Playwright Kuzu LanceDB SQLite { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “JustHireMe：AI 帮你自动找工作，从投递到拿到 Offer”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/justhireme-ai-job-search-workbench\" } } Why This Matters Understanding justhireme：ai 帮你自动找工作，从投递到拿到 offer is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion JustHireMe：AI 帮你自动找工作，从投递到拿到 Offer represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\n",
+  "wordCount" : "771",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>5 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>4 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/justhireme-ai-job-search-workbench/">En</a>
@@ -209,37 +209,39 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#%eb%ac%b8%ec%a0%9c-%ea%b5%ac%ec%a7%81%ec%9d%80-%ed%92%80%ed%83%80%ec%9e%84-%ec%a7%81%ec%97%85%ec%9e%85%eb%8b%88%eb%8b%a4" aria-label="문제: 구직은 풀타임 직업입니다">문제: 구직은 풀타임 직업입니다</a></li>
+                <a href="#%e9%97%ae%e9%a2%98%e6%89%be%e5%b7%a5%e4%bd%9c%e5%b0%b1%e6%98%af%e4%b8%80%e4%bb%bd%e5%85%a8%e8%81%8c%e5%b7%a5%e4%bd%9c" aria-label="问题：找工作就是一份全职工作">问题：找工作就是一份全职工作</a></li>
             <li>
-                <a href="#%ed%95%b4%ea%b2%b0%ec%b1%85-justhireme" aria-label="해결책: JustHireMe">해결책: JustHireMe</a></li>
+                <a href="#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88justhireme" aria-label="解决方案：JustHireMe">解决方案：JustHireMe</a></li>
             <li>
-                <a href="#%ed%95%b5%ec%8b%ac-%ea%b8%b0%eb%8a%a5" aria-label="핵심 기능">핵심 기능</a><ul>
+                <a href="#%e6%a0%b8%e5%bf%83%e5%8a%9f%e8%83%bd" aria-label="核心功能">核心功能</a><ul>
                     
             <li>
-                <a href="#1-%ec%8a%a4%eb%a7%88%ed%8a%b8-%ed%8f%ac%ec%a7%80%ec%85%98-%ed%81%ac%eb%a1%a4%eb%a7%81" aria-label="1. 스마트 포지션 크롤링">1. 스마트 포지션 크롤링</a></li>
+                <a href="#1-%e6%99%ba%e8%83%bd%e8%81%8c%e4%bd%8d%e6%8a%93%e5%8f%96" aria-label="1. 智能职位抓取">1. 智能职位抓取</a></li>
             <li>
-                <a href="#2-ai-%eb%a7%a4%ec%b9%ad%eb%8f%84-%ed%8f%89%ea%b0%80" aria-label="2. AI 매칭도 평가">2. AI 매칭도 평가</a></li>
+                <a href="#2-ai-%e5%8c%b9%e9%85%8d%e5%ba%a6%e8%af%84%e5%88%86" aria-label="2. AI 匹配度评分">2. AI 匹配度评分</a></li>
             <li>
-                <a href="#3-%ec%9d%b4%eb%a0%a5%ec%84%9c-%ec%9e%90%eb%8f%99-%eb%a7%9e%ec%b6%a4%ed%99%94" aria-label="3. 이력서 자동 맞춤화">3. 이력서 자동 맞춤화</a></li>
+                <a href="#3-%e7%ae%80%e5%8e%86%e8%87%aa%e5%8a%a8%e5%ae%9a%e5%88%b6" aria-label="3. 简历自动定制">3. 简历自动定制</a></li>
             <li>
-                <a href="#4-%ec%9e%90%ea%b8%b0%ec%86%8c%ea%b0%9c%ec%84%9c-%ec%83%9d%ec%84%b1" aria-label="4. 자기소개서 생성">4. 자기소개서 생성</a></li>
+                <a href="#4-%e6%b1%82%e8%81%8c%e4%bf%a1%e7%94%9f%e6%88%90" aria-label="4. 求职信生成">4. 求职信生成</a></li>
             <li>
-                <a href="#5-%eb%a1%9c%ec%bb%ac-crm-%ea%b4%80%eb%a6%ac" aria-label="5. 로컬 CRM 관리">5. 로컬 CRM 관리</a></li></ul>
+                <a href="#5-%e6%9c%ac%e5%9c%b0-crm-%e7%ae%a1%e7%90%86" aria-label="5. 本地 CRM 管理">5. 本地 CRM 管理</a></li></ul>
             </li>
             <li>
-                <a href="#%ea%b8%b0%ec%88%a0-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98" aria-label="기술 아키텍처">기술 아키텍처</a></li>
+                <a href="#%e6%8a%80%e6%9c%af%e6%9e%b6%e6%9e%84" aria-label="技术架构">技术架构</a></li>
             <li>
-                <a href="#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%82%ac%ec%9a%a9" aria-label="설치 및 사용">설치 및 사용</a></li>
+                <a href="#%e5%ae%89%e8%a3%85%e4%bd%bf%e7%94%a8" aria-label="安装使用">安装使用</a></li>
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9-%ed%94%84%eb%a1%9c%ec%84%b8%ec%8a%a4" aria-label="사용 프로세스">사용 프로세스</a></li>
+                <a href="#%e4%bd%bf%e7%94%a8%e6%b5%81%e7%a8%8b" aria-label="使用流程">使用流程</a></li>
             <li>
-                <a href="#%ec%99%9c-%ec%98%a4%ed%94%88%ec%86%8c%ec%8a%a4%ec%9d%b8%ea%b0%80" aria-label="왜 오픈소스인가?">왜 오픈소스인가?</a></li>
+                <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e5%bc%80%e6%ba%90" aria-label="为什么开源？">为什么开源？</a></li>
             <li>
-                <a href="#%eb%88%84%ea%b5%ac%ec%97%90%ea%b2%8c-%ec%a0%81%ed%95%a9%ed%95%9c%ea%b0%80" aria-label="누구에게 적합한가?">누구에게 적합한가?</a></li>
+                <a href="#%e9%80%82%e5%90%88%e8%b0%81%e7%94%a8" aria-label="适合谁用？">适合谁用？</a></li>
             <li>
-                <a href="#%ea%b4%80%eb%a0%a8-%ea%b8%b0%ec%82%ac" aria-label="관련 기사">관련 기사</a></li>
+                <a href="#%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0" aria-label="相关文章">相关文章</a></li>
             <li>
-                <a href="#%ec%b6%94%ec%b2%9c-%eb%8f%84%ea%b5%ac" aria-label="추천 도구">추천 도구</a></li>
+                <a href="#recommended-tools" aria-label="Recommended Tools">Recommended Tools</a></li>
+            <li>
+                <a href="#references--sources" aria-label="References &amp; Sources">References &amp; Sources</a></li>
             <li>
                 <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
                     
@@ -257,6 +259,13 @@
 
   <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
+date: 2026-05-15T04:20:25+09:00
+lastmod: 2026-05-15T04:20:25+09:00
+tech_stack: - JavaScript</p>
+<ul>
+<li>Python</li>
+<li>TypeScript
+application_domain: &ldquo;Ai Tools&rdquo;
 source_version: &quot;&quot;
 licensing_model: &ldquo;Open Source&rdquo;
 license_type: &ldquo;MIT&rdquo;
@@ -266,165 +275,163 @@ download_url: &ldquo;<a href="https://github.com/vasu-devs/JustHireMe.git%22">ht
 backup_url: &quot;&rdquo;
 last_maintained: &ldquo;2026-05-15&rdquo;
 draft: false
-aliases:</p>
-<ul>
-<li>/kr/posts/justhireme-ai-job-search-workbench/
-faqs: - q: &lsquo;JustHireMe는 무료 오픈 소스인가요?&rsquo;
-a: &lsquo;네. JustHireMe는 MIT 라이선스 하에 오픈 소스로 공개되어 있으며, 구독료나 숨겨진 비용이 전혀 없습니다. 이력서와 데이터의 소유권은 전적으로 사용자에게 있으며, 점수 산출 알고리즘도 투명하게 공개되어 있습니다.&rsquo;</li>
-<li>q: &lsquo;JustHireMe를 사용하려면 AI API 키가 필요하거나 데이터가 클라우드로 전송되나요?&rsquo;
-a: &lsquo;아닙니다. JustHireMe는 로컬 우선 방식으로 동작합니다. 모든 AI 연산은 로컬에서 실행되므로 API 키가 필요 없으며, 데이터는 클라우드에 업로드되지 않고 사용자 기기의 로컬 SQLite 데이터베이스에 저장됩니다.&rsquo;</li>
-<li>q: &lsquo;JustHireMe는 어떤 채용 플랫폼에서 공고를 수집할 수 있나요?&rsquo;
-a: &lsquo;LinkedIn, Indeed, Glassdoor, AngelList, Hacker News, 기업 채용 페이지, 원격 근무 전용 섹션에서 자동으로 채용 공고를 수집합니다. 중복 제거 알고리즘이 여러 플랫폼에 동일하게 게재된 포지션을 자동으로 하나로 통합합니다.&rsquo;</li>
-<li>q: &lsquo;JustHireMe의 채용 공고 매칭 점수는 어떻게 산출되나요?&rsquo;
-a: &lsquo;키워드 매칭이 아닌 시맨틱 이해 방식을 사용합니다. 사용자의 기술, 경력, 연봉 기대치, 커리어 목표를 각 공고의 요구 사항과 비교 분석하여 0-100 점수를 부여하므로, 80점 이상의 포지션에 집중할 수 있습니다.&rsquo;</li>
-<li>q: &lsquo;JustHireMe는 어떤 기술 스택으로 개발되었나요?&rsquo;
-a: &lsquo;데스크톱 앱은 React 19와 TypeScript를 결합한 Tauri 2로 구축되었으며, 백엔드는 FastAPI와 WebSockets를 사용하는 Python 3.13으로 실행됩니다. 데이터는 SQLite와 Kuzu 그래프 데이터베이스, LanceDB 벡터 저장소에 보관되며, Playwright가 스크래핑 및 지원서 제출을 위한 브라우저 자동화를 담당합니다.&rsquo;</li>
+aliases:</li>
+<li>/posts/justhireme-ai-job-search-workbench/
+faqs: - q: &lsquo;Is JustHireMe free and open source?&rsquo;
+a: &lsquo;Yes. JustHireMe is open source under the MIT license, with no subscription fees or hidden costs. You own your resume and data, and the scoring algorithm is transparent.&rsquo;</li>
+<li>q: &lsquo;Does JustHireMe require an AI API key or send my data to the cloud?&rsquo;
+a: &lsquo;No. JustHireMe is local-first: all AI computation runs locally with no API key required, and your data is stored on your machine in a local SQLite database rather than uploaded to the cloud.&rsquo;</li>
+<li>q: &lsquo;Which job platforms can JustHireMe scrape listings from?&rsquo;
+a: &lsquo;It automatically aggregates jobs from LinkedIn, Indeed, Glassdoor, AngelList, Hacker News, company career pages, and remote-work sections. A deduplication algorithm merges the same role when it appears across multiple platforms.&rsquo;</li>
+<li>q: &lsquo;How does JustHireMe&rsquo;&rsquo;s job matching score work?&rsquo;
+a: &lsquo;It uses semantic understanding rather than keyword matching, comparing your skills, experience, salary expectations, and career goals against each job&rsquo;&rsquo;s requirements. Each listing receives a 0-100 score so you can focus on roles above 80.&rsquo;</li>
+<li>q: &lsquo;What technology stack is JustHireMe built on?&rsquo;
+a: &lsquo;The desktop app uses Tauri 2 with React 19 and TypeScript; the backend runs Python 3.13 with FastAPI and WebSockets; data is stored in SQLite plus a Kuzu graph database and LanceDB vector store; and Playwright handles browser automation for scraping and applying.&rsquo;</li>
 </ul>
 <hr>
 <p>{&lt;/* resource-info */&gt;}</p>
-<h2 id="문제-구직은-풀타임-직업입니다">문제: 구직은 풀타임 직업입니다<a hidden class="anchor" aria-hidden="true" href="#문제-구직은-풀타임-직업입니다">#</a></h2>
-<p>이력서 100통을 제출하고, 면접 2개를 받고, Offer 0개. 이는 당신의 문제가 아니라 시스템의 문제입니다.</p>
-<p>각 채용 사이트는 섬입니다: - <strong>LinkedIn</strong>: 고급 검색은 유료</p>
+<h2 id="问题找工作就是一份全职工作">问题：找工作就是一份全职工作<a hidden class="anchor" aria-hidden="true" href="#问题找工作就是一份全职工作">#</a></h2>
+<p>投 100 份简历，收到 2 个面试，0 个 Offer。这不是你的问题，是系统的问题。</p>
+<p>每个招聘网站都是孤岛：</p>
 <ul>
-<li><strong>Indeed</strong>: 중복 포지션, 만료된 정보</li>
-<li><strong>Glassdoor</strong>: 급여 데이터 지연</li>
-<li><strong>회사 홈페이지</strong>: 각각 다시 작성해야 함</li>
-<li><strong>채용 이메일</strong>: 99% 읽음 확인 없음</li>
+<li><strong>LinkedIn</strong>：高级搜索要付费</li>
+<li><strong>Indeed</strong>：重复职位、过期信息</li>
+<li><strong>Glassdoor</strong>：薪资数据滞后</li>
+<li><strong>公司官网</strong>：每个都要重新填写</li>
+<li><strong>招聘邮件</strong>：99% 已读不回</li>
 </ul>
-<p>더 고통스러운 것은: 제출할 때마다 <strong>이력서를 다시 쓰고</strong>, <strong>자기소개서를 다시 쓰고</strong>, <strong>회사를 다시 연구해야</strong> 합니다.</p>
-<h2 id="해결책-justhireme">해결책: JustHireMe<a hidden class="anchor" aria-hidden="true" href="#해결책-justhireme">#</a></h2>
-<p><strong>JustHireMe</strong>는 오픈소스 AI 구직 인텔리전스 워크벤치입니다. 로컬 우선, 프라이버시 안전, 원클릭 자동 제출.</p>
-<p><strong>핵심 철학</strong>: AI가 반복 작업을 하고, 당신은 의사결정만 합니다.</p>
-<h2 id="핵심-기능">핵심 기능<a hidden class="anchor" aria-hidden="true" href="#핵심-기능">#</a></h2>
-<h3 id="1-스마트-포지션-크롤링">1. 스마트 포지션 크롤링<a hidden class="anchor" aria-hidden="true" href="#1-스마트-포지션-크롤링">#</a></h3>
-<p>여러 플랫폼에서 자동으로 포지션을 크롤링합니다: - LinkedIn, Indeed, Glassdoor</p>
+<p>更痛苦的是：每投一份都要<strong>重新写简历</strong>、<strong>重新写求职信</strong>、<strong>重新研究公司</strong>。</p>
+<h2 id="解决方案justhireme">解决方案：JustHireMe<a hidden class="anchor" aria-hidden="true" href="#解决方案justhireme">#</a></h2>
+<p><strong>JustHireMe</strong> 是一个开源的 AI 求职智能工作台。本地优先、隐私安全、一键自动投递。</p>
+<p><strong>核心理念</strong>：让 AI 做重复工作，你只做决策。</p>
+<h2 id="核心功能">核心功能<a hidden class="anchor" aria-hidden="true" href="#核心功能">#</a></h2>
+<h3 id="1-智能职位抓取">1. 智能职位抓取<a hidden class="anchor" aria-hidden="true" href="#1-智能职位抓取">#</a></h3>
+<p>自动从多个平台抓取职位：</p>
 <ul>
-<li>AngelList, Hacker News</li>
-<li>회사 채용 페이지</li>
-<li>원격 근무 전용 구역</li>
+<li>LinkedIn、Indeed、Glassdoor</li>
+<li>AngelList、Hacker News</li>
+<li>公司招聘页面</li>
+<li>远程工作专区</li>
 </ul>
-<p><strong>중복 제거 알고리즘</strong>: 동일한 포지션이 다른 플랫폼에 나타나면 자동으로 병합합니다.</p>
-<h3 id="2-ai-매칭도-평가">2. AI 매칭도 평가<a hidden class="anchor" aria-hidden="true" href="#2-ai-매칭도-평가">#</a></h3>
-<p>키워드 매칭이 아닌 진정한 <strong>의미 이해</strong>: - 당신의 기술 vs 포지션 요구사항</p>
+<p><strong>去重算法</strong>：同一职位在不同平台出现，自动合并。</p>
+<h3 id="2-ai-匹配度评分">2. AI 匹配度评分<a hidden class="anchor" aria-hidden="true" href="#2-ai-匹配度评分">#</a></h3>
+<p>不是关键词匹配，是真正的<strong>语义理解</strong>：</p>
 <ul>
-<li>당신의 경험 vs 포지션 레벨</li>
-<li>당신의 급여 기대치 vs 예산 범위</li>
-<li>당신의 커리어 목표 vs 회사 방향</li>
+<li>你的技能 vs 职位要求</li>
+<li>你的经验 vs 职位级别</li>
+<li>你的薪资期望 vs 预算范围</li>
+<li>你的职业目标 vs 公司方向</li>
 </ul>
-<p>점수 0-100, 80점 이상의 포지션만 봅니다.</p>
-<h3 id="3-이력서-자동-맞춤화">3. 이력서 자동 맞춤화<a hidden class="anchor" aria-hidden="true" href="#3-이력서-자동-맞춤화">#</a></h3>
-<p>각 포지션에 따라 <strong>이력서를 재작성</strong>합니다: - 관련 기술 강조</p>
+<p>评分 0-100，只看 80 分以上的职位。</p>
+<h3 id="3-简历自动定制">3. 简历自动定制<a hidden class="anchor" aria-hidden="true" href="#3-简历自动定制">#</a></h3>
+<p>根据每个职位<strong>重写简历</strong>：</p>
 <ul>
-<li>프로젝트 설명 조정</li>
-<li>키워드 매칭</li>
-<li>레이아웃 포맷 최적화</li>
+<li>突出相关技能</li>
+<li>调整项目描述</li>
+<li>匹配关键词</li>
+<li>优化排版格式</li>
 </ul>
-<p>템플릿 채우기가 아닌, <strong>진정한 AI 재작성</strong>입니다.</p>
-<h3 id="4-자기소개서-생성">4. 자기소개서 생성<a hidden class="anchor" aria-hidden="true" href="#4-자기소개서-생성">#</a></h3>
-<p>각 자기소개서는 <strong>유니크</strong>합니다: - 회사 배경 연구</p>
+<p>不是模板填充，是<strong>真正的 AI 重写</strong>。</p>
+<h3 id="4-求职信生成">4. 求职信生成<a hidden class="anchor" aria-hidden="true" href="#4-求职信生成">#</a></h3>
+<p>每封求职信都是<strong>独一无二</strong>的：</p>
 <ul>
-<li>구체적인 프로젝트 인용</li>
-<li>관련 경험 제시</li>
-<li>진정한 관심 표현</li>
+<li>研究公司背景</li>
+<li>引用具体项目</li>
+<li>展示相关经验</li>
+<li>表达真诚兴趣</li>
 </ul>
-<p>HR은 템플릿과 진심 어린 글을 구분할 수 있습니다.</p>
-<h3 id="5-로컬-crm-관리">5. 로컬 CRM 관리<a hidden class="anchor" aria-hidden="true" href="#5-로컬-crm-관리">#</a></h3>
-<p>모든 데이터는 로컬에 저장됩니다: - SQLite 데이터베이스</p>
+<p>HR 看得出来是模板还是用心写的。</p>
+<h3 id="5-本地-crm-管理">5. 本地 CRM 管理<a hidden class="anchor" aria-hidden="true" href="#5-本地-crm-管理">#</a></h3>
+<p>所有数据存在本地：</p>
 <ul>
-<li>포지션 이력 기록</li>
-<li>제출 상태 추적</li>
-<li>면접 일정 관리</li>
+<li>SQLite 数据库</li>
+<li>职位历史记录</li>
+<li>投递状态跟踪</li>
+<li>面试日程管理</li>
 </ul>
-<p><strong>프라이버시 우선</strong>: 당신의 데이터는 클라우드에 업로드되지 않습니다.</p>
-<h2 id="기술-아키텍처">기술 아키텍처<a hidden class="anchor" aria-hidden="true" href="#기술-아키텍처">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>레이어</th>
-					<th>기술</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>데스크톱</td>
-					<td>Tauri 2 + React 19 + TypeScript</td>
-			</tr>
-			<tr>
-					<td>백엔드</td>
-					<td>Python 3.13 + FastAPI + WebSockets</td>
-			</tr>
-			<tr>
-					<td>데이터베이스</td>
-					<td>SQLite + Kuzu 그래프 DB + LanceDB 벡터 DB</td>
-			</tr>
-			<tr>
-					<td>AI 모델</td>
-					<td>로컬 LLM + 의미 검색</td>
-			</tr>
-			<tr>
-					<td>자동화</td>
-					<td>Playwright 브라우저 자동화</td>
-			</tr>
-	</tbody>
-</table>
-<p><strong>로컬 우선</strong>: 모든 AI 계산은 로컬에서 완료되며, API Key가 필요 없습니다.</p>
-<h2 id="설치-및-사용">설치 및 사용<a hidden class="anchor" aria-hidden="true" href="#설치-및-사용">#</a></h2>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 저장소 클론</span>
+<p><strong>隐私优先</strong>：你的数据不会上传到云端。</p>
+<h2 id="技术架构">技术架构<a hidden class="anchor" aria-hidden="true" href="#技术架构">#</a></h2>
+<p>| 层级 | 技术 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| 桌面端 | Tauri 2 + React 19 + TypeScript |
+| 后端 | Python 3.13 + FastAPI + WebSockets |
+| 数据库 | SQLite + Kuzu 图数据库 + LanceDB 向量库 |
+| AI 模型 | 本地 LLM + 语义搜索 |
+| 自动化 | Playwright 浏览器自动化 |</p>
+<p><strong>本地优先</strong>：所有 AI 计算在本地完成，无需 API Key。</p>
+<h2 id="安装使用">安装使用<a hidden class="anchor" aria-hidden="true" href="#安装使用">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 克隆仓库</span>
 </span></span><span style="display:flex;"><span>git clone https://github.com/vasu-devs/JustHireMe.git
 </span></span><span style="display:flex;"><span>cd JustHireMe
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 프론트엔드 의존성 설치</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 安装前端依赖</span>
 </span></span><span style="display:flex;"><span>npm install
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 개발 서버 시작</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启动开发服务器</span>
 </span></span><span style="display:flex;"><span>npm run dev
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 데스크톱 앱 시작</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启动桌面应用</span>
 </span></span><span style="display:flex;"><span>npm run tauri dev
-</span></span></code></pre></div><h2 id="사용-프로세스">사용 프로세스<a hidden class="anchor" aria-hidden="true" href="#사용-프로세스">#</a></h2>
+</span></span></code></pre></div><h2 id="使用流程">使用流程<a hidden class="anchor" aria-hidden="true" href="#使用流程">#</a></h2>
 <ol>
-<li><strong>프로필 설정</strong>: 이력서 업로드, 기술과 목표 입력</li>
-<li><strong>크롤링 소스 구성</strong>: 모니터링할 채용 플랫폼 선택</li>
-<li><strong>크롤링 실행</strong>: AI가 최신 포지션을 자동으로 크롤링</li>
-<li><strong>매칭 보기</strong>: 매칭도순 정렬, 고점수 포지션 필터링</li>
-<li><strong>원클릭 지원</strong>: AI가 맞춤형 자료 생성, 자동 제출</li>
-<li><strong>진행 상황 추적</strong>: CRM으로 모든 지원 상태 관리</li>
+<li><strong>设置 profile</strong>：上传简历，填写技能和目标</li>
+<li><strong>配置抓取源</strong>：选择要监控的招聘平台</li>
+<li><strong>运行抓取</strong>：AI 自动抓取最新职位</li>
+<li><strong>查看匹配</strong>：按匹配度排序，筛选高分配职位</li>
+<li><strong>一键申请</strong>：AI 生成定制材料，自动投递</li>
+<li><strong>跟踪进度</strong>：CRM 管理所有申请状态</li>
 </ol>
-<h2 id="왜-오픈소스인가">왜 오픈소스인가?<a hidden class="anchor" aria-hidden="true" href="#왜-오픈소스인가">#</a></h2>
-<p>구직은 플랫폼에 의해 독점되어서는 안 됩니다: - <strong>데이터 소유권</strong>: 당신의 이력서, 당신의 데이터</p>
+<h2 id="为什么开源">为什么开源？<a hidden class="anchor" aria-hidden="true" href="#为什么开源">#</a></h2>
+<p>求职不应该被平台垄断：</p>
 <ul>
-<li><strong>알고리즘 투명성</strong>: AI가 어떻게 평가하는지 알 수 있음</li>
-<li><strong>무료 사용</strong>: 구독료 없음, 숨겨진 비용 없음</li>
-<li><strong>커뮤니티 주도</strong>: 모두가 함께 개선</li>
+<li><strong>数据所有权</strong>：你的简历、你的数据</li>
+<li><strong>算法透明</strong>：知道 AI 如何评分</li>
+<li><strong>免费使用</strong>：没有订阅费、没有隐藏费用</li>
+<li><strong>社区驱动</strong>：大家一起改进</li>
 </ul>
-<h2 id="누구에게-적합한가">누구에게 적합한가?<a hidden class="anchor" aria-hidden="true" href="#누구에게-적합한가">#</a></h2>
+<h2 id="适合谁用">适合谁用？<a hidden class="anchor" aria-hidden="true" href="#适合谁用">#</a></h2>
 <ul>
-<li><strong>구직자</strong>: 더 많이, 더 잘, 더 빠르게 지원하고 싶은 사람</li>
-<li><strong>프리랜서</strong>: 계약과 프로젝트를 찾는 사람</li>
-<li><strong>전환 희망자</strong>: 맞춤형 이력서가 필요한 사람</li>
-<li><strong>신입</strong>: 어디서 시작해야 할지 모르는 사람</li>
-<li><strong>시니어</strong>: 고품질 기회를 수동적으로 받고 싶은 사람</li>
+<li><strong>求职者</strong>：想投更多、更好、更快</li>
+<li><strong>自由职业者</strong>：寻找合同和项目</li>
+<li><strong>转行人士</strong>：需要针对性定制简历</li>
+<li><strong>应届生</strong>：不知道从何开始</li>
+<li><strong>资深人士</strong>：想被动接收高质量机会</li>
 </ul>
-<h2 id="관련-기사">관련 기사<a hidden class="anchor" aria-hidden="true" href="#관련-기사">#</a></h2>
+<h2 id="相关文章">相关文章<a hidden class="anchor" aria-hidden="true" href="#相关文章">#</a></h2>
 <ul>
-<li><a href="/kr/resources/llm-frameworks/agent-reach-ai-agent-internet-access/">Agent Reach：AI 에이전트를 인터넷 마스터로 만드는 원클릭 솔루션</a></li>
-<li><a href="/kr/resources/ai-tools/free-claude-code-open-source-proxy/">Free Claude Code：비용 부담 없이 Claude Code 사용하기</a></li>
-<li><a href="/kr/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/">OpenClaw 42개 실제 사용 사례：AI 에이전트가 이미 이렇게 우리의 삶을 바꾸고 있습니다</a></li>
+<li><a href="/resources/llm-frameworks/agent-reach-ai-agent-internet-access/">Agent Reach：让你的 AI Agent 一键连接互联网</a></li>
+<li><a href="/resources/ai-tools/free-claude-code-open-source-proxy/">Free Claude Code：不花一分钱，让顶级 AI 帮你写代码</a></li>
+<li><a href="/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/">OpenClaw 42 个真实用例：AI 代理已经这样改变我们的生活</a></li>
 </ul>
 <hr>
-<p><strong>프로젝트 주소</strong>: <a href="https://github.com/vasu-devs/JustHireMe">github.com/vasu-devs/JustHireMe</a></p>
-<p><strong>Stars</strong>: 471 ⭐ | <strong>Forks</strong>: 91 | <strong>언어</strong>: Python 47.3%, TypeScript 27.5%</p>
+<p><strong>项目地址</strong>：<a href="https://github.com/vasu-devs/JustHireMe">github.com/vasu-devs/JustHireMe</a></p>
+<p><strong>Stars</strong>：471 ⭐ | <strong>Forks</strong>：91 | <strong>语言</strong>：Python 47.3%, TypeScript 27.5%</p>
 <hr>
-<h2 id="추천-도구">추천 도구<a hidden class="anchor" aria-hidden="true" href="#추천-도구">#</a></h2>
-<p>오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.</p>
+<h2 id="recommended-tools">Recommended Tools<a hidden class="anchor" aria-hidden="true" href="#recommended-tools">#</a></h2>
+<p>For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.</p>
 <ul>
-<li>**** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.</li>
+<li>**** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.</li>
 </ul>
-<p><em>추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.</em></p>
+<p><em>Affiliate link — supports dibi8.com at no cost to you.</em></p>
+<h2 id="references--sources">References &amp; Sources<a hidden class="anchor" aria-hidden="true" href="#references--sources">#</a></h2>
+<ul>
+<li><a href="https://github.com/vasu-devs/JustHireMe">JustHireMe</a></li>
+<li><a href="https://github.com/tauri-apps/tauri">Tauri</a></li>
+<li><a href="https://github.com/facebook/react">React</a></li>
+<li><a href="https://github.com/fastapi/fastapi">FastAPI</a></li>
+<li><a href="https://github.com/microsoft/playwright">Playwright</a></li>
+<li><a href="https://github.com/kuzudb/kuzu">Kuzu</a></li>
+<li><a href="https://github.com/lancedb/lancedb">LanceDB</a></li>
+<li><a href="https://www.sqlite.org/">SQLite</a></li>
+</ul>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;JustHireMe：AI가 당신의 취업을 자동화합니다&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;JustHireMe：AI 帮你自动找工作，从投递到拿到 Offer&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-15&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-15&rdquo;,
 &ldquo;author&rdquo;: {
@@ -441,12 +448,12 @@ a: &lsquo;데스크톱 앱은 React 19와 TypeScript를 결합한 Tauri 2로 구
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/justhireme-ai-job-search-workbench%22">https://dibi8.com/kr/resources/justhireme-ai-job-search-workbench"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/justhireme-ai-job-search-workbench%22">https://dibi8.com/resources/justhireme-ai-job-search-workbench"</a>
 }
 }
 </script></p>
 <h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
-<p>Understanding justhireme：ai가 당신의 취업을 자동화합니다 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
+<p>Understanding justhireme：ai 帮你自动找工作，从投递到拿到 offer is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
 <ul>
 <li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
 <li><strong>Quality</strong>: Improve output consistency</li>
@@ -484,7 +491,7 @@ a: &lsquo;데스크톱 앱은 React 19와 TypeScript를 결합한 Tauri 2로 구
 </li>
 </ol>
 <h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
-<p>JustHireMe：AI가 당신의 취업을 자동화합니다 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>JustHireMe：AI 帮你自动找工作，从投递到拿到 Offer represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
 <p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
 <hr>
 <p><em>Last updated: 2026-09-20</em>
@@ -531,6 +538,81 @@ a: &lsquo;데스크톱 앱은 React 19와 TypeScript를 결합한 Tauri 2로 구
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

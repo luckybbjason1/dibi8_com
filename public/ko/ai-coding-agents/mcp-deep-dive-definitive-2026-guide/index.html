@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "{\u003c/* resource-info */\u003e}\n서론: 2026년 가장 주목할 만한 기술 투자, MCP 아직도 각 LLM마다 맞춤형 도구 호출 코드를 작성하고 있다면, 이미 시대에 뒤처진 것입니다.\n2024년 11월, Anthropic이 **Model Context Protocol(MCP)**을 공개했습니다. 이 단순해 보이는 개방형 프로토콜은 AI와 외부 세계를 연결하는 방식을 놀라운 속도로 재편하고 있습니다. 불과 반 년 만에 OpenAI, Google DeepMind, Microsoft가 전면 지원을 선언했고, 커뮤니티에서는 10,000개 이상의 MCP 서버가 탄생했으며, Python과 JavaScript SDK의 주간 다운로드 수는 2,000만 회를 돌파했습니다.\n더욱 중요한 것은 2025년 12월 Linux Foundation이 MCP를 인수하여 Agentic AI Foundation을 설립, 독립적으로 운영한다고 밝힌 점입니다. 이는 MCP가 더 이상 특정 기업의 자산이 아니라, 전 산업의 공공 인프라임을 의미합니다.\n이 글은 개념 소개가 아닙니다. 첫 번째 코드 라인부터 직접 프로덕션급 MCP 서버를 구축하고, Claude, Cursor, VS Code Copilot 등 주요 클라이언트에 연결하는 과정을 안내합니다. 글을 다 읽고 나면, 실제로 동작하는 서버 모니터링 MCP 도구를 갖게 될 것입니다. AI 대화창에서 자연어로 웹사이트 상태를 조회하고, SSL 인증서 만료일을 확인할 수 있습니다.\n목차 MCP의 본질: AI 세상의 USB-C 포트 아키텍처 분석: 클라이언트와 서버의 협업 개발 환경 구축: 5분 완료 실전: 사이트 모니터링 MCP 서버 구축 Claude Desktop 및 Cursor 연동 심화: 리소스, 프롬프트, 스트리밍 HTTP 보안 및 프로덕션 모범 사례 에코시스템 가이드: 지금 당장 써볼 15개 MCP 서버 자주 묻는 질문 FAQ 1. MCP의 본질: AI 세상의 USB-C 포트 MCP가 등장하기 전, 개발자들은 고전적인 M×N 딜레마에 직면했습니다.\nM개의 대형 언어 모델(GPT-4, Claude, Gemini, Llama…) N개의 외부 도구(GitHub API, 데이터베이스, Slack, 브라우저, 파일시스템…) 새로운 도구를 추가할 때마다 각 모델별로 어댑터 코드를 작성 MCP는 이 복잡도를 M+N으로 낮추었습니다.\n도구 개발자는 MCP 표준으로 한 번만 노출(Server) 모델 업체는 MCP 클라이언트를 한 번만 구현(Client) 서로 자연스럽게 연동되며, 추가적인 접착제 코드가 불필요 MCP가 해결하는 세 가지 핵심 문제 고통 지점 기존 방안 MCP 방안 도구 통합 파편화 플랫폼마다 어댑터 작성 한 번 작성, 어디서나 사용 컨텍스트 전달 혼란 플랫폼별 형식 불일치 JSON-RPC 2.0 표준 프로토콜 동적 발견 어려움 하드코딩된 도구 목록 런타임 핸드셰이크 + 능력 협상 MCP를 지원하는 플랫폼 (2026년 5월 기준) Claude Desktop / Claude Code: 네이티브 지원, 최초 출시 ChatGPT (Plus/Pro): 2025년 9월 전면 도입 Google Gemini: Demis Hassabis 공식 로드맵 발표 Cursor / Windsurf / Zed: 주요 AI IDE 전원 지원 GitHub Copilot Agent Mode: VS Code v1.99부터 내장 MCP Sourcegraph Cody: 엔터프라이즈 MCP 배포 2. 아키텍처 분석: 클라이언트와 서버의 협업 MCP는 JSON-RPC 2.0 기반의 클래식 클라이언트-서버 아키텍처를 채택합니다. 네 가지 핵심 개념만 이해하면 MCP의 80%를 파악한 것입니다.\n핵심 구성 요소 ┌─────────────┐ JSON-RPC 2.0 ┌─────────────┐ │ MCP Host │ ◄──────────────────► │ MCP Server │ │ (AI Agent) │ stdio / HTTP+SSE │ (Tool Box) │ └─────────────┘ └─────────────┘ Host: AI 모델을 실행하는 주 프로그램(예: Claude Desktop).\nClient: Host 내부에서 Server와 통신을 담당하는 모듈.\nServer: 도구, 리소스, 프롬프트 템플릿을 노출하는 독립 프로세스.\n세 가지 상호작용 원시 요소 Tools(도구): AI가 호출할 수 있는 함수, 매개변수와 반환값 포함 Resources(리소스): AI가 읽을 수 있는 데이터 소스(파일, DB 레코드 등) Prompts(프롬프트): AI가 직접 참조할 수 있는 미리 정의된 프롬프트 템플릿 전송 계층 옵션 전송 방식 적합한 상황 특징 stdio 로컬 개발, 데스크톱 앱 낮은 지연, 네트워크 노출 제로, 가장 안전 HTTP + SSE 원격 서비스, 서버리스 스트리밍 응답 지원, 기기 간 통신 Streamable HTTP 프로덕션 환경 장기 연결 + 상태 없는 폴백 개발 권장사항: 로컬 프로토타입은 stdio로, 프로덕션은 HTTP/SSE로 마이그레이션.\n3. 개발 환경 구축: 5분 완료 MCP 공식 SDK는 Python과 TypeScript/JavaScript를 지원하며, 커뮤니티에서는 Go, C#, Java/Kotlin, Rust 구현체가 존재합니다. 본문은 Python(가장 빠른 학습 곡선)을 기준으로 하며, 마지막에 TypeScript 동등 코드를 첨부합니다.\nuv 설치(권장 패키지 관리자) curl -LsSf https://astral.sh/uv/install.sh | sh 프로젝트 생성 mkdir mcp-site-monitor \u0026\u0026 cd mcp-site-monitor uv init uv add \"mcp[cli]\" httpx 프로젝트 구조 mcp-site-monitor/ ├── .env # API 키(.gitignore에 추가) ├── .gitignore ├── pyproject.toml └── server.py # MCP 서버 메인 파일 4. 실전: 사이트 모니터링 MCP 서버 구축 SiteMonitor라는 이름의 MCP 서버를 생성하여 두 가지 도구를 노출합니다.\ncheck_site_status: 웹사이트 온라인 여부와 응답 시간 확인 check_ssl_expiry: 도메인 SSL 인증서 잔여 유효기간 확인 완성된 코드(server.py) import asyncio import ssl import socket from datetime import datetime from urllib.parse import urlparse import httpx from mcp.server.fastmcp import FastMCP mcp = FastMCP(\"SiteMonitor\") @mcp.tool() async def check_site_status(url: str, timeout: int = 10) -\u003e str: \"\"\"지정된 URL의 웹사이트 가용성을 확인합니다. Args: url: 확인할 웹사이트 주소, 예: https://example.com timeout: 요청 타임아웃(초), 기본값 10초 \"\"\" try: async with httpx.AsyncClient(follow_redirects=True, timeout=timeout) as client: start = asyncio.get_event_loop().time() response = await client.get(url) elapsed = asyncio.get_event_loop().time() - start status = \"✅ 온라인\" if response.status_code \u003c 400 else \"⚠️ 이상\" return ( f\"{status}\\n\" f\"• URL: {url}\\n\" f\"• HTTP 상태 코드: {response.status_code}\\n\" f\"• 응답 시간: {elapsed:.2f}초\\n\" f\"• 서버: {response.headers.get('server', '알 수 없음')}\\n\" ) except httpx.TimeoutException: return f\"❌ 타임아웃: {url}이 {timeout}초 내에 응답하지 않음\" except Exception as e: return f\"❌ 오류: {type(e).__name__}: {str(e)}\" @mcp.tool() async def check_ssl_expiry(hostname: str, port: int = 443) -\u003e str: \"\"\"도메인 SSL 인증서의 잔여 유효기간을 확인합니다. Args: hostname: 도메인 이름, 예: example.com port: HTTPS 포트, 기본값 443 \"\"\" try: context = ssl.create_default_context() with socket.create_connection((hostname, port), timeout=10) as sock: with context.wrap_socket(sock, server_hostname=hostname) as ssock: cert = ssock.getpeercert() expiry = datetime.strptime(cert[\"notAfter\"], \"%b %d %H:%M:%S %Y %Z\") days_left = (expiry - datetime.utcnow()).days status = \"🟢 정상\" if days_left \u003e 30 else \"🟡 곧 만료\" if days_left \u003e 7 else \"🔴 긴급\" return ( f\"{status}\\n\" f\"• 도메인: {hostname}\\n\" f\"• 발급자: {cert.get('issuer', '알 수 없음')}\\n\" f\"• 만료 시간: {expiry.strftime('%Y-%m-%d %H:%M UTC\")}\\n\" f\"• 잔여 일수: {days_left}일\\n\" ) except Exception as e: return f\"❌ SSL 확인 실패: {type(e).__name__}: {str(e)}\" if __name__ == \"__main__\": mcp.run(transport=\"stdio\") 코드 핵심 해설 @mcp.tool() 데코레이터: 일반 Python 함수를 MCP 도구로 등록. 함수의 docstring은 도구 설명으로 자동 추출되며, AI가 언제 호출할지 결정하는 근거가 됩니다. 타입 어노테이션: 매개변수 타입(str, int)이 JSON Schema로 자동 변환되어 AI가 입력을 검증합니다. transport=\"stdio\": 표준 입출력으로 통신하며, Claude Desktop이 Server를 자식 프로세스로 시작합니다. 오류 처리: 모든 예외를 포착하여 친화적인 텍스트로 반환, JSON-RPC 메시지 흐름이 파괴되지 않도록 합니다. 로컬 테스트 uv run server.py # 이 시점에서 Server는 stdin 입력을 대기합니다. MCP Inspector로 먼저 테스트할 수 있습니다. 5. Claude Desktop 및 Cursor 연동 Claude Desktop(macOS) 설정 파일을 편집합니다.\n~/Library/Application\\ Support/Claude/claude_desktop_config.json Server 설정을 추가합니다.\n{ \"mcpServers\": { \"site-monitor\": { \"command\": \"uv\", \"args\": [ \"run\", \"--directory\", \"/absolute/path/to/mcp-site-monitor\", \"server.py\" ] } } } Claude Desktop을 재시작한 후 대화창에서 사용합니다.\n“https://github.com의 상태를 확인하고 SSL 인증서가 얼마나 남았는지 알려줘.”\nClaude는 자동으로 check_site_status와 check_ssl_expiry를 호출하고 결과를 정리하여 답변합니다.\nCursor 프로젝트 루트에 .cursor/mcp.json을 생성합니다.\n{ \"mcpServers\": { \"site-monitor\": { \"command\": \"uv\", \"args\": [ \"run\", \"--directory\", \"/absolute/path/to/mcp-site-monitor\", \"server.py\" ] } } } Cursor의 AI Chat이 도구를 직접 인식하고 사용합니다.\nVS Code Copilot Agent Mode VS Code v1.99+ Copilot Agent Mode는 MCP를 네이티브 지원합니다. settings.json에 설정합니다.\n{ \"github.copilot.chat.mcpServers\": { \"site-monitor\": { \"command\": \"uv\", \"args\": [\"run\", \"server.py\"], \"cwd\": \"/absolute/path/to/mcp-site-monitor\" } } } 6. 심화: 리소스, 프롬프트, 스트리밍 HTTP 리소스 노출(읽기 전용 데이터) AI가 서버의 설정 파일이나 로그를 읽을 수 있도록 합니다.\n@mcp.resource(\"config://app\") def get_app_config() -\u003e str: \"\"\"현재 애플리케이션 설정을 가져옵니다.\"\"\" import json return json.dumps({\"version\": \"1.0.0\", \"check_interval\": 300}) @mcp.resource(\"log://latest\") def get_latest_log() -\u003e str: \"\"\"최신 모니터링 로그를 읽습니다.\"\"\" return \"[2026-05-15 08:00:00] github.com: OK (23ms)\" 프롬프트 노출(재사용 가능한 템플릿) @mcp.prompt() def debug_site_issue(url: str, error_code: int) -\u003e str: \"\"\"사이트 장애 진단 프롬프트를 생성합니다.\"\"\" return f\"\"\"웹사이트 {url}이 HTTP {error_code}를 반환합니다. 다음 단계로 조사하세요: 1. DNS 해결이 정상인지 확인 2. 서버 프로세스가 살아있는지 확인 3. 최근 10분간의 애플리케이션 로그 확인 4. CDN 대시보드에서 트래픽 급증 패턴 분석 \"\"\" HTTP + SSE로 마이그레이션(프로덕션) from mcp.server.sse import SseServerTransport from starlette.applications import Starlette from starlette.routing import Route sse = SseServerTransport(\"/messages/\") async def handle_sse(request): async with sse.connect_sse(request.scope, request.receive, request._send) as streams: await mcp.run(streams[0], streams[1], mcp.create_initialization_options()) app = Starlette(routes=[Route(\"/sse\", endpoint=handle_sse)]) ASGI를 지원하는 모든 플랫폼(Vercel, Railway, 자체 서버)에 배포하고 원격 URL로 AI 클라이언트를 연결합니다.\n7. 보안 및 프로덕션 모범 사례 AI를 외부 세계와 연결하는 것은 강력하면서도 위험합니다. 보안은 선택 사항이 아닙니다.\n반드시 준수해야 할 7가지 규칙 stdio 전송 시 절대 stdout에 로그를 남기지 마세요 — stdio 전송 계층은 stdout으로 JSON-RPC를 전달합니다. 추가 출력은 프로토콜을 파괴합니다. 로그는 stderr나 파일에만 기록하세요. 최소 권한 원칙 — Server는 필요한 최소 도구와 최소 범위의 데이터만 노출하세요. AI에게 전체 파일시스템 읽기 권한을 주지 마세요. 입력 검증 — Pydantic/Zod로 모든 매개변수를 엄격히 검증하고 잘못된 입력은 거부하세요. 민감 작업 이중 확인 — 데이터 삭제, 송금, 이메일 발송 등의 작업은 Server가 직접 실행하지 말고 확인 요청을 반환하세요. 환경 변수 관리 — API 키는 .env 파일에 작성하고 절대 하드코딩하지 마세요. Git에 커밋하지 마세요. 프로덕션에서는 HTTPS — HTTP 전송에는 반드시 TLS를 적용하여 중간자 공격을 방지하세요. 모니터링 및 감사 — 모든 도구 호출 로그를 기록하고 이상 행위를 알림으로 전달하세요. 2025년 7월에 공개된 MCP Inspector RCE 취약점(CVE-2025-49596, CVSS 9.4)이 바로 경고입니다. 8. 에코시스템 가이드: 지금 당장 써볼 15개 MCP 서버 이름 기능 활용 상황 filesystem 로컬 파일시스템 읽기/쓰기 코드 분석, 문서 처리 github PR, Issue, 코드 검색 자동화 코드 리뷰 postgres / sqlite 데이터베이스 쿼리 데이터 분석, BI slack 메시지 전송, 채널 관리 알림, 온콜 brave-search 웹 검색 실시간 정보 수집 puppeteer 브라우저 자동화 크롤링, 스크린샷 memory 지식 그래프 영구 저장 장기 기억 google-drive Google Drive 파일 조작 문서 협업 notion Notion 페이지/데이터베이스 지식 관리 fetch 임의 URL 콘텐츠 가져오기 웹페이지 요약 sequential-thinking 사고 연쇄 추론 보조 복잡한 문제 분석 playwright E2E 테스트 자동화 테스트 생성 redis Redis 데이터 조작 캐시 관리 docker 컨테이너 관리 DevOps 자동화 kubernetes K8s 리소스 조작 운영 자동화 전체 목록은 Smithery.ai와 MCP.so에서 확인하세요.\n9. 자주 묻는 질문 FAQ Q1: MCP와 Function Calling/Tool Use의 차이는 무엇인가요?\nFunction Calling은 모델 레벨의 능력(예: GPT-4의 tools 매개변수)이며 플랫폼마다 형식이 다릅니다. MCP는 프로토콜 레벨의 표준으로, Server가 도구를 어떻게 노출하고 Client가 어떻게 발견·호출할지를 정의합니다. 둘은 상호 보완적입니다 — MCP Server는 Function Calling의 하위 구현체가 될 수 있습니다.\nQ2: MCP Server는 로컬에서만 실행할 수 있나요?\n아닙니다. stdio는 로컬에 적합하고, HTTP/SSE는 원격 서버, Docker 컨테이너, 심지어 서버리스에도 배포할 수 있습니다(MCP의 상태 저장 특성이 서버리스에 제약을 줄 수 있음).\nQ3: 하나의 Server는 몇 개의 도구를 노출할 수 있나요?\n기술적으로 상한은 없지만, 10개 이내를 권장합니다. 도구가 너무 많으면 AI의 선택 정확도가 떨어지고(모든 도구 정의가 대화마다 로드되어 토큰을 소모) 컨텍스트 윈도우가 부담을 받습니다. 기능별로 여러 Server로 분리하세요.\nQ4: MCP와 LangChain의 관계는 무엇인가요?\nLangChain은 프레임워크로, 체인 호출, 기억 관리, 에이전트 오케스트레이션을 제공합니다. MCP는 프로토콜로, 도구 연결 방식을 표준화합니다. LangChain은 langchain-mcp-adapters를 통해 MCP를 지원하며, 둘은 협력적으로 사용할 수 있습니다.\nQ5: 기업에서 MCP를 사용할 때 추가 고려사항은 무엇인가요?\n내부 Server 관리를 위한 프라이빗 Registry 배포 OAuth 2.1 + RBAC 접근 통제 시행 버전 잠금으로 무단 업데이트 방지 신뢰 도메인 격리(Trust Domain Isolation) 모든 도구 호출 로그 감사 마무리: 지금 바로 시작하세요 MCP는 미래 기술이 아닙니다. 2026년에 이미 활발히 사용되는 표준입니다. MCP Server를 구축하는 방법을 모른다면, 마치 2010년에 REST API를 작성할 줄 모르는 개발자와 같은 상황입니다.\n오늘 이 글의 코드는 바로 복사해서 실행할 수 있습니다. 다음 단계를 권장합니다.\n지금 ````uv```로 SiteMonitor를 실행해보세요 Claude Desktop에 연결하여 자연어 기반 운영 조회를 경험해보세요 팀에서 가장 자주 사용하는 내부 API를 MCP Server로 포장하세요 GitHub에 오픈소스로 공개하고 MCP 생태계의 10,000+에 참여하세요 참고 자료\nMCP 공식 문서 Python SDK (FastMCP) TypeScript SDK Smithery.ai — MCP 서버 디렉토리 MCP.so — 커뮤니티 마켓플레이스 🔌 JSON Schema 보일러플레이트 건너뛰기 모든 tool에 JSON Schema를 손으로 쓰는 것은 MCP 개발에서 가장 지루한 부분입니다. dibi8의 무료 **MCP Tool Builder**를 사용하세요 — Python 또는 TypeScript 함수 시그니처를 붙여넣으면 표준 준수 tool 정의 + 완전한 server 보일러플레이트(FastMCP / TypeScript SDK) + cURL 테스트 명령을 자동 생성. 보일러플레이트 작업 80% 절약.\n2026년 5월 15일 발행. MCP 프로토콜 스펙 2025-11-25 주년 버전을 기준으로 작성.\n자체 호스팅 추천 인프라 24/7 안정 운영을 위해 인프라 선택이 중요하다: - DigitalOcean — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.\nHTStack — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC. 추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “MCP(Model Context Protocol) 완벽 실전 가이드: 2026년 개발자가 반드시 익혀야 할 AI 도구 연결 표준”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/mcp-deep-dive-definitive-2026-guide\" } } Frequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
-  "wordCount" : "1927",
+  "articleBody": "Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers {\u003c/* resource-info */\u003e}\nIntroduction: Why MCP Is the Smartest Bet for Developers in 2026 If you’re still writing custom integration code for every LLM and every tool, you’re doing 2025’s work in 2026.\nIn November 2024, Anthropic quietly released the Model Context Protocol (MCP). Six months later, it had become the fastest-adopted open standard in AI infrastructure. OpenAI, Google DeepMind, and Microsoft all pledged native support. The community built 10,000+ MCP servers. Weekly downloads of the official Python and JavaScript SDKs crossed 20 million.\nThen in December 2025, the Linux Foundation spun up the Agentic AI Foundation to steward MCP independently. It is no longer Anthropic’s protocol. It is the industry’s protocol.\nThis guide is not a high-level overview. You will write a real, production-grade MCP server that monitors website health and SSL certificates, then wire it into Claude Desktop, Cursor, and VS Code Copilot Agent Mode. By the end, you’ll have a working tool you can extend for your own APIs and deploy today.\nTable of Contents What MCP Actually Is (And What It Is Not) Architecture: How Host, Client, and Server Talk Dev Environment in 5 Minutes Hands-On: Build a SiteMonitor MCP Server Connect to Claude Desktop, Cursor, and VS Code Level Up: Resources, Prompts, and HTTP/SSE Transport Security \u0026 Production Hardening MCP Ecosystem Cheat Sheet: 15 Servers to Try Now FAQ 1. What MCP Actually Is (And What It Is Not) The M×N Problem Before MCP, integrating LLMs with external tools was a combinatorial nightmare: - M LLM providers (OpenAI, Anthropic, Google, Meta, Mistral…)\nN external tools (GitHub, Postgres, Slack, Stripe, Salesforce…) Custom glue code for every pair MCP collapses this to M + N: - Tool authors expose once via MCP (Server)\nLLM vendors implement one MCP client Everything just works together Think of it as USB-C for AI: a single, standardized port that any model can use to plug into any data source or tool.\nWhat MCP Is Not | Misconception | Reality | |\n|\n| | A new AI model | No—it’s a protocol, not a model | | A replacement for Function Calling | No—MCP standardizes how tools are exposed; Function Calling is how models invoke them. They stack together. | | Only for Claude | No—OpenAI, Google, Microsoft, Cursor, Zed, Sourcegraph all support it | | Anthropic-proprietary | No—governed by the Linux Foundation since Dec 2025 |\nWho Supports MCP (May 2026) | Platform | Support Level | Notes | |\n|\n|\n| | Claude Desktop / Claude Code | Native | Reference implementation | | ChatGPT | Full (Dev Mode) | Read/write, Plus/Pro tiers since Sept 2025 | | Google Gemini | Confirmed | DeepMind CEO announced roadmap | | Cursor / Windsurf / Zed | Supported | AI-native IDEs | | VS Code Copilot Agent Mode | Native | v1.99+ | | Sourcegraph Cody | Enterprise | Enterprise MCP adoption |\n2. Architecture: How Host, Client, and Server Talk MCP runs on JSON-RPC 2.0 over two transport options. Four concepts cover 90% of real-world usage.\nThe Four Concepts ┌─────────────────────────────────────────────────────┐ │ MCP Host │ │ ┌─────────────┐ ┌──────────────────────┐ │ │ │ LLM │◄────────►│ MCP Client(s) │ │ │ │ (Claude) │ │ (stdio / HTTP+SSE) │ │ │ └─────────────┘ └──────────┬─────────────┘ │ └───────────────────────────────────────┼──────────────┘ │ JSON-RPC 2.0 ┌───────────────────────────────────────┼──────────────┐ │ MCP Server │ │ │ • Tools (callable functions) │◄─────────────┘ │ • Resources (readable data) │ │ • Prompts (reusable templates) │ └─────────────────────────────────────────────────────┘ Host: The application running the LLM (e.g., Claude Desktop).\nClient: The module inside the Host that speaks MCP.\nServer: A standalone process exposing tools/resources/prompts.\nThree Interaction Primitives Tools: Functions the AI can call with arguments, receiving structured results. Resources: Read-only data the AI can fetch (files, DB rows, configs). Prompts: Named, parameterized prompt templates the AI can invoke. Transport Options | Transport | Best For | Trade-off | |\n|\n|\n| | stdio | Local dev, desktop apps | Fastest, zero network exposure, limited to single machine | | HTTP + SSE | Remote servers, microservices | Slightly higher latency, cross-machine, supports streaming | | Streamable HTTP | Production, serverless | Stateful fallback, long-running ops |\nRule of thumb: Prototype with stdio. Promote to HTTP/SSE for production.\n3. Dev Environment in 5 Minutes Official SDKs exist for Python, TypeScript, C#/.NET, Java/Kotlin, and Go (community). We’ll use Python for speed and TypeScript as a parallel reference.\nInstall uv (Fast Python Package Manager) curl -LsSf https://astral.sh/uv/install.sh | sh Scaffold the Project mkdir mcp-site-monitor \u0026\u0026 cd mcp-site-monitor uv init uv add \"mcp[cli]\" httpx Directory layout: ````` mcp-site-monitor/ ├── .env # Secrets (gitignored) ├── .gitignore ├── pyproject.toml └── server.py # Main MCP server\n* * * ## 4. Hands-On: Build a SiteMonitor MCP Server We'll expose two tools: - ````check_site_status```` — HTTP health check with timing - ````check_ssl_expiry```` — Days remaining on an SSL certificate ### Complete Python Server (````server.py````) `````python import asyncio import ssl import socket from datetime import datetime import httpx from mcp.server.fastmcp import FastMCP mcp = FastMCP(\"SiteMonitor\") @mcp.tool() async def check_site_status(url: str, timeout: int = 10) -\u003e str: \"\"\"Check whether a website is online and measure response time. Args: url: Full URL to check, e.g. https://example.com timeout: Seconds to wait before failing, default 10. \"\"\" try: async with httpx.AsyncClient(follow_redirects=True, timeout=timeout) as client: t0 = asyncio.get_event_loop().time() r = await client.get(url) elapsed = asyncio.get_event_loop().time() - t0 status = \"✅ Online\" if r.status_code \u003c 400 else \"⚠️ Degraded\" return ( f\"{status}\\n\" f\"• URL: {url}\\n\" f\"• Status: {r.status_code}\\n\" f\"• Response time: {elapsed:.2f}s\\n\" f\"• Server: {r.headers.get('server', 'unknown')}\\n\" ) except httpx.TimeoutException: return f\"❌ Timeout: {url} did not respond within {timeout}s\" except Exception as e: return f\"❌ Error: {type(e).__name__}: {e}\" @mcp.tool() async def check_ssl_expiry(hostname: str, port: int = 443) -\u003e str: \"\"\"Check how many days remain on a domain's SSL certificate. Args: hostname: Domain name, e.g. example.com port: HTTPS port, default 443. \"\"\" try: ctx = ssl.create_default_context() with socket.create_connection((hostname, port), timeout=10) as sock: with ctx.wrap_socket(sock, server_hostname=hostname) as ssock: cert = ssock.getpeercert() expiry = datetime.strptime(cert[\"notAfter\"], \"%b %d %H:%M:%S %Y %Z\") days = (expiry - datetime.utcnow()).days flag = \"🟢 Healthy\" if days \u003e 30 else \"🟡 Expiring soon\" if days \u003e 7 else \"🔴 Critical\" return ( f\"{flag}\\n\" f\"• Host: {hostname}\\n\" f\"• Issuer: {cert.get('issuer', 'unknown')}\\n\" f\"• Expires: {expiry.strftime('%Y-%m-%d %H:%M UTC')}\\n\" f\"• Days left: {days}\\n\" ) except Exception as e: return f\"❌ SSL check failed: {type(e).__name__}: {e}\" if __name__ == \"__main__\": mcp.run(transport=\"stdio\") Key Implementation Details @mcp.tool() decorator: Registers the function as an MCP tool. The docstring becomes the tool description that the LLM reads to decide when to call it. Type annotations: Automatically converted to JSON Schema for input validation. transport=\"stdio\": Launches as a child process communicating over stdin/stdout. Graceful errors: Every exception is caught and returned as text. Never let raw stack traces leak into the JSON-RPC stream. Equivalent TypeScript Skeleton For Node/TypeScript teams, the structure is nearly identical: `````typescript import { McpServer } from “@modelcontextprotocol/sdk/server/mcp.js”; import { StdioServerTransport } from “@modelcontextprotocol/sdk/server/stdio.js”; import { z } from “zod”;\nconst server = new McpServer({ name: “SiteMonitor”, version: “1.0.0” });\nserver.tool( “check_site_status”, { url: z.string().describe(“Full URL to check”), timeout: z.number().optional().describe(“Timeout in seconds”), }, async ({ url, timeout = 10 }) =\u003e { // … httpx equivalent with fetch/axios return { content: [{ type: “text”, text: result }] }; } );\nconst transport = new StdioServerTransport(); await server.connect(transport);\n* * * ## 5. Connect to Claude Desktop, Cursor, and VS Code ### Claude Desktop (macOS) Edit: `````bash ~/Library/Application\\ Support/Claude/claude_desktop_config.json Add: `````json { “mcpServers”: { “site-monitor”: { “command”: “uv”, “args”: [ “run”, “–directory”, “/absolute/path/to/mcp-site-monitor”, “server.py” ] } } }\nRestart Claude Desktop. Ask: \u003e \"Check if https://github.com is up and tell me how many days are left on its SSL cert.\" Claude invokes both tools automatically and formats the results. ### Cursor Create ``.cursor/mcp.json`` in your project root: `````json { \"mcpServers\": { \"site-monitor\": { \"command\": \"uv\", \"args\": [ \"run\", \"--directory\", \"/absolute/path/to/mcp-site-monitor\", \"server.py\" ] } } } Cursor’s AI Chat discovers and uses the tools inline.\nVS Code Copilot Agent Mode In settings.json: `````json { “github.copilot.chat.mcpServers”: { “site-monitor”: { “command”: “uv”, “args”: [“run”, “server.py”], “cwd”: “/absolute/path/to/mcp-site-monitor” } } }\n* * * ## 6. Level Up: Resources, Prompts, and HTTP/SSE Transport ### Exposing Resources (Read-Only Data) `````python @mcp.resource(\"config://app\") def get_app_config() -\u003e str: \"\"\"Return current application configuration.\"\"\" import json return json.dumps({\"check_interval_sec\": 300, \"alert_threshold_ms\": 2000}) @mcp.resource(\"log://latest\") def get_latest_log() -\u003e str: \"\"\"Return the most recent monitoring log entry.\"\"\" return \"[2026-05-15T08:00:00Z] github.com: 200 OK in 23ms\" Exposing Prompts (Reusable Templates) @mcp.prompt() def debug_incident(url: str, status_code: int) -\u003e str: \"\"\"Generate a structured incident-debugging prompt.\"\"\" return f\"\"\"Website {url} is returning HTTP {status_code}. Investigate: 1. DNS resolution health 2. Server process status 3. Recent application logs (last 10 min) 4. Traffic spike patterns from the CDN dashboard \"\"\" Switching to HTTP + SSE for Production from mcp.server.sse import SseServerTransport from starlette.applications import Starlette from starlette.routing import Route sse = SseServerTransport(\"/messages/\") async def handle_sse(request): async with sse.connect_sse(request.scope, request.receive, request._send) as streams: await mcp.run(streams[0], streams[1], mcp.create_initialization_options()) app = Starlette(routes=[Route(\"/sse\", endpoint=handle_sse)]) Deploy to any ASGI host (Railway, Fly.io, your own VPS) and point remote clients to the SSE endpoint.\n7. Security \u0026 Production Hardening Connecting AI to external systems is powerful and dangerous. Follow these rules.\nThe Non-Negotiable Checklist Never log to stdout with stdio transport — stdout is the JSON-RPC channel. Log to stderr or a file only. Principle of least privilege — Expose the minimum tool set and data scope. Do not give AI blanket filesystem access. Strict input validation — Use Pydantic/Zod schemas. Reject malformed inputs at the boundary. Require confirmation for destructive ops — Deletions, payments, email sends should return a confirmation prompt, not execute immediately. No hardcoded secrets — API keys live in .env, never in source control. HTTPS everywhere for HTTP transport — Prevent MITM tampering with tool calls. Audit \u0026 monitor — Log every tool invocation. Alert on anomalies. Real-world warning: In July 2025, a critical RCE vulnerability (CVE-2025-49596, CVSS 9.4) was found in Anthropic’s MCP Inspector. Browser-based attacks against AI dev tools are now a known threat class. Treat MCP servers as security-critical infrastructure.\n8. MCP Ecosystem Cheat Sheet: 15 Servers to Try Now | Server | What It Does | Best Use Case | |\n|\n|\n| | filesystem | Read/write local files | Codebase analysis, doc processing | | github | PRs, issues, code search | Automated code review | | postgres / sqlite | SQL queries | Data analysis, internal BI | | slack | Send messages, manage channels | Alerting, on-call notifications | | brave-search | Web search | Real-time fact checking | | puppeteer | Browser automation | Scraping, screenshots | | memory | Knowledge graph storage | Long-term agent memory | | google-drive | File operations | Document workflows | | notion | Pages \u0026 databases | Knowledge management | | fetch | Arbitrary URL fetching | Content summarization | | sequential-thinking | Chain-of-thought helper | Complex reasoning tasks | | playwright | E2E test automation | Test generation | | redis | Key-value operations | Cache inspection | | docker | Container management | DevOps automation | | kubernetes | K8s resource ops | Cluster management |\nFull directories: Smithery.ai · MCP.so\n9. FAQ Q: Is MCP a replacement for LangChain, CrewAI, or OpenAI Agents SDK?\nNo. MCP is a protocol (the “plumbing”). LangChain is a framework for chaining calls. CrewAI orchestrates multi-agent workflows. OpenAI Agents SDK is a high-level agent builder. These frameworks increasingly consume MCP servers as their tool layer.\nQ: Can I run MCP servers in the cloud / on Kubernetes?\nYes. stdio is for local. HTTP/SSE scales to containers, VPS, and serverless (with caveats around MCP’s stateful design). Cloudflare and Vercel have published reference architectures.\nQ: How many tools should one server expose?\nKeep it under 10 tools per server. Too many tools degrade the LLM’s selection accuracy and bloat the context window (every tool definition is injected into the prompt). Split by functional domain: one server for DB ops, another for Slack ops.\nQ: What’s the relationship between MCP and Google’s A2A protocol?\nMCP connects AI → Tools (agent to external system). A2A (Agent-to-Agent) connects AI ↔ AI (multi-agent collaboration). They are complementary, not competitive. Google uses both.\nQ: Do I need to pay Anthropic to build MCP servers?\nNo. MCP is fully open source under the Apache 2.0 license. You can build, distribute, and commercialize MCP servers without licensing fees.\nClosing: The Time to Build Is Now MCP is not a speculative technology. It is the live standard for AI tool integration in 2026. If you don’t know how to build an MCP server today, you’re missing the foundational skill that every AI-native dev team will expect tomorrow.\nYour next steps: 1. Copy the SiteMonitor code above and run it with ````uv``` 2. Wire it into Claude Desktop and ask a natural-language monitoring question 3. Wrap your team’s most-used internal API as an MCP server 4. Publish it to GitHub and add it to Smithery or MCP.so\nOfficial Resources\nMCP Specification Python SDK (FastMCP) TypeScript SDK Smithery.ai — Server Registry MCP.so — Community Marketplace 🔌 Skip the Schema Boilerplate Writing JSON Schema by hand for every tool is the most tedious part of MCP development. Use dibi8’s free MCP Tool Builder — paste a Python or TypeScript function signature and get a spec-compliant tool definition + full server boilerplate (FastMCP / TypeScript SDK) + a cURL test command. Saves 80% of the setup time.\nRecommended Infrastructure for Self-Hosting If you want to run this stack reliably 24/7, infrastructure choice matters: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.\nPublished May 15, 2026. Based on MCP Protocol Specification 2025-11-25 (One-Year Anniversary Release).\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/mcp-deep-dive-definitive-2026-guide\" } } Frequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "2401",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/">En</a>
@@ -209,367 +209,365 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#%ec%84%9c%eb%a1%a0-2026%eb%85%84-%ea%b0%80%ec%9e%a5-%ec%a3%bc%eb%aa%a9%ed%95%a0-%eb%a7%8c%ed%95%9c-%ea%b8%b0%ec%88%a0-%ed%88%ac%ec%9e%90-mcp" aria-label="서론: 2026년 가장 주목할 만한 기술 투자, MCP">서론: 2026년 가장 주목할 만한 기술 투자, MCP</a></li>
-            <li>
-                <a href="#%eb%aa%a9%ec%b0%a8" aria-label="목차">목차</a></li>
-            <li>
-                <a href="#1-mcp%ec%9d%98-%eb%b3%b8%ec%a7%88-ai-%ec%84%b8%ec%83%81%ec%9d%98-usb-c-%ed%8f%ac%ed%8a%b8" aria-label="1. MCP의 본질: AI 세상의 USB-C 포트">1. MCP의 본질: AI 세상의 USB-C 포트</a><ul>
+                <a href="#model-context-protocol-mcp-deep-dive-the-definitive-2026-guide-to-building-production-ready-mcp-servers" aria-label="Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers">Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers</a><ul>
                     
             <li>
-                <a href="#mcp%ea%b0%80-%ed%95%b4%ea%b2%b0%ed%95%98%eb%8a%94-%ec%84%b8-%ea%b0%80%ec%a7%80-%ed%95%b5%ec%8b%ac-%eb%ac%b8%ec%a0%9c" aria-label="MCP가 해결하는 세 가지 핵심 문제">MCP가 해결하는 세 가지 핵심 문제</a></li>
+                <a href="#introduction-why-mcp-is-the-smartest-bet-for-developers-in-2026" aria-label="Introduction: Why MCP Is the Smartest Bet for Developers in 2026">Introduction: Why MCP Is the Smartest Bet for Developers in 2026</a></li>
             <li>
-                <a href="#mcp%eb%a5%bc-%ec%a7%80%ec%9b%90%ed%95%98%eb%8a%94-%ed%94%8c%eb%9e%ab%ed%8f%bc-2026%eb%85%84-5%ec%9b%94-%ea%b8%b0%ec%a4%80" aria-label="MCP를 지원하는 플랫폼 (2026년 5월 기준)">MCP를 지원하는 플랫폼 (2026년 5월 기준)</a></li></ul>
-            </li>
+                <a href="#table-of-contents" aria-label="Table of Contents">Table of Contents</a></li>
             <li>
-                <a href="#2-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98-%eb%b6%84%ec%84%9d-%ed%81%b4%eb%9d%bc%ec%9d%b4%ec%96%b8%ed%8a%b8%ec%99%80-%ec%84%9c%eb%b2%84%ec%9d%98-%ed%98%91%ec%97%85" aria-label="2. 아키텍처 분석: 클라이언트와 서버의 협업">2. 아키텍처 분석: 클라이언트와 서버의 협업</a><ul>
+                <a href="#1-what-mcp-actually-is-and-what-it-is-not" aria-label="1. What MCP Actually Is (And What It Is Not)">1. What MCP Actually Is (And What It Is Not)</a><ul>
                     
             <li>
-                <a href="#%ed%95%b5%ec%8b%ac-%ea%b5%ac%ec%84%b1-%ec%9a%94%ec%86%8c" aria-label="핵심 구성 요소">핵심 구성 요소</a></li>
+                <a href="#the-mn-problem" aria-label="The M×N Problem">The M×N Problem</a></li>
             <li>
-                <a href="#%ec%84%b8-%ea%b0%80%ec%a7%80-%ec%83%81%ed%98%b8%ec%9e%91%ec%9a%a9-%ec%9b%90%ec%8b%9c-%ec%9a%94%ec%86%8c" aria-label="세 가지 상호작용 원시 요소">세 가지 상호작용 원시 요소</a></li>
+                <a href="#what-mcp-is-not" aria-label="What MCP Is Not">What MCP Is Not</a></li>
             <li>
-                <a href="#%ec%a0%84%ec%86%a1-%ea%b3%84%ec%b8%b5-%ec%98%b5%ec%85%98" aria-label="전송 계층 옵션">전송 계층 옵션</a></li></ul>
+                <a href="#who-supports-mcp-may-2026" aria-label="Who Supports MCP (May 2026)">Who Supports MCP (May 2026)</a></li></ul>
             </li>
             <li>
-                <a href="#3-%ea%b0%9c%eb%b0%9c-%ed%99%98%ea%b2%bd-%ea%b5%ac%ec%b6%95-5%eb%b6%84-%ec%99%84%eb%a3%8c" aria-label="3. 개발 환경 구축: 5분 완료">3. 개발 환경 구축: 5분 완료</a><ul>
+                <a href="#2-architecture-how-host-client-and-server-talk" aria-label="2. Architecture: How Host, Client, and Server Talk">2. Architecture: How Host, Client, and Server Talk</a><ul>
                     
             <li>
-                <a href="#uv-%ec%84%a4%ec%b9%98%ea%b6%8c%ec%9e%a5-%ed%8c%a8%ed%82%a4%ec%a7%80-%ea%b4%80%eb%a6%ac%ec%9e%90" aria-label="uv 설치(권장 패키지 관리자)">uv 설치(권장 패키지 관리자)</a></li>
+                <a href="#the-four-concepts" aria-label="The Four Concepts">The Four Concepts</a></li>
             <li>
-                <a href="#%ed%94%84%eb%a1%9c%ec%a0%9d%ed%8a%b8-%ec%83%9d%ec%84%b1" aria-label="프로젝트 생성">프로젝트 생성</a></li>
+                <a href="#three-interaction-primitives" aria-label="Three Interaction Primitives">Three Interaction Primitives</a></li>
             <li>
-                <a href="#%ed%94%84%eb%a1%9c%ec%a0%9d%ed%8a%b8-%ea%b5%ac%ec%a1%b0" aria-label="프로젝트 구조">프로젝트 구조</a></li></ul>
+                <a href="#transport-options" aria-label="Transport Options">Transport Options</a></li></ul>
             </li>
             <li>
-                <a href="#4-%ec%8b%a4%ec%a0%84-%ec%82%ac%ec%9d%b4%ed%8a%b8-%eb%aa%a8%eb%8b%88%ed%84%b0%eb%a7%81-mcp-%ec%84%9c%eb%b2%84-%ea%b5%ac%ec%b6%95" aria-label="4. 실전: 사이트 모니터링 MCP 서버 구축">4. 실전: 사이트 모니터링 MCP 서버 구축</a><ul>
+                <a href="#3-dev-environment-in-5-minutes" aria-label="3. Dev Environment in 5 Minutes">3. Dev Environment in 5 Minutes</a><ul>
                     
             <li>
-                <a href="#%ec%99%84%ec%84%b1%eb%90%9c-%ec%bd%94%eb%93%9cserverpy" aria-label="완성된 코드(server.py)">완성된 코드(server.py)</a></li>
+                <a href="#install-uv-fast-python-package-manager" aria-label="Install uv (Fast Python Package Manager)">Install uv (Fast Python Package Manager)</a></li>
             <li>
-                <a href="#%ec%bd%94%eb%93%9c-%ed%95%b5%ec%8b%ac-%ed%95%b4%ec%84%a4" aria-label="코드 핵심 해설">코드 핵심 해설</a></li>
+                <a href="#scaffold-the-project" aria-label="Scaffold the Project">Scaffold the Project</a></li>
             <li>
-                <a href="#%eb%a1%9c%ec%bb%ac-%ed%85%8c%ec%8a%a4%ed%8a%b8" aria-label="로컬 테스트">로컬 테스트</a></li></ul>
+                <a href="#key-implementation-details" aria-label="Key Implementation Details">Key Implementation Details</a></li>
+            <li>
+                <a href="#equivalent-typescript-skeleton" aria-label="Equivalent TypeScript Skeleton">Equivalent TypeScript Skeleton</a></li>
+            <li>
+                <a href="#vs-code-copilot-agent-mode" aria-label="VS Code Copilot Agent Mode">VS Code Copilot Agent Mode</a></li>
+            <li>
+                <a href="#exposing-prompts-reusable-templates" aria-label="Exposing Prompts (Reusable Templates)">Exposing Prompts (Reusable Templates)</a></li>
+            <li>
+                <a href="#switching-to-http--sse-for-production" aria-label="Switching to HTTP &#43; SSE for Production">Switching to HTTP + SSE for Production</a></li></ul>
             </li>
             <li>
-                <a href="#5-claude-desktop-%eb%b0%8f-cursor-%ec%97%b0%eb%8f%99" aria-label="5. Claude Desktop 및 Cursor 연동">5. Claude Desktop 및 Cursor 연동</a><ul>
+                <a href="#7-security--production-hardening" aria-label="7. Security &amp; Production Hardening">7. Security &amp; Production Hardening</a><ul>
                     
             <li>
-                <a href="#claude-desktopmacos" aria-label="Claude Desktop(macOS)">Claude Desktop(macOS)</a></li>
-            <li>
-                <a href="#cursor" aria-label="Cursor">Cursor</a></li>
-            <li>
-                <a href="#vs-code-copilot-agent-mode" aria-label="VS Code Copilot Agent Mode">VS Code Copilot Agent Mode</a></li></ul>
+                <a href="#the-non-negotiable-checklist" aria-label="The Non-Negotiable Checklist">The Non-Negotiable Checklist</a></li></ul>
             </li>
             <li>
-                <a href="#6-%ec%8b%ac%ed%99%94-%eb%a6%ac%ec%86%8c%ec%8a%a4-%ed%94%84%eb%a1%ac%ed%94%84%ed%8a%b8-%ec%8a%a4%ed%8a%b8%eb%a6%ac%eb%b0%8d-http" aria-label="6. 심화: 리소스, 프롬프트, 스트리밍 HTTP">6. 심화: 리소스, 프롬프트, 스트리밍 HTTP</a><ul>
-                    
+                <a href="#8-mcp-ecosystem-cheat-sheet-15-servers-to-try-now" aria-label="8. MCP Ecosystem Cheat Sheet: 15 Servers to Try Now">8. MCP Ecosystem Cheat Sheet: 15 Servers to Try Now</a></li>
             <li>
-                <a href="#%eb%a6%ac%ec%86%8c%ec%8a%a4-%eb%85%b8%ec%b6%9c%ec%9d%bd%ea%b8%b0-%ec%a0%84%ec%9a%a9-%eb%8d%b0%ec%9d%b4%ed%84%b0" aria-label="리소스 노출(읽기 전용 데이터)">리소스 노출(읽기 전용 데이터)</a></li>
+                <a href="#9-faq" aria-label="9. FAQ">9. FAQ</a></li>
             <li>
-                <a href="#%ed%94%84%eb%a1%ac%ed%94%84%ed%8a%b8-%eb%85%b8%ec%b6%9c%ec%9e%ac%ec%82%ac%ec%9a%a9-%ea%b0%80%eb%8a%a5%ed%95%9c-%ed%85%9c%ed%94%8c%eb%a6%bf" aria-label="프롬프트 노출(재사용 가능한 템플릿)">프롬프트 노출(재사용 가능한 템플릿)</a></li>
+                <a href="#closing-the-time-to-build-is-now" aria-label="Closing: The Time to Build Is Now">Closing: The Time to Build Is Now</a></li>
             <li>
-                <a href="#http--sse%eb%a1%9c-%eb%a7%88%ec%9d%b4%ea%b7%b8%eb%a0%88%ec%9d%b4%ec%85%98%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98" aria-label="HTTP &#43; SSE로 마이그레이션(프로덕션)">HTTP + SSE로 마이그레이션(프로덕션)</a></li></ul>
-            </li>
+                <a href="#-skip-the-schema-boilerplate" aria-label="🔌 Skip the Schema Boilerplate">🔌 Skip the Schema Boilerplate</a></li>
             <li>
-                <a href="#7-%eb%b3%b4%ec%95%88-%eb%b0%8f-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%eb%aa%a8%eb%b2%94-%ec%82%ac%eb%a1%80" aria-label="7. 보안 및 프로덕션 모범 사례">7. 보안 및 프로덕션 모범 사례</a><ul>
-                    
-            <li>
-                <a href="#%eb%b0%98%eb%93%9c%ec%8b%9c-%ec%a4%80%ec%88%98%ed%95%b4%ec%95%bc-%ed%95%a0-7%ea%b0%80%ec%a7%80-%ea%b7%9c%ec%b9%99" aria-label="반드시 준수해야 할 7가지 규칙">반드시 준수해야 할 7가지 규칙</a></li></ul>
-            </li>
-            <li>
-                <a href="#8-%ec%97%90%ec%bd%94%ec%8b%9c%ec%8a%a4%ed%85%9c-%ea%b0%80%ec%9d%b4%eb%93%9c-%ec%a7%80%ea%b8%88-%eb%8b%b9%ec%9e%a5-%ec%8d%a8%eb%b3%bc-15%ea%b0%9c-mcp-%ec%84%9c%eb%b2%84" aria-label="8. 에코시스템 가이드: 지금 당장 써볼 15개 MCP 서버">8. 에코시스템 가이드: 지금 당장 써볼 15개 MCP 서버</a></li>
-            <li>
-                <a href="#9-%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8-faq" aria-label="9. 자주 묻는 질문 FAQ">9. 자주 묻는 질문 FAQ</a></li>
-            <li>
-                <a href="#%eb%a7%88%eb%ac%b4%eb%a6%ac-%ec%a7%80%ea%b8%88-%eb%b0%94%eb%a1%9c-%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94" aria-label="마무리: 지금 바로 시작하세요">마무리: 지금 바로 시작하세요</a></li>
-            <li>
-                <a href="#-json-schema-%eb%b3%b4%ec%9d%bc%eb%9f%ac%ed%94%8c%eb%a0%88%ec%9d%b4%ed%8a%b8-%ea%b1%b4%eb%84%88%eb%9b%b0%ea%b8%b0" aria-label="🔌 JSON Schema 보일러플레이트 건너뛰기">🔌 JSON Schema 보일러플레이트 건너뛰기</a></li>
-            <li>
-                <a href="#%ec%9e%90%ec%b2%b4-%ed%98%b8%ec%8a%a4%ed%8c%85-%ec%b6%94%ec%b2%9c-%ec%9d%b8%ed%94%84%eb%9d%bc" aria-label="자체 호스팅 추천 인프라">자체 호스팅 추천 인프라</a></li>
+                <a href="#recommended-infrastructure-for-self-hosting" aria-label="Recommended Infrastructure for Self-Hosting">Recommended Infrastructure for Self-Hosting</a></li>
             <li>
                 <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
             </li>
         </ul>
+        </li>
+        </ul>
     </div>
 </details>
 
-  <div class="post-content md-content"><p>{&lt;/* resource-info */&gt;}</p>
+  <div class="post-content md-content"><h1 id="model-context-protocol-mcp-deep-dive-the-definitive-2026-guide-to-building-production-ready-mcp-servers">Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers<a hidden class="anchor" aria-hidden="true" href="#model-context-protocol-mcp-deep-dive-the-definitive-2026-guide-to-building-production-ready-mcp-servers">#</a></h1>
+<p>{&lt;/* resource-info */&gt;}</p>
 <hr>
-<h2 id="서론-2026년-가장-주목할-만한-기술-투자-mcp">서론: 2026년 가장 주목할 만한 기술 투자, MCP<a hidden class="anchor" aria-hidden="true" href="#서론-2026년-가장-주목할-만한-기술-투자-mcp">#</a></h2>
-<p>아직도 각 LLM마다 맞춤형 도구 호출 코드를 작성하고 있다면, 이미 시대에 뒤처진 것입니다.</p>
-<p>2024년 11월, Anthropic이 **Model Context Protocol(MCP)**을 공개했습니다. 이 단순해 보이는 개방형 프로토콜은 AI와 외부 세계를 연결하는 방식을 놀라운 속도로 재편하고 있습니다. 불과 반 년 만에 OpenAI, Google DeepMind, Microsoft가 전면 지원을 선언했고, 커뮤니티에서는 <strong>10,000개 이상의 MCP 서버</strong>가 탄생했으며, Python과 JavaScript SDK의 주간 다운로드 수는 <strong>2,000만 회</strong>를 돌파했습니다.</p>
-<p>더욱 중요한 것은 2025년 12월 Linux Foundation이 MCP를 인수하여 Agentic AI Foundation을 설립, 독립적으로 운영한다고 밝힌 점입니다. 이는 MCP가 더 이상 특정 기업의 자산이 아니라, <strong>전 산업의 공공 인프라</strong>임을 의미합니다.</p>
-<p>이 글은 개념 소개가 아닙니다. 첫 번째 코드 라인부터 직접 <strong>프로덕션급 MCP 서버</strong>를 구축하고, Claude, Cursor, VS Code Copilot 등 주요 클라이언트에 연결하는 과정을 안내합니다. 글을 다 읽고 나면, <strong>실제로 동작하는 서버 모니터링 MCP 도구</strong>를 갖게 될 것입니다. AI 대화창에서 자연어로 웹사이트 상태를 조회하고, SSL 인증서 만료일을 확인할 수 있습니다.</p>
+<h2 id="introduction-why-mcp-is-the-smartest-bet-for-developers-in-2026">Introduction: Why MCP Is the Smartest Bet for Developers in 2026<a hidden class="anchor" aria-hidden="true" href="#introduction-why-mcp-is-the-smartest-bet-for-developers-in-2026">#</a></h2>
+<p>If you&rsquo;re still writing custom integration code for every LLM and every tool, you&rsquo;re doing 2025&rsquo;s work in 2026.</p>
+<p>In November 2024, Anthropic quietly released the <strong>Model Context Protocol (MCP)</strong>. Six months later, it had become the fastest-adopted open standard in AI infrastructure. OpenAI, Google DeepMind, and Microsoft all pledged native support. The community built <strong>10,000+ MCP servers</strong>. Weekly downloads of the official Python and JavaScript SDKs crossed <strong>20 million</strong>.</p>
+<p>Then in December 2025, the Linux Foundation spun up the <strong>Agentic AI Foundation</strong> to steward MCP independently. It is no longer Anthropic&rsquo;s protocol. It is <strong>the industry&rsquo;s protocol</strong>.</p>
+<p>This guide is not a high-level overview. You will write a <strong>real, production-grade MCP server</strong> that monitors website health and SSL certificates, then wire it into Claude Desktop, Cursor, and VS Code Copilot Agent Mode. By the end, you&rsquo;ll have a working tool you can extend for your own APIs and deploy today.</p>
 <hr>
-<h2 id="목차">목차<a hidden class="anchor" aria-hidden="true" href="#목차">#</a></h2>
+<h2 id="table-of-contents">Table of Contents<a hidden class="anchor" aria-hidden="true" href="#table-of-contents">#</a></h2>
 <ol>
-<li><a href="/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#1-mcp%ec%9d%98-%eb%b3%b8%ec%a7%88-ai-%ec%84%b8%ec%83%81%ec%9d%98-usb-c-%ed%8f%ac%ed%8a%b8">MCP의 본질: AI 세상의 USB-C 포트</a></li>
-<li><a href="/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#2-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98-%eb%b6%84%ec%84%9d-%ed%81%b4%eb%9d%bc%ec%9d%b4%ec%96%b8%ed%8a%b8%ec%99%80-%ec%84%9c%eb%b2%84%ec%9d%98-%ed%98%91%ec%97%85">아키텍처 분석: 클라이언트와 서버의 협업</a></li>
-<li><a href="/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#3-%ea%b0%9c%eb%b0%9c-%ed%99%98%ea%b2%bd-%ea%b5%ac%ec%b6%95-5%eb%b6%84-%ec%99%84%eb%a3%8c">개발 환경 구축: 5분 완료</a></li>
-<li><a href="/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#4-%ec%8b%a4%ec%a0%84-%ec%82%ac%ec%9d%b4%ed%8a%b8-%eb%aa%a8%eb%8b%88%ed%84%b0%eb%a7%81-mcp-%ec%84%9c%eb%b2%84-%ea%b5%ac%ec%b6%95">실전: 사이트 모니터링 MCP 서버 구축</a></li>
-<li><a href="/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#5-claude-desktop-%eb%b0%8f-cursor-%ec%97%b0%eb%8f%99">Claude Desktop 및 Cursor 연동</a></li>
-<li><a href="/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#6-%ec%8b%ac%ed%99%94-%eb%a6%ac%ec%86%8c%ec%8a%a4-%ed%94%84%eb%a1%ac%ed%94%84%ed%8a%b8-%ec%8a%a4%ed%8a%b8%eb%a6%ac%eb%b0%8d-http">심화: 리소스, 프롬프트, 스트리밍 HTTP</a></li>
-<li><a href="/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#7-%eb%b3%b4%ec%95%88-%eb%b0%8f-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%eb%aa%a8%eb%b2%94-%ec%82%ac%eb%a1%80">보안 및 프로덕션 모범 사례</a></li>
-<li><a href="/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#8-%ec%97%90%ec%bd%94%ec%8b%9c%ec%8a%a4%ed%85%9c-%ea%b0%80%ec%9d%b4%eb%93%9c-%ec%a7%80%ea%b8%88-%eb%8b%b9%ec%9e%a5-%ec%8d%a8%eb%b3%bc-15%ea%b0%9c-mcp-%ec%84%9c%eb%b2%84">에코시스템 가이드: 지금 당장 써볼 15개 MCP 서버</a></li>
-<li><a href="/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#9-%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8-faq">자주 묻는 질문 FAQ</a></li>
+<li><a href="/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#1-what-mcp-actually-is-and-what-it-is-not">What MCP Actually Is (And What It Is Not)</a></li>
+<li><a href="/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#2-architecture-how-host-client-and-server-talk">Architecture: How Host, Client, and Server Talk</a></li>
+<li><a href="/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#3-dev-environment-in-5-minutes">Dev Environment in 5 Minutes</a></li>
+<li><a href="/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#4-hands-on-build-a-sitemonitor-mcp-server">Hands-On: Build a SiteMonitor MCP Server</a></li>
+<li><a href="/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#5-connect-to-claude-desktop-cursor-and-vs-code">Connect to Claude Desktop, Cursor, and VS Code</a></li>
+<li><a href="/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#6-level-up-resources-prompts-and-httpsse-transport">Level Up: Resources, Prompts, and HTTP/SSE Transport</a></li>
+<li><a href="/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#7-security--production-hardening">Security &amp; Production Hardening</a></li>
+<li><a href="/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#8-mcp-ecosystem-cheat-sheet-15-servers-to-try-now">MCP Ecosystem Cheat Sheet: 15 Servers to Try Now</a></li>
+<li><a href="/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#9-faq">FAQ</a></li>
 </ol>
 <hr>
-<h2 id="1-mcp의-본질-ai-세상의-usb-c-포트">1. MCP의 본질: AI 세상의 USB-C 포트<a hidden class="anchor" aria-hidden="true" href="#1-mcp의-본질-ai-세상의-usb-c-포트">#</a></h2>
-<p>MCP가 등장하기 전, 개발자들은 고전적인 <strong>M×N 딜레마</strong>에 직면했습니다.</p>
+<h2 id="1-what-mcp-actually-is-and-what-it-is-not">1. What MCP Actually Is (And What It Is Not)<a hidden class="anchor" aria-hidden="true" href="#1-what-mcp-actually-is-and-what-it-is-not">#</a></h2>
+<h3 id="the-mn-problem">The M×N Problem<a hidden class="anchor" aria-hidden="true" href="#the-mn-problem">#</a></h3>
+<p>Before MCP, integrating LLMs with external tools was a combinatorial nightmare: - <strong>M</strong> LLM providers (OpenAI, Anthropic, Google, Meta, Mistral…)</p>
 <ul>
-<li><strong>M</strong>개의 대형 언어 모델(GPT-4, Claude, Gemini, Llama&hellip;)</li>
-<li><strong>N</strong>개의 외부 도구(GitHub API, 데이터베이스, Slack, 브라우저, 파일시스템&hellip;)</li>
-<li>새로운 도구를 추가할 때마다 각 모델별로 어댑터 코드를 작성</li>
+<li><strong>N</strong> external tools (GitHub, Postgres, Slack, Stripe, Salesforce…)</li>
+<li>Custom glue code for every pair</li>
 </ul>
-<p>MCP는 이 복잡도를 <strong>M+N</strong>으로 낮추었습니다.</p>
+<p>MCP collapses this to <strong>M + N</strong>: - Tool authors expose once via MCP (Server)</p>
 <ul>
-<li>도구 개발자는 MCP 표준으로 한 번만 노출(Server)</li>
-<li>모델 업체는 MCP 클라이언트를 한 번만 구현(Client)</li>
-<li>서로 자연스럽게 연동되며, 추가적인 접착제 코드가 불필요</li>
+<li>LLM vendors implement one MCP client</li>
+<li>Everything just works together</li>
 </ul>
-<h3 id="mcp가-해결하는-세-가지-핵심-문제">MCP가 해결하는 세 가지 핵심 문제<a hidden class="anchor" aria-hidden="true" href="#mcp가-해결하는-세-가지-핵심-문제">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>고통 지점</th>
-					<th>기존 방안</th>
-					<th>MCP 방안</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>도구 통합 파편화</td>
-					<td>플랫폼마다 어댑터 작성</td>
-					<td>한 번 작성, 어디서나 사용</td>
-			</tr>
-			<tr>
-					<td>컨텍스트 전달 혼란</td>
-					<td>플랫폼별 형식 불일치</td>
-					<td>JSON-RPC 2.0 표준 프로토콜</td>
-			</tr>
-			<tr>
-					<td>동적 발견 어려움</td>
-					<td>하드코딩된 도구 목록</td>
-					<td>런타임 핸드셰이크 + 능력 협상</td>
-			</tr>
-	</tbody>
-</table>
-<h3 id="mcp를-지원하는-플랫폼-2026년-5월-기준">MCP를 지원하는 플랫폼 (2026년 5월 기준)<a hidden class="anchor" aria-hidden="true" href="#mcp를-지원하는-플랫폼-2026년-5월-기준">#</a></h3>
-<ul>
-<li><strong>Claude Desktop / Claude Code</strong>: 네이티브 지원, 최초 출시</li>
-<li><strong>ChatGPT (Plus/Pro)</strong>: 2025년 9월 전면 도입</li>
-<li><strong>Google Gemini</strong>: Demis Hassabis 공식 로드맵 발표</li>
-<li><strong>Cursor / Windsurf / Zed</strong>: 주요 AI IDE 전원 지원</li>
-<li><strong>GitHub Copilot Agent Mode</strong>: VS Code v1.99부터 내장 MCP</li>
-<li><strong>Sourcegraph Cody</strong>: 엔터프라이즈 MCP 배포</li>
-</ul>
+<p>Think of it as <strong>USB-C for AI</strong>: a single, standardized port that any model can use to plug into any data source or tool.</p>
+<h3 id="what-mcp-is-not">What MCP Is Not<a hidden class="anchor" aria-hidden="true" href="#what-mcp-is-not">#</a></h3>
+<p>| Misconception | Reality |
+|</p>
 <hr>
-<h2 id="2-아키텍처-분석-클라이언트와-서버의-협업">2. 아키텍처 분석: 클라이언트와 서버의 협업<a hidden class="anchor" aria-hidden="true" href="#2-아키텍처-분석-클라이언트와-서버의-협업">#</a></h2>
-<p>MCP는 <strong>JSON-RPC 2.0</strong> 기반의 클래식 <strong>클라이언트-서버 아키텍처</strong>를 채택합니다. 네 가지 핵심 개념만 이해하면 MCP의 80%를 파악한 것입니다.</p>
-<h3 id="핵심-구성-요소">핵심 구성 요소<a hidden class="anchor" aria-hidden="true" href="#핵심-구성-요소">#</a></h3>
-<pre tabindex="0"><code>┌─────────────┐      JSON-RPC 2.0       ┌─────────────┐
-│  MCP Host   │  ◄──────────────────►  │  MCP Server │
-│  (AI Agent) │    stdio / HTTP+SSE      │  (Tool Box) │
-└─────────────┘                          └─────────────┘
-</code></pre><p><strong>Host</strong>: AI 모델을 실행하는 주 프로그램(예: Claude Desktop).<br>
-<strong>Client</strong>: Host 내부에서 Server와 통신을 담당하는 모듈.<br>
-<strong>Server</strong>: 도구, 리소스, 프롬프트 템플릿을 노출하는 독립 프로세스.</p>
-<h3 id="세-가지-상호작용-원시-요소">세 가지 상호작용 원시 요소<a hidden class="anchor" aria-hidden="true" href="#세-가지-상호작용-원시-요소">#</a></h3>
+<p>|</p>
+<hr>
+<p>|
+| A new AI model | No—it&rsquo;s a <strong>protocol</strong>, not a model |
+| A replacement for Function Calling | No—MCP standardizes <em>how</em> tools are exposed; Function Calling is <em>how</em> models invoke them. They stack together. |
+| Only for Claude | No—OpenAI, Google, Microsoft, Cursor, Zed, Sourcegraph all support it |
+| Anthropic-proprietary | No—governed by the Linux Foundation since Dec 2025 |</p>
+<h3 id="who-supports-mcp-may-2026">Who Supports MCP (May 2026)<a hidden class="anchor" aria-hidden="true" href="#who-supports-mcp-may-2026">#</a></h3>
+<p>| Platform | Support Level | Notes |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Claude Desktop / Claude Code</strong> | Native | Reference implementation |
+| <strong>ChatGPT</strong> | Full (Dev Mode) | Read/write, Plus/Pro tiers since Sept 2025 |
+| <strong>Google Gemini</strong> | Confirmed | DeepMind CEO announced roadmap |
+| <strong>Cursor / Windsurf / Zed</strong> | Supported | AI-native IDEs |
+| <strong>VS Code Copilot Agent Mode</strong> | Native | v1.99+ |
+| <strong>Sourcegraph Cody</strong> | Enterprise | Enterprise MCP adoption |</p>
+<hr>
+<h2 id="2-architecture-how-host-client-and-server-talk">2. Architecture: How Host, Client, and Server Talk<a hidden class="anchor" aria-hidden="true" href="#2-architecture-how-host-client-and-server-talk">#</a></h2>
+<p>MCP runs on <strong>JSON-RPC 2.0</strong> over two transport options. Four concepts cover 90% of real-world usage.</p>
+<h3 id="the-four-concepts">The Four Concepts<a hidden class="anchor" aria-hidden="true" href="#the-four-concepts">#</a></h3>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────┐
+│                      MCP Host                        │
+│  ┌─────────────┐          ┌──────────────────────┐ │
+│  │   LLM       │◄────────►│  MCP Client(s)       │ │
+│  │  (Claude)   │          │  (stdio / HTTP+SSE)   │ │
+│  └─────────────┘          └──────────┬─────────────┘ │
+└───────────────────────────────────────┼──────────────┘
+                                        │ JSON-RPC 2.0
+┌───────────────────────────────────────┼──────────────┐
+│  MCP Server                           │              │
+│  • Tools (callable functions)         │◄─────────────┘
+│  • Resources (readable data)          │
+│  • Prompts (reusable templates)       │
+└─────────────────────────────────────────────────────┘
+</code></pre><p><strong>Host</strong>: The application running the LLM (e.g., Claude Desktop).<br>
+<strong>Client</strong>: The module inside the Host that speaks MCP.<br>
+<strong>Server</strong>: A standalone process exposing tools/resources/prompts.</p>
+<h3 id="three-interaction-primitives">Three Interaction Primitives<a hidden class="anchor" aria-hidden="true" href="#three-interaction-primitives">#</a></h3>
 <ol>
-<li><strong>Tools(도구)</strong>: AI가 호출할 수 있는 함수, 매개변수와 반환값 포함</li>
-<li><strong>Resources(리소스)</strong>: AI가 읽을 수 있는 데이터 소스(파일, DB 레코드 등)</li>
-<li><strong>Prompts(프롬프트)</strong>: AI가 직접 참조할 수 있는 미리 정의된 프롬프트 템플릿</li>
+<li><strong>Tools</strong>: Functions the AI can call with arguments, receiving structured results.</li>
+<li><strong>Resources</strong>: Read-only data the AI can fetch (files, DB rows, configs).</li>
+<li><strong>Prompts</strong>: Named, parameterized prompt templates the AI can invoke.</li>
 </ol>
-<h3 id="전송-계층-옵션">전송 계층 옵션<a hidden class="anchor" aria-hidden="true" href="#전송-계층-옵션">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>전송 방식</th>
-					<th>적합한 상황</th>
-					<th>특징</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>stdio</strong></td>
-					<td>로컬 개발, 데스크톱 앱</td>
-					<td>낮은 지연, 네트워크 노출 제로, 가장 안전</td>
-			</tr>
-			<tr>
-					<td><strong>HTTP + SSE</strong></td>
-					<td>원격 서비스, 서버리스</td>
-					<td>스트리밍 응답 지원, 기기 간 통신</td>
-			</tr>
-			<tr>
-					<td><strong>Streamable HTTP</strong></td>
-					<td>프로덕션 환경</td>
-					<td>장기 연결 + 상태 없는 폴백</td>
-			</tr>
-	</tbody>
-</table>
-<p><strong>개발 권장사항</strong>: 로컬 프로토타입은 stdio로, 프로덕션은 HTTP/SSE로 마이그레이션.</p>
+<h3 id="transport-options">Transport Options<a hidden class="anchor" aria-hidden="true" href="#transport-options">#</a></h3>
+<p>| Transport | Best For | Trade-off |
+|</p>
 <hr>
-<h2 id="3-개발-환경-구축-5분-완료">3. 개발 환경 구축: 5분 완료<a hidden class="anchor" aria-hidden="true" href="#3-개발-환경-구축-5분-완료">#</a></h2>
-<p>MCP 공식 SDK는 <strong>Python</strong>과 <strong>TypeScript/JavaScript</strong>를 지원하며, 커뮤니티에서는 Go, C#, Java/Kotlin, Rust 구현체가 존재합니다. 본문은 Python(가장 빠른 학습 곡선)을 기준으로 하며, 마지막에 TypeScript 동등 코드를 첨부합니다.</p>
-<h3 id="uv-설치권장-패키지-관리자">uv 설치(권장 패키지 관리자)<a hidden class="anchor" aria-hidden="true" href="#uv-설치권장-패키지-관리자">#</a></h3>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>stdio</strong> | Local dev, desktop apps | Fastest, zero network exposure, limited to single machine |
+| <strong>HTTP + SSE</strong> | Remote servers, microservices | Slightly higher latency, cross-machine, supports streaming |
+| <strong>Streamable HTTP</strong> | Production, serverless | Stateful fallback, long-running ops |</p>
+<p><strong>Rule of thumb</strong>: Prototype with stdio. Promote to HTTP/SSE for production.</p>
+<hr>
+<h2 id="3-dev-environment-in-5-minutes">3. Dev Environment in 5 Minutes<a hidden class="anchor" aria-hidden="true" href="#3-dev-environment-in-5-minutes">#</a></h2>
+<p>Official SDKs exist for Python, TypeScript, C#/.NET, Java/Kotlin, and Go (community). We&rsquo;ll use <strong>Python</strong> for speed and <strong>TypeScript</strong> as a parallel reference.</p>
+<h3 id="install-uv-fast-python-package-manager">Install uv (Fast Python Package Manager)<a hidden class="anchor" aria-hidden="true" href="#install-uv-fast-python-package-manager">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -LsSf https://astral.sh/uv/install.sh | sh
-</span></span></code></pre></div><h3 id="프로젝트-생성">프로젝트 생성<a hidden class="anchor" aria-hidden="true" href="#프로젝트-생성">#</a></h3>
+</span></span></code></pre></div><h3 id="scaffold-the-project">Scaffold the Project<a hidden class="anchor" aria-hidden="true" href="#scaffold-the-project">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir mcp-site-monitor <span style="color:#f92672">&amp;&amp;</span> cd mcp-site-monitor
 </span></span><span style="display:flex;"><span>uv init
 </span></span><span style="display:flex;"><span>uv add <span style="color:#e6db74">&#34;mcp[cli]&#34;</span> httpx
-</span></span></code></pre></div><h3 id="프로젝트-구조">프로젝트 구조<a hidden class="anchor" aria-hidden="true" href="#프로젝트-구조">#</a></h3>
-<pre tabindex="0"><code>mcp-site-monitor/
-├── .env              # API 키(.gitignore에 추가)
+</span></span></code></pre></div><p>Directory layout: `````
+mcp-site-monitor/
+├── .env              # Secrets (gitignored)
 ├── .gitignore
 ├── pyproject.toml
-└── server.py         # MCP 서버 메인 파일
-</code></pre><hr>
-<h2 id="4-실전-사이트-모니터링-mcp-서버-구축">4. 실전: 사이트 모니터링 MCP 서버 구축<a hidden class="anchor" aria-hidden="true" href="#4-실전-사이트-모니터링-mcp-서버-구축">#</a></h2>
-<p><strong>SiteMonitor</strong>라는 이름의 MCP 서버를 생성하여 두 가지 도구를 노출합니다.</p>
-<ul>
-<li><code>check_site_status</code>: 웹사이트 온라인 여부와 응답 시간 확인</li>
-<li><code>check_ssl_expiry</code>: 도메인 SSL 인증서 잔여 유효기간 확인</li>
-</ul>
-<h3 id="완성된-코드serverpy">완성된 코드(server.py)<a hidden class="anchor" aria-hidden="true" href="#완성된-코드serverpy">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> ssl
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> socket
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> urllib.parse <span style="color:#f92672">import</span> urlparse
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> httpx
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> mcp.server.fastmcp <span style="color:#f92672">import</span> FastMCP
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>mcp <span style="color:#f92672">=</span> FastMCP(<span style="color:#e6db74">&#34;SiteMonitor&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@mcp.tool</span>()
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_site_status</span>(url: str, timeout: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;지정된 URL의 웹사이트 가용성을 확인합니다.
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Args: url: 확인할 웹사이트 주소, 예: https://example.com
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        timeout: 요청 타임아웃(초), 기본값 10초
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>: <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> httpx<span style="color:#f92672">.</span>AsyncClient(follow_redirects<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, timeout<span style="color:#f92672">=</span>timeout) <span style="color:#66d9ef">as</span> client: start <span style="color:#f92672">=</span> asyncio<span style="color:#f92672">.</span>get_event_loop()<span style="color:#f92672">.</span>time()
-</span></span><span style="display:flex;"><span>            response <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> client<span style="color:#f92672">.</span>get(url)
-</span></span><span style="display:flex;"><span>            elapsed <span style="color:#f92672">=</span> asyncio<span style="color:#f92672">.</span>get_event_loop()<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> start
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>            status <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;✅ 온라인&#34;</span> <span style="color:#66d9ef">if</span> response<span style="color:#f92672">.</span>status_code <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">400</span> <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;⚠️ 이상&#34;</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> (
-</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>status<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;• URL: </span><span style="color:#e6db74">{</span>url<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;• HTTP 상태 코드: </span><span style="color:#e6db74">{</span>response<span style="color:#f92672">.</span>status_code<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;• 응답 시간: </span><span style="color:#e6db74">{</span>elapsed<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">초</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;• 서버: </span><span style="color:#e6db74">{</span>response<span style="color:#f92672">.</span>headers<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;server&#39;</span>, <span style="color:#e6db74">&#39;알 수 없음&#39;</span>)<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span>            )
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> httpx<span style="color:#f92672">.</span>TimeoutException: <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;❌ 타임아웃: </span><span style="color:#e6db74">{</span>url<span style="color:#e6db74">}</span><span style="color:#e6db74">이 </span><span style="color:#e6db74">{</span>timeout<span style="color:#e6db74">}</span><span style="color:#e6db74">초 내에 응답하지 않음&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e: <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;❌ 오류: </span><span style="color:#e6db74">{</span>type(e)<span style="color:#f92672">.</span>__name__<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>str(e)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@mcp.tool</span>()
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_ssl_expiry</span>(hostname: str, port: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">443</span>) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;도메인 SSL 인증서의 잔여 유효기간을 확인합니다.
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Args: hostname: 도메인 이름, 예: example.com
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        port: HTTPS 포트, 기본값 443
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>: context <span style="color:#f92672">=</span> ssl<span style="color:#f92672">.</span>create_default_context()
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">with</span> socket<span style="color:#f92672">.</span>create_connection((hostname, port), timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>) <span style="color:#66d9ef">as</span> sock: <span style="color:#66d9ef">with</span> context<span style="color:#f92672">.</span>wrap_socket(sock, server_hostname<span style="color:#f92672">=</span>hostname) <span style="color:#66d9ef">as</span> ssock: cert <span style="color:#f92672">=</span> ssock<span style="color:#f92672">.</span>getpeercert()
-</span></span><span style="display:flex;"><span>                expiry <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>strptime(cert[<span style="color:#e6db74">&#34;notAfter&#34;</span>], <span style="color:#e6db74">&#34;%b </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> %H:%M:%S %Y %Z&#34;</span>)
-</span></span><span style="display:flex;"><span>                days_left <span style="color:#f92672">=</span> (expiry <span style="color:#f92672">-</span> datetime<span style="color:#f92672">.</span>utcnow())<span style="color:#f92672">.</span>days
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>                status <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;🟢 정상&#34;</span> <span style="color:#66d9ef">if</span> days_left <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">30</span> <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;🟡 곧 만료&#34;</span> <span style="color:#66d9ef">if</span> days_left <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">7</span> <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;🔴 긴급&#34;</span>
-</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> (
-</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>status<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;• 도메인: </span><span style="color:#e6db74">{</span>hostname<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;• 발급자: </span><span style="color:#e6db74">{</span>cert<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;issuer&#39;</span>, <span style="color:#e6db74">&#39;알 수 없음&#39;</span>)<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;• 만료 시간: </span><span style="color:#e6db74">{</span>expiry<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#39;%Y-%m-</span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> %H:%M UTC&#34;)}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;• 잔여 일수: </span><span style="color:#e6db74">{</span>days_left<span style="color:#e6db74">}</span><span style="color:#e6db74">일</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span>                )
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e: <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;❌ SSL 확인 실패: </span><span style="color:#e6db74">{</span>type(e)<span style="color:#f92672">.</span>__name__<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>str(e)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>: mcp<span style="color:#f92672">.</span>run(transport<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stdio&#34;</span>)
-</span></span></code></pre></div><h3 id="코드-핵심-해설">코드 핵심 해설<a hidden class="anchor" aria-hidden="true" href="#코드-핵심-해설">#</a></h3>
+└── server.py         # Main MCP server</p>
+<pre tabindex="0"><code>
+* * *
+
+## 4. Hands-On: Build a SiteMonitor MCP Server
+
+We&#39;ll expose two tools: - ````check_site_status```` — HTTP health check with timing
+- ````check_ssl_expiry```` — Days remaining on an SSL certificate
+
+### Complete Python Server (````server.py````)
+
+`````python
+import asyncio
+import ssl
+import socket
+from datetime import datetime
+
+import httpx
+from mcp.server.fastmcp import FastMCP
+
+mcp = FastMCP(&#34;SiteMonitor&#34;)
+
+
+@mcp.tool()
+async def check_site_status(url: str, timeout: int = 10) -&gt; str: &#34;&#34;&#34;Check whether a website is online and measure response time.
+
+    Args: url: Full URL to check, e.g. https://example.com
+        timeout: Seconds to wait before failing, default 10.
+    &#34;&#34;&#34;
+    try: async with httpx.AsyncClient(follow_redirects=True, timeout=timeout) as client: t0 = asyncio.get_event_loop().time()
+            r = await client.get(url)
+            elapsed = asyncio.get_event_loop().time() - t0
+
+            status = &#34;✅ Online&#34; if r.status_code &lt; 400 else &#34;⚠️ Degraded&#34;
+            return (
+                f&#34;{status}\n&#34;
+                f&#34;• URL: {url}\n&#34;
+                f&#34;• Status: {r.status_code}\n&#34;
+                f&#34;• Response time: {elapsed:.2f}s\n&#34;
+                f&#34;• Server: {r.headers.get(&#39;server&#39;, &#39;unknown&#39;)}\n&#34;
+            )
+    except httpx.TimeoutException: return f&#34;❌ Timeout: {url} did not respond within {timeout}s&#34;
+    except Exception as e: return f&#34;❌ Error: {type(e).__name__}: {e}&#34;
+
+
+@mcp.tool()
+async def check_ssl_expiry(hostname: str, port: int = 443) -&gt; str: &#34;&#34;&#34;Check how many days remain on a domain&#39;s SSL certificate.
+
+    Args: hostname: Domain name, e.g. example.com
+        port: HTTPS port, default 443.
+    &#34;&#34;&#34;
+    try: ctx = ssl.create_default_context()
+        with socket.create_connection((hostname, port), timeout=10) as sock: with ctx.wrap_socket(sock, server_hostname=hostname) as ssock: cert = ssock.getpeercert()
+                expiry = datetime.strptime(cert[&#34;notAfter&#34;], &#34;%b %d %H:%M:%S %Y %Z&#34;)
+                days = (expiry - datetime.utcnow()).days
+
+                flag = &#34;🟢 Healthy&#34; if days &gt; 30 else &#34;🟡 Expiring soon&#34; if days &gt; 7 else &#34;🔴 Critical&#34;
+                return (
+                    f&#34;{flag}\n&#34;
+                    f&#34;• Host: {hostname}\n&#34;
+                    f&#34;• Issuer: {cert.get(&#39;issuer&#39;, &#39;unknown&#39;)}\n&#34;
+                    f&#34;• Expires: {expiry.strftime(&#39;%Y-%m-%d %H:%M UTC&#39;)}\n&#34;
+                    f&#34;• Days left: {days}\n&#34;
+                )
+    except Exception as e: return f&#34;❌ SSL check failed: {type(e).__name__}: {e}&#34;
+
+
+if __name__ == &#34;__main__&#34;: mcp.run(transport=&#34;stdio&#34;)
+</code></pre><h3 id="key-implementation-details">Key Implementation Details<a hidden class="anchor" aria-hidden="true" href="#key-implementation-details">#</a></h3>
 <ol>
-<li><strong><code>@mcp.tool()</code> 데코레이터</strong>: 일반 Python 함수를 MCP 도구로 등록. 함수의 docstring은 도구 설명으로 자동 추출되며, AI가 언제 호출할지 결정하는 근거가 됩니다.</li>
-<li><strong>타입 어노테이션</strong>: 매개변수 타입(str, int)이 JSON Schema로 자동 변환되어 AI가 입력을 검증합니다.</li>
-<li><strong><code>transport=&quot;stdio&quot;</code></strong>: 표준 입출력으로 통신하며, Claude Desktop이 Server를 자식 프로세스로 시작합니다.</li>
-<li><strong>오류 처리</strong>: 모든 예외를 포착하여 친화적인 텍스트로 반환, JSON-RPC 메시지 흐름이 파괴되지 않도록 합니다.</li>
+<li><strong><code>@mcp.tool()</code> decorator</strong>: Registers the function as an MCP tool. The docstring becomes the tool description that the LLM reads to decide <em>when</em> to call it.</li>
+<li><strong>Type annotations</strong>: Automatically converted to JSON Schema for input validation.</li>
+<li><strong><code>transport=&quot;stdio&quot;</code></strong>: Launches as a child process communicating over stdin/stdout.</li>
+<li><strong>Graceful errors</strong>: Every exception is caught and returned as text. Never let raw stack traces leak into the JSON-RPC stream.</li>
 </ol>
-<h3 id="로컬-테스트">로컬 테스트<a hidden class="anchor" aria-hidden="true" href="#로컬-테스트">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>uv run server.py
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 이 시점에서 Server는 stdin 입력을 대기합니다. MCP Inspector로 먼저 테스트할 수 있습니다.</span>
-</span></span></code></pre></div><hr>
-<h2 id="5-claude-desktop-및-cursor-연동">5. Claude Desktop 및 Cursor 연동<a hidden class="anchor" aria-hidden="true" href="#5-claude-desktop-및-cursor-연동">#</a></h2>
-<h3 id="claude-desktopmacos">Claude Desktop(macOS)<a hidden class="anchor" aria-hidden="true" href="#claude-desktopmacos">#</a></h3>
-<p>설정 파일을 편집합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>~/Library/Application<span style="color:#ae81ff">\ </span>Support/Claude/claude_desktop_config.json
-</span></span></code></pre></div><p>Server 설정을 추가합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;mcpServers&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;site-monitor&#34;</span>: {
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;uv&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;args&#34;</span>: [
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;run&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;--directory&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;/absolute/path/to/mcp-site-monitor&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;server.py&#34;</span>
-</span></span><span style="display:flex;"><span>      ]
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p><strong>Claude Desktop을 재시작</strong>한 후 대화창에서 사용합니다.</p>
-<blockquote>
-<p>&ldquo;<a href="https://github.com">https://github.com</a>의 상태를 확인하고 SSL 인증서가 얼마나 남았는지 알려줘.&rdquo;</p>
-</blockquote>
-<p>Claude는 자동으로 <code>check_site_status</code>와 <code>check_ssl_expiry</code>를 호출하고 결과를 정리하여 답변합니다.</p>
-<h3 id="cursor">Cursor<a hidden class="anchor" aria-hidden="true" href="#cursor">#</a></h3>
-<p>프로젝트 루트에 <code>.cursor/mcp.json</code>을 생성합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;mcpServers&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;site-monitor&#34;</span>: {
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;uv&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;args&#34;</span>: [
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;run&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;--directory&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;/absolute/path/to/mcp-site-monitor&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;server.py&#34;</span>
-</span></span><span style="display:flex;"><span>      ]
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><p>Cursor의 AI Chat이 도구를 직접 인식하고 사용합니다.</p>
+<h3 id="equivalent-typescript-skeleton">Equivalent TypeScript Skeleton<a hidden class="anchor" aria-hidden="true" href="#equivalent-typescript-skeleton">#</a></h3>
+<p>For Node/TypeScript teams, the structure is nearly identical: `````typescript
+import { McpServer } from &ldquo;@modelcontextprotocol/sdk/server/mcp.js&rdquo;;
+import { StdioServerTransport } from &ldquo;@modelcontextprotocol/sdk/server/stdio.js&rdquo;;
+import { z } from &ldquo;zod&rdquo;;</p>
+<p>const server = new McpServer({ name: &ldquo;SiteMonitor&rdquo;, version: &ldquo;1.0.0&rdquo; });</p>
+<p>server.tool(
+&ldquo;check_site_status&rdquo;,
+{
+url: z.string().describe(&ldquo;Full URL to check&rdquo;),
+timeout: z.number().optional().describe(&ldquo;Timeout in seconds&rdquo;),
+},
+async ({ url, timeout = 10 }) =&gt; {
+// &hellip; httpx equivalent with fetch/axios
+return { content: [{ type: &ldquo;text&rdquo;, text: result }] };
+}
+);</p>
+<p>const transport = new StdioServerTransport();
+await server.connect(transport);</p>
+<pre tabindex="0"><code>
+* * *
+
+## 5. Connect to Claude Desktop, Cursor, and VS Code
+
+### Claude Desktop (macOS)
+
+Edit: `````bash
+~/Library/Application\ Support/Claude/claude_desktop_config.json
+</code></pre><p>Add: `````json
+{
+&ldquo;mcpServers&rdquo;: {
+&ldquo;site-monitor&rdquo;: {
+&ldquo;command&rdquo;: &ldquo;uv&rdquo;,
+&ldquo;args&rdquo;: [
+&ldquo;run&rdquo;,
+&ldquo;&ndash;directory&rdquo;,
+&ldquo;/absolute/path/to/mcp-site-monitor&rdquo;,
+&ldquo;server.py&rdquo;
+]
+}
+}
+}</p>
+<pre tabindex="0"><code>
+Restart Claude Desktop. Ask: &gt; &#34;Check if https://github.com is up and tell me how many days are left on its SSL cert.&#34;
+
+Claude invokes both tools automatically and formats the results.
+
+### Cursor
+
+Create ``.cursor/mcp.json`` in your project root: `````json
+{
+  &#34;mcpServers&#34;: {
+    &#34;site-monitor&#34;: {
+      &#34;command&#34;: &#34;uv&#34;,
+      &#34;args&#34;: [
+        &#34;run&#34;,
+        &#34;--directory&#34;,
+        &#34;/absolute/path/to/mcp-site-monitor&#34;,
+        &#34;server.py&#34;
+      ]
+    }
+  }
+}
+</code></pre><p>Cursor&rsquo;s AI Chat discovers and uses the tools inline.</p>
 <h3 id="vs-code-copilot-agent-mode">VS Code Copilot Agent Mode<a hidden class="anchor" aria-hidden="true" href="#vs-code-copilot-agent-mode">#</a></h3>
-<p>VS Code v1.99+ Copilot Agent Mode는 MCP를 네이티브 지원합니다. <code>settings.json</code>에 설정합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;github.copilot.chat.mcpServers&#34;</span>: {
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;site-monitor&#34;</span>: {
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;uv&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;args&#34;</span>: [<span style="color:#e6db74">&#34;run&#34;</span>, <span style="color:#e6db74">&#34;server.py&#34;</span>],
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cwd&#34;</span>: <span style="color:#e6db74">&#34;/absolute/path/to/mcp-site-monitor&#34;</span>
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><hr>
-<h2 id="6-심화-리소스-프롬프트-스트리밍-http">6. 심화: 리소스, 프롬프트, 스트리밍 HTTP<a hidden class="anchor" aria-hidden="true" href="#6-심화-리소스-프롬프트-스트리밍-http">#</a></h2>
-<h3 id="리소스-노출읽기-전용-데이터">리소스 노출(읽기 전용 데이터)<a hidden class="anchor" aria-hidden="true" href="#리소스-노출읽기-전용-데이터">#</a></h3>
-<p>AI가 서버의 설정 파일이나 로그를 읽을 수 있도록 합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@mcp.resource</span>(<span style="color:#e6db74">&#34;config://app&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_app_config</span>() <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;현재 애플리케이션 설정을 가져옵니다.&#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">import</span> json
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> json<span style="color:#f92672">.</span>dumps({<span style="color:#e6db74">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;1.0.0&#34;</span>, <span style="color:#e6db74">&#34;check_interval&#34;</span>: <span style="color:#ae81ff">300</span>})
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@mcp.resource</span>(<span style="color:#e6db74">&#34;log://latest&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_latest_log</span>() <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;최신 모니터링 로그를 읽습니다.&#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;[2026-05-15 08:00:00] github.com: OK (23ms)&#34;</span>
-</span></span></code></pre></div><h3 id="프롬프트-노출재사용-가능한-템플릿">프롬프트 노출(재사용 가능한 템플릿)<a hidden class="anchor" aria-hidden="true" href="#프롬프트-노출재사용-가능한-템플릿">#</a></h3>
+<p>In <code>settings.json</code>: `````json
+{
+&ldquo;github.copilot.chat.mcpServers&rdquo;: {
+&ldquo;site-monitor&rdquo;: {
+&ldquo;command&rdquo;: &ldquo;uv&rdquo;,
+&ldquo;args&rdquo;: [&ldquo;run&rdquo;, &ldquo;server.py&rdquo;],
+&ldquo;cwd&rdquo;: &ldquo;/absolute/path/to/mcp-site-monitor&rdquo;
+}
+}
+}</p>
+<pre tabindex="0"><code>
+* * *
+
+## 6. Level Up: Resources, Prompts, and HTTP/SSE Transport
+
+### Exposing Resources (Read-Only Data)
+
+`````python
+@mcp.resource(&#34;config://app&#34;)
+def get_app_config() -&gt; str: &#34;&#34;&#34;Return current application configuration.&#34;&#34;&#34;
+    import json
+    return json.dumps({&#34;check_interval_sec&#34;: 300, &#34;alert_threshold_ms&#34;: 2000})
+
+@mcp.resource(&#34;log://latest&#34;)
+def get_latest_log() -&gt; str: &#34;&#34;&#34;Return the most recent monitoring log entry.&#34;&#34;&#34;
+    return &#34;[2026-05-15T08:00:00Z] github.com: 200 OK in 23ms&#34;
+</code></pre><h3 id="exposing-prompts-reusable-templates">Exposing Prompts (Reusable Templates)<a hidden class="anchor" aria-hidden="true" href="#exposing-prompts-reusable-templates">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@mcp.prompt</span>()
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">debug_site_issue</span>(url: str, error_code: int) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;사이트 장애 진단 프롬프트를 생성합니다.&#34;&#34;&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;&#34;&#34;웹사이트 </span><span style="color:#e6db74">{</span>url<span style="color:#e6db74">}</span><span style="color:#e6db74">이 HTTP </span><span style="color:#e6db74">{</span>error_code<span style="color:#e6db74">}</span><span style="color:#e6db74">를 반환합니다. 다음 단계로 조사하세요: 1. DNS 해결이 정상인지 확인
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2. 서버 프로세스가 살아있는지 확인
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3. 최근 10분간의 애플리케이션 로그 확인
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4. CDN 대시보드에서 트래픽 급증 패턴 분석
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">debug_incident</span>(url: str, status_code: int) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;Generate a structured incident-debugging prompt.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;&#34;&#34;Website </span><span style="color:#e6db74">{</span>url<span style="color:#e6db74">}</span><span style="color:#e6db74"> is returning HTTP </span><span style="color:#e6db74">{</span>status_code<span style="color:#e6db74">}</span><span style="color:#e6db74">. Investigate: 1. DNS resolution health
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2. Server process status
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3. Recent application logs (last 10 min)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4. Traffic spike patterns from the CDN dashboard
 </span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
-</span></span></code></pre></div><h3 id="http--sse로-마이그레이션프로덕션">HTTP + SSE로 마이그레이션(프로덕션)<a hidden class="anchor" aria-hidden="true" href="#http--sse로-마이그레이션프로덕션">#</a></h3>
+</span></span></code></pre></div><h3 id="switching-to-http--sse-for-production">Switching to HTTP + SSE for Production<a hidden class="anchor" aria-hidden="true" href="#switching-to-http--sse-for-production">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> mcp.server.sse <span style="color:#f92672">import</span> SseServerTransport
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> starlette.applications <span style="color:#f92672">import</span> Starlette
 </span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> starlette.routing <span style="color:#f92672">import</span> Route
@@ -579,161 +577,93 @@
 </span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handle_sse</span>(request): <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> sse<span style="color:#f92672">.</span>connect_sse(request<span style="color:#f92672">.</span>scope, request<span style="color:#f92672">.</span>receive, request<span style="color:#f92672">.</span>_send) <span style="color:#66d9ef">as</span> streams: <span style="color:#66d9ef">await</span> mcp<span style="color:#f92672">.</span>run(streams[<span style="color:#ae81ff">0</span>], streams[<span style="color:#ae81ff">1</span>], mcp<span style="color:#f92672">.</span>create_initialization_options())
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> Starlette(routes<span style="color:#f92672">=</span>[Route(<span style="color:#e6db74">&#34;/sse&#34;</span>, endpoint<span style="color:#f92672">=</span>handle_sse)])
-</span></span></code></pre></div><p>ASGI를 지원하는 모든 플랫폼(Vercel, Railway, 자체 서버)에 배포하고 원격 URL로 AI 클라이언트를 연결합니다.</p>
+</span></span></code></pre></div><p>Deploy to any ASGI host (Railway, Fly.io, your own VPS) and point remote clients to the SSE endpoint.</p>
 <hr>
-<h2 id="7-보안-및-프로덕션-모범-사례">7. 보안 및 프로덕션 모범 사례<a hidden class="anchor" aria-hidden="true" href="#7-보안-및-프로덕션-모범-사례">#</a></h2>
-<p>AI를 외부 세계와 연결하는 것은 강력하면서도 위험합니다. 보안은 선택 사항이 아닙니다.</p>
-<h3 id="반드시-준수해야-할-7가지-규칙">반드시 준수해야 할 7가지 규칙<a hidden class="anchor" aria-hidden="true" href="#반드시-준수해야-할-7가지-규칙">#</a></h3>
+<h2 id="7-security--production-hardening">7. Security &amp; Production Hardening<a hidden class="anchor" aria-hidden="true" href="#7-security--production-hardening">#</a></h2>
+<p>Connecting AI to external systems is powerful and dangerous. Follow these rules.</p>
+<h3 id="the-non-negotiable-checklist">The Non-Negotiable Checklist<a hidden class="anchor" aria-hidden="true" href="#the-non-negotiable-checklist">#</a></h3>
 <ol>
-<li><strong>stdio 전송 시 절대 stdout에 로그를 남기지 마세요</strong> — stdio 전송 계층은 stdout으로 JSON-RPC를 전달합니다. 추가 출력은 프로토콜을 파괴합니다. 로그는 stderr나 파일에만 기록하세요.</li>
-<li><strong>최소 권한 원칙</strong> — Server는 필요한 최소 도구와 최소 범위의 데이터만 노출하세요. AI에게 전체 파일시스템 읽기 권한을 주지 마세요.</li>
-<li><strong>입력 검증</strong> — Pydantic/Zod로 모든 매개변수를 엄격히 검증하고 잘못된 입력은 거부하세요.</li>
-<li><strong>민감 작업 이중 확인</strong> — 데이터 삭제, 송금, 이메일 발송 등의 작업은 Server가 직접 실행하지 말고 확인 요청을 반환하세요.</li>
-<li><strong>환경 변수 관리</strong> — API 키는 <code>.env</code> 파일에 작성하고 절대 하드코딩하지 마세요. Git에 커밋하지 마세요.</li>
-<li><strong>프로덕션에서는 HTTPS</strong> — HTTP 전송에는 반드시 TLS를 적용하여 중간자 공격을 방지하세요.</li>
-<li><strong>모니터링 및 감사</strong> — 모든 도구 호출 로그를 기록하고 이상 행위를 알림으로 전달하세요. 2025년 7월에 공개된 MCP Inspector RCE 취약점(CVE-2025-49596, CVSS 9.4)이 바로 경고입니다.</li>
+<li><strong>Never log to stdout with stdio transport</strong> — stdout is the JSON-RPC channel. Log to stderr or a file only.</li>
+<li><strong>Principle of least privilege</strong> — Expose the minimum tool set and data scope. Do not give AI blanket filesystem access.</li>
+<li><strong>Strict input validation</strong> — Use Pydantic/Zod schemas. Reject malformed inputs at the boundary.</li>
+<li><strong>Require confirmation for destructive ops</strong> — Deletions, payments, email sends should return a confirmation prompt, not execute immediately.</li>
+<li><strong>No hardcoded secrets</strong> — API keys live in <code>.env</code>, never in source control.</li>
+<li><strong>HTTPS everywhere for HTTP transport</strong> — Prevent MITM tampering with tool calls.</li>
+<li><strong>Audit &amp; monitor</strong> — Log every tool invocation. Alert on anomalies.</li>
 </ol>
+<p><strong>Real-world warning</strong>: In July 2025, a critical RCE vulnerability (CVE-2025-49596, CVSS 9.4) was found in Anthropic&rsquo;s MCP Inspector. Browser-based attacks against AI dev tools are now a known threat class. Treat MCP servers as security-critical infrastructure.</p>
 <hr>
-<h2 id="8-에코시스템-가이드-지금-당장-써볼-15개-mcp-서버">8. 에코시스템 가이드: 지금 당장 써볼 15개 MCP 서버<a hidden class="anchor" aria-hidden="true" href="#8-에코시스템-가이드-지금-당장-써볼-15개-mcp-서버">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>이름</th>
-					<th>기능</th>
-					<th>활용 상황</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>filesystem</strong></td>
-					<td>로컬 파일시스템 읽기/쓰기</td>
-					<td>코드 분석, 문서 처리</td>
-			</tr>
-			<tr>
-					<td><strong>github</strong></td>
-					<td>PR, Issue, 코드 검색</td>
-					<td>자동화 코드 리뷰</td>
-			</tr>
-			<tr>
-					<td><strong>postgres</strong> / <strong>sqlite</strong></td>
-					<td>데이터베이스 쿼리</td>
-					<td>데이터 분석, BI</td>
-			</tr>
-			<tr>
-					<td><strong>slack</strong></td>
-					<td>메시지 전송, 채널 관리</td>
-					<td>알림, 온콜</td>
-			</tr>
-			<tr>
-					<td><strong>brave-search</strong></td>
-					<td>웹 검색</td>
-					<td>실시간 정보 수집</td>
-			</tr>
-			<tr>
-					<td><strong>puppeteer</strong></td>
-					<td>브라우저 자동화</td>
-					<td>크롤링, 스크린샷</td>
-			</tr>
-			<tr>
-					<td><strong>memory</strong></td>
-					<td>지식 그래프 영구 저장</td>
-					<td>장기 기억</td>
-			</tr>
-			<tr>
-					<td><strong>google-drive</strong></td>
-					<td>Google Drive 파일 조작</td>
-					<td>문서 협업</td>
-			</tr>
-			<tr>
-					<td><strong>notion</strong></td>
-					<td>Notion 페이지/데이터베이스</td>
-					<td>지식 관리</td>
-			</tr>
-			<tr>
-					<td><strong>fetch</strong></td>
-					<td>임의 URL 콘텐츠 가져오기</td>
-					<td>웹페이지 요약</td>
-			</tr>
-			<tr>
-					<td><strong>sequential-thinking</strong></td>
-					<td>사고 연쇄 추론 보조</td>
-					<td>복잡한 문제 분석</td>
-			</tr>
-			<tr>
-					<td><strong>playwright</strong></td>
-					<td>E2E 테스트 자동화</td>
-					<td>테스트 생성</td>
-			</tr>
-			<tr>
-					<td><strong>redis</strong></td>
-					<td>Redis 데이터 조작</td>
-					<td>캐시 관리</td>
-			</tr>
-			<tr>
-					<td><strong>docker</strong></td>
-					<td>컨테이너 관리</td>
-					<td>DevOps 자동화</td>
-			</tr>
-			<tr>
-					<td><strong>kubernetes</strong></td>
-					<td>K8s 리소스 조작</td>
-					<td>운영 자동화</td>
-			</tr>
-	</tbody>
-</table>
-<p>전체 목록은 <a href="https://smithery.ai">Smithery.ai</a>와 <a href="https://mcp.so">MCP.so</a>에서 확인하세요.</p>
+<h2 id="8-mcp-ecosystem-cheat-sheet-15-servers-to-try-now">8. MCP Ecosystem Cheat Sheet: 15 Servers to Try Now<a hidden class="anchor" aria-hidden="true" href="#8-mcp-ecosystem-cheat-sheet-15-servers-to-try-now">#</a></h2>
+<p>| Server | What It Does | Best Use Case |
+|</p>
 <hr>
-<h2 id="9-자주-묻는-질문-faq">9. 자주 묻는 질문 FAQ<a hidden class="anchor" aria-hidden="true" href="#9-자주-묻는-질문-faq">#</a></h2>
-<p><strong>Q1: MCP와 Function Calling/Tool Use의 차이는 무엇인가요?</strong></p>
-<p>Function Calling은 모델 레벨의 능력(예: GPT-4의 <code>tools</code> 매개변수)이며 플랫폼마다 형식이 다릅니다. MCP는 <strong>프로토콜 레벨</strong>의 표준으로, Server가 도구를 어떻게 노출하고 Client가 어떻게 발견·호출할지를 정의합니다. 둘은 상호 보완적입니다 — MCP Server는 Function Calling의 하위 구현체가 될 수 있습니다.</p>
-<p><strong>Q2: MCP Server는 로컬에서만 실행할 수 있나요?</strong></p>
-<p>아닙니다. stdio는 로컬에 적합하고, HTTP/SSE는 원격 서버, Docker 컨테이너, 심지어 서버리스에도 배포할 수 있습니다(MCP의 상태 저장 특성이 서버리스에 제약을 줄 수 있음).</p>
-<p><strong>Q3: 하나의 Server는 몇 개의 도구를 노출할 수 있나요?</strong></p>
-<p>기술적으로 상한은 없지만, <strong>10개 이내</strong>를 권장합니다. 도구가 너무 많으면 AI의 선택 정확도가 떨어지고(모든 도구 정의가 대화마다 로드되어 토큰을 소모) 컨텍스트 윈도우가 부담을 받습니다. 기능별로 여러 Server로 분리하세요.</p>
-<p><strong>Q4: MCP와 LangChain의 관계는 무엇인가요?</strong></p>
-<p>LangChain은 <strong>프레임워크</strong>로, 체인 호출, 기억 관리, 에이전트 오케스트레이션을 제공합니다. MCP는 <strong>프로토콜</strong>로, 도구 연결 방식을 표준화합니다. LangChain은 <code>langchain-mcp-adapters</code>를 통해 MCP를 지원하며, 둘은 협력적으로 사용할 수 있습니다.</p>
-<p><strong>Q5: 기업에서 MCP를 사용할 때 추가 고려사항은 무엇인가요?</strong></p>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>filesystem</strong> | Read/write local files | Codebase analysis, doc processing |
+| <strong>github</strong> | PRs, issues, code search | Automated code review |
+| <strong>postgres</strong> / <strong>sqlite</strong> | SQL queries | Data analysis, internal BI |
+| <strong>slack</strong> | Send messages, manage channels | Alerting, on-call notifications |
+| <strong>brave-search</strong> | Web search | Real-time fact checking |
+| <strong>puppeteer</strong> | Browser automation | Scraping, screenshots |
+| <strong>memory</strong> | Knowledge graph storage | Long-term agent memory |
+| <strong>google-drive</strong> | File operations | Document workflows |
+| <strong>notion</strong> | Pages &amp; databases | Knowledge management |
+| <strong>fetch</strong> | Arbitrary URL fetching | Content summarization |
+| <strong>sequential-thinking</strong> | Chain-of-thought helper | Complex reasoning tasks |
+| <strong>playwright</strong> | E2E test automation | Test generation |
+| <strong>redis</strong> | Key-value operations | Cache inspection |
+| <strong>docker</strong> | Container management | DevOps automation |
+| <strong>kubernetes</strong> | K8s resource ops | Cluster management |</p>
+<p>Full directories: <a href="https://smithery.ai">Smithery.ai</a> · <a href="https://mcp.so">MCP.so</a></p>
+<hr>
+<h2 id="9-faq">9. FAQ<a hidden class="anchor" aria-hidden="true" href="#9-faq">#</a></h2>
+<p><strong>Q: Is MCP a replacement for LangChain, CrewAI, or OpenAI Agents SDK?</strong></p>
+<p>No. MCP is a <strong>protocol</strong> (the &ldquo;plumbing&rdquo;). LangChain is a framework for chaining calls. CrewAI orchestrates multi-agent workflows. OpenAI Agents SDK is a high-level agent builder. These frameworks increasingly <strong>consume</strong> MCP servers as their tool layer.</p>
+<p><strong>Q: Can I run MCP servers in the cloud / on Kubernetes?</strong></p>
+<p>Yes. stdio is for local. HTTP/SSE scales to containers, VPS, and serverless (with caveats around MCP&rsquo;s stateful design). Cloudflare and Vercel have published reference architectures.</p>
+<p><strong>Q: How many tools should one server expose?</strong></p>
+<p>Keep it under <strong>10 tools per server</strong>. Too many tools degrade the LLM&rsquo;s selection accuracy and bloat the context window (every tool definition is injected into the prompt). Split by functional domain: one server for DB ops, another for Slack ops.</p>
+<p><strong>Q: What&rsquo;s the relationship between MCP and Google&rsquo;s A2A protocol?</strong></p>
+<p>MCP connects <strong>AI → Tools</strong> (agent to external system). A2A (Agent-to-Agent) connects <strong>AI ↔ AI</strong> (multi-agent collaboration). They are complementary, not competitive. Google uses both.</p>
+<p><strong>Q: Do I need to pay Anthropic to build MCP servers?</strong></p>
+<p>No. MCP is fully open source under the Apache 2.0 license. You can build, distribute, and commercialize MCP servers without licensing fees.</p>
+<hr>
+<h2 id="closing-the-time-to-build-is-now">Closing: The Time to Build Is Now<a hidden class="anchor" aria-hidden="true" href="#closing-the-time-to-build-is-now">#</a></h2>
+<p>MCP is not a speculative technology. It is the <strong>live standard</strong> for AI tool integration in 2026. If you don&rsquo;t know how to build an MCP server today, you&rsquo;re missing the foundational skill that every AI-native dev team will expect tomorrow.</p>
+<p>Your next steps: 1. Copy the SiteMonitor code above and run it with ````uv```
+2. Wire it into Claude Desktop and ask a natural-language monitoring question
+3. Wrap your team&rsquo;s most-used internal API as an MCP server
+4. Publish it to GitHub and add it to Smithery or MCP.so</p>
+<p><strong>Official Resources</strong></p>
 <ul>
-<li>내부 Server 관리를 위한 프라이빗 Registry 배포</li>
-<li>OAuth 2.1 + RBAC 접근 통제 시행</li>
-<li>버전 잠금으로 무단 업데이트 방지</li>
-<li>신뢰 도메인 격리(Trust Domain Isolation)</li>
-<li>모든 도구 호출 로그 감사</li>
-</ul>
-<hr>
-<h2 id="마무리-지금-바로-시작하세요">마무리: 지금 바로 시작하세요<a hidden class="anchor" aria-hidden="true" href="#마무리-지금-바로-시작하세요">#</a></h2>
-<p>MCP는 미래 기술이 아닙니다. <strong>2026년에 이미 활발히 사용되는 표준</strong>입니다. MCP Server를 구축하는 방법을 모른다면, 마치 2010년에 REST API를 작성할 줄 모르는 개발자와 같은 상황입니다.</p>
-<p>오늘 이 글의 코드는 바로 복사해서 실행할 수 있습니다. 다음 단계를 권장합니다.</p>
-<ol>
-<li>지금 ````uv```로 SiteMonitor를 실행해보세요</li>
-<li>Claude Desktop에 연결하여 자연어 기반 운영 조회를 경험해보세요</li>
-<li>팀에서 가장 자주 사용하는 내부 API를 MCP Server로 포장하세요</li>
-<li>GitHub에 오픈소스로 공개하고 MCP 생태계의 10,000+에 참여하세요</li>
-</ol>
-<p><strong>참고 자료</strong></p>
-<ul>
-<li><a href="https://modelcontextprotocol.io">MCP 공식 문서</a></li>
+<li><a href="https://modelcontextprotocol.io">MCP Specification</a></li>
 <li><a href="https://github.com/modelcontextprotocol/python-sdk">Python SDK (FastMCP)</a></li>
 <li><a href="https://github.com/modelcontextprotocol/typescript-sdk">TypeScript SDK</a></li>
-<li><a href="https://smithery.ai">Smithery.ai — MCP 서버 디렉토리</a></li>
-<li><a href="https://mcp.so">MCP.so — 커뮤니티 마켓플레이스</a></li>
+<li><a href="https://smithery.ai">Smithery.ai — Server Registry</a></li>
+<li><a href="https://mcp.so">MCP.so — Community Marketplace</a></li>
 </ul>
 <hr>
-<h2 id="-json-schema-보일러플레이트-건너뛰기">🔌 JSON Schema 보일러플레이트 건너뛰기<a hidden class="anchor" aria-hidden="true" href="#-json-schema-보일러플레이트-건너뛰기">#</a></h2>
-<p>모든 tool에 JSON Schema를 손으로 쓰는 것은 MCP 개발에서 가장 지루한 부분입니다. dibi8의 무료 **<a href="/kr/tools/mcp-tool-builder/">MCP Tool Builder</a>**를 사용하세요 — Python 또는 TypeScript 함수 시그니처를 붙여넣으면 표준 준수 tool 정의 + 완전한 server 보일러플레이트(FastMCP / TypeScript SDK) + cURL 테스트 명령을 자동 생성. 보일러플레이트 작업 80% 절약.</p>
+<h2 id="-skip-the-schema-boilerplate">🔌 Skip the Schema Boilerplate<a hidden class="anchor" aria-hidden="true" href="#-skip-the-schema-boilerplate">#</a></h2>
+<p>Writing JSON Schema by hand for every tool is the most tedious part of MCP development. Use dibi8&rsquo;s free <strong><a href="/ko/tools/mcp-tool-builder/">MCP Tool Builder</a></strong> — paste a Python or TypeScript function signature and get a spec-compliant tool definition + full server boilerplate (FastMCP / TypeScript SDK) + a cURL test command. Saves 80% of the setup time.</p>
 <hr>
-<p><em>2026년 5월 15일 발행. MCP 프로토콜 스펙 2025-11-25 주년 버전을 기준으로 작성.</em></p>
-<hr>
-<h2 id="자체-호스팅-추천-인프라">자체 호스팅 추천 인프라<a hidden class="anchor" aria-hidden="true" href="#자체-호스팅-추천-인프라">#</a></h2>
-<p>24/7 안정 운영을 위해 인프라 선택이 중요하다: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 신규 가입 시 60일 $200 크레딧, 글로벌 14+ 리전. 오픈소스 AI 도구 자체 호스팅에 적합.</p>
 <ul>
-<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 접근 시 저지연. dibi8.com 자체가 호스팅된 검증된 IDC.</li>
+<li></li>
 </ul>
-<p><em>추천 링크입니다. 추가 비용 없이 dibi8.com 운영에 도움이 됩니다.</em></p>
+<hr>
+<h2 id="recommended-infrastructure-for-self-hosting">Recommended Infrastructure for Self-Hosting<a hidden class="anchor" aria-hidden="true" href="#recommended-infrastructure-for-self-hosting">#</a></h2>
+<p>If you want to run this stack reliably 24/7, infrastructure choice matters: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<p><em>Published May 15, 2026. Based on MCP Protocol Specification 2025-11-25 (One-Year Anniversary Release).</em></p>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;MCP(Model Context Protocol) 완벽 실전 가이드: 2026년 개발자가 반드시 익혀야 할 AI 도구 연결 표준&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Model Context Protocol (MCP) Deep Dive: The Definitive 2026 Guide to Building Production-Ready MCP Servers&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-15&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-15&rdquo;,
 &ldquo;author&rdquo;: {
@@ -750,7 +680,7 @@
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/mcp-deep-dive-definitive-2026-guide%22">https://dibi8.com/kr/resources/mcp-deep-dive-definitive-2026-guide"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/mcp-deep-dive-definitive-2026-guide%22">https://dibi8.com/resources/mcp-deep-dive-definitive-2026-guide"</a>
 }
 }
 </script></p>
@@ -807,6 +737,81 @@
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

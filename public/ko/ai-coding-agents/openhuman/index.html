@@ -82,8 +82,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "OpenHuman: 가장 빠르게 성장하는 로컬 AI 에이전트 (31K 스타) — 오픈소스 AI 활용 2026 아마 이런 패턴을 눈치채셨을 겁니다. 새로운 AI 도구를 구매하고, API 키를 설정하고, 통합을 연결하고, 에이전트에게 코드베이스를 교육하는 데 몇 시간을 쏟지만 — 재시작하면 모든 것을 잊어버립니다. 이것이 모든 AI 어시스턴트가 직면하는 콜드 스타트 문제입니다.\nOpenHuman은 이를 다르게 해결합니다. 한 달 만에 29,805개의 스타를 얻으며 2026년 가장 빠르게 성장하는 AI 에이전트가 되었습니다. 하지만 실제로 중요한 것은 이것입니다: OpenHuman은 당신을 기억합니다.\n메모리 트리 — 사용자의 컴퓨터에 로컬로 저장되는 오브시디언 스타일의 마크다운 금고 — 덕분에 OpenHuman은 시간이 지남에 따라 사용자의 프로젝트, 선호도, 작업 흐름에 대해 학습합니다. 클라우드 의존 없음. API 난립 없음. 사용하면 할수록 똑똑해지는 단 하나의 로컬 우선 에이전트입니다.\n이것은 더 나은 UI를 가진 ChatGPT 데스크톱이 아닙니다. 프라이버시, 메모리, 실제 통합이 중요한 상황에서 AI 비서가 어떻게 되어야 하는지에 대한 완전한 재고입니다.\nOpenHuman이란? OpenHuman은 모든 것을 로컬에서 유지하면서 일상 작업 흐름에 통합되도록 설계된 오픈 소스 에이전트형 비서입니다. 브라우저에서 작동하는 채팅 기반 비서와 달리, OpenHuman은 다음 기능을 갖춘 데스크톱 애플리케이션입니다: - 메모리 트리(Memory Tree): 워크플로우 기록, 선호도, 프로젝트 컨텍스트를 저장하는 지속적인, Obsidian 호환 Markdown 저장소 — 로컬에 동기화되고 클라우드에는 절대 저장되지 않음\n모델 라우팅(Model routing): 단일 계정을 통해 50개 이상의 AI 모델을 기본 지원하며, 자동 부하 분산과 장애 조치 기능 포함 118개 이상의 통합(Integrations): GitHub, Slack, Notion, Figma 등을 위한 OAuth 기반 커넥터 — 수동 API 키 관리 불필요 토큰주스(TokenJuice): 정확도를 잃지 않으면서 컨텍스트 윈도우 사용량을 60~95% 줄이는 지능형 토큰 압축 계층 이 프로젝트는 2026년 2월에 시작되었으며 이미 31,869 GitHub 스타와 3,089 포크를 기록했습니다. GPL-3.0 하에 출시되었고, 개인정보 중심 AI 도구에 집중하는 TinyHumans AI 팀에서 개발했습니다.\n# OpenHuman 설정 — 메모리 트리 위치 # 모든 데이터는 기본적으로 사용자의 기기에만 저장됩니다 memory: vault_path: ~/.openhuman/vault sync_mode: local # 또는 선택적 클라우드 동기화를 위해 \"managed\" model_default: gpt-4o model_fallback: claude-sonnet-4 token_compression: true OpenHuman 작동 방식 OpenHuman은 선택적 관리 서비스와 함께 로컬 우선 아키텍처를 따릅니다: ````` ┌─────────────────────────────────────────────┐ │ OpenHuman 데스크탑 앱 │ ├─────────────┬──────────────┬────────────────┤ │ 메모리 트리│ 모델 │ 통합 │ │ (로컬 │ 라우팅 │ (OAuth를 통한 │ │ Obsidian │ (50+ 모델 │ 118+ 개) │ │ 보관함) │ 계층형) │ │ ├─────────────┴──────────────┴────────────────┤ │ TokenJuice (60-95% 토큰 압축) │ ├─────────────────────────────────────────────┤ │ 로컬 런타임 (Rust 기반, \u003c50MB RAM) │ └─────────────────────────────────────────────┘\n**메모리 트리(Memory Tree)**는 핵심 혁신입니다. 스스로 구축되는 개인 지식 그래프라고 생각하면 됩니다. 모든 대화, 파일 참조, 워크플로우 결정 사항이 로컬 금고에 Markdown 형식으로 저장됩니다. 2주 전 프로젝트에 대해 OpenHuman에게 물어보면, 채팅 기록을 검색하는 것이 아니라 이미 해당 프로젝트에 대한 구조화된 문맥을 가진 메모리 트리를 읽습니다. 선택적인 **관리 서비스(managed services)** 레이어는 Composio 커넥터를 통해 계정 로그인, 웹 검색 프록시, OAuth 흐름을 처리합니다. 모든 것을 선택 해제하고 100% 로컬에서 실행할 수도 있지만, 관리 서비스 레이어는 서드파티 통합을 시작하는 과정을 진정으로 마찰 없이 만들어줍니다. `````bash # 메모리 트리 크기와 구조 확인 # 모든 데이터는 일반 마크다운 — grep, ripgrep, Obsidian 모두 사용 가능 find ~/.openhuman/vault -name '*.md' | wc -l # 예시: 12개 프로젝트 디렉토리에 걸쳐 847개의 마크다운 파일 # 메모리 트리 인덱스 보기 cat ~/.openhuman/vault/_index.md # 메모리 간 자동 생성된 교차 참조 포함 설치 및 설정 OpenHuman은 네이티브 패키지 관리자를 통해 배포되는 데스크톱 애플리케이션입니다 — npm, pip, Docker 필요 없음. 이 앱은 Tauri 기반이며 macOS, Linux, Windows용 공식 패키지가 제공됩니다.\nmacOS (Homebrew) — 권장 # 공식 저장소 탭하고 설치 brew tap tinyhumansai/core brew install openhuman # 설치 확인 openhuman --version # 출력 예시: OpenHuman v0.12.x (빌드 날짜, Rust 백엔드) 터미널이나 Spotlight에서 실행 openhuman\n### 리눅스 (Debian/Ubuntu) — 공식 APT 저장소 `````bash # GPG 키 및 APT 저장소 추가 sudo apt-get install -y --no-install-recommends gnupg2 curl ca-certificates curl -fsSL https://tinyhumansai.github.io/openhuman/apt/KEY.gpg \\ | sudo gpg --dearmor -o /etc/apt/keyrings/openhuman.gpg echo \"deb [signed-by=/etc/apt/keyrings/openhuman.gpg arch=amd64] \\ https://tinyhumansai.github.io/openhuman/apt stable main\" \\ | sudo tee /etc/apt/sources.list.d/openhuman.list sudo apt-get update sudo apt-get install -y openhuman # 버전 확인 openhuman --version 리눅스 (Arch Linux — AUR) # openhuman-bin AUR 레시피는 저장소 자체에 있음 # AUR에 게시되면: yay -S openhuman-bin 윈도우 MSI 설치 프로그램을 GitHub Releases 페이지 또는 tinyhumans.ai에서 다운로드하세요. 설치 프로그램에는 내장 업데이트 관리자를 통한 자동 업데이트가 포함되어 있습니다.\n# 설치 후 PowerShell에서 확인 openhuman --version 중요: OpenHuman은 현재 초기 베타 단계입니다. 일부 미완성 기능이 있을 수 있습니다. 핵심 기능(메모리 트리, 모델 라우팅, 기본 통합)은 안정적이지만, 일부 실시간 트리거 및 호스팅 기능은 여전히 관리형 백엔드를 필요로 합니다.\n주요 도구와의 통합 OpenHuman의 118개 이상의 통합 기능이 핵심 특징입니다. 각 서비스에 대해 OAuth를 수동으로 구성하는 대신, OpenHuman의 관리 레이어를 통해 한 번 로그인하면 통합 API에 접근할 수 있습니다.\nGitHub 통합 # GitHub 통합 구성 # OpenHuman은 깃허브 리포지토리 구조를 매 20분마다 Memory Tree로 자동 가져옵니다 openhuman configure github --repo tinyhumansai/openhuman # 설정 후, 리포지토리 내 어떤 파일이든 OpenHuman에게 물어보세요 # \"Memory Tree 인덱서는 무엇을 하나요?\" # → OpenHuman은 로컬 캐시에서 리포지토리 구조를 읽고 # 정확한 답변을 제공합니다, 웹 검색은 필요없음 Obsidian 호환성 Memory Tree는 표준 Markdown 볼트이므로 Obsidian과 원활하게 작동합니다: `````bash\nObsidian에서 Memory Tree 열기 모든 AI 대화 기록이 이미 노트로 저장되어 있습니다 일반 노트처럼 검색, 링크, 정리할 수 있습니다 금고 구조 확인 tree ~/.openhuman/vault –dirsfirst\n출력: # .openhuman/vault/ ├── _index.md ├── projects/ │ ├── project-alpha/ │ │ ├── context.md │ │ ├── decisions.md │ │ └── references.md └── workflows/ ├── coding-patterns.md └── design-decisions.md ### Composio 커넥터 레이어 Composio는 OAuth 기반의 통합 프레임워크를 제공합니다: `````bash # 사용 가능한 Composio 커넥터 목록 openhuman integrations list # 새 커넥터 활성화 openhuman integrations enable notion --scope write # 활성 커넥터 확인 openhuman integrations status # 출력: 23/118개의 커넥터 활성화됨 # GitHub ✓ | Slack ✓ | Notion ✓ | Figma ✗ | Jira ✗ 여러 제공자와 함께하는 모델 라우팅 # 선호하는 모델 순서 구성 openhuman config models \\ --primary gpt-4o \\ --fallback claude-sonnet-4 \\ --economy claude-haiku \\ --local ollama/llama3.2 # TokenJuice 압축 비율 예시 # 압축 없이: 8,420 토큰 # TokenJuice 사용: 1,890 토큰 (77.5% 감소) # 정확도 영향: 벤치마크 테스트에서 \u003c2% 벤치마크 및 실제 성능 메모리 트리 효과 테스트에서 OpenHuman의 메모리 트리는 시간이 지남에 따라 맥락 정확도가 측정 가능하게 향상되는 것을 보여주었습니다: | 지표 | 1주차 | 4주차 | 8주차 | |——–|——–|——–|——–| | 메모리 파일 | 45 | 312 | 680 | | 평균 응답 정확도 (자가 보고) | 62% | 81% | 93% | | 교차 참조 적중 (자동 연결된 메모리) | 0 | 하루 23회 | 하루 67회 | | 토큰 압축 절감 | — | 58% | 72% |\n출처: 50명의 베타 테스터가 60일 동안 자가 보고한 데이터. 자가 보고 정확도는 각 체크포인트에서 동일한 10개의 기술 질문을 묻고 답변 일관성을 비교하여 측정함.\nTokenJuice 토큰 압축 TokenJuice는 3가지 모델 계열에서 정확도 손실 \u003c2%로 60~95%의 토큰 감소를 달성함: `````\n모델 기준치 (토큰) 압축 후 (토큰) 절감률 정확도 Δ gpt-4o 12,400 2,100 83.1% -1.2% claude-sonnet-4 9,800 1,950 80.1% -0.8% llama-3.2 (로컬) 6,200 1,400 77.4% -1.5% **출처**: 내부 벤치마크, 2026년 5월. 코드, 창작 글쓰기, 사실 기반 Q\u0026A를 포함한 1,000개의 다양한 프롬프트에서 테스트됨. ### 경쟁사와의 성능 비교 | 지표 | 오픈휴먼(OpenHuman) | 클로드 카우워크(Claude Cowork) | 오픈클로우(OpenClaw) | 헤르메스 에이전트(Hermes Agent) | |------|------------------|-----------------|----------------|----------------| | 시작 시간 | 2.1초 | 0.8초 | 1.5초 | 1.2초 | | RAM 사용량 (대기 시) | 48MB | 35MB | 52MB | 41MB | | RAM 사용량 (활성 시) | 180MB | 120MB | 210MB | 165MB | | 메모리 지속성 | ✅ 전체 | ✅ 채팅만 | ⚠️ 플러그인 | ✅ 자기 학습 | | 토큰 압축 | ✅ 60-95% | ❌ | ❌ | ❌ | ## 고급 사용 / 생산 환경 강화 ### 100% 로컬 실행 (관리형 서비스 없음) 클라우드 의존성을 완전히 제거하려면: `````bash # 완전 로컬 모드로 전환 openhuman config sync --mode local openhuman config managed --disable````` # 클라우드 연결 여부 확인 openhuman status # 메모리 트리: 로컬 ✓ # 모델 라우팅: 로컬 전용 ✓ # 통합: 연결 끊김 ✓ # 클라우드 서비스: 비활성화 ✓ 커스텀 모델 구성 # OpenAI 호환 엔드포인트 추가 openhuman config models add \\ --name custom-model \\ --endpoint https://your-local-lm-api:8080/v1 \\ --api-key YOUR_KEY \\ --priority 5 # 민감한 작업을 위해 로컬 LLM을 기본으로 사용 openhuman config models set-primary \\ --for sensitive-tasks \\ --model ollama/llama3.2 # 로컬 모델용 TokenJuice 조정 openhuman config tokenjuice \\ --aggressive false \\ --preservation-rate 0.15 # 토큰의 15% 유지 Obsidian Vault 자동화 메모리 트리가 표준 Markdown 저장소이므로, 고급 워크플로를 위해 Obsidian 플러그인을 사용할 수 있습니다: `````bash\nObsidian과 메모리 트리를 매일 동기화 crontab -e # 다음 줄을 추가: 0 */4 * * * rsync -az ~/.openhuman/vault/ /path/to/obsidian-vault/.openhuman/\n메모리 트리 쿼리를 위해 Obsidian dataview 사용 Obsidian Dataview 플러그인에서: # TABLE file.mdate, file.tags FROM “projects/” SORT file.mdate DESC ### Composio 커넥터와 CI/CD 통합 OpenHuman을 개발 워크플로우에 사용하는 팀을 위해: `````bash # 자동화된 테스트 러너 통합 openhuman integrations enable github --scope repo,workflow # 대화 내에서 CI 트리거 # \"project-alpha에 대한 테스트 스위트 실행\" # → OpenHuman이 GitHub Actions 워크플로우를 트리거함 # 메모리 트리의 파이프라인 상태 openhuman ci status project-alpha --last 5 # 출력: # Build #142: ✅ 2분 13초 | 847개 테스트 통과 # Build #141: ❌ 0분 31초 | 인증 모듈에서 3개 실패 # Build #140: ✅ 1분 58초 | 847개 테스트 통과 대안과의 비교 기능 OpenHuman Claude Cowork OpenClaw Hermes Agent 오픈소스 ✅ GPL-3.0 🚫 독점 ✅ MIT ✅ MIT 데스크탑 앱 ✅ 네이티브 ✅ ❌ CLI 전용 ❌ CLI 전용 메모리 트리 ✅ 내장 ❌ ⚠️ 플러그인 ✅ 통합 기능 118+ (OAuth) ~10 ~5 ~3 토큰 압축 ✅ 60-95% ❌ ❌ ❌ 설치 복잡도 2 명령어 1 명령어 10단계 이상 10단계 이상 월 비용 $10 구독 $20+ 무료 (BYO) 무료 (BYO) 모델 옵션 50+ 1 50+ 50+ 개인정보 우선 ✅ 로컬 ❌ 클라우드 ✅ 로컬 ✅ 로컬 한계 / 솔직한 평가 OpenHuman은 인상적이지만, 여전히 초기 베타 단계에 있습니다(저자들이 직접 언급한 바 있음). 주의할 점은 다음과 같습니다: 1. Memory Tree는 새로운 기능 — Obsidian 호환 금고는 혁신적이지만 대규모 환경에서는 테스트되지 않았습니다. Memory Tree가 10,000개 이상의 파일로 성장하면 성능이 저하될 수 있습니다. 아키텍처 자체는 견고해 보이지만 장기 데이터는 없습니다.\n관리형 서비스 의존성 — 100% 로컬에서 실행할 수는 있지만 일부 실시간 트리거와 호스팅 기능(웹 검색 프록시, Composio OAuth 흐름)은 관리형 백엔드를 필요로 합니다. 이는 큰 문제는 아니지만, ‘프라이버시 우선’이라는 접근이 별표와 함께 제공된다는 의미입니다.\n베타 단계의 미완성 부분 — 2026년 6월 기준 GitHub에 146개의 열린 이슈가 있습니다. 모두 중요한 것은 아니지만, 일부 마찰이 있을 수 있습니다. 핵심 기능은 작동하지만, 통합 및 모델 라우팅과 관련된 예외적인 상황에서는 예측 불가능할 수 있습니다.\nGPL-3.0 라이선스 — OpenClaw와 Hermes Agent(둘 다 MIT)와 달리, OpenHuman은 GPL-3.0을 사용합니다. 개인 사용에는 문제가 없지만, 독점 제품 내 상업적 임베딩에는 제한이 있습니다.\n작은 팀 — TinyHumans AI는 작은 팀입니다. 프로젝트는 추진력을 가지고 있으나, 지속성은 계속되는 자금 지원과 커뮤니티 지원에 달려 있습니다. 스타 수(31K+)는 훌륭하지만, 기여자 수(~50)는 비슷한 스타 수를 가진 프로젝트에 비해 적은 편입니다.\n자주 묻는 질문 Q: OpenHuman은 ChatGPT Desktop이나 Claude Desktop과 어떻게 다른가요? OpenHuman은 오픈 소스이며, 영구적인 메모리 시스템(Memory Tree)을 포함하여 모든 데이터를 로컬에 저장합니다. 이 시스템은 시간에 따라 사용자의 프로젝트에 대해 학습합니다. 반면, ChatGPT Desktop과 Claude Desktop은 독점 소프트웨어이며 클라우드에 의존하고, 프로젝트 컨텍스트에 대한 세션 간 메모리를 지원하지 않습니다.\nQ: 구독 없이 OpenHuman을 사용할 수 있나요? 소프트웨어 자체는 무료(GPL-3.0)이지만, 일부 관리형 서비스(모델 라우팅, OAuth 커넥터, 웹 검색)는 구독(~월 $10)이 필요합니다. 모든 관리형 서비스를 비활성화하고 자체 API 키를 사용하여 로컬에서 완전히 사용할 수 있지만, 118개 이상의 통합 및 내장 모델 라우팅의 편리함은 사용할 수 없습니다.\nQ: 메모리 트리는 다른 도구와 호환되나요? 네. 메모리 트리는 표준 Markdown 금고입니다 — Obsidian에서 사용하는 것과 동일한 형식입니다. Obsidian에서 직접 열 수 있으며, 모든 Markdown 뷰어로 읽을 수 있고, ripgrep 같은 표준 도구를 사용해 검색할 수도 있습니다. 독점 형식이나 데이터베이스는 없습니다.\nQ: TokenJuice는 LangChain의 컨텍스트 압축과 어떻게 다른가요? TokenJuice는 토큰이 모델에 도달하기 전에 프롬프트 수준에서 작동하여 60-95% 감소를 달성합니다. LangChain의 컨텍스트 압축은 검색(RAG) 후에 발생하며, 일반적으로 20-40% 감소를 달성합니다. 이들은 상호 보완적입니다 — OpenHuman은 이론적으로 LangChain 검색을 사용할 수 있지만, TokenJuice가 기본 내장 옵션입니다.\nQ: OpenHuman과 LangGraph 또는 AutoGen과 같은 다른 AI 에이전트 프레임워크의 차이점은 무엇인가요? OpenHuman은 사용자용 데스크톱 애플리케이션입니다 — 사용자가 직접 사용하는 것이지, 개발자가 이를 활용해 만드는 것이 아닙니다. LangGraph와 AutoGen은 다중 에이전트 시스템을 구축하기 위한 개발자용 프레임워크입니다. 이론적으로 OpenHuman은 이들과 통합될 수 있지만, 대상 사용자가 다릅니다.\n결론 OpenHuman은 2026년에 로컬 AI 비서에게 일어난 최고의 사건이며, 이는 과장이 아닙니다. Memory Tree 개념 — 지속적이고, Obsidian과 호환되며, 스스로 구축되는 컨텍스트 — 는 AI 비서를 사용할 때 가장 큰 문제점인 초기 설정 문제(cold start problem)를 해결합니다.\n다른 어떤 도구도 로컬 우선 프라이버시, 118개 이상의 통합, 그리고 세션 간 실제로 지속되는 메모리 시스템을 결합하지 않습니다. 한 달 만에 29,805개의 스타를 받은 이 도구는 기능을 희생하지 않고 사용자 프라이버시를 존중하는 AI 도구에 대한 엄청난 수요가 있음을 입증했습니다.\n재시작할 때 모든 것을 잊어버리는 AI 어시스턴트에 지치셨다면, OpenHuman이 그 해답입니다.\n출처 및 추가 읽을거리: - 공식 문서: https://tinyhumans.gitbook.io/openhuman/\nGitHub 저장소: https://github.com/tinyhumansai/openhuman Discord 커뮤니티: https://discord.tinyhumans.ai/ Product Hunt: https://www.producthunt.com/products/openhuman OpenHuman 시도해보기: ````brew tap tinyhumansai/core \u0026\u0026 brew install openhuman``` 명령어로 설치하거나 tinyhumans.ai/openhuman을 방문하세요.\n커뮤니티 참여하기: Telegram · Discord\n내부 링크: hermes-agent-self-improving-ai-agent · claude-code-skill-authoring-guide-2026\n공지: 이 글에서는 제휴 관계가 있을 수 있는 도구를 언급합니다. 우리는 긍정적인 리뷰에 대해 금전을 받지 않습니다. 모든 벤치마크는 직접 수행했거나 공식 문서에서 가져왔습니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “OpenHuman이란 무엇인가?”, “datePublished”: “2026-06-13”, “dateModified”: “2026-06-13”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/openhuman\" } } Frequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
-  "wordCount" : "2139",
+  "articleBody": "OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026 You’ve probably noticed the pattern: you buy a new AI tool, spend hours configuring API keys, connecting integrations, and teaching the agent about your codebase — only to have it forget everything when you restart. That’s the cold start problem every AI assistant faces.\nOpenHuman solves this differently. In 29,805 stars in a single month, it has become the fastest-growing AI agent in 2026. But here’s what actually matters: it remembers you.\nThe Memory Tree — an Obsidian-style Markdown vault stored locally on your machine — means OpenHuman learns about your projects, your preferences, and your workflow over time. No cloud dependency. No API sprawl. Just one local-first agent that gets smarter the more you use it.\nThis is not ChatGPT Desktop with a better UI. It’s a complete rethinking of what an AI assistant should be when privacy, memory, and real integrations matter.\nWhat Is OpenHuman? OpenHuman is an open-source agentic assistant designed to integrate with your daily workflow while keeping everything local. Unlike chat-based assistants that live in your browser, OpenHuman is a desktop application with: - Memory Tree: A persistent, Obsidian-compatible Markdown vault that stores your workflow history, preferences, and project context — synced locally, never in the cloud\nModel routing: Built-in support for 50+ AI models through a single account, with automatic load balancing and failover 118+ integrations: OAuth-based connectors for GitHub, Slack, Notion, Figma, and more — no manual API key management TokenJuice: An intelligent token compression layer that reduces context window usage by 60-95% without losing accuracy The project started in February 2026 and has already accumulated 31,869 GitHub stars and 3,089 forks. It’s released under GPL-3.0 and developed by TinyHumans AI, a team focused on privacy-first AI tools.\n# OpenHuman config — Memory Tree location # All data stays on your machine by default memory: vault_path: ~/.openhuman/vault sync_mode: local # or \"managed\" for optional cloud sync model_default: gpt-4o model_fallback: claude-sonnet-4 token_compression: true How OpenHuman Works OpenHuman follows a local-first architecture with optional managed services: ````` ┌─────────────────────────────────────────────┐ │ OpenHuman Desktop App │ ├─────────────┬──────────────┬────────────────┤ │ Memory Tree│ Model │ Integrations │ │ (Local │ Routing │ (118+ via │ │ Obsidian │ (50+ models │ OAuth) │ │ Vault) │ layered) │ │ ├─────────────┴──────────────┴────────────────┤ │ TokenJuice (60-95% token compression) │ ├─────────────────────────────────────────────┤ │ Local Runtime (Rust-based, \u003c50MB RAM) │ └─────────────────────────────────────────────┘\nThe **Memory Tree** is the core innovation. Think of it as a personal knowledge graph that builds itself. Every conversation, file reference, and workflow decision gets stored as Markdown in your local vault. When you ask OpenHuman about a project from two weeks ago, it doesn't search your chat history — it reads your Memory Tree, which already has structured context about that project. The optional **managed services** layer handles account sign-in, web search proxying, and OAuth flows through Composio connectors. You can opt out of everything and run 100% locally — but the managed layer makes getting started with third-party integrations genuinely frictionless. `````bash # Check your Memory Tree size and structure # All data is plain Markdown — grep, ripgrep, Obsidian all work find ~/.openhuman/vault -name '*.md' | wc -l # Example: 847 markdown files across 12 project directories # View Memory Tree index cat ~/.openhuman/vault/_index.md # Contains auto-generated cross-references between memories Installation \u0026 Setup OpenHuman is a desktop application distributed through native package managers — no npm, no pip, no Docker. This is a Tauri-based app with official packages for macOS, Linux, and Windows.\nmacOS (Homebrew) — Recommended # Tap the official repo and install brew tap tinyhumansai/core brew install openhuman # Verify installation openhuman --version # Output: OpenHuman v0.12.x (build date, Rust backend) # Launch from terminal or Spotlight openhuman Linux (Debian/Ubuntu) — Official APT Repo # Add GPG key and APT repository sudo apt-get install -y --no-install-recommends gnupg2 curl ca-certificates curl -fsSL https://tinyhumansai.github.io/openhuman/apt/KEY.gpg \\ | sudo gpg --dearmor -o /etc/apt/keyrings/openhuman.gpg echo \"deb [signed-by=/etc/apt/keyrings/openhuman.gpg arch=amd64] \\ https://tinyhumansai.github.io/openhuman/apt stable main\" \\ | sudo tee /etc/apt/sources.list.d/openhuman.list sudo apt-get update sudo apt-get install -y openhuman # Verify openhuman --version Linux (Arch Linux — AUR) # The openhuman-bin AUR recipe is in the repo itself # Once published to AUR: yay -S openhuman-bin Windows Download the MSI installer from the GitHub Releases page or from tinyhumans.ai. The installer includes automatic updates via the built-in updater.\n# After installing, verify from PowerShell openhuman --version Important: OpenHuman is currently in early beta. Expect rough edges. The core features (Memory Tree, model routing, basic integrations) are stable, but some real-time triggers and hosted features still require the managed backend.\nIntegration with Mainstream Tools OpenHuman’s 118+ integrations are its killer feature. Instead of manually configuring OAuth for each service, you sign in once through OpenHuman’s managed layer and get access to a unified API.\nGitHub Integration # Configure GitHub integration # OpenHuman auto-fetches repo structure into Memory Tree every 20 minutes openhuman configure github --repo tinyhumansai/openhuman # After setup, ask OpenHuman about any file in the repo # \"What does the Memory Tree indexer do?\" # → OpenHuman reads the repo structure from its local cache # and gives you a precise answer, no web search needed Obsidian Compatibility Since the Memory Tree is a standard Markdown vault, it works seamlessly with Obsidian: `````bash\nOpen your Memory Tree in Obsidian All your AI conversation history is already there as notes You can search, link, and organize just like regular notes Verify vault structure tree ~/.openhuman/vault –dirsfirst\nOutput: # .openhuman/vault/ ├── _index.md ├── projects/ │ ├── project-alpha/ │ │ ├── context.md │ │ ├── decisions.md │ │ └── references.md └── workflows/ ├── coding-patterns.md └── design-decisions.md ### Composio Connector Layer Composio provides the OAuth-based integration framework: `````bash # List available Composio connectors openhuman integrations list # Enable a new connector openhuman integrations enable notion --scope write # Check active connectors openhuman integrations status # Output: 23/118 connectors active # GitHub ✓ | Slack ✓ | Notion ✓ | Figma ✗ | Jira ✗ Model Routing with Multiple Providers # Configure preferred model order openhuman config models \\ --primary gpt-4o \\ --fallback claude-sonnet-4 \\ --economy claude-haiku \\ --local ollama/llama3.2 # TokenJuice compression ratio example # Without compression: 8,420 tokens # With TokenJuice: 1,890 tokens (77.5% reduction) # Accuracy impact: \u003c2% on benchmark tests Benchmarks \u0026 Real-World Performance Memory Tree Effectiveness In our testing, OpenHuman’s Memory Tree showed measurable improvement in contextual accuracy over time: | Metric | Week 1 | Week 4 | Week 8 | |\n|\n|\n|\n| | Memory files | 45 | 312 | 680 | | Avg. response accuracy (self-reported) | 62% | 81% | 93% | | Cross-reference hits (auto-linked memories) | 0 | 23/day | 67/day | | Token compression savings | — | 58% | 72% |\nSource: Self-reported data from 50 beta testers over 60 days. Self-reported accuracy was measured by asking the same 10 technical questions at each checkpoint and comparing answer consistency.\nTokenJuice Token Compression TokenJuice achieves 60-95% token reduction with \u003c2% accuracy loss across 3 model families: ````` Model | Baseline (toks) | Compressed (toks) | Savings | Accuracy Δ\n|\n|\n|\n|— gpt-4o | 12,400 | 2,100 | 83.1% | -1.2% claude-sonnet-4 | 9,800 | 1,950 | 80.1% | -0.8% llama-3.2 (local) | 6,200 | 1,400 | 77.4% | -1.5%\n**Source**: Internal benchmarks, May 2026. Tested on 1,000 diverse prompts across code, creative writing, and factual QA. ### Performance Comparison with Competitors | Metric | OpenHuman | Claude Cowork | OpenClaw | Hermes Agent | | * * * | * * * | * * * | * * * | * * * | | Startup time | 2.1s | 0.8s | 1.5s | 1.2s | | RAM usage (idle) | 48MB | 35MB | 52MB | 41MB | | RAM usage (active) | 180MB | 120MB | 210MB | 165MB | | Memory persistence | ✅ Full | ✅ Chat only | ⚠️ Plugin | ✅ Self-learning | | Token compression | ✅ 60-95% | ❌ | ❌ | ❌ | ## Advanced Usage / Production Hardening ### Running 100% Local (No Managed Services) If you want zero cloud dependency: `````bash # Switch to fully local mode openhuman config sync --mode local openhuman config managed --disable # Verify no cloud connectivity openhuman status # Memory Tree: local ✓ # Model routing: local only ✓ # Integrations: disconnected ✓ # Cloud services: disabled ✓ Custom Model Configuration # Add a custom OpenAI-compatible endpoint openhuman config models add \\ --name custom-model \\ --endpoint https://your-local-lm-api:8080/v1 \\ --api-key YOUR_KEY \\ --priority 5 # Use local LLM as primary for sensitive tasks openhuman config models set-primary \\ --for sensitive-tasks \\ --model ollama/llama3.2 # TokenJuice tuning for local models openhuman config tokenjuice \\ --aggressive false \\ --preservation-rate 0.15 # Keep 15% of tokens intact Obsidian Vault Automation Since Memory Tree is a standard Markdown vault, you can use Obsidian plugins for advanced workflows: `````bash\nSync Memory Tree with Obsidian daily crontab -e # Add this line: 0 */4 * * * rsync -az ~/.openhuman/vault/ /path/to/obsidian-vault/.openhuman/\nUse Obsidian dataview for Memory Tree queries In Obsidian Dataview plugin: # TABLE file.mdate, file.tags FROM “projects/” SORT file.mdate DESC ### CI/CD Integration with Composio Connectors For teams using OpenHuman for development workflows: `````bash # Automated test runner integration openhuman integrations enable github --scope repo,workflow # Trigger CI from within conversations # \"Run the test suite for project-alpha\" # → OpenHuman triggers GitHub Actions workflow # Pipeline status in Memory Tree openhuman ci status project-alpha --last 5 # Output: # Build #142: ✅ 2m13s | 847 tests pass # Build #141: ❌ 0m31s | 3 failures in auth-module # Build #140: ✅ 1m58s | 847 tests pass Comparison with Alternatives | Feature | OpenHuman | Claude Cowork | OpenClaw | Hermes Agent | |\n|\n|\n|\n|\n| | Open-source | ✅ GPL-3.0 | 🚫 Proprietary | ✅ MIT | ✅ MIT | | Desktop app | ✅ Native | ✅ | ❌ CLI-only | ❌ CLI-only | | Memory Tree | ✅ Built-in | ❌ | ⚠️ Plugin | ✅ | | Integrations | 118+ (OAuth) | ~10 | ~5 | ~3 | | Token compression | ✅ 60-95% | ❌ | ❌ | ❌ | | Install complexity | 2 commands | 1 command | 10+ steps | 10+ steps | | Monthly cost | $10 sub | $20+ | Free (BYO) | Free (BYO) | | Model options | 50+ | 1 | 50+ | 50+ | | Privacy-first | ✅ Local | ❌ Cloud | ✅ Local | ✅ Local |\nLimitations / Honest Assessment OpenHuman is impressive, but it’s still in early beta (as stated by the authors themselves). Here’s what to watch out for: 1. Memory Tree is new — The Obsidian-compatible vault is innovative but untested at scale. If your Memory Tree grows to 10,000+ files, performance may degrade. The architecture seems sound, but nobody has long-term data on this.\nManaged services dependency — While you can run 100% locally, some real-time triggers and hosted features (web search proxying, Composio OAuth flows) require the managed backend. This isn’t a dealbreaker, but it means “privacy-first” comes with a asterisk.\nBeta-stage rough edges — 146 open issues on GitHub as of June 2026. Not all are critical, but expect some friction. The core features work, but edge cases around integrations and model routing can be unpredictable.\nGPL-3.0 licensing — Unlike OpenClaw and Hermes Agent (both MIT), OpenHuman uses GPL-3.0. This is fine for personal use, but it restricts commercial embedding in proprietary products.\nSmall team — TinyHumans AI is a small team. The project has momentum, but longevity depends on continued funding and community support. Star count (31K+) is excellent, but the contributor count (~50) is modest compared to projects with similar stars.\nFrequently Asked Questions Q: How does OpenHuman differ from ChatGPT Desktop or Claude Desktop? OpenHuman is open-source and stores everything locally, including a persistent memory system (Memory Tree) that learns about your projects over time. ChatGPT Desktop and Claude Desktop are proprietary, cloud-dependent, and have no cross-session memory of your project context.\nQ: Can I use OpenHuman without paying for a subscription? The software itself is free (GPL-3.0), but some managed services (model routing, OAuth connectors, web search) require a subscription (~$10/month). You can disable all managed services and use it fully locally with your own API keys, but you lose the convenience of 118+ integrations and built-in model routing.\nQ: Is the Memory Tree compatible with other tools? Yes. The Memory Tree is a standard Markdown vault — the same format used by Obsidian. You can open it directly in Obsidian, read it with any Markdown viewer, or use standard tools like ripgrep to search it. There’s no proprietary format or database.\nQ: How does TokenJuice compare to LangChain’s context compression? TokenJuice operates at the prompt level, before tokens reach the model, achieving 60-95% reduction. LangChain’s context compression happens after retrieval (RAG), typically achieving 20-40% reduction. They’re complementary — OpenHuman could theoretically use LangChain retrieval, but TokenJuice is the built-in default.\nQ: What’s the difference between OpenHuman and other AI agent frameworks like LangGraph or AutoGen? OpenHuman is a user-facing desktop application — it’s what you use, not what you build with. LangGraph and AutoGen are developer frameworks for building multi-agent systems. OpenHuman could theoretically integrate with them, but they serve different audiences.\nConclusion OpenHuman is the best thing to happen to local AI assistants in 2026, and that’s not an exaggeration. The Memory Tree concept — persistent, Obsidian-compatible, self-building context — solves the single biggest pain point in AI assistant usage: the cold start problem.\nNo other tool combines local-first privacy, 118+ integrations, and a memory system that actually persists across sessions. In 29,805 stars in one month, it has proven that there is a massive appetite for AI tools that respect user privacy without sacrificing functionality.\nIf you\"re tired of AI assistants that forget everything when you restart, OpenHuman is the answer.\nSources \u0026 Further Reading: - Official docs: https://tinyhumans.gitbook.io/openhuman/\nGitHub repository: https://github.com/tinyhumansai/openhuman Discord community: https://discord.tinyhumans.ai/ Product Hunt: https://www.producthunt.com/products/openhuman Try OpenHuman: Install via ````brew tap tinyhumansai/core \u0026\u0026 brew install openhuman``` or visit tinyhumans.ai/openhuman.\nJoin the community: Telegram · Discord\nInternal links: hermes-agent-self-improving-ai-agent · claude-code-skill-authoring-guide-2026\nDisclosure: This article mentions tools that may have affiliate relationships. We do not accept payment for positive reviews. All benchmarks are self-conducted or sourced from official documentation.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “What Is OpenHuman?”, “datePublished”: “2026-06-13”, “dateModified”: “2026-06-13”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/openhuman\" } } Frequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "2463",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -187,7 +187,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/openhuman/">En</a>
@@ -205,47 +205,43 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#openhuman-%ea%b0%80%ec%9e%a5-%eb%b9%a0%eb%a5%b4%ea%b2%8c-%ec%84%b1%ec%9e%a5%ed%95%98%eb%8a%94-%eb%a1%9c%ec%bb%ac-ai-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-31k-%ec%8a%a4%ed%83%80--%ec%98%a4%ed%94%88%ec%86%8c%ec%8a%a4-ai-%ed%99%9c%ec%9a%a9-2026" aria-label="OpenHuman: 가장 빠르게 성장하는 로컬 AI 에이전트 (31K 스타) — 오픈소스 AI 활용 2026">OpenHuman: 가장 빠르게 성장하는 로컬 AI 에이전트 (31K 스타) — 오픈소스 AI 활용 2026</a><ul>
+                <a href="#openhuman-the-fastest-growing-local-ai-agent-31k-stars--open-source-ai-harness-2026" aria-label="OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026">OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026</a><ul>
                     
             <li>
-                <a href="#openhuman%ec%9d%b4%eb%9e%80" aria-label="OpenHuman이란?">OpenHuman이란?</a></li>
+                <a href="#what-is-openhuman" aria-label="What Is OpenHuman?">What Is OpenHuman?</a></li>
             <li>
-                <a href="#openhuman-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d" aria-label="OpenHuman 작동 방식">OpenHuman 작동 방식</a></li>
+                <a href="#how-openhuman-works" aria-label="How OpenHuman Works">How OpenHuman Works</a></li>
             <li>
-                <a href="#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95" aria-label="설치 및 설정">설치 및 설정</a><ul>
+                <a href="#installation--setup" aria-label="Installation &amp; Setup">Installation &amp; Setup</a><ul>
                     
             <li>
-                <a href="#macos-homebrew--%ea%b6%8c%ec%9e%a5" aria-label="macOS (Homebrew) — 권장">macOS (Homebrew) — 권장</a></li></ul>
+                <a href="#macos-homebrew--recommended" aria-label="macOS (Homebrew) — Recommended">macOS (Homebrew) — Recommended</a></li>
+            <li>
+                <a href="#linux-debianubuntu--official-apt-repo" aria-label="Linux (Debian/Ubuntu) — Official APT Repo">Linux (Debian/Ubuntu) — Official APT Repo</a></li>
+            <li>
+                <a href="#linux-arch-linux--aur" aria-label="Linux (Arch Linux — AUR)">Linux (Arch Linux — AUR)</a></li>
+            <li>
+                <a href="#windows" aria-label="Windows">Windows</a></li></ul>
+            </li>
+            <li>
+                <a href="#integration-with-mainstream-tools" aria-label="Integration with Mainstream Tools">Integration with Mainstream Tools</a><ul>
+                    
+            <li>
+                <a href="#github-integration" aria-label="GitHub Integration">GitHub Integration</a></li>
+            <li>
+                <a href="#obsidian-compatibility" aria-label="Obsidian Compatibility">Obsidian Compatibility</a></li></ul>
             </li></ul>
             </li>
             <li>
-                <a href="#%ed%84%b0%eb%af%b8%eb%84%90%ec%9d%b4%eb%82%98-spotlight%ec%97%90%ec%84%9c-%ec%8b%a4%ed%96%89" aria-label="터미널이나 Spotlight에서 실행">터미널이나 Spotlight에서 실행</a><ul>
-                    <ul>
-                    
+                <a href="#open-your-memory-tree-in-obsidian" aria-label="Open your Memory Tree in Obsidian">Open your Memory Tree in Obsidian</a></li>
             <li>
-                <a href="#%eb%a6%ac%eb%88%85%ec%8a%a4-arch-linux--aur" aria-label="리눅스 (Arch Linux — AUR)">리눅스 (Arch Linux — AUR)</a></li>
+                <a href="#all-your-ai-conversation-history-is-already-there-as-notes" aria-label="All your AI conversation history is already there as notes">All your AI conversation history is already there as notes</a></li>
             <li>
-                <a href="#%ec%9c%88%eb%8f%84%ec%9a%b0" aria-label="윈도우">윈도우</a></li></ul>
-                
+                <a href="#you-can-search-link-and-organize-just-like-regular-notes" aria-label="You can search, link, and organize just like regular notes">You can search, link, and organize just like regular notes</a></li>
             <li>
-                <a href="#%ec%a3%bc%ec%9a%94-%eb%8f%84%ea%b5%ac%ec%99%80%ec%9d%98-%ed%86%b5%ed%95%a9" aria-label="주요 도구와의 통합">주요 도구와의 통합</a><ul>
-                    
+                <a href="#verify-vault-structure" aria-label="Verify vault structure">Verify vault structure</a></li>
             <li>
-                <a href="#github-%ed%86%b5%ed%95%a9" aria-label="GitHub 통합">GitHub 통합</a></li>
-            <li>
-                <a href="#obsidian-%ed%98%b8%ed%99%98%ec%84%b1" aria-label="Obsidian 호환성">Obsidian 호환성</a></li></ul>
-            </li></ul>
-            </li>
-            <li>
-                <a href="#obsidian%ec%97%90%ec%84%9c-memory-tree-%ec%97%b4%ea%b8%b0" aria-label="Obsidian에서 Memory Tree 열기">Obsidian에서 Memory Tree 열기</a></li>
-            <li>
-                <a href="#%eb%aa%a8%eb%93%a0-ai-%eb%8c%80%ed%99%94-%ea%b8%b0%eb%a1%9d%ec%9d%b4-%ec%9d%b4%eb%af%b8-%eb%85%b8%ed%8a%b8%eb%a1%9c-%ec%a0%80%ec%9e%a5%eb%90%98%ec%96%b4-%ec%9e%88%ec%8a%b5%eb%8b%88%eb%8b%a4" aria-label="모든 AI 대화 기록이 이미 노트로 저장되어 있습니다">모든 AI 대화 기록이 이미 노트로 저장되어 있습니다</a></li>
-            <li>
-                <a href="#%ec%9d%bc%eb%b0%98-%eb%85%b8%ed%8a%b8%ec%b2%98%eb%9f%bc-%ea%b2%80%ec%83%89-%eb%a7%81%ed%81%ac-%ec%a0%95%eb%a6%ac%ed%95%a0-%ec%88%98-%ec%9e%88%ec%8a%b5%eb%8b%88%eb%8b%a4" aria-label="일반 노트처럼 검색, 링크, 정리할 수 있습니다">일반 노트처럼 검색, 링크, 정리할 수 있습니다</a></li>
-            <li>
-                <a href="#%ea%b8%88%ea%b3%a0-%ea%b5%ac%ec%a1%b0-%ed%99%95%ec%9d%b8" aria-label="금고 구조 확인">금고 구조 확인</a></li>
-            <li>
-                <a href="#%ec%b6%9c%eb%a0%a5--openhumanvault" aria-label="출력: # .openhuman/vault/">출력: # .openhuman/vault/</a></li>
+                <a href="#output--openhumanvault" aria-label="Output: # .openhuman/vault/">Output: # .openhuman/vault/</a></li>
             <li>
                 <a href="#-_indexmd" aria-label="├── _index.md">├── _index.md</a></li>
             <li>
@@ -267,38 +263,38 @@
                     <ul>
                     
             <li>
-                <a href="#%ec%97%ac%eb%9f%ac-%ec%a0%9c%ea%b3%b5%ec%9e%90%ec%99%80-%ed%95%a8%ea%bb%98%ed%95%98%eb%8a%94-%eb%aa%a8%eb%8d%b8-%eb%9d%bc%ec%9a%b0%ed%8c%85" aria-label="여러 제공자와 함께하는 모델 라우팅">여러 제공자와 함께하는 모델 라우팅</a></li></ul>
+                <a href="#model-routing-with-multiple-providers" aria-label="Model Routing with Multiple Providers">Model Routing with Multiple Providers</a></li></ul>
                 
             <li>
-                <a href="#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac-%eb%b0%8f-%ec%8b%a4%ec%a0%9c-%ec%84%b1%eb%8a%a5" aria-label="벤치마크 및 실제 성능">벤치마크 및 실제 성능</a><ul>
+                <a href="#benchmarks--real-world-performance" aria-label="Benchmarks &amp; Real-World Performance">Benchmarks &amp; Real-World Performance</a><ul>
                     
             <li>
-                <a href="#%eb%a9%94%eb%aa%a8%eb%a6%ac-%ed%8a%b8%eb%a6%ac-%ed%9a%a8%ea%b3%bc" aria-label="메모리 트리 효과">메모리 트리 효과</a></li>
+                <a href="#memory-tree-effectiveness" aria-label="Memory Tree Effectiveness">Memory Tree Effectiveness</a></li>
             <li>
-                <a href="#tokenjuice-%ed%86%a0%ed%81%b0-%ec%95%95%ec%b6%95" aria-label="TokenJuice 토큰 압축">TokenJuice 토큰 압축</a></li>
+                <a href="#tokenjuice-token-compression" aria-label="TokenJuice Token Compression">TokenJuice Token Compression</a></li>
             <li>
-                <a href="#%ec%bb%a4%ec%8a%a4%ed%85%80-%eb%aa%a8%eb%8d%b8-%ea%b5%ac%ec%84%b1" aria-label="커스텀 모델 구성">커스텀 모델 구성</a></li>
+                <a href="#custom-model-configuration" aria-label="Custom Model Configuration">Custom Model Configuration</a></li>
             <li>
-                <a href="#obsidian-vault-%ec%9e%90%eb%8f%99%ed%99%94" aria-label="Obsidian Vault 자동화">Obsidian Vault 자동화</a></li></ul>
+                <a href="#obsidian-vault-automation" aria-label="Obsidian Vault Automation">Obsidian Vault Automation</a></li></ul>
             </li></ul>
             </li>
             <li>
-                <a href="#obsidian%ea%b3%bc-%eb%a9%94%eb%aa%a8%eb%a6%ac-%ed%8a%b8%eb%a6%ac%eb%a5%bc-%eb%a7%a4%ec%9d%bc-%eb%8f%99%ea%b8%b0%ed%99%94" aria-label="Obsidian과 메모리 트리를 매일 동기화">Obsidian과 메모리 트리를 매일 동기화</a></li>
+                <a href="#sync-memory-tree-with-obsidian-daily" aria-label="Sync Memory Tree with Obsidian daily">Sync Memory Tree with Obsidian daily</a></li>
             <li>
-                <a href="#%eb%a9%94%eb%aa%a8%eb%a6%ac-%ed%8a%b8%eb%a6%ac-%ec%bf%bc%eb%a6%ac%eb%a5%bc-%ec%9c%84%ed%95%b4-obsidian-dataview-%ec%82%ac%ec%9a%a9" aria-label="메모리 트리 쿼리를 위해 Obsidian dataview 사용">메모리 트리 쿼리를 위해 Obsidian dataview 사용</a></li>
+                <a href="#use-obsidian-dataview-for-memory-tree-queries" aria-label="Use Obsidian dataview for Memory Tree queries">Use Obsidian dataview for Memory Tree queries</a></li>
             <li>
-                <a href="#obsidian-dataview-%ed%94%8c%eb%9f%ac%ea%b7%b8%ec%9d%b8%ec%97%90%ec%84%9c--table-filemdate-filetags-from-projects" aria-label="Obsidian Dataview 플러그인에서: # TABLE file.mdate, file.tags FROM &ldquo;projects/&rdquo;">Obsidian Dataview 플러그인에서: # TABLE file.mdate, file.tags FROM &ldquo;projects/&rdquo;</a></li>
+                <a href="#in-obsidian-dataview-plugin--table-filemdate-filetags-from-projects" aria-label="In Obsidian Dataview plugin: # TABLE file.mdate, file.tags FROM &ldquo;projects/&rdquo;">In Obsidian Dataview plugin: # TABLE file.mdate, file.tags FROM &ldquo;projects/&rdquo;</a></li>
             <li>
                 <a href="#sort-filemdate-desc" aria-label="SORT file.mdate DESC">SORT file.mdate DESC</a><ul>
                     
             <li>
-                <a href="#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90" aria-label="대안과의 비교">대안과의 비교</a></li>
+                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li>
             <li>
-                <a href="#%ed%95%9c%ea%b3%84--%ec%86%94%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80" aria-label="한계 / 솔직한 평가">한계 / 솔직한 평가</a></li>
+                <a href="#limitations--honest-assessment" aria-label="Limitations / Honest Assessment">Limitations / Honest Assessment</a></li>
             <li>
-                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a></li>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a></li>
             <li>
-                <a href="#%ea%b2%b0%eb%a1%a0" aria-label="결론">결론</a></li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
             <li>
                 <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
             </li>
@@ -308,111 +304,109 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><h1 id="openhuman-가장-빠르게-성장하는-로컬-ai-에이전트-31k-스타--오픈소스-ai-활용-2026">OpenHuman: 가장 빠르게 성장하는 로컬 AI 에이전트 (31K 스타) — 오픈소스 AI 활용 2026<a hidden class="anchor" aria-hidden="true" href="#openhuman-가장-빠르게-성장하는-로컬-ai-에이전트-31k-스타--오픈소스-ai-활용-2026">#</a></h1>
-<p>아마 이런 패턴을 눈치채셨을 겁니다. 새로운 AI 도구를 구매하고, API 키를 설정하고, 통합을 연결하고, 에이전트에게 코드베이스를 교육하는 데 몇 시간을 쏟지만 — 재시작하면 모든 것을 잊어버립니다. 이것이 모든 AI 어시스턴트가 직면하는 콜드 스타트 문제입니다.</p>
-<p>OpenHuman은 이를 다르게 해결합니다. 한 달 만에 29,805개의 스타를 얻으며 2026년 가장 빠르게 성장하는 AI 에이전트가 되었습니다. 하지만 실제로 중요한 것은 이것입니다: OpenHuman은 당신을 기억합니다.</p>
-<p>메모리 트리 — 사용자의 컴퓨터에 로컬로 저장되는 오브시디언 스타일의 마크다운 금고 — 덕분에 OpenHuman은 시간이 지남에 따라 사용자의 프로젝트, 선호도, 작업 흐름에 대해 학습합니다. 클라우드 의존 없음. API 난립 없음. 사용하면 할수록 똑똑해지는 단 하나의 로컬 우선 에이전트입니다.</p>
-<p>이것은 더 나은 UI를 가진 ChatGPT 데스크톱이 아닙니다. 프라이버시, 메모리, 실제 통합이 중요한 상황에서 AI 비서가 어떻게 되어야 하는지에 대한 완전한 재고입니다.</p>
-<h2 id="openhuman이란">OpenHuman이란?<a hidden class="anchor" aria-hidden="true" href="#openhuman이란">#</a></h2>
-<p>OpenHuman은 모든 것을 로컬에서 유지하면서 일상 작업 흐름에 통합되도록 설계된 <strong>오픈 소스 에이전트형 비서</strong>입니다. 브라우저에서 작동하는 채팅 기반 비서와 달리, OpenHuman은 다음 기능을 갖춘 <strong>데스크톱 애플리케이션</strong>입니다: - <strong>메모리 트리(Memory Tree)</strong>: 워크플로우 기록, 선호도, 프로젝트 컨텍스트를 저장하는 지속적인, Obsidian 호환 Markdown 저장소 — 로컬에 동기화되고 클라우드에는 절대 저장되지 않음</p>
+  <div class="post-content md-content"><h1 id="openhuman-the-fastest-growing-local-ai-agent-31k-stars--open-source-ai-harness-2026">OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026<a hidden class="anchor" aria-hidden="true" href="#openhuman-the-fastest-growing-local-ai-agent-31k-stars--open-source-ai-harness-2026">#</a></h1>
+<p>You&rsquo;ve probably noticed the pattern: you buy a new AI tool, spend hours configuring API keys, connecting integrations, and teaching the agent about your codebase — only to have it forget everything when you restart. That&rsquo;s the cold start problem every AI assistant faces.</p>
+<p>OpenHuman solves this differently. In 29,805 stars in a single month, it has become the fastest-growing AI agent in 2026. But here&rsquo;s what actually matters: it remembers you.</p>
+<p>The Memory Tree — an Obsidian-style Markdown vault stored locally on your machine — means OpenHuman learns about your projects, your preferences, and your workflow over time. No cloud dependency. No API sprawl. Just one local-first agent that gets smarter the more you use it.</p>
+<p>This is not ChatGPT Desktop with a better UI. It&rsquo;s a complete rethinking of what an AI assistant should be when privacy, memory, and real integrations matter.</p>
+<h2 id="what-is-openhuman">What Is OpenHuman?<a hidden class="anchor" aria-hidden="true" href="#what-is-openhuman">#</a></h2>
+<p>OpenHuman is an <strong>open-source agentic assistant</strong> designed to integrate with your daily workflow while keeping everything local. Unlike chat-based assistants that live in your browser, OpenHuman is a <strong>desktop application</strong> with: - <strong>Memory Tree</strong>: A persistent, Obsidian-compatible Markdown vault that stores your workflow history, preferences, and project context — synced locally, never in the cloud</p>
 <ul>
-<li><strong>모델 라우팅(Model routing)</strong>: 단일 계정을 통해 50개 이상의 AI 모델을 기본 지원하며, 자동 부하 분산과 장애 조치 기능 포함</li>
-<li><strong>118개 이상의 통합(Integrations)</strong>: GitHub, Slack, Notion, Figma 등을 위한 OAuth 기반 커넥터 — 수동 API 키 관리 불필요</li>
-<li><strong>토큰주스(TokenJuice)</strong>: 정확도를 잃지 않으면서 컨텍스트 윈도우 사용량을 60~95% 줄이는 지능형 토큰 압축 계층</li>
+<li><strong>Model routing</strong>: Built-in support for 50+ AI models through a single account, with automatic load balancing and failover</li>
+<li><strong>118+ integrations</strong>: OAuth-based connectors for GitHub, Slack, Notion, Figma, and more — no manual API key management</li>
+<li><strong>TokenJuice</strong>: An intelligent token compression layer that reduces context window usage by 60-95% without losing accuracy</li>
 </ul>
-<p>이 프로젝트는 2026년 2월에 시작되었으며 이미 <strong>31,869 GitHub 스타</strong>와 <strong>3,089 포크</strong>를 기록했습니다. GPL-3.0 하에 출시되었고, 개인정보 중심 AI 도구에 집중하는 TinyHumans AI 팀에서 개발했습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># OpenHuman 설정 — 메모리 트리 위치</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 모든 데이터는 기본적으로 사용자의 기기에만 저장됩니다</span>
+<p>The project started in February 2026 and has already accumulated <strong>31,869 GitHub stars</strong> and <strong>3,089 forks</strong>. It&rsquo;s released under GPL-3.0 and developed by TinyHumans AI, a team focused on privacy-first AI tools.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># OpenHuman config — Memory Tree location</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># All data stays on your machine by default</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">memory: vault_path</span>: <span style="color:#ae81ff">~/.openhuman/vault</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">sync_mode</span>: <span style="color:#ae81ff">local </span> <span style="color:#75715e"># 또는 선택적 클라우드 동기화를 위해 &#34;managed&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">sync_mode</span>: <span style="color:#ae81ff">local </span> <span style="color:#75715e"># or &#34;managed&#34; for optional cloud sync</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">model_default</span>: <span style="color:#ae81ff">gpt-4o</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">model_fallback</span>: <span style="color:#ae81ff">claude-sonnet-4</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">token_compression</span>: <span style="color:#66d9ef">true</span>
-</span></span></code></pre></div><h2 id="openhuman-작동-방식">OpenHuman 작동 방식<a hidden class="anchor" aria-hidden="true" href="#openhuman-작동-방식">#</a></h2>
-<p>OpenHuman은 선택적 관리 서비스와 함께 <strong>로컬 우선 아키텍처</strong>를 따릅니다: `````
+</span></span></code></pre></div><h2 id="how-openhuman-works">How OpenHuman Works<a hidden class="anchor" aria-hidden="true" href="#how-openhuman-works">#</a></h2>
+<p>OpenHuman follows a <strong>local-first architecture</strong> with optional managed services: `````
 ┌─────────────────────────────────────────────┐
-│              OpenHuman 데스크탑 앱            │
+│              OpenHuman Desktop App            │
 ├─────────────┬──────────────┬────────────────┤
-│  메모리 트리│  모델        │  통합           │
-│  (로컬       │  라우팅      │  (OAuth를 통한  │
-│  Obsidian    │  (50+ 모델  │   118+ 개)      │
-│  보관함)     │   계층형)    │                │
+│  Memory Tree│  Model       │  Integrations  │
+│  (Local     │  Routing     │  (118+ via     │
+│  Obsidian   │  (50+ models │   OAuth)       │
+│  Vault)     │   layered)   │               │
 ├─────────────┴──────────────┴────────────────┤
-│        TokenJuice (60-95% 토큰 압축)          │
+│        TokenJuice (60-95% token compression)  │
 ├─────────────────────────────────────────────┤
-│        로컬 런타임 (Rust 기반, &lt;50MB RAM)   │
+│        Local Runtime (Rust-based, &lt;50MB RAM)  │
 └─────────────────────────────────────────────┘</p>
 <pre tabindex="0"><code>
-**메모리 트리(Memory Tree)**는 핵심 혁신입니다. 스스로 구축되는 개인 지식 그래프라고 생각하면 됩니다. 모든 대화, 파일 참조, 워크플로우 결정 사항이 로컬 금고에 Markdown 형식으로 저장됩니다. 2주 전 프로젝트에 대해 OpenHuman에게 물어보면, 채팅 기록을 검색하는 것이 아니라 이미 해당 프로젝트에 대한 구조화된 문맥을 가진 메모리 트리를 읽습니다.
+The **Memory Tree** is the core innovation. Think of it as a personal knowledge graph that builds itself. Every conversation, file reference, and workflow decision gets stored as Markdown in your local vault. When you ask OpenHuman about a project from two weeks ago, it doesn&#39;t search your chat history — it reads your Memory Tree, which already has structured context about that project.
 
-선택적인 **관리 서비스(managed services)** 레이어는 Composio 커넥터를 통해 계정 로그인, 웹 검색 프록시, OAuth 흐름을 처리합니다. 모든 것을 선택 해제하고 100% 로컬에서 실행할 수도 있지만, 관리 서비스 레이어는 서드파티 통합을 시작하는 과정을 진정으로 마찰 없이 만들어줍니다.
+The optional **managed services** layer handles account sign-in, web search proxying, and OAuth flows through Composio connectors. You can opt out of everything and run 100% locally — but the managed layer makes getting started with third-party integrations genuinely frictionless.
 
 `````bash
-# 메모리 트리 크기와 구조 확인
-# 모든 데이터는 일반 마크다운 — grep, ripgrep, Obsidian 모두 사용 가능
+# Check your Memory Tree size and structure
+# All data is plain Markdown — grep, ripgrep, Obsidian all work
 find ~/.openhuman/vault -name &#39;*.md&#39; | wc -l
-# 예시: 12개 프로젝트 디렉토리에 걸쳐 847개의 마크다운 파일
+# Example: 847 markdown files across 12 project directories
 
-# 메모리 트리 인덱스 보기
+# View Memory Tree index
 cat ~/.openhuman/vault/_index.md
-# 메모리 간 자동 생성된 교차 참조 포함
-</code></pre><h2 id="설치-및-설정">설치 및 설정<a hidden class="anchor" aria-hidden="true" href="#설치-및-설정">#</a></h2>
-<p>OpenHuman은 네이티브 패키지 관리자를 통해 배포되는 데스크톱 애플리케이션입니다 — <strong>npm, pip, Docker 필요 없음</strong>. 이 앱은 Tauri 기반이며 macOS, Linux, Windows용 공식 패키지가 제공됩니다.</p>
-<h3 id="macos-homebrew--권장">macOS (Homebrew) — 권장<a hidden class="anchor" aria-hidden="true" href="#macos-homebrew--권장">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 공식 저장소 탭하고 설치</span>
+# Contains auto-generated cross-references between memories
+</code></pre><h2 id="installation--setup">Installation &amp; Setup<a hidden class="anchor" aria-hidden="true" href="#installation--setup">#</a></h2>
+<p>OpenHuman is a desktop application distributed through native package managers — <strong>no npm, no pip, no Docker</strong>. This is a Tauri-based app with official packages for macOS, Linux, and Windows.</p>
+<h3 id="macos-homebrew--recommended">macOS (Homebrew) — Recommended<a hidden class="anchor" aria-hidden="true" href="#macos-homebrew--recommended">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tap the official repo and install</span>
 </span></span><span style="display:flex;"><span>brew tap tinyhumansai/core
 </span></span><span style="display:flex;"><span>brew install openhuman
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 설치 확인</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify installation</span>
 </span></span><span style="display:flex;"><span>openhuman --version
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 출력 예시: OpenHuman v0.12.x (빌드 날짜, Rust 백엔드)</span>
-</span></span></code></pre></div><h1 id="터미널이나-spotlight에서-실행">터미널이나 Spotlight에서 실행<a hidden class="anchor" aria-hidden="true" href="#터미널이나-spotlight에서-실행">#</a></h1>
-<p>openhuman</p>
-<pre tabindex="0"><code>
-### 리눅스 (Debian/Ubuntu) — 공식 APT 저장소
-
-`````bash
-# GPG 키 및 APT 저장소 추가
-sudo apt-get install -y --no-install-recommends gnupg2 curl ca-certificates
-curl -fsSL https://tinyhumansai.github.io/openhuman/apt/KEY.gpg \
-  | sudo gpg --dearmor -o /etc/apt/keyrings/openhuman.gpg
-echo &#34;deb [signed-by=/etc/apt/keyrings/openhuman.gpg arch=amd64] \
-  https://tinyhumansai.github.io/openhuman/apt stable main&#34; \
-  | sudo tee /etc/apt/sources.list.d/openhuman.list
-sudo apt-get update
-sudo apt-get install -y openhuman
-
-# 버전 확인
-openhuman --version
-</code></pre><h3 id="리눅스-arch-linux--aur">리눅스 (Arch Linux — AUR)<a hidden class="anchor" aria-hidden="true" href="#리눅스-arch-linux--aur">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># openhuman-bin AUR 레시피는 저장소 자체에 있음</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># AUR에 게시되면: yay -S openhuman-bin</span>
-</span></span></code></pre></div><h3 id="윈도우">윈도우<a hidden class="anchor" aria-hidden="true" href="#윈도우">#</a></h3>
-<p>MSI 설치 프로그램을 <a href="https://github.com/tinyhumansai/openhuman/releases/latest">GitHub Releases 페이지</a> 또는 <a href="https://tinyhumans.ai/openhuman">tinyhumans.ai</a>에서 다운로드하세요. 설치 프로그램에는 내장 업데이트 관리자를 통한 자동 업데이트가 포함되어 있습니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># 설치 후 PowerShell에서 확인</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: OpenHuman v0.12.x (build date, Rust backend)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Launch from terminal or Spotlight</span>
+</span></span><span style="display:flex;"><span>openhuman
+</span></span></code></pre></div><h3 id="linux-debianubuntu--official-apt-repo">Linux (Debian/Ubuntu) — Official APT Repo<a hidden class="anchor" aria-hidden="true" href="#linux-debianubuntu--official-apt-repo">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Add GPG key and APT repository</span>
+</span></span><span style="display:flex;"><span>sudo apt-get install -y --no-install-recommends gnupg2 curl ca-certificates
+</span></span><span style="display:flex;"><span>curl -fsSL https://tinyhumansai.github.io/openhuman/apt/KEY.gpg <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  | sudo gpg --dearmor -o /etc/apt/keyrings/openhuman.gpg
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;deb [signed-by=/etc/apt/keyrings/openhuman.gpg arch=amd64] \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  https://tinyhumansai.github.io/openhuman/apt stable main&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  | sudo tee /etc/apt/sources.list.d/openhuman.list
+</span></span><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>sudo apt-get install -y openhuman
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify</span>
+</span></span><span style="display:flex;"><span>openhuman --version
+</span></span></code></pre></div><h3 id="linux-arch-linux--aur">Linux (Arch Linux — AUR)<a hidden class="anchor" aria-hidden="true" href="#linux-arch-linux--aur">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># The openhuman-bin AUR recipe is in the repo itself</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Once published to AUR: yay -S openhuman-bin</span>
+</span></span></code></pre></div><h3 id="windows">Windows<a hidden class="anchor" aria-hidden="true" href="#windows">#</a></h3>
+<p>Download the MSI installer from the <a href="https://github.com/tinyhumansai/openhuman/releases/latest">GitHub Releases page</a> or from <a href="https://tinyhumans.ai/openhuman">tinyhumans.ai</a>. The installer includes automatic updates via the built-in updater.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># After installing, verify from PowerShell</span>
 </span></span><span style="display:flex;"><span>openhuman --version
 </span></span></code></pre></div><blockquote>
-<p><strong>중요</strong>: OpenHuman은 현재 <strong>초기 베타</strong> 단계입니다. 일부 미완성 기능이 있을 수 있습니다. 핵심 기능(메모리 트리, 모델 라우팅, 기본 통합)은 안정적이지만, 일부 실시간 트리거 및 호스팅 기능은 여전히 관리형 백엔드를 필요로 합니다.</p>
+<p><strong>Important</strong>: OpenHuman is currently in <strong>early beta</strong>. Expect rough edges. The core features (Memory Tree, model routing, basic integrations) are stable, but some real-time triggers and hosted features still require the managed backend.</p>
 </blockquote>
-<h2 id="주요-도구와의-통합">주요 도구와의 통합<a hidden class="anchor" aria-hidden="true" href="#주요-도구와의-통합">#</a></h2>
-<p>OpenHuman의 118개 이상의 통합 기능이 핵심 특징입니다. 각 서비스에 대해 OAuth를 수동으로 구성하는 대신, OpenHuman의 관리 레이어를 통해 한 번 로그인하면 통합 API에 접근할 수 있습니다.</p>
-<h3 id="github-통합">GitHub 통합<a hidden class="anchor" aria-hidden="true" href="#github-통합">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># GitHub 통합 구성</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># OpenHuman은 깃허브 리포지토리 구조를 매 20분마다 Memory Tree로 자동 가져옵니다</span>
+<h2 id="integration-with-mainstream-tools">Integration with Mainstream Tools<a hidden class="anchor" aria-hidden="true" href="#integration-with-mainstream-tools">#</a></h2>
+<p>OpenHuman&rsquo;s 118+ integrations are its killer feature. Instead of manually configuring OAuth for each service, you sign in once through OpenHuman&rsquo;s managed layer and get access to a unified API.</p>
+<h3 id="github-integration">GitHub Integration<a hidden class="anchor" aria-hidden="true" href="#github-integration">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Configure GitHub integration</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># OpenHuman auto-fetches repo structure into Memory Tree every 20 minutes</span>
 </span></span><span style="display:flex;"><span>openhuman configure github --repo tinyhumansai/openhuman
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 설정 후, 리포지토리 내 어떤 파일이든 OpenHuman에게 물어보세요</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># &#34;Memory Tree 인덱서는 무엇을 하나요?&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># → OpenHuman은 로컬 캐시에서 리포지토리 구조를 읽고</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#   정확한 답변을 제공합니다, 웹 검색은 필요없음</span>
-</span></span></code></pre></div><h3 id="obsidian-호환성">Obsidian 호환성<a hidden class="anchor" aria-hidden="true" href="#obsidian-호환성">#</a></h3>
-<p>Memory Tree는 표준 Markdown 볼트이므로 Obsidian과 원활하게 작동합니다: `````bash</p>
-<h1 id="obsidian에서-memory-tree-열기">Obsidian에서 Memory Tree 열기<a hidden class="anchor" aria-hidden="true" href="#obsidian에서-memory-tree-열기">#</a></h1>
-<h1 id="모든-ai-대화-기록이-이미-노트로-저장되어-있습니다">모든 AI 대화 기록이 이미 노트로 저장되어 있습니다<a hidden class="anchor" aria-hidden="true" href="#모든-ai-대화-기록이-이미-노트로-저장되어-있습니다">#</a></h1>
-<h1 id="일반-노트처럼-검색-링크-정리할-수-있습니다">일반 노트처럼 검색, 링크, 정리할 수 있습니다<a hidden class="anchor" aria-hidden="true" href="#일반-노트처럼-검색-링크-정리할-수-있습니다">#</a></h1>
-<h1 id="금고-구조-확인">금고 구조 확인<a hidden class="anchor" aria-hidden="true" href="#금고-구조-확인">#</a></h1>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># After setup, ask OpenHuman about any file in the repo</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># &#34;What does the Memory Tree indexer do?&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># → OpenHuman reads the repo structure from its local cache</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   and gives you a precise answer, no web search needed</span>
+</span></span></code></pre></div><h3 id="obsidian-compatibility">Obsidian Compatibility<a hidden class="anchor" aria-hidden="true" href="#obsidian-compatibility">#</a></h3>
+<p>Since the Memory Tree is a standard Markdown vault, it works seamlessly with Obsidian: `````bash</p>
+<h1 id="open-your-memory-tree-in-obsidian">Open your Memory Tree in Obsidian<a hidden class="anchor" aria-hidden="true" href="#open-your-memory-tree-in-obsidian">#</a></h1>
+<h1 id="all-your-ai-conversation-history-is-already-there-as-notes">All your AI conversation history is already there as notes<a hidden class="anchor" aria-hidden="true" href="#all-your-ai-conversation-history-is-already-there-as-notes">#</a></h1>
+<h1 id="you-can-search-link-and-organize-just-like-regular-notes">You can search, link, and organize just like regular notes<a hidden class="anchor" aria-hidden="true" href="#you-can-search-link-and-organize-just-like-regular-notes">#</a></h1>
+<h1 id="verify-vault-structure">Verify vault structure<a hidden class="anchor" aria-hidden="true" href="#verify-vault-structure">#</a></h1>
 <p>tree ~/.openhuman/vault &ndash;dirsfirst</p>
-<h1 id="출력--openhumanvault">출력: # .openhuman/vault/<a hidden class="anchor" aria-hidden="true" href="#출력--openhumanvault">#</a></h1>
+<h1 id="output--openhumanvault">Output: # .openhuman/vault/<a hidden class="anchor" aria-hidden="true" href="#output--openhumanvault">#</a></h1>
 <h1 id="-_indexmd">├── _index.md<a hidden class="anchor" aria-hidden="true" href="#-_indexmd">#</a></h1>
 <h1 id="-projects">├── projects/<a hidden class="anchor" aria-hidden="true" href="#-projects">#</a></h1>
 <h1 id="----project-alpha">│   ├── project-alpha/<a hidden class="anchor" aria-hidden="true" href="#----project-alpha">#</a></h1>
@@ -423,268 +417,209 @@ openhuman --version
 <h1 id="-coding-patternsmd">├── coding-patterns.md<a hidden class="anchor" aria-hidden="true" href="#-coding-patternsmd">#</a></h1>
 <h1 id="-design-decisionsmd">└── design-decisions.md<a hidden class="anchor" aria-hidden="true" href="#-design-decisionsmd">#</a></h1>
 <pre tabindex="0"><code>
-### Composio 커넥터 레이어
+### Composio Connector Layer
 
-Composio는 OAuth 기반의 통합 프레임워크를 제공합니다: `````bash
-# 사용 가능한 Composio 커넥터 목록
+Composio provides the OAuth-based integration framework: `````bash
+# List available Composio connectors
 openhuman integrations list
 
-# 새 커넥터 활성화
+# Enable a new connector
 openhuman integrations enable notion --scope write
 
-# 활성 커넥터 확인
+# Check active connectors
 openhuman integrations status
-# 출력: 23/118개의 커넥터 활성화됨
+# Output: 23/118 connectors active
 #   GitHub ✓ | Slack ✓ | Notion ✓ | Figma ✗ | Jira ✗
-</code></pre><h3 id="여러-제공자와-함께하는-모델-라우팅">여러 제공자와 함께하는 모델 라우팅<a hidden class="anchor" aria-hidden="true" href="#여러-제공자와-함께하는-모델-라우팅">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 선호하는 모델 순서 구성</span>
+</code></pre><h3 id="model-routing-with-multiple-providers">Model Routing with Multiple Providers<a hidden class="anchor" aria-hidden="true" href="#model-routing-with-multiple-providers">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Configure preferred model order</span>
 </span></span><span style="display:flex;"><span>openhuman config models <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --primary gpt-4o <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --fallback claude-sonnet-4 <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --economy claude-haiku <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --local ollama/llama3.2
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># TokenJuice 압축 비율 예시</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 압축 없이: 8,420 토큰</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># TokenJuice 사용: 1,890 토큰 (77.5% 감소)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 정확도 영향: 벤치마크 테스트에서 &lt;2%</span>
-</span></span></code></pre></div><h2 id="벤치마크-및-실제-성능">벤치마크 및 실제 성능<a hidden class="anchor" aria-hidden="true" href="#벤치마크-및-실제-성능">#</a></h2>
-<h3 id="메모리-트리-효과">메모리 트리 효과<a hidden class="anchor" aria-hidden="true" href="#메모리-트리-효과">#</a></h3>
-<p>테스트에서 OpenHuman의 메모리 트리는 시간이 지남에 따라 맥락 정확도가 측정 가능하게 향상되는 것을 보여주었습니다: | 지표 | 1주차 | 4주차 | 8주차 |
-|&mdash;&mdash;&ndash;|&mdash;&mdash;&ndash;|&mdash;&mdash;&ndash;|&mdash;&mdash;&ndash;|
-| 메모리 파일 | 45 | 312 | 680 |
-| 평균 응답 정확도 (자가 보고) | 62% | 81% | 93% |
-| 교차 참조 적중 (자동 연결된 메모리) | 0 | 하루 23회 | 하루 67회 |
-| 토큰 압축 절감 | — | 58% | 72% |</p>
-<p><strong>출처</strong>: 50명의 베타 테스터가 60일 동안 자가 보고한 데이터. 자가 보고 정확도는 각 체크포인트에서 동일한 10개의 기술 질문을 묻고 답변 일관성을 비교하여 측정함.</p>
-<h3 id="tokenjuice-토큰-압축">TokenJuice 토큰 압축<a hidden class="anchor" aria-hidden="true" href="#tokenjuice-토큰-압축">#</a></h3>
-<p>TokenJuice는 3가지 모델 계열에서 정확도 손실 &lt;2%로 60~95%의 토큰 감소를 달성함: `````</p>
-<table>
-	<thead>
-			<tr>
-					<th>모델</th>
-					<th>기준치 (토큰)</th>
-					<th>압축 후 (토큰)</th>
-					<th>절감률</th>
-					<th>정확도 Δ</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>gpt-4o</td>
-					<td>12,400</td>
-					<td>2,100</td>
-					<td>83.1%</td>
-					<td>-1.2%</td>
-			</tr>
-			<tr>
-					<td>claude-sonnet-4</td>
-					<td>9,800</td>
-					<td>1,950</td>
-					<td>80.1%</td>
-					<td>-0.8%</td>
-			</tr>
-			<tr>
-					<td>llama-3.2 (로컬)</td>
-					<td>6,200</td>
-					<td>1,400</td>
-					<td>77.4%</td>
-					<td>-1.5%</td>
-			</tr>
-	</tbody>
-</table>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># TokenJuice compression ratio example</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Without compression: 8,420 tokens</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># With TokenJuice: 1,890 tokens (77.5% reduction)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Accuracy impact: &lt;2% on benchmark tests</span>
+</span></span></code></pre></div><h2 id="benchmarks--real-world-performance">Benchmarks &amp; Real-World Performance<a hidden class="anchor" aria-hidden="true" href="#benchmarks--real-world-performance">#</a></h2>
+<h3 id="memory-tree-effectiveness">Memory Tree Effectiveness<a hidden class="anchor" aria-hidden="true" href="#memory-tree-effectiveness">#</a></h3>
+<p>In our testing, OpenHuman&rsquo;s Memory Tree showed measurable improvement in contextual accuracy over time: | Metric | Week 1 | Week 4 | Week 8 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Memory files | 45 | 312 | 680 |
+| Avg. response accuracy (self-reported) | 62% | 81% | 93% |
+| Cross-reference hits (auto-linked memories) | 0 | 23/day | 67/day |
+| Token compression savings | — | 58% | 72% |</p>
+<p><strong>Source</strong>: Self-reported data from 50 beta testers over 60 days. Self-reported accuracy was measured by asking the same 10 technical questions at each checkpoint and comparing answer consistency.</p>
+<h3 id="tokenjuice-token-compression">TokenJuice Token Compression<a hidden class="anchor" aria-hidden="true" href="#tokenjuice-token-compression">#</a></h3>
+<p>TokenJuice achieves 60-95% token reduction with &lt;2% accuracy loss across 3 model families: `````
+Model              | Baseline (toks) | Compressed (toks) | Savings | Accuracy Δ</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|&mdash;
+gpt-4o             | 12,400         | 2,100             | 83.1%   | -1.2%
+claude-sonnet-4    | 9,800          | 1,950             | 80.1%   | -0.8%
+llama-3.2 (local)  | 6,200          | 1,400             | 77.4%   | -1.5%</p>
 <pre tabindex="0"><code>
-**출처**: 내부 벤치마크, 2026년 5월. 코드, 창작 글쓰기, 사실 기반 Q&amp;A를 포함한 1,000개의 다양한 프롬프트에서 테스트됨.
+**Source**: Internal benchmarks, May 2026. Tested on 1,000 diverse prompts across code, creative writing, and factual QA.
 
-### 경쟁사와의 성능 비교
+### Performance Comparison with Competitors
 
-| 지표 | 오픈휴먼(OpenHuman) | 클로드 카우워크(Claude Cowork) | 오픈클로우(OpenClaw) | 헤르메스 에이전트(Hermes Agent) |
-|------|------------------|-----------------|----------------|----------------|
-| 시작 시간 | 2.1초 | 0.8초 | 1.5초 | 1.2초 |
-| RAM 사용량 (대기 시) | 48MB | 35MB | 52MB | 41MB |
-| RAM 사용량 (활성 시) | 180MB | 120MB | 210MB | 165MB |
-| 메모리 지속성 | ✅ 전체 | ✅ 채팅만 | ⚠️ 플러그인 | ✅ 자기 학습 |
-| 토큰 압축 | ✅ 60-95% | ❌ | ❌ | ❌ |
+| Metric | OpenHuman | Claude Cowork | OpenClaw | Hermes Agent |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Startup time | 2.1s | 0.8s | 1.5s | 1.2s |
+| RAM usage (idle) | 48MB | 35MB | 52MB | 41MB |
+| RAM usage (active) | 180MB | 120MB | 210MB | 165MB |
+| Memory persistence | ✅ Full | ✅ Chat only | ⚠️ Plugin | ✅ Self-learning |
+| Token compression | ✅ 60-95% | ❌ | ❌ | ❌ |
 
-## 고급 사용 / 생산 환경 강화
+## Advanced Usage / Production Hardening
 
-### 100% 로컬 실행 (관리형 서비스 없음)
+### Running 100% Local (No Managed Services)
 
-클라우드 의존성을 완전히 제거하려면: `````bash
-# 완전 로컬 모드로 전환
+If you want zero cloud dependency: `````bash
+# Switch to fully local mode
 openhuman config sync --mode local
-openhuman config managed --disable`````
+openhuman config managed --disable
 
-# 클라우드 연결 여부 확인
+# Verify no cloud connectivity
 openhuman status
-# 메모리 트리: 로컬 ✓
-# 모델 라우팅: 로컬 전용 ✓
-# 통합: 연결 끊김 ✓
-# 클라우드 서비스: 비활성화 ✓
-</code></pre><h3 id="커스텀-모델-구성">커스텀 모델 구성<a hidden class="anchor" aria-hidden="true" href="#커스텀-모델-구성">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># OpenAI 호환 엔드포인트 추가</span>
+# Memory Tree: local ✓
+# Model routing: local only ✓
+# Integrations: disconnected ✓
+# Cloud services: disabled ✓
+</code></pre><h3 id="custom-model-configuration">Custom Model Configuration<a hidden class="anchor" aria-hidden="true" href="#custom-model-configuration">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Add a custom OpenAI-compatible endpoint</span>
 </span></span><span style="display:flex;"><span>openhuman config models add <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --name custom-model <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --endpoint https://your-local-lm-api:8080/v1 <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --api-key YOUR_KEY <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --priority <span style="color:#ae81ff">5</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 민감한 작업을 위해 로컬 LLM을 기본으로 사용</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use local LLM as primary for sensitive tasks</span>
 </span></span><span style="display:flex;"><span>openhuman config models set-primary <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --for sensitive-tasks <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --model ollama/llama3.2
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 로컬 모델용 TokenJuice 조정</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># TokenJuice tuning for local models</span>
 </span></span><span style="display:flex;"><span>openhuman config tokenjuice <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --aggressive false <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  --preservation-rate 0.15  <span style="color:#75715e"># 토큰의 15% 유지</span>
-</span></span></code></pre></div><h3 id="obsidian-vault-자동화">Obsidian Vault 자동화<a hidden class="anchor" aria-hidden="true" href="#obsidian-vault-자동화">#</a></h3>
-<p>메모리 트리가 표준 Markdown 저장소이므로, 고급 워크플로를 위해 Obsidian 플러그인을 사용할 수 있습니다: `````bash</p>
-<h1 id="obsidian과-메모리-트리를-매일-동기화">Obsidian과 메모리 트리를 매일 동기화<a hidden class="anchor" aria-hidden="true" href="#obsidian과-메모리-트리를-매일-동기화">#</a></h1>
-<p>crontab -e  # 다음 줄을 추가: 0 */4 * * * rsync -az ~/.openhuman/vault/ /path/to/obsidian-vault/.openhuman/</p>
-<h1 id="메모리-트리-쿼리를-위해-obsidian-dataview-사용">메모리 트리 쿼리를 위해 Obsidian dataview 사용<a hidden class="anchor" aria-hidden="true" href="#메모리-트리-쿼리를-위해-obsidian-dataview-사용">#</a></h1>
-<h1 id="obsidian-dataview-플러그인에서--table-filemdate-filetags-from-projects">Obsidian Dataview 플러그인에서: # TABLE file.mdate, file.tags FROM &ldquo;projects/&rdquo;<a hidden class="anchor" aria-hidden="true" href="#obsidian-dataview-플러그인에서--table-filemdate-filetags-from-projects">#</a></h1>
+</span></span></span><span style="display:flex;"><span>  --preservation-rate 0.15  <span style="color:#75715e"># Keep 15% of tokens intact</span>
+</span></span></code></pre></div><h3 id="obsidian-vault-automation">Obsidian Vault Automation<a hidden class="anchor" aria-hidden="true" href="#obsidian-vault-automation">#</a></h3>
+<p>Since Memory Tree is a standard Markdown vault, you can use Obsidian plugins for advanced workflows: `````bash</p>
+<h1 id="sync-memory-tree-with-obsidian-daily">Sync Memory Tree with Obsidian daily<a hidden class="anchor" aria-hidden="true" href="#sync-memory-tree-with-obsidian-daily">#</a></h1>
+<p>crontab -e  # Add this line: 0 */4 * * * rsync -az ~/.openhuman/vault/ /path/to/obsidian-vault/.openhuman/</p>
+<h1 id="use-obsidian-dataview-for-memory-tree-queries">Use Obsidian dataview for Memory Tree queries<a hidden class="anchor" aria-hidden="true" href="#use-obsidian-dataview-for-memory-tree-queries">#</a></h1>
+<h1 id="in-obsidian-dataview-plugin--table-filemdate-filetags-from-projects">In Obsidian Dataview plugin: # TABLE file.mdate, file.tags FROM &ldquo;projects/&rdquo;<a hidden class="anchor" aria-hidden="true" href="#in-obsidian-dataview-plugin--table-filemdate-filetags-from-projects">#</a></h1>
 <h1 id="sort-filemdate-desc">SORT file.mdate DESC<a hidden class="anchor" aria-hidden="true" href="#sort-filemdate-desc">#</a></h1>
 <pre tabindex="0"><code>
-### Composio 커넥터와 CI/CD 통합
+### CI/CD Integration with Composio Connectors
 
-OpenHuman을 개발 워크플로우에 사용하는 팀을 위해: `````bash
-# 자동화된 테스트 러너 통합
+For teams using OpenHuman for development workflows: `````bash
+# Automated test runner integration
 openhuman integrations enable github --scope repo,workflow
 
-# 대화 내에서 CI 트리거
-# &#34;project-alpha에 대한 테스트 스위트 실행&#34;
-# → OpenHuman이 GitHub Actions 워크플로우를 트리거함
+# Trigger CI from within conversations
+# &#34;Run the test suite for project-alpha&#34;
+# → OpenHuman triggers GitHub Actions workflow
 
-# 메모리 트리의 파이프라인 상태
+# Pipeline status in Memory Tree
 openhuman ci status project-alpha --last 5
-# 출력: #   Build #142: ✅ 2분 13초 | 847개 테스트 통과
-#   Build #141: ❌ 0분 31초 | 인증 모듈에서 3개 실패
-#   Build #140: ✅ 1분 58초 | 847개 테스트 통과
-</code></pre><h2 id="대안과의-비교">대안과의 비교<a hidden class="anchor" aria-hidden="true" href="#대안과의-비교">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>기능</th>
-					<th>OpenHuman</th>
-					<th>Claude Cowork</th>
-					<th>OpenClaw</th>
-					<th>Hermes Agent</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><strong>오픈소스</strong></td>
-					<td>✅ GPL-3.0</td>
-					<td>🚫 독점</td>
-					<td>✅ MIT</td>
-					<td>✅ MIT</td>
-			</tr>
-			<tr>
-					<td><strong>데스크탑 앱</strong></td>
-					<td>✅ 네이티브</td>
-					<td>✅</td>
-					<td>❌ CLI 전용</td>
-					<td>❌ CLI 전용</td>
-			</tr>
-			<tr>
-					<td><strong>메모리 트리</strong></td>
-					<td>✅ 내장</td>
-					<td>❌</td>
-					<td>⚠️ 플러그인</td>
-					<td>✅</td>
-			</tr>
-			<tr>
-					<td><strong>통합 기능</strong></td>
-					<td>118+ (OAuth)</td>
-					<td>~10</td>
-					<td>~5</td>
-					<td>~3</td>
-			</tr>
-			<tr>
-					<td><strong>토큰 압축</strong></td>
-					<td>✅ 60-95%</td>
-					<td>❌</td>
-					<td>❌</td>
-					<td>❌</td>
-			</tr>
-			<tr>
-					<td><strong>설치 복잡도</strong></td>
-					<td>2 명령어</td>
-					<td>1 명령어</td>
-					<td>10단계 이상</td>
-					<td>10단계 이상</td>
-			</tr>
-			<tr>
-					<td><strong>월 비용</strong></td>
-					<td>$10 구독</td>
-					<td>$20+</td>
-					<td>무료 (BYO)</td>
-					<td>무료 (BYO)</td>
-			</tr>
-			<tr>
-					<td><strong>모델 옵션</strong></td>
-					<td>50+</td>
-					<td>1</td>
-					<td>50+</td>
-					<td>50+</td>
-			</tr>
-			<tr>
-					<td><strong>개인정보 우선</strong></td>
-					<td>✅ 로컬</td>
-					<td>❌ 클라우드</td>
-					<td>✅ 로컬</td>
-					<td>✅ 로컬</td>
-			</tr>
-	</tbody>
-</table>
-<h2 id="한계--솔직한-평가">한계 / 솔직한 평가<a hidden class="anchor" aria-hidden="true" href="#한계--솔직한-평가">#</a></h2>
-<p>OpenHuman은 인상적이지만, 여전히 <strong>초기 베타</strong> 단계에 있습니다(저자들이 직접 언급한 바 있음). 주의할 점은 다음과 같습니다: 1. <strong>Memory Tree는 새로운 기능</strong> — Obsidian 호환 금고는 혁신적이지만 대규모 환경에서는 테스트되지 않았습니다. Memory Tree가 10,000개 이상의 파일로 성장하면 성능이 저하될 수 있습니다. 아키텍처 자체는 견고해 보이지만 장기 데이터는 없습니다.</p>
+# Output: #   Build #142: ✅ 2m13s | 847 tests pass
+#   Build #141: ❌ 0m31s | 3 failures in auth-module
+#   Build #140: ✅ 1m58s | 847 tests pass
+</code></pre><h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
+<p>| Feature | OpenHuman | Claude Cowork | OpenClaw | Hermes Agent |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Open-source</strong> | ✅ GPL-3.0 | 🚫 Proprietary | ✅ MIT | ✅ MIT |
+| <strong>Desktop app</strong> | ✅ Native | ✅ | ❌ CLI-only | ❌ CLI-only |
+| <strong>Memory Tree</strong> | ✅ Built-in | ❌ | ⚠️ Plugin | ✅ |
+| <strong>Integrations</strong> | 118+ (OAuth) | ~10 | ~5 | ~3 |
+| <strong>Token compression</strong> | ✅ 60-95% | ❌ | ❌ | ❌ |
+| <strong>Install complexity</strong> | 2 commands | 1 command | 10+ steps | 10+ steps |
+| <strong>Monthly cost</strong> | $10 sub | $20+ | Free (BYO) | Free (BYO) |
+| <strong>Model options</strong> | 50+ | 1 | 50+ | 50+ |
+| <strong>Privacy-first</strong> | ✅ Local | ❌ Cloud | ✅ Local | ✅ Local |</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations--honest-assessment">#</a></h2>
+<p>OpenHuman is impressive, but it&rsquo;s still in <strong>early beta</strong> (as stated by the authors themselves). Here&rsquo;s what to watch out for: 1. <strong>Memory Tree is new</strong> — The Obsidian-compatible vault is innovative but untested at scale. If your Memory Tree grows to 10,000+ files, performance may degrade. The architecture seems sound, but nobody has long-term data on this.</p>
 <ol start="2">
 <li>
-<p><strong>관리형 서비스 의존성</strong> — 100% 로컬에서 실행할 수는 있지만 일부 실시간 트리거와 호스팅 기능(웹 검색 프록시, Composio OAuth 흐름)은 관리형 백엔드를 필요로 합니다. 이는 큰 문제는 아니지만, &lsquo;프라이버시 우선&rsquo;이라는 접근이 별표와 함께 제공된다는 의미입니다.</p>
+<p><strong>Managed services dependency</strong> — While you can run 100% locally, some real-time triggers and hosted features (web search proxying, Composio OAuth flows) require the managed backend. This isn&rsquo;t a dealbreaker, but it means &ldquo;privacy-first&rdquo; comes with a asterisk.</p>
 </li>
 <li>
-<p><strong>베타 단계의 미완성 부분</strong> — 2026년 6월 기준 GitHub에 146개의 열린 이슈가 있습니다. 모두 중요한 것은 아니지만, 일부 마찰이 있을 수 있습니다. 핵심 기능은 작동하지만, 통합 및 모델 라우팅과 관련된 예외적인 상황에서는 예측 불가능할 수 있습니다.</p>
+<p><strong>Beta-stage rough edges</strong> — 146 open issues on GitHub as of June 2026. Not all are critical, but expect some friction. The core features work, but edge cases around integrations and model routing can be unpredictable.</p>
 </li>
 <li>
-<p><strong>GPL-3.0 라이선스</strong> — OpenClaw와 Hermes Agent(둘 다 MIT)와 달리, OpenHuman은 GPL-3.0을 사용합니다. 개인 사용에는 문제가 없지만, 독점 제품 내 상업적 임베딩에는 제한이 있습니다.</p>
+<p><strong>GPL-3.0 licensing</strong> — Unlike OpenClaw and Hermes Agent (both MIT), OpenHuman uses GPL-3.0. This is fine for personal use, but it restricts commercial embedding in proprietary products.</p>
 </li>
 <li>
-<p><strong>작은 팀</strong> — TinyHumans AI는 작은 팀입니다. 프로젝트는 추진력을 가지고 있으나, 지속성은 계속되는 자금 지원과 커뮤니티 지원에 달려 있습니다. 스타 수(31K+)는 훌륭하지만, 기여자 수(~50)는 비슷한 스타 수를 가진 프로젝트에 비해 적은 편입니다.</p>
+<p><strong>Small team</strong> — TinyHumans AI is a small team. The project has momentum, but longevity depends on continued funding and community support. Star count (31K+) is excellent, but the contributor count (~50) is modest compared to projects with similar stars.</p>
 </li>
 </ol>
-<h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
-<p><strong>Q: OpenHuman은 ChatGPT Desktop이나 Claude Desktop과 어떻게 다른가요?</strong>
-OpenHuman은 오픈 소스이며, 영구적인 메모리 시스템(Memory Tree)을 포함하여 모든 데이터를 로컬에 저장합니다. 이 시스템은 시간에 따라 사용자의 프로젝트에 대해 학습합니다. 반면, ChatGPT Desktop과 Claude Desktop은 독점 소프트웨어이며 클라우드에 의존하고, 프로젝트 컨텍스트에 대한 세션 간 메모리를 지원하지 않습니다.</p>
-<p><strong>Q: 구독 없이 OpenHuman을 사용할 수 있나요?</strong>
-소프트웨어 자체는 무료(GPL-3.0)이지만, 일부 관리형 서비스(모델 라우팅, OAuth 커넥터, 웹 검색)는 구독(~월 $10)이 필요합니다. 모든 관리형 서비스를 비활성화하고 자체 API 키를 사용하여 로컬에서 완전히 사용할 수 있지만, 118개 이상의 통합 및 내장 모델 라우팅의 편리함은 사용할 수 없습니다.</p>
-<p><strong>Q: 메모리 트리는 다른 도구와 호환되나요?</strong>
-네. 메모리 트리는 표준 Markdown 금고입니다 — Obsidian에서 사용하는 것과 동일한 형식입니다. Obsidian에서 직접 열 수 있으며, 모든 Markdown 뷰어로 읽을 수 있고, ripgrep 같은 표준 도구를 사용해 검색할 수도 있습니다. 독점 형식이나 데이터베이스는 없습니다.</p>
-<p><strong>Q: TokenJuice는 LangChain의 컨텍스트 압축과 어떻게 다른가요?</strong>
-TokenJuice는 토큰이 모델에 도달하기 전에 프롬프트 수준에서 작동하여 60-95% 감소를 달성합니다. LangChain의 컨텍스트 압축은 검색(RAG) 후에 발생하며, 일반적으로 20-40% 감소를 달성합니다. 이들은 상호 보완적입니다 — OpenHuman은 이론적으로 LangChain 검색을 사용할 수 있지만, TokenJuice가 기본 내장 옵션입니다.</p>
-<p><strong>Q: OpenHuman과 LangGraph 또는 AutoGen과 같은 다른 AI 에이전트 프레임워크의 차이점은 무엇인가요?</strong>
-OpenHuman은 <strong>사용자용 데스크톱 애플리케이션</strong>입니다 — 사용자가 직접 사용하는 것이지, 개발자가 이를 활용해 만드는 것이 아닙니다. LangGraph와 AutoGen은 다중 에이전트 시스템을 구축하기 위한 개발자용 프레임워크입니다. 이론적으로 OpenHuman은 이들과 통합될 수 있지만, 대상 사용자가 다릅니다.</p>
-<h2 id="결론">결론<a hidden class="anchor" aria-hidden="true" href="#결론">#</a></h2>
-<p>OpenHuman은 2026년에 로컬 AI 비서에게 일어난 최고의 사건이며, 이는 과장이 아닙니다. Memory Tree 개념 — 지속적이고, Obsidian과 호환되며, 스스로 구축되는 컨텍스트 — 는 AI 비서를 사용할 때 가장 큰 문제점인 초기 설정 문제(cold start problem)를 해결합니다.</p>
-<p>다른 어떤 도구도 로컬 우선 프라이버시, 118개 이상의 통합, 그리고 세션 간 실제로 지속되는 메모리 시스템을 결합하지 않습니다. 한 달 만에 29,805개의 스타를 받은 이 도구는 기능을 희생하지 않고 사용자 프라이버시를 존중하는 AI 도구에 대한 엄청난 수요가 있음을 입증했습니다.</p>
-<p>재시작할 때 모든 것을 잊어버리는 AI 어시스턴트에 지치셨다면, OpenHuman이 그 해답입니다.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<p><strong>Q: How does OpenHuman differ from ChatGPT Desktop or Claude Desktop?</strong>
+OpenHuman is open-source and stores everything locally, including a persistent memory system (Memory Tree) that learns about your projects over time. ChatGPT Desktop and Claude Desktop are proprietary, cloud-dependent, and have no cross-session memory of your project context.</p>
+<p><strong>Q: Can I use OpenHuman without paying for a subscription?</strong>
+The software itself is free (GPL-3.0), but some managed services (model routing, OAuth connectors, web search) require a subscription (~$10/month). You can disable all managed services and use it fully locally with your own API keys, but you lose the convenience of 118+ integrations and built-in model routing.</p>
+<p><strong>Q: Is the Memory Tree compatible with other tools?</strong>
+Yes. The Memory Tree is a standard Markdown vault — the same format used by Obsidian. You can open it directly in Obsidian, read it with any Markdown viewer, or use standard tools like ripgrep to search it. There&rsquo;s no proprietary format or database.</p>
+<p><strong>Q: How does TokenJuice compare to LangChain&rsquo;s context compression?</strong>
+TokenJuice operates at the prompt level, before tokens reach the model, achieving 60-95% reduction. LangChain&rsquo;s context compression happens after retrieval (RAG), typically achieving 20-40% reduction. They&rsquo;re complementary — OpenHuman could theoretically use LangChain retrieval, but TokenJuice is the built-in default.</p>
+<p><strong>Q: What&rsquo;s the difference between OpenHuman and other AI agent frameworks like LangGraph or AutoGen?</strong>
+OpenHuman is a <strong>user-facing desktop application</strong> — it&rsquo;s what you use, not what you build with. LangGraph and AutoGen are developer frameworks for building multi-agent systems. OpenHuman could theoretically integrate with them, but they serve different audiences.</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>OpenHuman is the best thing to happen to local AI assistants in 2026, and that&rsquo;s not an exaggeration. The Memory Tree concept — persistent, Obsidian-compatible, self-building context — solves the single biggest pain point in AI assistant usage: the cold start problem.</p>
+<p>No other tool combines local-first privacy, 118+ integrations, and a memory system that actually persists across sessions. In 29,805 stars in one month, it has proven that there is a massive appetite for AI tools that respect user privacy without sacrificing functionality.</p>
+<p>If you&quot;re tired of AI assistants that forget everything when you restart, OpenHuman is the answer.</p>
 <hr>
-<p><strong>출처 및 추가 읽을거리</strong>: - 공식 문서: <a href="https://tinyhumans.gitbook.io/openhuman/">https://tinyhumans.gitbook.io/openhuman/</a></p>
+<p><strong>Sources &amp; Further Reading</strong>: - Official docs: <a href="https://tinyhumans.gitbook.io/openhuman/">https://tinyhumans.gitbook.io/openhuman/</a></p>
 <ul>
-<li>GitHub 저장소: <a href="https://github.com/tinyhumansai/openhuman">https://github.com/tinyhumansai/openhuman</a></li>
-<li>Discord 커뮤니티: <a href="https://discord.tinyhumans.ai/">https://discord.tinyhumans.ai/</a></li>
+<li>GitHub repository: <a href="https://github.com/tinyhumansai/openhuman">https://github.com/tinyhumansai/openhuman</a></li>
+<li>Discord community: <a href="https://discord.tinyhumans.ai/">https://discord.tinyhumans.ai/</a></li>
 <li>Product Hunt: <a href="https://www.producthunt.com/products/openhuman">https://www.producthunt.com/products/openhuman</a></li>
 </ul>
 <hr>
-<p><strong>OpenHuman 시도해보기</strong>: ````brew tap tinyhumansai/core &amp;&amp; brew install openhuman``` 명령어로 설치하거나 <a href="https://tinyhumans.ai/openhuman?utm_source=github&amp;utm_medium=readme">tinyhumans.ai/openhuman</a>을 방문하세요.</p>
-<p>커뮤니티 참여하기: <a href="https://t.me/DIBI8_Group">Telegram</a> · <a href="https://discord.tinyhumans.ai/">Discord</a></p>
-<p>내부 링크: <a href="https://dibi8.com/hermes-agent-self-improving-ai-agent">hermes-agent-self-improving-ai-agent</a> · <a href="https://dibi8.com/claude-code-skill-authoring-guide-2026">claude-code-skill-authoring-guide-2026</a></p>
-<p><strong>공지</strong>: 이 글에서는 제휴 관계가 있을 수 있는 도구를 언급합니다. 우리는 긍정적인 리뷰에 대해 금전을 받지 않습니다. 모든 벤치마크는 직접 수행했거나 공식 문서에서 가져왔습니다.</p>
+<p><strong>Try OpenHuman</strong>: Install via ````brew tap tinyhumansai/core &amp;&amp; brew install openhuman``` or visit <a href="https://tinyhumans.ai/openhuman?utm_source=github&amp;utm_medium=readme">tinyhumans.ai/openhuman</a>.</p>
+<p>Join the community: <a href="https://t.me/DIBI8_Group">Telegram</a> · <a href="https://discord.tinyhumans.ai/">Discord</a></p>
+<p>Internal links: <a href="https://dibi8.com/hermes-agent-self-improving-ai-agent">hermes-agent-self-improving-ai-agent</a> · <a href="https://dibi8.com/claude-code-skill-authoring-guide-2026">claude-code-skill-authoring-guide-2026</a></p>
+<p><strong>Disclosure</strong>: This article mentions tools that may have affiliate relationships. We do not accept payment for positive reviews. All benchmarks are self-conducted or sourced from official documentation.</p>
 <p>{
 &ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;OpenHuman이란 무엇인가?&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;What Is OpenHuman?&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-06-13&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-06-13&rdquo;,
 &ldquo;author&rdquo;: {
@@ -701,7 +636,7 @@ OpenHuman은 <strong>사용자용 데스크톱 애플리케이션</strong>입니
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/openhuman%22">https://dibi8.com/kr/resources/openhuman"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/openhuman%22">https://dibi8.com/resources/openhuman"</a>
 }
 }
 </script></p>
@@ -758,6 +693,81 @@ OpenHuman은 <strong>사용자용 데스크톱 애플리케이션</strong>입니
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

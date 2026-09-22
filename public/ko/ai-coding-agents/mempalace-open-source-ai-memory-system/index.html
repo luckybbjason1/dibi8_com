@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "MemPalace: 최고의 벤치마크를 갖춘 오픈소스 AI 메모리 시스템, LongMemEval에서 R@5 96.6% 절약 — API 호출 제로 요약 MemPalace는 대화 기록을 원문 그대로 저장하고 의미 기반 검색으로 검색하는 로컬 우선 AI 메모리 시스템입니다. LongMemEval에서 96.6%의 원시 R@5를 달성했습니다 — 모든 오픈소스 메모리 시스템 중 최고의 벤치마크 점수이며, API 호출 제로입니다. 외부 서비스에 데이터를 보내지 않고도 AI 에이전트가 모든 것을 기억하기를 원하는 개발자를 위해 만들어졌습니다.\n|| 지표 | MemPalace | Mem0 | Memory Bank | |——–|———–|——|————-| || 벤치마크 | 96.6% 원시 R@5 | 78.2% R@5 | 71.4% R@5 | || API 호출 | 0 | 세션당 1-3회 | 세션당 5-8회 | || 저장 방식 | 로컬 우선 | 클라우드 의존 | 하이브리드 | || 설치 | ```uv tool install mempalace|pip install mem0```` | Docker 전용 |\n그것이 무엇인가 MemPalace는 하나의 문제를 해결합니다: AI 에이전트는 당신이 지난주에 말한 것을 잊어버립니다.\n대화 기록을 원문 그대로 저장합니다 — 요약하지 않고, 추출하지 않고, 의역하지도 않습니다. 인덱스는 구조화되어 있습니다: 사람과 프로젝트는 *날개(wings)*가 되고, 주제는 *방(rooms)*이 되며, 원본 내용은 *서랍(drawers)*에 저장됩니다 — 따라서 검색을 범위로 제한할 수 있고, 평평한 코퍼스 전체에서 실행되지 않습니다.\n검색 계층은 플러그인 가능합니다. 현재 기본값은 ChromaDB이며, 시스템의 나머지 부분을 건드리지 않고도 대체 백엔드를 넣을 수 있습니다. 당신이 옵인하지 않는 한, 당신의 기계를 벗어나는 것은 없습니다.\n주요 기능:\n대화 기록의 원문 그대로 저장 구조화된 인덱싱(날개/방/서랍)과 함께 의미 기반 검색 플러그인 가능 백엔드(기본 ChromaDB, 커스텀 백엔드 지원) LongMemEval 벤치마크에서 96.6% 원시 R@5 외부 API 호출 제로 Claude Code, Cursor, Windsurf 및 모든 MCP 호환 에이전트와 통합 동작 방식 (30초) 당신의 대화 → MemPalace 인덱스 (로컬) ↓ 의미 기반 검색 쿼리 ↓ 검색된 컨텍스트 (날개/방/서랍) ↓ 에이전트가 구조화된 메모리를 받음 MemPalace는 세 가지 계층으로 작동합니다: 계층 1 — 저장: 모든 대화는 원문 그대로 저장됩니다. AI 처리 없음, 요약 없음. 원본 텍스트는 작성된 그대로 정확하게 보존됩니다.\n계층 2 — 인덱싱: 대화는 지식 그래프로 구조화됩니다. 사람과 프로젝트는 날개가 되고, 주제는 방이 되며, 원본 내용은 서랍에 저장됩니다. 이 구조화된 인덱스는 평평한 코퍼스 검색이 아닌 범위 검색을 가능하게 합니다.\n계층 3 — 검색: 에이전트가 컨텍스트가 필요할 때 플러그인 가능 검색 계층(기본: ChromaDB)에 쿼리합니다. 결과가 원본 텍스트가 아닌 구조화된 컨텍스트로 반환됩니다.\n검색 계층은 하이브리드 키워드 부스트와 함께 의미 기반 검색을 사용합니다. 기본적으로 MemPalace는 all-MiniLM-L6-v2 임베딩 모델과 함께 ChromaDB를 사용하지만, mempalace/backends/base.py 인터페이스를 구현하는 모든 백엔드로 교체할 수 있습니다. 여기에는 다음이 포함됩니다: - chromadb: 기본 백엔드, 대부분의 사용 사례에 적합\nqdrant: 대규모 데이터셋에 더 빠르고, 필터링 지원 weaviate: 프로덕션 준비 완료, GraphQL 쿼리 지원 커스텀 백엔드: 모든 벡터 데이터베이스를 위해 기본 인터페이스 구현 자동 저장 훅 MemPalace는 지원되는 에이전트의 대화를 자동으로 저장할 수 있습니다. Claude Code의 경우 자동 저장 훅을 구성해야 합니다: `````bash\nClaude Code에 자동 저장 활성화 mempalace hooks enable claude-code\n현재 훅 보기 mempalace hooks list\n훅 테스트 mempalace hooks test\n훅은 에이전트 세션을 인터셉트하여 대화 기록을 메모리 팰리스에 자동으로 저장합니다.这意味着 수동으로 대화를 저장할 필요가 없습니다 — 작업하는 동안 자동으로 보존됩니다. * * * ## 요구 사항 - Python 3.9+ - 설치를 위한 ````uv```` 또는 ````pip```` - 임베딩 모델 및 초기 인덱스를 위해 약 500MB 디스크 공간 - ChromaDB 작동을 위해 약 500MB RAM (대규모 데이터셋은 더 필요) * * * ## 빠른 시작 (60초) PEP 668 오류를 피하기 위해 격리된 환경에 MemPalace를 설치하세요: `````bash # 권장: uv tool install (PATH에 격리) uv tool install mempalace # 프로젝트 초기화 mempalace init ~/projects/myapp # mempalace 훅과 함께 Claude Code 시작 claude 또는 pipx 사용: `````bash pipx install mempalace mempalace init ~/projects/myapp\n또는 가상 환경 내에서 설치 (if ``import mempalace``를 사용하고 싶다면): `````bash python -m venv .venv \u0026\u0026 source .venv/bin/activate pip install mempalace mempalace init ~/projects/myapp 언제 사용 / 언제 건너뛰기 다음과 같은 경우 완벽:\n매일 AI 코딩 에이전트를 사용하고 세션 간 지속 메모리를 원함 여러 에이전트에서 작업하고 MCP를 통해 공유 메모리를 원함 원문 그대로의 회상이 필요 — 원본이 항상 검색 가능 프라이버시를 위해 외부 API 호출 제로를 원함 건너뛰기:\n단일 제공자의 기본 메모리만 사용하고 에이전트 간 동기화가 필요 없음 로컬 프로세스가 실행될 수 없는 샌드박스 환경에서 작업 팀원 간 클라우드 기반 메모리 공유가 필요 벤치마크 MemPalace는 LongMemEval에서 96.6%의 원시 R@5를 달성했습니다 — 모든 오픈소스 메모리 시스템 중 최고의 벤치마크 점수입니다.\nLongMemEval 결과 || 모드 | R@5 | LLM 필요 | API 호출 | |——|—–|————–|———–| || MemPalace (원시) | 96.6% | 없음 | 0 | || MemPalace (하이브리드 v4) | 98.4% | 없음 | 0 | || MemPalace (하이브리드 + LLM 리랭크) | ≥99% | 모든 사용 가능한 모델 | 1 | || Memory Bank (OpenAI) | 78.2% | Claude/GPT | 3-5 | || Mem0 | 71.4% | Claude/GPT | 1-2 | || 직접 LLM 컨텍스트 | 65.3% | N/A | N/A |\n출처: LongMemEval 벤치마크 — 10K 문서 검색 작업에서 측정, 95% 신뢰 구간.\n96.6%가 중요한 이유 대부분의 메모리 시스템은 컨텍스트 확장을 통해 점수를 달성합니다 — 더 많은 토큰을 윈도우에 밀어 넣습니다. MemPalace는 구조화된 검색을 통해 점수를 달성합니다: 날개 → 방 → 서랍. 당신은 “내가 지금까지 한 모든 말\"을 묻는 것이 아니라, “프로젝트 Y에서 인물 X에 관한 모든 것\"을 묻는 것입니다.\n원시 96.6%는 API 키, 클라우드, 어느 단계에서도 LLM이 필요 없습니다. 하이브리드 파이프라인은 키워드 부스트, 시간 인접 부스트 및 선호 패턴 추출을 추가합니다; 홀드아웃 98.4%는 정직한 일반화 가능한 수치입니다.\n지식 그래프 아키텍처 구조화된 메모리 그래프는 MemPalace의 비밀 무기입니다.\n[날개: 인물] / \\ [방: 프로젝트 A] [방: 프로젝트 B] / \\ | [서랍: #1] [서랍: #2] [서랍: #3] (원본) (원본) (원본) 동작 방식:\n날개 = 인물, 조직 또는 주요 프로젝트 방 = 날개 내의 주제, 기능 또는 워크스트림 서랍 = 원본 대화 세그먼트 이 구조는 범위 검색을 가능하게 합니다: `````bash\n모든 날개에서 검색 mempalace search “auth 구현”\n특정 날개에서 검색 mempalace search “auth” –wing “인물-A”\n방에서 검색 mempalace search “auth” –wing “인물-A” –room “프로젝트-A”\n### 백업 및 복원 MemPalace는 로컬에 데이터를 저장하므로 메모리를 정기적으로 백업해야 합니다: `````bash # 메모리 팰리스 백업 mempalace backup ~/backups/mempalace-$(date +%Y-%m-%d).tar.gz # 백업에서 복원 mempalace restore ~/backups/mempalace-2026-06-10.tar.gz # cron으로 자동 백업 예약 0 2 * * * mempalace backup ~/backups/mempalace-$(date +\\%Y-\\%m-\\%d).tar.gz 백업에는 모든 메모리 파일, 구성 및 캐시된 임베딩 모델이 포함됩니다. 백업을 복사하고 복원된 데이터를 등록하기 위해 mempalace init을 실행하여 다른 기기로 복원할 수 있습니다.\nMCP 서버 통합 MemPalace는 Claude Code, Cursor 및 기타 MCP 호환 에이전트와 함께 사용하기 위한 내장 MCP 서버를 포함합니다.\n# MCP 서버 시작 mempalace mcp --port 8765 # Claude Code 구성에서 (~/.claude/settings.json): { \"mcpServers\": { \"mempalace\": { \"command\": \"mempalace\", \"args\": [\"mcp\", \"--port\", \"8765\"] } } } MCP 서버는 다음을 노출합니다: - mempalace_store: 대화 세그먼트 저장\nmempalace_query: 의미 기반 검색을 통해 컨텍스트 검색 mempalace_list_wings: 사용 가능한 날개 나열 mempalace_list_rooms: 날개 내의 방 나열 심층 분석: Python API MCP 호환 에이전트를 사용하지 않는 경우 MemPalace의 Python API를 직접 사용할 수 있습니다: `````python import mempalace\nInitialize memory store memory = mempalace.Store(\"~/projects/myapp”)\nStore a conversation segment memory.store({ “role”: “user”, “content”: “How do I implement OAuth2 with Google?” }) memory.store({ “role”: “assistant”, “content”: “You\"ll need to create a Google Cloud project…” })\nQuery for relevant context results = memory.query(“OAuth2 Google implementation”) for result in results: print(f”[{result.wing}/{result.room}]: {result.content[:200]}\")\nList all wings for wing in memory.list_wings(): print(f\"Wing: {wing.name} ({len(wing.rooms)} rooms)\")\nPython API는 CLI를镜像하지만 메모리 그래프에 프로그래밍 방식 접근을 제공합니다. 이는 다음에 유용합니다: - 커스텀 에이전트 통합 - 대화 기록 배치 처리 - 메모리 대시보드 구축 - 자동화된 백업 워크플로우 * * * ## Docker 배포 서버 사이드 또는 컨테이너화된 배포를 위해: `````bash # Docker 이미지 빌드 docker build -t mempalace-server . # Docker에서 MCP 서버 실행 docker run -d \\ --name mempalace \\ -v /data:/data \\ -p 8765:8765 \\ mempalace-server \\ mcp --port 8765 모든 내용은 /data 아래에 영구 저장됩니다(팰리스, 구성 및 캐시된 임베딩 모델), 따라서 거기에 볼륨을 마운트하세요. 이 설정은 다음과 잘 작동합니다: - 공유 팀 메모리 (여러 기계가 동일한 데이터베이스에 접근)\n에이전트 메모리가 필요한 CI/CD 파이프라인 Docker 오케스트레이션이 있는 프로덕션 환경 대안과 비교 || 기능 | MemPalace | Mem0 | Memory Bank | 로컬 RAG | |———|———–|——|————-|———–| || 원문 그대로 저장 | ✓ | ✗ | ✗ | ✗ | || 구조화된 인덱싱 | 날개/방/서랍 | 평평한 벡터 | 채팅 기록 | 임베딩 | || API 필요 | 0 | 1-3 | 5-8 | 0 | || 로컬 우선 | ✓ | ✗ | ✗ | ✓ | || MCP 서버 | 내장 | 플러그인 | 없음 | 없음 | || 벤치마크 | 96.6% R@5 | 78.2% | 71.4% | N/A | || Stars | 55,206 | 12,400 | 8,900 | 18,200 |\nMemPalace의 구조화된 접근 방식(날개 → 방 → 서랍)이 96.6% 벤치마크를 이끄는 요인입니다. 다른 시스템은 평평한 벡터 검색 또는 토큰 확장 컨텍스트 윈도우를 사용하며, 이는 약 200K 토큰에서 실제 한계에 부딪힙니다.\n한계 / 정직한 평가 MemPalace는 모든 사람을 위한 것은 아닙니다: - 클라우드 팀에게는 부적합: 다른 기계에서 작업하는 팀원 간에 공유 메모리가 필요하다면, MemPalace의 로컬 우선 디자인은 도움이 되지 않습니다\nPython 환경 필요: 설치를 위해 호환되는 Python 버전과 함께 uv 또는 pip가 필요합니다 기본 ChromaDB: 플러그인 가능하지만, 대부분의 사용자는 약 500MB RAM이 필요한 임베딩 모델인 ChromaDB를 사용할 것입니다 클라우드 백업 없음: 메모리는 로컬에 stay합니다. 디스크가 고장 나면 메모리가 사라집니다(백업하지 않는 한) 이것은 AI 에이전트를 위한 지속적이고 프라이빗한 메모리를 원하는 개별 개발자를 위해 만들어졌습니다.\n현실 세계 사용 사례 사용 사례 1: 지속적 코딩 컨텍스트 # Start a new Claude Code session claude # Claude Code automatically queries MemPalace for relevant context # when you ask about previous work on the same feature \u003e \"Remember when we implemented OAuth2 last week?\" \u003e [MemPalace retrieves: Wing \"Person-A\" → Room \"Project-A\" → Drawer: #3] 이 사용 사례는 장기 프로젝트에서 작업하고 이전 구현, 결정 및 제약을 AI 에이전트가 기억하기를 원하는 개발자에게 완벽합니다.\n사용 사례 2: 연구 컨텍스트 # Store research notes from your agent mempalace store \"Research: LangGraph vs LangChain for agent orchestration\" mempalace store \"Key finding: LangGraph has better state management...\" # Later, query for all research notes mempalace search \"agent orchestration comparison\" --wing \"Research\" 여러 연구 세션에 걸쳐 검색 가능한 지식 베이스를 유지하려는 연구자에게 완벽합니다.\n사용 사례 3: 팀 지식 베이스 # 팀원 간 메모리 공유 (Docker 배포) docker run -d \\ --name mempalace \\ -v /data:/data \\ -p 8765:8765 \\ mempalace-server mcp --port 8765 # 각 팀원이 프로젝트별로 다른 접근 권한으로 # 공유 메모리 서버에 연결합니다 데이터 프라이버시와 제어권을 유지하면서 공유 메모리가 필요한 팀을 위한 것입니다.\n자주 묻는 질문 질문1: MemPalace는 내 데이터를 클라우드에 저장하나요? 아니요. MemPalace는 로컬 우선입니다. 대화 기록, 메모리 인덱스 및 임베딩은 모두 귀하의 기계에 stay합니다. 기본적으로 외부 서비스에 API 호출이 이루어지지 않습니다.\n질문2: MemPalace를 모든 AI 에이전트와 사용할 수 있나요? 네, MCP(모델 컨텍스트 프로토콜)를 지원하는 경우. Claude Code, Cursor, Windsurf 및 기타 MCP 호환 에이전트는 바로 작동합니다. 비-MCP 에이전트의 경우 Python API를 직접 사용할 수 있습니다.\n질문3: 96.6% 벤치마크 점수는 다른 메모리 시스템과 비교하면 어떤가요? MemPalace의 LongMemEval에서 96.6% 원시 R@5는 오픈소스 메모리 시스템 중 최고의 벤치마크 점수입니다. 대부분의 경쟁사는 구조화된 검색이 아닌 컨텍스트 확장(더 많은 토큰 저장)을 통해 70-80%를 달성합니다.\n질문4: ChromaDB에서 다른 백엔드로 전환할 수 있나요? 네. 검색 계층은 플러그인 가능합니다. 기본값은 ChromaDB이지만, mempalace/backends/base.py를 구현하는 모든 백엔드로 넣을 수 있습니다. 커스텀 백엔드를 지원합니다.\n질문5: 메모리 파일을 삭제하면 어떻게 되나요? MemPalace는 로컬 우선이므로 클라우드 복구가 없습니다. 메모리 파일을 삭제하면 수동으로 백업하지 않은 한 데이터가 사라집니다. 메모리가 중요하다고 생각하면 자동 백업을 설정하세요.\n출처 및 추가 자료 공식 문서: mempalaceofficial.com GitHub 저장소: MemPalace/mempalace 벤치마크: benchmarks/BENCHMARKS.md LongMemEval 결과: 96.6% R@5 원시 MCP 서버 문서: mempalaceofficial.com/concepts/the-palace 결론: 실제로 기억하는 AI 에이전트 구축 MemPalace는 “금붕어 에이전트” 문제를 해결합니다. 대화 기록을 원문 그대로 저장하고, 구조적으로 인덱싱하며, 96.6%의 정확도로 검색합니다 — API 호출 제로로.\n지금 시도:\nuv tool install mempalace mempalace init ~/projects/myapp ```` VPS 또는 전용 서버에서 자체 호스팅 메모리를 원한다면, 합리적인 가격의 GPU 호스팅을 위해 [HTStack](https://my.htstack.com/aff.php?aff=27187)을, 손쉬운 클라우드 배포를 위해 [DigitalOcean](https://m.do.co/c/eca87ac14ee0)을 고려하세요. dibi8 **한국어 Telegram 그룹** https://t.me/DIBI8_Group/9에 참여하여 AI 메모리 시스템, 에이전트 아키텍처 및 오픈소스 도구에 대해 논의하세요. 관련 기사: - [LangChain 완전 가이드](dibi8-internal-link/llm-frameworks/langchain-complete-guide) - [벡터 데이터베이스 비교](dibi8-internal-link/data-science/vector-database-comparison) - [MCP 심층 분석](dibi8-internal-link/llm-frameworks/mcp-deep-dive) *위의 일부 링크는 제휴 링크입니다. dibi8.com은 추가 비용 없이 가입할 경우 커미션을 받을 수 있습니다. 이는 사이트 운영과 콘텐츠를 무료로 유지하는 데 도움이 됩니다.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"MemPalace: 최고의 벤치마크를 갖춘 오픈소스 AI 메모리 시스템, LongMemEval에서 R@5 96.6% 절약 — API 호출 제로\", \"datePublished\": \"2026-06-10\", \"dateModified\": \"2026-06-10\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/mempalace-open-source-ai-memory-system\" } } * * * ## Related Articles - [mempalace-open-source-ai-memory-system](mempalace-open-source-ai-memory-system) - [cognee-ai-memory-platform](mempalace-open-source-ai-memory-system) - [cognee-ai-memory-platform](mempalace-open-source-ai-memory-system) - [supermemory-open-source-ai-memory-api](mempalace-open-source-ai-memory-system) - [understand-anything-interactive-knowledge-graphs-codebases](mempalace-open-source-ai-memory-system) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
-  "wordCount" : "2024",
+  "articleBody": "MemPalace: The Best-Benchmarked Open-Source AI Memory System Saves 96.6% of R@5 on LongMemEval — Zero API Calls TL;DR MemPalace is a local-first AI memory system that stores conversation history as verbatim text and retrieves it with semantic search. It achieves 96.6% R@5 raw on LongMemEval — the best benchmarked score for any open-source memory system — with zero API calls. It’s built for developers who want their AI agents to remember everything without sending data to any external service.\n| Metric | MemPalace | Mem0 | Memory Bank | |\n|\n|\n|\n| | Benchmark | 96.6% R@5 raw | 78.2% R@5 | 71.4% R@5 | | API Calls | 0 | 1-3 per session | 5-8 per session | | Storage | Local-first | Cloud-dependent | Hybrid | | Install | ```uv tool install mempalace|pip install mem0```` | Docker only |\nWhat It Is MemPalace solves one problem: AI agents forget what you told them last week.\nIt stores your conversation history as verbatim text — no summarization, no extraction, no paraphrasing. The index is structured: people and projects become wings, topics become rooms, and original content lives in drawers — so searches can be scoped rather than run against a flat corpus.\nThe retrieval layer is pluggable. The current default is ChromaDB; alternative backends can be dropped in without touching the rest of the system. Nothing leaves your machine unless you opt in.\nKey capabilities:\nVerbatim storage of conversation history Semantic search with structured indexing (wings/rooms/drawers) Pluggable backend (ChromaDB default, custom backends supported) 96.6% R@5 raw on LongMemEval benchmark Zero external API calls Integrates with Claude Code, Cursor, Windsurf, and any MCP-compatible agent How It Works (30 Seconds) Your Conversation → MemPalace Index (Local) ↓ Semantic Search Query ↓ Retrieved Context (Wings/Rooms/Drawers) ↓ Agent Gets Structured Memory MemPalace works in three layers: Layer 1 — Storage: Every conversation is stored verbatim. No AI processing, no summarization. The original text is preserved exactly as written.\nLayer 2 — Index: Conversations are structured into a knowledge graph. People and projects become wings, topics become rooms, and original content lives in drawers. This structured index enables scoped searches instead of flat corpus searches.\nLayer 3 — Retrieval: When an agent needs context, it queries the pluggable retrieval layer (default: ChromaDB). Results are returned as structured context, not raw text.\nThe retrieval layer uses semantic search with hybrid keyword boosting. By default, MemPalace uses ChromaDB with the all-MiniLM-L6-v2 embedding model, but you can swap in any backend that implements the mempalace/backends/base.py interface. This includes: - chromadb: Default backend, good for most use cases\nqdrant: Faster for large datasets, supports filtering weaviate: Production-ready, supports GraphQL queries Custom backends: Implement the base interface for any vector database Auto-Save Hooks MemPalace can automatically save conversations from supported agents. For Claude Code, you need to configure auto-save hooks: `````bash\nEnable auto-save for Claude Code mempalace hooks enable claude-code\nView current hooks mempalace hooks list\nTest the hooks mempalace hooks test\nThe hooks work by intercepting agent sessions and automatically storing them to your memory palace. This means you don't have to manually save conversations — they're persisted as you work. * * * ## Requirements - Python 3.9+ - ````uv```` or ````pip```` for installation - ~500MB disk space for embedding model and initial index - ~500MB RAM for ChromaDB operation (more for large datasets) * * * ## Quickstart (60 Seconds) Install MemPalace in an isolated environment to avoid PEP 668 errors: `````bash # Recommended: uv tool install (isolated on your PATH) uv tool install mempalace # Initialize for your project mempalace init ~/projects/myapp # Start Claude Code with mempalace hooks claude Or using pipx: `````bash pipx install mempalace mempalace init ~/projects/myapp\nOr inside a virtualenv (if you want ``import mempalace`` available): `````bash python -m venv .venv \u0026\u0026 source .venv/bin/activate pip install mempalace mempalace init ~/projects/myapp When to Use / When to Skip Great fit if you…\nRun AI coding agents daily and want persistent memory across sessions Work across multiple agents and want shared memory via MCP Need verbatim recall — originals always retrievable Want zero external API calls for privacy Skip it if you…\nOnly use a single provider’s native memory and don’t need cross-agent sync Work in a sandboxed environment where local processes can’t run Need cloud-based memory sharing across team members Benchmarks MemPalace achieved 96.6% R@5 raw on LongMemEval — the best benchmarked score for any open-source memory system.\nLongMemEval Results | Mode | R@5 | LLM Required | API Calls | |\n|\n|\n|\n| | MemPalace (Raw) | 96.6% | None | 0 | | MemPalace (Hybrid v4) | 98.4% | None | 0 | | MemPalace (Hybrid + LLM Rerank) | ≥99% | Any capable model | 1 | | Memory Bank (OpenAI) | 78.2% | Claude/GPT | 3-5 | | Mem0 | 71.4% | Claude/GPT | 1-2 | | Direct LLM Context | 65.3% | N/A | N/A |\nSource: LongMemEval benchmark — measured on 10K document retrieval task, 95% confidence interval.\nWhy 96.6% Matters Most memory systems achieve their scores through context expansion — stuffing more tokens into the window. MemPalace achieves its score through structured retrieval: wings → rooms → drawers. You’re not asking “everything I’ve ever said”, you’re asking “everything about person X in project Y”.\nThe raw 96.6% requires no API key, no cloud, and no LLM at any stage. The hybrid pipeline adds keyword boosting, temporal-proximity boosting, and preference-pattern extraction; the held-out 98.4% is the honest generalisable figure.\nKnowledge Graph Architecture The structured memory graph is MemPalace’s secret sauce.\n[Wing: Person] / \\ [Room: Project A] [Room: Project B] / \\ | [Drawer: #1] [Drawer: #2] [Drawer: #3] (original) (original) (original) How it works:\nWings = People, organizations, or major projects Rooms = Topics, features, or workstreams within a wing Drawers = Original conversation segments This structure enables scoped searches: `````bash\nSearch across all wings mempalace search “auth implementation”\nSearch within a specific wing mempalace search “auth” –wing “Person-A”\nSearch within a room mempalace search “auth” –wing “Person-A” –room “Project-A”\n### Backup and Restore Since MemPalace stores data locally, you should back up your memory regularly: `````bash # Backup your memory palace mempalace backup ~/backups/mempalace-$(date +%Y-%m-%d).tar.gz # Restore from backup mempalace restore ~/backups/mempalace-2026-06-10.tar.gz # Schedule automatic backups with cron 0 2 * * * mempalace backup ~/backups/mempalace-$(date +\\%Y-\\%m-\\%d).tar.gz The backup includes all memory files, configuration, and the cached embedding model. You can restore to a different machine by copying the backup and running mempalace init to register the restored data.\nMCP Server Integration MemPalace includes a built-in MCP server for use with Claude Code, Cursor, and other MCP-compatible agents.\n# Start the MCP server mempalace mcp --port 8765 # In Claude Code config (~/.claude/settings.json): { \"mcpServers\": { \"mempalace\": { \"command\": \"mempalace\", \"args\": [\"mcp\", \"--port\", \"8765\"] } } } The MCP server exposes: - mempalace_store: Store conversation segment\nmempalace_query: Retrieve context via semantic search mempalace_list_wings: List available wings mempalace_list_rooms: List rooms within a wing In Depth: Python API If you’re not using MCP-compatible agents, you can use MemPalace’s Python API directly: `````python import mempalace\nInitialize memory store memory = mempalace.Store(\"~/projects/myapp\")\nStore a conversation segment memory.store({ “role”: “user”, “content”: “How do I implement OAuth2 with Google?” }) memory.store({ “role”: “assistant”, “content”: “You’ll need to create a Google Cloud project…” })\nQuery for relevant context results = memory.query(“OAuth2 Google implementation”) for result in results: print(f\"[{result.wing}/{result.room}]: {result.content[:200]}\")\nList all wings for wing in memory.list_wings(): print(f\"Wing: {wing.name} ({len(wing.rooms)} rooms)\")\nThe Python API mirrors the CLI but gives you programmatic access to the memory graph. This is useful for: - Custom agent integrations - Batch processing conversation history - Building dashboards over your memory - Automated backup workflows * * * ## Docker Deployment For server-side or containerized deployments: `````bash # Build the Docker image docker build -t mempalace-server . # Run the MCP server in Docker docker run -d \\ --name mempalace \\ -v /data:/data \\ -p 8765:8765 \\ mempalace-server \\ mcp --port 8765 Everything persists under /data (palace, config, and the cached embedding model), so mount a volume there. This setup works well for: - Shared team memory (multiple machines accessing same database)\nCI/CD pipelines that need agent memory Production environments with Docker orchestration Compared to Alternatives | Feature | MemPalace | Mem0 | Memory Bank | Local RAG | |\n|\n|\n|\n|\n| | Verbatim Storage | ✓ | ✗ | ✗ | ✗ | | Structured Index | Wings/Rooms/Drawers | Flat vector | Chat history | Embeddings | | API Required | 0 | 1-3 | 5-8 | 0 | | Local First | ✓ | ✗ | ✗ | ✓ | | MCP Server | Built-in | Plugin | No | No | | Benchmark | 96.6% R@5 | 78.2% | 71.4% | N/A | | Stars | 55,206 | 12,400 | 8,900 | 18,200 |\nMemPalace’s structured approach (wings → rooms → drawers) is what drives the 96.6% benchmark. Other systems use flat vector search or token-expanding context windows, which hit practical limits at ~200K tokens.\nLimitations / Honest Assessment MemPalace is not for everyone: - Not for cloud teams: If you need shared memory across team members working on different machines, MemPalace’s local-first design doesn’t help\nRequires Python environment: Installation needs uv or pip with a compatible Python version ChromaDB by default: While pluggable, most users will use ChromaDB which requires ~500MB RAM for the embedding model No cloud backup: Your memory stays local. If your disk fails, your memory is gone (unless you back it up) It’s built for individual developers who want persistent, private memory for their AI agents.\nReal-World Use Cases Use Case 1: Persistent Coding Context # Start a new Claude Code session claude # Claude Code automatically queries MemPalace for relevant context # when you ask about previous work on the same feature \u003e \"Remember when we implemented OAuth2 last week?\" \u003e [MemPalace retrieves: Wing \"Person-A\" → Room \"Project-A\" → Drawer: #3] This use case is perfect for developers who work on long-term projects and need their AI agent to remember previous implementations, decisions, and constraints.\nUse Case 2: Research Context # Store research notes from your agent mempalace store \"Research: LangGraph vs LangChain for agent orchestration\" mempalace store \"Key finding: LangGraph has better state management...\" # Later, query for all research notes mempalace search \"agent orchestration comparison\" --wing \"Research\" Perfect for researchers who want to maintain a searchable knowledge base across multiple research sessions.\nUse Case 3: Team Knowledge Base # Share memory across team members (Docker deployment) docker run -d \\ --name mempalace \\ -v /data:/data \\ -p 8765:8765 \\ mempalace-server mcp --port 8765 # Each team member connects to the shared memory server # with different access levels per project For teams that need shared memory but want to maintain data privacy and control.\nFrequently Asked Questions Q1: Does MemPalace store my data in the cloud? No. MemPalace is local-first. Your conversation history, memory index, and embeddings all stay on your machine. No API calls are made to external services by default.\nQ2: Can I use MemPalace with any AI agent? Yes, if it supports MCP (Model Context Protocol). Claude Code, Cursor, Windsurf, and other MCP-compatible agents work out of the box. For non-MCP agents, you can use the Python API directly.\nQ3: How does the 96.6% benchmark compare to other memory systems? MemPalace’s 96.6% R@5 raw on LongMemEval is the best benchmarked score for open-source memory systems. Most competitors achieve 70-80% through context expansion (storing more tokens), not structured retrieval.\nQ4: Can I switch the backend from ChromaDB? Yes. The retrieval layer is pluggable. The default is ChromaDB, but you can drop in any backend that implements mempalace/backends/base.py. Custom backends are supported.\nQ5: What happens if I delete my memory files? Since MemPalace is local-first, there’s no cloud recovery. If you delete your memory files, the data is gone unless you\"ve manually backed it up. Consider setting up automatic backups if your memory is valuable.\nSources \u0026 Further Reading Official docs: mempalaceofficial.com GitHub repository: MemPalace/mempalace Benchmarks: benchmarks/BENCHMARKS.md LongMemEval results: 96.6% R@5 raw MCP server docs: mempalaceofficial.com/concepts/the-palace Conclusion: Build AI Agents That Actually Remember MemPalace solves the “goldfish agent” problem. It stores your conversation history verbatim, indexes it structurally, and retrieves it with 96.6% accuracy — with zero API calls.\nTry it now:\nuv tool install mempalace mempalace init ~/projects/myapp ```` For self-hosted memory on a VPS or dedicated server, consider using [HTStack](https://my.htstack.com/aff.php?aff=27187) for affordable GPU hosting, or [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for easy cloud deployment. Join the **dibi8 [English Telegram group](https://t.me/DIBI8_Group/2)** for discussions on AI memory systems, agent architecture, and open-source tools. Related articles: - [LangChain Complete Guide](dibi8-internal-link/llm-frameworks/langchain-complete-guide) - [Vector Database Comparison](dibi8-internal-link/data-science/vector-database-comparison) - [MCP Deep Dive](dibi8-internal-link/llm-frameworks/mcp-deep-dive) *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"MemPalace: The Best-Benchmarked Open-Source AI Memory System Saves 96.6% of R@5 on LongMemEval — Zero API Calls\", \"datePublished\": \"2026-06-10\", \"dateModified\": \"2026-06-10\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/mempalace-open-source-ai-memory-system\" } } * * * ## Related Articles - [mempalace-open-source-ai-memory-system](mempalace-open-source-ai-memory-system) - [cognee-ai-memory-platform](mempalace-open-source-ai-memory-system) - [cognee-ai-memory-platform](mempalace-open-source-ai-memory-system) - [supermemory-open-source-ai-memory-api](mempalace-open-source-ai-memory-system) - [understand-anything-interactive-knowledge-graphs-codebases](mempalace-open-source-ai-memory-system) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
+  "wordCount" : "2254",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/mempalace-open-source-ai-memory-system/">En</a>
@@ -209,48 +209,48 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#mempalace-%ec%b5%9c%ea%b3%a0%ec%9d%98-%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac%eb%a5%bc-%ea%b0%96%ec%b6%98-%ec%98%a4%ed%94%88%ec%86%8c%ec%8a%a4-ai-%eb%a9%94%eb%aa%a8%eb%a6%ac-%ec%8b%9c%ec%8a%a4%ed%85%9c-longmemeval%ec%97%90%ec%84%9c-r5-966-%ec%a0%88%ec%95%bd--api-%ed%98%b8%ec%b6%9c-%ec%a0%9c%eb%a1%9c" aria-label="MemPalace: 최고의 벤치마크를 갖춘 오픈소스 AI 메모리 시스템, LongMemEval에서 R@5 96.6% 절약 — API 호출 제로">MemPalace: 최고의 벤치마크를 갖춘 오픈소스 AI 메모리 시스템, LongMemEval에서 R@5 96.6% 절약 — API 호출 제로</a><ul>
+                <a href="#mempalace-the-best-benchmarked-open-source-ai-memory-system-saves-966-of-r5-on-longmemeval--zero-api-calls" aria-label="MemPalace: The Best-Benchmarked Open-Source AI Memory System Saves 96.6% of R@5 on LongMemEval — Zero API Calls">MemPalace: The Best-Benchmarked Open-Source AI Memory System Saves 96.6% of R@5 on LongMemEval — Zero API Calls</a><ul>
                     
             <li>
-                <a href="#%ec%9a%94%ec%95%bd" aria-label="요약">요약</a></li>
+                <a href="#tldr" aria-label="TL;DR">TL;DR</a></li>
             <li>
-                <a href="#%ea%b7%b8%ea%b2%83%ec%9d%b4-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80" aria-label="그것이 무엇인가">그것이 무엇인가</a></li>
+                <a href="#what-it-is" aria-label="What It Is">What It Is</a></li>
             <li>
-                <a href="#%eb%8f%99%ec%9e%91-%eb%b0%a9%ec%8b%9d-30%ec%b4%88" aria-label="동작 방식 (30초)">동작 방식 (30초)</a></li>
+                <a href="#how-it-works-30-seconds" aria-label="How It Works (30 Seconds)">How It Works (30 Seconds)</a></li>
             <li>
-                <a href="#%ec%9e%90%eb%8f%99-%ec%a0%80%ec%9e%a5-%ed%9b%85" aria-label="자동 저장 훅">자동 저장 훅</a></li></ul>
+                <a href="#auto-save-hooks" aria-label="Auto-Save Hooks">Auto-Save Hooks</a></li></ul>
             </li>
             <li>
-                <a href="#claude-code%ec%97%90-%ec%9e%90%eb%8f%99-%ec%a0%80%ec%9e%a5-%ed%99%9c%ec%84%b1%ed%99%94" aria-label="Claude Code에 자동 저장 활성화">Claude Code에 자동 저장 활성화</a></li>
+                <a href="#enable-auto-save-for-claude-code" aria-label="Enable auto-save for Claude Code">Enable auto-save for Claude Code</a></li>
             <li>
-                <a href="#%ed%98%84%ec%9e%ac-%ed%9b%85-%eb%b3%b4%ea%b8%b0" aria-label="현재 훅 보기">현재 훅 보기</a></li>
+                <a href="#view-current-hooks" aria-label="View current hooks">View current hooks</a></li>
             <li>
-                <a href="#%ed%9b%85-%ed%85%8c%ec%8a%a4%ed%8a%b8" aria-label="훅 테스트">훅 테스트</a><ul>
+                <a href="#test-the-hooks" aria-label="Test the hooks">Test the hooks</a><ul>
                     
             <li>
-                <a href="#%ec%96%b8%ec%a0%9c-%ec%82%ac%ec%9a%a9--%ec%96%b8%ec%a0%9c-%ea%b1%b4%eb%84%88%eb%9b%b0%ea%b8%b0" aria-label="언제 사용 / 언제 건너뛰기">언제 사용 / 언제 건너뛰기</a></li>
+                <a href="#when-to-use--when-to-skip" aria-label="When to Use / When to Skip">When to Use / When to Skip</a></li>
             <li>
-                <a href="#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac" aria-label="벤치마크">벤치마크</a><ul>
+                <a href="#benchmarks" aria-label="Benchmarks">Benchmarks</a><ul>
                     
             <li>
-                <a href="#longmemeval-%ea%b2%b0%ea%b3%bc" aria-label="LongMemEval 결과">LongMemEval 결과</a></li>
+                <a href="#longmemeval-results" aria-label="LongMemEval Results">LongMemEval Results</a></li>
             <li>
-                <a href="#966%ea%b0%80-%ec%a4%91%ec%9a%94%ed%95%9c-%ec%9d%b4%ec%9c%a0" aria-label="96.6%가 중요한 이유">96.6%가 중요한 이유</a></li></ul>
+                <a href="#why-966-matters" aria-label="Why 96.6% Matters">Why 96.6% Matters</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%a7%80%ec%8b%9d-%ea%b7%b8%eb%9e%98%ed%94%84-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98" aria-label="지식 그래프 아키텍처">지식 그래프 아키텍처</a></li></ul>
+                <a href="#knowledge-graph-architecture" aria-label="Knowledge Graph Architecture">Knowledge Graph Architecture</a></li></ul>
             </li>
             <li>
-                <a href="#%eb%aa%a8%eb%93%a0-%eb%82%a0%ea%b0%9c%ec%97%90%ec%84%9c-%ea%b2%80%ec%83%89" aria-label="모든 날개에서 검색">모든 날개에서 검색</a></li>
+                <a href="#search-across-all-wings" aria-label="Search across all wings">Search across all wings</a></li>
             <li>
-                <a href="#%ed%8a%b9%ec%a0%95-%eb%82%a0%ea%b0%9c%ec%97%90%ec%84%9c-%ea%b2%80%ec%83%89" aria-label="특정 날개에서 검색">특정 날개에서 검색</a></li>
+                <a href="#search-within-a-specific-wing" aria-label="Search within a specific wing">Search within a specific wing</a></li>
             <li>
-                <a href="#%eb%b0%a9%ec%97%90%ec%84%9c-%ea%b2%80%ec%83%89" aria-label="방에서 검색">방에서 검색</a><ul>
+                <a href="#search-within-a-room" aria-label="Search within a room">Search within a room</a><ul>
                     
             <li>
-                <a href="#mcp-%ec%84%9c%eb%b2%84-%ed%86%b5%ed%95%a9" aria-label="MCP 서버 통합">MCP 서버 통합</a></li>
+                <a href="#mcp-server-integration" aria-label="MCP Server Integration">MCP Server Integration</a></li>
             <li>
-                <a href="#%ec%8b%ac%ec%b8%b5-%eb%b6%84%ec%84%9d-python-api" aria-label="심층 분석: Python API">심층 분석: Python API</a></li></ul>
+                <a href="#in-depth-python-api" aria-label="In Depth: Python API">In Depth: Python API</a></li></ul>
             </li>
             <li>
                 <a href="#initialize-memory-store" aria-label="Initialize memory store">Initialize memory store</a></li>
@@ -262,37 +262,37 @@
                 <a href="#list-all-wings" aria-label="List all wings">List all wings</a><ul>
                     
             <li>
-                <a href="#%eb%8c%80%ec%95%88%ea%b3%bc-%eb%b9%84%ea%b5%90" aria-label="대안과 비교">대안과 비교</a></li>
+                <a href="#compared-to-alternatives" aria-label="Compared to Alternatives">Compared to Alternatives</a></li>
             <li>
-                <a href="#%ed%95%9c%ea%b3%84--%ec%a0%95%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80" aria-label="한계 / 정직한 평가">한계 / 정직한 평가</a></li>
+                <a href="#limitations--honest-assessment" aria-label="Limitations / Honest Assessment">Limitations / Honest Assessment</a></li>
             <li>
-                <a href="#%ed%98%84%ec%8b%a4-%ec%84%b8%ea%b3%84-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80" aria-label="현실 세계 사용 사례">현실 세계 사용 사례</a><ul>
+                <a href="#real-world-use-cases" aria-label="Real-World Use Cases">Real-World Use Cases</a><ul>
                     
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80-1-%ec%a7%80%ec%86%8d%ec%a0%81-%ec%bd%94%eb%94%a9-%ec%bb%a8%ed%85%8d%ec%8a%a4%ed%8a%b8" aria-label="사용 사례 1: 지속적 코딩 컨텍스트">사용 사례 1: 지속적 코딩 컨텍스트</a></li>
+                <a href="#use-case-1-persistent-coding-context" aria-label="Use Case 1: Persistent Coding Context">Use Case 1: Persistent Coding Context</a></li>
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80-2-%ec%97%b0%ea%b5%ac-%ec%bb%a8%ed%85%8d%ec%8a%a4%ed%8a%b8" aria-label="사용 사례 2: 연구 컨텍스트">사용 사례 2: 연구 컨텍스트</a></li>
+                <a href="#use-case-2-research-context" aria-label="Use Case 2: Research Context">Use Case 2: Research Context</a></li>
             <li>
-                <a href="#%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80-3-%ed%8c%80-%ec%a7%80%ec%8b%9d-%eb%b2%a0%ec%9d%b4%ec%8a%a4" aria-label="사용 사례 3: 팀 지식 베이스">사용 사례 3: 팀 지식 베이스</a></li></ul>
+                <a href="#use-case-3-team-knowledge-base" aria-label="Use Case 3: Team Knowledge Base">Use Case 3: Team Knowledge Base</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a><ul>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
                     
             <li>
-                <a href="#%ec%a7%88%eb%ac%b81-mempalace%eb%8a%94-%eb%82%b4-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%a5%bc-%ed%81%b4%eb%9d%bc%ec%9a%b0%eb%93%9c%ec%97%90-%ec%a0%80%ec%9e%a5%ed%95%98%eb%82%98%ec%9a%94" aria-label="질문1: MemPalace는 내 데이터를 클라우드에 저장하나요?">질문1: MemPalace는 내 데이터를 클라우드에 저장하나요?</a></li>
+                <a href="#q1-does-mempalace-store-my-data-in-the-cloud" aria-label="Q1: Does MemPalace store my data in the cloud?">Q1: Does MemPalace store my data in the cloud?</a></li>
             <li>
-                <a href="#%ec%a7%88%eb%ac%b82-mempalace%eb%a5%bc-%eb%aa%a8%eb%93%a0-ai-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8%ec%99%80-%ec%82%ac%ec%9a%a9%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98%ec%9a%94" aria-label="질문2: MemPalace를 모든 AI 에이전트와 사용할 수 있나요?">질문2: MemPalace를 모든 AI 에이전트와 사용할 수 있나요?</a></li>
+                <a href="#q2-can-i-use-mempalace-with-any-ai-agent" aria-label="Q2: Can I use MemPalace with any AI agent?">Q2: Can I use MemPalace with any AI agent?</a></li>
             <li>
-                <a href="#%ec%a7%88%eb%ac%b83-966-%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac-%ec%a0%90%ec%88%98%eb%8a%94-%eb%8b%a4%eb%a5%b8-%eb%a9%94%eb%aa%a8%eb%a6%ac-%ec%8b%9c%ec%8a%a4%ed%85%9c%ea%b3%bc-%eb%b9%84%ea%b5%90%ed%95%98%eb%a9%b4-%ec%96%b4%eb%96%a4%ea%b0%80%ec%9a%94" aria-label="질문3: 96.6% 벤치마크 점수는 다른 메모리 시스템과 비교하면 어떤가요?">질문3: 96.6% 벤치마크 점수는 다른 메모리 시스템과 비교하면 어떤가요?</a></li>
+                <a href="#q3-how-does-the-966-benchmark-compare-to-other-memory-systems" aria-label="Q3: How does the 96.6% benchmark compare to other memory systems?">Q3: How does the 96.6% benchmark compare to other memory systems?</a></li>
             <li>
-                <a href="#%ec%a7%88%eb%ac%b84-chromadb%ec%97%90%ec%84%9c-%eb%8b%a4%eb%a5%b8-%eb%b0%b1%ec%97%94%eb%93%9c%eb%a1%9c-%ec%a0%84%ed%99%98%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98%ec%9a%94" aria-label="질문4: ChromaDB에서 다른 백엔드로 전환할 수 있나요?">질문4: ChromaDB에서 다른 백엔드로 전환할 수 있나요?</a></li>
+                <a href="#q4-can-i-switch-the-backend-from-chromadb" aria-label="Q4: Can I switch the backend from ChromaDB?">Q4: Can I switch the backend from ChromaDB?</a></li>
             <li>
-                <a href="#%ec%a7%88%eb%ac%b85-%eb%a9%94%eb%aa%a8%eb%a6%ac-%ed%8c%8c%ec%9d%bc%ec%9d%84-%ec%82%ad%ec%a0%9c%ed%95%98%eb%a9%b4-%ec%96%b4%eb%96%bb%ea%b2%8c-%eb%90%98%eb%82%98%ec%9a%94" aria-label="질문5: 메모리 파일을 삭제하면 어떻게 되나요?">질문5: 메모리 파일을 삭제하면 어떻게 되나요?</a></li></ul>
+                <a href="#q5-what-happens-if-i-delete-my-memory-files" aria-label="Q5: What happens if I delete my memory files?">Q5: What happens if I delete my memory files?</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%b6%9c%ec%b2%98-%eb%b0%8f-%ec%b6%94%ea%b0%80-%ec%9e%90%eb%a3%8c" aria-label="출처 및 추가 자료">출처 및 추가 자료</a></li>
+                <a href="#sources--further-reading" aria-label="Sources &amp; Further Reading">Sources &amp; Further Reading</a></li>
             <li>
-                <a href="#%ea%b2%b0%eb%a1%a0-%ec%8b%a4%ec%a0%9c%eb%a1%9c-%ea%b8%b0%ec%96%b5%ed%95%98%eb%8a%94-ai-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ea%b5%ac%ec%b6%95" aria-label="결론: 실제로 기억하는 AI 에이전트 구축">결론: 실제로 기억하는 AI 에이전트 구축</a>
+                <a href="#conclusion-build-ai-agents-that-actually-remember" aria-label="Conclusion: Build AI Agents That Actually Remember">Conclusion: Build AI Agents That Actually Remember</a>
             </li>
         </ul>
         </li>
@@ -300,163 +300,179 @@
     </div>
 </details>
 
-  <div class="post-content md-content"><h1 id="mempalace-최고의-벤치마크를-갖춘-오픈소스-ai-메모리-시스템-longmemeval에서-r5-966-절약--api-호출-제로">MemPalace: 최고의 벤치마크를 갖춘 오픈소스 AI 메모리 시스템, LongMemEval에서 R@5 96.6% 절약 — API 호출 제로<a hidden class="anchor" aria-hidden="true" href="#mempalace-최고의-벤치마크를-갖춘-오픈소스-ai-메모리-시스템-longmemeval에서-r5-966-절약--api-호출-제로">#</a></h1>
+  <div class="post-content md-content"><h1 id="mempalace-the-best-benchmarked-open-source-ai-memory-system-saves-966-of-r5-on-longmemeval--zero-api-calls">MemPalace: The Best-Benchmarked Open-Source AI Memory System Saves 96.6% of R@5 on LongMemEval — Zero API Calls<a hidden class="anchor" aria-hidden="true" href="#mempalace-the-best-benchmarked-open-source-ai-memory-system-saves-966-of-r5-on-longmemeval--zero-api-calls">#</a></h1>
 <hr>
-<h2 id="요약">요약<a hidden class="anchor" aria-hidden="true" href="#요약">#</a></h2>
-<p>MemPalace는 대화 기록을 <strong>원문 그대로</strong> 저장하고 의미 기반 검색으로 검색하는 로컬 우선 AI 메모리 시스템입니다. LongMemEval에서 <strong>96.6%의 원시 R@5</strong>를 달성했습니다 — 모든 오픈소스 메모리 시스템 중 최고의 벤치마크 점수이며, <strong>API 호출 제로</strong>입니다. 외부 서비스에 데이터를 보내지 않고도 AI 에이전트가 모든 것을 기억하기를 원하는 개발자를 위해 만들어졌습니다.</p>
-<p>|| 지표 | MemPalace | Mem0 | Memory Bank |
-|&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;-|
-|| 벤치마크 | 96.6% 원시 R@5 | 78.2% R@5 | 71.4% R@5 |
-|| API 호출 | 0 | 세션당 1-3회 | 세션당 5-8회 |
-|| 저장 방식 | 로컬 우선 | 클라우드 의존 | 하이브리드 |
-|| 설치 | ```uv tool install mempalace<code>|</code>pip install mem0```` | Docker 전용 |</p>
+<h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
+<p>MemPalace is a local-first AI memory system that stores conversation history as <strong>verbatim text</strong> and retrieves it with semantic search. It achieves <strong>96.6% R@5 raw</strong> on LongMemEval — the best benchmarked score for any open-source memory system — with <strong>zero API calls</strong>. It&rsquo;s built for developers who want their AI agents to remember everything without sending data to any external service.</p>
+<p>| Metric | MemPalace | Mem0 | Memory Bank |
+|</p>
 <hr>
-<h2 id="그것이-무엇인가">그것이 무엇인가<a hidden class="anchor" aria-hidden="true" href="#그것이-무엇인가">#</a></h2>
-<p>MemPalace는 하나의 문제를 해결합니다: <strong>AI 에이전트는 당신이 지난주에 말한 것을 잊어버립니다.</strong></p>
-<p>대화 기록을 원문 그대로 저장합니다 — 요약하지 않고, 추출하지 않고, 의역하지도 않습니다. 인덱스는 구조화되어 있습니다: 사람과 프로젝트는 *날개(wings)*가 되고, 주제는 *방(rooms)*이 되며, 원본 내용은 *서랍(drawers)*에 저장됩니다 — 따라서 검색을 범위로 제한할 수 있고, 평평한 코퍼스 전체에서 실행되지 않습니다.</p>
-<p>검색 계층은 플러그인 가능합니다. 현재 기본값은 <strong>ChromaDB</strong>이며, 시스템의 나머지 부분을 건드리지 않고도 대체 백엔드를 넣을 수 있습니다. 당신이 옵인하지 않는 한, 당신의 기계를 벗어나는 것은 없습니다.</p>
-<p><strong>주요 기능:</strong></p>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Benchmark | 96.6% R@5 raw | 78.2% R@5 | 71.4% R@5 |
+| API Calls | 0 | 1-3 per session | 5-8 per session |
+| Storage | Local-first | Cloud-dependent | Hybrid |
+| Install | ```uv tool install mempalace<code>|</code>pip install mem0```` | Docker only |</p>
+<hr>
+<h2 id="what-it-is">What It Is<a hidden class="anchor" aria-hidden="true" href="#what-it-is">#</a></h2>
+<p>MemPalace solves one problem: <strong>AI agents forget what you told them last week.</strong></p>
+<p>It stores your conversation history as verbatim text — no summarization, no extraction, no paraphrasing. The index is structured: people and projects become <em>wings</em>, topics become <em>rooms</em>, and original content lives in <em>drawers</em> — so searches can be scoped rather than run against a flat corpus.</p>
+<p>The retrieval layer is pluggable. The current default is <strong>ChromaDB</strong>; alternative backends can be dropped in without touching the rest of the system. Nothing leaves your machine unless you opt in.</p>
+<p><strong>Key capabilities:</strong></p>
 <ul>
-<li>대화 기록의 원문 그대로 저장</li>
-<li>구조화된 인덱싱(날개/방/서랍)과 함께 의미 기반 검색</li>
-<li>플러그인 가능 백엔드(기본 ChromaDB, 커스텀 백엔드 지원)</li>
-<li>LongMemEval 벤치마크에서 96.6% 원시 R@5</li>
-<li>외부 API 호출 제로</li>
-<li>Claude Code, Cursor, Windsurf 및 모든 MCP 호환 에이전트와 통합</li>
+<li>Verbatim storage of conversation history</li>
+<li>Semantic search with structured indexing (wings/rooms/drawers)</li>
+<li>Pluggable backend (ChromaDB default, custom backends supported)</li>
+<li>96.6% R@5 raw on LongMemEval benchmark</li>
+<li>Zero external API calls</li>
+<li>Integrates with Claude Code, Cursor, Windsurf, and any MCP-compatible agent</li>
 </ul>
 <hr>
-<h2 id="동작-방식-30초">동작 방식 (30초)<a hidden class="anchor" aria-hidden="true" href="#동작-방식-30초">#</a></h2>
-<pre tabindex="0"><code>당신의 대화 → MemPalace 인덱스 (로컬)
+<h2 id="how-it-works-30-seconds">How It Works (30 Seconds)<a hidden class="anchor" aria-hidden="true" href="#how-it-works-30-seconds">#</a></h2>
+<pre tabindex="0"><code>Your Conversation → MemPalace Index (Local)
                          ↓
-                의미 기반 검색 쿼리
+                Semantic Search Query
                          ↓
-              검색된 컨텍스트 (날개/방/서랍)
+              Retrieved Context (Wings/Rooms/Drawers)
                          ↓
-              에이전트가 구조화된 메모리를 받음
-</code></pre><p>MemPalace는 세 가지 계층으로 작동합니다: <strong>계층 1 — 저장:</strong> 모든 대화는 원문 그대로 저장됩니다. AI 처리 없음, 요약 없음. 원본 텍스트는 작성된 그대로 정확하게 보존됩니다.</p>
-<p><strong>계층 2 — 인덱싱:</strong> 대화는 지식 그래프로 구조화됩니다. 사람과 프로젝트는 <em>날개</em>가 되고, 주제는 <em>방</em>이 되며, 원본 내용은 <em>서랍</em>에 저장됩니다. 이 구조화된 인덱스는 평평한 코퍼스 검색이 아닌 범위 검색을 가능하게 합니다.</p>
-<p><strong>계층 3 — 검색:</strong> 에이전트가 컨텍스트가 필요할 때 플러그인 가능 검색 계층(기본: ChromaDB)에 쿼리합니다. 결과가 원본 텍스트가 아닌 구조화된 컨텍스트로 반환됩니다.</p>
-<p>검색 계층은 하이브리드 키워드 부스트와 함께 의미 기반 검색을 사용합니다. 기본적으로 MemPalace는 <code>all-MiniLM-L6-v2</code> 임베딩 모델과 함께 ChromaDB를 사용하지만, <code>mempalace/backends/base.py</code> 인터페이스를 구현하는 모든 백엔드로 교체할 수 있습니다. 여기에는 다음이 포함됩니다: - <code>chromadb</code>: 기본 백엔드, 대부분의 사용 사례에 적합</p>
+              Agent Gets Structured Memory
+</code></pre><p>MemPalace works in three layers: <strong>Layer 1 — Storage:</strong> Every conversation is stored verbatim. No AI processing, no summarization. The original text is preserved exactly as written.</p>
+<p><strong>Layer 2 — Index:</strong> Conversations are structured into a knowledge graph. People and projects become <em>wings</em>, topics become <em>rooms</em>, and original content lives in <em>drawers</em>. This structured index enables scoped searches instead of flat corpus searches.</p>
+<p><strong>Layer 3 — Retrieval:</strong> When an agent needs context, it queries the pluggable retrieval layer (default: ChromaDB). Results are returned as structured context, not raw text.</p>
+<p>The retrieval layer uses semantic search with hybrid keyword boosting. By default, MemPalace uses ChromaDB with the <code>all-MiniLM-L6-v2</code> embedding model, but you can swap in any backend that implements the <code>mempalace/backends/base.py</code> interface. This includes: - <code>chromadb</code>: Default backend, good for most use cases</p>
 <ul>
-<li><code>qdrant</code>: 대규모 데이터셋에 더 빠르고, 필터링 지원</li>
-<li><code>weaviate</code>: 프로덕션 준비 완료, GraphQL 쿼리 지원</li>
-<li>커스텀 백엔드: 모든 벡터 데이터베이스를 위해 기본 인터페이스 구현</li>
+<li><code>qdrant</code>: Faster for large datasets, supports filtering</li>
+<li><code>weaviate</code>: Production-ready, supports GraphQL queries</li>
+<li>Custom backends: Implement the base interface for any vector database</li>
 </ul>
 <hr>
-<h2 id="자동-저장-훅">자동 저장 훅<a hidden class="anchor" aria-hidden="true" href="#자동-저장-훅">#</a></h2>
-<p>MemPalace는 지원되는 에이전트의 대화를 자동으로 저장할 수 있습니다. Claude Code의 경우 자동 저장 훅을 구성해야 합니다: `````bash</p>
-<h1 id="claude-code에-자동-저장-활성화">Claude Code에 자동 저장 활성화<a hidden class="anchor" aria-hidden="true" href="#claude-code에-자동-저장-활성화">#</a></h1>
+<h2 id="auto-save-hooks">Auto-Save Hooks<a hidden class="anchor" aria-hidden="true" href="#auto-save-hooks">#</a></h2>
+<p>MemPalace can automatically save conversations from supported agents. For Claude Code, you need to configure auto-save hooks: `````bash</p>
+<h1 id="enable-auto-save-for-claude-code">Enable auto-save for Claude Code<a hidden class="anchor" aria-hidden="true" href="#enable-auto-save-for-claude-code">#</a></h1>
 <p>mempalace hooks enable claude-code</p>
-<h1 id="현재-훅-보기">현재 훅 보기<a hidden class="anchor" aria-hidden="true" href="#현재-훅-보기">#</a></h1>
+<h1 id="view-current-hooks">View current hooks<a hidden class="anchor" aria-hidden="true" href="#view-current-hooks">#</a></h1>
 <p>mempalace hooks list</p>
-<h1 id="훅-테스트">훅 테스트<a hidden class="anchor" aria-hidden="true" href="#훅-테스트">#</a></h1>
+<h1 id="test-the-hooks">Test the hooks<a hidden class="anchor" aria-hidden="true" href="#test-the-hooks">#</a></h1>
 <p>mempalace hooks test</p>
 <pre tabindex="0"><code>
-훅은 에이전트 세션을 인터셉트하여 대화 기록을 메모리 팰리스에 자동으로 저장합니다.这意味着 수동으로 대화를 저장할 필요가 없습니다 — 작업하는 동안 자동으로 보존됩니다.
+The hooks work by intercepting agent sessions and automatically storing them to your memory palace. This means you don&#39;t have to manually save conversations — they&#39;re persisted as you work.
 
 * * *
 
-## 요구 사항
+## Requirements
 
 - Python 3.9+
-- 설치를 위한 ````uv```` 또는 ````pip````
-- 임베딩 모델 및 초기 인덱스를 위해 약 500MB 디스크 공간
-- ChromaDB 작동을 위해 약 500MB RAM (대규모 데이터셋은 더 필요)
+- ````uv```` or ````pip```` for installation
+- ~500MB disk space for embedding model and initial index
+- ~500MB RAM for ChromaDB operation (more for large datasets)
 
 * * *
 
-## 빠른 시작 (60초)
+## Quickstart (60 Seconds)
 
-PEP 668 오류를 피하기 위해 격리된 환경에 MemPalace를 설치하세요: `````bash
-# 권장: uv tool install (PATH에 격리)
+Install MemPalace in an isolated environment to avoid PEP 668 errors: `````bash
+# Recommended: uv tool install (isolated on your PATH)
 uv tool install mempalace
 
-# 프로젝트 초기화
+# Initialize for your project
 mempalace init ~/projects/myapp
 
-# mempalace 훅과 함께 Claude Code 시작
+# Start Claude Code with mempalace hooks
 claude
-</code></pre><p>또는 pipx 사용: `````bash
+</code></pre><p>Or using pipx: `````bash
 pipx install mempalace
 mempalace init ~/projects/myapp</p>
 <pre tabindex="0"><code>
-또는 가상 환경 내에서 설치 (if ``import mempalace``를 사용하고 싶다면): `````bash
+Or inside a virtualenv (if you want ``import mempalace`` available): `````bash
 python -m venv .venv &amp;&amp; source .venv/bin/activate
 pip install mempalace
 mempalace init ~/projects/myapp
 </code></pre><hr>
-<h2 id="언제-사용--언제-건너뛰기">언제 사용 / 언제 건너뛰기<a hidden class="anchor" aria-hidden="true" href="#언제-사용--언제-건너뛰기">#</a></h2>
-<p><strong>다음과 같은 경우 완벽:</strong></p>
+<h2 id="when-to-use--when-to-skip">When to Use / When to Skip<a hidden class="anchor" aria-hidden="true" href="#when-to-use--when-to-skip">#</a></h2>
+<p><strong>Great fit if you…</strong></p>
 <ul>
-<li>매일 AI 코딩 에이전트를 사용하고 세션 간 지속 메모리를 원함</li>
-<li>여러 에이전트에서 작업하고 MCP를 통해 공유 메모리를 원함</li>
-<li>원문 그대로의 회상이 필요 — 원본이 항상 검색 가능</li>
-<li>프라이버시를 위해 외부 API 호출 제로를 원함</li>
+<li>Run AI coding agents daily and want persistent memory across sessions</li>
+<li>Work across multiple agents and want shared memory via MCP</li>
+<li>Need verbatim recall — originals always retrievable</li>
+<li>Want zero external API calls for privacy</li>
 </ul>
-<p><strong>건너뛰기:</strong></p>
+<p><strong>Skip it if you…</strong></p>
 <ul>
-<li>단일 제공자의 기본 메모리만 사용하고 에이전트 간 동기화가 필요 없음</li>
-<li>로컬 프로세스가 실행될 수 없는 샌드박스 환경에서 작업</li>
-<li>팀원 간 클라우드 기반 메모리 공유가 필요</li>
+<li>Only use a single provider&rsquo;s native memory and don&rsquo;t need cross-agent sync</li>
+<li>Work in a sandboxed environment where local processes can&rsquo;t run</li>
+<li>Need cloud-based memory sharing across team members</li>
 </ul>
 <hr>
-<h2 id="벤치마크">벤치마크<a hidden class="anchor" aria-hidden="true" href="#벤치마크">#</a></h2>
-<p>MemPalace는 LongMemEval에서 <strong>96.6%의 원시 R@5</strong>를 달성했습니다 — 모든 오픈소스 메모리 시스템 중 최고의 벤치마크 점수입니다.</p>
-<h3 id="longmemeval-결과">LongMemEval 결과<a hidden class="anchor" aria-hidden="true" href="#longmemeval-결과">#</a></h3>
-<p>|| 모드 | R@5 | LLM 필요 | API 호출 |
-|&mdash;&mdash;|&mdash;&ndash;|&mdash;&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&ndash;|
-|| <strong>MemPalace (원시)</strong> | <strong>96.6%</strong> | 없음 | 0 |
-|| MemPalace (하이브리드 v4) | 98.4% | 없음 | 0 |
-|| MemPalace (하이브리드 + LLM 리랭크) | ≥99% | 모든 사용 가능한 모델 | 1 |
-|| Memory Bank (OpenAI) | 78.2% | Claude/GPT | 3-5 |
-|| Mem0 | 71.4% | Claude/GPT | 1-2 |
-|| 직접 LLM 컨텍스트 | 65.3% | N/A | N/A |</p>
-<p><em>출처: <a href="https://github.com/MemPalace/mempalace">LongMemEval 벤치마크</a> — 10K 문서 검색 작업에서 측정, 95% 신뢰 구간.</em></p>
-<h3 id="966가-중요한-이유">96.6%가 중요한 이유<a hidden class="anchor" aria-hidden="true" href="#966가-중요한-이유">#</a></h3>
-<p>대부분의 메모리 시스템은 <strong>컨텍스트 확장</strong>을 통해 점수를 달성합니다 — 더 많은 토큰을 윈도우에 밀어 넣습니다. MemPalace는 <strong>구조화된 검색</strong>을 통해 점수를 달성합니다: 날개 → 방 → 서랍. 당신은 &ldquo;내가 지금까지 한 모든 말&quot;을 묻는 것이 아니라, &ldquo;프로젝트 Y에서 인물 X에 관한 모든 것&quot;을 묻는 것입니다.</p>
-<p>원시 96.6%는 <strong>API 키, 클라우드, 어느 단계에서도 LLM이 필요 없습니다</strong>. 하이브리드 파이프라인은 키워드 부스트, 시간 인접 부스트 및 선호 패턴 추출을 추가합니다; 홀드아웃 98.4%는 정직한 일반화 가능한 수치입니다.</p>
+<h2 id="benchmarks">Benchmarks<a hidden class="anchor" aria-hidden="true" href="#benchmarks">#</a></h2>
+<p>MemPalace achieved <strong>96.6% R@5 raw</strong> on LongMemEval — the best benchmarked score for any open-source memory system.</p>
+<h3 id="longmemeval-results">LongMemEval Results<a hidden class="anchor" aria-hidden="true" href="#longmemeval-results">#</a></h3>
+<p>| Mode | R@5 | LLM Required | API Calls |
+|</p>
 <hr>
-<h2 id="지식-그래프-아키텍처">지식 그래프 아키텍처<a hidden class="anchor" aria-hidden="true" href="#지식-그래프-아키텍처">#</a></h2>
-<p>구조화된 메모리 그래프는 MemPalace의 비밀 무기입니다.</p>
-<pre tabindex="0"><code>                    [날개: 인물]
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>MemPalace (Raw)</strong> | <strong>96.6%</strong> | None | 0 |
+| MemPalace (Hybrid v4) | 98.4% | None | 0 |
+| MemPalace (Hybrid + LLM Rerank) | ≥99% | Any capable model | 1 |
+| Memory Bank (OpenAI) | 78.2% | Claude/GPT | 3-5 |
+| Mem0 | 71.4% | Claude/GPT | 1-2 |
+| Direct LLM Context | 65.3% | N/A | N/A |</p>
+<p><em>Source: <a href="https://github.com/MemPalace/mempalace">LongMemEval benchmark</a> — measured on 10K document retrieval task, 95% confidence interval.</em></p>
+<h3 id="why-966-matters">Why 96.6% Matters<a hidden class="anchor" aria-hidden="true" href="#why-966-matters">#</a></h3>
+<p>Most memory systems achieve their scores through <strong>context expansion</strong> — stuffing more tokens into the window. MemPalace achieves its score through <strong>structured retrieval</strong>: wings → rooms → drawers. You&rsquo;re not asking &ldquo;everything I&rsquo;ve ever said&rdquo;, you&rsquo;re asking &ldquo;everything about person X in project Y&rdquo;.</p>
+<p>The raw 96.6% requires <strong>no API key, no cloud, and no LLM at any stage</strong>. The hybrid pipeline adds keyword boosting, temporal-proximity boosting, and preference-pattern extraction; the held-out 98.4% is the honest generalisable figure.</p>
+<hr>
+<h2 id="knowledge-graph-architecture">Knowledge Graph Architecture<a hidden class="anchor" aria-hidden="true" href="#knowledge-graph-architecture">#</a></h2>
+<p>The structured memory graph is MemPalace&rsquo;s secret sauce.</p>
+<pre tabindex="0"><code>                    [Wing: Person]
                    /              \
-           [방: 프로젝트 A]   [방: 프로젝트 B]
+           [Room: Project A]   [Room: Project B]
               /     \               |
-        [서랍: #1] [서랍: #2] [서랍: #3]
-         (원본)     (원본)       (원본)
-</code></pre><p><strong>동작 방식:</strong></p>
+        [Drawer: #1] [Drawer: #2] [Drawer: #3]
+         (original)  (original)   (original)
+</code></pre><p><strong>How it works:</strong></p>
 <ol>
-<li><strong>날개</strong> = 인물, 조직 또는 주요 프로젝트</li>
-<li><strong>방</strong> = 날개 내의 주제, 기능 또는 워크스트림</li>
-<li><strong>서랍</strong> = 원본 대화 세그먼트</li>
+<li><strong>Wings</strong> = People, organizations, or major projects</li>
+<li><strong>Rooms</strong> = Topics, features, or workstreams within a wing</li>
+<li><strong>Drawers</strong> = Original conversation segments</li>
 </ol>
-<p>이 구조는 범위 검색을 가능하게 합니다: `````bash</p>
-<h1 id="모든-날개에서-검색">모든 날개에서 검색<a hidden class="anchor" aria-hidden="true" href="#모든-날개에서-검색">#</a></h1>
-<p>mempalace search &ldquo;auth 구현&rdquo;</p>
-<h1 id="특정-날개에서-검색">특정 날개에서 검색<a hidden class="anchor" aria-hidden="true" href="#특정-날개에서-검색">#</a></h1>
-<p>mempalace search &ldquo;auth&rdquo; &ndash;wing &ldquo;인물-A&rdquo;</p>
-<h1 id="방에서-검색">방에서 검색<a hidden class="anchor" aria-hidden="true" href="#방에서-검색">#</a></h1>
-<p>mempalace search &ldquo;auth&rdquo; &ndash;wing &ldquo;인물-A&rdquo; &ndash;room &ldquo;프로젝트-A&rdquo;</p>
+<p>This structure enables scoped searches: `````bash</p>
+<h1 id="search-across-all-wings">Search across all wings<a hidden class="anchor" aria-hidden="true" href="#search-across-all-wings">#</a></h1>
+<p>mempalace search &ldquo;auth implementation&rdquo;</p>
+<h1 id="search-within-a-specific-wing">Search within a specific wing<a hidden class="anchor" aria-hidden="true" href="#search-within-a-specific-wing">#</a></h1>
+<p>mempalace search &ldquo;auth&rdquo; &ndash;wing &ldquo;Person-A&rdquo;</p>
+<h1 id="search-within-a-room">Search within a room<a hidden class="anchor" aria-hidden="true" href="#search-within-a-room">#</a></h1>
+<p>mempalace search &ldquo;auth&rdquo; &ndash;wing &ldquo;Person-A&rdquo; &ndash;room &ldquo;Project-A&rdquo;</p>
 <pre tabindex="0"><code>
-### 백업 및 복원
+### Backup and Restore
 
-MemPalace는 로컬에 데이터를 저장하므로 메모리를 정기적으로 백업해야 합니다: `````bash
-# 메모리 팰리스 백업
+Since MemPalace stores data locally, you should back up your memory regularly: `````bash
+# Backup your memory palace
 mempalace backup ~/backups/mempalace-$(date +%Y-%m-%d).tar.gz
 
-# 백업에서 복원
+# Restore from backup
 mempalace restore ~/backups/mempalace-2026-06-10.tar.gz
 
-# cron으로 자동 백업 예약
+# Schedule automatic backups with cron
 0 2 * * * mempalace backup ~/backups/mempalace-$(date +\%Y-\%m-\%d).tar.gz
-</code></pre><p>백업에는 모든 메모리 파일, 구성 및 캐시된 임베딩 모델이 포함됩니다. 백업을 복사하고 복원된 데이터를 등록하기 위해 <code>mempalace init</code>을 실행하여 다른 기기로 복원할 수 있습니다.</p>
+</code></pre><p>The backup includes all memory files, configuration, and the cached embedding model. You can restore to a different machine by copying the backup and running <code>mempalace init</code> to register the restored data.</p>
 <hr>
-<h2 id="mcp-서버-통합">MCP 서버 통합<a hidden class="anchor" aria-hidden="true" href="#mcp-서버-통합">#</a></h2>
-<p>MemPalace는 Claude Code, Cursor 및 기타 MCP 호환 에이전트와 함께 사용하기 위한 내장 MCP 서버를 포함합니다.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># MCP 서버 시작</span>
+<h2 id="mcp-server-integration">MCP Server Integration<a hidden class="anchor" aria-hidden="true" href="#mcp-server-integration">#</a></h2>
+<p>MemPalace includes a built-in MCP server for use with Claude Code, Cursor, and other MCP-compatible agents.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Start the MCP server</span>
 </span></span><span style="display:flex;"><span>mempalace mcp --port <span style="color:#ae81ff">8765</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Claude Code 구성에서 (~/.claude/settings.json): {</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># In Claude Code config (~/.claude/settings.json): {</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mcpServers&#34;</span>: <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;mempalace&#34;</span>: <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;mempalace&#34;</span>,
@@ -464,18 +480,18 @@ mempalace restore ~/backups/mempalace-2026-06-10.tar.gz
 </span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><p>MCP 서버는 다음을 노출합니다: - <code>mempalace_store</code>: 대화 세그먼트 저장</p>
+</span></span></code></pre></div><p>The MCP server exposes: - <code>mempalace_store</code>: Store conversation segment</p>
 <ul>
-<li><code>mempalace_query</code>: 의미 기반 검색을 통해 컨텍스트 검색</li>
-<li><code>mempalace_list_wings</code>: 사용 가능한 날개 나열</li>
-<li><code>mempalace_list_rooms</code>: 날개 내의 방 나열</li>
+<li><code>mempalace_query</code>: Retrieve context via semantic search</li>
+<li><code>mempalace_list_wings</code>: List available wings</li>
+<li><code>mempalace_list_rooms</code>: List rooms within a wing</li>
 </ul>
 <hr>
-<h2 id="심층-분석-python-api">심층 분석: Python API<a hidden class="anchor" aria-hidden="true" href="#심층-분석-python-api">#</a></h2>
-<p>MCP 호환 에이전트를 사용하지 않는 경우 MemPalace의 Python API를 직접 사용할 수 있습니다: `````python
+<h2 id="in-depth-python-api">In Depth: Python API<a hidden class="anchor" aria-hidden="true" href="#in-depth-python-api">#</a></h2>
+<p>If you&rsquo;re not using MCP-compatible agents, you can use MemPalace&rsquo;s Python API directly: `````python
 import mempalace</p>
 <h1 id="initialize-memory-store">Initialize memory store<a hidden class="anchor" aria-hidden="true" href="#initialize-memory-store">#</a></h1>
-<p>memory = mempalace.Store(&quot;~/projects/myapp&rdquo;)</p>
+<p>memory = mempalace.Store(&quot;~/projects/myapp&quot;)</p>
 <h1 id="store-a-conversation-segment">Store a conversation segment<a hidden class="anchor" aria-hidden="true" href="#store-a-conversation-segment">#</a></h1>
 <p>memory.store({
 &ldquo;role&rdquo;: &ldquo;user&rdquo;,
@@ -483,62 +499,72 @@ import mempalace</p>
 })
 memory.store({
 &ldquo;role&rdquo;: &ldquo;assistant&rdquo;,
-&ldquo;content&rdquo;: &ldquo;You&quot;ll need to create a Google Cloud project&hellip;&rdquo;
+&ldquo;content&rdquo;: &ldquo;You&rsquo;ll need to create a Google Cloud project&hellip;&rdquo;
 })</p>
 <h1 id="query-for-relevant-context">Query for relevant context<a hidden class="anchor" aria-hidden="true" href="#query-for-relevant-context">#</a></h1>
 <p>results = memory.query(&ldquo;OAuth2 Google implementation&rdquo;)
-for result in results: print(f&rdquo;[{result.wing}/{result.room}]: {result.content[:200]}&quot;)</p>
+for result in results: print(f&quot;[{result.wing}/{result.room}]: {result.content[:200]}&quot;)</p>
 <h1 id="list-all-wings">List all wings<a hidden class="anchor" aria-hidden="true" href="#list-all-wings">#</a></h1>
 <p>for wing in memory.list_wings(): print(f&quot;Wing: {wing.name} ({len(wing.rooms)} rooms)&quot;)</p>
 <pre tabindex="0"><code>
-Python API는 CLI를镜像하지만 메모리 그래프에 프로그래밍 방식 접근을 제공합니다. 이는 다음에 유용합니다: - 커스텀 에이전트 통합
-- 대화 기록 배치 처리
-- 메모리 대시보드 구축
-- 자동화된 백업 워크플로우
+The Python API mirrors the CLI but gives you programmatic access to the memory graph. This is useful for: - Custom agent integrations
+- Batch processing conversation history
+- Building dashboards over your memory
+- Automated backup workflows
 
 * * *
 
-## Docker 배포
+## Docker Deployment
 
-서버 사이드 또는 컨테이너화된 배포를 위해: `````bash
-# Docker 이미지 빌드
+For server-side or containerized deployments: `````bash
+# Build the Docker image
 docker build -t mempalace-server .
 
-# Docker에서 MCP 서버 실행
+# Run the MCP server in Docker
 docker run -d \
   --name mempalace \
   -v /data:/data \
   -p 8765:8765 \
   mempalace-server \
   mcp --port 8765
-</code></pre><p>모든 내용은 <code>/data</code> 아래에 영구 저장됩니다(팰리스, 구성 및 캐시된 임베딩 모델), 따라서 거기에 볼륨을 마운트하세요. 이 설정은 다음과 잘 작동합니다: - 공유 팀 메모리 (여러 기계가 동일한 데이터베이스에 접근)</p>
+</code></pre><p>Everything persists under <code>/data</code> (palace, config, and the cached embedding model), so mount a volume there. This setup works well for: - Shared team memory (multiple machines accessing same database)</p>
 <ul>
-<li>에이전트 메모리가 필요한 CI/CD 파이프라인</li>
-<li>Docker 오케스트레이션이 있는 프로덕션 환경</li>
+<li>CI/CD pipelines that need agent memory</li>
+<li>Production environments with Docker orchestration</li>
 </ul>
 <hr>
-<h2 id="대안과-비교">대안과 비교<a hidden class="anchor" aria-hidden="true" href="#대안과-비교">#</a></h2>
-<p>|| 기능 | MemPalace | Mem0 | Memory Bank | 로컬 RAG |
-|&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;&ndash;|
-|| 원문 그대로 저장 | ✓ | ✗ | ✗ | ✗ |
-|| 구조화된 인덱싱 | 날개/방/서랍 | 평평한 벡터 | 채팅 기록 | 임베딩 |
-|| API 필요 | 0 | 1-3 | 5-8 | 0 |
-|| 로컬 우선 | ✓ | ✗ | ✗ | ✓ |
-|| MCP 서버 | 내장 | 플러그인 | 없음 | 없음 |
-|| 벤치마크 | 96.6% R@5 | 78.2% | 71.4% | N/A |
-|| Stars | 55,206 | 12,400 | 8,900 | 18,200 |</p>
-<p>MemPalace의 구조화된 접근 방식(날개 → 방 → 서랍)이 96.6% 벤치마크를 이끄는 요인입니다. 다른 시스템은 평평한 벡터 검색 또는 토큰 확장 컨텍스트 윈도우를 사용하며, 이는 약 200K 토큰에서 실제 한계에 부딪힙니다.</p>
-<h2 id="한계--정직한-평가">한계 / 정직한 평가<a hidden class="anchor" aria-hidden="true" href="#한계--정직한-평가">#</a></h2>
-<p>MemPalace는 모든 사람을 위한 것은 아닙니다: - <strong>클라우드 팀에게는 부적합</strong>: 다른 기계에서 작업하는 팀원 간에 공유 메모리가 필요하다면, MemPalace의 로컬 우선 디자인은 도움이 되지 않습니다</p>
-<ul>
-<li><strong>Python 환경 필요</strong>: 설치를 위해 호환되는 Python 버전과 함께 <code>uv</code> 또는 <code>pip</code>가 필요합니다</li>
-<li><strong>기본 ChromaDB</strong>: 플러그인 가능하지만, 대부분의 사용자는 약 500MB RAM이 필요한 임베딩 모델인 ChromaDB를 사용할 것입니다</li>
-<li><strong>클라우드 백업 없음</strong>: 메모리는 로컬에 stay합니다. 디스크가 고장 나면 메모리가 사라집니다(백업하지 않는 한)</li>
-</ul>
-<p>이것은 AI 에이전트를 위한 지속적이고 프라이빗한 메모리를 원하는 <strong>개별 개발자</strong>를 위해 만들어졌습니다.</p>
+<h2 id="compared-to-alternatives">Compared to Alternatives<a hidden class="anchor" aria-hidden="true" href="#compared-to-alternatives">#</a></h2>
+<p>| Feature | MemPalace | Mem0 | Memory Bank | Local RAG |
+|</p>
 <hr>
-<h2 id="현실-세계-사용-사례">현실 세계 사용 사례<a hidden class="anchor" aria-hidden="true" href="#현실-세계-사용-사례">#</a></h2>
-<h3 id="사용-사례-1-지속적-코딩-컨텍스트">사용 사례 1: 지속적 코딩 컨텍스트<a hidden class="anchor" aria-hidden="true" href="#사용-사례-1-지속적-코딩-컨텍스트">#</a></h3>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Verbatim Storage | ✓ | ✗ | ✗ | ✗ |
+| Structured Index | Wings/Rooms/Drawers | Flat vector | Chat history | Embeddings |
+| API Required | 0 | 1-3 | 5-8 | 0 |
+| Local First | ✓ | ✗ | ✗ | ✓ |
+| MCP Server | Built-in | Plugin | No | No |
+| Benchmark | 96.6% R@5 | 78.2% | 71.4% | N/A |
+| Stars | 55,206 | 12,400 | 8,900 | 18,200 |</p>
+<p>MemPalace&rsquo;s structured approach (wings → rooms → drawers) is what drives the 96.6% benchmark. Other systems use flat vector search or token-expanding context windows, which hit practical limits at ~200K tokens.</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations--honest-assessment">#</a></h2>
+<p>MemPalace is not for everyone: - <strong>Not for cloud teams</strong>: If you need shared memory across team members working on different machines, MemPalace&rsquo;s local-first design doesn&rsquo;t help</p>
+<ul>
+<li><strong>Requires Python environment</strong>: Installation needs <code>uv</code> or <code>pip</code> with a compatible Python version</li>
+<li><strong>ChromaDB by default</strong>: While pluggable, most users will use ChromaDB which requires ~500MB RAM for the embedding model</li>
+<li><strong>No cloud backup</strong>: Your memory stays local. If your disk fails, your memory is gone (unless you back it up)</li>
+</ul>
+<p>It&rsquo;s built for <strong>individual developers</strong> who want persistent, private memory for their AI agents.</p>
+<hr>
+<h2 id="real-world-use-cases">Real-World Use Cases<a hidden class="anchor" aria-hidden="true" href="#real-world-use-cases">#</a></h2>
+<h3 id="use-case-1-persistent-coding-context">Use Case 1: Persistent Coding Context<a hidden class="anchor" aria-hidden="true" href="#use-case-1-persistent-coding-context">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Start a new Claude Code session</span>
 </span></span><span style="display:flex;"><span>claude
 </span></span><span style="display:flex;"><span>
@@ -546,69 +572,69 @@ docker run -d \
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># when you ask about previous work on the same feature</span>
 </span></span><span style="display:flex;"><span>&gt; <span style="color:#e6db74">&#34;Remember when we implemented OAuth2 last week?&#34;</span>
 </span></span><span style="display:flex;"><span>&gt; <span style="color:#f92672">[</span>MemPalace retrieves: Wing <span style="color:#e6db74">&#34;Person-A&#34;</span> → Room <span style="color:#e6db74">&#34;Project-A&#34;</span> → Drawer: <span style="color:#75715e">#3]</span>
-</span></span></code></pre></div><p>이 사용 사례는 장기 프로젝트에서 작업하고 이전 구현, 결정 및 제약을 AI 에이전트가 기억하기를 원하는 개발자에게 완벽합니다.</p>
-<h3 id="사용-사례-2-연구-컨텍스트">사용 사례 2: 연구 컨텍스트<a hidden class="anchor" aria-hidden="true" href="#사용-사례-2-연구-컨텍스트">#</a></h3>
+</span></span></code></pre></div><p>This use case is perfect for developers who work on long-term projects and need their AI agent to remember previous implementations, decisions, and constraints.</p>
+<h3 id="use-case-2-research-context">Use Case 2: Research Context<a hidden class="anchor" aria-hidden="true" href="#use-case-2-research-context">#</a></h3>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Store research notes from your agent</span>
 </span></span><span style="display:flex;"><span>mempalace store <span style="color:#e6db74">&#34;Research: LangGraph vs LangChain for agent orchestration&#34;</span>
 </span></span><span style="display:flex;"><span>mempalace store <span style="color:#e6db74">&#34;Key finding: LangGraph has better state management...&#34;</span>
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#75715e"># Later, query for all research notes</span>
 </span></span><span style="display:flex;"><span>mempalace search <span style="color:#e6db74">&#34;agent orchestration comparison&#34;</span> --wing <span style="color:#e6db74">&#34;Research&#34;</span>
-</span></span></code></pre></div><p>여러 연구 세션에 걸쳐 검색 가능한 지식 베이스를 유지하려는 연구자에게 완벽합니다.</p>
-<h3 id="사용-사례-3-팀-지식-베이스">사용 사례 3: 팀 지식 베이스<a hidden class="anchor" aria-hidden="true" href="#사용-사례-3-팀-지식-베이스">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 팀원 간 메모리 공유 (Docker 배포)</span>
+</span></span></code></pre></div><p>Perfect for researchers who want to maintain a searchable knowledge base across multiple research sessions.</p>
+<h3 id="use-case-3-team-knowledge-base">Use Case 3: Team Knowledge Base<a hidden class="anchor" aria-hidden="true" href="#use-case-3-team-knowledge-base">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Share memory across team members (Docker deployment)</span>
 </span></span><span style="display:flex;"><span>docker run -d <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  --name mempalace <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -v /data:/data <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  -p 8765:8765 <span style="color:#ae81ff">\
 </span></span></span><span style="display:flex;"><span>  mempalace-server mcp --port <span style="color:#ae81ff">8765</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 각 팀원이 프로젝트별로 다른 접근 권한으로</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># 공유 메모리 서버에 연결합니다</span>
-</span></span></code></pre></div><p>데이터 프라이버시와 제어권을 유지하면서 공유 메모리가 필요한 팀을 위한 것입니다.</p>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Each team member connects to the shared memory server</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># with different access levels per project</span>
+</span></span></code></pre></div><p>For teams that need shared memory but want to maintain data privacy and control.</p>
 <hr>
-<h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
-<h3 id="질문1-mempalace는-내-데이터를-클라우드에-저장하나요">질문1: MemPalace는 내 데이터를 클라우드에 저장하나요?<a hidden class="anchor" aria-hidden="true" href="#질문1-mempalace는-내-데이터를-클라우드에-저장하나요">#</a></h3>
-<p>아니요. MemPalace는 로컬 우선입니다. 대화 기록, 메모리 인덱스 및 임베딩은 모두 귀하의 기계에 stay합니다. 기본적으로 외부 서비스에 API 호출이 이루어지지 않습니다.</p>
-<h3 id="질문2-mempalace를-모든-ai-에이전트와-사용할-수-있나요">질문2: MemPalace를 모든 AI 에이전트와 사용할 수 있나요?<a hidden class="anchor" aria-hidden="true" href="#질문2-mempalace를-모든-ai-에이전트와-사용할-수-있나요">#</a></h3>
-<p>네, MCP(모델 컨텍스트 프로토콜)를 지원하는 경우. Claude Code, Cursor, Windsurf 및 기타 MCP 호환 에이전트는 바로 작동합니다. 비-MCP 에이전트의 경우 Python API를 직접 사용할 수 있습니다.</p>
-<h3 id="질문3-966-벤치마크-점수는-다른-메모리-시스템과-비교하면-어떤가요">질문3: 96.6% 벤치마크 점수는 다른 메모리 시스템과 비교하면 어떤가요?<a hidden class="anchor" aria-hidden="true" href="#질문3-966-벤치마크-점수는-다른-메모리-시스템과-비교하면-어떤가요">#</a></h3>
-<p>MemPalace의 LongMemEval에서 96.6% 원시 R@5는 오픈소스 메모리 시스템 중 최고의 벤치마크 점수입니다. 대부분의 경쟁사는 구조화된 검색이 아닌 컨텍스트 확장(더 많은 토큰 저장)을 통해 70-80%를 달성합니다.</p>
-<h3 id="질문4-chromadb에서-다른-백엔드로-전환할-수-있나요">질문4: ChromaDB에서 다른 백엔드로 전환할 수 있나요?<a hidden class="anchor" aria-hidden="true" href="#질문4-chromadb에서-다른-백엔드로-전환할-수-있나요">#</a></h3>
-<p>네. 검색 계층은 플러그인 가능합니다. 기본값은 ChromaDB이지만, <code>mempalace/backends/base.py</code>를 구현하는 모든 백엔드로 넣을 수 있습니다. 커스텀 백엔드를 지원합니다.</p>
-<h3 id="질문5-메모리-파일을-삭제하면-어떻게-되나요">질문5: 메모리 파일을 삭제하면 어떻게 되나요?<a hidden class="anchor" aria-hidden="true" href="#질문5-메모리-파일을-삭제하면-어떻게-되나요">#</a></h3>
-<p>MemPalace는 로컬 우선이므로 클라우드 복구가 없습니다. 메모리 파일을 삭제하면 수동으로 백업하지 않은 한 데이터가 사라집니다. 메모리가 중요하다고 생각하면 자동 백업을 설정하세요.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<h3 id="q1-does-mempalace-store-my-data-in-the-cloud">Q1: Does MemPalace store my data in the cloud?<a hidden class="anchor" aria-hidden="true" href="#q1-does-mempalace-store-my-data-in-the-cloud">#</a></h3>
+<p>No. MemPalace is local-first. Your conversation history, memory index, and embeddings all stay on your machine. No API calls are made to external services by default.</p>
+<h3 id="q2-can-i-use-mempalace-with-any-ai-agent">Q2: Can I use MemPalace with any AI agent?<a hidden class="anchor" aria-hidden="true" href="#q2-can-i-use-mempalace-with-any-ai-agent">#</a></h3>
+<p>Yes, if it supports MCP (Model Context Protocol). Claude Code, Cursor, Windsurf, and other MCP-compatible agents work out of the box. For non-MCP agents, you can use the Python API directly.</p>
+<h3 id="q3-how-does-the-966-benchmark-compare-to-other-memory-systems">Q3: How does the 96.6% benchmark compare to other memory systems?<a hidden class="anchor" aria-hidden="true" href="#q3-how-does-the-966-benchmark-compare-to-other-memory-systems">#</a></h3>
+<p>MemPalace&rsquo;s 96.6% R@5 raw on LongMemEval is the best benchmarked score for open-source memory systems. Most competitors achieve 70-80% through context expansion (storing more tokens), not structured retrieval.</p>
+<h3 id="q4-can-i-switch-the-backend-from-chromadb">Q4: Can I switch the backend from ChromaDB?<a hidden class="anchor" aria-hidden="true" href="#q4-can-i-switch-the-backend-from-chromadb">#</a></h3>
+<p>Yes. The retrieval layer is pluggable. The default is ChromaDB, but you can drop in any backend that implements <code>mempalace/backends/base.py</code>. Custom backends are supported.</p>
+<h3 id="q5-what-happens-if-i-delete-my-memory-files">Q5: What happens if I delete my memory files?<a hidden class="anchor" aria-hidden="true" href="#q5-what-happens-if-i-delete-my-memory-files">#</a></h3>
+<p>Since MemPalace is local-first, there&rsquo;s no cloud recovery. If you delete your memory files, the data is gone unless you&quot;ve manually backed it up. Consider setting up automatic backups if your memory is valuable.</p>
 <hr>
-<h2 id="출처-및-추가-자료">출처 및 추가 자료<a hidden class="anchor" aria-hidden="true" href="#출처-및-추가-자료">#</a></h2>
+<h2 id="sources--further-reading">Sources &amp; Further Reading<a hidden class="anchor" aria-hidden="true" href="#sources--further-reading">#</a></h2>
 <ul>
-<li>공식 문서: <a href="https://mempalaceofficial.com">mempalaceofficial.com</a></li>
-<li>GitHub 저장소: <a href="https://github.com/MemPalace/mempalace">MemPalace/mempalace</a></li>
-<li>벤치마크: <a href="https://github.com/MemPalace/mempalace/blob/main/benchmarks/BENCHMARKS.md">benchmarks/BENCHMARKS.md</a></li>
-<li>LongMemEval 결과: <a href="https://github.com/MemPalace/mempalace#benchmarks">96.6% R@5 원시</a></li>
-<li>MCP 서버 문서: <a href="https://mempalaceofficial.com/concepts/the-palace.html">mempalaceofficial.com/concepts/the-palace</a></li>
+<li>Official docs: <a href="https://mempalaceofficial.com">mempalaceofficial.com</a></li>
+<li>GitHub repository: <a href="https://github.com/MemPalace/mempalace">MemPalace/mempalace</a></li>
+<li>Benchmarks: <a href="https://github.com/MemPalace/mempalace/blob/main/benchmarks/BENCHMARKS.md">benchmarks/BENCHMARKS.md</a></li>
+<li>LongMemEval results: <a href="https://github.com/MemPalace/mempalace#benchmarks">96.6% R@5 raw</a></li>
+<li>MCP server docs: <a href="https://mempalaceofficial.com/concepts/the-palace.html">mempalaceofficial.com/concepts/the-palace</a></li>
 </ul>
 <hr>
-<h2 id="결론-실제로-기억하는-ai-에이전트-구축">결론: 실제로 기억하는 AI 에이전트 구축<a hidden class="anchor" aria-hidden="true" href="#결론-실제로-기억하는-ai-에이전트-구축">#</a></h2>
-<p>MemPalace는 &ldquo;금붕어 에이전트&rdquo; 문제를 해결합니다. 대화 기록을 원문 그대로 저장하고, 구조적으로 인덱싱하며, 96.6%의 정확도로 검색합니다 — API 호출 제로로.</p>
-<p><strong>지금 시도:</strong></p>
+<h2 id="conclusion-build-ai-agents-that-actually-remember">Conclusion: Build AI Agents That Actually Remember<a hidden class="anchor" aria-hidden="true" href="#conclusion-build-ai-agents-that-actually-remember">#</a></h2>
+<p>MemPalace solves the &ldquo;goldfish agent&rdquo; problem. It stores your conversation history verbatim, indexes it structurally, and retrieves it with 96.6% accuracy — with zero API calls.</p>
+<p><strong>Try it now:</strong></p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>uv tool install mempalace
 </span></span><span style="display:flex;"><span>mempalace init ~/projects/myapp
 </span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>VPS 또는 전용 서버에서 자체 호스팅 메모리를 원한다면, 합리적인 가격의 GPU 호스팅을 위해 <span style="color:#f92672">[</span>HTStack<span style="color:#f92672">](</span>https://my.htstack.com/aff.php?aff<span style="color:#f92672">=</span>27187<span style="color:#f92672">)</span>을, 손쉬운 클라우드 배포를 위해 <span style="color:#f92672">[</span>DigitalOcean<span style="color:#f92672">](</span>https://m.do.co/c/eca87ac14ee0<span style="color:#f92672">)</span>을 고려하세요.
+</span></span><span style="display:flex;"><span>For self-hosted memory on a VPS or dedicated server, consider using <span style="color:#f92672">[</span>HTStack<span style="color:#f92672">](</span>https://my.htstack.com/aff.php?aff<span style="color:#f92672">=</span>27187<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> affordable GPU hosting, or <span style="color:#f92672">[</span>DigitalOcean<span style="color:#f92672">](</span>https://m.do.co/c/eca87ac14ee0<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> easy cloud deployment.
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>dibi8 **한국어 Telegram 그룹** https://t.me/DIBI8_Group/9에 참여하여 AI 메모리 시스템, 에이전트 아키텍처 및 오픈소스 도구에 대해 논의하세요.
+</span></span><span style="display:flex;"><span>Join the **dibi8 <span style="color:#f92672">[</span>English Telegram group<span style="color:#f92672">](</span>https://t.me/DIBI8_Group/2<span style="color:#f92672">)</span>** <span style="color:#66d9ef">for</span> discussions on AI memory systems, agent architecture, and open-source tools.
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>관련 기사: - <span style="color:#f92672">[</span>LangChain 완전 가이드<span style="color:#f92672">](</span>dibi8-internal-link/llm-frameworks/langchain-complete-guide<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>벡터 데이터베이스 비교<span style="color:#f92672">](</span>dibi8-internal-link/data-science/vector-database-comparison<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>MCP 심층 분석<span style="color:#f92672">](</span>dibi8-internal-link/llm-frameworks/mcp-deep-dive<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>Related articles: - <span style="color:#f92672">[</span>LangChain Complete Guide<span style="color:#f92672">](</span>dibi8-internal-link/llm-frameworks/langchain-complete-guide<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>Vector Database Comparison<span style="color:#f92672">](</span>dibi8-internal-link/data-science/vector-database-comparison<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>MCP Deep Dive<span style="color:#f92672">](</span>dibi8-internal-link/llm-frameworks/mcp-deep-dive<span style="color:#f92672">)</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>*위의 일부 링크는 제휴 링크입니다. dibi8.com은 추가 비용 없이 가입할 경우 커미션을 받을 수 있습니다. 이는 사이트 운영과 콘텐츠를 무료로 유지하는 데 도움이 됩니다.*
+</span></span><span style="display:flex;"><span>*Some links above are affiliate links. dibi8.com may earn a commission <span style="color:#66d9ef">if</span> you sign up, at no extra cost to you. Helps keep the site running and the content free.*
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;MemPalace: 최고의 벤치마크를 갖춘 오픈소스 AI 메모리 시스템, LongMemEval에서 R@5 96.6% 절약 — API 호출 제로&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;MemPalace: The Best-Benchmarked Open-Source AI Memory System Saves 96.6% of R@5 on LongMemEval — Zero API Calls&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-06-10&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-06-10&#34;</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#f92672">{</span>
@@ -625,7 +651,7 @@ docker run -d \
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
 </span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: <span style="color:#f92672">{</span>
 </span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/kr/resources/mempalace-open-source-ai-memory-system&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/resources/mempalace-open-source-ai-memory-system&#34;</span>
 </span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
 </span></span><span style="display:flex;"><span>&lt;/script&gt;
@@ -707,6 +733,81 @@ docker run -d \
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');

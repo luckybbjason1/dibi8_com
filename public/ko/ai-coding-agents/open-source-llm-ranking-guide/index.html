@@ -83,8 +83,8 @@
   "keywords": [
     "ai", "tools"
   ],
-  "articleBody": "오픈소스 LLM 순위 및 선택 가이드 2025: Llama, Mistral, Qwen, DeepSeek 비교 {\u003c/* resource-info */\u003e}\n2025년 현재 오픈소스 LLM은 GPT-4와 Claude 같은 폐쇄형 모델과의 격차를 빠르게 좁히고 있습니다. Meta의 Llama 3.1 405B는 특정 벤치마크에서 GPT-4를 넘어서기도 했으며, 중국의 Qwen과 DeepSeek도 놀라운 속도로 발전하고 있습니다. 이번 글에서는 현재 사용 가능한 주요 오픈소스 LLM을 종합적으로 비교하고 선택 가이드를 제공합니다.\n2025년 오픈소스 LLM 환경 오픈소스 모델이 주목받는 이유 데이터 주권: 기업 데이터가 외부 API로 유출되지 않음 비용 효율성: 장기적으로 API 호출 비용보다 저렴 맞춤화: 파인튜닝으로 자사 업무에 최적화 가능 라이선스 유연성: 상용 배포 가능한 모델 증가 핵심 벤치마크 지표 벤치마크 평가 내용 MMLU 57개 과목의 대학 수준 지식 HumanEval Python 코드 생성 능력 MT-Bench 다중 턴 대화 품질 MATH 수학 문제 해결 능력 GPQA 전문가 수준 과학 질의응답 LLM 리더보드 읽는 법 Hugging Face Open LLM Leaderboard: 평균 벤치마크 순위 LMSYS Chatbot Arena: 인간 선호도 기반 ELO 점수 OpenCompass: 다중 벤치마크 종합 평가 Meta Llama 3/3.1/3.2: 오픈소스 표준 모델 변종 모델 파라미터 MMLU VRAM 필요 용도 Llama 3.2 1B, 3B 49.3 2~6GB 모바일, 엣지 Llama 3.1 8B 69.4 16GB 일반 대화, 파인튜닝 Llama 3.1 70B 83.6 140GB 고성능 업무 Llama 3.1 405B 85.2 810GB 최고 성능 주요 기능과 개선점 확장된 컨텍스트: 8B/70B 모델 128K 토큰 컨텍스트 지원 다국어: 8개 언어로 사전 학습(영어, 스페인어, 힌디어, 중국어 등) 도구 사용: 함수 호출 네이티브 지원 라이선스 Llama 3.1 Community License로, 월간 사용자 7억 명 이하 기업은 상용 사용 가능합니다.\nMistral AI: 유럽의 자존심 Mistral 7B의 유산 2023년 9월 공개된 Mistral 7B는 당시 동급 모델 중 최고의 성능으로 오픈소스 LLM 시장에 큰 반향을 일으켰습니다.\nMixtral 8x7B, 8x22B (MoE) Mixture of Experts(MoE) 아키텍처로, 추론 시 필요한 전문가 레이어만 활성화합니다. 8x7B는 47B 파라미터 중 추론 시 약 13B만 사용해 고효율을 달성합니다.\nMistral Large와 Codestral Mistral Large 2: 123B 파라미터, GPT-4 수준의 성능 Codestral: 22B 파라미터 코드 전용 모델, 80+ 프로그래밍 언어 지원 Qwen (Alibaba): 중국이 낳은 라이징 스타 Qwen2.5 시리즈 2024년 9월 발표된 Qwen2.5는 0.5B부터 72B까지 총 10개 크기로 공개되었습니다.\n모델 MMLU 특징 Qwen2.5-7B 70.6 동급 최고 성능 Qwen2.5-14B 77.4 중급 서버용 최적 Qwen2.5-72B 84.5 GPT-4 수준 QwQ-32B 90.6 추론 특화 다국어 능력 Qwen은 중국어, 영어, 일본어, 한국어, 프랑스어, 스페인어, 독일어, 아랍어 등 29개 언어를 지원합니다. 특히 중국어와 영어 코드 전환 능력이 뛰어납니다.\nCodeQwen CodeQwen 1.5 7B는 HumanEval에서 83.5%를 기록해 동급 모델 중 최고의 코드 생성 능력을 보여줍니다.\n라이선스 Qwen2.5는 Apache 2.0 라이선스로 완전한 상용 사용이 가능합니다.\nDeepSeek: 효율과 성능의 조화 DeepSeek V3 2024년 12월 공개된 DeepSeek V3는 671B 파라미터 MoE 모델로, 추론 시 약 37B만 활성화됩니다. MMLU 87.1%로 GPT-4o에 근접하는 성능을 보여줍니다.\nDeepSeek MoE 아키텍처 Fine-Grained MoE와 Shared Expert Isolation 기법으로 동급 MoE 대비 2배 이상의 효율을 달성했습니다.\nDeepSeek Coder V2 Aider 코드 편집 벤치마크에서 73.6%를 기록, Claude 3.5 Sonnet과 동급의 코드 능력을 보여줍니다.\nGoogle Gemma: 가볍고 접근성 높은 모델 Gemma 2 모델 파라미터 MMLU 용도 Gemma 2 2B 52.9 모바일, IoT Gemma 2 9B 71.6 중급 태스크 Gemma 2 27B 78.3 고성능 로컬 Gemma는 동급 크기에서 최고 수준의 성능을 보여주며, 특히 소형 버전의 효율성이 돋보입니다.\nMicrosoft Phi: 작지만 강력한 모델 Phi-4 (2024년 12월) 14B 파라미터로 MMLU 82.6%를 기록, 기존 70B급 모델에 버금가는 성능을 보여줍니다.\n학습 데이터 품질: 합성 데이터와 필터링된 고품질 데이터로 학습 엣지 및 모바일 배포: 소형 크기로 엣지 디바이스에 최적 수학 및 추론: 특히 수학 벤치마크에서 뛰어난 능력 성능 종합 비교 매트릭스 모델 파라미터 MMLU HumanEval MT-Bench VRAM Llama 3.1 405B 85.2 89.0 9.2 810GB DeepSeek V3 671B (MoE) 87.1 92.0 8.9 80GB Qwen2.5 72B 84.5 86.0 8.8 144GB Mistral Large 2 123B 84.0 84.5 8.9 240GB Llama 3.1 70B 83.6 81.7 8.6 140GB Phi-4 14B 82.6 82.0 8.4 28GB Qwen2.5 14B 77.4 79.5 8.0 28GB Llama 3.1 8B 69.4 72.6 7.4 16GB Mistral 7B 7B 64.0 65.0 7.3 14GB Qwen2.5 7B 70.6 78.0 7.8 14GB VRAM은 4비트 양자화 기준이며, MoE 모델은 추론 시 활성화된 파라미터 기준입니다.\n사용 사례별 최적 모델 선택 사용 사례 추천 모델 이유 코딩 DeepSeek Coder V2, Codestral 코드 벤치마크 최상위 챗봇/대화 Llama 3.1 70B, Qwen2.5 72B MT-Bench 고득점 로컬 배포 Mistral 7B, Qwen2.5 7B, Phi-4 VRAM 대비 성능 우수 엔터프라이즈 Llama 3.1 70B, Mistral Large 2 라이선스 안정성, 지원 모바일/엣지 Gemma 2 2B, Llama 3.2 1B 초소형 크기 파인튜닝 Llama 3.1 8B, Qwen2.5 7B 생태계, 문서 풍부 모델 다운로드 및 실행 방법 Hugging Face Hub: ```transformers```` 라이브러리로 직접 로드 Ollama: ````ollama run llama3.1``` 명령으로 로컬 실행 GPT4All / LM Studio: GUI 기반 로컬 실행 도구 클우드: RunPod, Together AI에서 GPU 인스턴스로 배포 오픈소스 LLM의 미래 2025년 주요 트렌드 추론 모델 확산: o1처럼 사고 과정을 거치는 모델(QwQ, DeepSeek-R1) 증가 소형 모델 고성능화: 7B 모델이 과거 70B 수준으로 진화 MoE 아키텍처 대중화: Mixtral, DeepSeek의 성공으로 MoE가 표준화 다국어 지원 강화: 영어 중심에서 글로벌 언어 지원으로 확대 오픈과 폐쇄 모델의 격차 2024년 말 기준, 최상위 오픈소스 모델(Llama 3.1 405B, DeepSeek V3)은 GPT-4o 수준에 근접했습니다. 하지만 최신 폐쇄형 모델(GPT-4.5, Claude 3.5 Opus)과는 아직 5~10% 정도의 격차가 존재합니다.\n자주 묻는 질문 2025년 최고의 오픈소스 LLM은 무엇인가요?\n용도에 따라 다릅니다. 전반적인 성능은 DeepSeek V3와 Llama 3.1 405B가 선두입니다. 코딩에는 DeepSeek Coder V2, 로컬 실행에는 Qwen2.5 7B가 추천됩니다.\n오픈소스 LLM을 상업적으로 사용할 수 있나요?\n모델별로 다릅니다. Qwen2.5(Apache 2.0), Mistral(Apache 2.0), Gemma(Gemma License)는 상용 사용 가능합니다. Llama 3.1은 월 7억 사용자 이하 기업에게 상용 허가를 부여합니다.\n코딩에 가장 적합한 오픈소스 LLM은 무엇인가요?\nDeepSeek Coder V2와 Codestral이 HumanEval, Aider 벤치마크에서 최고 성능을 보여줍니다. Llama 3.1 70B도 우수한 범용 코드 능력을 갖추고 있습니다.\n오픈소스 LLM은 GPT-4와 얼마나 차이가 나나요?\n2025년 기준 최상위 오픈소스 모델은 GPT-4o의 90~95% 수준의 성능을 보여줍니다. 특정 벤치마크(MMLU, 코드 생성)에서는 오히려 더 나은 결과를 내기도 합니다.\nLlama 3 70B를 실행하려면 어떤 하드웨어가 필요한가요?\nFP16 기준으로 140GB VRAM이 필요합니다. 4비트 양자화 시 약 40GB로 단일 A100 40GB 또는 RTX 4090 2대로 실행 가능합니다. vLLM이나 TGI와 같은 서빙 엔진을 사용하면 효율이 더욱 향상됩니다.\n참고 자료 Hugging Face Open LLM Leaderboard LMSYS Chatbot Arena Ollama 모델 라이브러리 Meta Llama 공식 웹사이트 Mistral AI Qwen Hugging Face DeepSeek 공식 웹사이트 추천 인프라 위 도구들을 24/7 안정 운영하려면 인프라가 중요하다: - DigitalOcean — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.\nHTStack — 홍콩 VPS, 중국 본토 저지연. dibi8.com 자체 호스팅 IDC. 추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “오픈소스 LLM 순위 및 선택 가이드 2025: Llama, Mistral, Qwen, DeepSeek 비교”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/open-source-llm-ranking-guide\" } } Why This Matters Understanding 오픈소스 llm 순위 및 선택 가이드 2025: llama, mistral, qwen, deepseek 비교 is crucial for modern AI development. Here\"s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion 오픈소스 LLM 순위 및 선택 가이드 2025: Llama, Mistral, Qwen, DeepSeek 비교 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n",
-  "wordCount" : "1233",
+  "articleBody": "Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek \u0026 More {\u003c/* resource-info */\u003e}\nThe open-source LLM ecosystem in 2025 is unrecognizable from just two years ago. Models that once lagged GPT-4 by a wide margin now match or exceed it on specific benchmarks. A new 8B parameter model can outperform GPT-3.5 from 2022. And the variety of specialized models, coding assistants, multilingual systems, and edge-optimized weights means there is almost certainly an open-source model that fits your exact use case.\nThis guide ranks and compares the most important open-source LLMs available in 2025. We cover seven major model families: Meta Llama 3, Mistral AI, Qwen, DeepSeek, Google Gemma, Microsoft Phi, and discuss where to download and run them.\nThe Open-Source LLM Landscape in 2025 Why Open-Source Models Are Winning Open-source LLMs have closed the gap with proprietary models faster than most predicted. Several factors drive this acceleration: - Compute democratization: Cloud GPU rentals, training frameworks like Megatron and DeepSpeed, and parameter-efficient techniques like LoRA lower the barrier to training and fine-tuning\nKnowledge distillation: Open-weight models benefit from research published by closed-model labs, and some (like DeepSeek) explicitly train on synthetic data from frontier models Community contributions: Thousands of practitioners fine-tune, evaluate, and improve open models, creating a feedback loop that proprietary labs cannot replicate Enterprise demand: Companies prefer open models for data privacy, cost control, customization, and vendor independence Key Benchmarks: MMLU, HumanEval, MT-Bench Understanding benchmark scores is essential for comparing models: - MMLU (Massive Multitask Language Understanding): Tests knowledge across 57 subjects including mathematics, history, law, and medicine. Scores range from 0 to 100, with higher scores indicating broader knowledge.\nHumanEval: Measures code generation ability through 164 programming problems. Pass@1 scores indicate the percentage solved on the first attempt. MT-Bench (Multi-Turn Bench): Evaluates conversational quality through multi-turn dialogues judged by GPT-4. Scores range from 0 to 10. How to Read LLM Leaderboards Two leaderboards dominate open-source model evaluation: - LMSYS Chatbot Arena: Uses ELO ratings from human preference comparisons. Models are ranked by how often humans prefer their responses in blind side-by-side evaluations. This captures real-world helpfulness better than automated benchmarks.\nOpen LLM Leaderboard: Hugging Face’s automated leaderboard runs standardized benchmarks (MMLU, TruthfulQA, GSM8K, etc.) on submitted models. It provides reproducible, objective scores but may not reflect conversational quality. Treat benchmarks as directional indicators, not absolute truth. A model scoring 85 on MMLU is broadly more knowledgeable than one scoring 75, but the specific tasks you care about matter more than aggregate scores.\nMeta Llama 3/3.1/3.2: The Open-Source Standard Model Variants (8B, 70B, 405B) Meta’s Llama 3 family, released in 2024-2025, has become the default choice for open-source LLM deployment. The family includes: - Llama 3.2 1B/3B: Lightweight models for edge and mobile devices\nLlama 3.1 8B: Fast, efficient model ideal for most applications Llama 3 70B: High-capability model competitive with GPT-3.5 and Claude 3 Sonnet Llama 3.1 405B: Meta’s largest model, competitive with GPT-4 on many benchmarks Key Capabilities and Improvements Llama 3 introduced significant improvements over Llama 2: - Training data: 15 trillion tokens (vs 2 trillion for Llama 2), with heavy filtering for quality\nContext window: 128K tokens in Llama 3.1 (up from 4K in Llama 3) Multilingual support: Strong performance in 8 languages, with expanded support in 3.1 Tool use: Native function calling and tool use capabilities Code performance: Substantially improved HumanEval scores Use Cases and Deployment Options Llama 3 8B is the go-to model for general-purpose applications: chatbots, content generation, summarization, and classification. It runs on a single consumer GPU (RTX 4090) or even CPU with quantization. Llama 3 70B requires multiple GPUs but delivers near-frontier performance for demanding applications.\nLicense Considerations Llama 3 uses a custom license that permits commercial use for applications with fewer than 700 million monthly active users. Larger deployments require a special license from Meta. This is more permissive than Llama 2’s license but still includes restrictions not present in Apache 2.0 models.\nMistral AI: European Excellence Mistral 7B and Its Legacy Mistral 7B, released in September 2023, shocked the AI community by outperforming Llama 2 13B despite being half the size. It introduced grouped-query attention (GQA) for faster inference and sliding window attention for longer context handling. Mistral 7B remains a popular choice for resource-constrained deployments.\nMixtral 8x7B and 8x22B (MoE) Mixtral models use Mixture of Experts (MoE) architecture, where only a subset of parameters activates per token. This enables massive model capacity with efficient inference: - Mixtral 8x7B: 47B total parameters, 13B active per token. Outperforms Llama 2 70B at faster inference speeds.\nMixtral 8x22B: 141B total parameters, 39B active per token. Competitive with GPT-3.5 on most benchmarks. MoE models excel in throughput-sensitive applications where you need high quality but cannot wait for a 70B model’s inference latency.\nMistral Large and Codestral Mistral AI also offers frontier-class models through API: - Mistral Large: Mistral’s most capable model, competitive with Claude 3 Opus and GPT-4\nCodestral: Specialized for code with a 32K context window, strong across 80+ programming languages Enterprise and API Offerings Mistral AI offers models through La Plateforme (their API), AWS Bedrock, and Azure AI. Their open-weight models use the Apache 2.0 license, the most permissive of any major model family, allowing unrestricted commercial use.\nQwen (Alibaba): The Rising Star from China Qwen2 and Qwen2.5 Series Alibaba’s Qwen series has emerged as one of the strongest open model families globally. Qwen2.5 (released late 2024) includes: - Qwen2.5 0.5B to 72B: A full range of sizes with consistent architecture\nQwen2.5 Coder: Specialized for programming tasks Qwen2.5 Math: Fine-tuned for mathematical reasoning Qwen2.5 VL: Vision-language model for image understanding Qwen’s Multilingual Capabilities Qwen excels at multilingual tasks, particularly in Chinese, English, Japanese, Korean, and major European languages. Its tokenizer handles CJK characters more efficiently than Llama’s, making it the preferred choice for Asian language applications.\nCodeQwen for Programming Tasks CodeQwen 1.5 and 7B models achieve HumanEval scores comparable to CodeLlama models twice their size. They support 92 programming languages and a 64K context window, making them ideal for codebase-level operations.\nQwen License and Usage Terms Qwen2.5 uses the Qwen License, which permits commercial use with some restrictions on model distillation and competitive use. Review the license terms on Hugging Face before deploying commercially.\nDeepSeek: Efficiency Meets Performance DeepSeek V2.5 and V3 DeepSeek, developed by Chinese hedge fund High-Flyer, has produced some of the most efficient open models. DeepSeek V3 (released December 2024) features: - 671B total parameters, 37B activated per token (MoE architecture)\nTraining cost: Reportedly $5.6 million, a fraction of what western labs spend MMLU score: 88.5, competitive with GPT-4o 128K context window with efficient attention mechanisms DeepSeek MoE Architecture DeepSeek’s Mixture of Experts uses a novel auxiliary-loss-free load balancing strategy that improves expert utilization. This architectural innovation is being adopted by other labs and represents a genuine research contribution from the open-source ecosystem.\nDeepSeek Coder Series DeepSeek Coder V2 achieves a 90.2% score on HumanEval, among the highest of any open model. It supports project-level code understanding with a 128K context window and excels at code completion, bug fixing, and test generation.\nWhy DeepSeek Is Gaining Popularity DeepSeek proves that efficient training methods can match the quality of models trained with vastly larger budgets. For developers, this means smaller, faster models that punch above their weight class.\nGoogle Gemma: Lightweight and Accessible Gemma 2 (2B, 9B, 27B) Google’s Gemma 2, released in June 2024, represents a significant leap over the original Gemma models: - Gemma 2 2B: Impressive performance for its size, suitable for edge devices\nGemma 2 9B: Outperforms Llama 3 8B on many benchmarks Gemma 2 27B: Competitive with Llama 3 70B despite being less than half the size Gemma 2 uses knowledge distillation from larger Google models, achieving remarkable efficiency.\nGoogle’s Open-Weight Strategy Gemma is an “open weights” rather than “open source” model. Google releases the model weights but not the training data or full training code. The license is more permissive than Llama’s but includes usage restrictions for harmful applications.\nBest Use Cases for Gemma Gemma 2 2B is ideal for mobile and edge deployment. Gemma 2 9B is excellent for general-purpose applications where you want Llama 3 8B-level quality with Google’s safety tuning. Gemma 2 27B serves as a lighter alternative to Llama 3 70B.\nMicrosoft Phi: Small but Mighty Phi-3 and Phi-4 Series Microsoft’s Phi series demonstrates that training on high-quality, carefully curated data can produce small models with outsized capabilities: - Phi-3 Mini (3.8B): Outperforms models 5x its size on reasoning benchmarks\nPhi-3 Small (7B): Strong general-purpose model with excellent reasoning Phi-3 Medium (14B): Approaches Llama 3 70B quality on some benchmarks Phi-4 (14B): Latest release with improved reasoning and long-context handling Remarkable Performance for Small Models Phi models are trained on “textbook-quality” synthetic data, emphasizing reasoning and knowledge over raw scale. This approach yields models that excel at STEM tasks, logical reasoning, and instruction following despite their small parameter counts.\nEdge and Mobile Deployment Phi-3 Mini is Microsoft’s answer to on-device AI. At 3.8B parameters, it runs comfortably on smartphones and achieves quality that was GPT-3.5 level just 18 months ago. For mobile apps, IoT devices, and browser-based AI, Phi-3 Mini is a top choice.\nPerformance Comparison Matrix Benchmark Scores Comparison | Model | Size | MMLU | HumanEval | MT-Bench | Context | |\n|\n|\n|\n|\n|\n| | Llama 3.1 405B | 405B | 88.6 | 89.0 | 9.2 | 128K | | Llama 3 70B | 70B | 82.0 | 81.7 | 8.9 | 8K | | Llama 3.1 8B | 8B | 73.0 | 72.8 | 7.8 | 128K | | Mixtral 8x22B | 141B/39B | 77.8 | 75.8 | 8.7 | 64K | | Mistral 7B | 7B | 60.1 | 28.4 | 7.0 | 32K | | Qwen2.5 72B | 72B | 86.1 | 86.2 | 8.9 | 128K | | Qwen2.5 7B | 7B | 74.2 | 70.3 | 7.8 | 128K | | DeepSeek V3 | 671B/37B | 88.5 | 90.2 | 8.9 | 128K | | DeepSeek Coder V2 | 16B | 73.8 | 90.2 | 8.2 | 128K | | Gemma 2 27B | 27B | 80.6 | 71.8 | 8.4 | 128K | | Gemma 2 9B | 9B | 71.3 | 64.3 | 7.8 | 128K | | Gemma 2 2B | 2B | 53.2 | 24.3 | 6.4 | 128K | | Phi-4 | 14B | 82.6 | 82.2 | 8.4 | 16K | | Phi-3 Mini | 3.8B | 68.1 | 59.4 | 7.2 | 128K |\nScores are approximate and vary by evaluation setup. Check current leaderboards for latest results.\nInference Speed Comparison Inference throughput (tokens/second) on a single A100 GPU with vLLM: | Model | Throughput (t/s) | Time to First Token | |\n|\n|\n| | Llama 3.1 8B | ~120 | ~20ms | | Mistral 7B | ~140 | ~18ms | | Qwen2.5 7B | ~115 | ~22ms | | Gemma 2 9B | ~100 | ~25ms | | Phi-3 Mini | ~220 | ~12ms | | Mixtral 8x7B | ~90 | ~35ms |\nVRAM Requirements by Model | Model | FP16 VRAM | 4-bit Quantized | 8-bit Quantized | |\n|\n|\n|\n| | 2B models | 4 GB | 1.5 GB | 2.5 GB | | 7B/8B models | 16 GB | 5 GB | 8 GB | | 14B models | 28 GB | 9 GB | 15 GB | | 27B models | 54 GB | 16 GB | 28 GB | | 70B models | 140 GB | 40 GB | 72 GB | | 405B models | 810 GB | 230 GB | 405 GB |\nContext Window Lengths All major models released in 2024-2025 support at least 32K token contexts. Llama 3.1, Qwen2.5, Gemma 2, and DeepSeek V3 support 128K contexts. Long-context models enable processing entire codebases, long documents, and multi-turn conversations without truncation.\nHow to Choose the Right Open-Source LLM Decision Framework by Use Case Select your model based on the primary task: | Use Case | Recommended Models | |\n|\n| | General chat | Llama 3.1 8B, Qwen2.5 7B, Gemma 2 9B | | Coding | DeepSeek Coder V2, CodeQwen, Codestral | | Enterprise deployment | Llama 3 70B, Mistral Large, Qwen2.5 72B | | Edge/mobile | Phi-3 Mini, Gemma 2 2B, Llama 3.2 1B | | Multilingual (Asian) | Qwen2.5, Yi models | | Multilingual (European) | Mistral 7B, Llama 3.1 | | Reasoning/STEM | Phi-4, DeepSeek V3 | | Maximum capability | Llama 3.1 405B, DeepSeek V3, Qwen2.5 72B |\nBest for Coding: DeepSeek Coder, Codestral For programming tasks, DeepSeek Coder V2 leads open models with a 90.2% HumanEval score. Codestral (32B) offers strong multilingual code support. CodeQwen 7B provides the best quality-to-size ratio for code tasks.\nBest for Chat: Llama 3, Qwen Llama 3.1 8B and Qwen2.5 7B are the most balanced chat models. They combine strong MMLU scores with good MT-Bench ratings and broad ecosystem support. For English-only applications, Llama 3 has the largest fine-tuning ecosystem. For multilingual chat, Qwen is superior.\nBest for Local Deployment: Mistral, Phi, Gemma Mistral 7B offers the best quality-to-speed ratio for local deployment. Phi-3 Mini maximizes quality at minimal size (3.8B). Gemma 2 2B is the best option for mobile and browser-based deployment.\nBest for Enterprise: Llama 3, Mistral Large Llama 3 70B has the most mature ecosystem, tooling, and deployment options. Mistral Large offers frontier quality through API with the permissive Apache 2.0 license for open-weight variants. Both have strong enterprise support through cloud providers.\nWhere to Download and Run These Models Hugging Face Hub The Hugging Face Hub is the primary repository for open-source models. Search for model names (e.g., “meta-llama/Meta-Llama-3-8B-Instruct”) to find official uploads. Download with: ````python from transformers import AutoModelForCausalLM model = AutoModelForCausalLM.from_pretrained(“meta-llama/Meta-Llama-3-8B-Instruct”)\nSome models (Llama, Gemma) require accepting a license agreement on Hugging Face before download. ### Ollama Model Library [Ollama](https://ollama.com/library) provides the easiest way to run models locally. Install Ollama, then: `````bash ollama run llama3.1 # Llama 3.1 8B ollama run mistral # Mistral 7B ollama run qwen2.5 # Qwen2.5 7B ollama run phi3 # Phi-3 Mini ollama run gemma2 # Gemma 2 9B ollama run deepseek-coder # DeepSeek Coder ```` Ollama handles model download, quantization, and serving automatically. ### GPT4All and LM Studio [GPT4All](https://gpt4all.io) offers a desktop application for running models with a chat interface. [LM Studio](https://lmstudio.ai) provides a more feature-rich desktop experience with model management, GPU acceleration, and OpenAI-compatible local API serving. ### Cloud Deployment (RunPod, Together AI) For GPU cloud rental, [RunPod](https://runpod.io) and [Vast.ai](https://vast.ai) offer competitive prices. [Together AI](https://together.ai) provides API access to most open models with optimized inference. Both options eliminate the need to own GPUs. ## The Future of Open-Source LLMs ### Trends to Watch in 2025 Several trends will shape the open-source LLM landscape: - **Small but powerful**: The Phi-3 and Gemma 2 approach (high-quality data + efficient architecture) will produce more small models that rival larger predecessors - **Multimodal expansion**: Vision-language models (Qwen-VL, Llava, BakLlava) are becoming standard - **Long context**: 128K is now table stakes; 1M+ context models are emerging - **Mixture of Experts**: MoE architectures (Mixtral, DeepSeek) will become more common as a scaling strategy - **Agent capabilities**: Models with native tool use, planning, and multi-step reasoning ### The Gap Between Open and Closed Models The gap between top open-source models (Llama 3.1 405B, DeepSeek V3) and closed models (GPT-4o, Claude 3.5 Sonnet) has narrowed to near parity on many benchmarks. GPT-4o still leads in multimodal reasoning and some complex tasks, but the difference is no longer decisive for most applications. For coding, DeepSeek Coder V2 matches or exceeds Claude 3.5 Sonnet on several benchmarks. For knowledge tasks, Llama 3.1 405B approaches GPT-4o on MMLU. The trend favors continued convergence. ### Regulatory Considerations Open-weight models face increasing regulatory scrutiny. The EU AI Act imposes transparency requirements on foundation models. Some jurisdictions are considering export controls on model weights. Teams deploying open models should monitor regulatory developments in their operating regions. ## Conclusion The open-source LLM ecosystem in 2025 offers a model for virtually every use case and budget. Llama 3 dominates as the safe default choice with the largest ecosystem. Mistral provides the most permissive licensing and strong European-language support. Qwen leads in multilingual and coding applications. DeepSeek delivers maximum efficiency and coding prowess. Gemma and Phi fill the lightweight deployment niche. The right model depends on your specific requirements: language support, hardware constraints, licensing needs, and task specialization. Start with established benchmarks and leaderboards, but always evaluate on your actual use case before committing. ## Frequently Asked Questions **What is the best open-source LLM in 2025?** For most applications, Llama 3.1 8B is the best starting point due to its balance of quality, speed, and ecosystem support. For maximum capability, Llama 3.1 405B or DeepSeek V3 lead the open-source rankings. For coding, DeepSeek Coder V2 is the strongest. For edge deployment, Phi-3 Mini offers the best quality-to-size ratio. The \"best\" model always depends on your specific use case. **Can I use open-source LLMs for commercial purposes?** It depends on the model\"s license. Mistral models use Apache 2.0, permitting unrestricted commercial use. Llama 3 permits commercial use for applications under 700 million monthly active users. Qwen has commercial use restrictions. Gemma has usage restrictions for harmful applications. Always review the specific license before deploying commercially. **Which open-source LLM is best for coding?** DeepSeek Coder V2 leads open models with a 90.2% HumanEval score. Codestral (32B) from Mistral is strong across 80+ languages. CodeQwen 7B offers excellent quality for its size. For general coding with broad language support, DeepSeek Coder V2 16B is the recommended choice. **How do open-source LLMs compare to GPT-4?** Top open-source models like Llama 3.1 405B and DeepSeek V3 approach GPT-4o on many benchmarks. On MMLU, the gap is within 2-3 points. On coding (HumanEval), DeepSeek Coder V2 actually exceeds GPT-4. GPT-4o still leads in multimodal reasoning, instruction following, and some complex reasoning tasks. For most production applications, the difference is no longer meaningful. **What hardware do I need to run Llama 3 70B?** Llama 3 70B requires 140 GB of VRAM in FP16 precision (two A100 80GB GPUs). With 4-bit quantization, it runs on a single A100 40GB or two RTX 4090s (24GB each). For CPU-only inference with llama.cpp, you need at least 40 GB of system RAM for the quantized model. Cloud options like RunPod and Together AI provide access without hardware ownership. * * * ## Recommended Infrastructure To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven. *Affiliate links — no extra cost to you, helps keep dibi8.com running.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek \u0026 More\", \"datePublished\": \"2026-05-18\", \"dateModified\": \"2026-05-18\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/open-source-llm-ranking-guide\" } } ## Frequently Asked Questions (FAQ) **问：LangChain和LlamaIndex哪个更好？** LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。 **问：如何评估LLM框架的性能？** 基准测试包括：推理速度、准确率、资源消耗、可扩展性。 **问：开源LLM框架的商业使用限制？** 大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。 **问：是否需要GPU才能运行LLM框架？** 推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。 **问：企业级部署的最佳实践？** 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。 * * * ",
+  "wordCount" : "3211",
   "inLanguage": "ko",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
@@ -188,7 +188,7 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span>&nbsp;|&nbsp;<span>번역:</span>
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>16 분</span>&nbsp;|&nbsp;<span>번역:</span>
     <ul class="i18n_list">
         <li>
             <a href="https://dibi8.com/ai-coding-agents/open-source-llm-ranking-guide/">En</a>
@@ -209,571 +209,464 @@
 
     <div class="inner"><ul>
             <li>
-                <a href="#%ec%98%a4%ed%94%88%ec%86%8c%ec%8a%a4-llm-%ec%88%9c%ec%9c%84-%eb%b0%8f-%ec%84%a0%ed%83%9d-%ea%b0%80%ec%9d%b4%eb%93%9c-2025-llama-mistral-qwen-deepseek-%eb%b9%84%ea%b5%90" aria-label="오픈소스 LLM 순위 및 선택 가이드 2025: Llama, Mistral, Qwen, DeepSeek 비교">오픈소스 LLM 순위 및 선택 가이드 2025: Llama, Mistral, Qwen, DeepSeek 비교</a><ul>
+                <a href="#best-open-source-llms-2025-llama-mistral-qwen-deepseek--more" aria-label="Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek &amp; More">Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek &amp; More</a><ul>
                     
             <li>
-                <a href="#2025%eb%85%84-%ec%98%a4%ed%94%88%ec%86%8c%ec%8a%a4-llm-%ed%99%98%ea%b2%bd" aria-label="2025년 오픈소스 LLM 환경">2025년 오픈소스 LLM 환경</a><ul>
+                <a href="#the-open-source-llm-landscape-in-2025" aria-label="The Open-Source LLM Landscape in 2025">The Open-Source LLM Landscape in 2025</a><ul>
                     
             <li>
-                <a href="#%ec%98%a4%ed%94%88%ec%86%8c%ec%8a%a4-%eb%aa%a8%eb%8d%b8%ec%9d%b4-%ec%a3%bc%eb%aa%a9%eb%b0%9b%eb%8a%94-%ec%9d%b4%ec%9c%a0" aria-label="오픈소스 모델이 주목받는 이유">오픈소스 모델이 주목받는 이유</a></li>
+                <a href="#why-open-source-models-are-winning" aria-label="Why Open-Source Models Are Winning">Why Open-Source Models Are Winning</a></li>
             <li>
-                <a href="#%ed%95%b5%ec%8b%ac-%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac-%ec%a7%80%ed%91%9c" aria-label="핵심 벤치마크 지표">핵심 벤치마크 지표</a></li>
+                <a href="#key-benchmarks-mmlu-humaneval-mt-bench" aria-label="Key Benchmarks: MMLU, HumanEval, MT-Bench">Key Benchmarks: MMLU, HumanEval, MT-Bench</a></li>
             <li>
-                <a href="#llm-%eb%a6%ac%eb%8d%94%eb%b3%b4%eb%93%9c-%ec%9d%bd%eb%8a%94-%eb%b2%95" aria-label="LLM 리더보드 읽는 법">LLM 리더보드 읽는 법</a></li></ul>
+                <a href="#how-to-read-llm-leaderboards" aria-label="How to Read LLM Leaderboards">How to Read LLM Leaderboards</a></li></ul>
             </li>
             <li>
-                <a href="#meta-llama-33132-%ec%98%a4%ed%94%88%ec%86%8c%ec%8a%a4-%ed%91%9c%ec%a4%80" aria-label="Meta Llama 3/3.1/3.2: 오픈소스 표준">Meta Llama 3/3.1/3.2: 오픈소스 표준</a><ul>
+                <a href="#meta-llama-33132-the-open-source-standard" aria-label="Meta Llama 3/3.1/3.2: The Open-Source Standard">Meta Llama 3/3.1/3.2: The Open-Source Standard</a><ul>
                     
             <li>
-                <a href="#%eb%aa%a8%eb%8d%b8-%eb%b3%80%ec%a2%85" aria-label="모델 변종">모델 변종</a></li>
+                <a href="#model-variants-8b-70b-405b" aria-label="Model Variants (8B, 70B, 405B)">Model Variants (8B, 70B, 405B)</a></li>
             <li>
-                <a href="#%ec%a3%bc%ec%9a%94-%ea%b8%b0%eb%8a%a5%ea%b3%bc-%ea%b0%9c%ec%84%a0%ec%a0%90" aria-label="주요 기능과 개선점">주요 기능과 개선점</a></li>
+                <a href="#key-capabilities-and-improvements" aria-label="Key Capabilities and Improvements">Key Capabilities and Improvements</a></li>
             <li>
-                <a href="#%eb%9d%bc%ec%9d%b4%ec%84%a0%ec%8a%a4" aria-label="라이선스">라이선스</a></li></ul>
+                <a href="#use-cases-and-deployment-options" aria-label="Use Cases and Deployment Options">Use Cases and Deployment Options</a></li>
+            <li>
+                <a href="#license-considerations" aria-label="License Considerations">License Considerations</a></li></ul>
             </li>
             <li>
-                <a href="#mistral-ai-%ec%9c%a0%eb%9f%bd%ec%9d%98-%ec%9e%90%ec%a1%b4%ec%8b%ac" aria-label="Mistral AI: 유럽의 자존심">Mistral AI: 유럽의 자존심</a><ul>
+                <a href="#mistral-ai-european-excellence" aria-label="Mistral AI: European Excellence">Mistral AI: European Excellence</a><ul>
                     
             <li>
-                <a href="#mistral-7b%ec%9d%98-%ec%9c%a0%ec%82%b0" aria-label="Mistral 7B의 유산">Mistral 7B의 유산</a></li>
+                <a href="#mistral-7b-and-its-legacy" aria-label="Mistral 7B and Its Legacy">Mistral 7B and Its Legacy</a></li>
             <li>
-                <a href="#mixtral-8x7b-8x22b-moe" aria-label="Mixtral 8x7B, 8x22B (MoE)">Mixtral 8x7B, 8x22B (MoE)</a></li>
+                <a href="#mixtral-8x7b-and-8x22b-moe" aria-label="Mixtral 8x7B and 8x22B (MoE)">Mixtral 8x7B and 8x22B (MoE)</a></li>
             <li>
-                <a href="#mistral-large%ec%99%80-codestral" aria-label="Mistral Large와 Codestral">Mistral Large와 Codestral</a></li></ul>
+                <a href="#mistral-large-and-codestral" aria-label="Mistral Large and Codestral">Mistral Large and Codestral</a></li>
+            <li>
+                <a href="#enterprise-and-api-offerings" aria-label="Enterprise and API Offerings">Enterprise and API Offerings</a></li></ul>
             </li>
             <li>
-                <a href="#qwen-alibaba-%ec%a4%91%ea%b5%ad%ec%9d%b4-%eb%82%b3%ec%9d%80-%eb%9d%bc%ec%9d%b4%ec%a7%95-%ec%8a%a4%ed%83%80" aria-label="Qwen (Alibaba): 중국이 낳은 라이징 스타">Qwen (Alibaba): 중국이 낳은 라이징 스타</a><ul>
+                <a href="#qwen-alibaba-the-rising-star-from-china" aria-label="Qwen (Alibaba): The Rising Star from China">Qwen (Alibaba): The Rising Star from China</a><ul>
                     
             <li>
-                <a href="#qwen25-%ec%8b%9c%eb%a6%ac%ec%a6%88" aria-label="Qwen2.5 시리즈">Qwen2.5 시리즈</a></li>
+                <a href="#qwen2-and-qwen25-series" aria-label="Qwen2 and Qwen2.5 Series">Qwen2 and Qwen2.5 Series</a></li>
             <li>
-                <a href="#%eb%8b%a4%ea%b5%ad%ec%96%b4-%eb%8a%a5%eb%a0%a5" aria-label="다국어 능력">다국어 능력</a></li>
+                <a href="#qwens-multilingual-capabilities" aria-label="Qwen&rsquo;s Multilingual Capabilities">Qwen&rsquo;s Multilingual Capabilities</a></li>
             <li>
-                <a href="#codeqwen" aria-label="CodeQwen">CodeQwen</a></li>
+                <a href="#codeqwen-for-programming-tasks" aria-label="CodeQwen for Programming Tasks">CodeQwen for Programming Tasks</a></li>
             <li>
-                <a href="#%eb%9d%bc%ec%9d%b4%ec%84%a0%ec%8a%a4-1" aria-label="라이선스">라이선스</a></li></ul>
+                <a href="#qwen-license-and-usage-terms" aria-label="Qwen License and Usage Terms">Qwen License and Usage Terms</a></li></ul>
             </li>
             <li>
-                <a href="#deepseek-%ed%9a%a8%ec%9c%a8%ea%b3%bc-%ec%84%b1%eb%8a%a5%ec%9d%98-%ec%a1%b0%ed%99%94" aria-label="DeepSeek: 효율과 성능의 조화">DeepSeek: 효율과 성능의 조화</a><ul>
+                <a href="#deepseek-efficiency-meets-performance" aria-label="DeepSeek: Efficiency Meets Performance">DeepSeek: Efficiency Meets Performance</a><ul>
                     
             <li>
-                <a href="#deepseek-v3" aria-label="DeepSeek V3">DeepSeek V3</a></li>
+                <a href="#deepseek-v25-and-v3" aria-label="DeepSeek V2.5 and V3">DeepSeek V2.5 and V3</a></li>
             <li>
-                <a href="#deepseek-moe-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98" aria-label="DeepSeek MoE 아키텍처">DeepSeek MoE 아키텍처</a></li>
+                <a href="#deepseek-moe-architecture" aria-label="DeepSeek MoE Architecture">DeepSeek MoE Architecture</a></li>
             <li>
-                <a href="#deepseek-coder-v2" aria-label="DeepSeek Coder V2">DeepSeek Coder V2</a></li></ul>
+                <a href="#deepseek-coder-series" aria-label="DeepSeek Coder Series">DeepSeek Coder Series</a></li>
+            <li>
+                <a href="#why-deepseek-is-gaining-popularity" aria-label="Why DeepSeek Is Gaining Popularity">Why DeepSeek Is Gaining Popularity</a></li></ul>
             </li>
             <li>
-                <a href="#google-gemma-%ea%b0%80%eb%b3%8d%ea%b3%a0-%ec%a0%91%ea%b7%bc%ec%84%b1-%eb%86%92%ec%9d%80-%eb%aa%a8%eb%8d%b8" aria-label="Google Gemma: 가볍고 접근성 높은 모델">Google Gemma: 가볍고 접근성 높은 모델</a><ul>
+                <a href="#google-gemma-lightweight-and-accessible" aria-label="Google Gemma: Lightweight and Accessible">Google Gemma: Lightweight and Accessible</a><ul>
                     
             <li>
-                <a href="#gemma-2" aria-label="Gemma 2">Gemma 2</a></li></ul>
+                <a href="#gemma-2-2b-9b-27b" aria-label="Gemma 2 (2B, 9B, 27B)">Gemma 2 (2B, 9B, 27B)</a></li>
+            <li>
+                <a href="#googles-open-weight-strategy" aria-label="Google&rsquo;s Open-Weight Strategy">Google&rsquo;s Open-Weight Strategy</a></li>
+            <li>
+                <a href="#best-use-cases-for-gemma" aria-label="Best Use Cases for Gemma">Best Use Cases for Gemma</a></li></ul>
             </li>
             <li>
-                <a href="#microsoft-phi-%ec%9e%91%ec%a7%80%eb%a7%8c-%ea%b0%95%eb%a0%a5%ed%95%9c-%eb%aa%a8%eb%8d%b8" aria-label="Microsoft Phi: 작지만 강력한 모델">Microsoft Phi: 작지만 강력한 모델</a><ul>
+                <a href="#microsoft-phi-small-but-mighty" aria-label="Microsoft Phi: Small but Mighty">Microsoft Phi: Small but Mighty</a><ul>
                     
             <li>
-                <a href="#phi-4-2024%eb%85%84-12%ec%9b%94" aria-label="Phi-4 (2024년 12월)">Phi-4 (2024년 12월)</a></li></ul>
+                <a href="#phi-3-and-phi-4-series" aria-label="Phi-3 and Phi-4 Series">Phi-3 and Phi-4 Series</a></li>
+            <li>
+                <a href="#remarkable-performance-for-small-models" aria-label="Remarkable Performance for Small Models">Remarkable Performance for Small Models</a></li>
+            <li>
+                <a href="#edge-and-mobile-deployment" aria-label="Edge and Mobile Deployment">Edge and Mobile Deployment</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%84%b1%eb%8a%a5-%ec%a2%85%ed%95%a9-%eb%b9%84%ea%b5%90-%eb%a7%a4%ed%8a%b8%eb%a6%ad%ec%8a%a4" aria-label="성능 종합 비교 매트릭스">성능 종합 비교 매트릭스</a></li>
-            <li>
-                <a href="#%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80%eb%b3%84-%ec%b5%9c%ec%a0%81-%eb%aa%a8%eb%8d%b8-%ec%84%a0%ed%83%9d" aria-label="사용 사례별 최적 모델 선택">사용 사례별 최적 모델 선택</a></li>
-            <li>
-                <a href="#%eb%aa%a8%eb%8d%b8-%eb%8b%a4%ec%9a%b4%eb%a1%9c%eb%93%9c-%eb%b0%8f-%ec%8b%a4%ed%96%89-%eb%b0%a9%eb%b2%95" aria-label="모델 다운로드 및 실행 방법">모델 다운로드 및 실행 방법</a></li>
-            <li>
-                <a href="#%ec%98%a4%ed%94%88%ec%86%8c%ec%8a%a4-llm%ec%9d%98-%eb%af%b8%eb%9e%98" aria-label="오픈소스 LLM의 미래">오픈소스 LLM의 미래</a><ul>
+                <a href="#performance-comparison-matrix" aria-label="Performance Comparison Matrix">Performance Comparison Matrix</a><ul>
                     
             <li>
-                <a href="#2025%eb%85%84-%ec%a3%bc%ec%9a%94-%ed%8a%b8%eb%a0%8c%eb%93%9c" aria-label="2025년 주요 트렌드">2025년 주요 트렌드</a></li>
+                <a href="#benchmark-scores-comparison" aria-label="Benchmark Scores Comparison">Benchmark Scores Comparison</a></li>
             <li>
-                <a href="#%ec%98%a4%ed%94%88%ea%b3%bc-%ed%8f%90%ec%87%84-%eb%aa%a8%eb%8d%b8%ec%9d%98-%ea%b2%a9%ec%b0%a8" aria-label="오픈과 폐쇄 모델의 격차">오픈과 폐쇄 모델의 격차</a></li></ul>
+                <a href="#inference-speed-comparison" aria-label="Inference Speed Comparison">Inference Speed Comparison</a></li>
+            <li>
+                <a href="#vram-requirements-by-model" aria-label="VRAM Requirements by Model">VRAM Requirements by Model</a></li>
+            <li>
+                <a href="#context-window-lengths" aria-label="Context Window Lengths">Context Window Lengths</a></li></ul>
             </li>
             <li>
-                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a></li>
-            <li>
-                <a href="#%ec%b0%b8%ea%b3%a0-%ec%9e%90%eb%a3%8c" aria-label="참고 자료">참고 자료</a></li>
-            <li>
-                <a href="#%ec%b6%94%ec%b2%9c-%ec%9d%b8%ed%94%84%eb%9d%bc" aria-label="추천 인프라">추천 인프라</a></li>
-            <li>
-                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                <a href="#how-to-choose-the-right-open-source-llm" aria-label="How to Choose the Right Open-Source LLM">How to Choose the Right Open-Source LLM</a><ul>
                     
             <li>
-                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+                <a href="#decision-framework-by-use-case" aria-label="Decision Framework by Use Case">Decision Framework by Use Case</a></li>
             <li>
-                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+                <a href="#best-for-coding-deepseek-coder-codestral" aria-label="Best for Coding: DeepSeek Coder, Codestral">Best for Coding: DeepSeek Coder, Codestral</a></li>
+            <li>
+                <a href="#best-for-chat-llama-3-qwen" aria-label="Best for Chat: Llama 3, Qwen">Best for Chat: Llama 3, Qwen</a></li>
+            <li>
+                <a href="#best-for-local-deployment-mistral-phi-gemma" aria-label="Best for Local Deployment: Mistral, Phi, Gemma">Best for Local Deployment: Mistral, Phi, Gemma</a></li>
+            <li>
+                <a href="#best-for-enterprise-llama-3-mistral-large" aria-label="Best for Enterprise: Llama 3, Mistral Large">Best for Enterprise: Llama 3, Mistral Large</a></li></ul>
             </li>
             <li>
-                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+                <a href="#where-to-download-and-run-these-models" aria-label="Where to Download and Run These Models">Where to Download and Run These Models</a><ul>
+                    
             <li>
-                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+                <a href="#hugging-face-hub" aria-label="Hugging Face Hub">Hugging Face Hub</a>
             </li>
+        </ul>
+        </li>
         </ul>
         </li>
         </ul>
     </div>
 </details>
 
-  <div class="post-content md-content"><h1 id="오픈소스-llm-순위-및-선택-가이드-2025-llama-mistral-qwen-deepseek-비교">오픈소스 LLM 순위 및 선택 가이드 2025: Llama, Mistral, Qwen, DeepSeek 비교<a hidden class="anchor" aria-hidden="true" href="#오픈소스-llm-순위-및-선택-가이드-2025-llama-mistral-qwen-deepseek-비교">#</a></h1>
+  <div class="post-content md-content"><h1 id="best-open-source-llms-2025-llama-mistral-qwen-deepseek--more">Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek &amp; More<a hidden class="anchor" aria-hidden="true" href="#best-open-source-llms-2025-llama-mistral-qwen-deepseek--more">#</a></h1>
 <p>{&lt;/* resource-info */&gt;}</p>
-<p>2025년 현재 오픈소스 LLM은 GPT-4와 Claude 같은 폐쇄형 모델과의 격차를 빠르게 좁히고 있습니다. Meta의 Llama 3.1 405B는 특정 벤치마크에서 GPT-4를 넘어서기도 했으며, 중국의 Qwen과 DeepSeek도 놀라운 속도로 발전하고 있습니다. 이번 글에서는 현재 사용 가능한 주요 오픈소스 LLM을 종합적으로 비교하고 선택 가이드를 제공합니다.</p>
-<h2 id="2025년-오픈소스-llm-환경">2025년 오픈소스 LLM 환경<a hidden class="anchor" aria-hidden="true" href="#2025년-오픈소스-llm-환경">#</a></h2>
-<h3 id="오픈소스-모델이-주목받는-이유">오픈소스 모델이 주목받는 이유<a hidden class="anchor" aria-hidden="true" href="#오픈소스-모델이-주목받는-이유">#</a></h3>
+<p>The open-source LLM ecosystem in 2025 is unrecognizable from just two years ago. Models that once lagged GPT-4 by a wide margin now match or exceed it on specific benchmarks. A new 8B parameter model can outperform GPT-3.5 from 2022. And the variety of specialized models, coding assistants, multilingual systems, and edge-optimized weights means there is almost certainly an open-source model that fits your exact use case.</p>
+<p>This guide ranks and compares the most important open-source LLMs available in 2025. We cover seven major model families: Meta Llama 3, Mistral AI, Qwen, DeepSeek, Google Gemma, Microsoft Phi, and discuss where to download and run them.</p>
+<h2 id="the-open-source-llm-landscape-in-2025">The Open-Source LLM Landscape in 2025<a hidden class="anchor" aria-hidden="true" href="#the-open-source-llm-landscape-in-2025">#</a></h2>
+<h3 id="why-open-source-models-are-winning">Why Open-Source Models Are Winning<a hidden class="anchor" aria-hidden="true" href="#why-open-source-models-are-winning">#</a></h3>
+<p>Open-source LLMs have closed the gap with proprietary models faster than most predicted. Several factors drive this acceleration: - <strong>Compute democratization</strong>: Cloud GPU rentals, training frameworks like Megatron and DeepSpeed, and parameter-efficient techniques like LoRA lower the barrier to training and fine-tuning</p>
 <ul>
-<li><strong>데이터 주권</strong>: 기업 데이터가 외부 API로 유출되지 않음</li>
-<li><strong>비용 효율성</strong>: 장기적으로 API 호출 비용보다 저렴</li>
-<li><strong>맞춤화</strong>: 파인튜닝으로 자사 업무에 최적화 가능</li>
-<li><strong>라이선스 유연성</strong>: 상용 배포 가능한 모델 증가</li>
+<li><strong>Knowledge distillation</strong>: Open-weight models benefit from research published by closed-model labs, and some (like DeepSeek) explicitly train on synthetic data from frontier models</li>
+<li><strong>Community contributions</strong>: Thousands of practitioners fine-tune, evaluate, and improve open models, creating a feedback loop that proprietary labs cannot replicate</li>
+<li><strong>Enterprise demand</strong>: Companies prefer open models for data privacy, cost control, customization, and vendor independence</li>
 </ul>
-<h3 id="핵심-벤치마크-지표">핵심 벤치마크 지표<a hidden class="anchor" aria-hidden="true" href="#핵심-벤치마크-지표">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>벤치마크</th>
-					<th>평가 내용</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>MMLU</td>
-					<td>57개 과목의 대학 수준 지식</td>
-			</tr>
-			<tr>
-					<td>HumanEval</td>
-					<td>Python 코드 생성 능력</td>
-			</tr>
-			<tr>
-					<td>MT-Bench</td>
-					<td>다중 턴 대화 품질</td>
-			</tr>
-			<tr>
-					<td>MATH</td>
-					<td>수학 문제 해결 능력</td>
-			</tr>
-			<tr>
-					<td>GPQA</td>
-					<td>전문가 수준 과학 질의응답</td>
-			</tr>
-	</tbody>
-</table>
-<h3 id="llm-리더보드-읽는-법">LLM 리더보드 읽는 법<a hidden class="anchor" aria-hidden="true" href="#llm-리더보드-읽는-법">#</a></h3>
+<h3 id="key-benchmarks-mmlu-humaneval-mt-bench">Key Benchmarks: MMLU, HumanEval, MT-Bench<a hidden class="anchor" aria-hidden="true" href="#key-benchmarks-mmlu-humaneval-mt-bench">#</a></h3>
+<p>Understanding benchmark scores is essential for comparing models: - <strong>MMLU (Massive Multitask Language Understanding)</strong>: Tests knowledge across 57 subjects including mathematics, history, law, and medicine. Scores range from 0 to 100, with higher scores indicating broader knowledge.</p>
 <ul>
-<li><a href="https://huggingface.co/spaces/open-llm-leaderboard">Hugging Face Open LLM Leaderboard</a>: 평균 벤치마크 순위</li>
-<li><a href="https://chat.lmsys.org">LMSYS Chatbot Arena</a>: 인간 선호도 기반 ELO 점수</li>
-<li><a href="https://opencompass.org.cn">OpenCompass</a>: 다중 벤치마크 종합 평가</li>
+<li><strong>HumanEval</strong>: Measures code generation ability through 164 programming problems. Pass@1 scores indicate the percentage solved on the first attempt.</li>
+<li><strong>MT-Bench (Multi-Turn Bench)</strong>: Evaluates conversational quality through multi-turn dialogues judged by GPT-4. Scores range from 0 to 10.</li>
 </ul>
-<h2 id="meta-llama-33132-오픈소스-표준">Meta Llama 3/3.1/3.2: 오픈소스 표준<a hidden class="anchor" aria-hidden="true" href="#meta-llama-33132-오픈소스-표준">#</a></h2>
-<h3 id="모델-변종">모델 변종<a hidden class="anchor" aria-hidden="true" href="#모델-변종">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>모델</th>
-					<th>파라미터</th>
-					<th>MMLU</th>
-					<th>VRAM 필요</th>
-					<th>용도</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>Llama 3.2</td>
-					<td>1B, 3B</td>
-					<td>49.3</td>
-					<td>2~6GB</td>
-					<td>모바일, 엣지</td>
-			</tr>
-			<tr>
-					<td>Llama 3.1</td>
-					<td>8B</td>
-					<td>69.4</td>
-					<td>16GB</td>
-					<td>일반 대화, 파인튜닝</td>
-			</tr>
-			<tr>
-					<td>Llama 3.1</td>
-					<td>70B</td>
-					<td>83.6</td>
-					<td>140GB</td>
-					<td>고성능 업무</td>
-			</tr>
-			<tr>
-					<td>Llama 3.1</td>
-					<td>405B</td>
-					<td>85.2</td>
-					<td>810GB</td>
-					<td>최고 성능</td>
-			</tr>
-	</tbody>
-</table>
-<h3 id="주요-기능과-개선점">주요 기능과 개선점<a hidden class="anchor" aria-hidden="true" href="#주요-기능과-개선점">#</a></h3>
+<h3 id="how-to-read-llm-leaderboards">How to Read LLM Leaderboards<a hidden class="anchor" aria-hidden="true" href="#how-to-read-llm-leaderboards">#</a></h3>
+<p>Two leaderboards dominate open-source model evaluation: - <strong><a href="https://chat.lmsys.org">LMSYS Chatbot Arena</a></strong>: Uses ELO ratings from human preference comparisons. Models are ranked by how often humans prefer their responses in blind side-by-side evaluations. This captures real-world helpfulness better than automated benchmarks.</p>
 <ul>
-<li><strong>확장된 컨텍스트</strong>: 8B/70B 모델 128K 토큰 컨텍스트 지원</li>
-<li><strong>다국어</strong>: 8개 언어로 사전 학습(영어, 스페인어, 힌디어, 중국어 등)</li>
-<li><strong>도구 사용</strong>: 함수 호출 네이티브 지원</li>
+<li><strong><a href="https://huggingface.co/spaces/open-llm-leaderboard">Open LLM Leaderboard</a></strong>: Hugging Face&rsquo;s automated leaderboard runs standardized benchmarks (MMLU, TruthfulQA, GSM8K, etc.) on submitted models. It provides reproducible, objective scores but may not reflect conversational quality.</li>
 </ul>
-<h3 id="라이선스">라이선스<a hidden class="anchor" aria-hidden="true" href="#라이선스">#</a></h3>
-<p>Llama 3.1 Community License로, 월간 사용자 7억 명 이하 기업은 상용 사용 가능합니다.</p>
-<h2 id="mistral-ai-유럽의-자존심">Mistral AI: 유럽의 자존심<a hidden class="anchor" aria-hidden="true" href="#mistral-ai-유럽의-자존심">#</a></h2>
-<h3 id="mistral-7b의-유산">Mistral 7B의 유산<a hidden class="anchor" aria-hidden="true" href="#mistral-7b의-유산">#</a></h3>
-<p>2023년 9월 공개된 Mistral 7B는 당시 동급 모델 중 최고의 성능으로 오픈소스 LLM 시장에 큰 반향을 일으켰습니다.</p>
-<h3 id="mixtral-8x7b-8x22b-moe">Mixtral 8x7B, 8x22B (MoE)<a hidden class="anchor" aria-hidden="true" href="#mixtral-8x7b-8x22b-moe">#</a></h3>
-<p>Mixture of Experts(MoE) 아키텍처로, 추론 시 필요한 전문가 레이어만 활성화합니다. 8x7B는 47B 파라미터 중 추론 시 약 13B만 사용해 고효율을 달성합니다.</p>
-<h3 id="mistral-large와-codestral">Mistral Large와 Codestral<a hidden class="anchor" aria-hidden="true" href="#mistral-large와-codestral">#</a></h3>
+<p>Treat benchmarks as directional indicators, not absolute truth. A model scoring 85 on MMLU is broadly more knowledgeable than one scoring 75, but the specific tasks you care about matter more than aggregate scores.</p>
+<h2 id="meta-llama-33132-the-open-source-standard">Meta Llama 3/3.1/3.2: The Open-Source Standard<a hidden class="anchor" aria-hidden="true" href="#meta-llama-33132-the-open-source-standard">#</a></h2>
+<h3 id="model-variants-8b-70b-405b">Model Variants (8B, 70B, 405B)<a hidden class="anchor" aria-hidden="true" href="#model-variants-8b-70b-405b">#</a></h3>
+<p>Meta&rsquo;s <a href="https://ai.meta.com/llama">Llama 3</a> family, released in 2024-2025, has become the default choice for open-source LLM deployment. The family includes: - <strong>Llama 3.2 1B/3B</strong>: Lightweight models for edge and mobile devices</p>
 <ul>
-<li><strong>Mistral Large 2</strong>: 123B 파라미터, GPT-4 수준의 성능</li>
-<li><strong>Codestral</strong>: 22B 파라미터 코드 전용 모델, 80+ 프로그래밍 언어 지원</li>
+<li><strong>Llama 3.1 8B</strong>: Fast, efficient model ideal for most applications</li>
+<li><strong>Llama 3 70B</strong>: High-capability model competitive with GPT-3.5 and Claude 3 Sonnet</li>
+<li><strong>Llama 3.1 405B</strong>: Meta&rsquo;s largest model, competitive with GPT-4 on many benchmarks</li>
 </ul>
-<h2 id="qwen-alibaba-중국이-낳은-라이징-스타">Qwen (Alibaba): 중국이 낳은 라이징 스타<a hidden class="anchor" aria-hidden="true" href="#qwen-alibaba-중국이-낳은-라이징-스타">#</a></h2>
-<h3 id="qwen25-시리즈">Qwen2.5 시리즈<a hidden class="anchor" aria-hidden="true" href="#qwen25-시리즈">#</a></h3>
-<p>2024년 9월 발표된 Qwen2.5는 0.5B부터 72B까지 총 10개 크기로 공개되었습니다.</p>
-<table>
-	<thead>
-			<tr>
-					<th>모델</th>
-					<th>MMLU</th>
-					<th>특징</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>Qwen2.5-7B</td>
-					<td>70.6</td>
-					<td>동급 최고 성능</td>
-			</tr>
-			<tr>
-					<td>Qwen2.5-14B</td>
-					<td>77.4</td>
-					<td>중급 서버용 최적</td>
-			</tr>
-			<tr>
-					<td>Qwen2.5-72B</td>
-					<td>84.5</td>
-					<td>GPT-4 수준</td>
-			</tr>
-			<tr>
-					<td>QwQ-32B</td>
-					<td>90.6</td>
-					<td>추론 특화</td>
-			</tr>
-	</tbody>
-</table>
-<h3 id="다국어-능력">다국어 능력<a hidden class="anchor" aria-hidden="true" href="#다국어-능력">#</a></h3>
-<p>Qwen은 중국어, 영어, 일본어, 한국어, 프랑스어, 스페인어, 독일어, 아랍어 등 29개 언어를 지원합니다. 특히 중국어와 영어 코드 전환 능력이 뛰어납니다.</p>
-<h3 id="codeqwen">CodeQwen<a hidden class="anchor" aria-hidden="true" href="#codeqwen">#</a></h3>
-<p>CodeQwen 1.5 7B는 HumanEval에서 83.5%를 기록해 동급 모델 중 최고의 코드 생성 능력을 보여줍니다.</p>
-<h3 id="라이선스-1">라이선스<a hidden class="anchor" aria-hidden="true" href="#라이선스-1">#</a></h3>
-<p>Qwen2.5는 Apache 2.0 라이선스로 완전한 상용 사용이 가능합니다.</p>
-<h2 id="deepseek-효율과-성능의-조화">DeepSeek: 효율과 성능의 조화<a hidden class="anchor" aria-hidden="true" href="#deepseek-효율과-성능의-조화">#</a></h2>
-<h3 id="deepseek-v3">DeepSeek V3<a hidden class="anchor" aria-hidden="true" href="#deepseek-v3">#</a></h3>
-<p>2024년 12월 공개된 DeepSeek V3는 671B 파라미터 MoE 모델로, 추론 시 약 37B만 활성화됩니다. MMLU 87.1%로 GPT-4o에 근접하는 성능을 보여줍니다.</p>
-<h3 id="deepseek-moe-아키텍처">DeepSeek MoE 아키텍처<a hidden class="anchor" aria-hidden="true" href="#deepseek-moe-아키텍처">#</a></h3>
-<p>Fine-Grained MoE와 Shared Expert Isolation 기법으로 동급 MoE 대비 2배 이상의 효율을 달성했습니다.</p>
-<h3 id="deepseek-coder-v2">DeepSeek Coder V2<a hidden class="anchor" aria-hidden="true" href="#deepseek-coder-v2">#</a></h3>
-<p>Aider 코드 편집 벤치마크에서 73.6%를 기록, Claude 3.5 Sonnet과 동급의 코드 능력을 보여줍니다.</p>
-<h2 id="google-gemma-가볍고-접근성-높은-모델">Google Gemma: 가볍고 접근성 높은 모델<a hidden class="anchor" aria-hidden="true" href="#google-gemma-가볍고-접근성-높은-모델">#</a></h2>
-<h3 id="gemma-2">Gemma 2<a hidden class="anchor" aria-hidden="true" href="#gemma-2">#</a></h3>
-<table>
-	<thead>
-			<tr>
-					<th>모델</th>
-					<th>파라미터</th>
-					<th>MMLU</th>
-					<th>용도</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>Gemma 2</td>
-					<td>2B</td>
-					<td>52.9</td>
-					<td>모바일, IoT</td>
-			</tr>
-			<tr>
-					<td>Gemma 2</td>
-					<td>9B</td>
-					<td>71.6</td>
-					<td>중급 태스크</td>
-			</tr>
-			<tr>
-					<td>Gemma 2</td>
-					<td>27B</td>
-					<td>78.3</td>
-					<td>고성능 로컬</td>
-			</tr>
-	</tbody>
-</table>
-<p>Gemma는 동급 크기에서 최고 수준의 성능을 보여주며, 특히 소형 버전의 효율성이 돋보입니다.</p>
-<h2 id="microsoft-phi-작지만-강력한-모델">Microsoft Phi: 작지만 강력한 모델<a hidden class="anchor" aria-hidden="true" href="#microsoft-phi-작지만-강력한-모델">#</a></h2>
-<h3 id="phi-4-2024년-12월">Phi-4 (2024년 12월)<a hidden class="anchor" aria-hidden="true" href="#phi-4-2024년-12월">#</a></h3>
-<p>14B 파라미터로 MMLU 82.6%를 기록, 기존 70B급 모델에 버금가는 성능을 보여줍니다.</p>
+<h3 id="key-capabilities-and-improvements">Key Capabilities and Improvements<a hidden class="anchor" aria-hidden="true" href="#key-capabilities-and-improvements">#</a></h3>
+<p>Llama 3 introduced significant improvements over Llama 2: - <strong>Training data</strong>: 15 trillion tokens (vs 2 trillion for Llama 2), with heavy filtering for quality</p>
 <ul>
-<li><strong>학습 데이터 품질</strong>: 합성 데이터와 필터링된 고품질 데이터로 학습</li>
-<li><strong>엣지 및 모바일 배포</strong>: 소형 크기로 엣지 디바이스에 최적</li>
-<li><strong>수학 및 추론</strong>: 특히 수학 벤치마크에서 뛰어난 능력</li>
+<li><strong>Context window</strong>: 128K tokens in Llama 3.1 (up from 4K in Llama 3)</li>
+<li><strong>Multilingual support</strong>: Strong performance in 8 languages, with expanded support in 3.1</li>
+<li><strong>Tool use</strong>: Native function calling and tool use capabilities</li>
+<li><strong>Code performance</strong>: Substantially improved HumanEval scores</li>
 </ul>
-<h2 id="성능-종합-비교-매트릭스">성능 종합 비교 매트릭스<a hidden class="anchor" aria-hidden="true" href="#성능-종합-비교-매트릭스">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>모델</th>
-					<th>파라미터</th>
-					<th>MMLU</th>
-					<th>HumanEval</th>
-					<th>MT-Bench</th>
-					<th>VRAM</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>Llama 3.1</td>
-					<td>405B</td>
-					<td>85.2</td>
-					<td>89.0</td>
-					<td>9.2</td>
-					<td>810GB</td>
-			</tr>
-			<tr>
-					<td>DeepSeek V3</td>
-					<td>671B (MoE)</td>
-					<td>87.1</td>
-					<td>92.0</td>
-					<td>8.9</td>
-					<td>80GB</td>
-			</tr>
-			<tr>
-					<td>Qwen2.5</td>
-					<td>72B</td>
-					<td>84.5</td>
-					<td>86.0</td>
-					<td>8.8</td>
-					<td>144GB</td>
-			</tr>
-			<tr>
-					<td>Mistral Large 2</td>
-					<td>123B</td>
-					<td>84.0</td>
-					<td>84.5</td>
-					<td>8.9</td>
-					<td>240GB</td>
-			</tr>
-			<tr>
-					<td>Llama 3.1</td>
-					<td>70B</td>
-					<td>83.6</td>
-					<td>81.7</td>
-					<td>8.6</td>
-					<td>140GB</td>
-			</tr>
-			<tr>
-					<td>Phi-4</td>
-					<td>14B</td>
-					<td>82.6</td>
-					<td>82.0</td>
-					<td>8.4</td>
-					<td>28GB</td>
-			</tr>
-			<tr>
-					<td>Qwen2.5</td>
-					<td>14B</td>
-					<td>77.4</td>
-					<td>79.5</td>
-					<td>8.0</td>
-					<td>28GB</td>
-			</tr>
-			<tr>
-					<td>Llama 3.1</td>
-					<td>8B</td>
-					<td>69.4</td>
-					<td>72.6</td>
-					<td>7.4</td>
-					<td>16GB</td>
-			</tr>
-			<tr>
-					<td>Mistral 7B</td>
-					<td>7B</td>
-					<td>64.0</td>
-					<td>65.0</td>
-					<td>7.3</td>
-					<td>14GB</td>
-			</tr>
-			<tr>
-					<td>Qwen2.5</td>
-					<td>7B</td>
-					<td>70.6</td>
-					<td>78.0</td>
-					<td>7.8</td>
-					<td>14GB</td>
-			</tr>
-	</tbody>
-</table>
-<p><em>VRAM은 4비트 양자화 기준이며, MoE 모델은 추론 시 활성화된 파라미터 기준입니다.</em></p>
-<h2 id="사용-사례별-최적-모델-선택">사용 사례별 최적 모델 선택<a hidden class="anchor" aria-hidden="true" href="#사용-사례별-최적-모델-선택">#</a></h2>
-<table>
-	<thead>
-			<tr>
-					<th>사용 사례</th>
-					<th>추천 모델</th>
-					<th>이유</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>코딩</td>
-					<td>DeepSeek Coder V2, Codestral</td>
-					<td>코드 벤치마크 최상위</td>
-			</tr>
-			<tr>
-					<td>챗봇/대화</td>
-					<td>Llama 3.1 70B, Qwen2.5 72B</td>
-					<td>MT-Bench 고득점</td>
-			</tr>
-			<tr>
-					<td>로컬 배포</td>
-					<td>Mistral 7B, Qwen2.5 7B, Phi-4</td>
-					<td>VRAM 대비 성능 우수</td>
-			</tr>
-			<tr>
-					<td>엔터프라이즈</td>
-					<td>Llama 3.1 70B, Mistral Large 2</td>
-					<td>라이선스 안정성, 지원</td>
-			</tr>
-			<tr>
-					<td>모바일/엣지</td>
-					<td>Gemma 2 2B, Llama 3.2 1B</td>
-					<td>초소형 크기</td>
-			</tr>
-			<tr>
-					<td>파인튜닝</td>
-					<td>Llama 3.1 8B, Qwen2.5 7B</td>
-					<td>생태계, 문서 풍부</td>
-			</tr>
-	</tbody>
-</table>
-<h2 id="모델-다운로드-및-실행-방법">모델 다운로드 및 실행 방법<a hidden class="anchor" aria-hidden="true" href="#모델-다운로드-및-실행-방법">#</a></h2>
+<h3 id="use-cases-and-deployment-options">Use Cases and Deployment Options<a hidden class="anchor" aria-hidden="true" href="#use-cases-and-deployment-options">#</a></h3>
+<p>Llama 3 8B is the go-to model for general-purpose applications: chatbots, content generation, summarization, and classification. It runs on a single consumer GPU (RTX 4090) or even CPU with quantization. Llama 3 70B requires multiple GPUs but delivers near-frontier performance for demanding applications.</p>
+<h3 id="license-considerations">License Considerations<a hidden class="anchor" aria-hidden="true" href="#license-considerations">#</a></h3>
+<p>Llama 3 uses a custom license that permits commercial use for applications with fewer than 700 million monthly active users. Larger deployments require a special license from Meta. This is more permissive than Llama 2&rsquo;s license but still includes restrictions not present in Apache 2.0 models.</p>
+<h2 id="mistral-ai-european-excellence">Mistral AI: European Excellence<a hidden class="anchor" aria-hidden="true" href="#mistral-ai-european-excellence">#</a></h2>
+<h3 id="mistral-7b-and-its-legacy">Mistral 7B and Its Legacy<a hidden class="anchor" aria-hidden="true" href="#mistral-7b-and-its-legacy">#</a></h3>
+<p>Mistral 7B, released in September 2023, shocked the AI community by outperforming Llama 2 13B despite being half the size. It introduced grouped-query attention (GQA) for faster inference and sliding window attention for longer context handling. Mistral 7B remains a popular choice for resource-constrained deployments.</p>
+<h3 id="mixtral-8x7b-and-8x22b-moe">Mixtral 8x7B and 8x22B (MoE)<a hidden class="anchor" aria-hidden="true" href="#mixtral-8x7b-and-8x22b-moe">#</a></h3>
+<p>Mixtral models use Mixture of Experts (MoE) architecture, where only a subset of parameters activates per token. This enables massive model capacity with efficient inference: - <strong>Mixtral 8x7B</strong>: 47B total parameters, 13B active per token. Outperforms Llama 2 70B at faster inference speeds.</p>
 <ul>
-<li><strong>Hugging Face Hub</strong>: ```transformers```` 라이브러리로 직접 로드</li>
-<li><strong>Ollama</strong>: ````ollama run llama3.1``` 명령으로 로컬 실행</li>
-<li><strong>GPT4All / LM Studio</strong>: GUI 기반 로컬 실행 도구</li>
-<li><strong>클우드</strong>: RunPod, Together AI에서 GPU 인스턴스로 배포</li>
+<li><strong>Mixtral 8x22B</strong>: 141B total parameters, 39B active per token. Competitive with GPT-3.5 on most benchmarks.</li>
 </ul>
-<h2 id="오픈소스-llm의-미래">오픈소스 LLM의 미래<a hidden class="anchor" aria-hidden="true" href="#오픈소스-llm의-미래">#</a></h2>
-<h3 id="2025년-주요-트렌드">2025년 주요 트렌드<a hidden class="anchor" aria-hidden="true" href="#2025년-주요-트렌드">#</a></h3>
-<ol>
-<li><strong>추론 모델 확산</strong>: o1처럼 사고 과정을 거치는 모델(QwQ, DeepSeek-R1) 증가</li>
-<li><strong>소형 모델 고성능화</strong>: 7B 모델이 과거 70B 수준으로 진화</li>
-<li><strong>MoE 아키텍처 대중화</strong>: Mixtral, DeepSeek의 성공으로 MoE가 표준화</li>
-<li><strong>다국어 지원 강화</strong>: 영어 중심에서 글로벌 언어 지원으로 확대</li>
-</ol>
-<h3 id="오픈과-폐쇄-모델의-격차">오픈과 폐쇄 모델의 격차<a hidden class="anchor" aria-hidden="true" href="#오픈과-폐쇄-모델의-격차">#</a></h3>
-<p>2024년 말 기준, 최상위 오픈소스 모델(Llama 3.1 405B, DeepSeek V3)은 GPT-4o 수준에 근접했습니다. 하지만 최신 폐쇄형 모델(GPT-4.5, Claude 3.5 Opus)과는 아직 5~10% 정도의 격차가 존재합니다.</p>
-<h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
-<p><strong>2025년 최고의 오픈소스 LLM은 무엇인가요?</strong></p>
-<p>용도에 따라 다릅니다. 전반적인 성능은 DeepSeek V3와 Llama 3.1 405B가 선두입니다. 코딩에는 DeepSeek Coder V2, 로컬 실행에는 Qwen2.5 7B가 추천됩니다.</p>
-<p><strong>오픈소스 LLM을 상업적으로 사용할 수 있나요?</strong></p>
-<p>모델별로 다릅니다. Qwen2.5(Apache 2.0), Mistral(Apache 2.0), Gemma(Gemma License)는 상용 사용 가능합니다. Llama 3.1은 월 7억 사용자 이하 기업에게 상용 허가를 부여합니다.</p>
-<p><strong>코딩에 가장 적합한 오픈소스 LLM은 무엇인가요?</strong></p>
-<p>DeepSeek Coder V2와 Codestral이 HumanEval, Aider 벤치마크에서 최고 성능을 보여줍니다. Llama 3.1 70B도 우수한 범용 코드 능력을 갖추고 있습니다.</p>
-<p><strong>오픈소스 LLM은 GPT-4와 얼마나 차이가 나나요?</strong></p>
-<p>2025년 기준 최상위 오픈소스 모델은 GPT-4o의 90~95% 수준의 성능을 보여줍니다. 특정 벤치마크(MMLU, 코드 생성)에서는 오히려 더 나은 결과를 내기도 합니다.</p>
-<p><strong>Llama 3 70B를 실행하려면 어떤 하드웨어가 필요한가요?</strong></p>
-<p>FP16 기준으로 140GB VRAM이 필요합니다. 4비트 양자화 시 약 40GB로 단일 A100 40GB 또는 RTX 4090 2대로 실행 가능합니다. vLLM이나 TGI와 같은 서빙 엔진을 사용하면 효율이 더욱 향상됩니다.</p>
-<h2 id="참고-자료">참고 자료<a hidden class="anchor" aria-hidden="true" href="#참고-자료">#</a></h2>
+<p>MoE models excel in throughput-sensitive applications where you need high quality but cannot wait for a 70B model&rsquo;s inference latency.</p>
+<h3 id="mistral-large-and-codestral">Mistral Large and Codestral<a hidden class="anchor" aria-hidden="true" href="#mistral-large-and-codestral">#</a></h3>
+<p>Mistral AI also offers frontier-class models through API: - <strong>Mistral Large</strong>: Mistral&rsquo;s most capable model, competitive with Claude 3 Opus and GPT-4</p>
 <ul>
-<li><a href="https://huggingface.co/spaces/open-llm-leaderboard">Hugging Face Open LLM Leaderboard</a></li>
-<li><a href="https://chat.lmsys.org">LMSYS Chatbot Arena</a></li>
-<li><a href="https://ollama.com/library">Ollama 모델 라이브러리</a></li>
-<li><a href="https://ai.meta.com/llama">Meta Llama 공식 웹사이트</a></li>
-<li><a href="https://mistral.ai">Mistral AI</a></li>
-<li><a href="https://huggingface.co/Qwen">Qwen Hugging Face</a></li>
-<li><a href="https://deepseek.com">DeepSeek 공식 웹사이트</a></li>
+<li><strong>Codestral</strong>: Specialized for code with a 32K context window, strong across 80+ programming languages</li>
 </ul>
+<h3 id="enterprise-and-api-offerings">Enterprise and API Offerings<a hidden class="anchor" aria-hidden="true" href="#enterprise-and-api-offerings">#</a></h3>
+<p><a href="https://mistral.ai">Mistral AI</a> offers models through La Plateforme (their API), AWS Bedrock, and Azure AI. Their open-weight models use the Apache 2.0 license, the most permissive of any major model family, allowing unrestricted commercial use.</p>
+<h2 id="qwen-alibaba-the-rising-star-from-china">Qwen (Alibaba): The Rising Star from China<a hidden class="anchor" aria-hidden="true" href="#qwen-alibaba-the-rising-star-from-china">#</a></h2>
+<h3 id="qwen2-and-qwen25-series">Qwen2 and Qwen2.5 Series<a hidden class="anchor" aria-hidden="true" href="#qwen2-and-qwen25-series">#</a></h3>
+<p>Alibaba&rsquo;s Qwen series has emerged as one of the strongest open model families globally. Qwen2.5 (released late 2024) includes: - <strong>Qwen2.5 0.5B to 72B</strong>: A full range of sizes with consistent architecture</p>
+<ul>
+<li><strong>Qwen2.5 Coder</strong>: Specialized for programming tasks</li>
+<li><strong>Qwen2.5 Math</strong>: Fine-tuned for mathematical reasoning</li>
+<li><strong>Qwen2.5 VL</strong>: Vision-language model for image understanding</li>
+</ul>
+<h3 id="qwens-multilingual-capabilities">Qwen&rsquo;s Multilingual Capabilities<a hidden class="anchor" aria-hidden="true" href="#qwens-multilingual-capabilities">#</a></h3>
+<p>Qwen excels at multilingual tasks, particularly in Chinese, English, Japanese, Korean, and major European languages. Its tokenizer handles CJK characters more efficiently than Llama&rsquo;s, making it the preferred choice for Asian language applications.</p>
+<h3 id="codeqwen-for-programming-tasks">CodeQwen for Programming Tasks<a hidden class="anchor" aria-hidden="true" href="#codeqwen-for-programming-tasks">#</a></h3>
+<p>CodeQwen 1.5 and 7B models achieve HumanEval scores comparable to CodeLlama models twice their size. They support 92 programming languages and a 64K context window, making them ideal for codebase-level operations.</p>
+<h3 id="qwen-license-and-usage-terms">Qwen License and Usage Terms<a hidden class="anchor" aria-hidden="true" href="#qwen-license-and-usage-terms">#</a></h3>
+<p>Qwen2.5 uses the Qwen License, which permits commercial use with some restrictions on model distillation and competitive use. Review the license terms on <a href="https://huggingface.co/Qwen">Hugging Face</a> before deploying commercially.</p>
+<h2 id="deepseek-efficiency-meets-performance">DeepSeek: Efficiency Meets Performance<a hidden class="anchor" aria-hidden="true" href="#deepseek-efficiency-meets-performance">#</a></h2>
+<h3 id="deepseek-v25-and-v3">DeepSeek V2.5 and V3<a hidden class="anchor" aria-hidden="true" href="#deepseek-v25-and-v3">#</a></h3>
+<p>DeepSeek, developed by Chinese hedge fund High-Flyer, has produced some of the most efficient open models. DeepSeek V3 (released December 2024) features: - <strong>671B total parameters, 37B activated per token</strong> (MoE architecture)</p>
+<ul>
+<li><strong>Training cost</strong>: Reportedly $5.6 million, a fraction of what western labs spend</li>
+<li><strong>MMLU score</strong>: 88.5, competitive with GPT-4o</li>
+<li><strong>128K context window</strong> with efficient attention mechanisms</li>
+</ul>
+<h3 id="deepseek-moe-architecture">DeepSeek MoE Architecture<a hidden class="anchor" aria-hidden="true" href="#deepseek-moe-architecture">#</a></h3>
+<p>DeepSeek&rsquo;s Mixture of Experts uses a novel auxiliary-loss-free load balancing strategy that improves expert utilization. This architectural innovation is being adopted by other labs and represents a genuine research contribution from the open-source ecosystem.</p>
+<h3 id="deepseek-coder-series">DeepSeek Coder Series<a hidden class="anchor" aria-hidden="true" href="#deepseek-coder-series">#</a></h3>
+<p>DeepSeek Coder V2 achieves a 90.2% score on HumanEval, among the highest of any open model. It supports project-level code understanding with a 128K context window and excels at code completion, bug fixing, and test generation.</p>
+<h3 id="why-deepseek-is-gaining-popularity">Why DeepSeek Is Gaining Popularity<a hidden class="anchor" aria-hidden="true" href="#why-deepseek-is-gaining-popularity">#</a></h3>
+<p>DeepSeek proves that efficient training methods can match the quality of models trained with vastly larger budgets. For developers, this means smaller, faster models that punch above their weight class.</p>
+<h2 id="google-gemma-lightweight-and-accessible">Google Gemma: Lightweight and Accessible<a hidden class="anchor" aria-hidden="true" href="#google-gemma-lightweight-and-accessible">#</a></h2>
+<h3 id="gemma-2-2b-9b-27b">Gemma 2 (2B, 9B, 27B)<a hidden class="anchor" aria-hidden="true" href="#gemma-2-2b-9b-27b">#</a></h3>
+<p>Google&rsquo;s <a href="https://ai.google.dev/gemma">Gemma 2</a>, released in June 2024, represents a significant leap over the original Gemma models: - <strong>Gemma 2 2B</strong>: Impressive performance for its size, suitable for edge devices</p>
+<ul>
+<li><strong>Gemma 2 9B</strong>: Outperforms Llama 3 8B on many benchmarks</li>
+<li><strong>Gemma 2 27B</strong>: Competitive with Llama 3 70B despite being less than half the size</li>
+</ul>
+<p>Gemma 2 uses knowledge distillation from larger Google models, achieving remarkable efficiency.</p>
+<h3 id="googles-open-weight-strategy">Google&rsquo;s Open-Weight Strategy<a hidden class="anchor" aria-hidden="true" href="#googles-open-weight-strategy">#</a></h3>
+<p>Gemma is an &ldquo;open weights&rdquo; rather than &ldquo;open source&rdquo; model. Google releases the model weights but not the training data or full training code. The license is more permissive than Llama&rsquo;s but includes usage restrictions for harmful applications.</p>
+<h3 id="best-use-cases-for-gemma">Best Use Cases for Gemma<a hidden class="anchor" aria-hidden="true" href="#best-use-cases-for-gemma">#</a></h3>
+<p>Gemma 2 2B is ideal for mobile and edge deployment. Gemma 2 9B is excellent for general-purpose applications where you want Llama 3 8B-level quality with Google&rsquo;s safety tuning. Gemma 2 27B serves as a lighter alternative to Llama 3 70B.</p>
+<h2 id="microsoft-phi-small-but-mighty">Microsoft Phi: Small but Mighty<a hidden class="anchor" aria-hidden="true" href="#microsoft-phi-small-but-mighty">#</a></h2>
+<h3 id="phi-3-and-phi-4-series">Phi-3 and Phi-4 Series<a hidden class="anchor" aria-hidden="true" href="#phi-3-and-phi-4-series">#</a></h3>
+<p>Microsoft&rsquo;s Phi series demonstrates that training on high-quality, carefully curated data can produce small models with outsized capabilities: - <strong>Phi-3 Mini (3.8B)</strong>: Outperforms models 5x its size on reasoning benchmarks</p>
+<ul>
+<li><strong>Phi-3 Small (7B)</strong>: Strong general-purpose model with excellent reasoning</li>
+<li><strong>Phi-3 Medium (14B)</strong>: Approaches Llama 3 70B quality on some benchmarks</li>
+<li><strong>Phi-4 (14B)</strong>: Latest release with improved reasoning and long-context handling</li>
+</ul>
+<h3 id="remarkable-performance-for-small-models">Remarkable Performance for Small Models<a hidden class="anchor" aria-hidden="true" href="#remarkable-performance-for-small-models">#</a></h3>
+<p>Phi models are trained on &ldquo;textbook-quality&rdquo; synthetic data, emphasizing reasoning and knowledge over raw scale. This approach yields models that excel at STEM tasks, logical reasoning, and instruction following despite their small parameter counts.</p>
+<h3 id="edge-and-mobile-deployment">Edge and Mobile Deployment<a hidden class="anchor" aria-hidden="true" href="#edge-and-mobile-deployment">#</a></h3>
+<p>Phi-3 Mini is Microsoft&rsquo;s answer to on-device AI. At 3.8B parameters, it runs comfortably on smartphones and achieves quality that was GPT-3.5 level just 18 months ago. For mobile apps, IoT devices, and browser-based AI, Phi-3 Mini is a top choice.</p>
+<h2 id="performance-comparison-matrix">Performance Comparison Matrix<a hidden class="anchor" aria-hidden="true" href="#performance-comparison-matrix">#</a></h2>
+<h3 id="benchmark-scores-comparison">Benchmark Scores Comparison<a hidden class="anchor" aria-hidden="true" href="#benchmark-scores-comparison">#</a></h3>
+<p>| Model | Size | MMLU | HumanEval | MT-Bench | Context |
+|</p>
 <hr>
-<h2 id="추천-인프라">추천 인프라<a hidden class="anchor" aria-hidden="true" href="#추천-인프라">#</a></h2>
-<p>위 도구들을 24/7 안정 운영하려면 인프라가 중요하다: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전.</p>
-<ul>
-<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연. dibi8.com 자체 호스팅 IDC.</li>
-</ul>
-<p><em>추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.</em></p>
-<p>{
-&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
-&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;오픈소스 LLM 순위 및 선택 가이드 2025: Llama, Mistral, Qwen, DeepSeek 비교&rdquo;,
-&ldquo;datePublished&rdquo;: &ldquo;2026-05-18&rdquo;,
-&ldquo;dateModified&rdquo;: &ldquo;2026-05-18&rdquo;,
-&ldquo;author&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
-&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
-},
-&ldquo;publisher&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
-&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
-&ldquo;logo&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
-}
-},
-&ldquo;mainEntityOfPage&rdquo;: {
-&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/open-source-llm-ranking-guide%22">https://dibi8.com/kr/resources/open-source-llm-ranking-guide"</a>
-}
-}
-</script></p>
-<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
-<p>Understanding 오픈소스 llm 순위 및 선택 가이드 2025: llama, mistral, qwen, deepseek 비교 is crucial for modern AI development. Here&quot;s why: ### Key Benefits</p>
-<ul>
-<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
-<li><strong>Quality</strong>: Improve output consistency</li>
-<li><strong>Scalability</strong>: Handle larger workloads</li>
-<li><strong>Cost</strong>: Reduce operational expenses</li>
-</ul>
-<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
-<p>Organizations are using similar approaches to: 1. Automate code review processes
-2. Generate documentation automatically
-3. Build internal knowledge bases
-4. Streamline deployment pipelines</p>
-<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
-<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
-<ul>
-<li>Identify repetitive tasks</li>
-<li>Measure current time costs</li>
-<li>Define success metrics</li>
-</ul>
-<ol start="2">
-<li>
-<p><strong>Choose Your Approach</strong></p>
-<ul>
-<li>Start with simple automations</li>
-<li>Gradually increase complexity</li>
-<li>Test and iterate</li>
-</ul>
-</li>
-<li>
-<p><strong>Measure Results</strong></p>
-<ul>
-<li>Track time savings</li>
-<li>Monitor quality improvements</li>
-<li>Calculate ROI</li>
-</ul>
-</li>
-</ol>
-<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
-<p>오픈소스 LLM 순위 및 선택 가이드 2025: Llama, Mistral, Qwen, DeepSeek 비교 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
-<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<p>|</p>
 <hr>
-<p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~6 minutes</em></p>
-<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
-<p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p>
-<p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p>
-<p><strong>问：如何评估LLM框架的性能？</strong></p>
-<p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p>
-<p><strong>问：开源LLM框架的商业使用限制？</strong></p>
-<p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p>
-<p><strong>问：是否需要GPU才能运行LLM框架？</strong></p>
-<p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p>
-<p><strong>问：企业级部署的最佳实践？</strong></p>
-<p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Llama 3.1 405B | 405B | 88.6 | 89.0 | 9.2 | 128K |
+| Llama 3 70B | 70B | 82.0 | 81.7 | 8.9 | 8K |
+| Llama 3.1 8B | 8B | 73.0 | 72.8 | 7.8 | 128K |
+| Mixtral 8x22B | 141B/39B | 77.8 | 75.8 | 8.7 | 64K |
+| Mistral 7B | 7B | 60.1 | 28.4 | 7.0 | 32K |
+| Qwen2.5 72B | 72B | 86.1 | 86.2 | 8.9 | 128K |
+| Qwen2.5 7B | 7B | 74.2 | 70.3 | 7.8 | 128K |
+| DeepSeek V3 | 671B/37B | 88.5 | 90.2 | 8.9 | 128K |
+| DeepSeek Coder V2 | 16B | 73.8 | 90.2 | 8.2 | 128K |
+| Gemma 2 27B | 27B | 80.6 | 71.8 | 8.4 | 128K |
+| Gemma 2 9B | 9B | 71.3 | 64.3 | 7.8 | 128K |
+| Gemma 2 2B | 2B | 53.2 | 24.3 | 6.4 | 128K |
+| Phi-4 | 14B | 82.6 | 82.2 | 8.4 | 16K |
+| Phi-3 Mini | 3.8B | 68.1 | 59.4 | 7.2 | 128K |</p>
+<p><em>Scores are approximate and vary by evaluation setup. Check current leaderboards for latest results.</em></p>
+<h3 id="inference-speed-comparison">Inference Speed Comparison<a hidden class="anchor" aria-hidden="true" href="#inference-speed-comparison">#</a></h3>
+<p>Inference throughput (tokens/second) on a single A100 GPU with vLLM: | Model | Throughput (t/s) | Time to First Token |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Llama 3.1 8B | ~120 | ~20ms |
+| Mistral 7B | ~140 | ~18ms |
+| Qwen2.5 7B | ~115 | ~22ms |
+| Gemma 2 9B | ~100 | ~25ms |
+| Phi-3 Mini | ~220 | ~12ms |
+| Mixtral 8x7B | ~90 | ~35ms |</p>
+<h3 id="vram-requirements-by-model">VRAM Requirements by Model<a hidden class="anchor" aria-hidden="true" href="#vram-requirements-by-model">#</a></h3>
+<p>| Model | FP16 VRAM | 4-bit Quantized | 8-bit Quantized |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| 2B models | 4 GB | 1.5 GB | 2.5 GB |
+| 7B/8B models | 16 GB | 5 GB | 8 GB |
+| 14B models | 28 GB | 9 GB | 15 GB |
+| 27B models | 54 GB | 16 GB | 28 GB |
+| 70B models | 140 GB | 40 GB | 72 GB |
+| 405B models | 810 GB | 230 GB | 405 GB |</p>
+<h3 id="context-window-lengths">Context Window Lengths<a hidden class="anchor" aria-hidden="true" href="#context-window-lengths">#</a></h3>
+<p>All major models released in 2024-2025 support at least 32K token contexts. Llama 3.1, Qwen2.5, Gemma 2, and DeepSeek V3 support 128K contexts. Long-context models enable processing entire codebases, long documents, and multi-turn conversations without truncation.</p>
+<h2 id="how-to-choose-the-right-open-source-llm">How to Choose the Right Open-Source LLM<a hidden class="anchor" aria-hidden="true" href="#how-to-choose-the-right-open-source-llm">#</a></h2>
+<h3 id="decision-framework-by-use-case">Decision Framework by Use Case<a hidden class="anchor" aria-hidden="true" href="#decision-framework-by-use-case">#</a></h3>
+<p>Select your model based on the primary task: | Use Case | Recommended Models |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| General chat | Llama 3.1 8B, Qwen2.5 7B, Gemma 2 9B |
+| Coding | DeepSeek Coder V2, CodeQwen, Codestral |
+| Enterprise deployment | Llama 3 70B, Mistral Large, Qwen2.5 72B |
+| Edge/mobile | Phi-3 Mini, Gemma 2 2B, Llama 3.2 1B |
+| Multilingual (Asian) | Qwen2.5, Yi models |
+| Multilingual (European) | Mistral 7B, Llama 3.1 |
+| Reasoning/STEM | Phi-4, DeepSeek V3 |
+| Maximum capability | Llama 3.1 405B, DeepSeek V3, Qwen2.5 72B |</p>
+<h3 id="best-for-coding-deepseek-coder-codestral">Best for Coding: DeepSeek Coder, Codestral<a hidden class="anchor" aria-hidden="true" href="#best-for-coding-deepseek-coder-codestral">#</a></h3>
+<p>For programming tasks, DeepSeek Coder V2 leads open models with a 90.2% HumanEval score. Codestral (32B) offers strong multilingual code support. CodeQwen 7B provides the best quality-to-size ratio for code tasks.</p>
+<h3 id="best-for-chat-llama-3-qwen">Best for Chat: Llama 3, Qwen<a hidden class="anchor" aria-hidden="true" href="#best-for-chat-llama-3-qwen">#</a></h3>
+<p>Llama 3.1 8B and Qwen2.5 7B are the most balanced chat models. They combine strong MMLU scores with good MT-Bench ratings and broad ecosystem support. For English-only applications, Llama 3 has the largest fine-tuning ecosystem. For multilingual chat, Qwen is superior.</p>
+<h3 id="best-for-local-deployment-mistral-phi-gemma">Best for Local Deployment: Mistral, Phi, Gemma<a hidden class="anchor" aria-hidden="true" href="#best-for-local-deployment-mistral-phi-gemma">#</a></h3>
+<p>Mistral 7B offers the best quality-to-speed ratio for local deployment. Phi-3 Mini maximizes quality at minimal size (3.8B). Gemma 2 2B is the best option for mobile and browser-based deployment.</p>
+<h3 id="best-for-enterprise-llama-3-mistral-large">Best for Enterprise: Llama 3, Mistral Large<a hidden class="anchor" aria-hidden="true" href="#best-for-enterprise-llama-3-mistral-large">#</a></h3>
+<p>Llama 3 70B has the most mature ecosystem, tooling, and deployment options. Mistral Large offers frontier quality through API with the permissive Apache 2.0 license for open-weight variants. Both have strong enterprise support through cloud providers.</p>
+<h2 id="where-to-download-and-run-these-models">Where to Download and Run These Models<a hidden class="anchor" aria-hidden="true" href="#where-to-download-and-run-these-models">#</a></h2>
+<h3 id="hugging-face-hub">Hugging Face Hub<a hidden class="anchor" aria-hidden="true" href="#hugging-face-hub">#</a></h3>
+<p>The <a href="https://huggingface.co/models">Hugging Face Hub</a> is the primary repository for open-source models. Search for model names (e.g., &ldquo;meta-llama/Meta-Llama-3-8B-Instruct&rdquo;) to find official uploads. Download with: ````python
+from transformers import AutoModelForCausalLM
+model = AutoModelForCausalLM.from_pretrained(&ldquo;meta-llama/Meta-Llama-3-8B-Instruct&rdquo;)</p>
+<pre tabindex="0"><code>
+Some models (Llama, Gemma) require accepting a license agreement on Hugging Face before download.
 
+### Ollama Model Library
+
+[Ollama](https://ollama.com/library) provides the easiest way to run models locally. Install Ollama, then: `````bash
+ollama run llama3.1        # Llama 3.1 8B
+ollama run mistral         # Mistral 7B
+ollama run qwen2.5         # Qwen2.5 7B
+ollama run phi3            # Phi-3 Mini
+ollama run gemma2          # Gemma 2 9B
+ollama run deepseek-coder  # DeepSeek Coder
+````
+
+Ollama handles model download, quantization, and serving automatically.
+
+### GPT4All and LM Studio
+
+[GPT4All](https://gpt4all.io) offers a desktop application for running models with a chat interface. [LM Studio](https://lmstudio.ai) provides a more feature-rich desktop experience with model management, GPU acceleration, and OpenAI-compatible local API serving.
+
+### Cloud Deployment (RunPod, Together AI)
+
+For GPU cloud rental, [RunPod](https://runpod.io) and [Vast.ai](https://vast.ai) offer competitive prices. [Together AI](https://together.ai) provides API access to most open models with optimized inference. Both options eliminate the need to own GPUs.
+
+## The Future of Open-Source LLMs
+
+### Trends to Watch in 2025
+
+Several trends will shape the open-source LLM landscape: - **Small but powerful**: The Phi-3 and Gemma 2 approach (high-quality data + efficient architecture) will produce more small models that rival larger predecessors
+- **Multimodal expansion**: Vision-language models (Qwen-VL, Llava, BakLlava) are becoming standard
+- **Long context**: 128K is now table stakes; 1M+ context models are emerging
+- **Mixture of Experts**: MoE architectures (Mixtral, DeepSeek) will become more common as a scaling strategy
+- **Agent capabilities**: Models with native tool use, planning, and multi-step reasoning
+
+### The Gap Between Open and Closed Models
+
+The gap between top open-source models (Llama 3.1 405B, DeepSeek V3) and closed models (GPT-4o, Claude 3.5 Sonnet) has narrowed to near parity on many benchmarks. GPT-4o still leads in multimodal reasoning and some complex tasks, but the difference is no longer decisive for most applications.
+
+For coding, DeepSeek Coder V2 matches or exceeds Claude 3.5 Sonnet on several benchmarks. For knowledge tasks, Llama 3.1 405B approaches GPT-4o on MMLU. The trend favors continued convergence.
+
+### Regulatory Considerations
+
+Open-weight models face increasing regulatory scrutiny. The EU AI Act imposes transparency requirements on foundation models. Some jurisdictions are considering export controls on model weights. Teams deploying open models should monitor regulatory developments in their operating regions.
+
+## Conclusion
+
+The open-source LLM ecosystem in 2025 offers a model for virtually every use case and budget. Llama 3 dominates as the safe default choice with the largest ecosystem. Mistral provides the most permissive licensing and strong European-language support. Qwen leads in multilingual and coding applications. DeepSeek delivers maximum efficiency and coding prowess. Gemma and Phi fill the lightweight deployment niche.
+
+The right model depends on your specific requirements: language support, hardware constraints, licensing needs, and task specialization. Start with established benchmarks and leaderboards, but always evaluate on your actual use case before committing.
+
+## Frequently Asked Questions
+
+**What is the best open-source LLM in 2025?**
+
+For most applications, Llama 3.1 8B is the best starting point due to its balance of quality, speed, and ecosystem support. For maximum capability, Llama 3.1 405B or DeepSeek V3 lead the open-source rankings. For coding, DeepSeek Coder V2 is the strongest. For edge deployment, Phi-3 Mini offers the best quality-to-size ratio. The &#34;best&#34; model always depends on your specific use case.
+
+**Can I use open-source LLMs for commercial purposes?**
+
+It depends on the model&#34;s license. Mistral models use Apache 2.0, permitting unrestricted commercial use. Llama 3 permits commercial use for applications under 700 million monthly active users. Qwen has commercial use restrictions. Gemma has usage restrictions for harmful applications. Always review the specific license before deploying commercially.
+
+**Which open-source LLM is best for coding?**
+
+DeepSeek Coder V2 leads open models with a 90.2% HumanEval score. Codestral (32B) from Mistral is strong across 80+ languages. CodeQwen 7B offers excellent quality for its size. For general coding with broad language support, DeepSeek Coder V2 16B is the recommended choice.
+
+**How do open-source LLMs compare to GPT-4?**
+
+Top open-source models like Llama 3.1 405B and DeepSeek V3 approach GPT-4o on many benchmarks. On MMLU, the gap is within 2-3 points. On coding (HumanEval), DeepSeek Coder V2 actually exceeds GPT-4. GPT-4o still leads in multimodal reasoning, instruction following, and some complex reasoning tasks. For most production applications, the difference is no longer meaningful.
+
+**What hardware do I need to run Llama 3 70B?**
+
+Llama 3 70B requires 140 GB of VRAM in FP16 precision (two A100 80GB GPUs). With 4-bit quantization, it runs on a single A100 40GB or two RTX 4090s (24GB each). For CPU-only inference with llama.cpp, you need at least 40 GB of system RAM for the quantized model. Cloud options like RunPod and Together AI provide access without hardware ownership.
+
+
+* * *
+## Recommended Infrastructure
+
+To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.
+- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.
+
+*Affiliate links — no extra cost to you, helps keep dibi8.com running.*
+
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;Best Open-Source LLMs 2025: Llama, Mistral, Qwen, DeepSeek &amp; More&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-18&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-18&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/open-source-llm-ranking-guide&#34;
+  }
+}
+&lt;/script&gt;
+## Frequently Asked Questions (FAQ)
+
+**问：LangChain和LlamaIndex哪个更好？**
+
+LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。
+
+**问：如何评估LLM框架的性能？**
+
+基准测试包括：推理速度、准确率、资源消耗、可扩展性。
+
+**问：开源LLM框架的商业使用限制？**
+
+大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。
+
+**问：是否需要GPU才能运行LLM框架？**
+
+推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。
+
+**问：企业级部署的最佳实践？**
+
+使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
+
+
+* * *
+</code></pre>
 
   </div>
 
@@ -815,6 +708,81 @@
         <polyline points="17 18 12 13 7 18"></polyline>
     </svg>
 </a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
 <script>
     let menu = document.getElementById('menu');
