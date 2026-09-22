@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,9 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/llm-frameworks/moralis-web3-data-api/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/llm-frameworks/moralis-web3-data-api/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-frameworks/moralis-web3-data-api/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/llm-frameworks/moralis-web3-data-api/">
 <noscript>
     <style>
         #theme-toggle,
@@ -84,7 +82,7 @@
   ],
   "articleBody": "title: “Moralis 2026: The Web3 Data API Powering 100K+ DApps wit… description: “Technical guide and comparison.” date: 2026-05-20T00:00:00+08:00 lastmod: 2026-05-20T00:00:00+08:00 tech_stack: [] application_domain: Ai Trading source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-20” draft: false categories: [“ai-trading”] tags: [“moralis”] aliases:\n/posts/moralis-web3-data-api/- Blockchain data is the lifeblood of every decentralized application. Whether you are building a DeFi dashboard, an NFT marketplace, a wallet tracker, or a trading bot, your application needs fast, reliable access to on-chain data. In 2026, Moralis remains the most widely adopted Web3 Data API, serving over 100,000 decentralized applications with real-time blockchain data across more than ten EVM-compatible chains.\nMoralis abstracts away the complexity of running your own blockchain nodes, indexing layers, and data pipelines. Instead of spending weeks setting up infrastructure, developers can start fetching wallet balances, token prices, NFT metadata, and transaction histories within minutes. This guide provides a comprehensive walkthrough of Moralis, from initial setup to advanced integrations, helping you leverage its full potential for your next Web3 project.\nAffiliate Disclosure: This article contains affiliate links to Binance. We may earn a commission when you register through our link at no extra cost to you.\nWhat Is Moralis? Moralis is a unified Web3 data API and development platform that provides developers with real-time access to blockchain data. Founded in 2021, it has grown to become the infrastructure backbone for over 100,000 DApps, ranging from small indie projects to enterprise-grade DeFi protocols. Moralis handles the heavy lifting of indexing, normalizing, and serving blockchain data through clean, well-documented REST APIs and SDKs.\nThe platform supports Ethereum, Polygon, BNB Chain, Arbitrum, Optimism, Avalanche, Base, and several other EVM-compatible networks. It also offers non-EVM support for Solana and other chains. The core value proposition is simple: instead of operating complex node infrastructure and building custom indexers, developers can call a Moralis API endpoint and receive structured, human-readable data.\nMoralis provides several key API groups: - Web3 API — General blockchain queries, block data, and transaction details\nToken API — Token balances, transfers, price data, and metadata NFT API — NFT ownership, metadata, transfers, and collection statistics Wallet API — Portfolio tracking, net worth calculations, and transaction history Streams API — Real-time webhooks for on-chain events Auth API — Web3 authentication and user session management Why Choose Moralis in 2026? The Web3 infrastructure landscape has matured significantly, yet Moralis continues to lead for several compelling reasons.\nUnified API surface. Rather than juggling multiple providers for different data types, Moralis offers a single API key that unlocks token data, NFT information, wallet portfolios, and real-time event streams. This reduces integration complexity and keeps your codebase cleaner.\nCross-chain compatibility. Moralis supports ten-plus EVM chains out of the box. Queries use the same endpoint structure regardless of which chain you target. Switching from Ethereum to Polygon requires changing a single chain parameter, not rewriting integration logic.\nReal-time data delivery. The Streams API delivers webhooks within seconds of on-chain events confirming. For trading applications, portfolio trackers, and alert systems, this latency advantage is critical.\nEnterprise-grade reliability. Moralis processes billions of API requests per month with a 99.9% uptime guarantee. Its infrastructure auto-scales to handle traffic spikes during NFT drops, token launches, and market volatility.\nRich SDK ecosystem. Official SDKs for JavaScript, Python, and Unity allow you to integrate Moralis in your preferred environment. React hooks and Next.js bindings further accelerate frontend development.\nSetting Up Your Moralis Account Before writing any code, you need a Moralis account and API key.\nStep 1: Visit the Moralis admin console at admin.moralis.io and register a new account. You can use an email address or connect with a Web3 wallet.\nStep 2: After logging in, create a new project from the dashboard. Give it a descriptive name such as ```defi-dashboardornft-tracker````.\nStep 3: Navigate to the API Keys section and copy your default API key. Moralis uses a tiered pricing model. The free tier includes a generous number of API calls per month, which is sufficient for development and small production applications.\nStep 4: Secure your API key using environment variables. Never commit API keys directly into your source code repository.\n# .env MORALIS_API_KEY=your_api_key_here Load this variable in your application using dotenv or your runtime’s built-in environment variable support.\n// server.js require(dotenv).config(); const apiKey = process.env.MORALIS_API_KEY; if (!apiKey) { throw new Error('MORALIS_API_KEY is not defined'); } Installing the Moralis SDK Moralis offers official SDKs for multiple programming languages and frameworks. Choose the one that matches your stack.\nJavaScript / Node.js npm install moralis // Initialize Moralis in your Node.js application const Moralis = require(moralis).default; await Moralis.start({ apiKey: process.env.MORALIS_API_KEY, }); console.log('Moralis SDK initialized successfully'); Python pip install moralis # Initialize Moralis in Python from moralis import evm_api import os api_key = os.environ.get(MORALIS_API_KEY) if not api_key: raise ValueError(\"MORALIS_API_KEY environment variable is required\") print(\"Moralis Python SDK ready\") Unity For Unity developers, Moralis provides a dedicated SDK package available through the Unity Package Manager. Import the package from the official Moralis GitHub repository, then initialize it in your game startup script.\n// Unity C# initialization using MoralisUnity; using MoralisUnity.Web3Api.Client; async void Start() { MoralisClient moralis = new MoralisClient( hostUrl: \"https://deep-index.moralis.io/api/v2\", applicationId: \"your_app_id\" ); await moralis.StartAsync(); Debug.Log(\"Moralis Unity SDK initialized\"); } Fetching Token Data with the Token API The Token API is one of the most frequently used components of Moralis. It provides endpoints for querying ERC-20 token balances, transfer history, price data, and metadata.\nGet Token Price Fetching the current price of any token is straightforward. Moralis aggregates price data from multiple decentralized exchanges and liquidity pools.\nconst priceResponse = await Moralis.EvmApi.token.getTokenPrice({ address: 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48, chain: 0x1, // Ethereum mainnet }); console.log('Token Price:', priceResponse.result.usdPrice); console.log('Price Change 24h:', priceResponse.result.usdPricePercentChange24h); Get Wallet Token Balances Retrieve all ERC-20 tokens held by a specific wallet address with a single API call.\nconst balances = await Moralis.EvmApi.token.getWalletTokenBalances({ address: 0x1234567890123456789012345678901234567890, chain: 0x1, }); balances.result.forEach((token) =\u003e { console.log(````${token.name}: ${token.balance} (${token.symbol})````); }); Get Token Transfers Track incoming and outgoing token transfers for a wallet or a specific token contract.\nconst transfers = await Moralis.EvmApi.token.getWalletTokenTransfers({ address: 0x1234567890123456789012345678901234567890, chain: 0x1, limit: 10, }); transfers.result.forEach((tx) =\u003e { console.log(````From: ${tx.fromAddress} To: ${tx.toAddress} Amount: ${tx.value}````); }); Get Token Metadata Retrieve detailed metadata for any ERC-20 token including name, symbol, decimals, and logo.\nconst metadata = await Moralis.EvmApi.token.getTokenMetadata({ addresses: [ 0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48, 0x6B175474E89094C44Da98b954EedeAC495271d0F, ], chain: 0x1, }); metadata.result.forEach((token) =\u003e { console.log(````${token.name} (${token.symbol}) - ${token.decimals} decimals````); }); Working with the NFT API The NFT API provides comprehensive coverage for querying NFT ownership, metadata, transfers, and collection-level statistics. It supports both ERC-721 and ERC-1155 standards.\nGet NFTs Owned by a Wallet const nfts = await Moralis.EvmApi.nft.getWalletNFTs({ address: 0x1234567890123456789012345678901234567890, chain: 0x1, limit: 20, }); nfts.result.forEach((nft) =\u003e { console.log(````Collection: ${nft.name} Token ID: ${nft.tokenId}````); console.log(````Metadata: ${nft.metadata}````); }); Get NFT Metadata by Token ID const nftMetadata = await Moralis.EvmApi.nft.getNFTMetadata({ address: 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D, tokenId: 1, chain: 0x1, }); console.log('Name:', nftMetadata.result.name); console.log('Image:', nftMetadata.result.metadata?.image); console.log('Attributes:', nftMetadata.result.metadata?.attributes); Get NFT Transfers for a Collection const transfers = await Moralis.EvmApi.nft.getNFTContractTransfers({ address: 0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D, chain: 0x1, limit: 10, }); transfers.result.forEach((tx) =\u003e { console.log(````Token ${tx.tokenId}: ${tx.fromAddress} -\u003e ${tx.toAddress}````); }); Python Example: Get Floor Price from moralis import evm_api params = { \"address\": \"0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D\", \"chain\": \"eth\" } result = evm_api.nft.get_nft_floor_price( api_key=api_key, params=params, ) print(f\"Floor Price: {result[floor_price]} ETH\") Real-Time Webhooks with the Streams API One of Moralis’s standout features is the Streams API, which enables real-time webhooks for on-chain events. Instead of polling for changes, your application receives push notifications when specific events occur.\nSetting Up a Stream const { EvmChain } = require('@moralisweb3/common-evm-utils'); const stream = { chains: [EvmChain.ETHEREUM, EvmChain.POLYGON], description: \"Technical guide and comparison.\" tag: usdc_transfers, includeNativeTxs: false, webhookUrl: 'https://your...\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/moralis-web3-data-api\" } } \u003c/script\u003e ## Frequently Asked Questions (FAQ) **问：量化交易的风险有多大？** 取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。 **问：如何选择适合的交易策略？** 根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。 **问：回测结果可信吗？** 回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。 **问：需要编程基础吗？** 基础策略可使用低代码平台，高级策略需要Python/C++编程能力。 **问：交易系统的维护成本？** 包括服务器费用、数据订阅、算法更新、以及监控维护时间。 ",
   "wordCount" : "1293",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
   "mainEntityOfPage": {
@@ -127,21 +125,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -168,7 +152,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -187,20 +171,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>7 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/ko/llm-frameworks/moralis-web3-data-api/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/llm-frameworks/moralis-web3-data-api/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>7 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul>
@@ -672,12 +648,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

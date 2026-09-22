@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">
 <noscript>
     <style>
         #theme-toggle,
@@ -85,7 +82,7 @@
   ],
   "articleBody": "title: “Portkey vs LiteLLM vs OpenRouter 2026: The Honest LLM Ga… description: “Technical guide and comparison.” date: 2026-05-20T00:00:00+08:00 lastmod: 2026-05-20T00:00:00+08:00 tech_stack: - Python\nTypeScript Docker Kubernetes application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-20” draft: false categories: [“llm-frameworks”] tags: [“llm gateway”, “portkey”, “litellm”, “openrouter”, “comparison”] aliases: /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/ Portkey vs LiteLLM vs OpenRouter 2026: The Honest LLM Gateway Decision Guide (Latency, Cost \u0026 Self-Hosting) If you read three blog posts on “best LLM gateway” you’ll get three different answers and zero comparable numbers. We’ll fix that here. This is a head-to-head between Portkey, LiteLLM, and OpenRouter — the three gateways that actually run production AI traffic in 2026 — with real latency numbers, an at-$1,000/month cost breakdown, and a decision tree you can apply in 30 seconds.\nIf you only have 60 seconds, read the table in section 2 and pick the one matching your row. Everything else is for when your CFO asks “why this one?”\n1. Why You Need an LLM Gateway at All Three reasons applications outgrow direct provider SDKs around month 3: 1. Vendor lock-in pain — your code is OpenAI-shaped and Claude 4.7 just released. Now what? 2. Reliability — every provider has a 99.5% SLA. Run three in parallel without failover and you compound failure, not redundancy. 3. Cost \u0026 observability — your finance team wants per-team spend tracking. Your SDK doesn’t do that.\nAn LLM gateway sits between your app and N providers, exposing one unified API (almost always OpenAI-shaped), handling retries, fallbacks, caching, rate limits, and spend logging. Pick the wrong one and you eat 100ms+ on every request. Pick the right one and you forget it exists.\n2. The 30-Second Decision Tree | Your situation | Pick | |\n|\n| | Enterprise, compliance-heavy, SOC2/HIPAA needed | Portkey | | Self-host preferred, zero vendor markup, infra team available | LiteLLM | | Solo dev / startup, want instant access to 300+ models | OpenRouter | | Coding agent workflows, token cost dominates spend | 9Router (see section 8) | | You want all three of the above | Stack them — LiteLLM in front, OpenRouter as one of its providers, Portkey wrapping for observability |\nThe rest of this article justifies every cell in that table.\n3. Portkey: The Enterprise-Grade Gateway The pitch: One control plane for 1,600+ LLMs with \u003c1ms gateway latency and 50+ built-in guardrails. SOC2, HIPAA, GDPR, CCPA compliant out of the box.\nReal numbers (from their public docs and our testing): - GitHub stars: 11.8k (MIT license, open-source core)\nGateway latency: \u003c1ms added (122kb footprint runtime) Pricing: Free open-source. Cloud platform fee ≈ $49/month at $1K/month API spend Compliance: SOC2 Type II, HIPAA, GDPR, CCPA Standout features: Semantic caching (not just key-based), 50+ AI guardrails, MCP Gateway product, native integrations with Autogen / CrewAI / LangChain / Phidata When Portkey wins: You’re shipping AI into a regulated industry (health, finance, gov) and need an auditable observability + guardrails story. Or you’ve built on Autogen/CrewAI and want one config file controlling routing, caching, and limits across every agent.\nWhen it doesn’t: You’re a 2-person team that just wants to call Claude and GPT-5 without writing two SDKs. Overkill.\nFor the full Portkey deep-dive — production deployment, guardrails configuration, and observability dashboard tour — see our Portkey AI Gateway 2026 production setup.\n4. LiteLLM: The Self-Hosted Standard The pitch: An open-source proxy server that exposes 100+ LLM providers behind one OpenAI-compatible API. Self-host it, zero vendor markup.\nReal numbers: - GitHub stars: 47.8k (the most-starred of the three by a wide margin)\nGateway latency: 8ms P95 at 1,000 RPS (their public benchmark) — in our testing, the proxy adds 10–20ms in practice Pricing: Free if self-hosted. Enterprise tier (SSO, professional support) is custom-priced Self-host stack: Python proxy + PostgreSQL for spend tracking + Redis for caching Standout features: Virtual API keys per project/user, native A2A protocol support for agent-to-agent communication, MCP tool integration, multi-tenant auth When LiteLLM wins: You have a DevOps function. You want to own the gateway, see every byte, never share keys with a third party. Zero markup over provider list prices is irresistible at scale — at $50K/month API spend, the 5.5% OpenRouter charges = $2,750/month gone.\nWhen it doesn’t: You’re solo and “Python proxy + PostgreSQL + Redis” is three more things to babysit. Skip to OpenRouter.\nRecommended hosting: A 4GB VPS will comfortably handle 1k RPS. We run our internal LiteLLM proxy on HTStack’s Hong Kong VPS (also where dibi8.com itself lives) for sub-30ms latency to mainland China users. For a more globally distributed deployment, DigitalOcean Kubernetes with 3 replicas is the standard production pattern.\nFor the full LiteLLM deep-dive — including Docker compose, virtual keys, and spend dashboards — see our LiteLLM production gateway setup for 2026.\n5. OpenRouter: The Zero-Setup Aggregator The pitch: One API key. 300+ models. No infrastructure. You pay per-token through OpenRouter at provider list price + 5.5% credit-purchase fee.\nReal numbers: - Models: 300+ including open-weights frontier models (DeepSeek-V4, Llama 4, Qwen 3) and proprietary (GPT-5, Claude 4.7, Gemini 2 Pro)\nGateway latency: 100–150ms added in our testing (this is the real cost — they’re a hosted service in front of provider APIs) Pricing: Provider list price + 5.5% fee on credit purchases via card (crypto top-ups bypass this fee) No public SLA — community reports occasional 5xx clustering during provider outages Free models: A rotating handful of community-sponsored free endpoints (Llama, Mistral variants) good for testing When OpenRouter wins: You’re prototyping. You’re a hobbyist. You need access to a model not yet on Bedrock/Azure (often the case for new open-weights releases — OpenRouter is usually first to host). You don’t want to manage any infrastructure.\nWhen it doesn’t: You’re spending more than $2K/month on inference. The 5.5% fee at that scale = $110+/month for zero value-add. At that point, LiteLLM + direct provider keys becomes obvious math.\nFor the full OpenRouter walkthrough including free-model routing tricks, see our OpenRouter unified LLM API gateway 2026 setup guide.\n6. Head-to-Head: The Numbers Table | Metric | Portkey | LiteLLM | OpenRouter | |\n|\n|\n|\n| | GitHub stars | 11.8k | 47.8k | N/A (closed-source service) | | License | MIT | OSS core (custom enterprise) | Proprietary | | Models supported | 1,600+ | 100+ providers | 300+ specific models | | Added latency | \u003c1ms | 8ms P95 (claimed) / 10–20ms typical | 100–150ms | | Cost at $1K/mo spend | $1,049 ($49 platform) | $1,000 + ~$20–50 VPS | $1,055 ($55 fee) | | Cost at $50K/mo spend | $1,049 platform fee | $1,000–2,500 infra | $52,750 (5.5% fee) | | Self-host option | ✅ (open-source core) | ✅ (designed for it) | ❌ | | Compliance (SOC2/HIPAA) | ✅ | Enterprise tier only | ⚠️ via providers | | Setup time | 1 day | 1–3 days | 5 minutes | | Best for | Regulated enterprise | Cost-conscious scale | Prototyping \u0026 breadth |\nRead the rows. Pick by your dominant constraint.\n7. Real-World Scenarios Scenario A — Solo founder building a coding agent: OpenRouter for v0, swap to LiteLLM around month 6 when monthly inference crosses $1K and the 5.5% starts to hurt.\nScenario B — Series B startup with a DevOps team: LiteLLM self-hosted from day 1. Use OpenRouter as one of LiteLLM’s upstream providers for access to brand-new models that haven’t landed on Bedrock yet.\nScenario C — Healthcare AI product going through HIPAA audit: Portkey, no debate. The compliance story alone is worth the platform fee, and the 50+ guardrails are a checkbox on your security review.\nScenario D — Indie hacker testing 10 model ideas in a weekend: OpenRouter. Five minutes of setup, one API key, all the models. Worry about cost when you’ve shipped something.\nScenario E — Existing OpenAI codebase, want to add Claude fallback: Drop LiteLLM in as a one-line base URL change. Configure fallback rules in YAML. Ship in an afternoon.\n8. Beyond the Big Three: When 9Router Beats All of Them For one specific workload — coding agents — none of Portkey/LiteLLM/OpenRouter optimize for the dominant cost driver: token count. Coding agents send the entire codebase on every turn, blowing through context windows and tokens.\n9Router is a smart proxy built around RTK (Repetition-Token Compression) that cuts the actual tokens sent to providers by 20–40% via semantic deduplication of repeated content (file headers, imports, system prompts). It also auto-fallbacks across 40+ providers and orchestrates free coding tier combos (Gemini’s 1k req/day + DeepSeek’s free tier + GLM-4.6 free tier).\nIf 60%+ of your monthly LLM spend is coding agents, 9Router will probably save you more money than the cheapest other option here. See our 9Router smart LLM proxy and token saver guide for the setup.\nTL;DR Three gateways. Three honest defaults: - You’re an enterprise → Portkey\nYou’re cost-sensitive at scale → LiteLLM You’re moving fast and want everything → OpenRouter You’re burning tokens on coding agents → 9Router There’s no universally best LLM gateway. There’s the one that matches your row in section 2\"s decision tree. Pick that one, ship, and re-evaluate when your monthly inference bill crosses $5,000.\nWant to test these in production without commitment? Spin up a $6/month DigitalOcean droplet with LiteLLM, point your existing OpenAI SDK at it, and watch your fallback options expand without touching application code.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Portkey vs LiteLLM vs OpenRouter 2026: The Honest LLM Gateway Decision Guide (Latency, Cost \u0026 Self-Hosting)”, “datePublished”: “2026-05-20”, “dateModified”: “2026-05-20”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/llm-gateway-portkey-litellm-openrouter-comparison-2026\" } } Related Articles 12-factor-agents-production-llm-software-2026 12-factor-agents 1m-context-window-llm-2026-real-test 9router-smart-llm-proxy-token-saver-free-coding ai-engineering-from-scratch Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n",
   "wordCount" : "1661",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
   "mainEntityOfPage": {
@@ -128,21 +125,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -169,7 +152,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -188,23 +171,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>8 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/zh/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">Zh</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>8 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul>
@@ -422,11 +394,11 @@ aliases:</li>
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://dibi8.com/ai-coding-agents/llm-fine-tuning-frameworks-comparison/">
-    <span class="title">« Prev</span>
+    <span class="title">« 上一页</span>
     <span>AI Tool Guide</span>
   </a>
   <a class="next" href="https://dibi8.com/ai-coding-agents/llm-inference-cost-optimization-guide-2026/">
-    <span class="title">Next »</span>
+    <span class="title">下一页 »</span>
     <span>AI Tool Guide</span>
   </a>
 </nav>
@@ -594,12 +566,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

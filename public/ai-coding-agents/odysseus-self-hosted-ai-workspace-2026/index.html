@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/odysseus-self-hosted-ai-workspace-2026/">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-2026/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/odysseus-self-hosted-ai-workspace-2026/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/odysseus-self-hosted-ai-workspace-2026/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/odysseus-self-hosted-ai-workspace-2026/">
 <noscript>
     <style>
         #theme-toggle,
@@ -85,7 +82,7 @@
   ],
   "articleBody": "title: “Odysseus: The Self-Hosted AI Workspace That Hit 63,000 G… description: “Technical guide and comparison.” date: 2026-06-09T00:00:00+08:00 lastmod: 2026-06-09T00:00:00+08:00 tech_stack: [] application_domain: AI Tools source_version: “1.0” licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ‘https://github.com/pewdiepie-archdaemon/odysseus' backup_url: ’’ last_maintained: “2026-06-08” draft: false categories: [“ai-tools”] tags: [“odysseus”, “self-hosted ai”, “ai workspace”, “local llm”, “privacy”, “docker”, “open source”, “chatgpt alternative”, “ollama”, “deep research”] aliases:\n/posts/odysseus-self-hosted-ai-workspace-2026/ faqs: - q: ‘Does Odysseus require a GPU?’ a: ‘No. Odysseus itself is lightweight. The GPU requirement only applies if you want to run local models via the Cookbook feature. You can connect to remote APIs (OpenAI, Anthropic, OpenRouter) or a separate Ollama instance without any local GPU.’ q: ‘How is Odysseus different from Open WebUI?’ a: ‘Open WebUI focuses on chat and RAG over Ollama. Odysseus adds a full suite on top: agents with MCP tool calling, deep research with visual reports, an AI-aware email client, CalDAV calendar, notes with reminders, and a model Cookbook that detects your VRAM and auto-recommends compatible models. It is closer to a self-hosted ChatGPT Plus than a plain Ollama front-end.’ q: ‘Which LLM backends does Odysseus support?’ a: ‘Out of the box: vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, and GitHub Copilot. You add model servers in Settings; no code changes are needed. The Cookbook feature also installs and serves compatible GGUF, FP8, and AWQ models automatically based on your detected VRAM.’ q: ‘Is it safe to expose Odysseus to the internet?’ a: ‘The default Docker Compose binds to 127.0.0.1 only. For LAN access set APP_BIND=0.0.0.0 in .env and keep AUTH_ENABLED=true. For public internet, put it behind a reverse proxy (Nginx, Caddy) with TLS. The maintainers explicitly advise against binding to 0.0.0.0 without authentication.’ q: ‘Can I use Odysseus on mobile?’ a: ‘Yes. Odysseus ships as a Progressive Web App (PWA) and is fully responsive. On iOS or Android you can “Add to Home Screen” for a near-native feel. The Cookbook and Agent features work on mobile too, though GPU-intensive model serving is still a desktop/server concern.’ Odysseus: The Self-Hosted AI Workspace That Hit 63,000 GitHub Stars in 9 Days — 2026 Setup Guide Odysseus launched on GitHub on 31 May 2026 and crossed 63,000 stars by 8 June — roughly 7,000 new stars per day, making it one of the fastest-rising open-source AI projects of 2026. The premise is simple: everything you get from a $20/month ChatGPT Plus subscription, running on your own hardware, with your own data, under an MIT licence.\nWhat Odysseus Actually Is At its core Odysseus is a Python web app (FastAPI + Uvicorn backend, vanilla JS front-end) that wraps several well-tested open-source components into a coherent workspace. You get: - Chat — send messages to any local or remote LLM. Add a model server in Settings with a URL and key; Odysseus handles the rest. Supported backends: vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot.\nAgent — hand the agent a goal plus tools (web, files, shell, MCP servers, memory) and it runs autonomously. The agent layer is built on top of opencode, the open-source coding agent. Cookbook — scans your hardware, detects available VRAM, and recommends GGUF / FP8 / AWQ models you can download and serve in one click. Powered by llmfit. Deep Research — multi-step agentic research that searches the web, reads sources, and synthesises a structured visual report. Adapted from Alibaba’s Tongyi DeepResearch. Compare — blind side-by-side model comparison. The same prompt goes to multiple models; you rate the answers without knowing which model produced which. Documents — multi-tab Markdown / HTML / CSV editor where you write; AI assists, suggests, and makes targeted edits on request. Memory / Skills — ChromaDB vector store with fastembed (ONNX) gives the agent persistent memory. Import/export supported. Email — IMAP/SMTP inbox with AI triage: urgency detection, auto-tagging, summarisation, and reply-draft generation. Notes \u0026 Tasks — sticky notes with reminders, a todo list, and cron-style scheduled tasks the agent can act on. Calendar — local-first calendar with CalDAV sync to Radicale, Nextcloud, Apple Calendar, or Fastmail. PWA / Mobile — responsive design, installable as a home-screen app on iOS and Android. Quick Start (Docker) The fastest path to a running instance: ````bash git clone https://github.com/pewdiepie-archdaemon/odysseus.git cd odysseus cp .env.example .env # optional but recommended docker compose up -d –build\nOpen **http://localhost:7000**. On first boot Odysseus prints a temporary admin password to the Docker logs: `````bash docker compose logs odysseus | grep \"Admin password\" Log in, change the password in Settings, then add your first model server (Ollama on localhost, or an OpenAI API key).\nNative Install (Linux / macOS) For GPU-accelerated local models on Apple Silicon, run native rather than Docker (Docker cannot access the Metal GPU): `````bash git clone https://github.com/pewdiepie-archdaemon/odysseus.git cd odysseus python3 -m venv venv \u0026\u0026 source venv/bin/activate pip install -r requirements.txt python setup.py python -m uvicorn app:app –host 127.0.0.1 –port 7000\nApple Silicon shortcut: `````bash ./start-macos.sh # binds to 127.0.0.1:7860 Requirements: Python 3.11+. tmux is needed by Cookbook for background model downloads.\nThe Cookbook Feature in Depth Cookbook is the standout differentiator. It: 1. Detects your GPU model and available VRAM 2. Scores a curated model catalogue against your hardware using llmfit’s fit algorithm (VRAM × quantisation × context window) 3. Lets you click Download \u0026 Serve — it fetches the model in the background, launches the appropriate runtime (vLLM for FP8/AWQ, llama.cpp for GGUF), and registers it in your model list automatically\nFor users who do not want to manage Ollama separately, Cookbook effectively replaces it while providing smarter model selection.\nMemory and Agent Skills Odysseus stores agent memory in ChromaDB using fastembed for embeddings (pure ONNX, no Python GPU dependency for inference). Memory is chunked, embedded, and retrieved via hybrid search (vector + keyword). Skills can be imported from the community or defined locally — the format is compatible with the broader agent-skills ecosystem.\nHow It Compares | Feature | Odysseus | Open WebUI | ChatGPT Plus | |\n|\n|\n|\n| | Self-hosted | ✅ | ✅ | ❌ | | Agent + MCP tools | ✅ | Partial | ✅ | | Deep Research | ✅ | ❌ | ✅ | | Email triage | ✅ | ❌ | ❌ | | Calendar (CalDAV) | ✅ | ❌ | ❌ | | Model Cookbook | ✅ | ❌ | N/A | | Blind model compare | ✅ | ❌ | ❌ | | Cost per month | Hardware only | Hardware only | $20 |\nCaveats Odysseus is version 1.0, released less than two weeks ago. Expect rough edges: some Cookbook runtimes need manual tmux for background tasks on Linux, the CalDAV sync has known edge cases with recurring events, and mobile PWA performance varies by browser. The issue tracker is active and the maintainer is responsive.\nFor production-grade agent deployments, established frameworks (LangGraph, CrewAI) still offer more battle-tested reliability. Odysseus is best framed as a personal AI workspace — powerful, flexible, and private — rather than an enterprise automation platform.\nBottom Line If you want a ChatGPT-like experience on your own hardware without a monthly subscription, Odysseus is the most complete open-source option available today. The 63,000 stars in nine days reflect genuine community excitement, not hype. Clone the repo, ````docker compose up```, and you have a fully working AI workspace in under five minutes.\nGitHub: pewdiepie-archdaemon/odysseus\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Odysseus: The Self-Hosted AI Workspace That Hit 63,000 GitHub Stars in 9 Days — 2026 Setup Guide”, “datePublished”: “2026-06-09”, “dateModified”: “2026-06-09”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/odysseus-self-hosted-ai-workspace-2026\" } } Why This Matters Understanding odysseus: the self-hosted ai workspace that hit 63,000 github stars in 9 days — 2026 setup guide is crucial for modern AI development. Here\"s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Odysseus: The Self-Hosted AI Workspace That Hit 63,000 GitHub Stars in 9 Days — 2026 Setup Guide represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nRelated Articles academic-research-skills last30days-skill-ai-agent-research-engine-social-media odysseus-self-hosted-ai-workspace-chat-agent-deep-research last30days-skill-ai-agent-research-engine-social-media last30days-skill-ai-agent-research-engine-social-media Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
   "wordCount" : "1495",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
   "mainEntityOfPage": {
@@ -128,21 +125,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -169,7 +152,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -188,23 +171,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>8 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-2026/">Zh</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/ko/ai-coding-agents/odysseus-self-hosted-ai-workspace-2026/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/ai-coding-agents/odysseus-self-hosted-ai-workspace-2026/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>8 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul>
@@ -451,11 +423,11 @@ Apple Silicon shortcut: `````bash
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://dibi8.com/ai-coding-agents/obscura-rust-headless-browser-ai-agents-web-scraping/">
-    <span class="title">« Prev</span>
+    <span class="title">« 上一页</span>
     <span>AI Tool Guide</span>
   </a>
   <a class="next" href="https://dibi8.com/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/">
-    <span class="title">Next »</span>
+    <span class="title">下一页 »</span>
     <span>AI Tool Guide</span>
   </a>
 </nav>
@@ -623,12 +595,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

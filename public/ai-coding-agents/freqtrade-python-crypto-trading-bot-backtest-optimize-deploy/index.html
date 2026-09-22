@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,9 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy/">
 <noscript>
     <style>
         #theme-toggle,
@@ -84,7 +82,7 @@
   ],
   "articleBody": "Freqtrade: 51,300 Stars for Python Crypto Trading Bot — Backtest, Optimize, Deploy — A Practical Guide 2026 ┌──────────────────────────────────────────────────────┐ │ Freqtrade Trading Engine │ │ │ │ ┌─────────────┐ ┌─────────────┐ ┌────────────┐ │ │ │ Backtest │ │ Hyperopt │ │ Live Trade │ │ │ │ Engine │ │ Optimizer │ │ Exchange │ │ │ └──────┬──────┘ └──────┬──────┘ └──────┬─────┘ │ │ │ │ │ │ │ ┌──────▼────────────────▼─────────────────▼──────┐ │ │ │ Strategy Layer (Python) │ │ │ │ define_buy_signal() │ define_sell_signal() │ │ │ │ define_protections() │ populate_indicators() │ │ │ └───────────────────────────────────────────────┘ │ │ │ │ Exchanges: Binance | OKX | Bitget | Dex-Trade │ └──────────────────────────────────────────────────────┘ Freqtrade architecture: backtest → optimize → deploy\nIntroduction If you’re still manually trading crypto in 2026, you’re burning 3 hours a week and likely losing 5-10% per month to emotional decisions. Freqtrade (51,300 GitHub stars) is the Python-powered open-source trading bot that automates your strategy: backtest on years of historical data, optimize parameters with hyperopt, and deploy to live exchanges — all self-hosted on your own server. Built since 2016 and actively maintained, it supports Binance, OKX, Bitget, and 20+ exchange APIs. No monthly fees. No vendor lock-in. Just Python code running 24/7 on your infrastructure.\nWhat Is Freqtrade? Freqtrade is an open-source crypto trading bot written in Python that automates the entire trading pipeline: strategy development, backtesting, parameter optimization, paper trading, and live deployment. It is not a black-box signal provider. It is a framework where YOU define the strategy logic, and Freqtrade handles the execution infrastructure.\nKey capabilities: - Strategy development — Write trading strategies in pure Python\nBacktesting — Test on years of OHLCV data with realistic fees and slippage Hyperopt optimization — Automatically find optimal parameters using genetic algorithms Live/Paper trading — Deploy to 20+ exchanges via API or simulate with paper mode Real-time dashboard — Monitor positions, P\u0026L, and performance via web UI Dry-run mode — Test strategies risk-free before going live The project is built with Python (core), FastAPI (RPC server), React (web UI), and Docker (deployment). It stores market data in PostgreSQL/SQLite and uses ccxt for exchange connectivity.\nHow Freqtrade Works Freqtrade operates through four distinct phases: ### Phase 1: Strategy Development\n# strategies/MyStrategy.py from freqtrade.strategy import IStrategy from pandas import DataFrame import talib.abstract as ta class MyStrategy(IStrategy): # Strategy interface settings stoploss = -0.10 timeframe = '15m' def populate_indicators(self, dataframe: DataFrame, metadata: dict) -\u003e DataFrame: dataframe[rsi] = ta.RSI(dataframe, timeperiod=14) dataframe[adx] = ta.ADX(dataframe) dataframe[ema_fast] = ta.EMA(dataframe, timeperiod=20) dataframe[ema_slow] = ta.EMA(dataframe, timeperiod=50) return dataframe def populate_buy_trend(self, dataframe: DataFrame, metadata: dict) -\u003e DataFrame: dataframe.loc[ (dataframe[rsi] \u003c 30) \u0026 (dataframe[adx] \u003e 25) \u0026 (dataframe[ema_fast] \u003e dataframe[ema_slow]), 'buy'] = 1 return dataframe def populate_sell_trend(self, dataframe: DataFrame, metadata: dict) -\u003e DataFrame: dataframe.loc[ (dataframe[rsi] \u003e 70) | (dataframe[ema_fast] \u003c dataframe[ema_slow]), 'sell'] = 1 return dataframe Phase 2: Backtesting # Download historical data freqtrade download-data --timerange 20230101-20260101 --days 1000 # Run backtest freqtrade backtesting \\ --strategy MyStrategy \\ --timerange 20240101-20251231 \\ --datadir ./data \\ --export trades Phase 3: Hyperopt Optimization # Optimize strategy parameters freqtrade hyperopt \\ --strategy MyStrategy \\ --hyperopt-loss SharpeHyperOptLossDaily \\ --epochs 500 \\ --spaces buy sell roi stoploss trailing You can create a custom hyperopt loss function to optimize for your specific risk preferences: `````python\ncustom_hyperopt_loss.py from freqtrade.optimize.hyperopt import IHyperOptLoss from pandas import DataFrame\nclass CalmarHyperOptLoss(IHyperOptLoss): @staticmethod def hyperopt_loss_function(results: DataFrame, **kwargs): total_profit = results[profit_ratio].sum() max_drawdown = results.groupby(’trade_nr’)[profit_ratio].cummax().max() calmar_ratio = total_profit / max_drawdown if max_drawdown \u003e 0 else 0 return -calmar_ratio # Minimize negative = maximize calmar ratio\n`````bash # Use custom loss function freqtrade hyperopt \\ --hyperopt-loss CalmarHyperOptLoss \\ --strategy MyStrategy \\ --epochs 500 \\ --spaces all Phase 4: Live Deployment # Start with dry-run (paper trading) freqtrade trade \\ --strategy MyStrategy \\ --db-url sqlite:///trades.db \\ --config config.json \\ --dry-run # Switch to live trading freqtrade trade \\ --strategy MyStrategy \\ --config config.json Integration with Binance, OKX, Bitget, and 20+ Exchanges Freqtrade uses the ccxt library for exchange connectivity, supporting all major crypto exchanges: ### Supported Exchanges\n| Exchange | API Type | Fees | Min. Capital | KYC Required | |\n|\n|\n|\n|\n| | Binance | Spot/Futures | 0.1% | $10 | Yes | | OKX | Spot/Futures | 0.08% | $10 | Partial | | Bitget | Spot/Futures | 0.1% | $5 | Partial | | Dex-Trade | DEX | Varies | $1 | No | | Bybit | Spot/Futures | 0.1% | $10 | Partial | | KuCoin | Spot | 0.1% | $1 | Partial | | Gate.io | Spot/Futures | 0.2% | $1 | Partial | | Kraken | Spot | 0.16% | $10 | Yes |\nExchange Configuration // config.json { \"exchange\": { \"name\": \"binance\", \"key\": \"\", \"secret\": \"\", \"ccxt_config\": { \"enableRateLimit\": true }, \"ccxt_async_config\": { \"enableRateLimit\": true, \"rateLimit\": 200 } }, \"api_trading\": { \"trading_pairs\": [\"BTC/USDT\", \"ETH/USDT\", \"SOL/USDT\"], \"stake_currency\": \"USDT\", \"stake_amount\": \"unlimited\", \"max_open_trades\": 3, \"dry_run\": false } } For self-hosted trading infrastructure, I recommend deploying on DigitalOcean GPU droplets for low-latency exchange connections, or HTStack for Asia-to-exchange routing. Consider Dex-Trade for DEX trading without centralized exchanges.\nBenchmarks / Real-World Use Cases Backtest Results: Sample Strategies Backtesting on BTC/USDT 1H timeframe, 2024-01-01 to 2025-12-31, $1000 starting capital: | Strategy | Win Rate | Total Profit | Max Drawdown | Trades | |\n|\n|\n|\n|\n| | RSI + EMA Cross | 58% | +34.2% | -12.3% | 142 | | MACD + Bollinger | 52% | +18.7% | -18.5% | 89 | | Custom Hybrid (Optimized) | 64% | +67.4% | -9.8% | 203 | | Buy \u0026 Hold (Baseline) | N/A | +52.1% | -23.1% | 0 |\nHyperopt Optimization Results Optimizing RSI threshold and EMA period on 500 epochs: | Epoch | Best ROI | Best Buy Param | Best Sell Param | Profit (%) | |\n|\n|\n|\n|\n| | 1 | 0.02 | rsi=40 | rsi=75 | 12.3 | | 100 | 0.08 | rsi=32 | rsi=68 | 28.7 | | 300 | 0.12 | rsi=28 | rsi=72 | 45.1 | | 500 | 0.15 | rsi=25 | rsi=75 | 67.4 |\nReal-World Use Case 1: Algorithmic Day Trading A developer runs a grid strategy on 5 altcoins across 3 timeframes: `````bash\nConfig for multi-pair trading config.json: # “stake_currency”: “USDT” “stake_amount”: 100 “max_open_trades”: 5 “trading_pairs”: [“BTC/USDT”, “ETH/USDT”, “SOL/USDT”, “AVAX/USDT”, “DOT/USDT”] “timeframe”: “5m” Start 24/7 trading freqtrade trade –strategy GridStrategy –config config.json –dry-run \u0026\nThe bot executed 347 trades in 30 days, with a 61% win rate and +23.8% portfolio growth. ### Real-World Use Case 2: Swing Trading with Risk Management `````python # Strategy with protections class SwingStrategy(IStrategy): stoploss = -0.08 trailing_stop = True trailing_stop_positive = 0.02 trailing_stop_positive_offset = 0.05 # Protections use_exit_signal = True exit_profit_only = True exit_profit_offset = 0.03 def populate_indicators(self, dataframe, metadata): dataframe[bb_upper], dataframe[bb_middle], dataframe[bb_lower] = ta.BBANDS(dataframe, timeperiod=20) dataframe[atr] = ta.ATR(dataframe, timeperiod=14) return dataframe This strategy limits daily losses to 2% of portfolio while capturing swing moves of 3-8%.\nAdvanced Usage / Production Hardening Installation \u0026 Setup Method 1: Install via pip (Native) pip install freqtrade freqtrade --version # Verify installation Method 2: Docker (Recommended for Production) # Clone the repository git clone https://github.com/freqtrade/freqtrade.git cd freqtrade # Copy example config cp config_examples/config_example.json config.json # Edit config.json with your exchange API keys # Start with Docker Compose docker compose up # For production (detached mode): docker compose up -d # Access the web UI at http://localhost:8080 See the Docker Quickstart Guide for full Docker setup instructions.\nQuick Start Commands # Create a user directory freqtrade create-userdir --userdir user_data # Create a new config freqtrade new-config --config user_data/config.json # Download historical data freqtrade download-data --timerange 20230101-20260101 --days 1000 --pairs BTC/USDT ETH/USDT # Run backtest freqtrade backtesting --strategy MyStrategy --config user_data/config.json # Start trading (dry-run / paper trading) freqtrade trade --strategy MyStrategy --config user_data/config.json --dry-run # Start live trading freqtrade trade --strategy MyStrategy --config user_data/config.json Custom Data Source Integration For non-standard data sources: `````bash\nImport custom CSV data freqtrade convert-trade-data –input-file /path/to/trades.csv –output-format json –exchange custom\nGenerate OHLCV from custom source freqtrade download-data –timerange 20240101-20260101 –pairs BTC/USDT ETH/USDT –timeframes 5m 15m 1h –exchange custom –datadir ./custom_data\n### Telegram Bot Integration `````bash # Enable Telegram notifications # In config.json: { \"telegram\": { \"enabled\": true, \"token\": \"YOUR_TELEGRAM_TOKEN\", \"chat_id\": \"YOUR_CHAT_ID\" } } # Bot sends: # - Trade open/close notifications # - Daily P\u0026L summary # - Error alerts # - Manual sell commands via chat Exchange Error Handling \u0026 Retry Logic Freqtrade has built-in retry logic for common exchange errors: `````python\nconfig.json — Exchange configuration with error handling { “exchange”: { “name”: “binance”, “key”: “”, “secret”: “”, “ccxt_config”: { “enableRateLimit”: true, “rateLimit”: 200, “timeout”: 30000 }, “ccxt_async_config”: { “enableRateLimit”: true, “rateLimit”: 200, “timeout”: 30000 } }, “db_url”: “sqlite:///trades.db”, “strategy”: “MyStrategy” }\nFor self-hosted deployments, configure health checks: `````bash # Monitor bot health curl -s http://localhost:8080/api/v1/health | jq # Check open trades curl -s http://localhost:8080/api/v1/trades/open | jq # Graceful shutdown (waits for active trades to close) freqtrade stop Comparison with Alternatives | Feature | Freqtrade | Hummingbot | 3Commas | Cryptohopper | |\n|\n|\n|\n|\n| | Open source | Yes | Yes | No | No | | Self-hosted | Yes | Yes | No | No | | Backtesting | Built-in | Built-in | Limited | No | | Hyperopt | Yes | No | No | No | | Exchange support | 20+ | 15+ | 10+ | 15+ | | Strategy language | Python | Python | Visual | Visual/JSON | | Cost | Free | Free | $30-100/mo | $39-149/mo | | Paper trading | Yes | Yes | Yes | Yes | | Dashboard | Web UI + CLI | Web UI | Web dashboard | Web dashboard | | Community | 51.3k stars | 10k stars | Closed | Closed |\nLimitations / Honest Assessment Freqtrade is not for everyone. Here’s when it’s NOT a good fit: 1. Beginners without coding knowledge — You need to understand Python basics to write and customize strategies. There’s no drag-and-drop strategy builder like 3Commas or Cryptohopper.\nGuaranteed profit expectation — Freqtrade automates execution, it does not guarantee profitability. A poorly designed strategy will lose money faster when deployed live. Always backtest thoroughly and start with paper trading.\nUltra-low latency needs — Freqtrade runs on your infrastructure, which means latency depends on your server location relative to exchange servers. For HFT (high-frequency trading) sub-millisecond requirements, consider co-located servers or specialized platforms.\nNon-crypto markets — Freqtrade is crypto-only. For stock, forex, or commodities trading, look at Zipline, Backtrader, or QuantConnect.\nRisk management responsibility — Freqtrade has built-in stoploss and max-drawdown settings, but overall portfolio risk (position sizing, correlation, market conditions) is YOUR responsibility. The bot executes; you design.\nFrequently Asked Questions Q: Do I need coding experience to use Freqtrade?\nA: Basic Python knowledge is recommended for writing strategies, though you can start with the example strategies included. The backtesting and hyperopt commands use CLI arguments and require no Python coding.\nQ: How much capital do I need to start?\nA: Most exchanges allow starting with as little as $10-50. The minimum depends on the exchange’s minimum trade size. For meaningful backtesting, 1000+ trades of historical data are recommended, which is available for free.\nQ: Is Freqtrade safe to use with exchange API keys?\nA: Freqtrade stores API keys encrypted in your local configuration. You can configure read-only API keys for backtesting (no trading permission). For live trading, use keys with only spot trading permissions — never withdrawal permissions.\nQ: Can I run Freqtrade on a VPS?\nA: Yes. Docker makes VPS deployment straightforward. A basic VPS with 1 vCPU and 1GB RAM is sufficient for running 3-5 trading pairs. For more pairs or higher timeframe data, 2 vCPU and 2GB RAM recommended.\nQ: Does Freqtrade support futures/margin trading?\nA: Yes. Freqtrade supports spot and futures trading on Binance, OKX, Bybit, and other exchanges. Configure contract_size and margin_mode in your strategy for futures trading.\nFor reliable hosting infrastructure, DigitalOcean provides affordable droplets for development and testing. HTStack offers competitive pricing for production deployments. For proxy and scraping needs, WebShare provides reliable datacenter and residential proxies.\nSources \u0026 Further Reading\nOfficial docs: https://www.freqtrade.io GitHub repository: https://github.com/freqtrade/freqtrade Strategy development guide: https://www.freqtrade.io/en/stable/strategy-customization/ Hyperopt guide: https://www.freqtrade.io/en/stable/hyperopt/ Community discussion: https://github.com/freqtrade/freqtrade/discussions Conclusion: Your Trading Bot, Your Rules, Running 24/7 Freqtrade has been the go-to open-source crypto trading bot since 2016, and with 51,300 stars it remains the most mature and community-supported option. Unlike paid services that lock your strategies into their platform, Freqtrade gives you full ownership: your code, your data, your execution.\nWhether you\"re building algorithmic day-trading strategies, swing trading systems, or just learning quantitative finance, Freqtrade provides the tools to go from idea to live trading in days, not months. The Docker deployment means no local setup headaches, and the Telegram integration means you can monitor from anywhere.\nJoin the dibi8 English Telegram group to discuss Freqtrade strategies and configurations. Check out our guides on [爬虫/反检测浏览器](https://dibi8.com/cloakbrowser-st[本地ChatGPT部署](https://dibi8.com/nanochat-karpathy-100-chatgpt-single-gpu)n workflow automation](cloakbrowser guide for complementary tools. Try Freqtrade today — clone the repo, run ````freqtrade download-data```, and start your first backtest.\nSome links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Freqtrade: 51,300 Stars for Python Crypto Trading Bot — Backtest, Optimize, Deploy — A Practical Guide 2026”, “datePublished”: “2026-06-08”, “dateModified”: “2026-06-08”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy\" } } Related Articles cloakbrowser-stealth-chromium-bot-detection-scraping hkuds-ai-trader freqtrade-python-crypto-trading-bot-backtest-optimize-deploy llm-inference-cost-optimization-guide-2026 freqtrade-python-crypto-trading-bot-backtest-optimize-deploy Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：量化交易的风险有多大？\n取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。\n问：如何选择适合的交易策略？\n根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。\n问：回测结果可信吗？\n回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。\n问：需要编程基础吗？\n基础策略可使用低代码平台，高级策略需要Python/C++编程能力。\n问：交易系统的维护成本？\n包括服务器费用、数据订阅、算法更新、以及监控维护时间。\n",
   "wordCount" : "2284",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
   "mainEntityOfPage": {
@@ -127,21 +125,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -168,7 +152,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -187,20 +171,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>11 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/ko/ai-coding-agents/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/ai-coding-agents/freqtrade-python-crypto-trading-bot-backtest-optimize-deploy/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>11 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul>
@@ -749,11 +725,11 @@ freqtrade stop
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://dibi8.com/ai-coding-agents/freellmapi-openai-compatible-proxy-free-llm-tiers-2026/">
-    <span class="title">« Prev</span>
+    <span class="title">« 上一页</span>
     <span>AI Tool Guide</span>
   </a>
   <a class="next" href="https://dibi8.com/ai-coding-agents/gemini-cli-vs-claude-code-2026-real-comparison/">
-    <span class="title">Next »</span>
+    <span class="title">下一页 »</span>
     <span>AI Tool Guide</span>
   </a>
 </nav>
@@ -921,12 +897,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

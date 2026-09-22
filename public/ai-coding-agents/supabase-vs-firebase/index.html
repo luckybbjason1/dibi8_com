@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,9 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/supabase-vs-firebase/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/supabase-vs-firebase/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/supabase-vs-firebase/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/supabase-vs-firebase/">
 <noscript>
     <style>
         #theme-toggle,
@@ -84,7 +82,7 @@
   ],
   "articleBody": "Supabase vs Firebase in 2026: Which BaaS Wins? Quick Answer Supabase wins for developers who want a relational Postgres database, SQL flexibility, open-source freedom, and a built-in vector store for AI apps. Firebase wins for developers who want the most battle-tested realtime sync, deep Google Cloud integration, and a no-SQL mental model.\nUse Supabase if: You want Postgres + SQL + joins, value open-source and self-host options, plan to build AI/RAG features with pgvector, and need predictable pricing at scale.\nUse Firebase if: You need rock-solid realtime sync at massive scale, you’re already in Google Cloud, you prefer NoSQL document modeling, or you’re shipping a mobile-first app that benefits from Firebase Auth + Crashlytics + Analytics in one bundle.\nSide-by-Side Comparison | Feature | Supabase | Firebase | |\n|\n|\n| | Vendor | Supabase Inc. | Google | | Launched | 2020 | 2011 (acquired by Google 2014) | | Database | PostgreSQL 15+ (relational) | Firestore + Realtime DB (NoSQL) | | Query language | SQL + auto-generated REST/GraphQL | Firestore SDK queries (limited) | | Joins / transactions | Native (Postgres) | No joins, limited transactions | | Auth | Supabase Auth (email, OAuth, magic link, SSO, MFA) | Firebase Auth (email, OAuth, phone, anonymous) | | Storage | S3-compatible object storage + RLS | Cloud Storage (GCS-backed) | | Realtime | Postgres logical replication + Phoenix Channels | Firestore listeners + Realtime DB | | Edge functions | Deno-based, deployed globally | Cloud Functions (Node.js/Python) | | Vector search | Native pgvector | None (requires Vertex AI) | | Free tier | 500 MB DB, 1 GB storage, 50K MAU | 1 GB Firestore, 5 GB storage, unlimited auth | | Paid entry | Pro $25/mo, predictable | Blaze pay-as-you-go, surprise bills possible | | Open source | Yes (Apache 2.0 / PostgreSQL) | No | | Self-host | Yes (Docker Compose, full stack) | No | | Vendor lock-in | Low (standard Postgres + S3) | High (Firestore data model is proprietary) | | SDK languages | JS, Dart, Swift, Kotlin, Python, Go | JS, Dart, Swift, Kotlin, Unity, C++ |\nWhen to Choose Supabase Use case 1: Relational data with joins If your app has users, orders, products, posts, comments — anything with relationships — Supabase wins by default. You write SQL, get joins, foreign keys, transactions, materialized views, CTEs, window functions. Firebase forces you to denormalize everything and do joins on the client, which falls apart past 50 documents.\nUse case 2: AI / RAG / vector search pgvector ships built-in. Store OpenAI/Anthropic embeddings in the same database as your user data, run cosine-similarity queries with a single SQL line, get sub-100ms results up to a few million vectors. Firebase has nothing comparable — you’d need a separate Pinecone/Weaviate/Vertex AI bolt-on.\nUse case 3: Open source + self-host Supabase is Apache 2.0 / PostgreSQL licensed. You can clone the repo, run ```docker compose up````, and have the entire stack — Postgres + GoTrue auth + Storage + Realtime + Studio — running on your laptop or VPS. If you ever need to escape the cloud, you already have the escape hatch. Firebase has none.\nUse case 4: Predictable pricing Supabase Pro is $25/mo flat with included compute, plus metered overages. You can budget. Firebase Blaze is pay-as-you-go with per-document reads, per-function invocation, per-GB egress — one viral tweet or buggy loop can drop a $400 bill overnight. Many Firebase horror stories on Reddit start with “I didn’t know loops could read 1M docs.”\nWhen to Choose Firebase Use case 1: Massive-scale realtime Firebase realtime has been battle-tested since 2012. Slack-scale chat, multiplayer game state, IoT sensor streams — Firebase handles millions of concurrent connections with no tuning. Supabase realtime is excellent but newer; above ~10K concurrent clients you start tuning Postgres replication slots.\nUse case 2: Mobile-first stack Firebase + Crashlytics + Analytics + Cloud Messaging + Remote Config + A/B Testing is one tightly integrated bundle. If you’re shipping iOS/Android first, Firebase saves you 10 separate SDK integrations. Supabase has SDKs but the mobile observability layer is thinner.\nUse case 3: Google Cloud integration If you’re already deep in GCP — BigQuery exports, Cloud Run, Vertex AI, IAM — Firebase plugs in natively. Cross-product billing, single console, unified IAM. Supabase is its own cloud and doesn’t share Google’s identity layer.\nUse case 4: Anonymous + phone auth at scale Firebase Auth has the most mature anonymous auth and SMS phone auth in the BaaS world. For social apps where users browse first and sign up later, Firebase makes anonymous → permanent account upgrade trivial.\nPricing Deep Dive Supabase Free: 500 MB DB, 1 GB storage, 50K MAU, 2 GB bandwidth, 7-day point-in-time recovery Pro: $25/month, 8 GB DB, 100 GB storage, 100K MAU, daily backups, no project pausing Team: $599/month, SOC 2, SSO, priority support Enterprise: custom → Total monthly cost for a typical SaaS at 10K MAU: $25-$50 (Pro + small egress overage).\nFirebase Spark (free): 1 GB Firestore, 5 GB storage, unlimited auth, 50K reads/day Blaze (pay-as-you-go): $0.06 per 100K reads, $0.18 per 100K writes, $0.026/GB storage, $0.12/GB egress No flat-rate Pro tier — you pay for what you use → Total monthly cost for a typical SaaS at 10K MAU: $30-$300+ depending on read patterns. A poorly designed query that fans out 100 reads per user × 10K users × 30 days = 30M reads = ~$18 just for reads, plus writes, storage, egress.\nBudget Winner For predictable monthly bills: Supabase Pro $25/mo wins by a mile. For zero-traffic side projects: Firebase Spark lasts longer because there’s no project-pausing. For analytics-heavy or AI/RAG apps: Supabase wins 5-10x on monthly bills.\nPerformance Benchmarks (Subjective, From My Daily Use) | Task | Supabase | Firebase | |\n|\n|\n| | Simple CRUD app | 9/10 | 9/10 | | Complex relational queries | 10/10 | 4/10 | | Realtime chat (1K users) | 9/10 | 10/10 | | Realtime chat (100K users) | 7/10 | 10/10 | | File uploads + signed URLs | 9/10 | 9/10 | | Auth (OAuth + email) | 9/10 | 9/10 | | Auth (anonymous + phone SMS) | 7/10 | 10/10 | | Vector search / RAG | 10/10 | 3/10 | | Edge functions cold start | 8/10 | 6/10 | | Self-host / data portability | 10/10 | 2/10 | | Pricing predictability | 10/10 | 5/10 |\n→ Supabase wins relational, AI, pricing, lock-in. Firebase wins massive-scale realtime and mobile-first observability.\nMigration Tips Firebase → Supabase Export Firestore data to JSON via firebase-tools (firebase firestore:export) Design Postgres schema first — denormalize Firestore into relational tables Use Supabase’s bulk import via psql or Studio CSV uploader Replace Firestore listeners with supabase.channel().on(postgres_changes, ...) Migrate Firebase Auth users via Supabase’s auth.admin.createUser() API (passwords need re-hash — send users a password reset email) Run both stacks in parallel for one billing cycle to compare bills Supabase → Firebase Export Postgres tables to CSV (COPY ... TO STDOUT) Flatten relational data into denormalized Firestore documents (this is the hard part — plan for 1-2 weeks of schema redesign) Replace SQL queries with Firestore SDK calls — expect to lose joins and rebuild as composite indexes Migrate auth users via Firebase Admin SDK ````importUsers()``` with passwordHash blob Budget for surprise bills the first month — set up GCP budget alerts day one Self-Hosting Note Want to run Supabase on your own server to escape cloud bills entirely or to keep data on-prem for compliance? Spin up a — a $24/mo 4 GB droplet handles a self-hosted Supabase stack (Postgres + GoTrue + Storage + Realtime + Studio) for a small-to-medium SaaS comfortably. Cheaper than Supabase Pro after month 4, and your data never leaves your infrastructure. Firebase has no equivalent — there’s no way to self-host out of Google’s cloud.\nAlternatives Worth Trying If neither Supabase nor Firebase fits, consider: - Appwrite — Open-source BaaS, self-hostable, more opinionated than Supabase\nPocketBase — Single-binary Go BaaS, perfect for tiny projects Convex — TypeScript-first reactive backend, great DX for full-stack TS teams Nhost — Postgres + Hasura GraphQL + Auth, similar to Supabase but GraphQL-native Neon + Clerk + Cloudflare R2 — DIY composable stack, max flexibility, more wiring dibi8’s Take For 2026, the BaaS market has consolidated around two leaders: Supabase for developers who think in SQL and want open-source freedom, Firebase for teams who need Google-scale realtime and a deep mobile observability stack.\nIf you’re starting a SaaS in 2026 with relational data and any AI/RAG ambition → Supabase Pro ($25/mo), no contest. The pgvector + Postgres combo is unbeatable. If you’re shipping a mobile-first social or messaging app at scale → Firebase Blaze, but set up GCP budget alerts on day one. If you want both data portability and Google-scale realtime → Supabase on a self-hosted droplet + Cloudflare Durable Objects for the realtime layer.\nFor an indie dev shipping a SaaS in 2026? Supabase Pro $25/mo is the best raw ROI in the BaaS category — predictable bills, SQL flexibility, built-in pgvector for AI features, and a real escape hatch via self-hosting. Firebase is still the king of mobile-first realtime at scale, but you pay for it in lock-in and unpredictable monthly bills.\nFAQ (rendered via faqs frontmatter — visible inline + JSON-LD for AIO)\nFurther Reading Cursor vs Claude Code 2026 Comparison ChatGPT Pro vs Claude Pro 2026 Best AI Coding Tools 2026 — Cursor Alternatives Cheap LLM Stack Under $20/month Recommended Tools Self-hosting Supabase in Asia? A Hong Kong VPS gives you the lowest-latency Supabase stack for users in China and SEA.\n**** — Hong Kong VPS, same IDC that hosts dibi8.com. Complements DigitalOcean if you have multi-region users — HTStack for Asia, DigitalOcean for US/EU. Self-host Supabase (Postgres + GoTrue + Storage + Realtime) without Google/Cloud lock-in. Affiliate link — supports dibi8.com at no extra cost to you.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Supabase vs Firebase in 2026: Which BaaS Wins?”, “datePublished”: “2026-05-22”, “dateModified”: “2026-05-22”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/supabase-vs-firebase\" } } Related Articles supabase-vs-firebase supabase-vs-firebase supabase-vs-firebase claude-code-vs-cline cursor-vs-windsurf Found this helpful? Join our Telegram community for daily AI tool updates!\n",
   "wordCount" : "1724",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
   "mainEntityOfPage": {
@@ -127,21 +125,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -168,7 +152,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -187,20 +171,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>9 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/ko/ai-coding-agents/supabase-vs-firebase/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/ai-coding-agents/supabase-vs-firebase/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>9 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul>
@@ -470,11 +446,11 @@ If you want both data portability and Google-scale realtime → <strong>Supabase
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://dibi8.com/ai-coding-agents/supabase-postgres-vector-ai-apps/">
-    <span class="title">« Prev</span>
+    <span class="title">« 上一页</span>
     <span>AI Tool Guide</span>
   </a>
   <a class="next" href="https://dibi8.com/ai-coding-agents/superagent-ai-agent-framework/">
-    <span class="title">Next »</span>
+    <span class="title">下一页 »</span>
     <span>AI Tool Guide</span>
   </a>
 </nav>
@@ -642,12 +618,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

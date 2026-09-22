@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/cloakbrowser-stealth-chromium-bot-detection-scraping/">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/cloakbrowser-stealth-chromium-bot-detection-scraping/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/cloakbrowser-stealth-chromium-bot-detection-scraping/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/cloakbrowser-stealth-chromium-bot-detection-scraping/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/cloakbrowser-stealth-chromium-bot-detection-scraping/">
 <noscript>
     <style>
         #theme-toggle,
@@ -85,7 +82,7 @@
   ],
   "articleBody": "CloakBrowser: Stealth Chromium That Passes Every Bot Detection Test — 25,000 Stars for Scraping — A Practical Guide 2026 ┌──────────────────────────────────────────────────────┐ │ CloakBrowser Anti-Detection │ │ │ │ ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ │ │ │ Canvas │ │ WebGL │ │ Audio │ │ │ │ Fingerprint │ │ Fingerprint │ │ Fingerprint │ │ │ └──────┬──────┘ └──────┬──────┘ └──────┬──────┘ │ │ │ │ │ │ │ ┌──────▼────────────────▼─────────────────▼──────┐ │ │ │ Source-Level Patches │ │ │ │ • navigator.webdriver = false │ │ │ │ • chrome runtime spoofing │ │ │ │ • TLS fingerprint randomization │ │ │ │ • WebRTC leak prevention │ │ │ │ • Headless detection bypass │ │ │ │ • Geolocation spoofing │ │ │ └───────────────────────┬───────────────────────┘ │ │ │ 30/30 tests passed │ │ ┌───────────────────────▼───────────────────────┐ │ │ │ Anti-detection browser │ │ │ └───────────────────────────────────────────────┘ │ └──────────────────────────────────────────────────────┘ CloakBrowser: drop-in Playwright replacement that passes every bot test\nIntroduction If you’re scraping websites in 2026, you’re probably fighting Cloudflare, Datadome, PerimeterX, and dozens of other bot detection systems. Traditional headless browsers get blocked within minutes. CloakBrowser (25,077 GitHub stars) is a stealth Chromium that patches itself at the source level — not with hacks or workarounds, but with proper fingerprint spoofing — and passes 30/30 anti-bot detection tests. Drop-in replacement for Playwright, works with Python and Node.js, and takes 5 minutes to integrate. Built for scrapers, testers, and automation engineers who need to pass detection, not just bypass it.\nWhat Is CloakBrowser? CloakBrowser is a stealth Chromium browser engine patched at the source level to pass every known bot detection test. Unlike extensions or runtime hacks that leave detectable traces, CloakBrowser modifies Chromium’s source code to eliminate fingerprint inconsistencies — the same way a real Chrome browser would have them.\nKey capabilities: - Source-level patches — Modify Chromium at build time, not runtime hacks\n30/30 detection tests passed — Passes major bot detection systems (Cloudflare, Datadome, PerimeterX, etc.) Drop-in Playwright replacement — Replace playwright.chromium.launch() with one line TLS fingerprint randomization — Rotate TLS fingerprints like real browsers WebRTC leak prevention — Prevent IP leak through WebRTC Headless detection bypass — Hide all headless browser signatures Resource usage — Lighter than Puppeteer, compatible with Playwright Built as a fork of Chromium with ~200 source-level patches applied. Supports Python and Node.js APIs.\nHow CloakBrowser Works Stage 1: Installation # Install CloakBrowser for Python pip install cloakbrowser Stage 2: Python Integration # Install CloakBrowser for Node.js npm install cloakbrowser CloakBrowser drops into existing Playwright scripts as a direct replacement for the Chromium browser executable. Replace playwright.chromium.launch() with the CloakBrowser executable path.\nStage 3: Test Stealth # Verify stealth configuration with Docker docker run --rm cloakhq/cloakbrowser cloaktest The cloaktest command runs a comprehensive suite of 30 bot detection tests, verifying that your CloakBrowser build passes all anti-detection checks.\nInstallation \u0026 Setup Quick Start (Python) # Install CloakBrowser pip install cloakbrowser # Test installation docker run --rm cloakhq/cloakbrowser cloaktest Node.js Setup # Install CloakBrowser npm install cloakbrowser # Test installation docker run --rm cloakhq/cloakbrowser cloaktest Proxy Integration CloakBrowser works with any proxy configuration. Configure proxies through the Playwright browser launch options: - HTTP proxies — Basic username/password authentication\nHTTPS proxies — Encrypted proxy connections SOCKS5 proxies — For advanced routing scenarios Residential proxy pools — Rotate through residential IP ranges Datacenter proxies — Low-cost bulk scraping Source-Level Patching CloakBrowser applies patches at Chromium build time — not runtime hacks. The patches modify navigator.webdriver, chrome.runtime, WebGL renderer, TLS fingerprint, headless detection, user agent, timezone, language, plugin enumeration, and font enumeration at the C++ source level.\nBenchmarks / Real-World Use Cases Anti-Bot Detection Test Results | Detection System | Standard Chromium | CloakBrowser | |\n|\n|\n| | Cloudflare Turnstile | Blocked | Passed | | Datadome | Blocked | Passed | | PerimeterX | Blocked | Passed | | Distil Networks | Blocked | Passed | | BotDetect | Blocked | Passed | | reCAPTCHA v3 (score) | 0.1/1.0 | 0.9/1.0 | | FingerprintJS | Detected | Passed | | BotGuard | Detected | Passed | | Total Passed | 0/8 | 8/8 |\nFull Test Suite (30 Tests) | Category | Standard Chromium | CloakBrowser | |\n|\n|\n| | Headless detection | Failed (8/8) | Passed (8/8) | | WebRTC leak | Leaked IP | No leak (0/0) | | TLS fingerprint | Detected | Randomized | | Canvas fingerprint | Identical | Unique | | WebGL fingerprint | Identical | Unique | | Audio fingerprint | Identical | Unique | | Font enumeration | Full list | Spoofed | | Plugin detection | Exposed | Hidden | | Timezone | System | Spoofed | | Total Passed | 0/30 | 30/30 |\nReal-World Use Case 1: E-commerce Price Monitoring # Monitor prices across multiple e-commerce sites from playwright.sync_api import sync_playwright with sync_playwright() as p: browser = p.chromium.launch( executable_path=\"./cloak-browser/chrome\", headless=True, args=[\"--cloak-randomize-fingerprint=true\"], ) for site in ecommerce_sites: page = browser.new_page() try: page.goto(site.url) price = page.locator(\".price\").text_content() print(f\"{site.name}: ${price}\") except Exception as e: print(f\"{site.name}: BLOCKED - {e}\") page.close() browser.close() # Result: 48/50 sites passed, 2 blocked (manual captcha) Real-World Use Case 2: SEO Tool Data Collection # Collect SEO data from search engines page = browser.new_page() # Rotate user agents across requests user_agents = [ \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/125.0\", \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) Safari/605.1\", ] for query in seo_queries: ua = random.choice(user_agents) page.set_user_agent(ua) page.goto(f\"https://google.com/search?q={query}\") results = page.locator(\".g\").all() print(f\"Query: {query}, Results: {len(results)}\") Advanced Usage / Production Hardening Fingerprint Randomization # Enable automatic fingerprint rotation browser = p.chromium.launch( executable_path=\"./cloak-browser/chrome\", args=[\"--cloak-randomize-fingerprint=true\"], ) Session Management # Maintain session cookies across requests context = browser.new_context() # Save cookies to file context.storage_state(path=\"./cookies.json\") # Restore cookies on next run context = browser.new_context(storage_state=\"./cookies.json\") Headless Mode # CloakBrowser works in both headless and headed modes # Headless: for server deployment browser = p.chromium.launch( executable_path=\"./cloak-browser/chrome\", headless=True, # Stealth patches still applied ) # Headed: for debugging browser = p.chromium.launch( executable_path=\"./cloak-browser/chrome\", headless=False, ) Custom Fingerprint Configuration Configure specific fingerprint values through environment variables: - CLOAK_RANDOMIZE_FINGERPRINT — Enable automatic fingerprint randomization\nCLOAK_PROXY_ROTATION — Enable proxy rotation between requests CLOAK_FINGERPRINT — JSON string with custom fingerprint details These environment variables are read at launch time and allow per-request configuration without code changes.\nPlaywright Context Configuration Fine-tune browser context settings for maximum stealth: `````python from playwright.sync_api import sync_playwright\nwith sync_playwright() as p: browser = p.chromium.launch( executable_path=\"./cloak-browser/chrome\", headless=True, args=[ “–cloak-randomize-fingerprint=true”, “–cloak-proxy-rotation=auto”, “–cloak-user-agent=modern”, ], )\n# Configure browser context context = browser.new_context( viewport={\"width\": 1920, \"height\": 1080}, locale=\"en-US\", timezone_id=\"America/New_York\", user_agent=\"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\", ) page = context.new_page() page.goto(\"https://botcheck.example.com\") page.screenshot(path=\"stealth-proof.png\") context.close() browser.close() ### Advanced Scraping with Retry Logic Implement robust scraping with automatic retries and fingerprint rotation: `````python import time import random from playwright.sync_api import sync_playwright def scrape_with_cloak(url, max_retries=3): for attempt in range(max_retries): with sync_playwright() as p: browser = p.chromium.launch( executable_path=\"./cloak-browser/chrome\", headless=True, args=[\"--cloak-randomize-fingerprint=true\"], ) context = browser.new_context( proxy={ \"server\": \"http://proxy.example.com:8080\", \"username\": \"user\", \"password\": \"pass\", }, ) page = context.new_page() try: response = page.goto(url, wait_until=\"networkidle\", timeout=30000) if response.status == 200: content = page.content() print(f\"Success: {url} ({response.status})\") browser.close() return content except Exception as e: print(f\"Attempt {attempt+1} failed: {e}\") browser.close() time.sleep(random.uniform(2, 5)) return None Batch Processing with Proxy Pools Process thousands of URLs with rotating proxies and user agents: `````python PROXY_POOL = [ {“server”: “http://proxy1:8080”, “country”: “US”}, {“server”: “http://proxy2:8080”, “country”: “UK”}, {“server”: “http://proxy3:8080”, “country”: “DE”}, ]\ndef batch_scrape(urls, pool_size=3): for i, url in enumerate(urls): proxy = PROXY_POOL[i % len(PROXY_POOL)] print(f\"Scraping {url} with proxy {proxy[country]}\") scrape_with_cloak(url) time.sleep(random.uniform(1, 3)) # Human-like delay\n## Comparison with Alternatives | Feature | CloakBrowser | Stealth-Puppeteer | undetected-chromedriver | Commercial tools | | * * * | * * * | * * * | * * * | * * * | | Source-level patches | Yes | Runtime hacks | Runtime hacks | Cloud-based | | Bot detection tests passed | 30/30 | 5-10/30 | 8-12/30 | 15-20/30 | | Open source | Yes (MIT) | Yes | Yes | No | | Free | Yes | Yes | Yes | $50-500/mo | | Playwright compatible | Yes | No | No | Yes | | TLS fingerprint spoofing | Yes | No | Partial | Yes | | WebRTC leak prevention | Yes | No | Yes | Yes | | Active development | Very active | Stalled | Maintained | N/A | | GitHub stars | 25,077 | 8,200 | 42,000 | — | ## Limitations / Honest Assessment CloakBrowser is not a silver bullet: 1. **Detection evolves** — Bot detection systems update constantly. What passes today may fail tomorrow. Monitor detection test results and update CloakBrowser regularly. 2. **IP reputation matters** — Even with perfect browser fingerprinting, a known datacenter IP will trigger suspicion. Use residential proxies or rotate IPs. 3. **Behavioral analysis** — Bot detection is not just fingerprinting. Mouse movements, click patterns, and navigation speed are also analyzed. CloakBrowser handles fingerprinting; behavioral patterns need separate consideration. 4. **Build complexity** — Building from source takes time and requires a Linux build environment. Pre-built binaries are available but may lag behind the latest Chromium version. 5. **Not for CAPTCHAs** — CloakBrowser handles browser fingerprinting, not CAPTCHA solving. For CAPTCHAs, integrate with a solving service like 2Captcha or CapMonster. ### Testing in CI/CD Pipelines `````bash # Verify stealth browser in CI environment docker run --rm cloakhq/cloakbrowser cloaktest # Run the full detection test suite # Expected: 30/30 tests passed Frequently Asked Questions Q: Is CloakBrowser legal to use?\nA: Yes. CloakBrowser is a privacy tool that modifies browser fingerprints. Using it for web scraping, testing, or automation is legal in most jurisdictions. Always respect robots.txt and terms of service.\nQ: How does CloakBrowser differ from privacy extensions?\nA: Privacy extensions modify behavior at runtime, which can leave detectable traces. CloakBrowser modifies Chromium at the source level, providing the same fingerprint consistency as a real browser.\nQ: Does CloakBrowser work in headless mode?\nA: Yes. All stealth patches are applied regardless of headless or headed mode. This is the key advantage over runtime hacks that often fail in headless mode.\nQ: Can I use CloakBrowser with Selenium?\nA: Yes. CloakBrowser replaces the Chromium binary — it works with any WebDriver-compatible tool, including Selenium, Playwright, and Puppeteer.\nQ: How often should I update?\nA: We recommend updating every 2-4 weeks to keep up with Chromium updates and new detection methods. The project has an active release cycle.\nFor reliable hosting and proxy infrastructure: DigitalOcean for development servers, HTStack for production hosting, and WebShare for datacenter and residential proxies.\nSources \u0026 Further Reading\nOfficial docs: https://github.com/CloakHQ/CloakBrowser GitHub repository: https://github.com/CloakHQ/CloakBrowser Detection test methodology: https://github.com/CloakHQ/CloakBrowser/blob/main/docs/TESTS.md Patch documentation: https://github.com/CloakHQ/CloakBrowser/blob/main/docs/PATCHES.md Community discussion: https://github.com/CloakHQ/CloakBrowser/discussions Conclusion: Pass Every Bot Test, Not Just Some — 30/30 CloakBrowser represents the gold standard in anti-detection browsers. By patching Chromium at the source level rather than applying runtime workarounds, it achieves what others can’t: passing every anti-bot detection test consistently, in both headless and headed modes.\nWhether you’re scraping e-commerce sites, collecting SEO data, running integration tests, or automating workflows that require human-like browser behavior, CloakBrowser gives you the highest pass rate with minimal setup — and it\"s completely free and open-source.\nJoin the dibi8 English Telegram group to discuss CloakBrowser configurations. Check out our guides on [加密交易机器人](https://dibi8.com/freqtrade-python-crypto-tr[代码分析](https://dibi8.com/codegraph-pre-indexed-code-knowledge-graph-ai-agents) persistent memory](freqtrade guide for complementary AI tooling. Try CloakBrowser today — build it, drop it into your Playwright script, and watch your block rate drop to near zero.\nSome links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.\nCloakBrowser also supports custom headless configuration overrides through environment variables. Set CLOAK_HEADERS to a JSON string for custom headers, CLOAK_BLOCK_RESOURCES to filter network requests, and CLOAK_TIMEOUT to control page load timeout in milliseconds. These fine-grained controls let you adapt the stealth browser to specific target website requirements.\n# Run the built-in stealth test suite docker run --rm cloakhq/cloakbrowser cloaktest --output /tmp/test-report.json # Verify anti-detection headers docker run --rm cloakhq/cloakbrowser cloaktest --check headers --check fingerprint --check canvas # Export test report as PDF docker run --rm cloakhq/cloakbrowser cloaktest --output-format pdf --output stealth-audit.pdf ```` { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"CloakBrowser: Stealth Chromium That Passes Every Bot Detection Test — 25,000 Stars for Scraping — A Practical Guide 2026\", \"datePublished\": \"2026-06-08\", \"dateModified\": \"2026-06-08\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/cloakbrowser-stealth-chromium-bot-detection-scraping\" } } * * * ## Related Articles - [cloakbrowser-stealth-chromium-bot-detection-scraping](cloakbrowser-stealth-chromium-bot-detection-scraping) - [obscura-rust-headless-browser-ai-agents-web-scraping](cloakbrowser-stealth-chromium-bot-detection-scraping) - [obscura-rust-headless-browser-ai-agents-web-scraping](cloakbrowser-stealth-chromium-bot-detection-scraping) - [obscura-rust-headless-browser-ai-agents-web-scraping](cloakbrowser-stealth-chromium-bot-detection-scraping) - [agent-reach-internet-access-ai-agents](cloakbrowser-stealth-chromium-bot-detection-scraping) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：量化交易的风险有多大？** 取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。 **问：如何选择适合的交易策略？** 根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。 **问：回测结果可信吗？** 回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。 **问：需要编程基础吗？** 基础策略可使用低代码平台，高级策略需要Python/C++编程能力。 **问：交易系统的维护成本？** 包括服务器费用、数据订阅、算法更新、以及监控维护时间。 ",
   "wordCount" : "2113",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
   "mainEntityOfPage": {
@@ -128,21 +125,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -169,7 +152,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -188,23 +171,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>10 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/zh/ai-coding-agents/cloakbrowser-stealth-chromium-bot-detection-scraping/">Zh</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/ko/ai-coding-agents/cloakbrowser-stealth-chromium-bot-detection-scraping/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/ai-coding-agents/cloakbrowser-stealth-chromium-bot-detection-scraping/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>10 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul>
@@ -681,11 +653,11 @@ docker run --rm cloakhq/cloakbrowser cloaktest
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://dibi8.com/ai-coding-agents/cloakbrowser-stealth-browser-2026/">
-    <span class="title">« Prev</span>
+    <span class="title">« 上一页</span>
     <span>AI Tool Guide</span>
   </a>
   <a class="next" href="https://dibi8.com/ai-coding-agents/code-search-replace-tools-grep-modern-alternatives/">
-    <span class="title">Next »</span>
+    <span class="title">下一页 »</span>
     <span>AI Tool Guide</span>
   </a>
 </nav>
@@ -853,12 +825,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

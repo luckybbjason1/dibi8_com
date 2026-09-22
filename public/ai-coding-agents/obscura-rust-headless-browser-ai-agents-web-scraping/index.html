@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/obscura-rust-headless-browser-ai-agents-web-scraping/">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/obscura-rust-headless-browser-ai-agents-web-scraping/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/obscura-rust-headless-browser-ai-agents-web-scraping/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/obscura-rust-headless-browser-ai-agents-web-scraping/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/obscura-rust-headless-browser-ai-agents-web-scraping/">
 <noscript>
     <style>
         #theme-toggle,
@@ -85,7 +82,7 @@
   ],
   "articleBody": "Obscura: Rust Headless Browser for AI Agents — 14,000 Stars — 30MB Memory, 85ms Load — Setup Guide 2026 ┌───────────────────────────────────────────────────┐ │ Obscura Architecture │ │ │ │ ┌─────────────────────────────────────────────┐ │ │ │ CLI / Server Interface │ │ │ │ fetch │ serve │ scrape │ eval │ dump │ │ │ └──────────────────────┬──────────────────────┘ │ │ │ │ │ ┌──────────────┼──────────────┐ │ │ ▼ ▼ ▼ │ │ ┌────────────┐ ┌────────────┐ ┌──────────┐ │ │ │ fetch() │ │ serve() │ │ scrape() │ │ │ │ Single page │ │ CDP server │ │ Parallel │ │ │ └─────┬──────┘ └─────┬──────┘ └────┬─────┘ │ │ │ │ │ │ │ ▼ ▼ ▼ │ │ ┌─────────────────────────────────────────────┐ │ │ │ Rust Core Engine │ │ │ │ • V8 JavaScript engine │ │ │ │ • Chrome DevTools Protocol (CDP) │ │ │ │ • Stealth mode (anti-detection) │ │ │ │ • Tracker blocking │ │ │ └─────────────────────────────────────────────┘ │ │ │ │ ┌─────────────────────────────────────────────┐ │ │ │ Drop-in replacement for Chrome │ │ │ │ ✅ Puppeteer ✅ Playwright │ │ │ └─────────────────────────────────────────────┘ │ └───────────────────────────────────────────────────┘ Obscura is a headless browser engine written in Rust, purpose-built for web scraping and AI agent automation. At just 30MB of memory usage and 85ms page load times, it dramatically outperforms headless Chrome while providing built-in anti-detection features.\nCreated by h4ckf0r0day, Obscura has reached 14,788 GitHub stars and is designed as a drop-in replacement for headless Chrome when used with Puppeteer and Playwright. The key differentiator: it runs real JavaScript via V8 but with a fraction of the resource overhead.\nThis guide covers installation, CLI usage, CDP server setup, puppeteer/playwright integration, and production deployment.\nWhat Is Obscura? Obscura is a headless browser engine that implements the Chrome DevTools Protocol (CDP) in Rust. Unlike headless Chrome, which is essentially a stripped-down Chrome browser, Obscura is built from the ground up for automation — not desktop browsing.\nThe key metrics that set Obscura apart: | Metric | Obscura | Headless Chrome | |\n|\n|\n| | Memory | 30 MB | 200+ MB | | Binary size | 70 MB | 300+ MB | | Anti-detect | Built-in | None | | Page load | 85 ms | ~500 ms | | Startup | Instant | ~2 seconds | | Puppeteer | Yes | Yes | | Playwright | Yes | Yes |\nThis isn’t a toy — it’s a production-grade browser engine that happens to be 7x more memory-efficient than Chrome.\nWhy “Obscura”? The name references the Latin word for “darkness” or “hidden” — apt for a browser built for stealth. In an era of bot detection, AI agent fingerprinting, and anti-scraping measures, Obscura provides built-in anti-detection capabilities that headless Chrome simply doesn’t have.\nHow Obscura Works Obscura uses the V8 JavaScript engine (the same engine that powers Chrome and Node.js) to execute JavaScript, but its browser rendering pipeline is custom-built in Rust. This means it gets Chrome-level JavaScript compatibility with Rust-level performance.\nRequest (fetch / scrape / serve) │ ▼ ┌─────────────────────────────┐ │ Command Parser │ │ (CLI args, CDP commands) │ └─────────────┬───────────────┘ │ ▼ ┌─────────────────────────────┐ │ Navigation Manager │ │ (URL resolution, redirects, │ │ proxy handling) │ └─────────────┬───────────────┘ │ ▼ ┌─────────────────────────────┐ │ V8 JavaScript Engine │ │ (JS execution, DOM building, │ │ CSS rendering, APIs) │ └─────────────┬───────────────┘ │ ▼ ┌─────────────────────────────┐ │ Output Processor │ │ (HTML dump, JSON, text, │ │ eval result, assets) │ └─────────────────────────────┘ The serve command starts a CDP-compatible server that accepts connections from Puppeteer and Playwright. The fetch command runs one-off page operations. The scrape command runs parallel page operations with configurable concurrency.\nInstallation \u0026 Setup Binary Install (Recommended) Download the latest binary from the Releases page: `````bash\nLinux x86_64 curl -LO https://github.com/h4ckf0r0day/obscura/releases/latest/download/obscura-x86_64-linux.tar.gz tar xzf obscura-x86_64-linux.tar.gz ./obscura fetch https://example.com –eval “document.title”\nLinux ARM64 (aarch64) curl -LO https://github.com/h4ckf0r0day/obscura/releases/latest/download/obscura-aarch64-linux.tar.gz tar xzf obscura-aarch64-linux.tar.gz\nmacOS Apple Silicon curl -LO https://github.com/h4ckf0r0day/obscura/releases/latest/download/obscura-aarch64-macos.tar.gz tar xzf obscura-aarch64-macos.tar.gz\nmacOS Intel curl -LO https://github.com/h4ckf0r0day/obscura/releases/latest/download/obscura-x86_64-macos.tar.gz tar xzf obscura-x86_64-macos.tar.gz\nWindows Download the .zip from the releases page and extract manually No Chrome, no Node.js, no dependencies. Release archives include both ````obscura```` and ````obscura-worker```` binaries — keep them in the same directory for the parallel ````scrape```` command. Linux releases target Ubuntu 22.04 (glibc 2.35+) for compatibility with common LTS servers. ### Arch Linux (AUR) `````bash yay -S obscura-browser Docker docker run -d --name obscura -p 127.0.0.1:9222:9222 h4ckf0r0day/obscura The Docker image is multi-stage built on distroless/cc — no shell, no package manager, approximately 57 MB compressed.\nBuild from Source git clone https://github.com/h4ckf0r0day/obscura.git cd obscura # Standard build (first build takes ~5 min due to V8 compilation) cargo build --release # With stealth mode (anti-detection + tracker blocking) cargo build --release --features stealth Requires Rust 1.75+ (rustup.rs). Subsequent builds are fast thanks to cargo’s caching.\nQuick Start Fetch a Page # Get the page title obscura fetch https://example.com --eval \"document.title\" # Extract all links obscura fetch https://example.com --dump links # Render JavaScript and dump HTML obscura fetch https://news.ycombinator.com --dump html # Write output to a file obscura fetch https://example.com --dump text --output page.txt # Stream raw response body (binary-safe; for images, JSON, CSS) obscura fetch https://picsum.photos/200/300 --dump original \u003e photo.jpg # List every sub-resource URL (NDJSON format) obscura fetch https://example.com --dump assets # Fetch through a proxy obscura --proxy socks5://127.0.0.1:1080 fetch https://example.com --dump text # Wait for dynamic content to load obscura fetch https://example.com --wait-until networkidle0 # Set navigation timeout for slow pages obscura fetch https://example.com --timeout 10 Start the CDP Server For Puppeteer/Playwright compatibility: `````bash\nStandard CDP server obscura serve –port 9222\nWith stealth mode (anti-detection + tracker blocking) obscura serve –port 9222 –stealth\nOnce running, connect with Puppeteer or Playwright: `````javascript // Puppeteer connection const puppeteer = require('puppeteer-core'); const browser = await puppeteer.connect({ browserURL: 'http://127.0.0.1:9222', }); const page = await browser.newPage(); await page.goto('https://example.com'); console.log(await page.title()); // Playwright connection const { chromium } = require('@playwright/test'); const browser = await chromium.connectOverCDP('http://127.0.0.1:9222'); const context = await browser.newContext(); const page = await context.newPage(); await page.goto('https://example.com'); console.log(await page.title()); Scrape in Parallel # Scrape multiple pages in parallel obscura scrape url1 url2 url3 ... \\ --concurrency 25 \\ --eval \"document.querySelector('h1').textContent\" # Scrape and save results obscura scrape site.com/page1 site.com/page2 \\ --concurrency 50 \\ --dump html \\ --output-dir ./scraped/ The scrape command requires both obscura and obscura-worker binaries in the same directory.\nIntegration with Popular Frameworks Puppeteer Integration // Use Obscura as a Puppeteer browser const puppeteer = require('puppeteer-extra'); const StealthPlugin = require('puppeteer-extra-plugin-stealth'); puppeteer.use(StealthPlugin()); // Connect to Obscura CDP server const browser = await puppeteer.connect({ browserURL: 'http://localhost:9222', defaultViewport: null, }); // Your existing Puppeteer code works unchanged const page = await browser.newPage(); await page.goto('https://target-site.com'); const data = await page.$$eval('.item', items =\u003e items.map(i =\u003e i.textContent) ); Playwright Integration # Python Playwright connection from playwright.sync_api import sync_playwright with sync_playwright() as p: browser = p.chromium.connect_over_cdp( \"http://localhost:9222\" ) page = browser.new_page() page.goto(\"https://example.com\") print(page.title()) browser.close() AI Agent Integration # Use Obscura in an AI agent workflow import subprocess def fetch_page_text(url): \"\"\"Fetch a page and extract text using Obscura\"\"\" result = subprocess.run( [\"./obscura\", \"fetch\", url, \"--dump\", \"text\"], capture_output=True, text=True, timeout=30 ) return result.stdout # AI agent can use this to fetch and analyze web content def analyze_page(agent, url): content = fetch_page_text(url) agent.prompt(f\"Analyze this page content:\\n{content}\") Web Scraping Pipeline #!/bin/bash # Automated scraping pipeline using Obscura # Define target URLs urls=( \"https://example.com/page1\" \"https://example.com/page2\" \"https://example.com/page3\" ) # Scrape all pages in parallel obscura scrape \"${urls[@]}\" \\ --concurrency 20 \\ --dump html \\ --output-dir ./output/ \\ --timeout 15 # Post-process results for f in ./output/*.html; do echo \"Processing: $(basename $f)\" ./obscura fetch \"$f\" --dump text --output \"${f%.html}.txt\" done Benchmarks \u0026 Performance Resource Usage | Scenario | Obscura | Headless Chrome | |\n|\n|\n| | Idle browser | 30 MB RAM | 200+ MB RAM | | Single page load | ~5 MB additional | ~50 MB additional | | 100 concurrent pages | ~300 MB total | ~20+ GB total | | Binary size | 70 MB | 300+ MB | | Docker image | 57 MB (distroless) | 500+ MB |\nPage Load Performance | Page Type | Obscura | Headless Chrome | |\n|\n|\n| | Static HTML | ~15 ms | ~80 ms | | JS-rendered SPA | ~85 ms | ~500 ms | | Heavy dashboard | ~200 ms | ~1500 ms | | Page startup | Instant | ~2 seconds |\nMemory Scaling Test (100 concurrent pages) # Test with Obscura obscura scrape $(seq -w 1 100 | sed 's/^/https://example.com\\/page_/') \\ --concurrency 100 \\ --dump text \\ --output /dev/null # Total RAM: ~280-320 MB # Equivalent test with headless Chrome (Puppeteer) # Total RAM: ~15-25 GB Advanced Usage Stealth Mode The stealth feature provides built-in anti-detection capabilities: `````bash\nBuild with stealth support cargo build –release –features stealth\nOr use the binary with stealth flag ./obscura serve –port 9222 –stealth\nStealth mode includes: # - Navigator plugin spoofing - WebGL renderer obfuscation - Permissions API handling - Chrome runtime property masking - Tracker script blocking ### Proxy Support `````bash # HTTP proxy obscura --proxy http://user:pass@proxy.example.com:8080 \\ fetch https://example.com # SOCKS5 proxy obscura --proxy socks5://127.0.0.1:1080 \\ fetch https://example.com # Proxy with Puppeteer const browser = await puppeteer.connect({ browserURL: 'http://localhost:9222', defaultBrowserOptions: { args: [--proxy-server=http://proxy:8080] } }); Custom Navigation Options # Wait for specific element to appear obscura fetch https://example.com \\ --wait-selector \".content-loaded\" # Wait for specific network condition obscura fetch https://example.com \\ --wait-until networkidle0 # Custom viewport size obscura fetch https://example.com \\ --viewport 1920x1080 # User agent override obscura fetch https://example.com \\ --user-agent \"Mozilla/5.0 (compatible; MyBot/1.0)\" Cookie and Session Management # Set cookies before loading a page obscura --cookie \"session=abc123; token=xyz789\" \\ fetch https://private.example.com # Extract cookies from a session obscura fetch https://example.com \\ --dump cookies --output cookies.json Comparison with Alternatives | Feature | Obscura | Headless Chrome | Playwright Browser | Selenium | |\n|\n|\n|\n|\n| | Memory usage | 30 MB | 200+ MB | 150+ MB | 300+ MB | | Language | Rust | C++ | TypeScript/JS | Multi | | CDP support | Native | Native | Via Chrome | Via Chrome | | Puppeteer | ✅ Yes | ✅ Yes | ✅ Yes | ❌ No | | Playwright | ✅ Yes | ✅ Yes | ✅ Yes | ❌ No | | Anti-detect | ✅ Built-in | ❌ Plugin needed | Plugin needed | ❌ No | | Parallel scraping | ✅ Native | ❌ Heavy | ❌ Heavy | ❌ No | | Install complexity | Binary/Docker | Large binary | Node.js + Chrome | WebDriver | | Startup time | Instant | ~2s | ~3s | ~5s | | License | Apache-2.0 | BSD | Apache-2.0 | Apache-2.0 |\nLimitations / Honest Assessment Obscura is powerful but not a perfect replacement for every use case: 1. Young project — Despite 14,788 stars, Obscura is still in active development. Edge cases in complex JavaScript frameworks may not be fully covered.\nDesktop browsing not optimized — It’s built for automation, not desktop use. UI rendering, accessibility features, and print output may differ from Chrome.\nNo built-in proxy rotation — While it supports proxy connections, there’s no built-in proxy pool or rotation. You’ll need an external proxy service for large-scale scraping.\nLimited browser extensions — Unlike Chrome, Obscura doesn’t support browser extensions (AdBlock, uBlock, etc.). You’ll need to implement ad-blocking logic in your scripts.\nDocker image is minimal — The 57 MB Docker image has no shell or package manager. Debugging inside the container requires the obscura binary’s built-in logging flags.\nObscura Cloud is beta — The hosted version (managed infrastructure, residential proxies) is currently in waitlist/beta. The open-source engine remains fully featured with no feature gating.\nFrequently Asked Questions Q: Can Obscura replace headless Chrome in my existing Puppeteer scripts?\nA: Yes, as long as you connect via CDP (browserURL or connectOverCDP). The browser-level behavior matches Chrome closely since it uses the same V8 engine and implements the CDP protocol.\nQ: How does the stealth mode compare to puppeteer-extra-stealth?\nA: Obscura’s stealth mode is built into the engine rather than added as a post-processing layer. This means it handles fingerprinting at the browser level (navigator properties, WebGL, audio context) rather than patching them after the fact — resulting in more consistent results.\nQ: Can I use Obscura for browser testing?\nA: Yes, for most use cases. Its CDP compatibility means you can run existing Playwright/Puppeteer test suites against Obscura. However, some tests that rely on Chrome-specific rendering or extension behavior may need adjustment.\nQ: Is there an official Docker image?\nA: Yes, h4ckf0r0day/obscura is available on Docker Hub. It’s a multi-stage build on ````distroless/cc``` for minimal size (57 MB compressed).\nQ: What about JavaScript compatibility?\nA: Obscura uses the V8 engine, the same engine as Chrome. JavaScript compatibility is essentially identical to Chrome — no missing APIs, no polyfills needed.\nQ: Can I run Obscura on serverless platforms?\nA: Since it\"s a single binary with zero dependencies, you can run it anywhere that supports statically compiled Rust binaries — Lambda, Cloud Functions, Fly.io, etc.\nConclusion Obscura represents a significant advance in headless browser technology. At 30MB memory, 85ms page loads, and built-in anti-detection, it solves the fundamental problem that has plagued web scraping and AI agent automation for years: Chrome is simply too heavy for large-scale, concurrent browser operations.\nFor AI agents that need to browse the web, scrape content, or interact with JavaScript-heavy sites — Obscura provides the performance headroom that headless Chrome simply cannot match. The Puppeteer and Playwright compatibility means your existing scripts work unchanged.\nThe upcoming Obscura Cloud hosted service (managed infrastructure + residential proxies) will make it even easier to deploy at scale, while the open-source engine stays Apache-2.0 with no feature gating.\nTry Obscura: github.com/h4ckf0r0day/obscura\nRelated articles:\nCodegraph — Pre-indexed code knowledge graph for AI agents MarkItDown — Convert any file to markdown Sources \u0026 Further Reading:\nGitHub repository: https://github.com/h4ckf0r0day/obscura Docker Hub: https://hub.docker.com/r/h4ckf0r0day/obscura Releases page: https://github.com/h4ckf0r0day/obscura/releases CDP documentation: https://chromedevtools.github.io/devtools-protocol/ V8 engine: https://v8.dev Join our community for more AI tool deep-dives: t.me/DIBI8_Group\nDisclaimer: This article is for informational purposes only. Always review source code before running third-party software in production. Affiliate disclosure: Some links above may contain affiliate codes. We may earn a commission at no extra cost to you.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Obscura: Rust Headless Browser for AI Agents — 14,000 Stars — 30MB Memory, 85ms Load — Setup Guide 2026”, “datePublished”: “2026-06-09”, “dateModified”: “2026-06-09”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/obscura-rust-headless-browser-ai-agents-web-scraping\" } } Related Articles cloakbrowser-stealth-chromium-bot-detection-scraping obscura-rust-headless-browser-ai-agents-web-scraping obscura-rust-headless-browser-ai-agents-web-scraping obscura-rust-headless-browser-ai-agents-web-scraping deepseek-reasonix-terminal-ai-coding-agent-prefix-cache Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
   "wordCount" : "2454",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
   "mainEntityOfPage": {
@@ -128,21 +125,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -169,7 +152,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -188,23 +171,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>12 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/zh/ai-coding-agents/obscura-rust-headless-browser-ai-agents-web-scraping/">Zh</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/ko/ai-coding-agents/obscura-rust-headless-browser-ai-agents-web-scraping/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/ai-coding-agents/obscura-rust-headless-browser-ai-agents-web-scraping/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>12 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul>
@@ -818,11 +790,11 @@ const browser = await puppeteer.connect({
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://dibi8.com/ai-coding-agents/nvidia-cosmos-world-models-platform-2026/">
-    <span class="title">« Prev</span>
+    <span class="title">« 上一页</span>
     <span>AI Tool Guide</span>
   </a>
   <a class="next" href="https://dibi8.com/ai-coding-agents/odysseus-self-hosted-ai-workspace-2026/">
-    <span class="title">Next »</span>
+    <span class="title">下一页 »</span>
     <span>AI Tool Guide</span>
   </a>
 </nav>
@@ -990,12 +962,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

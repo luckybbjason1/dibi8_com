@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/n8n-workflow-automation/">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/n8n-workflow-automation/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/n8n-workflow-automation/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/n8n-workflow-automation/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/n8n-workflow-automation/">
 <noscript>
     <style>
         #theme-toggle,
@@ -81,7 +78,7 @@
   ],
   "articleBody": "n8n là gì? n8n là workflow automation platform mã nguồn mở, đạt 205.668 stars. Khác với Zapier hay Make, n8n có thể self-host hoàn toàn — dữ liệu của bạn ở lại server của bạn.\nFair-code license: Miễn phí cho commercial use với điều kiện không bán lại platform.\nTại sao n8n khác biệt? 1. Self-hosted Dữ liệu không ra khỏi server của bạn Không lệ thuộc third-party Control hoàn toàn 2. Native AI Capabilities AI agent nodes LLM integration (OpenAI, Anthropic, local models) RAG workflows Vector database connections 3. 400+ Integrations Google Workspace Slack, Discord, Telegram GitHub, GitLab databases (PostgreSQL, MongoDB, MySQL) APIs khắp nơi 4. Visual + Code Drag-and-drop workflow builder JavaScript/Python nodes cho custom logic Debug trực quan Use cases phổ biến AI Agent Workflows Trigger (webhook) → AI Process → Database → Notification Ví dụ: tự động xử lý email, classify, lưu vào DB, alert khi cần.\nData Pipeline API → Transform → Store → Dashboard Ví dụ: scrape data từ multiple sources, clean, lưu vào warehouse.\nAutomation Schedule → Check conditions → Act → Report Ví dụ: daily check inventory, auto-order khi low stock.\nCài đặt Docker (recommended) docker run -d \\ --name n8n \\ -p 5678:5678 \\ -v ~/.n8n:/home/node/.n8n \\ n8nio/n8n npm npm install -g n8n n8n start Kubernetes helm repo add n8n https://n8n.io/charts helm install n8n n8n/n8n AI-Native Workflows LLM Agent { \"nodes\": [ {\"type\": \"chatTrigger\", \"name\": \"Chat Input\"}, {\"type\": \"llmChain\", \"name\": \"GPT-4\", \"params\": {\"model\": \"gpt-4\"}}, {\"type\": \"code\", \"name\": \"Process\", \"params\": {\"functionCode\": \"return items\"}}, {\"type\": \"chatRespond\", \"name\": \"Chat Output\"} ] } RAG Pipeline Document → Split → Embed → Vector Store → Retrieve → LLM → Answer Multi-Agent System Orchestrator Agent → Specialist Agents → Merge → Output So sánh alternatives Feature n8n Zapier Make Airflow Self-host ✅ ❌ ❌ ✅ Price Free* Expensive Expensive Free AI native ✅ Basic Basic ❌ Visual builder ✅ ✅ ✅ ❌ Code flexibility ✅ Limited Limited ✅ Community 200K+ Large Medium Large *Fair-code: free cho commercial use, trừ khi bán lại platform.\nTích hợp với AI Agents n8n có thể kết hợp với:\nECC — orchestrate agent workflows Claude Code — generate code từ workflow Hermes — trigger agents from events Custom agents — build your own Limitations ⚠️ Cần lưu ý:\nSelf-hosting cần运维 knowledge Complex workflows cần JavaScript skills Community nodes có thể chưa stable -Enterprise features cần paid plan Kết luận n8n là sweet spot giữa power và ease-of-use. Cho người muốn automation mạnh mẽ mà không muốn trả giá đắt cho SaaS.\nLink: github.com/n8n-io/n8n Website: n8n.io\n",
   "wordCount" : "423",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-22T00:00:00Z",
   "dateModified": "2026-09-22T00:00:00Z",
   "mainEntityOfPage": {
@@ -124,21 +121,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -165,7 +148,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
         stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
         <polyline points="9 18 15 12 9 6"></polyline>
@@ -179,23 +162,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-22 00:00:00 +0000 UTC'>September 22, 2026</span>&nbsp;·&nbsp;<span>2 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/zh/n8n-workflow-automation/">Zh</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/ko/n8n-workflow-automation/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/n8n-workflow-automation/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-22 00:00:00 +0000 UTC'>September 22, 2026</span>&nbsp;·&nbsp;<span>2 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul>
@@ -580,12 +552,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/addy-osmani-agent-skills-production-guide-2026/">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/addy-osmani-agent-skills-production-guide-2026/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/addy-osmani-agent-skills-production-guide-2026/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/addy-osmani-agent-skills-production-guide-2026/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/addy-osmani-agent-skills-production-guide-2026/">
 <noscript>
     <style>
         #theme-toggle,
@@ -82,7 +79,7 @@
   ],
   "articleBody": "Addy Osmani’s Agent Skills: The Production-Grade Approach I used to think AI coding assistants were just fancy autocomplete with chat. Then Addy Osmani published his Agent Skills framework and showed me I was wrong.\nThis isn’t just another tool — it’s a complete philosophy for building reliable AI workflows. While other projects add features, Addy focused on what matters: making AI assistants actually work in production.\nWho Is Addy Osmani? Before diving in, let’s understand why this matters:\nFormer Google Chrome engineer Lead of web.dev performance team Creator of Lighthouse Author of “Web Almanac” GitHub: 96K+ stars (and growing) When someone with Addy’s track record says “build skills for AI agents,” you listen.\nWhat Are Agent Skills? Agent Skills is a framework for creating reusable, shareable capabilities for AI coding assistants. Think of it as npm for agent behaviors:\nSkills = Your organization's AI knowledge = Pre-built workflows = Custom commands = Context-aware helpers Installation \u0026 Setup Method 1: Quick Start npm install -g agent-skills skills init my-project Method 2: Manual Installation git clone https://github.com/addyosmani/agent-skills.git cd agent-skills npm install npm run build IDE Integration For VS Code:\n// settings.json { \"agentSkills.enabled\": true, \"agentSkills.skillsPath\": \"./skills\" } For Cursor:\n// .cursorrc { \"skills\": { \"enabled\": true, \"directory\": \"./skills\" } } Building Your First Skill Basic Structure skills/ ├── my-skill/ │ ├── SKILL.md # Skill definition │ ├── execute.ts # Implementation │ └── config.yaml # Configuration Skill Definition --- name: my-skill description: \"One-line description of what this skill does\" version: 1.0.0 author: your-name --- # My Skill Detailed description here... ## Usage \\`\\`\\` skills run my-skill --flag value \\`\\`\\` ## Examples \\`\\`\\`typescript // Example code \\`\\`\\` Implementation import { Skill, SkillContext } from 'agent-skills'; export class MySkill extends Skill { name = 'my-skill'; description = 'Does something useful'; async execute(ctx: SkillContext): Promise\u003cSkillResult\u003e { // Your logic return { success: true, output: 'Done!', metrics: { tokens: 150, time: '0.5s' } }; } } Real-World Skill Examples 1. Security Scanner Automated security checks before commits:\nclass SecurityScanSkill extends Skill { async execute(ctx) { const files = await this.getModifiedFiles(); for (const file of files) { // Check for secrets if (this.containsSecret(file)) { await this.notify('Security issue found!'); return { success: false, reason: 'Secret detected' }; } // Check for SQL injection if (this.detectSQLInjection(file)) { await this.notify('Potential SQL injection!'); } } return { success: true }; } } 2. Documentation Generator Auto-generate docs from code:\nclass DocGeneratorSkill extends Skill { async execute(ctx) { const api = await this.extractAPI(ctx.code); const docs = await this.generateMarkdown(api); await this.writeToFile('docs/api.md', docs); return { success: true, output: `Generated ${api.length} API docs` }; } } 3. Performance Profiler Measure and optimize code:\nclass PerformanceProfileSkill extends Skill { async execute(ctx) { const metrics = await this.profileCode(ctx.code); return { success: true, insights: metrics.suggestions, report: metrics.fullReport }; } } Advanced Patterns Pattern 1: Conditional Execution class ConditionalSkill extends Skill { async shouldExecute(ctx): Promise\u003cboolean\u003e { // Only run if certain conditions are met return ctx.command.includes('--debug'); } async execute(ctx) { // ... } } Pattern 2: Multi-Step Workflows class DeploySkill extends Skill { async execute(ctx) { const steps = [ this.build, this.test, this.validate, this.deploy ]; for (const step of steps) { await step(ctx); } return { success: true }; } } Pattern 3: State Persistence class CachingSkill extends Skill { async execute(ctx) { const cacheKey = this.computeKey(ctx); const cached = await this.cache.get(cacheKey); if (cached) { return cached; } const result = await this.expensiveOperation(ctx); await this.cache.set(cacheKey, result); return result; } } Pattern 4: Error Recovery class RobustSkill extends Skill { async execute(ctx) { const maxRetries = 3; for (let i = 0; i \u003c maxRetries; i++) { try { return await this.performOperation(ctx); } catch (error) { if (i === maxRetries - 1) throw error; await this.backoff(i); } } } } Pattern 5: Parallel Execution class ParallelSkill extends Skill { async execute(ctx) { const results = await Promise.all([ this.fetchData(ctx), this.processMetadata(ctx), this.validateSchema(ctx) ]); return { data: results[0], meta: results[1], valid: results[2] }; } } return result; } }\n## Integration Guide ### With Claude Code ```bash # Install skills skills install ./my-skills # Use in session claude code \u003e /skills run my-skill With VS Code // .vscode/settings.json { \"agentSkills.skills\": [ \"./skills/security-scan\", \"./skills/doc-generator\", \"./skills/performance\" ] } With GitHub Actions # .github/workflows/skills.yml name: Run Skills on: [push] jobs: test: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - run: skills test - run: skills lint Performance Benchmarks Testing Agent Skills vs vanilla assistants:\nMetric Vanilla With Skills Improvement Task completion 65% 89% +24% Error rate 12% 3% -75% Token usage 100% 78% -22% Response time 2.1s 1.4s -33% Key insight: Skills provide structured guidance that reduces both hallucinations and token waste. The 75% error rate reduction comes from pre-defined validation steps that catch issues before they propagate.\nLong-Term Metrics After 3 months of production use:\nFirst-month bug rate: 8.2 bugs per 1000 lines Six-month bug rate: 2.1 bugs per 1000 lines (74% reduction) Onboarding time: Reduced from 2 weeks to 3 days for new developers Code review cycle: Shortened by 40% due to automated checks Common Pitfalls \u0026 Solutions Pitfall 1: Skills Overlap Problem: Multiple skills do similar things. Solution: Use skill composition, not duplication:\n// Instead of duplicating logic class AuthSkill extends Skill { /* auth logic */ } class APIKeySkill extends Skill { /* more auth logic */ } // Compose them class AuthenticatedRequest extends Skill { async execute(ctx) { const auth = await new AuthSkill().execute(ctx); const result = await this.makeRequest(ctx, auth.token); return result; } } Pitfall 2: State Leakage Problem: Skills interfere with each other’s state. Solution: Isolate state per skill instance:\nclass IsolatedSkill extends Skill { async execute(ctx) { const localState = this.createIsolatedState(); // ... use localState only } } Pitfall 3: Performance Degradation Problem: Too many skills slow down the assistant. Solution: Lazy loading:\nclass LazySkill extends Skill { async load() { // Only load when needed return import('./heavy-module'); } } Deployment Patterns Containerized Deployment Run Agent Skills in Docker for isolated environments:\nFROM node:18-alpine WORKDIR /app COPY package*.json ./ RUN npm ci --only=production COPY . . CMD [\"skills\", \"run\", \"my-skill\"] docker build -t agent-skills-app . docker run -v $(pwd)/skills:/app/skills agent-skills-app CI/CD Integration Automate skill testing in your pipeline:\n# .github/workflows/skills-test.yml name: Test Skills on: [push, pull_request] jobs: test: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - run: npm install -g agent-skills - run: skills test - run: skills lint - run: skills coverage Multi-Team Setup For organizations with multiple teams:\n# skills-config.yaml global: pluginsDir: ~/.agent-skills/plugins cacheDir: ~/.agent-skills/cache teams: platform: skillsDir: ./skills/platform members: [alice, bob] data: skillsDir: ./skills/data members: [charlie, diana] Comparison with Alternatives Feature Agent Skills DeepSeek Harness Superpowers Creator Addy Osmani DeepSeek AI Unknown Stars 96K 229K 204K Primary Use Production workflows Plugin ecosystem General purpose Best For Teams, enterprises Individual developers Beginners Learning Curve Medium Low Low Enterprise Ready ✅ ⚠️ ❌ Verdict: Agent Skills leads for enterprise use cases. DeepSeek Harness wins for plugin marketplaces.\nLimitations \u0026 Honest Assessment Agent Skills isn’t perfect. Here’s what you should know before adopting it:\nStrengths Production-ready — Designed for enterprise workflows, not just experiments Addy’s track record — Former Google engineer with proven performance expertise Active maintenance — Regular updates and bug fixes Strong community — 96K+ stars and growing contributor base Weaknesses Learning curve — Requires understanding of skills architecture Opinionated design — Not as flexible as generic plugin systems Smaller ecosystem — Fewer pre-built skills vs. DeepSeek Harness marketplace TypeScript focus — Python users may find it less intuitive Who should use Agent Skills:\nEnterprise teams building production AI workflows Organizations needing reliable, auditable AI behavior Developers who value structure over flexibility Teams with TypeScript/JavaScript expertise Who should skip:\nSolo developers needing quick prototyping Projects requiring extensive Python integration Teams wanting a massive plugin marketplace Anyone comfortable with unstructured prompt engineering When to Skip Agent Skills If you need a quick prototype or have a small team without TypeScript expertise, consider DeepSeek Harness or Superpowers instead. Agent Skills shines in organized, production environments.\nFAQ Q: Do I need to be a Google engineer to use this? No. Addy shared his framework openly. Anyone can use it.\nQ: Is this free? Yes, MIT-licensed and open-source.\nQ: Can I contribute? Absolutely. Check the contributing guide on GitHub.\nQ: How is this different from plugins? Skills are more opinionated and workflow-focused. Plugins are more generic.\nQ: Does this work with non-Claude tools? Yes, with adapters for Cursor, Codex, VS Code, and others. The skills are language-agnostic.\nQ: What’s the learning curve like? Medium. If you understand TypeScript and have used VS Code extensions, you’ll pick it up quickly. Expect 2-3 hours to build your first skill.\nQ: How do I find community skills? Browse the GitHub repository’s topics tag, or search npm for “agent-skills” packages. The community is active but smaller than DeepSeek’s marketplace.\nTroubleshooting Common Issue: Skills Not Loading # Check skill registration skills list # View skill logs skills logs --skill my-skill --tail 50 Common Issue: TypeScript Compilation Errors # Clear cache and rebuild rm -rf node_modules/.cache npm run clean npm run build Common Issue: Memory Leak in Long Sessions Enable memory limits in your skill config:\n// skill.config.ts export default { memory: { maxTokens: 4096, gcInterval: '5m' } }; Common Issue: Plugin Conflicts When multiple skills conflict:\n# List all loaded skills skills list --all # Disable conflicting skills temporarily skills disable skill-name Common Issue: Plugin Conflicts When multiple skills conflict:\n# List all loaded skills skills list --all # Disable conflicting skills temporarily skills disable skill-name Security Considerations When deploying skills in production environments:\nSandbox Execution — Always run skills in isolated containers Network Restrictions — Use firewall rules to limit outbound connections Secret Scanning — Integrate a secrets scanner as a pre-deploy check Skill Auditing — Review third-party skills before installation # Security scan for skills skills security scan --deep ./skills Community \u0026 Ecosystem Agent Skills represents what happens when a performance engineer builds tooling for AI. It’s not about adding features — it’s about making sure the features actually work reliably.\nAfter implementing Addy’s framework at my company, our team saw:\n40% reduction in AI-related bugs 60% faster onboarding for new team members Zero production incidents from AI-generated code The lesson: Build skills, not just prompts. Structure beats magic.\nYour turn: What skill would you build first? Share your ideas!\nSources \u0026 Further Reading:\nGitHub repo: https://github.com/addyosmani/agent-skills Documentation: https://agent-skills.addy.io/ Blog post: https://addyosmani.com/blog/agent-skills/ Contributing guide: https://github.com/addyosmani/agent-skills/blob/main/CONTRIBUTING.md Last updated: September 2026 | Verified: Agent Skills v2.1.0+\nCTA: Join the DIBI8 community on Telegram: https://t.me/DIBI8_Group\nDeepSeek Harness Guide | Agent-Reach Tutorial\n",
   "wordCount" : "1741",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-19T00:00:00Z",
   "dateModified": "2026-09-19T00:00:00Z",
   "mainEntityOfPage": {
@@ -125,21 +122,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -166,7 +149,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
         stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
         <polyline points="9 18 15 12 9 6"></polyline>
@@ -180,23 +163,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-19 00:00:00 +0000 UTC'>September 19, 2026</span>&nbsp;·&nbsp;<span>9 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/zh/addy-osmani-agent-skills-production-guide-2026/">Zh</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/ko/addy-osmani-agent-skills-production-guide-2026/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/addy-osmani-agent-skills-production-guide-2026/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-19 00:00:00 +0000 UTC'>September 19, 2026</span>&nbsp;·&nbsp;<span>9 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul>
@@ -1040,12 +1012,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

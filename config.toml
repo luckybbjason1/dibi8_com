@@ -26,31 +26,13 @@ enableGitInfo = false
   category = "categories"
   collection = "collections"
 
-# Languages configuration
+# Languages configuration - only Chinese (CN) as source
 [languages]
-  [languages.en]
+  [languages.zh]
     weight = 1
     title = "Dibi8"
-    languageName = "English"
-    contentDir = "CN"
-    
-  [languages.zh]
-    weight = 2
-    title = "Dibi8"
     languageName = "中文"
-    contentDir = "ZH"
-    
-  [languages.ko]
-    weight = 3
-    title = "Dibi8"
-    languageName = "한국어"
-    contentDir = "KR"
-    
-  [languages.vi]
-    weight = 4
-    title = "Dibi8"
-    languageName = "Tiếng Việt"
-    contentDir = "VI"
+    contentDir = "CN"
 
 # Menu configuration
 [[menu.main]]

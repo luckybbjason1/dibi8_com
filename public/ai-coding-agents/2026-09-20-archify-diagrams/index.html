@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,9 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/2026-09-20-archify-diagrams/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/2026-09-20-archify-diagrams/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/2026-09-20-archify-diagrams/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/2026-09-20-archify-diagrams/">
 <noscript>
     <style>
         #theme-toggle,
@@ -84,7 +82,7 @@
   ],
   "articleBody": "Archify by tt-a1i has emerged as one of the most popular architecture visualization tools in 2026, gaining 59,700 stars and 3,900 forks in a single month. This self-contained HTML tool generates beautiful, interactive diagrams from code analysis without requiring external dependencies.\nThis guide explores how Archify works, its integration with AI coding agents, and practical workflows for development teams.\nWhat is Archify? Archify is an agent skill that transforms codebases into visual architecture diagrams. Unlike traditional diagramming tools that require manual drawing, Archify analyzes your code structure and automatically generates: - Workflow diagrams: Show execution flow and dependencies\nSequence diagrams**: Illustrate component interactions Data flow diagrams: Track data movement through systems Lifecycle diagrams: Map object and request lifecycles Component diagrams: Display system architecture Key Features Self-contained HTML: No external dependencies or build steps Motion and Animation: Interactive diagrams with smooth transitions Crisp Export: Export to SVG, PNG, or PDF for documentation AI-Native: Designed to work with Claude Code, Codex, and other agents Zero Configuration: Works out of the box with most codebases Installation and Setup For Claude Code # Install via npx (recommended) npx -y tt-a1i/archify # Or clone and link git clone https://github.com/tt-a1i/archify.git cd archify ./skills.sh install For Other Agents Archify works with any agent supporting Markdown skills: ```markdown\nUsing Archify Point at your repository Ask for architecture diagrams Review and customize output Export for documentation ### Quick Start ```bash # Analyze a GitHub repository archify https://github.com/your-org/your-repo # Generate specific diagram types archify --type=workflow --output=diagram.html archify --type=sequence --scope=\"auth-service\" # Interactive mode archify --interactive How Archify Works Analysis Pipeline Archify follows a multi-stage analysis process: 1. Code Parsing: Scans source files to understand structure 2. Dependency Mapping: Identifies imports, exports, and relationships 3. Pattern Detection: Recognizes common architectural patterns 4. Diagram Generation: Creates visual representations 5. Refinement: Applies styling and layout optimizations\nSupported Languages Archify has built-in parsers for: - JavaScript/TypeScript: Node.js, React, Vue, Next.js\nPython: Django, Flask, FastAPI, FastAPI Go: Standard library patterns, microservices Rust: Cargo projects, async applications Java/Kotlin: Spring Boot, Android Ruby: Rails applications PHP: Laravel, Symfony Diagram Types 1. Workflow Diagrams Show the sequence of operations in a system: ``` User Request → API Gateway → Auth Service → Database ↓ Rate Limiter → Cache Layer\n**Use Cases:** - API request flows - Background job processing - Payment processing pipelines - Event-driven architectures #### 2. Sequence Diagrams Illustrate interactions between components: ``` Client Server Database │ │ │ │──Request──▶│ │ │ │──Query──▶ │ │ │◀──Result── │ │◀──Response──│ │ Use Cases:\nAPI endpoint flows Service-to-service communication Authentication flows Data transformation pipelines 3. Data Flow Diagrams Track how data moves through systems: ``` ┌─────────┐ ┌─────────┐ ┌─────────┐ │ Source │───▶│Processor│───▶│Storage │ │ (API) │ │(Transform)│ │(Database)│ └─────────┘ └─────────┘ └─────────┘\n**Use Cases:** - ETL pipelines - Event streaming - Data warehousing - Cache invalidation #### 4. Lifecycle Diagrams Map object and request lifetimes: ``` Created → Initialized → Active → Idle → Destroyed ↑ │ └────────── Recycled ─────────────┘ Use Cases:\nDatabase connection pooling Cache entry lifecycle Worker process management Session handling 5. Component Diagrams Display system architecture: ``` ┌─────────────────────────────────────┐ │ Frontend Layer │ │ ┌─────────┐ ┌─────────┐ │ │ │ Web │ │ Mobile │ │ │ └─────────┘ └─────────┘ │ ├─────────────────────────────────────┤ │ API Gateway Layer │ │ ┌─────────────────────────────┐ │ │ │ Rate Limiter │ │ │ │ Auth Middleware │ │ │ └─────────────────────────────┘ │ ├─────────────────────────────────────┤ │ Service Layer │ │ ┌──────┐ ┌──────┐ ┌──────┐ │ │ │User │ │Order │ │Pay │ │ │ └──────┘ └──────┘ └──────┘ │ └─────────────────────────────────────┘\n**Use Cases:** - Microservice architecture - Layered application design - Third-party integration mapping - Infrastructure topology ## Practical Workflows ### 1. Onboarding New Developers **Problem**: New team members struggle to understand codebase structure. **Solution**: Generate architecture diagrams during onboarding. ```bash # Run during first day archify --repo=https://github.com/company/main-app \\ --output=docs/onboarding/ \\ --type=all # Create interactive walkthrough archify --interactive --port=8080 Benefits:\nReduces onboarding time by 40% Creates living documentation Helps identify architectural debt 2. Technical Documentation Problem: Documentation becomes outdated as code evolves.\nSolution: Generate diagrams directly from code.\n# In your documentation pipeline def generate_architecture_docs(repo_url, output_dir): # Clone repo subprocess.run([\"git\", \"clone\", repo_url, \"/tmp/app\"]) # Generate diagrams subprocess.run([ \"archify\", \"--path=/tmp/app\", \"--output=\" + output_dir, \"--types=workflow,sequence,component\" ]) # Commit documentation subprocess.run([\"git\", \"add\", output_dir]) subprocess.run([\"git\", \"commit\", \"-m\", \"Update architecture docs\"]) Benefits:\nAlways up-to-date with code Single source of truth Automated documentation updates 3. Architecture Reviews Problem: Manual diagram creation is time-consuming.\nSolution: Use Archify to generate baseline diagrams, then refine.\n# Generate initial diagrams archify --repo=. --type=component --output=review/ # Create comparison across versions archify --repo=. --compare=main,feature-branch --output=comparison/ # Generate change detection archify --repo=. --diff --output=deltas/ Benefits:\nQuick visual comparison Identify unintended changes Track architectural evolution 4. System Design Interviews Problem: Drawing diagrams during interviews is stressful.\nSolution: Use Archify to generate clean, professional diagrams.\n# Real-time diagram generation archify --interactive --mode=interview # Generate from verbal description echo \"Design a URL shortener\" | archify --from=prompt Benefits:\nProfessional appearance Focus on discussion, not drawing Save diagrams for later reference 5. Client Presentations Problem: Creating client-facing diagrams takes too long.\nSolution: Generate polished diagrams in minutes.\n# Generate presentation-ready diagrams archify --repo=. \\ --style=clean \\ --export=svg \\ --output=presentations/ # Create animated walkthrough archify --repo=. --animate --output=walkthrough.html Benefits:\nSave hours of manual work Consistent styling Interactive presentations Integration with AI Agents Claude Code Integration # In your Claude Code session \u003e Analyze the authentication flow in this project \u003e Generate a sequence diagram showing the OAuth flow \u003e Export as SVG for documentation Claude Code can then: 1. Run Archify analysis 2. Interpret results 3. Generate explanations 4. Create documentation\nCodex Integration # In your Codex workflow def analyze_system(repo_path): # Generate diagrams archify_result = run_archify(repo_path) # Analyze with AI insights = codex.analyze({ \"diagrams\": archify_result, \"question\": \"What are the main architectural risks?\" }) return insights GitHub Actions Integration # .github/workflows/archify.yml name: Generate Architecture Docs on: push: branches: [main] jobs: generate: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Install Archify run: npm install -g @tt-a1i/archify - name: Generate diagrams run: archify --path=. --output=docs/architecture - name: Commit docs run: | git add docs/architecture git commit -m \"Update architecture diagrams\" || echo \"No changes\" git push Customization and Styling Theme Options Archify supports multiple visual themes: ```bash\nAvailable themes archify –theme=dark # Dark background, light text archify –theme=light # Light background, dark text archify –theme=mono # Monochrome, print-friendly archify –theme=colorful # Vibrant colors, engaging\n### Style Customization Control diagram appearance: ```bash # Node styling archify --node-style=filled # Solid colored nodes archify --node-style=outlined # Outlined nodes archify --node-style=wireframe # Minimal wireframes # Layout options archify --layout=horizontal # Left-to-right flow archify --layout=vertical # Top-to-bottom flow archify --layout=auto # Intelligent auto-layout # Edge styling archify --edge-style=curved # Smooth curves archify --edge-style=straight # Angular lines archify --edge-style=dashed # Dashed connections Export Formats # SVG for web and documentation archify --export=svg --output=diagram.svg # PNG for presentations archify --export=png --resolution=2x --output=diagram.png # PDF for printing archify --export=pdf --output=diagram.pdf # Interactive HTML for web archify --export=html --interactive --output=diagram.html Advanced Features Real-time Collaboration Archify supports collaborative editing: ```bash\nStart collaborative session archify –collab –port=3000\nShare with team Team members join via URL Changes sync in real-time ### Version Comparison Compare architecture across branches: ```bash # Diff between main and feature branch archify --compare=main,feature/auth \\ --output=comparison/ \\ --highlight-changes # Generate change report archify --compare=main,feature/auth \\ --report=changes.md Performance Analysis Identify bottlenecks from diagrams: ```bash\nAnalyze performance implications archify –analyze=performance –output=report.html\nFind hot paths archify –hotpaths –top=10 –output=hotpaths.md\n### Security Analysis Detect security patterns and issues: ```bash # Analyze auth flows archify --focus=authentication --output=security/ # Identify data exposure archify --focus=data-flow --check=exposure Limitations and Considerations What Archify Won’t Do Explain Business Logic: Shows structure, not purpose Replace Design: Helps document, not create architecture Understand Context: May miss organizational constraints Guarantee Accuracy: Based on code analysis, may miss runtime behavior When to Use Manual Diagrams Strategic Planning: High-level architecture decisions Client Communication: Simplified executive views Regulatory Documentation: Formal compliance requirements Legacy Systems: Complex historical context needed Best Practices Combine Approaches: Use Archify for baseline, refine manually Regular Updates: Regenerate after significant changes Team Review: Have architects validate automated diagrams Context Addition: Add notes explaining business logic Version Control: Store diagrams alongside code Performance Benchmarks Processing Speed | Repository Size | Analysis Time | Diagram Generation | | |\n|\n| | \u003c 10K LOC | \u003c 5 seconds | \u003c 2 seconds | | 10K - 100K LOC | 10-30 seconds | 3-5 seconds | | 100K - 500K LOC | 1-3 minutes | 5-10 seconds | | \u003e 500K LOC | 3-10 minutes | 10-30 seconds |\nMemory Usage Baseline: 50-100 MB for small projects Large Projects: 200-500 MB for enterprise codebases Peak Usage: Short spikes during analysis Scalability Single User: Works well for personal projects Team Usage: Collaborative features support 5-10 concurrent users Enterprise: Consider server deployment for 10+ users Comparison with Other Tools Archify vs. Mermaid | Feature | Archify | Mermaid | |\n|\n|\n| | Auto-generation | ✅ Yes | ❌ Manual | | Code Analysis | ✅ Deep | ❌ None | | Interactive | ✅ Yes | Limited | | Learning Curve | Low | Medium | | Customization | High | Medium | | Integration | Agent-native | Markdown-native |\nVerdict: Use Archify for automated analysis, Mermaid for manual documentation.\nArchify vs. Draw.io | Feature | Archify | Draw.io | |\n|\n|\n| | Automation | ✅ Full | ❌ None | | Design Quality | High | High | | Collaboration | Real-time | Cloud-based | | Learning Curve | Low | Medium | | Export Options | Multiple | Multiple |\nVerdict: Use Archify for quick generation, Draw.io for detailed design.\nArchify vs. PlantUML | Feature | Archify | PlantUML | |\n|\n|\n| | Auto-generation | ✅ Yes | ❌ Manual | | Language Support | Multiple | Java-focused | | Output Quality | Modern | Traditional | | Integration | Agent-native | IDE plugins |\nVerdict: Use Archify for modern workflows, PlantUML for Java-heavy projects.\nCommunity and Ecosystem GitHub Statistics Stars: 59,700 ⭐ Forks: 3,900 🍴 Watchers: 1,200 👁️ Issues: Active triage Contributors: 45+ Integration Ecosystem Archify integrates with: - AI Agents: Claude Code, Codex, Cursor, GitHub Copilot\nCI/CD: GitHub Actions, GitLab CI, Jenkins Documentation: MkDocs, Docusaurus, Hugo Design Tools: Figma, Sketch (via export) Communication: Slack, Discord (via bots) Contributing Ways to contribute: 1. Report Issues: Bug reports and feature requests 2. Submit PRs: Code improvements and new parsers 3. Add Parsers: Support for more languages 4. Improve Docs: Tutorials and examples 5. Share Workflows: Real-world use cases\nFuture Roadmap Q4 2026 API Release: REST API for programmatic access Browser Extension: Real-time diagram generation IDE Plugins: VS Code, JetBrains integration Mobile App: iOS and Android viewers Q1 2027 Advanced AI: Better pattern recognition Collaboration: Multi-user editing Analytics: Usage insights and recommendations Marketplace: Shared diagram templates Q2 2027 Cloud Service: Hosted collaboration platform Enterprise Features: SSO, audit logs, SLA Advanced Visualization: 3D architecture views Integration Hub: More third-party integrations Conclusion Archify represents a significant advancement in architectural visualization. By automating diagram generation from code, it saves developers hours of manual work while creating accurate, up-to-date documentation.\nKey Advantages Time Savings: Generate diagrams in seconds, not hours Accuracy: Based on actual code, not memory Integration: Works with modern AI agent workflows Flexibility: Multiple output formats and styles Community: Active development and support Who Should Use It Developers: Document your codebase quickly Architects: Create visual representations of designs Teams: Onboard new members faster Consultants: Analyze client systems efficiently Students: Learn architecture patterns visually Final Thoughts As codebases grow more complex, the need for clear documentation becomes critical. Archify bridges the gap between code and visualization, making architecture understanding accessible to everyone.\nThe tool doesn’t replace human design thinking—it enhances it by handling the tedious parts of documentation while you focus on the important architectural decisions.\nGitHub Repository: https://github.com/tt-a1i/archify\nStars: 59,700 ⭐ | Forks: 3,900 🍴 | License: MIT\nLast Updated: September 2026\nFound this helpful? Join our Telegram community for daily AI tool updates: https://t.me/DIBI8_Group\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
   "wordCount" : "2010",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
   "mainEntityOfPage": {
@@ -127,21 +125,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -168,7 +152,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -187,20 +171,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>10 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/ko/ai-coding-agents/2026-09-20-archify-diagrams/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/ai-coding-agents/2026-09-20-archify-diagrams/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>10 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul><ul>
@@ -913,11 +889,11 @@ archify --focus=data-flow --check=exposure
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://dibi8.com/ai-coding-agents/2026-09-20-ai-coding-agents-full-comparison/">
-    <span class="title">« Prev</span>
+    <span class="title">« 上一页</span>
     <span>AI Tool Guide</span>
   </a>
   <a class="next" href="https://dibi8.com/ai-coding-agents/2026-09-20-humanizer-ai-writing/">
-    <span class="title">Next »</span>
+    <span class="title">下一页 »</span>
     <span>AI Tool Guide</span>
   </a>
 </nav>
@@ -1085,12 +1061,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

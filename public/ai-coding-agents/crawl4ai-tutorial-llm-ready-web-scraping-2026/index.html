@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/crawl4ai-tutorial-llm-ready-web-scraping-2026/">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/crawl4ai-tutorial-llm-ready-web-scraping-2026/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/crawl4ai-tutorial-llm-ready-web-scraping-2026/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/crawl4ai-tutorial-llm-ready-web-scraping-2026/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/crawl4ai-tutorial-llm-ready-web-scraping-2026/">
 <noscript>
     <style>
         #theme-toggle,
@@ -85,7 +82,7 @@
   ],
   "articleBody": "title: “Crawl4AI Tutorial 2026: Build LLM-Ready Web Scrapers and… description: “Technical guide and comparison.” date: 2026-05-20T00:00:00+08:00 lastmod: 2026-05-20T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-20” draft: false categories: [“llm-frameworks”] tags: [“crawl4ai”, “web-scraping”, “llm-rag”, “open-source”] aliases:\n/posts/crawl4ai-tutorial-llm-ready-web-scraping-2026/ Crawl4AI Tutorial 2026: Build LLM-Ready Web Scrapers and RAG Pipelines with the Fastest-Growing Open-Source Crawler {\u003c/* resource-info */\u003e}\nIntroduction: Why Crawl4AI Became the Hottest Open-Source Tool of 2026 When ```unclecode/crawl4ai```` hit 63,000 GitHub stars and claimed the #1 trending spot in early 2026, it wasn’t hype. It was timing. The AI ecosystem had reached an inflection point where LLMs, RAG pipelines, and autonomous agents needed clean, structured web data at scale — and traditional scrapers were still spitting out HTML soup.\nCrawl4AI fills that gap with a dead-simple promise: turn any website into clean, LLM-ready Markdown. Self-hosted. Zero API fees. Fully open source.\nThis is not a surface-level overview. It’s a production-oriented tutorial that covers: - Installing and running your first crawl in under 5 minutes\nZero-rule structured data extraction using LLMs (GPT-4o, Claude, DeepSeek, Ollama) Deep crawling, adaptive crawling, and BM25 content filtering How Crawl4AI stacks against Firecrawl, ScrapeGraphAI, and Scrapy Docker deployment and production tuning for high-throughput pipelines If you are building RAG systems, AI agents, or training datasets in 2026, this guide is written for you.\nWhat Is Crawl4AI? The Data Infrastructure for the LLM Era Core Design Philosophy Crawl4AI is an async Python web crawling framework powered by Playwright. Unlike Scrapy (which excels at raw, large-scale extraction) or BeautifulSoup (which gives you the DOM and leaves cleanup to you), Crawl4AI’s default output is Markdown optimized for LLM consumption.\nThat means navbars, cookie banners, ads, and script tags are stripped out before you ever see the data. The result? Lower token costs, cleaner embeddings, and higher-quality retrieval in RAG pipelines.\nKey Features at a Glance | Feature | What It Does | |\n|\n| | LLM-Ready Markdown | Auto-cleans HTML noise; outputs structured Markdown perfect for LLM ingestion | | Async Concurrency | AsyncWebCrawler handles multiple URLs in parallel for high-throughput jobs | | JavaScript Rendering | Playwright engine handles React, Vue, and infinite-scroll SPAs natively | | LLM-Based Extraction | Define a Pydantic schema + natural language instruction; the LLM extracts fields automatically | | Deep Crawling | BFS/DFS strategies for site-wide recursive crawling | | Adaptive Crawling | New in v0.8 — uses information-foraging algorithms to know when enough data has been collected | | MCP Integration | Can be registered as a Model Context Protocol tool for Claude, Cursor, and other AI agents | | Anti-Bot Stealth | Stealth mode + proxy support to reduce detection risk |\nWho Should Use It? RAG Engineers: Feed documentation sites, blogs, and wikis into vector databases with minimal preprocessing AI Agent Developers: Give your agent the ability to “read the web” via a local, controllable tool Data Teams: Replace brittle XPath/CSS selectors with natural language extraction commands Privacy-Conscious Organizations: Keep all data on-premise; no third-party SaaS dependency Quick Start: Install, Crawl, and Output Markdown in 5 Minutes Installation Option A — pip (recommended for development)\npip install crawl4ai playwright install chromium For the synchronous variant (Selenium-based): `````bash pip install crawl4ai[sync]\n**Option B — Docker (recommended for production/isolated environments)** `````bash docker pull unclecode/crawl4ai:latest Your First Async Crawl import asyncio from crawl4ai import AsyncWebCrawler async def main(): async with AsyncWebCrawler() as crawler: result = await crawler.arun(url=\"https://crawl4ai.com\") print(result.markdown[:1000]) if __name__ == \"__main__\": asyncio.run(main()) That’s it. Ten lines of code, and you have clean Markdown ready to feed into an embedding model.\nCLI Quick Mode crwl https://example.com -o markdown Supported outputs: markdown, html, json, links, screenshot.\nAdvanced: LLM Structured Extraction Without Writing a Single CSS Selector This is where Crawl4AI shifts from “convenient” to “game-changing.” Instead of maintaining brittle selectors that break when a site redesigns its CSS, you describe what you want in plain English and let the LLM handle extraction.\nExample: Extract Pricing Data from OpenAI’s API Page Step 1 — Define your data schema with Pydantic: `````python from pydantic import BaseModel, Field\nclass ModelPricing(BaseModel): model_name: str = Field(…, description=“The name of the model”) input_cost: str = Field(…, description=“Cost per 1M input tokens”) output_cost: str = Field(…, description=“Cost per 1M output tokens”)\nStep 2 — Configure the LLM extraction strategy: `````python import os import asyncio from crawl4ai import AsyncWebCrawler, BrowserConfig, CrawlerRunConfig, CacheMode from crawl4ai.extraction_strategy import LLMExtractionStrategy async def main(): browser_config = BrowserConfig(verbose=True) run_config = CrawlerRunConfig( word_count_threshold=1, extraction_strategy=LLMExtractionStrategy( provider=\"openai/gpt-4o\", api_token=os.getenv(OPENAI_API_KEY), schema=ModelPricing.model_json_schema(), extraction_type=\"schema\", instruction=( \"Extract all mentioned model names along with their input and output token prices. \" \"Format each entry as: {model_name: 'GPT-4o', input_cost: 'US$5.00 / 1M tokens', ...}\" ), input_format=\"markdown\", verbose=True ), cache_mode=CacheMode.BYPASS, ) async with AsyncWebCrawler(config=browser_config) as crawler: result = await crawler.arun( url='https://openai.com/api/pricing/', config=run_config ) print(result.extracted_content) if __name__ == \"__main__\": asyncio.run(main()) Supported LLM Providers | Provider | Example provider string | Notes | |\n|\n|\n| | OpenAI | openai/gpt-4o | Best accuracy; moderate cost | | Anthropic | anthropic/claude-sonnet-4-20250514 | Excellent for long-context pages | | Groq / DeepSeek | groq/deepseek-r1-distill-llama-70b | Fast, cost-efficient | | Local (Ollama) | ollama/llama3 | Zero external API cost; requires local GPU |\nPro tip: Using input_format=\"markdown\" dramatically reduces token usage versus feeding raw HTML into the LLM, often cutting costs by 60–80%.\nDeep Crawling and Content Filtering: From Single Page to Entire Sites BFS Deep Crawl (Site-Wide, 2 Levels) import asyncio from crawl4ai import AsyncWebCrawler, CrawlerRunConfig from crawl4ai.deep_crawling import BFSDeepCrawlStrategy from crawl4ai.content_scraping_strategy import LXMLWebScrapingStrategy async def main(): config = CrawlerRunConfig( deep_crawl_strategy=BFSDeepCrawlStrategy( max_depth=2, include_external=False ), scraping_strategy=LXMLWebScrapingStrategy(), verbose=True ) async with AsyncWebCrawler() as crawler: results = await crawler.arun(\"https://docs.crawl4ai.com/\", config=config) print(f\"Total pages crawled: {len(results)}\") for r in results[:5]: print(f\"URL: {r.url} | Depth: {r.metadata.get(depth, 0)}\") if __name__ == \"__main__\": asyncio.run(main()) BM25 Content Filtering for RAG Pipelines When building a knowledge base, you often don’t need the entire page — only the passages relevant to a query. Crawl4AI’s BM25 filter solves this: `````python from crawl4ai.content_filter import BM25ContentFilter\nfilter = BM25ContentFilter( query=“async crawler configuration methods”, threshold=0.1 )\nThis filter ranks every text chunk on the page against your query and drops low-relevance content before you ever pay for embeddings or vector storage. * * * ## Head-to-Head: Crawl4AI vs Firecrawl vs ScrapeGraphAI vs Scrapy (2026) | Dimension | Crawl4AI | Firecrawl | ScrapeGraphAI | Scrapy | | * * * | * * * | * * * | * * * | * * * | | **GitHub Stars** | 63k+ | 78k+ | 23k+ | 50k+ | | **Deployment** | Self-hosted / Docker | SaaS API + open-source | Open-source Python | Open-source framework | | **LLM Extraction** | Native | Supported | Core feature (graph traversal) | Manual integration | | **Output** | Markdown / JSON | Markdown / JSON | JSON | JSON / CSV / XML | | **JS Rendering** | Playwright (built-in) | Supported | Limited | Requires plugins | | **Self-Hosted Cost** | Free (infra only) | $16+/mo | Free | Free | | **MCP Support** | Community integrations | Official MCP server | None | None | | **Learning Curve** | Low–Medium | Very Low | Low | High | ### Which One Should You Choose? - **Crawl4AI** → Best for teams that want full control, zero per-request fees, and deep Python integration. You trade convenience for flexibility. - **Firecrawl** → Best for rapid prototyping and teams that prefer managed infrastructure. The official MCP server is a big plus for AI agent stacks. - **ScrapeGraphAI** → Best when your primary need is graph-based, natural-language-driven discovery of related data across a site. - **Scrapy** → Still the king for industrial-scale crawling (millions of pages, distributed queues, middleware pipelines). Not AI-native, but battle-tested for over a decade. **Hybrid recommendation**: Use Firecrawl for quick API-based tasks and Crawl4AI for high-volume, self-hosted pipelines. Many production teams run both. * * * ## Production Deployment and Performance Tuning ### Docker with FastAPI and JWT Authentication Deploy Crawl4AI as an internal microservice: `````bash docker run -p 8000:8000 \\ -e CRAWL4AI_API_TOKEN=your_jwt_secret \\ unclecode/crawl4ai:latest Call it from your application: `````bash curl -X POST http://localhost:8000/crawl -H “Authorization: Bearer your_jwt_secret” -d ‘{“url”: “https://example.com”, “output_format”: “markdown”}’\n### Proxy and Concurrency Configuration For production-scale crawling, configure proxy rotation and headless browser pools: `````python browser_config = BrowserConfig( headless=True, proxy_config={ \"server\": os.getenv(\"PROXY_SERVER\"), \"username\": os.getenv(\"PROXY_USERNAME\"), \"password\": os.getenv(\"PROXY_PASSWORD\"), }, verbose=True ) Troubleshooting Common Issues | Symptom | Root Cause | Fix | |\n|\n|\n| | Empty output | SPA hasn’t finished rendering | Use wait_until=\"networkidle\" or inject a delay | | Blocked by anti-bot | Fingerprinting detection | Enable stealth mode; rotate residential proxies | | LLM extraction times out | Page too large for context window | Pre-filter with CSS selectors before LLM extraction | | Playwright install fails | Chromium download blocked | Use ````PLAYWRIGHT_BROWSERS_PATH=0``` or mirror URLs |\nRecommended Hosting \u0026 Infrastructure Before deploying these tools into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don’t cost you extra and they help keep dibi8.com running.\nFinal Thoughts and Recommended Next Steps Crawl4AI is not a universal replacement for every scraping need. But in the specific domain of “feeding web data into LLMs,” it is the most focused, fastest-growing, and community-validated tool available today.\nIf you are building…\nA chatbot knowledge base → Pair Crawl4AI with Milvus, Chroma, or Weaviate for a fully local RAG stack. Training datasets → Use deep crawling + BM25 filtering to curate high-quality, domain-specific corpora. AI agents → Register Crawl4AI as an MCP tool and give your agent autonomous web-reading capabilities. Recommended action plan:\nRun the 10-line quick-start example from Section 2 on your target domain. Inspect the Markdown quality. If it\"s clean enough for your use case, proceed. Set up LLM extraction with a Pydantic schema and compare accuracy against your legacy CSS-selector pipeline. Deploy via Docker and benchmark throughput against your volume requirements. Revisit the comparison table in Section 5 to decide if you need a hybrid setup with Firecrawl or Apify. References\nCrawl4AI on GitHub Official Documentation v0.8.x Crawl4AI vs Firecrawl vs Apify (2026 Comparison) Best Open-Source Web Crawlers 2026 — Firecrawl Blog Published 2026-05-19. Data sourced from GitHub, official docs, and publicly available benchmarks. Crawl4AI iterates rapidly; always cross-check with the latest documentation.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Crawl4AI Tutorial 2026: Build LLM-Ready Web Scrapers and RAG Pipelines with the Fastest-Growing Open-Source Crawler”, “datePublished”: “2026-05-20”, “dateModified”: “2026-05-20”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/crawl4ai-tutorial-llm-ready-web-scraping-2026\" } } Related Articles 2026-05-25-trending-ai-agents 2026-06-01-trending-ai-agents 2026-06-08-trending-ai-agents 2026-06-15-trending-ai-agents 2026-06-22-trending-ai-agents Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
   "wordCount" : "1853",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
   "mainEntityOfPage": {
@@ -128,21 +125,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -169,7 +152,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -188,23 +171,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>9 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/zh/ai-coding-agents/crawl4ai-tutorial-llm-ready-web-scraping-2026/">Zh</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/ko/ai-coding-agents/crawl4ai-tutorial-llm-ready-web-scraping-2026/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/ai-coding-agents/crawl4ai-tutorial-llm-ready-web-scraping-2026/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>9 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul>
@@ -606,11 +578,11 @@ browser_config = BrowserConfig(
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://dibi8.com/ai-coding-agents/coqui-tts/">
-    <span class="title">« Prev</span>
+    <span class="title">« 上一页</span>
     <span>AI Tool Guide</span>
   </a>
   <a class="next" href="https://dibi8.com/ai-coding-agents/crewai-multi-agent-orchestration/">
-    <span class="title">Next »</span>
+    <span class="title">下一页 »</span>
     <span>AI Tool Guide</span>
   </a>
 </nav>
@@ -778,12 +750,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/gemini-cli-vs-claude-code/">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/gemini-cli-vs-claude-code/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/gemini-cli-vs-claude-code/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/gemini-cli-vs-claude-code/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/gemini-cli-vs-claude-code/">
 <noscript>
     <style>
         #theme-toggle,
@@ -85,7 +82,7 @@
   ],
   "articleBody": "Gemini CLI vs Claude Code in 2026: Which AI Coding Agent Wins? Quick Answer Gemini CLI wins for developers who want the most generous free AI coding agent, native multi-modal input, and 1M context without paying. Claude Code wins for developers who want the most mature agent loop, best multi-file refactor quality, and Anthropic-tier code generation.\nUse Gemini CLI if: You want zero-cost AI coding (1,000 requests/day free), you work with images/PDFs/screenshots regularly, you don’t mind a slightly less polished agent loop, and you’re building hobbyist/indie projects on a strict $0 budget.\nUse Claude Code if: You want the most refined agentic experience, you need top-tier multi-file refactor quality, you’re shipping production code where every edit counts, and you’re OK paying $20-$200/month for Anthropic-grade output.\nSide-by-Side Comparison | Feature | Gemini CLI | Claude Code | |\n|\n|\n| | Vendor | Google | Anthropic | | Launched | 2025 (open source) | 2025 (closed source) | | License | Apache 2.0 (CLI), proprietary models | Proprietary | | Default model | gemini-2.0-flash-thinking | claude-opus-4.7 | | Context window (free) | 1M tokens | N/A (no free tier) | | Context window (paid) | 2M tokens (Vertex AI) | 200K standard, 1M beta | | Free tier | 60 req/min, 1,000 req/day | None | | Paid pricing (entry) | Pay-as-you-go via Vertex AI | $20/month Pro (limited) | | Paid pricing (heavy) | ~$1-3 per 1M tokens | $200/month Max plan | | Agent style | ReAct + shell integration | Refined tool-use loop | | Multi-modal input | Native (image, PDF, video frames) | Image via conversation | | Tool use | Built-in (Read, Write, Shell, WebFetch) | Built-in (Read, Edit, Bash, Glob, Grep) | | Checkpoint/resume | Basic session resume | Full conversation checkpoints | | MCP support | Yes (2025+) | Yes (native, first-class) | | Sandbox / safety | Confirmation prompts | Configurable permissions | | Open source | Yes (CLI only) | No | | Best codebase size | \u003c 500K LOC (1M context) | \u003c 500K LOC (1M context) | | Install | ```npm i -g @google/gemini-cli|npm i -g @anthropic-ai/claude-code```` |\nWhen to Choose Gemini CLI Use case 1: Zero-budget AI coding Gemini CLI’s free tier is the most generous in the AI coding agent market: 60 requests per minute and 1,000 per day. That’s roughly 30,000 free coding requests per month if you push it. For indie devs, hobbyists, and students, this is the only AI agent that can power daily work at $0/month.\nUse case 2: Multi-modal workflows Need to “look at this design screenshot and write the matching component”? Gemini CLI accepts images, PDFs, and video frames natively from the command line. Claude Code can handle images too, but Gemini CLI’s flag-based UX is faster for screenshot-heavy workflows (UI implementation, design QA, OCR-style tasks).\nUse case 3: Long context on the cheap Gemini CLI gives you 1M tokens of context on the free tier. Want to dump 200 files into one prompt for cross-cutting analysis? Free with Gemini CLI; requires a Claude Code Max subscription (~$200/month) for similar headroom.\nWhen to Choose Claude Code Use case 1: Production-grade multi-file refactors Claude Code’s agent loop is the most refined on the market in 2026. Multi-file refactors land cleaner — fewer hallucinated paths, better diff discipline, more consistent style preservation. If you’re touching real production code that ships to users, Claude Code’s edit quality is worth the $20-$200/month.\nUse case 2: Long agent loops with checkpoints Claude Code’s checkpoint-and-resume is genuinely useful — you can pause a 30-minute refactor at step 7, review, resume from step 8. Gemini CLI has basic session resume but isn’t as battle-tested for long agent loops with branching context.\nUse case 3: First-class MCP ecosystem Claude Code shipped with native MCP (Model Context Protocol) support and has the largest ecosystem of MCP servers in 2026 — databases, browsers, monitors, CRMs. Gemini CLI added MCP support but the ecosystem is thinner. If your workflow plugs into 5+ MCP servers, Claude Code is the smoother path.\nPricing Deep Dive Gemini CLI Free tier (Google account): 60 req/min, 1,000 req/day, gemini-2.0-flash-thinking, 1M context Vertex AI pay-as-you-go: ~$0.30 per 1M input tokens, ~$1.20 per 1M output tokens (Flash) Vertex AI Pro models: ~$1.25 per 1M input, ~$5 per 1M output (gemini-2.0-pro) Google Workspace Code Assist: $19-$45/user/month for enterprise → Total monthly cost for an indie dev: $0 is fully realistic if you stay within the free tier. Heavy users on Vertex AI typically land at $5-$20/month.\nClaude Code Free tier: None Claude Pro: $20/month, includes limited Claude Code usage (Sonnet, ~50 messages every 5 hours) Claude Max 5x: $100/month, ~5x usage, includes Opus Claude Max 20x: $200/month, ~20x usage, Opus + 1M context beta API pay-as-you-go: ~$3 per 1M input, ~$15 per 1M output (Sonnet); ~$15/$75 for Opus → Total monthly cost for a power user: $20 (Pro, light), $100 (Max 5x, daily), $200 (Max 20x, heavy).\nBudget Winner For students/hobbyists: Gemini CLI free tier \u003e Claude Pro $20. The free tier alone covers daily coding. For freelancers shipping client work: Claude Pro $20 + Gemini CLI free combo — use Gemini for exploration, Claude for execution. For full-time builders: Claude Max 5x $100 + Gemini CLI free — Claude as primary, Gemini for multi-modal and overflow.\nPerformance Benchmarks (Subjective, From My Daily Use) | Task | Gemini CLI | Claude Code | |\n|\n|\n| | Single-file bug fix | 7/10 | 9/10 | | Multi-file refactor | 7/10 | 9/10 | | New feature from spec | 8/10 | 9/10 | | Test generation | 7/10 | 8/10 | | Reading unfamiliar codebase | 9/10 | 9/10 | | Image-to-code (UI screenshot) | 9/10 | 7/10 | | PDF/docs analysis | 9/10 | 7/10 | | Long agent loops | 6/10 | 9/10 | | Tool use discipline | 7/10 | 9/10 | | Free tier generosity | 10/10 | 0/10 |\n→ Gemini CLI wins on free tier, multi-modal, and PDF/docs ingestion. Claude Code wins on agent loop quality, multi-file refactor, and production-grade edit discipline.\nMigration Tips Claude Code → Gemini CLI Install via npm install -g @google/gemini-cli Run gemini once to authenticate via Google account (no API key needed for free tier) Map Claude Code commands: /clear → /clear, /compact → /compress, /cost → /stats Gemini CLI’s default sandbox is more permissive — set --sandbox-mode strict if you want Claude-Code-style confirmation prompts Free tier first — only flip to Vertex AI billing when you hit the 1,000 req/day cap Expect slightly weaker multi-file edits; compensate by being more explicit in prompts (“touch only these 3 files”) Gemini CLI → Claude Code Install via npm install -g @anthropic-ai/claude-code Run claude and authenticate via Claude Pro/Max subscription or API key Claude Code’s agent loop is more autonomous — expect fewer confirmation prompts, more direct edits Use ````/permissions``` to tighten the sandbox if you want Gemini-CLI-style “ask before every action” Take advantage of MCP servers — Claude Code’s MCP ecosystem is much richer Budget realistically: a heavy Claude Code user typically lands at $100/month (Max 5x) once free tier nostalgia wears off Self-Hosting Note Want a cloud sandbox to run both agents against a real codebase without burning local resources? Spin up a — enough for 2 months of daily AI-agent workflows on a $12/month droplet. Cheaper than risking your local dev machine to overly aggressive agent runs, and you can SSH in from anywhere.\nAlternatives Worth Trying If neither Gemini CLI nor Claude Code fits, consider: - Cursor — VS Code fork, best inline autocomplete, $20/month\nAider — Open-source, terminal-based, BYO API key (works with Gemini, Claude, OpenAI) Continue.dev — Free VS Code extension, BYO model cc-switch — Route Claude Code through cheaper providers, cut costs 60-80% dibi8’s Take For 2026, the AI coding CLI market is consolidating around two camps: the open generous one (Gemini CLI) and the polished premium one (Claude Code). The right pick depends on your wallet and your tolerance for rough edges.\nIf you’re budget-constrained or just exploring → Gemini CLI free tier, no debate. 1,000 requests/day at $0 is unbeatable. If you ship production code daily → Claude Code Max 5x ($100/month), the agent loop quality alone earns it back. If you want both → Gemini CLI free + Claude Pro $20 combo. Use Gemini for reconnaissance (read code, scan PRs, OCR screenshots), Claude for execution (refactor, ship, review). Total: $20/month for top-tier AI coding.\nFor an indie dev shipping a SaaS solo on the last-bet budget? Gemini CLI free tier is the most ROI-positive choice in AI coding right now — there’s literally no cheaper way to ship code with AI assistance. The only reason to graduate to Claude Code is when you start losing hours to Gemini\"s weaker multi-file refactor quality. Until then, free is free.\nFAQ (rendered via faqs frontmatter — visible inline + JSON-LD for AIO)\nFurther Reading Cursor vs Claude Code 2026 Comparison Cursor vs Windsurf 2026 Comparison Best AI Coding Tools 2026 — Cursor Alternatives Cheap LLM Stack Under $20/month Recommended Tools Need stable Claude or OpenAI API access? Most users picking between these tools end up needing the underlying API key.\n**** — Claude / OpenAI / DeepSeek API proxy. Single key access to multiple top models at ~30% of official pricing; particularly useful when comparing models head-to-head, or when direct Anthropic/OpenAI access is rate-limited in your region. Affiliate link — supports dibi8.com at no extra cost to you.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Gemini CLI vs Claude Code in 2026: Which AI Coding Agent Wins?”, “datePublished”: “2026-05-22”, “dateModified”: “2026-05-22”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/gemini-cli-vs-claude-code\" } } Related Articles claude-code-vs-cline cc-switch-all-in-one-ai-coding-agent-manager claude-code-vs-aider cursor-vs-claude-code openai-codex-cli-vs-claude-code Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
   "wordCount" : "1676",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
   "mainEntityOfPage": {
@@ -128,21 +125,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -169,7 +152,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -188,23 +171,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>8 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/zh/ai-coding-agents/gemini-cli-vs-claude-code/">Zh</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/ko/ai-coding-agents/gemini-cli-vs-claude-code/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/ai-coding-agents/gemini-cli-vs-claude-code/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>8 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul>
@@ -482,11 +454,11 @@ If you want both → <strong>Gemini CLI free + Claude Pro $20</strong> combo. Us
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://dibi8.com/ai-coding-agents/gemini-cli-vs-claude-code-2026-real-comparison/">
-    <span class="title">« Prev</span>
+    <span class="title">« 上一页</span>
     <span>AI Tool Guide</span>
   </a>
   <a class="next" href="https://dibi8.com/ai-coding-agents/geo-ai-overviews-optimization-2026-practical/">
-    <span class="title">Next »</span>
+    <span class="title">下一页 »</span>
     <span>AI Tool Guide</span>
   </a>
 </nav>
@@ -654,12 +626,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

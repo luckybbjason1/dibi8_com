@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/ai-token-monitor-conky-linux/">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/ai-token-monitor-conky-linux/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/ai-token-monitor-conky-linux/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/ai-token-monitor-conky-linux/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/ai-token-monitor-conky-linux/">
 <noscript>
     <style>
         #theme-toggle,
@@ -85,7 +82,7 @@
   ],
   "articleBody": "title: “AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota… description: “Technical guide and comparison.” date: 2026-06-06T00:00:00+08:00 lastmod: 2026-06-06T00:00:00+08:00 tech_stack: [Python, Conky, Linux] application_domain: Dev Utils source_version: “1.0.0” licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-06-06” draft: false categories: [“dev-utils”] tags: [“ai token monitor”, “claude quota”, “gemini quota tracker”, “grok token”, “kimi api”, “conky widget”, “linux desktop”, “open source”, “python”, “developer tools”] aliases:\n/posts/ai-token-monitor-conky-linux/ faqs: - q: ‘Does the AI Token Monitor work on macOS or Windows?’ a: ‘Currently the widget requires Conky, which is Linux-only. The core Python scripts (api_fetcher.py) work on any OS, but the visual display layer depends on Conky. A cross-platform version using tkinter exists in the repo (monitor.py) but is experimental — GNOME users report the frameless window may not render correctly.’ q: ‘How does the tool read Claude API token balance?’ a: ‘It sends a minimal POST request to /v1/messages with max_tokens=1 and reads the anthropic-ratelimit-tokens-remaining and anthropic-ratelimit-tokens-limit response headers. This costs roughly 10 input tokens per check (cron every 5 min = ~2,880 tokens/day) — negligible for most plans.’ q: ‘Is it safe to store API keys in ~/.config/.ai_monitor_keys?’ a: ‘The file is created with chmod 600, readable only by your user. It is excluded from git via .gitignore. It is no more or less secure than storing keys in a .env file — both rely on filesystem permissions. For shared machines, consider encrypting with gpg-agent or a secrets manager.’ q: ‘Can I add a custom AI service not listed (e.g., Mistral, Together AI)?’ a: ‘Yes. In api_fetcher.py, add a block that calls your service API and writes to the cache dict with keys ok (bool), label (display string), and optionally pct (float 0-1). Then add the service name to the SERVICES list in conky_ai.py with its reset_h value.’ q: ‘Why does Grok show “耗尽” (depleted) even when my account has credits?’ a: ‘The Grok check calls GET /v1/models — it returns 200 if authenticated and credits available, 403 if credits are exhausted. A 403 from xAI specifically means account balance is zero. If you have credits but see 403, verify the API key is correct in ~/.config/.ai_monitor_keys.’— The Problem: Juggling Six AI Services and Never Knowing Which One Is Out Modern developers use four to eight AI services simultaneously — Claude for complex reasoning, Gemini for long-context analysis, Grok for real-time web data, Kimi for large document processing. Each service has its own quota dashboard, reset schedule, and billing page.\nThe result: you hit a rate limit mid-task, spend five minutes switching browser tabs, discover Gemini’s free quota reset at midnight UTC (not your local midnight), and waste another ten minutes debugging why your Kimi call returned 429.\nAI Token Monitor solves this with a persistent desktop widget that shows every service’s status at a glance — without leaving your editor.\n● Claude ░░░░░░░░░ No balance ● Gemini ░░░░░░░░░ Quota full ● Grok ░░░░░░░░░ Depleted ● Kimi █████████ 22.4M left ● Codex ───────── 18:42:01 ● Kilo ───────── 18:42:01 How It Works The monitor has two components: api_fetcher.py — a background script (cron every 5 min) that polls each service API and writes results to ~/token-monitor/api_cache.json.\nconky_ai.py — reads the cache every 30 seconds and outputs Conky-formatted text with inline ${color} tags. Conky renders this as the desktop widget.\napi_fetcher.py → api_cache.json → conky_ai.py → Conky display (cron/5m) (JSON cache) (30s poll) (always on) This architecture means API failures never freeze your desktop. The cache always has the last known state.\nHP-Bar Progress Visualization The key feature is the blood-bar style quota display — a row of Unicode block characters that visually represent remaining quota: | Color | State | | |\n| | █████████ green | Above 50% quota | | ████░░░░░ orange | 20–50% remaining | | █░░░░░░░░ red | Below 20% | | ░░░░░░░░░ red | Exhausted / no balance | | ───────── gray | No API key configured |\nThe bar is 9 characters wide. Each █ represents ~11% of quota.\nInstallation # 1. Clone git clone https://github.com/luckybbjason1/ai-token-monitor cd ai-token-monitor # 2. Install bash install.sh # 3. Add API keys nano ~/.config/.ai_monitor_keys # 4. Restart Conky pkill conky \u0026\u0026 conky --daemonize --pause=1 The installer automatically: - Copies scripts to ~/token-monitor/\nAdds ${execpi 30 python3 ~/token-monitor/conky_ai.py} to your Conky config Sets up the cron job for api_fetcher.py Supported Services and API Methods | Service | API Endpoint | What We Detect | |\n|\n|\n| | Kimi (Moonshot) | GET /v1/users/me | Exact token quota remaining | | Claude (Anthropic) | POST /v1/messages | Rate-limit headers per window | | Gemini (Google) | POST .../generateContent | 429 = quota exceeded | | Grok (xAI) | GET /v1/models | 403 = balance exhausted | | Codex / Kilo | — | Countdown to midnight UTC+8 |\nFor services without quota APIs (Codex, Kilo), the monitor shows a countdown to the standard daily reset at midnight UTC+8.\nSecurity Design API keys are stored in ~/.config/.ai_monitor_keys with chmod 600. The file is excluded from git. Keys are never echoed to terminal or written to log files — the fetcher reads them once at startup and they stay in memory only for the duration of the HTTP call.\nFor the cautious: review api_fetcher.py before installing. It makes only GET/POST requests to official API endpoints with your own keys. No data is sent anywhere except the respective AI service.\nAdding Custom Services Open api_fetcher.py and add a block after the existing services: `````python\n── Your Service ───────────────────────────────── key = keys.get(yourservice) if key: try: r = requests.get(‘https://api.yourservice.com/v1/usage', headers={Authorization: f’Bearer {key}’}, timeout=8) if r.status_code == 200: data = r.json() remain = data[quota_remaining] total = data[quota_total] cache[YourService] = { ok: True, label: f’{remain//1000}K剩’, pct: remain / total } else: cache[YourService] = {ok: False, label: ‘API Error’} except Exception: pass\nThen add ````{name: YourService, reset_h: 24}```` to the ````SERVICES```` list in ````conky_ai.py```. ## Related Tools on dibi8 If you are managing multiple AI API costs, also check: - [AI Coding 2026 Q2 Shootout — Claude Code vs Cursor vs Codex](/en/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) — real usage cost comparison for dev workflows - [RTK Rust CLI Proxy — 80% AI Cost Savings](/en/resources/dev-utils/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/) — automatically routes prompts to cut AI API costs by up to 80% - [AI Coding Monthly Bill 2026](/en/resources/dev-utils/ai-coding-agent-monthly-bill-2026-real-receipts/) — actual receipts from six months of production AI usage ## Get the Code The tool is fully open source under MIT license. **GitHub:** [github.com/luckybbjason1/ai-token-monitor](https://github.com/luckybbjason1/ai-token-monitor) Star the repo if it saved you from a mid-task rate-limit surprise. Issues and PRs welcome — especially for adding macOS support or new service integrations. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota Live on Your Linux Desktop\", \"datePublished\": \"2026-06-06\", \"dateModified\": \"2026-06-06\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/ai-token-monitor-conky-linux\" } } ## Why This Matters Understanding ai token monitor: track claude, gemini, grok, kimi quota live on your linux desktop is crucial for modern AI development. Here\"s why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota Live on Your Linux Desktop represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* * * * ## Related Articles - [deepseek-reasonix-terminal-ai-coding-agent-prefix-cache](ai-token-monitor-conky-linux) - [freellmapi-openai-compatible-proxy-free-llm-tiers-2026](ai-token-monitor-conky-linux) - [last30days-skill-ai-agent-research-engine-social-media](ai-token-monitor-conky-linux) - [moneyprinterturbo-one-click-ai-video-generator](ai-token-monitor-conky-linux) - [pm-skills-68-product-management-skills-ai-agents](ai-token-monitor-conky-linux) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
   "wordCount" : "1377",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
   "mainEntityOfPage": {
@@ -128,21 +125,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -169,7 +152,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -188,23 +171,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>7 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/zh/ai-coding-agents/ai-token-monitor-conky-linux/">Zh</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/ko/ai-coding-agents/ai-token-monitor-conky-linux/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/ai-coding-agents/ai-token-monitor-conky-linux/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>7 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul><ul>
@@ -449,11 +421,11 @@ For the latest updates and community discussions, join our Telegram channel: htt
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://dibi8.com/ai-coding-agents/ai-stack-builder/">
-    <span class="title">« Prev</span>
+    <span class="title">« 上一页</span>
     <span>AI Tool Guide</span>
   </a>
   <a class="next" href="https://dibi8.com/ai-coding-agents/ai-tools-directory/">
-    <span class="title">Next »</span>
+    <span class="title">下一页 »</span>
     <span>AI Tool Guide</span>
   </a>
 </nav>
@@ -621,12 +593,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

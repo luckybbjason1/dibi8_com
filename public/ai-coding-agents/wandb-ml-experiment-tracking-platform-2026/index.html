@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/wandb-ml-experiment-tracking-platform-2026/">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/wandb-ml-experiment-tracking-platform-2026/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/wandb-ml-experiment-tracking-platform-2026/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/wandb-ml-experiment-tracking-platform-2026/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/wandb-ml-experiment-tracking-platform-2026/">
 <noscript>
     <style>
         #theme-toggle,
@@ -85,7 +82,7 @@
   ],
   "articleBody": "\nIntroduction Training a machine learning model without experiment tracking is like driving blindfolded. You might reach your destination eventually, but you’ll never know which turn was the right one. Weights \u0026 Biases (W\u0026B) solves this by providing a unified platform that logs, visualizes, and compares every experiment — from hyperparameter sweeps to LLM fine-tuning runs. With 11,000+ GitHub stars and integration with PyTorch, TensorFlow, Hugging Face, and 200+ frameworks, W\u0026B has become the de facto standard for ML teams that take their experiments seriously.\nWhat Is W\u0026B? Weights \u0026 Biases is an end-to-end ML development platform that covers the entire experiment lifecycle. At its core is the logger — a lightweight library you add to your training script that automatically tracks metrics, configurations, artifacts, and even model checkpoints. Beyond logging, W\u0026B provides a web dashboard for visualizing runs, comparing experiments side by side, sharing results with your team, and managing models from training to deployment.\n┌───────────────────────────────────────────────┐ │ W\u0026B Platform Architecture │ ├───────────────────────────────────────────────┤ │ │ │ SDK (pip install wandb) │ │ ├─ Logger (metrics, params, tables) │ │ ├─ Artifact Tracker (datasets, models) │ │ ├─ Sweeps (hyperparameter tuning) │ │ ├─ Reports (visual dashboards) │ │ └─ Model Registry (production models) │ │ │ │ Cloud Dashboard │ │ ├─ Run comparison (up to 100 runs) │ │ ├─ Project-level statistics │ │ ├─ Artifact lineage graph │ │ └─ Team collaboration \u0026 sharing │ │ │ │ Integrations │ │ ├─ PyTorch, TensorFlow, JAX │ │ ├─ Hugging Face Transformers │ │ ├─ PyTorch Lightning, FastAI │ │ └─ Ray Tune, Optuna, Ax │ └───────────────────────────────────────────────┘ How W\u0026B Works W\u0026B works by instrumenting your training loop. You initialize a run, log metrics at each step, and W\u0026B sends the data to the cloud dashboard in real time. The SDK is designed to have minimal overhead — logging a metric takes roughly 0.1ms, and the network calls are batched and compressed to reduce bandwidth usage.\nimport wandb # Initialize a new run with your configuration wandb.init( project=\"my-nlp-finetune\", config={ \"learning_rate\": 2e-5, \"batch_size\": 32, \"epochs\": 3, \"model\": \"bert-base-uncased\", } ) for epoch in range(config.epochs): for batch in train_dataloader: loss = model.train_step(batch) # Log metrics — W\u0026B handles the rest wandb.log({\"train_loss\": loss, \"lr\": config.learning_rate}) The platform distinguishes between three types of tracked data: metrics (scalar values like loss and accuracy logged over time), artifacts (versioned files like datasets and model checkpoints), and media (images, audio, text samples visualized directly in the dashboard).\nInstallation \u0026 Setup Option 1: pip install (standard)\npip install wandb Option 2: Authenticate with W\u0026B\nwandb login # Paste your API key from https://wandb.ai/authorize Option 3: Docker\ndocker pull wandb/launch docker run -e WANDB_API_KEY=$WANDB_API_KEY \\ -v /path/to/code:/app wandb/launch python train.py Option 4: Hugging Face Integration\npip install wandb transformers # W\u0026B is pre-configured for Hugging Face Trainer Integration with PyTorch, Hugging Face, and Ray Tune W\u0026B integrates with virtually every popular ML framework. Here are the most common setups.\nPyTorch Lightning\nimport pytorch_lightning as pl from pytorch_lightning.callbacks import WandbCallback class MyModel(pl.LightningModule): def training_step(self, batch, batch_idx): loss = self.forward(batch) self.log(\"train_loss\", loss) return loss # W\u0026B callback auto-logs everything trainer = pl.Trainer(callbacks=[WandbCallback()]) trainer.fit(model) Hugging Face Transformers\nfrom transformers import Trainer, TrainingArguments import wandb training_args = TrainingArguments( output_dir=\"./results\", report_to=\"wandb\", # Enable W\u0026B reporting num_train_epochs=3, per_device_train_batch_size=16, ) trainer = Trainer( model=model, args=training_args, train_dataset=dataset, ) trainer.train() Ray Tune for Hyperparameter Sweeps\nimport ray from ray import tune import wandb ray.init() def train_model(config): # W\u0026B automatically captures the sweep config wandb.init(config=config) score = my_training_function(config) wandb.log({\"score\": score}) sweep = tune.run( train_model, config={ \"learning_rate\": tune.choice([1e-4, 2e-5, 5e-5]), \"batch_size\": tune.choice([16, 32, 64]), }, metric=\"score\", mode=\"max\", ) Benchmarks / Real-World Use Cases W\u0026B’s logging performance has been benchmarked across various training scales. At typical training workloads, the overhead is negligible: | Scenario | Logging Overhead | Network Bandwidth | Dashboard Load Time | |\n|\n|\n|\n| | Small model (10K params) | 0.5% | \u003c1 MB/run | \u003c1s | | Medium model (100M params) | 1.2% | \u003c5 MB/run | \u003c2s | | Large model (1B params) | 2.1% | \u003c20 MB/run | \u003c3s | | LLM fine-tuning (7B params) | 3.5% | \u003c50 MB/run | \u003c5s | | Distributed training (8 GPUs) | 4.0% | \u003c100 MB/run | \u003c3s |\nReal-world usage examples: `````python\nLog a confusion matrix as a W\u0026B table import numpy as np import wandb\nconf_matrix = compute_confusion_matrix(y_true, y_pred) wandb.log({ “confusion_matrix”: wandb.plot.confusion_matrix( probs=None, preds=conf_matrix, class_names=[“Cat”, “Dog”, “Bird”] ) })\nVersion a dataset as an artifact artifact = wandb.Artifact(“training_data”, type=“dataset”) artifact.add_file(“dataset.csv”) wandb.log_artifact(artifact)\n## Advanced Usage / Production Hardening **Artifact Versioning and Lineage** `````python # Log a model checkpoint as an artifact model_artifact = wandb.Artifact(\"best_model\", type=\"model\") model_artifact.add(model, \"model.pt\") # Tag it for easy retrieval wandb.log_artifact(model_artifact, aliases=[\"best\", \"v1.0\"]) # Later, retrieve the exact version run = wandb.init() art = run.use_artifact(\"project/model:v1\", type=\"model\") path = art.download() Custom Reports and Dashboards\n# Create a report with custom panels report = wandb.Report( title=\"Experiment Results\", slides=[ (\"Overview\", wandb.plot.line_series( xs=\"step\", ys=\"loss\", keys=[\"train_loss\", \"val_loss\"], title=\"Training Loss Curve\" )), (\"Comparison\", wandb.plot.bar( wandb.Table(columns=[\"run\", \"accuracy\"], data=[[\"run-a\", 0.92], [\"run-b\", 0.89]]) )), ] ) report.save(\"experiment-report\") Sweeps Configuration\n# sweeps.yaml name: nlp-sweep program: train.py metric: name: val_accuracy goal: maximize parameters: learning_rate: values: [1e-5, 2e-5, 5e-5, 1e-4] optimizer: values: [adamw, adam] warmup_ratio: min: 0.0 max: 0.1 command: - python - train.py Run the sweep: `````bash wandb sweep sweeps.yaml wandb agent $SWEEP_ID\n**Model Registry for Deployment** `````python # Log model to the registry run.log_model( path=\"./fine_tuned_model\", name=\"my-nlp-model\", aliases=[\"staging\", \"production\"] ) # Transition model to production api = wandb.Api() model = api.model(\"my-nlp-model:staging\") model.change_alias(\"production\") W\u0026B SDK for Custom Training Loops\nimport wandb import torch from torch.optim import AdamW wandb.init(project=\"custom-training\") config = wandb.config config.learning_rate = 1e-4 config.batch_size = 64 model = MyModel() optimizer = AdamW(model.parameters(), lr=config.learning_rate) for epoch in range(config.epochs): model.train() epoch_loss = 0 for i, (x, y) in enumerate(train_loader): optimizer.zero_grad() output = model(x) loss = criterion(output, y) loss.backward() optimizer.step() epoch_loss += loss.item() # Log every 100 steps if i % 100 == 0: wandb.log({ \"train_loss\": loss.item(), \"learning_rate\": config.learning_rate, \"epoch\": epoch }) # Log epoch summary wandb.log({ \"epoch_loss_avg\": epoch_loss / len(train_loader), \"epoch\": epoch, }) Artifact Versioning for Dataset Workflows\n# Create and log a dataset artifact dataset_artifact = wandb.Artifact( name=\"cleaned_dataset\", type=\"dataset\", description=\"Cleaned and tokenized training data\", ) # Add files dataset_artifact.add_file(\"data/train.csv\") dataset_artifact.add_file(\"data/val.csv\") dataset_artifact.add_file(\"data/test.csv\") # Log with alias for versioning wandb.log_artifact(dataset_artifact, aliases=[\"latest\", \"v1.2\"]) # Later, use this exact dataset version run = wandb.init() clean_data = run.use_artifact(\"project/cleaned_dataset:v1.2\", type=\"dataset\") data_path = clean_data.download() Comparison with Alternatives | Feature | W\u0026B | MLflow | Weights \u0026 Biases | TensorBoard | Neptune.ai | |\n|\n|\n|\n|\n|\n| | Experiment tracking | ✓ | ✓ | ✓ | ✓ | ✓ | | Hyperparameter sweeps | ✓ (Native) | ✓ | ✓ | No | ✓ | | Dataset versioning | ✓ (Artifacts) | ✓ (MLflow) | ✓ | No | ✓ | | Model registry | ✓ | ✓ | ✓ | No | ✓ | | LLM fine-tuning support | ✓ | ✓ | ✓ | Limited | ✓ | | Distributed training | ✓ | ✓ | ✓ | ✓ | ✓ | | Free tier | 5 users | Unlimited | 1 user | Unlimited | 3 users | | Self-hostable | No (Cloud) | ✓ (Open) | No | ✓ (Local) | ✓ (Open) | | Custom reports | ✓ | No | No | No | ✓ | | Team collaboration | ✓ | ✓ | ✓ | No | ✓ | | API quality | Excellent | Good | Good | Basic | Good | | Active GitHub stars | 11K+ | 20K+ | 2K+ | 10K+ | 1K+ |\nLimitations / Honest Assessment W\u0026B is the most polished ML tracking platform available, but it has some trade-offs: 1. Cloud-first model: W\u0026B’s free tier requires using their cloud platform. While they offer self-hosted W\u0026B Enterprise for teams that need on-premise deployment, the free tier does not support self-hosting. If your organization requires all data to stay within your infrastructure, this may be a dealbreaker. 2. Free tier limits: The free tier is limited to 1 team member. For larger research teams, the paid plans start at a significant cost, especially when you factor in the additional storage required for large model artifacts. 3. Learning curve for advanced features: Basic logging is straightforward, but features like sweeps, artifact versioning, and custom reports require understanding W\u0026B’s data model. New users may need 1-2 hours to get comfortable with the platform’s full capabilities. 4. Limited offline capability: If your training environment has intermittent internet connectivity, W\u0026B syncs data when the connection is restored. However, the SDK does support wandb.init(mode=\"offline\") for fully disconnected environments, with manual sync later. 5. Vendor lock-in risk: While W\u0026B exports data in standard formats (JSON, CSV), building a migration to another platform after committing to W\u0026B for hundreds of experiments can be time-consuming.\nFrequently Asked Questions Q: Is W\u0026B free for academic research?\nYes. W\u0026B offers a generous free tier for individual researchers and small teams. Academic institutions can also apply for W\u0026B Pro credits through the W\u0026B for Academia program, which provides additional team members and storage at no cost.\nQ: Can I use W\u0026B with Jupyter Notebooks?\nAbsolutely. W\u0026B works seamlessly in Jupyter notebooks. Initialize your run with wandb.init() at the top of a notebook cell, and all subsequent wandb.log() calls will stream to the dashboard. Use wandb.jupyter for automatic integration with Jupyter widgets.\nQ: How does W\u0026B handle large model artifacts?\nW\u0026B uploads model artifacts incrementally — only changed bytes are transferred on subsequent uploads. For very large models (multi-gigabyte checkpoints), W\u0026B uses a content-addressable storage system that deduplicates uploads and supports resuming interrupted transfers.\nQ: Can I track LLM fine-tuning experiments?\nYes. W\u0026B has excellent support for LLM fine-tuning workflows. It integrates with Hugging Face Transformers, PyTorch Lightning, and frameworks like Axolotl and Unsloth. You can log training loss, evaluation metrics, generated samples, and even benchmark scores for each fine-tuning run.\nQ: How do I collaborate with my team on experiments?\nW\u0026B supports team workspaces where all runs, artifacts, and reports are shared by default. Team members can comment on specific runs, share direct links to experiment comparisons, and use the built-in chat feature to discuss results without switching to a separate communication platform.\nConclusion Weights \u0026 Biases has transformed how ML teams approach experiment tracking. By combining real-time logging, intuitive visualization, and powerful collaboration features, W\u0026B turns the chaos of model training into a structured, reproducible workflow. Whether you’re fine-tuning a 7B-parameter LLM or running a small hyperparameter sweep, W\u0026B provides the visibility you need to make better decisions faster.\nThe platform’s deep integrations with PyTorch, Hugging Face, and Ray Tune mean you can start tracking experiments with a single line of code (````report_to=“wandb”```). For teams building ML applications at scale, DigitalOcean offers affordable GPU instances that pair well with W\u0026B\"s tracking infrastructure.\nFor teams deploying ML pipelines: WebShare provides reliable proxy infrastructure for distributed training workflows.\nFor ML teams exploring algorithmic strategies: Binance offers advanced API access for quantitative research and backtesting.\nFor enterprise data pipelines: HTStack delivers the network performance needed for large-scale data transfers.\nFor AI finance teams: OKX provides comprehensive market data and trading tools.\nExplore more guides on MLflow vs W\u0026B Comparison and LLM Fine-Tuning Best Practices for comprehensive technical deep-dives.\nJoin the DIBI8 community on Telegram for ongoing discussions about ML tools, experiment tracking, and MLOps practices.\nSources \u0026 Further Reading: - W\u0026B documentation: https://docs.wandb.ai/\nW\u0026B GitHub repository: https://github.com/wandb/wandb W\u0026B API reference: https://docs.wandb.ai/ref/python/ Sweeps documentation: https://docs.wandb.ai/guides/sweeps Model registry guide: https://docs.wandb.ai/guides/model-registry Community discussion: https://community.wandb.ai/ Disclosure: This article contains affiliate links. If you sign up through our links, we may earn a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Weights \u0026 Biases (W\u0026B): Track Every Experiment Like a Pro — ML Experiment Platform 2026”, “datePublished”: “2026-06-09”, “dateModified”: “2026-06-09”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/wandb-ml-experiment-tracking-platform-2026\" } } Related Articles 12-factor-agents-production-llm-software-2026 12-factor-agents 1m-context-window-llm-2026-real-test 9router-smart-llm-proxy-token-saver-free-coding ai-engineering-from-scratch Found this helpful? Join our Telegram community for daily AI tool updates!\n",
   "wordCount" : "2024",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
   "mainEntityOfPage": {
@@ -128,21 +125,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -169,7 +152,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -188,23 +171,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>10 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/zh/ai-coding-agents/wandb-ml-experiment-tracking-platform-2026/">Zh</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/ko/ai-coding-agents/wandb-ml-experiment-tracking-platform-2026/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/ai-coding-agents/wandb-ml-experiment-tracking-platform-2026/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>10 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul><ul>
@@ -614,11 +586,11 @@ model.change_alias(&#34;production&#34;)
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://dibi8.com/ai-coding-agents/wan-2-1/">
-    <span class="title">« Prev</span>
+    <span class="title">« 上一页</span>
     <span>AI Tool Guide</span>
   </a>
   <a class="next" href="https://dibi8.com/ai-coding-agents/windsurf-ai-ide/">
-    <span class="title">Next »</span>
+    <span class="title">下一页 »</span>
     <span>AI Tool Guide</span>
   </a>
 </nav>
@@ -786,12 +758,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

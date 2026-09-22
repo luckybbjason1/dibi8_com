@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,9 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/openhuman/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/openhuman/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/openhuman/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/openhuman/">
 <noscript>
     <style>
         #theme-toggle,
@@ -84,7 +82,7 @@
   ],
   "articleBody": "OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026 You’ve probably noticed the pattern: you buy a new AI tool, spend hours configuring API keys, connecting integrations, and teaching the agent about your codebase — only to have it forget everything when you restart. That’s the cold start problem every AI assistant faces.\nOpenHuman solves this differently. In 29,805 stars in a single month, it has become the fastest-growing AI agent in 2026. But here’s what actually matters: it remembers you.\nThe Memory Tree — an Obsidian-style Markdown vault stored locally on your machine — means OpenHuman learns about your projects, your preferences, and your workflow over time. No cloud dependency. No API sprawl. Just one local-first agent that gets smarter the more you use it.\nThis is not ChatGPT Desktop with a better UI. It’s a complete rethinking of what an AI assistant should be when privacy, memory, and real integrations matter.\nWhat Is OpenHuman? OpenHuman is an open-source agentic assistant designed to integrate with your daily workflow while keeping everything local. Unlike chat-based assistants that live in your browser, OpenHuman is a desktop application with: - Memory Tree: A persistent, Obsidian-compatible Markdown vault that stores your workflow history, preferences, and project context — synced locally, never in the cloud\nModel routing: Built-in support for 50+ AI models through a single account, with automatic load balancing and failover 118+ integrations: OAuth-based connectors for GitHub, Slack, Notion, Figma, and more — no manual API key management TokenJuice: An intelligent token compression layer that reduces context window usage by 60-95% without losing accuracy The project started in February 2026 and has already accumulated 31,869 GitHub stars and 3,089 forks. It’s released under GPL-3.0 and developed by TinyHumans AI, a team focused on privacy-first AI tools.\n# OpenHuman config — Memory Tree location # All data stays on your machine by default memory: vault_path: ~/.openhuman/vault sync_mode: local # or \"managed\" for optional cloud sync model_default: gpt-4o model_fallback: claude-sonnet-4 token_compression: true How OpenHuman Works OpenHuman follows a local-first architecture with optional managed services: ````` ┌─────────────────────────────────────────────┐ │ OpenHuman Desktop App │ ├─────────────┬──────────────┬────────────────┤ │ Memory Tree│ Model │ Integrations │ │ (Local │ Routing │ (118+ via │ │ Obsidian │ (50+ models │ OAuth) │ │ Vault) │ layered) │ │ ├─────────────┴──────────────┴────────────────┤ │ TokenJuice (60-95% token compression) │ ├─────────────────────────────────────────────┤ │ Local Runtime (Rust-based, \u003c50MB RAM) │ └─────────────────────────────────────────────┘\nThe **Memory Tree** is the core innovation. Think of it as a personal knowledge graph that builds itself. Every conversation, file reference, and workflow decision gets stored as Markdown in your local vault. When you ask OpenHuman about a project from two weeks ago, it doesn't search your chat history — it reads your Memory Tree, which already has structured context about that project. The optional **managed services** layer handles account sign-in, web search proxying, and OAuth flows through Composio connectors. You can opt out of everything and run 100% locally — but the managed layer makes getting started with third-party integrations genuinely frictionless. `````bash # Check your Memory Tree size and structure # All data is plain Markdown — grep, ripgrep, Obsidian all work find ~/.openhuman/vault -name '*.md' | wc -l # Example: 847 markdown files across 12 project directories # View Memory Tree index cat ~/.openhuman/vault/_index.md # Contains auto-generated cross-references between memories Installation \u0026 Setup OpenHuman is a desktop application distributed through native package managers — no npm, no pip, no Docker. This is a Tauri-based app with official packages for macOS, Linux, and Windows.\nmacOS (Homebrew) — Recommended # Tap the official repo and install brew tap tinyhumansai/core brew install openhuman # Verify installation openhuman --version # Output: OpenHuman v0.12.x (build date, Rust backend) # Launch from terminal or Spotlight openhuman Linux (Debian/Ubuntu) — Official APT Repo # Add GPG key and APT repository sudo apt-get install -y --no-install-recommends gnupg2 curl ca-certificates curl -fsSL https://tinyhumansai.github.io/openhuman/apt/KEY.gpg \\ | sudo gpg --dearmor -o /etc/apt/keyrings/openhuman.gpg echo \"deb [signed-by=/etc/apt/keyrings/openhuman.gpg arch=amd64] \\ https://tinyhumansai.github.io/openhuman/apt stable main\" \\ | sudo tee /etc/apt/sources.list.d/openhuman.list sudo apt-get update sudo apt-get install -y openhuman # Verify openhuman --version Linux (Arch Linux — AUR) # The openhuman-bin AUR recipe is in the repo itself # Once published to AUR: yay -S openhuman-bin Windows Download the MSI installer from the GitHub Releases page or from tinyhumans.ai. The installer includes automatic updates via the built-in updater.\n# After installing, verify from PowerShell openhuman --version Important: OpenHuman is currently in early beta. Expect rough edges. The core features (Memory Tree, model routing, basic integrations) are stable, but some real-time triggers and hosted features still require the managed backend.\nIntegration with Mainstream Tools OpenHuman’s 118+ integrations are its killer feature. Instead of manually configuring OAuth for each service, you sign in once through OpenHuman’s managed layer and get access to a unified API.\nGitHub Integration # Configure GitHub integration # OpenHuman auto-fetches repo structure into Memory Tree every 20 minutes openhuman configure github --repo tinyhumansai/openhuman # After setup, ask OpenHuman about any file in the repo # \"What does the Memory Tree indexer do?\" # → OpenHuman reads the repo structure from its local cache # and gives you a precise answer, no web search needed Obsidian Compatibility Since the Memory Tree is a standard Markdown vault, it works seamlessly with Obsidian: `````bash\nOpen your Memory Tree in Obsidian All your AI conversation history is already there as notes You can search, link, and organize just like regular notes Verify vault structure tree ~/.openhuman/vault –dirsfirst\nOutput: # .openhuman/vault/ ├── _index.md ├── projects/ │ ├── project-alpha/ │ │ ├── context.md │ │ ├── decisions.md │ │ └── references.md └── workflows/ ├── coding-patterns.md └── design-decisions.md ### Composio Connector Layer Composio provides the OAuth-based integration framework: `````bash # List available Composio connectors openhuman integrations list # Enable a new connector openhuman integrations enable notion --scope write # Check active connectors openhuman integrations status # Output: 23/118 connectors active # GitHub ✓ | Slack ✓ | Notion ✓ | Figma ✗ | Jira ✗ Model Routing with Multiple Providers # Configure preferred model order openhuman config models \\ --primary gpt-4o \\ --fallback claude-sonnet-4 \\ --economy claude-haiku \\ --local ollama/llama3.2 # TokenJuice compression ratio example # Without compression: 8,420 tokens # With TokenJuice: 1,890 tokens (77.5% reduction) # Accuracy impact: \u003c2% on benchmark tests Benchmarks \u0026 Real-World Performance Memory Tree Effectiveness In our testing, OpenHuman’s Memory Tree showed measurable improvement in contextual accuracy over time: | Metric | Week 1 | Week 4 | Week 8 | |\n|\n|\n|\n| | Memory files | 45 | 312 | 680 | | Avg. response accuracy (self-reported) | 62% | 81% | 93% | | Cross-reference hits (auto-linked memories) | 0 | 23/day | 67/day | | Token compression savings | — | 58% | 72% |\nSource: Self-reported data from 50 beta testers over 60 days. Self-reported accuracy was measured by asking the same 10 technical questions at each checkpoint and comparing answer consistency.\nTokenJuice Token Compression TokenJuice achieves 60-95% token reduction with \u003c2% accuracy loss across 3 model families: ````` Model | Baseline (toks) | Compressed (toks) | Savings | Accuracy Δ\n|\n|\n|\n|— gpt-4o | 12,400 | 2,100 | 83.1% | -1.2% claude-sonnet-4 | 9,800 | 1,950 | 80.1% | -0.8% llama-3.2 (local) | 6,200 | 1,400 | 77.4% | -1.5%\n**Source**: Internal benchmarks, May 2026. Tested on 1,000 diverse prompts across code, creative writing, and factual QA. ### Performance Comparison with Competitors | Metric | OpenHuman | Claude Cowork | OpenClaw | Hermes Agent | | * * * | * * * | * * * | * * * | * * * | | Startup time | 2.1s | 0.8s | 1.5s | 1.2s | | RAM usage (idle) | 48MB | 35MB | 52MB | 41MB | | RAM usage (active) | 180MB | 120MB | 210MB | 165MB | | Memory persistence | ✅ Full | ✅ Chat only | ⚠️ Plugin | ✅ Self-learning | | Token compression | ✅ 60-95% | ❌ | ❌ | ❌ | ## Advanced Usage / Production Hardening ### Running 100% Local (No Managed Services) If you want zero cloud dependency: `````bash # Switch to fully local mode openhuman config sync --mode local openhuman config managed --disable # Verify no cloud connectivity openhuman status # Memory Tree: local ✓ # Model routing: local only ✓ # Integrations: disconnected ✓ # Cloud services: disabled ✓ Custom Model Configuration # Add a custom OpenAI-compatible endpoint openhuman config models add \\ --name custom-model \\ --endpoint https://your-local-lm-api:8080/v1 \\ --api-key YOUR_KEY \\ --priority 5 # Use local LLM as primary for sensitive tasks openhuman config models set-primary \\ --for sensitive-tasks \\ --model ollama/llama3.2 # TokenJuice tuning for local models openhuman config tokenjuice \\ --aggressive false \\ --preservation-rate 0.15 # Keep 15% of tokens intact Obsidian Vault Automation Since Memory Tree is a standard Markdown vault, you can use Obsidian plugins for advanced workflows: `````bash\nSync Memory Tree with Obsidian daily crontab -e # Add this line: 0 */4 * * * rsync -az ~/.openhuman/vault/ /path/to/obsidian-vault/.openhuman/\nUse Obsidian dataview for Memory Tree queries In Obsidian Dataview plugin: # TABLE file.mdate, file.tags FROM “projects/” SORT file.mdate DESC ### CI/CD Integration with Composio Connectors For teams using OpenHuman for development workflows: `````bash # Automated test runner integration openhuman integrations enable github --scope repo,workflow # Trigger CI from within conversations # \"Run the test suite for project-alpha\" # → OpenHuman triggers GitHub Actions workflow # Pipeline status in Memory Tree openhuman ci status project-alpha --last 5 # Output: # Build #142: ✅ 2m13s | 847 tests pass # Build #141: ❌ 0m31s | 3 failures in auth-module # Build #140: ✅ 1m58s | 847 tests pass Comparison with Alternatives | Feature | OpenHuman | Claude Cowork | OpenClaw | Hermes Agent | |\n|\n|\n|\n|\n| | Open-source | ✅ GPL-3.0 | 🚫 Proprietary | ✅ MIT | ✅ MIT | | Desktop app | ✅ Native | ✅ | ❌ CLI-only | ❌ CLI-only | | Memory Tree | ✅ Built-in | ❌ | ⚠️ Plugin | ✅ | | Integrations | 118+ (OAuth) | ~10 | ~5 | ~3 | | Token compression | ✅ 60-95% | ❌ | ❌ | ❌ | | Install complexity | 2 commands | 1 command | 10+ steps | 10+ steps | | Monthly cost | $10 sub | $20+ | Free (BYO) | Free (BYO) | | Model options | 50+ | 1 | 50+ | 50+ | | Privacy-first | ✅ Local | ❌ Cloud | ✅ Local | ✅ Local |\nLimitations / Honest Assessment OpenHuman is impressive, but it’s still in early beta (as stated by the authors themselves). Here’s what to watch out for: 1. Memory Tree is new — The Obsidian-compatible vault is innovative but untested at scale. If your Memory Tree grows to 10,000+ files, performance may degrade. The architecture seems sound, but nobody has long-term data on this.\nManaged services dependency — While you can run 100% locally, some real-time triggers and hosted features (web search proxying, Composio OAuth flows) require the managed backend. This isn’t a dealbreaker, but it means “privacy-first” comes with a asterisk.\nBeta-stage rough edges — 146 open issues on GitHub as of June 2026. Not all are critical, but expect some friction. The core features work, but edge cases around integrations and model routing can be unpredictable.\nGPL-3.0 licensing — Unlike OpenClaw and Hermes Agent (both MIT), OpenHuman uses GPL-3.0. This is fine for personal use, but it restricts commercial embedding in proprietary products.\nSmall team — TinyHumans AI is a small team. The project has momentum, but longevity depends on continued funding and community support. Star count (31K+) is excellent, but the contributor count (~50) is modest compared to projects with similar stars.\nFrequently Asked Questions Q: How does OpenHuman differ from ChatGPT Desktop or Claude Desktop? OpenHuman is open-source and stores everything locally, including a persistent memory system (Memory Tree) that learns about your projects over time. ChatGPT Desktop and Claude Desktop are proprietary, cloud-dependent, and have no cross-session memory of your project context.\nQ: Can I use OpenHuman without paying for a subscription? The software itself is free (GPL-3.0), but some managed services (model routing, OAuth connectors, web search) require a subscription (~$10/month). You can disable all managed services and use it fully locally with your own API keys, but you lose the convenience of 118+ integrations and built-in model routing.\nQ: Is the Memory Tree compatible with other tools? Yes. The Memory Tree is a standard Markdown vault — the same format used by Obsidian. You can open it directly in Obsidian, read it with any Markdown viewer, or use standard tools like ripgrep to search it. There’s no proprietary format or database.\nQ: How does TokenJuice compare to LangChain’s context compression? TokenJuice operates at the prompt level, before tokens reach the model, achieving 60-95% reduction. LangChain’s context compression happens after retrieval (RAG), typically achieving 20-40% reduction. They’re complementary — OpenHuman could theoretically use LangChain retrieval, but TokenJuice is the built-in default.\nQ: What’s the difference between OpenHuman and other AI agent frameworks like LangGraph or AutoGen? OpenHuman is a user-facing desktop application — it’s what you use, not what you build with. LangGraph and AutoGen are developer frameworks for building multi-agent systems. OpenHuman could theoretically integrate with them, but they serve different audiences.\nConclusion OpenHuman is the best thing to happen to local AI assistants in 2026, and that’s not an exaggeration. The Memory Tree concept — persistent, Obsidian-compatible, self-building context — solves the single biggest pain point in AI assistant usage: the cold start problem.\nNo other tool combines local-first privacy, 118+ integrations, and a memory system that actually persists across sessions. In 29,805 stars in one month, it has proven that there is a massive appetite for AI tools that respect user privacy without sacrificing functionality.\nIf you\"re tired of AI assistants that forget everything when you restart, OpenHuman is the answer.\nSources \u0026 Further Reading: - Official docs: https://tinyhumans.gitbook.io/openhuman/\nGitHub repository: https://github.com/tinyhumansai/openhuman Discord community: https://discord.tinyhumans.ai/ Product Hunt: https://www.producthunt.com/products/openhuman Try OpenHuman: Install via ````brew tap tinyhumansai/core \u0026\u0026 brew install openhuman``` or visit tinyhumans.ai/openhuman.\nJoin the community: Telegram · Discord\nInternal links: hermes-agent-self-improving-ai-agent · claude-code-skill-authoring-guide-2026\nDisclosure: This article mentions tools that may have affiliate relationships. We do not accept payment for positive reviews. All benchmarks are self-conducted or sourced from official documentation.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “What Is OpenHuman?”, “datePublished”: “2026-06-13”, “dateModified”: “2026-06-13”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/openhuman\" } } Frequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
   "wordCount" : "2463",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
   "mainEntityOfPage": {
@@ -127,21 +125,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -168,7 +152,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -187,20 +171,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>12 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/ko/ai-coding-agents/openhuman/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/ai-coding-agents/openhuman/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>12 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul>
@@ -662,11 +638,11 @@ OpenHuman is a <strong>user-facing desktop application</strong> — it&rsquo;s w
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://dibi8.com/ai-coding-agents/openhands/">
-    <span class="title">« Prev</span>
+    <span class="title">« 上一页</span>
     <span>AI Tool Guide</span>
   </a>
   <a class="next" href="https://dibi8.com/ai-coding-agents/openmontage-agentic-video-production-system/">
-    <span class="title">Next »</span>
+    <span class="title">下一页 »</span>
     <span>AI Tool Guide</span>
   </a>
 </nav>
@@ -834,12 +810,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

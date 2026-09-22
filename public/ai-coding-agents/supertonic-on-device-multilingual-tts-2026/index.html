@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/supertonic-on-device-multilingual-tts-2026/">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/supertonic-on-device-multilingual-tts-2026/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/supertonic-on-device-multilingual-tts-2026/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/supertonic-on-device-multilingual-tts-2026/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/supertonic-on-device-multilingual-tts-2026/">
 <noscript>
     <style>
         #theme-toggle,
@@ -85,7 +82,7 @@
   ],
   "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-23T00:00:00+08:00 lastmod: 2026-05-23T00:00:00+08:00 tech_stack: [] application_domain: AI Tools source_version: “v2.0.0” licensing_model: Open Source license_type: MIT (code) / OpenRAIL-M (model) file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-01-06” draft: false categories: [“ai-tools”] tags: [“supertonic”, “text-to-speech”, “tts”, “on-device-ai”, “onnx”, “multilingual”, “open-source-tts”, “edge-ai”, “korean-tts”, “japanese-tts”] aliases:\n/zh/posts/supertonic-on-device-multilingual-tts-2026/ Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026） 本地 TTS 的真问题 过去很多年，“好用的多语种 TTS\"基本等价于调别人家的云 API——Google Cloud TTS、Amazon Polly、ElevenLabs、OpenAI Voice。声音自然，宽带下延迟可以接受，按字符计费的单价小到没人在意，直到月底账单出来。\n裂缝出现在三个地方。隐私——医疗、法律、任何受监管的场景，不可能把每段脚本都发给第三方。延迟抖动——网络一卡，声音就断。规模成本——一旦每月合成超过 100 小时音频，按字符计费的账单立刻变成大头。再加上离线场景——车载、飞行中、偏远厂区、自助终端，必须本地推理，没得商量。\n开源本地 TTS 一直在追赶，但权衡很扎眼：要么是英文专用的小模型（Piper、Coqui 的小变体），要么是必须上 GPU 才能跑出实用速度的多语种巨无霸（XTTS-v2、Bark）。“又快、又多语种、又轻量、还是真开源权重\"这个甜蜜点一直没人击中。\nSupertonic（GitHub：```supertone-inc/supertonic````，9,900+ stars）由韩国语音 AI 公司 Supertone Inc. 推出，是 2026 年最有希望补上这块缺口的项目。9900 万参数、31 种语言、ONNX runtime、CPU 上跑得很舒服——README 里甚至给出在飞行模式下的电纸书上跑出 0.3× 实时因子的数据。\nSupertonic 到底是什么 一个 flow-matching 文本到 latent 模块，配上一个语音 autoencoder，整体导出为 ONNX。具体看：\n总参数 9900 万——加载只要几秒，普通 CPU 上实时跑。作为参照，XTTS-v2 约 15 亿、Bark 约 9 亿。 开箱即用 31 种语言：阿拉伯语、保加利亚语、克罗地亚语、捷克语、丹麦语、荷兰语、英语、爱沙尼亚语、芬兰语、法语、德语、希腊语、印地语、匈牙利语、印尼语、意大利语、日语、韩语、拉脱维亚语、立陶宛语、波兰语、葡萄牙语、罗马尼亚语、俄语、斯洛伐克语、斯洛文尼亚语、西班牙语、瑞典语、土耳其语、乌克兰语、越南语。 44.1kHz 音频输出——真正的录音棚级采样率，不是大多数\"够用就行” TTS 妥协的 22kHz。 10 个表情标签——、、 等。直接内联在文本里，无需重训声音克隆就能让语气更自然。 lang=\"na\" 模式——不想指定语言代码时的语言无关生成。 协议：代码 MIT，模型权重 OpenRAIL-M。两边分开很关键：OpenRAIL-M 是\"负责任 AI\"协议，限制部分有害用途，但允许商业部署。发产品前请先读 model card。\n性能数字 Supertone Inc. 在 benchmark 和 README 里给出的数字：\n| 指标 | Supertonic | 常见基准 | |\n|\n|\n| | 参数量 | 99M | 0.7B–2B | | 朗读准确率（Minimax-MLS-test WER/CER） | 与大很多的模型相当 | — | | 运行时内存 | 显著低于 GPU 基准 | — | | Onyx Boox Go 6 电纸书飞行模式 RTF | 0.3× | n/a（跑不动） | | CPU 延迟 | 可与 A100 GPU 基准抗衡 | — |\n电纸书那个 benchmark 是头号宣传数字——这种数字传达的信号是\"对，它真的哪都能跑”。现代手机 CPU 应该完全无压力。\n运行时覆盖 Supertonic 是少数几个真正提供 SDK 绑定的开源 TTS，不是\"你大概可以自己包一层\"那种。截至 v2.0.0：\nPython（pip install supertonic）——主要集成方式 Node.js——server 和 Electron app 浏览器——WebGPU 可用时优先，WebAssembly 兜底 Java——Android 和 JVM 后端 C++、C#、Go、Rust——系统级集成 Swift / iOS——一等公民原生绑定 Flutter——跨平台移动 基本覆盖了 2026 年应用开发者可能想嵌 TTS 的所有地方。重活由 ONNX runtime 扛，Supertonic 提供模型相关的胶水代码。\n快速上手（Python） pip install supertonic 依赖就这一个。模型在首次调用时下载：\nfrom supertonic import TTS tts = TTS(auto_download=True) style = tts.get_voice_style(voice_name=\"M1\") text = \"Supertonic is a lightning fast, on-device TTS system.\" wav, duration = tts.synthesize( text=text, lang=\"en\", voice_style=style, total_steps=8, speed=1.05, ) tts.save_audio(wav, \"output.wav\") 中文把 lang=\"en\" 换成 lang=\"zh\"，韩语 ko、日语 ja、越南语 vi。声音风格（这里的 M1）跨语言保持一致——做多语种角色配音时很有用。\n表情标签的用法：\ntext = \"I can't believe it. That's incredible. Let me explain.\" 模型会内联解释标签，并在音频里产出对应的表达。\n横向对比 2026 年的本地 TTS 战场，按实际交付能力排序：\n对比 Piper（40K+ stars） Piper 是本地 TTS 的老牌选手。Piper 赢在：单 voice 模型更小（几 MB），纯英文场景部署更简单。Supertonic 赢在：语种多得多、表情控制好得多、采样率更高、一个模型搞定所有语言而不是一种语言一个模型。\n对比 XTTS-v2（Coqui） XTTS-v2 有声音克隆，Supertonic 没主打这个。XTTS-v2 赢在：声音克隆质量。Supertonic 赢在：CPU 上的可用性、多运行时 SDK、模型体积、协议清晰度。\n对比 Bark（Suno） Bark 在非语音音频（音乐、音效）上有亮点。Bark 赢在：超越语音的风格化范围。Supertonic 赢在：速度、可部署性、31 种语言 vs Bark 的英文为主。\n对比 ElevenLabs / OpenAI / Google Cloud 云端 TTS 在声音克隆保真度和顶级语音的纯自然度上仍然领先。Supertonic 赢在：没 API key、没按字符账单、不依赖网络、完整隐私。\nSupertonic 做不到什么 把期待校准好：\n不支持从样本克隆声音。 只能从内置 voice style 里选。需要克隆请看 XTTS-v2 或商业 API。 没有 token-by-token 流式合成（公开版本里）——合成以片段为单位。 微调工具有限。 模型权重以 OpenRAIL-M 开放，但训练 pipeline 没完全公开。 没有 22kHz 降级输出。 永远是 44.1kHz。要低带宽你自己重采样。 Supertonic 真正发光的场景 带语音功能的移动 app——新手引导旁白、无障碍朗读、语言学习。打包一个 ONNX 文件，支持 31 种语言，二进制里也不用塞 API key。 医疗和法律工具——敏感文档的语音播报，数据不出设备。 车载和机载系统——完全离线，不用考虑网络降级。 韩语 / 日语 / 越南语 / 中文本地化——开源 TTS 在亚洲语言上的窟窿一直很疼；Supertonic 用一个模型补掉了一大块。 边缘 IoT 设备——自助终端、数字标牌、不连云端的智能音箱。 谁该用 装上 Supertonic，如果你：\n发的 app 需要语音输出，又不想要随用量增长的云账单。 需要隐私（受监管行业）或离线（移动、机载、边缘）。 做非英语市场本地化，宁愿一个模型搞定也不想要 30 个。 想在没 GPU 的情况下拿到 44.1kHz 录音棚级音质。 继续用云 TTS，如果你：\n需要从 30 秒样本克隆声音。 做超写实单角色内容，ElevenLabs 顶级线还领先。 需要流式部分音频（Supertonic 公开版还没开放）。 结论 Supertonic 是 2026 年最有说服力的\"一个模型走天下\"开源 TTS。9900 万参数足迹、31 种语言、多运行时 SDK，再加上电纸书上 0.3× RTF，把它牢牢钉在\"是的，可以塞进移动 app 发版\"这一档——几乎没有哪个之前的开源 TTS 真正做到。\n对韩国、日本、越南或任何 TTS 长期被冷落的语言市场的开发者来说，更大的故事是：开源 TTS 与云 API 之间的质量差距正在急速收窄。五年前，英语是唯一一个开源 TTS 真能上生产的语言。2026 年，靠 Supertonic，这份名单终于真的覆盖了世界上大部分语言。\n再搭一个本地 LLM 运行时处理 prompt 侧，你就拥有了一套完全本地、零云依赖的语音 agent 栈。\nGitHub：supertone-inc/supertonic · 协议：MIT（代码）/ OpenRAIL-M（权重）· 最新：v2.0.0（2026-01-06）· Stars：9.9K+ · 维护方：Supertone Inc.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026）”, “datePublished”: “2026-05-23”, “dateModified”: “2026-05-23”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/supertonic-on-device-multilingual-tts-2026\" } } Why This Matters Understanding supertonic 评测：99m 参数本地 tts，31 语言、onnx 跑 cpu（2026） is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026） represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nUnderstanding these core concepts will help you master the topic: 1. Abstraction: Hide complexity behind simple interfaces 2. Composition: Build complex systems from simple parts 3. Immutability: Prefer immutable data structures 4. Error Handling: Handle failures gracefully 5. Performance: Optimize for your specific use case\nArchitecture Overview ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ │ Client │────▶│ API │────▶│ Database │ │ (UI) │ │ Server │ │ │ └─────────────┘ └─────────────┘ └─────────────┘ │ ▼ ┌─────────────┐ │ Cache │ │ (Redis) │ └─────────────┘ ```` ",
   "wordCount" : "753",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
   "mainEntityOfPage": {
@@ -128,21 +125,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -169,7 +152,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -188,23 +171,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/zh/ai-coding-agents/supertonic-on-device-multilingual-tts-2026/">Zh</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/ko/ai-coding-agents/supertonic-on-device-multilingual-tts-2026/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/ai-coding-agents/supertonic-on-device-multilingual-tts-2026/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>4 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul>
@@ -502,11 +474,11 @@ aliases:</p>
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://dibi8.com/ai-coding-agents/superpowers/">
-    <span class="title">« Prev</span>
+    <span class="title">« 上一页</span>
     <span>AI Tool Guide</span>
   </a>
   <a class="next" href="https://dibi8.com/ai-coding-agents/tabby/">
-    <span class="title">Next »</span>
+    <span class="title">下一页 »</span>
     <span>AI Tool Guide</span>
   </a>
 </nav>
@@ -674,12 +646,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

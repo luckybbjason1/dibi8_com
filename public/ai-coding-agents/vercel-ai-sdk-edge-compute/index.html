@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/vercel-ai-sdk-edge-compute/">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/vercel-ai-sdk-edge-compute/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/vercel-ai-sdk-edge-compute/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/vercel-ai-sdk-edge-compute/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/vercel-ai-sdk-edge-compute/">
 <noscript>
     <style>
         #theme-toggle,
@@ -85,7 +82,7 @@
   ],
   "articleBody": "What Is Vercel AI SDK? Vercel AI SDK is an open-source library that abstracts the complexity of building AI applications. At its core, it provides three main capabilities: 1. Provider-agnostic API: Write code once, deploy to any LLM provider 2. Streaming-first architecture: Responses stream token-by-token to the frontend 3. Framework integration: Native support for React, Next.js, Vue, Svelte, and SolidJS\nWhy Edge-First Matters for AI Apps Traditional AI apps follow this pattern: ```` User → Web Server → API Route → LLM Provider → Response\nEach hop adds latency. Vercel's edge-first approach eliminates the middleman: ````` User → Edge Function → LLM Provider → Streaming Response Edge functions run in Cloudflare Workers, Fastly Compute@Edge, or Vercel Edge Functions — geographically distributed nodes that are typically 100-300ms from users worldwide. For chat applications, this means the first token arrives in under 500ms.\nCore Architecture // Provider abstraction layer import { createOpenAI } from \"@ai-sdk/openai\"; import { createAnthropic } from \"@ai-sdk/anthropic\"; import { createGoogleGenerativeAI } from \"@ai-sdk/google\"; const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY }); const anthropic = createAnthropic({ apiKey: process.env.ANTHROPIC_API_KEY }); // Unified API call regardless of provider const result = await streamText({ model: openai(\"gpt-4o\"), messages: [{ role: \"user\", content: \"Hello!\" }], system: \"You are a helpful assistant.\" }); The same streamText function works identically whether you’re calling GPT-4o, Claude 3.5 Sonnet, or Gemini 1.5 Pro. Swap providers by changing one line.\nGetting Started Step 1: Install Dependencies # Create a new Next.js project with TypeScript npx create-next-app@latest my-ai-app --typescript --tailwind --app cd my-ai-app # Install AI SDK and provider packages npm install ai @ai-sdk/openai @ai-sdk/anthropic @ai-sdk/google # Optional: for structured output npm install zod Step 2: Configure Your First Chat API Create app/api/chat/route.ts: `````typescript import { streamText } from “ai”; import { createOpenAI } from “@ai-sdk/openai”;\nconst openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY, baseURL: process.env.OPENAI_BASE_URL, // Optional: for compatible APIs });\nexport async function POST(req: Request) { const { messages } = await req.json();\nconst result = streamText({ model: openai(“gpt-4o”), messages, system: You are a helpful coding assistant. Provide code examples when relevant., maxTokens: 2048, temperature: 0.7, });\nreturn result.toDataStreamResponse(); }\nThat's it. One file, 20 lines of code, and you have a fully streaming chat API. ### Step 3: Build the Frontend Create ``app/page.tsx``: `````typescript \"use client\"; import { useChat } from \"ai/react\"; export default function Chat() { const { messages, input, handleSubmit, isLoading } = useChat(); return ( {/* Message list */} {messages.map((msg) =\u003e ( ",
   "wordCount" : "2549",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
   "mainEntityOfPage": {
@@ -128,21 +125,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -169,7 +152,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -188,23 +171,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>12 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/zh/ai-coding-agents/vercel-ai-sdk-edge-compute/">Zh</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/ko/ai-coding-agents/vercel-ai-sdk-edge-compute/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/ai-coding-agents/vercel-ai-sdk-edge-compute/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>12 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul>
@@ -898,11 +870,11 @@ For production apps, combine JWT authentication with rate limiting to prevent ab
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://dibi8.com/ai-coding-agents/vercel-ai-sdk-complete-guide/">
-    <span class="title">« Prev</span>
+    <span class="title">« 上一页</span>
     <span>AI Tool Guide</span>
   </a>
   <a class="next" href="https://dibi8.com/ai-coding-agents/vibe-coding-2026-korean-concept-explained/">
-    <span class="title">Next »</span>
+    <span class="title">下一页 »</span>
     <span>AI Tool Guide</span>
   </a>
 </nav>
@@ -1070,12 +1042,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/ai-agent-skills-framework-spec-driven-development-2026/">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/ai-agent-skills-framework-spec-driven-development-2026/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/ai-agent-skills-framework-spec-driven-development-2026/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/ai-agent-skills-framework-spec-driven-development-2026/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/ai-agent-skills-framework-spec-driven-development-2026/">
 <noscript>
     <style>
         #theme-toggle,
@@ -85,7 +82,7 @@
   ],
   "articleBody": "What Are AI Agent Skills? From Black Boxes to Composable Behavioral Lego Core Concept: Encoding Expert Intuition into Agent Constraints The fundamental problem with traditional AI coding assistants is statelessness, lack of constraints, and no memory. Every conversation starts from a blank slate. The AI repeats the same mistakes, pushes force to your main branch, and runs ```rm -rf```` in production.\nThe Skills pattern solves this by encoding domain-specific workflows, guardrails, and debugging methodologies into structured configuration files. The AI agent loads these “behavioral patterns” before executing any task.\n┌─────────────────────────────────────────────────────────────────┐ │ AI Agent Skills Architecture │ ├─────────────────────────────────────────────────────────────────┤ │ │ │ ┌──────────────┐ ┌──────────────┐ ┌──────────────┐ │ │ │ AI Coding │ │ Skills │ │ Reliable │ │ │ │ Agent │◄────│ (Config \u0026 │────►│ Constrained │ │ │ │ (Claude, │ │ Patterns) │ │ Output │ │ │ │ Codex) │ │ │ │ │ │ │ └──────────────┘ └──────────────┘ └──────────────┘ │ │ │ │ Skills Examples: │ │ ├─ Guardrails: Block dangerous git push --force / rm -rf │ │ ├─ TDD Patterns: Require tests before implementation │ │ ├─ Debug Workflows: Structured error investigation │ │ ├─ Domain Patterns: TypeScript/React/Python best practices │ │ └─ Review Checklists: PR templates, code style guides │ │ │ └─────────────────────────────────────────────────────────────────┘ Why Skills Dominate Raw Prompting | Dimension | Traditional Prompting | AI Agent Skills | |\n|\n|\n| | Reusability | Rewrite every time | Write once, reuse across projects | | Consistency | Memory-dependent | File-based, version-controlled | | Team Onboarding | Word of mouth | Ship with repo, new devs get it instantly | | Maintainability | Scattered in chat history | Structured SKILL.md + scripts | | Triggering | Manual paste | Auto-detect context, conditional activation |\nMatt Pocock’s mattpocock/skills repository was the spark that ignited this movement. He open-sourced his personal .claude directory containing: - TDD Skill: Enforces RED-GREEN-REFACTOR cycles\nGuardrail Skill: Intercepts git push --force, requires confirmation Debug Skill: Structured investigation — reproduce → logs → root cause → fix → regression test TypeScript Deep Patterns: AI output optimized for type system depth These aren’t “prompt engineering tricks.” They are executable engineering discipline.\nTop 5 Skills Repositories of 2026: A Deep Dive 1. mattpocock/skills — Skills for Real Engineers Weekly star gain: +1,618 Core value: Engineering a personal .claude directory for production use Best for: TypeScript/React developers, teams chasing code quality Killer feature: Guardrail intercepts dangerous operations before execution; TDD mode forces test-first development 2. NousResearch/hermes-agent — The Agent That Grows With You Weekly star gain: +1,332 Core value: Self-improving memory, persistent context across sessions Best for: Developers maintaining complex, long-lived codebases Killer feature: Cross-session memory accumulation — the agent learns your preferences over time 3. multica-ai/andrej-karpathy-skills — Packaging Genius Weekly star gain: +1,117 Core value: Andrej Karpathy’s AI engineering philosophy as reusable skills Best for: ML engineers, deep learning researchers Killer feature: Neural network implementation patterns, training workflows, experiment tracking 4. github/spec-kit — GitHub’s Official SDD Toolkit Weekly star gain: +736 Core value: SPEC → PLAN → TASKS → IMPLEMENTATION workflow discipline Best for: Teams tired of vibe coding chaos Killer feature: AI writes code from the plan, not from improvised prompts — traceable, reviewable 5. obra/superpowers — The Most Complete Multi-Agent Workflow Weekly star gain: +951 Core value: 40.9k stars community skill library Best for: Complex projects requiring multi-agent orchestration Killer feature: /brainstorm → /write-plan → /execute-plan full lifecycle Spec-Driven Development: Engineering Discipline for AI Coding Why Vibe Coding Is Killing Code Quality “Vibe coding” was the buzzword of 2025–2026: a development approach driven by intuition and improvised prompts. The problems are structural: 1. Not traceable: Why was the code written this way? “It felt right at the time.” 2. Not reviewable: No design document means code review only scratches the surface. 3. Not maintainable: Three months later, even the AI forgot the original logic. 4. Not collaborative: Every team member’s “vibe” is different.\nThe Spec-Kit Four-Step Workflow GitHub’s spec-kit transforms chaos into discipline with a simple four-step process: ````` ┌──────────────────────────────────────────────────────────────┐ │ Spec-Driven Development Workflow │ ├──────────────────────────────────────────────────────────────┤ │ │ │ Step 1: SPECIFICATION │ │ └─ Write natural-language requirements (what \u0026 why) │ │ │ │ │ ▼ │ │ Step 2: PLAN │ │ └─ AI breaks spec into implementable task list │ │ │ │ │ ▼ │ │ Step 3: TASKS │ │ └─ Structured, reviewable task checklist │ │ │ │ │ ▼ │ │ Step 4: IMPLEMENTATION │ │ └─ AI writes code based on the plan, not the prompt │ │ │ └──────────────────────────────────────────────────────────────┘\n**Practical Example**: `````markdown ## SPECIFICATION Add shopping cart persistence to the e-commerce app. Why: Users should not lose their cart on page refresh. Constraints: Use localStorage. Gracefully degrade in Safari Private Mode. ## PLAN (generated by AI) 1. Create CartStorage interface abstraction layer 2. Implement LocalStorageProvider 3. Implement MemoryFallbackProvider (Safari Private Mode) 4. Integrate storage layer into CartContext 5. Write unit tests covering both providers ## TASKS - [ ] Define CartStorage interface (types/cart.ts) - [ ] Implement LocalStorageProvider (providers/localStorage.ts) - [ ] Implement MemoryFallbackProvider (providers/memory.ts) - [ ] Modify CartContext (contexts/cart.tsx) - [ ] Write tests (__tests__/cart-storage.test.ts) ## IMPLEMENTATION AI implements each task based on the plan above, checking items off as completed. Hands-On: Building Your First AI Agent Skill Step 1: Create the Skill Directory Structure In your project or global config: ````` .claude/ └── skills/ └── safe-git/ ├── SKILL.md # Skill definition file ├── guardrails.md # Specific rules └── hooks/ └── pre-push.sh # Optional: custom scripts\n### Step 2: Write SKILL.md `````markdown * * * name: safe-git trigger: [git, push, commit] priority: high * * * # Safe Git Skill ## Guardrails - Block ````git push --force```` to main/master branches - Block ````git push --force-with-lease```` unless user explicitly confirms - Require linter to pass before ````git commit```` - Block commit messages containing \"WIP\" or \"TODO\" on main branches ## Workflows ### Force Push Protection When force push intent is detected: 1. Pause operation 2. Display affected branches and commits 3. Require user to type \"I understand the risks\" to confirm 4. Log to .claude/safe-git.log ### Pre-commit Lint Auto-run before commit: `````bash npm run lint \u0026\u0026 npm run typecheck Block commit and display errors on failure.\n### Step 3: Install to Claude Code `````bash # Personal skill (available across projects) cp -r safe-git ~/.claude/skills/ # Project skill (shared with repo) cp -r safe-git .claude/skills/ Claude Code auto-detects .claude/skills/ and loads matching skills.\nSkills Adoption Roadmap by Role Individual Developer (Start Today) Today: Install TDD and Guardrail skills from mattpocock/skills This week: Write a custom Debug Skill for your most painful debugging scenario This month: Establish a personal .claude/skills/ repository, version-controlled with git Engineering Team (Requires Consensus) Week 1: Select 2–3 official/community skills, pilot in one project Week 2: Based on team coding standards, write a custom Lint + Review Skill Week 3: Commit project skills to the repo, make them part of onboarding Ongoing: Monthly review of skill effectiveness, iterate Enterprise / Platform (Requires Infrastructure) Internal Skills Registry: Like npm registry, but for AI skills CI Integration: Run skills compliance checks in CI pipelines Security Audit: Review third-party skills’ permission scope (see Trail of Bits security skills) Training Program: Make skills usage part of developer promotion criteria Common Pitfalls and How to Avoid Them Pitfall 1: Skills Bloat Symptom: 50 skills written, 80% never triggered.\nFix: Follow the “Three-Trigger Rule” — keep a skill only if it was triggered three times in the past week.\nPitfall 2: Over-Constraining the AI Symptom: AI becomes paralyzed, asks for confirmation three times for a normal git push.\nFix: Guardrails only block irreversible operations (force push, production deploy, database deletion).\nPitfall 3: Skills-Prompt Conflict Symptom: Skill demands TDD, but prompt says “just write it fast, tests later.”\nFix: Establish priority rules — skill constraints \u003e single-prompt instructions.\nPitfall 4: Ignoring Version Management Symptom: Team members run different skill versions; AI behavior diverges wildly.\nFix: Project skills must be version-controlled with the code repo. Personal skills managed in a dedicated repo.\nWhat’s Next: Skills in H2 2026 Based on current trajectories, three directions are inevitable: 1. Skills Marketplaces: Dedicated skill distribution platforms will emerge (ClawHub is already pioneering this). Think VS Code Extensions marketplace, but for AI agent behavior.\nDomain-Specific Skills Explosion: Financial compliance, healthcare privacy, legal review — vertical skills will become mandatory (see anthropics/financial-services at +1,075 stars).\nAI-Generated Skills: Tools like Anthropic’s Skill Creator will let AI auto-generate skills from workflows you keep explaining repeatedly.\nThe Bottom Line: From “Using AI to Write Code” to “Engineering How AI Works” The developer divide in 2026 isn’t about whether you use AI. It’s about how you use AI.\nJunior: Uses AI like a search engine — “how do I fix this bug?” Mid-level: Uses AI as a pair programmer — prompt-driven coding Senior: Uses AI as a configurable execution engine — skills define behavioral boundaries, specs define work objectives The AI Agent Skills pattern and Spec-Driven Development don’t add complexity. They make implicit expert knowledge explicit, and transform improvised vibes into reproducible engineering discipline.\nOpen your terminal. Create your first ````.claude/skills/``` directory. Start now.\nResource Index mattpocock/skills — The canonical skills reference github/spec-kit — Official SDD toolkit from GitHub obra/superpowers — Multi-agent workflow framework anthropics/skills — Anthropic’s official skills ClawHub — OpenClaw skills marketplace Agent Skills Hub — Community skill ratings and index Based on May 2026 GitHub Trending data, Hacker News technical discussions, and community practice. Skill framework versions referenced to Claude Code 2026.05.\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
   "wordCount" : "1597",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
   "mainEntityOfPage": {
@@ -128,21 +125,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -169,7 +152,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -188,23 +171,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>8 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/zh/ai-coding-agents/ai-agent-skills-framework-spec-driven-development-2026/">Zh</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/ko/ai-coding-agents/ai-agent-skills-framework-spec-driven-development-2026/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/ai-coding-agents/ai-agent-skills-framework-spec-driven-development-2026/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>8 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul>
@@ -553,11 +525,11 @@ cp -r safe-git .claude/skills/
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://dibi8.com/ai-coding-agents/ai-agent-skills-2026-developer-guide/">
-    <span class="title">« Prev</span>
+    <span class="title">« 上一页</span>
     <span>AI Tool Guide</span>
   </a>
   <a class="next" href="https://dibi8.com/ai-coding-agents/ai-agent-tool-chain/">
-    <span class="title">Next »</span>
+    <span class="title">下一页 »</span>
     <span>AI Tool Guide</span>
   </a>
 </nav>
@@ -725,12 +697,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

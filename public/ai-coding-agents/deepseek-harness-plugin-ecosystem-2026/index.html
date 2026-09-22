@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/deepseek-harness-plugin-ecosystem-2026/">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/deepseek-harness-plugin-ecosystem-2026/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/deepseek-harness-plugin-ecosystem-2026/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/deepseek-harness-plugin-ecosystem-2026/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/deepseek-harness-plugin-ecosystem-2026/">
 <noscript>
     <style>
         #theme-toggle,
@@ -85,7 +82,7 @@
   ],
   "articleBody": "DeepSeek Harness: The Plugin Framework Taking Over 2026 You’ve spent hours configuring Claude Code, tweaking Cursor settings, and wrestling with Codex CLI — only to realize your workflow still breaks when something unusual happens. This isn’t your fault. The problem is that most AI coding tools are closed systems, and you’re at the mercy of their roadmap.\nDeepSeek Harness changed everything for me last month. When I built my first plugin in 20 minutes, I realized: this is how AI agents should work. No more waiting for feature requests. No more context bleeding between tools. Just composable, shareable skills that actually stick around.\nWhat Is DeepSeek Harness? DeepSeek Harness (DSH) is an open-source plugin ecosystem for AI coding agents, created by the DeepSeek team. It transforms any LLM-based coding assistant into a modular platform where you can write custom plugins in TypeScript, Python, or YAML.\nThink of it as npm for AI agent capabilities — except instead of installing packages, you’re installing behaviors.\nThe core philosophy is simple: “Everything is a plugin.” Your code editor, your testing framework, your deployment pipeline — all can be extended through the plugin system. The harness itself acts as a lightweight wrapper around existing agents like Claude Code, Codex CLI, Cursor, and OpenCode.\nHow It Works: The Plugin Architecture DeepSeek Harness uses a three-layer architecture: 1. Core Layer — Manages agent lifecycle, session handling, and plugin loading 2. Plugin Layer — Your custom code, loaded at runtime 3. Integration Layer — Connects to Claude Code, Codex, Cursor, etc.\n// Example: A simple DSH plugin import { Plugin } from 'deepseek-harness'; export class MyPlugin extends Plugin { name = 'my-plugin'; version = '1.0.0'; async execute(context: PluginContext) { // Your logic here return { success: true }; } } Plugins can: - Hook into agent lifecycle events\nAdd new commands to the CLI Modify system prompts dynamically Integrate with external APIs Cache results for faster execution Installation \u0026 Setup Prerequisites Node.js 18+ or Python 3.10+ An AI coding agent (Claude Code, Codex CLI, Cursor, or OpenCode) Method 1: npm (Recommended) npm install -g deepseek-harness dsh init Method 2: pip pip install deepseek-harness dsh init Method 3: From Source git clone https://github.com/deepseek-ai/deepseek-harness.git cd deepseek-harness pnpm install pnpm run build pnpm dsh web Note: DeepSeek Harness requires pnpm for source builds. Install it with npm install -g pnpm.\nQuick Start: Web UI npx @deepseek-ai/dsh web This starts a local web interface at http://127.0.0.1:3080. No configuration needed — just open your browser and start building plugins.\nFor SSH servers or headless environments: `````bash npx @deepseek-ai/dsh web –no-open\nThen access via forwarded port ssh -L 3080:localhost:3080 user@server\n## Building Your First Plugin Let's create a plugin that summarizes code changes after each commit. ### Step 1: Initialize Plugin `````bash dsh create-plugin summarize-commits cd summarize-commits Step 2: Write the Plugin Code import { Plugin, PluginContext } from 'deepseek-harness'; import { execSync } from 'child_process'; export class SummarizeCommitsPlugin extends Plugin { name = 'summarize-commits'; version = '1.0.0'; async execute(context: PluginContext) { const diff = execSync('git diff HEAD~1 HEAD --stat').toString(); const commit = execSync('git log -1 --pretty=%B').toString(); const prompt = ```` Summarize this git commit in one sentence: ${commit} Files changed: ${diff} ````; return { prompt }; } } Step 3: Register the Plugin dsh plugin add ./summarize-commits dsh plugin list # Verify installation Step 4: Test Your Plugin dsh run summarize-commits --dry-run Integrating with Claude Code DSH works seamlessly with Claude Code through the skills system.\nClaude Code Integration # ~/.claude/settings.json { \"plugins\": [ { \"name\": \"deepseek-harness\", \"path\": \"~/.dsh/plugins\", \"autoLoad\": true } ] } Cursor Integration // .cursorrc { \"dsh\": { \"enabled\": true, \"pluginsDir\": \"~/.dsh/plugins\" } } Usage in Any Agent # Start the harness dsh web # Or use CLI directly dsh run my-plugin --arg value Advanced Plugin Patterns Async Operations async execute(context: PluginContext): Promise\u003cPluginResult\u003e { const data = await fetchAPI('/external-endpoint'); return { success: true, data }; } State Persistence const state = await context.storage.get('my-state'); await context.storage.set('my-state', { key: 'value' }); Event Hooks this.on('before:commit', async (ctx) =\u003e { // Run checks before commit await this.validateSecurity(ctx); }); Real-World Use Cases 1. Automated Code Review Create a plugin that runs security checks before commits: - Scan for hardcoded secrets\nCheck for SQL injection patterns Verify license compatibility Run linter and fix auto-fixable issues 2. Multi-Agent Coordination Use DSH to orchestrate multiple agents: - One agent writes tests\nAnother refactors code A third updates documentation All coordinated through shared state 3. CI/CD Integration Build plugins that: - Trigger deployments on specific patterns\nGenerate release notes automatically Update version numbers based on semantic versioning Benchmarks \u0026 Performance Testing DSH against vanilla Claude Code: | Metric | Vanilla | DSH | Improvement | |\n|\n|\n|\n| | Plugin load time | N/A | 45ms | — | | Token usage (with plugin) | 100% | 62% | -38% | | Response latency | 2.1s | 1.8s | -14% | | Context reuse | 0% | 85% | +85% |\nKey insight: Plugins cache results and reuse context, reducing token usage by up to 38% in repeated workflows.\nComparison with Alternatives | Feature | DeepSeek Harness | Agent Skills | Superpowers | Skills Framework | |\n|\n|\n|\n|\n| | Multi-agent support | ✅ | ✅ | ✅ | ❌ | | Plugin marketplace | ✅ | ❌ | ❌ | ❌ | | Zero-config setup | ✅ | ❌ | ✅ | ❌ | | TypeScript support | ✅ | ✅ | ✅ | ✅ | | Python support | ✅ | ❌ | ❌ | ✅ | | Active maintenance | ✅ (Daily) | ✅ | ✅ | ⚠️ (Monthly) | | Community size | 12K+ | 8K+ | 5K+ | 3K+ | | Star count | 229K | 96K | 204K | 263K |\nVerdict: DeepSeek Harness leads in active development and multi-language support. Superpowers has more stars but slower release cadence. Agent Skills excels for JavaScript-heavy stacks.\nLimitations \u0026 Honest Assessment DSH isn’t perfect. Here’s what you should know: 1. Plugin quality varies — The marketplace is growing but not all plugins are production-ready 2. Learning curve — Writing good plugins requires understanding the agent architecture 3. Version lock-in — Plugins may break between major releases 4. Limited debugging — When plugins fail, error messages can be opaque\nWho should use DSH:\nTeams building custom AI workflows Developers who want reusable agent capabilities Organizations with strict security requirements (self-hosted plugins) Who should skip:\nCasual users who just want to chat with an LLM Teams needing enterprise support (still emerging) Projects requiring guaranteed backward compatibility Troubleshooting Common Issues Issue 1: Plugin Not Loading # Check plugin registration dsh plugin list # View plugin logs dsh logs --plugin my-plugin --tail 50 Issue 2: Port Already in Use If port 3080 is occupied: `````bash npx @deepseek-ai/dsh web –port 3081\n### Issue 3: TypeScript Compilation Errors `````bash # Clear cache and rebuild rm -rf node_modules/.cache pnpm run clean pnpm run build Issue 4: Memory Leak in Long Sessions Enable memory limits in your plugin config: `````typescript // dsh.config.ts export default { memory: { maxTokens: 4096, gcInterval: ‘5m’ } };\n## Security Considerations When running DSH plugins in production: 1. **Sandbox Execution** — Always run plugins in isolated environments 2. **Network Restrictions** — Use firewall rules to limit plugin outbound connections 3. **Secret Scanning** — Integrate a secrets scanner as a pre-commit plugin 4. **Plugin Auditing** — Review third-party plugins before installation `````bash # Security scan for plugins dsh security scan --deep ./plugins The Cordis Framework: Under the Hood DeepSeek Harness is powered by Cordis, a programming paradigm for spatiotemporal composability. This research paper describes the theoretical foundation: \u003e “A Programming Paradigm for Spatiotemporal Composability” (arXiv:2608.25512)\nThe Cordis framework enables: - Time-travel debugging — Replay plugin execution at any point\nSpatial partitioning — Isolate plugin state by dimension Temporal composition — Chain plugins across time periods This is why DSH plugins can be paused, resumed, and replayed without state loss.\nPerformance Tuning For high-volume environments, optimize plugin performance: ### Caching Strategy\nconst cache = new LRUMap({ max: 1000, ttl: '10m' }); // In your plugin const cached = cache.get(key); if (cached) return cached; const result = await expensiveOperation(); cache.set(key, result); return result; Concurrency Control import { Semaphore } from 'deepseek-harness/utils'; const sem = new Semaphore(5); // Max 5 concurrent operations async execute(context) { await sem.acquire(); try { // Your operation } finally { sem.release(); } } Community \u0026 Ecosystem Plugin Marketplace Explore community plugins at https://marketplace.deepseek.ai: - GitHub integrations — PR reviews, issue tracking\nCloud providers — AWS, GCP, Azure automation Development tools — Docker, Kubernetes, Terraform helpers Contributing to DSH Interested in contributing?\nFork the repository Create a feature branch Submit a PR with tests Join the Discord community # Development setup git clone git@github.com:deepseek-ai/deepseek-harness.git cd deepseek-harness pnpm install pnpm test # Run test suite pnpm dev # Start development mode Q: Is DeepSeek Harness free? Yes, the core framework is MIT-licensed and free. Premium plugins may exist in the future, but the base system is open-source.\nQ: Can I use DSH with Cursor? Yes, DSH integrates with Cursor through the MCP (Model Context Protocol) system. Configuration is documented in the GitHub repo.\nQ: How does DSH compare to LangChain? DSH focuses on agent behavior extension, while LangChain focuses on LLM application building. They’re complementary — you can use both together.\nQ: What’s the difference between DSH and Addy Osmani’s Agent Skills? Agent Skills is a specific implementation of the skills pattern. DSH is the broader framework that can host multiple skill implementations, including Agent Skills.\nQ: Is DSH production-ready? Yes, several large companies are using DSH in production. The plugin system is stable, but always test plugins in staging first.\nQ: How do I handle plugin dependencies? DSH uses npm/pnpm for plugin dependencies. Each plugin declares its own package.json. Run ````dsh plugin deps ``` to list and install.\nQ: Can I share plugins with my team? Yes. Publish to a private npm registry, or share the plugin directory directly. DSH supports both public and private plugin sources.\nConclusion DeepSeek Harness represents a fundamental shift in how we think about AI coding tools. Instead of fighting against closed systems, you can extend them with plugins that last.\nThe real power isn’t in the framework itself — it’s in the community building plugins that solve real problems. Last week, I found a plugin that automatically generates commit messages based on my coding style. That saved me 20 minutes per day.\nThe lesson: Don\"t just use AI tools. Extend them. Build the capabilities you wish they had natively.\nYour turn: What plugin would you build first? Share your ideas in the comments or open an issue on GitHub.\nSources \u0026 Further Reading:\nOfficial docs: https://deepseek-harness.github.io/deepseek-harness/ Plugin marketplace: https://marketplace.deepseek.ai Cordis paper: https://arxiv.org/abs/2608.25512 Community Discord: https://discord.gg/Ycq5dCaS4 Last updated: September 2026 | Verified: DeepSeek Harness v0.8.0+\nCTA: Join the DSH community on Telegram: https://t.me/DIBI8_Group\nLangChain vs DSH | Agent Memory Systems 2026\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “DeepSeek Harness: 229K-Star Plugin Ecosystem That Makes Everything Extendable — Complete 2026 Setup Guide”, “datePublished”: “2026-09-19”, “dateModified”: “2026-09-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/deepseek-harness-plugin-ecosystem-2026\" } } Related Articles deepseek-harness-plugin-ecosystem-2026 deepseek-harness-plugin-ecosystem-2026 2026-06-15-trending-ai-agents 2026-06-22-trending-ai-agents agency-agents-complete-ai-agency-framework Found this helpful? Join our Telegram community for daily AI tool updates!\n",
   "wordCount" : "1896",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
   "mainEntityOfPage": {
@@ -128,21 +125,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -169,7 +152,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -188,23 +171,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>9 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/zh/ai-coding-agents/deepseek-harness-plugin-ecosystem-2026/">Zh</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/ko/ai-coding-agents/deepseek-harness-plugin-ecosystem-2026/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/ai-coding-agents/deepseek-harness-plugin-ecosystem-2026/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>9 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul>
@@ -705,11 +677,11 @@ dsh security scan --deep ./plugins
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://dibi8.com/ai-coding-agents/deepseek-ds4-vs-openai-api/">
-    <span class="title">« Prev</span>
+    <span class="title">« 上一页</span>
     <span>AI Tool Guide</span>
   </a>
   <a class="next" href="https://dibi8.com/ai-coding-agents/deepseek-reasonix-terminal-ai-coding-agent-prefix-cache/">
-    <span class="title">Next »</span>
+    <span class="title">下一页 »</span>
     <span>AI Tool Guide</span>
   </a>
 </nav>
@@ -877,12 +849,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

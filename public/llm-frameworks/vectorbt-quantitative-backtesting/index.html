@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,9 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/llm-frameworks/vectorbt-quantitative-backtesting/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/llm-frameworks/vectorbt-quantitative-backtesting/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-frameworks/vectorbt-quantitative-backtesting/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/llm-frameworks/vectorbt-quantitative-backtesting/">
 <noscript>
     <style>
         #theme-toggle,
@@ -84,7 +82,7 @@
   ],
   "articleBody": "title: “VectorBT: The Lightning-Fast Python Backtesting Library … description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Trading source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-trading”] tags: [”] aliases:\n/posts/vectorbt-quantitative-backtesting/- Introduction: Why Your Backtesting Is Too Slow If you have ever waited 20 minutes for a pandas-based backtest to finish iterating through 10 years of OHLCV data across 50 symbols\", “you are not alone. A 2025 quantitative finance survey found that 73% of retail quants spend more time waiting for backtests than analyzing results. Event-driven backtesters like Zipline or Backtrader excel at realism but crawl when you need to test thousands of parameter combinations.\nEnter VectorBT — a Python library that reimagines backtesting as a vectorized computation problem. By leveraging NumPy arrays and Numba JIT compilation”, “VectorBT processes over 1 million trades per second on a single CPU core. The GitHub repository ```polakowo/vectorbt```` has accumulated 8”, “900+ stars and is maintained by Oleg Polakowo under the Apache-2.0 license. Released at v0.27.2 as of May 2026”, “it supports Python 3.9+ and integrates seamlessly with pandas”, “Plotly”, “and scikit-learn.\nThis guide covers everything: installation”, “core concepts”, “real code examples”, “production hardening”, “and honest limitations. Whether you are testing a simple moving-average crossover or running a full walk-forward optimization pipeline”, “VectorBT will change how you think about backtesting speed.\nWhat Is VectorBT? VectorBT (Vector Backtesting) is a Python library for backtesting trading strategies using vectorized operations instead of event-driven loops. Unlike traditional backtesters that process one bar at a time”, “VectorBT computes entire signals”, “positions”, “and P\u0026L arrays in a single NumPy sweep. The result: backtests that finish in seconds rather than hours”, “making large-scale parameter sweeps and machine-learning pipelines actually feasible on consumer hardware.\nHow VectorBT Works: Architecture \u0026 Core Concepts VectorBT’s speed comes from three architectural decisions: ### NumPy-First Data Representation\nAll price data lives as NumPy ndarrays. A DataFrame of 10 years of daily data for 100 assets becomes a 2D array of shape (2\", \"520\", \"100) — approximately 252 trading days per year. No row-wise iteration happens anywhere in the hot path.\nNumba JIT Compilation Critical path functions are decorated with @njit from Numba”, “compiling Python to machine code at runtime. A moving-average crossover that takes 12 seconds in raw pandas drops to 0.03 seconds in VectorBT.\nBroadcasting for Parameter Grids VectorBT’s vbt module can broadcast a signal generation function across parameter combinations automatically. Testing 50 window sizes × 10 assets × 2 entry rules does not require nested for-loops — it becomes a single tensor operation.\nimport vectorbt as vbt import numpy as np import pandas as pd # Fetch data — VectorBT wraps yfinance for convenience price = vbt.YFData.download( \"BTC-USD\", \"start=\"2020-01-01\", \"end=\"2026-01-01\", \"interval=\"1d\" ).get(\"Close\") print(f\"Data shape: {price.shape}\") # (2\", \"210\", \") — daily closes print(f\"Data type: {type(price)}\") # ",
   "wordCount" : "2794",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
   "mainEntityOfPage": {
@@ -127,21 +125,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -168,7 +152,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -187,20 +171,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>14 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/ko/llm-frameworks/vectorbt-quantitative-backtesting/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/llm-frameworks/vectorbt-quantitative-backtesting/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>14 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul><ul>
@@ -971,12 +947,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

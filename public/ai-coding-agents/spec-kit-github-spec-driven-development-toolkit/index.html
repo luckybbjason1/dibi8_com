@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/spec-kit-github-spec-driven-development-toolkit/">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/spec-kit-github-spec-driven-development-toolkit/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/spec-kit-github-spec-driven-development-toolkit/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/spec-kit-github-spec-driven-development-toolkit/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/spec-kit-github-spec-driven-development-toolkit/">
 <noscript>
     <style>
         #theme-toggle,
@@ -85,7 +82,7 @@
   ],
   "articleBody": "Spec Kit: GitHub’s Revolutionary Spec-Driven Development Toolkit Software development has always been plagued by a fundamental disconnect: what we specify rarely matches what we build. Requirements documents gather dust, PRDs become outdated within days, and the final product often diverges significantly from the original vision.\nEnter Spec Kit - GitHub’s groundbreaking open-source toolkit that flips this script entirely. With 114,000+ GitHub stars and rapid adoption, Spec Kit introduces Spec-Driven Development (SDD), a paradigm where specifications become executable artifacts that directly generate working implementations.\nIn this comprehensive guide, we’ll explore how Spec Kit works, why it matters, how to get started, and real-world examples that demonstrate its transformative potential.\nWhat is Spec Kit? Spec Kit is an open-source toolkit developed by GitHub that enables Spec-Driven Development - a methodology where specifications are not just documentation, but executable artifacts that guide and generate code.\nTraditional development workflows look like this: ```` Requirements → Design → Implementation → Testing → Deployment (docs) (docs) (code) (tests) (prod)\nSpec Kit changes it to: ````` Spec → Implementation → Testing → Deployment (executable) (code) (tests) (prod) The spec becomes the source of truth - living, breathing, and directly connected to the codebase.\nCore Philosophy Specifications as Executable Artifacts Unlike traditional requirements documents, Spec Kit specifications are: Version-controlled alongside code Machine-readable for AI agent consumption Automatically validated against implementation Tracked for drift between spec and code AI-Native Development Spec Kit is designed for the age of AI coding agents. It provides structured prompts and templates that AI agents can consume directly, ensuring: - Consistent output across agents\nTraceable decisions from spec to code Automated quality gates Multi-agent collaboration support Predictable Outcomes Over Vibe Coding Instead of “vibe coding” - throwing prompts at an AI and hoping for the best - Spec Kit enforces a disciplined approach: 1. Define what you want (spec) 2. Validate it makes sense (constitution) 3. Generate implementation (code) 4. Verify it matches the spec (tests)\nGetting Started Prerequisites uv - Python package manager An AI coding agent (Copilot, Claude Code, Codex CLI, etc.) Git installed Step 1: Install Specify CLI # Install using uv uv tool install specify-cli \\ --from git+https://github.com/github/spec-kit.git@latest # Verify installation specify --version Step 2: Initialize a Project # Create a new project with spec-kit specify init my-awesome-app --integration copilot # Navigate into the project cd my-awesome-app # Project structure created: # ├── .spec-kit/ # │ ├── constitution.md # │ ├── specs/ # │ └── templates/ # ├── SPEC.md # └── README.md Step 3: Establish Project Principles Launch your coding agent in the project directory and use the /speckit.constitution command: `````bash\nIn your AI coding agent: /speckit.constitution Create principles focused on: - Code quality standards Testing requirements Performance benchmarks Security guidelines Documentation expectations This creates a ````constitution.md```` file that governs all subsequent development decisions. ### Step 4: Write Your First Spec Use the ``/speckit.specify`` command to describe what you want to build: `````bash /speckit.specify Build a photo organization application with these features: - Users can create albums grouped by date - Albums can be reorganized by drag and drop - Photos support metadata editing - Shared albums with collaboration The spec is saved as a structured document that AI agents can consume.\nHow Spec Kit Works The Spec-Driven Development Workflow ┌─────────────────────────────────────────────────────────────┐ │ Spec Kit Workflow │ ├─────────────────────────────────────────────────────────────┤ │ │ │ 1. CONSTITUTION │ │ └─ Define project principles \u0026 guidelines │ │ │ │ 2. SPECIFY │ │ └─ Describe what to build (what/why, not how) │ │ │ │ 3. PLAN │ │ └─ Break spec into actionable tasks │ │ │ │ 4. CREATE │ │ └─ Generate implementation from spec │ │ │ │ 5. VALIDATE │ │ └─ Ensure implementation matches spec │ │ │ │ 6. DEPLOY │ │ └─ Ship to production │ │ │ └─────────────────────────────────────────────────────────────┘ Spec Format Specifications follow a structured format: `````markdown\nSpec: Photo Album Manager Summary A web application for organizing photos into date-based albums.\nUser Stories As a user, I want to create albums grouped by date As a user, I want to drag and drop photos between albums As a user, I want to share albums with collaborators Technical Requirements Framework: React + TypeScript State management: Zustand Storage: IndexedDB with cloud sync Testing: Vitest + Playwright Success Criteria Albums can be created, renamed, deleted Drag and drop works on desktop and mobile Shared albums sync across devices Performance: \u003c100ms for 1000 photos ### AI Agent Integration Spec Kit works with multiple AI coding agents: | Agent | Integration Method | | * * * | * * * | | GitHub Copilot | ````/speckit.*```` slash commands | | Codex CLI | ````$speckit-*```` commands | | Claude Code | Agent prompt templates | | Gemini CLI | Custom function calls | | OpenCode | Skill definitions | ## Real-World Examples ### Example 1: Building a REST API `````bash # Define the spec /speckit.specify Build a REST API for a blog platform with: - CRUD operations for posts - User authentication with JWT - Comment system with nesting - Search functionality - Rate limiting # Generate implementation /speckit.create # Validate against spec /speckit.validate Example 2: Creating a Mobile App # Define the spec /speckit.specify Build a fitness tracking mobile app with: - Workout logging with exercise library - Progress charts and statistics - Social features (share workouts) - Offline support - HealthKit/Google Fit integration # Generate implementation /speckit.create --framework flutter Example 3: Microservices Architecture # Define the spec /speckit.specify Design a microservices architecture for: - User service (authentication, profiles) - Order service (orders, payments) - Inventory service (stock, warehouse) - Notification service (email, SMS, push) - API gateway for routing # Generate implementation /speckit.plan --architecture microservices /speckit.create --framework kubernetes Bundles: Role-Based Setups Spec Kit includes pre-configured bundles for different team roles: ### Developer Bundle\nOptimized for individual developers: `````bash specify init –bundle developer\nIncludes: - Simplified workflow - Fast feedback loops - Local-first development ### Team Bundle Designed for collaborative development: `````bash specify init --bundle team Includes: - Code review gates\nBranch protection rules Shared constitution templates Enterprise Bundle For large organizations: `````bash specify init –bundle enterprise\nIncludes: - Compliance templates - Audit trails - Multi-environment support - Custom integrations ## Advanced Features ### Extension System Spec Kit supports extensions for custom workflows: `````bash # Install an extension specify extension install github/spec-kit-extension-ci # Create custom templates specify template create my-custom-spec Custom Presets Define your own specification presets: `````yaml\n.spec-kit/presets.yaml presets: web-app: framework: react state: zustand testing: vitest api-service: framework: fastapi database: postgresql cache: redis mobile-app: framework: flutter state: riverpod testing: integration_test\n### Drift Detection Spec Kit automatically detects when implementation drifts from specification: `````bash # Check for spec drift specify drift check # View drift report specify drift report --output html Reports include: - Missing features from spec\nDeprecated features not in spec Test coverage gaps Documentation inconsistencies Comparison with Traditional Methods Spec Kit vs. Traditional PRDs | Aspect | Traditional PRD | Spec Kit | |\n|\n|\n| | Format | Free-form document | Structured spec | | Living status | Becomes outdated | Always in sync | | AI consumable | No | Yes | | Validation | Manual | Automated | | Version control | Separate wiki | Git-tracked | | Drift detection | None | Built-in |\nSpec Kit vs. Agile User Stories | Aspect | User Stories | Spec Kit | |\n|\n|\n| | Granularity | High level | Detailed | | Technical specs | Separate | Included | | Test criteria | Implicit | Explicit | | AI readiness | Poor | Excellent | | Traceability | Manual | Automated |\nBest Practices Writing Effective Specs Focus on what, not how - Describe the desired outcome, not the implementation Be specific about constraints - Performance, security, compatibility requirements Include acceptance criteria - Clear pass/fail conditions Version your specs - Track changes over time Keep specs living - Update specs as requirements evolve Integrating with CI/CD # .github/workflows/spec-validate.yml name: Validate Specs on: [pull_request] jobs: validate: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Install Specify CLI run: uv tool install specify-cli - name: Validate spec drift run: specify drift check - name: Run spec-based tests run: specify test --from-spec ```` ### Team Collaboration - Share constitution templates across projects - Use spec libraries for common patterns - Review specs before implementation - Track spec-to-code traceability ## Frequently Asked Questions ### Q: Is Spec Kit free to use? Yes! Spec Kit is **open-source under the MIT license**. It's completely free for personal and commercial use. ### Q: Which AI agents are supported? Spec Kit officially supports: - **GitHub Copilot** (native integration) - **Claude Code** (via templates) - **Codex CLI** (via commands) - **Gemini CLI** (via function calls) - **OpenCode** (via skills) - **Any agent** that can consume structured specs ### Q: Do I need to use Spec Kit with AI agents? No. While Spec Kit is designed with AI agents in mind, it can be used for traditional human-led development as well. The structured spec format improves clarity regardless of who implements it. ### Q: How does Spec Kit handle complex projects? Spec Kit scales through: - **Modular specs** - Break large specs into smaller, manageable pieces - **Composition** - Combine multiple specs for complex systems - **Hierarchical organization** - Parent-child spec relationships - **Dependency management** - Track spec interdependencies ### Q: Can I migrate from existing documentation? Yes! Spec Kit provides migration tools: - Convert Markdown docs to specs - Extract requirements from Jira/Linear - Transform PRDs into structured specs - Import user stories into spec format ### Q: What about agile ceremonies? Spec Kit integrates with agile workflows: - Specs become living user stories - Constitution replaces team working agreements - Drift detection supports sprint reviews - Spec validation aids definition of done ## Conclusion Spec Kit represents a fundamental shift in how we approach software development. By making specifications executable, version-controlled, and AI-consumable, it bridges the gap between what we intend to build and what actually gets built. Whether you're an individual developer seeking more predictable outcomes or a team looking to standardize your development process, Spec Kit provides the structure, flexibility, and AI-native capabilities you need. With backing from GitHub and rapid adoption by the developer community, Spec Kit is poised to become an essential tool in the modern developer's toolkit. ## Resources - [GitHub Repository](https://github.com/github/spec-kit) - [Documentation](https://github.github.io/spec-kit/) - [Getting Started Guide](https://github.com/github/spec-kit#getting-started) - [Extension Marketplace](https://github.com/github/spec-kit/extensions) - [Community Discord](https://discord.gg/speckit) **Sources:** - [Spec Kit GitHub Repository](https://github.com/github/spec-kit) - [Spec Kit Official Documentation](https://github.github.io/spec-kit/) - [Spec-Driven Development Manifesto](https://github.com/github/spec-kit/blob/main/docs/manifesto.md) * * * 💬 Join our Telegram group for discussions: [t.me/DIBI8_Group](https://t.me/DIBI8_Group) { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Spec Kit: GitHub's Revolutionary Spec-Driven Development Toolkit\", \"datePublished\": \"2026-06-20\", \"dateModified\": \"2026-06-20\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/spec-kit-github-spec-driven-development-toolkit\" } } * * * ## Related Articles - [codebase-memory-mcp-high-performance-code-intelligence](spec-kit-github-spec-driven-development-toolkit) - [deepseek-reasonix-terminal-ai-coding-agent-prefix-cache](spec-kit-github-spec-driven-development-toolkit) - [12-factor-agents](spec-kit-github-spec-driven-development-toolkit) - [2026-05-25-trending-ai-agents](spec-kit-github-spec-driven-development-toolkit) - [2026-06-01-trending-ai-agents](spec-kit-github-spec-driven-development-toolkit) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
   "wordCount" : "1842",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-20T00:00:00Z",
   "dateModified": "2026-09-20T00:00:00Z",
   "mainEntityOfPage": {
@@ -128,21 +125,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -169,7 +152,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
                 <polyline points="9 18 15 12 9 6"></polyline>
@@ -188,23 +171,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>9 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/zh/ai-coding-agents/spec-kit-github-spec-driven-development-toolkit/">Zh</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/ko/ai-coding-agents/spec-kit-github-spec-driven-development-toolkit/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/ai-coding-agents/spec-kit-github-spec-driven-development-toolkit/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>9 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul>
@@ -726,11 +698,11 @@ specify drift report --output html
     </ul>
 <nav class="paginav">
   <a class="prev" href="https://dibi8.com/ai-coding-agents/skyvern-dev-utils-2026/">
-    <span class="title">« Prev</span>
+    <span class="title">« 上一页</span>
     <span>AI Tool Guide</span>
   </a>
   <a class="next" href="https://dibi8.com/ai-coding-agents/stable-diffusion-webui-2026/">
-    <span class="title">Next »</span>
+    <span class="title">下一页 »</span>
     <span>AI Tool Guide</span>
   </a>
 </nav>
@@ -898,12 +870,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto" data-theme="dark">
+<html lang="zh" dir="auto" data-theme="dark">
 
 <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,10 +18,7 @@
 <link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://dibi8.com/rtk-token-killer/">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/rtk-token-killer/">
-<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/rtk-token-killer/">
-<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/rtk-token-killer/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/rtk-token-killer/">
 <noscript>
     <style>
         #theme-toggle,
@@ -81,7 +78,7 @@
   ],
   "articleBody": "Vấn đề token cost Khi dùng AI coding agents (Claude Code, Codex, Cursor), bạn đang trả tiền cho mỗi token input. Một lệnh git log hay ls -la có thể xuất ra hàng ngàn dòng, và mỗi dòng đó cost money.\nRTK giải quyết vấn đề này.\nTóm tắt: RTK lọc và nén output từ CLI trước khi gửi tới LLM. Giảm 60-90% token usage mà không mất thông tin quan trọng.\nRTK hoạt động thế nào? Cơ chế hoạt động Bạn chạy: git status ↓ RTK intercept và filter output ↓ Agent nhận được phiên bản đã nén (90% nhỏ hơn) ↓ Cost giảm, context window được bảo toàn Supported Commands (100+) Git operations:\nrtk git status, rtk git log, rtk git diff rtk gh pr list, rtk gh issue view File operations:\nrtk find, rtk grep, rtk rg rtk cat, rtk head, rtk tail Package management:\nrtk npm list, rtk yarn why rtk cargo tree, rtk pip list Process monitoring:\nrtk ps, rtk top, rtk docker ps Cài đặt macOS/Linux (Homebrew - recommended) brew install rtk rtk init -g # Global hook cho Claude Code/Copilot Windows (winget) winget install rtk-ai.rtk rtk init -g Via Cargo cargo install --git https://github.com/rtk-ai/rtk rtk init -g Pre-built binaries Tải về từ releases\nKết hợp với agents Claude Code / GitHub Copilot rtk init -g # Tự động hook vào bash Gemini CLI rtk init -g --gemini Codex (OpenAI) rtk init -g --codex Cursor / Windsurf rtk init -g --agent cursor rtk init -g --agent windsurf Hermes rtk init -g --agent hermes Benchmarks Theo rtk-ai.app/benchmarks:\nMetric Without RTK With RTK Savings Average token usage 100% 10-40% 60-90% Cost per session $1.00 $0.10-$0.40 60-90% Context window usage 100% 15-50% 50-85% Real-world example Task: Review PR with 500 lines changed\nWithout RTK: Agent đọc toàn bộ git diff → ~15.000 tokens With RTK: RTK lọc chỉ giữ changes quan trọng → ~2.500 tokens Tiết kiệm: 12.500 tokens (~$0.05) Tại sao nên dùng RTK? Giảm chi phí đáng kể — 60-90% token savings Tăng tốc độ — output nhỏ hơn = xử lý nhanh hơn Bảo toàn context — không bị overflow token limit Zero config — cài xong là chạy Cross-platform — macOS, Linux, Windows Open source — Apache 2.0 license So sánh với alternatives Tool Giá Token Savings Complexity RTK Free 60-90% Low Caveman Free ~30% Medium Ponytail Free ~54% code Low Manual filters Free Variable High Lưu ý quan trọng ⚠️ RTK không giảm 90% bill của bạn — nó giảm 90% output tokens. Input tokens từ prompt, system prompt, và conversation history vẫn tính đầy đủ.\nTuy nhiên, vì input tokens thường chiếm phần lớn trong total cost, savings thực tế vẫn rất đáng kể.\nKết luận RTK là công cụ phải có nếu bạn dùng AI coding agents thường xuyên. Cài đặt trong 1 phút, tiết kiệm hàng giờ và hàng chục USD mỗi tháng.\nLink: github.com/rtk-ai/rtk Website: rtk-ai.app\n",
   "wordCount" : "488",
-  "inLanguage": "en",
+  "inLanguage": "zh",
   "datePublished": "2026-09-22T00:00:00Z",
   "dateModified": "2026-09-22T00:00:00Z",
   "mainEntityOfPage": {
@@ -124,21 +121,7 @@
                         <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                         <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                     </svg>
-                </button><span class="nav-sep">|</span>
-                    <ul class="lang-menu">
-                        <li>
-                            <a href="https://dibi8.com/zh/" title="中文"
-                                aria-label="中文">Zh</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/ko/" title="한국어"
-                                aria-label="한국어">Ko</a>
-                        </li>
-                        <li>
-                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
-                                aria-label="Tiếng Việt">Vi</a>
-                        </li>
-                    </ul>
+                </button>
             </div>
         </div>
         <ul id="menu" class="menu">
@@ -165,7 +148,7 @@
 <article class="post-single">
   <header class="post-header">
     <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">Home</a>
+            <a href="/">主页</a>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
         stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
         <polyline points="9 18 15 12 9 6"></polyline>
@@ -179,23 +162,12 @@
     </div>
     <div class="post-meta">
 
-<span title='2026-09-22 00:00:00 +0000 UTC'>September 22, 2026</span>&nbsp;·&nbsp;<span>3 min</span>&nbsp;|&nbsp;<span>Translations:</span>
-    <ul class="i18n_list">
-        <li>
-            <a href="https://dibi8.com/zh/rtk-token-killer/">Zh</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/ko/rtk-token-killer/">Ko</a>
-        </li>
-        <li>
-            <a href="https://dibi8.com/vi/rtk-token-killer/">Vi</a>
-        </li>
-    </ul>
+<span title='2026-09-22 00:00:00 +0000 UTC'>September 22, 2026</span>&nbsp;·&nbsp;<span>3 分钟</span>
 
 </div>
   </header> <details class="toc" >
     <summary accesskey="c" title="(Alt + C)">
-        <span class="title">Table of Contents</span>
+        <span class="title">目录</span>
     </summary>
 
     <div class="inner"><ul>
@@ -585,12 +557,12 @@ function googleTranslateElementInit() {
 
         const copybutton = document.createElement('button');
         copybutton.classList.add('copy-code');
-        copybutton.innerHTML = 'copy';
+        copybutton.innerHTML = '复制';
 
         function copyingDone() {
-            copybutton.innerHTML = 'copied!';
+            copybutton.innerHTML = '已复制！';
             setTimeout(() => {
-                copybutton.innerHTML = 'copy';
+                copybutton.innerHTML = '复制';
             }, 2000);
         }
 
