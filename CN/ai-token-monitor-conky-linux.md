@@ -35,8 +35,6 @@ faqs:
     a: 'The Grok check calls GET /v1/models — it returns 200 if authenticated and credits available, 403 if credits are exhausted. A 403 from xAI specifically means account balance is zero. If you have credits but see 403, verify the API key is correct in ~/.config/.ai_monitor_keys.'
 ---
 
-{{< resource-info >}}
-
 ## The Problem: Juggling Six AI Services and Never Knowing Which One Is Out
 
 Modern developers use four to eight AI services simultaneously — Claude for complex reasoning, Gemini for long-context analysis, Grok for real-time web data, Kimi for large document processing. Each service has its own quota dashboard, reset schedule, and billing page.

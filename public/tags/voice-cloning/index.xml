@@ -1,1 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Voice-Cloning on Dibi8</title><link>https://dibi8.com/tags/voice-cloning/</link><description>Recent content in Voice-Cloning on Dibi8</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Tue, 22 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://dibi8.com/tags/voice-cloning/index.xml" rel="self" type="application/rss+xml"/><item><title>VoiceStudio: Alternativa Open-Source Cho ElevenLabs (34K Stars)</title><link>https://dibi8.com/voicestudio-voice-cloning/</link><pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/voicestudio-voice-cloning/</guid><description>VoiceStudio là công cụ voice cloning hoàn toàn local, hỗ trợ 646 ngôn ngữ, 150+ free models. Thay thế ElevenLabs miễn phí với chất lượng tương đương.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Voice-Cloning on Dibi8</title>
+    <link>https://dibi8.com/tags/voice-cloning/</link>
+    <description>Recent content in Voice-Cloning on Dibi8</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 22 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://dibi8.com/tags/voice-cloning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VoiceStudio: Alternativa Open-Source Cho ElevenLabs (34K Stars)</title>
+      <link>https://dibi8.com/voicestudio-voice-cloning/</link>
+      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/voicestudio-voice-cloning/</guid>
+      <description>VoiceStudio là công cụ voice cloning hoàn toàn local, hỗ trợ 646 ngôn ngữ, 150&#43; free models. Thay thế ElevenLabs miễn phí với chất lượng tương đương.</description>
+    </item>
+  </channel>
+</rss>

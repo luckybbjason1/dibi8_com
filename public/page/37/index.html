@@ -1,31 +1,378 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta name=generator content="Hugo 0.163.3"><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Dibi8</title><meta name=description content="Hand-tested AI coding agent tools and open-source LLM frameworks"><meta name=author content><link rel=canonical href=https://dibi8.com/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://dibi8.com/index.xml title=rss><link rel=alternate hreflang=zh href=https://dibi8.com/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="Dibi8"><meta property="og:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="Dibi8"><meta name=twitter:description content="Hand-tested AI coding agent tools and open-source LLM frameworks"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Organization","name":"Dibi8","url":"https://dibi8.com/","description":"Hand-tested AI coding agent tools and open-source LLM frameworks","logo":"https://dibi8.com/favicon.ico","sameAs":[]}</script></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>TL;DR Taste Skill gives your AI agent a design brain. Instead of generating the same generic, centered, boring UI that every AI tool produces, it enforces stronger layout variance, intentional motion, and premium visual density. It ships as portable SKILL.md files that work with Codex, Cursor, Claude Code, and ChatGPT Images.
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head>
+	<meta name="generator" content="Hugo 0.163.3"><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Dibi8</title>
+
+<meta name="description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://dibi8.com/index.xml" title="rss">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="Dibi8">
+  <meta property="og:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dibi8">
+  <meta name="twitter:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Dibi8",
+  "url": "https://dibi8.com/",
+  "description": "Hand-tested AI coding agent tools and open-source LLM frameworks",
+  "logo": "https://dibi8.com/favicon.ico",
+  "sameAs": [
+      
+  ]
+}
+</script>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>TL;DR Taste Skill gives your AI agent a design brain. Instead of generating the same generic, centered, boring UI that every AI tool produces, it enforces stronger layout variance, intentional motion, and premium visual density. It ships as portable SKILL.md files that work with Codex, Cursor, Claude Code, and ChatGPT Images.
 TL;DR: 44,229 stars — the most-starred anti-slop skill on GitHub.
 What Is Taste Skill? Taste Skill is a collection of portable agent skills designed to upgrade AI-generated frontend output. Each skill does one job: enforce specific design rules, generate reference images, or apply a particular visual style. The framework is not tied to any single coding agent or framework — it works across React, Vue, Svelte, and static HTML.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>11 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/taste-skill/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>What Is Temporal? Temporal is an open-source distributed system for running fault-tolerant workflows at scale. At its core, it provides durable execution — your code runs inside Temporal’s managed infrastructure, which automatically handles failures, retries, checkpoints, and state persistence.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>11 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/taste-skill/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>What Is Temporal? Temporal is an open-source distributed system for running fault-tolerant workflows at scale. At its core, it provides durable execution — your code runs inside Temporal’s managed infrastructure, which automatically handles failures, retries, checkpoints, and state persistence.
 For AI workloads, this means: - LLM inference calls that fail due to rate limits automatically retry with backoff
 Multi-step fine-tuning pipelines that survive container crashes without losing progress Agent orchestration where each step’s output is persisted and can be inspected Training jobs that resume from the last checkpoint after GPU failures The Problem with Traditional AI Orchestration Consider a typical AI pipeline: ```` [Load Data] → [Preprocess] → [Embed Documents] → [Index in Vector DB] → [Test Retrieval] → [Notify Team]
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>13 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/temporal-ai-workflow-orchestration/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “TensorTrade: The Reinforcement Learning Trading Framewor… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Trading source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-trading”] tags: [“tensortrade”, “reinforcement learning”, “algorithmic trading”, “openai gym”, “stable baselines3”, “portfolio management”, “python”, “machine learning”, “crypto trading”, “quantitative finance”] aliases:
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>13 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/temporal-ai-workflow-orchestration/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “TensorTrade: The Reinforcement Learning Trading Framewor… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Ai Trading source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“ai-trading”] tags: [“tensortrade”, “reinforcement learning”, “algorithmic trading”, “openai gym”, “stable baselines3”, “portfolio management”, “python”, “machine learning”, “crypto trading”, “quantitative finance”] aliases:
 /posts/tensortrade-rl-trading/- Introduction: Why Most Trading Bots Fail (And How RL Changes the Game) In 2025, a team at a Hong Kong quant fund spent 14 months hand-crafting a mean-reversion strategy for BTC/USDT. Backtests showed 34% annual returns. Live deployment? -12% in 6 weeks. The problem wasn’t the idea — it was that markets shifted, and static rules couldn’t adapt.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>14 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/tensortrade-rl-trading/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “Terax AI: The Lightweight AI Terminal Emulator That Unde…” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Docker
-Go Java JavaScript Python Rust TypeScript application_domain: “Ai Tools” source_version: "" licensing_model: “Open Source” license_type: “MIT” file_size: “7.5 MB” file_md5: "" download_url: “https://github.com/crynta/terax-ai" backup_url: "” last_maintained: “2026-05-16” draft: false aliases: /posts/terax-ai-lightweight-ai-terminal/ faqs: - q: ‘What is Terax AI?’ a: ‘Terax AI is an open-source, AI-native terminal emulator built on Tauri 2 with a Rust backend and a React 19 frontend. It combines a native PTY terminal with multi-tab support, an integrated code editor, a file explorer, and a first-class AI side-panel.’ q: ‘Does Terax AI send my data or API keys to the cloud?’ a: ‘No. Terax follows a Bring Your Own Key (BYOK) model with zero telemetry, and your API keys are stored securely in the OS keychain via the keyring system rather than on disk or in localStorage. You can also run fully offline by pointing Terax to a local LM Studio inference endpoint.’ q: ‘Which shells and operating systems does Terax AI support?’ a: ‘Terax works on macOS, Windows, and Linux, and supports bash, zsh, fish, PowerShell 7+, Windows PowerShell 5.1, and cmd.exe. Shell integration provides current-working-directory reporting and prompt markers so the AI stays aware of your context.’ q: ‘How big is Terax AI compared to other terminals?’ a: ‘Terax is roughly a 7 MB bundle (under 10 MB on disk), far smaller than Electron-based alternatives. This is because Tauri 2 uses the operating system’’s native WebView (WKWebView on macOS, WebView2 on Windows, WebKitGTK on Linux) instead of bundling a full Chromium instance.’ q: ‘How do I install Terax AI?’ a: ‘Terax is built from source: install Rust (stable) and Node.js 20+ with pnpm, clone the repository with git, run pnpm install, then pnpm tauri dev for development or pnpm tauri build for a production bundle. No official prebuilt installer binaries are listed.’ {&lt;/* resource-info */>}
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>13 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/terax-ai-lightweight-ai-terminal/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>{&lt;/* resource-info */>}
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>14 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/tensortrade-rl-trading/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “Terax AI: The Lightweight AI Terminal Emulator That Unde…” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - Docker
+Go Java JavaScript Python Rust TypeScript application_domain: “Ai Tools” source_version: &#34;&#34; licensing_model: “Open Source” license_type: “MIT” file_size: “7.5 MB” file_md5: &#34;&#34; download_url: “https://github.com/crynta/terax-ai&#34; backup_url: &#34;” last_maintained: “2026-05-16” draft: false aliases: /posts/terax-ai-lightweight-ai-terminal/ faqs: - q: ‘What is Terax AI?’ a: ‘Terax AI is an open-source, AI-native terminal emulator built on Tauri 2 with a Rust backend and a React 19 frontend. It combines a native PTY terminal with multi-tab support, an integrated code editor, a file explorer, and a first-class AI side-panel.’ q: ‘Does Terax AI send my data or API keys to the cloud?’ a: ‘No. Terax follows a Bring Your Own Key (BYOK) model with zero telemetry, and your API keys are stored securely in the OS keychain via the keyring system rather than on disk or in localStorage. You can also run fully offline by pointing Terax to a local LM Studio inference endpoint.’ q: ‘Which shells and operating systems does Terax AI support?’ a: ‘Terax works on macOS, Windows, and Linux, and supports bash, zsh, fish, PowerShell 7&#43;, Windows PowerShell 5.1, and cmd.exe. Shell integration provides current-working-directory reporting and prompt markers so the AI stays aware of your context.’ q: ‘How big is Terax AI compared to other terminals?’ a: ‘Terax is roughly a 7 MB bundle (under 10 MB on disk), far smaller than Electron-based alternatives. This is because Tauri 2 uses the operating system’’s native WebView (WKWebView on macOS, WebView2 on Windows, WebKitGTK on Linux) instead of bundling a full Chromium instance.’ q: ‘How do I install Terax AI?’ a: ‘Terax is built from source: install Rust (stable) and Node.js 20&#43; with pnpm, clone the repository with git, run pnpm install, then pnpm tauri dev for development or pnpm tauri build for a production bundle. No official prebuilt installer binaries are listed.’ {&lt;/* resource-info */&gt;}
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>13 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/terax-ai-lightweight-ai-terminal/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>{&lt;/* resource-info */&gt;}
 Developers spend hours each day in the terminal. A well-configured shell environment saves minutes on every task — compounding into hours of reclaimed productivity each week. In 2025, the terminal ecosystem has never been richer. Tools like zsh, tmux, fzf, and ripgrep transform the command line from a bare prompt into a powerful, customized workspace.
 This guide covers the essential tools, their configuration, and how they fit together into a cohesive terminal setup. Whether you are on macOS or Linux, following this guide will give you a terminal environment that matches — or exceeds — the productivity of a modern IDE.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>12 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>TimesFM 2.5: Google’s Revolutionary Time Series Foundation Model for Forecasting Time series forecasting has long been one of the most challenging problems in data science. From predicting stock prices to forecasting weather patterns, from sales projections to energy consumption estimates — accurate predictions can make or break businesses.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>12 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/terminal-command-line-tools-tmux-zsh-fzf-ripgrep/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>TimesFM 2.5: Google’s Revolutionary Time Series Foundation Model for Forecasting Time series forecasting has long been one of the most challenging problems in data science. From predicting stock prices to forecasting weather patterns, from sales projections to energy consumption estimates — accurate predictions can make or break businesses.
 Enter TimesFM, Google Research’s groundbreaking foundation model for time series forecasting. With version 2.5 now available and over 23,000 GitHub stars, TimesFM represents a paradigm shift in how we approach temporal data analysis.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>13 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/timesfm-google-time-series-foundation-model/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: Top 10 Open-Source AI Tools for Developers in 2026 (Free … description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Docker
-Go JavaScript application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-15” draft: false aliases: /en/posts/top-ai-developer-productivity-tools-2026/ /en/posts/top-open-source-document-management-tools-2026/ /en/posts/top-open-source-fintech-tools-2026/ /posts/open-source-ai-tools-replacement/ /posts/top-ai-developer-productivity-tools-2026/ /posts/top-open-source-document-management-tools-2026/ /posts/top-open-source-fintech-tools-2026/ faqs: - q: ‘What is the best open-source alternative to Midjourney in 2026?’ a: ‘ComfyUI is the leading open-source alternative to Midjourney. It provides a node-based, unrestricted workflow for Stable Diffusion and Flux models that runs entirely on your local GPU, instead of relying on a black-box Discord bot.’ q: ‘What open-source tool can replace Devin for autonomous coding?’ a: ‘OpenHands is the open-source alternative to Devin. It can browse the web, write code, run tests, and fix bugs autonomously inside a secure Docker sandbox.’ q: ‘How can I give a local LLM access to my company’’s private documents?’ a: ‘AnythingLLM lets you turn any document, database, or website into an interactive AI knowledge base. It is an enterprise RAG tool that gives local LLMs access to private company data.’ q: ‘What is the open-source alternative to LangChain or Coze for building AI workflows?’ a: ‘Dify is a visual LLM engine that replaces hardcoded API calls. It lets you build complex RAG pipelines and multi-agent workflows using a drag-and-drop visual interface.’ q: ‘How can AI coding agents keep memory across sessions without API calls?’ a: ‘MemPalace acts as an MCP (Model Context Protocol) server that gives local coding agents like Claude Code permanent memory. Because it runs locally as an MCP server, it provides persistent context without making external API calls.’— {&lt;/* resource-info */>}
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/top-10-open-source-ai-tools-2026/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>Top RAG Tools for AI Knowledge Bases Top RAG Tools for AI Knowledge Bases The best RAG (Retrieval-Augmented Generation) tools for building AI knowledge bases — from LangChain to LlamaIndex, ChromaDB to Weaviate.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>13 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/timesfm-google-time-series-foundation-model/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: Top 10 Open-Source AI Tools for Developers in 2026 (Free … description: “Technical guide and comparison.” date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - Docker
+Go JavaScript application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-15” draft: false aliases: /en/posts/top-ai-developer-productivity-tools-2026/ /en/posts/top-open-source-document-management-tools-2026/ /en/posts/top-open-source-fintech-tools-2026/ /posts/open-source-ai-tools-replacement/ /posts/top-ai-developer-productivity-tools-2026/ /posts/top-open-source-document-management-tools-2026/ /posts/top-open-source-fintech-tools-2026/ faqs: - q: ‘What is the best open-source alternative to Midjourney in 2026?’ a: ‘ComfyUI is the leading open-source alternative to Midjourney. It provides a node-based, unrestricted workflow for Stable Diffusion and Flux models that runs entirely on your local GPU, instead of relying on a black-box Discord bot.’ q: ‘What open-source tool can replace Devin for autonomous coding?’ a: ‘OpenHands is the open-source alternative to Devin. It can browse the web, write code, run tests, and fix bugs autonomously inside a secure Docker sandbox.’ q: ‘How can I give a local LLM access to my company’’s private documents?’ a: ‘AnythingLLM lets you turn any document, database, or website into an interactive AI knowledge base. It is an enterprise RAG tool that gives local LLMs access to private company data.’ q: ‘What is the open-source alternative to LangChain or Coze for building AI workflows?’ a: ‘Dify is a visual LLM engine that replaces hardcoded API calls. It lets you build complex RAG pipelines and multi-agent workflows using a drag-and-drop visual interface.’ q: ‘How can AI coding agents keep memory across sessions without API calls?’ a: ‘MemPalace acts as an MCP (Model Context Protocol) server that gives local coding agents like Claude Code permanent memory. Because it runs locally as an MCP server, it provides persistent context without making external API calls.’— {&lt;/* resource-info */&gt;}
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/top-10-open-source-ai-tools-2026/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Top RAG Tools for AI Knowledge Bases Top RAG Tools for AI Knowledge Bases The best RAG (Retrieval-Augmented Generation) tools for building AI knowledge bases — from LangChain to LlamaIndex, ChromaDB to Weaviate.
 Tools in this Stack LangChain LlamaIndex ChromaDB Weaviate Pinecone Qdrant Milvus FAISS RAGFlow AnythingLLM Why This Stack Matters These tools represent the best-in-class solutions for AI image generation, RAG/knowledge bases, and AI coding assistance in 2026. Each one has been tested and verified for quality, performance, and developer experience.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/top-rag-tools/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “GEO Optimization Checklist: Make ChatGPT Cite You Using … Agent)' description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Go application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-15” draft: false aliases:
-/posts/toprank-geo-optimization-guide/ faqs: - q: ‘What is GEO (Generative Engine Optimization)?’ a: ‘GEO is the practice of structuring your content so that large language models like ChatGPT, Claude, and Perplexity confidently retrieve and cite your URL as a source in their generated answers, rather than just ranking in standard search results.’ q: ‘What is Toprank and what does it do?’ a: ‘Toprank is an open-source AI agent that automates Generative Engine Optimization. It clones your repository, analyzes your markdown and HTML files, and injects structured data, distinct statistics, and quotable facts to make your content more likely to be cited by AI models.’ q: ‘How does Toprank differ from traditional SEO tools like Ahrefs or Semrush?’ a: ‘Traditional tools target blue-link clicks on Google with passive dashboards and cost $199-$399 per month, while Toprank targets AI citations from ChatGPT and Perplexity, runs as an autonomous agent that actively fixes code and content, and is free as an open-source tool paired with a local LLM.’ q: ‘Which LLMs power Toprank?’ a: ‘Toprank uses Claude Code or DeepSeek as its underlying reasoning engine, allowing it to act as a proactive agent that rewrites and optimizes content rather than just listing SEO errors.’ q: ‘How much can GEO optimization increase AI citation likelihood?’ a: ‘According to the article, injecting structured data, distinct statistics, and uniquely quotable facts into your content is empirically claimed to increase the probability of being referenced in LLM outputs by up to 45%.’— {&lt;/* resource-info */>}
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>6 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/toprank-guide/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “Toprank: Open-Source Claude Code Skills That Automate SE…” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Go application_domain: “Ai Tools” source_version: "" licensing_model: “Open Source” license_type: “MIT” file_size: “1.3 MB” file_md5: "" download_url: “https://github.com/nowork-studio/toprank" backup_url: "” last_maintained: “2026-05-15” draft: false aliases:
-/posts/toprank/ faqs: - q: ‘What is Toprank and how is it different from SEO SaaS tools?’ a: ‘Toprank is an open-source suite of Claude Code skills that turns Anthropic’’s Claude Code CLI into a marketing automation engine. Unlike web-dashboard SaaS tools, it runs inside your existing development environment with no browser tabs, monthly seat fees, or context switching.’ q: ‘What SEO tasks can Toprank automate?’ a: ‘Toprank’’s SEO module includes skills for technical audits with Google Search Console data (seo-analysis), EEAT content drafting (content-writer), keyword research with topic clustering, meta tag and Open Graph optimization, JSON-LD schema generation, single-page Core Web Vitals analysis (seo-page), and broken-link/orphan-page checking. It also has a dedicated geo-optimizer skill for Generative Engine Optimization.’ q: ‘Can Toprank manage Google Ads and Meta Ads directly?’ a: ‘Yes. Toprank connects to Google Ads and Meta accounts via official APIs to audit campaign health, generate ad copy, and execute live changes such as applying negative keywords, adjusting bids, pausing underperformers, reallocating budgets, and starting A/B tests. Because it uses official APIs, recommendations are backed by real account data rather than scraped estimates.’ q: ‘How does Toprank handle installation and updates?’ a: ‘Toprank installs via a one-time setup script, after which its skills update automatically whenever the repository releases new versions. There is no package manager to monitor or manual changelog to read, so all team members stay on the same skill version without lockfile conflicts.’ q: ‘Who is Toprank best suited for?’ a: ‘Toprank targets technical SEOs automating audits in their CLI, growth engineers running marketing infrastructure alongside application code, agencies managing many client accounts with version-controlled playbooks, and startup founders who need professional SEO and ad management without a $500+/month SaaS stack.’ {&lt;/* resource-info */>}
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/toprank/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://dibi8.com/page/36/>«&nbsp;上一页&nbsp;
-</a><a class=next href=https://dibi8.com/page/38/>下一页&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/top-rag-tools/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “GEO Optimization Checklist: Make ChatGPT Cite You Using … Agent)&#39; description: “Technical guide and comparison.” date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - Go application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-15” draft: false aliases:
+/posts/toprank-geo-optimization-guide/ faqs: - q: ‘What is GEO (Generative Engine Optimization)?’ a: ‘GEO is the practice of structuring your content so that large language models like ChatGPT, Claude, and Perplexity confidently retrieve and cite your URL as a source in their generated answers, rather than just ranking in standard search results.’ q: ‘What is Toprank and what does it do?’ a: ‘Toprank is an open-source AI agent that automates Generative Engine Optimization. It clones your repository, analyzes your markdown and HTML files, and injects structured data, distinct statistics, and quotable facts to make your content more likely to be cited by AI models.’ q: ‘How does Toprank differ from traditional SEO tools like Ahrefs or Semrush?’ a: ‘Traditional tools target blue-link clicks on Google with passive dashboards and cost $199-$399 per month, while Toprank targets AI citations from ChatGPT and Perplexity, runs as an autonomous agent that actively fixes code and content, and is free as an open-source tool paired with a local LLM.’ q: ‘Which LLMs power Toprank?’ a: ‘Toprank uses Claude Code or DeepSeek as its underlying reasoning engine, allowing it to act as a proactive agent that rewrites and optimizes content rather than just listing SEO errors.’ q: ‘How much can GEO optimization increase AI citation likelihood?’ a: ‘According to the article, injecting structured data, distinct statistics, and uniquely quotable facts into your content is empirically claimed to increase the probability of being referenced in LLM outputs by up to 45%.’— {&lt;/* resource-info */&gt;}
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>6 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/toprank-guide/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “Toprank: Open-Source Claude Code Skills That Automate SE…” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - Go application_domain: “Ai Tools” source_version: &#34;&#34; licensing_model: “Open Source” license_type: “MIT” file_size: “1.3 MB” file_md5: &#34;&#34; download_url: “https://github.com/nowork-studio/toprank&#34; backup_url: &#34;” last_maintained: “2026-05-15” draft: false aliases:
+/posts/toprank/ faqs: - q: ‘What is Toprank and how is it different from SEO SaaS tools?’ a: ‘Toprank is an open-source suite of Claude Code skills that turns Anthropic’’s Claude Code CLI into a marketing automation engine. Unlike web-dashboard SaaS tools, it runs inside your existing development environment with no browser tabs, monthly seat fees, or context switching.’ q: ‘What SEO tasks can Toprank automate?’ a: ‘Toprank’’s SEO module includes skills for technical audits with Google Search Console data (seo-analysis), EEAT content drafting (content-writer), keyword research with topic clustering, meta tag and Open Graph optimization, JSON-LD schema generation, single-page Core Web Vitals analysis (seo-page), and broken-link/orphan-page checking. It also has a dedicated geo-optimizer skill for Generative Engine Optimization.’ q: ‘Can Toprank manage Google Ads and Meta Ads directly?’ a: ‘Yes. Toprank connects to Google Ads and Meta accounts via official APIs to audit campaign health, generate ad copy, and execute live changes such as applying negative keywords, adjusting bids, pausing underperformers, reallocating budgets, and starting A/B tests. Because it uses official APIs, recommendations are backed by real account data rather than scraped estimates.’ q: ‘How does Toprank handle installation and updates?’ a: ‘Toprank installs via a one-time setup script, after which its skills update automatically whenever the repository releases new versions. There is no package manager to monitor or manual changelog to read, so all team members stay on the same skill version without lockfile conflicts.’ q: ‘Who is Toprank best suited for?’ a: ‘Toprank targets technical SEOs automating audits in their CLI, growth engineers running marketing infrastructure alongside application code, agencies managing many client accounts with version-controlled playbooks, and startup founders who need professional SEO and ad management without a $500&#43;/month SaaS stack.’ {&lt;/* resource-info */&gt;}
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/toprank/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://dibi8.com/page/36/">
+      «&nbsp;上一页&nbsp;
+    </a>
+    <a class="next" href="https://dibi8.com/page/38/">下一页&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>

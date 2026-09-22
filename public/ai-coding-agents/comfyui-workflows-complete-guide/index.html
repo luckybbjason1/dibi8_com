@@ -1,22 +1,327 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/comfyui-workflows-complete-guide/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/comfyui-workflows-complete-guide/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/comfyui-workflows-complete-guide/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/comfyui-workflows-complete-guide/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” Build complex pipelines with nodes, manage dependencies, and create shareable workflow templates. tags: - comfyui\nai-image-generation workflow nodes stable-diffusion visual-programming category: ai-tools date: 2026-07-16T00:00:00+00:00 lastmod: 2026-07-16T00:00:00+00:00slug: comfyui-workflows-complete-guide— TL;DR ComfyUI is a powerful visual programming interface for AI image generation that lets you build complex pipelines by connecting nodes instead of writing code. It supports Stable Diffusion, Flux, SDXL, and dozens of other models. This guide covers workflow design patterns, node management, performance optimization, and how to create professional-grade image generation pipelines.\nWhat Is ComfyUI? ComfyUI is a node-based graphical interface for running AI image generation models. Unlike traditional UIs where you adjust sliders and click “generate,” ComfyUI lets you build custom pipelines by connecting processing nodes together — similar to Blender’s node system or TouchDesigner.\nThe core philosophy: give users full control over every step of the generation process. This means you can: - Chain multiple models together (e.g., text → image → upscale → refine)\nUse conditional logic (if A then B else C) Process multiple images simultaneously Create reusable workflow templates Fine-tune every parameter at every stage Why Node-Based AI Workflows Matter Traditional AI image generators present a fixed pipeline: you enter a prompt, adjust settings, and get an image. But real-world creative work often requires: 1. Multi-stage processing — Generate base image, detect faces, upscale specific regions, apply style transfer 2. Conditional generation — Different prompts based on detected content 3. Batch processing — Generate variations efficiently 4. Custom post-processing — Apply specific filters, compositing, or corrections\nNode-based workflows handle all of this natively.\nCore Concepts Nodes and Connections Every operation in ComfyUI is a node — a self-contained processing unit with inputs and outputs: ```` [Load Checkpoint] → [CLIP Text Encode] → [KSampler] → [VAE Decode] → [Save Image] │ │ │ │ model positive/negative seed/samples output\nEach node type handles a specific task: - **Model Loading**: Load Stable Diffusion checkpoints, LoRAs, embeddings - **Text Encoding**: Convert prompts to latent space representations - **Sampling**: Generate images using various algorithms (Euler, DPM++, DDIM) - **Post-processing**: Upscale, color correction, face enhancement - **Output**: Save images, stream results, trigger downstream actions ### Workflow Architecture A complete ComfyUI workflow follows this pattern: `````python # Conceptual flow (actual ComfyUI uses visual connections) workflow = { \"input\": { \"prompt_positive\": \"a serene lake at sunset, photorealistic\", \"prompt_negative\": \"blurry, low quality, distorted\", \"seed\": 42, \"steps\": 30, \"cfg_scale\": 7.5 }, \"pipeline\": [ \"load_checkpoint(sdxl_v1.0)\", \"encode_prompts(positive, negative)\", \"generate_latents(seed, steps, cfg)\", \"decode_latents(vae_model)\", \"post_process(image, upscale=2x)\" ], \"output\": { \"format\": \"png\", \"resolution\": \"1024x1024\", \"save_path\": \"./outputs/\" } } Key Node Categories | Category | Purpose | Examples | |\n|\n|\n| | Model Loading | Load base models and extensions | CheckpointLoader, LoraLoader | | Conditioning | Process text prompts | CLIPTextEncode, Condition | | Sampling | Generate images | KSampler, Euler, DPM++ | | Latent Space | Manipulate latent representations | EmptyLatentImage, LatentUpscale | | VAE | Encode/decode between pixel and latent space | VAELoader, VAE Decode | | Post-Processing | Enhance and modify outputs | UpscaleImage, FaceRestore | | ControlNet | Guide generation with references | ControlNetApply, Preprocessor | | Output | Save and manage results | SaveImage, PreviewImage |\nBuilding Your First Workflow Basic Image Generation Step 1: Load Checkpoint → Select your model (SDXL, Flux, etc.) Step 2: CLIP Text Encode → Enter positive and negative prompts Step 3: KSampler → Set steps (20-50), CFG (7-12), seed Step 4: VAE Decode → Convert latent to pixel space Step 5: Save Image → Choose format and location Advanced: Multi-Stage Pipeline For professional results, chain multiple stages: ````` Stage 1: Base Generation ├── Load Checkpoint (SDXL) ├── Encode Prompts └── KSampler (low res, fast)\nStage 2: Face Enhancement ├── Load FaceRestore Model ├── Detect Faces └── Restore Faces\nStage 3: Upscaling ├── Load Upscale Model (4x) ├── Latent Upscale (2x) └── Pixel Upscale (2x)\nStage 4: Final Polish ├── Color Correction ├── Detail Enhancement └── Save High-Res PNG\n* * * ## Popular Workflow Patterns ### Pattern 1: Iterative Refinement Generate a base image, evaluate, then refine specific aspects: `````json { \"workflow_id\": \"iterative-refinement\", \"stages\": [ {\"name\": \"base\", \"steps\": 20, \"resolution\": \"512x512\"}, {\"name\": \"refine\", \"steps\": 40, \"resolution\": \"1024x1024\", \"denoise\": 0.6}, {\"name\": \"detail\", \"steps\": 30, \"resolution\": \"2048x2048\", \"denoise\": 0.3} ] } Pattern 2: Batch Variation Generation Generate multiple variations for comparison: `````json { “workflow_id”: “batch-variations”, “config”: { “base_prompt”: “a futuristic cityscape”, “variations”: [ {“seed”: 100, “style”: “cyberpunk”}, {“seed”: 200, “style”: “art deco”}, {“seed”: 300, “style”: “brutalist”}, {“seed”: 400, “style”: “biophilic”} ], “parallel_workers”: 4 } }\n### Pattern 3: ControlNet-Guided Generation Use reference images to guide composition: ````` Input: Reference Image ↓ Canny Edge Detection → ControlNet (edge guidance) ↓ Depth Estimation → ControlNet (depth guidance) ↓ Combined Conditioning → KSampler ↓ Final Image with precise composition control Pattern 4: Image-to-Image Pipeline Transform existing images while preserving structure: ````` Original Image → Encode (VAE) → Add Noise → KSampler (denoise) → Decode (VAE) → Result\nAdjust denoising strength (0.1-0.9) to control transformation intensity. * * * ## Model Management ### Supported Models ComfyUI supports a wide range of models: | Model Type | Examples | Best For | | * * * | * * * | * * * | | Stable Diffusion 1.5 | sd-v1-5, dreamshaper | Fast prototyping | | SDXL | sdxl_v1.0, juggernaut | High-quality base | | Flux | flux-dev, flux-schnell | Photorealistic | | Custom Checkpoints | Any Civitai model | Specific styles | | LoRAs | Style-specific fine-tunes | Style transfer | | Embeddings | Negative prompts, concepts | Prompt enhancement | ### Installing Models `````bash # Download models to ComfyUI/models/checkpoints/ wget -P models/checkpoints/ https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors # Install LoRAs wget -P models/loras/ https://civitai.com/api/download/models/12345 # Install VAEs wget -P models/vae/ https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors Managing Dependencies { \"dependencies\": { \"checkpoints\": [\"sdxl_v1.0.safetensors\"], \"loras\": [\"realism_lora_v2.safetensors\"], \"vae\": [\"sdxl_vae.safetensors\"], \"controlnet\": [\"control_canny.safetensors\"], \"upscale\": [\"4x-UltraSharp.pth\"] } } Performance Optimization GPU Memory Management # Optimize for different GPU sizes optimization_config = { \"24GB_GPU\": { \"precision\": \"fp16\", \"attention\": \"flash_attention_2\", \"vram_optimize\": True }, \"12GB_GPU\": { \"precision\": \"fp16\", \"attention\": \"xformers\", \"vram_optimize\": True, \"split_execution\": True }, \"8GB_GPU\": { \"precision\": \"fp16\", \"attention\": \"xformers\", \"vram_optimize\": True, \"split_execution\": True, \"lowvram_mode\": True } } Batch Processing Speed | Configuration | Images/Minute | Quality | |\n|\n|\n| | Single, SDXL, 30 steps | 2-3 | High | | Batch 4, SDXL, 30 steps | 8-12 | High | | Batch 8, SD 1.5, 20 steps | 16-24 | Medium | | Single, Flux, 25 steps | 1-2 | Very High |\nCaching Strategies { \"caching\": { \"checkpoint_cache\": true, \"lora_cache\": true, \"vae_cache\": true, \"embeddings_cache\": true, \"max_cache_size_gb\": 8 } } Advanced Techniques Technique 1: Hierarchical Generation Generate at low resolution first, then progressively upscale: ````` Low Res (512x512) → Mid Res (1024x1024) → High Res (2048x2048) ↓ ↓ ↓ Coarse details Fine details Ultra details\n### Technique 2: Region-Based Editing Edit specific parts of an image without affecting others: ````` Mask Selection → Inpaint Node → Local Prompt → KSampler (masked only) Technique 3: Style Transfer Pipeline Apply artistic styles while preserving content: ````` Content Image → CLIP Vision → Style Reference → Cross-Attention → KSampler\n### Technique 4: Automated Quality Scoring Score and filter generated images automatically: ````` Generated Images → CLIP Score Node → Filter (\u003e threshold) → Save Best Troubleshooting Issue 1: Out of Memory Errors Error: CUDA out of memory Fixes:\nReduce batch size Enable --lowvram flag Use fp16 precision Close other GPU applications Split workflow into smaller stages Issue 2: Slow Generation Warning: Generation taking longer than expected Fixes:\nUse faster sampler (Euler a, DPM++ 2M) Reduce steps (20-25 for most cases) Enable Flash Attention Use SD 1.5 instead of SDXL for speed Pre-load models to VRAM Issue 3: Poor Quality Output Images look blurry or have artifacts Fixes:\nIncrease steps to 30-50 Adjust CFG scale (7-12) Use better checkpoint/LoRA Enable high-res fix Check negative prompt quality Comparison: ComfyUI vs Alternatives | Feature | ComfyUI | Automatic1111 | Fooocus | SD WebUI Forge | |\n|\n|\n|\n|\n| | Node-based UI | ✅ | ❌ | ❌ | ❌ | | Custom pipelines | ✅ | Limited | ❌ | Limited | | Performance | Excellent | Good | Good | Excellent | | Learning curve | Steep | Moderate | Easy | Moderate | | Extension ecosystem | Growing | Large | Small | Growing | | Multi-GPU support | ✅ | ✅ | ❌ | ✅ |\nComfyUI wins for complex, custom workflows. Other tools are easier for simple generation.\nGetting Started Installation # Clone ComfyUI git clone https://github.com/comfyanonymous/ComfyUI.git cd ComfyUI # Install dependencies pip install -r requirements.txt # Download a model (optional, will auto-download on first run) # Place in models/checkpoints/ # Start ComfyUI python main.py --listen 0.0.0.0 --port 8188 Browser Interface Open http://localhost:8188 in your browser. You’ll see: - Empty canvas for building workflows\nNode library on the right Settings panel (gear icon) Queue and history tabs Loading Presets ComfyUI includes many preset workflows: - Basic: Simple text-to-image\nImg2Img: Image-to-image transformation ControlNet: Reference-guided generation Upscale: Resolution enhancement AnimateDiff: Animation generation Community Resources Popular Workflow Templates Juggernaut Workflow: Professional photorealistic generation DreamShaper Flow: Artistic and illustration styles RealVis Pipeline: Realistic portrait generation Flux Dev Setup: Latest Flux model workflows ControlNet Studio: Advanced pose and composition control Where to Find Workflows Civitai: Community-shared workflows with models ComfyUI Manager: Built-in workflow marketplace GitHub: Open-source workflow collections Discord: Active community sharing tips and templates FAQ Q: Do I need a powerful GPU for ComfyUI? ComfyUI is more efficient than most alternatives. A 12GB GPU (RTX 3060/4070) handles SDXL well. Even 8GB cards work with optimizations. CPU-only mode is possible but very slow.\nQ: Can I use ComfyUI for video generation? Yes. With AnimateDiff and other animation nodes, you can generate short videos and GIFs. The workflow adds temporal consistency nodes between frames.\nQ: How do I share workflows with others? Export as .json or ````.png``` files. Share via Civitai, GitHub, or Discord. Recipients import by dragging the file onto the ComfyUI canvas.\nQ: Is ComfyUI free? Yes, ComfyUI is completely free and open-source. You only pay for electricity and GPU time. Some community nodes may require separate model downloads.\nQ: Can I use ComfyUI with cloud GPUs? Absolutely. ComfyUI works on any GPU cloud: RunPod, Vast.ai, Lambda Labs, AWS EC2, Google Cloud. Just install and point to your model files.\nQ: What’s the difference between ComfyUI and ComfyUI Manager? ComfyUI is the core application. ComfyUI Manager is an extension that makes installing models, nodes, and workflows much easier. Install it first for the best experience.\nReferences ComfyUI Official Documentation ComfyUI GitHub Repository Civitai Model Library ComfyUI Manager Extension Stable Diffusion Model Zoo AI Image Generation Benchmark Report 2026 Join our Telegram group for real-time AI tool discussions and deployment tips: t.me/dibi8\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “ComfyUI Workflows — The Visual Programming Language for AI Image Generation”, “datePublished”: “2026-07-16”, “dateModified”: “2026-07-16”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/comfyui-workflows-complete-guide\" } } ","wordCount":"1842","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/comfyui-workflows-complete-guide/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#tldr aria-label=TL;DR>TL;DR</a></li><li><a href=#what-is-comfyui aria-label="What Is ComfyUI?">What Is ComfyUI?</a><ul><li><a href=#why-node-based-ai-workflows-matter aria-label="Why Node-Based AI Workflows Matter">Why Node-Based AI Workflows Matter</a></li></ul></li><li><a href=#core-concepts aria-label="Core Concepts">Core Concepts</a><ul><li><a href=#nodes-and-connections aria-label="Nodes and Connections">Nodes and Connections</a></li><li><a href=#key-node-categories aria-label="Key Node Categories">Key Node Categories</a></li></ul></li><li><a href=#building-your-first-workflow aria-label="Building Your First Workflow">Building Your First Workflow</a><ul><li><a href=#basic-image-generation aria-label="Basic Image Generation">Basic Image Generation</a></li><li><a href=#advanced-multi-stage-pipeline aria-label="Advanced: Multi-Stage Pipeline">Advanced: Multi-Stage Pipeline</a></li><li><a href=#pattern-2-batch-variation-generation aria-label="Pattern 2: Batch Variation Generation">Pattern 2: Batch Variation Generation</a></li><li><a href=#pattern-4-image-to-image-pipeline aria-label="Pattern 4: Image-to-Image Pipeline">Pattern 4: Image-to-Image Pipeline</a></li><li><a href=#managing-dependencies aria-label="Managing Dependencies">Managing Dependencies</a></li></ul></li><li><a href=#performance-optimization aria-label="Performance Optimization">Performance Optimization</a><ul><li><a href=#gpu-memory-management aria-label="GPU Memory Management">GPU Memory Management</a></li><li><a href=#batch-processing-speed aria-label="Batch Processing Speed">Batch Processing Speed</a></li><li><a href=#caching-strategies aria-label="Caching Strategies">Caching Strategies</a></li></ul></li><li><a href=#advanced-techniques aria-label="Advanced Techniques">Advanced Techniques</a><ul><li><a href=#technique-1-hierarchical-generation aria-label="Technique 1: Hierarchical Generation">Technique 1: Hierarchical Generation</a></li><li><a href=#technique-3-style-transfer-pipeline aria-label="Technique 3: Style Transfer Pipeline">Technique 3: Style Transfer Pipeline</a></li></ul></li><li><a href=#troubleshooting aria-label=Troubleshooting>Troubleshooting</a><ul><li><a href=#issue-1-out-of-memory-errors aria-label="Issue 1: Out of Memory Errors">Issue 1: Out of Memory Errors</a></li><li><a href=#issue-2-slow-generation aria-label="Issue 2: Slow Generation">Issue 2: Slow Generation</a></li><li><a href=#issue-3-poor-quality-output aria-label="Issue 3: Poor Quality Output">Issue 3: Poor Quality Output</a></li></ul></li><li><a href=#comparison-comfyui-vs-alternatives aria-label="Comparison: ComfyUI vs Alternatives">Comparison: ComfyUI vs Alternatives</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a><ul><li><a href=#installation aria-label=Installation>Installation</a></li><li><a href=#browser-interface aria-label="Browser Interface">Browser Interface</a></li><li><a href=#loading-presets aria-label="Loading Presets">Loading Presets</a></li></ul></li><li><a href=#community-resources aria-label="Community Resources">Community Resources</a><ul><li><a href=#popular-workflow-templates aria-label="Popular Workflow Templates">Popular Workflow Templates</a></li><li><a href=#where-to-find-workflows aria-label="Where to Find Workflows">Where to Find Workflows</a></li></ul></li><li><a href=#faq aria-label=FAQ>FAQ</a><ul><li><a href=#q-do-i-need-a-powerful-gpu-for-comfyui aria-label="Q: Do I need a powerful GPU for ComfyUI?">Q: Do I need a powerful GPU for ComfyUI?</a></li><li><a href=#q-can-i-use-comfyui-for-video-generation aria-label="Q: Can I use ComfyUI for video generation?">Q: Can I use ComfyUI for video generation?</a></li><li><a href=#q-how-do-i-share-workflows-with-others aria-label="Q: How do I share workflows with others?">Q: How do I share workflows with others?</a></li><li><a href=#q-is-comfyui-free aria-label="Q: Is ComfyUI free?">Q: Is ComfyUI free?</a></li><li><a href=#q-can-i-use-comfyui-with-cloud-gpus aria-label="Q: Can I use ComfyUI with cloud GPUs?">Q: Can I use ComfyUI with cloud GPUs?</a></li><li><a href=#q-whats-the-difference-between-comfyui-and-comfyui-manager aria-label="Q: What&rsquo;s the difference between ComfyUI and ComfyUI Manager?">Q: What&rsquo;s the difference between ComfyUI and ComfyUI Manager?</a></li></ul></li><li><a href=#references aria-label=References>References</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/comfyui-workflows-complete-guide/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/comfyui-workflows-complete-guide/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/comfyui-workflows-complete-guide/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ai-coding-agents/comfyui-workflows-complete-guide/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” Build complex pipelines with nodes, manage dependencies, and create shareable workflow templates. tags: - comfyui\nai-image-generation workflow nodes stable-diffusion visual-programming category: ai-tools date: 2026-07-16T00:00:00+00:00 lastmod: 2026-07-16T00:00:00+00:00slug: comfyui-workflows-complete-guide— TL;DR ComfyUI is a powerful visual programming interface for AI image generation that lets you build complex pipelines by connecting nodes instead of writing code. It supports Stable Diffusion, Flux, SDXL, and dozens of other models. This guide covers workflow design patterns, node management, performance optimization, and how to create professional-grade image generation pipelines.\nWhat Is ComfyUI? ComfyUI is a node-based graphical interface for running AI image generation models. Unlike traditional UIs where you adjust sliders and click “generate,” ComfyUI lets you build custom pipelines by connecting processing nodes together — similar to Blender’s node system or TouchDesigner.\nThe core philosophy: give users full control over every step of the generation process. This means you can: - Chain multiple models together (e.g., text → image → upscale → refine)\nUse conditional logic (if A then B else C) Process multiple images simultaneously Create reusable workflow templates Fine-tune every parameter at every stage Why Node-Based AI Workflows Matter Traditional AI image generators present a fixed pipeline: you enter a prompt, adjust settings, and get an image. But real-world creative work often requires: 1. Multi-stage processing — Generate base image, detect faces, upscale specific regions, apply style transfer 2. Conditional generation — Different prompts based on detected content 3. Batch processing — Generate variations efficiently 4. Custom post-processing — Apply specific filters, compositing, or corrections\nNode-based workflows handle all of this natively.\nCore Concepts Nodes and Connections Every operation in ComfyUI is a node — a self-contained processing unit with inputs and outputs: ```` [Load Checkpoint] → [CLIP Text Encode] → [KSampler] → [VAE Decode] → [Save Image] │ │ │ │ model positive/negative seed/samples output\nEach node type handles a specific task: - **Model Loading**: Load Stable Diffusion checkpoints, LoRAs, embeddings - **Text Encoding**: Convert prompts to latent space representations - **Sampling**: Generate images using various algorithms (Euler, DPM++, DDIM) - **Post-processing**: Upscale, color correction, face enhancement - **Output**: Save images, stream results, trigger downstream actions ### Workflow Architecture A complete ComfyUI workflow follows this pattern: `````python # Conceptual flow (actual ComfyUI uses visual connections) workflow = { \"input\": { \"prompt_positive\": \"a serene lake at sunset, photorealistic\", \"prompt_negative\": \"blurry, low quality, distorted\", \"seed\": 42, \"steps\": 30, \"cfg_scale\": 7.5 }, \"pipeline\": [ \"load_checkpoint(sdxl_v1.0)\", \"encode_prompts(positive, negative)\", \"generate_latents(seed, steps, cfg)\", \"decode_latents(vae_model)\", \"post_process(image, upscale=2x)\" ], \"output\": { \"format\": \"png\", \"resolution\": \"1024x1024\", \"save_path\": \"./outputs/\" } } Key Node Categories | Category | Purpose | Examples | |\n|\n|\n| | Model Loading | Load base models and extensions | CheckpointLoader, LoraLoader | | Conditioning | Process text prompts | CLIPTextEncode, Condition | | Sampling | Generate images | KSampler, Euler, DPM++ | | Latent Space | Manipulate latent representations | EmptyLatentImage, LatentUpscale | | VAE | Encode/decode between pixel and latent space | VAELoader, VAE Decode | | Post-Processing | Enhance and modify outputs | UpscaleImage, FaceRestore | | ControlNet | Guide generation with references | ControlNetApply, Preprocessor | | Output | Save and manage results | SaveImage, PreviewImage |\nBuilding Your First Workflow Basic Image Generation Step 1: Load Checkpoint → Select your model (SDXL, Flux, etc.) Step 2: CLIP Text Encode → Enter positive and negative prompts Step 3: KSampler → Set steps (20-50), CFG (7-12), seed Step 4: VAE Decode → Convert latent to pixel space Step 5: Save Image → Choose format and location Advanced: Multi-Stage Pipeline For professional results, chain multiple stages: ````` Stage 1: Base Generation ├── Load Checkpoint (SDXL) ├── Encode Prompts └── KSampler (low res, fast)\nStage 2: Face Enhancement ├── Load FaceRestore Model ├── Detect Faces └── Restore Faces\nStage 3: Upscaling ├── Load Upscale Model (4x) ├── Latent Upscale (2x) └── Pixel Upscale (2x)\nStage 4: Final Polish ├── Color Correction ├── Detail Enhancement └── Save High-Res PNG\n* * * ## Popular Workflow Patterns ### Pattern 1: Iterative Refinement Generate a base image, evaluate, then refine specific aspects: `````json { \"workflow_id\": \"iterative-refinement\", \"stages\": [ {\"name\": \"base\", \"steps\": 20, \"resolution\": \"512x512\"}, {\"name\": \"refine\", \"steps\": 40, \"resolution\": \"1024x1024\", \"denoise\": 0.6}, {\"name\": \"detail\", \"steps\": 30, \"resolution\": \"2048x2048\", \"denoise\": 0.3} ] } Pattern 2: Batch Variation Generation Generate multiple variations for comparison: `````json { “workflow_id”: “batch-variations”, “config”: { “base_prompt”: “a futuristic cityscape”, “variations”: [ {“seed”: 100, “style”: “cyberpunk”}, {“seed”: 200, “style”: “art deco”}, {“seed”: 300, “style”: “brutalist”}, {“seed”: 400, “style”: “biophilic”} ], “parallel_workers”: 4 } }\n### Pattern 3: ControlNet-Guided Generation Use reference images to guide composition: ````` Input: Reference Image ↓ Canny Edge Detection → ControlNet (edge guidance) ↓ Depth Estimation → ControlNet (depth guidance) ↓ Combined Conditioning → KSampler ↓ Final Image with precise composition control Pattern 4: Image-to-Image Pipeline Transform existing images while preserving structure: ````` Original Image → Encode (VAE) → Add Noise → KSampler (denoise) → Decode (VAE) → Result\nAdjust denoising strength (0.1-0.9) to control transformation intensity. * * * ## Model Management ### Supported Models ComfyUI supports a wide range of models: | Model Type | Examples | Best For | | * * * | * * * | * * * | | Stable Diffusion 1.5 | sd-v1-5, dreamshaper | Fast prototyping | | SDXL | sdxl_v1.0, juggernaut | High-quality base | | Flux | flux-dev, flux-schnell | Photorealistic | | Custom Checkpoints | Any Civitai model | Specific styles | | LoRAs | Style-specific fine-tunes | Style transfer | | Embeddings | Negative prompts, concepts | Prompt enhancement | ### Installing Models `````bash # Download models to ComfyUI/models/checkpoints/ wget -P models/checkpoints/ https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors # Install LoRAs wget -P models/loras/ https://civitai.com/api/download/models/12345 # Install VAEs wget -P models/vae/ https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors Managing Dependencies { \"dependencies\": { \"checkpoints\": [\"sdxl_v1.0.safetensors\"], \"loras\": [\"realism_lora_v2.safetensors\"], \"vae\": [\"sdxl_vae.safetensors\"], \"controlnet\": [\"control_canny.safetensors\"], \"upscale\": [\"4x-UltraSharp.pth\"] } } Performance Optimization GPU Memory Management # Optimize for different GPU sizes optimization_config = { \"24GB_GPU\": { \"precision\": \"fp16\", \"attention\": \"flash_attention_2\", \"vram_optimize\": True }, \"12GB_GPU\": { \"precision\": \"fp16\", \"attention\": \"xformers\", \"vram_optimize\": True, \"split_execution\": True }, \"8GB_GPU\": { \"precision\": \"fp16\", \"attention\": \"xformers\", \"vram_optimize\": True, \"split_execution\": True, \"lowvram_mode\": True } } Batch Processing Speed | Configuration | Images/Minute | Quality | |\n|\n|\n| | Single, SDXL, 30 steps | 2-3 | High | | Batch 4, SDXL, 30 steps | 8-12 | High | | Batch 8, SD 1.5, 20 steps | 16-24 | Medium | | Single, Flux, 25 steps | 1-2 | Very High |\nCaching Strategies { \"caching\": { \"checkpoint_cache\": true, \"lora_cache\": true, \"vae_cache\": true, \"embeddings_cache\": true, \"max_cache_size_gb\": 8 } } Advanced Techniques Technique 1: Hierarchical Generation Generate at low resolution first, then progressively upscale: ````` Low Res (512x512) → Mid Res (1024x1024) → High Res (2048x2048) ↓ ↓ ↓ Coarse details Fine details Ultra details\n### Technique 2: Region-Based Editing Edit specific parts of an image without affecting others: ````` Mask Selection → Inpaint Node → Local Prompt → KSampler (masked only) Technique 3: Style Transfer Pipeline Apply artistic styles while preserving content: ````` Content Image → CLIP Vision → Style Reference → Cross-Attention → KSampler\n### Technique 4: Automated Quality Scoring Score and filter generated images automatically: ````` Generated Images → CLIP Score Node → Filter (\u003e threshold) → Save Best Troubleshooting Issue 1: Out of Memory Errors Error: CUDA out of memory Fixes:\nReduce batch size Enable --lowvram flag Use fp16 precision Close other GPU applications Split workflow into smaller stages Issue 2: Slow Generation Warning: Generation taking longer than expected Fixes:\nUse faster sampler (Euler a, DPM++ 2M) Reduce steps (20-25 for most cases) Enable Flash Attention Use SD 1.5 instead of SDXL for speed Pre-load models to VRAM Issue 3: Poor Quality Output Images look blurry or have artifacts Fixes:\nIncrease steps to 30-50 Adjust CFG scale (7-12) Use better checkpoint/LoRA Enable high-res fix Check negative prompt quality Comparison: ComfyUI vs Alternatives | Feature | ComfyUI | Automatic1111 | Fooocus | SD WebUI Forge | |\n|\n|\n|\n|\n| | Node-based UI | ✅ | ❌ | ❌ | ❌ | | Custom pipelines | ✅ | Limited | ❌ | Limited | | Performance | Excellent | Good | Good | Excellent | | Learning curve | Steep | Moderate | Easy | Moderate | | Extension ecosystem | Growing | Large | Small | Growing | | Multi-GPU support | ✅ | ✅ | ❌ | ✅ |\nComfyUI wins for complex, custom workflows. Other tools are easier for simple generation.\nGetting Started Installation # Clone ComfyUI git clone https://github.com/comfyanonymous/ComfyUI.git cd ComfyUI # Install dependencies pip install -r requirements.txt # Download a model (optional, will auto-download on first run) # Place in models/checkpoints/ # Start ComfyUI python main.py --listen 0.0.0.0 --port 8188 Browser Interface Open http://localhost:8188 in your browser. You’ll see: - Empty canvas for building workflows\nNode library on the right Settings panel (gear icon) Queue and history tabs Loading Presets ComfyUI includes many preset workflows: - Basic: Simple text-to-image\nImg2Img: Image-to-image transformation ControlNet: Reference-guided generation Upscale: Resolution enhancement AnimateDiff: Animation generation Community Resources Popular Workflow Templates Juggernaut Workflow: Professional photorealistic generation DreamShaper Flow: Artistic and illustration styles RealVis Pipeline: Realistic portrait generation Flux Dev Setup: Latest Flux model workflows ControlNet Studio: Advanced pose and composition control Where to Find Workflows Civitai: Community-shared workflows with models ComfyUI Manager: Built-in workflow marketplace GitHub: Open-source workflow collections Discord: Active community sharing tips and templates FAQ Q: Do I need a powerful GPU for ComfyUI? ComfyUI is more efficient than most alternatives. A 12GB GPU (RTX 3060/4070) handles SDXL well. Even 8GB cards work with optimizations. CPU-only mode is possible but very slow.\nQ: Can I use ComfyUI for video generation? Yes. With AnimateDiff and other animation nodes, you can generate short videos and GIFs. The workflow adds temporal consistency nodes between frames.\nQ: How do I share workflows with others? Export as .json or ````.png``` files. Share via Civitai, GitHub, or Discord. Recipients import by dragging the file onto the ComfyUI canvas.\nQ: Is ComfyUI free? Yes, ComfyUI is completely free and open-source. You only pay for electricity and GPU time. Some community nodes may require separate model downloads.\nQ: Can I use ComfyUI with cloud GPUs? Absolutely. ComfyUI works on any GPU cloud: RunPod, Vast.ai, Lambda Labs, AWS EC2, Google Cloud. Just install and point to your model files.\nQ: What’s the difference between ComfyUI and ComfyUI Manager? ComfyUI is the core application. ComfyUI Manager is an extension that makes installing models, nodes, and workflows much easier. Install it first for the best experience.\nReferences ComfyUI Official Documentation ComfyUI GitHub Repository Civitai Model Library ComfyUI Manager Extension Stable Diffusion Model Zoo AI Image Generation Benchmark Report 2026 Join our Telegram group for real-time AI tool discussions and deployment tips: t.me/dibi8\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “ComfyUI Workflows — The Visual Programming Language for AI Image Generation”, “datePublished”: “2026-07-16”, “dateModified”: “2026-07-16”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/comfyui-workflows-complete-guide\" } } ",
+  "wordCount" : "1842",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/comfyui-workflows-complete-guide/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#tldr" aria-label="TL;DR">TL;DR</a></li>
+            <li>
+                <a href="#what-is-comfyui" aria-label="What Is ComfyUI?">What Is ComfyUI?</a><ul>
+                    
+            <li>
+                <a href="#why-node-based-ai-workflows-matter" aria-label="Why Node-Based AI Workflows Matter">Why Node-Based AI Workflows Matter</a></li></ul>
+            </li>
+            <li>
+                <a href="#core-concepts" aria-label="Core Concepts">Core Concepts</a><ul>
+                    
+            <li>
+                <a href="#nodes-and-connections" aria-label="Nodes and Connections">Nodes and Connections</a></li>
+            <li>
+                <a href="#key-node-categories" aria-label="Key Node Categories">Key Node Categories</a></li></ul>
+            </li>
+            <li>
+                <a href="#building-your-first-workflow" aria-label="Building Your First Workflow">Building Your First Workflow</a><ul>
+                    
+            <li>
+                <a href="#basic-image-generation" aria-label="Basic Image Generation">Basic Image Generation</a></li>
+            <li>
+                <a href="#advanced-multi-stage-pipeline" aria-label="Advanced: Multi-Stage Pipeline">Advanced: Multi-Stage Pipeline</a></li>
+            <li>
+                <a href="#pattern-2-batch-variation-generation" aria-label="Pattern 2: Batch Variation Generation">Pattern 2: Batch Variation Generation</a></li>
+            <li>
+                <a href="#pattern-4-image-to-image-pipeline" aria-label="Pattern 4: Image-to-Image Pipeline">Pattern 4: Image-to-Image Pipeline</a></li>
+            <li>
+                <a href="#managing-dependencies" aria-label="Managing Dependencies">Managing Dependencies</a></li></ul>
+            </li>
+            <li>
+                <a href="#performance-optimization" aria-label="Performance Optimization">Performance Optimization</a><ul>
+                    
+            <li>
+                <a href="#gpu-memory-management" aria-label="GPU Memory Management">GPU Memory Management</a></li>
+            <li>
+                <a href="#batch-processing-speed" aria-label="Batch Processing Speed">Batch Processing Speed</a></li>
+            <li>
+                <a href="#caching-strategies" aria-label="Caching Strategies">Caching Strategies</a></li></ul>
+            </li>
+            <li>
+                <a href="#advanced-techniques" aria-label="Advanced Techniques">Advanced Techniques</a><ul>
+                    
+            <li>
+                <a href="#technique-1-hierarchical-generation" aria-label="Technique 1: Hierarchical Generation">Technique 1: Hierarchical Generation</a></li>
+            <li>
+                <a href="#technique-3-style-transfer-pipeline" aria-label="Technique 3: Style Transfer Pipeline">Technique 3: Style Transfer Pipeline</a></li></ul>
+            </li>
+            <li>
+                <a href="#troubleshooting" aria-label="Troubleshooting">Troubleshooting</a><ul>
+                    
+            <li>
+                <a href="#issue-1-out-of-memory-errors" aria-label="Issue 1: Out of Memory Errors">Issue 1: Out of Memory Errors</a></li>
+            <li>
+                <a href="#issue-2-slow-generation" aria-label="Issue 2: Slow Generation">Issue 2: Slow Generation</a></li>
+            <li>
+                <a href="#issue-3-poor-quality-output" aria-label="Issue 3: Poor Quality Output">Issue 3: Poor Quality Output</a></li></ul>
+            </li>
+            <li>
+                <a href="#comparison-comfyui-vs-alternatives" aria-label="Comparison: ComfyUI vs Alternatives">Comparison: ComfyUI vs Alternatives</a></li>
+            <li>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a><ul>
+                    
+            <li>
+                <a href="#installation" aria-label="Installation">Installation</a></li>
+            <li>
+                <a href="#browser-interface" aria-label="Browser Interface">Browser Interface</a></li>
+            <li>
+                <a href="#loading-presets" aria-label="Loading Presets">Loading Presets</a></li></ul>
+            </li>
+            <li>
+                <a href="#community-resources" aria-label="Community Resources">Community Resources</a><ul>
+                    
+            <li>
+                <a href="#popular-workflow-templates" aria-label="Popular Workflow Templates">Popular Workflow Templates</a></li>
+            <li>
+                <a href="#where-to-find-workflows" aria-label="Where to Find Workflows">Where to Find Workflows</a></li></ul>
+            </li>
+            <li>
+                <a href="#faq" aria-label="FAQ">FAQ</a><ul>
+                    
+            <li>
+                <a href="#q-do-i-need-a-powerful-gpu-for-comfyui" aria-label="Q: Do I need a powerful GPU for ComfyUI?">Q: Do I need a powerful GPU for ComfyUI?</a></li>
+            <li>
+                <a href="#q-can-i-use-comfyui-for-video-generation" aria-label="Q: Can I use ComfyUI for video generation?">Q: Can I use ComfyUI for video generation?</a></li>
+            <li>
+                <a href="#q-how-do-i-share-workflows-with-others" aria-label="Q: How do I share workflows with others?">Q: How do I share workflows with others?</a></li>
+            <li>
+                <a href="#q-is-comfyui-free" aria-label="Q: Is ComfyUI free?">Q: Is ComfyUI free?</a></li>
+            <li>
+                <a href="#q-can-i-use-comfyui-with-cloud-gpus" aria-label="Q: Can I use ComfyUI with cloud GPUs?">Q: Can I use ComfyUI with cloud GPUs?</a></li>
+            <li>
+                <a href="#q-whats-the-difference-between-comfyui-and-comfyui-manager" aria-label="Q: What&rsquo;s the difference between ComfyUI and ComfyUI Manager?">Q: What&rsquo;s the difference between ComfyUI and ComfyUI Manager?</a></li></ul>
+            </li>
+            <li>
+                <a href="#references" aria-label="References">References</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 Build complex pipelines with nodes, manage dependencies, and create shareable workflow
 templates.
-tags: - comfyui</p><ul><li>ai-image-generation</li><li>workflow</li><li>nodes</li><li>stable-diffusion</li><li>visual-programming
+tags: - comfyui</p>
+<ul>
+<li>ai-image-generation</li>
+<li>workflow</li>
+<li>nodes</li>
+<li>stable-diffusion</li>
+<li>visual-programming
 category: ai-tools
 date: 2026-07-16T00:00:00+00:00
-lastmod: 2026-07-16T00:00:00+00:00slug: comfyui-workflows-complete-guide&mdash;</li></ul><h2 id=tldr>TL;DR<a hidden class=anchor aria-hidden=true href=#tldr>#</a></h2><p>ComfyUI is a powerful visual programming interface for AI image generation that lets you build complex pipelines by connecting nodes instead of writing code. It supports Stable Diffusion, Flux, SDXL, and dozens of other models. This guide covers workflow design patterns, node management, performance optimization, and how to create professional-grade image generation pipelines.</p><hr><h2 id=what-is-comfyui>What Is ComfyUI?<a hidden class=anchor aria-hidden=true href=#what-is-comfyui>#</a></h2><p>ComfyUI is a node-based graphical interface for running AI image generation models. Unlike traditional UIs where you adjust sliders and click &ldquo;generate,&rdquo; ComfyUI lets you <strong>build custom pipelines</strong> by connecting processing nodes together — similar to Blender&rsquo;s node system or TouchDesigner.</p><p>The core philosophy: <strong>give users full control over every step of the generation process</strong>. This means you can: - Chain multiple models together (e.g., text → image → upscale → refine)</p><ul><li>Use conditional logic (if A then B else C)</li><li>Process multiple images simultaneously</li><li>Create reusable workflow templates</li><li>Fine-tune every parameter at every stage</li></ul><h3 id=why-node-based-ai-workflows-matter>Why Node-Based AI Workflows Matter<a hidden class=anchor aria-hidden=true href=#why-node-based-ai-workflows-matter>#</a></h3><p>Traditional AI image generators present a fixed pipeline: you enter a prompt, adjust settings, and get an image. But real-world creative work often requires: 1. <strong>Multi-stage processing</strong> — Generate base image, detect faces, upscale specific regions, apply style transfer
+lastmod: 2026-07-16T00:00:00+00:00slug: comfyui-workflows-complete-guide&mdash;</li>
+</ul>
+<h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
+<p>ComfyUI is a powerful visual programming interface for AI image generation that lets you build complex pipelines by connecting nodes instead of writing code. It supports Stable Diffusion, Flux, SDXL, and dozens of other models. This guide covers workflow design patterns, node management, performance optimization, and how to create professional-grade image generation pipelines.</p>
+<hr>
+<h2 id="what-is-comfyui">What Is ComfyUI?<a hidden class="anchor" aria-hidden="true" href="#what-is-comfyui">#</a></h2>
+<p>ComfyUI is a node-based graphical interface for running AI image generation models. Unlike traditional UIs where you adjust sliders and click &ldquo;generate,&rdquo; ComfyUI lets you <strong>build custom pipelines</strong> by connecting processing nodes together — similar to Blender&rsquo;s node system or TouchDesigner.</p>
+<p>The core philosophy: <strong>give users full control over every step of the generation process</strong>. This means you can: - Chain multiple models together (e.g., text → image → upscale → refine)</p>
+<ul>
+<li>Use conditional logic (if A then B else C)</li>
+<li>Process multiple images simultaneously</li>
+<li>Create reusable workflow templates</li>
+<li>Fine-tune every parameter at every stage</li>
+</ul>
+<h3 id="why-node-based-ai-workflows-matter">Why Node-Based AI Workflows Matter<a hidden class="anchor" aria-hidden="true" href="#why-node-based-ai-workflows-matter">#</a></h3>
+<p>Traditional AI image generators present a fixed pipeline: you enter a prompt, adjust settings, and get an image. But real-world creative work often requires: 1. <strong>Multi-stage processing</strong> — Generate base image, detect faces, upscale specific regions, apply style transfer
 2. <strong>Conditional generation</strong> — Different prompts based on detected content
 3. <strong>Batch processing</strong> — Generate variations efficiently
-4. <strong>Custom post-processing</strong> — Apply specific filters, compositing, or corrections</p><p>Node-based workflows handle all of this natively.</p><hr><h2 id=core-concepts>Core Concepts<a hidden class=anchor aria-hidden=true href=#core-concepts>#</a></h2><h3 id=nodes-and-connections>Nodes and Connections<a hidden class=anchor aria-hidden=true href=#nodes-and-connections>#</a></h3><p>Every operation in ComfyUI is a <strong>node</strong> — a self-contained processing unit with inputs and outputs: ````
+4. <strong>Custom post-processing</strong> — Apply specific filters, compositing, or corrections</p>
+<p>Node-based workflows handle all of this natively.</p>
+<hr>
+<h2 id="core-concepts">Core Concepts<a hidden class="anchor" aria-hidden="true" href="#core-concepts">#</a></h2>
+<h3 id="nodes-and-connections">Nodes and Connections<a hidden class="anchor" aria-hidden="true" href="#nodes-and-connections">#</a></h3>
+<p>Every operation in ComfyUI is a <strong>node</strong> — a self-contained processing unit with inputs and outputs: ````
 [Load Checkpoint] → [CLIP Text Encode] → [KSampler] → [VAE Decode] → [Save Image]
-│ │ │ │
-model positive/negative seed/samples output</p><pre tabindex=0><code>
+│                    │                      │                │
+model              positive/negative        seed/samples      output</p>
+<pre tabindex="0"><code>
 Each node type handles a specific task: - **Model Loading**: Load Stable Diffusion checkpoints, LoRAs, embeddings
 - **Text Encoding**: Convert prompts to latent space representations
 - **Sampling**: Generate images using various algorithms (Euler, DPM++, DDIM)
@@ -48,8 +353,15 @@ workflow = {
         &#34;save_path&#34;: &#34;./outputs/&#34;
     }
 }
-</code></pre><h3 id=key-node-categories>Key Node Categories<a hidden class=anchor aria-hidden=true href=#key-node-categories>#</a></h3><p>| Category | Purpose | Examples |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="key-node-categories">Key Node Categories<a hidden class="anchor" aria-hidden="true" href="#key-node-categories">#</a></h3>
+<p>| Category | Purpose | Examples |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Model Loading | Load base models and extensions | CheckpointLoader, LoraLoader |
 | Conditioning | Process text prompts | CLIPTextEncode, Condition |
 | Sampling | Generate images | KSampler, Euler, DPM++ |
@@ -57,25 +369,34 @@ workflow = {
 | VAE | Encode/decode between pixel and latent space | VAELoader, VAE Decode |
 | Post-Processing | Enhance and modify outputs | UpscaleImage, FaceRestore |
 | ControlNet | Guide generation with references | ControlNetApply, Preprocessor |
-| Output | Save and manage results | SaveImage, PreviewImage |</p><hr><h2 id=building-your-first-workflow>Building Your First Workflow<a hidden class=anchor aria-hidden=true href=#building-your-first-workflow>#</a></h2><h3 id=basic-image-generation>Basic Image Generation<a hidden class=anchor aria-hidden=true href=#basic-image-generation>#</a></h3><pre tabindex=0><code>Step 1: Load Checkpoint → Select your model (SDXL, Flux, etc.)
+| Output | Save and manage results | SaveImage, PreviewImage |</p>
+<hr>
+<h2 id="building-your-first-workflow">Building Your First Workflow<a hidden class="anchor" aria-hidden="true" href="#building-your-first-workflow">#</a></h2>
+<h3 id="basic-image-generation">Basic Image Generation<a hidden class="anchor" aria-hidden="true" href="#basic-image-generation">#</a></h3>
+<pre tabindex="0"><code>Step 1: Load Checkpoint → Select your model (SDXL, Flux, etc.)
 Step 2: CLIP Text Encode → Enter positive and negative prompts
 Step 3: KSampler → Set steps (20-50), CFG (7-12), seed
 Step 4: VAE Decode → Convert latent to pixel space
 Step 5: Save Image → Choose format and location
-</code></pre><h3 id=advanced-multi-stage-pipeline>Advanced: Multi-Stage Pipeline<a hidden class=anchor aria-hidden=true href=#advanced-multi-stage-pipeline>#</a></h3><p>For professional results, chain multiple stages: `````
+</code></pre><h3 id="advanced-multi-stage-pipeline">Advanced: Multi-Stage Pipeline<a hidden class="anchor" aria-hidden="true" href="#advanced-multi-stage-pipeline">#</a></h3>
+<p>For professional results, chain multiple stages: `````
 Stage 1: Base Generation
 ├── Load Checkpoint (SDXL)
 ├── Encode Prompts
-└── KSampler (low res, fast)</p><p>Stage 2: Face Enhancement
+└── KSampler (low res, fast)</p>
+<p>Stage 2: Face Enhancement
 ├── Load FaceRestore Model
 ├── Detect Faces
-└── Restore Faces</p><p>Stage 3: Upscaling
+└── Restore Faces</p>
+<p>Stage 3: Upscaling
 ├── Load Upscale Model (4x)
 ├── Latent Upscale (2x)
-└── Pixel Upscale (2x)</p><p>Stage 4: Final Polish
+└── Pixel Upscale (2x)</p>
+<p>Stage 4: Final Polish
 ├── Color Correction
 ├── Detail Enhancement
-└── Save High-Res PNG</p><pre tabindex=0><code>
+└── Save High-Res PNG</p>
+<pre tabindex="0"><code>
 * * *
 
 ## Popular Workflow Patterns
@@ -91,7 +412,8 @@ Generate a base image, evaluate, then refine specific aspects: `````json
     {&#34;name&#34;: &#34;detail&#34;, &#34;steps&#34;: 30, &#34;resolution&#34;: &#34;2048x2048&#34;, &#34;denoise&#34;: 0.3}
   ]
 }
-</code></pre><h3 id=pattern-2-batch-variation-generation>Pattern 2: Batch Variation Generation<a hidden class=anchor aria-hidden=true href=#pattern-2-batch-variation-generation>#</a></h3><p>Generate multiple variations for comparison: `````json
+</code></pre><h3 id="pattern-2-batch-variation-generation">Pattern 2: Batch Variation Generation<a hidden class="anchor" aria-hidden="true" href="#pattern-2-batch-variation-generation">#</a></h3>
+<p>Generate multiple variations for comparison: `````json
 {
 &ldquo;workflow_id&rdquo;: &ldquo;batch-variations&rdquo;,
 &ldquo;config&rdquo;: {
@@ -104,7 +426,8 @@ Generate a base image, evaluate, then refine specific aspects: `````json
 ],
 &ldquo;parallel_workers&rdquo;: 4
 }
-}</p><pre tabindex=0><code>
+}</p>
+<pre tabindex="0"><code>
 ### Pattern 3: ControlNet-Guided Generation
 
 Use reference images to guide composition: `````
@@ -117,8 +440,10 @@ Depth Estimation → ControlNet (depth guidance)
 Combined Conditioning → KSampler
    ↓
 Final Image with precise composition control
-</code></pre><h3 id=pattern-4-image-to-image-pipeline>Pattern 4: Image-to-Image Pipeline<a hidden class=anchor aria-hidden=true href=#pattern-4-image-to-image-pipeline>#</a></h3><p>Transform existing images while preserving structure: `````
-Original Image → Encode (VAE) → Add Noise → KSampler (denoise) → Decode (VAE) → Result</p><pre tabindex=0><code>
+</code></pre><h3 id="pattern-4-image-to-image-pipeline">Pattern 4: Image-to-Image Pipeline<a hidden class="anchor" aria-hidden="true" href="#pattern-4-image-to-image-pipeline">#</a></h3>
+<p>Transform existing images while preserving structure: `````
+Original Image → Encode (VAE) → Add Noise → KSampler (denoise) → Decode (VAE) → Result</p>
+<pre tabindex="0"><code>
 Adjust denoising strength (0.1-0.9) to control transformation intensity.
 
 * * *
@@ -153,88 +478,211 @@ wget -P models/loras/ https://civitai.com/api/download/models/12345
 
 # Install VAEs
 wget -P models/vae/ https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors
-</code></pre><h3 id=managing-dependencies>Managing Dependencies<a hidden class=anchor aria-hidden=true href=#managing-dependencies>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;dependencies&#34;</span>: {
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;checkpoints&#34;</span>: [<span style=color:#e6db74>&#34;sdxl_v1.0.safetensors&#34;</span>],
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;loras&#34;</span>: [<span style=color:#e6db74>&#34;realism_lora_v2.safetensors&#34;</span>],
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;vae&#34;</span>: [<span style=color:#e6db74>&#34;sdxl_vae.safetensors&#34;</span>],
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;controlnet&#34;</span>: [<span style=color:#e6db74>&#34;control_canny.safetensors&#34;</span>],
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;upscale&#34;</span>: [<span style=color:#e6db74>&#34;4x-UltraSharp.pth&#34;</span>]
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><hr><h2 id=performance-optimization>Performance Optimization<a hidden class=anchor aria-hidden=true href=#performance-optimization>#</a></h2><h3 id=gpu-memory-management>GPU Memory Management<a hidden class=anchor aria-hidden=true href=#gpu-memory-management>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Optimize for different GPU sizes</span>
-</span></span><span style=display:flex><span>optimization_config <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;24GB_GPU&#34;</span>: {
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;precision&#34;</span>: <span style=color:#e6db74>&#34;fp16&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;attention&#34;</span>: <span style=color:#e6db74>&#34;flash_attention_2&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;vram_optimize&#34;</span>: <span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>    },
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;12GB_GPU&#34;</span>: {
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;precision&#34;</span>: <span style=color:#e6db74>&#34;fp16&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;attention&#34;</span>: <span style=color:#e6db74>&#34;xformers&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;vram_optimize&#34;</span>: <span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;split_execution&#34;</span>: <span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>    },
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;8GB_GPU&#34;</span>: {
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;precision&#34;</span>: <span style=color:#e6db74>&#34;fp16&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;attention&#34;</span>: <span style=color:#e6db74>&#34;xformers&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;vram_optimize&#34;</span>: <span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;split_execution&#34;</span>: <span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;lowvram_mode&#34;</span>: <span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=batch-processing-speed>Batch Processing Speed<a hidden class=anchor aria-hidden=true href=#batch-processing-speed>#</a></h3><p>| Configuration | Images/Minute | Quality |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="managing-dependencies">Managing Dependencies<a hidden class="anchor" aria-hidden="true" href="#managing-dependencies">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;dependencies&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;checkpoints&#34;</span>: [<span style="color:#e6db74">&#34;sdxl_v1.0.safetensors&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;loras&#34;</span>: [<span style="color:#e6db74">&#34;realism_lora_v2.safetensors&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;vae&#34;</span>: [<span style="color:#e6db74">&#34;sdxl_vae.safetensors&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;controlnet&#34;</span>: [<span style="color:#e6db74">&#34;control_canny.safetensors&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;upscale&#34;</span>: [<span style="color:#e6db74">&#34;4x-UltraSharp.pth&#34;</span>]
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="performance-optimization">Performance Optimization<a hidden class="anchor" aria-hidden="true" href="#performance-optimization">#</a></h2>
+<h3 id="gpu-memory-management">GPU Memory Management<a hidden class="anchor" aria-hidden="true" href="#gpu-memory-management">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Optimize for different GPU sizes</span>
+</span></span><span style="display:flex;"><span>optimization_config <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;24GB_GPU&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;precision&#34;</span>: <span style="color:#e6db74">&#34;fp16&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;attention&#34;</span>: <span style="color:#e6db74">&#34;flash_attention_2&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;vram_optimize&#34;</span>: <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;12GB_GPU&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;precision&#34;</span>: <span style="color:#e6db74">&#34;fp16&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;attention&#34;</span>: <span style="color:#e6db74">&#34;xformers&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;vram_optimize&#34;</span>: <span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;split_execution&#34;</span>: <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;8GB_GPU&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;precision&#34;</span>: <span style="color:#e6db74">&#34;fp16&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;attention&#34;</span>: <span style="color:#e6db74">&#34;xformers&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;vram_optimize&#34;</span>: <span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;split_execution&#34;</span>: <span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;lowvram_mode&#34;</span>: <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="batch-processing-speed">Batch Processing Speed<a hidden class="anchor" aria-hidden="true" href="#batch-processing-speed">#</a></h3>
+<p>| Configuration | Images/Minute | Quality |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Single, SDXL, 30 steps | 2-3 | High |
 | Batch 4, SDXL, 30 steps | 8-12 | High |
 | Batch 8, SD 1.5, 20 steps | 16-24 | Medium |
-| Single, Flux, 25 steps | 1-2 | Very High |</p><h3 id=caching-strategies>Caching Strategies<a hidden class=anchor aria-hidden=true href=#caching-strategies>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;caching&#34;</span>: {
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;checkpoint_cache&#34;</span>: <span style=color:#66d9ef>true</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;lora_cache&#34;</span>: <span style=color:#66d9ef>true</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;vae_cache&#34;</span>: <span style=color:#66d9ef>true</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;embeddings_cache&#34;</span>: <span style=color:#66d9ef>true</span>,
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;max_cache_size_gb&#34;</span>: <span style=color:#ae81ff>8</span>
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><hr><h2 id=advanced-techniques>Advanced Techniques<a hidden class=anchor aria-hidden=true href=#advanced-techniques>#</a></h2><h3 id=technique-1-hierarchical-generation>Technique 1: Hierarchical Generation<a hidden class=anchor aria-hidden=true href=#technique-1-hierarchical-generation>#</a></h3><p>Generate at low resolution first, then progressively upscale: `````
+| Single, Flux, 25 steps | 1-2 | Very High |</p>
+<h3 id="caching-strategies">Caching Strategies<a hidden class="anchor" aria-hidden="true" href="#caching-strategies">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;caching&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;checkpoint_cache&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;lora_cache&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;vae_cache&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;embeddings_cache&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;max_cache_size_gb&#34;</span>: <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="advanced-techniques">Advanced Techniques<a hidden class="anchor" aria-hidden="true" href="#advanced-techniques">#</a></h2>
+<h3 id="technique-1-hierarchical-generation">Technique 1: Hierarchical Generation<a hidden class="anchor" aria-hidden="true" href="#technique-1-hierarchical-generation">#</a></h3>
+<p>Generate at low resolution first, then progressively upscale: `````
 Low Res (512x512) → Mid Res (1024x1024) → High Res (2048x2048)
-↓ ↓ ↓
-Coarse details Fine details Ultra details</p><pre tabindex=0><code>
+↓                   ↓                    ↓
+Coarse details     Fine details          Ultra details</p>
+<pre tabindex="0"><code>
 ### Technique 2: Region-Based Editing
 
 Edit specific parts of an image without affecting others: `````
 Mask Selection → Inpaint Node → Local Prompt → KSampler (masked only)
-</code></pre><h3 id=technique-3-style-transfer-pipeline>Technique 3: Style Transfer Pipeline<a hidden class=anchor aria-hidden=true href=#technique-3-style-transfer-pipeline>#</a></h3><p>Apply artistic styles while preserving content: `````
-Content Image → CLIP Vision → Style Reference → Cross-Attention → KSampler</p><pre tabindex=0><code>
+</code></pre><h3 id="technique-3-style-transfer-pipeline">Technique 3: Style Transfer Pipeline<a hidden class="anchor" aria-hidden="true" href="#technique-3-style-transfer-pipeline">#</a></h3>
+<p>Apply artistic styles while preserving content: `````
+Content Image → CLIP Vision → Style Reference → Cross-Attention → KSampler</p>
+<pre tabindex="0"><code>
 ### Technique 4: Automated Quality Scoring
 
 Score and filter generated images automatically: `````
 Generated Images → CLIP Score Node → Filter (&gt; threshold) → Save Best
-</code></pre><hr><h2 id=troubleshooting>Troubleshooting<a hidden class=anchor aria-hidden=true href=#troubleshooting>#</a></h2><h3 id=issue-1-out-of-memory-errors>Issue 1: Out of Memory Errors<a hidden class=anchor aria-hidden=true href=#issue-1-out-of-memory-errors>#</a></h3><pre tabindex=0><code>Error: CUDA out of memory
-</code></pre><p><strong>Fixes:</strong></p><ul><li>Reduce batch size</li><li>Enable <code>--lowvram</code> flag</li><li>Use fp16 precision</li><li>Close other GPU applications</li><li>Split workflow into smaller stages</li></ul><h3 id=issue-2-slow-generation>Issue 2: Slow Generation<a hidden class=anchor aria-hidden=true href=#issue-2-slow-generation>#</a></h3><pre tabindex=0><code>Warning: Generation taking longer than expected
-</code></pre><p><strong>Fixes:</strong></p><ul><li>Use faster sampler (Euler a, DPM++ 2M)</li><li>Reduce steps (20-25 for most cases)</li><li>Enable Flash Attention</li><li>Use SD 1.5 instead of SDXL for speed</li><li>Pre-load models to VRAM</li></ul><h3 id=issue-3-poor-quality-output>Issue 3: Poor Quality Output<a hidden class=anchor aria-hidden=true href=#issue-3-poor-quality-output>#</a></h3><pre tabindex=0><code>Images look blurry or have artifacts
-</code></pre><p><strong>Fixes:</strong></p><ul><li>Increase steps to 30-50</li><li>Adjust CFG scale (7-12)</li><li>Use better checkpoint/LoRA</li><li>Enable high-res fix</li><li>Check negative prompt quality</li></ul><hr><h2 id=comparison-comfyui-vs-alternatives>Comparison: ComfyUI vs Alternatives<a hidden class=anchor aria-hidden=true href=#comparison-comfyui-vs-alternatives>#</a></h2><p>| Feature | ComfyUI | Automatic1111 | Fooocus | SD WebUI Forge |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><hr>
+<h2 id="troubleshooting">Troubleshooting<a hidden class="anchor" aria-hidden="true" href="#troubleshooting">#</a></h2>
+<h3 id="issue-1-out-of-memory-errors">Issue 1: Out of Memory Errors<a hidden class="anchor" aria-hidden="true" href="#issue-1-out-of-memory-errors">#</a></h3>
+<pre tabindex="0"><code>Error: CUDA out of memory
+</code></pre><p><strong>Fixes:</strong></p>
+<ul>
+<li>Reduce batch size</li>
+<li>Enable <code>--lowvram</code> flag</li>
+<li>Use fp16 precision</li>
+<li>Close other GPU applications</li>
+<li>Split workflow into smaller stages</li>
+</ul>
+<h3 id="issue-2-slow-generation">Issue 2: Slow Generation<a hidden class="anchor" aria-hidden="true" href="#issue-2-slow-generation">#</a></h3>
+<pre tabindex="0"><code>Warning: Generation taking longer than expected
+</code></pre><p><strong>Fixes:</strong></p>
+<ul>
+<li>Use faster sampler (Euler a, DPM++ 2M)</li>
+<li>Reduce steps (20-25 for most cases)</li>
+<li>Enable Flash Attention</li>
+<li>Use SD 1.5 instead of SDXL for speed</li>
+<li>Pre-load models to VRAM</li>
+</ul>
+<h3 id="issue-3-poor-quality-output">Issue 3: Poor Quality Output<a hidden class="anchor" aria-hidden="true" href="#issue-3-poor-quality-output">#</a></h3>
+<pre tabindex="0"><code>Images look blurry or have artifacts
+</code></pre><p><strong>Fixes:</strong></p>
+<ul>
+<li>Increase steps to 30-50</li>
+<li>Adjust CFG scale (7-12)</li>
+<li>Use better checkpoint/LoRA</li>
+<li>Enable high-res fix</li>
+<li>Check negative prompt quality</li>
+</ul>
+<hr>
+<h2 id="comparison-comfyui-vs-alternatives">Comparison: ComfyUI vs Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-comfyui-vs-alternatives">#</a></h2>
+<p>| Feature | ComfyUI | Automatic1111 | Fooocus | SD WebUI Forge |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Node-based UI | ✅ | ❌ | ❌ | ❌ |
 | Custom pipelines | ✅ | Limited | ❌ | Limited |
 | Performance | Excellent | Good | Good | Excellent |
 | Learning curve | Steep | Moderate | Easy | Moderate |
 | Extension ecosystem | Growing | Large | Small | Growing |
-| Multi-GPU support | ✅ | ✅ | ❌ | ✅ |</p><p>ComfyUI wins for complex, custom workflows. Other tools are easier for simple generation.</p><hr><h2 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h2><h3 id=installation>Installation<a hidden class=anchor aria-hidden=true href=#installation>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Clone ComfyUI</span>
-</span></span><span style=display:flex><span>git clone https://github.com/comfyanonymous/ComfyUI.git
-</span></span><span style=display:flex><span>cd ComfyUI
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install dependencies</span>
-</span></span><span style=display:flex><span>pip install -r requirements.txt
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Download a model (optional, will auto-download on first run)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Place in models/checkpoints/</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Start ComfyUI</span>
-</span></span><span style=display:flex><span>python main.py --listen 0.0.0.0 --port <span style=color:#ae81ff>8188</span>
-</span></span></code></pre></div><h3 id=browser-interface>Browser Interface<a hidden class=anchor aria-hidden=true href=#browser-interface>#</a></h3><p>Open <code>http://localhost:8188</code> in your browser. You&rsquo;ll see: - Empty canvas for building workflows</p><ul><li>Node library on the right</li><li>Settings panel (gear icon)</li><li>Queue and history tabs</li></ul><h3 id=loading-presets>Loading Presets<a hidden class=anchor aria-hidden=true href=#loading-presets>#</a></h3><p>ComfyUI includes many preset workflows: - <strong>Basic</strong>: Simple text-to-image</p><ul><li><strong>Img2Img</strong>: Image-to-image transformation</li><li><strong>ControlNet</strong>: Reference-guided generation</li><li><strong>Upscale</strong>: Resolution enhancement</li><li><strong>AnimateDiff</strong>: Animation generation</li></ul><hr><h2 id=community-resources>Community Resources<a hidden class=anchor aria-hidden=true href=#community-resources>#</a></h2><h3 id=popular-workflow-templates>Popular Workflow Templates<a hidden class=anchor aria-hidden=true href=#popular-workflow-templates>#</a></h3><ul><li><strong>Juggernaut Workflow</strong>: Professional photorealistic generation</li><li><strong>DreamShaper Flow</strong>: Artistic and illustration styles</li><li><strong>RealVis Pipeline</strong>: Realistic portrait generation</li><li><strong>Flux Dev Setup</strong>: Latest Flux model workflows</li><li><strong>ControlNet Studio</strong>: Advanced pose and composition control</li></ul><h3 id=where-to-find-workflows>Where to Find Workflows<a hidden class=anchor aria-hidden=true href=#where-to-find-workflows>#</a></h3><ul><li><strong>Civitai</strong>: Community-shared workflows with models</li><li><strong>ComfyUI Manager</strong>: Built-in workflow marketplace</li><li><strong>GitHub</strong>: Open-source workflow collections</li><li><strong>Discord</strong>: Active community sharing tips and templates</li></ul><hr><h2 id=faq>FAQ<a hidden class=anchor aria-hidden=true href=#faq>#</a></h2><h3 id=q-do-i-need-a-powerful-gpu-for-comfyui>Q: Do I need a powerful GPU for ComfyUI?<a hidden class=anchor aria-hidden=true href=#q-do-i-need-a-powerful-gpu-for-comfyui>#</a></h3><p>ComfyUI is more efficient than most alternatives. A 12GB GPU (RTX 3060/4070) handles SDXL well. Even 8GB cards work with optimizations. CPU-only mode is possible but very slow.</p><h3 id=q-can-i-use-comfyui-for-video-generation>Q: Can I use ComfyUI for video generation?<a hidden class=anchor aria-hidden=true href=#q-can-i-use-comfyui-for-video-generation>#</a></h3><p>Yes. With AnimateDiff and other animation nodes, you can generate short videos and GIFs. The workflow adds temporal consistency nodes between frames.</p><h3 id=q-how-do-i-share-workflows-with-others>Q: How do I share workflows with others?<a hidden class=anchor aria-hidden=true href=#q-how-do-i-share-workflows-with-others>#</a></h3><p>Export as <code>.json</code> or ````.png``` files. Share via Civitai, GitHub, or Discord. Recipients import by dragging the file onto the ComfyUI canvas.</p><h3 id=q-is-comfyui-free>Q: Is ComfyUI free?<a hidden class=anchor aria-hidden=true href=#q-is-comfyui-free>#</a></h3><p>Yes, ComfyUI is completely free and open-source. You only pay for electricity and GPU time. Some community nodes may require separate model downloads.</p><h3 id=q-can-i-use-comfyui-with-cloud-gpus>Q: Can I use ComfyUI with cloud GPUs?<a hidden class=anchor aria-hidden=true href=#q-can-i-use-comfyui-with-cloud-gpus>#</a></h3><p>Absolutely. ComfyUI works on any GPU cloud: RunPod, Vast.ai, Lambda Labs, AWS EC2, Google Cloud. Just install and point to your model files.</p><h3 id=q-whats-the-difference-between-comfyui-and-comfyui-manager>Q: What&rsquo;s the difference between ComfyUI and ComfyUI Manager?<a hidden class=anchor aria-hidden=true href=#q-whats-the-difference-between-comfyui-and-comfyui-manager>#</a></h3><p>ComfyUI is the core application. ComfyUI Manager is an extension that makes installing models, nodes, and workflows much easier. Install it first for the best experience.</p><hr><h2 id=references>References<a hidden class=anchor aria-hidden=true href=#references>#</a></h2><ul><li><a href=https://docs.comfy.org>ComfyUI Official Documentation</a></li><li><a href=https://github.com/comfyanonymous/ComfyUI>ComfyUI GitHub Repository</a></li><li><a href=https://civitai.com>Civitai Model Library</a></li><li><a href=https://github.com/ltdrdata/ComfyUI-Manager>ComfyUI Manager Extension</a></li><li><a href=https://huggingface.co/stabilityai>Stable Diffusion Model Zoo</a></li><li><a href=https://aigbenchmark.report/2026>AI Image Generation Benchmark Report 2026</a></li></ul><hr><p><em>Join our Telegram group for real-time AI tool discussions and deployment tips: <a href=https://t.me/dibi8>t.me/dibi8</a></em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| Multi-GPU support | ✅ | ✅ | ❌ | ✅ |</p>
+<p>ComfyUI wins for complex, custom workflows. Other tools are easier for simple generation.</p>
+<hr>
+<h2 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h2>
+<h3 id="installation">Installation<a hidden class="anchor" aria-hidden="true" href="#installation">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone ComfyUI</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/comfyanonymous/ComfyUI.git
+</span></span><span style="display:flex;"><span>cd ComfyUI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install dependencies</span>
+</span></span><span style="display:flex;"><span>pip install -r requirements.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Download a model (optional, will auto-download on first run)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Place in models/checkpoints/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start ComfyUI</span>
+</span></span><span style="display:flex;"><span>python main.py --listen 0.0.0.0 --port <span style="color:#ae81ff">8188</span>
+</span></span></code></pre></div><h3 id="browser-interface">Browser Interface<a hidden class="anchor" aria-hidden="true" href="#browser-interface">#</a></h3>
+<p>Open <code>http://localhost:8188</code> in your browser. You&rsquo;ll see: - Empty canvas for building workflows</p>
+<ul>
+<li>Node library on the right</li>
+<li>Settings panel (gear icon)</li>
+<li>Queue and history tabs</li>
+</ul>
+<h3 id="loading-presets">Loading Presets<a hidden class="anchor" aria-hidden="true" href="#loading-presets">#</a></h3>
+<p>ComfyUI includes many preset workflows: - <strong>Basic</strong>: Simple text-to-image</p>
+<ul>
+<li><strong>Img2Img</strong>: Image-to-image transformation</li>
+<li><strong>ControlNet</strong>: Reference-guided generation</li>
+<li><strong>Upscale</strong>: Resolution enhancement</li>
+<li><strong>AnimateDiff</strong>: Animation generation</li>
+</ul>
+<hr>
+<h2 id="community-resources">Community Resources<a hidden class="anchor" aria-hidden="true" href="#community-resources">#</a></h2>
+<h3 id="popular-workflow-templates">Popular Workflow Templates<a hidden class="anchor" aria-hidden="true" href="#popular-workflow-templates">#</a></h3>
+<ul>
+<li><strong>Juggernaut Workflow</strong>: Professional photorealistic generation</li>
+<li><strong>DreamShaper Flow</strong>: Artistic and illustration styles</li>
+<li><strong>RealVis Pipeline</strong>: Realistic portrait generation</li>
+<li><strong>Flux Dev Setup</strong>: Latest Flux model workflows</li>
+<li><strong>ControlNet Studio</strong>: Advanced pose and composition control</li>
+</ul>
+<h3 id="where-to-find-workflows">Where to Find Workflows<a hidden class="anchor" aria-hidden="true" href="#where-to-find-workflows">#</a></h3>
+<ul>
+<li><strong>Civitai</strong>: Community-shared workflows with models</li>
+<li><strong>ComfyUI Manager</strong>: Built-in workflow marketplace</li>
+<li><strong>GitHub</strong>: Open-source workflow collections</li>
+<li><strong>Discord</strong>: Active community sharing tips and templates</li>
+</ul>
+<hr>
+<h2 id="faq">FAQ<a hidden class="anchor" aria-hidden="true" href="#faq">#</a></h2>
+<h3 id="q-do-i-need-a-powerful-gpu-for-comfyui">Q: Do I need a powerful GPU for ComfyUI?<a hidden class="anchor" aria-hidden="true" href="#q-do-i-need-a-powerful-gpu-for-comfyui">#</a></h3>
+<p>ComfyUI is more efficient than most alternatives. A 12GB GPU (RTX 3060/4070) handles SDXL well. Even 8GB cards work with optimizations. CPU-only mode is possible but very slow.</p>
+<h3 id="q-can-i-use-comfyui-for-video-generation">Q: Can I use ComfyUI for video generation?<a hidden class="anchor" aria-hidden="true" href="#q-can-i-use-comfyui-for-video-generation">#</a></h3>
+<p>Yes. With AnimateDiff and other animation nodes, you can generate short videos and GIFs. The workflow adds temporal consistency nodes between frames.</p>
+<h3 id="q-how-do-i-share-workflows-with-others">Q: How do I share workflows with others?<a hidden class="anchor" aria-hidden="true" href="#q-how-do-i-share-workflows-with-others">#</a></h3>
+<p>Export as <code>.json</code> or ````.png``` files. Share via Civitai, GitHub, or Discord. Recipients import by dragging the file onto the ComfyUI canvas.</p>
+<h3 id="q-is-comfyui-free">Q: Is ComfyUI free?<a hidden class="anchor" aria-hidden="true" href="#q-is-comfyui-free">#</a></h3>
+<p>Yes, ComfyUI is completely free and open-source. You only pay for electricity and GPU time. Some community nodes may require separate model downloads.</p>
+<h3 id="q-can-i-use-comfyui-with-cloud-gpus">Q: Can I use ComfyUI with cloud GPUs?<a hidden class="anchor" aria-hidden="true" href="#q-can-i-use-comfyui-with-cloud-gpus">#</a></h3>
+<p>Absolutely. ComfyUI works on any GPU cloud: RunPod, Vast.ai, Lambda Labs, AWS EC2, Google Cloud. Just install and point to your model files.</p>
+<h3 id="q-whats-the-difference-between-comfyui-and-comfyui-manager">Q: What&rsquo;s the difference between ComfyUI and ComfyUI Manager?<a hidden class="anchor" aria-hidden="true" href="#q-whats-the-difference-between-comfyui-and-comfyui-manager">#</a></h3>
+<p>ComfyUI is the core application. ComfyUI Manager is an extension that makes installing models, nodes, and workflows much easier. Install it first for the best experience.</p>
+<hr>
+<h2 id="references">References<a hidden class="anchor" aria-hidden="true" href="#references">#</a></h2>
+<ul>
+<li><a href="https://docs.comfy.org">ComfyUI Official Documentation</a></li>
+<li><a href="https://github.com/comfyanonymous/ComfyUI">ComfyUI GitHub Repository</a></li>
+<li><a href="https://civitai.com">Civitai Model Library</a></li>
+<li><a href="https://github.com/ltdrdata/ComfyUI-Manager">ComfyUI Manager Extension</a></li>
+<li><a href="https://huggingface.co/stabilityai">Stable Diffusion Model Zoo</a></li>
+<li><a href="https://aigbenchmark.report/2026">AI Image Generation Benchmark Report 2026</a></li>
+</ul>
+<hr>
+<p><em>Join our Telegram group for real-time AI tool discussions and deployment tips: <a href="https://t.me/dibi8">t.me/dibi8</a></em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;ComfyUI Workflows — The Visual Programming Language for AI Image Generation&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-07-16&rdquo;,
@@ -248,18 +696,130 @@ Generated Images → CLIP Score Node → Filter (&gt; threshold) → Save Best
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/comfyui-workflows-complete-guide%22>https://dibi8.com/resources/comfyui-workflows-complete-guide"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/comfyui-workflows-complete-guide%22">https://dibi8.com/resources/comfyui-workflows-complete-guide"</a>
 }
-}</script></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/colly/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ai-coding-agents/comfyui/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ai-coding-agents/colly/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ai-coding-agents/comfyui/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>

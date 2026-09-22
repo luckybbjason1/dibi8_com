@@ -1,1 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Rtk on Dibi8</title><link>https://dibi8.com/tags/rtk/</link><description>Recent content in Rtk on Dibi8</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Tue, 22 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://dibi8.com/tags/rtk/index.xml" rel="self" type="application/rss+xml"/><item><title>RTK (rtk-ai/rtk): Giảm 90% Token Cost Cho AI Coding</title><link>https://dibi8.com/rtk-token-killer/</link><pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/rtk-token-killer/</guid><description>RTK là CLI proxy viết bằng Rust giúp giảm 60-90% token consumption khi agent đọc output từ terminal. Hỗ trợ 100+ commands, &amp;lt;10ms overhead. Đạt 81K GitHub stars.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Rtk on Dibi8</title>
+    <link>https://dibi8.com/tags/rtk/</link>
+    <description>Recent content in Rtk on Dibi8</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 22 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://dibi8.com/tags/rtk/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RTK (rtk-ai/rtk): Giảm 90% Token Cost Cho AI Coding</title>
+      <link>https://dibi8.com/rtk-token-killer/</link>
+      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/rtk-token-killer/</guid>
+      <description>RTK là CLI proxy viết bằng Rust giúp giảm 60-90% token consumption khi agent đọc output từ terminal. Hỗ trợ 100&#43; commands, &amp;lt;10ms overhead. Đạt 81K GitHub stars.</description>
+    </item>
+  </channel>
+</rss>

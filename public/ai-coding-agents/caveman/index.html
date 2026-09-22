@@ -1,58 +1,352 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/caveman/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/caveman/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/caveman/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/caveman/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Docker\nGo JavaScript Python application_domain: “Ai Tools” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: “2.4 MB” file_md5: \"\" download_url: “https://github.com/JuliusBrussee/caveman.git\" backup_url: \"” last_maintained: “2026-05-12” draft: false aliases: /posts/caveman/ faqs: - q: ‘What is Caveman for Claude Code?’ a: ‘Caveman is a Claude Code skill that makes Claude respond in compressed, terse, caveman-style language by dropping filler, articles, and polite preamble. It reduces output tokens by 65% on average without losing technical accuracy.’ q: ‘How much does Caveman reduce token usage?’ a: ‘Across the repository’’s reproducible benchmarks, Caveman cut output tokens by 65% on average, ranging from 22% to 87% depending on how verbose the original task was. For example, explaining a React re-render bug dropped from 1,180 to 159 tokens (87% saved).’ q: ‘Does Caveman make Claude less accurate or ‘‘dumber’’?’ a: ‘No. Caveman leaves the model’’s thinking and reasoning tokens untouched and only compresses the final output text. The model still reasons at full capability and all technical content is preserved; only fluff is removed.’ q: ‘How do you install Caveman for Claude Code?’ a: ‘Clone the repo into your global skills directory with ‘‘git clone https://github.com/JuliusBrussee/caveman.git ~/.claude/skills/caveman’’, then restart Claude Code. The skill auto-loads. It also supports Cursor, Cline, Windsurf, and Codex via their respective rules files.’ q: ‘What intensity levels and commands does Caveman offer?’ a: ‘Caveman has three levels: Lite (removes filler, keeps grammar), Full (default mode, drops articles and uses fragments), and Ultra (maximum telegraphic compression). It also ships sub-commands like /caveman-commit, /caveman-review, /caveman-stats, and /caveman:compress for rewriting memory files such as CLAUDE.md.’ Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens {\u003c/* resource-info */\u003e}\nIf you use Claude Code daily, you have probably noticed the token counter climbing fast. Long explanations, polite filler sentences, and repeated context all add up. More tokens mean slower responses and a higher bill at the end of the month.\nCaveman is a Claude Code skill that solves this by making Claude speak in compressed, terse language — like a caveman. The result? 65% fewer output tokens on average, with zero loss in technical accuracy. It has already earned 57,003 stars on GitHub and is one of the most popular productivity skills in the Claude Code ecosystem.\nIn this post, I will explain why token consumption matters, how Caveman works under the hood, how to install and use it, and what real benchmarks look like.\nWhy Token Consumption Matters for Claude Code Users Claude Code is an agentic coding assistant. Unlike a simple chatbot, it reads your codebase, runs commands, and produces multi-step plans. Every word it outputs costs tokens. Every token costs money.\nHere is why controlling token usage is critical: 1. Cost scales linearly with output length. If Claude generates 2,000 tokens instead of 500, you pay four times as much for that single interaction. 2. Long outputs slow you down. Reading a wall of text to find the one code block you need wastes time. 3. Context windows are finite. When Claude chatters, it leaves less room for your actual code and instructions in the conversation history. 4. Verbose does not mean better. A March 2026 paper, “Brevity Constraints Reverse Performance Hierarchies in Language Models” (arXiv:2604.00025), found that forcing models to be brief improved accuracy by 26 percentage points on some benchmarks. Less fluff can actually mean more correctness.\nThe takeaway: fewer tokens is not just cheaper — it is often better.\nHow Caveman Works Caveman is a Claude Code skill (also available for Cline, Cursor, Windsurf, and Codex). It injects a lightweight prompt constraint that tells Claude to drop filler, remove articles, use sentence fragments, and get straight to the point.\nThe key insight is that thinking/reasoning tokens are untouched. Caveman does not make Claude “dumber.” It only compresses the output — the final text that reaches your terminal. The model still reasons at full capability; it just speaks more efficiently afterward.\nCaveman offers three intensity levels: | Level | Trigger | Behavior | |\n|\n|\n| | Lite | ```/caveman lite| Removes filler, keeps grammar. Professional but concise. | | **Full** |/caveman full| Default mode. Drops articles, uses fragments, full caveman style. | | **Ultra** |/caveman ultra```` | Maximum compression. Telegraphic. Abbreviates everything. |\nThere is also a Wenyan mode that uses classical Chinese literary compression for the absolute minimum token count, but Full mode is what most developers use.\nInstallation and Setup Caveman supports multiple AI coding tools. Choose the one you use: ### Claude Code\nClone the skill into your global skills directory: `````bash git clone https://github.com/JuliusBrussee/caveman.git ~/.claude/skills/caveman\nRestart Claude Code. The skill auto-loads. ### Cursor Copy the rules file into your Cursor project: `````bash cp caveman/.cursor/.cursorrules /path/to/your/project/ Cline / Roo Code Install via the Cline marketplace or copy the .clinerules file to your project root.\nWindsurf Copy the .windsurf rules into your project configuration.\nCodex (OpenAI) Use the $caveman trigger after loading the skill.\nHow to Use Caveman Once installed, trigger it with any of these phrases: - /caveman\ntalk like caveman caveman mode less tokens please To return to normal: - stop caveman\nnormal mode Example: Asking for a Code Review Without Caveman:\nUser: Review this auth middleware for security issues. Claude: Certainly! I would be happy to review your authentication middleware for potential security vulnerabilities. Let me examine the code carefully... [700+ tokens of polite preamble and explanation] With Caveman:\nUser: /caveman User: Review this auth middleware for security issues. Claude: L42: 🔴 bug — user null. Add guard. L58: 🟡 weak token expiry. Use 15min max. L71: 🔴 secret in env var? Move to vault. Same technical content. No throat-clearing. 41% fewer tokens in this real benchmark case.\nBuilt-in Skills Caveman ships with several sub-commands: | Command | Purpose | |\n|\n| | /caveman-commit | Terse commit messages (Conventional Commits, ≤50 chars) | | /caveman-review | One-line PR comments. No fluff. | | /caveman-help | Quick-reference card for all modes. | | /caveman-stats | Real session token usage + estimated savings in USD. | | /caveman:compress | Rewrites a memory file (e.g., CLAUDE.md) into caveman-speak. Cuts ~46% of input tokens. |\nReal Benchmarks and Results The Caveman repository includes reproducible benchmarks using the real Claude API. Here are the numbers: | Task | Normal (tokens) | Caveman (tokens) | Saved | |\n|\n:|\n:|\n:| | Explain React re-render bug | 1,180 | 159 | 87% | | Fix auth middleware token expiry | 704 | 121 | 83% | | Set up PostgreSQL connection pool | 2,347 | 380 | 84% | | Explain git rebase vs merge | 702 | 292 | 58% | | Refactor callback to async/await | 387 | 301 | 22% | | Architecture: microservices vs monolith | 446 | 310 | 30% | | Review PR for security issues | 678 | 398 | 41% | | Docker multi-stage build | 1,042 | 290 | 72% | | Debug PostgreSQL race condition | 1,200 | 232 | 81% | | Implement React error boundary | 3,454 | 456 | 87% | | Average | 1,214 | 294 | 65% |\nRange: 22% to 87% savings depending on how verbose the original task is.\nWhat You Gain Speed: Less text to generate means faster responses. Readability: No walls of text. Just answers. Accuracy: All technical info is preserved; only fluff is removed. Cost: 65% fewer output tokens directly translates to a lower API bill. Practical Code Example Here is a side-by-side comparison for a common developer task: asking Claude to explain a Docker multi-stage build.\nNormal Mode (1,042 tokens):\nCertainly! I would be happy to explain how a multi-stage Docker build works and why it is beneficial for your Node.js application. A multi-stage build is a feature in Docker that allows you to use multiple FROM statements in a single Dockerfile. Each FROM instruction can use a different base image, and each stage can copy artifacts from previous stages. This approach is particularly useful because it helps you create smaller, more secure final images by separating the build environment from the runtime environment. Let me walk you through a typical example for a Node.js application... Caveman Mode (290 tokens):\nMulti-stage build = smaller image. Stage 1: Build FROM node:20-alpine AS builder WORKDIR /app COPY package*.json . RUN npm ci COPY . . RUN npm run build Stage 2: Run FROM node:20-alpine WORKDIR /app COPY --from=builder /app/dist ./dist COPY --from=builder /app/node_modules ./node_modules CMD [\"node\", \"dist/main.js\"] Why: builder has gcc, python, devdeps. Runtime no need. Image go from 1.2GB to 180MB. ```` Same technical depth. Same code. **72% fewer tokens.** * * * ## Summary Caveman is not a gimmick. It is a **practical, scientifically grounded** optimization for anyone who uses Claude Code heavily. By compressing Claude's output into terse, caveman-style language, it delivers: - **65% average token reduction** - **Faster responses** - **Easier-to-read output** - **Lower API costs** - **Unchanged reasoning quality** If your monthly Claude Code bill is climbing or you are tired of scrolling through polite preamble to find the actual answer, Caveman is worth installing today. **Get it here:** [github.com/JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) **Star count:** 57,003 and growing. * * * *Have you tried Caveman? Drop your token savings in the comments below.* * * * ## Recommended Tools For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads. - **** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing. *Affiliate link — supports dibi8.com at no cost to you.* ## References \u0026 Sources - [Caveman](https://github.com/JuliusBrussee/caveman) - [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) - [Cline](https://github.com/cline/cline) - [Docker](https://docs.docker.com/) { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/caveman\" } } ## Why This Matters Understanding cut claude code token usage by 65% with caveman — same quality, fewer tokens is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~7 minutes* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ","wordCount":"1924","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/caveman/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>10 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#cut-claude-code-token-usage-by-65-with-caveman--same-quality-fewer-tokens aria-label="Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens">Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens</a><ul><li><a href=#why-token-consumption-matters-for-claude-code-users aria-label="Why Token Consumption Matters for Claude Code Users">Why Token Consumption Matters for Claude Code Users</a></li><li><a href=#how-caveman-works aria-label="How Caveman Works">How Caveman Works</a></li><li><a href=#installation-and-setup aria-label="Installation and Setup">Installation and Setup</a><ul><li><a href=#cline--roo-code aria-label="Cline / Roo Code">Cline / Roo Code</a></li><li><a href=#windsurf aria-label=Windsurf>Windsurf</a></li><li><a href=#codex-openai aria-label="Codex (OpenAI)">Codex (OpenAI)</a></li></ul></li><li><a href=#how-to-use-caveman aria-label="How to Use Caveman">How to Use Caveman</a><ul><li><a href=#example-asking-for-a-code-review aria-label="Example: Asking for a Code Review">Example: Asking for a Code Review</a></li><li><a href=#built-in-skills aria-label="Built-in Skills">Built-in Skills</a></li></ul></li><li><a href=#real-benchmarks-and-results aria-label="Real Benchmarks and Results">Real Benchmarks and Results</a><ul><li><a href=#what-you-gain aria-label="What You Gain">What You Gain</a></li></ul></li><li><a href=#practical-code-example aria-label="Practical Code Example">Practical Code Example</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/caveman/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/caveman/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/caveman/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ai-coding-agents/caveman/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Docker\nGo JavaScript Python application_domain: “Ai Tools” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: “2.4 MB” file_md5: \"\" download_url: “https://github.com/JuliusBrussee/caveman.git\" backup_url: \"” last_maintained: “2026-05-12” draft: false aliases: /posts/caveman/ faqs: - q: ‘What is Caveman for Claude Code?’ a: ‘Caveman is a Claude Code skill that makes Claude respond in compressed, terse, caveman-style language by dropping filler, articles, and polite preamble. It reduces output tokens by 65% on average without losing technical accuracy.’ q: ‘How much does Caveman reduce token usage?’ a: ‘Across the repository’’s reproducible benchmarks, Caveman cut output tokens by 65% on average, ranging from 22% to 87% depending on how verbose the original task was. For example, explaining a React re-render bug dropped from 1,180 to 159 tokens (87% saved).’ q: ‘Does Caveman make Claude less accurate or ‘‘dumber’’?’ a: ‘No. Caveman leaves the model’’s thinking and reasoning tokens untouched and only compresses the final output text. The model still reasons at full capability and all technical content is preserved; only fluff is removed.’ q: ‘How do you install Caveman for Claude Code?’ a: ‘Clone the repo into your global skills directory with ‘‘git clone https://github.com/JuliusBrussee/caveman.git ~/.claude/skills/caveman’’, then restart Claude Code. The skill auto-loads. It also supports Cursor, Cline, Windsurf, and Codex via their respective rules files.’ q: ‘What intensity levels and commands does Caveman offer?’ a: ‘Caveman has three levels: Lite (removes filler, keeps grammar), Full (default mode, drops articles and uses fragments), and Ultra (maximum telegraphic compression). It also ships sub-commands like /caveman-commit, /caveman-review, /caveman-stats, and /caveman:compress for rewriting memory files such as CLAUDE.md.’ Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens {\u003c/* resource-info */\u003e}\nIf you use Claude Code daily, you have probably noticed the token counter climbing fast. Long explanations, polite filler sentences, and repeated context all add up. More tokens mean slower responses and a higher bill at the end of the month.\nCaveman is a Claude Code skill that solves this by making Claude speak in compressed, terse language — like a caveman. The result? 65% fewer output tokens on average, with zero loss in technical accuracy. It has already earned 57,003 stars on GitHub and is one of the most popular productivity skills in the Claude Code ecosystem.\nIn this post, I will explain why token consumption matters, how Caveman works under the hood, how to install and use it, and what real benchmarks look like.\nWhy Token Consumption Matters for Claude Code Users Claude Code is an agentic coding assistant. Unlike a simple chatbot, it reads your codebase, runs commands, and produces multi-step plans. Every word it outputs costs tokens. Every token costs money.\nHere is why controlling token usage is critical: 1. Cost scales linearly with output length. If Claude generates 2,000 tokens instead of 500, you pay four times as much for that single interaction. 2. Long outputs slow you down. Reading a wall of text to find the one code block you need wastes time. 3. Context windows are finite. When Claude chatters, it leaves less room for your actual code and instructions in the conversation history. 4. Verbose does not mean better. A March 2026 paper, “Brevity Constraints Reverse Performance Hierarchies in Language Models” (arXiv:2604.00025), found that forcing models to be brief improved accuracy by 26 percentage points on some benchmarks. Less fluff can actually mean more correctness.\nThe takeaway: fewer tokens is not just cheaper — it is often better.\nHow Caveman Works Caveman is a Claude Code skill (also available for Cline, Cursor, Windsurf, and Codex). It injects a lightweight prompt constraint that tells Claude to drop filler, remove articles, use sentence fragments, and get straight to the point.\nThe key insight is that thinking/reasoning tokens are untouched. Caveman does not make Claude “dumber.” It only compresses the output — the final text that reaches your terminal. The model still reasons at full capability; it just speaks more efficiently afterward.\nCaveman offers three intensity levels: | Level | Trigger | Behavior | |\n|\n|\n| | Lite | ```/caveman lite| Removes filler, keeps grammar. Professional but concise. | | **Full** |/caveman full| Default mode. Drops articles, uses fragments, full caveman style. | | **Ultra** |/caveman ultra```` | Maximum compression. Telegraphic. Abbreviates everything. |\nThere is also a Wenyan mode that uses classical Chinese literary compression for the absolute minimum token count, but Full mode is what most developers use.\nInstallation and Setup Caveman supports multiple AI coding tools. Choose the one you use: ### Claude Code\nClone the skill into your global skills directory: `````bash git clone https://github.com/JuliusBrussee/caveman.git ~/.claude/skills/caveman\nRestart Claude Code. The skill auto-loads. ### Cursor Copy the rules file into your Cursor project: `````bash cp caveman/.cursor/.cursorrules /path/to/your/project/ Cline / Roo Code Install via the Cline marketplace or copy the .clinerules file to your project root.\nWindsurf Copy the .windsurf rules into your project configuration.\nCodex (OpenAI) Use the $caveman trigger after loading the skill.\nHow to Use Caveman Once installed, trigger it with any of these phrases: - /caveman\ntalk like caveman caveman mode less tokens please To return to normal: - stop caveman\nnormal mode Example: Asking for a Code Review Without Caveman:\nUser: Review this auth middleware for security issues. Claude: Certainly! I would be happy to review your authentication middleware for potential security vulnerabilities. Let me examine the code carefully... [700+ tokens of polite preamble and explanation] With Caveman:\nUser: /caveman User: Review this auth middleware for security issues. Claude: L42: 🔴 bug — user null. Add guard. L58: 🟡 weak token expiry. Use 15min max. L71: 🔴 secret in env var? Move to vault. Same technical content. No throat-clearing. 41% fewer tokens in this real benchmark case.\nBuilt-in Skills Caveman ships with several sub-commands: | Command | Purpose | |\n|\n| | /caveman-commit | Terse commit messages (Conventional Commits, ≤50 chars) | | /caveman-review | One-line PR comments. No fluff. | | /caveman-help | Quick-reference card for all modes. | | /caveman-stats | Real session token usage + estimated savings in USD. | | /caveman:compress | Rewrites a memory file (e.g., CLAUDE.md) into caveman-speak. Cuts ~46% of input tokens. |\nReal Benchmarks and Results The Caveman repository includes reproducible benchmarks using the real Claude API. Here are the numbers: | Task | Normal (tokens) | Caveman (tokens) | Saved | |\n|\n:|\n:|\n:| | Explain React re-render bug | 1,180 | 159 | 87% | | Fix auth middleware token expiry | 704 | 121 | 83% | | Set up PostgreSQL connection pool | 2,347 | 380 | 84% | | Explain git rebase vs merge | 702 | 292 | 58% | | Refactor callback to async/await | 387 | 301 | 22% | | Architecture: microservices vs monolith | 446 | 310 | 30% | | Review PR for security issues | 678 | 398 | 41% | | Docker multi-stage build | 1,042 | 290 | 72% | | Debug PostgreSQL race condition | 1,200 | 232 | 81% | | Implement React error boundary | 3,454 | 456 | 87% | | Average | 1,214 | 294 | 65% |\nRange: 22% to 87% savings depending on how verbose the original task is.\nWhat You Gain Speed: Less text to generate means faster responses. Readability: No walls of text. Just answers. Accuracy: All technical info is preserved; only fluff is removed. Cost: 65% fewer output tokens directly translates to a lower API bill. Practical Code Example Here is a side-by-side comparison for a common developer task: asking Claude to explain a Docker multi-stage build.\nNormal Mode (1,042 tokens):\nCertainly! I would be happy to explain how a multi-stage Docker build works and why it is beneficial for your Node.js application. A multi-stage build is a feature in Docker that allows you to use multiple FROM statements in a single Dockerfile. Each FROM instruction can use a different base image, and each stage can copy artifacts from previous stages. This approach is particularly useful because it helps you create smaller, more secure final images by separating the build environment from the runtime environment. Let me walk you through a typical example for a Node.js application... Caveman Mode (290 tokens):\nMulti-stage build = smaller image. Stage 1: Build FROM node:20-alpine AS builder WORKDIR /app COPY package*.json . RUN npm ci COPY . . RUN npm run build Stage 2: Run FROM node:20-alpine WORKDIR /app COPY --from=builder /app/dist ./dist COPY --from=builder /app/node_modules ./node_modules CMD [\"node\", \"dist/main.js\"] Why: builder has gcc, python, devdeps. Runtime no need. Image go from 1.2GB to 180MB. ```` Same technical depth. Same code. **72% fewer tokens.** * * * ## Summary Caveman is not a gimmick. It is a **practical, scientifically grounded** optimization for anyone who uses Claude Code heavily. By compressing Claude's output into terse, caveman-style language, it delivers: - **65% average token reduction** - **Faster responses** - **Easier-to-read output** - **Lower API costs** - **Unchanged reasoning quality** If your monthly Claude Code bill is climbing or you are tired of scrolling through polite preamble to find the actual answer, Caveman is worth installing today. **Get it here:** [github.com/JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman) **Star count:** 57,003 and growing. * * * *Have you tried Caveman? Drop your token savings in the comments below.* * * * ## Recommended Tools For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads. - **** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing. *Affiliate link — supports dibi8.com at no cost to you.* ## References \u0026 Sources - [Caveman](https://github.com/JuliusBrussee/caveman) - [Claude Code](https://docs.claude.com/en/docs/claude-code/overview) - [Cline](https://github.com/cline/cline) - [Docker](https://docs.docker.com/) { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/caveman\" } } ## Why This Matters Understanding cut claude code token usage by 65% with caveman — same quality, fewer tokens is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~7 minutes* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
+  "wordCount" : "1924",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/caveman/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>10 分钟</span>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#cut-claude-code-token-usage-by-65-with-caveman--same-quality-fewer-tokens" aria-label="Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens">Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens</a><ul>
+                    
+            <li>
+                <a href="#why-token-consumption-matters-for-claude-code-users" aria-label="Why Token Consumption Matters for Claude Code Users">Why Token Consumption Matters for Claude Code Users</a></li>
+            <li>
+                <a href="#how-caveman-works" aria-label="How Caveman Works">How Caveman Works</a></li>
+            <li>
+                <a href="#installation-and-setup" aria-label="Installation and Setup">Installation and Setup</a><ul>
+                    
+            <li>
+                <a href="#cline--roo-code" aria-label="Cline / Roo Code">Cline / Roo Code</a></li>
+            <li>
+                <a href="#windsurf" aria-label="Windsurf">Windsurf</a></li>
+            <li>
+                <a href="#codex-openai" aria-label="Codex (OpenAI)">Codex (OpenAI)</a></li></ul>
+            </li>
+            <li>
+                <a href="#how-to-use-caveman" aria-label="How to Use Caveman">How to Use Caveman</a><ul>
+                    
+            <li>
+                <a href="#example-asking-for-a-code-review" aria-label="Example: Asking for a Code Review">Example: Asking for a Code Review</a></li>
+            <li>
+                <a href="#built-in-skills" aria-label="Built-in Skills">Built-in Skills</a></li></ul>
+            </li>
+            <li>
+                <a href="#real-benchmarks-and-results" aria-label="Real Benchmarks and Results">Real Benchmarks and Results</a><ul>
+                    
+            <li>
+                <a href="#what-you-gain" aria-label="What You Gain">What You Gain</a></li></ul>
+            </li>
+            <li>
+                <a href="#practical-code-example" aria-label="Practical Code Example">Practical Code Example</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Docker</p><ul><li>Go</li><li>JavaScript</li><li>Python
+tech_stack: - Docker</p>
+<ul>
+<li>Go</li>
+<li>JavaScript</li>
+<li>Python
 application_domain: &ldquo;Ai Tools&rdquo;
-source_version: ""
+source_version: &quot;&quot;
 licensing_model: &ldquo;Open Source&rdquo;
 license_type: &ldquo;MIT&rdquo;
 file_size: &ldquo;2.4 MB&rdquo;
-file_md5: ""
-download_url: &ldquo;<a href=https://github.com/JuliusBrussee/caveman.git%22>https://github.com/JuliusBrussee/caveman.git"</a>
-backup_url: "&rdquo;
+file_md5: &quot;&quot;
+download_url: &ldquo;<a href="https://github.com/JuliusBrussee/caveman.git%22">https://github.com/JuliusBrussee/caveman.git"</a>
+backup_url: &quot;&rdquo;
 last_maintained: &ldquo;2026-05-12&rdquo;
 draft: false
-aliases:</li><li>/posts/caveman/
+aliases:</li>
+<li>/posts/caveman/
 faqs: - q: &lsquo;What is Caveman for Claude Code?&rsquo;
-a: &lsquo;Caveman is a Claude Code skill that makes Claude respond in compressed, terse, caveman-style language by dropping filler, articles, and polite preamble. It reduces output tokens by 65% on average without losing technical accuracy.&rsquo;</li><li>q: &lsquo;How much does Caveman reduce token usage?&rsquo;
-a: &lsquo;Across the repository&rsquo;&rsquo;s reproducible benchmarks, Caveman cut output tokens by 65% on average, ranging from 22% to 87% depending on how verbose the original task was. For example, explaining a React re-render bug dropped from 1,180 to 159 tokens (87% saved).&rsquo;</li><li>q: &lsquo;Does Caveman make Claude less accurate or &lsquo;&lsquo;dumber&rsquo;&rsquo;?&rsquo;
-a: &lsquo;No. Caveman leaves the model&rsquo;&rsquo;s thinking and reasoning tokens untouched and only compresses the final output text. The model still reasons at full capability and all technical content is preserved; only fluff is removed.&rsquo;</li><li>q: &lsquo;How do you install Caveman for Claude Code?&rsquo;
-a: &lsquo;Clone the repo into your global skills directory with &lsquo;&lsquo;git clone <a href=https://github.com/JuliusBrussee/caveman.git>https://github.com/JuliusBrussee/caveman.git</a> ~/.claude/skills/caveman&rsquo;&rsquo;, then restart Claude Code. The skill auto-loads. It also supports Cursor, Cline, Windsurf, and Codex via their respective rules files.&rsquo;</li><li>q: &lsquo;What intensity levels and commands does Caveman offer?&rsquo;
-a: &lsquo;Caveman has three levels: Lite (removes filler, keeps grammar), Full (default mode, drops articles and uses fragments), and Ultra (maximum telegraphic compression). It also ships sub-commands like /caveman-commit, /caveman-review, /caveman-stats, and /caveman:compress for rewriting memory files such as CLAUDE.md.&rsquo;</li></ul><hr><h1 id=cut-claude-code-token-usage-by-65-with-caveman--same-quality-fewer-tokens>Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens<a hidden class=anchor aria-hidden=true href=#cut-claude-code-token-usage-by-65-with-caveman--same-quality-fewer-tokens>#</a></h1><p>{&lt;/* resource-info */>}</p><p>If you use Claude Code daily, you have probably noticed the token counter climbing fast. Long explanations, polite filler sentences, and repeated context all add up. More tokens mean slower responses and a higher bill at the end of the month.</p><p><strong>Caveman</strong> is a Claude Code skill that solves this by making Claude speak in compressed, terse language — like a caveman. The result? <strong>65% fewer output tokens on average</strong>, with zero loss in technical accuracy. It has already earned <strong>57,003 stars on GitHub</strong> and is one of the most popular productivity skills in the Claude Code ecosystem.</p><p>In this post, I will explain why token consumption matters, how Caveman works under the hood, how to install and use it, and what real benchmarks look like.</p><hr><h2 id=why-token-consumption-matters-for-claude-code-users>Why Token Consumption Matters for Claude Code Users<a hidden class=anchor aria-hidden=true href=#why-token-consumption-matters-for-claude-code-users>#</a></h2><p>Claude Code is an agentic coding assistant. Unlike a simple chatbot, it reads your codebase, runs commands, and produces multi-step plans. Every word it outputs costs tokens. Every token costs money.</p><p>Here is why controlling token usage is critical: 1. <strong>Cost scales linearly with output length.</strong> If Claude generates 2,000 tokens instead of 500, you pay four times as much for that single interaction.
+a: &lsquo;Caveman is a Claude Code skill that makes Claude respond in compressed, terse, caveman-style language by dropping filler, articles, and polite preamble. It reduces output tokens by 65% on average without losing technical accuracy.&rsquo;</li>
+<li>q: &lsquo;How much does Caveman reduce token usage?&rsquo;
+a: &lsquo;Across the repository&rsquo;&rsquo;s reproducible benchmarks, Caveman cut output tokens by 65% on average, ranging from 22% to 87% depending on how verbose the original task was. For example, explaining a React re-render bug dropped from 1,180 to 159 tokens (87% saved).&rsquo;</li>
+<li>q: &lsquo;Does Caveman make Claude less accurate or &lsquo;&lsquo;dumber&rsquo;&rsquo;?&rsquo;
+a: &lsquo;No. Caveman leaves the model&rsquo;&rsquo;s thinking and reasoning tokens untouched and only compresses the final output text. The model still reasons at full capability and all technical content is preserved; only fluff is removed.&rsquo;</li>
+<li>q: &lsquo;How do you install Caveman for Claude Code?&rsquo;
+a: &lsquo;Clone the repo into your global skills directory with &lsquo;&lsquo;git clone <a href="https://github.com/JuliusBrussee/caveman.git">https://github.com/JuliusBrussee/caveman.git</a> ~/.claude/skills/caveman&rsquo;&rsquo;, then restart Claude Code. The skill auto-loads. It also supports Cursor, Cline, Windsurf, and Codex via their respective rules files.&rsquo;</li>
+<li>q: &lsquo;What intensity levels and commands does Caveman offer?&rsquo;
+a: &lsquo;Caveman has three levels: Lite (removes filler, keeps grammar), Full (default mode, drops articles and uses fragments), and Ultra (maximum telegraphic compression). It also ships sub-commands like /caveman-commit, /caveman-review, /caveman-stats, and /caveman:compress for rewriting memory files such as CLAUDE.md.&rsquo;</li>
+</ul>
+<hr>
+<h1 id="cut-claude-code-token-usage-by-65-with-caveman--same-quality-fewer-tokens">Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens<a hidden class="anchor" aria-hidden="true" href="#cut-claude-code-token-usage-by-65-with-caveman--same-quality-fewer-tokens">#</a></h1>
+<p>{&lt;/* resource-info */&gt;}</p>
+<p>If you use Claude Code daily, you have probably noticed the token counter climbing fast. Long explanations, polite filler sentences, and repeated context all add up. More tokens mean slower responses and a higher bill at the end of the month.</p>
+<p><strong>Caveman</strong> is a Claude Code skill that solves this by making Claude speak in compressed, terse language — like a caveman. The result? <strong>65% fewer output tokens on average</strong>, with zero loss in technical accuracy. It has already earned <strong>57,003 stars on GitHub</strong> and is one of the most popular productivity skills in the Claude Code ecosystem.</p>
+<p>In this post, I will explain why token consumption matters, how Caveman works under the hood, how to install and use it, and what real benchmarks look like.</p>
+<hr>
+<h2 id="why-token-consumption-matters-for-claude-code-users">Why Token Consumption Matters for Claude Code Users<a hidden class="anchor" aria-hidden="true" href="#why-token-consumption-matters-for-claude-code-users">#</a></h2>
+<p>Claude Code is an agentic coding assistant. Unlike a simple chatbot, it reads your codebase, runs commands, and produces multi-step plans. Every word it outputs costs tokens. Every token costs money.</p>
+<p>Here is why controlling token usage is critical: 1. <strong>Cost scales linearly with output length.</strong> If Claude generates 2,000 tokens instead of 500, you pay four times as much for that single interaction.
 2. <strong>Long outputs slow you down.</strong> Reading a wall of text to find the one code block you need wastes time.
 3. <strong>Context windows are finite.</strong> When Claude chatters, it leaves less room for your actual code and instructions in the conversation history.
-4. <strong>Verbose does not mean better.</strong> A March 2026 paper, <em>&ldquo;Brevity Constraints Reverse Performance Hierarchies in Language Models&rdquo;</em> (<a href=https://arxiv.org/abs/2604.00025>arXiv:2604.00025</a>), found that forcing models to be brief <strong>improved accuracy by 26 percentage points</strong> on some benchmarks. Less fluff can actually mean more correctness.</p><p>The takeaway: fewer tokens is not just cheaper — it is often better.</p><hr><h2 id=how-caveman-works>How Caveman Works<a hidden class=anchor aria-hidden=true href=#how-caveman-works>#</a></h2><p>Caveman is a <strong>Claude Code skill</strong> (also available for Cline, Cursor, Windsurf, and Codex). It injects a lightweight prompt constraint that tells Claude to drop filler, remove articles, use sentence fragments, and get straight to the point.</p><p>The key insight is that <strong>thinking/reasoning tokens are untouched</strong>. Caveman does not make Claude &ldquo;dumber.&rdquo; It only compresses the <strong>output</strong> — the final text that reaches your terminal. The model still reasons at full capability; it just speaks more efficiently afterward.</p><p>Caveman offers three intensity levels: | Level | Trigger | Behavior |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
-| <strong>Lite</strong> | ```/caveman lite<code>| Removes filler, keeps grammar. Professional but concise. | | **Full** |</code>/caveman full<code>| Default mode. Drops articles, uses fragments, full caveman style. | | **Ultra** |</code>/caveman ultra```` | Maximum compression. Telegraphic. Abbreviates everything. |</p><p>There is also a <strong>Wenyan mode</strong> that uses classical Chinese literary compression for the absolute minimum token count, but Full mode is what most developers use.</p><hr><h2 id=installation-and-setup>Installation and Setup<a hidden class=anchor aria-hidden=true href=#installation-and-setup>#</a></h2><p>Caveman supports multiple AI coding tools. Choose the one you use: ### Claude Code</p><p>Clone the skill into your global skills directory: `````bash
-git clone <a href=https://github.com/JuliusBrussee/caveman.git>https://github.com/JuliusBrussee/caveman.git</a><br>~/.claude/skills/caveman</p><pre tabindex=0><code>
+4. <strong>Verbose does not mean better.</strong> A March 2026 paper, <em>&ldquo;Brevity Constraints Reverse Performance Hierarchies in Language Models&rdquo;</em> (<a href="https://arxiv.org/abs/2604.00025">arXiv:2604.00025</a>), found that forcing models to be brief <strong>improved accuracy by 26 percentage points</strong> on some benchmarks. Less fluff can actually mean more correctness.</p>
+<p>The takeaway: fewer tokens is not just cheaper — it is often better.</p>
+<hr>
+<h2 id="how-caveman-works">How Caveman Works<a hidden class="anchor" aria-hidden="true" href="#how-caveman-works">#</a></h2>
+<p>Caveman is a <strong>Claude Code skill</strong> (also available for Cline, Cursor, Windsurf, and Codex). It injects a lightweight prompt constraint that tells Claude to drop filler, remove articles, use sentence fragments, and get straight to the point.</p>
+<p>The key insight is that <strong>thinking/reasoning tokens are untouched</strong>. Caveman does not make Claude &ldquo;dumber.&rdquo; It only compresses the <strong>output</strong> — the final text that reaches your terminal. The model still reasons at full capability; it just speaks more efficiently afterward.</p>
+<p>Caveman offers three intensity levels: | Level | Trigger | Behavior |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Lite</strong> | ```/caveman lite<code>| Removes filler, keeps grammar. Professional but concise. | | **Full** |</code>/caveman full<code>| Default mode. Drops articles, uses fragments, full caveman style. | | **Ultra** |</code>/caveman ultra```` | Maximum compression. Telegraphic. Abbreviates everything. |</p>
+<p>There is also a <strong>Wenyan mode</strong> that uses classical Chinese literary compression for the absolute minimum token count, but Full mode is what most developers use.</p>
+<hr>
+<h2 id="installation-and-setup">Installation and Setup<a hidden class="anchor" aria-hidden="true" href="#installation-and-setup">#</a></h2>
+<p>Caveman supports multiple AI coding tools. Choose the one you use: ### Claude Code</p>
+<p>Clone the skill into your global skills directory: `````bash
+git clone <a href="https://github.com/JuliusBrussee/caveman.git">https://github.com/JuliusBrussee/caveman.git</a> <br>
+~/.claude/skills/caveman</p>
+<pre tabindex="0"><code>
 Restart Claude Code. The skill auto-loads.
 
 ### Cursor
 
 Copy the rules file into your Cursor project: `````bash
 cp caveman/.cursor/.cursorrules /path/to/your/project/
-</code></pre><h3 id=cline--roo-code>Cline / Roo Code<a hidden class=anchor aria-hidden=true href=#cline--roo-code>#</a></h3><p>Install via the Cline marketplace or copy the <code>.clinerules</code> file to your project root.</p><h3 id=windsurf>Windsurf<a hidden class=anchor aria-hidden=true href=#windsurf>#</a></h3><p>Copy the <code>.windsurf</code> rules into your project configuration.</p><h3 id=codex-openai>Codex (OpenAI)<a hidden class=anchor aria-hidden=true href=#codex-openai>#</a></h3><p>Use the <code>$caveman</code> trigger after loading the skill.</p><hr><h2 id=how-to-use-caveman>How to Use Caveman<a hidden class=anchor aria-hidden=true href=#how-to-use-caveman>#</a></h2><p>Once installed, trigger it with any of these phrases: - <code>/caveman</code></p><ul><li><code>talk like caveman</code></li><li><code>caveman mode</code></li><li><code>less tokens please</code></li></ul><p>To return to normal: - <code>stop caveman</code></p><ul><li><code>normal mode</code></li></ul><h3 id=example-asking-for-a-code-review>Example: Asking for a Code Review<a hidden class=anchor aria-hidden=true href=#example-asking-for-a-code-review>#</a></h3><p><strong>Without Caveman:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>User: Review this auth middleware for security issues.
-</span></span><span style=display:flex><span>Claude: Certainly! I would be happy to review your authentication middleware for potential security vulnerabilities. Let me examine the code carefully...
-</span></span><span style=display:flex><span>[700+ tokens of polite preamble and explanation]
-</span></span></code></pre></div><p><strong>With Caveman:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>User: /caveman
-</span></span><span style=display:flex><span>User: Review this auth middleware for security issues.
-</span></span><span style=display:flex><span>Claude: L42: 🔴 bug — user null. Add guard.
-</span></span><span style=display:flex><span>L58: 🟡 weak token expiry. Use 15min max.
-</span></span><span style=display:flex><span>L71: 🔴 secret in env var? Move to vault.
-</span></span></code></pre></div><p>Same technical content. No throat-clearing. <strong>41% fewer tokens</strong> in this real benchmark case.</p><h3 id=built-in-skills>Built-in Skills<a hidden class=anchor aria-hidden=true href=#built-in-skills>#</a></h3><p>Caveman ships with several sub-commands: | Command | Purpose |
-|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="cline--roo-code">Cline / Roo Code<a hidden class="anchor" aria-hidden="true" href="#cline--roo-code">#</a></h3>
+<p>Install via the Cline marketplace or copy the <code>.clinerules</code> file to your project root.</p>
+<h3 id="windsurf">Windsurf<a hidden class="anchor" aria-hidden="true" href="#windsurf">#</a></h3>
+<p>Copy the <code>.windsurf</code> rules into your project configuration.</p>
+<h3 id="codex-openai">Codex (OpenAI)<a hidden class="anchor" aria-hidden="true" href="#codex-openai">#</a></h3>
+<p>Use the <code>$caveman</code> trigger after loading the skill.</p>
+<hr>
+<h2 id="how-to-use-caveman">How to Use Caveman<a hidden class="anchor" aria-hidden="true" href="#how-to-use-caveman">#</a></h2>
+<p>Once installed, trigger it with any of these phrases: - <code>/caveman</code></p>
+<ul>
+<li><code>talk like caveman</code></li>
+<li><code>caveman mode</code></li>
+<li><code>less tokens please</code></li>
+</ul>
+<p>To return to normal: - <code>stop caveman</code></p>
+<ul>
+<li><code>normal mode</code></li>
+</ul>
+<h3 id="example-asking-for-a-code-review">Example: Asking for a Code Review<a hidden class="anchor" aria-hidden="true" href="#example-asking-for-a-code-review">#</a></h3>
+<p><strong>Without Caveman:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>User: Review this auth middleware for security issues.
+</span></span><span style="display:flex;"><span>Claude: Certainly! I would be happy to review your authentication middleware for potential security vulnerabilities. Let me examine the code carefully...
+</span></span><span style="display:flex;"><span>[700+ tokens of polite preamble and explanation]
+</span></span></code></pre></div><p><strong>With Caveman:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>User: /caveman
+</span></span><span style="display:flex;"><span>User: Review this auth middleware for security issues.
+</span></span><span style="display:flex;"><span>Claude: L42: 🔴 bug — user null. Add guard.
+</span></span><span style="display:flex;"><span>L58: 🟡 weak token expiry. Use 15min max.
+</span></span><span style="display:flex;"><span>L71: 🔴 secret in env var? Move to vault.
+</span></span></code></pre></div><p>Same technical content. No throat-clearing. <strong>41% fewer tokens</strong> in this real benchmark case.</p>
+<h3 id="built-in-skills">Built-in Skills<a hidden class="anchor" aria-hidden="true" href="#built-in-skills">#</a></h3>
+<p>Caveman ships with several sub-commands: | Command | Purpose |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <code>/caveman-commit</code> | Terse commit messages (Conventional Commits, ≤50 chars) |
 | <code>/caveman-review</code> | One-line PR comments. No fluff. |
 | <code>/caveman-help</code> | Quick-reference card for all modes. |
 | <code>/caveman-stats</code> | Real session token usage + estimated savings in USD. |
-| <code>/caveman:compress &lt;file></code> | Rewrites a memory file (e.g., <code>CLAUDE.md</code>) into caveman-speak. Cuts ~46% of input tokens. |</p><hr><h2 id=real-benchmarks-and-results>Real Benchmarks and Results<a hidden class=anchor aria-hidden=true href=#real-benchmarks-and-results>#</a></h2><p>The Caveman repository includes reproducible benchmarks using the real Claude API. Here are the numbers: | Task | Normal (tokens) | Caveman (tokens) | Saved |
-|</p><hr><p>|</p><hr><p>:|</p><hr><p>:|</p><hr><p>:|
+| <code>/caveman:compress &lt;file&gt;</code> | Rewrites a memory file (e.g., <code>CLAUDE.md</code>) into caveman-speak. Cuts ~46% of input tokens. |</p>
+<hr>
+<h2 id="real-benchmarks-and-results">Real Benchmarks and Results<a hidden class="anchor" aria-hidden="true" href="#real-benchmarks-and-results">#</a></h2>
+<p>The Caveman repository includes reproducible benchmarks using the real Claude API. Here are the numbers: | Task | Normal (tokens) | Caveman (tokens) | Saved |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>:|</p>
+<hr>
+<p>:|</p>
+<hr>
+<p>:|
 | Explain React re-render bug | 1,180 | 159 | <strong>87%</strong> |
 | Fix auth middleware token expiry | 704 | 121 | <strong>83%</strong> |
 | Set up PostgreSQL connection pool | 2,347 | 380 | <strong>84%</strong> |
@@ -63,162 +357,286 @@ cp caveman/.cursor/.cursorrules /path/to/your/project/
 | Docker multi-stage build | 1,042 | 290 | <strong>72%</strong> |
 | Debug PostgreSQL race condition | 1,200 | 232 | <strong>81%</strong> |
 | Implement React error boundary | 3,454 | 456 | <strong>87%</strong> |
-| <strong>Average</strong> | <strong>1,214</strong> | <strong>294</strong> | <strong>65%</strong> |</p><p>Range: <strong>22% to 87%</strong> savings depending on how verbose the original task is.</p><h3 id=what-you-gain>What You Gain<a hidden class=anchor aria-hidden=true href=#what-you-gain>#</a></h3><ul><li><strong>Speed:</strong> Less text to generate means faster responses.</li><li><strong>Readability:</strong> No walls of text. Just answers.</li><li><strong>Accuracy:</strong> All technical info is preserved; only fluff is removed.</li><li><strong>Cost:</strong> 65% fewer output tokens directly translates to a lower API bill.</li></ul><hr><h2 id=practical-code-example>Practical Code Example<a hidden class=anchor aria-hidden=true href=#practical-code-example>#</a></h2><p>Here is a side-by-side comparison for a common developer task: asking Claude to explain a Docker multi-stage build.</p><p><strong>Normal Mode (1,042 tokens):</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>Certainly! I would be happy to explain how a multi-stage Docker build works and why it is beneficial for your Node.js application.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>A multi-stage build is a feature in Docker that allows you to use multiple FROM statements in a single Dockerfile. Each FROM instruction can use a different base image, and each stage can copy artifacts from previous stages. This approach is particularly useful because it helps you create smaller, more secure final images by separating the build environment from the runtime environment.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Let me walk you through a typical example for a Node.js application...
-</span></span></code></pre></div><p><strong>Caveman Mode (290 tokens):</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-text data-lang=text><span style=display:flex><span>Multi-stage build = smaller image.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Stage 1: Build
-</span></span><span style=display:flex><span>FROM node:20-alpine AS builder
-</span></span><span style=display:flex><span>WORKDIR /app
-</span></span><span style=display:flex><span>COPY package*.json .
-</span></span><span style=display:flex><span>RUN npm ci
-</span></span><span style=display:flex><span>COPY . .
-</span></span><span style=display:flex><span>RUN npm run build
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Stage 2: Run
-</span></span><span style=display:flex><span>FROM node:20-alpine
-</span></span><span style=display:flex><span>WORKDIR /app
-</span></span><span style=display:flex><span>COPY --from=builder /app/dist ./dist
-</span></span><span style=display:flex><span>COPY --from=builder /app/node_modules ./node_modules
-</span></span><span style=display:flex><span>CMD [&#34;node&#34;, &#34;dist/main.js&#34;]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Why: builder has gcc, python, devdeps. Runtime no need. Image go from 1.2GB to 180MB.
-</span></span><span style=display:flex><span>````
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Same technical depth. Same code. **72% fewer tokens.**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>## Summary
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Caveman is not a gimmick. It is a **practical, scientifically grounded** optimization for anyone who uses Claude Code heavily. By compressing Claude&#39;s output into terse, caveman-style language, it delivers: - **65% average token reduction**
-</span></span><span style=display:flex><span>- **Faster responses**
-</span></span><span style=display:flex><span>- **Easier-to-read output**
-</span></span><span style=display:flex><span>- **Lower API costs**
-</span></span><span style=display:flex><span>- **Unchanged reasoning quality**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>If your monthly Claude Code bill is climbing or you are tired of scrolling through polite preamble to find the actual answer, Caveman is worth installing today.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**Get it here:** [github.com/JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**Star count:** 57,003 and growing.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*Have you tried Caveman? Drop your token savings in the comments below.*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>## Recommended Tools
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
-</span></span><span style=display:flex><span>- **** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*Affiliate link — supports dibi8.com at no cost to you.*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>## References &amp; Sources
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- [Caveman](https://github.com/JuliusBrussee/caveman)
-</span></span><span style=display:flex><span>- [Claude Code](https://docs.claude.com/en/docs/claude-code/overview)
-</span></span><span style=display:flex><span>- [Cline](https://github.com/cline/cline)
-</span></span><span style=display:flex><span>- [Docker](https://docs.docker.com/)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  &#34;@context&#34;: &#34;https://schema.org&#34;,
-</span></span><span style=display:flex><span>  &#34;@type&#34;: &#34;Article&#34;,
-</span></span><span style=display:flex><span>  &#34;headline&#34;: &#34;Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens&#34;,
-</span></span><span style=display:flex><span>  &#34;datePublished&#34;: &#34;2026-05-15&#34;,
-</span></span><span style=display:flex><span>  &#34;dateModified&#34;: &#34;2026-05-15&#34;,
-</span></span><span style=display:flex><span>  &#34;author&#34;: {
-</span></span><span style=display:flex><span>    &#34;@type&#34;: &#34;Organization&#34;,
-</span></span><span style=display:flex><span>    &#34;name&#34;: &#34;Dibi8&#34;
-</span></span><span style=display:flex><span>  },
-</span></span><span style=display:flex><span>  &#34;publisher&#34;: {
-</span></span><span style=display:flex><span>    &#34;@type&#34;: &#34;Organization&#34;,
-</span></span><span style=display:flex><span>    &#34;name&#34;: &#34;Dibi8&#34;,
-</span></span><span style=display:flex><span>    &#34;logo&#34;: {
-</span></span><span style=display:flex><span>      &#34;@type&#34;: &#34;ImageObject&#34;,
-</span></span><span style=display:flex><span>      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  },
-</span></span><span style=display:flex><span>  &#34;mainEntityOfPage&#34;: {
-</span></span><span style=display:flex><span>    &#34;@type&#34;: &#34;WebPage&#34;,
-</span></span><span style=display:flex><span>    &#34;@id&#34;: &#34;https://dibi8.com/resources/caveman&#34;
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>&lt;/script&gt;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>## Why This Matters
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Understanding cut claude code token usage by 65% with caveman — same quality, fewer tokens is crucial for modern AI development. Here&#39;s why: ### Key Benefits
-</span></span><span style=display:flex><span>- **Efficiency**: Save time on repetitive tasks
-</span></span><span style=display:flex><span>- **Quality**: Improve output consistency  
-</span></span><span style=display:flex><span>- **Scalability**: Handle larger workloads
-</span></span><span style=display:flex><span>- **Cost**: Reduce operational expenses
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>### Real-World Applications
-</span></span><span style=display:flex><span>Organizations are using similar approaches to: 1. Automate code review processes
-</span></span><span style=display:flex><span>2. Generate documentation automatically
-</span></span><span style=display:flex><span>3. Build internal knowledge bases
-</span></span><span style=display:flex><span>4. Streamline deployment pipelines
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>### Getting Started
-</span></span><span style=display:flex><span>To implement this in your workflow: 1. **Assess Your Needs**
-</span></span><span style=display:flex><span>   - Identify repetitive tasks
-</span></span><span style=display:flex><span>   - Measure current time costs
-</span></span><span style=display:flex><span>   - Define success metrics
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>2. **Choose Your Approach**
-</span></span><span style=display:flex><span>   - Start with simple automations
-</span></span><span style=display:flex><span>   - Gradually increase complexity
-</span></span><span style=display:flex><span>   - Test and iterate
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>3. **Measure Results**
-</span></span><span style=display:flex><span>   - Track time savings
-</span></span><span style=display:flex><span>   - Monitor quality improvements
-</span></span><span style=display:flex><span>   - Calculate ROI
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>## Conclusion
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*Last updated: 2026-09-20*
-</span></span><span style=display:flex><span>*Read time: ~7 minutes*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>## Frequently Asked Questions (FAQ)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent和传统自动化有什么区别？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：如何选择合适的AI Agent框架？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent的安全性如何保证？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent的学习成本有多高？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：能否自定义AI Agent的行为？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/bytedance-ui-tars-desktop-ai-agent-guide/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ai-coding-agents/cc-switch-ai-coding-agent-control-center-2026/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+| <strong>Average</strong> | <strong>1,214</strong> | <strong>294</strong> | <strong>65%</strong> |</p>
+<p>Range: <strong>22% to 87%</strong> savings depending on how verbose the original task is.</p>
+<h3 id="what-you-gain">What You Gain<a hidden class="anchor" aria-hidden="true" href="#what-you-gain">#</a></h3>
+<ul>
+<li><strong>Speed:</strong> Less text to generate means faster responses.</li>
+<li><strong>Readability:</strong> No walls of text. Just answers.</li>
+<li><strong>Accuracy:</strong> All technical info is preserved; only fluff is removed.</li>
+<li><strong>Cost:</strong> 65% fewer output tokens directly translates to a lower API bill.</li>
+</ul>
+<hr>
+<h2 id="practical-code-example">Practical Code Example<a hidden class="anchor" aria-hidden="true" href="#practical-code-example">#</a></h2>
+<p>Here is a side-by-side comparison for a common developer task: asking Claude to explain a Docker multi-stage build.</p>
+<p><strong>Normal Mode (1,042 tokens):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Certainly! I would be happy to explain how a multi-stage Docker build works and why it is beneficial for your Node.js application.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>A multi-stage build is a feature in Docker that allows you to use multiple FROM statements in a single Dockerfile. Each FROM instruction can use a different base image, and each stage can copy artifacts from previous stages. This approach is particularly useful because it helps you create smaller, more secure final images by separating the build environment from the runtime environment.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Let me walk you through a typical example for a Node.js application...
+</span></span></code></pre></div><p><strong>Caveman Mode (290 tokens):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-text" data-lang="text"><span style="display:flex;"><span>Multi-stage build = smaller image.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Stage 1: Build
+</span></span><span style="display:flex;"><span>FROM node:20-alpine AS builder
+</span></span><span style="display:flex;"><span>WORKDIR /app
+</span></span><span style="display:flex;"><span>COPY package*.json .
+</span></span><span style="display:flex;"><span>RUN npm ci
+</span></span><span style="display:flex;"><span>COPY . .
+</span></span><span style="display:flex;"><span>RUN npm run build
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Stage 2: Run
+</span></span><span style="display:flex;"><span>FROM node:20-alpine
+</span></span><span style="display:flex;"><span>WORKDIR /app
+</span></span><span style="display:flex;"><span>COPY --from=builder /app/dist ./dist
+</span></span><span style="display:flex;"><span>COPY --from=builder /app/node_modules ./node_modules
+</span></span><span style="display:flex;"><span>CMD [&#34;node&#34;, &#34;dist/main.js&#34;]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Why: builder has gcc, python, devdeps. Runtime no need. Image go from 1.2GB to 180MB.
+</span></span><span style="display:flex;"><span>````
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Same technical depth. Same code. **72% fewer tokens.**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>## Summary
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Caveman is not a gimmick. It is a **practical, scientifically grounded** optimization for anyone who uses Claude Code heavily. By compressing Claude&#39;s output into terse, caveman-style language, it delivers: - **65% average token reduction**
+</span></span><span style="display:flex;"><span>- **Faster responses**
+</span></span><span style="display:flex;"><span>- **Easier-to-read output**
+</span></span><span style="display:flex;"><span>- **Lower API costs**
+</span></span><span style="display:flex;"><span>- **Unchanged reasoning quality**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>If your monthly Claude Code bill is climbing or you are tired of scrolling through polite preamble to find the actual answer, Caveman is worth installing today.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**Get it here:** [github.com/JuliusBrussee/caveman](https://github.com/JuliusBrussee/caveman)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**Star count:** 57,003 and growing.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Have you tried Caveman? Drop your token savings in the comments below.*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>## Recommended Tools
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.
+</span></span><span style="display:flex;"><span>- **** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Affiliate link — supports dibi8.com at no cost to you.*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>## References &amp; Sources
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- [Caveman](https://github.com/JuliusBrussee/caveman)
+</span></span><span style="display:flex;"><span>- [Claude Code](https://docs.claude.com/en/docs/claude-code/overview)
+</span></span><span style="display:flex;"><span>- [Cline](https://github.com/cline/cline)
+</span></span><span style="display:flex;"><span>- [Docker](https://docs.docker.com/)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  &#34;@context&#34;: &#34;https://schema.org&#34;,
+</span></span><span style="display:flex;"><span>  &#34;@type&#34;: &#34;Article&#34;,
+</span></span><span style="display:flex;"><span>  &#34;headline&#34;: &#34;Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens&#34;,
+</span></span><span style="display:flex;"><span>  &#34;datePublished&#34;: &#34;2026-05-15&#34;,
+</span></span><span style="display:flex;"><span>  &#34;dateModified&#34;: &#34;2026-05-15&#34;,
+</span></span><span style="display:flex;"><span>  &#34;author&#34;: {
+</span></span><span style="display:flex;"><span>    &#34;@type&#34;: &#34;Organization&#34;,
+</span></span><span style="display:flex;"><span>    &#34;name&#34;: &#34;Dibi8&#34;
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  &#34;publisher&#34;: {
+</span></span><span style="display:flex;"><span>    &#34;@type&#34;: &#34;Organization&#34;,
+</span></span><span style="display:flex;"><span>    &#34;name&#34;: &#34;Dibi8&#34;,
+</span></span><span style="display:flex;"><span>    &#34;logo&#34;: {
+</span></span><span style="display:flex;"><span>      &#34;@type&#34;: &#34;ImageObject&#34;,
+</span></span><span style="display:flex;"><span>      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  &#34;mainEntityOfPage&#34;: {
+</span></span><span style="display:flex;"><span>    &#34;@type&#34;: &#34;WebPage&#34;,
+</span></span><span style="display:flex;"><span>    &#34;@id&#34;: &#34;https://dibi8.com/resources/caveman&#34;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>## Why This Matters
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Understanding cut claude code token usage by 65% with caveman — same quality, fewer tokens is crucial for modern AI development. Here&#39;s why: ### Key Benefits
+</span></span><span style="display:flex;"><span>- **Efficiency**: Save time on repetitive tasks
+</span></span><span style="display:flex;"><span>- **Quality**: Improve output consistency  
+</span></span><span style="display:flex;"><span>- **Scalability**: Handle larger workloads
+</span></span><span style="display:flex;"><span>- **Cost**: Reduce operational expenses
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>### Real-World Applications
+</span></span><span style="display:flex;"><span>Organizations are using similar approaches to: 1. Automate code review processes
+</span></span><span style="display:flex;"><span>2. Generate documentation automatically
+</span></span><span style="display:flex;"><span>3. Build internal knowledge bases
+</span></span><span style="display:flex;"><span>4. Streamline deployment pipelines
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>### Getting Started
+</span></span><span style="display:flex;"><span>To implement this in your workflow: 1. **Assess Your Needs**
+</span></span><span style="display:flex;"><span>   - Identify repetitive tasks
+</span></span><span style="display:flex;"><span>   - Measure current time costs
+</span></span><span style="display:flex;"><span>   - Define success metrics
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2. **Choose Your Approach**
+</span></span><span style="display:flex;"><span>   - Start with simple automations
+</span></span><span style="display:flex;"><span>   - Gradually increase complexity
+</span></span><span style="display:flex;"><span>   - Test and iterate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>3. **Measure Results**
+</span></span><span style="display:flex;"><span>   - Track time savings
+</span></span><span style="display:flex;"><span>   - Monitor quality improvements
+</span></span><span style="display:flex;"><span>   - Calculate ROI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>## Conclusion
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Cut Claude Code Token Usage by 65% With Caveman — Same Quality, Fewer Tokens represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Last updated: 2026-09-20*
+</span></span><span style="display:flex;"><span>*Read time: ~7 minutes*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>## Frequently Asked Questions (FAQ)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent和传统自动化有什么区别？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：如何选择合适的AI Agent框架？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的安全性如何保证？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的学习成本有多高？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：能否自定义AI Agent的行为？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ai-coding-agents/bytedance-ui-tars-desktop-ai-agent-guide/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ai-coding-agents/cc-switch-ai-coding-agent-control-center-2026/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>

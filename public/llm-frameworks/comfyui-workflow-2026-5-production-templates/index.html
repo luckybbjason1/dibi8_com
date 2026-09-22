@@ -1,9 +1,242 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/llm-frameworks/comfyui-workflow-2026-5-production-templates/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/llm-frameworks/comfyui-workflow-2026-5-production-templates/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/llm-frameworks/comfyui-workflow-2026-5-production-templates/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="llm-frameworks"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"LLM Frameworks - dibi8","item":"https://dibi8.com/llm-frameworks/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/llm-frameworks/comfyui-workflow-2026-5-production-templates/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “ComfyUI Workflow 2026: Beginner Setup + 5 Production-Rea… description: “Technical guide and comparison.” date: 2026-05-25T00:00:00+08:00 lastmod: 2026-05-25T00:00:00+08:00 tech_stack: [ComfyUI, ‘Stable Diffusion’, Python, CUDA] application_domain: AI Tools source_version: “ComfyUI 2026.05” licensing_model: Open Source license_type: ‘GPL-3.0’ last_maintained: “2026-05-25” draft: false categories: [“ai-tools”] tags: [“comfyui”, “stable-diffusion”, “image-generation”, “workflows”, “2026”] aliases:\n/posts/comfyui-workflow-2026-5-production-templates/ faq: - q: “Is ComfyUI better than Stable Diffusion WebUI in 2026?” a: “For workflow automation and production use: yes, decisively. ComfyUI’s node-based graph makes complex multi-step pipelines (upscale → inpaint → ControlNet → re-render) trivial. SD WebUI is simpler for one-shot generations. Most professional AI artists run both.” q: “What hardware do I need?” a: “Minimum: 8GB VRAM (RTX 3060, RTX 4060) for SDXL at modest quality. Comfortable: 16GB+ VRAM (RTX 4080, 4090) for SDXL + Flux models + LoRA stacking. Production: H100 / multiple GPUs for batch workflows.” q: “Which 2026 models should I download first?” a: “Three priorities: (1) SDXL base + refiner (still the workhorse), (2) Flux.1 Schnell (faster, good for prototyping), (3) Stable Diffusion 3.5 Large (best photorealism). Add 2-3 LoRAs for your style. Skip the dozens of CIvitai personas until you have a reason.” q: “How long to learn ComfyUI from scratch?” a: “Loading a workflow + generating: 30 minutes. Building your own workflow: 1-2 days. Mastering nodes for production: 2-3 weeks. The learning curve is steep first but pays off — workflows are reusable, sharable, and reproducible.” ComfyUI Workflow 2026: Setup + 5 Production Templates Meta Description: ComfyUI hit 106K stars in 2026. Setup guide + 5 production-ready workflow templates (text-to-image, inpaint, upscale, video, character consistency).\nComfyUI became the default tool for serious AI image generation in 2026. Node-based, reproducible, automatable. This guide gets you from zero to 5 working production workflows in an afternoon.\n⚡ TL;DR Why ComfyUI: workflow reproducibility, automation, complex pipelines. 106K stars in 2026.\nHardware: 8GB VRAM minimum, 16GB+ comfortable.\nSetup time: 1 hour to first generation.\n5 templates below: text-to-image, inpaint, upscale chain, video, character consistency.\nSetup (1 Hour) Step 1: Install (15 min) # Clone + setup venv git clone https://github.com/comfyanonymous/ComfyUI cd ComfyUI python -m venv venv \u0026\u0026 source venv/bin/activate pip install -r requirements.txt python main.py Browser opens at http://localhost:8188.\nStep 2: Download models (30 min) Drop into ComfyUI/models/checkpoints/: - SDXL base + refiner (most versatile, ~13GB total)\nFlux.1 Schnell (fast prototyping, ~24GB) SD 3.5 Large (best photorealism, ~17GB) Optional but useful: - 2-3 LoRAs for your style (Civitai, search “2026 SDXL trending”)\nControlNet models (OpenPose, Depth, Canny — each ~1.5GB) Step 3: First generation (15 min) Drag the default workflow from ComfyUI/workflows/ Load SDXL checkpoint Type prompt Queue prompt Done. You’re now generating. The hard part starts now: building reusable workflows.\n5 Production-Ready Templates Template 1: Text-to-Image (SDXL base + refiner) Use: standard generation, daily workhorse. Nodes: Load Checkpoint → CLIP Text Encode (prompt) → KSampler (base 70%) → KSampler (refiner 30%) → VAE Decode → Save Image. Time per image: 8-15 sec on RTX 4090.\nTemplate 2: Inpaint Mask (selective editing) Use: change a specific area without regenerating the whole image. Nodes: Load Image → MaskEditor → CLIP Text Encode (new content) → InpaintModelConditioning → KSampler → Composite back. Time per edit: 5-10 sec.\nTemplate 3: 4x Upscale Chain (4K output) Use: take 1024×1024 generation → 4096×4096 production-ready output. Nodes: Generate at 1024 → Upscale Latent 2x → KSampler refine pass → Upscale Latent 2x again → Final refine. Time: 30-45 sec per image at 4K.\nTemplate 4: Image-to-Video (5 sec clip) Use: animate a still into 5-second motion clip. Nodes: Load SVD model → Load Image → Image to Video (24 frames @ 8fps) → VAE Decode → Save Video. Time: 60-90 sec on RTX 4090. 2026 model: Stable Video Diffusion XT or LTX Video.\nTemplate 5: Character Consistency (LoRA + IPAdapter) Use: generate same character across many scenes with consistent face. Nodes: Load LoRA (character-trained) + IPAdapter (reference image) → CLIP Text Encode → KSampler → output. Time per image: 12-20 sec. Trick: train your own LoRA on 15-20 source images of one character — IPAdapter handles the rest.\nWorkflow Sharing All five templates are saveable as ````.json```. Drag onto ComfyUI canvas to load. Share with team via git or Discord.\nThe community publishes thousands of workflows at: - ComfyUI subreddit\nOpenArt.ai workflow library Civitai (look for “ComfyUI workflow” filter) Bring 2-3 community workflows in and customize for your style. That’s how most production artists work — not building from scratch.\nRecommended Infrastructure For serious ComfyUI work: - **** — $200 credit, GPU droplets (H100/L40S/A100)\n**** — Hong Kong VPS for low-latency Asia generation Affiliate links — same price, supports dibi8.com.\nConclusion ComfyUI’s learning curve is real but the payoff is real. Once you have 5 reusable workflows, you’re shipping faster than any single-shot tool. The 2026 ecosystem (Flux, SD 3.5, IPAdapter, ControlNet improvements) is the most capable image-generation stack ever assembled — and ComfyUI is the only tool that orchestrates it cleanly.\nStart with the 5 templates above. Customize. Share. The compound returns of reusable workflows show up after week 2 — when you realize you’re combining nodes faster than you’d write code.\nRelated: Stable Diffusion WebUI Setup · Top AI Image Generators 2026 · Local-First AI Stack 2026\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “ComfyUI Workflow 2026: Beginner Setup + 5 Production-Ready Templates”, “datePublished”: “2026-05-25”, “dateModified”: “2026-05-25”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/comfyui-workflow-2026-5-production-templates\" } } Why This Matters Understanding comfyui workflow 2026: beginner setup + 5 production-ready templates is crucial for modern AI development. Here\"s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion ComfyUI Workflow 2026: Beginner Setup + 5 Production-Ready Templates represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nRelated Articles stable-diffusion-complete-guide comfyui-workflows-complete-guide comfyui-workflows-complete-guide comfyui-workflows-complete-guide Found this helpful? Join our Telegram community for daily AI tool updates!\nTrading Bot Comparison | Bot | Exchange | Strategy | Cost | Difficulty | |\n|\n|\n|\n|\n| | Freqtrade | Multi | Custom | Free | Medium | | Hummingbot | DEX/CEX | Market making | Free | Hard | | Jesse | Crypto | Backtesting | Free | Medium | | Velocimeter | Hyperliquid | Perps | Free | Easy |\n","wordCount":"1160","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/llm-frameworks/comfyui-workflow-2026-5-production-templates/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/llm-frameworks/>LLM Frameworks - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>6 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#comfyui-workflow-2026-setup--5-production-templates aria-label="ComfyUI Workflow 2026: Setup + 5 Production Templates">ComfyUI Workflow 2026: Setup + 5 Production Templates</a><ul><li><a href=#-tldr aria-label="⚡ TL;DR">⚡ TL;DR</a></li><li><a href=#setup-1-hour aria-label="Setup (1 Hour)">Setup (1 Hour)</a><ul><li><a href=#step-1-install-15-min aria-label="Step 1: Install (15 min)">Step 1: Install (15 min)</a></li><li><a href=#step-2-download-models-30-min aria-label="Step 2: Download models (30 min)">Step 2: Download models (30 min)</a></li><li><a href=#step-3-first-generation-15-min aria-label="Step 3: First generation (15 min)">Step 3: First generation (15 min)</a></li></ul></li><li><a href=#5-production-ready-templates aria-label="5 Production-Ready Templates">5 Production-Ready Templates</a><ul><li><a href=#template-1-text-to-image-sdxl-base--refiner aria-label="Template 1: Text-to-Image (SDXL base + refiner)">Template 1: Text-to-Image (SDXL base + refiner)</a></li><li><a href=#template-2-inpaint-mask-selective-editing aria-label="Template 2: Inpaint Mask (selective editing)">Template 2: Inpaint Mask (selective editing)</a></li><li><a href=#template-3-4x-upscale-chain-4k-output aria-label="Template 3: 4x Upscale Chain (4K output)">Template 3: 4x Upscale Chain (4K output)</a></li><li><a href=#template-4-image-to-video-5-sec-clip aria-label="Template 4: Image-to-Video (5 sec clip)">Template 4: Image-to-Video (5 sec clip)</a></li><li><a href=#template-5-character-consistency-lora--ipadapter aria-label="Template 5: Character Consistency (LoRA + IPAdapter)">Template 5: Character Consistency (LoRA + IPAdapter)</a></li></ul></li><li><a href=#workflow-sharing aria-label="Workflow Sharing">Workflow Sharing</a></li><li><a href=#recommended-infrastructure aria-label="Recommended Infrastructure">Recommended Infrastructure</a></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion-1 aria-label=Conclusion>Conclusion</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#trading-bot-comparison aria-label="Trading Bot Comparison">Trading Bot Comparison</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;ComfyUI Workflow 2026: Beginner Setup + 5 Production-Rea&mldr;
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/llm-frameworks/comfyui-workflow-2026-5-production-templates/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/llm-frameworks/comfyui-workflow-2026-5-production-templates/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/llm-frameworks/comfyui-workflow-2026-5-production-templates/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="llm-frameworks">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "LLM Frameworks - dibi8",
+      "item": "https://dibi8.com/llm-frameworks/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/llm-frameworks/comfyui-workflow-2026-5-production-templates/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “ComfyUI Workflow 2026: Beginner Setup + 5 Production-Rea… description: “Technical guide and comparison.” date: 2026-05-25T00:00:00+08:00 lastmod: 2026-05-25T00:00:00+08:00 tech_stack: [ComfyUI, ‘Stable Diffusion’, Python, CUDA] application_domain: AI Tools source_version: “ComfyUI 2026.05” licensing_model: Open Source license_type: ‘GPL-3.0’ last_maintained: “2026-05-25” draft: false categories: [“ai-tools”] tags: [“comfyui”, “stable-diffusion”, “image-generation”, “workflows”, “2026”] aliases:\n/posts/comfyui-workflow-2026-5-production-templates/ faq: - q: “Is ComfyUI better than Stable Diffusion WebUI in 2026?” a: “For workflow automation and production use: yes, decisively. ComfyUI’s node-based graph makes complex multi-step pipelines (upscale → inpaint → ControlNet → re-render) trivial. SD WebUI is simpler for one-shot generations. Most professional AI artists run both.” q: “What hardware do I need?” a: “Minimum: 8GB VRAM (RTX 3060, RTX 4060) for SDXL at modest quality. Comfortable: 16GB+ VRAM (RTX 4080, 4090) for SDXL + Flux models + LoRA stacking. Production: H100 / multiple GPUs for batch workflows.” q: “Which 2026 models should I download first?” a: “Three priorities: (1) SDXL base + refiner (still the workhorse), (2) Flux.1 Schnell (faster, good for prototyping), (3) Stable Diffusion 3.5 Large (best photorealism). Add 2-3 LoRAs for your style. Skip the dozens of CIvitai personas until you have a reason.” q: “How long to learn ComfyUI from scratch?” a: “Loading a workflow + generating: 30 minutes. Building your own workflow: 1-2 days. Mastering nodes for production: 2-3 weeks. The learning curve is steep first but pays off — workflows are reusable, sharable, and reproducible.” ComfyUI Workflow 2026: Setup + 5 Production Templates Meta Description: ComfyUI hit 106K stars in 2026. Setup guide + 5 production-ready workflow templates (text-to-image, inpaint, upscale, video, character consistency).\nComfyUI became the default tool for serious AI image generation in 2026. Node-based, reproducible, automatable. This guide gets you from zero to 5 working production workflows in an afternoon.\n⚡ TL;DR Why ComfyUI: workflow reproducibility, automation, complex pipelines. 106K stars in 2026.\nHardware: 8GB VRAM minimum, 16GB+ comfortable.\nSetup time: 1 hour to first generation.\n5 templates below: text-to-image, inpaint, upscale chain, video, character consistency.\nSetup (1 Hour) Step 1: Install (15 min) # Clone + setup venv git clone https://github.com/comfyanonymous/ComfyUI cd ComfyUI python -m venv venv \u0026\u0026 source venv/bin/activate pip install -r requirements.txt python main.py Browser opens at http://localhost:8188.\nStep 2: Download models (30 min) Drop into ComfyUI/models/checkpoints/: - SDXL base + refiner (most versatile, ~13GB total)\nFlux.1 Schnell (fast prototyping, ~24GB) SD 3.5 Large (best photorealism, ~17GB) Optional but useful: - 2-3 LoRAs for your style (Civitai, search “2026 SDXL trending”)\nControlNet models (OpenPose, Depth, Canny — each ~1.5GB) Step 3: First generation (15 min) Drag the default workflow from ComfyUI/workflows/ Load SDXL checkpoint Type prompt Queue prompt Done. You’re now generating. The hard part starts now: building reusable workflows.\n5 Production-Ready Templates Template 1: Text-to-Image (SDXL base + refiner) Use: standard generation, daily workhorse. Nodes: Load Checkpoint → CLIP Text Encode (prompt) → KSampler (base 70%) → KSampler (refiner 30%) → VAE Decode → Save Image. Time per image: 8-15 sec on RTX 4090.\nTemplate 2: Inpaint Mask (selective editing) Use: change a specific area without regenerating the whole image. Nodes: Load Image → MaskEditor → CLIP Text Encode (new content) → InpaintModelConditioning → KSampler → Composite back. Time per edit: 5-10 sec.\nTemplate 3: 4x Upscale Chain (4K output) Use: take 1024×1024 generation → 4096×4096 production-ready output. Nodes: Generate at 1024 → Upscale Latent 2x → KSampler refine pass → Upscale Latent 2x again → Final refine. Time: 30-45 sec per image at 4K.\nTemplate 4: Image-to-Video (5 sec clip) Use: animate a still into 5-second motion clip. Nodes: Load SVD model → Load Image → Image to Video (24 frames @ 8fps) → VAE Decode → Save Video. Time: 60-90 sec on RTX 4090. 2026 model: Stable Video Diffusion XT or LTX Video.\nTemplate 5: Character Consistency (LoRA + IPAdapter) Use: generate same character across many scenes with consistent face. Nodes: Load LoRA (character-trained) + IPAdapter (reference image) → CLIP Text Encode → KSampler → output. Time per image: 12-20 sec. Trick: train your own LoRA on 15-20 source images of one character — IPAdapter handles the rest.\nWorkflow Sharing All five templates are saveable as ````.json```. Drag onto ComfyUI canvas to load. Share with team via git or Discord.\nThe community publishes thousands of workflows at: - ComfyUI subreddit\nOpenArt.ai workflow library Civitai (look for “ComfyUI workflow” filter) Bring 2-3 community workflows in and customize for your style. That’s how most production artists work — not building from scratch.\nRecommended Infrastructure For serious ComfyUI work: - **** — $200 credit, GPU droplets (H100/L40S/A100)\n**** — Hong Kong VPS for low-latency Asia generation Affiliate links — same price, supports dibi8.com.\nConclusion ComfyUI’s learning curve is real but the payoff is real. Once you have 5 reusable workflows, you’re shipping faster than any single-shot tool. The 2026 ecosystem (Flux, SD 3.5, IPAdapter, ControlNet improvements) is the most capable image-generation stack ever assembled — and ComfyUI is the only tool that orchestrates it cleanly.\nStart with the 5 templates above. Customize. Share. The compound returns of reusable workflows show up after week 2 — when you realize you’re combining nodes faster than you’d write code.\nRelated: Stable Diffusion WebUI Setup · Top AI Image Generators 2026 · Local-First AI Stack 2026\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “ComfyUI Workflow 2026: Beginner Setup + 5 Production-Ready Templates”, “datePublished”: “2026-05-25”, “dateModified”: “2026-05-25”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/comfyui-workflow-2026-5-production-templates\" } } Why This Matters Understanding comfyui workflow 2026: beginner setup + 5 production-ready templates is crucial for modern AI development. Here\"s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion ComfyUI Workflow 2026: Beginner Setup + 5 Production-Ready Templates represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nRelated Articles stable-diffusion-complete-guide comfyui-workflows-complete-guide comfyui-workflows-complete-guide comfyui-workflows-complete-guide Found this helpful? Join our Telegram community for daily AI tool updates!\nTrading Bot Comparison | Bot | Exchange | Strategy | Cost | Difficulty | |\n|\n|\n|\n|\n| | Freqtrade | Multi | Custom | Free | Medium | | Hummingbot | DEX/CEX | Market making | Free | Hard | | Jesse | Crypto | Backtesting | Free | Medium | | Velocimeter | Hyperliquid | Perps | Free | Easy |\n",
+  "wordCount" : "1160",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/llm-frameworks/comfyui-workflow-2026-5-production-templates/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/llm-frameworks/">LLM Frameworks - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>6 分钟</span>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#comfyui-workflow-2026-setup--5-production-templates" aria-label="ComfyUI Workflow 2026: Setup &#43; 5 Production Templates">ComfyUI Workflow 2026: Setup + 5 Production Templates</a><ul>
+                    
+            <li>
+                <a href="#-tldr" aria-label="⚡ TL;DR">⚡ TL;DR</a></li>
+            <li>
+                <a href="#setup-1-hour" aria-label="Setup (1 Hour)">Setup (1 Hour)</a><ul>
+                    
+            <li>
+                <a href="#step-1-install-15-min" aria-label="Step 1: Install (15 min)">Step 1: Install (15 min)</a></li>
+            <li>
+                <a href="#step-2-download-models-30-min" aria-label="Step 2: Download models (30 min)">Step 2: Download models (30 min)</a></li>
+            <li>
+                <a href="#step-3-first-generation-15-min" aria-label="Step 3: First generation (15 min)">Step 3: First generation (15 min)</a></li></ul>
+            </li>
+            <li>
+                <a href="#5-production-ready-templates" aria-label="5 Production-Ready Templates">5 Production-Ready Templates</a><ul>
+                    
+            <li>
+                <a href="#template-1-text-to-image-sdxl-base--refiner" aria-label="Template 1: Text-to-Image (SDXL base &#43; refiner)">Template 1: Text-to-Image (SDXL base + refiner)</a></li>
+            <li>
+                <a href="#template-2-inpaint-mask-selective-editing" aria-label="Template 2: Inpaint Mask (selective editing)">Template 2: Inpaint Mask (selective editing)</a></li>
+            <li>
+                <a href="#template-3-4x-upscale-chain-4k-output" aria-label="Template 3: 4x Upscale Chain (4K output)">Template 3: 4x Upscale Chain (4K output)</a></li>
+            <li>
+                <a href="#template-4-image-to-video-5-sec-clip" aria-label="Template 4: Image-to-Video (5 sec clip)">Template 4: Image-to-Video (5 sec clip)</a></li>
+            <li>
+                <a href="#template-5-character-consistency-lora--ipadapter" aria-label="Template 5: Character Consistency (LoRA &#43; IPAdapter)">Template 5: Character Consistency (LoRA + IPAdapter)</a></li></ul>
+            </li>
+            <li>
+                <a href="#workflow-sharing" aria-label="Workflow Sharing">Workflow Sharing</a></li>
+            <li>
+                <a href="#recommended-infrastructure" aria-label="Recommended Infrastructure">Recommended Infrastructure</a></li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                    
+            <li>
+                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+            <li>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion-1" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#trading-bot-comparison" aria-label="Trading Bot Comparison">Trading Bot Comparison</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;ComfyUI Workflow 2026: Beginner Setup + 5 Production-Rea&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
@@ -16,31 +249,102 @@ last_maintained: &ldquo;2026-05-25&rdquo;
 draft: false
 categories: [&ldquo;ai-tools&rdquo;]
 tags: [&ldquo;comfyui&rdquo;, &ldquo;stable-diffusion&rdquo;, &ldquo;image-generation&rdquo;, &ldquo;workflows&rdquo;, &ldquo;2026&rdquo;]
-aliases:</p><ul><li>/posts/comfyui-workflow-2026-5-production-templates/
+aliases:</p>
+<ul>
+<li>/posts/comfyui-workflow-2026-5-production-templates/
 faq: - q: &ldquo;Is ComfyUI better than Stable Diffusion WebUI in 2026?&rdquo;
-a: &ldquo;For workflow automation and production use: yes, decisively. ComfyUI&rsquo;s node-based graph makes complex multi-step pipelines (upscale → inpaint → ControlNet → re-render) trivial. SD WebUI is simpler for one-shot generations. Most professional AI artists run both.&rdquo;</li><li>q: &ldquo;What hardware do I need?&rdquo;
-a: &ldquo;Minimum: 8GB VRAM (RTX 3060, RTX 4060) for SDXL at modest quality. Comfortable: 16GB+ VRAM (RTX 4080, 4090) for SDXL + Flux models + LoRA stacking. Production: H100 / multiple GPUs for batch workflows.&rdquo;</li><li>q: &ldquo;Which 2026 models should I download first?&rdquo;
-a: &ldquo;Three priorities: (1) SDXL base + refiner (still the workhorse), (2) Flux.1 Schnell (faster, good for prototyping), (3) Stable Diffusion 3.5 Large (best photorealism). Add 2-3 LoRAs for your style. Skip the dozens of CIvitai personas until you have a reason.&rdquo;</li><li>q: &ldquo;How long to learn ComfyUI from scratch?&rdquo;
-a: &ldquo;Loading a workflow + generating: 30 minutes. Building your own workflow: 1-2 days. Mastering nodes for production: 2-3 weeks. The learning curve is steep first but pays off — workflows are reusable, sharable, and reproducible.&rdquo;</li></ul><hr><h1 id=comfyui-workflow-2026-setup--5-production-templates>ComfyUI Workflow 2026: Setup + 5 Production Templates<a hidden class=anchor aria-hidden=true href=#comfyui-workflow-2026-setup--5-production-templates>#</a></h1><blockquote><p><strong>Meta Description</strong>: ComfyUI hit 106K stars in 2026. Setup guide + 5 production-ready workflow templates (text-to-image, inpaint, upscale, video, character consistency).</p></blockquote><p>ComfyUI became the default tool for serious AI image generation in 2026. Node-based, reproducible, automatable. This guide gets you from zero to 5 working production workflows in an afternoon.</p><h2 id=-tldr>⚡ TL;DR<a hidden class=anchor aria-hidden=true href=#-tldr>#</a></h2><blockquote><p><strong>Why ComfyUI</strong>: workflow reproducibility, automation, complex pipelines. 106K stars in 2026.</p><p><strong>Hardware</strong>: 8GB VRAM minimum, 16GB+ comfortable.</p><p><strong>Setup time</strong>: 1 hour to first generation.</p><p><strong>5 templates below</strong>: text-to-image, inpaint, upscale chain, video, character consistency.</p></blockquote><h2 id=setup-1-hour>Setup (1 Hour)<a hidden class=anchor aria-hidden=true href=#setup-1-hour>#</a></h2><h3 id=step-1-install-15-min>Step 1: Install (15 min)<a hidden class=anchor aria-hidden=true href=#step-1-install-15-min>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Clone + setup venv</span>
-</span></span><span style=display:flex><span>git clone https://github.com/comfyanonymous/ComfyUI
-</span></span><span style=display:flex><span>cd ComfyUI
-</span></span><span style=display:flex><span>python -m venv venv <span style=color:#f92672>&amp;&amp;</span> source venv/bin/activate
-</span></span><span style=display:flex><span>pip install -r requirements.txt
-</span></span><span style=display:flex><span>python main.py
-</span></span></code></pre></div><p>Browser opens at <code>http://localhost:8188</code>.</p><h3 id=step-2-download-models-30-min>Step 2: Download models (30 min)<a hidden class=anchor aria-hidden=true href=#step-2-download-models-30-min>#</a></h3><p>Drop into <code>ComfyUI/models/checkpoints/</code>: - <strong>SDXL base + refiner</strong> (most versatile, ~13GB total)</p><ul><li><strong>Flux.1 Schnell</strong> (fast prototyping, ~24GB)</li><li><strong>SD 3.5 Large</strong> (best photorealism, ~17GB)</li></ul><p>Optional but useful: - 2-3 LoRAs for your style (Civitai, search &ldquo;2026 SDXL trending&rdquo;)</p><ul><li>ControlNet models (OpenPose, Depth, Canny — each ~1.5GB)</li></ul><h3 id=step-3-first-generation-15-min>Step 3: First generation (15 min)<a hidden class=anchor aria-hidden=true href=#step-3-first-generation-15-min>#</a></h3><ul><li>Drag the default workflow from <code>ComfyUI/workflows/</code></li><li>Load SDXL checkpoint</li><li>Type prompt</li><li>Queue prompt</li></ul><p>Done. You&rsquo;re now generating. The hard part starts now: building reusable workflows.</p><h2 id=5-production-ready-templates>5 Production-Ready Templates<a hidden class=anchor aria-hidden=true href=#5-production-ready-templates>#</a></h2><h3 id=template-1-text-to-image-sdxl-base--refiner>Template 1: Text-to-Image (SDXL base + refiner)<a hidden class=anchor aria-hidden=true href=#template-1-text-to-image-sdxl-base--refiner>#</a></h3><p><strong>Use</strong>: standard generation, daily workhorse.
+a: &ldquo;For workflow automation and production use: yes, decisively. ComfyUI&rsquo;s node-based graph makes complex multi-step pipelines (upscale → inpaint → ControlNet → re-render) trivial. SD WebUI is simpler for one-shot generations. Most professional AI artists run both.&rdquo;</li>
+<li>q: &ldquo;What hardware do I need?&rdquo;
+a: &ldquo;Minimum: 8GB VRAM (RTX 3060, RTX 4060) for SDXL at modest quality. Comfortable: 16GB+ VRAM (RTX 4080, 4090) for SDXL + Flux models + LoRA stacking. Production: H100 / multiple GPUs for batch workflows.&rdquo;</li>
+<li>q: &ldquo;Which 2026 models should I download first?&rdquo;
+a: &ldquo;Three priorities: (1) SDXL base + refiner (still the workhorse), (2) Flux.1 Schnell (faster, good for prototyping), (3) Stable Diffusion 3.5 Large (best photorealism). Add 2-3 LoRAs for your style. Skip the dozens of CIvitai personas until you have a reason.&rdquo;</li>
+<li>q: &ldquo;How long to learn ComfyUI from scratch?&rdquo;
+a: &ldquo;Loading a workflow + generating: 30 minutes. Building your own workflow: 1-2 days. Mastering nodes for production: 2-3 weeks. The learning curve is steep first but pays off — workflows are reusable, sharable, and reproducible.&rdquo;</li>
+</ul>
+<hr>
+<h1 id="comfyui-workflow-2026-setup--5-production-templates">ComfyUI Workflow 2026: Setup + 5 Production Templates<a hidden class="anchor" aria-hidden="true" href="#comfyui-workflow-2026-setup--5-production-templates">#</a></h1>
+<blockquote>
+<p><strong>Meta Description</strong>: ComfyUI hit 106K stars in 2026. Setup guide + 5 production-ready workflow templates (text-to-image, inpaint, upscale, video, character consistency).</p>
+</blockquote>
+<p>ComfyUI became the default tool for serious AI image generation in 2026. Node-based, reproducible, automatable. This guide gets you from zero to 5 working production workflows in an afternoon.</p>
+<h2 id="-tldr">⚡ TL;DR<a hidden class="anchor" aria-hidden="true" href="#-tldr">#</a></h2>
+<blockquote>
+<p><strong>Why ComfyUI</strong>: workflow reproducibility, automation, complex pipelines. 106K stars in 2026.</p>
+<p><strong>Hardware</strong>: 8GB VRAM minimum, 16GB+ comfortable.</p>
+<p><strong>Setup time</strong>: 1 hour to first generation.</p>
+<p><strong>5 templates below</strong>: text-to-image, inpaint, upscale chain, video, character consistency.</p>
+</blockquote>
+<h2 id="setup-1-hour">Setup (1 Hour)<a hidden class="anchor" aria-hidden="true" href="#setup-1-hour">#</a></h2>
+<h3 id="step-1-install-15-min">Step 1: Install (15 min)<a hidden class="anchor" aria-hidden="true" href="#step-1-install-15-min">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone + setup venv</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/comfyanonymous/ComfyUI
+</span></span><span style="display:flex;"><span>cd ComfyUI
+</span></span><span style="display:flex;"><span>python -m venv venv <span style="color:#f92672">&amp;&amp;</span> source venv/bin/activate
+</span></span><span style="display:flex;"><span>pip install -r requirements.txt
+</span></span><span style="display:flex;"><span>python main.py
+</span></span></code></pre></div><p>Browser opens at <code>http://localhost:8188</code>.</p>
+<h3 id="step-2-download-models-30-min">Step 2: Download models (30 min)<a hidden class="anchor" aria-hidden="true" href="#step-2-download-models-30-min">#</a></h3>
+<p>Drop into <code>ComfyUI/models/checkpoints/</code>: - <strong>SDXL base + refiner</strong> (most versatile, ~13GB total)</p>
+<ul>
+<li><strong>Flux.1 Schnell</strong> (fast prototyping, ~24GB)</li>
+<li><strong>SD 3.5 Large</strong> (best photorealism, ~17GB)</li>
+</ul>
+<p>Optional but useful: - 2-3 LoRAs for your style (Civitai, search &ldquo;2026 SDXL trending&rdquo;)</p>
+<ul>
+<li>ControlNet models (OpenPose, Depth, Canny — each ~1.5GB)</li>
+</ul>
+<h3 id="step-3-first-generation-15-min">Step 3: First generation (15 min)<a hidden class="anchor" aria-hidden="true" href="#step-3-first-generation-15-min">#</a></h3>
+<ul>
+<li>Drag the default workflow from <code>ComfyUI/workflows/</code></li>
+<li>Load SDXL checkpoint</li>
+<li>Type prompt</li>
+<li>Queue prompt</li>
+</ul>
+<p>Done. You&rsquo;re now generating. The hard part starts now: building reusable workflows.</p>
+<h2 id="5-production-ready-templates">5 Production-Ready Templates<a hidden class="anchor" aria-hidden="true" href="#5-production-ready-templates">#</a></h2>
+<h3 id="template-1-text-to-image-sdxl-base--refiner">Template 1: Text-to-Image (SDXL base + refiner)<a hidden class="anchor" aria-hidden="true" href="#template-1-text-to-image-sdxl-base--refiner">#</a></h3>
+<p><strong>Use</strong>: standard generation, daily workhorse.
 <strong>Nodes</strong>: Load Checkpoint → CLIP Text Encode (prompt) → KSampler (base 70%) → KSampler (refiner 30%) → VAE Decode → Save Image.
-<strong>Time per image</strong>: 8-15 sec on RTX 4090.</p><h3 id=template-2-inpaint-mask-selective-editing>Template 2: Inpaint Mask (selective editing)<a hidden class=anchor aria-hidden=true href=#template-2-inpaint-mask-selective-editing>#</a></h3><p><strong>Use</strong>: change a specific area without regenerating the whole image.
+<strong>Time per image</strong>: 8-15 sec on RTX 4090.</p>
+<h3 id="template-2-inpaint-mask-selective-editing">Template 2: Inpaint Mask (selective editing)<a hidden class="anchor" aria-hidden="true" href="#template-2-inpaint-mask-selective-editing">#</a></h3>
+<p><strong>Use</strong>: change a specific area without regenerating the whole image.
 <strong>Nodes</strong>: Load Image → MaskEditor → CLIP Text Encode (new content) → InpaintModelConditioning → KSampler → Composite back.
-<strong>Time per edit</strong>: 5-10 sec.</p><h3 id=template-3-4x-upscale-chain-4k-output>Template 3: 4x Upscale Chain (4K output)<a hidden class=anchor aria-hidden=true href=#template-3-4x-upscale-chain-4k-output>#</a></h3><p><strong>Use</strong>: take 1024×1024 generation → 4096×4096 production-ready output.
+<strong>Time per edit</strong>: 5-10 sec.</p>
+<h3 id="template-3-4x-upscale-chain-4k-output">Template 3: 4x Upscale Chain (4K output)<a hidden class="anchor" aria-hidden="true" href="#template-3-4x-upscale-chain-4k-output">#</a></h3>
+<p><strong>Use</strong>: take 1024×1024 generation → 4096×4096 production-ready output.
 <strong>Nodes</strong>: Generate at 1024 → Upscale Latent 2x → KSampler refine pass → Upscale Latent 2x again → Final refine.
-<strong>Time</strong>: 30-45 sec per image at 4K.</p><h3 id=template-4-image-to-video-5-sec-clip>Template 4: Image-to-Video (5 sec clip)<a hidden class=anchor aria-hidden=true href=#template-4-image-to-video-5-sec-clip>#</a></h3><p><strong>Use</strong>: animate a still into 5-second motion clip.
+<strong>Time</strong>: 30-45 sec per image at 4K.</p>
+<h3 id="template-4-image-to-video-5-sec-clip">Template 4: Image-to-Video (5 sec clip)<a hidden class="anchor" aria-hidden="true" href="#template-4-image-to-video-5-sec-clip">#</a></h3>
+<p><strong>Use</strong>: animate a still into 5-second motion clip.
 <strong>Nodes</strong>: Load SVD model → Load Image → Image to Video (24 frames @ 8fps) → VAE Decode → Save Video.
 <strong>Time</strong>: 60-90 sec on RTX 4090.
-<strong>2026 model</strong>: Stable Video Diffusion XT or LTX Video.</p><h3 id=template-5-character-consistency-lora--ipadapter>Template 5: Character Consistency (LoRA + IPAdapter)<a hidden class=anchor aria-hidden=true href=#template-5-character-consistency-lora--ipadapter>#</a></h3><p><strong>Use</strong>: generate same character across many scenes with consistent face.
+<strong>2026 model</strong>: Stable Video Diffusion XT or LTX Video.</p>
+<h3 id="template-5-character-consistency-lora--ipadapter">Template 5: Character Consistency (LoRA + IPAdapter)<a hidden class="anchor" aria-hidden="true" href="#template-5-character-consistency-lora--ipadapter">#</a></h3>
+<p><strong>Use</strong>: generate same character across many scenes with consistent face.
 <strong>Nodes</strong>: Load LoRA (character-trained) + IPAdapter (reference image) → CLIP Text Encode → KSampler → output.
 <strong>Time per image</strong>: 12-20 sec.
-<strong>Trick</strong>: train your own LoRA on 15-20 source images of one character — IPAdapter handles the rest.</p><h2 id=workflow-sharing>Workflow Sharing<a hidden class=anchor aria-hidden=true href=#workflow-sharing>#</a></h2><p>All five templates are saveable as ````.json```. Drag onto ComfyUI canvas to load. Share with team via git or Discord.</p><p>The community publishes thousands of workflows at: - ComfyUI subreddit</p><ul><li>OpenArt.ai workflow library</li><li>Civitai (look for &ldquo;ComfyUI workflow&rdquo; filter)</li></ul><p>Bring 2-3 community workflows in and customize for your style. That&rsquo;s how most production artists work — not building from scratch.</p><h2 id=recommended-infrastructure>Recommended Infrastructure<a hidden class=anchor aria-hidden=true href=#recommended-infrastructure>#</a></h2><p>For serious ComfyUI work: - **** — $200 credit, GPU droplets (H100/L40S/A100)</p><ul><li>**** — Hong Kong VPS for low-latency Asia generation</li></ul><p><em>Affiliate links — same price, supports dibi8.com.</em></p><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>ComfyUI&rsquo;s learning curve is real but the payoff is real. Once you have 5 reusable workflows, you&rsquo;re shipping faster than any single-shot tool. The 2026 ecosystem (Flux, SD 3.5, IPAdapter, ControlNet improvements) is the most capable image-generation stack ever assembled — and ComfyUI is the only tool that orchestrates it cleanly.</p><p>Start with the 5 templates above. Customize. Share. The compound returns of reusable workflows show up after week 2 — when you realize you&rsquo;re combining nodes faster than you&rsquo;d write code.</p><hr><p><strong>Related</strong>: <a href=https://dibi8.com/resources/ai-tools/stable-diffusion-webui/>Stable Diffusion WebUI Setup</a> · <a href=https://dibi8.com/resources/ai-tools/ai-image-generation-tools-2025/>Top AI Image Generators 2026</a> · <a href=https://dibi8.com/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/>Local-First AI Stack 2026</a></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+<strong>Trick</strong>: train your own LoRA on 15-20 source images of one character — IPAdapter handles the rest.</p>
+<h2 id="workflow-sharing">Workflow Sharing<a hidden class="anchor" aria-hidden="true" href="#workflow-sharing">#</a></h2>
+<p>All five templates are saveable as ````.json```. Drag onto ComfyUI canvas to load. Share with team via git or Discord.</p>
+<p>The community publishes thousands of workflows at: - ComfyUI subreddit</p>
+<ul>
+<li>OpenArt.ai workflow library</li>
+<li>Civitai (look for &ldquo;ComfyUI workflow&rdquo; filter)</li>
+</ul>
+<p>Bring 2-3 community workflows in and customize for your style. That&rsquo;s how most production artists work — not building from scratch.</p>
+<h2 id="recommended-infrastructure">Recommended Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-infrastructure">#</a></h2>
+<p>For serious ComfyUI work: - **** — $200 credit, GPU droplets (H100/L40S/A100)</p>
+<ul>
+<li>**** — Hong Kong VPS for low-latency Asia generation</li>
+</ul>
+<p><em>Affiliate links — same price, supports dibi8.com.</em></p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>ComfyUI&rsquo;s learning curve is real but the payoff is real. Once you have 5 reusable workflows, you&rsquo;re shipping faster than any single-shot tool. The 2026 ecosystem (Flux, SD 3.5, IPAdapter, ControlNet improvements) is the most capable image-generation stack ever assembled — and ComfyUI is the only tool that orchestrates it cleanly.</p>
+<p>Start with the 5 templates above. Customize. Share. The compound returns of reusable workflows show up after week 2 — when you realize you&rsquo;re combining nodes faster than you&rsquo;d write code.</p>
+<hr>
+<p><strong>Related</strong>: <a href="https://dibi8.com/resources/ai-tools/stable-diffusion-webui/">Stable Diffusion WebUI Setup</a> · <a href="https://dibi8.com/resources/ai-tools/ai-image-generation-tools-2025/">Top AI Image Generators 2026</a> · <a href="https://dibi8.com/resources/llm-frameworks/2026-local-first-ai-stack-production-architecture/">Local-First AI Stack 2026</a></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;ComfyUI Workflow 2026: Beginner Setup + 5 Production-Ready Templates&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-25&rdquo;,
@@ -54,24 +358,191 @@ a: &ldquo;Loading a workflow + generating: 30 minutes. Building your own workflo
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/comfyui-workflow-2026-5-production-templates%22>https://dibi8.com/resources/comfyui-workflow-2026-5-production-templates"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/comfyui-workflow-2026-5-production-templates%22">https://dibi8.com/resources/comfyui-workflow-2026-5-production-templates"</a>
 }
-}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding comfyui workflow 2026: beginner setup + 5 production-ready templates is crucial for modern AI development. Here"s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
+<p>Understanding comfyui workflow 2026: beginner setup + 5 production-ready templates is crucial for modern AI development. Here&quot;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
-4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion-1>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion-1>#</a></h2><p>ComfyUI Workflow 2026: Beginner Setup + 5 Production-Ready Templates represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~5 minutes</em></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/llm-frameworks/comfyui-workflow-2026-5-production-templates/>stable-diffusion-complete-guide</a></li><li><a href=/llm-frameworks/comfyui-workflow-2026-5-production-templates/>comfyui-workflows-complete-guide</a></li><li><a href=/llm-frameworks/comfyui-workflow-2026-5-production-templates/>comfyui-workflows-complete-guide</a></li><li><a href=/llm-frameworks/comfyui-workflow-2026-5-production-templates/>comfyui-workflows-complete-guide</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=trading-bot-comparison>Trading Bot Comparison<a hidden class=anchor aria-hidden=true href=#trading-bot-comparison>#</a></h2><p>| Bot | Exchange | Strategy | Cost | Difficulty |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion-1">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion-1">#</a></h2>
+<p>ComfyUI Workflow 2026: Beginner Setup + 5 Production-Ready Templates represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~5 minutes</em></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/llm-frameworks/comfyui-workflow-2026-5-production-templates/">stable-diffusion-complete-guide</a></li>
+<li><a href="/llm-frameworks/comfyui-workflow-2026-5-production-templates/">comfyui-workflows-complete-guide</a></li>
+<li><a href="/llm-frameworks/comfyui-workflow-2026-5-production-templates/">comfyui-workflows-complete-guide</a></li>
+<li><a href="/llm-frameworks/comfyui-workflow-2026-5-production-templates/">comfyui-workflows-complete-guide</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="trading-bot-comparison">Trading Bot Comparison<a hidden class="anchor" aria-hidden="true" href="#trading-bot-comparison">#</a></h2>
+<p>| Bot | Exchange | Strategy | Cost | Difficulty |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Freqtrade</strong> | Multi | Custom | Free | Medium |
 | <strong>Hummingbot</strong> | DEX/CEX | Market making | Free | Hard |
 | <strong>Jesse</strong> | Crypto | Backtesting | Free | Medium |
-| <strong>Velocimeter</strong> | Hyperliquid | Perps | Free | Easy |</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+| <strong>Velocimeter</strong> | Hyperliquid | Perps | Free | Easy |</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>

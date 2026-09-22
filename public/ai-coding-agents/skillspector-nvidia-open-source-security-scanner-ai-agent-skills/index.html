@@ -1,9 +1,213 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/skillspector-nvidia-open-source-security-scanner-ai-agent-skills/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/skillspector-nvidia-open-source-security-scanner-ai-agent-skills/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/skillspector-nvidia-open-source-security-scanner-ai-agent-skills/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/skillspector-nvidia-open-source-security-scanner-ai-agent-skills/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “SkillSpector: NVIDIA’s Open-Source Security Scanner for …” description: “Technical guide and comparison.” date: 2026-06-25 lastmod: 2026-06-25 draft: false lang: en category: dev-utils tags: [“security”, “ai-agents”, “scanner”, “vulnerability-detection”, “claude-code”, “codex”, “mcp”, “agent-skills”, “nvidia”] slug: skillspector-nvidia-open-source-security-scanner-ai-agent-skills\nSkillSpector: NVIDIA’s Open-Source Security Scanner for AI Agent Skills SkillSpector is a security scanning tool specifically designed for AI agent skills — the modular plugins and extensions that power frameworks like Claude Code, GitHub Copilot, Codex CLI, and Gemini CLI. Developed by NVIDIA with 10,273 GitHub stars, it addresses the growing security concerns around installing unvetted agent skills in production environments.\nThis article covers installation, scanning capabilities, vulnerability detection, integration with agent frameworks, and best practices for securing AI agent ecosystems.\nTL;DR As AI agent skills become increasingly popular, so do the security risks of installing unvetted ones. SkillSpector provides automated scanning for over 800 cybersecurity skills, detecting vulnerabilities, malicious patterns, and security risks before they reach your system. It supports all major agent frameworks and provides actionable remediation guidance.\nWhat Is SkillSpector? SkillSpector was born from a critical observation: as AI agent skills proliferate across developer workflows, the security surface area expands dramatically. Unlike traditional software packages that undergo rigorous code review, many agent skills are simple text files (SKILL.md) that instruct an LLM to perform arbitrary actions — including executing shell commands, accessing APIs, and modifying files.\nThe tool provides: - Automated vulnerability scanning for AI agent skill files\nPattern-based malicious behavior detection including command injection, data exfiltration, and privilege escalation Framework-specific analysis for Claude Code, GitHub Copilot, Codex CLI, and more Remediation guidance with specific fixes for detected vulnerabilities CI/CD integration for pre-installation scanning in automated pipelines Installation Guide Prerequisites Python: 3.12+ (required for async scanning features) Operating System: Linux, macOS, or Windows WSL2 Disk Space: 500MB for scanner + skill databases Network: Required for downloading skill databases and updates Option 1: Pip Installation # Install SkillSpector from PyPI pip install skillspector # Verify installation skillspector --version # Download the latest skill database skillspector update-db Option 2: From Source # Clone the repository git clone https://github.com/NVIDIA/SkillSpector.git cd SkillSpector # Create virtual environment python -m venv .venv source .venv/bin/activate # Install in development mode pip install -e . # Initialize the scanner skillspector init --download-database Option 3: Docker Deployment # Pull the official image docker pull nvcr.io/nvidia/skillspector:latest # Run a scan docker run --rm \\ -v ${PWD}/skills:/app/skills \\ nvcr.io/nvidia/skillspector:latest \\ scan /app/skills # Schedule regular scans docker run -d \\ --name skillspector \\ -v ${PWD}/skills:/app/skills \\ -v ${PWD}/reports:/app/reports \\ nvcr.io/nvidia/skillspector:latest \\ daemon --interval 3600 ```` ## Scanning Capabilities ### Vulnerability Detection Categories SkillSpector detects vulnerabilities across multiple categories: | Category | Description | Severity | | Join the community: [Telegram](https://t.me/DIBI8_Group) · [HuggingFace](https://huggingface.co/collections/nvidia/cosmos3) Internal links: [nvidia-cosmos-world-models-platform-2026](https://dibi8.com/en/resources/ai-tools/nvidia-cosmos-world-models-platform-2026) · [bytedance-ui-tars-desktop-ai-agent-guide](https://dibi8.com/en/resources/ai-tools/bytedance-ui-tars-desktop-ai-agent-guide) **Disclosure**: This article mentions tools that may have affiliate relationships. We do not accept payment for reviews. All opinions are our own. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"SkillSpector: NVIDIA's Open-Source Security Scanner for AI Agent Skills\", \"datePublished\": \"2026-06-25\", \"dateModified\": \"2026-06-25\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/skillspector-nvidia-open-source-security-scanner-ai-agent-skills\" } } ## Why This Matters Understanding skillspector: nvidia's open-source security scanner for ai agent skills is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion SkillSpector: NVIDIA's Open-Source Security Scanner for AI Agent Skills represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group --- *Last updated: 2026-09-20* *Read time: ~5 minutes* * * * ## Related Articles - [claude-code-vs-cline](skillspector-nvidia-open-source-security-scanner-ai-agent-skills) - [gemini-cli-vs-claude-code](skillspector-nvidia-open-source-security-scanner-ai-agent-skills) - [cc-switch-all-in-one-ai-coding-agent-manager](skillspector-nvidia-open-source-security-scanner-ai-agent-skills) - [claude-code-vs-aider](skillspector-nvidia-open-source-security-scanner-ai-agent-skills) - [cursor-vs-claude-code](skillspector-nvidia-open-source-security-scanner-ai-agent-skills) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ## Tool Comparison | Feature | Claude Code | Cursor | Codex CLI | OpenCode | | * * * | * * * | * * * | * * * | * * * | | **Price** | $20/month | $20/month | Free | Free | | **Interface** | CLI + IDE | Full IDE | CLI | CLI | | **License** | Proprietary | Commercial | Apache 2.0 | MIT | | **GitHub Stars** | N/A | N/A | N/A | 45,000+ | | **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization | ","wordCount":"862","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/skillspector-nvidia-open-source-security-scanner-ai-agent-skills/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#skillspector-nvidias-open-source-security-scanner-for-ai-agent-skills aria-label="SkillSpector: NVIDIA&rsquo;s Open-Source Security Scanner for AI Agent Skills">SkillSpector: NVIDIA&rsquo;s Open-Source Security Scanner for AI Agent Skills</a><ul><li><a href=#tldr aria-label=TL;DR>TL;DR</a></li><li><a href=#what-is-skillspector aria-label="What Is SkillSpector?">What Is SkillSpector?</a></li><li><a href=#installation-guide aria-label="Installation Guide">Installation Guide</a><ul><li><a href=#prerequisites aria-label=Prerequisites>Prerequisites</a></li><li><a href=#option-1-pip-installation aria-label="Option 1: Pip Installation">Option 1: Pip Installation</a></li><li><a href=#option-2-from-source aria-label="Option 2: From Source">Option 2: From Source</a></li><li><a href=#option-3-docker-deployment aria-label="Option 3: Docker Deployment">Option 3: Docker Deployment</a></li></ul></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;SkillSpector: NVIDIA&rsquo;s Open-Source Security Scanner for &mldr;&rdquo;
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/skillspector-nvidia-open-source-security-scanner-ai-agent-skills/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/skillspector-nvidia-open-source-security-scanner-ai-agent-skills/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/skillspector-nvidia-open-source-security-scanner-ai-agent-skills/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ai-coding-agents/skillspector-nvidia-open-source-security-scanner-ai-agent-skills/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “SkillSpector: NVIDIA’s Open-Source Security Scanner for …” description: “Technical guide and comparison.” date: 2026-06-25 lastmod: 2026-06-25 draft: false lang: en category: dev-utils tags: [“security”, “ai-agents”, “scanner”, “vulnerability-detection”, “claude-code”, “codex”, “mcp”, “agent-skills”, “nvidia”] slug: skillspector-nvidia-open-source-security-scanner-ai-agent-skills\nSkillSpector: NVIDIA’s Open-Source Security Scanner for AI Agent Skills SkillSpector is a security scanning tool specifically designed for AI agent skills — the modular plugins and extensions that power frameworks like Claude Code, GitHub Copilot, Codex CLI, and Gemini CLI. Developed by NVIDIA with 10,273 GitHub stars, it addresses the growing security concerns around installing unvetted agent skills in production environments.\nThis article covers installation, scanning capabilities, vulnerability detection, integration with agent frameworks, and best practices for securing AI agent ecosystems.\nTL;DR As AI agent skills become increasingly popular, so do the security risks of installing unvetted ones. SkillSpector provides automated scanning for over 800 cybersecurity skills, detecting vulnerabilities, malicious patterns, and security risks before they reach your system. It supports all major agent frameworks and provides actionable remediation guidance.\nWhat Is SkillSpector? SkillSpector was born from a critical observation: as AI agent skills proliferate across developer workflows, the security surface area expands dramatically. Unlike traditional software packages that undergo rigorous code review, many agent skills are simple text files (SKILL.md) that instruct an LLM to perform arbitrary actions — including executing shell commands, accessing APIs, and modifying files.\nThe tool provides: - Automated vulnerability scanning for AI agent skill files\nPattern-based malicious behavior detection including command injection, data exfiltration, and privilege escalation Framework-specific analysis for Claude Code, GitHub Copilot, Codex CLI, and more Remediation guidance with specific fixes for detected vulnerabilities CI/CD integration for pre-installation scanning in automated pipelines Installation Guide Prerequisites Python: 3.12+ (required for async scanning features) Operating System: Linux, macOS, or Windows WSL2 Disk Space: 500MB for scanner + skill databases Network: Required for downloading skill databases and updates Option 1: Pip Installation # Install SkillSpector from PyPI pip install skillspector # Verify installation skillspector --version # Download the latest skill database skillspector update-db Option 2: From Source # Clone the repository git clone https://github.com/NVIDIA/SkillSpector.git cd SkillSpector # Create virtual environment python -m venv .venv source .venv/bin/activate # Install in development mode pip install -e . # Initialize the scanner skillspector init --download-database Option 3: Docker Deployment # Pull the official image docker pull nvcr.io/nvidia/skillspector:latest # Run a scan docker run --rm \\ -v ${PWD}/skills:/app/skills \\ nvcr.io/nvidia/skillspector:latest \\ scan /app/skills # Schedule regular scans docker run -d \\ --name skillspector \\ -v ${PWD}/skills:/app/skills \\ -v ${PWD}/reports:/app/reports \\ nvcr.io/nvidia/skillspector:latest \\ daemon --interval 3600 ```` ## Scanning Capabilities ### Vulnerability Detection Categories SkillSpector detects vulnerabilities across multiple categories: | Category | Description | Severity | | Join the community: [Telegram](https://t.me/DIBI8_Group) · [HuggingFace](https://huggingface.co/collections/nvidia/cosmos3) Internal links: [nvidia-cosmos-world-models-platform-2026](https://dibi8.com/en/resources/ai-tools/nvidia-cosmos-world-models-platform-2026) · [bytedance-ui-tars-desktop-ai-agent-guide](https://dibi8.com/en/resources/ai-tools/bytedance-ui-tars-desktop-ai-agent-guide) **Disclosure**: This article mentions tools that may have affiliate relationships. We do not accept payment for reviews. All opinions are our own. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"SkillSpector: NVIDIA's Open-Source Security Scanner for AI Agent Skills\", \"datePublished\": \"2026-06-25\", \"dateModified\": \"2026-06-25\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/skillspector-nvidia-open-source-security-scanner-ai-agent-skills\" } } ## Why This Matters Understanding skillspector: nvidia's open-source security scanner for ai agent skills is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion SkillSpector: NVIDIA's Open-Source Security Scanner for AI Agent Skills represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group --- *Last updated: 2026-09-20* *Read time: ~5 minutes* * * * ## Related Articles - [claude-code-vs-cline](skillspector-nvidia-open-source-security-scanner-ai-agent-skills) - [gemini-cli-vs-claude-code](skillspector-nvidia-open-source-security-scanner-ai-agent-skills) - [cc-switch-all-in-one-ai-coding-agent-manager](skillspector-nvidia-open-source-security-scanner-ai-agent-skills) - [claude-code-vs-aider](skillspector-nvidia-open-source-security-scanner-ai-agent-skills) - [cursor-vs-claude-code](skillspector-nvidia-open-source-security-scanner-ai-agent-skills) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ## Tool Comparison | Feature | Claude Code | Cursor | Codex CLI | OpenCode | | * * * | * * * | * * * | * * * | * * * | | **Price** | $20/month | $20/month | Free | Free | | **Interface** | CLI + IDE | Full IDE | CLI | CLI | | **License** | Proprietary | Commercial | Apache 2.0 | MIT | | **GitHub Stars** | N/A | N/A | N/A | 45,000+ | | **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization | ",
+  "wordCount" : "862",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/skillspector-nvidia-open-source-security-scanner-ai-agent-skills/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#skillspector-nvidias-open-source-security-scanner-for-ai-agent-skills" aria-label="SkillSpector: NVIDIA&rsquo;s Open-Source Security Scanner for AI Agent Skills">SkillSpector: NVIDIA&rsquo;s Open-Source Security Scanner for AI Agent Skills</a><ul>
+                    
+            <li>
+                <a href="#tldr" aria-label="TL;DR">TL;DR</a></li>
+            <li>
+                <a href="#what-is-skillspector" aria-label="What Is SkillSpector?">What Is SkillSpector?</a></li>
+            <li>
+                <a href="#installation-guide" aria-label="Installation Guide">Installation Guide</a><ul>
+                    
+            <li>
+                <a href="#prerequisites" aria-label="Prerequisites">Prerequisites</a></li>
+            <li>
+                <a href="#option-1-pip-installation" aria-label="Option 1: Pip Installation">Option 1: Pip Installation</a></li>
+            <li>
+                <a href="#option-2-from-source" aria-label="Option 2: From Source">Option 2: From Source</a></li>
+            <li>
+                <a href="#option-3-docker-deployment" aria-label="Option 3: Docker Deployment">Option 3: Docker Deployment</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;SkillSpector: NVIDIA&rsquo;s Open-Source Security Scanner for &hellip;&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-06-25
 lastmod: 2026-06-25
@@ -11,185 +215,321 @@ draft: false
 lang: en
 category: dev-utils
 tags: [&ldquo;security&rdquo;, &ldquo;ai-agents&rdquo;, &ldquo;scanner&rdquo;, &ldquo;vulnerability-detection&rdquo;, &ldquo;claude-code&rdquo;, &ldquo;codex&rdquo;, &ldquo;mcp&rdquo;, &ldquo;agent-skills&rdquo;, &ldquo;nvidia&rdquo;]
-slug: skillspector-nvidia-open-source-security-scanner-ai-agent-skills</p><h1 id=skillspector-nvidias-open-source-security-scanner-for-ai-agent-skills>SkillSpector: NVIDIA&rsquo;s Open-Source Security Scanner for AI Agent Skills<a hidden class=anchor aria-hidden=true href=#skillspector-nvidias-open-source-security-scanner-for-ai-agent-skills>#</a></h1><p><strong>SkillSpector</strong> is a security scanning tool specifically designed for AI agent skills — the modular plugins and extensions that power frameworks like Claude Code, GitHub Copilot, Codex CLI, and Gemini CLI. Developed by NVIDIA with <strong>10,273 GitHub stars</strong>, it addresses the growing security concerns around installing unvetted agent skills in production environments.</p><p>This article covers installation, scanning capabilities, vulnerability detection, integration with agent frameworks, and best practices for securing AI agent ecosystems.</p><h2 id=tldr>TL;DR<a hidden class=anchor aria-hidden=true href=#tldr>#</a></h2><p>As AI agent skills become increasingly popular, so do the security risks of installing unvetted ones. SkillSpector provides automated scanning for over 800 cybersecurity skills, detecting vulnerabilities, malicious patterns, and security risks before they reach your system. It supports all major agent frameworks and provides actionable remediation guidance.</p><h2 id=what-is-skillspector>What Is SkillSpector?<a hidden class=anchor aria-hidden=true href=#what-is-skillspector>#</a></h2><p>SkillSpector was born from a critical observation: as AI agent skills proliferate across developer workflows, the security surface area expands dramatically. Unlike traditional software packages that undergo rigorous code review, many agent skills are simple text files (SKILL.md) that instruct an LLM to perform arbitrary actions — including executing shell commands, accessing APIs, and modifying files.</p><p>The tool provides: - <strong>Automated vulnerability scanning</strong> for AI agent skill files</p><ul><li><strong>Pattern-based malicious behavior detection</strong> including command injection, data exfiltration, and privilege escalation</li><li><strong>Framework-specific analysis</strong> for Claude Code, GitHub Copilot, Codex CLI, and more</li><li><strong>Remediation guidance</strong> with specific fixes for detected vulnerabilities</li><li><strong>CI/CD integration</strong> for pre-installation scanning in automated pipelines</li></ul><h2 id=installation-guide>Installation Guide<a hidden class=anchor aria-hidden=true href=#installation-guide>#</a></h2><h3 id=prerequisites>Prerequisites<a hidden class=anchor aria-hidden=true href=#prerequisites>#</a></h3><ul><li><strong>Python</strong>: 3.12+ (required for async scanning features)</li><li><strong>Operating System</strong>: Linux, macOS, or Windows WSL2</li><li><strong>Disk Space</strong>: 500MB for scanner + skill databases</li><li><strong>Network</strong>: Required for downloading skill databases and updates</li></ul><h3 id=option-1-pip-installation>Option 1: Pip Installation<a hidden class=anchor aria-hidden=true href=#option-1-pip-installation>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install SkillSpector from PyPI</span>
-</span></span><span style=display:flex><span>pip install skillspector
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Verify installation</span>
-</span></span><span style=display:flex><span>skillspector --version
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Download the latest skill database</span>
-</span></span><span style=display:flex><span>skillspector update-db
-</span></span></code></pre></div><h3 id=option-2-from-source>Option 2: From Source<a hidden class=anchor aria-hidden=true href=#option-2-from-source>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Clone the repository</span>
-</span></span><span style=display:flex><span>git clone https://github.com/NVIDIA/SkillSpector.git
-</span></span><span style=display:flex><span>cd SkillSpector
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Create virtual environment</span>
-</span></span><span style=display:flex><span>python -m venv .venv
-</span></span><span style=display:flex><span>source .venv/bin/activate
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install in development mode</span>
-</span></span><span style=display:flex><span>pip install -e .
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Initialize the scanner</span>
-</span></span><span style=display:flex><span>skillspector init --download-database
-</span></span></code></pre></div><h3 id=option-3-docker-deployment>Option 3: Docker Deployment<a hidden class=anchor aria-hidden=true href=#option-3-docker-deployment>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Pull the official image</span>
-</span></span><span style=display:flex><span>docker pull nvcr.io/nvidia/skillspector:latest
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Run a scan</span>
-</span></span><span style=display:flex><span>docker run --rm <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -v <span style=color:#e6db74>${</span>PWD<span style=color:#e6db74>}</span>/skills:/app/skills <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  nvcr.io/nvidia/skillspector:latest <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  scan /app/skills
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Schedule regular scans</span>
-</span></span><span style=display:flex><span>docker run -d <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --name skillspector <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -v <span style=color:#e6db74>${</span>PWD<span style=color:#e6db74>}</span>/skills:/app/skills <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -v <span style=color:#e6db74>${</span>PWD<span style=color:#e6db74>}</span>/reports:/app/reports <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  nvcr.io/nvidia/skillspector:latest <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  daemon --interval <span style=color:#ae81ff>3600</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Scanning Capabilities</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Vulnerability Detection Categories</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>SkillSpector detects vulnerabilities across multiple categories: | Category | Description | Severity |
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>Join the community: <span style=color:#f92672>[</span>Telegram<span style=color:#f92672>](</span>https://t.me/DIBI8_Group<span style=color:#f92672>)</span> · <span style=color:#f92672>[</span>HuggingFace<span style=color:#f92672>](</span>https://huggingface.co/collections/nvidia/cosmos3<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Internal links: <span style=color:#f92672>[</span>nvidia-cosmos-world-models-platform-2026<span style=color:#f92672>](</span>https://dibi8.com/en/resources/ai-tools/nvidia-cosmos-world-models-platform-2026<span style=color:#f92672>)</span> · <span style=color:#f92672>[</span>bytedance-ui-tars-desktop-ai-agent-guide<span style=color:#f92672>](</span>https://dibi8.com/en/resources/ai-tools/bytedance-ui-tars-desktop-ai-agent-guide<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**Disclosure**: This article mentions tools that may have affiliate relationships. We <span style=color:#66d9ef>do</span> not accept payment <span style=color:#66d9ef>for</span> reviews. All opinions are our own.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@context&#34;</span>: <span style=color:#e6db74>&#34;https://schema.org&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Article&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;headline&#34;</span>: <span style=color:#e6db74>&#34;SkillSpector: NVIDIA&#39;s Open-Source Security Scanner for AI Agent Skills&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;datePublished&#34;</span>: <span style=color:#e6db74>&#34;2026-06-25&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;dateModified&#34;</span>: <span style=color:#e6db74>&#34;2026-06-25&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;publisher&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;logo&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;ImageObject&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/logo.png&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mainEntityOfPage&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;WebPage&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/resources/skillspector-nvidia-open-source-security-scanner-ai-agent-skills&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>&lt;/script&gt;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Why This Matters</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Understanding skillspector: nvidia<span style=color:#e6db74>&#39;s open-source security scanner for ai agent skills is crucial for modern AI development. Here&#39;</span>s why: <span style=color:#75715e>### Key Benefits</span>
-</span></span><span style=display:flex><span>- **Efficiency**: Save time on repetitive tasks
-</span></span><span style=display:flex><span>- **Quality**: Improve output consistency  
-</span></span><span style=display:flex><span>- **Scalability**: Handle larger workloads
-</span></span><span style=display:flex><span>- **Cost**: Reduce operational expenses
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Real-World Applications</span>
-</span></span><span style=display:flex><span>Organizations are using similar approaches to: 1. Automate code review processes
-</span></span><span style=display:flex><span>2. Generate documentation automatically
-</span></span><span style=display:flex><span>3. Build internal knowledge bases
-</span></span><span style=display:flex><span>4. Streamline deployment pipelines
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Getting Started</span>
-</span></span><span style=display:flex><span>To implement this in your workflow: 1. **Assess Your Needs**
-</span></span><span style=display:flex><span>   - Identify repetitive tasks
-</span></span><span style=display:flex><span>   - Measure current time costs
-</span></span><span style=display:flex><span>   - Define success metrics
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>2. **Choose Your Approach**
-</span></span><span style=display:flex><span>   - Start with simple automations
-</span></span><span style=display:flex><span>   - Gradually increase complexity
-</span></span><span style=display:flex><span>   - Test and iterate
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>3. **Measure Results**
-</span></span><span style=display:flex><span>   - Track time savings
-</span></span><span style=display:flex><span>   - Monitor quality improvements
-</span></span><span style=display:flex><span>   - Calculate ROI
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Conclusion</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>SkillSpector: NVIDIA<span style=color:#960050;background-color:#1e0010>&#39;</span>s Open-Source Security Scanner <span style=color:#66d9ef>for</span> AI Agent Skills represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>---
-</span></span><span style=display:flex><span>*Last updated: 2026-09-20*
-</span></span><span style=display:flex><span>*Read time: ~5 minutes*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span><span style=color:#75715e>## Related Articles</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>claude-code-vs-cline<span style=color:#f92672>](</span>skillspector-nvidia-open-source-security-scanner-ai-agent-skills<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>gemini-cli-vs-claude-code<span style=color:#f92672>](</span>skillspector-nvidia-open-source-security-scanner-ai-agent-skills<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>cc-switch-all-in-one-ai-coding-agent-manager<span style=color:#f92672>](</span>skillspector-nvidia-open-source-security-scanner-ai-agent-skills<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>claude-code-vs-aider<span style=color:#f92672>](</span>skillspector-nvidia-open-source-security-scanner-ai-agent-skills<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>cursor-vs-claude-code<span style=color:#f92672>](</span>skillspector-nvidia-open-source-security-scanner-ai-agent-skills<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*Found this helpful? <span style=color:#f92672>[</span>Join our Telegram community<span style=color:#f92672>](</span>https://t.me/DIBI8_Group<span style=color:#f92672>)</span> <span style=color:#66d9ef>for</span> daily AI tool updates!*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Frequently Asked Questions (FAQ)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent和传统自动化有什么区别？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：如何选择合适的AI Agent框架？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent的安全性如何保证？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent的学习成本有多高？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：能否自定义AI Agent的行为？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Tool Comparison</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>| Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>| **Price** | $20/month | $20/month | Free | Free |
-</span></span><span style=display:flex><span>| **Interface** | CLI + IDE | Full IDE | CLI | CLI |
-</span></span><span style=display:flex><span>| **License** | Proprietary | Commercial | Apache 2.0 | MIT |
-</span></span><span style=display:flex><span>| **GitHub Stars** | N/A | N/A | N/A | 45,000+ |
-</span></span><span style=display:flex><span>| **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization |
-</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/signoz-apm-observability-open-source/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ai-coding-agents/skyvern-dev-utils-2026/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+slug: skillspector-nvidia-open-source-security-scanner-ai-agent-skills</p>
+<h1 id="skillspector-nvidias-open-source-security-scanner-for-ai-agent-skills">SkillSpector: NVIDIA&rsquo;s Open-Source Security Scanner for AI Agent Skills<a hidden class="anchor" aria-hidden="true" href="#skillspector-nvidias-open-source-security-scanner-for-ai-agent-skills">#</a></h1>
+<p><strong>SkillSpector</strong> is a security scanning tool specifically designed for AI agent skills — the modular plugins and extensions that power frameworks like Claude Code, GitHub Copilot, Codex CLI, and Gemini CLI. Developed by NVIDIA with <strong>10,273 GitHub stars</strong>, it addresses the growing security concerns around installing unvetted agent skills in production environments.</p>
+<p>This article covers installation, scanning capabilities, vulnerability detection, integration with agent frameworks, and best practices for securing AI agent ecosystems.</p>
+<h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
+<p>As AI agent skills become increasingly popular, so do the security risks of installing unvetted ones. SkillSpector provides automated scanning for over 800 cybersecurity skills, detecting vulnerabilities, malicious patterns, and security risks before they reach your system. It supports all major agent frameworks and provides actionable remediation guidance.</p>
+<h2 id="what-is-skillspector">What Is SkillSpector?<a hidden class="anchor" aria-hidden="true" href="#what-is-skillspector">#</a></h2>
+<p>SkillSpector was born from a critical observation: as AI agent skills proliferate across developer workflows, the security surface area expands dramatically. Unlike traditional software packages that undergo rigorous code review, many agent skills are simple text files (SKILL.md) that instruct an LLM to perform arbitrary actions — including executing shell commands, accessing APIs, and modifying files.</p>
+<p>The tool provides: - <strong>Automated vulnerability scanning</strong> for AI agent skill files</p>
+<ul>
+<li><strong>Pattern-based malicious behavior detection</strong> including command injection, data exfiltration, and privilege escalation</li>
+<li><strong>Framework-specific analysis</strong> for Claude Code, GitHub Copilot, Codex CLI, and more</li>
+<li><strong>Remediation guidance</strong> with specific fixes for detected vulnerabilities</li>
+<li><strong>CI/CD integration</strong> for pre-installation scanning in automated pipelines</li>
+</ul>
+<h2 id="installation-guide">Installation Guide<a hidden class="anchor" aria-hidden="true" href="#installation-guide">#</a></h2>
+<h3 id="prerequisites">Prerequisites<a hidden class="anchor" aria-hidden="true" href="#prerequisites">#</a></h3>
+<ul>
+<li><strong>Python</strong>: 3.12+ (required for async scanning features)</li>
+<li><strong>Operating System</strong>: Linux, macOS, or Windows WSL2</li>
+<li><strong>Disk Space</strong>: 500MB for scanner + skill databases</li>
+<li><strong>Network</strong>: Required for downloading skill databases and updates</li>
+</ul>
+<h3 id="option-1-pip-installation">Option 1: Pip Installation<a hidden class="anchor" aria-hidden="true" href="#option-1-pip-installation">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install SkillSpector from PyPI</span>
+</span></span><span style="display:flex;"><span>pip install skillspector
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify installation</span>
+</span></span><span style="display:flex;"><span>skillspector --version
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Download the latest skill database</span>
+</span></span><span style="display:flex;"><span>skillspector update-db
+</span></span></code></pre></div><h3 id="option-2-from-source">Option 2: From Source<a hidden class="anchor" aria-hidden="true" href="#option-2-from-source">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone the repository</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/NVIDIA/SkillSpector.git
+</span></span><span style="display:flex;"><span>cd SkillSpector
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create virtual environment</span>
+</span></span><span style="display:flex;"><span>python -m venv .venv
+</span></span><span style="display:flex;"><span>source .venv/bin/activate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install in development mode</span>
+</span></span><span style="display:flex;"><span>pip install -e .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize the scanner</span>
+</span></span><span style="display:flex;"><span>skillspector init --download-database
+</span></span></code></pre></div><h3 id="option-3-docker-deployment">Option 3: Docker Deployment<a hidden class="anchor" aria-hidden="true" href="#option-3-docker-deployment">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Pull the official image</span>
+</span></span><span style="display:flex;"><span>docker pull nvcr.io/nvidia/skillspector:latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run a scan</span>
+</span></span><span style="display:flex;"><span>docker run --rm <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -v <span style="color:#e6db74">${</span>PWD<span style="color:#e6db74">}</span>/skills:/app/skills <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  nvcr.io/nvidia/skillspector:latest <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  scan /app/skills
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Schedule regular scans</span>
+</span></span><span style="display:flex;"><span>docker run -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --name skillspector <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -v <span style="color:#e6db74">${</span>PWD<span style="color:#e6db74">}</span>/skills:/app/skills <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -v <span style="color:#e6db74">${</span>PWD<span style="color:#e6db74">}</span>/reports:/app/reports <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  nvcr.io/nvidia/skillspector:latest <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  daemon --interval <span style="color:#ae81ff">3600</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Scanning Capabilities</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Vulnerability Detection Categories</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>SkillSpector detects vulnerabilities across multiple categories: | Category | Description | Severity |
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>Join the community: <span style="color:#f92672">[</span>Telegram<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span> · <span style="color:#f92672">[</span>HuggingFace<span style="color:#f92672">](</span>https://huggingface.co/collections/nvidia/cosmos3<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Internal links: <span style="color:#f92672">[</span>nvidia-cosmos-world-models-platform-2026<span style="color:#f92672">](</span>https://dibi8.com/en/resources/ai-tools/nvidia-cosmos-world-models-platform-2026<span style="color:#f92672">)</span> · <span style="color:#f92672">[</span>bytedance-ui-tars-desktop-ai-agent-guide<span style="color:#f92672">](</span>https://dibi8.com/en/resources/ai-tools/bytedance-ui-tars-desktop-ai-agent-guide<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**Disclosure**: This article mentions tools that may have affiliate relationships. We <span style="color:#66d9ef">do</span> not accept payment <span style="color:#66d9ef">for</span> reviews. All opinions are our own.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;SkillSpector: NVIDIA&#39;s Open-Source Security Scanner for AI Agent Skills&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-06-25&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-06-25&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/resources/skillspector-nvidia-open-source-security-scanner-ai-agent-skills&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Why This Matters</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Understanding skillspector: nvidia<span style="color:#e6db74">&#39;s open-source security scanner for ai agent skills is crucial for modern AI development. Here&#39;</span>s why: <span style="color:#75715e">### Key Benefits</span>
+</span></span><span style="display:flex;"><span>- **Efficiency**: Save time on repetitive tasks
+</span></span><span style="display:flex;"><span>- **Quality**: Improve output consistency  
+</span></span><span style="display:flex;"><span>- **Scalability**: Handle larger workloads
+</span></span><span style="display:flex;"><span>- **Cost**: Reduce operational expenses
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Real-World Applications</span>
+</span></span><span style="display:flex;"><span>Organizations are using similar approaches to: 1. Automate code review processes
+</span></span><span style="display:flex;"><span>2. Generate documentation automatically
+</span></span><span style="display:flex;"><span>3. Build internal knowledge bases
+</span></span><span style="display:flex;"><span>4. Streamline deployment pipelines
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Getting Started</span>
+</span></span><span style="display:flex;"><span>To implement this in your workflow: 1. **Assess Your Needs**
+</span></span><span style="display:flex;"><span>   - Identify repetitive tasks
+</span></span><span style="display:flex;"><span>   - Measure current time costs
+</span></span><span style="display:flex;"><span>   - Define success metrics
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2. **Choose Your Approach**
+</span></span><span style="display:flex;"><span>   - Start with simple automations
+</span></span><span style="display:flex;"><span>   - Gradually increase complexity
+</span></span><span style="display:flex;"><span>   - Test and iterate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>3. **Measure Results**
+</span></span><span style="display:flex;"><span>   - Track time savings
+</span></span><span style="display:flex;"><span>   - Monitor quality improvements
+</span></span><span style="display:flex;"><span>   - Calculate ROI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Conclusion</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>SkillSpector: NVIDIA<span style="color:#960050;background-color:#1e0010">&#39;</span>s Open-Source Security Scanner <span style="color:#66d9ef">for</span> AI Agent Skills represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span>*Last updated: 2026-09-20*
+</span></span><span style="display:flex;"><span>*Read time: ~5 minutes*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>claude-code-vs-cline<span style="color:#f92672">](</span>skillspector-nvidia-open-source-security-scanner-ai-agent-skills<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>gemini-cli-vs-claude-code<span style="color:#f92672">](</span>skillspector-nvidia-open-source-security-scanner-ai-agent-skills<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>cc-switch-all-in-one-ai-coding-agent-manager<span style="color:#f92672">](</span>skillspector-nvidia-open-source-security-scanner-ai-agent-skills<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>claude-code-vs-aider<span style="color:#f92672">](</span>skillspector-nvidia-open-source-security-scanner-ai-agent-skills<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>cursor-vs-claude-code<span style="color:#f92672">](</span>skillspector-nvidia-open-source-security-scanner-ai-agent-skills<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Found this helpful? <span style="color:#f92672">[</span>Join our Telegram community<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> daily AI tool updates!*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions (FAQ)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent和传统自动化有什么区别？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：如何选择合适的AI Agent框架？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的安全性如何保证？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的学习成本有多高？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：能否自定义AI Agent的行为？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Tool Comparison</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>| Feature | Claude Code | Cursor | Codex CLI | OpenCode |
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>| **Price** | $20/month | $20/month | Free | Free |
+</span></span><span style="display:flex;"><span>| **Interface** | CLI + IDE | Full IDE | CLI | CLI |
+</span></span><span style="display:flex;"><span>| **License** | Proprietary | Commercial | Apache 2.0 | MIT |
+</span></span><span style="display:flex;"><span>| **GitHub Stars** | N/A | N/A | N/A | 45,000+ |
+</span></span><span style="display:flex;"><span>| **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization |
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ai-coding-agents/signoz-apm-observability-open-source/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ai-coding-agents/skyvern-dev-utils-2026/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>

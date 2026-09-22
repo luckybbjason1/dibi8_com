@@ -1,9 +1,222 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/aider-cline-openhands-2026-honest-comparison/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/aider-cline-openhands-2026-honest-comparison/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/aider-cline-openhands-2026-honest-comparison/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/aider-cline-openhands-2026-honest-comparison/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Codin… description: “Technical guide and comparison.” date: 2026-05-25T00:00:00+08:00 lastmod: 2026-05-25T00:00:00+08:00 tech_stack: [Aider, Cline, OpenHands, Python, TypeScript] application_domain: Dev Utils source_version: “Aider 0.78 / Cline 3.4 / OpenHands 0.42” licensing_model: Open Source license_type: ‘MIT / Apache-2.0’ last_maintained: “2026-05-25” draft: false categories: [“dev-utils”] tags: [“ai-coding”, “open-source”, “aider”, “cline”, “openhands”, “2026”] aliases:\n/posts/aider-cline-openhands-2026-honest-comparison/ faq: - q: “Which OSS coding agent is best in 2026?” a: “It depends. Aider for terminal-first git-aware editing (model-agnostic, fastest). Cline for IDE-native VS Code integration (best UX for non-CLI users). OpenHands for fully autonomous multi-step agent work (browser + shell + repo). Most experienced users keep Aider as default + add Cline or OpenHands for specific tasks.” q: “How does cost compare to Claude Code or Cursor?” a: “BYO API key model means you pay per token. For Sonnet 4.6 usage at 60 hours/month: roughly $80-130 (vs Claude Max $200). For GPT-5: roughly $100-180. The ‘cheaper than commercial’ framing is true when you watch your context size, false when you let it sprawl.” q: “Are these agents safe to give shell access to?” a: “Aider asks for confirmation on every shell command — safest. Cline has an auto-approve mode that’s convenient but risky. OpenHands runs in a sandboxed Docker by default — safest for autonomous loops. For production work always disable auto-approve and review every commit.” q: “Which has the most active development in 2026?” a: “Cline by commit volume (weekly releases, large Discord community). OpenHands by GitHub stars and citation in academic papers. Aider by ‘code quality of the tool itself’ — paul-gauthier’s incremental refinements are legendary. All three are healthy projects unlikely to disappear.” q: “Can these replace Claude Code or Cursor entirely?” a: “For solo developers comfortable with terminal: yes. Aider replaces Claude Code’s CLI mode for 80% of work. Cline replaces Cursor’s agent mode in VS Code with comparable quality. OpenHands handles long autonomous tasks Cursor can’t. The gap is in polish — error recovery, UX details, model auto-selection.” q: “What’s the learning curve for each?” a: “Aider: 15 minutes to productive (it’s a CLI that follows obvious patterns). Cline: 30 minutes (VS Code extension settings + model setup). OpenHands: 2-3 hours (Docker setup, browser tool config, agent loop tuning). Aider has the lowest barrier, OpenHands the highest ceiling.” Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Comparison Meta Description: Tested all three on the same 5K-LOC TypeScript codebase. Benchmark numbers, where each wins, BYO-API-key cost reality vs commercial alternatives.\nOpen-source AI coding agents matured fast in 2026. The three serious contenders — Aider, Cline, OpenHands — collectively serve developers who refuse commercial lock-in or want full control. This article benchmarks all three on a shared workload, with concrete numbers and the trade-offs each makes.\n⚡ TL;DR — 2 min One-line summary: Aider for CLI terminal-first work, Cline for VS Code IDE-native, OpenHands for autonomous long-running agent tasks.\nAll three are healthy projects: weekly commits, large communities, no risk of disappearing in 2026-2027.\nCost reality: BYO-API-key. Sonnet 4.6 at 60h/month ≈ $80-130 (vs Claude Max $200). Cheaper if disciplined about context.\nTop safety practice: disable auto-approve, review every commit, sandbox autonomous loops.\nBest 2-tool combo for OSS-only users: Aider (daily driver) + OpenHands (autonomous tasks).\nWhat They Are Aider Format: Terminal CLI. Repo: github.com/paul-gauthier/aider. Stars: ~30K. Stack: Python.\nGit-aware pair programmer. Reads your repo, makes edits via diff format, commits with descriptive messages. Model-agnostic (Claude, GPT, Gemini, Llama). The reference implementation for “AI that respects git”.\nCline Format: VS Code extension. Repo: github.com/cline/cline. Stars: ~25K. Stack: TypeScript.\nAgent that lives in VS Code’s sidebar. Plans multi-step changes, edits files, runs commands, opens browser. Strong “autonomous mode” that does multi-step work without per-step approval (configurable).\nOpenHands (formerly OpenDevin) Format: Web UI + CLI + Docker sandbox. Repo: github.com/All-Hands-AI/OpenHands. Stars: ~67K. Stack: Python.\nMost autonomous of the three. Designed for “give it a task description, walk away, come back to a PR.” Browses the web, edits files, runs tests, commits. Highest ceiling, highest setup cost.\nBenchmark: Same Workload, Three Agents Task suite (each agent ran the same 5 tasks on a 5K-LOC TypeScript app): ### Task 1: Add a new feature (3 files, ~150 LOC)\n| Agent | Time | Success first try | Tokens | Cost (Sonnet 4.6) | |\n|\n|\n|\n|\n| | Aider | 4m 30s | ✅ 3/3 | 78K | $0.39 | | Cline | 5m 50s | ✅ 2/3 (one needed retry) | 92K | $0.46 | | OpenHands | 8m 20s | ✅ 3/3 (slower autonomy) | 120K | $0.60 |\nVerdict: Aider fastest + cheapest for direct feature work.\nTask 2: Repo-wide refactor (rename util across 30+ call sites) | Agent | Time | Found | Missed | |\n|\n|\n|\n| | Aider | 3m | 30/30 | 0 | | Cline | 4m | 30/30 | 0 | | OpenHands | 6m | 28/30 | 2 (in test fixtures) |\nVerdict: Aider and Cline tied. OpenHands sometimes misses files outside the obvious search.\nTask 3: Debug a flaky test | Agent | Diagnosis | Fix quality | |\n|\n|\n| | Aider | ✅ Async race condition (correct first try) | Clean, well-commented | | Cline | ⚠️ Symptom-level (added retry rather than fix race) | Works but masks the bug | | OpenHands | ✅ Race condition (after one failed attempt) | Acceptable |\nVerdict: Aider’s careful step-by-step beats agentic “try things” for debugging.\nTask 4: Read + summarize a 2000-LOC legacy file | Agent | Quality | Suggested refactor count | |\n|\n|\n| | Aider | Good — focused | 4 specific | | Cline | Good — slightly more thorough | 5 specific | | OpenHands | Best — full architecture map | 7 prioritized |\nVerdict: OpenHands wins on reading — its agent loop lets it explore more thoroughly.\nTask 5: Multi-tool migration (rename DB + update config + regenerate types + tests) | Agent | Tool coordination | Errors | Recovery | |\n|\n|\n|\n| | Aider | ✅ Smooth across 3 tools | 1 (env var missing) | Manual fix needed | | Cline | ⚠️ Lost track between IDE actions + terminal | 3 | Multiple manual fixes | | OpenHands | ✅ Best for this task — autonomous chain | 1 | Auto-recovered |\nVerdict: OpenHands wins on multi-step automation, the task it was designed for.\nCost Reality at Scale BYO API key with Sonnet 4.6 (most balanced model for these tools): ```` 60 hours/month usage: Aider: ~$80-110 (most efficient context use) Cline: ~$95-140 (more verbose plans = more tokens) OpenHands: ~$120-180 (autonomous loops = more iterations)\nvs Claude Max: $200 unlimited vs Cursor Pro + API: $87 (much less agent work)\nThe \"cheaper than commercial\" claim holds only if you: - Watch context size (don't pass entire repo to every call) - Use Sonnet not Opus for routine tasks - Cancel runaway autonomous loops early Above 80 hours/month, Claude Max wins on cost. ## Where Each One Really Wins ### Aider wins when: - You live in the terminal - Git workflow is sacred (every change a clean commit with descriptive message) - You want predictable token spending - You're debugging — careful step-by-step is what you want ### Cline wins when: - You're in VS Code all day - You want the convenience of an IDE sidebar agent - The work mixes \"ask AI\" + \"edit file directly\" + \"run shell\" - You value real-time visual feedback ### OpenHands wins when: - The task is \"fire and forget\" autonomous work - You want browser + shell + repo coordination - Long-running tasks where you can't supervise (overnight tasks, batch processing) - You can afford the setup time ## Safety Patterns For all three: - **Disable auto-approve** in production work - **Review every commit** before push - **Sandbox autonomous loops** (Docker / firejail for OpenHands especially) - **Use scoped API keys** with usage caps - **Avoid giving full repo write access** to autonomous modes OpenHands defaults to Docker sandbox — safest. Aider asks per-command — safest interactive. Cline's auto-approve mode is convenient but risky. ## The OSS Stack vs Commercial Stack Decision **Pick OSS (Aider + OpenHands + maybe Cline) if**: - You want full control and BYO API key flexibility - You're comfortable with terminal + Docker + config files - You value vendor independence (model-agnostic) - Your usage is \u003c 80 hours/month **Pick Commercial (Claude Code + Cursor) if**: - You want polish, UX, error recovery handled - Your usage \u003e 80 hours/month - You value support, predictable billing - Setup time matters more than long-term cost ## Recommended Infrastructure For self-hosted OpenHands or running fine-tuned models locally: - **** — $200 credit, GPU droplets available - **** — Hong Kong VPS, low-latency *Affiliate links — same price, supports dibi8.com.* ## Conclusion All three OSS coding agents are production-ready in 2026. The choice depends on workflow, not feature parity. Aider for terminal-first careful work, Cline for IDE-native convenience, OpenHands for autonomous long-running tasks. Most experienced OSS users settle on Aider + OpenHands as the 2-tool stack. The commercial-vs-OSS choice isn't price (they're closer than marketing suggests). It's about control, polish, and how much time you spend on tool setup vs actual work. For solo developers and small teams who already use git well, OSS wins. For larger teams who need predictable support and uniform UX, commercial still wins. * * * **Related**: [AI Coding 2026-Q2 Shootout](https://dibi8.com/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Cursor Alternatives 2026](https://dibi8.com/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [OpenCode Setup](https://dibi8.com/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/) { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Coding Agent Comparison\", \"datePublished\": \"2026-05-25\", \"dateModified\": \"2026-05-25\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/aider-cline-openhands-2026-honest-comparison\" } } ## Why This Matters Understanding aider vs cline vs openhands 2026: honest 3-way oss coding agent comparison is crucial for modern AI development. Here\"s why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Coding Agent Comparison represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~6 minutes* * * * ## Related Articles - [claude-code-vs-aider](aider-cline-openhands-2026-honest-comparison) - [claude-code-vs-aider](aider-cline-openhands-2026-honest-comparison) - [claude-code-vs-aider](aider-cline-openhands-2026-honest-comparison) - [claude-code-vs-aider](aider-cline-openhands-2026-honest-comparison) - [claude-code-vs-cline](aider-cline-openhands-2026-honest-comparison) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ","wordCount":"1893","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/aider-cline-openhands-2026-honest-comparison/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#aider-vs-cline-vs-openhands-2026-honest-3-way-oss-comparison aria-label="Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Comparison">Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Comparison</a><ul><li><a href=#-tldr--2-min aria-label="⚡ TL;DR — 2 min">⚡ TL;DR — 2 min</a></li><li><a href=#what-they-are aria-label="What They Are">What They Are</a><ul><li><a href=#aider aria-label=Aider>Aider</a></li><li><a href=#cline aria-label=Cline>Cline</a></li><li><a href=#openhands-formerly-opendevin aria-label="OpenHands (formerly OpenDevin)">OpenHands (formerly OpenDevin)</a></li></ul></li><li><a href=#benchmark-same-workload-three-agents aria-label="Benchmark: Same Workload, Three Agents">Benchmark: Same Workload, Three Agents</a><ul><li><a href=#task-2-repo-wide-refactor-rename-util-across-30-call-sites aria-label="Task 2: Repo-wide refactor (rename util across 30+ call sites)">Task 2: Repo-wide refactor (rename util across 30+ call sites)</a></li><li><a href=#task-3-debug-a-flaky-test aria-label="Task 3: Debug a flaky test">Task 3: Debug a flaky test</a></li><li><a href=#task-4-read--summarize-a-2000-loc-legacy-file aria-label="Task 4: Read + summarize a 2000-LOC legacy file">Task 4: Read + summarize a 2000-LOC legacy file</a></li><li><a href=#task-5-multi-tool-migration-rename-db--update-config--regenerate-types--tests aria-label="Task 5: Multi-tool migration (rename DB + update config + regenerate types + tests)">Task 5: Multi-tool migration (rename DB + update config + regenerate types + tests)</a></li></ul></li><li><a href=#cost-reality-at-scale aria-label="Cost Reality at Scale">Cost Reality at Scale</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Codin&mldr;
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/aider-cline-openhands-2026-honest-comparison/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/aider-cline-openhands-2026-honest-comparison/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/aider-cline-openhands-2026-honest-comparison/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ai-coding-agents/aider-cline-openhands-2026-honest-comparison/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Codin… description: “Technical guide and comparison.” date: 2026-05-25T00:00:00+08:00 lastmod: 2026-05-25T00:00:00+08:00 tech_stack: [Aider, Cline, OpenHands, Python, TypeScript] application_domain: Dev Utils source_version: “Aider 0.78 / Cline 3.4 / OpenHands 0.42” licensing_model: Open Source license_type: ‘MIT / Apache-2.0’ last_maintained: “2026-05-25” draft: false categories: [“dev-utils”] tags: [“ai-coding”, “open-source”, “aider”, “cline”, “openhands”, “2026”] aliases:\n/posts/aider-cline-openhands-2026-honest-comparison/ faq: - q: “Which OSS coding agent is best in 2026?” a: “It depends. Aider for terminal-first git-aware editing (model-agnostic, fastest). Cline for IDE-native VS Code integration (best UX for non-CLI users). OpenHands for fully autonomous multi-step agent work (browser + shell + repo). Most experienced users keep Aider as default + add Cline or OpenHands for specific tasks.” q: “How does cost compare to Claude Code or Cursor?” a: “BYO API key model means you pay per token. For Sonnet 4.6 usage at 60 hours/month: roughly $80-130 (vs Claude Max $200). For GPT-5: roughly $100-180. The ‘cheaper than commercial’ framing is true when you watch your context size, false when you let it sprawl.” q: “Are these agents safe to give shell access to?” a: “Aider asks for confirmation on every shell command — safest. Cline has an auto-approve mode that’s convenient but risky. OpenHands runs in a sandboxed Docker by default — safest for autonomous loops. For production work always disable auto-approve and review every commit.” q: “Which has the most active development in 2026?” a: “Cline by commit volume (weekly releases, large Discord community). OpenHands by GitHub stars and citation in academic papers. Aider by ‘code quality of the tool itself’ — paul-gauthier’s incremental refinements are legendary. All three are healthy projects unlikely to disappear.” q: “Can these replace Claude Code or Cursor entirely?” a: “For solo developers comfortable with terminal: yes. Aider replaces Claude Code’s CLI mode for 80% of work. Cline replaces Cursor’s agent mode in VS Code with comparable quality. OpenHands handles long autonomous tasks Cursor can’t. The gap is in polish — error recovery, UX details, model auto-selection.” q: “What’s the learning curve for each?” a: “Aider: 15 minutes to productive (it’s a CLI that follows obvious patterns). Cline: 30 minutes (VS Code extension settings + model setup). OpenHands: 2-3 hours (Docker setup, browser tool config, agent loop tuning). Aider has the lowest barrier, OpenHands the highest ceiling.” Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Comparison Meta Description: Tested all three on the same 5K-LOC TypeScript codebase. Benchmark numbers, where each wins, BYO-API-key cost reality vs commercial alternatives.\nOpen-source AI coding agents matured fast in 2026. The three serious contenders — Aider, Cline, OpenHands — collectively serve developers who refuse commercial lock-in or want full control. This article benchmarks all three on a shared workload, with concrete numbers and the trade-offs each makes.\n⚡ TL;DR — 2 min One-line summary: Aider for CLI terminal-first work, Cline for VS Code IDE-native, OpenHands for autonomous long-running agent tasks.\nAll three are healthy projects: weekly commits, large communities, no risk of disappearing in 2026-2027.\nCost reality: BYO-API-key. Sonnet 4.6 at 60h/month ≈ $80-130 (vs Claude Max $200). Cheaper if disciplined about context.\nTop safety practice: disable auto-approve, review every commit, sandbox autonomous loops.\nBest 2-tool combo for OSS-only users: Aider (daily driver) + OpenHands (autonomous tasks).\nWhat They Are Aider Format: Terminal CLI. Repo: github.com/paul-gauthier/aider. Stars: ~30K. Stack: Python.\nGit-aware pair programmer. Reads your repo, makes edits via diff format, commits with descriptive messages. Model-agnostic (Claude, GPT, Gemini, Llama). The reference implementation for “AI that respects git”.\nCline Format: VS Code extension. Repo: github.com/cline/cline. Stars: ~25K. Stack: TypeScript.\nAgent that lives in VS Code’s sidebar. Plans multi-step changes, edits files, runs commands, opens browser. Strong “autonomous mode” that does multi-step work without per-step approval (configurable).\nOpenHands (formerly OpenDevin) Format: Web UI + CLI + Docker sandbox. Repo: github.com/All-Hands-AI/OpenHands. Stars: ~67K. Stack: Python.\nMost autonomous of the three. Designed for “give it a task description, walk away, come back to a PR.” Browses the web, edits files, runs tests, commits. Highest ceiling, highest setup cost.\nBenchmark: Same Workload, Three Agents Task suite (each agent ran the same 5 tasks on a 5K-LOC TypeScript app): ### Task 1: Add a new feature (3 files, ~150 LOC)\n| Agent | Time | Success first try | Tokens | Cost (Sonnet 4.6) | |\n|\n|\n|\n|\n| | Aider | 4m 30s | ✅ 3/3 | 78K | $0.39 | | Cline | 5m 50s | ✅ 2/3 (one needed retry) | 92K | $0.46 | | OpenHands | 8m 20s | ✅ 3/3 (slower autonomy) | 120K | $0.60 |\nVerdict: Aider fastest + cheapest for direct feature work.\nTask 2: Repo-wide refactor (rename util across 30+ call sites) | Agent | Time | Found | Missed | |\n|\n|\n|\n| | Aider | 3m | 30/30 | 0 | | Cline | 4m | 30/30 | 0 | | OpenHands | 6m | 28/30 | 2 (in test fixtures) |\nVerdict: Aider and Cline tied. OpenHands sometimes misses files outside the obvious search.\nTask 3: Debug a flaky test | Agent | Diagnosis | Fix quality | |\n|\n|\n| | Aider | ✅ Async race condition (correct first try) | Clean, well-commented | | Cline | ⚠️ Symptom-level (added retry rather than fix race) | Works but masks the bug | | OpenHands | ✅ Race condition (after one failed attempt) | Acceptable |\nVerdict: Aider’s careful step-by-step beats agentic “try things” for debugging.\nTask 4: Read + summarize a 2000-LOC legacy file | Agent | Quality | Suggested refactor count | |\n|\n|\n| | Aider | Good — focused | 4 specific | | Cline | Good — slightly more thorough | 5 specific | | OpenHands | Best — full architecture map | 7 prioritized |\nVerdict: OpenHands wins on reading — its agent loop lets it explore more thoroughly.\nTask 5: Multi-tool migration (rename DB + update config + regenerate types + tests) | Agent | Tool coordination | Errors | Recovery | |\n|\n|\n|\n| | Aider | ✅ Smooth across 3 tools | 1 (env var missing) | Manual fix needed | | Cline | ⚠️ Lost track between IDE actions + terminal | 3 | Multiple manual fixes | | OpenHands | ✅ Best for this task — autonomous chain | 1 | Auto-recovered |\nVerdict: OpenHands wins on multi-step automation, the task it was designed for.\nCost Reality at Scale BYO API key with Sonnet 4.6 (most balanced model for these tools): ```` 60 hours/month usage: Aider: ~$80-110 (most efficient context use) Cline: ~$95-140 (more verbose plans = more tokens) OpenHands: ~$120-180 (autonomous loops = more iterations)\nvs Claude Max: $200 unlimited vs Cursor Pro + API: $87 (much less agent work)\nThe \"cheaper than commercial\" claim holds only if you: - Watch context size (don't pass entire repo to every call) - Use Sonnet not Opus for routine tasks - Cancel runaway autonomous loops early Above 80 hours/month, Claude Max wins on cost. ## Where Each One Really Wins ### Aider wins when: - You live in the terminal - Git workflow is sacred (every change a clean commit with descriptive message) - You want predictable token spending - You're debugging — careful step-by-step is what you want ### Cline wins when: - You're in VS Code all day - You want the convenience of an IDE sidebar agent - The work mixes \"ask AI\" + \"edit file directly\" + \"run shell\" - You value real-time visual feedback ### OpenHands wins when: - The task is \"fire and forget\" autonomous work - You want browser + shell + repo coordination - Long-running tasks where you can't supervise (overnight tasks, batch processing) - You can afford the setup time ## Safety Patterns For all three: - **Disable auto-approve** in production work - **Review every commit** before push - **Sandbox autonomous loops** (Docker / firejail for OpenHands especially) - **Use scoped API keys** with usage caps - **Avoid giving full repo write access** to autonomous modes OpenHands defaults to Docker sandbox — safest. Aider asks per-command — safest interactive. Cline's auto-approve mode is convenient but risky. ## The OSS Stack vs Commercial Stack Decision **Pick OSS (Aider + OpenHands + maybe Cline) if**: - You want full control and BYO API key flexibility - You're comfortable with terminal + Docker + config files - You value vendor independence (model-agnostic) - Your usage is \u003c 80 hours/month **Pick Commercial (Claude Code + Cursor) if**: - You want polish, UX, error recovery handled - Your usage \u003e 80 hours/month - You value support, predictable billing - Setup time matters more than long-term cost ## Recommended Infrastructure For self-hosted OpenHands or running fine-tuned models locally: - **** — $200 credit, GPU droplets available - **** — Hong Kong VPS, low-latency *Affiliate links — same price, supports dibi8.com.* ## Conclusion All three OSS coding agents are production-ready in 2026. The choice depends on workflow, not feature parity. Aider for terminal-first careful work, Cline for IDE-native convenience, OpenHands for autonomous long-running tasks. Most experienced OSS users settle on Aider + OpenHands as the 2-tool stack. The commercial-vs-OSS choice isn't price (they're closer than marketing suggests). It's about control, polish, and how much time you spend on tool setup vs actual work. For solo developers and small teams who already use git well, OSS wins. For larger teams who need predictable support and uniform UX, commercial still wins. * * * **Related**: [AI Coding 2026-Q2 Shootout](https://dibi8.com/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) · [Cursor Alternatives 2026](https://dibi8.com/resources/dev-utils/cursor-alternatives-2026-best-ai-coding-tools/) · [OpenCode Setup](https://dibi8.com/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/) { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Coding Agent Comparison\", \"datePublished\": \"2026-05-25\", \"dateModified\": \"2026-05-25\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/aider-cline-openhands-2026-honest-comparison\" } } ## Why This Matters Understanding aider vs cline vs openhands 2026: honest 3-way oss coding agent comparison is crucial for modern AI development. Here\"s why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Coding Agent Comparison represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~6 minutes* * * * ## Related Articles - [claude-code-vs-aider](aider-cline-openhands-2026-honest-comparison) - [claude-code-vs-aider](aider-cline-openhands-2026-honest-comparison) - [claude-code-vs-aider](aider-cline-openhands-2026-honest-comparison) - [claude-code-vs-aider](aider-cline-openhands-2026-honest-comparison) - [claude-code-vs-cline](aider-cline-openhands-2026-honest-comparison) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
+  "wordCount" : "1893",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/aider-cline-openhands-2026-honest-comparison/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#aider-vs-cline-vs-openhands-2026-honest-3-way-oss-comparison" aria-label="Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Comparison">Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Comparison</a><ul>
+                    
+            <li>
+                <a href="#-tldr--2-min" aria-label="⚡ TL;DR — 2 min">⚡ TL;DR — 2 min</a></li>
+            <li>
+                <a href="#what-they-are" aria-label="What They Are">What They Are</a><ul>
+                    
+            <li>
+                <a href="#aider" aria-label="Aider">Aider</a></li>
+            <li>
+                <a href="#cline" aria-label="Cline">Cline</a></li>
+            <li>
+                <a href="#openhands-formerly-opendevin" aria-label="OpenHands (formerly OpenDevin)">OpenHands (formerly OpenDevin)</a></li></ul>
+            </li>
+            <li>
+                <a href="#benchmark-same-workload-three-agents" aria-label="Benchmark: Same Workload, Three Agents">Benchmark: Same Workload, Three Agents</a><ul>
+                    
+            <li>
+                <a href="#task-2-repo-wide-refactor-rename-util-across-30-call-sites" aria-label="Task 2: Repo-wide refactor (rename util across 30&#43; call sites)">Task 2: Repo-wide refactor (rename util across 30+ call sites)</a></li>
+            <li>
+                <a href="#task-3-debug-a-flaky-test" aria-label="Task 3: Debug a flaky test">Task 3: Debug a flaky test</a></li>
+            <li>
+                <a href="#task-4-read--summarize-a-2000-loc-legacy-file" aria-label="Task 4: Read &#43; summarize a 2000-LOC legacy file">Task 4: Read + summarize a 2000-LOC legacy file</a></li>
+            <li>
+                <a href="#task-5-multi-tool-migration-rename-db--update-config--regenerate-types--tests" aria-label="Task 5: Multi-tool migration (rename DB &#43; update config &#43; regenerate types &#43; tests)">Task 5: Multi-tool migration (rename DB + update config + regenerate types + tests)</a></li></ul>
+            </li>
+            <li>
+                <a href="#cost-reality-at-scale" aria-label="Cost Reality at Scale">Cost Reality at Scale</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Codin&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
@@ -16,38 +229,129 @@ last_maintained: &ldquo;2026-05-25&rdquo;
 draft: false
 categories: [&ldquo;dev-utils&rdquo;]
 tags: [&ldquo;ai-coding&rdquo;, &ldquo;open-source&rdquo;, &ldquo;aider&rdquo;, &ldquo;cline&rdquo;, &ldquo;openhands&rdquo;, &ldquo;2026&rdquo;]
-aliases:</p><ul><li>/posts/aider-cline-openhands-2026-honest-comparison/
+aliases:</p>
+<ul>
+<li>/posts/aider-cline-openhands-2026-honest-comparison/
 faq: - q: &ldquo;Which OSS coding agent is best in 2026?&rdquo;
-a: &ldquo;It depends. Aider for terminal-first git-aware editing (model-agnostic, fastest). Cline for IDE-native VS Code integration (best UX for non-CLI users). OpenHands for fully autonomous multi-step agent work (browser + shell + repo). Most experienced users keep Aider as default + add Cline or OpenHands for specific tasks.&rdquo;</li><li>q: &ldquo;How does cost compare to Claude Code or Cursor?&rdquo;
-a: &ldquo;BYO API key model means you pay per token. For Sonnet 4.6 usage at 60 hours/month: roughly $80-130 (vs Claude Max $200). For GPT-5: roughly $100-180. The &lsquo;cheaper than commercial&rsquo; framing is true when you watch your context size, false when you let it sprawl.&rdquo;</li><li>q: &ldquo;Are these agents safe to give shell access to?&rdquo;
-a: &ldquo;Aider asks for confirmation on every shell command — safest. Cline has an auto-approve mode that&rsquo;s convenient but risky. OpenHands runs in a sandboxed Docker by default — safest for autonomous loops. For production work always disable auto-approve and review every commit.&rdquo;</li><li>q: &ldquo;Which has the most active development in 2026?&rdquo;
-a: &ldquo;Cline by commit volume (weekly releases, large Discord community). OpenHands by GitHub stars and citation in academic papers. Aider by &lsquo;code quality of the tool itself&rsquo; — paul-gauthier&rsquo;s incremental refinements are legendary. All three are healthy projects unlikely to disappear.&rdquo;</li><li>q: &ldquo;Can these replace Claude Code or Cursor entirely?&rdquo;
-a: &ldquo;For solo developers comfortable with terminal: yes. Aider replaces Claude Code&rsquo;s CLI mode for 80% of work. Cline replaces Cursor&rsquo;s agent mode in VS Code with comparable quality. OpenHands handles long autonomous tasks Cursor can&rsquo;t. The gap is in polish — error recovery, UX details, model auto-selection.&rdquo;</li><li>q: &ldquo;What&rsquo;s the learning curve for each?&rdquo;
-a: &ldquo;Aider: 15 minutes to productive (it&rsquo;s a CLI that follows obvious patterns). Cline: 30 minutes (VS Code extension settings + model setup). OpenHands: 2-3 hours (Docker setup, browser tool config, agent loop tuning). Aider has the lowest barrier, OpenHands the highest ceiling.&rdquo;</li></ul><hr><h1 id=aider-vs-cline-vs-openhands-2026-honest-3-way-oss-comparison>Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Comparison<a hidden class=anchor aria-hidden=true href=#aider-vs-cline-vs-openhands-2026-honest-3-way-oss-comparison>#</a></h1><blockquote><p><strong>Meta Description</strong>: Tested all three on the same 5K-LOC TypeScript codebase. Benchmark numbers, where each wins, BYO-API-key cost reality vs commercial alternatives.</p></blockquote><p>Open-source AI coding agents matured fast in 2026. The three serious contenders — Aider, Cline, OpenHands — collectively serve developers who refuse commercial lock-in or want full control. This article benchmarks all three on a shared workload, with concrete numbers and the trade-offs each makes.</p><h2 id=-tldr--2-min>⚡ TL;DR — 2 min<a hidden class=anchor aria-hidden=true href=#-tldr--2-min>#</a></h2><blockquote><p><strong>One-line summary</strong>: Aider for CLI terminal-first work, Cline for VS Code IDE-native, OpenHands for autonomous long-running agent tasks.</p><p><strong>All three are healthy projects</strong>: weekly commits, large communities, no risk of disappearing in 2026-2027.</p><p><strong>Cost reality</strong>: BYO-API-key. Sonnet 4.6 at 60h/month ≈ $80-130 (vs Claude Max $200). Cheaper if disciplined about context.</p><p><strong>Top safety practice</strong>: disable auto-approve, review every commit, sandbox autonomous loops.</p><p><strong>Best 2-tool combo for OSS-only users</strong>: Aider (daily driver) + OpenHands (autonomous tasks).</p></blockquote><hr><h2 id=what-they-are>What They Are<a hidden class=anchor aria-hidden=true href=#what-they-are>#</a></h2><h3 id=aider>Aider<a hidden class=anchor aria-hidden=true href=#aider>#</a></h3><p><strong>Format</strong>: Terminal CLI. <strong>Repo</strong>: github.com/paul-gauthier/aider. <strong>Stars</strong>: ~30K. <strong>Stack</strong>: Python.</p><p>Git-aware pair programmer. Reads your repo, makes edits via diff format, commits with descriptive messages. Model-agnostic (Claude, GPT, Gemini, Llama). The reference implementation for &ldquo;AI that respects git&rdquo;.</p><h3 id=cline>Cline<a hidden class=anchor aria-hidden=true href=#cline>#</a></h3><p><strong>Format</strong>: VS Code extension. <strong>Repo</strong>: github.com/cline/cline. <strong>Stars</strong>: ~25K. <strong>Stack</strong>: TypeScript.</p><p>Agent that lives in VS Code&rsquo;s sidebar. Plans multi-step changes, edits files, runs commands, opens browser. Strong &ldquo;autonomous mode&rdquo; that does multi-step work without per-step approval (configurable).</p><h3 id=openhands-formerly-opendevin>OpenHands (formerly OpenDevin)<a hidden class=anchor aria-hidden=true href=#openhands-formerly-opendevin>#</a></h3><p><strong>Format</strong>: Web UI + CLI + Docker sandbox. <strong>Repo</strong>: github.com/All-Hands-AI/OpenHands. <strong>Stars</strong>: ~67K. <strong>Stack</strong>: Python.</p><p>Most autonomous of the three. Designed for &ldquo;give it a task description, walk away, come back to a PR.&rdquo; Browses the web, edits files, runs tests, commits. Highest ceiling, highest setup cost.</p><h2 id=benchmark-same-workload-three-agents>Benchmark: Same Workload, Three Agents<a hidden class=anchor aria-hidden=true href=#benchmark-same-workload-three-agents>#</a></h2><p>Task suite (each agent ran the same 5 tasks on a 5K-LOC TypeScript app): ### Task 1: Add a new feature (3 files, ~150 LOC)</p><p>| Agent | Time | Success first try | Tokens | Cost (Sonnet 4.6) |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+a: &ldquo;It depends. Aider for terminal-first git-aware editing (model-agnostic, fastest). Cline for IDE-native VS Code integration (best UX for non-CLI users). OpenHands for fully autonomous multi-step agent work (browser + shell + repo). Most experienced users keep Aider as default + add Cline or OpenHands for specific tasks.&rdquo;</li>
+<li>q: &ldquo;How does cost compare to Claude Code or Cursor?&rdquo;
+a: &ldquo;BYO API key model means you pay per token. For Sonnet 4.6 usage at 60 hours/month: roughly $80-130 (vs Claude Max $200). For GPT-5: roughly $100-180. The &lsquo;cheaper than commercial&rsquo; framing is true when you watch your context size, false when you let it sprawl.&rdquo;</li>
+<li>q: &ldquo;Are these agents safe to give shell access to?&rdquo;
+a: &ldquo;Aider asks for confirmation on every shell command — safest. Cline has an auto-approve mode that&rsquo;s convenient but risky. OpenHands runs in a sandboxed Docker by default — safest for autonomous loops. For production work always disable auto-approve and review every commit.&rdquo;</li>
+<li>q: &ldquo;Which has the most active development in 2026?&rdquo;
+a: &ldquo;Cline by commit volume (weekly releases, large Discord community). OpenHands by GitHub stars and citation in academic papers. Aider by &lsquo;code quality of the tool itself&rsquo; — paul-gauthier&rsquo;s incremental refinements are legendary. All three are healthy projects unlikely to disappear.&rdquo;</li>
+<li>q: &ldquo;Can these replace Claude Code or Cursor entirely?&rdquo;
+a: &ldquo;For solo developers comfortable with terminal: yes. Aider replaces Claude Code&rsquo;s CLI mode for 80% of work. Cline replaces Cursor&rsquo;s agent mode in VS Code with comparable quality. OpenHands handles long autonomous tasks Cursor can&rsquo;t. The gap is in polish — error recovery, UX details, model auto-selection.&rdquo;</li>
+<li>q: &ldquo;What&rsquo;s the learning curve for each?&rdquo;
+a: &ldquo;Aider: 15 minutes to productive (it&rsquo;s a CLI that follows obvious patterns). Cline: 30 minutes (VS Code extension settings + model setup). OpenHands: 2-3 hours (Docker setup, browser tool config, agent loop tuning). Aider has the lowest barrier, OpenHands the highest ceiling.&rdquo;</li>
+</ul>
+<hr>
+<h1 id="aider-vs-cline-vs-openhands-2026-honest-3-way-oss-comparison">Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Comparison<a hidden class="anchor" aria-hidden="true" href="#aider-vs-cline-vs-openhands-2026-honest-3-way-oss-comparison">#</a></h1>
+<blockquote>
+<p><strong>Meta Description</strong>: Tested all three on the same 5K-LOC TypeScript codebase. Benchmark numbers, where each wins, BYO-API-key cost reality vs commercial alternatives.</p>
+</blockquote>
+<p>Open-source AI coding agents matured fast in 2026. The three serious contenders — Aider, Cline, OpenHands — collectively serve developers who refuse commercial lock-in or want full control. This article benchmarks all three on a shared workload, with concrete numbers and the trade-offs each makes.</p>
+<h2 id="-tldr--2-min">⚡ TL;DR — 2 min<a hidden class="anchor" aria-hidden="true" href="#-tldr--2-min">#</a></h2>
+<blockquote>
+<p><strong>One-line summary</strong>: Aider for CLI terminal-first work, Cline for VS Code IDE-native, OpenHands for autonomous long-running agent tasks.</p>
+<p><strong>All three are healthy projects</strong>: weekly commits, large communities, no risk of disappearing in 2026-2027.</p>
+<p><strong>Cost reality</strong>: BYO-API-key. Sonnet 4.6 at 60h/month ≈ $80-130 (vs Claude Max $200). Cheaper if disciplined about context.</p>
+<p><strong>Top safety practice</strong>: disable auto-approve, review every commit, sandbox autonomous loops.</p>
+<p><strong>Best 2-tool combo for OSS-only users</strong>: Aider (daily driver) + OpenHands (autonomous tasks).</p>
+</blockquote>
+<hr>
+<h2 id="what-they-are">What They Are<a hidden class="anchor" aria-hidden="true" href="#what-they-are">#</a></h2>
+<h3 id="aider">Aider<a hidden class="anchor" aria-hidden="true" href="#aider">#</a></h3>
+<p><strong>Format</strong>: Terminal CLI. <strong>Repo</strong>: github.com/paul-gauthier/aider. <strong>Stars</strong>: ~30K. <strong>Stack</strong>: Python.</p>
+<p>Git-aware pair programmer. Reads your repo, makes edits via diff format, commits with descriptive messages. Model-agnostic (Claude, GPT, Gemini, Llama). The reference implementation for &ldquo;AI that respects git&rdquo;.</p>
+<h3 id="cline">Cline<a hidden class="anchor" aria-hidden="true" href="#cline">#</a></h3>
+<p><strong>Format</strong>: VS Code extension. <strong>Repo</strong>: github.com/cline/cline. <strong>Stars</strong>: ~25K. <strong>Stack</strong>: TypeScript.</p>
+<p>Agent that lives in VS Code&rsquo;s sidebar. Plans multi-step changes, edits files, runs commands, opens browser. Strong &ldquo;autonomous mode&rdquo; that does multi-step work without per-step approval (configurable).</p>
+<h3 id="openhands-formerly-opendevin">OpenHands (formerly OpenDevin)<a hidden class="anchor" aria-hidden="true" href="#openhands-formerly-opendevin">#</a></h3>
+<p><strong>Format</strong>: Web UI + CLI + Docker sandbox. <strong>Repo</strong>: github.com/All-Hands-AI/OpenHands. <strong>Stars</strong>: ~67K. <strong>Stack</strong>: Python.</p>
+<p>Most autonomous of the three. Designed for &ldquo;give it a task description, walk away, come back to a PR.&rdquo; Browses the web, edits files, runs tests, commits. Highest ceiling, highest setup cost.</p>
+<h2 id="benchmark-same-workload-three-agents">Benchmark: Same Workload, Three Agents<a hidden class="anchor" aria-hidden="true" href="#benchmark-same-workload-three-agents">#</a></h2>
+<p>Task suite (each agent ran the same 5 tasks on a 5K-LOC TypeScript app): ### Task 1: Add a new feature (3 files, ~150 LOC)</p>
+<p>| Agent | Time | Success first try | Tokens | Cost (Sonnet 4.6) |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Aider | 4m 30s | ✅ 3/3 | 78K | $0.39 |
 | Cline | 5m 50s | ✅ 2/3 (one needed retry) | 92K | $0.46 |
-| OpenHands | 8m 20s | ✅ 3/3 (slower autonomy) | 120K | $0.60 |</p><p><strong>Verdict</strong>: Aider fastest + cheapest for direct feature work.</p><h3 id=task-2-repo-wide-refactor-rename-util-across-30-call-sites>Task 2: Repo-wide refactor (rename util across 30+ call sites)<a hidden class=anchor aria-hidden=true href=#task-2-repo-wide-refactor-rename-util-across-30-call-sites>#</a></h3><p>| Agent | Time | Found | Missed |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| OpenHands | 8m 20s | ✅ 3/3 (slower autonomy) | 120K | $0.60 |</p>
+<p><strong>Verdict</strong>: Aider fastest + cheapest for direct feature work.</p>
+<h3 id="task-2-repo-wide-refactor-rename-util-across-30-call-sites">Task 2: Repo-wide refactor (rename util across 30+ call sites)<a hidden class="anchor" aria-hidden="true" href="#task-2-repo-wide-refactor-rename-util-across-30-call-sites">#</a></h3>
+<p>| Agent | Time | Found | Missed |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Aider | 3m | 30/30 | 0 |
 | Cline | 4m | 30/30 | 0 |
-| OpenHands | 6m | 28/30 | 2 (in test fixtures) |</p><p><strong>Verdict</strong>: Aider and Cline tied. OpenHands sometimes misses files outside the obvious search.</p><h3 id=task-3-debug-a-flaky-test>Task 3: Debug a flaky test<a hidden class=anchor aria-hidden=true href=#task-3-debug-a-flaky-test>#</a></h3><p>| Agent | Diagnosis | Fix quality |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| OpenHands | 6m | 28/30 | 2 (in test fixtures) |</p>
+<p><strong>Verdict</strong>: Aider and Cline tied. OpenHands sometimes misses files outside the obvious search.</p>
+<h3 id="task-3-debug-a-flaky-test">Task 3: Debug a flaky test<a hidden class="anchor" aria-hidden="true" href="#task-3-debug-a-flaky-test">#</a></h3>
+<p>| Agent | Diagnosis | Fix quality |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Aider | ✅ Async race condition (correct first try) | Clean, well-commented |
 | Cline | ⚠️ Symptom-level (added retry rather than fix race) | Works but masks the bug |
-| OpenHands | ✅ Race condition (after one failed attempt) | Acceptable |</p><p><strong>Verdict</strong>: Aider&rsquo;s careful step-by-step beats agentic &ldquo;try things&rdquo; for debugging.</p><h3 id=task-4-read--summarize-a-2000-loc-legacy-file>Task 4: Read + summarize a 2000-LOC legacy file<a hidden class=anchor aria-hidden=true href=#task-4-read--summarize-a-2000-loc-legacy-file>#</a></h3><p>| Agent | Quality | Suggested refactor count |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| OpenHands | ✅ Race condition (after one failed attempt) | Acceptable |</p>
+<p><strong>Verdict</strong>: Aider&rsquo;s careful step-by-step beats agentic &ldquo;try things&rdquo; for debugging.</p>
+<h3 id="task-4-read--summarize-a-2000-loc-legacy-file">Task 4: Read + summarize a 2000-LOC legacy file<a hidden class="anchor" aria-hidden="true" href="#task-4-read--summarize-a-2000-loc-legacy-file">#</a></h3>
+<p>| Agent | Quality | Suggested refactor count |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Aider | Good — focused | 4 specific |
 | Cline | Good — slightly more thorough | 5 specific |
-| OpenHands | Best — full architecture map | 7 prioritized |</p><p><strong>Verdict</strong>: OpenHands wins on reading — its agent loop lets it explore more thoroughly.</p><h3 id=task-5-multi-tool-migration-rename-db--update-config--regenerate-types--tests>Task 5: Multi-tool migration (rename DB + update config + regenerate types + tests)<a hidden class=anchor aria-hidden=true href=#task-5-multi-tool-migration-rename-db--update-config--regenerate-types--tests>#</a></h3><p>| Agent | Tool coordination | Errors | Recovery |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| OpenHands | Best — full architecture map | 7 prioritized |</p>
+<p><strong>Verdict</strong>: OpenHands wins on reading — its agent loop lets it explore more thoroughly.</p>
+<h3 id="task-5-multi-tool-migration-rename-db--update-config--regenerate-types--tests">Task 5: Multi-tool migration (rename DB + update config + regenerate types + tests)<a hidden class="anchor" aria-hidden="true" href="#task-5-multi-tool-migration-rename-db--update-config--regenerate-types--tests">#</a></h3>
+<p>| Agent | Tool coordination | Errors | Recovery |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Aider | ✅ Smooth across 3 tools | 1 (env var missing) | Manual fix needed |
 | Cline | ⚠️ Lost track between IDE actions + terminal | 3 | Multiple manual fixes |
-| OpenHands | ✅ Best for this task — autonomous chain | 1 | Auto-recovered |</p><p><strong>Verdict</strong>: OpenHands wins on multi-step automation, the task it was designed for.</p><h2 id=cost-reality-at-scale>Cost Reality at Scale<a hidden class=anchor aria-hidden=true href=#cost-reality-at-scale>#</a></h2><p>BYO API key with Sonnet 4.6 (most balanced model for these tools): ````
-60 hours/month usage: Aider: ~$80-110 (most efficient context use)
-Cline: ~$95-140 (more verbose plans = more tokens)
-OpenHands: ~$120-180 (autonomous loops = more iterations)</p><p>vs Claude Max: $200 unlimited
-vs Cursor Pro + API: $87 (much less agent work)</p><pre tabindex=0><code>
+| OpenHands | ✅ Best for this task — autonomous chain | 1 | Auto-recovered |</p>
+<p><strong>Verdict</strong>: OpenHands wins on multi-step automation, the task it was designed for.</p>
+<h2 id="cost-reality-at-scale">Cost Reality at Scale<a hidden class="anchor" aria-hidden="true" href="#cost-reality-at-scale">#</a></h2>
+<p>BYO API key with Sonnet 4.6 (most balanced model for these tools): ````
+60 hours/month usage: Aider: ~$80-110  (most efficient context use)
+Cline: ~$95-140  (more verbose plans = more tokens)
+OpenHands: ~$120-180 (autonomous loops = more iterations)</p>
+<p>vs Claude Max: $200 unlimited
+vs Cursor Pro + API: $87 (much less agent work)</p>
+<pre tabindex="0"><code>
 The &#34;cheaper than commercial&#34; claim holds only if you: - Watch context size (don&#39;t pass entire repo to every call)
 - Use Sonnet not Opus for routine tasks
 - Cancel runaway autonomous loops early
@@ -212,11 +516,121 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 **问：能否自定义AI Agent的行为？**
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/ai-trading-stack/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ai-coding-agents/aider/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ai-coding-agents/ai-trading-stack/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ai-coding-agents/aider/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>

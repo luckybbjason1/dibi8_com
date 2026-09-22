@@ -1,45 +1,279 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/scrapling-python-stealthy-web-scraping-review/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/scrapling-python-stealthy-web-scraping-review/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/scrapling-python-stealthy-web-scraping-review/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/scrapling-python-stealthy-web-scraping-review/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “Scrapling Reviewed: A Faster, Stealthier Take on Python … description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Go\nJava JavaScript Python application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MIT file_size: “8.0 MB” file_md5: ’' download_url: https://github.com/D4Vinci/Scrapling backup_url: ’' last_maintained: “2026-05-16” draft: false aliases: /en/posts/scrapling-python-stealthy-web-scraping-review/ /posts/scrapling-python-stealthy-web-scraping-review/ faqs: - q: ‘What is Scrapling in Python?’ a: ‘Scrapling is a Python 3.10+ web scraping framework that wraps three fetching backends behind one consistent selector API: plain HTTP with TLS fingerprint impersonation, a stealth-mode anti-detection browser, and a full Playwright-driven browser. It combines Scrapy-style spidering, curl_cffi-style TLS fingerprinting, and an undetected Playwright in a single import.’ q: ‘What are the three fetchers in Scrapling and when do you use each?’ a: ‘Fetcher uses plain HTTP with TLS fingerprint impersonation for fast static HTML scraping. StealthyFetcher uses a headless browser with anti-detection patches for Cloudflare or JS-protected pages. DynamicFetcher uses Playwright/Chromium for full automation of SPAs with complex auth or click flows. A single Spider class can mix tiers per request.’ q: ‘Is Scrapling actually faster than Scrapy and BeautifulSoup?’ a: ‘Scrapling is roughly 784x faster than BeautifulSoup4 (1584 ms vs ~2 ms parsing 5,000 nested elements), but that gap is a known lxml-vs-BS4 result, not unique to Scrapling. Against Scrapy’’s Parsel engine it is within margin of error (2.02 ms vs 2.04 ms). Its real-world advantage is at the network layer, where TLS fingerprint impersonation can skip spinning up a browser.’ q: ‘How do you install Scrapling’’s StealthyFetcher for Cloudflare pages?’ a: ‘Run pip install “scrapling[fetchers]” followed by scrapling install. The scrapling install step downloads patched Chromium binaries, which is a couple hundred MB of dependencies, so be aware of that before installing on a small VM.’ q: ‘Does Scrapling respect robots.txt by default?’ a: ‘No. The robots_txt_obey setting is opt-in, not on by default, so you must consciously enable it. This is a deliberate choice for users who own the sites they crawl, but forgetting to turn it on for a third-party site can create legal exposure.’ Scrapling Reviewed: A Faster, Stealthier Take on Python Scraping {\u003c/* resource-info */\u003e}\nThere are roughly four eras of Python web scraping. ```urlliband a regex. ThenrequestsplusBeautifulSoup. Then Scrapyfor anything serious. ThenPlaywright```` once half the web went JavaScript-only and sent the previous three tools into the cliff face.\nScrapling is one of the newer libraries trying to be the next layer on that stack — a single toolkit that covers the easy case, the heavy-JS case, and the anti-bot-protected case, without making you stitch together three different libraries.\nI’ve been reading through the project, the benchmarks, and the API. Here’s what’s actually interesting about it, what to be careful with, and when I’d reach for it instead of the obvious alternatives.\nSource: github.com/D4Vinci/Scrapling — official hero banner\nWhat it is in one sentence Scrapling is a Python 3.10+ scraping framework that wraps three different fetching backends — plain HTTP with TLS fingerprint impersonation, a stealth-mode browser, and a full Playwright-driven browser — behind one consistent selector API. BSD-3-Clause licensed.\nThe tagline on the repo is “Effortless Web Scraping for the Modern Web,” which is the kind of thing every scraping library says. The more useful framing is: it’s trying to be Scrapy’s spider model + curl_cffi’s TLS fingerprinting + an undetected Playwright in one import.\nThe three-fetcher model This is the part of the design I find genuinely well thought out. Most scraping projects accumulate a hairball of requests for the fast pages, Selenium or Playwright for the JS-heavy ones, and some custom CDN-bypass for the protected ones. Scrapling separates those into three tiers with the same response shape: | Fetcher | Backend | When to use | | — | — | — | | Fetcher | Plain HTTP, with TLS fingerprint impersonation | Static HTML; you don’t need a real browser; you want it fast | | StealthyFetcher | Headless browser with anti-detection patches | Cloudflare/JS-protected pages where a real browser is required | | DynamicFetcher | Playwright/Chromium, full automation | SPA with complex auth, click flows, or JS-rendered data |\nIn one Spider class you can mark different requests for different tiers. The README’s example: `````python async def parse(self, response: Response): for link in response.css(‘a::attr(href)’).getall(): if “protected” in link: yield Request(link, sid=“stealth”) else: yield Request(link, sid=“fast”, callback=self.parse)\nThe reason this matters: in a real crawl, only a fraction of pages need the heavy backend, but you usually end up paying browser overhead for everything because rewriting halfway through is painful. Letting a single spider mix tiers keeps the average page cheap. ## The benchmarks, with a grain of salt The README publishes numbers for parsing 5,000 nested elements: | Library | Time | Relative | | --- | --- | --- | | Scrapling | 2.02 ms | 1.0× | | Parsel / Scrapy | 2.04 ms | 1.01× | | Raw lxml | 2.54 ms | 1.26× | | BeautifulSoup4 + lxml | 1584.31 ms | ~784× | Two honest reads of this: **Yes, BeautifulSoup is that much slower.** That number is not a typo. BS4 is famously a usability-first library; for tight loops over many documents, lxml-based parsers (which Scrapling, Parsel, and raw lxml all are) are orders of magnitude faster. This is a known result, not a Scrapling-specific finding. **No, Scrapling isn't really faster than Scrapy's parser.** Look at the table — Parsel (the engine Scrapy uses) is 2.04 ms vs Scrapling's 2.02 ms. Within margin of error for a microbenchmark. The headline \"orders of magnitude faster than BS4\" is true; \"faster than Scrapy\" isn't, at the parser layer. Where Scrapling probably *does* win in real workloads is the network layer — TLS fingerprint impersonation in ````Fetcher```` lets you skip the \"add Playwright just to get past basic JA3 fingerprinting\" tax. That saves seconds per request, not microseconds. ## Adaptive selection — the interesting idea Most scraping pain isn't writing the first selector, it's the selector breaking three weeks later when the target site renames a class. Scrapling's pitch on this is \"smart element relocation after website changes using similarity algorithms\" — i.e. the library can re-find an element when the original selector fails, by comparing structural similarity to what it captured before. I'm cautiously optimistic about this. It's the right thing to want. In practice, similarity-based relocation will work great for cosmetic DOM rearrangements (class renames, wrapper divs added) and badly for semantic restructures (the data moved to a different page, or the section was re-templated). Treat it as a \"save you from waking up at 3am for a one-class change\" feature, not a \"your scraper now maintains itself\" feature. ## What's the simplest thing that works? Lifted directly from the docs, the absolute minimum is: `````python from scrapling.fetchers import Fetcher, FetcherSession with FetcherSession(impersonate='chrome') as session: page = session.get('https://quotes.toscrape.com/', stealthy_headers=True) quotes = page.css('.quote .text::text').getall() That’s it. Three lines for “fetch and parse with Chrome’s TLS fingerprint.” The impersonate='chrome' parameter is the curl_cffi-style fingerprint spoofing — useful when a target uses basic fingerprint-based bot detection.\nFor Cloudflare-protected pages: `````python from scrapling.fetchers import StealthyFetcher\npage = StealthyFetcher.fetch(‘https://nopecha.com/demo/cloudflare') data = page.css(’#padded_content a’).getall()\nNote that ``StealthyFetcher`` requires a separate browser install: `````bash pip install \"scrapling[fetchers]\" scrapling install The scrapling install step pulls down patched Chromium binaries. On a fresh server that’s a couple hundred MB of dependencies, which is worth knowing before you pip install it on a small VM.\nCompared to the obvious alternatives Need Reach for One-off script, simple HTML, learning requests + BeautifulSoup Big crawl, well-defined pipeline, mature ecosystem Scrapy Heavy JS app, complex auth flow, you control the browser Playwright directly TLS fingerprinting, no browser overhead curl_cffi Cloudflare/Turnstile-protected static-ish pages cloudscraper or Scrapling.StealthyFetcher You want all of the above in one library Scrapling The most honest thing I can say: if your project has a clear shape (“we’re crawling 10M product pages on a known site”), use the tool that’s specialized for that shape — Scrapy is still the right answer for big disciplined crawls, Playwright is still the right answer for serious browser automation. Scrapling’s value is in projects that don’t have one clear shape, where you’d otherwise end up maintaining three scrapers.\nWhere I’d be careful Anti-bot bypass is a moving target. The README is upfront about this: enterprise systems (Akamai, DataDome, Kasada, Incapsula) need third-party solutions and aren’t promised. Even for the systems Scrapling does target — Cloudflare Turnstile in particular — expect that what works today won’t necessarily work next quarter. If your business depends on it, plan for ongoing maintenance, not “set it and forget it.”\nrobots_txt_obey is opt-in, not default. This is a deliberate design choice (some users have legitimate reasons to bypass robots files — e.g. you own the site you’re crawling) but it means you have to consciously turn it on. Forgetting to do so on a third-party site is a thing you’ll regret in court before you regret it technically.\nStealth ≠ permission. The library has a LICENSE and a disclaimer that’s worth quoting: \u003e “This library is provided for educational and research purposes\nonly. By using this library, you agree to comply with local and international data scraping and privacy laws.”\nAnti-detection capabilities are useful for legitimate cases — research, archival, accessibility scraping, monitoring sites where you have permission, scraping your own data out of services that won’t give you an export. They’re also exactly the capabilities used by ad fraud, content theft, and ToS violations. The library doesn’t care which you’re doing; courts and regulators do. Treat the “stealthy” features as power tools — useful, but you need to know when not to use them.\nWhen I’d actually reach for it Three concrete cases I think Scrapling is well-suited for: 1. Personal data export. A service holds your data and won’t provide a real export API. Scraping your own account with a real browser, slowly, with respect for their rate limits — Scrapling’s ````DynamicSession``` is good at this.\nA small commercial crawl that hits two or three different protection levels. You don’t want to architect a Scrapy + Playwright + curl_cffi pipeline for a 1-week project. Scrapling gets you to a working prototype faster.\nResearch and archival. Scraping public-record sites, datasets, government portals, news archives. The kind of work where you want fast HTTP for the bulk and a real browser for the handful of awkward pages.\nI would not reach for it as a first choice when the target is a single, well-understood site you’re going to scrape for years (Scrapy’s discipline pays off there) or when the site’s owner explicitly asks you not to (no library solves that problem).\nBottom line Scrapling is a real, well-designed library — not vapor, not hype. The benchmarks against BeautifulSoup are real and against Scrapy are honestly within noise; the genuine win is the unified surface across three fetcher tiers and the network-level fingerprinting that lets you avoid spinning up a browser for cases that don’t need one.\nIt doesn’t solve the actual hard problems of scraping — those are all on the legal/ethical side, where no library can help — but it solves a real engineering problem cleanly. If you’re starting a new scraping project today and you don’t know yet whether you’ll need a browser, this is a reasonable place to start.\nThe full source and docs are at github.com/D4Vinci/Scrapling.\nRelated Articles Agent Reach: Give Your AI Agent Internet Superpowers — AI agent with internet access Free Claude Code: Use Claude Code CLI for Free with Any AI Provider — Free AI coding assistant Python Context Managers: The Three Cases You Actually Need — Python best practices Recommended Tools For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.\n**** — Reliable proxy service for serious web scraping. Pairs with Scrapling\"s stealth features for rotating IPs, avoiding bot detection, and scaling crawl throughput without getting blocked. Affiliate link — supports dibi8.com at no cost to you.\nReferences \u0026 Sources Scrapling Playwright Scrapy Parsel BeautifulSoup lxml Requests Selenium curl_cffi cloudscraper { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Scrapling Reviewed: A Faster, Stealthier Take on Python Scraping”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/scrapling-python-stealthy-web-scraping-review\" } } ","wordCount":"2062","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/scrapling-python-stealthy-web-scraping-review/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>10 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#scrapling-reviewed-a-faster-stealthier-take-on-python-scraping aria-label="Scrapling Reviewed: A Faster, Stealthier Take on Python Scraping">Scrapling Reviewed: A Faster, Stealthier Take on Python Scraping</a><ul><li><a href=#what-it-is-in-one-sentence aria-label="What it is in one sentence">What it is in one sentence</a></li><li><a href=#the-three-fetcher-model aria-label="The three-fetcher model">The three-fetcher model</a></li><li><a href=#compared-to-the-obvious-alternatives aria-label="Compared to the obvious alternatives">Compared to the obvious alternatives</a></li><li><a href=#where-id-be-careful aria-label="Where I&rsquo;d be careful">Where I&rsquo;d be careful</a></li><li><a href=#when-id-actually-reach-for-it aria-label="When I&rsquo;d actually reach for it">When I&rsquo;d actually reach for it</a></li><li><a href=#bottom-line aria-label="Bottom line">Bottom line</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#recommended-tools aria-label="Recommended Tools">Recommended Tools</a></li><li><a href=#references--sources aria-label="References & Sources">References & Sources</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;Scrapling Reviewed: A Faster, Stealthier Take on Python &mldr;
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/scrapling-python-stealthy-web-scraping-review/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/scrapling-python-stealthy-web-scraping-review/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/scrapling-python-stealthy-web-scraping-review/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ai-coding-agents/scrapling-python-stealthy-web-scraping-review/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “Scrapling Reviewed: A Faster, Stealthier Take on Python … description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Go\nJava JavaScript Python application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MIT file_size: “8.0 MB” file_md5: ’' download_url: https://github.com/D4Vinci/Scrapling backup_url: ’' last_maintained: “2026-05-16” draft: false aliases: /en/posts/scrapling-python-stealthy-web-scraping-review/ /posts/scrapling-python-stealthy-web-scraping-review/ faqs: - q: ‘What is Scrapling in Python?’ a: ‘Scrapling is a Python 3.10+ web scraping framework that wraps three fetching backends behind one consistent selector API: plain HTTP with TLS fingerprint impersonation, a stealth-mode anti-detection browser, and a full Playwright-driven browser. It combines Scrapy-style spidering, curl_cffi-style TLS fingerprinting, and an undetected Playwright in a single import.’ q: ‘What are the three fetchers in Scrapling and when do you use each?’ a: ‘Fetcher uses plain HTTP with TLS fingerprint impersonation for fast static HTML scraping. StealthyFetcher uses a headless browser with anti-detection patches for Cloudflare or JS-protected pages. DynamicFetcher uses Playwright/Chromium for full automation of SPAs with complex auth or click flows. A single Spider class can mix tiers per request.’ q: ‘Is Scrapling actually faster than Scrapy and BeautifulSoup?’ a: ‘Scrapling is roughly 784x faster than BeautifulSoup4 (1584 ms vs ~2 ms parsing 5,000 nested elements), but that gap is a known lxml-vs-BS4 result, not unique to Scrapling. Against Scrapy’’s Parsel engine it is within margin of error (2.02 ms vs 2.04 ms). Its real-world advantage is at the network layer, where TLS fingerprint impersonation can skip spinning up a browser.’ q: ‘How do you install Scrapling’’s StealthyFetcher for Cloudflare pages?’ a: ‘Run pip install “scrapling[fetchers]” followed by scrapling install. The scrapling install step downloads patched Chromium binaries, which is a couple hundred MB of dependencies, so be aware of that before installing on a small VM.’ q: ‘Does Scrapling respect robots.txt by default?’ a: ‘No. The robots_txt_obey setting is opt-in, not on by default, so you must consciously enable it. This is a deliberate choice for users who own the sites they crawl, but forgetting to turn it on for a third-party site can create legal exposure.’ Scrapling Reviewed: A Faster, Stealthier Take on Python Scraping {\u003c/* resource-info */\u003e}\nThere are roughly four eras of Python web scraping. ```urlliband a regex. ThenrequestsplusBeautifulSoup. Then Scrapyfor anything serious. ThenPlaywright```` once half the web went JavaScript-only and sent the previous three tools into the cliff face.\nScrapling is one of the newer libraries trying to be the next layer on that stack — a single toolkit that covers the easy case, the heavy-JS case, and the anti-bot-protected case, without making you stitch together three different libraries.\nI’ve been reading through the project, the benchmarks, and the API. Here’s what’s actually interesting about it, what to be careful with, and when I’d reach for it instead of the obvious alternatives.\nSource: github.com/D4Vinci/Scrapling — official hero banner\nWhat it is in one sentence Scrapling is a Python 3.10+ scraping framework that wraps three different fetching backends — plain HTTP with TLS fingerprint impersonation, a stealth-mode browser, and a full Playwright-driven browser — behind one consistent selector API. BSD-3-Clause licensed.\nThe tagline on the repo is “Effortless Web Scraping for the Modern Web,” which is the kind of thing every scraping library says. The more useful framing is: it’s trying to be Scrapy’s spider model + curl_cffi’s TLS fingerprinting + an undetected Playwright in one import.\nThe three-fetcher model This is the part of the design I find genuinely well thought out. Most scraping projects accumulate a hairball of requests for the fast pages, Selenium or Playwright for the JS-heavy ones, and some custom CDN-bypass for the protected ones. Scrapling separates those into three tiers with the same response shape: | Fetcher | Backend | When to use | | — | — | — | | Fetcher | Plain HTTP, with TLS fingerprint impersonation | Static HTML; you don’t need a real browser; you want it fast | | StealthyFetcher | Headless browser with anti-detection patches | Cloudflare/JS-protected pages where a real browser is required | | DynamicFetcher | Playwright/Chromium, full automation | SPA with complex auth, click flows, or JS-rendered data |\nIn one Spider class you can mark different requests for different tiers. The README’s example: `````python async def parse(self, response: Response): for link in response.css(‘a::attr(href)’).getall(): if “protected” in link: yield Request(link, sid=“stealth”) else: yield Request(link, sid=“fast”, callback=self.parse)\nThe reason this matters: in a real crawl, only a fraction of pages need the heavy backend, but you usually end up paying browser overhead for everything because rewriting halfway through is painful. Letting a single spider mix tiers keeps the average page cheap. ## The benchmarks, with a grain of salt The README publishes numbers for parsing 5,000 nested elements: | Library | Time | Relative | | --- | --- | --- | | Scrapling | 2.02 ms | 1.0× | | Parsel / Scrapy | 2.04 ms | 1.01× | | Raw lxml | 2.54 ms | 1.26× | | BeautifulSoup4 + lxml | 1584.31 ms | ~784× | Two honest reads of this: **Yes, BeautifulSoup is that much slower.** That number is not a typo. BS4 is famously a usability-first library; for tight loops over many documents, lxml-based parsers (which Scrapling, Parsel, and raw lxml all are) are orders of magnitude faster. This is a known result, not a Scrapling-specific finding. **No, Scrapling isn't really faster than Scrapy's parser.** Look at the table — Parsel (the engine Scrapy uses) is 2.04 ms vs Scrapling's 2.02 ms. Within margin of error for a microbenchmark. The headline \"orders of magnitude faster than BS4\" is true; \"faster than Scrapy\" isn't, at the parser layer. Where Scrapling probably *does* win in real workloads is the network layer — TLS fingerprint impersonation in ````Fetcher```` lets you skip the \"add Playwright just to get past basic JA3 fingerprinting\" tax. That saves seconds per request, not microseconds. ## Adaptive selection — the interesting idea Most scraping pain isn't writing the first selector, it's the selector breaking three weeks later when the target site renames a class. Scrapling's pitch on this is \"smart element relocation after website changes using similarity algorithms\" — i.e. the library can re-find an element when the original selector fails, by comparing structural similarity to what it captured before. I'm cautiously optimistic about this. It's the right thing to want. In practice, similarity-based relocation will work great for cosmetic DOM rearrangements (class renames, wrapper divs added) and badly for semantic restructures (the data moved to a different page, or the section was re-templated). Treat it as a \"save you from waking up at 3am for a one-class change\" feature, not a \"your scraper now maintains itself\" feature. ## What's the simplest thing that works? Lifted directly from the docs, the absolute minimum is: `````python from scrapling.fetchers import Fetcher, FetcherSession with FetcherSession(impersonate='chrome') as session: page = session.get('https://quotes.toscrape.com/', stealthy_headers=True) quotes = page.css('.quote .text::text').getall() That’s it. Three lines for “fetch and parse with Chrome’s TLS fingerprint.” The impersonate='chrome' parameter is the curl_cffi-style fingerprint spoofing — useful when a target uses basic fingerprint-based bot detection.\nFor Cloudflare-protected pages: `````python from scrapling.fetchers import StealthyFetcher\npage = StealthyFetcher.fetch(‘https://nopecha.com/demo/cloudflare') data = page.css(’#padded_content a’).getall()\nNote that ``StealthyFetcher`` requires a separate browser install: `````bash pip install \"scrapling[fetchers]\" scrapling install The scrapling install step pulls down patched Chromium binaries. On a fresh server that’s a couple hundred MB of dependencies, which is worth knowing before you pip install it on a small VM.\nCompared to the obvious alternatives Need Reach for One-off script, simple HTML, learning requests + BeautifulSoup Big crawl, well-defined pipeline, mature ecosystem Scrapy Heavy JS app, complex auth flow, you control the browser Playwright directly TLS fingerprinting, no browser overhead curl_cffi Cloudflare/Turnstile-protected static-ish pages cloudscraper or Scrapling.StealthyFetcher You want all of the above in one library Scrapling The most honest thing I can say: if your project has a clear shape (“we’re crawling 10M product pages on a known site”), use the tool that’s specialized for that shape — Scrapy is still the right answer for big disciplined crawls, Playwright is still the right answer for serious browser automation. Scrapling’s value is in projects that don’t have one clear shape, where you’d otherwise end up maintaining three scrapers.\nWhere I’d be careful Anti-bot bypass is a moving target. The README is upfront about this: enterprise systems (Akamai, DataDome, Kasada, Incapsula) need third-party solutions and aren’t promised. Even for the systems Scrapling does target — Cloudflare Turnstile in particular — expect that what works today won’t necessarily work next quarter. If your business depends on it, plan for ongoing maintenance, not “set it and forget it.”\nrobots_txt_obey is opt-in, not default. This is a deliberate design choice (some users have legitimate reasons to bypass robots files — e.g. you own the site you’re crawling) but it means you have to consciously turn it on. Forgetting to do so on a third-party site is a thing you’ll regret in court before you regret it technically.\nStealth ≠ permission. The library has a LICENSE and a disclaimer that’s worth quoting: \u003e “This library is provided for educational and research purposes\nonly. By using this library, you agree to comply with local and international data scraping and privacy laws.”\nAnti-detection capabilities are useful for legitimate cases — research, archival, accessibility scraping, monitoring sites where you have permission, scraping your own data out of services that won’t give you an export. They’re also exactly the capabilities used by ad fraud, content theft, and ToS violations. The library doesn’t care which you’re doing; courts and regulators do. Treat the “stealthy” features as power tools — useful, but you need to know when not to use them.\nWhen I’d actually reach for it Three concrete cases I think Scrapling is well-suited for: 1. Personal data export. A service holds your data and won’t provide a real export API. Scraping your own account with a real browser, slowly, with respect for their rate limits — Scrapling’s ````DynamicSession``` is good at this.\nA small commercial crawl that hits two or three different protection levels. You don’t want to architect a Scrapy + Playwright + curl_cffi pipeline for a 1-week project. Scrapling gets you to a working prototype faster.\nResearch and archival. Scraping public-record sites, datasets, government portals, news archives. The kind of work where you want fast HTTP for the bulk and a real browser for the handful of awkward pages.\nI would not reach for it as a first choice when the target is a single, well-understood site you’re going to scrape for years (Scrapy’s discipline pays off there) or when the site’s owner explicitly asks you not to (no library solves that problem).\nBottom line Scrapling is a real, well-designed library — not vapor, not hype. The benchmarks against BeautifulSoup are real and against Scrapy are honestly within noise; the genuine win is the unified surface across three fetcher tiers and the network-level fingerprinting that lets you avoid spinning up a browser for cases that don’t need one.\nIt doesn’t solve the actual hard problems of scraping — those are all on the legal/ethical side, where no library can help — but it solves a real engineering problem cleanly. If you’re starting a new scraping project today and you don’t know yet whether you’ll need a browser, this is a reasonable place to start.\nThe full source and docs are at github.com/D4Vinci/Scrapling.\nRelated Articles Agent Reach: Give Your AI Agent Internet Superpowers — AI agent with internet access Free Claude Code: Use Claude Code CLI for Free with Any AI Provider — Free AI coding assistant Python Context Managers: The Three Cases You Actually Need — Python best practices Recommended Tools For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.\n**** — Reliable proxy service for serious web scraping. Pairs with Scrapling\"s stealth features for rotating IPs, avoiding bot detection, and scaling crawl throughput without getting blocked. Affiliate link — supports dibi8.com at no cost to you.\nReferences \u0026 Sources Scrapling Playwright Scrapy Parsel BeautifulSoup lxml Requests Selenium curl_cffi cloudscraper { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Scrapling Reviewed: A Faster, Stealthier Take on Python Scraping”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/scrapling-python-stealthy-web-scraping-review\" } } ",
+  "wordCount" : "2062",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/scrapling-python-stealthy-web-scraping-review/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>10 分钟</span>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#scrapling-reviewed-a-faster-stealthier-take-on-python-scraping" aria-label="Scrapling Reviewed: A Faster, Stealthier Take on Python Scraping">Scrapling Reviewed: A Faster, Stealthier Take on Python Scraping</a><ul>
+                    
+            <li>
+                <a href="#what-it-is-in-one-sentence" aria-label="What it is in one sentence">What it is in one sentence</a></li>
+            <li>
+                <a href="#the-three-fetcher-model" aria-label="The three-fetcher model">The three-fetcher model</a></li>
+            <li>
+                <a href="#compared-to-the-obvious-alternatives" aria-label="Compared to the obvious alternatives">Compared to the obvious alternatives</a></li>
+            <li>
+                <a href="#where-id-be-careful" aria-label="Where I&rsquo;d be careful">Where I&rsquo;d be careful</a></li>
+            <li>
+                <a href="#when-id-actually-reach-for-it" aria-label="When I&rsquo;d actually reach for it">When I&rsquo;d actually reach for it</a></li>
+            <li>
+                <a href="#bottom-line" aria-label="Bottom line">Bottom line</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#recommended-tools" aria-label="Recommended Tools">Recommended Tools</a></li>
+            <li>
+                <a href="#references--sources" aria-label="References &amp; Sources">References &amp; Sources</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;Scrapling Reviewed: A Faster, Stealthier Take on Python &hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Go</p><ul><li>Java</li><li>JavaScript</li><li>Python
+tech_stack: - Go</p>
+<ul>
+<li>Java</li>
+<li>JavaScript</li>
+<li>Python
 application_domain: Dev Utils
 source_version: &rsquo;'
 licensing_model: Open Source
 license_type: MIT
 file_size: &ldquo;8.0 MB&rdquo;
 file_md5: &rsquo;'
-download_url: <a href=https://github.com/D4Vinci/Scrapling>https://github.com/D4Vinci/Scrapling</a>
+download_url: <a href="https://github.com/D4Vinci/Scrapling">https://github.com/D4Vinci/Scrapling</a>
 backup_url: &rsquo;'
 last_maintained: &ldquo;2026-05-16&rdquo;
 draft: false
-aliases:<ul><li>/en/posts/scrapling-python-stealthy-web-scraping-review/</li></ul></li><li>/posts/scrapling-python-stealthy-web-scraping-review/
+aliases:
+<ul>
+<li>/en/posts/scrapling-python-stealthy-web-scraping-review/</li>
+</ul>
+</li>
+<li>/posts/scrapling-python-stealthy-web-scraping-review/
 faqs: - q: &lsquo;What is Scrapling in Python?&rsquo;
-a: &lsquo;Scrapling is a Python 3.10+ web scraping framework that wraps three fetching backends behind one consistent selector API: plain HTTP with TLS fingerprint impersonation, a stealth-mode anti-detection browser, and a full Playwright-driven browser. It combines Scrapy-style spidering, curl_cffi-style TLS fingerprinting, and an undetected Playwright in a single import.&rsquo;<ul><li>q: &lsquo;What are the three fetchers in Scrapling and when do you use each?&rsquo;
-a: &lsquo;Fetcher uses plain HTTP with TLS fingerprint impersonation for fast static HTML scraping. StealthyFetcher uses a headless browser with anti-detection patches for Cloudflare or JS-protected pages. DynamicFetcher uses Playwright/Chromium for full automation of SPAs with complex auth or click flows. A single Spider class can mix tiers per request.&rsquo;</li><li>q: &lsquo;Is Scrapling actually faster than Scrapy and BeautifulSoup?&rsquo;
-a: &lsquo;Scrapling is roughly 784x faster than BeautifulSoup4 (1584 ms vs ~2 ms parsing 5,000 nested elements), but that gap is a known lxml-vs-BS4 result, not unique to Scrapling. Against Scrapy&rsquo;&rsquo;s Parsel engine it is within margin of error (2.02 ms vs 2.04 ms). Its real-world advantage is at the network layer, where TLS fingerprint impersonation can skip spinning up a browser.&rsquo;</li><li>q: &lsquo;How do you install Scrapling&rsquo;&rsquo;s StealthyFetcher for Cloudflare pages?&rsquo;
-a: &lsquo;Run pip install &ldquo;scrapling[fetchers]&rdquo; followed by scrapling install. The scrapling install step downloads patched Chromium binaries, which is a couple hundred MB of dependencies, so be aware of that before installing on a small VM.&rsquo;</li><li>q: &lsquo;Does Scrapling respect robots.txt by default?&rsquo;
-a: &lsquo;No. The robots_txt_obey setting is opt-in, not on by default, so you must consciously enable it. This is a deliberate choice for users who own the sites they crawl, but forgetting to turn it on for a third-party site can create legal exposure.&rsquo;</li></ul></li></ul><hr><h1 id=scrapling-reviewed-a-faster-stealthier-take-on-python-scraping>Scrapling Reviewed: A Faster, Stealthier Take on Python Scraping<a hidden class=anchor aria-hidden=true href=#scrapling-reviewed-a-faster-stealthier-take-on-python-scraping>#</a></h1><p>{&lt;/* resource-info */>}</p><p>There are roughly four eras of Python web scraping. ```urllib<code>and a regex. Then</code>requests<code>plus</code>BeautifulSoup<code>. Then </code>Scrapy<code>for anything serious. Then</code>Playwright```` once half the web went JavaScript-only and
-sent the previous three tools into the cliff face.</p><p><a href=https://github.com/D4Vinci/Scrapling><strong>Scrapling</strong></a> is one of the
+a: &lsquo;Scrapling is a Python 3.10+ web scraping framework that wraps three fetching backends behind one consistent selector API: plain HTTP with TLS fingerprint impersonation, a stealth-mode anti-detection browser, and a full Playwright-driven browser. It combines Scrapy-style spidering, curl_cffi-style TLS fingerprinting, and an undetected Playwright in a single import.&rsquo;
+<ul>
+<li>q: &lsquo;What are the three fetchers in Scrapling and when do you use each?&rsquo;
+a: &lsquo;Fetcher uses plain HTTP with TLS fingerprint impersonation for fast static HTML scraping. StealthyFetcher uses a headless browser with anti-detection patches for Cloudflare or JS-protected pages. DynamicFetcher uses Playwright/Chromium for full automation of SPAs with complex auth or click flows. A single Spider class can mix tiers per request.&rsquo;</li>
+<li>q: &lsquo;Is Scrapling actually faster than Scrapy and BeautifulSoup?&rsquo;
+a: &lsquo;Scrapling is roughly 784x faster than BeautifulSoup4 (1584 ms vs ~2 ms parsing 5,000 nested elements), but that gap is a known lxml-vs-BS4 result, not unique to Scrapling. Against Scrapy&rsquo;&rsquo;s Parsel engine it is within margin of error (2.02 ms vs 2.04 ms). Its real-world advantage is at the network layer, where TLS fingerprint impersonation can skip spinning up a browser.&rsquo;</li>
+<li>q: &lsquo;How do you install Scrapling&rsquo;&rsquo;s StealthyFetcher for Cloudflare pages?&rsquo;
+a: &lsquo;Run pip install &ldquo;scrapling[fetchers]&rdquo; followed by scrapling install. The scrapling install step downloads patched Chromium binaries, which is a couple hundred MB of dependencies, so be aware of that before installing on a small VM.&rsquo;</li>
+<li>q: &lsquo;Does Scrapling respect robots.txt by default?&rsquo;
+a: &lsquo;No. The robots_txt_obey setting is opt-in, not on by default, so you must consciously enable it. This is a deliberate choice for users who own the sites they crawl, but forgetting to turn it on for a third-party site can create legal exposure.&rsquo;</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="scrapling-reviewed-a-faster-stealthier-take-on-python-scraping">Scrapling Reviewed: A Faster, Stealthier Take on Python Scraping<a hidden class="anchor" aria-hidden="true" href="#scrapling-reviewed-a-faster-stealthier-take-on-python-scraping">#</a></h1>
+<p>{&lt;/* resource-info */&gt;}</p>
+<p>There are roughly four eras of Python web scraping. ```urllib<code>and a regex. Then</code>requests<code>plus</code>BeautifulSoup<code>. Then </code>Scrapy<code>for anything serious. Then</code>Playwright```` once half the web went JavaScript-only and
+sent the previous three tools into the cliff face.</p>
+<p><a href="https://github.com/D4Vinci/Scrapling"><strong>Scrapling</strong></a> is one of the
 newer libraries trying to be the next layer on that stack — a single
 toolkit that covers the easy case, the heavy-JS case, and the
 anti-bot-protected case, without making you stitch together three
-different libraries.</p><p>I&rsquo;ve been reading through the project, the benchmarks, and the API.
+different libraries.</p>
+<p>I&rsquo;ve been reading through the project, the benchmarks, and the API.
 Here&rsquo;s what&rsquo;s actually interesting about it, what to be careful with,
-and when I&rsquo;d reach for it instead of the obvious alternatives.</p><p><img alt="Scrapling — Stealthy Python web scraping" loading=lazy src=/images/articles/scrapling-python-stealthy-web-scraping-review/cover.svg>
-<em>Source: <a href=https://github.com/D4Vinci/Scrapling>github.com/D4Vinci/Scrapling</a> — official hero banner</em></p><h2 id=what-it-is-in-one-sentence>What it is in one sentence<a hidden class=anchor aria-hidden=true href=#what-it-is-in-one-sentence>#</a></h2><p>Scrapling is a Python 3.10+ scraping framework that wraps three
+and when I&rsquo;d reach for it instead of the obvious alternatives.</p>
+<p><img alt="Scrapling — Stealthy Python web scraping" loading="lazy" src="/images/articles/scrapling-python-stealthy-web-scraping-review/cover.svg">
+<em>Source: <a href="https://github.com/D4Vinci/Scrapling">github.com/D4Vinci/Scrapling</a> — official hero banner</em></p>
+<h2 id="what-it-is-in-one-sentence">What it is in one sentence<a hidden class="anchor" aria-hidden="true" href="#what-it-is-in-one-sentence">#</a></h2>
+<p>Scrapling is a Python 3.10+ scraping framework that wraps three
 different fetching backends — plain HTTP with TLS fingerprint
 impersonation, a stealth-mode browser, and a full Playwright-driven
-browser — behind one consistent selector API. BSD-3-Clause licensed.</p><p>The tagline on the repo is <em>&ldquo;Effortless Web Scraping for the Modern
+browser — behind one consistent selector API. BSD-3-Clause licensed.</p>
+<p>The tagline on the repo is <em>&ldquo;Effortless Web Scraping for the Modern
 Web,&rdquo;</em> which is the kind of thing every scraping library says. The
 more useful framing is: <strong>it&rsquo;s trying to be Scrapy&rsquo;s spider model +
 curl_cffi&rsquo;s TLS fingerprinting + an undetected Playwright in one
-import.</strong></p><h2 id=the-three-fetcher-model>The three-fetcher model<a hidden class=anchor aria-hidden=true href=#the-three-fetcher-model>#</a></h2><p>This is the part of the design I find genuinely well thought out.
+import.</strong></p>
+<h2 id="the-three-fetcher-model">The three-fetcher model<a hidden class="anchor" aria-hidden="true" href="#the-three-fetcher-model">#</a></h2>
+<p>This is the part of the design I find genuinely well thought out.
 Most scraping projects accumulate a hairball of <code>requests</code> for the
 fast pages, <code>Selenium</code> or <code>Playwright</code> for the JS-heavy ones, and
 some custom CDN-bypass for the protected ones. Scrapling separates
@@ -47,10 +281,12 @@ those into three tiers with the same response shape: | Fetcher | Backend | When 
 | &mdash; | &mdash; | &mdash; |
 | <code>Fetcher</code> | Plain HTTP, with TLS fingerprint impersonation | Static HTML; you don&rsquo;t need a real browser; you want it fast |
 | <code>StealthyFetcher</code> | Headless browser with anti-detection patches | Cloudflare/JS-protected pages where a real browser is required |
-| <code>DynamicFetcher</code> | Playwright/Chromium, full automation | SPA with complex auth, click flows, or JS-rendered data |</p><p>In one Spider class you can mark different requests for different
+| <code>DynamicFetcher</code> | Playwright/Chromium, full automation | SPA with complex auth, click flows, or JS-rendered data |</p>
+<p>In one Spider class you can mark different requests for different
 tiers. The README&rsquo;s example: `````python
 async def parse(self, response: Response): for link in response.css(&lsquo;a::attr(href)&rsquo;).getall(): if &ldquo;protected&rdquo; in link: yield Request(link, sid=&ldquo;stealth&rdquo;)
-else: yield Request(link, sid=&ldquo;fast&rdquo;, callback=self.parse)</p><pre tabindex=0><code>
+else: yield Request(link, sid=&ldquo;fast&rdquo;, callback=self.parse)</p>
+<pre tabindex="0"><code>
 The reason this matters: in a real crawl, only a fraction of pages
 need the heavy backend, but you usually end up paying browser
 overhead for everything because rewriting halfway through is painful.
@@ -109,63 +345,152 @@ with FetcherSession(impersonate=&#39;chrome&#39;) as session: page = session.get
 </code></pre><p>That&rsquo;s it. Three lines for &ldquo;fetch and parse with Chrome&rsquo;s TLS
 fingerprint.&rdquo; The <code>impersonate='chrome'</code> parameter is the
 curl_cffi-style fingerprint spoofing — useful when a target uses
-basic fingerprint-based bot detection.</p><p>For Cloudflare-protected pages: `````python
-from scrapling.fetchers import StealthyFetcher</p><p>page = StealthyFetcher.fetch(&lsquo;<a href=https://nopecha.com/demo/cloudflare%27>https://nopecha.com/demo/cloudflare'</a>)
-data = page.css(&rsquo;#padded_content a&rsquo;).getall()</p><pre tabindex=0><code>
+basic fingerprint-based bot detection.</p>
+<p>For Cloudflare-protected pages: `````python
+from scrapling.fetchers import StealthyFetcher</p>
+<p>page = StealthyFetcher.fetch(&lsquo;<a href="https://nopecha.com/demo/cloudflare%27">https://nopecha.com/demo/cloudflare'</a>)
+data = page.css(&rsquo;#padded_content a&rsquo;).getall()</p>
+<pre tabindex="0"><code>
 Note that ``StealthyFetcher`` requires a separate browser install: `````bash
 pip install &#34;scrapling[fetchers]&#34;
 scrapling install
 </code></pre><p>The <code>scrapling install</code> step pulls down patched Chromium binaries. On
 a fresh server that&rsquo;s a couple hundred MB of dependencies, which is
-worth knowing before you <code>pip install</code> it on a small VM.</p><h2 id=compared-to-the-obvious-alternatives>Compared to the obvious alternatives<a hidden class=anchor aria-hidden=true href=#compared-to-the-obvious-alternatives>#</a></h2><table><thead><tr><th>Need</th><th>Reach for</th></tr></thead><tbody><tr><td>One-off script, simple HTML, learning</td><td><code>requests</code> + <code>BeautifulSoup</code></td></tr><tr><td>Big crawl, well-defined pipeline, mature ecosystem</td><td><code>Scrapy</code></td></tr><tr><td>Heavy JS app, complex auth flow, you control the browser</td><td><code>Playwright</code> directly</td></tr><tr><td>TLS fingerprinting, no browser overhead</td><td><code>curl_cffi</code></td></tr><tr><td>Cloudflare/Turnstile-protected static-ish pages</td><td><code>cloudscraper</code> or <code>Scrapling.StealthyFetcher</code></td></tr><tr><td>You want <strong>all of the above</strong> in one library</td><td><code>Scrapling</code></td></tr></tbody></table><p>The most honest thing I can say: if your project has a clear shape
+worth knowing before you <code>pip install</code> it on a small VM.</p>
+<h2 id="compared-to-the-obvious-alternatives">Compared to the obvious alternatives<a hidden class="anchor" aria-hidden="true" href="#compared-to-the-obvious-alternatives">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>Need</th>
+					<th>Reach for</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>One-off script, simple HTML, learning</td>
+					<td><code>requests</code> + <code>BeautifulSoup</code></td>
+			</tr>
+			<tr>
+					<td>Big crawl, well-defined pipeline, mature ecosystem</td>
+					<td><code>Scrapy</code></td>
+			</tr>
+			<tr>
+					<td>Heavy JS app, complex auth flow, you control the browser</td>
+					<td><code>Playwright</code> directly</td>
+			</tr>
+			<tr>
+					<td>TLS fingerprinting, no browser overhead</td>
+					<td><code>curl_cffi</code></td>
+			</tr>
+			<tr>
+					<td>Cloudflare/Turnstile-protected static-ish pages</td>
+					<td><code>cloudscraper</code> or <code>Scrapling.StealthyFetcher</code></td>
+			</tr>
+			<tr>
+					<td>You want <strong>all of the above</strong> in one library</td>
+					<td><code>Scrapling</code></td>
+			</tr>
+	</tbody>
+</table>
+<p>The most honest thing I can say: if your project has a clear shape
 (&ldquo;we&rsquo;re crawling 10M product pages on a known site&rdquo;), use the tool
 that&rsquo;s specialized for that shape — Scrapy is still the right answer
 for big disciplined crawls, Playwright is still the right answer for
 serious browser automation. Scrapling&rsquo;s value is in projects that
 <em>don&rsquo;t</em> have one clear shape, where you&rsquo;d otherwise end up
-maintaining three scrapers.</p><h2 id=where-id-be-careful>Where I&rsquo;d be careful<a hidden class=anchor aria-hidden=true href=#where-id-be-careful>#</a></h2><p><strong>Anti-bot bypass is a moving target.</strong> The README is upfront about
+maintaining three scrapers.</p>
+<h2 id="where-id-be-careful">Where I&rsquo;d be careful<a hidden class="anchor" aria-hidden="true" href="#where-id-be-careful">#</a></h2>
+<p><strong>Anti-bot bypass is a moving target.</strong> The README is upfront about
 this: enterprise systems (Akamai, DataDome, Kasada, Incapsula) need
 third-party solutions and aren&rsquo;t promised. Even for the systems
 Scrapling does target — Cloudflare Turnstile in particular —
 expect that what works today won&rsquo;t necessarily work next quarter. If
 your business depends on it, plan for ongoing maintenance, not &ldquo;set
-it and forget it.&rdquo;</p><p><strong><code>robots_txt_obey</code> is opt-in, not default.</strong> This is a deliberate
+it and forget it.&rdquo;</p>
+<p><strong><code>robots_txt_obey</code> is opt-in, not default.</strong> This is a deliberate
 design choice (some users have legitimate reasons to bypass robots
 files — e.g. you own the site you&rsquo;re crawling) but it means you
 have to consciously turn it on. Forgetting to do so on a third-party
 site is a thing you&rsquo;ll regret in court before you regret it
-technically.</p><p><strong>Stealth ≠ permission.</strong> The library has a <code>LICENSE</code> and a
-disclaimer that&rsquo;s worth quoting: > &ldquo;This library is provided for educational and research purposes</p><blockquote><p>only. By using this library, you agree to comply with local and
-international data scraping and privacy laws.&rdquo;</p></blockquote><p>Anti-detection capabilities are useful for legitimate cases —
+technically.</p>
+<p><strong>Stealth ≠ permission.</strong> The library has a <code>LICENSE</code> and a
+disclaimer that&rsquo;s worth quoting: &gt; &ldquo;This library is provided for educational and research purposes</p>
+<blockquote>
+<p>only. By using this library, you agree to comply with local and
+international data scraping and privacy laws.&rdquo;</p>
+</blockquote>
+<p>Anti-detection capabilities are useful for legitimate cases —
 research, archival, accessibility scraping, monitoring sites where
 you have permission, scraping your own data out of services that
 won&rsquo;t give you an export. They&rsquo;re also exactly the capabilities used
 by ad fraud, content theft, and ToS violations. The library doesn&rsquo;t
 care which you&rsquo;re doing; courts and regulators do. Treat the
 &ldquo;stealthy&rdquo; features as power tools — useful, but you need to know
-when not to use them.</p><h2 id=when-id-actually-reach-for-it>When I&rsquo;d actually reach for it<a hidden class=anchor aria-hidden=true href=#when-id-actually-reach-for-it>#</a></h2><p>Three concrete cases I think Scrapling is well-suited for: 1. <strong>Personal data export.</strong> A service holds your data and won&rsquo;t
+when not to use them.</p>
+<h2 id="when-id-actually-reach-for-it">When I&rsquo;d actually reach for it<a hidden class="anchor" aria-hidden="true" href="#when-id-actually-reach-for-it">#</a></h2>
+<p>Three concrete cases I think Scrapling is well-suited for: 1. <strong>Personal data export.</strong> A service holds your data and won&rsquo;t
 provide a real export API. Scraping your own account with a real
 browser, slowly, with respect for their rate limits — Scrapling&rsquo;s
-````DynamicSession``` is good at this.</p><ol start=2><li><p><strong>A small commercial crawl that hits two or three different
+````DynamicSession``` is good at this.</p>
+<ol start="2">
+<li>
+<p><strong>A small commercial crawl that hits two or three different
 protection levels.</strong> You don&rsquo;t want to architect a Scrapy +
 Playwright + curl_cffi pipeline for a 1-week project. Scrapling
-gets you to a working prototype faster.</p></li><li><p><strong>Research and archival.</strong> Scraping public-record sites,
+gets you to a working prototype faster.</p>
+</li>
+<li>
+<p><strong>Research and archival.</strong> Scraping public-record sites,
 datasets, government portals, news archives. The kind of work
 where you want fast HTTP for the bulk and a real browser for the
-handful of awkward pages.</p></li></ol><p>I would <em>not</em> reach for it as a first choice when the target is a
+handful of awkward pages.</p>
+</li>
+</ol>
+<p>I would <em>not</em> reach for it as a first choice when the target is a
 single, well-understood site you&rsquo;re going to scrape for years
 (Scrapy&rsquo;s discipline pays off there) or when the site&rsquo;s owner
-explicitly asks you not to (no library solves that problem).</p><h2 id=bottom-line>Bottom line<a hidden class=anchor aria-hidden=true href=#bottom-line>#</a></h2><p>Scrapling is a real, well-designed library — not vapor, not hype.
+explicitly asks you not to (no library solves that problem).</p>
+<h2 id="bottom-line">Bottom line<a hidden class="anchor" aria-hidden="true" href="#bottom-line">#</a></h2>
+<p>Scrapling is a real, well-designed library — not vapor, not hype.
 The benchmarks against BeautifulSoup are real and against Scrapy are
 honestly within noise; the genuine win is the unified surface across
 three fetcher tiers and the network-level fingerprinting that lets
-you avoid spinning up a browser for cases that don&rsquo;t need one.</p><p>It doesn&rsquo;t solve the actual hard problems of scraping — those are
+you avoid spinning up a browser for cases that don&rsquo;t need one.</p>
+<p>It doesn&rsquo;t solve the actual hard problems of scraping — those are
 all on the legal/ethical side, where no library can help — but it
 solves a real engineering problem cleanly. If you&rsquo;re starting a new
 scraping project today and you don&rsquo;t know yet whether you&rsquo;ll need a
-browser, this is a reasonable place to start.</p><p>The full source and docs are at
-<a href=https://github.com/D4Vinci/Scrapling>github.com/D4Vinci/Scrapling</a>.</p><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/resources/llm-frameworks/agent-reach-ai-agent-internet-access/>Agent Reach: Give Your AI Agent Internet Superpowers</a> — AI agent with internet access</li><li><a href=/resources/ai-tools/free-claude-code-open-source-proxy/>Free Claude Code: Use Claude Code CLI for Free with Any AI Provider</a> — Free AI coding assistant</li><li><a href=/resources/ai-tools/python-context-managers-the-three-cases-you-actually-need/>Python Context Managers: The Three Cases You Actually Need</a> — Python best practices</li></ul><hr><h2 id=recommended-tools>Recommended Tools<a hidden class=anchor aria-hidden=true href=#recommended-tools>#</a></h2><p>For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.</p><ul><li>**** — Reliable proxy service for serious web scraping. Pairs with Scrapling"s stealth features for rotating IPs, avoiding bot detection, and scaling crawl throughput without getting blocked.</li></ul><p><em>Affiliate link — supports dibi8.com at no cost to you.</em></p><h2 id=references--sources>References & Sources<a hidden class=anchor aria-hidden=true href=#references--sources>#</a></h2><ul><li><a href=https://github.com/D4Vinci/Scrapling>Scrapling</a></li><li><a href=https://github.com/microsoft/playwright>Playwright</a></li><li><a href=https://github.com/scrapy/scrapy>Scrapy</a></li><li><a href=https://github.com/scrapy/parsel>Parsel</a></li><li><a href=https://www.crummy.com/software/BeautifulSoup/>BeautifulSoup</a></li><li><a href=https://github.com/lxml/lxml>lxml</a></li><li><a href=https://github.com/psf/requests>Requests</a></li><li><a href=https://github.com/SeleniumHQ/selenium>Selenium</a></li><li><a href=https://github.com/lexiforest/curl_cffi>curl_cffi</a></li><li><a href=https://github.com/VeNoMouS/cloudscraper>cloudscraper</a></li></ul><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+browser, this is a reasonable place to start.</p>
+<p>The full source and docs are at
+<a href="https://github.com/D4Vinci/Scrapling">github.com/D4Vinci/Scrapling</a>.</p>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/resources/llm-frameworks/agent-reach-ai-agent-internet-access/">Agent Reach: Give Your AI Agent Internet Superpowers</a> — AI agent with internet access</li>
+<li><a href="/resources/ai-tools/free-claude-code-open-source-proxy/">Free Claude Code: Use Claude Code CLI for Free with Any AI Provider</a> — Free AI coding assistant</li>
+<li><a href="/resources/ai-tools/python-context-managers-the-three-cases-you-actually-need/">Python Context Managers: The Three Cases You Actually Need</a> — Python best practices</li>
+</ul>
+<hr>
+<h2 id="recommended-tools">Recommended Tools<a hidden class="anchor" aria-hidden="true" href="#recommended-tools">#</a></h2>
+<p>For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.</p>
+<ul>
+<li>**** — Reliable proxy service for serious web scraping. Pairs with Scrapling&quot;s stealth features for rotating IPs, avoiding bot detection, and scaling crawl throughput without getting blocked.</li>
+</ul>
+<p><em>Affiliate link — supports dibi8.com at no cost to you.</em></p>
+<h2 id="references--sources">References &amp; Sources<a hidden class="anchor" aria-hidden="true" href="#references--sources">#</a></h2>
+<ul>
+<li><a href="https://github.com/D4Vinci/Scrapling">Scrapling</a></li>
+<li><a href="https://github.com/microsoft/playwright">Playwright</a></li>
+<li><a href="https://github.com/scrapy/scrapy">Scrapy</a></li>
+<li><a href="https://github.com/scrapy/parsel">Parsel</a></li>
+<li><a href="https://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a></li>
+<li><a href="https://github.com/lxml/lxml">lxml</a></li>
+<li><a href="https://github.com/psf/requests">Requests</a></li>
+<li><a href="https://github.com/SeleniumHQ/selenium">Selenium</a></li>
+<li><a href="https://github.com/lexiforest/curl_cffi">curl_cffi</a></li>
+<li><a href="https://github.com/VeNoMouS/cloudscraper">cloudscraper</a></li>
+</ul>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Scrapling Reviewed: A Faster, Stealthier Take on Python Scraping&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-15&rdquo;,
@@ -179,18 +504,131 @@ browser, this is a reasonable place to start.</p><p>The full source and docs are
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/scrapling-python-stealthy-web-scraping-review%22>https://dibi8.com/resources/scrapling-python-stealthy-web-scraping-review"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/scrapling-python-stealthy-web-scraping-review%22">https://dibi8.com/resources/scrapling-python-stealthy-web-scraping-review"</a>
 }
-}</script></p><hr></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/scanners-box-cybersecurity-tools-collection/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ai-coding-agents/scrapy/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ai-coding-agents/scanners-box-cybersecurity-tools-collection/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ai-coding-agents/scrapy/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>

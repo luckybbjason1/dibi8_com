@@ -1,1 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Ai-Tools on Dibi8</title><link>https://dibi8.com/tags/ai-tools/</link><description>Recent content in Ai-Tools on Dibi8</description><generator>Hugo</generator><language>zh-cn</language><lastBuildDate>Sun, 20 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://dibi8.com/tags/ai-tools/index.xml" rel="self" type="application/rss+xml"/><item><title>Archify: Genera Diagramas de Arquitectura Lista para Producción en 2026</title><link>https://dibi8.com/archify-diagrams/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/archify-diagrams/</guid><description>Archify de tt-a1i se ha convertido en una de las herramientas de visualización de arquitectura más populares en 2026, ganando 59,700 estrellas y 3,900 forks en un solo mes. Esta herramienta HTML autocontenida genera diagramas hermosos e interactivos a partir de análisis de código sin requerir dependencias externas.</description></item><item><title>Humanizer: Loại bỏ Viết AI trong 2026</title><link>https://dibi8.com/humanizer-ai-writing/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/humanizer-ai-writing/</guid><description>Humanizer là kỹ năng agent mạnh mẽ giúp loại bỏ các mẫu viết AI, bảo toàn ý nghĩa gốc. Được tạo bởi blader, đạt 49.212 GitHub stars và 3.993 forks kể từ khi phát hành tháng 1/2026.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Ai-Tools on Dibi8</title>
+    <link>https://dibi8.com/tags/ai-tools/</link>
+    <description>Recent content in Ai-Tools on Dibi8</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 20 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://dibi8.com/tags/ai-tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Archify: Genera Diagramas de Arquitectura Lista para Producción en 2026</title>
+      <link>https://dibi8.com/archify-diagrams/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/archify-diagrams/</guid>
+      <description>Archify de tt-a1i se ha convertido en una de las herramientas de visualización de arquitectura más populares en 2026, ganando 59,700 estrellas y 3,900 forks en un solo mes. Esta herramienta HTML autocontenida genera diagramas hermosos e interactivos a partir de análisis de código sin requerir dependencias externas.</description>
+    </item>
+    <item>
+      <title>Humanizer: Loại bỏ Viết AI trong 2026</title>
+      <link>https://dibi8.com/humanizer-ai-writing/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/humanizer-ai-writing/</guid>
+      <description>Humanizer là kỹ năng agent mạnh mẽ giúp loại bỏ các mẫu viết AI, bảo toàn ý nghĩa gốc. Được tạo bởi blader, đạt 49.212 GitHub stars và 3.993 forks kể từ khi phát hành tháng 1/2026.</description>
+    </item>
+  </channel>
+</rss>

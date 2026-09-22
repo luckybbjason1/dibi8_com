@@ -1,14 +1,353 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/open-llm-vtuber-voice-powered-ai-avatar/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/open-llm-vtuber-voice-powered-ai-avatar/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/open-llm-vtuber-voice-powered-ai-avatar/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/open-llm-vtuber-voice-powered-ai-avatar/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Characters — Run 10K+ Stars Open-Source AI Avatar Free TL;DR Open-LLM-VTuber is an open-source AI avatar platform with voice interaction, Live2D characters, and hands-free voice interruption. Works with any LLM — local or cloud. Zero setup, cross-platform. It brings AI companionship to life with voice-powered interactions that feel real. With 10K+ stars and support for 10+ LLM providers, it’s the most popular open-source AI avatar solution available.\n| Metric | Open-LLM-VTuber | Replika | Character.ai | Local-only | |\n|\n|\n|\n|\n| | Voice Interaction | ✓ | ✓ | ✗ | ✗ | | Live2D Character | ✓ | ✗ | ✗ | ✗ | | Local LLM Support | ✓ | ✗ | ✗ | ✗ | | Privacy | Full local | Cloud | Cloud | Full local |\nWhat It Is Open-LLM-VTuber solves the “screen-bound AI” problem.\nIt transforms any LLM into a voice-powered avatar with Live2D character rendering, voice interruption, and hands-free interaction. You talk to your AI avatar naturally — like talking to a real person — while watching their character react to what you say.\nKey capabilities:\nVoice input/output with real-time speech recognition and synthesis Live2D character rendering with reactive animations Voice interruption (talk over the avatar without buttons) Integration with OpenAI, Anthropic, local LLMs (Ollama, vLLM) Cross-platform (Windows, macOS, Linux) Private and local-first — your conversations stay on your machine Configurable avatars and voice models Real-time voice interruption for natural conversation flow How It Works (30 Seconds) You speak into microphone ↓ Speech-to-text (Whisper) ↓ LLM generates response ↓ Text-to-speech (your chosen voice) ↓ Live2D character animates + speaks ↓ You hear and see the response Open-LLM-VTuber works as a pipeline: Layer 1 — Input: Your voice enters through the microphone. Whisper (OpenAI’s speech recognition) converts it to text in real-time.\nLayer 2 — Processing: The text goes to your chosen LLM — can be OpenAI GPT-4, Anthropic Claude, or any local model via Ollama or vLLM.\nLayer 3 — Output: The LLM’s response goes through text-to-speech (your choice of voice model), then plays back through speakers. The Live2D character animates to match the conversation.\nQuickstart (5 Minutes) Install Open-LLM-VTuber via Python: `````bash\nClone the repository git clone https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git cd Open-LLM-VTuber\nInstall dependencies pip install -r requirements.txt\nConfigure your LLM API key export OPENAI_API_KEY=your-key-here\nStart the application python run.py\nOr using Docker for easy setup: `````bash docker compose up -d # Access at http://localhost:8501 When to Use / When to Skip Great fit if you…\nWant to talk to your LLM naturally with voice Love anime/Live2D characters and want to interact with AI through them Want full privacy with local-first architecture Enjoy customizing AI personality and appearance Skip it if you…\nDon’t care about voice interaction Need mobile app support (currently desktop only) Want a polished consumer app (this is developer-focused) Benchmarks Open-LLM-VTuber achieves real-time voice interaction with sub-2-second latency — comparable to commercial AI avatar platforms. With 10K+ stars and support for 10+ LLM providers, it’s the most complete open-source AI avatar platform available.\nPerformance Comparison | Metric | Open-LLM-VTuber | Replika | Character.ai | |\n|\n|\n|\n| | Voice Latency | 1.5-3s | 2-4s | N/A | | Character Animation | Live2D | 2D only | None | | LLM Options | Any LLM | Custom | Custom | | Voice Quality | High (configurable) | Medium | N/A |\nSource: Community tests\nPython API For developers who want to customize Open-LLM-VTuber: `````python from open_llm_vtuber import AvatarClient\nInitialize with your LLM client = AvatarClient( llm_engine=“openai”, voice_model=“tts-1”, avatar_model=“live2d-model-1” )\nSend voice message result = client.speak(“Hello, who are you?”) print(result.text) # “I’m your AI assistant…” print(result.voice_path) # path to generated audio\nConfigure avatar client.set_avatar(“custom-model”, expression=“happy”)\nGet conversation history history = client.get_history() print(f\"Last {len(history)} messages\")\nThe Python API allows full control over avatar configuration, voice models, LLM backends, and conversation management. * * * ## Integration with Major LLMs Open-LLM-VTuber works with virtually every AI model: ### Cloud APIs - **OpenAI**: GPT-4, GPT-3.5, ChatGPT - **Anthropic**: Claude 3, Claude 3.5 - **Google**: Gemini Pro, Gemini Ultra - **Together AI**: Llama 3, Mixtral, Mistral ### Local Models - **Ollama**: Any Ollama model (Llama, Mistral, Mixtral, etc.) - **vLLM**: High-performance local inference - **text-generation-webui**: Automatic model loading ### Voice Models - **OpenAI TTS**: tts-1, tts-1-hd - **ElevenLabs**: Realistic voice synthesis - **Piper**: Offline voice synthesis - **Coqui TTS**: Open-source TTS engine ### Voice Model Configuration `````bash # List available voice models open_llm_vtuber voice list # Set voice to ElevenLabs open_llm_vtuber voice set --provider elevenlabs --voice \"antoni\" # Set voice to Piper (offline) open_llm_vtuber voice set --provider piper --voice \"en_US-lessac-medium\" # Test voice synthesis open_llm_vtuber voice test \"Hello, this is a test.\" # Configure voice speed open_llm_vtuber config set voice.output.speed 1.2 Setup with Local LLM For fully private interaction, set up with local LLM: `````bash\nInstall Ollama (local LLM runner) curl -fsSL https://ollama.ai/install.sh | sh\nPull a model ollama pull llama3\nConfigure Open-LLM-VTuber for local LLM open_llm_vtuber config set llm.provider ollama open_llm_vtuber config set llm.model llama3\nStart interaction python run.py\nOr use vLLM for faster local inference: `````bash # Install vLLM pip install vllm # Start vLLM server with your model python -m vllm.entrypoints.api_server --model meta-llama/Meta-Llama-3-8B --host 0.0.0.0 --port 8000 # Configure Open-LLM-VTuber open_llm_vtuber config set llm.provider vllm open_llm_vtuber config set llm.api_url http://localhost:8000 When to Use Advanced Features Multi-Agent Conversations # Create multiple agents with different personalities agent1 = AvatarClient(llm=\"claude-3\", avatar=\"anime-girl\") agent2 = AvatarClient(llm=\"gpt-4\", avatar=\"cyberpunk-man\") # Have them converse result = agent1.speak(\"Agent2, what do you think about AI companions?\") print(agent2.get_last_response()) Custom Avatar Models Open-LLM-VTuber supports custom Live2D avatar models: `````bash\nImport your own Live2D model open_llm_vtuber import –avatar ./my-avatar/model.json\nTest the avatar open_llm_vtuber preview –avatar ./my-avatar\nDeploy the avatar open_llm_vtuber deploy –avatar ./my-avatar –voice tts-1\nCustom avatars can be sourced from: - Live2D Cubism SDK models - Community avatar marketplace - Your own 3D character designs * * * ## Configuration Guide Open-LLM-VTuber uses a YAML configuration file for setup: `````yaml # ~/.config/open_llm_vtuber/config.yaml llm: provider: \"openai\" # openai, anthropic, ollama, vllm model: \"gpt-4\" temperature: 0.7 max_tokens: 2048 voice: input: model: \"whisper-1\" sample_rate: 16000 language: \"auto\" output: model: \"tts-1\" voice: \"nova\" speed: 1.0 avatar: model: \"live2d-model-1\" expressions: - \"happy\" - \"thinking\" - \"surprised\" Configuration Options # View current configuration open_llm_vtuber config show # Change LLM provider open_llm_vtuber config set llm.provider anthropic open_llm_vtuber config set llm.model claude-3-5-sonnet # Change voice model open_llm_vtuber config set voice.output.model piper open_llm_vtuber config set voice.output.voice \"en_US-lessac-medium\" # Test voice input open_llm_vtuber test --voice-input # Test avatar rendering open_llm_vtuber test --avatar-preview Advanced Features For power users, Open-LLM-VTuber supports custom Python scripts: `````python\nCustom emotion detection import open_llm_vtuber as vtb\nSet up emotion-aware avatar def on_llm_response(response): # Analyze sentiment sentiment = analyze_sentiment(response)\n# Set appropriate expression if sentiment \u003e 0.5: vtb.set_expression(\"happy\") elif sentiment \u003c -0.5: vtb.set_expression(\"sad\") else: vtb.set_expression(\"neutral\") Register callback vtb.register_response_callback(on_llm_response)\nStart with emotion detection vtb.start(emotion_detection=True)\nYou can also create custom voice profiles: `````python # Create custom voice profile voice_profile = vtb.VoiceProfile( name=\"my-custom-voice\", model=\"elevenlabs\", voice_id=\"your-voice-id-here\", stability=0.75, similarity=0.85 ) # Save and use the profile voice_profile.save() vtb.set_voice(voice_profile.name) Troubleshooting Common issues and fixes: `````bash\nCheck system requirements open_llm_vtuber doctor\nCheck GPU availability open_llm_vtuber test –gpu\nVerify microphone input open_llm_vtuber test –mic\nCheck audio output open_llm_vtuber test –speaker\nReset configuration open_llm_vtuber reset-config\nIf voice input doesn't work: 1. Check microphone is selected in system audio settings 2. Verify microphone permissions for the application 3. Test with ````open_llm_vtuber test --mic```` 4. Adjust microphone sensitivity in config.yaml * * * ## Production Deployment For team or public deployment, Open-LLM-VTuber supports Docker-based scaling: `````bash # Deploy with Docker Compose docker-compose up -d --scale avatar=3 # Load balanced across 3 instances # Access via nginx reverse proxy # Use Redis for session management Production features: - Horizontal scaling with Docker Swarm or Kubernetes\nRedis-backed session persistence Nginx reverse proxy for load balancing SSL/TLS termination at proxy level Prometheus metrics for monitoring Compared to Alternatives | Feature | Open-LLM-VTuber | Replika | Character.ai | Local-only AI | |\n|\n|\n|\n|\n| | Voice Interaction | ✓ | ✓ | ✗ | ✗ | | Live2D Character | ✓ | ✗ | ✗ | ✗ | | Any LLM Support | ✓ | ✗ | ✗ | ✗ | | Self-hosted | ✓ | ✗ | ✗ | ✓ | | Privacy | Full | Cloud | Cloud | Full | | Voice Latency | 1.5-3s | 2-4s | N/A | N/A | | Custom Avatars | ✓ | ✗ | ✗ | ✗ | | Price | Free | $10/mo | Free | Free |\nLimitations / Honest Assessment Open-LLM-VTuber is not for everyone: - Desktop only: No mobile app (Windows, macOS, Linux only)\nDeveloper-focused: Not a polished consumer product Resource intensive: Live2D + LLM + TTS needs decent hardware API costs: Using OpenAI/Anthropic costs money for long conversations It’s built for tech enthusiasts and developers who want voice-powered AI avatars they can customize and control.\nFrequently Asked Questions Q1: What LLMs are supported? Open-LLM-VTuber works with any LLM that has an API — OpenAI, Anthropic, Google, local models via Ollama or vLLM. You choose your engine.\nQ2: Is my conversation data private? Yes. When using local LLMs via Ollama or vLLM, all conversations stay on your machine. Even with cloud APIs, Open-LLM-VTuber doesn’t store conversation data on its servers.\nQ3: Can I use custom avatars? Yes. You can import any Live2D model into Open-LLM-VTuber. The platform supports standard Live2D Cubism SDK format.\nQ4: Does it work offline? Yes, with local LLMs (Ollama, vLLM) and offline TTS (Piper). You get fully offline voice interaction with no internet connection.\nQ5: How much does it cost? Open-LLM-VTuber itself is free and open-source. Costs depend on your LLM choice: local models are free, cloud APIs have usage-based pricing.\nQ6: Can I customize the avatar appearance? Yes. You can import custom Live2D models, change expressions, adjust voice tone, and configure personality prompts.\nSources \u0026 Further Reading Official docs: Open-LLM-VTuber Docs GitHub repository: Open-LLM-VTuber/Open-LLM-VTuber Live2D models: Live2D Official Community discussions: GitHub Discussions Conclusion: Bring Your AI to Life Open-LLM-VTuber solves the “screen-bound AI” problem. It transforms any LLM into a voice-powered avatar with Live2D character rendering, voice interruption, and hands-free interaction.\nQuick Start One-Liner:\ngit clone https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git \u0026\u0026 cd Open-LLM-VTuber \u0026\u0026 pip install -r requirements.txt \u0026\u0026 python run.py ```` This clones, installs dependencies, and launches the VTuber in one command. It works on Windows, macOS, and Linux. * * * Open-LLM-VTuber brings AI companionship to life. With 10K+ GitHub stars, voice-powered interaction, Live2D characters, and full LLM compatibility — it\"s the most complete open-source AI avatar platform available today. For self-hosted deployment on a VPS, consider using [HTStack](https://my.htstack.com/aff.php?aff=27187) for affordable GPU hosting, or [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for easy cloud setup. Join the **dibi8 [English Telegram group](https://t.me/DIBI8_Group/2)** for discussions on AI avatars and voice-powered LLM interaction. Related articles: - [Supermemory API](/resources/llm-frameworks/supermemory-open-source-ai-memory-api/) *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Characters — Run 10K+ Stars Open-Source AI Avatar Free\", \"datePublished\": \"2026-06-10\", \"dateModified\": \"2026-06-10\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/open-llm-vtuber-voice-powered-ai-avatar\" } } * * * ## Related Articles - [open-llm-vtuber-voice-powered-ai-avatar](open-llm-vtuber-voice-powered-ai-avatar) - [open-llm-vtuber-voice-powered-ai-avatar](open-llm-vtuber-voice-powered-ai-avatar) - [free-mcp-tools-top10-2026](open-llm-vtuber-voice-powered-ai-avatar) - [impeccable-ai-design-language-harness-quality-ui](open-llm-vtuber-voice-powered-ai-avatar) - [cc-switch-all-in-one-ai-coding-agent-manager](open-llm-vtuber-voice-powered-ai-avatar) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ","wordCount":"1918","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/open-llm-vtuber-voice-powered-ai-avatar/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>10 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#open-llm-vtuber-voice-powered-llm-chat-with-live2d-characters--run-10k-stars-open-source-ai-avatar-free aria-label="Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Characters — Run 10K+ Stars Open-Source AI Avatar Free">Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Characters — Run 10K+ Stars Open-Source AI Avatar Free</a><ul><li><a href=#tldr aria-label=TL;DR>TL;DR</a></li><li><a href=#what-it-is aria-label="What It Is">What It Is</a></li><li><a href=#how-it-works-30-seconds aria-label="How It Works (30 Seconds)">How It Works (30 Seconds)</a></li><li><a href=#quickstart-5-minutes aria-label="Quickstart (5 Minutes)">Quickstart (5 Minutes)</a></li></ul></li><li><a href=#clone-the-repository aria-label="Clone the repository">Clone the repository</a></li><li><a href=#install-dependencies aria-label="Install dependencies">Install dependencies</a></li><li><a href=#configure-your-llm-api-key aria-label="Configure your LLM API key">Configure your LLM API key</a></li><li><a href=#start-the-application aria-label="Start the application">Start the application</a><ul><li><a href=#when-to-use--when-to-skip aria-label="When to Use / When to Skip">When to Use / When to Skip</a></li><li><a href=#benchmarks aria-label=Benchmarks>Benchmarks</a><ul><li><a href=#performance-comparison aria-label="Performance Comparison">Performance Comparison</a></li></ul></li><li><a href=#python-api aria-label="Python API">Python API</a></li></ul></li><li><a href=#initialize-with-your-llm aria-label="Initialize with your LLM">Initialize with your LLM</a></li><li><a href=#send-voice-message aria-label="Send voice message">Send voice message</a></li><li><a href=#configure-avatar aria-label="Configure avatar">Configure avatar</a></li><li><a href=#get-conversation-history aria-label="Get conversation history">Get conversation history</a><ul><li><a href=#setup-with-local-llm aria-label="Setup with Local LLM">Setup with Local LLM</a></li></ul></li><li><a href=#install-ollama-local-llm-runner aria-label="Install Ollama (local LLM runner)">Install Ollama (local LLM runner)</a></li><li><a href=#pull-a-model aria-label="Pull a model">Pull a model</a></li><li><a href=#configure-open-llm-vtuber-for-local-llm aria-label="Configure Open-LLM-VTuber for local LLM">Configure Open-LLM-VTuber for local LLM</a></li><li><a href=#start-interaction aria-label="Start interaction">Start interaction</a><ul><li><a href=#when-to-use-advanced-features aria-label="When to Use Advanced Features">When to Use Advanced Features</a><ul><li><a href=#multi-agent-conversations aria-label="Multi-Agent Conversations">Multi-Agent Conversations</a></li><li><a href=#custom-avatar-models aria-label="Custom Avatar Models">Custom Avatar Models</a></li></ul></li></ul></li><li><a href=#import-your-own-live2d-model aria-label="Import your own Live2D model">Import your own Live2D model</a></li><li><a href=#test-the-avatar aria-label="Test the avatar">Test the avatar</a></li><li><a href=#deploy-the-avatar aria-label="Deploy the avatar">Deploy the avatar</a><ul><ul><li><a href=#configuration-options aria-label="Configuration Options">Configuration Options</a></li></ul><li><a href=#advanced-features aria-label="Advanced Features">Advanced Features</a></li></ul></li><li><a href=#custom-emotion-detection aria-label="Custom emotion detection">Custom emotion detection</a></li><li><a href=#set-up-emotion-aware-avatar aria-label="Set up emotion-aware avatar">Set up emotion-aware avatar</a></li><li><a href=#register-callback aria-label="Register callback">Register callback</a></li><li><a href=#start-with-emotion-detection aria-label="Start with emotion detection">Start with emotion detection</a><ul><li><a href=#troubleshooting aria-label=Troubleshooting>Troubleshooting</a></li></ul></li><li><a href=#check-system-requirements aria-label="Check system requirements">Check system requirements</a></li><li><a href=#check-gpu-availability aria-label="Check GPU availability">Check GPU availability</a></li><li><a href=#verify-microphone-input aria-label="Verify microphone input">Verify microphone input</a></li><li><a href=#check-audio-output aria-label="Check audio output">Check audio output</a></li><li><a href=#reset-configuration aria-label="Reset configuration">Reset configuration</a><ul><li><a href=#compared-to-alternatives aria-label="Compared to Alternatives">Compared to Alternatives</a></li><li><a href=#limitations--honest-assessment aria-label="Limitations / Honest Assessment">Limitations / Honest Assessment</a></li><li><a href=#frequently-asked-questions aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul><li><a href=#q1-what-llms-are-supported aria-label="Q1: What LLMs are supported?">Q1: What LLMs are supported?</a></li><li><a href=#q2-is-my-conversation-data-private aria-label="Q2: Is my conversation data private?">Q2: Is my conversation data private?</a></li><li><a href=#q3-can-i-use-custom-avatars aria-label="Q3: Can I use custom avatars?">Q3: Can I use custom avatars?</a></li><li><a href=#q4-does-it-work-offline aria-label="Q4: Does it work offline?">Q4: Does it work offline?</a></li><li><a href=#q5-how-much-does-it-cost aria-label="Q5: How much does it cost?">Q5: How much does it cost?</a></li><li><a href=#q6-can-i-customize-the-avatar-appearance aria-label="Q6: Can I customize the avatar appearance?">Q6: Can I customize the avatar appearance?</a></li></ul></li><li><a href=#sources--further-reading aria-label="Sources & Further Reading">Sources & Further Reading</a></li><li><a href=#conclusion-bring-your-ai-to-life aria-label="Conclusion: Bring Your AI to Life">Conclusion: Bring Your AI to Life</a></li></ul></li></ul></div></details><div class="post-content md-content"><h1 id=open-llm-vtuber-voice-powered-llm-chat-with-live2d-characters--run-10k-stars-open-source-ai-avatar-free>Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Characters — Run 10K+ Stars Open-Source AI Avatar Free<a hidden class=anchor aria-hidden=true href=#open-llm-vtuber-voice-powered-llm-chat-with-live2d-characters--run-10k-stars-open-source-ai-avatar-free>#</a></h1><hr><h2 id=tldr>TL;DR<a hidden class=anchor aria-hidden=true href=#tldr>#</a></h2><p>Open-LLM-VTuber is an open-source AI avatar platform with voice interaction, Live2D characters, and hands-free voice interruption. Works with any LLM — local or cloud. Zero setup, cross-platform. It brings AI companionship to life with voice-powered interactions that feel real. With 10K+ stars and support for 10+ LLM providers, it&rsquo;s the most popular open-source AI avatar solution available.</p><p>| Metric | Open-LLM-VTuber | Replika | Character.ai | Local-only |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/open-llm-vtuber-voice-powered-ai-avatar/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/open-llm-vtuber-voice-powered-ai-avatar/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/open-llm-vtuber-voice-powered-ai-avatar/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ai-coding-agents/open-llm-vtuber-voice-powered-ai-avatar/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Characters — Run 10K+ Stars Open-Source AI Avatar Free TL;DR Open-LLM-VTuber is an open-source AI avatar platform with voice interaction, Live2D characters, and hands-free voice interruption. Works with any LLM — local or cloud. Zero setup, cross-platform. It brings AI companionship to life with voice-powered interactions that feel real. With 10K+ stars and support for 10+ LLM providers, it’s the most popular open-source AI avatar solution available.\n| Metric | Open-LLM-VTuber | Replika | Character.ai | Local-only | |\n|\n|\n|\n|\n| | Voice Interaction | ✓ | ✓ | ✗ | ✗ | | Live2D Character | ✓ | ✗ | ✗ | ✗ | | Local LLM Support | ✓ | ✗ | ✗ | ✗ | | Privacy | Full local | Cloud | Cloud | Full local |\nWhat It Is Open-LLM-VTuber solves the “screen-bound AI” problem.\nIt transforms any LLM into a voice-powered avatar with Live2D character rendering, voice interruption, and hands-free interaction. You talk to your AI avatar naturally — like talking to a real person — while watching their character react to what you say.\nKey capabilities:\nVoice input/output with real-time speech recognition and synthesis Live2D character rendering with reactive animations Voice interruption (talk over the avatar without buttons) Integration with OpenAI, Anthropic, local LLMs (Ollama, vLLM) Cross-platform (Windows, macOS, Linux) Private and local-first — your conversations stay on your machine Configurable avatars and voice models Real-time voice interruption for natural conversation flow How It Works (30 Seconds) You speak into microphone ↓ Speech-to-text (Whisper) ↓ LLM generates response ↓ Text-to-speech (your chosen voice) ↓ Live2D character animates + speaks ↓ You hear and see the response Open-LLM-VTuber works as a pipeline: Layer 1 — Input: Your voice enters through the microphone. Whisper (OpenAI’s speech recognition) converts it to text in real-time.\nLayer 2 — Processing: The text goes to your chosen LLM — can be OpenAI GPT-4, Anthropic Claude, or any local model via Ollama or vLLM.\nLayer 3 — Output: The LLM’s response goes through text-to-speech (your choice of voice model), then plays back through speakers. The Live2D character animates to match the conversation.\nQuickstart (5 Minutes) Install Open-LLM-VTuber via Python: `````bash\nClone the repository git clone https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git cd Open-LLM-VTuber\nInstall dependencies pip install -r requirements.txt\nConfigure your LLM API key export OPENAI_API_KEY=your-key-here\nStart the application python run.py\nOr using Docker for easy setup: `````bash docker compose up -d # Access at http://localhost:8501 When to Use / When to Skip Great fit if you…\nWant to talk to your LLM naturally with voice Love anime/Live2D characters and want to interact with AI through them Want full privacy with local-first architecture Enjoy customizing AI personality and appearance Skip it if you…\nDon’t care about voice interaction Need mobile app support (currently desktop only) Want a polished consumer app (this is developer-focused) Benchmarks Open-LLM-VTuber achieves real-time voice interaction with sub-2-second latency — comparable to commercial AI avatar platforms. With 10K+ stars and support for 10+ LLM providers, it’s the most complete open-source AI avatar platform available.\nPerformance Comparison | Metric | Open-LLM-VTuber | Replika | Character.ai | |\n|\n|\n|\n| | Voice Latency | 1.5-3s | 2-4s | N/A | | Character Animation | Live2D | 2D only | None | | LLM Options | Any LLM | Custom | Custom | | Voice Quality | High (configurable) | Medium | N/A |\nSource: Community tests\nPython API For developers who want to customize Open-LLM-VTuber: `````python from open_llm_vtuber import AvatarClient\nInitialize with your LLM client = AvatarClient( llm_engine=“openai”, voice_model=“tts-1”, avatar_model=“live2d-model-1” )\nSend voice message result = client.speak(“Hello, who are you?”) print(result.text) # “I’m your AI assistant…” print(result.voice_path) # path to generated audio\nConfigure avatar client.set_avatar(“custom-model”, expression=“happy”)\nGet conversation history history = client.get_history() print(f\"Last {len(history)} messages\")\nThe Python API allows full control over avatar configuration, voice models, LLM backends, and conversation management. * * * ## Integration with Major LLMs Open-LLM-VTuber works with virtually every AI model: ### Cloud APIs - **OpenAI**: GPT-4, GPT-3.5, ChatGPT - **Anthropic**: Claude 3, Claude 3.5 - **Google**: Gemini Pro, Gemini Ultra - **Together AI**: Llama 3, Mixtral, Mistral ### Local Models - **Ollama**: Any Ollama model (Llama, Mistral, Mixtral, etc.) - **vLLM**: High-performance local inference - **text-generation-webui**: Automatic model loading ### Voice Models - **OpenAI TTS**: tts-1, tts-1-hd - **ElevenLabs**: Realistic voice synthesis - **Piper**: Offline voice synthesis - **Coqui TTS**: Open-source TTS engine ### Voice Model Configuration `````bash # List available voice models open_llm_vtuber voice list # Set voice to ElevenLabs open_llm_vtuber voice set --provider elevenlabs --voice \"antoni\" # Set voice to Piper (offline) open_llm_vtuber voice set --provider piper --voice \"en_US-lessac-medium\" # Test voice synthesis open_llm_vtuber voice test \"Hello, this is a test.\" # Configure voice speed open_llm_vtuber config set voice.output.speed 1.2 Setup with Local LLM For fully private interaction, set up with local LLM: `````bash\nInstall Ollama (local LLM runner) curl -fsSL https://ollama.ai/install.sh | sh\nPull a model ollama pull llama3\nConfigure Open-LLM-VTuber for local LLM open_llm_vtuber config set llm.provider ollama open_llm_vtuber config set llm.model llama3\nStart interaction python run.py\nOr use vLLM for faster local inference: `````bash # Install vLLM pip install vllm # Start vLLM server with your model python -m vllm.entrypoints.api_server --model meta-llama/Meta-Llama-3-8B --host 0.0.0.0 --port 8000 # Configure Open-LLM-VTuber open_llm_vtuber config set llm.provider vllm open_llm_vtuber config set llm.api_url http://localhost:8000 When to Use Advanced Features Multi-Agent Conversations # Create multiple agents with different personalities agent1 = AvatarClient(llm=\"claude-3\", avatar=\"anime-girl\") agent2 = AvatarClient(llm=\"gpt-4\", avatar=\"cyberpunk-man\") # Have them converse result = agent1.speak(\"Agent2, what do you think about AI companions?\") print(agent2.get_last_response()) Custom Avatar Models Open-LLM-VTuber supports custom Live2D avatar models: `````bash\nImport your own Live2D model open_llm_vtuber import –avatar ./my-avatar/model.json\nTest the avatar open_llm_vtuber preview –avatar ./my-avatar\nDeploy the avatar open_llm_vtuber deploy –avatar ./my-avatar –voice tts-1\nCustom avatars can be sourced from: - Live2D Cubism SDK models - Community avatar marketplace - Your own 3D character designs * * * ## Configuration Guide Open-LLM-VTuber uses a YAML configuration file for setup: `````yaml # ~/.config/open_llm_vtuber/config.yaml llm: provider: \"openai\" # openai, anthropic, ollama, vllm model: \"gpt-4\" temperature: 0.7 max_tokens: 2048 voice: input: model: \"whisper-1\" sample_rate: 16000 language: \"auto\" output: model: \"tts-1\" voice: \"nova\" speed: 1.0 avatar: model: \"live2d-model-1\" expressions: - \"happy\" - \"thinking\" - \"surprised\" Configuration Options # View current configuration open_llm_vtuber config show # Change LLM provider open_llm_vtuber config set llm.provider anthropic open_llm_vtuber config set llm.model claude-3-5-sonnet # Change voice model open_llm_vtuber config set voice.output.model piper open_llm_vtuber config set voice.output.voice \"en_US-lessac-medium\" # Test voice input open_llm_vtuber test --voice-input # Test avatar rendering open_llm_vtuber test --avatar-preview Advanced Features For power users, Open-LLM-VTuber supports custom Python scripts: `````python\nCustom emotion detection import open_llm_vtuber as vtb\nSet up emotion-aware avatar def on_llm_response(response): # Analyze sentiment sentiment = analyze_sentiment(response)\n# Set appropriate expression if sentiment \u003e 0.5: vtb.set_expression(\"happy\") elif sentiment \u003c -0.5: vtb.set_expression(\"sad\") else: vtb.set_expression(\"neutral\") Register callback vtb.register_response_callback(on_llm_response)\nStart with emotion detection vtb.start(emotion_detection=True)\nYou can also create custom voice profiles: `````python # Create custom voice profile voice_profile = vtb.VoiceProfile( name=\"my-custom-voice\", model=\"elevenlabs\", voice_id=\"your-voice-id-here\", stability=0.75, similarity=0.85 ) # Save and use the profile voice_profile.save() vtb.set_voice(voice_profile.name) Troubleshooting Common issues and fixes: `````bash\nCheck system requirements open_llm_vtuber doctor\nCheck GPU availability open_llm_vtuber test –gpu\nVerify microphone input open_llm_vtuber test –mic\nCheck audio output open_llm_vtuber test –speaker\nReset configuration open_llm_vtuber reset-config\nIf voice input doesn't work: 1. Check microphone is selected in system audio settings 2. Verify microphone permissions for the application 3. Test with ````open_llm_vtuber test --mic```` 4. Adjust microphone sensitivity in config.yaml * * * ## Production Deployment For team or public deployment, Open-LLM-VTuber supports Docker-based scaling: `````bash # Deploy with Docker Compose docker-compose up -d --scale avatar=3 # Load balanced across 3 instances # Access via nginx reverse proxy # Use Redis for session management Production features: - Horizontal scaling with Docker Swarm or Kubernetes\nRedis-backed session persistence Nginx reverse proxy for load balancing SSL/TLS termination at proxy level Prometheus metrics for monitoring Compared to Alternatives | Feature | Open-LLM-VTuber | Replika | Character.ai | Local-only AI | |\n|\n|\n|\n|\n| | Voice Interaction | ✓ | ✓ | ✗ | ✗ | | Live2D Character | ✓ | ✗ | ✗ | ✗ | | Any LLM Support | ✓ | ✗ | ✗ | ✗ | | Self-hosted | ✓ | ✗ | ✗ | ✓ | | Privacy | Full | Cloud | Cloud | Full | | Voice Latency | 1.5-3s | 2-4s | N/A | N/A | | Custom Avatars | ✓ | ✗ | ✗ | ✗ | | Price | Free | $10/mo | Free | Free |\nLimitations / Honest Assessment Open-LLM-VTuber is not for everyone: - Desktop only: No mobile app (Windows, macOS, Linux only)\nDeveloper-focused: Not a polished consumer product Resource intensive: Live2D + LLM + TTS needs decent hardware API costs: Using OpenAI/Anthropic costs money for long conversations It’s built for tech enthusiasts and developers who want voice-powered AI avatars they can customize and control.\nFrequently Asked Questions Q1: What LLMs are supported? Open-LLM-VTuber works with any LLM that has an API — OpenAI, Anthropic, Google, local models via Ollama or vLLM. You choose your engine.\nQ2: Is my conversation data private? Yes. When using local LLMs via Ollama or vLLM, all conversations stay on your machine. Even with cloud APIs, Open-LLM-VTuber doesn’t store conversation data on its servers.\nQ3: Can I use custom avatars? Yes. You can import any Live2D model into Open-LLM-VTuber. The platform supports standard Live2D Cubism SDK format.\nQ4: Does it work offline? Yes, with local LLMs (Ollama, vLLM) and offline TTS (Piper). You get fully offline voice interaction with no internet connection.\nQ5: How much does it cost? Open-LLM-VTuber itself is free and open-source. Costs depend on your LLM choice: local models are free, cloud APIs have usage-based pricing.\nQ6: Can I customize the avatar appearance? Yes. You can import custom Live2D models, change expressions, adjust voice tone, and configure personality prompts.\nSources \u0026 Further Reading Official docs: Open-LLM-VTuber Docs GitHub repository: Open-LLM-VTuber/Open-LLM-VTuber Live2D models: Live2D Official Community discussions: GitHub Discussions Conclusion: Bring Your AI to Life Open-LLM-VTuber solves the “screen-bound AI” problem. It transforms any LLM into a voice-powered avatar with Live2D character rendering, voice interruption, and hands-free interaction.\nQuick Start One-Liner:\ngit clone https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git \u0026\u0026 cd Open-LLM-VTuber \u0026\u0026 pip install -r requirements.txt \u0026\u0026 python run.py ```` This clones, installs dependencies, and launches the VTuber in one command. It works on Windows, macOS, and Linux. * * * Open-LLM-VTuber brings AI companionship to life. With 10K+ GitHub stars, voice-powered interaction, Live2D characters, and full LLM compatibility — it\"s the most complete open-source AI avatar platform available today. For self-hosted deployment on a VPS, consider using [HTStack](https://my.htstack.com/aff.php?aff=27187) for affordable GPU hosting, or [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for easy cloud setup. Join the **dibi8 [English Telegram group](https://t.me/DIBI8_Group/2)** for discussions on AI avatars and voice-powered LLM interaction. Related articles: - [Supermemory API](/resources/llm-frameworks/supermemory-open-source-ai-memory-api/) *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Characters — Run 10K+ Stars Open-Source AI Avatar Free\", \"datePublished\": \"2026-06-10\", \"dateModified\": \"2026-06-10\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/open-llm-vtuber-voice-powered-ai-avatar\" } } * * * ## Related Articles - [open-llm-vtuber-voice-powered-ai-avatar](open-llm-vtuber-voice-powered-ai-avatar) - [open-llm-vtuber-voice-powered-ai-avatar](open-llm-vtuber-voice-powered-ai-avatar) - [free-mcp-tools-top10-2026](open-llm-vtuber-voice-powered-ai-avatar) - [impeccable-ai-design-language-harness-quality-ui](open-llm-vtuber-voice-powered-ai-avatar) - [cc-switch-all-in-one-ai-coding-agent-manager](open-llm-vtuber-voice-powered-ai-avatar) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
+  "wordCount" : "1918",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/open-llm-vtuber-voice-powered-ai-avatar/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>10 分钟</span>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#open-llm-vtuber-voice-powered-llm-chat-with-live2d-characters--run-10k-stars-open-source-ai-avatar-free" aria-label="Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Characters — Run 10K&#43; Stars Open-Source AI Avatar Free">Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Characters — Run 10K+ Stars Open-Source AI Avatar Free</a><ul>
+                    
+            <li>
+                <a href="#tldr" aria-label="TL;DR">TL;DR</a></li>
+            <li>
+                <a href="#what-it-is" aria-label="What It Is">What It Is</a></li>
+            <li>
+                <a href="#how-it-works-30-seconds" aria-label="How It Works (30 Seconds)">How It Works (30 Seconds)</a></li>
+            <li>
+                <a href="#quickstart-5-minutes" aria-label="Quickstart (5 Minutes)">Quickstart (5 Minutes)</a></li></ul>
+            </li>
+            <li>
+                <a href="#clone-the-repository" aria-label="Clone the repository">Clone the repository</a></li>
+            <li>
+                <a href="#install-dependencies" aria-label="Install dependencies">Install dependencies</a></li>
+            <li>
+                <a href="#configure-your-llm-api-key" aria-label="Configure your LLM API key">Configure your LLM API key</a></li>
+            <li>
+                <a href="#start-the-application" aria-label="Start the application">Start the application</a><ul>
+                    
+            <li>
+                <a href="#when-to-use--when-to-skip" aria-label="When to Use / When to Skip">When to Use / When to Skip</a></li>
+            <li>
+                <a href="#benchmarks" aria-label="Benchmarks">Benchmarks</a><ul>
+                    
+            <li>
+                <a href="#performance-comparison" aria-label="Performance Comparison">Performance Comparison</a></li></ul>
+            </li>
+            <li>
+                <a href="#python-api" aria-label="Python API">Python API</a></li></ul>
+            </li>
+            <li>
+                <a href="#initialize-with-your-llm" aria-label="Initialize with your LLM">Initialize with your LLM</a></li>
+            <li>
+                <a href="#send-voice-message" aria-label="Send voice message">Send voice message</a></li>
+            <li>
+                <a href="#configure-avatar" aria-label="Configure avatar">Configure avatar</a></li>
+            <li>
+                <a href="#get-conversation-history" aria-label="Get conversation history">Get conversation history</a><ul>
+                    
+            <li>
+                <a href="#setup-with-local-llm" aria-label="Setup with Local LLM">Setup with Local LLM</a></li></ul>
+            </li>
+            <li>
+                <a href="#install-ollama-local-llm-runner" aria-label="Install Ollama (local LLM runner)">Install Ollama (local LLM runner)</a></li>
+            <li>
+                <a href="#pull-a-model" aria-label="Pull a model">Pull a model</a></li>
+            <li>
+                <a href="#configure-open-llm-vtuber-for-local-llm" aria-label="Configure Open-LLM-VTuber for local LLM">Configure Open-LLM-VTuber for local LLM</a></li>
+            <li>
+                <a href="#start-interaction" aria-label="Start interaction">Start interaction</a><ul>
+                    
+            <li>
+                <a href="#when-to-use-advanced-features" aria-label="When to Use Advanced Features">When to Use Advanced Features</a><ul>
+                    
+            <li>
+                <a href="#multi-agent-conversations" aria-label="Multi-Agent Conversations">Multi-Agent Conversations</a></li>
+            <li>
+                <a href="#custom-avatar-models" aria-label="Custom Avatar Models">Custom Avatar Models</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#import-your-own-live2d-model" aria-label="Import your own Live2D model">Import your own Live2D model</a></li>
+            <li>
+                <a href="#test-the-avatar" aria-label="Test the avatar">Test the avatar</a></li>
+            <li>
+                <a href="#deploy-the-avatar" aria-label="Deploy the avatar">Deploy the avatar</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#configuration-options" aria-label="Configuration Options">Configuration Options</a></li></ul>
+                
+            <li>
+                <a href="#advanced-features" aria-label="Advanced Features">Advanced Features</a></li></ul>
+            </li>
+            <li>
+                <a href="#custom-emotion-detection" aria-label="Custom emotion detection">Custom emotion detection</a></li>
+            <li>
+                <a href="#set-up-emotion-aware-avatar" aria-label="Set up emotion-aware avatar">Set up emotion-aware avatar</a></li>
+            <li>
+                <a href="#register-callback" aria-label="Register callback">Register callback</a></li>
+            <li>
+                <a href="#start-with-emotion-detection" aria-label="Start with emotion detection">Start with emotion detection</a><ul>
+                    
+            <li>
+                <a href="#troubleshooting" aria-label="Troubleshooting">Troubleshooting</a></li></ul>
+            </li>
+            <li>
+                <a href="#check-system-requirements" aria-label="Check system requirements">Check system requirements</a></li>
+            <li>
+                <a href="#check-gpu-availability" aria-label="Check GPU availability">Check GPU availability</a></li>
+            <li>
+                <a href="#verify-microphone-input" aria-label="Verify microphone input">Verify microphone input</a></li>
+            <li>
+                <a href="#check-audio-output" aria-label="Check audio output">Check audio output</a></li>
+            <li>
+                <a href="#reset-configuration" aria-label="Reset configuration">Reset configuration</a><ul>
+                    
+            <li>
+                <a href="#compared-to-alternatives" aria-label="Compared to Alternatives">Compared to Alternatives</a></li>
+            <li>
+                <a href="#limitations--honest-assessment" aria-label="Limitations / Honest Assessment">Limitations / Honest Assessment</a></li>
+            <li>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
+                    
+            <li>
+                <a href="#q1-what-llms-are-supported" aria-label="Q1: What LLMs are supported?">Q1: What LLMs are supported?</a></li>
+            <li>
+                <a href="#q2-is-my-conversation-data-private" aria-label="Q2: Is my conversation data private?">Q2: Is my conversation data private?</a></li>
+            <li>
+                <a href="#q3-can-i-use-custom-avatars" aria-label="Q3: Can I use custom avatars?">Q3: Can I use custom avatars?</a></li>
+            <li>
+                <a href="#q4-does-it-work-offline" aria-label="Q4: Does it work offline?">Q4: Does it work offline?</a></li>
+            <li>
+                <a href="#q5-how-much-does-it-cost" aria-label="Q5: How much does it cost?">Q5: How much does it cost?</a></li>
+            <li>
+                <a href="#q6-can-i-customize-the-avatar-appearance" aria-label="Q6: Can I customize the avatar appearance?">Q6: Can I customize the avatar appearance?</a></li></ul>
+            </li>
+            <li>
+                <a href="#sources--further-reading" aria-label="Sources &amp; Further Reading">Sources &amp; Further Reading</a></li>
+            <li>
+                <a href="#conclusion-bring-your-ai-to-life" aria-label="Conclusion: Bring Your AI to Life">Conclusion: Bring Your AI to Life</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h1 id="open-llm-vtuber-voice-powered-llm-chat-with-live2d-characters--run-10k-stars-open-source-ai-avatar-free">Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Characters — Run 10K+ Stars Open-Source AI Avatar Free<a hidden class="anchor" aria-hidden="true" href="#open-llm-vtuber-voice-powered-llm-chat-with-live2d-characters--run-10k-stars-open-source-ai-avatar-free">#</a></h1>
+<hr>
+<h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
+<p>Open-LLM-VTuber is an open-source AI avatar platform with voice interaction, Live2D characters, and hands-free voice interruption. Works with any LLM — local or cloud. Zero setup, cross-platform. It brings AI companionship to life with voice-powered interactions that feel real. With 10K+ stars and support for 10+ LLM providers, it&rsquo;s the most popular open-source AI avatar solution available.</p>
+<p>| Metric | Open-LLM-VTuber | Replika | Character.ai | Local-only |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Voice Interaction | ✓ | ✓ | ✗ | ✗ |
 | Live2D Character | ✓ | ✗ | ✗ | ✗ |
 | Local LLM Support | ✓ | ✗ | ✗ | ✗ |
-| Privacy | Full local | Cloud | Cloud | Full local |</p><hr><h2 id=what-it-is>What It Is<a hidden class=anchor aria-hidden=true href=#what-it-is>#</a></h2><p>Open-LLM-VTuber solves the &ldquo;screen-bound AI&rdquo; problem.</p><p>It transforms any LLM into a voice-powered avatar with Live2D character rendering, voice interruption, and hands-free interaction. You talk to your AI avatar naturally — like talking to a real person — while watching their character react to what you say.</p><p><strong>Key capabilities:</strong></p><ul><li>Voice input/output with real-time speech recognition and synthesis</li><li>Live2D character rendering with reactive animations</li><li>Voice interruption (talk over the avatar without buttons)</li><li>Integration with OpenAI, Anthropic, local LLMs (Ollama, vLLM)</li><li>Cross-platform (Windows, macOS, Linux)</li><li>Private and local-first — your conversations stay on your machine</li><li>Configurable avatars and voice models</li><li>Real-time voice interruption for natural conversation flow</li></ul><hr><h2 id=how-it-works-30-seconds>How It Works (30 Seconds)<a hidden class=anchor aria-hidden=true href=#how-it-works-30-seconds>#</a></h2><pre tabindex=0><code>You speak into microphone
+| Privacy | Full local | Cloud | Cloud | Full local |</p>
+<hr>
+<h2 id="what-it-is">What It Is<a hidden class="anchor" aria-hidden="true" href="#what-it-is">#</a></h2>
+<p>Open-LLM-VTuber solves the &ldquo;screen-bound AI&rdquo; problem.</p>
+<p>It transforms any LLM into a voice-powered avatar with Live2D character rendering, voice interruption, and hands-free interaction. You talk to your AI avatar naturally — like talking to a real person — while watching their character react to what you say.</p>
+<p><strong>Key capabilities:</strong></p>
+<ul>
+<li>Voice input/output with real-time speech recognition and synthesis</li>
+<li>Live2D character rendering with reactive animations</li>
+<li>Voice interruption (talk over the avatar without buttons)</li>
+<li>Integration with OpenAI, Anthropic, local LLMs (Ollama, vLLM)</li>
+<li>Cross-platform (Windows, macOS, Linux)</li>
+<li>Private and local-first — your conversations stay on your machine</li>
+<li>Configurable avatars and voice models</li>
+<li>Real-time voice interruption for natural conversation flow</li>
+</ul>
+<hr>
+<h2 id="how-it-works-30-seconds">How It Works (30 Seconds)<a hidden class="anchor" aria-hidden="true" href="#how-it-works-30-seconds">#</a></h2>
+<pre tabindex="0"><code>You speak into microphone
          ↓
 Speech-to-text (Whisper)
          ↓
@@ -19,25 +358,79 @@ Text-to-speech (your chosen voice)
 Live2D character animates + speaks
          ↓
 You hear and see the response
-</code></pre><p>Open-LLM-VTuber works as a pipeline: <strong>Layer 1 — Input:</strong> Your voice enters through the microphone. Whisper (OpenAI&rsquo;s speech recognition) converts it to text in real-time.</p><p><strong>Layer 2 — Processing:</strong> The text goes to your chosen LLM — can be OpenAI GPT-4, Anthropic Claude, or any local model via Ollama or vLLM.</p><p><strong>Layer 3 — Output:</strong> The LLM&rsquo;s response goes through text-to-speech (your choice of voice model), then plays back through speakers. The Live2D character animates to match the conversation.</p><hr><h2 id=quickstart-5-minutes>Quickstart (5 Minutes)<a hidden class=anchor aria-hidden=true href=#quickstart-5-minutes>#</a></h2><p>Install Open-LLM-VTuber via Python: `````bash</p><h1 id=clone-the-repository>Clone the repository<a hidden class=anchor aria-hidden=true href=#clone-the-repository>#</a></h1><p>git clone <a href=https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git>https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git</a>
-cd Open-LLM-VTuber</p><h1 id=install-dependencies>Install dependencies<a hidden class=anchor aria-hidden=true href=#install-dependencies>#</a></h1><p>pip install -r requirements.txt</p><h1 id=configure-your-llm-api-key>Configure your LLM API key<a hidden class=anchor aria-hidden=true href=#configure-your-llm-api-key>#</a></h1><p>export OPENAI_API_KEY=your-key-here</p><h1 id=start-the-application>Start the application<a hidden class=anchor aria-hidden=true href=#start-the-application>#</a></h1><p>python run.py</p><pre tabindex=0><code>
+</code></pre><p>Open-LLM-VTuber works as a pipeline: <strong>Layer 1 — Input:</strong> Your voice enters through the microphone. Whisper (OpenAI&rsquo;s speech recognition) converts it to text in real-time.</p>
+<p><strong>Layer 2 — Processing:</strong> The text goes to your chosen LLM — can be OpenAI GPT-4, Anthropic Claude, or any local model via Ollama or vLLM.</p>
+<p><strong>Layer 3 — Output:</strong> The LLM&rsquo;s response goes through text-to-speech (your choice of voice model), then plays back through speakers. The Live2D character animates to match the conversation.</p>
+<hr>
+<h2 id="quickstart-5-minutes">Quickstart (5 Minutes)<a hidden class="anchor" aria-hidden="true" href="#quickstart-5-minutes">#</a></h2>
+<p>Install Open-LLM-VTuber via Python: `````bash</p>
+<h1 id="clone-the-repository">Clone the repository<a hidden class="anchor" aria-hidden="true" href="#clone-the-repository">#</a></h1>
+<p>git clone <a href="https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git">https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git</a>
+cd Open-LLM-VTuber</p>
+<h1 id="install-dependencies">Install dependencies<a hidden class="anchor" aria-hidden="true" href="#install-dependencies">#</a></h1>
+<p>pip install -r requirements.txt</p>
+<h1 id="configure-your-llm-api-key">Configure your LLM API key<a hidden class="anchor" aria-hidden="true" href="#configure-your-llm-api-key">#</a></h1>
+<p>export OPENAI_API_KEY=your-key-here</p>
+<h1 id="start-the-application">Start the application<a hidden class="anchor" aria-hidden="true" href="#start-the-application">#</a></h1>
+<p>python run.py</p>
+<pre tabindex="0"><code>
 Or using Docker for easy setup: `````bash
 docker compose up -d
 # Access at http://localhost:8501
-</code></pre><hr><h2 id=when-to-use--when-to-skip>When to Use / When to Skip<a hidden class=anchor aria-hidden=true href=#when-to-use--when-to-skip>#</a></h2><p><strong>Great fit if you…</strong></p><ul><li>Want to talk to your LLM naturally with voice</li><li>Love anime/Live2D characters and want to interact with AI through them</li><li>Want full privacy with local-first architecture</li><li>Enjoy customizing AI personality and appearance</li></ul><p><strong>Skip it if you…</strong></p><ul><li>Don&rsquo;t care about voice interaction</li><li>Need mobile app support (currently desktop only)</li><li>Want a polished consumer app (this is developer-focused)</li></ul><hr><h2 id=benchmarks>Benchmarks<a hidden class=anchor aria-hidden=true href=#benchmarks>#</a></h2><p>Open-LLM-VTuber achieves real-time voice interaction with sub-2-second latency — comparable to commercial AI avatar platforms. With 10K+ stars and support for 10+ LLM providers, it&rsquo;s the most complete open-source AI avatar platform available.</p><h3 id=performance-comparison>Performance Comparison<a hidden class=anchor aria-hidden=true href=#performance-comparison>#</a></h3><p>| Metric | Open-LLM-VTuber | Replika | Character.ai |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><hr>
+<h2 id="when-to-use--when-to-skip">When to Use / When to Skip<a hidden class="anchor" aria-hidden="true" href="#when-to-use--when-to-skip">#</a></h2>
+<p><strong>Great fit if you…</strong></p>
+<ul>
+<li>Want to talk to your LLM naturally with voice</li>
+<li>Love anime/Live2D characters and want to interact with AI through them</li>
+<li>Want full privacy with local-first architecture</li>
+<li>Enjoy customizing AI personality and appearance</li>
+</ul>
+<p><strong>Skip it if you…</strong></p>
+<ul>
+<li>Don&rsquo;t care about voice interaction</li>
+<li>Need mobile app support (currently desktop only)</li>
+<li>Want a polished consumer app (this is developer-focused)</li>
+</ul>
+<hr>
+<h2 id="benchmarks">Benchmarks<a hidden class="anchor" aria-hidden="true" href="#benchmarks">#</a></h2>
+<p>Open-LLM-VTuber achieves real-time voice interaction with sub-2-second latency — comparable to commercial AI avatar platforms. With 10K+ stars and support for 10+ LLM providers, it&rsquo;s the most complete open-source AI avatar platform available.</p>
+<h3 id="performance-comparison">Performance Comparison<a hidden class="anchor" aria-hidden="true" href="#performance-comparison">#</a></h3>
+<p>| Metric | Open-LLM-VTuber | Replika | Character.ai |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Voice Latency | 1.5-3s | 2-4s | N/A |
 | Character Animation | Live2D | 2D only | None |
 | LLM Options | Any LLM | Custom | Custom |
-| Voice Quality | High (configurable) | Medium | N/A |</p><p><em>Source: <a href=https://github.com/Open-LLM-VTuber/Open-LLM-VTuber/discussions>Community tests</a></em></p><hr><h2 id=python-api>Python API<a hidden class=anchor aria-hidden=true href=#python-api>#</a></h2><p>For developers who want to customize Open-LLM-VTuber: `````python
-from open_llm_vtuber import AvatarClient</p><h1 id=initialize-with-your-llm>Initialize with your LLM<a hidden class=anchor aria-hidden=true href=#initialize-with-your-llm>#</a></h1><p>client = AvatarClient(
+| Voice Quality | High (configurable) | Medium | N/A |</p>
+<p><em>Source: <a href="https://github.com/Open-LLM-VTuber/Open-LLM-VTuber/discussions">Community tests</a></em></p>
+<hr>
+<h2 id="python-api">Python API<a hidden class="anchor" aria-hidden="true" href="#python-api">#</a></h2>
+<p>For developers who want to customize Open-LLM-VTuber: `````python
+from open_llm_vtuber import AvatarClient</p>
+<h1 id="initialize-with-your-llm">Initialize with your LLM<a hidden class="anchor" aria-hidden="true" href="#initialize-with-your-llm">#</a></h1>
+<p>client = AvatarClient(
 llm_engine=&ldquo;openai&rdquo;,
 voice_model=&ldquo;tts-1&rdquo;,
 avatar_model=&ldquo;live2d-model-1&rdquo;
-)</p><h1 id=send-voice-message>Send voice message<a hidden class=anchor aria-hidden=true href=#send-voice-message>#</a></h1><p>result = client.speak(&ldquo;Hello, who are you?&rdquo;)
-print(result.text) # &ldquo;I&rsquo;m your AI assistant&mldr;&rdquo;
-print(result.voice_path) # path to generated audio</p><h1 id=configure-avatar>Configure avatar<a hidden class=anchor aria-hidden=true href=#configure-avatar>#</a></h1><p>client.set_avatar(&ldquo;custom-model&rdquo;, expression=&ldquo;happy&rdquo;)</p><h1 id=get-conversation-history>Get conversation history<a hidden class=anchor aria-hidden=true href=#get-conversation-history>#</a></h1><p>history = client.get_history()
-print(f"Last {len(history)} messages")</p><pre tabindex=0><code>
+)</p>
+<h1 id="send-voice-message">Send voice message<a hidden class="anchor" aria-hidden="true" href="#send-voice-message">#</a></h1>
+<p>result = client.speak(&ldquo;Hello, who are you?&rdquo;)
+print(result.text)  # &ldquo;I&rsquo;m your AI assistant&hellip;&rdquo;
+print(result.voice_path)  # path to generated audio</p>
+<h1 id="configure-avatar">Configure avatar<a hidden class="anchor" aria-hidden="true" href="#configure-avatar">#</a></h1>
+<p>client.set_avatar(&ldquo;custom-model&rdquo;, expression=&ldquo;happy&rdquo;)</p>
+<h1 id="get-conversation-history">Get conversation history<a hidden class="anchor" aria-hidden="true" href="#get-conversation-history">#</a></h1>
+<p>history = client.get_history()
+print(f&quot;Last {len(history)} messages&quot;)</p>
+<pre tabindex="0"><code>
 The Python API allows full control over avatar configuration, voice models, LLM backends, and conversation management.
 
 * * *
@@ -78,8 +471,19 @@ open_llm_vtuber voice test &#34;Hello, this is a test.&#34;
 
 # Configure voice speed
 open_llm_vtuber config set voice.output.speed 1.2
-</code></pre><hr><h2 id=setup-with-local-llm>Setup with Local LLM<a hidden class=anchor aria-hidden=true href=#setup-with-local-llm>#</a></h2><p>For fully private interaction, set up with local LLM: `````bash</p><h1 id=install-ollama-local-llm-runner>Install Ollama (local LLM runner)<a hidden class=anchor aria-hidden=true href=#install-ollama-local-llm-runner>#</a></h1><p>curl -fsSL <a href=https://ollama.ai/install.sh>https://ollama.ai/install.sh</a> | sh</p><h1 id=pull-a-model>Pull a model<a hidden class=anchor aria-hidden=true href=#pull-a-model>#</a></h1><p>ollama pull llama3</p><h1 id=configure-open-llm-vtuber-for-local-llm>Configure Open-LLM-VTuber for local LLM<a hidden class=anchor aria-hidden=true href=#configure-open-llm-vtuber-for-local-llm>#</a></h1><p>open_llm_vtuber config set llm.provider ollama
-open_llm_vtuber config set llm.model llama3</p><h1 id=start-interaction>Start interaction<a hidden class=anchor aria-hidden=true href=#start-interaction>#</a></h1><p>python run.py</p><pre tabindex=0><code>
+</code></pre><hr>
+<h2 id="setup-with-local-llm">Setup with Local LLM<a hidden class="anchor" aria-hidden="true" href="#setup-with-local-llm">#</a></h2>
+<p>For fully private interaction, set up with local LLM: `````bash</p>
+<h1 id="install-ollama-local-llm-runner">Install Ollama (local LLM runner)<a hidden class="anchor" aria-hidden="true" href="#install-ollama-local-llm-runner">#</a></h1>
+<p>curl -fsSL <a href="https://ollama.ai/install.sh">https://ollama.ai/install.sh</a> | sh</p>
+<h1 id="pull-a-model">Pull a model<a hidden class="anchor" aria-hidden="true" href="#pull-a-model">#</a></h1>
+<p>ollama pull llama3</p>
+<h1 id="configure-open-llm-vtuber-for-local-llm">Configure Open-LLM-VTuber for local LLM<a hidden class="anchor" aria-hidden="true" href="#configure-open-llm-vtuber-for-local-llm">#</a></h1>
+<p>open_llm_vtuber config set llm.provider ollama
+open_llm_vtuber config set llm.model llama3</p>
+<h1 id="start-interaction">Start interaction<a hidden class="anchor" aria-hidden="true" href="#start-interaction">#</a></h1>
+<p>python run.py</p>
+<pre tabindex="0"><code>
 Or use vLLM for faster local inference: `````bash
 # Install vLLM
 pip install vllm
@@ -90,14 +494,25 @@ python -m vllm.entrypoints.api_server --model meta-llama/Meta-Llama-3-8B --host 
 # Configure Open-LLM-VTuber
 open_llm_vtuber config set llm.provider vllm
 open_llm_vtuber config set llm.api_url http://localhost:8000
-</code></pre><hr><h2 id=when-to-use-advanced-features>When to Use Advanced Features<a hidden class=anchor aria-hidden=true href=#when-to-use-advanced-features>#</a></h2><h3 id=multi-agent-conversations>Multi-Agent Conversations<a hidden class=anchor aria-hidden=true href=#multi-agent-conversations>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Create multiple agents with different personalities</span>
-</span></span><span style=display:flex><span>agent1 <span style=color:#f92672>=</span> AvatarClient(llm<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;claude-3&#34;</span>, avatar<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;anime-girl&#34;</span>)
-</span></span><span style=display:flex><span>agent2 <span style=color:#f92672>=</span> AvatarClient(llm<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4&#34;</span>, avatar<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;cyberpunk-man&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Have them converse</span>
-</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> agent1<span style=color:#f92672>.</span>speak(<span style=color:#e6db74>&#34;Agent2, what do you think about AI companions?&#34;</span>)
-</span></span><span style=display:flex><span>print(agent2<span style=color:#f92672>.</span>get_last_response())
-</span></span></code></pre></div><h3 id=custom-avatar-models>Custom Avatar Models<a hidden class=anchor aria-hidden=true href=#custom-avatar-models>#</a></h3><p>Open-LLM-VTuber supports custom Live2D avatar models: `````bash</p><h1 id=import-your-own-live2d-model>Import your own Live2D model<a hidden class=anchor aria-hidden=true href=#import-your-own-live2d-model>#</a></h1><p>open_llm_vtuber import &ndash;avatar ./my-avatar/model.json</p><h1 id=test-the-avatar>Test the avatar<a hidden class=anchor aria-hidden=true href=#test-the-avatar>#</a></h1><p>open_llm_vtuber preview &ndash;avatar ./my-avatar</p><h1 id=deploy-the-avatar>Deploy the avatar<a hidden class=anchor aria-hidden=true href=#deploy-the-avatar>#</a></h1><p>open_llm_vtuber deploy &ndash;avatar ./my-avatar &ndash;voice tts-1</p><pre tabindex=0><code>
+</code></pre><hr>
+<h2 id="when-to-use-advanced-features">When to Use Advanced Features<a hidden class="anchor" aria-hidden="true" href="#when-to-use-advanced-features">#</a></h2>
+<h3 id="multi-agent-conversations">Multi-Agent Conversations<a hidden class="anchor" aria-hidden="true" href="#multi-agent-conversations">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Create multiple agents with different personalities</span>
+</span></span><span style="display:flex;"><span>agent1 <span style="color:#f92672">=</span> AvatarClient(llm<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;claude-3&#34;</span>, avatar<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anime-girl&#34;</span>)
+</span></span><span style="display:flex;"><span>agent2 <span style="color:#f92672">=</span> AvatarClient(llm<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4&#34;</span>, avatar<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cyberpunk-man&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Have them converse</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> agent1<span style="color:#f92672">.</span>speak(<span style="color:#e6db74">&#34;Agent2, what do you think about AI companions?&#34;</span>)
+</span></span><span style="display:flex;"><span>print(agent2<span style="color:#f92672">.</span>get_last_response())
+</span></span></code></pre></div><h3 id="custom-avatar-models">Custom Avatar Models<a hidden class="anchor" aria-hidden="true" href="#custom-avatar-models">#</a></h3>
+<p>Open-LLM-VTuber supports custom Live2D avatar models: `````bash</p>
+<h1 id="import-your-own-live2d-model">Import your own Live2D model<a hidden class="anchor" aria-hidden="true" href="#import-your-own-live2d-model">#</a></h1>
+<p>open_llm_vtuber import &ndash;avatar ./my-avatar/model.json</p>
+<h1 id="test-the-avatar">Test the avatar<a hidden class="anchor" aria-hidden="true" href="#test-the-avatar">#</a></h1>
+<p>open_llm_vtuber preview &ndash;avatar ./my-avatar</p>
+<h1 id="deploy-the-avatar">Deploy the avatar<a hidden class="anchor" aria-hidden="true" href="#deploy-the-avatar">#</a></h1>
+<p>open_llm_vtuber deploy &ndash;avatar ./my-avatar &ndash;voice tts-1</p>
+<pre tabindex="0"><code>
 Custom avatars can be sourced from: - Live2D Cubism SDK models
 - Community avatar marketplace
 - Your own 3D character designs
@@ -124,28 +539,41 @@ avatar: model: &#34;live2d-model-1&#34;
   expressions: - &#34;happy&#34;
     - &#34;thinking&#34;
     - &#34;surprised&#34;
-</code></pre><h3 id=configuration-options>Configuration Options<a hidden class=anchor aria-hidden=true href=#configuration-options>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># View current configuration</span>
-</span></span><span style=display:flex><span>open_llm_vtuber config show
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Change LLM provider</span>
-</span></span><span style=display:flex><span>open_llm_vtuber config set llm.provider anthropic
-</span></span><span style=display:flex><span>open_llm_vtuber config set llm.model claude-3-5-sonnet
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Change voice model</span>
-</span></span><span style=display:flex><span>open_llm_vtuber config set voice.output.model piper
-</span></span><span style=display:flex><span>open_llm_vtuber config set voice.output.voice <span style=color:#e6db74>&#34;en_US-lessac-medium&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Test voice input</span>
-</span></span><span style=display:flex><span>open_llm_vtuber test --voice-input
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Test avatar rendering</span>
-</span></span><span style=display:flex><span>open_llm_vtuber test --avatar-preview
-</span></span></code></pre></div><hr><h2 id=advanced-features>Advanced Features<a hidden class=anchor aria-hidden=true href=#advanced-features>#</a></h2><p>For power users, Open-LLM-VTuber supports custom Python scripts: `````python</p><h1 id=custom-emotion-detection>Custom emotion detection<a hidden class=anchor aria-hidden=true href=#custom-emotion-detection>#</a></h1><p>import open_llm_vtuber as vtb</p><h1 id=set-up-emotion-aware-avatar>Set up emotion-aware avatar<a hidden class=anchor aria-hidden=true href=#set-up-emotion-aware-avatar>#</a></h1><p>def on_llm_response(response): # Analyze sentiment
-sentiment = analyze_sentiment(response)</p><pre><code># Set appropriate expression
+</code></pre><h3 id="configuration-options">Configuration Options<a hidden class="anchor" aria-hidden="true" href="#configuration-options">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># View current configuration</span>
+</span></span><span style="display:flex;"><span>open_llm_vtuber config show
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Change LLM provider</span>
+</span></span><span style="display:flex;"><span>open_llm_vtuber config set llm.provider anthropic
+</span></span><span style="display:flex;"><span>open_llm_vtuber config set llm.model claude-3-5-sonnet
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Change voice model</span>
+</span></span><span style="display:flex;"><span>open_llm_vtuber config set voice.output.model piper
+</span></span><span style="display:flex;"><span>open_llm_vtuber config set voice.output.voice <span style="color:#e6db74">&#34;en_US-lessac-medium&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Test voice input</span>
+</span></span><span style="display:flex;"><span>open_llm_vtuber test --voice-input
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Test avatar rendering</span>
+</span></span><span style="display:flex;"><span>open_llm_vtuber test --avatar-preview
+</span></span></code></pre></div><hr>
+<h2 id="advanced-features">Advanced Features<a hidden class="anchor" aria-hidden="true" href="#advanced-features">#</a></h2>
+<p>For power users, Open-LLM-VTuber supports custom Python scripts: `````python</p>
+<h1 id="custom-emotion-detection">Custom emotion detection<a hidden class="anchor" aria-hidden="true" href="#custom-emotion-detection">#</a></h1>
+<p>import open_llm_vtuber as vtb</p>
+<h1 id="set-up-emotion-aware-avatar">Set up emotion-aware avatar<a hidden class="anchor" aria-hidden="true" href="#set-up-emotion-aware-avatar">#</a></h1>
+<p>def on_llm_response(response): # Analyze sentiment
+sentiment = analyze_sentiment(response)</p>
+<pre><code># Set appropriate expression
 if sentiment &gt; 0.5: vtb.set_expression(&quot;happy&quot;)
 elif sentiment &lt; -0.5: vtb.set_expression(&quot;sad&quot;)
 else: vtb.set_expression(&quot;neutral&quot;)
-</code></pre><h1 id=register-callback>Register callback<a hidden class=anchor aria-hidden=true href=#register-callback>#</a></h1><p>vtb.register_response_callback(on_llm_response)</p><h1 id=start-with-emotion-detection>Start with emotion detection<a hidden class=anchor aria-hidden=true href=#start-with-emotion-detection>#</a></h1><p>vtb.start(emotion_detection=True)</p><pre tabindex=0><code>
+</code></pre>
+<h1 id="register-callback">Register callback<a hidden class="anchor" aria-hidden="true" href="#register-callback">#</a></h1>
+<p>vtb.register_response_callback(on_llm_response)</p>
+<h1 id="start-with-emotion-detection">Start with emotion detection<a hidden class="anchor" aria-hidden="true" href="#start-with-emotion-detection">#</a></h1>
+<p>vtb.start(emotion_detection=True)</p>
+<pre tabindex="0"><code>
 You can also create custom voice profiles: `````python
 # Create custom voice profile
 voice_profile = vtb.VoiceProfile(
@@ -159,7 +587,20 @@ voice_profile = vtb.VoiceProfile(
 # Save and use the profile
 voice_profile.save()
 vtb.set_voice(voice_profile.name)
-</code></pre><hr><h2 id=troubleshooting>Troubleshooting<a hidden class=anchor aria-hidden=true href=#troubleshooting>#</a></h2><p>Common issues and fixes: `````bash</p><h1 id=check-system-requirements>Check system requirements<a hidden class=anchor aria-hidden=true href=#check-system-requirements>#</a></h1><p>open_llm_vtuber doctor</p><h1 id=check-gpu-availability>Check GPU availability<a hidden class=anchor aria-hidden=true href=#check-gpu-availability>#</a></h1><p>open_llm_vtuber test &ndash;gpu</p><h1 id=verify-microphone-input>Verify microphone input<a hidden class=anchor aria-hidden=true href=#verify-microphone-input>#</a></h1><p>open_llm_vtuber test &ndash;mic</p><h1 id=check-audio-output>Check audio output<a hidden class=anchor aria-hidden=true href=#check-audio-output>#</a></h1><p>open_llm_vtuber test &ndash;speaker</p><h1 id=reset-configuration>Reset configuration<a hidden class=anchor aria-hidden=true href=#reset-configuration>#</a></h1><p>open_llm_vtuber reset-config</p><pre tabindex=0><code>
+</code></pre><hr>
+<h2 id="troubleshooting">Troubleshooting<a hidden class="anchor" aria-hidden="true" href="#troubleshooting">#</a></h2>
+<p>Common issues and fixes: `````bash</p>
+<h1 id="check-system-requirements">Check system requirements<a hidden class="anchor" aria-hidden="true" href="#check-system-requirements">#</a></h1>
+<p>open_llm_vtuber doctor</p>
+<h1 id="check-gpu-availability">Check GPU availability<a hidden class="anchor" aria-hidden="true" href="#check-gpu-availability">#</a></h1>
+<p>open_llm_vtuber test &ndash;gpu</p>
+<h1 id="verify-microphone-input">Verify microphone input<a hidden class="anchor" aria-hidden="true" href="#verify-microphone-input">#</a></h1>
+<p>open_llm_vtuber test &ndash;mic</p>
+<h1 id="check-audio-output">Check audio output<a hidden class="anchor" aria-hidden="true" href="#check-audio-output">#</a></h1>
+<p>open_llm_vtuber test &ndash;speaker</p>
+<h1 id="reset-configuration">Reset configuration<a hidden class="anchor" aria-hidden="true" href="#reset-configuration">#</a></h1>
+<p>open_llm_vtuber reset-config</p>
+<pre tabindex="0"><code>
 If voice input doesn&#39;t work: 1. Check microphone is selected in system audio settings
 2. Verify microphone permissions for the application
 3. Test with ````open_llm_vtuber test --mic````
@@ -176,8 +617,27 @@ docker-compose up -d --scale avatar=3
 # Load balanced across 3 instances
 # Access via nginx reverse proxy
 # Use Redis for session management
-</code></pre><p>Production features: - Horizontal scaling with Docker Swarm or Kubernetes</p><ul><li>Redis-backed session persistence</li><li>Nginx reverse proxy for load balancing</li><li>SSL/TLS termination at proxy level</li><li>Prometheus metrics for monitoring</li></ul><hr><h2 id=compared-to-alternatives>Compared to Alternatives<a hidden class=anchor aria-hidden=true href=#compared-to-alternatives>#</a></h2><p>| Feature | Open-LLM-VTuber | Replika | Character.ai | Local-only AI |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p>Production features: - Horizontal scaling with Docker Swarm or Kubernetes</p>
+<ul>
+<li>Redis-backed session persistence</li>
+<li>Nginx reverse proxy for load balancing</li>
+<li>SSL/TLS termination at proxy level</li>
+<li>Prometheus metrics for monitoring</li>
+</ul>
+<hr>
+<h2 id="compared-to-alternatives">Compared to Alternatives<a hidden class="anchor" aria-hidden="true" href="#compared-to-alternatives">#</a></h2>
+<p>| Feature | Open-LLM-VTuber | Replika | Character.ai | Local-only AI |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Voice Interaction | ✓ | ✓ | ✗ | ✗ |
 | Live2D Character | ✓ | ✗ | ✗ | ✗ |
 | Any LLM Support | ✓ | ✗ | ✗ | ✗ |
@@ -185,66 +645,212 @@ docker-compose up -d --scale avatar=3
 | Privacy | Full | Cloud | Cloud | Full |
 | Voice Latency | 1.5-3s | 2-4s | N/A | N/A |
 | Custom Avatars | ✓ | ✗ | ✗ | ✗ |
-| Price | Free | $10/mo | Free | Free |</p><hr><h2 id=limitations--honest-assessment>Limitations / Honest Assessment<a hidden class=anchor aria-hidden=true href=#limitations--honest-assessment>#</a></h2><p>Open-LLM-VTuber is not for everyone: - <strong>Desktop only</strong>: No mobile app (Windows, macOS, Linux only)</p><ul><li><strong>Developer-focused</strong>: Not a polished consumer product</li><li><strong>Resource intensive</strong>: Live2D + LLM + TTS needs decent hardware</li><li><strong>API costs</strong>: Using OpenAI/Anthropic costs money for long conversations</li></ul><p>It&rsquo;s built for <strong>tech enthusiasts and developers</strong> who want voice-powered AI avatars they can customize and control.</p><hr><h2 id=frequently-asked-questions>Frequently Asked Questions<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions>#</a></h2><h3 id=q1-what-llms-are-supported>Q1: What LLMs are supported?<a hidden class=anchor aria-hidden=true href=#q1-what-llms-are-supported>#</a></h3><p>Open-LLM-VTuber works with any LLM that has an API — OpenAI, Anthropic, Google, local models via Ollama or vLLM. You choose your engine.</p><h3 id=q2-is-my-conversation-data-private>Q2: Is my conversation data private?<a hidden class=anchor aria-hidden=true href=#q2-is-my-conversation-data-private>#</a></h3><p>Yes. When using local LLMs via Ollama or vLLM, all conversations stay on your machine. Even with cloud APIs, Open-LLM-VTuber doesn&rsquo;t store conversation data on its servers.</p><h3 id=q3-can-i-use-custom-avatars>Q3: Can I use custom avatars?<a hidden class=anchor aria-hidden=true href=#q3-can-i-use-custom-avatars>#</a></h3><p>Yes. You can import any Live2D model into Open-LLM-VTuber. The platform supports standard Live2D Cubism SDK format.</p><h3 id=q4-does-it-work-offline>Q4: Does it work offline?<a hidden class=anchor aria-hidden=true href=#q4-does-it-work-offline>#</a></h3><p>Yes, with local LLMs (Ollama, vLLM) and offline TTS (Piper). You get fully offline voice interaction with no internet connection.</p><h3 id=q5-how-much-does-it-cost>Q5: How much does it cost?<a hidden class=anchor aria-hidden=true href=#q5-how-much-does-it-cost>#</a></h3><p>Open-LLM-VTuber itself is free and open-source. Costs depend on your LLM choice: local models are free, cloud APIs have usage-based pricing.</p><h3 id=q6-can-i-customize-the-avatar-appearance>Q6: Can I customize the avatar appearance?<a hidden class=anchor aria-hidden=true href=#q6-can-i-customize-the-avatar-appearance>#</a></h3><p>Yes. You can import custom Live2D models, change expressions, adjust voice tone, and configure personality prompts.</p><hr><h2 id=sources--further-reading>Sources & Further Reading<a hidden class=anchor aria-hidden=true href=#sources--further-reading>#</a></h2><ul><li>Official docs: <a href=https://open-llm-vtuber.github.io/docs/quick-start>Open-LLM-VTuber Docs</a></li><li>GitHub repository: <a href=https://github.com/Open-LLM-VTuber/Open-LLM-VTuber>Open-LLM-VTuber/Open-LLM-VTuber</a></li><li>Live2D models: <a href=https://www.live2d.com/en/learn/>Live2D Official</a></li><li>Community discussions: <a href=https://github.com/Open-LLM-VTuber/Open-LLM-VTuber/discussions>GitHub Discussions</a></li></ul><hr><h2 id=conclusion-bring-your-ai-to-life>Conclusion: Bring Your AI to Life<a hidden class=anchor aria-hidden=true href=#conclusion-bring-your-ai-to-life>#</a></h2><p>Open-LLM-VTuber solves the &ldquo;screen-bound AI&rdquo; problem. It transforms any LLM into a voice-powered avatar with Live2D character rendering, voice interruption, and hands-free interaction.</p><p><strong>Quick Start One-Liner:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>git clone https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git <span style=color:#f92672>&amp;&amp;</span> cd Open-LLM-VTuber <span style=color:#f92672>&amp;&amp;</span> pip install -r requirements.txt <span style=color:#f92672>&amp;&amp;</span> python run.py
-</span></span><span style=display:flex><span><span style=color:#e6db74>````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>This clones, installs dependencies, and launches the VTuber in one command. It works on Windows, macOS, and Linux.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Open-LLM-VTuber brings AI companionship to life. With 10K+ GitHub stars, voice-powered interaction, Live2D characters, and full LLM compatibility — it<span style=color:#e6db74>&#34;s the most complete open-source AI avatar platform available today.
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>For self-hosted deployment on a VPS, consider using [HTStack](https://my.htstack.com/aff.php?aff=27187) for affordable GPU hosting, or [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for easy cloud setup.
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>Join the **dibi8 [English Telegram group](https://t.me/DIBI8_Group/2)** for discussions on AI avatars and voice-powered LLM interaction.
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>Related articles: - [Supermemory API](/resources/llm-frameworks/supermemory-open-source-ai-memory-api/)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>*Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>{
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;</span>@context<span style=color:#e6db74>&#34;: &#34;</span>https://schema.org<span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;</span>@type<span style=color:#e6db74>&#34;: &#34;</span>Article<span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;</span>headline<span style=color:#e6db74>&#34;: &#34;</span>Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Characters — Run 10K+ Stars Open-Source AI Avatar Free<span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;</span>datePublished<span style=color:#e6db74>&#34;: &#34;</span>2026-06-10<span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;</span>dateModified<span style=color:#e6db74>&#34;: &#34;</span>2026-06-10<span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;</span>author<span style=color:#e6db74>&#34;: {
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;</span>@type<span style=color:#e6db74>&#34;: &#34;</span>Organization<span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;</span>name<span style=color:#e6db74>&#34;: &#34;</span>Dibi8<span style=color:#e6db74>&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  },
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;</span>publisher<span style=color:#e6db74>&#34;: {
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;</span>@type<span style=color:#e6db74>&#34;: &#34;</span>Organization<span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;</span>name<span style=color:#e6db74>&#34;: &#34;</span>Dibi8<span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;</span>logo<span style=color:#e6db74>&#34;: {
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      &#34;</span>@type<span style=color:#e6db74>&#34;: &#34;</span>ImageObject<span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      &#34;</span>url<span style=color:#e6db74>&#34;: &#34;</span>https://dibi8.com/logo.png<span style=color:#e6db74>&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    }
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  },
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#34;</span>mainEntityOfPage<span style=color:#e6db74>&#34;: {
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;</span>@type<span style=color:#e6db74>&#34;: &#34;</span>WebPage<span style=color:#e6db74>&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;</span>@id<span style=color:#e6db74>&#34;: &#34;</span>https://dibi8.com/resources/open-llm-vtuber-voice-powered-ai-avatar<span style=color:#e6db74>&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  }
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>}
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>&lt;/script&gt;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>* * *
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>## Related Articles
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>- [open-llm-vtuber-voice-powered-ai-avatar](open-llm-vtuber-voice-powered-ai-avatar)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>- [open-llm-vtuber-voice-powered-ai-avatar](open-llm-vtuber-voice-powered-ai-avatar)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>- [free-mcp-tools-top10-2026](open-llm-vtuber-voice-powered-ai-avatar)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>- [impeccable-ai-design-language-harness-quality-ui](open-llm-vtuber-voice-powered-ai-avatar)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>- [cc-switch-all-in-one-ai-coding-agent-manager](open-llm-vtuber-voice-powered-ai-avatar)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>* * *
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
-</span></span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/open-design-local-first-ai-design-tool/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+| Price | Free | $10/mo | Free | Free |</p>
+<hr>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations--honest-assessment">#</a></h2>
+<p>Open-LLM-VTuber is not for everyone: - <strong>Desktop only</strong>: No mobile app (Windows, macOS, Linux only)</p>
+<ul>
+<li><strong>Developer-focused</strong>: Not a polished consumer product</li>
+<li><strong>Resource intensive</strong>: Live2D + LLM + TTS needs decent hardware</li>
+<li><strong>API costs</strong>: Using OpenAI/Anthropic costs money for long conversations</li>
+</ul>
+<p>It&rsquo;s built for <strong>tech enthusiasts and developers</strong> who want voice-powered AI avatars they can customize and control.</p>
+<hr>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<h3 id="q1-what-llms-are-supported">Q1: What LLMs are supported?<a hidden class="anchor" aria-hidden="true" href="#q1-what-llms-are-supported">#</a></h3>
+<p>Open-LLM-VTuber works with any LLM that has an API — OpenAI, Anthropic, Google, local models via Ollama or vLLM. You choose your engine.</p>
+<h3 id="q2-is-my-conversation-data-private">Q2: Is my conversation data private?<a hidden class="anchor" aria-hidden="true" href="#q2-is-my-conversation-data-private">#</a></h3>
+<p>Yes. When using local LLMs via Ollama or vLLM, all conversations stay on your machine. Even with cloud APIs, Open-LLM-VTuber doesn&rsquo;t store conversation data on its servers.</p>
+<h3 id="q3-can-i-use-custom-avatars">Q3: Can I use custom avatars?<a hidden class="anchor" aria-hidden="true" href="#q3-can-i-use-custom-avatars">#</a></h3>
+<p>Yes. You can import any Live2D model into Open-LLM-VTuber. The platform supports standard Live2D Cubism SDK format.</p>
+<h3 id="q4-does-it-work-offline">Q4: Does it work offline?<a hidden class="anchor" aria-hidden="true" href="#q4-does-it-work-offline">#</a></h3>
+<p>Yes, with local LLMs (Ollama, vLLM) and offline TTS (Piper). You get fully offline voice interaction with no internet connection.</p>
+<h3 id="q5-how-much-does-it-cost">Q5: How much does it cost?<a hidden class="anchor" aria-hidden="true" href="#q5-how-much-does-it-cost">#</a></h3>
+<p>Open-LLM-VTuber itself is free and open-source. Costs depend on your LLM choice: local models are free, cloud APIs have usage-based pricing.</p>
+<h3 id="q6-can-i-customize-the-avatar-appearance">Q6: Can I customize the avatar appearance?<a hidden class="anchor" aria-hidden="true" href="#q6-can-i-customize-the-avatar-appearance">#</a></h3>
+<p>Yes. You can import custom Live2D models, change expressions, adjust voice tone, and configure personality prompts.</p>
+<hr>
+<h2 id="sources--further-reading">Sources &amp; Further Reading<a hidden class="anchor" aria-hidden="true" href="#sources--further-reading">#</a></h2>
+<ul>
+<li>Official docs: <a href="https://open-llm-vtuber.github.io/docs/quick-start">Open-LLM-VTuber Docs</a></li>
+<li>GitHub repository: <a href="https://github.com/Open-LLM-VTuber/Open-LLM-VTuber">Open-LLM-VTuber/Open-LLM-VTuber</a></li>
+<li>Live2D models: <a href="https://www.live2d.com/en/learn/">Live2D Official</a></li>
+<li>Community discussions: <a href="https://github.com/Open-LLM-VTuber/Open-LLM-VTuber/discussions">GitHub Discussions</a></li>
+</ul>
+<hr>
+<h2 id="conclusion-bring-your-ai-to-life">Conclusion: Bring Your AI to Life<a hidden class="anchor" aria-hidden="true" href="#conclusion-bring-your-ai-to-life">#</a></h2>
+<p>Open-LLM-VTuber solves the &ldquo;screen-bound AI&rdquo; problem. It transforms any LLM into a voice-powered avatar with Live2D character rendering, voice interruption, and hands-free interaction.</p>
+<p><strong>Quick Start One-Liner:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/Open-LLM-VTuber/Open-LLM-VTuber.git <span style="color:#f92672">&amp;&amp;</span> cd Open-LLM-VTuber <span style="color:#f92672">&amp;&amp;</span> pip install -r requirements.txt <span style="color:#f92672">&amp;&amp;</span> python run.py
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>This clones, installs dependencies, and launches the VTuber in one command. It works on Windows, macOS, and Linux.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Open-LLM-VTuber brings AI companionship to life. With 10K+ GitHub stars, voice-powered interaction, Live2D characters, and full LLM compatibility — it<span style="color:#e6db74">&#34;s the most complete open-source AI avatar platform available today.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">For self-hosted deployment on a VPS, consider using [HTStack](https://my.htstack.com/aff.php?aff=27187) for affordable GPU hosting, or [DigitalOcean](https://m.do.co/c/eca87ac14ee0) for easy cloud setup.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Join the **dibi8 [English Telegram group](https://t.me/DIBI8_Group/2)** for discussions on AI avatars and voice-powered LLM interaction.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Related articles: - [Supermemory API](/resources/llm-frameworks/supermemory-open-source-ai-memory-api/)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">*Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;</span>@context<span style="color:#e6db74">&#34;: &#34;</span>https://schema.org<span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;</span>@type<span style="color:#e6db74">&#34;: &#34;</span>Article<span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;</span>headline<span style="color:#e6db74">&#34;: &#34;</span>Open-LLM-VTuber: Voice-Powered LLM Chat with Live2D Characters — Run 10K+ Stars Open-Source AI Avatar Free<span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;</span>datePublished<span style="color:#e6db74">&#34;: &#34;</span>2026-06-10<span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;</span>dateModified<span style="color:#e6db74">&#34;: &#34;</span>2026-06-10<span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;</span>author<span style="color:#e6db74">&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;</span>@type<span style="color:#e6db74">&#34;: &#34;</span>Organization<span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;</span>name<span style="color:#e6db74">&#34;: &#34;</span>Dibi8<span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  },
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;</span>publisher<span style="color:#e6db74">&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;</span>@type<span style="color:#e6db74">&#34;: &#34;</span>Organization<span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;</span>name<span style="color:#e6db74">&#34;: &#34;</span>Dibi8<span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;</span>logo<span style="color:#e6db74">&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;</span>@type<span style="color:#e6db74">&#34;: &#34;</span>ImageObject<span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;</span>url<span style="color:#e6db74">&#34;: &#34;</span>https://dibi8.com/logo.png<span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  },
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;</span>mainEntityOfPage<span style="color:#e6db74">&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;</span>@type<span style="color:#e6db74">&#34;: &#34;</span>WebPage<span style="color:#e6db74">&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;</span>@id<span style="color:#e6db74">&#34;: &#34;</span>https://dibi8.com/resources/open-llm-vtuber-voice-powered-ai-avatar<span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;/script&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">* * *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">## Related Articles
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [open-llm-vtuber-voice-powered-ai-avatar](open-llm-vtuber-voice-powered-ai-avatar)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [open-llm-vtuber-voice-powered-ai-avatar](open-llm-vtuber-voice-powered-ai-avatar)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [free-mcp-tools-top10-2026](open-llm-vtuber-voice-powered-ai-avatar)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [impeccable-ai-design-language-harness-quality-ui](open-llm-vtuber-voice-powered-ai-avatar)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [cc-switch-all-in-one-ai-coding-agent-manager](open-llm-vtuber-voice-powered-ai-avatar)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">* * *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</span></span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ai-coding-agents/open-design-local-first-ai-design-tool/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>

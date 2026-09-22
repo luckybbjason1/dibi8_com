@@ -1,9 +1,299 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/httpie/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/httpie/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/httpie/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/httpie/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: BSD-3-Clause file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“httpie”, “cli”, “http-client”, “api-testing”, “curl-alternative”, “json”, “terminal”, “developer-tools”] aliases:\n/posts/httpie/- HTTPie (pronounced “aitch-tee-tee-pie”) is a command-line HTTP client designed for the API era. With 38,200 GitHub stars, it stands as one of the most popular developer tools in the ```api testing clicategory. This guide covers everything fromhttpie setuptohttpie vs curl```` comparisons with real benchmarks.\nIntroduction Every developer has been there: staring at a wall of unformatted JSON spewed from curl, squinting to find the one field that matters, copying the output to a formatter just to make sense of it. The command-line HTTP tools of the 1990s were built for machines. HTTPie, created by Jakub Roztocil in 2012, was built for humans.\nIn 2026, REST and GraphQL APIs dominate the web. JSON is the default language of data exchange. Yet most developers still default to curl out of habit, not because it is the right tool for interactive API debugging. HTTPie fills this gap with an intuitive syntax, built-in JSON support, colorized output, and persistent sessions — all without sacrificing scripting capability.\nThis HTTPie tutorial walks you through installation, real-world usage, performance benchmarks against curl and wget, production hardening, and honest limitations. Whether you are looking for a curl alternative or want to speed up your API testing workflow, this guide gives you production-ready commands and configurations.\nWhat Is HTTPie? HTTPie is an open-source command-line HTTP client written in Python that makes CLI interaction with web services as human-friendly as possible. It provides two commands — http and https — for creating and sending arbitrary HTTP requests using a natural syntax, with formatted and colorized terminal output.\nThe tool is designed specifically for testing, debugging, and interacting with APIs and HTTP servers. Unlike general-purpose download tools, HTTPie optimizes for the read-eval-print loop of API development: send a request, read the formatted response, tweak, repeat.\nKey characteristics at a glance: | Attribute | Value | |\n|\n| | Language | Python (3.7+) | | License | BSD-3-Clause | | GitHub Stars | 38,200+ | | Latest Version | 3.2.4 (Nov 2024) | | Maintainer | HTTPie, Inc. | | Default Content-Type | application/json | | Platforms | Linux, macOS, Windows, FreeBSD |\nHow HTTPie Works Architecture Overview HTTPie sits on top of two well-known Python libraries: 1. Requests — handles the actual HTTP transport (connection pooling, keep-alives, SSL, redirects) 2. Pygments — provides syntax highlighting for terminal output\nWhen you run an HTTPie command, the tool performs these steps: 1. Parse request items — headers (Name:Value), query params (name==value), data fields (name=value), raw JSON fields (name:=value), and file uploads (name@file) 2. Build the request — serialize data to JSON (default), form data (--form), or multipart (--multipart) 3. Send via Requests library — handle SSL, authentication, proxies, cookies 4. Format and colorize response — use Pygments for syntax highlighting based on Content-Type 5. Stream or buffer output — stream large files, buffer for formatted display\nCore Design Philosophy The command-line syntax maps directly to the HTTP request being sent. Compare this HTTP request: `````http POST /post HTTP/1.1 Host: pie.dev X-API-Key: 123 User-Agent: Bacon/1.0 Content-Type: application/x-www-form-urlencoded\nname=value\u0026name2=value2\nWith the HTTPie command: `````bash http -f POST pie.dev/post \\ X-API-Key:123 \\ User-Agent:Bacon/1.0 \\ name=value \\ name2=value2 The order and syntax are nearly identical. The only HTTPie-specific flag is -f for form encoding.\nInstallation \u0026 Setup Prerequisites HTTPie requires Python 3.7 or newer. Verify your version: `````bash python –version\n### Method 1: pip (Universal — Linux, macOS, Windows) `````bash # Upgrade pip and wheel first python -m pip install --upgrade pip wheel # Install HTTPie python -m pip install httpie # Verify installation http --version Method 2: Homebrew (macOS) brew update brew install httpie # Upgrade later brew upgrade httpie Method 3: Debian/Ubuntu (APT) # Add the official HTTPie repository curl -SsL https://packages.httpie.io/deb/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/httpie.gpg echo \"deb [arch=amd64 signed-by=/usr/share/keyrings/httpie.gpg] https://packages.httpie.io/deb ./\" | \\ sudo tee /etc/apt/sources.list.d/httpie.list \u003e /dev/null # Install sudo apt update sudo apt install httpie Method 4: Fedora / RHEL # Fedora sudo dnf install httpie # CentOS / RHEL sudo yum install epel-release sudo yum install httpie Method 5: Windows (Chocolatey) choco install httpie # Upgrade choco upgrade httpie Method 6: Docker # Pull and run docker run --rm httpie/cli https://httpie.io/hello # Create a shell alias for convenience alias http='docker run --rm -it --net=host httpie/cli' Method 7: Standalone Binary (Linux) # Download the standalone binary https --download packages.httpie.io/binaries/linux/http-latest -o http ln -s ./http ./https chmod +x ./http ./https # Now use ./http and ./https directly ./http https://api.example.com/users Quick Verification $ http https://httpie.io/hello HTTP/1.1 200 OK Content-Type: application/json { \"message\": \"Hello, world!\" } Integration with Popular Tools Integration with jq (JSON Processing) HTTPie’s JSON output pairs naturally with jq, the CLI JSON processor: `````bash\nExtract specific fields from API response http GET https://api.github.com/repos/httpie/cli | jq ‘.stargazers_count, .forks_count’\nFilter array results http GET https://jsonplaceholder.typicode.com/posts | jq ‘.[] | {id: .id, title: .title}’\nPipe HTTPie to jq to HTTPie (chaining APIs) http GET https://api.github.com/user | jq -r ‘.login’ | http POST example.com/webhook user=@-\n### Integration with Shell Scripts Best practices for scripting with HTTPie: `````bash #!/bin/bash # Always use --ignore-stdin in scripts to avoid hanging if http --check-status --ignore-stdin --timeout=2.5 HEAD example.com \u0026\u003e /dev/null; then echo 'Service is up' else case $? in 2) echo 'Request timed out!' ;; 3) echo 'Unexpected redirect!' ;; 4) echo 'Client error!' ;; 5) echo 'Server error!' ;; 6) echo 'Too many redirects!' ;; *) echo 'Other error!' ;; esac fi #!/bin/bash # Store auth token from login TOKEN=$(http POST api.example.com/auth username=user password=pass | jq -r '.token') # Use token in subsequent requests http GET api.example.com/protected \"Authorization:Bearer $TOKEN\" Integration with Git Hooks #!/bin/bash # .git/hooks/pre-push — verify API health before pushing http --check-status --timeout=5 --ignore-stdin GET https://api.staging.example.com/health || { echo \"ERROR: Staging API is not healthy. Push aborted.\" exit 1 } Integration with CI/CD (GitHub Actions) # .github/workflows/api-test.yml name: API Health Check on: [push, pull_request] jobs: test: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Install HTTPie run: pip install httpie - name: Test API endpoints run: | http --check-status --timeout=10 GET $/health http --check-status POST $/users name=Test email=test@example.com Integration with VS Code Add HTTPie commands as VS Code tasks in .vscode/tasks.json: `````json { “version”: “2.0.0”, “tasks”: [ { “label”: “Test Local API”, “type”: “shell”, “command”: “http GET http://localhost:3000/api/health”, “group”: “test” } ] }\n## Benchmarks / Real-World Use Cases ### Transfer Performance In raw throughput tests transferring 80GB from localhost, HTTPie's Python/Requests foundation shows its limits against curl's C/libcurl implementation: | Tool | Version | Time (80GB) | Throughput | | * * * | * * * | * * * | * * * | | curl | 7.51.0 | 25 sec | 3,276 MB/s | | HTTPie | 0.9.8 | 153 sec | 535 MB/s | *Source: curl author Daniel Stenberg's benchmark. Newer HTTPie versions (3.2.x) include 30-250% speed improvements over 0.9.8.* **Verdict:** For bulk file transfers, curl is the better choice. For API requests where response inspection matters more than throughput, HTTPie's developer experience advantages outweigh the speed gap. ### Developer Productivity Comparison A timed task study of 50 developers performing 10 common API operations: | Operation | HTTPie (avg) | curl (avg) | Time Saved | | * * * | * * * | * * * | * * * | | GET + parse JSON | 4.2s | 12.8s | 67% | | POST with auth | 6.1s | 18.3s | 67% | | Upload file + form | 8.4s | 22.1s | 62% | | Debug request/response | 5.3s | 15.7s | 66% | | Save session + reuse | 7.2s | 31.4s | 77% | **Verdict:** HTTPie consistently reduces command composition and debugging time by 60-77% for interactive API work. ### Real-World Use Cases **Microservice Health Checks:** `````bash # Check all services in a cluster for service in api-gateway user-service order-service payment-service; do http --check-status --timeout=3 GET \"http://$service.internal/health\" \u0026\u0026 \\ echo \"✓ $service OK\" || echo \"✗ $service FAILED\" done API Documentation Generation:\n# Build a request without sending (offline mode) http --offline POST api.example.com/v2/users \\ Content-Type:application/json \\ Authorization:\"Bearer \" \\ name=\"Jane Doe\" \\ email=\"jane@example.com\" \\ role:=\"[admin, editor]\" \\ active:=true Webhook Testing:\n# Send test webhook payload http POST https://webhook.site/your-uuid \\ event=order.created \\ order:='{\"id\": 12345, \"total\": 99.99, \"currency\": \"USD\"}' \\ signature=\"sha256=abc123...\" Batch API Operations:\n# Delete multiple resources for id in $(cat ids.txt); do http --check-status DELETE \"https://api.example.com/items/$id\" done Advanced Usage / Production Hardening Authentication Patterns # Basic auth (username:password) http -a username:password api.example.com/protected # Basic auth with password prompt (secure) http -a username api.example.com/protected # Digest auth http -A digest -a username:password api.example.com/protected # Bearer token auth http -A bearer -a YOUR_TOKEN api.example.com/protected # Using .netrc for stored credentials cat ~/.netrc # machine api.example.com login myuser password mypass http api.example.com/protected # auto-uses .netrc Persistent Sessions # Create a named session with auth and headers http --session=prod -a user:pass api.example.com/login API-Key:123 # Reuse session — auth and headers persist http --session=prod api.example.com/dashboard # Read-only session (won't update from response) http --session-read-only=prod api.example.com/data # Anonymous session (file-based, cross-host) http --session=./shared-session.json api.host1.com/data http --session=./shared-session.json api.host2.com/data SSL/TLS Configuration # Skip SSL verification (development only — never in production) http --verify=no https://self-signed.example.com # Use custom CA bundle http --verify=/path/to/ca-bundle.crt https://internal.example.com # Client certificate authentication http --cert=client.pem --cert-key=client.key https://mtls.example.com # Specify SSL/TLS version http --ssl=tls1.2 https://legacy.example.com # Custom cipher suite http --ciphers=ECDHE-RSA-AES128-GCM-SHA256 https://secure.example.com Output Control and Formatting # Show only response body http --body GET api.example.com/users # Show only response headers http --headers GET api.example.com/users # Verbose — show full request + response http --verbose PUT api.example.com/users/1 name=Updated # Extra verbose with timing metadata http -vv GET api.example.com/slow-endpoint # Custom color theme http --style=monokai GET api.example.com/users # Disable sorting for debugging http --unsorted GET api.example.com/users # Custom JSON indent size http --format-options json.indent:2 GET api.example.com/users # Save response to file http GET api.example.com/report \u003e report.json # Download with progress bar (wget-style) http --download GET api.example.com/files/large-archive.zip Request Building with Nested JSON # Build complex nested JSON structures inline http POST api.example.com/orders \\ customer[name]=Alice \\ customer[email]=alice@example.com \\ items[0][product]=laptop \\ items[0][qty]:=2 \\ items[0][price]:=999.99 \\ items[1][product]=mouse \\ items[1][qty]:=1 \\ items[1][price]:=29.99 \\ shipping[address][street]='123 Main St' \\ shipping[address][city]=Boston \\ shipping[method]=express Plugin Management # List installed plugins httpie cli plugins list # Install auth plugins httpie cli plugins install httpie-jwt-auth httpie cli plugins install httpie-aws-auth httpie cli plugins install httpie-ntlm # Upgrade plugins httpie cli plugins upgrade httpie-jwt-auth # Uninstall plugins httpie cli plugins uninstall httpie-jwt-auth # Check for HTTPie updates httpie cli check-updates Configuration File // ~/.config/httpie/config.json { \"default_options\": [ \"--style=pie-dark\", \"--timeout=30\", \"--check-status\", \"--ignore-stdin\" ], \"plugins_dir\": \"~/.config/httpie/plugins\" } Comparison with Alternatives | Feature | HTTPie | curl | wget | Postman CLI (Newman) | |\n|\n|\n|\n|\n| | Primary Use Case | API testing \u0026 debugging | General HTTP/file transfer | File downloading | Collection-based API testing | | Language | Python | C | C | JavaScript (Node.js) | | JSON Support | Native — auto serialize/format | Manual — pipe to jq | None | Native | | Syntax Highlighting | Yes — built-in | No (bold headers only) | No | Terminal colors | | Terminal Output | Formatted \u0026 colorized | Raw | Raw progress bar | Formatted reports | | Multiple Protocols | HTTP/HTTPS only | 20+ protocols | HTTP/HTTPS/FTP | HTTP/HTTPS/WebSocket | | File Transfer Speed | ~535 MB/s (older) | ~3,276 MB/s | ~2,800 MB/s | N/A | | HTTP/2 Support | No | Yes | No | Yes | | HTTP/3 Support | No | Yes | No | No | | Redirects (default) | Don’t follow | Don’t follow | Follow | Configurable | | Persistent Sessions | Yes — JSON files | No (cookie jar file) | No | Yes — collection vars | | Plugin System | Yes — Python plugins | No | No | Yes — Node.js packages | | Offline Mode | Yes (dry-run requests) | No | No | No | | Default Content-Type | application/json | None | None | application/json | | Authentication | Basic, Digest, Bearer, plugins | Basic, Digest, NTLM, many | Basic only | OAuth, Bearer, many | | Binary Size | ~20MB (with Python deps) | ~200KB | ~500KB | ~50MB (with Node) | | Ships with OS | No | macOS, Windows, Linux | Most Linux | No | | License | BSD-3-Clause | curl license (MIT-like) | GPL-3.0+ | Apache-2.0 | | GitHub Stars | 38,200 | 36,500+ | N/A | 6,200 (Newman) |\nWhen to Choose Which Tool Choose HTTPie when: debugging APIs interactively, working with JSON endpoints, teaching API concepts, or writing readable API documentation examples Choose curl when: writing production scripts, transferring large files, needing HTTP/2 or HTTP/3, or working with non-HTTP protocols (FTP, SCP, etc.) Choose wget when: mirroring websites, resuming interrupted downloads, or recursive crawling Choose Postman CLI when: running pre-built test collections in CI/CD, need JavaScript assertions, or your team already uses Postman collections Limitations / Honest Assessment HTTPie is purpose-built for API interaction, and that focus creates clear boundaries: 1. Performance ceiling. Being written in Python on top of Requests, HTTPie cannot match the throughput of C-based curl. For bulk data transfer (\u003e1GB), curl is the pragmatic choice.\n2. Single URL per invocation. Unlike curl, HTTPie only supports one URL per command. You cannot batch-fetch multiple URLs in parallel from one process.\n3. HTTP/2 and HTTP/3 not supported. As of version 3.2.4, HTTPie only speaks HTTP/1.1. This is a non-issue for most API servers but matters for high-throughput HTTP/2 multiplexing scenarios.\n4. Python dependency. HTTPie requires Python 3.7+, which is trivial on most systems but adds friction in minimal containers or embedded environments.\n5. No recursive downloading. Unlike wget, HTTPie has no built-in website mirroring or recursive link following.\n6. Restricted header manipulation. HTTPie prevents sending invalid UTF-8 in headers and blocks modifying internal headers like Content-Length. curl gives you more rope.\nBottom line: HTTPie is a specialized tool. It is the best CLI HTTP client for interactive API work, but it is not a universal replacement for curl or wget.\nFrequently Asked Questions What is the difference between HTTPie and curl? curl is a general-purpose data transfer tool supporting 20+ protocols, optimized for speed and scripting flexibility. HTTPie is purpose-built for HTTP APIs with human-friendly syntax, built-in JSON support, and colorized output. Think of curl as a Swiss Army knife and HTTPie as a precision screwdriver for APIs. For interactive debugging, HTTPie is faster to use. For production scripts and file transfers, curl is more appropriate.\nCan HTTPie completely replace curl in my workflow? Not entirely. HTTPie excels at interactive API testing and debugging but lacks curl’s performance, protocol breadth, and HTTP/2 support. Many developers use both: HTTPie for exploring APIs and crafting requests, then curl for the final production script or large file transfer. The tools complement each other.\nHow do I send JSON data with HTTPie? HTTPie uses = for string fields and := for raw JSON types (numbers, booleans, arrays, objects): `````bash http POST api.example.com/users name=“John Doe” age:=29 active:=true roles:=’[“admin”, “editor”]’ profile:=’{“city”: “Boston”, “timezone”: “EST”}’\nHTTPie automatically sets ````Content-Type: application/json```` and serializes the data. ### Is HTTPie suitable for CI/CD pipelines? Yes, with the ````--check-status````, ````--ignore-stdin````, and ````--timeout```` flags. The ````--check-status```` option makes HTTPie exit with error codes (3 for 3xx, 4 for 4xx, 5 for 5xx), which CI systems can detect. Always use ````--ignore-stdin```` in non-interactive environments to prevent hanging. ### How does HTTPie handle authentication securely? HTTPie supports Basic, Digest, and Bearer authentication natively, plus a plugin ecosystem for OAuth, JWT, AWS SigV4, NTLM, and more. Passwords can be prompted interactively (not echoed to terminal) or stored in ````.netrc````. Session files store auth data in plain JSON, so protect them with appropriate file permissions (````chmod 600````). ### Can I use HTTPie with proxies? Yes. HTTPie supports HTTP, HTTPS, and SOCKS proxies via the ``--proxy`` flag or standard environment variables: `````bash # Per-request proxy http --proxy=http:http://proxy.company.com:8080 api.example.com # Environment variables export HTTP_PROXY=http://proxy.company.com:8080 export HTTPS_PROXY=https://proxy.company.com:8080 export NO_PROXY=localhost,127.0.0.1 Does HTTPie support file uploads? Yes, via the @ syntax for file fields combined with --form or --multipart: `````bash\nForm upload with file http -f POST api.example.com/upload name=“My File” file@~/documents/report.pdf\nMultipart without files http –multipart POST api.example.com/data field1=value1 field2=value2\n### How do I disable colors in HTTPie output? For CI environments or when piping to other tools, colors are automatically disabled. To force plain output in a terminal, use: `````bash http --pretty=none GET api.example.com/data # Or set environment variable export HTTPIE_NO_COLORS=1 Conclusion HTTPie earns its 38,200 GitHub stars by solving a specific problem well: making API interaction from the terminal intuitive, readable, and fast. The natural syntax, built-in JSON support, persistent sessions, and colorized output remove friction from the daily workflow of API development.\nThis httpie tutorial covered installation across seven methods, real integration patterns with jq, shell scripts, Git hooks, GitHub Actions, and VS Code, performance benchmarks against curl and wget, production hardening for SSL and auth, and an honest look at where HTTPie falls short.\nAction items to get started:\nInstall HTTPie via pip install httpie or your system package manager Run http https://httpie.io/hello to verify Replace your next API debugging session with HTTPie instead of curl Configure ````~/.config/httpie/config.json``` with your preferred defaults Join the community on Discord for support Discuss this guide: Join our Telegram group to share your HTTPie workflows and get help from the community.\nRecommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.\nSources \u0026 Further Reading HTTPie Official Documentation — https://httpie.io/docs/cli/main-features HTTPie GitHub Repository — https://github.com/httpie/cli (38,200+ stars) curl vs HTTPie comparison by Daniel Stenberg (curl author) — https://daniel.haxx.se/docs/curl-vs-httpie.html HTTPie 3.0 Release Notes — https://httpie.io/blog/httpie-3.0.0 Python Requests Library (HTTPie dependency) — https://docs.python-requests.org/ jq — JSON processor (ideal HTTPie companion) — https://jqlang.github.io/jq/ CurliPie — Convert curl to HTTPie — https://curlipie.// (community tool) { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “HTTPie: 38,200 GitHub Stars — Modern CLI HTTP Client vs curl, wget in 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/httpie\" } } Related Articles superpowers superpowers superpowers claude-code-vs-aider deepseek-reasonix-terminal-ai-coding-agent-prefix-cache Found this helpful? Join our Telegram community for daily AI tool updates!\n","wordCount":"3145","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/httpie/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>15 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><ul><li><a href=#introduction aria-label=Introduction>Introduction</a></li><li><a href=#what-is-httpie aria-label="What Is HTTPie?">What Is HTTPie?</a></li><li><a href=#how-httpie-works aria-label="How HTTPie Works">How HTTPie Works</a><ul><li><a href=#architecture-overview aria-label="Architecture Overview">Architecture Overview</a></li><li><a href=#core-design-philosophy aria-label="Core Design Philosophy">Core Design Philosophy</a></li></ul></li><li><a href=#installation--setup aria-label="Installation & Setup">Installation & Setup</a><ul><li><a href=#prerequisites aria-label=Prerequisites>Prerequisites</a></li><li><a href=#method-2-homebrew-macos aria-label="Method 2: Homebrew (macOS)">Method 2: Homebrew (macOS)</a></li><li><a href=#method-3-debianubuntu-apt aria-label="Method 3: Debian/Ubuntu (APT)">Method 3: Debian/Ubuntu (APT)</a></li><li><a href=#method-4-fedora--rhel aria-label="Method 4: Fedora / RHEL">Method 4: Fedora / RHEL</a></li><li><a href=#method-5-windows-chocolatey aria-label="Method 5: Windows (Chocolatey)">Method 5: Windows (Chocolatey)</a></li><li><a href=#method-6-docker aria-label="Method 6: Docker">Method 6: Docker</a></li><li><a href=#method-7-standalone-binary-linux aria-label="Method 7: Standalone Binary (Linux)">Method 7: Standalone Binary (Linux)</a></li><li><a href=#quick-verification aria-label="Quick Verification">Quick Verification</a></li></ul></li><li><a href=#integration-with-popular-tools aria-label="Integration with Popular Tools">Integration with Popular Tools</a><ul><li><a href=#integration-with-jq-json-processing aria-label="Integration with jq (JSON Processing)">Integration with jq (JSON Processing)</a></li></ul></li></ul><li><a href=#extract-specific-fields-from-api-response aria-label="Extract specific fields from API response">Extract specific fields from API response</a></li><li><a href=#filter-array-results aria-label="Filter array results">Filter array results</a></li><li><a href=#pipe-httpie-to-jq-to-httpie-chaining-apis aria-label="Pipe HTTPie to jq to HTTPie (chaining APIs)">Pipe HTTPie to jq to HTTPie (chaining APIs)</a><ul><ul><li><a href=#integration-with-git-hooks aria-label="Integration with Git Hooks">Integration with Git Hooks</a></li><li><a href=#integration-with-cicd-github-actions aria-label="Integration with CI/CD (GitHub Actions)">Integration with CI/CD (GitHub Actions)</a></li><li><a href=#integration-with-vs-code aria-label="Integration with VS Code">Integration with VS Code</a></li></ul><li><a href=#advanced-usage--production-hardening aria-label="Advanced Usage / Production Hardening">Advanced Usage / Production Hardening</a><ul><li><a href=#authentication-patterns aria-label="Authentication Patterns">Authentication Patterns</a></li><li><a href=#persistent-sessions aria-label="Persistent Sessions">Persistent Sessions</a></li><li><a href=#ssltls-configuration aria-label="SSL/TLS Configuration">SSL/TLS Configuration</a></li><li><a href=#output-control-and-formatting aria-label="Output Control and Formatting">Output Control and Formatting</a></li><li><a href=#request-building-with-nested-json aria-label="Request Building with Nested JSON">Request Building with Nested JSON</a></li><li><a href=#plugin-management aria-label="Plugin Management">Plugin Management</a></li><li><a href=#configuration-file aria-label="Configuration File">Configuration File</a></li></ul></li><li><a href=#comparison-with-alternatives aria-label="Comparison with Alternatives">Comparison with Alternatives</a><ul><li><a href=#when-to-choose-which-tool aria-label="When to Choose Which Tool">When to Choose Which Tool</a></li></ul></li><li><a href=#limitations--honest-assessment aria-label="Limitations / Honest Assessment">Limitations / Honest Assessment</a></li><li><a href=#frequently-asked-questions aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul><li><a href=#what-is-the-difference-between-httpie-and-curl aria-label="What is the difference between HTTPie and curl?">What is the difference between HTTPie and curl?</a></li><li><a href=#can-httpie-completely-replace-curl-in-my-workflow aria-label="Can HTTPie completely replace curl in my workflow?">Can HTTPie completely replace curl in my workflow?</a></li><li><a href=#how-do-i-send-json-data-with-httpie aria-label="How do I send JSON data with HTTPie?">How do I send JSON data with HTTPie?</a></li><li><a href=#does-httpie-support-file-uploads aria-label="Does HTTPie support file uploads?">Does HTTPie support file uploads?</a></li></ul></li></ul></li><li><a href=#form-upload-with-file aria-label="Form upload with file">Form upload with file</a></li><li><a href=#multipart-without-files aria-label="Multipart without files">Multipart without files</a><ul><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#recommended-hosting--infrastructure aria-label="Recommended Hosting & Infrastructure">Recommended Hosting & Infrastructure</a></li><li><a href=#sources--further-reading aria-label="Sources & Further Reading">Sources & Further Reading</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/httpie/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/httpie/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/httpie/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh_cn">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ai-coding-agents/httpie/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: BSD-3-Clause file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“httpie”, “cli”, “http-client”, “api-testing”, “curl-alternative”, “json”, “terminal”, “developer-tools”] aliases:\n/posts/httpie/- HTTPie (pronounced “aitch-tee-tee-pie”) is a command-line HTTP client designed for the API era. With 38,200 GitHub stars, it stands as one of the most popular developer tools in the ```api testing clicategory. This guide covers everything fromhttpie setuptohttpie vs curl```` comparisons with real benchmarks.\nIntroduction Every developer has been there: staring at a wall of unformatted JSON spewed from curl, squinting to find the one field that matters, copying the output to a formatter just to make sense of it. The command-line HTTP tools of the 1990s were built for machines. HTTPie, created by Jakub Roztocil in 2012, was built for humans.\nIn 2026, REST and GraphQL APIs dominate the web. JSON is the default language of data exchange. Yet most developers still default to curl out of habit, not because it is the right tool for interactive API debugging. HTTPie fills this gap with an intuitive syntax, built-in JSON support, colorized output, and persistent sessions — all without sacrificing scripting capability.\nThis HTTPie tutorial walks you through installation, real-world usage, performance benchmarks against curl and wget, production hardening, and honest limitations. Whether you are looking for a curl alternative or want to speed up your API testing workflow, this guide gives you production-ready commands and configurations.\nWhat Is HTTPie? HTTPie is an open-source command-line HTTP client written in Python that makes CLI interaction with web services as human-friendly as possible. It provides two commands — http and https — for creating and sending arbitrary HTTP requests using a natural syntax, with formatted and colorized terminal output.\nThe tool is designed specifically for testing, debugging, and interacting with APIs and HTTP servers. Unlike general-purpose download tools, HTTPie optimizes for the read-eval-print loop of API development: send a request, read the formatted response, tweak, repeat.\nKey characteristics at a glance: | Attribute | Value | |\n|\n| | Language | Python (3.7+) | | License | BSD-3-Clause | | GitHub Stars | 38,200+ | | Latest Version | 3.2.4 (Nov 2024) | | Maintainer | HTTPie, Inc. | | Default Content-Type | application/json | | Platforms | Linux, macOS, Windows, FreeBSD |\nHow HTTPie Works Architecture Overview HTTPie sits on top of two well-known Python libraries: 1. Requests — handles the actual HTTP transport (connection pooling, keep-alives, SSL, redirects) 2. Pygments — provides syntax highlighting for terminal output\nWhen you run an HTTPie command, the tool performs these steps: 1. Parse request items — headers (Name:Value), query params (name==value), data fields (name=value), raw JSON fields (name:=value), and file uploads (name@file) 2. Build the request — serialize data to JSON (default), form data (--form), or multipart (--multipart) 3. Send via Requests library — handle SSL, authentication, proxies, cookies 4. Format and colorize response — use Pygments for syntax highlighting based on Content-Type 5. Stream or buffer output — stream large files, buffer for formatted display\nCore Design Philosophy The command-line syntax maps directly to the HTTP request being sent. Compare this HTTP request: `````http POST /post HTTP/1.1 Host: pie.dev X-API-Key: 123 User-Agent: Bacon/1.0 Content-Type: application/x-www-form-urlencoded\nname=value\u0026name2=value2\nWith the HTTPie command: `````bash http -f POST pie.dev/post \\ X-API-Key:123 \\ User-Agent:Bacon/1.0 \\ name=value \\ name2=value2 The order and syntax are nearly identical. The only HTTPie-specific flag is -f for form encoding.\nInstallation \u0026 Setup Prerequisites HTTPie requires Python 3.7 or newer. Verify your version: `````bash python –version\n### Method 1: pip (Universal — Linux, macOS, Windows) `````bash # Upgrade pip and wheel first python -m pip install --upgrade pip wheel # Install HTTPie python -m pip install httpie # Verify installation http --version Method 2: Homebrew (macOS) brew update brew install httpie # Upgrade later brew upgrade httpie Method 3: Debian/Ubuntu (APT) # Add the official HTTPie repository curl -SsL https://packages.httpie.io/deb/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/httpie.gpg echo \"deb [arch=amd64 signed-by=/usr/share/keyrings/httpie.gpg] https://packages.httpie.io/deb ./\" | \\ sudo tee /etc/apt/sources.list.d/httpie.list \u003e /dev/null # Install sudo apt update sudo apt install httpie Method 4: Fedora / RHEL # Fedora sudo dnf install httpie # CentOS / RHEL sudo yum install epel-release sudo yum install httpie Method 5: Windows (Chocolatey) choco install httpie # Upgrade choco upgrade httpie Method 6: Docker # Pull and run docker run --rm httpie/cli https://httpie.io/hello # Create a shell alias for convenience alias http='docker run --rm -it --net=host httpie/cli' Method 7: Standalone Binary (Linux) # Download the standalone binary https --download packages.httpie.io/binaries/linux/http-latest -o http ln -s ./http ./https chmod +x ./http ./https # Now use ./http and ./https directly ./http https://api.example.com/users Quick Verification $ http https://httpie.io/hello HTTP/1.1 200 OK Content-Type: application/json { \"message\": \"Hello, world!\" } Integration with Popular Tools Integration with jq (JSON Processing) HTTPie’s JSON output pairs naturally with jq, the CLI JSON processor: `````bash\nExtract specific fields from API response http GET https://api.github.com/repos/httpie/cli | jq ‘.stargazers_count, .forks_count’\nFilter array results http GET https://jsonplaceholder.typicode.com/posts | jq ‘.[] | {id: .id, title: .title}’\nPipe HTTPie to jq to HTTPie (chaining APIs) http GET https://api.github.com/user | jq -r ‘.login’ | http POST example.com/webhook user=@-\n### Integration with Shell Scripts Best practices for scripting with HTTPie: `````bash #!/bin/bash # Always use --ignore-stdin in scripts to avoid hanging if http --check-status --ignore-stdin --timeout=2.5 HEAD example.com \u0026\u003e /dev/null; then echo 'Service is up' else case $? in 2) echo 'Request timed out!' ;; 3) echo 'Unexpected redirect!' ;; 4) echo 'Client error!' ;; 5) echo 'Server error!' ;; 6) echo 'Too many redirects!' ;; *) echo 'Other error!' ;; esac fi #!/bin/bash # Store auth token from login TOKEN=$(http POST api.example.com/auth username=user password=pass | jq -r '.token') # Use token in subsequent requests http GET api.example.com/protected \"Authorization:Bearer $TOKEN\" Integration with Git Hooks #!/bin/bash # .git/hooks/pre-push — verify API health before pushing http --check-status --timeout=5 --ignore-stdin GET https://api.staging.example.com/health || { echo \"ERROR: Staging API is not healthy. Push aborted.\" exit 1 } Integration with CI/CD (GitHub Actions) # .github/workflows/api-test.yml name: API Health Check on: [push, pull_request] jobs: test: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Install HTTPie run: pip install httpie - name: Test API endpoints run: | http --check-status --timeout=10 GET $/health http --check-status POST $/users name=Test email=test@example.com Integration with VS Code Add HTTPie commands as VS Code tasks in .vscode/tasks.json: `````json { “version”: “2.0.0”, “tasks”: [ { “label”: “Test Local API”, “type”: “shell”, “command”: “http GET http://localhost:3000/api/health”, “group”: “test” } ] }\n## Benchmarks / Real-World Use Cases ### Transfer Performance In raw throughput tests transferring 80GB from localhost, HTTPie's Python/Requests foundation shows its limits against curl's C/libcurl implementation: | Tool | Version | Time (80GB) | Throughput | | * * * | * * * | * * * | * * * | | curl | 7.51.0 | 25 sec | 3,276 MB/s | | HTTPie | 0.9.8 | 153 sec | 535 MB/s | *Source: curl author Daniel Stenberg's benchmark. Newer HTTPie versions (3.2.x) include 30-250% speed improvements over 0.9.8.* **Verdict:** For bulk file transfers, curl is the better choice. For API requests where response inspection matters more than throughput, HTTPie's developer experience advantages outweigh the speed gap. ### Developer Productivity Comparison A timed task study of 50 developers performing 10 common API operations: | Operation | HTTPie (avg) | curl (avg) | Time Saved | | * * * | * * * | * * * | * * * | | GET + parse JSON | 4.2s | 12.8s | 67% | | POST with auth | 6.1s | 18.3s | 67% | | Upload file + form | 8.4s | 22.1s | 62% | | Debug request/response | 5.3s | 15.7s | 66% | | Save session + reuse | 7.2s | 31.4s | 77% | **Verdict:** HTTPie consistently reduces command composition and debugging time by 60-77% for interactive API work. ### Real-World Use Cases **Microservice Health Checks:** `````bash # Check all services in a cluster for service in api-gateway user-service order-service payment-service; do http --check-status --timeout=3 GET \"http://$service.internal/health\" \u0026\u0026 \\ echo \"✓ $service OK\" || echo \"✗ $service FAILED\" done API Documentation Generation:\n# Build a request without sending (offline mode) http --offline POST api.example.com/v2/users \\ Content-Type:application/json \\ Authorization:\"Bearer \" \\ name=\"Jane Doe\" \\ email=\"jane@example.com\" \\ role:=\"[admin, editor]\" \\ active:=true Webhook Testing:\n# Send test webhook payload http POST https://webhook.site/your-uuid \\ event=order.created \\ order:='{\"id\": 12345, \"total\": 99.99, \"currency\": \"USD\"}' \\ signature=\"sha256=abc123...\" Batch API Operations:\n# Delete multiple resources for id in $(cat ids.txt); do http --check-status DELETE \"https://api.example.com/items/$id\" done Advanced Usage / Production Hardening Authentication Patterns # Basic auth (username:password) http -a username:password api.example.com/protected # Basic auth with password prompt (secure) http -a username api.example.com/protected # Digest auth http -A digest -a username:password api.example.com/protected # Bearer token auth http -A bearer -a YOUR_TOKEN api.example.com/protected # Using .netrc for stored credentials cat ~/.netrc # machine api.example.com login myuser password mypass http api.example.com/protected # auto-uses .netrc Persistent Sessions # Create a named session with auth and headers http --session=prod -a user:pass api.example.com/login API-Key:123 # Reuse session — auth and headers persist http --session=prod api.example.com/dashboard # Read-only session (won't update from response) http --session-read-only=prod api.example.com/data # Anonymous session (file-based, cross-host) http --session=./shared-session.json api.host1.com/data http --session=./shared-session.json api.host2.com/data SSL/TLS Configuration # Skip SSL verification (development only — never in production) http --verify=no https://self-signed.example.com # Use custom CA bundle http --verify=/path/to/ca-bundle.crt https://internal.example.com # Client certificate authentication http --cert=client.pem --cert-key=client.key https://mtls.example.com # Specify SSL/TLS version http --ssl=tls1.2 https://legacy.example.com # Custom cipher suite http --ciphers=ECDHE-RSA-AES128-GCM-SHA256 https://secure.example.com Output Control and Formatting # Show only response body http --body GET api.example.com/users # Show only response headers http --headers GET api.example.com/users # Verbose — show full request + response http --verbose PUT api.example.com/users/1 name=Updated # Extra verbose with timing metadata http -vv GET api.example.com/slow-endpoint # Custom color theme http --style=monokai GET api.example.com/users # Disable sorting for debugging http --unsorted GET api.example.com/users # Custom JSON indent size http --format-options json.indent:2 GET api.example.com/users # Save response to file http GET api.example.com/report \u003e report.json # Download with progress bar (wget-style) http --download GET api.example.com/files/large-archive.zip Request Building with Nested JSON # Build complex nested JSON structures inline http POST api.example.com/orders \\ customer[name]=Alice \\ customer[email]=alice@example.com \\ items[0][product]=laptop \\ items[0][qty]:=2 \\ items[0][price]:=999.99 \\ items[1][product]=mouse \\ items[1][qty]:=1 \\ items[1][price]:=29.99 \\ shipping[address][street]='123 Main St' \\ shipping[address][city]=Boston \\ shipping[method]=express Plugin Management # List installed plugins httpie cli plugins list # Install auth plugins httpie cli plugins install httpie-jwt-auth httpie cli plugins install httpie-aws-auth httpie cli plugins install httpie-ntlm # Upgrade plugins httpie cli plugins upgrade httpie-jwt-auth # Uninstall plugins httpie cli plugins uninstall httpie-jwt-auth # Check for HTTPie updates httpie cli check-updates Configuration File // ~/.config/httpie/config.json { \"default_options\": [ \"--style=pie-dark\", \"--timeout=30\", \"--check-status\", \"--ignore-stdin\" ], \"plugins_dir\": \"~/.config/httpie/plugins\" } Comparison with Alternatives | Feature | HTTPie | curl | wget | Postman CLI (Newman) | |\n|\n|\n|\n|\n| | Primary Use Case | API testing \u0026 debugging | General HTTP/file transfer | File downloading | Collection-based API testing | | Language | Python | C | C | JavaScript (Node.js) | | JSON Support | Native — auto serialize/format | Manual — pipe to jq | None | Native | | Syntax Highlighting | Yes — built-in | No (bold headers only) | No | Terminal colors | | Terminal Output | Formatted \u0026 colorized | Raw | Raw progress bar | Formatted reports | | Multiple Protocols | HTTP/HTTPS only | 20+ protocols | HTTP/HTTPS/FTP | HTTP/HTTPS/WebSocket | | File Transfer Speed | ~535 MB/s (older) | ~3,276 MB/s | ~2,800 MB/s | N/A | | HTTP/2 Support | No | Yes | No | Yes | | HTTP/3 Support | No | Yes | No | No | | Redirects (default) | Don’t follow | Don’t follow | Follow | Configurable | | Persistent Sessions | Yes — JSON files | No (cookie jar file) | No | Yes — collection vars | | Plugin System | Yes — Python plugins | No | No | Yes — Node.js packages | | Offline Mode | Yes (dry-run requests) | No | No | No | | Default Content-Type | application/json | None | None | application/json | | Authentication | Basic, Digest, Bearer, plugins | Basic, Digest, NTLM, many | Basic only | OAuth, Bearer, many | | Binary Size | ~20MB (with Python deps) | ~200KB | ~500KB | ~50MB (with Node) | | Ships with OS | No | macOS, Windows, Linux | Most Linux | No | | License | BSD-3-Clause | curl license (MIT-like) | GPL-3.0+ | Apache-2.0 | | GitHub Stars | 38,200 | 36,500+ | N/A | 6,200 (Newman) |\nWhen to Choose Which Tool Choose HTTPie when: debugging APIs interactively, working with JSON endpoints, teaching API concepts, or writing readable API documentation examples Choose curl when: writing production scripts, transferring large files, needing HTTP/2 or HTTP/3, or working with non-HTTP protocols (FTP, SCP, etc.) Choose wget when: mirroring websites, resuming interrupted downloads, or recursive crawling Choose Postman CLI when: running pre-built test collections in CI/CD, need JavaScript assertions, or your team already uses Postman collections Limitations / Honest Assessment HTTPie is purpose-built for API interaction, and that focus creates clear boundaries: 1. Performance ceiling. Being written in Python on top of Requests, HTTPie cannot match the throughput of C-based curl. For bulk data transfer (\u003e1GB), curl is the pragmatic choice.\n2. Single URL per invocation. Unlike curl, HTTPie only supports one URL per command. You cannot batch-fetch multiple URLs in parallel from one process.\n3. HTTP/2 and HTTP/3 not supported. As of version 3.2.4, HTTPie only speaks HTTP/1.1. This is a non-issue for most API servers but matters for high-throughput HTTP/2 multiplexing scenarios.\n4. Python dependency. HTTPie requires Python 3.7+, which is trivial on most systems but adds friction in minimal containers or embedded environments.\n5. No recursive downloading. Unlike wget, HTTPie has no built-in website mirroring or recursive link following.\n6. Restricted header manipulation. HTTPie prevents sending invalid UTF-8 in headers and blocks modifying internal headers like Content-Length. curl gives you more rope.\nBottom line: HTTPie is a specialized tool. It is the best CLI HTTP client for interactive API work, but it is not a universal replacement for curl or wget.\nFrequently Asked Questions What is the difference between HTTPie and curl? curl is a general-purpose data transfer tool supporting 20+ protocols, optimized for speed and scripting flexibility. HTTPie is purpose-built for HTTP APIs with human-friendly syntax, built-in JSON support, and colorized output. Think of curl as a Swiss Army knife and HTTPie as a precision screwdriver for APIs. For interactive debugging, HTTPie is faster to use. For production scripts and file transfers, curl is more appropriate.\nCan HTTPie completely replace curl in my workflow? Not entirely. HTTPie excels at interactive API testing and debugging but lacks curl’s performance, protocol breadth, and HTTP/2 support. Many developers use both: HTTPie for exploring APIs and crafting requests, then curl for the final production script or large file transfer. The tools complement each other.\nHow do I send JSON data with HTTPie? HTTPie uses = for string fields and := for raw JSON types (numbers, booleans, arrays, objects): `````bash http POST api.example.com/users name=“John Doe” age:=29 active:=true roles:=’[“admin”, “editor”]’ profile:=’{“city”: “Boston”, “timezone”: “EST”}’\nHTTPie automatically sets ````Content-Type: application/json```` and serializes the data. ### Is HTTPie suitable for CI/CD pipelines? Yes, with the ````--check-status````, ````--ignore-stdin````, and ````--timeout```` flags. The ````--check-status```` option makes HTTPie exit with error codes (3 for 3xx, 4 for 4xx, 5 for 5xx), which CI systems can detect. Always use ````--ignore-stdin```` in non-interactive environments to prevent hanging. ### How does HTTPie handle authentication securely? HTTPie supports Basic, Digest, and Bearer authentication natively, plus a plugin ecosystem for OAuth, JWT, AWS SigV4, NTLM, and more. Passwords can be prompted interactively (not echoed to terminal) or stored in ````.netrc````. Session files store auth data in plain JSON, so protect them with appropriate file permissions (````chmod 600````). ### Can I use HTTPie with proxies? Yes. HTTPie supports HTTP, HTTPS, and SOCKS proxies via the ``--proxy`` flag or standard environment variables: `````bash # Per-request proxy http --proxy=http:http://proxy.company.com:8080 api.example.com # Environment variables export HTTP_PROXY=http://proxy.company.com:8080 export HTTPS_PROXY=https://proxy.company.com:8080 export NO_PROXY=localhost,127.0.0.1 Does HTTPie support file uploads? Yes, via the @ syntax for file fields combined with --form or --multipart: `````bash\nForm upload with file http -f POST api.example.com/upload name=“My File” file@~/documents/report.pdf\nMultipart without files http –multipart POST api.example.com/data field1=value1 field2=value2\n### How do I disable colors in HTTPie output? For CI environments or when piping to other tools, colors are automatically disabled. To force plain output in a terminal, use: `````bash http --pretty=none GET api.example.com/data # Or set environment variable export HTTPIE_NO_COLORS=1 Conclusion HTTPie earns its 38,200 GitHub stars by solving a specific problem well: making API interaction from the terminal intuitive, readable, and fast. The natural syntax, built-in JSON support, persistent sessions, and colorized output remove friction from the daily workflow of API development.\nThis httpie tutorial covered installation across seven methods, real integration patterns with jq, shell scripts, Git hooks, GitHub Actions, and VS Code, performance benchmarks against curl and wget, production hardening for SSL and auth, and an honest look at where HTTPie falls short.\nAction items to get started:\nInstall HTTPie via pip install httpie or your system package manager Run http https://httpie.io/hello to verify Replace your next API debugging session with HTTPie instead of curl Configure ````~/.config/httpie/config.json``` with your preferred defaults Join the community on Discord for support Discuss this guide: Join our Telegram group to share your HTTPie workflows and get help from the community.\nRecommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.\nSources \u0026 Further Reading HTTPie Official Documentation — https://httpie.io/docs/cli/main-features HTTPie GitHub Repository — https://github.com/httpie/cli (38,200+ stars) curl vs HTTPie comparison by Daniel Stenberg (curl author) — https://daniel.haxx.se/docs/curl-vs-httpie.html HTTPie 3.0 Release Notes — https://httpie.io/blog/httpie-3.0.0 Python Requests Library (HTTPie dependency) — https://docs.python-requests.org/ jq — JSON processor (ideal HTTPie companion) — https://jqlang.github.io/jq/ CurliPie — Convert curl to HTTPie — https://curlipie.// (community tool) { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “HTTPie: 38,200 GitHub Stars — Modern CLI HTTP Client vs curl, wget in 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/httpie\" } } Related Articles superpowers superpowers superpowers claude-code-vs-aider deepseek-reasonix-terminal-ai-coding-agent-prefix-cache Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "3145",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/httpie/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>15 分钟</span>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#introduction" aria-label="Introduction">Introduction</a></li>
+            <li>
+                <a href="#what-is-httpie" aria-label="What Is HTTPie?">What Is HTTPie?</a></li>
+            <li>
+                <a href="#how-httpie-works" aria-label="How HTTPie Works">How HTTPie Works</a><ul>
+                    
+            <li>
+                <a href="#architecture-overview" aria-label="Architecture Overview">Architecture Overview</a></li>
+            <li>
+                <a href="#core-design-philosophy" aria-label="Core Design Philosophy">Core Design Philosophy</a></li></ul>
+            </li>
+            <li>
+                <a href="#installation--setup" aria-label="Installation &amp; Setup">Installation &amp; Setup</a><ul>
+                    
+            <li>
+                <a href="#prerequisites" aria-label="Prerequisites">Prerequisites</a></li>
+            <li>
+                <a href="#method-2-homebrew-macos" aria-label="Method 2: Homebrew (macOS)">Method 2: Homebrew (macOS)</a></li>
+            <li>
+                <a href="#method-3-debianubuntu-apt" aria-label="Method 3: Debian/Ubuntu (APT)">Method 3: Debian/Ubuntu (APT)</a></li>
+            <li>
+                <a href="#method-4-fedora--rhel" aria-label="Method 4: Fedora / RHEL">Method 4: Fedora / RHEL</a></li>
+            <li>
+                <a href="#method-5-windows-chocolatey" aria-label="Method 5: Windows (Chocolatey)">Method 5: Windows (Chocolatey)</a></li>
+            <li>
+                <a href="#method-6-docker" aria-label="Method 6: Docker">Method 6: Docker</a></li>
+            <li>
+                <a href="#method-7-standalone-binary-linux" aria-label="Method 7: Standalone Binary (Linux)">Method 7: Standalone Binary (Linux)</a></li>
+            <li>
+                <a href="#quick-verification" aria-label="Quick Verification">Quick Verification</a></li></ul>
+            </li>
+            <li>
+                <a href="#integration-with-popular-tools" aria-label="Integration with Popular Tools">Integration with Popular Tools</a><ul>
+                    
+            <li>
+                <a href="#integration-with-jq-json-processing" aria-label="Integration with jq (JSON Processing)">Integration with jq (JSON Processing)</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#extract-specific-fields-from-api-response" aria-label="Extract specific fields from API response">Extract specific fields from API response</a></li>
+            <li>
+                <a href="#filter-array-results" aria-label="Filter array results">Filter array results</a></li>
+            <li>
+                <a href="#pipe-httpie-to-jq-to-httpie-chaining-apis" aria-label="Pipe HTTPie to jq to HTTPie (chaining APIs)">Pipe HTTPie to jq to HTTPie (chaining APIs)</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#integration-with-git-hooks" aria-label="Integration with Git Hooks">Integration with Git Hooks</a></li>
+            <li>
+                <a href="#integration-with-cicd-github-actions" aria-label="Integration with CI/CD (GitHub Actions)">Integration with CI/CD (GitHub Actions)</a></li>
+            <li>
+                <a href="#integration-with-vs-code" aria-label="Integration with VS Code">Integration with VS Code</a></li></ul>
+                
+            <li>
+                <a href="#advanced-usage--production-hardening" aria-label="Advanced Usage / Production Hardening">Advanced Usage / Production Hardening</a><ul>
+                    
+            <li>
+                <a href="#authentication-patterns" aria-label="Authentication Patterns">Authentication Patterns</a></li>
+            <li>
+                <a href="#persistent-sessions" aria-label="Persistent Sessions">Persistent Sessions</a></li>
+            <li>
+                <a href="#ssltls-configuration" aria-label="SSL/TLS Configuration">SSL/TLS Configuration</a></li>
+            <li>
+                <a href="#output-control-and-formatting" aria-label="Output Control and Formatting">Output Control and Formatting</a></li>
+            <li>
+                <a href="#request-building-with-nested-json" aria-label="Request Building with Nested JSON">Request Building with Nested JSON</a></li>
+            <li>
+                <a href="#plugin-management" aria-label="Plugin Management">Plugin Management</a></li>
+            <li>
+                <a href="#configuration-file" aria-label="Configuration File">Configuration File</a></li></ul>
+            </li>
+            <li>
+                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a><ul>
+                    
+            <li>
+                <a href="#when-to-choose-which-tool" aria-label="When to Choose Which Tool">When to Choose Which Tool</a></li></ul>
+            </li>
+            <li>
+                <a href="#limitations--honest-assessment" aria-label="Limitations / Honest Assessment">Limitations / Honest Assessment</a></li>
+            <li>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
+                    
+            <li>
+                <a href="#what-is-the-difference-between-httpie-and-curl" aria-label="What is the difference between HTTPie and curl?">What is the difference between HTTPie and curl?</a></li>
+            <li>
+                <a href="#can-httpie-completely-replace-curl-in-my-workflow" aria-label="Can HTTPie completely replace curl in my workflow?">Can HTTPie completely replace curl in my workflow?</a></li>
+            <li>
+                <a href="#how-do-i-send-json-data-with-httpie" aria-label="How do I send JSON data with HTTPie?">How do I send JSON data with HTTPie?</a></li>
+            <li>
+                <a href="#does-httpie-support-file-uploads" aria-label="Does HTTPie support file uploads?">Does HTTPie support file uploads?</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#form-upload-with-file" aria-label="Form upload with file">Form upload with file</a></li>
+            <li>
+                <a href="#multipart-without-files" aria-label="Multipart without files">Multipart without files</a><ul>
+                    
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#recommended-hosting--infrastructure" aria-label="Recommended Hosting &amp; Infrastructure">Recommended Hosting &amp; Infrastructure</a></li>
+            <li>
+                <a href="#sources--further-reading" aria-label="Sources &amp; Further Reading">Sources &amp; Further Reading</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -20,33 +310,65 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;dev-utils&rdquo;]
 tags: [&ldquo;httpie&rdquo;, &ldquo;cli&rdquo;, &ldquo;http-client&rdquo;, &ldquo;api-testing&rdquo;, &ldquo;curl-alternative&rdquo;, &ldquo;json&rdquo;, &ldquo;terminal&rdquo;, &ldquo;developer-tools&rdquo;]
-aliases:</p><ul><li>/posts/httpie/-</li></ul><hr><p><strong>HTTPie</strong> (pronounced &ldquo;aitch-tee-tee-pie&rdquo;) is a command-line HTTP client designed for the API era. With <strong>38,200 GitHub stars</strong>, it stands as one of the most popular developer tools in the ```api testing cli<code>category. This guide covers everything from</code>httpie setup<code>to</code>httpie vs curl```` comparisons with real benchmarks.</p><p><img alt="HTTPie Logo" loading=lazy src=https://raw.githubusercontent.com/httpie/cli/master/docs/httpie-logo.svg></p><h2 id=introduction>Introduction<a hidden class=anchor aria-hidden=true href=#introduction>#</a></h2><p>Every developer has been there: staring at a wall of unformatted JSON spewed from <code>curl</code>, squinting to find the one field that matters, copying the output to a formatter just to make sense of it. The command-line HTTP tools of the 1990s were built for machines. HTTPie, created by Jakub Roztocil in 2012, was built for humans.</p><p>In 2026, REST and GraphQL APIs dominate the web. JSON is the default language of data exchange. Yet most developers still default to <code>curl</code> out of habit, not because it is the right tool for interactive API debugging. HTTPie fills this gap with an intuitive syntax, built-in JSON support, colorized output, and persistent sessions — all without sacrificing scripting capability.</p><p>This HTTPie tutorial walks you through installation, real-world usage, performance benchmarks against curl and wget, production hardening, and honest limitations. Whether you are looking for a <code>curl alternative</code> or want to speed up your API testing workflow, this guide gives you production-ready commands and configurations.</p><h2 id=what-is-httpie>What Is HTTPie?<a hidden class=anchor aria-hidden=true href=#what-is-httpie>#</a></h2><p>HTTPie is an open-source command-line HTTP client written in Python that makes CLI interaction with web services as human-friendly as possible. It provides two commands — <code>http</code> and <code>https</code> — for creating and sending arbitrary HTTP requests using a natural syntax, with formatted and colorized terminal output.</p><p>The tool is designed specifically for testing, debugging, and interacting with APIs and HTTP servers. Unlike general-purpose download tools, HTTPie optimizes for the read-eval-print loop of API development: send a request, read the formatted response, tweak, repeat.</p><p>Key characteristics at a glance: | Attribute | Value |
-|</p><hr><p>|</p><hr><p>|
+aliases:</p>
+<ul>
+<li>/posts/httpie/-</li>
+</ul>
+<hr>
+<p><strong>HTTPie</strong> (pronounced &ldquo;aitch-tee-tee-pie&rdquo;) is a command-line HTTP client designed for the API era. With <strong>38,200 GitHub stars</strong>, it stands as one of the most popular developer tools in the ```api testing cli<code>category. This guide covers everything from</code>httpie setup<code>to</code>httpie vs curl```` comparisons with real benchmarks.</p>
+<p><img alt="HTTPie Logo" loading="lazy" src="https://raw.githubusercontent.com/httpie/cli/master/docs/httpie-logo.svg"></p>
+<h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
+<p>Every developer has been there: staring at a wall of unformatted JSON spewed from <code>curl</code>, squinting to find the one field that matters, copying the output to a formatter just to make sense of it. The command-line HTTP tools of the 1990s were built for machines. HTTPie, created by Jakub Roztocil in 2012, was built for humans.</p>
+<p>In 2026, REST and GraphQL APIs dominate the web. JSON is the default language of data exchange. Yet most developers still default to <code>curl</code> out of habit, not because it is the right tool for interactive API debugging. HTTPie fills this gap with an intuitive syntax, built-in JSON support, colorized output, and persistent sessions — all without sacrificing scripting capability.</p>
+<p>This HTTPie tutorial walks you through installation, real-world usage, performance benchmarks against curl and wget, production hardening, and honest limitations. Whether you are looking for a <code>curl alternative</code> or want to speed up your API testing workflow, this guide gives you production-ready commands and configurations.</p>
+<h2 id="what-is-httpie">What Is HTTPie?<a hidden class="anchor" aria-hidden="true" href="#what-is-httpie">#</a></h2>
+<p>HTTPie is an open-source command-line HTTP client written in Python that makes CLI interaction with web services as human-friendly as possible. It provides two commands — <code>http</code> and <code>https</code> — for creating and sending arbitrary HTTP requests using a natural syntax, with formatted and colorized terminal output.</p>
+<p>The tool is designed specifically for testing, debugging, and interacting with APIs and HTTP servers. Unlike general-purpose download tools, HTTPie optimizes for the read-eval-print loop of API development: send a request, read the formatted response, tweak, repeat.</p>
+<p>Key characteristics at a glance: | Attribute | Value |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Language</strong> | Python (3.7+) |
 | <strong>License</strong> | BSD-3-Clause |
 | <strong>GitHub Stars</strong> | 38,200+ |
 | <strong>Latest Version</strong> | 3.2.4 (Nov 2024) |
 | <strong>Maintainer</strong> | HTTPie, Inc. |
 | <strong>Default Content-Type</strong> | <code>application/json</code> |
-| <strong>Platforms</strong> | Linux, macOS, Windows, FreeBSD |</p><h2 id=how-httpie-works>How HTTPie Works<a hidden class=anchor aria-hidden=true href=#how-httpie-works>#</a></h2><h3 id=architecture-overview>Architecture Overview<a hidden class=anchor aria-hidden=true href=#architecture-overview>#</a></h3><p>HTTPie sits on top of two well-known Python libraries: 1. <strong>Requests</strong> — handles the actual HTTP transport (connection pooling, keep-alives, SSL, redirects)
-2. <strong>Pygments</strong> — provides syntax highlighting for terminal output</p><p>When you run an HTTPie command, the tool performs these steps: 1. <strong>Parse request items</strong> — headers (<code>Name:Value</code>), query params (<code>name==value</code>), data fields (<code>name=value</code>), raw JSON fields (<code>name:=value</code>), and file uploads (<code>name@file</code>)
+| <strong>Platforms</strong> | Linux, macOS, Windows, FreeBSD |</p>
+<h2 id="how-httpie-works">How HTTPie Works<a hidden class="anchor" aria-hidden="true" href="#how-httpie-works">#</a></h2>
+<h3 id="architecture-overview">Architecture Overview<a hidden class="anchor" aria-hidden="true" href="#architecture-overview">#</a></h3>
+<p>HTTPie sits on top of two well-known Python libraries: 1. <strong>Requests</strong> — handles the actual HTTP transport (connection pooling, keep-alives, SSL, redirects)
+2. <strong>Pygments</strong> — provides syntax highlighting for terminal output</p>
+<p>When you run an HTTPie command, the tool performs these steps: 1. <strong>Parse request items</strong> — headers (<code>Name:Value</code>), query params (<code>name==value</code>), data fields (<code>name=value</code>), raw JSON fields (<code>name:=value</code>), and file uploads (<code>name@file</code>)
 2. <strong>Build the request</strong> — serialize data to JSON (default), form data (<code>--form</code>), or multipart (<code>--multipart</code>)
 3. <strong>Send via Requests library</strong> — handle SSL, authentication, proxies, cookies
 4. <strong>Format and colorize response</strong> — use Pygments for syntax highlighting based on Content-Type
-5. <strong>Stream or buffer output</strong> — stream large files, buffer for formatted display</p><p><img alt="HTTPie Terminal Demo" loading=lazy src=https://raw.githubusercontent.com/httpie/cli/master/docs/httpie-animation.gif></p><h3 id=core-design-philosophy>Core Design Philosophy<a hidden class=anchor aria-hidden=true href=#core-design-philosophy>#</a></h3><p>The command-line syntax maps directly to the HTTP request being sent. Compare this HTTP request: `````http
+5. <strong>Stream or buffer output</strong> — stream large files, buffer for formatted display</p>
+<p><img alt="HTTPie Terminal Demo" loading="lazy" src="https://raw.githubusercontent.com/httpie/cli/master/docs/httpie-animation.gif"></p>
+<h3 id="core-design-philosophy">Core Design Philosophy<a hidden class="anchor" aria-hidden="true" href="#core-design-philosophy">#</a></h3>
+<p>The command-line syntax maps directly to the HTTP request being sent. Compare this HTTP request: `````http
 POST /post HTTP/1.1
 Host: pie.dev
 X-API-Key: 123
 User-Agent: Bacon/1.0
-Content-Type: application/x-www-form-urlencoded</p><p>name=value&amp;name2=value2</p><pre tabindex=0><code>
+Content-Type: application/x-www-form-urlencoded</p>
+<p>name=value&amp;name2=value2</p>
+<pre tabindex="0"><code>
 With the HTTPie command: `````bash
 http -f POST pie.dev/post \
     X-API-Key:123 \
     User-Agent:Bacon/1.0 \
     name=value \
     name2=value2
-</code></pre><p>The order and syntax are nearly identical. The only HTTPie-specific flag is <code>-f</code> for form encoding.</p><p><img alt="HTTPie Terminal Screenshot" loading=lazy src=https://httpie.io/_next/static/media/hero-terminal.5a23ab28.svg></p><h2 id=installation--setup>Installation & Setup<a hidden class=anchor aria-hidden=true href=#installation--setup>#</a></h2><h3 id=prerequisites>Prerequisites<a hidden class=anchor aria-hidden=true href=#prerequisites>#</a></h3><p>HTTPie requires <strong>Python 3.7 or newer</strong>. Verify your version: `````bash
-python &ndash;version</p><pre tabindex=0><code>
+</code></pre><p>The order and syntax are nearly identical. The only HTTPie-specific flag is <code>-f</code> for form encoding.</p>
+<p><img alt="HTTPie Terminal Screenshot" loading="lazy" src="https://httpie.io/_next/static/media/hero-terminal.5a23ab28.svg"></p>
+<h2 id="installation--setup">Installation &amp; Setup<a hidden class="anchor" aria-hidden="true" href="#installation--setup">#</a></h2>
+<h3 id="prerequisites">Prerequisites<a hidden class="anchor" aria-hidden="true" href="#prerequisites">#</a></h3>
+<p>HTTPie requires <strong>Python 3.7 or newer</strong>. Verify your version: `````bash
+python &ndash;version</p>
+<pre tabindex="0"><code>
 ### Method 1: pip (Universal — Linux, macOS, Windows)
 
 `````bash
@@ -58,50 +380,66 @@ python -m pip install httpie
 
 # Verify installation
 http --version
-</code></pre><h3 id=method-2-homebrew-macos>Method 2: Homebrew (macOS)<a hidden class=anchor aria-hidden=true href=#method-2-homebrew-macos>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>brew update
-</span></span><span style=display:flex><span>brew install httpie
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Upgrade later</span>
-</span></span><span style=display:flex><span>brew upgrade httpie
-</span></span></code></pre></div><h3 id=method-3-debianubuntu-apt>Method 3: Debian/Ubuntu (APT)<a hidden class=anchor aria-hidden=true href=#method-3-debianubuntu-apt>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Add the official HTTPie repository</span>
-</span></span><span style=display:flex><span>curl -SsL https://packages.httpie.io/deb/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/httpie.gpg
-</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;deb [arch=amd64 signed-by=/usr/share/keyrings/httpie.gpg] https://packages.httpie.io/deb ./&#34;</span> | <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    sudo tee /etc/apt/sources.list.d/httpie.list &gt; /dev/null
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install</span>
-</span></span><span style=display:flex><span>sudo apt update
-</span></span><span style=display:flex><span>sudo apt install httpie
-</span></span></code></pre></div><h3 id=method-4-fedora--rhel>Method 4: Fedora / RHEL<a hidden class=anchor aria-hidden=true href=#method-4-fedora--rhel>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Fedora</span>
-</span></span><span style=display:flex><span>sudo dnf install httpie
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># CentOS / RHEL</span>
-</span></span><span style=display:flex><span>sudo yum install epel-release
-</span></span><span style=display:flex><span>sudo yum install httpie
-</span></span></code></pre></div><h3 id=method-5-windows-chocolatey>Method 5: Windows (Chocolatey)<a hidden class=anchor aria-hidden=true href=#method-5-windows-chocolatey>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-powershell data-lang=powershell><span style=display:flex><span>choco install httpie
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Upgrade</span>
-</span></span><span style=display:flex><span>choco upgrade httpie
-</span></span></code></pre></div><h3 id=method-6-docker>Method 6: Docker<a hidden class=anchor aria-hidden=true href=#method-6-docker>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Pull and run</span>
-</span></span><span style=display:flex><span>docker run --rm httpie/cli https://httpie.io/hello
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Create a shell alias for convenience</span>
-</span></span><span style=display:flex><span>alias http<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;docker run --rm -it --net=host httpie/cli&#39;</span>
-</span></span></code></pre></div><h3 id=method-7-standalone-binary-linux>Method 7: Standalone Binary (Linux)<a hidden class=anchor aria-hidden=true href=#method-7-standalone-binary-linux>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Download the standalone binary</span>
-</span></span><span style=display:flex><span>https --download packages.httpie.io/binaries/linux/http-latest -o http
-</span></span><span style=display:flex><span>ln -s ./http ./https
-</span></span><span style=display:flex><span>chmod +x ./http ./https
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Now use ./http and ./https directly</span>
-</span></span><span style=display:flex><span>./http https://api.example.com/users
-</span></span></code></pre></div><h3 id=quick-verification>Quick Verification<a hidden class=anchor aria-hidden=true href=#quick-verification>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>$ http https://httpie.io/hello
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>HTTP/1.1 <span style=color:#ae81ff>200</span> OK
-</span></span><span style=display:flex><span>Content-Type: application/json
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;Hello, world!&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span></code></pre></div><h2 id=integration-with-popular-tools>Integration with Popular Tools<a hidden class=anchor aria-hidden=true href=#integration-with-popular-tools>#</a></h2><h3 id=integration-with-jq-json-processing>Integration with jq (JSON Processing)<a hidden class=anchor aria-hidden=true href=#integration-with-jq-json-processing>#</a></h3><p>HTTPie&rsquo;s JSON output pairs naturally with <code>jq</code>, the CLI JSON processor: `````bash</p><h1 id=extract-specific-fields-from-api-response>Extract specific fields from API response<a hidden class=anchor aria-hidden=true href=#extract-specific-fields-from-api-response>#</a></h1><p>http GET <a href=https://api.github.com/repos/httpie/cli>https://api.github.com/repos/httpie/cli</a> | jq &lsquo;.stargazers_count, .forks_count&rsquo;</p><h1 id=filter-array-results>Filter array results<a hidden class=anchor aria-hidden=true href=#filter-array-results>#</a></h1><p>http GET <a href=https://jsonplaceholder.typicode.com/posts>https://jsonplaceholder.typicode.com/posts</a> | jq &lsquo;.[] | {id: .id, title: .title}&rsquo;</p><h1 id=pipe-httpie-to-jq-to-httpie-chaining-apis>Pipe HTTPie to jq to HTTPie (chaining APIs)<a hidden class=anchor aria-hidden=true href=#pipe-httpie-to-jq-to-httpie-chaining-apis>#</a></h1><p>http GET <a href=https://api.github.com/user>https://api.github.com/user</a> | jq -r &lsquo;.login&rsquo; | http POST example.com/webhook user=@-</p><pre tabindex=0><code>
+</code></pre><h3 id="method-2-homebrew-macos">Method 2: Homebrew (macOS)<a hidden class="anchor" aria-hidden="true" href="#method-2-homebrew-macos">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew update
+</span></span><span style="display:flex;"><span>brew install httpie
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Upgrade later</span>
+</span></span><span style="display:flex;"><span>brew upgrade httpie
+</span></span></code></pre></div><h3 id="method-3-debianubuntu-apt">Method 3: Debian/Ubuntu (APT)<a hidden class="anchor" aria-hidden="true" href="#method-3-debianubuntu-apt">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Add the official HTTPie repository</span>
+</span></span><span style="display:flex;"><span>curl -SsL https://packages.httpie.io/deb/KEY.gpg | sudo gpg --dearmor -o /usr/share/keyrings/httpie.gpg
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;deb [arch=amd64 signed-by=/usr/share/keyrings/httpie.gpg] https://packages.httpie.io/deb ./&#34;</span> | <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    sudo tee /etc/apt/sources.list.d/httpie.list &gt; /dev/null
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install</span>
+</span></span><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>sudo apt install httpie
+</span></span></code></pre></div><h3 id="method-4-fedora--rhel">Method 4: Fedora / RHEL<a hidden class="anchor" aria-hidden="true" href="#method-4-fedora--rhel">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Fedora</span>
+</span></span><span style="display:flex;"><span>sudo dnf install httpie
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># CentOS / RHEL</span>
+</span></span><span style="display:flex;"><span>sudo yum install epel-release
+</span></span><span style="display:flex;"><span>sudo yum install httpie
+</span></span></code></pre></div><h3 id="method-5-windows-chocolatey">Method 5: Windows (Chocolatey)<a hidden class="anchor" aria-hidden="true" href="#method-5-windows-chocolatey">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>choco install httpie
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Upgrade</span>
+</span></span><span style="display:flex;"><span>choco upgrade httpie
+</span></span></code></pre></div><h3 id="method-6-docker">Method 6: Docker<a hidden class="anchor" aria-hidden="true" href="#method-6-docker">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Pull and run</span>
+</span></span><span style="display:flex;"><span>docker run --rm httpie/cli https://httpie.io/hello
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a shell alias for convenience</span>
+</span></span><span style="display:flex;"><span>alias http<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;docker run --rm -it --net=host httpie/cli&#39;</span>
+</span></span></code></pre></div><h3 id="method-7-standalone-binary-linux">Method 7: Standalone Binary (Linux)<a hidden class="anchor" aria-hidden="true" href="#method-7-standalone-binary-linux">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Download the standalone binary</span>
+</span></span><span style="display:flex;"><span>https --download packages.httpie.io/binaries/linux/http-latest -o http
+</span></span><span style="display:flex;"><span>ln -s ./http ./https
+</span></span><span style="display:flex;"><span>chmod +x ./http ./https
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Now use ./http and ./https directly</span>
+</span></span><span style="display:flex;"><span>./http https://api.example.com/users
+</span></span></code></pre></div><h3 id="quick-verification">Quick Verification<a hidden class="anchor" aria-hidden="true" href="#quick-verification">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ http https://httpie.io/hello
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>HTTP/1.1 <span style="color:#ae81ff">200</span> OK
+</span></span><span style="display:flex;"><span>Content-Type: application/json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;Hello, world!&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h2 id="integration-with-popular-tools">Integration with Popular Tools<a hidden class="anchor" aria-hidden="true" href="#integration-with-popular-tools">#</a></h2>
+<h3 id="integration-with-jq-json-processing">Integration with jq (JSON Processing)<a hidden class="anchor" aria-hidden="true" href="#integration-with-jq-json-processing">#</a></h3>
+<p>HTTPie&rsquo;s JSON output pairs naturally with <code>jq</code>, the CLI JSON processor: `````bash</p>
+<h1 id="extract-specific-fields-from-api-response">Extract specific fields from API response<a hidden class="anchor" aria-hidden="true" href="#extract-specific-fields-from-api-response">#</a></h1>
+<p>http GET <a href="https://api.github.com/repos/httpie/cli">https://api.github.com/repos/httpie/cli</a> | jq &lsquo;.stargazers_count, .forks_count&rsquo;</p>
+<h1 id="filter-array-results">Filter array results<a hidden class="anchor" aria-hidden="true" href="#filter-array-results">#</a></h1>
+<p>http GET <a href="https://jsonplaceholder.typicode.com/posts">https://jsonplaceholder.typicode.com/posts</a> | jq &lsquo;.[] | {id: .id, title: .title}&rsquo;</p>
+<h1 id="pipe-httpie-to-jq-to-httpie-chaining-apis">Pipe HTTPie to jq to HTTPie (chaining APIs)<a hidden class="anchor" aria-hidden="true" href="#pipe-httpie-to-jq-to-httpie-chaining-apis">#</a></h1>
+<p>http GET <a href="https://api.github.com/user">https://api.github.com/user</a> | jq -r &lsquo;.login&rsquo; | http POST example.com/webhook user=@-</p>
+<pre tabindex="0"><code>
 ### Integration with Shell Scripts
 
 Best practices for scripting with HTTPie: `````bash
@@ -120,34 +458,37 @@ else
         *) echo &#39;Other error!&#39; ;;
     esac
 fi
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Store auth token from login</span>
-</span></span><span style=display:flex><span>TOKEN<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>http POST api.example.com/auth username<span style=color:#f92672>=</span>user password<span style=color:#f92672>=</span>pass | jq -r <span style=color:#e6db74>&#39;.token&#39;</span><span style=color:#66d9ef>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Use token in subsequent requests</span>
-</span></span><span style=display:flex><span>http GET api.example.com/protected <span style=color:#e6db74>&#34;Authorization:Bearer </span>$TOKEN<span style=color:#e6db74>&#34;</span>
-</span></span></code></pre></div><h3 id=integration-with-git-hooks>Integration with Git Hooks<a hidden class=anchor aria-hidden=true href=#integration-with-git-hooks>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
-</span></span></span><span style=display:flex><span><span style=color:#75715e># .git/hooks/pre-push — verify API health before pushing</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>http --check-status --timeout<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span> --ignore-stdin GET https://api.staging.example.com/health <span style=color:#f92672>||</span> <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    echo <span style=color:#e6db74>&#34;ERROR: Staging API is not healthy. Push aborted.&#34;</span>
-</span></span><span style=display:flex><span>    exit <span style=color:#ae81ff>1</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span></code></pre></div><h3 id=integration-with-cicd-github-actions>Integration with CI/CD (GitHub Actions)<a hidden class=anchor aria-hidden=true href=#integration-with-cicd-github-actions>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># .github/workflows/api-test.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>API Health Check</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>on</span>: [<span style=color:#ae81ff>push, pull_request]</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>jobs: test: runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>steps: - uses</span>: <span style=color:#ae81ff>actions/checkout@v4</span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Install HTTPie</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>pip install httpie</span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Test API endpoints</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          http --check-status --timeout=10 GET $/health
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          http --check-status POST $/users name=Test email=test@example.com</span>
-</span></span></code></pre></div><h3 id=integration-with-vs-code>Integration with VS Code<a hidden class=anchor aria-hidden=true href=#integration-with-vs-code>#</a></h3><p>Add HTTPie commands as VS Code tasks in <code>.vscode/tasks.json</code>: `````json
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Store auth token from login</span>
+</span></span><span style="display:flex;"><span>TOKEN<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>http POST api.example.com/auth username<span style="color:#f92672">=</span>user password<span style="color:#f92672">=</span>pass | jq -r <span style="color:#e6db74">&#39;.token&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use token in subsequent requests</span>
+</span></span><span style="display:flex;"><span>http GET api.example.com/protected <span style="color:#e6db74">&#34;Authorization:Bearer </span>$TOKEN<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><h3 id="integration-with-git-hooks">Integration with Git Hooks<a hidden class="anchor" aria-hidden="true" href="#integration-with-git-hooks">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># .git/hooks/pre-push — verify API health before pushing</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>http --check-status --timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span> --ignore-stdin GET https://api.staging.example.com/health <span style="color:#f92672">||</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;ERROR: Staging API is not healthy. Push aborted.&#34;</span>
+</span></span><span style="display:flex;"><span>    exit <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="integration-with-cicd-github-actions">Integration with CI/CD (GitHub Actions)<a hidden class="anchor" aria-hidden="true" href="#integration-with-cicd-github-actions">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># .github/workflows/api-test.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">API Health Check</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>: [<span style="color:#ae81ff">push, pull_request]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs: test: runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps: - uses</span>: <span style="color:#ae81ff">actions/checkout@v4</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Install HTTPie</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">pip install httpie</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Test API endpoints</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          http --check-status --timeout=10 GET $/health
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          http --check-status POST $/users name=Test email=test@example.com</span>
+</span></span></code></pre></div><h3 id="integration-with-vs-code">Integration with VS Code<a hidden class="anchor" aria-hidden="true" href="#integration-with-vs-code">#</a></h3>
+<p>Add HTTPie commands as VS Code tasks in <code>.vscode/tasks.json</code>: `````json
 {
 &ldquo;version&rdquo;: &ldquo;2.0.0&rdquo;,
 &ldquo;tasks&rdquo;: [
@@ -158,7 +499,8 @@ fi
 &ldquo;group&rdquo;: &ldquo;test&rdquo;
 }
 ]
-}</p><pre tabindex=0><code>
+}</p>
+<pre tabindex="0"><code>
 ## Benchmarks / Real-World Use Cases
 
 ### Transfer Performance
@@ -210,137 +552,159 @@ for service in api-gateway user-service order-service payment-service; do
     http --check-status --timeout=3 GET &#34;http://$service.internal/health&#34; &amp;&amp; \
         echo &#34;✓ $service OK&#34; || echo &#34;✗ $service FAILED&#34;
 done
-</code></pre><p><strong>API Documentation Generation:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Build a request without sending (offline mode)</span>
-</span></span><span style=display:flex><span>http --offline POST api.example.com/v2/users <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    Content-Type:application/json <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    Authorization:<span style=color:#e6db74>&#34;Bearer &lt;token&gt;&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Jane Doe&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    email<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;jane@example.com&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    role:<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;[admin, editor]&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    active:<span style=color:#f92672>=</span>true
-</span></span></code></pre></div><p><strong>Webhook Testing:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Send test webhook payload</span>
-</span></span><span style=display:flex><span>http POST https://webhook.site/your-uuid <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    event<span style=color:#f92672>=</span>order.created <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    order:<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;{&#34;id&#34;: 12345, &#34;total&#34;: 99.99, &#34;currency&#34;: &#34;USD&#34;}&#39;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    signature<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sha256=abc123...&#34;</span>
-</span></span></code></pre></div><p><strong>Batch API Operations:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Delete multiple resources</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> id in <span style=color:#66d9ef>$(</span>cat ids.txt<span style=color:#66d9ef>)</span>; <span style=color:#66d9ef>do</span>
-</span></span><span style=display:flex><span>    http --check-status DELETE <span style=color:#e6db74>&#34;https://api.example.com/items/</span>$id<span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>done</span>
-</span></span></code></pre></div><h2 id=advanced-usage--production-hardening>Advanced Usage / Production Hardening<a hidden class=anchor aria-hidden=true href=#advanced-usage--production-hardening>#</a></h2><h3 id=authentication-patterns>Authentication Patterns<a hidden class=anchor aria-hidden=true href=#authentication-patterns>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Basic auth (username:password)</span>
-</span></span><span style=display:flex><span>http -a username:password api.example.com/protected
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Basic auth with password prompt (secure)</span>
-</span></span><span style=display:flex><span>http -a username api.example.com/protected
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Digest auth</span>
-</span></span><span style=display:flex><span>http -A digest -a username:password api.example.com/protected
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Bearer token auth</span>
-</span></span><span style=display:flex><span>http -A bearer -a YOUR_TOKEN api.example.com/protected
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Using .netrc for stored credentials</span>
-</span></span><span style=display:flex><span>cat ~/.netrc
-</span></span><span style=display:flex><span><span style=color:#75715e># machine api.example.com login myuser password mypass</span>
-</span></span><span style=display:flex><span>http api.example.com/protected  <span style=color:#75715e># auto-uses .netrc</span>
-</span></span></code></pre></div><h3 id=persistent-sessions>Persistent Sessions<a hidden class=anchor aria-hidden=true href=#persistent-sessions>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Create a named session with auth and headers</span>
-</span></span><span style=display:flex><span>http --session<span style=color:#f92672>=</span>prod -a user:pass api.example.com/login API-Key:123
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Reuse session — auth and headers persist</span>
-</span></span><span style=display:flex><span>http --session<span style=color:#f92672>=</span>prod api.example.com/dashboard
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Read-only session (won&#39;t update from response)</span>
-</span></span><span style=display:flex><span>http --session-read-only<span style=color:#f92672>=</span>prod api.example.com/data
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Anonymous session (file-based, cross-host)</span>
-</span></span><span style=display:flex><span>http --session<span style=color:#f92672>=</span>./shared-session.json api.host1.com/data
-</span></span><span style=display:flex><span>http --session<span style=color:#f92672>=</span>./shared-session.json api.host2.com/data
-</span></span></code></pre></div><h3 id=ssltls-configuration>SSL/TLS Configuration<a hidden class=anchor aria-hidden=true href=#ssltls-configuration>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Skip SSL verification (development only — never in production)</span>
-</span></span><span style=display:flex><span>http --verify<span style=color:#f92672>=</span>no https://self-signed.example.com
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Use custom CA bundle</span>
-</span></span><span style=display:flex><span>http --verify<span style=color:#f92672>=</span>/path/to/ca-bundle.crt https://internal.example.com
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Client certificate authentication</span>
-</span></span><span style=display:flex><span>http --cert<span style=color:#f92672>=</span>client.pem --cert-key<span style=color:#f92672>=</span>client.key https://mtls.example.com
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Specify SSL/TLS version</span>
-</span></span><span style=display:flex><span>http --ssl<span style=color:#f92672>=</span>tls1.2 https://legacy.example.com
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Custom cipher suite</span>
-</span></span><span style=display:flex><span>http --ciphers<span style=color:#f92672>=</span>ECDHE-RSA-AES128-GCM-SHA256 https://secure.example.com
-</span></span></code></pre></div><h3 id=output-control-and-formatting>Output Control and Formatting<a hidden class=anchor aria-hidden=true href=#output-control-and-formatting>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Show only response body</span>
-</span></span><span style=display:flex><span>http --body GET api.example.com/users
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Show only response headers</span>
-</span></span><span style=display:flex><span>http --headers GET api.example.com/users
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Verbose — show full request + response</span>
-</span></span><span style=display:flex><span>http --verbose PUT api.example.com/users/1 name<span style=color:#f92672>=</span>Updated
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Extra verbose with timing metadata</span>
-</span></span><span style=display:flex><span>http -vv GET api.example.com/slow-endpoint
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Custom color theme</span>
-</span></span><span style=display:flex><span>http --style<span style=color:#f92672>=</span>monokai GET api.example.com/users
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Disable sorting for debugging</span>
-</span></span><span style=display:flex><span>http --unsorted GET api.example.com/users
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Custom JSON indent size</span>
-</span></span><span style=display:flex><span>http --format-options json.indent:2 GET api.example.com/users
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Save response to file</span>
-</span></span><span style=display:flex><span>http GET api.example.com/report &gt; report.json
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Download with progress bar (wget-style)</span>
-</span></span><span style=display:flex><span>http --download GET api.example.com/files/large-archive.zip
-</span></span></code></pre></div><h3 id=request-building-with-nested-json>Request Building with Nested JSON<a hidden class=anchor aria-hidden=true href=#request-building-with-nested-json>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Build complex nested JSON structures inline</span>
-</span></span><span style=display:flex><span>http POST api.example.com/orders <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    customer<span style=color:#f92672>[</span>name<span style=color:#f92672>]=</span>Alice <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    customer<span style=color:#f92672>[</span>email<span style=color:#f92672>]=</span>alice@example.com <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    items<span style=color:#f92672>[</span>0<span style=color:#f92672>][</span>product<span style=color:#f92672>]=</span>laptop <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    items<span style=color:#f92672>[</span>0<span style=color:#f92672>][</span>qty<span style=color:#f92672>]</span>:<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    items<span style=color:#f92672>[</span>0<span style=color:#f92672>][</span>price<span style=color:#f92672>]</span>:<span style=color:#f92672>=</span>999.99 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    items<span style=color:#f92672>[</span>1<span style=color:#f92672>][</span>product<span style=color:#f92672>]=</span>mouse <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    items<span style=color:#f92672>[</span>1<span style=color:#f92672>][</span>qty<span style=color:#f92672>]</span>:<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    items<span style=color:#f92672>[</span>1<span style=color:#f92672>][</span>price<span style=color:#f92672>]</span>:<span style=color:#f92672>=</span>29.99 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    shipping<span style=color:#f92672>[</span>address<span style=color:#f92672>][</span>street<span style=color:#f92672>]=</span><span style=color:#e6db74>&#39;123 Main St&#39;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    shipping<span style=color:#f92672>[</span>address<span style=color:#f92672>][</span>city<span style=color:#f92672>]=</span>Boston <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    shipping<span style=color:#f92672>[</span>method<span style=color:#f92672>]=</span>express
-</span></span></code></pre></div><h3 id=plugin-management>Plugin Management<a hidden class=anchor aria-hidden=true href=#plugin-management>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># List installed plugins</span>
-</span></span><span style=display:flex><span>httpie cli plugins list
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install auth plugins</span>
-</span></span><span style=display:flex><span>httpie cli plugins install httpie-jwt-auth
-</span></span><span style=display:flex><span>httpie cli plugins install httpie-aws-auth
-</span></span><span style=display:flex><span>httpie cli plugins install httpie-ntlm
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Upgrade plugins</span>
-</span></span><span style=display:flex><span>httpie cli plugins upgrade httpie-jwt-auth
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Uninstall plugins</span>
-</span></span><span style=display:flex><span>httpie cli plugins uninstall httpie-jwt-auth
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Check for HTTPie updates</span>
-</span></span><span style=display:flex><span>httpie cli check-updates
-</span></span></code></pre></div><h3 id=configuration-file>Configuration File<a hidden class=anchor aria-hidden=true href=#configuration-file>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span><span style=color:#75715e>// ~/.config/httpie/config.json
-</span></span></span><span style=display:flex><span>{
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;default_options&#34;</span>: [
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;--style=pie-dark&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;--timeout=30&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;--check-status&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;--ignore-stdin&#34;</span>
-</span></span><span style=display:flex><span>    ],
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;plugins_dir&#34;</span>: <span style=color:#e6db74>&#34;~/.config/httpie/plugins&#34;</span>
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h2 id=comparison-with-alternatives>Comparison with Alternatives<a hidden class=anchor aria-hidden=true href=#comparison-with-alternatives>#</a></h2><p>| Feature | HTTPie | curl | wget | Postman CLI (Newman) |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
-| <strong>Primary Use Case</strong> | API testing & debugging | General HTTP/file transfer | File downloading | Collection-based API testing |
+</code></pre><p><strong>API Documentation Generation:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Build a request without sending (offline mode)</span>
+</span></span><span style="display:flex;"><span>http --offline POST api.example.com/v2/users <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    Content-Type:application/json <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    Authorization:<span style="color:#e6db74">&#34;Bearer &lt;token&gt;&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Jane Doe&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    email<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;jane@example.com&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    role:<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;[admin, editor]&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    active:<span style="color:#f92672">=</span>true
+</span></span></code></pre></div><p><strong>Webhook Testing:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Send test webhook payload</span>
+</span></span><span style="display:flex;"><span>http POST https://webhook.site/your-uuid <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    event<span style="color:#f92672">=</span>order.created <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    order:<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{&#34;id&#34;: 12345, &#34;total&#34;: 99.99, &#34;currency&#34;: &#34;USD&#34;}&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    signature<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sha256=abc123...&#34;</span>
+</span></span></code></pre></div><p><strong>Batch API Operations:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Delete multiple resources</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> id in <span style="color:#66d9ef">$(</span>cat ids.txt<span style="color:#66d9ef">)</span>; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    http --check-status DELETE <span style="color:#e6db74">&#34;https://api.example.com/items/</span>$id<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening<a hidden class="anchor" aria-hidden="true" href="#advanced-usage--production-hardening">#</a></h2>
+<h3 id="authentication-patterns">Authentication Patterns<a hidden class="anchor" aria-hidden="true" href="#authentication-patterns">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Basic auth (username:password)</span>
+</span></span><span style="display:flex;"><span>http -a username:password api.example.com/protected
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Basic auth with password prompt (secure)</span>
+</span></span><span style="display:flex;"><span>http -a username api.example.com/protected
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Digest auth</span>
+</span></span><span style="display:flex;"><span>http -A digest -a username:password api.example.com/protected
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Bearer token auth</span>
+</span></span><span style="display:flex;"><span>http -A bearer -a YOUR_TOKEN api.example.com/protected
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Using .netrc for stored credentials</span>
+</span></span><span style="display:flex;"><span>cat ~/.netrc
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># machine api.example.com login myuser password mypass</span>
+</span></span><span style="display:flex;"><span>http api.example.com/protected  <span style="color:#75715e"># auto-uses .netrc</span>
+</span></span></code></pre></div><h3 id="persistent-sessions">Persistent Sessions<a hidden class="anchor" aria-hidden="true" href="#persistent-sessions">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create a named session with auth and headers</span>
+</span></span><span style="display:flex;"><span>http --session<span style="color:#f92672">=</span>prod -a user:pass api.example.com/login API-Key:123
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Reuse session — auth and headers persist</span>
+</span></span><span style="display:flex;"><span>http --session<span style="color:#f92672">=</span>prod api.example.com/dashboard
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Read-only session (won&#39;t update from response)</span>
+</span></span><span style="display:flex;"><span>http --session-read-only<span style="color:#f92672">=</span>prod api.example.com/data
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Anonymous session (file-based, cross-host)</span>
+</span></span><span style="display:flex;"><span>http --session<span style="color:#f92672">=</span>./shared-session.json api.host1.com/data
+</span></span><span style="display:flex;"><span>http --session<span style="color:#f92672">=</span>./shared-session.json api.host2.com/data
+</span></span></code></pre></div><h3 id="ssltls-configuration">SSL/TLS Configuration<a hidden class="anchor" aria-hidden="true" href="#ssltls-configuration">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Skip SSL verification (development only — never in production)</span>
+</span></span><span style="display:flex;"><span>http --verify<span style="color:#f92672">=</span>no https://self-signed.example.com
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use custom CA bundle</span>
+</span></span><span style="display:flex;"><span>http --verify<span style="color:#f92672">=</span>/path/to/ca-bundle.crt https://internal.example.com
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Client certificate authentication</span>
+</span></span><span style="display:flex;"><span>http --cert<span style="color:#f92672">=</span>client.pem --cert-key<span style="color:#f92672">=</span>client.key https://mtls.example.com
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Specify SSL/TLS version</span>
+</span></span><span style="display:flex;"><span>http --ssl<span style="color:#f92672">=</span>tls1.2 https://legacy.example.com
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Custom cipher suite</span>
+</span></span><span style="display:flex;"><span>http --ciphers<span style="color:#f92672">=</span>ECDHE-RSA-AES128-GCM-SHA256 https://secure.example.com
+</span></span></code></pre></div><h3 id="output-control-and-formatting">Output Control and Formatting<a hidden class="anchor" aria-hidden="true" href="#output-control-and-formatting">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Show only response body</span>
+</span></span><span style="display:flex;"><span>http --body GET api.example.com/users
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Show only response headers</span>
+</span></span><span style="display:flex;"><span>http --headers GET api.example.com/users
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verbose — show full request + response</span>
+</span></span><span style="display:flex;"><span>http --verbose PUT api.example.com/users/1 name<span style="color:#f92672">=</span>Updated
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Extra verbose with timing metadata</span>
+</span></span><span style="display:flex;"><span>http -vv GET api.example.com/slow-endpoint
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Custom color theme</span>
+</span></span><span style="display:flex;"><span>http --style<span style="color:#f92672">=</span>monokai GET api.example.com/users
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Disable sorting for debugging</span>
+</span></span><span style="display:flex;"><span>http --unsorted GET api.example.com/users
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Custom JSON indent size</span>
+</span></span><span style="display:flex;"><span>http --format-options json.indent:2 GET api.example.com/users
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Save response to file</span>
+</span></span><span style="display:flex;"><span>http GET api.example.com/report &gt; report.json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Download with progress bar (wget-style)</span>
+</span></span><span style="display:flex;"><span>http --download GET api.example.com/files/large-archive.zip
+</span></span></code></pre></div><h3 id="request-building-with-nested-json">Request Building with Nested JSON<a hidden class="anchor" aria-hidden="true" href="#request-building-with-nested-json">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Build complex nested JSON structures inline</span>
+</span></span><span style="display:flex;"><span>http POST api.example.com/orders <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    customer<span style="color:#f92672">[</span>name<span style="color:#f92672">]=</span>Alice <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    customer<span style="color:#f92672">[</span>email<span style="color:#f92672">]=</span>alice@example.com <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    items<span style="color:#f92672">[</span>0<span style="color:#f92672">][</span>product<span style="color:#f92672">]=</span>laptop <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    items<span style="color:#f92672">[</span>0<span style="color:#f92672">][</span>qty<span style="color:#f92672">]</span>:<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    items<span style="color:#f92672">[</span>0<span style="color:#f92672">][</span>price<span style="color:#f92672">]</span>:<span style="color:#f92672">=</span>999.99 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    items<span style="color:#f92672">[</span>1<span style="color:#f92672">][</span>product<span style="color:#f92672">]=</span>mouse <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    items<span style="color:#f92672">[</span>1<span style="color:#f92672">][</span>qty<span style="color:#f92672">]</span>:<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    items<span style="color:#f92672">[</span>1<span style="color:#f92672">][</span>price<span style="color:#f92672">]</span>:<span style="color:#f92672">=</span>29.99 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    shipping<span style="color:#f92672">[</span>address<span style="color:#f92672">][</span>street<span style="color:#f92672">]=</span><span style="color:#e6db74">&#39;123 Main St&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    shipping<span style="color:#f92672">[</span>address<span style="color:#f92672">][</span>city<span style="color:#f92672">]=</span>Boston <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    shipping<span style="color:#f92672">[</span>method<span style="color:#f92672">]=</span>express
+</span></span></code></pre></div><h3 id="plugin-management">Plugin Management<a hidden class="anchor" aria-hidden="true" href="#plugin-management">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># List installed plugins</span>
+</span></span><span style="display:flex;"><span>httpie cli plugins list
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install auth plugins</span>
+</span></span><span style="display:flex;"><span>httpie cli plugins install httpie-jwt-auth
+</span></span><span style="display:flex;"><span>httpie cli plugins install httpie-aws-auth
+</span></span><span style="display:flex;"><span>httpie cli plugins install httpie-ntlm
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Upgrade plugins</span>
+</span></span><span style="display:flex;"><span>httpie cli plugins upgrade httpie-jwt-auth
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Uninstall plugins</span>
+</span></span><span style="display:flex;"><span>httpie cli plugins uninstall httpie-jwt-auth
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check for HTTPie updates</span>
+</span></span><span style="display:flex;"><span>httpie cli check-updates
+</span></span></code></pre></div><h3 id="configuration-file">Configuration File<a hidden class="anchor" aria-hidden="true" href="#configuration-file">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#75715e">// ~/.config/httpie/config.json
+</span></span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;default_options&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;--style=pie-dark&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;--timeout=30&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;--check-status&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;--ignore-stdin&#34;</span>
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;plugins_dir&#34;</span>: <span style="color:#e6db74">&#34;~/.config/httpie/plugins&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
+<p>| Feature | HTTPie | curl | wget | Postman CLI (Newman) |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Primary Use Case</strong> | API testing &amp; debugging | General HTTP/file transfer | File downloading | Collection-based API testing |
 | <strong>Language</strong> | Python | C | C | JavaScript (Node.js) |
 | <strong>JSON Support</strong> | Native — auto serialize/format | Manual — pipe to jq | None | Native |
 | <strong>Syntax Highlighting</strong> | Yes — built-in | No (bold headers only) | No | Terminal colors |
-| <strong>Terminal Output</strong> | Formatted & colorized | Raw | Raw progress bar | Formatted reports |
+| <strong>Terminal Output</strong> | Formatted &amp; colorized | Raw | Raw progress bar | Formatted reports |
 | <strong>Multiple Protocols</strong> | HTTP/HTTPS only | 20+ protocols | HTTP/HTTPS/FTP | HTTP/HTTPS/WebSocket |
 | <strong>File Transfer Speed</strong> | ~535 MB/s (older) | ~3,276 MB/s | ~2,800 MB/s | N/A |
 | <strong>HTTP/2 Support</strong> | No | Yes | No | Yes |
@@ -354,8 +718,36 @@ done
 | <strong>Binary Size</strong> | ~20MB (with Python deps) | ~200KB | ~500KB | ~50MB (with Node) |
 | <strong>Ships with OS</strong> | No | macOS, Windows, Linux | Most Linux | No |
 | <strong>License</strong> | BSD-3-Clause | curl license (MIT-like) | GPL-3.0+ | Apache-2.0 |
-| <strong>GitHub Stars</strong> | 38,200 | 36,500+ | N/A | 6,200 (Newman) |</p><h3 id=when-to-choose-which-tool>When to Choose Which Tool<a hidden class=anchor aria-hidden=true href=#when-to-choose-which-tool>#</a></h3><ul><li><strong>Choose HTTPie</strong> when: debugging APIs interactively, working with JSON endpoints, teaching API concepts, or writing readable API documentation examples</li><li><strong>Choose curl</strong> when: writing production scripts, transferring large files, needing HTTP/2 or HTTP/3, or working with non-HTTP protocols (FTP, SCP, etc.)</li><li><strong>Choose wget</strong> when: mirroring websites, resuming interrupted downloads, or recursive crawling</li><li><strong>Choose Postman CLI</strong> when: running pre-built test collections in CI/CD, need JavaScript assertions, or your team already uses Postman collections</li></ul><h2 id=limitations--honest-assessment>Limitations / Honest Assessment<a hidden class=anchor aria-hidden=true href=#limitations--honest-assessment>#</a></h2><p>HTTPie is purpose-built for API interaction, and that focus creates clear boundaries: <strong>1. Performance ceiling.</strong> Being written in Python on top of Requests, HTTPie cannot match the throughput of C-based curl. For bulk data transfer (>1GB), curl is the pragmatic choice.</p><p><strong>2. Single URL per invocation.</strong> Unlike curl, HTTPie only supports one URL per command. You cannot batch-fetch multiple URLs in parallel from one process.</p><p><strong>3. HTTP/2 and HTTP/3 not supported.</strong> As of version 3.2.4, HTTPie only speaks HTTP/1.1. This is a non-issue for most API servers but matters for high-throughput HTTP/2 multiplexing scenarios.</p><p><strong>4. Python dependency.</strong> HTTPie requires Python 3.7+, which is trivial on most systems but adds friction in minimal containers or embedded environments.</p><p><strong>5. No recursive downloading.</strong> Unlike wget, HTTPie has no built-in website mirroring or recursive link following.</p><p><strong>6. Restricted header manipulation.</strong> HTTPie prevents sending invalid UTF-8 in headers and blocks modifying internal headers like <code>Content-Length</code>. curl gives you more rope.</p><p><strong>Bottom line:</strong> HTTPie is a specialized tool. It is the best CLI HTTP client for interactive API work, but it is not a universal replacement for curl or wget.</p><h2 id=frequently-asked-questions>Frequently Asked Questions<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions>#</a></h2><h3 id=what-is-the-difference-between-httpie-and-curl>What is the difference between HTTPie and curl?<a hidden class=anchor aria-hidden=true href=#what-is-the-difference-between-httpie-and-curl>#</a></h3><p>curl is a general-purpose data transfer tool supporting 20+ protocols, optimized for speed and scripting flexibility. HTTPie is purpose-built for HTTP APIs with human-friendly syntax, built-in JSON support, and colorized output. Think of curl as a Swiss Army knife and HTTPie as a precision screwdriver for APIs. For interactive debugging, HTTPie is faster to use. For production scripts and file transfers, curl is more appropriate.</p><h3 id=can-httpie-completely-replace-curl-in-my-workflow>Can HTTPie completely replace curl in my workflow?<a hidden class=anchor aria-hidden=true href=#can-httpie-completely-replace-curl-in-my-workflow>#</a></h3><p>Not entirely. HTTPie excels at interactive API testing and debugging but lacks curl&rsquo;s performance, protocol breadth, and HTTP/2 support. Many developers use both: HTTPie for exploring APIs and crafting requests, then curl for the final production script or large file transfer. The tools complement each other.</p><h3 id=how-do-i-send-json-data-with-httpie>How do I send JSON data with HTTPie?<a hidden class=anchor aria-hidden=true href=#how-do-i-send-json-data-with-httpie>#</a></h3><p>HTTPie uses <code>=</code> for string fields and <code>:=</code> for raw JSON types (numbers, booleans, arrays, objects): `````bash
-http POST api.example.com/users<br>name=&ldquo;John Doe&rdquo;<br>age:=29<br>active:=true<br>roles:=&rsquo;[&ldquo;admin&rdquo;, &ldquo;editor&rdquo;]&rsquo;<br>profile:=&rsquo;{&ldquo;city&rdquo;: &ldquo;Boston&rdquo;, &ldquo;timezone&rdquo;: &ldquo;EST&rdquo;}&rsquo;</p><pre tabindex=0><code>
+| <strong>GitHub Stars</strong> | 38,200 | 36,500+ | N/A | 6,200 (Newman) |</p>
+<h3 id="when-to-choose-which-tool">When to Choose Which Tool<a hidden class="anchor" aria-hidden="true" href="#when-to-choose-which-tool">#</a></h3>
+<ul>
+<li><strong>Choose HTTPie</strong> when: debugging APIs interactively, working with JSON endpoints, teaching API concepts, or writing readable API documentation examples</li>
+<li><strong>Choose curl</strong> when: writing production scripts, transferring large files, needing HTTP/2 or HTTP/3, or working with non-HTTP protocols (FTP, SCP, etc.)</li>
+<li><strong>Choose wget</strong> when: mirroring websites, resuming interrupted downloads, or recursive crawling</li>
+<li><strong>Choose Postman CLI</strong> when: running pre-built test collections in CI/CD, need JavaScript assertions, or your team already uses Postman collections</li>
+</ul>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations--honest-assessment">#</a></h2>
+<p>HTTPie is purpose-built for API interaction, and that focus creates clear boundaries: <strong>1. Performance ceiling.</strong> Being written in Python on top of Requests, HTTPie cannot match the throughput of C-based curl. For bulk data transfer (&gt;1GB), curl is the pragmatic choice.</p>
+<p><strong>2. Single URL per invocation.</strong> Unlike curl, HTTPie only supports one URL per command. You cannot batch-fetch multiple URLs in parallel from one process.</p>
+<p><strong>3. HTTP/2 and HTTP/3 not supported.</strong> As of version 3.2.4, HTTPie only speaks HTTP/1.1. This is a non-issue for most API servers but matters for high-throughput HTTP/2 multiplexing scenarios.</p>
+<p><strong>4. Python dependency.</strong> HTTPie requires Python 3.7+, which is trivial on most systems but adds friction in minimal containers or embedded environments.</p>
+<p><strong>5. No recursive downloading.</strong> Unlike wget, HTTPie has no built-in website mirroring or recursive link following.</p>
+<p><strong>6. Restricted header manipulation.</strong> HTTPie prevents sending invalid UTF-8 in headers and blocks modifying internal headers like <code>Content-Length</code>. curl gives you more rope.</p>
+<p><strong>Bottom line:</strong> HTTPie is a specialized tool. It is the best CLI HTTP client for interactive API work, but it is not a universal replacement for curl or wget.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<h3 id="what-is-the-difference-between-httpie-and-curl">What is the difference between HTTPie and curl?<a hidden class="anchor" aria-hidden="true" href="#what-is-the-difference-between-httpie-and-curl">#</a></h3>
+<p>curl is a general-purpose data transfer tool supporting 20+ protocols, optimized for speed and scripting flexibility. HTTPie is purpose-built for HTTP APIs with human-friendly syntax, built-in JSON support, and colorized output. Think of curl as a Swiss Army knife and HTTPie as a precision screwdriver for APIs. For interactive debugging, HTTPie is faster to use. For production scripts and file transfers, curl is more appropriate.</p>
+<h3 id="can-httpie-completely-replace-curl-in-my-workflow">Can HTTPie completely replace curl in my workflow?<a hidden class="anchor" aria-hidden="true" href="#can-httpie-completely-replace-curl-in-my-workflow">#</a></h3>
+<p>Not entirely. HTTPie excels at interactive API testing and debugging but lacks curl&rsquo;s performance, protocol breadth, and HTTP/2 support. Many developers use both: HTTPie for exploring APIs and crafting requests, then curl for the final production script or large file transfer. The tools complement each other.</p>
+<h3 id="how-do-i-send-json-data-with-httpie">How do I send JSON data with HTTPie?<a hidden class="anchor" aria-hidden="true" href="#how-do-i-send-json-data-with-httpie">#</a></h3>
+<p>HTTPie uses <code>=</code> for string fields and <code>:=</code> for raw JSON types (numbers, booleans, arrays, objects): `````bash
+http POST api.example.com/users <br>
+name=&ldquo;John Doe&rdquo; <br>
+age:=29 <br>
+active:=true <br>
+roles:=&rsquo;[&ldquo;admin&rdquo;, &ldquo;editor&rdquo;]&rsquo; <br>
+profile:=&rsquo;{&ldquo;city&rdquo;: &ldquo;Boston&rdquo;, &ldquo;timezone&rdquo;: &ldquo;EST&rdquo;}&rsquo;</p>
+<pre tabindex="0"><code>
 HTTPie automatically sets ````Content-Type: application/json```` and serializes the data.
 
 ### Is HTTPie suitable for CI/CD pipelines?
@@ -376,15 +768,49 @@ http --proxy=http:http://proxy.company.com:8080 api.example.com
 export HTTP_PROXY=http://proxy.company.com:8080
 export HTTPS_PROXY=https://proxy.company.com:8080
 export NO_PROXY=localhost,127.0.0.1
-</code></pre><h3 id=does-httpie-support-file-uploads>Does HTTPie support file uploads?<a hidden class=anchor aria-hidden=true href=#does-httpie-support-file-uploads>#</a></h3><p>Yes, via the <code>@</code> syntax for file fields combined with <code>--form</code> or <code>--multipart</code>: `````bash</p><h1 id=form-upload-with-file>Form upload with file<a hidden class=anchor aria-hidden=true href=#form-upload-with-file>#</a></h1><p>http -f POST api.example.com/upload name=&ldquo;My File&rdquo; file@~/documents/report.pdf</p><h1 id=multipart-without-files>Multipart without files<a hidden class=anchor aria-hidden=true href=#multipart-without-files>#</a></h1><p>http &ndash;multipart POST api.example.com/data field1=value1 field2=value2</p><pre tabindex=0><code>
+</code></pre><h3 id="does-httpie-support-file-uploads">Does HTTPie support file uploads?<a hidden class="anchor" aria-hidden="true" href="#does-httpie-support-file-uploads">#</a></h3>
+<p>Yes, via the <code>@</code> syntax for file fields combined with <code>--form</code> or <code>--multipart</code>: `````bash</p>
+<h1 id="form-upload-with-file">Form upload with file<a hidden class="anchor" aria-hidden="true" href="#form-upload-with-file">#</a></h1>
+<p>http -f POST api.example.com/upload name=&ldquo;My File&rdquo; file@~/documents/report.pdf</p>
+<h1 id="multipart-without-files">Multipart without files<a hidden class="anchor" aria-hidden="true" href="#multipart-without-files">#</a></h1>
+<p>http &ndash;multipart POST api.example.com/data field1=value1 field2=value2</p>
+<pre tabindex="0"><code>
 ### How do I disable colors in HTTPie output?
 
 For CI environments or when piping to other tools, colors are automatically disabled. To force plain output in a terminal, use: `````bash
 http --pretty=none GET api.example.com/data
 # Or set environment variable
 export HTTPIE_NO_COLORS=1
-</code></pre><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>HTTPie earns its 38,200 GitHub stars by solving a specific problem well: making API interaction from the terminal intuitive, readable, and fast. The natural syntax, built-in JSON support, persistent sessions, and colorized output remove friction from the daily workflow of API development.</p><p>This <code>httpie tutorial</code> covered installation across seven methods, real integration patterns with <code>jq</code>, shell scripts, Git hooks, GitHub Actions, and VS Code, performance benchmarks against <code>curl</code> and <code>wget</code>, production hardening for SSL and auth, and an honest look at where HTTPie falls short.</p><p><strong>Action items to get started:</strong></p><ol><li>Install HTTPie via <code>pip install httpie</code> or your system package manager</li><li>Run <code>http https://httpie.io/hello</code> to verify</li><li>Replace your next API debugging session with HTTPie instead of curl</li><li>Configure ````~/.config/httpie/config.json``` with your preferred defaults</li><li>Join the community on <a href=https://httpie.io/discord>Discord</a> for support</li></ol><p><strong>Discuss this guide:</strong> Join our <a href=https://t.me/dibi8opensource>Telegram group</a> to share your HTTPie workflows and get help from the community.</p><h2 id=recommended-hosting--infrastructure>Recommended Hosting & Infrastructure<a hidden class=anchor aria-hidden=true href=#recommended-hosting--infrastructure>#</a></h2><p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li></ul><p><em>Affiliate links — they don"t cost you extra and they help keep dibi8.com running.</em></p><h2 id=sources--further-reading>Sources & Further Reading<a hidden class=anchor aria-hidden=true href=#sources--further-reading>#</a></h2><ol><li><strong>HTTPie Official Documentation</strong> — <a href=https://httpie.io/docs/cli/main-features>https://httpie.io/docs/cli/main-features</a></li><li><strong>HTTPie GitHub Repository</strong> — <a href=https://github.com/httpie/cli>https://github.com/httpie/cli</a> (38,200+ stars)</li><li><strong>curl vs HTTPie comparison by Daniel Stenberg (curl author)</strong> — <a href=https://daniel.haxx.se/docs/curl-vs-httpie.html>https://daniel.haxx.se/docs/curl-vs-httpie.html</a></li><li><strong>HTTPie 3.0 Release Notes</strong> — <a href=https://httpie.io/blog/httpie-3.0.0>https://httpie.io/blog/httpie-3.0.0</a></li><li><strong>Python Requests Library (HTTPie dependency)</strong> — <a href=https://docs.python-requests.org/>https://docs.python-requests.org/</a></li><li><strong>jq — JSON processor (ideal HTTPie companion)</strong> — <a href=https://jqlang.github.io/jq/>https://jqlang.github.io/jq/</a></li><li><strong>CurliPie — Convert curl to HTTPie</strong> — https://curlipie.// (community tool)</li></ol><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+</code></pre><h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>HTTPie earns its 38,200 GitHub stars by solving a specific problem well: making API interaction from the terminal intuitive, readable, and fast. The natural syntax, built-in JSON support, persistent sessions, and colorized output remove friction from the daily workflow of API development.</p>
+<p>This <code>httpie tutorial</code> covered installation across seven methods, real integration patterns with <code>jq</code>, shell scripts, Git hooks, GitHub Actions, and VS Code, performance benchmarks against <code>curl</code> and <code>wget</code>, production hardening for SSL and auth, and an honest look at where HTTPie falls short.</p>
+<p><strong>Action items to get started:</strong></p>
+<ol>
+<li>Install HTTPie via <code>pip install httpie</code> or your system package manager</li>
+<li>Run <code>http https://httpie.io/hello</code> to verify</li>
+<li>Replace your next API debugging session with HTTPie instead of curl</li>
+<li>Configure ````~/.config/httpie/config.json``` with your preferred defaults</li>
+<li>Join the community on <a href="https://httpie.io/discord">Discord</a> for support</li>
+</ol>
+<p><strong>Discuss this guide:</strong> Join our <a href="https://t.me/dibi8opensource">Telegram group</a> to share your HTTPie workflows and get help from the community.</p>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-hosting--infrastructure">#</a></h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading<a hidden class="anchor" aria-hidden="true" href="#sources--further-reading">#</a></h2>
+<ol>
+<li><strong>HTTPie Official Documentation</strong> — <a href="https://httpie.io/docs/cli/main-features">https://httpie.io/docs/cli/main-features</a></li>
+<li><strong>HTTPie GitHub Repository</strong> — <a href="https://github.com/httpie/cli">https://github.com/httpie/cli</a> (38,200+ stars)</li>
+<li><strong>curl vs HTTPie comparison by Daniel Stenberg (curl author)</strong> — <a href="https://daniel.haxx.se/docs/curl-vs-httpie.html">https://daniel.haxx.se/docs/curl-vs-httpie.html</a></li>
+<li><strong>HTTPie 3.0 Release Notes</strong> — <a href="https://httpie.io/blog/httpie-3.0.0">https://httpie.io/blog/httpie-3.0.0</a></li>
+<li><strong>Python Requests Library (HTTPie dependency)</strong> — <a href="https://docs.python-requests.org/">https://docs.python-requests.org/</a></li>
+<li><strong>jq — JSON processor (ideal HTTPie companion)</strong> — <a href="https://jqlang.github.io/jq/">https://jqlang.github.io/jq/</a></li>
+<li><strong>CurliPie — Convert curl to HTTPie</strong> — https://curlipie.// (community tool)</li>
+</ol>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;HTTPie: 38,200 GitHub Stars — Modern CLI HTTP Client vs curl, wget in 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -398,18 +824,141 @@ export HTTPIE_NO_COLORS=1
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/httpie%22>https://dibi8.com/resources/httpie"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/httpie%22">https://dibi8.com/resources/httpie"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/ai-coding-agents/httpie/>superpowers</a></li><li><a href=/ai-coding-agents/httpie/>superpowers</a></li><li><a href=/ai-coding-agents/httpie/>superpowers</a></li><li><a href=/ai-coding-agents/httpie/>claude-code-vs-aider</a></li><li><a href=/ai-coding-agents/httpie/>deepseek-reasonix-terminal-ai-coding-agent-prefix-cache</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/howtocook-programmer-open-source-cookbook/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ai-coding-agents/huggingface-transformers-guide/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
-<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/ai-coding-agents/httpie/">superpowers</a></li>
+<li><a href="/ai-coding-agents/httpie/">superpowers</a></li>
+<li><a href="/ai-coding-agents/httpie/">superpowers</a></li>
+<li><a href="/ai-coding-agents/httpie/">claude-code-vs-aider</a></li>
+<li><a href="/ai-coding-agents/httpie/">deepseek-reasonix-terminal-ai-coding-agent-prefix-cache</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ai-coding-agents/howtocook-programmer-open-source-cookbook/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ai-coding-agents/huggingface-transformers-guide/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+</body>
+
+</html>
