@@ -1,77 +1,77 @@
 ---
-title: "LangChain vs LlamaIndex vs LangGraph 2026: 完整対比特指南"
-description: "2026年のLangChain、LlamaIndex、LangGraphの3大LLMフレームワークの深い比較。RAGパフォーマンス、エージェントオーケストレーションから本番デプロイまで、プロジェクトに最適なフレームワークを選びます。"
-date: 2026-09-20
-lastmod: 2026-09-20
+title: "LangChain vs LlamaIndex vs LangGraph 2026: 완전 비교 가이드"
+description: "2026년 LangChain, LlamaIndex, LangGraph 3대 LLM 프레임워크의 심층 비교. RAG 성능, 에이전트 오케스트레이션부터 프로덕션 배포까지 프로젝트에 최적의 프레임워크를 선택하세요."
 tags: [langchain, llamaindex, langgraph, llm-frameworks, rag, agent, 2026]
 categories: [llm-frameworks]
 license_type: Open Source
-source: "Multiple sources"
+source: "다양한 출처"
 github: "langchain-ai/langchain, run-llama/llama_index, langchain-ai/langgraph"
 word_count: 0
 h2_count: 0
 code_blocks: 0
 faq_count: 0
+date: 2026-09-20
+lastmod: 2026-09-20
 ---
 
-# LangChain vs LlamaIndex vs LangGraph 2026: 完整対比特指南
+# LangChain vs LlamaIndex vs LangGraph 2026: 완전 비교 가이드
 
-2026年、AIコーディングツールエコシステムは劇的に変容しました。単純な自動補完から始まり、現在はLangChain、LlamaIndex、LangGraphという3つの異なるLLMフレームワークの生態系へと進化しました。
+2026년, AI 코딩 도구 생태계는 극적으로 변화했습니다. 단순한 자동 완성에서 시작해, 현재는 LangChain, LlamaIndex, LangGraph라는 세 가지 서로 다른 LLM 프레임워크 생태계로 진화했습니다.
 
-この包括的なガイドは、各ツールの実際の違い、ベンチマーク、価格、ユースケースを分析し、ワークフローに最適なツールを選ぶお手伝いをします。
+이 포괄적인 가이드는 각 도구의 실제 차이점, 벤치마크, 가격, 사용 사례를 분석하여 워크플로우에 최적의 도구를 선택하는 데 도움을 드립니다.
 
-## 三大パラダイム
+## 3대 패러다임
 
-各ツールはAI支援開発に対する根本的に異なるアプローチを表しています：
+각 도구는 AI 지원 개발에 대한 근본적으로 다른 접근 방식을 나타냅니다:
 
-### LangChain：汎用アプリケーションフレームワーク
+### LangChain: 범용 애플리케이션 프레임워크
 
-LangChainは最も包括的なLLMフレームワークで、複数のコンポーネントを持つ複雑なAIアプリケーションの構築に焦点を当てています。
+LangChain은 가장 포괄적인 LLM 프레임워크로, 여러 구성 요소를 가진 복잡한 AI 애플리케이션 구축에 중점을 둡니다.
 
-**主な機能：**
-- 200+のツールやサービスとの統合
-- チェーンとエージェントパターン
-- メモリと会話管理
-- マルチモーダルサポート
-- 本番対応ツール
+**주요 기능:**
+- 200+ 도구 및 서비스와의 통합
+- 체인과 에이전트 패턴
+- 메모리 및 대화 관리
+- 멀티모달 지원
+- 프로덕션 대응 도구
 
-### LlamaIndex：データとRAGフレームワーク
+### LlamaIndex: 데이터 및 RAG 프레임워크
 
-LlamaIndex（旧GPT Index）は、LLMを独自のデータに接続することに特化しています。
+LlamaIndex(구 GPT Index)는 LLM을 자체 데이터에 연결하는 데 특화되어 있습니다.
 
-**主な機能：**
-- 強力なデータコネクタ
-- 深いRAG（検索強化生成）
-- 多様なインデックス構造
-- 柔軟なクエリエンジン
-- エージェント機能
+**주요 기능:**
+- 강력한 데이터 커넥터
+- 심층 RAG(검색 증강 생성)
+- 다양한 인덱스 구조
+- 유연한 쿼리 엔진
+- 에이전트 기능
 
-### LangGraph：ワークフローグラフフレームワーク
+### LangGraph: 워크플로우 그래프 프레임워크
 
-LangGraphはLangChainの上に構築されていますが、ステートフルでグラフベースのワークフローに焦点を当てています。
+LangGraph는 LangChain 위에 구축되었지만, 상태 유지형 그래프 기반 워크플로우에 중점을 둡니다.
 
-**主な機能：**
-- ステートフルワークフロー
-- グラフベースのオーケストレーション
-- ヒューインザループ承認
-- 複雑な分岐ロジック
-- 本番デプロイメント
+**주요 기능:**
+- 상태 유지형 워크플로우
+- 그래프 기반 오케스트레이션
+- 사람 개입 승인
+- 복잡한 분기 로직
+- 프로덕션 배포
 
-## 詳細比較
+## 상세 비교
 
-### アーキテクチャと設計
+### 아키텍처와 디자인
 
-| 特性 | LangChain | LlamaIndex | LangGraph |
-|------|-----------|------------|-----------|
-| **ポジショニング** | 汎用目的 | データ駆動 | ワークフロー駆動 |
-| **複雑さ** | 中程度 | 低-中程度 | 高 |
-| **学習曲線** | 簡単 | とても簡単 | 難しい |
-| **柔軟性** | 高い | 中程度 | とても高い |
-| **拡張性** | とても高い | 高い | 高い |
+|| 특성 | LangChain | LlamaIndex | LangGraph |
+||------|-----------|------------|-----------|
+|| **포지셔닝** | 범용 목적 | 데이터 드리븐 | 워크플로우 드리븐 |
+|| **복잡도** | 중간 | 낮음-중간 | 높음 |
+|| **학습 곡선** | 쉬움 | 매우 쉬움 | 어려움 |
+|| **유연성** | 높음 | 중간 | 매우 높음 |
+|| **확장성** | 매우 높음 | 높음 | 높음 |
 
-### RAGパフォーマンス
+### RAG 성능
 
-**LangChain RAG：**
+**LangChain RAG:**
 ```python
 from langchain.vectorstores import Chroma
 from langchain.embeddings import OpenAIEmbeddings
@@ -79,41 +79,41 @@ from langchain.document_loaders import TextLoader
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.chains import RetrievalQA
 
-# ドキュメントをロードして分割
+# 문서 로드 및 분할
 loader = TextLoader("documents.txt")
 documents = loader.load()
 text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 texts = text_splitter.split_documents(documents)
 
-# ベクトルストアを作成
+# 벡터 스토어 생성
 embeddings = OpenAIEmbeddings()
 docsearch = Chroma.from_documents(texts, embeddings)
 
-# QAチェーンを作成
+# QA 체인 생성
 qa = RetrievalQA.from_chain_type(llm=OpenAI(), chain_type="stuff", retriever=docsearch.as_retriever())
-response = qa.run("主なテーマは何ですか？")
+response = qa.run("주요 테마는 무엇인가요?")
 ```
 
-**LlamaIndex RAG：**
+**LlamaIndex RAG:**
 ```python
 from llama_index import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.indices.postprocessor import LongContextReorder
 
-# ドキュメントをロード
+# 문서 로드
 documents = SimpleDirectoryReader("documents").load_data()
 
-# インデックスを作成
+# 인덱스 생성
 index = VectorStoreIndex.from_documents(documents)
 
-# ポストプロセッサでクエリ
+# 포스트프로세서로 쿼리
 query_engine = index.as_query_engine(
     similarity_top_k=3,
     node_postprocessors=[LongContextReorder()]
 )
-response = query_engine.query("主なテーマは何ですか？")
+response = query_engine.query("주요 테마는 무엇인가요?")
 ```
 
-**LangGraph RAG：**
+**LangGraph RAG:**
 ```python
 from langgraph.graph import StateGraph, END
 from langchain.vectorstores import Chroma
@@ -131,10 +131,10 @@ def retrieve(state):
 
 def generate(state):
     llm = ChatOpenAI()
-    response = llm.invoke(f"コンテキスト: {state['context']}\n質問: {state['question']}")
+    response = llm.invoke(f"컨텍스트: {state['context']}\\n질문: {state['question']}")
     return {"answer": response.content}
 
-# グラフを構築
+# 그래프 구축
 workflow = StateGraph(RAGState)
 workflow.add_node("retrieve", retrieve)
 workflow.add_node("generate", generate)
@@ -144,9 +144,9 @@ workflow.add_edge("generate", END)
 app = workflow.compile()
 ```
 
-### エージェント機能
+### 에이전트 기능
 
-**LangChain Agents：**
+**LangChain 에이전트:**
 ```python
 from langchain.agents import create_openai_functions_agent, AgentExecutor
 from langchain.tools import Tool
@@ -156,7 +156,7 @@ tools = [
     Tool(
         name="search",
         func=search_function,
-        description="ウェブを検索"
+        description="웹 검색"
     )
 ]
 
@@ -167,34 +167,34 @@ agent = create_openai_functions_agent(
 )
 
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
-result = agent_executor.invoke({"input": "AIについての情報を検索"})
+result = agent_executor.invoke({"input": "AI에 대한 정보를 검색"})
 ```
 
-**LlamaIndex Agents：**
+**LlamaIndex 에이전트:**
 ```python
 from llama_index.agent import OpenAIAgent
 from llama_index.tools import ToolMetadata, ToolOutput
 from llama_index import QueryEngineTool
 
-# ツールを定義
+# 도구 정의
 query_engine_tool = QueryEngineTool(
     query_engine=index.as_query_engine(),
     metadata=ToolMetadata(
         name="knowledge_base",
-        description="ナレッジベースを検索"
+        description="지식베이스 검색"
     )
 )
 
-# エージェントを作成
+# 에이전트 생성
 agent = OpenAIAgent.from_tools(
     [query_engine_tool],
     verbose=True
 )
 
-response = agent.chat("AIについて何を知っていますか？")
+response = agent.chat("AI에 대해 무엇을 알고 있나요?")
 ```
 
-**LangGraph Agents：**
+**LangGraph 에이전트:**
 ```python
 from langgraph.graph import StateGraph, END
 from typing import TypedDict, Annotated
@@ -226,91 +226,91 @@ workflow.add_conditional_edges(
 app = workflow.compile()
 ```
 
-### 価格とコスト
+### 가격과 비용
 
-**LangChain：**
-- **オープンソース**：完全に無料
-- **LangSmith**：モニタリング用$20/ユーザー/月
-- **LangServe**：セルフホストまたは$0.10/1Kリクエスト（クラウド版）
-- **総コスト**：セルフホスト時は非常に低い
+**LangChain:**
+- **오픈소스**: 완전히 무료
+- **LangSmith**: 모니터링용 $20/사용자/월
+- **LangServe**: 셀프호스팅 또는 $0.10/1K 요청(클라우드 버전)
+- **총 비용**: 셀프호스팅 시 매우 낮음
 
-**LlamaIndex：**
-- **オープンソース**：完全に無料
-- **LlamaCloud**：インデックス用$0.01/1Kトークン
-- **エンタープライズ**：販売に連絡して価格を確認
-- **総コスト**：非常に競争力がある
+**LlamaIndex:**
+- **오픈소스**: 완전히 무료
+- **LlamaCloud**: 인덱싱용 $0.01/1K 토큰
+- **엔터프라이즈**: 판매 팀에 문의하여 가격 확인
+- **총 비용**: 매우 경쟁력 있음
 
-**LangGraph：**
-- **オープンソース**：完全に無料
-- **LangSmith**：LangChainと同じ
-- **LangServe**：LangChainと同じ
-- **総コスト**：LangChainと同様
+**LangGraph:**
+- **오픈소스**: 완전히 무료
+- **LangSmith**: LangChain과 동일
+- **LangServe**: LangChain과 동일
+- **총 비용**: LangChain과 유사
 
-### ユースケース
+### 사용 사례
 
-**LangChainを選択するとき：**
-- 柔軟で汎用目的のフレームワークが必要な場合
-- 複数のコンポーネントを持つ複雑なAIアプリケーションを構築する場合
-- 幅広い統合範囲が必要場合
-- メモリを持つカスタムエージェントを作りたい場合
-- モニタリングが必要な本番アプリケーション
+**LangChain 선택 시:**
+- 유연하고 범용적인 프레임워크가 필요할 때
+- 여러 구성 요소를 가진 복잡한 AI 애플리케이션을 구축할 때
+- 넓은 범위의 통합이 필요할 때
+- 메모리가 있는 커스텀 에이전트를 만들고 싶을 때
+- 모니터링이 필요한 프로덕션 애플리케이션
 
-**LlamaIndexを選択するとき：**
-- データやドキュメントを大量に扱う場合
-- 効率的なRAGシステムが必要な場合
-- 検索ワークフローを簡略化したい場合
-- データ駆動のアプリケーションを構築する場合
-- 多様なクエリエンジンとインデックスタイプが必要場合
+**LlamaIndex 선택 시:**
+- 데이터나 문서를大量로 다룰 때
+- 효율적인 RAG 시스템이 필요할 때
+- 검색 워크플로우를 단순화하고 싶을 때
+- 데이터 드리븐 애플리케이션을 구축할 때
+- 다양한 쿼리 엔진과 인덱스 타입이 필요할 때
 
-**LangGraphを選択するとき：**
-- 複雑でステートフルなワークフローが必要な場合
-- ヒューインザループ承認が必要な場合
-- マルチステップパイプラインを構築する場合
-- 条件付きロジックと分岐が必要な場合
-- 信頼性の高い本番デプロイメントが必要な場合
+**LangGraph 선택 시:**
+- 복잡하고 상태 유지형 워크플로우가 필요할 때
+- 사람 개입 승인이 필요할 때
+- 다중 단계 파이프라인을 구축할 때
+- 조건부 로직과 분기가 필요할 때
+- 신뢰성 있는 프로덕션 배포가 필요할 때
 
-## ベンチマーク結果
+## 벤치마크 결과
 
-### RAGパフォーマンス
+### RAG 성능
 
-| 指標 | LangChain | LlamaIndex | LangGraph |
-|------|-----------|------------|-----------|
-| **検索速度** | 45ms | 32ms | 38ms |
-| **回答品質** | 85% | 92% | 88% |
-| **コンテキスト精度** | 78% | 89% | 82% |
-| **メモリ使用** | 256MB | 180MB | 220MB |
+|| 지표 | LangChain | LlamaIndex | LangGraph |
+||------|-----------|------------|-----------|
+|| **검색 속도** | 45ms | 32ms | 38ms |
+|| **답변 품질** | 85% | 92% | 88% |
+|| **컨텍스트 정확도** | 78% | 89% | 82% |
+|| **메모리 사용** | 256MB | 180MB | 220MB |
 
-### エージェントパフォーマンス
+### 에이전트 성능
 
-| 指標 | LangChain | LlamaIndex | LangGraph |
-|------|-----------|------------|-----------|
-| **タスク完了率** | 78% | 82% | 91% |
-| **ツール呼び出し回数** | 平均2.3回 | 平均1.8回 | 平均1.5回 |
-| **エラー率** | 12% | 8% | 5% |
-| **レイテンシー** | 2.1秒 | 1.8秒 | 1.5秒 |
+|| 지표 | LangChain | LlamaIndex | LangGraph |
+||------|-----------|------------|-----------|
+|| **작업 완료율** | 78% | 82% | 91% |
+|| **도구 호출 횟수** | 평균 2.3회 | 평균 1.8회 | 평균 1.5회 |
+|| **오류율** | 12% | 8% | 5% |
+|| **레이턴시** | 2.1초 | 1.8초 | 1.5초 |
 
-### スケーラビリティ
+### 확장성
 
-| スケール | LangChain | LlamaIndex | LangGraph |
-|----------|-----------|------------|-----------|
-| **100 req/s** | ✅ 良い | ✅ 優秀 | ✅ 良い |
-| **1000 req/s** | ⚠️ 許容 | ✅ 良い | ⚠️ 調整が必要 |
-| **10000 req/s** | ❌ 苦戦 | ⚠️ 許容 | ⚠️ 調整が必要 |
+|| 스케일 | LangChain | LlamaIndex | LangGraph |
+||----------|-----------|------------|-----------|
+|| **100 req/s** | ✅ 좋음 | ✅ 우수 | ✅ 좋음 |
+|| **1000 req/s** | ⚠️ 허용 | ✅ 좋음 | ⚠️ 조정 필요 |
+|| **10000 req/s** | ❌ 어려움 | ⚠️ 허용 | ⚠️ 조정 필요 |
 
-## マイグレーションガイド
+## 마이그레이션 가이드
 
-### LangChainからLangGraphへの移行
+### LangChain에서 LangGraph로 전환
 
 ```python
-# LangChainを使用していた頃
+# LangChain 사용 시절
 from langchain.chains import LLMChain
 from langchain.prompts import PromptTemplate
 
-prompt = PromptTemplate.from_template("{テーマ}について教えてください")
+prompt = PromptTemplate.from_template("{주제}에 대해 알려줘")
 chain = LLMChain(llm=OpenAI(), prompt=prompt)
 result = chain.run("AI")
 
-# LangGraphを使用する теперь
+# 이제 LangGraph 사용
 from langgraph.graph import StateGraph, END
 from typing import TypedDict
 
@@ -319,7 +319,7 @@ class State(TypedDict):
     result: str
 
 def generate(state):
-    prompt = f"{state['topic']}について教えてください"
+    prompt = f"{state['topic']}에 대해 알려줘"
     result = llm.invoke(prompt)
     return {"result": result.content}
 
@@ -332,16 +332,16 @@ app = workflow.compile()
 output = app.invoke({"topic": "AI"})
 ```
 
-### LlamaIndexからLangGraphへの移行
+### LlamaIndex에서 LangGraph로 전환
 
 ```python
-# LlamaIndexを使用していた頃
+# LlamaIndex 사용 시절
 from llama_index import VectorStoreIndex
 index = VectorStoreIndex.from_documents(documents)
 query_engine = index.as_query_engine()
-response = query_engine.query("質問？")
+response = query_engine.query("질문?")
 
-# LangGraphを使用する теперь
+# 이제 LangGraph 사용
 from langgraph.graph import StateGraph, END
 from typing import TypedDict
 
@@ -355,7 +355,7 @@ def retrieve(state):
     return {"context": results}
 
 def answer(state):
-    prompt = f"コンテキスト: {state['context']}\nクエリ: {state['query']}"
+    prompt = f"컨텍스트: {state['context']}\\n쿼리: {state['query']}"
     response = llm.invoke(prompt)
     return {"answer": response.content}
 
@@ -366,91 +366,91 @@ workflow.add_edge("retrieve", "answer")
 workflow.add_edge("answer", END)
 app = workflow.compile()
 
-output = app.invoke({"query": "質問？"})
+output = app.invoke({"query": "질문?"})
 ```
 
-## ベストプラクティス
+## 모범 사례
 
-### 1. 適切なフレームワークの選択
+### 1. 적절한 프레임워크 선택
 
-| 要件 | 推奨 |
-|------|------|
-| クイックRAGプロトタイプ | LlamaIndex |
-| 複雑なエージェントワークフロー | LangGraph |
-| 汎用AIアプリケーション | LangChain |
-| データ駆動アプリケーション | LlamaIndex |
-| 本番デプロイメント | LangGraph |
+|| 요구사항 | 권장 |
+||------|------|
+|| 빠른 RAG 프로토타입 | LlamaIndex |
+|| 복잡한 에이전트 워크플로우 | LangGraph |
+|| 범용 AI 애플리케이션 | LangChain |
+|| 데이터 드리븐 애플리케이션 | LlamaIndex |
+|| 프로덕션 배포 | LangGraph |
 
-### 2. ミックスアンドマッチ
+### 2. 혼합 활용
 
-必ずしも1つのフレームワークだけを選ぶ必要はありません：
+반드시 하나의 프레임워크만 선택할 필요는 없습니다:
 
 ```python
-# 検索にLlamaIndexを使用
+# 검색에 LlamaIndex 사용
 from llama_index import VectorStoreIndex
 index = VectorStoreIndex.from_documents(documents)
 
-# オーケストレーションにLangGraphを使用
+# 오케스트레이션에 LangGraph 사용
 from langgraph.graph import StateGraph
 
-# 特定のツールにLangChainを使用
+# 특정 도구에 LangChain 사용
 from langchain.tools import Tool
 ```
 
-### 3. モニタリングと最適化
+### 3. 모니터링 및 최적화
 
-- モニタリングにLangSmithを使用
-- トークン使用状況を追跡
-- チャンクサイズを最適化
-- キャッシュを実装
+- 모니터링에 LangSmith 사용
+- 토큰 사용량 추적
+- 청크 크기 최적화
+- 캐싱 구현
 
-## コミュニティとサポート
+## 커뮤니티와 지원
 
 ### LangChain
-- **GitHub Stars**：85k+
-- **コミュニティ**：非常に大きい
-- **ドキュメント**：优秀
-- **サポート**：有料（LangSmith）
+- **GitHub 스타**: 85k+
+- **커뮤니티**: 매우 큼
+- **문서**: 우수
+- **지원**: 유료(LangSmith)
 
 ### LlamaIndex
-- **GitHub Stars**：35k+
-- **コミュニティ**：大規模で成長中
-- **ドキュメント**：非常に良い
-- **サポート**：LlamaCloudを提供
+- **GitHub 스타**: 35k+
+- **커뮤니티**: 크고 성장 중
+- **문서**: 매우 좋음
+- **지원**: LlamaCloud 제공
 
 ### LangGraph
-- **GitHub Stars**：15k+
-- **コミュニティ**：急速に成長
-- **ドキュメント**：良い
-- **サポート**：LangChainエコシステム経由
+- **GitHub 스타**: 15k+
+- **커뮤니티**: 빠르게 성장
+- **문서**: 좋음
+- **지원**: LangChain 생태계 통함
 
-## 結論
+## 결론
 
-### まとめ比較
+### 요약 비교
 
-| フレームワーク | 最適な用途 | 学習曲線 | 柔軟性 | 本番対応 |
-|--------------|-----------|----------|--------|----------|
-| **LangChain** | 汎用AIアプリ | 中程度 | とても高い | はい |
-| **LlamaIndex** | データ/RAGアプリ | 低 | 中程度 | はい |
-| **LangGraph** | 複雑なワークフロー | 高 | とても高い | はい |
+|| 프레임워크 | 최적의 용도 | 학습 곡선 | 유연성 | 프로덕션 대응 |
+||--------------|-----------|----------|--------|----------|
+|| **LangChain** | 범용 AI 앱 | 중간 | 매우 높음 | 예 |
+|| **LlamaIndex** | 데이터/RAG 앱 | 낮음 | 중간 | 예 |
+|| **LangGraph** | 복잡한 워크플로우 | 높음 | 매우 높음 | 예 |
 
-### 推奨
+### 권장사항
 
-**初心者：**
-- 単純なLlamaIndexから始める
-- LangChainの基礎を学ぶ
-- 複雑なワークフローが必要な場合はLangGraphに移行
+**초보자:**
+- 간단한 LlamaIndex로 시작
+- LangChain 기본 학습
+- 복잡한 워크플로우 필요 시 LangGraph로 전환
 
-**本番アプリケーション：**
-- ワークフロー制御にLangGraphを使用
-- データ検索にLlamaIndexを使用
-- 統合にLangChainを使用
+**프로덕션 애플리케이션:**
+- 워크플로우 제어에 LangGraph 사용
+- 데이터 검색에 LlamaIndex 사용
+- 통합에 LangChain 사용
 
-**エンタープライズ：**
-- オーケストレーションにLangGraph
-- モニタリングにLangSmith
-- LangChainツール経由でカスタム統合
+**엔터프라이즈:**
+- 오케스트레이션에 LangGraph
+- 모니터링에 LangSmith
+- LangChain 도구를 통한 커스텀 통합
 
 ---
 
-*役に立ちましたか？每日AIツール更新を受け取るためにTelegramコミュニティに参加しましょう：https://t.me/DIBI8_Group*
+*도움이 되었나요? 매일 AI 도구 업데이트를 받기 위해 Telegram 커뮤니티에 가입하세요: https://t.me/DIBI8_Group*

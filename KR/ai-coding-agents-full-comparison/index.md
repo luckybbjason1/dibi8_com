@@ -1,66 +1,66 @@
 ---
-title: "AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor vs Codex"
-date: "2026-09-20"
-authors: ["dibi8 Team"]
-description: "Complete comparison of OpenCode (45K stars), Claude Code, Cursor, and Codex AI coding agents. Benchmarks, pricing, and decision framework."
+title: "AI 코딩 에이전트 2026: OpenCode vs Claude Code vs Cursor vs Codex"
+description: "OpenCode(45K 스타), Claude Code, Cursor, Codex AI 코딩 에이전트의 완전 비교. 벤치마크, 가격, 결정 프레임워크."
 tags: [ai-coding, comparison, 2026, opencode, claude-code, cursor, codex]
 categories: [ai-tools, dev-utils]
 image: "https://picsum.photos/seed/ai-coding/1200x630"
-source: "Original research and analysis"
+source: "원저 연구 및 분석"
 source_url: "https://github.com/opencode-ai/opencode"
 reading_time: 12
-language: "en"
+language: "ko"
+date: 2026-09-20
+lastmod: 2026-09-20
 ---
 
-# AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor vs Codex
+# AI 코딩 에이전트 2026: OpenCode vs Claude Code vs Cursor vs Codex
 
-## Introduction
+## 소개
 
-The AI coding tool landscape has exploded in 2026, with four major players dominating the conversation:
+2026년 AI 코딩 도구 생태계는 폭발적으로 성장했으며, 4개의 주요 플레이어가 대화를 주도하고 있습니다:
 
-1. **Claude Code** (Anthropic) - Terminal-first coding agent
-2. **Cursor** - AI-native IDE built on VS Code
-3. **Codex CLI** (OpenAI) - Rust-based coding terminal
-4. **OpenCode** (OSS) - Open-source Go CLI (45K+ GitHub stars)
+1. **Claude Code** (Anthropic) - 터미널 우선 코딩 에이전트
+2. **Cursor** - VS Code 기반으로 구축된 AI 네이티브 IDE
+3. **Codex CLI** (OpenAI) - Rust 기반 코딩 터미널
+4. **OpenCode** (OSS) - 오픈소스 Go CLI (45K+ GitHub 스타)
 
-Each takes a different philosophy on how AI should interact with code. Let's break down the real differences.
+각각 AI가 코드와 상호작용하는 방식에 대해 서로 다른 철학을 가지고 있습니다. 실제 차이점을 분석해 보겠습니다.
 
-## Quick Comparison Table
+## 빠른 비교표
 
-| Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
-| **Price** | $20/month | $20/month | Free | Free |
-| **Interface** | CLI + IDE | Full IDE | CLI | CLI |
-| **Languages** | TypeScript | TypeScript | Rust + TS | Go |
-| **License** | Proprietary | Commercial | Apache 2.0 | MIT |
-| **Codebase** | ~500K lines | ~150K lines | ~80K lines | ~30K lines |
-| **LLM Support** | Claude only | Multi-model | OpenAI only | Anthropic + OpenAI |
-| **Security** | Permission prompts | UI approval | OS sandbox | Channel-based approval |
-| **GitHub Stars** | N/A | N/A | N/A | 45,000+ |
+|| 기능 | Claude Code | Cursor | Codex CLI | OpenCode |
+||---------|-------------|--------|-----------|----------|
+|| **가격** | 월 $20 | 월 $20 | 무료 | 무료 |
+|| **인터페이스** | CLI + IDE | 전체 IDE | CLI | CLI |
+|| **언어** | TypeScript | TypeScript | Rust + TS | Go |
+|| **라이선스** | 독점 | 상업용 | Apache 2.0 | MIT |
+|| **코드베이스** | 약 50만 줄 | 약 15만 줄 | 약 8만 줄 | 약 3만 줄 |
+|| **LLM 지원** | Claude 전용 | 다중 모델 | OpenAI 전용 | Anthropic + OpenAI |
+|| **보안** | 권한 프롬프트 | UI 승인 | OS 샌드박스 | 채널 기반 승인 |
+|| **GitHub 스타** | N/A | N/A | N/A | 45,000+ |
 
-## Deep Dive: OpenCode
+## 심층 분석: OpenCode
 
-**OpenCode** is the dark horse of 2026. With 45,000+ GitHub stars and a clean 30K-line Go codebase, it's the most customizable option.
+**OpenCode**는 2026년의 다크호스입니다. 45,000+ GitHub 스타와 깔끔한 30K 줄 Go 코드베이스로, 가장 커스터마이즈 가능한 옵션입니다.
 
-### Why OpenCode?
+### 왜 OpenCode인가?
 
-- **Full transparency**: You can read the entire codebase in a day
-- **Multi-provider support**: Works with Anthropic, OpenAI, and others
-- **MCP integration**: Connects to any tool via Model Context Protocol
-- **SQLite sessions**: All conversations stored locally
+- **완전한 투명성**: 하루 만에 전체 코드베이스를 읽을 수 있음
+- **다중 제공자 지원**: Anthropic, OpenAI 및 기타와 작동
+- **MCP 통합**: Model Context Protocol을 통해 모든 도구에 연결
+- **SQLite 세션**: 모든 대화 로컬에 저장
 
 ```bash
-# Install OpenCode
+# OpenCode 설치
 git clone https://github.com/opencode-ai/opencode.git
 cd opencode
 go build
 ./opencode --version
 ```
 
-### Use Case: Custom Agent Development
+### 사용 사례: 커스텀 에이전트 개발
 
 ```go
-// OpenCode's architecture makes it easy to extend
+// OpenCode의 아키텍처는 확장이 쉽습니다
 type Agent struct {
     Model     string
     Tools     []Tool
@@ -69,180 +69,180 @@ type Agent struct {
 }
 
 func (a *Agent) Run(prompt string) (*Result, error) {
-    // Clear separation between AI and infrastructure
+    // AI와 인프라 간의 명확한 분리
     context := a.BuildContext(prompt)
     response := a.Model.Generate(context, a.Tools)
     return a.ProcessResponse(response)
 }
 ```
 
-## Claude Code: The Enterprise Choice
+## Claude Code: 기업 선택
 
-Claude Code dominates complex reasoning tasks and large refactoring projects.
+Claude Code는 복잡한 추론 작업과 대규모 리팩토링 프로젝트에서 주효합니다.
 
-### Key Features
+### 주요 기능
 
-- **200K context window**: Handles entire codebases
-- **MCP servers**: Connect to databases, APIs, tools
-- **Sub-agents**: Parallel processing for complex tasks
-- **Skill authoring**: Create custom behaviors
+- **200K 컨텍스트 창**: 전체 코드베이스 처리
+- **MCP 서버**: 데이터베이스, API, 도구에 연결
+- **서브 에이전트**: 복잡한 작업을 위한 병렬 처리
+- **스킬 제작**: 사용자 정의 동작 생성
 
 ```bash
-# Claude Code commands
-claude "refactor auth module to use JWT"
-claude "review PR #123 for security issues"
-claude "explain this codebase architecture"
+# Claude Code 명령어
+claude "인증 모듈을 JWT로 리팩토링해줘"
+claude "PR #123 보안 이슈 검토해줘"
+claude "이 코드베이스 아키텍처 설명해줘"
 ```
 
-### Security Model
+### 보안 모델
 
-Claude Code uses mandatory permission prompts:
-- Every file modification requires approval
-- Command execution needs confirmation
-- Hooks allow custom validation logic
+Claude Code는 의무적 권한 프롬프트를 사용합니다:
+- 모든 파일 수정은 승인 필요
+- 명령 실행에는 확인 필요
+- 후크로 사용자 정의 검증 로직 허용
 
-## Cursor: The IDE Revolution
+## Cursor: IDE 혁명
 
-Cursor reimagined the IDE itself, not just adding AI on top.
+Cursor는 단순히 AI를 추가하는 것이 아니라 IDE 자체를 재설계했습니다.
 
-### What Makes Cursor Different
+### Cursor의 차별점
 
-- **Composer 2.5**: Multi-agent parallel processing
-- **Bugbot**: Automated code review (3x faster in 2026)
-- **Tab completions**: Context-aware code suggestions
-- **VM-based agents**: Cloud workers for heavy tasks
+- **Composer 2.5**: 다중 에이전트 병렬 처리
+- **Bugbot**: 자동 코드 리뷰 (2026년 기준 3배 빠름)
+- **탭 완성**: 컨텍스트 인식 코드 제안
+- **VM 기반 에이전트**: 무거운 작업을 위한 클라우드 워크어
 
-### Real-World Performance
+### 실제 세계 성능
 
 ```python
-# Cursor excels at:
-- Large codebase navigation
-- Multi-file refactoring
-- Bug detection (10% better than peers)
-- Team collaboration features
+# Cursor가 잘하는 것:
+# - 대형 코드베이스 탐색
+# - 다중 파일 리팩토링
+# - 버그 감지 (동종 대비 10% 더 우수)
+# - 팀 협업 기능
 ```
 
-**Fortune 500 adoption**: Over 50% of Fortune 500 companies use Cursor. Endorsed by Jensen Huang (NVIDIA) and Patrick Collison (Stripe).
+**포춘 500 기업 Adoption**: 포춘 500 기업 중 50% 이상이 Cursor를 사용합니다. Jensen Huang(NVIDIA)과 Patrick Collison(Stripe)이 추천합니다.
 
-## Codex CLI: OpenAI's Terminal Entry
+## Codex CLI: OpenAI의 터미널 진입
 
-Codex brings OpenAI's models to your terminal with a Rust-powered TUI.
+Codex는 Rust 기반 TUI로 OpenAI 모델을 터미널에 가져옵니다.
 
-### Architecture
+### 아키텍처
 
 ```rust
-// Codex defines 25+ tool handlers
+// Codex는 25개 이상의 도구 핸들러를 정의합니다
 struct Codex {
     model: String,
     tools: Vec<ToolHandler>,
     sandbox: FileSystemSandbox,
 }
 
-// Notable tools:
-// - apply_patch (unified diff format)
-// - spawn_agents_on_csv (batch operations)
-// - MCP integration
+// 주목할 도구:
+// - apply_patch (유니파인 diff 형식)
+// - spawn_agents_on_csv (배치 작업)
+// - MCP 통합
 ```
 
-### When to Use Codex
+### Codex 사용 시기
 
-- Fast iteration cycles
-- Terminal-focused workflow
-- Need OpenAI models specifically
-- Want Rust-based performance
+- 빠른 반복 주기
+- 터미널 중심 워크플로우
+- 특히 OpenAI 모델 필요
+- Rust 기반 성능 원할 때
 
-## Cost Comparison (Monthly)
+## 비용 비교 (월간)
 
-| Tool | Individual | Team | Enterprise |
-|------|-----------|------|------------|
-| Claude Code | $20 | $40/user | Custom |
-| Cursor | $20 | $40/user | Custom |
-| Codex | Free | Free | Free |
-| OpenCode | Free | Free | Free |
+|| 도구 | 개인 | 팀 | 기업 |
+||------|-----------|------|------------|
+|| Claude Code | $20 | $40/사용자 | 맞춤 |
+|| Cursor | $20 | $40/사용자 | 맞춤 |
+|| Codex | 무료 | 무료 | 무료 |
+|| OpenCode | 무료 | 무료 | 무료 |
 
-**Real cost analysis:**
-- Claude Code + API: ~$50-100/month for heavy usage
-- Cursor Pro: $20/month (model costs separate)
-- Codex: Free (pay for OpenAI API)
-- OpenCode: Free (pay for API or use local models)
+**실제 비용 분석:**
+- Claude Code + API:重度 사용 시 월 약 $50-100
+- Cursor Pro: 월 $20 (모델 비용 별도)
+- Codex: 무료 (OpenAI API 비용 지불)
+- OpenCode: 무료 (API 비용 지불 또는 로컬 모델 사용)
 
-## Performance Benchmarks (2026)
+## 성능 벤치마크 (2026)
 
-| Task | Claude Code | Cursor | Codex | OpenCode |
-|------|-------------|--------|-------|----------|
-| Simple fix | 2.1s | 1.8s | 1.5s | 1.6s |
-| Refactor module | 15s | 12s | 18s | 14s |
-| Generate test | 8s | 6s | 7s | 9s |
-| Complex agent task | 45s | 60s | 50s | 35s |
+|| 작업 | Claude Code | Cursor | Codex | OpenCode |
+||------|-------------|--------|-------|----------|
+|| 단순 수정 | 2.1초 | 1.8초 | 1.5초 | 1.6초 |
+|| 모듈 리팩토링 | 15초 | 12초 | 18초 | 14초 |
+|| 테스트 생성 | 8초 | 6초 | 7초 | 9초 |
+|| 복잡한 에이전트 작업 | 45초 | 60초 | 50초 | 35초 |
 
-**Winner by category:**
-- Speed: **Codex** (2x faster on simple tasks)
-- Reasoning: **Claude Code** (better complex task handling)
-- UX: **Cursor** (richest feature set)
-- Customization: **OpenCode** (source code accessible)
+**카테고리별 승리자:**
+- 속도: **Codex** (단순 작업 기준 2배 빠름)
+- 추론: **Claude Code** (복잡한 작업 처리가 더 우수)
+- UX: **Cursor** (가장 풍부한 기능 세트)
+- 커스터마이징: **OpenCode** (소스 코드 접근 가능)
 
-## Decision Framework
+## 결정 프레임워크
 
-### Choose Claude Code if:
-- You need the best reasoning for complex architectures
-- Your team values security and permission controls
-- You're willing to pay for premium features
-- You work primarily in terminal environments
+### 다음과 같은 경우 Claude Code 선택:
+- 복잡한 아키텍처를 위한 최고 수준의 추론이 필요할 때
+- 팀이 보안과 권한 제어를 중시할 때
+- 프리미엄 기능에 비용을 지불할 의향이 있을 때
+- 주로 터미널 환경에서 작업할 때
 
-### Choose Cursor if:
-- You want a full IDE experience
-- Your team uses VS Code already
-- You need multi-agent parallel processing
-- Budget allows $20-40/month per user
+### 다음과 같은 경우 Cursor 선택:
+- 전체 IDE 경험을 원할 때
+- 팀이 이미 VS Code를 사용할 때
+- 다중 에이전트 병렬 처리가 필요할 때
+- 예산이 사용자당 월 $20-40을 허용할 때
 
-### Choose Codex if:
-- You prefer terminal-only workflow
-- You need OpenAI models specifically
-- You want Rust-based performance
-- Budget is a concern (free core)
+### 다음과 같은 경우 Codex 선택:
+- 터미널 전용 워크플로우를 선호할 때
+- 특히 OpenAI 모델이 필요할 때
+- Rust 기반 성능을 원할 때
+- 예산이 걱정될 때 (코어 무료)
 
-### Choose OpenCode if:
-- You want full control and transparency
-- You need multi-provider flexibility
-- You're building custom agent solutions
-- You prefer open-source software
+### 다음과 같은 경우 OpenCode 선택:
+- 완전한 통제와 투명성을 원할 때
+- 다중 제공자 유연성이 필요할 때
+- 커스텀 에이전트 솔루션을 구축 중일 때
+- 오픈소스 소프트웨어를 선호할 때
 
 ## FAQ
 
-**问：Can I use multiple tools?**
-Yes. Many teams use Cursor for daily work + Claude Code for complex architectural tasks.
+**Q: 여러 도구를 사용할 수 있나요?**
+예. 많은 팀이 일상 업무에는 Cursor + 복잡한 아키텍처 작업에는 Claude Code를 사용합니다.
 
-**问：Which is best for beginners?**
-Cursor has the gentlest learning curve. OpenCode is best if you want to learn from source.
+**Q: 초보자에게 어떤 것이 가장 좋나요?**
+Cursor가 가장 낮은 학습 곡선을 가지고 있습니다. 소스에서 배우고 싶다면 OpenCode가 가장 좋습니다.
 
-**问：Will models become commoditized?**
-Yes. The differentiators are shifting from model quality to harness features (multi-agent, security, context management).
+**Q: 모델이 상품화될까요?**
+예. 차별화 요소가 모델 품질에서 허니 features(다중 에이전트, 보안, 컨텍스트 관리)로 이동하고 있습니다.
 
-**问：Which has the best security?**
-Codex uses OS-level sandboxing. Claude Code uses permission prompts. Both have merit.
+**Q: 보안이 가장 좋은 것은?**
+Codex는 OS 수준 샌드박싱을 사용합니다. Claude Code는 권한 프롬프트를 사용합니다. 둘 다 장점이 있습니다.
 
-**问：What's the best free option?**
-OpenCode and Codex are both free. OpenCode offers more customization; Codex offers better speed.
+**Q: 가장 좋은 무료 옵션은?**
+OpenCode와 Codex 모두 무료입니다. OpenCode는 더 많은 커스터마이징을 제공하고, Codex는 더 나은 속도를 제공합니다.
 
-## Conclusion
+## 결론
 
-The 2026 AI coding tool landscape offers something for everyone:
+2026년 AI 코딩 도구 생태계는 모든 사람에게 무언가를 제공합니다:
 
-- **OpenCode** leads in transparency and customization
-- **Claude Code** excels at complex reasoning and enterprise features
-- **Cursor** dominates in user experience and IDE integration
-- **Codex** offers speed and open-source flexibility
+- **OpenCode**는 투명성과 커스터마이징에서 앞서갑니다
+- **Claude Code**는 복잡한 추론과 기업 기능에서 뛰어납니다
+- **Cursor**는 사용자 경험과 IDE 통합에서 지배적입니다
+- **Codex**는 속도와 오픈소스 유연성을 제공합니다
 
-Choose based on your workflow, not just features. Test each for 1 week before committing.
+기능뿐만 아니라 워크플로우에 따라 선택하세요. 헌혈하기 전에 각각을 1주일 동안 테스트하세요.
 
-**Recommendation**: Start with OpenCode (free) + Claude Code ($20) combo for best results.
+**추천**: 최고의 결과를 위해 OpenCode(무료) + Claude Code($20) 조합으로 시작하세요.
 
 ---
 
-**Sources:**
-- OpenCode GitHub: github.com/opencode-ai/opencode (45K stars)
+**출처:**
+- OpenCode GitHub: github.com/opencode-ai/opencode (45K 스타)
 - Claude Code: claude.ai/code
-- Cursor: cursor.com (June 2026 features)
+- Cursor: cursor.com (2026년 6월 기능)
 - Codex CLI: github.com/openai/codex
 
-**Last Updated:** September 20, 2026
+**최종 업데이트:** 2026년 9월 20일
