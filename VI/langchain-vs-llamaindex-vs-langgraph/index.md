@@ -1,96 +1,96 @@
 ---
-title: "LangChain vs LlamaIndex vs LangGraph 2026: Guia de Comparação Completo"
-description: "Comparação profunda dos três principais frameworks LLM em 2026. De RAG a orquestração de agentes, escolha o framework ideal para o seu projeto."
+title: "LangChain vs LlamaIndex vs LangGraph 2026: Hướng Dẫn So Sánh Toàn Diện"
+description: "Phân tích chuyên sâu ba framework LLM hàng đầu năm 2026. Từ RAG đến orchestration agent, chọn framework lý tưởng cho dự án của bạn."
 date: 2026-09-20
 lastmod: 2026-09-20
-tags: [langchain, llamaindex, langgraph, rag, frameworks-ia, 2026]
+tags: [langchain, llamaindex, langgraph, rag, frameworks-ai, 2026]
 categories: [llm-frameworks]
 license_type: Open Source
 source: "LangChain, LlamaIndex"
 github: "langchain-ai/langchain, run-llama/llamaindex, langchain-ai/langgraph"
 ---
 
-# LangChain vs LlamaIndex vs LangGraph 2026: Guia de Comparação Completo
+# LangChain vs LlamaIndex vs LangGraph 2026: Hướng Dẫn So Sánh Toàn Diện
 
-O ecossistema de frameworks LLM passou por uma evolução dramática em 2026. O que era conhecido como "biblioteca de chains" em LangChain agora se tornou uma plataforma de engenharia de agentes, enquanto LlamaIndex se concentrou na recuperação de documentos e workflows de agentes.
+Hệ sinh thái framework LLM đã trải qua sự thay đổi đáng kể vào năm 2026. Những gì trước đây được biết đến như "thư viện chains" trong LangChain giờ đã trở thành một nền tảng kỹ thuật agent, trong khi LlamaIndex tập trung vào truy xuất tài liệu và quy trình làm việc agent.
 
-Este guia completo analisa as diferenças fundamentais, benchmarks de desempenho e melhores práticas de produção entre os três frameworks.
+Hướng dẫn toàn diện này phân tích các khác biệt cơ bản, benchmark hiệu suất và thực tiễn tốt nhất trong sản xuất giữa ba framework.
 
-## Posicionamento Central dos Três Frameworks
+## Định Vị Trung Tâm Của Ba Framework
 
-### LangChain: Plataforma de Orquestração de Agentes
+### LangChain: Nền Tảng Orchestration Agent
 
-Em outubro de 2025, o LangChain lançou a versão 1.0, completando sua transição de "biblioteca de chains" para "plataforma de engenharia de agentes". A API central foi simplificada para `create_agent`.
+Vào tháng 10 năm 2025, LangChain phát hành phiên bản 1.0, hoàn tất quá trình chuyển đổi từ "thư viện chains" sang "nền tảng kỹ thuật agent". API trung tâm được đơn giản hóa thành `create_agent`.
 
-**Características Principais:**
-- API `create_agent` (crie um agente em 10 linhas)
-- LangGraph como runtime oficial de agentes
-- LangSmith para observabilidade
-- 40+ integrações de retriever
-- Suporte multimoเดล
+**Đặc điểm chính:**
+- API `create_agent` (tạo agent trong 10 dòng)
+- LangGraph là runtime chính thức của agent
+- LangSmith cho observability
+- 40+ tích hợp retriever
+- Hỗ trợ multimodal
 
-**Melhor para:** Construir rapidamente agentes prontos para produção, fluxos de trabalho complexos, estado persistente
+**Phù hợp nhất cho:** Xây dựng agent sẵn sàng sản xuất nhanh chóng, quy trình làm việc phức tạp, trạng thái bền vững
 
-### LlamaIndex: Plataforma de Inteligência Documental
+### LlamaIndex: Nền Tảng Thông Minh Tài Liệu
 
-Em 2026, o LlamaIndex reposicionou-se como "plataforma de documentos e OCR com agentes". Embora continue famoso por RAG, agora integra suporte completo a agentes com conceitos de "Workflows".
+Vào năm 2026, LlamaIndex đã tái định vị mình như "nền tảng tài liệu và OCR với agent". Mặc dù vẫn nổi tiếng về RAG, giờ đây nó tích hợp hỗ trợ agent đầy đủ với khái niệm "Workflows".
 
-**Características Principais:**
-- VectorStoreIndex (armazenamento em memória/permanente)
-- SimpleDirectoryReader (carregamento de documentos multi-formato)
-- HybridRetriever (recuperação híbrida)
-- LlamaParse (processamento avançado de documentos)
-- Workflows multi-agent
+**Đặc điểm chính:**
+- VectorStoreIndex (lưu trữ trong bộ nhớ/vĩnh viễn)
+- SimpleDirectoryReader (tải tài liệu đa định dạng)
+- HybridRetriever (truy xuất lai)
+- LlamaParse (xử lý tài liệu nâng cao)
+- Workflows đa agent
 
-**Melhor para:** Processar grandes volumes de documentos, construir sistemas de recuperação de conhecimento
+**Phù hợp nhất cho:** Xử lý khối lượng lớn tài liệu, xây dựng hệ thống truy xuất kiến thức
 
-### LangGraph: Runtime de Baixo Nível
+### LangGraph: Runtime Cấp Thấp
 
-LangGraph é o framework de orquestração de baixo nível no ecossistema LangChain, focado em workflows de agentes de longa duração com estado. É o runtime central do LangChain 1.0.
+LangGraph là framework orchestration cấp thấp trong hệ sinh thái LangChain, tập trung vào quy trình làm việc agent dài hạn có trạng thái. Đây là runtime trung tâm của LangChain 1.0.
 
-**Características Principais:**
-- Execução duradoura (durable execution)
-- Checkpointing (recuperação de checkpoints)
+**Đặc điểm chính:**
+- Execute bền vững (durable execution)
+- Checkpointing (khôi phục checkpoint)
 - Streaming
 - Human-in-the-loop
-- Gerenciamento de estado
+- Quản lý trạng thái
 
-**Melhor para:** Controle fino sobre fluxos de agentes, implementar lógica complexa de máquina de estados
+**Phù hợp nhất cho:** Kiểm soát tinh tế luồng agent, triển khai logic phức tạp của máy trạng thái
 
-## Benchmarks de Desempenho
+## Benchmark Hiệu Suất
 
-### Desempenho de Recuperação RAG
+### Hiệu Suất Truy Xuất RAG
 
-| Framework | Velocidade de Busca | Precisão | Uso de Memória | Facilitação |
-|-----------|-------------------|----------|----------------|-------------|
-| LlamaIndex | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | Baixo | ⭐⭐⭐⭐ |
-| LangChain | ⭐⭐⭐ | ⭐⭐⭐⭐ | Médio | ⭐⭐⭐ |
-| LangGraph | N/A | N/A | Alto | ⭐⭐ |
+| Framework | Tốc Độ Tìm Kiếm | Độ Chính Xác | Sử Dụng Bộ Nhớ | Dễ Dàng Sử Dụng |
+|-----------|----------------|-------------|----------------|----------------|
+| LlamaIndex | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | Thấp | ⭐⭐⭐⭐ |
+| LangChain | ⭐⭐⭐ | ⭐⭐⭐⭐ | Trung bình | ⭐⭐⭐ |
+| LangGraph | N/A | N/A | Cao | ⭐⭐ |
 
-LlamaIndex é claramente líder em cenários puros de RAG porque se concentra na otimização de indexação e recuperação de documentos.
+LlamaIndex rõ ràng dẫn đầu trong các kịch bản RAG thuần túy vì tập trung vào tối ưu hóa lập chỉ mục và truy xuất tài liệu.
 
-### Capacidade de Orquestração de Agentes
+### Khả Năng Orchestration Agent
 
-| Framework | Complexidade de Workflow | Recuperação de Erros | Intervenção Humana | Curva de Aprendizado |
-|-----------|------------------------|---------------------|-------------------|---------------------|
-| LangChain | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | Média |
-| LlamaIndex | ⭐⭐ | ⭐⭐ | ⭐⭐ | Simples |
-| LangGraph | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | Íngreme |
+| Framework | Độ Phức Tạp Workflow | Khôi Phục Lỗi | Can Thiệp Con Người | Đường Cong Học Tập |
+|-----------|---------------------|---------------|-------------------|-------------------|
+| LangChain | ⭐⭐⭐ | ⭐⭐⭐ | ⭐⭐⭐ | Trung bình |
+| LlamaIndex | ⭐⭐ | ⭐⭐ | ⭐⭐ | Đơn giản |
+| LangGraph | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐⭐ | Dốc |
 
-LangGraph é o mais forte em workflows complexos e recuperação de erros, mas também tem a maior curva de aprendizado.
+LangGraph mạnh nhất trong các workflow phức tạp và khôi phục lỗi, nhưng cũng có đường cong học tập cao nhất.
 
-### Eficiência de Tokens
+### Hiệu Quả Token
 
-De acordo com testes independentes de junho de 2026:
-- **LlamaIndex**: Menor uso de tokens (otimização de recuperação)
-- **LangChain**: Uso médio de tokens (design genérico)
-- **LangGraph**: Uso mais alto de tokens (rastreamento completo de estado)
+Theo các bài kiểm tra độc lập tháng 6 năm 2026:
+- **LlamaIndex**: Sử dụng token thấp nhất (tối ưu hóa truy xuất)
+- **LangChain**: Sử dụng token trung bình (thiết kế chung)
+- **LangGraph**: Sử dụng token cao nhất (theo dõi trạng thái đầy đủ)
 
-## Exemplos de Código em Comparação
+## Ví Dụ Mã Nguồn So Sánh
 
-### Consulta RAG Simples
+### Truy Vấn RAG Đơn Giản
 
-**LlamaIndex (Recomendado):**
+**LlamaIndex (Khuyến nghị):**
 ```python
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from llama_index.llms.ollama import Ollama
@@ -99,7 +99,7 @@ documents = SimpleDirectoryReader("./data").load_data()
 index = VectorStoreIndex.from_documents(documents)
 query_engine = index.as_query_engine(llm=Ollama(model="llama3.2"))
 
-response = query_engine.query("Qual é a arquitetura central do projeto?")
+response = query_engine.query("Kiến trúc trung tâm của dự án là gì?")
 print(response)
 ```
 
@@ -118,33 +118,33 @@ documents = splitter.split_documents(docs)
 vectorstore = Chroma.from_documents(documents, OllamaEmbeddings())
 qa = RetrievalQA.from_chain_type(llm=OllamaLLM(), retriever=vectorstore.as_retriever())
 
-response = qa.run("Qual é a arquitetura central do projeto?")
+response = qa.run("Kiến trúc trung tâm của dự án là gì?")
 print(response)
 ```
 
-### Criação de Agente
+### Tạo Agent
 
-**LangChain 1.0 (Recomendado):**
+**LangChain 1.0 (Khuyến nghị):**
 ```python
 from langchain.agents import create_agent
 
 def get_weather(city: str) -> str:
-    """Obter clima de uma cidade."""
-    return f"{city} está ensolarado hoje, 25°C"
+    """Lấy thời tiết của một thành phố."""
+    return f"{city} đang nắng hôm nay, 25°C"
 
 agent = create_agent(
     model="claude-sonnet-4-6",
     tools=[get_weather],
-    system_prompt="Você é um assistente meteorológico útil"
+    system_prompt="Bạn là trợ lý thời tiết hữu ích"
 )
 
 result = agent.invoke({
-    "messages": [{"role": "user", "content": "Como está o tempo em San Francisco?"}]
+    "messages": [{"role": "user", "content": "Thời tiết ở San Francisco như thế nào?"}]
 })
 print(result)
 ```
 
-**LangGraph (Mais Controle):**
+**LangGraph (Kiểm Soát Tốt Hơn):**
 ```python
 from langgraph.graph import StateGraph, START, END
 from typing import TypedDict
@@ -155,7 +155,7 @@ class AgentState(TypedDict):
     final_answer: str
 
 def weather_tool(state: AgentState) -> AgentState:
-    state["final_answer"] = "25°C em San Francisco"
+    state["final_answer"] = "25°C tại San Francisco"
     return state
 
 def should_continue(state: AgentState) -> str:
@@ -167,29 +167,29 @@ graph.add_edge(START, "tool")
 graph.add_conditional_edges("tool", should_continue, {"tool": "tool", "end": END})
 
 app = graph.compile()
-result = app.invoke({"messages": [("user", "Clima em SF?")]})
+result = app.invoke({"messages": [("user", "Thời tiết ở SF?")]})
 ```
 
-## Soluções de Deploy em Produção
+## Giải Pháp Deploy Sản Xuất
 
-### Opção 1: LlamaIndex + LangGraph Híbrido
+### Tùy Chọn 1: LlamaIndex + LangGraph Kết Hợp
 
-Esta é a solução de produção mais popular em 2026:
+Đây là giải pháp sản xuất phổ biến nhất năm 2026:
 
 ```
-Requisição do Usuário → Recuperação LlamaIndex → Orquestração LangGraph → Geração do Modelo → Resposta
+Yêu Cầu Người Dùng → Truy Xuất LlamaIndex → Orchestration LangGraph → Mô Hình Tạo → Phản Hồi
            ↑                                                              ↓
-        Indexação de Documentos ←────────────────────── Revisão Humana
+        Lập Chỉ Mục Tài Liệu ←────────────────────── Xác Nhận Con Người
 ```
 
-**Vantagens:**
-- LlamaIndex lida com recuperação eficiente de documentos
-- LangGraph lida com workflows complexos de agentes
-- Integração via APIs padrão
+**Ưu điểm:**
+- LlamaIndex xử lý truy xuất tài liệu hiệu quả
+- LangGraph xử lý workflow agent phức tạp
+- Tích hợp qua API tiêu chuẩn
 
-**Cenários Ideais:** Aplicações empresariais que precisam de RAG de alta qualidade + lógica complexa de agentes
+**Kịch bản lý tưởng:** Ứng dụng doanh nghiệp cần RAG chất lượng cao + logic agent phức tạp
 
-### Opção 2: LangChain 1.0 Puro
+### Tùy Chọn 2: LangChain 1.0 Thuần Túy
 
 ```python
 from langchain.agents import create_agent
@@ -208,58 +208,58 @@ agent = create_agent(
 )
 ```
 
-**Vantagens:** Simples e rápido, ideal para protótipos e aplicações de pequeno/médio porte
-**Desvantagens:** Suporte limitado a workflows complexos
+**Ưu điểm:** Đơn giản và nhanh chóng, lý tưởng cho prototype và ứng dụng quy mô nhỏ/trung bình
+**Nhược điểm:** Hỗ trợ hạn chế cho workflow phức tạp
 
-## Árvores de Decisão de Seleção
+## Cây Quyết Định Lựa Chọn
 
 ```
-Qual é sua necessidade principal?
-├─ Recuperação de documentos e RAG → LlamaIndex
-├─ Orquestração complexa de agentes → LangGraph
-├─ Prototipagem rápida → LangChain 1.0
-└─ Solução híbrida → LlamaIndex + LangGraph
+Nhu cầu chính của bạn là gì?
+├─ Truy xuất tài liệu và RAG → LlamaIndex
+├─ Orchestration agent phức tạp → LangGraph
+├─ Nguyên mẫu nhanh → LangChain 1.0
+└─ Giải pháp kết hợp → LlamaIndex + LangGraph
 ```
 
-## Comunidade e Ecossistema
+## Cộng Đồng và Hệ Sinh Thái
 
-| Métrica | LangChain | LlamaIndex | LangGraph |
-|---------|-----------|------------|-----------|
+| Chỉ Số | LangChain | LlamaIndex | LangGraph |
+|--------|-----------|------------|-----------|
 | GitHub Stars | ~143k | ~51k | ~15k |
-| Downloads mensais PyPI | ~299M | ~23M | N/A |
-| Qualidade da documentação | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ |
-| Atividade da comunidade | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
-| Adoção empresarial | Alta | Média | Crescendo |
+| Tải về hàng tháng PyPI | ~299M | ~23M | N/A |
+| Chất lượng tài liệu | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐ |
+| Hoạt động cộng đồng | ⭐⭐⭐⭐⭐ | ⭐⭐⭐⭐ | ⭐⭐⭐⭐ |
+| Chấp nhận doanh nghiệp | Cao | Trung bình | Đang phát triển |
 
-## Conclusão
+## Kết Luận
 
-O cenário de frameworks LLM em 2026 está claro:
+Bối cảnh framework LLM năm 2026 rất rõ ràng:
 
-1. **LlamaIndex**: Escolha para documentos e recuperação, melhor desempenho em RAG
-2. **LangChain 1.0**: Opção equilibrada para desenvolvimento rápido, API de agente simplificada
-3. **LangGraph**: Ferramenta profissional para workflows complexos, curva de aprendizado íngreme
+1. **LlamaIndex**: Chọn cho tài liệu và truy xuất, hiệu suất tốt nhất trong RAG
+2. **LangChain 1.0**: Tùy chọn cân bằng cho phát triển nhanh, API agent đơn giản hóa
+3. **LangGraph**: Công cụ chuyên nghiệp cho workflow phức tạp, đường cong học tập dốc
 
-**Melhor prática:** A maioria dos sistemas de produção deve combinar LlamaIndex (recuperação) e LangGraph (orquestração), escolhendo a combinação de frameworks mais adequada às necessidades específicas.
+**Thực tiễn tốt nhất:** Hầu hết hệ thống sản xuất nên kết hợp LlamaIndex (truy xuất) và LangGraph (orchestration), chọn kết hợp framework phù hợp nhất với nhu cầu cụ thể.
 
-Lembre-se: não existe "melhor" framework, apenas o framework "mais adequado" para seu cenário. Avalie suas necessidades, escolha a ferramenta correspondente e combine conforme necessário.
-
----
-
-**P:** Qual a diferença entre LangChain 1.0 e versões anteriores?
-**R:** LangChain 1.0 reescreveu completamente a API de agentes usando `create_agent`. A estrutura de chains anterior foi movida para o pacote `langchain-classic` e não é mais recomendada para novos usuários.
-
-**P:** Posso usar LlamaIndex em vez de LangChain?
-**R:** Não totalmente. LlamaIndex é mais forte em recuperação de documentos, mas LangChain tem funcionalidades mais completas em orquestração geral de agentes. A melhor prática é usar ambos combinados.
-
-**P:** LangGraph é adequado para iniciantes?
-**R:** Não muito. LangGraph oferece máxima flexibilidade, mas tem curva de aprendizado íngreme. Recomenda-se começar com LangChain 1.0 ou LlamaIndex, e só depois aprender LangGraph.
-
-**P:** Qual framework está crescendo mais rápido em 2026?
-**R:** LangGraph está crescendo mais rápido porque resolve a demanda por orquestração complexa de agentes. LlamaIndex também mantém crescimento robusto, especialmente entre usuários empresariais.
-
-**P:** Como escolher um banco de dados vetorial?
-**R:** LlamaIndex suporta Chroma, Qdrant, Weaviate, etc. Para novos projetos, comece com Chroma (grátis, fácil de usar) e migre para outras soluções quando necessário.
+Hãy nhớ: Không có framework "tốt nhất", chỉ có framework "phù hợp nhất" cho kịch bản của bạn. Đánh giá nhu cầu, chọn công cụ tương ứng và kết hợp khi cần.
 
 ---
 
-*Útil? Junte-se à comunidade Telegram para atualizações diárias de ferramentas IA: https://t.me/DIBI8_Group*
+**C:** Khác biệt giữa LangChain 1.0 và các phiên bản trước là gì?
+**T:** LangChain 1.0 đã viết lại hoàn toàn API agent bằng `create_agent`. Cấu trúc chains cũ đã được chuyển sang gói `langchain-classic` và không còn được khuyến nghị cho người dùng mới.
+
+**C:** Tôi có thể dùng LlamaIndex thay vì LangChain không?
+**T:** Không hoàn toàn. LlamaIndex mạnh hơn về truy xuất tài liệu, nhưng LangChain có chức năng đầy đủ hơn trong orchestration agent tổng quát. Thực tiễn tốt nhất là dùng cả hai kết hợp.
+
+**C:** LangGraph có phù hợp cho người mới bắt đầu không?
+**T:** Không nhiều. LangGraph cung cấp khả năng linh hoạt tối đa, nhưng có đường cong học tập dốc. Nên bắt đầu với LangChain 1.0 hoặc LlamaIndex, sau đó mới học LangGraph.
+
+**C:** Framework nào tăng trưởng nhanh nhất năm 2026?
+**T:** LangGraph đang tăng trưởng nhanh nhất vì giải quyết nhu cầu về orchestration agent phức tạp. LlamaIndex cũng duy trì tăng trưởng mạnh mẽ, đặc biệt giữa người dùng doanh nghiệp.
+
+**C:** Chọn cơ sở dữ liệu vector như thế nào?
+**T:** LlamaIndex hỗ trợ Chroma, Qdrant, Weaviate, v.v. Đối với dự án mới, hãy bắt đầu với Chroma (miễn phí, dễ sử dụng) và chuyển sang giải pháp khác khi cần.
+
+---
+
+*Hữu ích? Tham gia cộng đồng Telegram để nhận cập nhật công cụ AI hàng ngày: https://t.me/DIBI8_Group*

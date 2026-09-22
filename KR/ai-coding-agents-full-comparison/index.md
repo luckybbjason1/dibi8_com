@@ -1,5 +1,5 @@
 ---
-title: "AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor vs Codex"
+title: "2026년 AI 코딩 에이전트 완전 비교: OpenCode vs Claude Code vs Cursor vs Codex"
 date: "2026-09-20"
 authors: ["dibi8 Team"]
 description: "OpenCode(45K stars), Claude Code, Cursor, Codex AI coding agents 완전 비교. 벤치마크, 가격, 의사결정 프레임워크."
@@ -12,7 +12,7 @@ reading_time: 12
 language: "ko"
 ---
 
-# AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor vs Codex
+# 2026년 AI 코딩 에이전트 완전 비교: OpenCode vs Claude Code vs Cursor vs Codex
 
 ## 서론
 
