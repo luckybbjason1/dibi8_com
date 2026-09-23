@@ -6,4 +6,4 @@ pages_build_output_dir = "public"
   publish = "public"
 
 [build.environment]
-  HUGO_VERSION = "0.146.0"
+  HUGO_VERSION = "0.163.3"
