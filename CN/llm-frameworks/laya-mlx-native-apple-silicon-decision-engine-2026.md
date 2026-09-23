@@ -10,7 +10,6 @@ stars: 5920
 maintainer: "mizorewww"
 license: Apache-2.0
 featureImage: "https://opengraph.github.com/github/mizorewww/laya-mlx"
-lang: en
 ---
 
 ## Introduction

@@ -10,7 +10,6 @@ stars: 2981
 maintainer: "NVlabs"
 license: MIT
 featureImage: "https://opengraph.github.com/github/NVlabs/SoL-Pi"
-lang: en
 ---
 
 ## Introduction

@@ -10,7 +10,6 @@ stars: 2502
 maintainer: "Rion-Wu-Tech"
 license: MIT
 featureImage: "https://opengraph.github.com/github/Rion-Wu-Tech/WeChat-Hub"
-lang: en
 ---
 
 ## Introduction

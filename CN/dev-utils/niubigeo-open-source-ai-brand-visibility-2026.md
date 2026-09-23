@@ -10,7 +10,6 @@ stars: 4838
 maintainer: "Albert-Weasker"
 license: MIT
 featureImage: "https://opengraph.github.com/github/Albert-Weasker/niubigeo"
-lang: en
 ---
 
 ## Introduction

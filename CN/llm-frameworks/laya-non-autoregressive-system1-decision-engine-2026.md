@@ -10,7 +10,6 @@ stars: 20240
 maintainer: "NandhaKishorM"
 license: Apache-2.0
 featureImage: "https://opengraph.github.com/github/NandhaKishorM/laya"
-lang: en
 ---
 
 ## Introduction

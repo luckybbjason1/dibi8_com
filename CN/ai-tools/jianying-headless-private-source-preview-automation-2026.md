@@ -10,7 +10,6 @@ stars: 2478
 maintainer: "mcncarl"
 license: MIT
 featureImage: "https://opengraph.github.com/github/mcncarl/jianying-headless"
-lang: en
 ---
 
 ## Introduction

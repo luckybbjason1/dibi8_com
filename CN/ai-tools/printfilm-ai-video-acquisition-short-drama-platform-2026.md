@@ -10,7 +10,6 @@ stars: 2227
 maintainer: "yi1108"
 license: Apache-2.0
 featureImage: "https://opengraph.github.com/github/yi1108/printfilm"
-lang: en
 ---
 
 ## Introduction

@@ -10,7 +10,6 @@ stars: 19001
 maintainer: "browser-use"
 license: MIT
 featureImage: "https://opengraph.github.com/github/browser-use/jev-ultrafast"
-lang: en
 ---
 
 ## Introduction

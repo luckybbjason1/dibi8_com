@@ -10,7 +10,6 @@ stars: 5888
 maintainer: "jaredpalmer"
 license: MIT
 featureImage: "https://opengraph.github.com/github/jaredpalmer/kev"
-lang: en
 ---
 
 ## Introduction

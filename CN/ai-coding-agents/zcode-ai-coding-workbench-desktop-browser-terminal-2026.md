@@ -10,7 +10,6 @@ stars: 6525
 maintainer: "zai-org"
 license: MIT
 featureImage: "https://opengraph.github.com/github/zai-org/ZCode"
-lang: en
 ---
 
 ## Introduction
