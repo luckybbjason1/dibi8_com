@@ -30,7 +30,7 @@ enableGitInfo = false
 [languages]
   [languages.zh]
     weight = 1
-    title = "Dibi8"
+    title = "Dibi8 - AI工具目录"
     languageName = "中文"
     contentDir = "CN"
 
