@@ -1,424 +1,25 @@
-<!DOCTYPE html>
-<html lang="zh" dir="auto" data-theme="dark">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>AI Tool Guide | Dibi8</title>
-<meta name="keywords" content="ai, tools">
-<meta name="description" content="Technical guide and comparison">
-<meta name="author" content="">
-<link rel="canonical" href="https://dibi8.com/ai-coding-agents/llamaindex-vs-langchain/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://dibi8.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/llamaindex-vs-langchain/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/llamaindex-vs-langchain/">
-  <meta property="og:site_name" content="Dibi8">
-  <meta property="og:title" content="AI Tool Guide">
-  <meta property="og:description" content="Technical guide and comparison">
-  <meta property="og:locale" content="zh_cn">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="ai-coding-agents">
-    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:tag" content="Ai">
-    <meta property="article:tag" content="Tools">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI Tool Guide">
-  <meta name="twitter:description" content="Technical guide and comparison">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "AI Coding Agents - dibi8",
-      "item": "https://dibi8.com/ai-coding-agents/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "AI Tool Guide",
-      "item": "https://dibi8.com/ai-coding-agents/llamaindex-vs-langchain/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "AI Tool Guide",
-  "name": "AI Tool Guide",
-  "description": "Technical guide and comparison",
-  "keywords": [
-    "ai", "tools"
-  ],
-  "articleBody": "{\u003c/* resource-info */\u003e}\nPicking the right LLM framework in 2025 feels overwhelming. The ecosystem matured rapidly, and two names dominate every architecture discussion: LangChain and LlamaIndex. Both have crossed 40,000 GitHub stars. Both support Python and TypeScript. Both integrate with every major model provider. Yet they approach the problem of building LLM applications from fundamentally different angles.\nThe wrong choice costs you weeks of development time. The right choice accelerates your project from prototype to production. This guide cuts through the marketing noise with specific comparisons, benchmark data, and decision frameworks based on real-world deployments.\nIntroduction: Why Compare LlamaIndex and LangChain? In 2022, building with LLMs meant calling OpenAI’s API and hoping for the best. Today, production applications need document ingestion, vector search, tool integration, multi-agent coordination, and observability. LangChain and LlamaIndex emerged as the two dominant frameworks for solving these challenges — but they solve different problems.\nLangChain positions itself as the general-purpose orchestration layer. It wants to be the framework for any application that uses an LLM. LlamaIndex takes a narrower, deeper approach: it focuses specifically on connecting LLMs with your data, particularly for retrieval-augmented generation (RAG) use cases.\nUnderstanding this philosophical difference — breadth versus depth — explains nearly every technical distinction between the two.\nKey Differences at a Glance | Aspect | LangChain | LlamaIndex | |\n|\n|\n| | Primary focus | General LLM orchestration | Data retrieval and RAG | | Architecture | Chain-based composition | Query engine pipeline | | Document ingestion | Good (100+ loaders) | Excellent (advanced parsing) | | Agent support | Extensive (10+ agent types) | Moderate | | Community size | 91,000+ GitHub stars | 40,000+ GitHub stars | | Best for | Multi-step workflows, agents | Document Q\u0026A, knowledge bases |\nWhen to Use Which Framework Choose LangChain when you need flexible orchestration of LLM calls, tools, and external APIs. Choose LlamaIndex when your primary challenge is making external data accessible to an LLM through sophisticated retrieval strategies.\nMany experienced teams use both together — LlamaIndex as the retrieval backend and LangChain as the orchestration frontend. We will explore this hybrid pattern later.\nLangChain Overview: The General-Purpose Orchestrator LangChain started in October 2022 with a simple insight: most LLM applications follow repetitive patterns of prompt formatting, API calling, and output parsing. Harrison Chase built a framework to eliminate this boilerplate.\nCore Philosophy and Design Principles LangChain follows a compositional design. Small, single-purpose components — prompts, models, parsers — connect via the pipe operator into chains. This Unix-inspired philosophy means you can swap any component without rewriting your application.\nThe framework abstracts three things: model providers (OpenAI, Anthropic, local models), data sources (PDFs, databases, APIs), and execution patterns (sequential chains, agents with tool use). This abstraction layer is LangChain’s core value proposition.\nStrengths: Flexibility and Ecosystem LangChain’s biggest advantage is breadth. As of May 2025, it integrates with over 100 LLM providers, 100+ document loaders, 30+ vector stores, and dozens of tools. If you need to connect an LLM to almost anything, LangChain probably has a pre-built integration.\nThe ecosystem extends beyond the core library. LangGraph adds stateful multi-agent execution. LangSmith provides production observability. LangServe deploys chains as APIs. This integrated toolchain makes LangChain the default choice for teams building complete AI applications.\nBest Use Cases for LangChain LangChain excels in scenarios requiring complex orchestration: - Multi-step agent workflows: Agents that decide which tools to call and in what order\nChatbots with memory: Conversational applications that maintain context across turns Tool-using applications: LLMs that interact with calculators, search engines, databases Unified model access: Applications that need to switch between multiple LLM providers LlamaIndex Overview: The Data-First RAG Specialist LlamaIndex (formerly GPT Index) launched in November 2022 with a different hypothesis: the hardest part of LLM applications is not calling models — it is getting the right data into the right format at the right time.\nCore Philosophy and Design Principles LlamaIndex treats data ingestion and retrieval as first-class concerns. While LangChain has document loaders, LlamaIndex has a sophisticated data processing pipeline with advanced parsing, multi-modal indexing, and intelligent query routing.\nThe framework’s central abstraction is the query engine. You load data, build an index, and create a query engine that handles the entire retrieval-generation pipeline. This higher-level abstraction reduces boilerplate but offers less fine-grained control than LangChain’s component model.\nStrengths: Advanced RAG and Data Ingestion LlamaIndex leads in retrieval quality. Its indexing strategies go beyond simple vector search: - Summary indices: Store document summaries for fast overview retrieval\nTree indices: Build hierarchical summaries for efficient multi-document navigation Keyword table indices: Combine vector search with keyword matching Knowledge graph indices: Extract entity relationships and support graph-based reasoning LlamaIndex also pioneered agentic RAG, where the retrieval system itself uses LLM reasoning to decide what to retrieve and how to combine results. This approach significantly outperforms basic vector similarity search on complex queries.\nBest Use Cases for LlamaIndex LlamaIndex dominates data-heavy scenarios: - Document Q\u0026A applications: Chat with PDFs, manuals, research papers\nAdvanced RAG pipelines: Multi-hop reasoning over document collections Knowledge graph construction: Extract and query structured relationships from text Multi-modal retrieval: Combining text, image, and table data in a single query Head-to-Head Comparison Architecture and Abstraction Level LangChain operates at a lower level of abstraction. You compose chains from individual components — model, prompt, retriever — giving you precise control over every step. This flexibility is powerful but requires more code.\nLlamaIndex provides higher-level abstractions. A ```VectorStoreIndexandquery_engine```` handle parsing, chunking, embedding, retrieval, and generation in a few lines. This simplicity accelerates development but limits customization.\nDocument Processing and Indexing This is where LlamaIndex pulls ahead. Its ingestion pipeline includes: - Advanced PDF parsing: Handles tables, headers, and complex layouts\nMulti-modal extraction: Processes images and charts within documents Auto-merging retrieval: Retrieves parent documents when child chunks match Hierarchical indexing: Builds tree structures for efficient large-scale retrieval LangChain’s document processing is functional but less sophisticated. You typically split documents with RecursiveCharacterTextSplitter and store chunks directly. This works for simple cases but struggles with complex document structures.\nQuery Engines and Retrieval Strategies LlamaIndex offers more retrieval strategies out of the box: | Strategy | LlamaIndex | LangChain | |\n|\n|\n| | Vector similarity | Yes | Yes | | Keyword/BM25 hybrid | Yes | Via extensions | | Hierarchical traversal | Yes | No | | Knowledge graph | Yes | Via LangGraph | | Multi-hop reasoning | Yes | Limited | | Query transformation | Yes | Basic | | Re-ranking | Built-in | Via integrations |\nAgent and Tool Support LangChain dominates agent capabilities. It supports ReAct, Plan-and-Execute, Structured Chat, and several other agent architectures. The tool integration ecosystem is unmatched — if an API exists, LangChain probably has a tool for it.\nLlamaIndex added agent support in 2024 but remains behind. Its OpenAIAgent and ReActAgent classes work for basic tool use but lack the sophistication of LangChain’s agent frameworks.\nEcosystem and Community Size LangChain has a larger community — 91,000 GitHub stars versus LlamaIndex’s 40,000. More Stack Overflow answers, more tutorials, more third-party blog posts. This matters when you need help debugging at 2 AM.\nLlamaIndex’s community is smaller but highly focused on RAG and data applications. The quality of RAG-specific discussion is often higher.\nPerformance Benchmarks Retrieval quality depends heavily on the use case. LlamaIndex typically wins on document Q\u0026A benchmarks due to its advanced indexing strategies. LangChain performs comparably when retrieval is straightforward but requires more manual optimization for complex document sets.\nLatency is similar — both frameworks spend most of their time waiting for LLM API calls and vector database queries. Framework overhead is negligible.\nLearning Curve and Documentation LangChain’s documentation is more comprehensive but harder to navigate. The framework has more concepts to learn — Runnables, LCEL, multiple agent types, various memory classes. The learning curve is steeper but rewards you with more control.\nLlamaIndex is easier to get started with. The load-index-query pattern is intuitive, and the high-level abstractions hide complexity. You can build a working RAG application in fewer lines of code.\nFeature Comparison Table (Side-by-Side) Core Components Matrix | Feature | LangChain | LlamaIndex | |\n|\n|\n| | Prompt management | Advanced templates | Basic | | Model abstraction | 100+ providers | Good but fewer | | Document loaders | 100+ | 50+ but deeper | | Text splitting | Good | Advanced | | Vector stores | 30+ integrations | 15+ integrations | | Output parsing | Extensive | Basic | | Memory/conversation | Multiple strategies | Conversation engine | | Agents | 10+ types | 3-4 types | | Callbacks/tracing | LangSmith + callbacks | Callbacks + observability |\nIntegration Support Matrix | Integration | LangChain | LlamaIndex | |\n|\n|\n| | OpenAI | Native | Native | | Anthropic Claude | Native | Native | | Local models (Ollama) | Yes | Yes | | Hugging Face | Yes | Yes | | ChromaDB | Native | Native | | Pinecone | Native | Native | | PostgreSQL/pgvector | Native | Native | | FastAPI deployment | LangServe | Custom | | Streamlit | Examples | Examples | | Docker | Templates | Templates |\nEnterprise Features Comparison | Feature | LangChain | LlamaIndex | |\n|\n|\n| | Production monitoring | LangSmith (excellent) | Basic callbacks | | Evaluation framework | LangSmith evals | Response evaluator | | Multi-tenancy | Manual | Manual | | Access control | Manual | Manual | | Enterprise support | Available | Available | | Cloud hosting | LangGraph Cloud | LlamaCloud |\nWhen to Use LangChain Multi-Step Agent Workflows LangChain is the clear choice when your application needs agents that make multiple decisions, call several tools, and handle errors gracefully. A customer support agent that searches a knowledge base, checks order status, and escalates to a human requires LangChain’s agent framework.\nComplex Tool Orchestration Applications calling diverse tools — APIs, databases, calculators, search engines — benefit from LangChain’s tool ecosystem and agent reasoning patterns. The @tool decorator and agent executor handle error recovery, retry logic, and output parsing.\nBroad LLM Application Building If your application goes beyond retrieval — generating content, classifying text, extracting structured data, or coordinating multiple AI systems — LangChain’s general-purpose design serves you better than LlamaIndex’s data-focused approach.\nWhen to Use LlamaIndex Document Q\u0026A Applications LlamaIndex shines when the primary use case is answering questions over a document collection. Its advanced parsing, hierarchical indexing, and query transformations extract more accurate answers from complex documents than LangChain’s default RAG implementation.\nAdvanced RAG Pipelines If your application needs multi-hop retrieval (answering questions that require combining information from multiple documents), auto-merging (retrieving larger contexts when small chunks are insufficient), or query planning (breaking complex questions into sub-queries), LlamaIndex provides these capabilities natively.\nKnowledge Graph Construction LlamaIndex can automatically extract entities and relationships from documents, building queryable knowledge graphs. This enables reasoning that pure vector search cannot support — questions like “What projects did the author work on before joining the company?” that require connecting multiple facts.\nMulti-Modal Data Retrieval Applications that need to retrieve across text, images, and tables within the same document benefit from LlamaIndex’s multi-modal indexing capabilities.\nCan You Use Both Together? Yes, and increasingly, experienced teams do exactly this. The hybrid pattern uses each framework for what it does best.\nIntegration Patterns The most common integration pattern uses LlamaIndex as the retrieval backend and LangChain as the orchestration frontend: `````python from llama_index.core import VectorStoreIndex, SimpleDirectoryReader from langchain.chains import create_retrieval_chain from langchain_openai import ChatOpenAI\nUse LlamaIndex for ingestion and indexing docs = SimpleDirectoryReader(“data”).load_data() index = VectorStoreIndex.from_documents(docs) retriever = index.as_retriever()\nUse LangChain for the rest of the application model = ChatOpenAI(model=“gpt-4o”)\n… build your LangChain app using LlamaIndex retrieval ### LlamaIndex as RAG Backend + LangChain for Orchestration In this pattern, LlamaIndex handles document loading, parsing, chunking, embedding, and retrieval. LangChain handles prompt engineering, tool integration, agent logic, and deployment. The combination gives you LlamaIndex's retrieval quality with LangChain's orchestration flexibility. ### Code Example: Hybrid Approach `````python from llama_index.core import VectorStoreIndex, Settings from llama_index.embeddings.openai import OpenAIEmbedding from langchain_openai import ChatOpenAI from langchain.agents import AgentExecutor, create_openai_tools_agent from langchain.tools import tool import os # Configure LlamaIndex Settings.embed_model = OpenAIEmbedding() docs = SimpleDirectoryReader(\"./docs\").load_data() index = VectorStoreIndex.from_documents(docs) query_engine = index.as_query_engine() # Create a LangChain tool wrapping LlamaIndex retrieval @tool def search_docs(query: str) -\u003e str: \"\"\"Search the company documentation.\"\"\" return str(query_engine.query(query)) # Use LangChain agent with LlamaIndex retrieval model = ChatOpenAI(model=\"gpt-4o\") agent = create_openai_tools_agent(model, [search_docs], prompt) executor = AgentExecutor(agent=agent, tools=[search_docs]) 2025 Updates: What is New in Both Frameworks LangChain 0.3+ and LangGraph Updates LangChain 0.3, released in late 2024, introduced significant improvements: - Simplified initialization: The init_chat_model function provides a unified interface for all major providers\nLangGraph 0.2: Added subgraph support, checkpointing improvements, and human-in-the-loop patterns LangSmith GA: General availability with expanded evaluation capabilities Better streaming: Improved streaming support across all component types LlamaIndex v0.12+ New Features LlamaIndex v0.12 brought major enhancements: - Workflows API: A new event-driven system for building complex agent interactions\nLlamaCloud: Managed service for enterprise document processing and retrieval Improved multi-modal support: Better handling of PDFs with images and tables Agentic RAG v2: Smarter query planning and retrieval strategies Emerging Trends and Roadmaps Both frameworks are converging on similar capabilities. LangChain is improving its retrieval features. LlamaIndex is expanding its agent support. The competition benefits developers, as both frameworks rapidly adopt best practices from each other.\nFinal Verdict: Which One Should You Pick? Choose LangChain if: - You need general-purpose LLM orchestration\nAgents and tool use are central to your application You want the largest ecosystem and community You need the integrated LangGraph + LangSmith toolchain Your application involves complex multi-step workflows beyond retrieval Choose LlamaIndex if: - Your primary use case is document Q\u0026A or RAG\nYou need advanced document parsing and indexing Knowledge graph construction is important You want simpler APIs for data-heavy applications You prioritize retrieval quality over orchestration flexibility Use both if: - You are building a serious production RAG application\nYou want the best retrieval quality with the most flexible orchestration Your team has the capacity to manage two frameworks Frequently Asked Questions Is LlamaIndex better than LangChain for RAG? Yes, LlamaIndex generally produces better retrieval quality out of the box. Its advanced indexing strategies — hierarchical indices, auto-merging, knowledge graphs — extract more relevant context from documents than LangChain’s default vector search. However, LangChain can achieve comparable results with manual optimization. For production RAG applications, the hybrid approach (LlamaIndex for retrieval, LangChain for orchestration) often delivers the best outcomes.\nCan I use LlamaIndex and LangChain together? Absolutely. The most common pattern uses LlamaIndex’s query_engine or retriever wrapped as a LangChain tool. LangChain handles the agent logic, prompt engineering, and deployment, while LlamaIndex manages document ingestion and retrieval. This combination leverages each framework’s strengths.\nWhich framework has better performance? Performance depends on the metric. LlamaIndex typically achieves higher retrieval accuracy on document Q\u0026A benchmarks. LangChain has lower framework overhead for simple chains and better latency for non-retrieval tasks. In production, both frameworks spend most of their time waiting for LLM API responses, so framework performance differences rarely matter.\nIs LlamaIndex easier to learn than LangChain? Generally yes. LlamaIndex’s higher-level abstractions mean you can build a working RAG application in fewer lines of code. The ````load-index-query``` pattern is intuitive. LangChain has a steeper learning curve due to its more granular component model and larger API surface. However, LangChain\"s flexibility pays off for complex applications.\nWhich one has better enterprise support? Both offer enterprise support plans. LangChain has LangSmith for production observability and LangGraph Cloud for managed hosting, giving it an edge in enterprise tooling. LlamaIndex offers LlamaCloud for managed document processing. For large deployments, evaluate both platforms against your specific observability and security requirements.\nRecommended Infrastructure To run any of the tools above reliably 24/7, infrastructure matters: - DigitalOcean — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.\nHTStack — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven. Affiliate links — no extra cost to you, helps keep dibi8.com running.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “LlamaIndex vs LangChain (2025): Which LLM Framework Should You Choose?”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/llamaindex-vs-langchain\" } } Frequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
-  "wordCount" : "2756",
-  "inLanguage": "zh",
-  "datePublished": "2026-09-20T00:00:00Z",
-  "dateModified": "2026-09-20T00:00:00Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/ai-coding-agents/llamaindex-vs-langchain/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/favicon.ico"
-    }
-  }
-}
-</script>
-</head>
-<body id="top">
-    <header class="header">
-    <nav class="header-nav">
-        <div class="logo">
-            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu" class="menu">
-            <li>
-                <a href="https://dibi8.com/categories/" title="Categories">
-                    <span>Categories</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/tools/" title="Tools">
-                    <span>🛠 Tools</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/collections/" title="Collections">
-                    <span>Collections</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">主页</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-        <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-</nav>
-    <h1 class="post-title entry-hint-parent">
-      AI Tool Guide
-    </h1>
-    <div class="post-description">
-      Technical guide and comparison
-    </div>
-    <div class="post-meta">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>13 分钟</span>
-
-</div>
-  </header> <details class="toc" >
-    <summary accesskey="c" title="(Alt + C)">
-        <span class="title">目录</span>
-    </summary>
-
-    <div class="inner"><ul><ul>
-            <li>
-                <a href="#introduction-why-compare-llamaindex-and-langchain" aria-label="Introduction: Why Compare LlamaIndex and LangChain?">Introduction: Why Compare LlamaIndex and LangChain?</a><ul>
-                    
-            <li>
-                <a href="#key-differences-at-a-glance" aria-label="Key Differences at a Glance">Key Differences at a Glance</a></li>
-            <li>
-                <a href="#when-to-use-which-framework" aria-label="When to Use Which Framework">When to Use Which Framework</a></li></ul>
-            </li>
-            <li>
-                <a href="#langchain-overview-the-general-purpose-orchestrator" aria-label="LangChain Overview: The General-Purpose Orchestrator">LangChain Overview: The General-Purpose Orchestrator</a><ul>
-                    
-            <li>
-                <a href="#core-philosophy-and-design-principles" aria-label="Core Philosophy and Design Principles">Core Philosophy and Design Principles</a></li>
-            <li>
-                <a href="#strengths-flexibility-and-ecosystem" aria-label="Strengths: Flexibility and Ecosystem">Strengths: Flexibility and Ecosystem</a></li>
-            <li>
-                <a href="#best-use-cases-for-langchain" aria-label="Best Use Cases for LangChain">Best Use Cases for LangChain</a></li></ul>
-            </li>
-            <li>
-                <a href="#llamaindex-overview-the-data-first-rag-specialist" aria-label="LlamaIndex Overview: The Data-First RAG Specialist">LlamaIndex Overview: The Data-First RAG Specialist</a><ul>
-                    
-            <li>
-                <a href="#core-philosophy-and-design-principles-1" aria-label="Core Philosophy and Design Principles">Core Philosophy and Design Principles</a></li>
-            <li>
-                <a href="#strengths-advanced-rag-and-data-ingestion" aria-label="Strengths: Advanced RAG and Data Ingestion">Strengths: Advanced RAG and Data Ingestion</a></li>
-            <li>
-                <a href="#best-use-cases-for-llamaindex" aria-label="Best Use Cases for LlamaIndex">Best Use Cases for LlamaIndex</a></li></ul>
-            </li>
-            <li>
-                <a href="#head-to-head-comparison" aria-label="Head-to-Head Comparison">Head-to-Head Comparison</a><ul>
-                    
-            <li>
-                <a href="#architecture-and-abstraction-level" aria-label="Architecture and Abstraction Level">Architecture and Abstraction Level</a></li>
-            <li>
-                <a href="#document-processing-and-indexing" aria-label="Document Processing and Indexing">Document Processing and Indexing</a></li>
-            <li>
-                <a href="#query-engines-and-retrieval-strategies" aria-label="Query Engines and Retrieval Strategies">Query Engines and Retrieval Strategies</a></li>
-            <li>
-                <a href="#agent-and-tool-support" aria-label="Agent and Tool Support">Agent and Tool Support</a></li>
-            <li>
-                <a href="#ecosystem-and-community-size" aria-label="Ecosystem and Community Size">Ecosystem and Community Size</a></li>
-            <li>
-                <a href="#performance-benchmarks" aria-label="Performance Benchmarks">Performance Benchmarks</a></li>
-            <li>
-                <a href="#learning-curve-and-documentation" aria-label="Learning Curve and Documentation">Learning Curve and Documentation</a></li></ul>
-            </li>
-            <li>
-                <a href="#feature-comparison-table-side-by-side" aria-label="Feature Comparison Table (Side-by-Side)">Feature Comparison Table (Side-by-Side)</a><ul>
-                    
-            <li>
-                <a href="#core-components-matrix" aria-label="Core Components Matrix">Core Components Matrix</a></li>
-            <li>
-                <a href="#integration-support-matrix" aria-label="Integration Support Matrix">Integration Support Matrix</a></li>
-            <li>
-                <a href="#enterprise-features-comparison" aria-label="Enterprise Features Comparison">Enterprise Features Comparison</a></li></ul>
-            </li>
-            <li>
-                <a href="#when-to-use-langchain" aria-label="When to Use LangChain">When to Use LangChain</a><ul>
-                    
-            <li>
-                <a href="#multi-step-agent-workflows" aria-label="Multi-Step Agent Workflows">Multi-Step Agent Workflows</a></li>
-            <li>
-                <a href="#complex-tool-orchestration" aria-label="Complex Tool Orchestration">Complex Tool Orchestration</a></li>
-            <li>
-                <a href="#broad-llm-application-building" aria-label="Broad LLM Application Building">Broad LLM Application Building</a></li></ul>
-            </li>
-            <li>
-                <a href="#when-to-use-llamaindex" aria-label="When to Use LlamaIndex">When to Use LlamaIndex</a><ul>
-                    
-            <li>
-                <a href="#document-qa-applications" aria-label="Document Q&amp;A Applications">Document Q&amp;A Applications</a></li>
-            <li>
-                <a href="#advanced-rag-pipelines" aria-label="Advanced RAG Pipelines">Advanced RAG Pipelines</a></li>
-            <li>
-                <a href="#knowledge-graph-construction" aria-label="Knowledge Graph Construction">Knowledge Graph Construction</a></li>
-            <li>
-                <a href="#multi-modal-data-retrieval" aria-label="Multi-Modal Data Retrieval">Multi-Modal Data Retrieval</a></li></ul>
-            </li>
-            <li>
-                <a href="#can-you-use-both-together" aria-label="Can You Use Both Together?">Can You Use Both Together?</a><ul>
-                    
-            <li>
-                <a href="#integration-patterns" aria-label="Integration Patterns">Integration Patterns</a></li></ul>
-            </li></ul>
-                
-            <li>
-                <a href="#use-llamaindex-for-ingestion-and-indexing" aria-label="Use LlamaIndex for ingestion and indexing">Use LlamaIndex for ingestion and indexing</a></li>
-            <li>
-                <a href="#use-langchain-for-the-rest-of-the-application" aria-label="Use LangChain for the rest of the application">Use LangChain for the rest of the application</a></li>
-            <li>
-                <a href="#-build-your-langchain-app-using-llamaindex-retrieval" aria-label="&hellip; build your LangChain app using LlamaIndex retrieval">&hellip; build your LangChain app using LlamaIndex retrieval</a><ul>
-                    
-            <li>
-                <a href="#2025-updates-what-is-new-in-both-frameworks" aria-label="2025 Updates: What is New in Both Frameworks">2025 Updates: What is New in Both Frameworks</a><ul>
-                    
-            <li>
-                <a href="#langchain-03-and-langgraph-updates" aria-label="LangChain 0.3&#43; and LangGraph Updates">LangChain 0.3+ and LangGraph Updates</a></li>
-            <li>
-                <a href="#llamaindex-v012-new-features" aria-label="LlamaIndex v0.12&#43; New Features">LlamaIndex v0.12+ New Features</a></li>
-            <li>
-                <a href="#emerging-trends-and-roadmaps" aria-label="Emerging Trends and Roadmaps">Emerging Trends and Roadmaps</a></li></ul>
-            </li>
-            <li>
-                <a href="#final-verdict-which-one-should-you-pick" aria-label="Final Verdict: Which One Should You Pick?">Final Verdict: Which One Should You Pick?</a></li>
-            <li>
-                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
-                    
-            <li>
-                <a href="#is-llamaindex-better-than-langchain-for-rag" aria-label="Is LlamaIndex better than LangChain for RAG?">Is LlamaIndex better than LangChain for RAG?</a></li>
-            <li>
-                <a href="#can-i-use-llamaindex-and-langchain-together" aria-label="Can I use LlamaIndex and LangChain together?">Can I use LlamaIndex and LangChain together?</a></li>
-            <li>
-                <a href="#which-framework-has-better-performance" aria-label="Which framework has better performance?">Which framework has better performance?</a></li>
-            <li>
-                <a href="#is-llamaindex-easier-to-learn-than-langchain" aria-label="Is LlamaIndex easier to learn than LangChain?">Is LlamaIndex easier to learn than LangChain?</a></li>
-            <li>
-                <a href="#which-one-has-better-enterprise-support" aria-label="Which one has better enterprise support?">Which one has better enterprise support?</a></li></ul>
-            </li>
-            <li>
-                <a href="#recommended-infrastructure" aria-label="Recommended Infrastructure">Recommended Infrastructure</a></li>
-            <li>
-                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
-            </li>
-        </ul>
-        </li>
-        </ul>
-    </div>
-</details>
-
-  <div class="post-content md-content"><p>{&lt;/* resource-info */&gt;}</p>
-<p>Picking the right LLM framework in 2025 feels overwhelming. The ecosystem matured rapidly, and two names dominate every architecture discussion: LangChain and LlamaIndex. Both have crossed 40,000 GitHub stars. Both support Python and TypeScript. Both integrate with every major model provider. Yet they approach the problem of building LLM applications from fundamentally different angles.</p>
-<p>The wrong choice costs you weeks of development time. The right choice accelerates your project from prototype to production. This guide cuts through the marketing noise with specific comparisons, benchmark data, and decision frameworks based on real-world deployments.</p>
-<h2 id="introduction-why-compare-llamaindex-and-langchain">Introduction: Why Compare LlamaIndex and LangChain?<a hidden class="anchor" aria-hidden="true" href="#introduction-why-compare-llamaindex-and-langchain">#</a></h2>
-<p>In 2022, building with LLMs meant calling OpenAI&rsquo;s API and hoping for the best. Today, production applications need document ingestion, vector search, tool integration, multi-agent coordination, and observability. LangChain and LlamaIndex emerged as the two dominant frameworks for solving these challenges — but they solve different problems.</p>
-<p>LangChain positions itself as the general-purpose orchestration layer. It wants to be the framework for any application that uses an LLM. LlamaIndex takes a narrower, deeper approach: it focuses specifically on connecting LLMs with your data, particularly for retrieval-augmented generation (RAG) use cases.</p>
-<p>Understanding this philosophical difference — breadth versus depth — explains nearly every technical distinction between the two.</p>
-<h3 id="key-differences-at-a-glance">Key Differences at a Glance<a hidden class="anchor" aria-hidden="true" href="#key-differences-at-a-glance">#</a></h3>
-<p>| Aspect | LangChain | LlamaIndex |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8 - AI工具目录</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/llamaindex-vs-langchain/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/llamaindex-vs-langchain/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/llamaindex-vs-langchain/"><meta property="og:site_name" content="Dibi8 - AI工具目录"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/llamaindex-vs-langchain/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"{\u003c/* resource-info */\u003e}\nPicking the right LLM framework in 2025 feels overwhelming. The ecosystem matured rapidly, and two names dominate every architecture discussion: LangChain and LlamaIndex. Both have crossed 40,000 GitHub stars. Both support Python and TypeScript. Both integrate with every major model provider. Yet they approach the problem of building LLM applications from fundamentally different angles.\nThe wrong choice costs you weeks of development time. The right choice accelerates your project from prototype to production. This guide cuts through the marketing noise with specific comparisons, benchmark data, and decision frameworks based on real-world deployments.\nIntroduction: Why Compare LlamaIndex and LangChain? In 2022, building with LLMs meant calling OpenAI’s API and hoping for the best. Today, production applications need document ingestion, vector search, tool integration, multi-agent coordination, and observability. LangChain and LlamaIndex emerged as the two dominant frameworks for solving these challenges — but they solve different problems.\nLangChain positions itself as the general-purpose orchestration layer. It wants to be the framework for any application that uses an LLM. LlamaIndex takes a narrower, deeper approach: it focuses specifically on connecting LLMs with your data, particularly for retrieval-augmented generation (RAG) use cases.\nUnderstanding this philosophical difference — breadth versus depth — explains nearly every technical distinction between the two.\nKey Differences at a Glance | Aspect | LangChain | LlamaIndex | |\n|\n|\n| | Primary focus | General LLM orchestration | Data retrieval and RAG | | Architecture | Chain-based composition | Query engine pipeline | | Document ingestion | Good (100+ loaders) | Excellent (advanced parsing) | | Agent support | Extensive (10+ agent types) | Moderate | | Community size | 91,000+ GitHub stars | 40,000+ GitHub stars | | Best for | Multi-step workflows, agents | Document Q\u0026A, knowledge bases |\nWhen to Use Which Framework Choose LangChain when you need flexible orchestration of LLM calls, tools, and external APIs. Choose LlamaIndex when your primary challenge is making external data accessible to an LLM through sophisticated retrieval strategies.\nMany experienced teams use both together — LlamaIndex as the retrieval backend and LangChain as the orchestration frontend. We will explore this hybrid pattern later.\nLangChain Overview: The General-Purpose Orchestrator LangChain started in October 2022 with a simple insight: most LLM applications follow repetitive patterns of prompt formatting, API calling, and output parsing. Harrison Chase built a framework to eliminate this boilerplate.\nCore Philosophy and Design Principles LangChain follows a compositional design. Small, single-purpose components — prompts, models, parsers — connect via the pipe operator into chains. This Unix-inspired philosophy means you can swap any component without rewriting your application.\nThe framework abstracts three things: model providers (OpenAI, Anthropic, local models), data sources (PDFs, databases, APIs), and execution patterns (sequential chains, agents with tool use). This abstraction layer is LangChain’s core value proposition.\nStrengths: Flexibility and Ecosystem LangChain’s biggest advantage is breadth. As of May 2025, it integrates with over 100 LLM providers, 100+ document loaders, 30+ vector stores, and dozens of tools. If you need to connect an LLM to almost anything, LangChain probably has a pre-built integration.\nThe ecosystem extends beyond the core library. LangGraph adds stateful multi-agent execution. LangSmith provides production observability. LangServe deploys chains as APIs. This integrated toolchain makes LangChain the default choice for teams building complete AI applications.\nBest Use Cases for LangChain LangChain excels in scenarios requiring complex orchestration: - Multi-step agent workflows: Agents that decide which tools to call and in what order\nChatbots with memory: Conversational applications that maintain context across turns Tool-using applications: LLMs that interact with calculators, search engines, databases Unified model access: Applications that need to switch between multiple LLM providers LlamaIndex Overview: The Data-First RAG Specialist LlamaIndex (formerly GPT Index) launched in November 2022 with a different hypothesis: the hardest part of LLM applications is not calling models — it is getting the right data into the right format at the right time.\nCore Philosophy and Design Principles LlamaIndex treats data ingestion and retrieval as first-class concerns. While LangChain has document loaders, LlamaIndex has a sophisticated data processing pipeline with advanced parsing, multi-modal indexing, and intelligent query routing.\nThe framework’s central abstraction is the query engine. You load data, build an index, and create a query engine that handles the entire retrieval-generation pipeline. This higher-level abstraction reduces boilerplate but offers less fine-grained control than LangChain’s component model.\nStrengths: Advanced RAG and Data Ingestion LlamaIndex leads in retrieval quality. Its indexing strategies go beyond simple vector search: - Summary indices: Store document summaries for fast overview retrieval\nTree indices: Build hierarchical summaries for efficient multi-document navigation Keyword table indices: Combine vector search with keyword matching Knowledge graph indices: Extract entity relationships and support graph-based reasoning LlamaIndex also pioneered agentic RAG, where the retrieval system itself uses LLM reasoning to decide what to retrieve and how to combine results. This approach significantly outperforms basic vector similarity search on complex queries.\nBest Use Cases for LlamaIndex LlamaIndex dominates data-heavy scenarios: - Document Q\u0026A applications: Chat with PDFs, manuals, research papers\nAdvanced RAG pipelines: Multi-hop reasoning over document collections Knowledge graph construction: Extract and query structured relationships from text Multi-modal retrieval: Combining text, image, and table data in a single query Head-to-Head Comparison Architecture and Abstraction Level LangChain operates at a lower level of abstraction. You compose chains from individual components — model, prompt, retriever — giving you precise control over every step. This flexibility is powerful but requires more code.\nLlamaIndex provides higher-level abstractions. A ```VectorStoreIndexandquery_engine```` handle parsing, chunking, embedding, retrieval, and generation in a few lines. This simplicity accelerates development but limits customization.\nDocument Processing and Indexing This is where LlamaIndex pulls ahead. Its ingestion pipeline includes: - Advanced PDF parsing: Handles tables, headers, and complex layouts\nMulti-modal extraction: Processes images and charts within documents Auto-merging retrieval: Retrieves parent documents when child chunks match Hierarchical indexing: Builds tree structures for efficient large-scale retrieval LangChain’s document processing is functional but less sophisticated. You typically split documents with RecursiveCharacterTextSplitter and store chunks directly. This works for simple cases but struggles with complex document structures.\nQuery Engines and Retrieval Strategies LlamaIndex offers more retrieval strategies out of the box: | Strategy | LlamaIndex | LangChain | |\n|\n|\n| | Vector similarity | Yes | Yes | | Keyword/BM25 hybrid | Yes | Via extensions | | Hierarchical traversal | Yes | No | | Knowledge graph | Yes | Via LangGraph | | Multi-hop reasoning | Yes | Limited | | Query transformation | Yes | Basic | | Re-ranking | Built-in | Via integrations |\nAgent and Tool Support LangChain dominates agent capabilities. It supports ReAct, Plan-and-Execute, Structured Chat, and several other agent architectures. The tool integration ecosystem is unmatched — if an API exists, LangChain probably has a tool for it.\nLlamaIndex added agent support in 2024 but remains behind. Its OpenAIAgent and ReActAgent classes work for basic tool use but lack the sophistication of LangChain’s agent frameworks.\nEcosystem and Community Size LangChain has a larger community — 91,000 GitHub stars versus LlamaIndex’s 40,000. More Stack Overflow answers, more tutorials, more third-party blog posts. This matters when you need help debugging at 2 AM.\nLlamaIndex’s community is smaller but highly focused on RAG and data applications. The quality of RAG-specific discussion is often higher.\nPerformance Benchmarks Retrieval quality depends heavily on the use case. LlamaIndex typically wins on document Q\u0026A benchmarks due to its advanced indexing strategies. LangChain performs comparably when retrieval is straightforward but requires more manual optimization for complex document sets.\nLatency is similar — both frameworks spend most of their time waiting for LLM API calls and vector database queries. Framework overhead is negligible.\nLearning Curve and Documentation LangChain’s documentation is more comprehensive but harder to navigate. The framework has more concepts to learn — Runnables, LCEL, multiple agent types, various memory classes. The learning curve is steeper but rewards you with more control.\nLlamaIndex is easier to get started with. The load-index-query pattern is intuitive, and the high-level abstractions hide complexity. You can build a working RAG application in fewer lines of code.\nFeature Comparison Table (Side-by-Side) Core Components Matrix | Feature | LangChain | LlamaIndex | |\n|\n|\n| | Prompt management | Advanced templates | Basic | | Model abstraction | 100+ providers | Good but fewer | | Document loaders | 100+ | 50+ but deeper | | Text splitting | Good | Advanced | | Vector stores | 30+ integrations | 15+ integrations | | Output parsing | Extensive | Basic | | Memory/conversation | Multiple strategies | Conversation engine | | Agents | 10+ types | 3-4 types | | Callbacks/tracing | LangSmith + callbacks | Callbacks + observability |\nIntegration Support Matrix | Integration | LangChain | LlamaIndex | |\n|\n|\n| | OpenAI | Native | Native | | Anthropic Claude | Native | Native | | Local models (Ollama) | Yes | Yes | | Hugging Face | Yes | Yes | | ChromaDB | Native | Native | | Pinecone | Native | Native | | PostgreSQL/pgvector | Native | Native | | FastAPI deployment | LangServe | Custom | | Streamlit | Examples | Examples | | Docker | Templates | Templates |\nEnterprise Features Comparison | Feature | LangChain | LlamaIndex | |\n|\n|\n| | Production monitoring | LangSmith (excellent) | Basic callbacks | | Evaluation framework | LangSmith evals | Response evaluator | | Multi-tenancy | Manual | Manual | | Access control | Manual | Manual | | Enterprise support | Available | Available | | Cloud hosting | LangGraph Cloud | LlamaCloud |\nWhen to Use LangChain Multi-Step Agent Workflows LangChain is the clear choice when your application needs agents that make multiple decisions, call several tools, and handle errors gracefully. A customer support agent that searches a knowledge base, checks order status, and escalates to a human requires LangChain’s agent framework.\nComplex Tool Orchestration Applications calling diverse tools — APIs, databases, calculators, search engines — benefit from LangChain’s tool ecosystem and agent reasoning patterns. The @tool decorator and agent executor handle error recovery, retry logic, and output parsing.\nBroad LLM Application Building If your application goes beyond retrieval — generating content, classifying text, extracting structured data, or coordinating multiple AI systems — LangChain’s general-purpose design serves you better than LlamaIndex’s data-focused approach.\nWhen to Use LlamaIndex Document Q\u0026A Applications LlamaIndex shines when the primary use case is answering questions over a document collection. Its advanced parsing, hierarchical indexing, and query transformations extract more accurate answers from complex documents than LangChain’s default RAG implementation.\nAdvanced RAG Pipelines If your application needs multi-hop retrieval (answering questions that require combining information from multiple documents), auto-merging (retrieving larger contexts when small chunks are insufficient), or query planning (breaking complex questions into sub-queries), LlamaIndex provides these capabilities natively.\nKnowledge Graph Construction LlamaIndex can automatically extract entities and relationships from documents, building queryable knowledge graphs. This enables reasoning that pure vector search cannot support — questions like “What projects did the author work on before joining the company?” that require connecting multiple facts.\nMulti-Modal Data Retrieval Applications that need to retrieve across text, images, and tables within the same document benefit from LlamaIndex’s multi-modal indexing capabilities.\nCan You Use Both Together? Yes, and increasingly, experienced teams do exactly this. The hybrid pattern uses each framework for what it does best.\nIntegration Patterns The most common integration pattern uses LlamaIndex as the retrieval backend and LangChain as the orchestration frontend: `````python from llama_index.core import VectorStoreIndex, SimpleDirectoryReader from langchain.chains import create_retrieval_chain from langchain_openai import ChatOpenAI\nUse LlamaIndex for ingestion and indexing docs = SimpleDirectoryReader(“data”).load_data() index = VectorStoreIndex.from_documents(docs) retriever = index.as_retriever()\nUse LangChain for the rest of the application model = ChatOpenAI(model=“gpt-4o”)\n… build your LangChain app using LlamaIndex retrieval ### LlamaIndex as RAG Backend + LangChain for Orchestration In this pattern, LlamaIndex handles document loading, parsing, chunking, embedding, and retrieval. LangChain handles prompt engineering, tool integration, agent logic, and deployment. The combination gives you LlamaIndex's retrieval quality with LangChain's orchestration flexibility. ### Code Example: Hybrid Approach `````python from llama_index.core import VectorStoreIndex, Settings from llama_index.embeddings.openai import OpenAIEmbedding from langchain_openai import ChatOpenAI from langchain.agents import AgentExecutor, create_openai_tools_agent from langchain.tools import tool import os # Configure LlamaIndex Settings.embed_model = OpenAIEmbedding() docs = SimpleDirectoryReader(\"./docs\").load_data() index = VectorStoreIndex.from_documents(docs) query_engine = index.as_query_engine() # Create a LangChain tool wrapping LlamaIndex retrieval @tool def search_docs(query: str) -\u003e str: \"\"\"Search the company documentation.\"\"\" return str(query_engine.query(query)) # Use LangChain agent with LlamaIndex retrieval model = ChatOpenAI(model=\"gpt-4o\") agent = create_openai_tools_agent(model, [search_docs], prompt) executor = AgentExecutor(agent=agent, tools=[search_docs]) 2025 Updates: What is New in Both Frameworks LangChain 0.3+ and LangGraph Updates LangChain 0.3, released in late 2024, introduced significant improvements: - Simplified initialization: The init_chat_model function provides a unified interface for all major providers\nLangGraph 0.2: Added subgraph support, checkpointing improvements, and human-in-the-loop patterns LangSmith GA: General availability with expanded evaluation capabilities Better streaming: Improved streaming support across all component types LlamaIndex v0.12+ New Features LlamaIndex v0.12 brought major enhancements: - Workflows API: A new event-driven system for building complex agent interactions\nLlamaCloud: Managed service for enterprise document processing and retrieval Improved multi-modal support: Better handling of PDFs with images and tables Agentic RAG v2: Smarter query planning and retrieval strategies Emerging Trends and Roadmaps Both frameworks are converging on similar capabilities. LangChain is improving its retrieval features. LlamaIndex is expanding its agent support. The competition benefits developers, as both frameworks rapidly adopt best practices from each other.\nFinal Verdict: Which One Should You Pick? Choose LangChain if: - You need general-purpose LLM orchestration\nAgents and tool use are central to your application You want the largest ecosystem and community You need the integrated LangGraph + LangSmith toolchain Your application involves complex multi-step workflows beyond retrieval Choose LlamaIndex if: - Your primary use case is document Q\u0026A or RAG\nYou need advanced document parsing and indexing Knowledge graph construction is important You want simpler APIs for data-heavy applications You prioritize retrieval quality over orchestration flexibility Use both if: - You are building a serious production RAG application\nYou want the best retrieval quality with the most flexible orchestration Your team has the capacity to manage two frameworks Frequently Asked Questions Is LlamaIndex better than LangChain for RAG? Yes, LlamaIndex generally produces better retrieval quality out of the box. Its advanced indexing strategies — hierarchical indices, auto-merging, knowledge graphs — extract more relevant context from documents than LangChain’s default vector search. However, LangChain can achieve comparable results with manual optimization. For production RAG applications, the hybrid approach (LlamaIndex for retrieval, LangChain for orchestration) often delivers the best outcomes.\nCan I use LlamaIndex and LangChain together? Absolutely. The most common pattern uses LlamaIndex’s query_engine or retriever wrapped as a LangChain tool. LangChain handles the agent logic, prompt engineering, and deployment, while LlamaIndex manages document ingestion and retrieval. This combination leverages each framework’s strengths.\nWhich framework has better performance? Performance depends on the metric. LlamaIndex typically achieves higher retrieval accuracy on document Q\u0026A benchmarks. LangChain has lower framework overhead for simple chains and better latency for non-retrieval tasks. In production, both frameworks spend most of their time waiting for LLM API responses, so framework performance differences rarely matter.\nIs LlamaIndex easier to learn than LangChain? Generally yes. LlamaIndex’s higher-level abstractions mean you can build a working RAG application in fewer lines of code. The ````load-index-query``` pattern is intuitive. LangChain has a steeper learning curve due to its more granular component model and larger API surface. However, LangChain\"s flexibility pays off for complex applications.\nWhich one has better enterprise support? Both offer enterprise support plans. LangChain has LangSmith for production observability and LangGraph Cloud for managed hosting, giving it an edge in enterprise tooling. LlamaIndex offers LlamaCloud for managed document processing. For large deployments, evaluate both platforms against your specific observability and security requirements.\nRecommended Infrastructure To run any of the tools above reliably 24/7, infrastructure matters: - DigitalOcean — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.\nHTStack — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven. Affiliate links — no extra cost to you, helps keep dibi8.com running.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “LlamaIndex vs LangChain (2025): Which LLM Framework Should You Choose?”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/llamaindex-vs-langchain\" } } Frequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n","wordCount":"2756","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/llamaindex-vs-langchain/"},"publisher":{"@type":"Organization","name":"Dibi8 - AI工具目录","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 - AI工具目录 (Alt + H)">Dibi8 - AI工具目录</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>13 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><ul><li><a href=#introduction-why-compare-llamaindex-and-langchain aria-label="Introduction: Why Compare LlamaIndex and LangChain?">Introduction: Why Compare LlamaIndex and LangChain?</a><ul><li><a href=#key-differences-at-a-glance aria-label="Key Differences at a Glance">Key Differences at a Glance</a></li><li><a href=#when-to-use-which-framework aria-label="When to Use Which Framework">When to Use Which Framework</a></li></ul></li><li><a href=#langchain-overview-the-general-purpose-orchestrator aria-label="LangChain Overview: The General-Purpose Orchestrator">LangChain Overview: The General-Purpose Orchestrator</a><ul><li><a href=#core-philosophy-and-design-principles aria-label="Core Philosophy and Design Principles">Core Philosophy and Design Principles</a></li><li><a href=#strengths-flexibility-and-ecosystem aria-label="Strengths: Flexibility and Ecosystem">Strengths: Flexibility and Ecosystem</a></li><li><a href=#best-use-cases-for-langchain aria-label="Best Use Cases for LangChain">Best Use Cases for LangChain</a></li></ul></li><li><a href=#llamaindex-overview-the-data-first-rag-specialist aria-label="LlamaIndex Overview: The Data-First RAG Specialist">LlamaIndex Overview: The Data-First RAG Specialist</a><ul><li><a href=#core-philosophy-and-design-principles-1 aria-label="Core Philosophy and Design Principles">Core Philosophy and Design Principles</a></li><li><a href=#strengths-advanced-rag-and-data-ingestion aria-label="Strengths: Advanced RAG and Data Ingestion">Strengths: Advanced RAG and Data Ingestion</a></li><li><a href=#best-use-cases-for-llamaindex aria-label="Best Use Cases for LlamaIndex">Best Use Cases for LlamaIndex</a></li></ul></li><li><a href=#head-to-head-comparison aria-label="Head-to-Head Comparison">Head-to-Head Comparison</a><ul><li><a href=#architecture-and-abstraction-level aria-label="Architecture and Abstraction Level">Architecture and Abstraction Level</a></li><li><a href=#document-processing-and-indexing aria-label="Document Processing and Indexing">Document Processing and Indexing</a></li><li><a href=#query-engines-and-retrieval-strategies aria-label="Query Engines and Retrieval Strategies">Query Engines and Retrieval Strategies</a></li><li><a href=#agent-and-tool-support aria-label="Agent and Tool Support">Agent and Tool Support</a></li><li><a href=#ecosystem-and-community-size aria-label="Ecosystem and Community Size">Ecosystem and Community Size</a></li><li><a href=#performance-benchmarks aria-label="Performance Benchmarks">Performance Benchmarks</a></li><li><a href=#learning-curve-and-documentation aria-label="Learning Curve and Documentation">Learning Curve and Documentation</a></li></ul></li><li><a href=#feature-comparison-table-side-by-side aria-label="Feature Comparison Table (Side-by-Side)">Feature Comparison Table (Side-by-Side)</a><ul><li><a href=#core-components-matrix aria-label="Core Components Matrix">Core Components Matrix</a></li><li><a href=#integration-support-matrix aria-label="Integration Support Matrix">Integration Support Matrix</a></li><li><a href=#enterprise-features-comparison aria-label="Enterprise Features Comparison">Enterprise Features Comparison</a></li></ul></li><li><a href=#when-to-use-langchain aria-label="When to Use LangChain">When to Use LangChain</a><ul><li><a href=#multi-step-agent-workflows aria-label="Multi-Step Agent Workflows">Multi-Step Agent Workflows</a></li><li><a href=#complex-tool-orchestration aria-label="Complex Tool Orchestration">Complex Tool Orchestration</a></li><li><a href=#broad-llm-application-building aria-label="Broad LLM Application Building">Broad LLM Application Building</a></li></ul></li><li><a href=#when-to-use-llamaindex aria-label="When to Use LlamaIndex">When to Use LlamaIndex</a><ul><li><a href=#document-qa-applications aria-label="Document Q&amp;A Applications">Document Q&amp;A Applications</a></li><li><a href=#advanced-rag-pipelines aria-label="Advanced RAG Pipelines">Advanced RAG Pipelines</a></li><li><a href=#knowledge-graph-construction aria-label="Knowledge Graph Construction">Knowledge Graph Construction</a></li><li><a href=#multi-modal-data-retrieval aria-label="Multi-Modal Data Retrieval">Multi-Modal Data Retrieval</a></li></ul></li><li><a href=#can-you-use-both-together aria-label="Can You Use Both Together?">Can You Use Both Together?</a><ul><li><a href=#integration-patterns aria-label="Integration Patterns">Integration Patterns</a></li></ul></li></ul><li><a href=#use-llamaindex-for-ingestion-and-indexing aria-label="Use LlamaIndex for ingestion and indexing">Use LlamaIndex for ingestion and indexing</a></li><li><a href=#use-langchain-for-the-rest-of-the-application aria-label="Use LangChain for the rest of the application">Use LangChain for the rest of the application</a></li><li><a href=#-build-your-langchain-app-using-llamaindex-retrieval aria-label="&mldr; build your LangChain app using LlamaIndex retrieval">&mldr; build your LangChain app using LlamaIndex retrieval</a><ul><li><a href=#2025-updates-what-is-new-in-both-frameworks aria-label="2025 Updates: What is New in Both Frameworks">2025 Updates: What is New in Both Frameworks</a><ul><li><a href=#langchain-03-and-langgraph-updates aria-label="LangChain 0.3+ and LangGraph Updates">LangChain 0.3+ and LangGraph Updates</a></li><li><a href=#llamaindex-v012-new-features aria-label="LlamaIndex v0.12+ New Features">LlamaIndex v0.12+ New Features</a></li><li><a href=#emerging-trends-and-roadmaps aria-label="Emerging Trends and Roadmaps">Emerging Trends and Roadmaps</a></li></ul></li><li><a href=#final-verdict-which-one-should-you-pick aria-label="Final Verdict: Which One Should You Pick?">Final Verdict: Which One Should You Pick?</a></li><li><a href=#frequently-asked-questions aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul><li><a href=#is-llamaindex-better-than-langchain-for-rag aria-label="Is LlamaIndex better than LangChain for RAG?">Is LlamaIndex better than LangChain for RAG?</a></li><li><a href=#can-i-use-llamaindex-and-langchain-together aria-label="Can I use LlamaIndex and LangChain together?">Can I use LlamaIndex and LangChain together?</a></li><li><a href=#which-framework-has-better-performance aria-label="Which framework has better performance?">Which framework has better performance?</a></li><li><a href=#is-llamaindex-easier-to-learn-than-langchain aria-label="Is LlamaIndex easier to learn than LangChain?">Is LlamaIndex easier to learn than LangChain?</a></li><li><a href=#which-one-has-better-enterprise-support aria-label="Which one has better enterprise support?">Which one has better enterprise support?</a></li></ul></li><li><a href=#recommended-infrastructure aria-label="Recommended Infrastructure">Recommended Infrastructure</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>{&lt;/* resource-info */>}</p><p>Picking the right LLM framework in 2025 feels overwhelming. The ecosystem matured rapidly, and two names dominate every architecture discussion: LangChain and LlamaIndex. Both have crossed 40,000 GitHub stars. Both support Python and TypeScript. Both integrate with every major model provider. Yet they approach the problem of building LLM applications from fundamentally different angles.</p><p>The wrong choice costs you weeks of development time. The right choice accelerates your project from prototype to production. This guide cuts through the marketing noise with specific comparisons, benchmark data, and decision frameworks based on real-world deployments.</p><h2 id=introduction-why-compare-llamaindex-and-langchain>Introduction: Why Compare LlamaIndex and LangChain?<a hidden class=anchor aria-hidden=true href=#introduction-why-compare-llamaindex-and-langchain>#</a></h2><p>In 2022, building with LLMs meant calling OpenAI&rsquo;s API and hoping for the best. Today, production applications need document ingestion, vector search, tool integration, multi-agent coordination, and observability. LangChain and LlamaIndex emerged as the two dominant frameworks for solving these challenges — but they solve different problems.</p><p>LangChain positions itself as the general-purpose orchestration layer. It wants to be the framework for any application that uses an LLM. LlamaIndex takes a narrower, deeper approach: it focuses specifically on connecting LLMs with your data, particularly for retrieval-augmented generation (RAG) use cases.</p><p>Understanding this philosophical difference — breadth versus depth — explains nearly every technical distinction between the two.</p><h3 id=key-differences-at-a-glance>Key Differences at a Glance<a hidden class=anchor aria-hidden=true href=#key-differences-at-a-glance>#</a></h3><p>| Aspect | LangChain | LlamaIndex |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | <strong>Primary focus</strong> | General LLM orchestration | Data retrieval and RAG |
 | <strong>Architecture</strong> | Chain-based composition | Query engine pipeline |
 | <strong>Document ingestion</strong> | Good (100+ loaders) | Excellent (advanced parsing) |
 | <strong>Agent support</strong> | Extensive (10+ agent types) | Moderate |
 | <strong>Community size</strong> | 91,000+ GitHub stars | 40,000+ GitHub stars |
-| <strong>Best for</strong> | Multi-step workflows, agents | Document Q&amp;A, knowledge bases |</p>
-<h3 id="when-to-use-which-framework">When to Use Which Framework<a hidden class="anchor" aria-hidden="true" href="#when-to-use-which-framework">#</a></h3>
-<p>Choose <strong>LangChain</strong> when you need flexible orchestration of LLM calls, tools, and external APIs. Choose <strong>LlamaIndex</strong> when your primary challenge is making external data accessible to an LLM through sophisticated retrieval strategies.</p>
-<p>Many experienced teams use both together — LlamaIndex as the retrieval backend and LangChain as the orchestration frontend. We will explore this hybrid pattern later.</p>
-<h2 id="langchain-overview-the-general-purpose-orchestrator">LangChain Overview: The General-Purpose Orchestrator<a hidden class="anchor" aria-hidden="true" href="#langchain-overview-the-general-purpose-orchestrator">#</a></h2>
-<p>LangChain started in October 2022 with a simple insight: most LLM applications follow repetitive patterns of prompt formatting, API calling, and output parsing. Harrison Chase built a framework to eliminate this boilerplate.</p>
-<h3 id="core-philosophy-and-design-principles">Core Philosophy and Design Principles<a hidden class="anchor" aria-hidden="true" href="#core-philosophy-and-design-principles">#</a></h3>
-<p>LangChain follows a compositional design. Small, single-purpose components — prompts, models, parsers — connect via the pipe operator into chains. This Unix-inspired philosophy means you can swap any component without rewriting your application.</p>
-<p>The framework abstracts three things: model providers (OpenAI, Anthropic, local models), data sources (PDFs, databases, APIs), and execution patterns (sequential chains, agents with tool use). This abstraction layer is LangChain&rsquo;s core value proposition.</p>
-<h3 id="strengths-flexibility-and-ecosystem">Strengths: Flexibility and Ecosystem<a hidden class="anchor" aria-hidden="true" href="#strengths-flexibility-and-ecosystem">#</a></h3>
-<p>LangChain&rsquo;s biggest advantage is breadth. As of May 2025, it integrates with <a href="https://python.langchain.com/docs/integrations/providers/">over 100 LLM providers</a>, 100+ document loaders, 30+ vector stores, and dozens of tools. If you need to connect an LLM to almost anything, LangChain probably has a pre-built integration.</p>
-<p>The ecosystem extends beyond the core library. LangGraph adds stateful multi-agent execution. LangSmith provides production observability. LangServe deploys chains as APIs. This integrated toolchain makes LangChain the default choice for teams building complete AI applications.</p>
-<h3 id="best-use-cases-for-langchain">Best Use Cases for LangChain<a hidden class="anchor" aria-hidden="true" href="#best-use-cases-for-langchain">#</a></h3>
-<p>LangChain excels in scenarios requiring complex orchestration: - <strong>Multi-step agent workflows</strong>: Agents that decide which tools to call and in what order</p>
-<ul>
-<li><strong>Chatbots with memory</strong>: Conversational applications that maintain context across turns</li>
-<li><strong>Tool-using applications</strong>: LLMs that interact with calculators, search engines, databases</li>
-<li><strong>Unified model access</strong>: Applications that need to switch between multiple LLM providers</li>
-</ul>
-<h2 id="llamaindex-overview-the-data-first-rag-specialist">LlamaIndex Overview: The Data-First RAG Specialist<a hidden class="anchor" aria-hidden="true" href="#llamaindex-overview-the-data-first-rag-specialist">#</a></h2>
-<p>LlamaIndex (formerly GPT Index) launched in November 2022 with a different hypothesis: the hardest part of LLM applications is not calling models — it is getting the right data into the right format at the right time.</p>
-<h3 id="core-philosophy-and-design-principles-1">Core Philosophy and Design Principles<a hidden class="anchor" aria-hidden="true" href="#core-philosophy-and-design-principles-1">#</a></h3>
-<p>LlamaIndex treats data ingestion and retrieval as first-class concerns. While LangChain has document loaders, LlamaIndex has a sophisticated data processing pipeline with advanced parsing, multi-modal indexing, and intelligent query routing.</p>
-<p>The framework&rsquo;s central abstraction is the <strong>query engine</strong>. You load data, build an index, and create a query engine that handles the entire retrieval-generation pipeline. This higher-level abstraction reduces boilerplate but offers less fine-grained control than LangChain&rsquo;s component model.</p>
-<h3 id="strengths-advanced-rag-and-data-ingestion">Strengths: Advanced RAG and Data Ingestion<a hidden class="anchor" aria-hidden="true" href="#strengths-advanced-rag-and-data-ingestion">#</a></h3>
-<p>LlamaIndex leads in retrieval quality. Its indexing strategies go beyond simple vector search: - <strong>Summary indices</strong>: Store document summaries for fast overview retrieval</p>
-<ul>
-<li><strong>Tree indices</strong>: Build hierarchical summaries for efficient multi-document navigation</li>
-<li><strong>Keyword table indices</strong>: Combine vector search with keyword matching</li>
-<li><strong>Knowledge graph indices</strong>: Extract entity relationships and support graph-based reasoning</li>
-</ul>
-<p>LlamaIndex also pioneered <strong>agentic RAG</strong>, where the retrieval system itself uses LLM reasoning to decide what to retrieve and how to combine results. This approach significantly outperforms basic vector similarity search on complex queries.</p>
-<h3 id="best-use-cases-for-llamaindex">Best Use Cases for LlamaIndex<a hidden class="anchor" aria-hidden="true" href="#best-use-cases-for-llamaindex">#</a></h3>
-<p>LlamaIndex dominates data-heavy scenarios: - <strong>Document Q&amp;A applications</strong>: Chat with PDFs, manuals, research papers</p>
-<ul>
-<li><strong>Advanced RAG pipelines</strong>: Multi-hop reasoning over document collections</li>
-<li><strong>Knowledge graph construction</strong>: Extract and query structured relationships from text</li>
-<li><strong>Multi-modal retrieval</strong>: Combining text, image, and table data in a single query</li>
-</ul>
-<h2 id="head-to-head-comparison">Head-to-Head Comparison<a hidden class="anchor" aria-hidden="true" href="#head-to-head-comparison">#</a></h2>
-<h3 id="architecture-and-abstraction-level">Architecture and Abstraction Level<a hidden class="anchor" aria-hidden="true" href="#architecture-and-abstraction-level">#</a></h3>
-<p>LangChain operates at a lower level of abstraction. You compose chains from individual components — model, prompt, retriever — giving you precise control over every step. This flexibility is powerful but requires more code.</p>
-<p>LlamaIndex provides higher-level abstractions. A ```VectorStoreIndex<code>and</code>query_engine```` handle parsing, chunking, embedding, retrieval, and generation in a few lines. This simplicity accelerates development but limits customization.</p>
-<h3 id="document-processing-and-indexing">Document Processing and Indexing<a hidden class="anchor" aria-hidden="true" href="#document-processing-and-indexing">#</a></h3>
-<p>This is where LlamaIndex pulls ahead. Its ingestion pipeline includes: - <strong>Advanced PDF parsing</strong>: Handles tables, headers, and complex layouts</p>
-<ul>
-<li><strong>Multi-modal extraction</strong>: Processes images and charts within documents</li>
-<li><strong>Auto-merging retrieval</strong>: Retrieves parent documents when child chunks match</li>
-<li><strong>Hierarchical indexing</strong>: Builds tree structures for efficient large-scale retrieval</li>
-</ul>
-<p>LangChain&rsquo;s document processing is functional but less sophisticated. You typically split documents with <code>RecursiveCharacterTextSplitter</code> and store chunks directly. This works for simple cases but struggles with complex document structures.</p>
-<h3 id="query-engines-and-retrieval-strategies">Query Engines and Retrieval Strategies<a hidden class="anchor" aria-hidden="true" href="#query-engines-and-retrieval-strategies">#</a></h3>
-<p>LlamaIndex offers more retrieval strategies out of the box: | Strategy | LlamaIndex | LangChain |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+| <strong>Best for</strong> | Multi-step workflows, agents | Document Q&amp;A, knowledge bases |</p><h3 id=when-to-use-which-framework>When to Use Which Framework<a hidden class=anchor aria-hidden=true href=#when-to-use-which-framework>#</a></h3><p>Choose <strong>LangChain</strong> when you need flexible orchestration of LLM calls, tools, and external APIs. Choose <strong>LlamaIndex</strong> when your primary challenge is making external data accessible to an LLM through sophisticated retrieval strategies.</p><p>Many experienced teams use both together — LlamaIndex as the retrieval backend and LangChain as the orchestration frontend. We will explore this hybrid pattern later.</p><h2 id=langchain-overview-the-general-purpose-orchestrator>LangChain Overview: The General-Purpose Orchestrator<a hidden class=anchor aria-hidden=true href=#langchain-overview-the-general-purpose-orchestrator>#</a></h2><p>LangChain started in October 2022 with a simple insight: most LLM applications follow repetitive patterns of prompt formatting, API calling, and output parsing. Harrison Chase built a framework to eliminate this boilerplate.</p><h3 id=core-philosophy-and-design-principles>Core Philosophy and Design Principles<a hidden class=anchor aria-hidden=true href=#core-philosophy-and-design-principles>#</a></h3><p>LangChain follows a compositional design. Small, single-purpose components — prompts, models, parsers — connect via the pipe operator into chains. This Unix-inspired philosophy means you can swap any component without rewriting your application.</p><p>The framework abstracts three things: model providers (OpenAI, Anthropic, local models), data sources (PDFs, databases, APIs), and execution patterns (sequential chains, agents with tool use). This abstraction layer is LangChain&rsquo;s core value proposition.</p><h3 id=strengths-flexibility-and-ecosystem>Strengths: Flexibility and Ecosystem<a hidden class=anchor aria-hidden=true href=#strengths-flexibility-and-ecosystem>#</a></h3><p>LangChain&rsquo;s biggest advantage is breadth. As of May 2025, it integrates with <a href=https://python.langchain.com/docs/integrations/providers/>over 100 LLM providers</a>, 100+ document loaders, 30+ vector stores, and dozens of tools. If you need to connect an LLM to almost anything, LangChain probably has a pre-built integration.</p><p>The ecosystem extends beyond the core library. LangGraph adds stateful multi-agent execution. LangSmith provides production observability. LangServe deploys chains as APIs. This integrated toolchain makes LangChain the default choice for teams building complete AI applications.</p><h3 id=best-use-cases-for-langchain>Best Use Cases for LangChain<a hidden class=anchor aria-hidden=true href=#best-use-cases-for-langchain>#</a></h3><p>LangChain excels in scenarios requiring complex orchestration: - <strong>Multi-step agent workflows</strong>: Agents that decide which tools to call and in what order</p><ul><li><strong>Chatbots with memory</strong>: Conversational applications that maintain context across turns</li><li><strong>Tool-using applications</strong>: LLMs that interact with calculators, search engines, databases</li><li><strong>Unified model access</strong>: Applications that need to switch between multiple LLM providers</li></ul><h2 id=llamaindex-overview-the-data-first-rag-specialist>LlamaIndex Overview: The Data-First RAG Specialist<a hidden class=anchor aria-hidden=true href=#llamaindex-overview-the-data-first-rag-specialist>#</a></h2><p>LlamaIndex (formerly GPT Index) launched in November 2022 with a different hypothesis: the hardest part of LLM applications is not calling models — it is getting the right data into the right format at the right time.</p><h3 id=core-philosophy-and-design-principles-1>Core Philosophy and Design Principles<a hidden class=anchor aria-hidden=true href=#core-philosophy-and-design-principles-1>#</a></h3><p>LlamaIndex treats data ingestion and retrieval as first-class concerns. While LangChain has document loaders, LlamaIndex has a sophisticated data processing pipeline with advanced parsing, multi-modal indexing, and intelligent query routing.</p><p>The framework&rsquo;s central abstraction is the <strong>query engine</strong>. You load data, build an index, and create a query engine that handles the entire retrieval-generation pipeline. This higher-level abstraction reduces boilerplate but offers less fine-grained control than LangChain&rsquo;s component model.</p><h3 id=strengths-advanced-rag-and-data-ingestion>Strengths: Advanced RAG and Data Ingestion<a hidden class=anchor aria-hidden=true href=#strengths-advanced-rag-and-data-ingestion>#</a></h3><p>LlamaIndex leads in retrieval quality. Its indexing strategies go beyond simple vector search: - <strong>Summary indices</strong>: Store document summaries for fast overview retrieval</p><ul><li><strong>Tree indices</strong>: Build hierarchical summaries for efficient multi-document navigation</li><li><strong>Keyword table indices</strong>: Combine vector search with keyword matching</li><li><strong>Knowledge graph indices</strong>: Extract entity relationships and support graph-based reasoning</li></ul><p>LlamaIndex also pioneered <strong>agentic RAG</strong>, where the retrieval system itself uses LLM reasoning to decide what to retrieve and how to combine results. This approach significantly outperforms basic vector similarity search on complex queries.</p><h3 id=best-use-cases-for-llamaindex>Best Use Cases for LlamaIndex<a hidden class=anchor aria-hidden=true href=#best-use-cases-for-llamaindex>#</a></h3><p>LlamaIndex dominates data-heavy scenarios: - <strong>Document Q&amp;A applications</strong>: Chat with PDFs, manuals, research papers</p><ul><li><strong>Advanced RAG pipelines</strong>: Multi-hop reasoning over document collections</li><li><strong>Knowledge graph construction</strong>: Extract and query structured relationships from text</li><li><strong>Multi-modal retrieval</strong>: Combining text, image, and table data in a single query</li></ul><h2 id=head-to-head-comparison>Head-to-Head Comparison<a hidden class=anchor aria-hidden=true href=#head-to-head-comparison>#</a></h2><h3 id=architecture-and-abstraction-level>Architecture and Abstraction Level<a hidden class=anchor aria-hidden=true href=#architecture-and-abstraction-level>#</a></h3><p>LangChain operates at a lower level of abstraction. You compose chains from individual components — model, prompt, retriever — giving you precise control over every step. This flexibility is powerful but requires more code.</p><p>LlamaIndex provides higher-level abstractions. A ```VectorStoreIndex<code>and</code>query_engine```` handle parsing, chunking, embedding, retrieval, and generation in a few lines. This simplicity accelerates development but limits customization.</p><h3 id=document-processing-and-indexing>Document Processing and Indexing<a hidden class=anchor aria-hidden=true href=#document-processing-and-indexing>#</a></h3><p>This is where LlamaIndex pulls ahead. Its ingestion pipeline includes: - <strong>Advanced PDF parsing</strong>: Handles tables, headers, and complex layouts</p><ul><li><strong>Multi-modal extraction</strong>: Processes images and charts within documents</li><li><strong>Auto-merging retrieval</strong>: Retrieves parent documents when child chunks match</li><li><strong>Hierarchical indexing</strong>: Builds tree structures for efficient large-scale retrieval</li></ul><p>LangChain&rsquo;s document processing is functional but less sophisticated. You typically split documents with <code>RecursiveCharacterTextSplitter</code> and store chunks directly. This works for simple cases but struggles with complex document structures.</p><h3 id=query-engines-and-retrieval-strategies>Query Engines and Retrieval Strategies<a hidden class=anchor aria-hidden=true href=#query-engines-and-retrieval-strategies>#</a></h3><p>LlamaIndex offers more retrieval strategies out of the box: | Strategy | LlamaIndex | LangChain |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | Vector similarity | Yes | Yes |
 | Keyword/BM25 hybrid | Yes | Via extensions |
 | Hierarchical traversal | Yes | No |
 | Knowledge graph | Yes | Via LangGraph |
 | Multi-hop reasoning | Yes | Limited |
 | Query transformation | Yes | Basic |
-| Re-ranking | Built-in | Via integrations |</p>
-<h3 id="agent-and-tool-support">Agent and Tool Support<a hidden class="anchor" aria-hidden="true" href="#agent-and-tool-support">#</a></h3>
-<p>LangChain dominates agent capabilities. It supports ReAct, Plan-and-Execute, Structured Chat, and several other agent architectures. The tool integration ecosystem is unmatched — if an API exists, LangChain probably has a tool for it.</p>
-<p>LlamaIndex added agent support in 2024 but remains behind. Its <code>OpenAIAgent</code> and <code>ReActAgent</code> classes work for basic tool use but lack the sophistication of LangChain&rsquo;s agent frameworks.</p>
-<h3 id="ecosystem-and-community-size">Ecosystem and Community Size<a hidden class="anchor" aria-hidden="true" href="#ecosystem-and-community-size">#</a></h3>
-<p>LangChain has a larger community — 91,000 GitHub stars versus LlamaIndex&rsquo;s 40,000. More Stack Overflow answers, more tutorials, more third-party blog posts. This matters when you need help debugging at 2 AM.</p>
-<p>LlamaIndex&rsquo;s community is smaller but highly focused on RAG and data applications. The quality of RAG-specific discussion is often higher.</p>
-<h3 id="performance-benchmarks">Performance Benchmarks<a hidden class="anchor" aria-hidden="true" href="#performance-benchmarks">#</a></h3>
-<p>Retrieval quality depends heavily on the use case. LlamaIndex typically wins on document Q&amp;A benchmarks due to its advanced indexing strategies. LangChain performs comparably when retrieval is straightforward but requires more manual optimization for complex document sets.</p>
-<p>Latency is similar — both frameworks spend most of their time waiting for LLM API calls and vector database queries. Framework overhead is negligible.</p>
-<h3 id="learning-curve-and-documentation">Learning Curve and Documentation<a hidden class="anchor" aria-hidden="true" href="#learning-curve-and-documentation">#</a></h3>
-<p>LangChain&rsquo;s documentation is more comprehensive but harder to navigate. The framework has more concepts to learn — Runnables, LCEL, multiple agent types, various memory classes. The learning curve is steeper but rewards you with more control.</p>
-<p>LlamaIndex is easier to get started with. The <code>load-index-query</code> pattern is intuitive, and the high-level abstractions hide complexity. You can build a working RAG application in fewer lines of code.</p>
-<h2 id="feature-comparison-table-side-by-side">Feature Comparison Table (Side-by-Side)<a hidden class="anchor" aria-hidden="true" href="#feature-comparison-table-side-by-side">#</a></h2>
-<h3 id="core-components-matrix">Core Components Matrix<a hidden class="anchor" aria-hidden="true" href="#core-components-matrix">#</a></h3>
-<p>| Feature | LangChain | LlamaIndex |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+| Re-ranking | Built-in | Via integrations |</p><h3 id=agent-and-tool-support>Agent and Tool Support<a hidden class=anchor aria-hidden=true href=#agent-and-tool-support>#</a></h3><p>LangChain dominates agent capabilities. It supports ReAct, Plan-and-Execute, Structured Chat, and several other agent architectures. The tool integration ecosystem is unmatched — if an API exists, LangChain probably has a tool for it.</p><p>LlamaIndex added agent support in 2024 but remains behind. Its <code>OpenAIAgent</code> and <code>ReActAgent</code> classes work for basic tool use but lack the sophistication of LangChain&rsquo;s agent frameworks.</p><h3 id=ecosystem-and-community-size>Ecosystem and Community Size<a hidden class=anchor aria-hidden=true href=#ecosystem-and-community-size>#</a></h3><p>LangChain has a larger community — 91,000 GitHub stars versus LlamaIndex&rsquo;s 40,000. More Stack Overflow answers, more tutorials, more third-party blog posts. This matters when you need help debugging at 2 AM.</p><p>LlamaIndex&rsquo;s community is smaller but highly focused on RAG and data applications. The quality of RAG-specific discussion is often higher.</p><h3 id=performance-benchmarks>Performance Benchmarks<a hidden class=anchor aria-hidden=true href=#performance-benchmarks>#</a></h3><p>Retrieval quality depends heavily on the use case. LlamaIndex typically wins on document Q&amp;A benchmarks due to its advanced indexing strategies. LangChain performs comparably when retrieval is straightforward but requires more manual optimization for complex document sets.</p><p>Latency is similar — both frameworks spend most of their time waiting for LLM API calls and vector database queries. Framework overhead is negligible.</p><h3 id=learning-curve-and-documentation>Learning Curve and Documentation<a hidden class=anchor aria-hidden=true href=#learning-curve-and-documentation>#</a></h3><p>LangChain&rsquo;s documentation is more comprehensive but harder to navigate. The framework has more concepts to learn — Runnables, LCEL, multiple agent types, various memory classes. The learning curve is steeper but rewards you with more control.</p><p>LlamaIndex is easier to get started with. The <code>load-index-query</code> pattern is intuitive, and the high-level abstractions hide complexity. You can build a working RAG application in fewer lines of code.</p><h2 id=feature-comparison-table-side-by-side>Feature Comparison Table (Side-by-Side)<a hidden class=anchor aria-hidden=true href=#feature-comparison-table-side-by-side>#</a></h2><h3 id=core-components-matrix>Core Components Matrix<a hidden class=anchor aria-hidden=true href=#core-components-matrix>#</a></h3><p>| Feature | LangChain | LlamaIndex |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | Prompt management | Advanced templates | Basic |
 | Model abstraction | 100+ providers | Good but fewer |
 | Document loaders | 100+ | 50+ but deeper |
@@ -427,16 +28,8 @@
 | Output parsing | Extensive | Basic |
 | Memory/conversation | Multiple strategies | Conversation engine |
 | Agents | 10+ types | 3-4 types |
-| Callbacks/tracing | LangSmith + callbacks | Callbacks + observability |</p>
-<h3 id="integration-support-matrix">Integration Support Matrix<a hidden class="anchor" aria-hidden="true" href="#integration-support-matrix">#</a></h3>
-<p>| Integration | LangChain | LlamaIndex |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+| Callbacks/tracing | LangSmith + callbacks | Callbacks + observability |</p><h3 id=integration-support-matrix>Integration Support Matrix<a hidden class=anchor aria-hidden=true href=#integration-support-matrix>#</a></h3><p>| Integration | LangChain | LlamaIndex |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | OpenAI | Native | Native |
 | Anthropic Claude | Native | Native |
 | Local models (Ollama) | Yes | Yes |
@@ -446,53 +39,19 @@
 | PostgreSQL/pgvector | Native | Native |
 | FastAPI deployment | LangServe | Custom |
 | Streamlit | Examples | Examples |
-| Docker | Templates | Templates |</p>
-<h3 id="enterprise-features-comparison">Enterprise Features Comparison<a hidden class="anchor" aria-hidden="true" href="#enterprise-features-comparison">#</a></h3>
-<p>| Feature | LangChain | LlamaIndex |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+| Docker | Templates | Templates |</p><h3 id=enterprise-features-comparison>Enterprise Features Comparison<a hidden class=anchor aria-hidden=true href=#enterprise-features-comparison>#</a></h3><p>| Feature | LangChain | LlamaIndex |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | Production monitoring | LangSmith (excellent) | Basic callbacks |
 | Evaluation framework | LangSmith evals | Response evaluator |
 | Multi-tenancy | Manual | Manual |
 | Access control | Manual | Manual |
 | Enterprise support | Available | Available |
-| Cloud hosting | LangGraph Cloud | LlamaCloud |</p>
-<h2 id="when-to-use-langchain">When to Use LangChain<a hidden class="anchor" aria-hidden="true" href="#when-to-use-langchain">#</a></h2>
-<h3 id="multi-step-agent-workflows">Multi-Step Agent Workflows<a hidden class="anchor" aria-hidden="true" href="#multi-step-agent-workflows">#</a></h3>
-<p>LangChain is the clear choice when your application needs agents that make multiple decisions, call several tools, and handle errors gracefully. A customer support agent that searches a knowledge base, checks order status, and escalates to a human requires LangChain&rsquo;s agent framework.</p>
-<h3 id="complex-tool-orchestration">Complex Tool Orchestration<a hidden class="anchor" aria-hidden="true" href="#complex-tool-orchestration">#</a></h3>
-<p>Applications calling diverse tools — APIs, databases, calculators, search engines — benefit from LangChain&rsquo;s tool ecosystem and agent reasoning patterns. The <code>@tool</code> decorator and agent executor handle error recovery, retry logic, and output parsing.</p>
-<h3 id="broad-llm-application-building">Broad LLM Application Building<a hidden class="anchor" aria-hidden="true" href="#broad-llm-application-building">#</a></h3>
-<p>If your application goes beyond retrieval — generating content, classifying text, extracting structured data, or coordinating multiple AI systems — LangChain&rsquo;s general-purpose design serves you better than LlamaIndex&rsquo;s data-focused approach.</p>
-<h2 id="when-to-use-llamaindex">When to Use LlamaIndex<a hidden class="anchor" aria-hidden="true" href="#when-to-use-llamaindex">#</a></h2>
-<h3 id="document-qa-applications">Document Q&amp;A Applications<a hidden class="anchor" aria-hidden="true" href="#document-qa-applications">#</a></h3>
-<p>LlamaIndex shines when the primary use case is answering questions over a document collection. Its advanced parsing, hierarchical indexing, and query transformations extract more accurate answers from complex documents than LangChain&rsquo;s default RAG implementation.</p>
-<h3 id="advanced-rag-pipelines">Advanced RAG Pipelines<a hidden class="anchor" aria-hidden="true" href="#advanced-rag-pipelines">#</a></h3>
-<p>If your application needs multi-hop retrieval (answering questions that require combining information from multiple documents), auto-merging (retrieving larger contexts when small chunks are insufficient), or query planning (breaking complex questions into sub-queries), LlamaIndex provides these capabilities natively.</p>
-<h3 id="knowledge-graph-construction">Knowledge Graph Construction<a hidden class="anchor" aria-hidden="true" href="#knowledge-graph-construction">#</a></h3>
-<p>LlamaIndex can automatically extract entities and relationships from documents, building queryable knowledge graphs. This enables reasoning that pure vector search cannot support — questions like &ldquo;What projects did the author work on before joining the company?&rdquo; that require connecting multiple facts.</p>
-<h3 id="multi-modal-data-retrieval">Multi-Modal Data Retrieval<a hidden class="anchor" aria-hidden="true" href="#multi-modal-data-retrieval">#</a></h3>
-<p>Applications that need to retrieve across text, images, and tables within the same document benefit from LlamaIndex&rsquo;s multi-modal indexing capabilities.</p>
-<h2 id="can-you-use-both-together">Can You Use Both Together?<a hidden class="anchor" aria-hidden="true" href="#can-you-use-both-together">#</a></h2>
-<p>Yes, and increasingly, experienced teams do exactly this. The hybrid pattern uses each framework for what it does best.</p>
-<h3 id="integration-patterns">Integration Patterns<a hidden class="anchor" aria-hidden="true" href="#integration-patterns">#</a></h3>
-<p>The most common integration pattern uses LlamaIndex as the retrieval backend and LangChain as the orchestration frontend: `````python
+| Cloud hosting | LangGraph Cloud | LlamaCloud |</p><h2 id=when-to-use-langchain>When to Use LangChain<a hidden class=anchor aria-hidden=true href=#when-to-use-langchain>#</a></h2><h3 id=multi-step-agent-workflows>Multi-Step Agent Workflows<a hidden class=anchor aria-hidden=true href=#multi-step-agent-workflows>#</a></h3><p>LangChain is the clear choice when your application needs agents that make multiple decisions, call several tools, and handle errors gracefully. A customer support agent that searches a knowledge base, checks order status, and escalates to a human requires LangChain&rsquo;s agent framework.</p><h3 id=complex-tool-orchestration>Complex Tool Orchestration<a hidden class=anchor aria-hidden=true href=#complex-tool-orchestration>#</a></h3><p>Applications calling diverse tools — APIs, databases, calculators, search engines — benefit from LangChain&rsquo;s tool ecosystem and agent reasoning patterns. The <code>@tool</code> decorator and agent executor handle error recovery, retry logic, and output parsing.</p><h3 id=broad-llm-application-building>Broad LLM Application Building<a hidden class=anchor aria-hidden=true href=#broad-llm-application-building>#</a></h3><p>If your application goes beyond retrieval — generating content, classifying text, extracting structured data, or coordinating multiple AI systems — LangChain&rsquo;s general-purpose design serves you better than LlamaIndex&rsquo;s data-focused approach.</p><h2 id=when-to-use-llamaindex>When to Use LlamaIndex<a hidden class=anchor aria-hidden=true href=#when-to-use-llamaindex>#</a></h2><h3 id=document-qa-applications>Document Q&amp;A Applications<a hidden class=anchor aria-hidden=true href=#document-qa-applications>#</a></h3><p>LlamaIndex shines when the primary use case is answering questions over a document collection. Its advanced parsing, hierarchical indexing, and query transformations extract more accurate answers from complex documents than LangChain&rsquo;s default RAG implementation.</p><h3 id=advanced-rag-pipelines>Advanced RAG Pipelines<a hidden class=anchor aria-hidden=true href=#advanced-rag-pipelines>#</a></h3><p>If your application needs multi-hop retrieval (answering questions that require combining information from multiple documents), auto-merging (retrieving larger contexts when small chunks are insufficient), or query planning (breaking complex questions into sub-queries), LlamaIndex provides these capabilities natively.</p><h3 id=knowledge-graph-construction>Knowledge Graph Construction<a hidden class=anchor aria-hidden=true href=#knowledge-graph-construction>#</a></h3><p>LlamaIndex can automatically extract entities and relationships from documents, building queryable knowledge graphs. This enables reasoning that pure vector search cannot support — questions like &ldquo;What projects did the author work on before joining the company?&rdquo; that require connecting multiple facts.</p><h3 id=multi-modal-data-retrieval>Multi-Modal Data Retrieval<a hidden class=anchor aria-hidden=true href=#multi-modal-data-retrieval>#</a></h3><p>Applications that need to retrieve across text, images, and tables within the same document benefit from LlamaIndex&rsquo;s multi-modal indexing capabilities.</p><h2 id=can-you-use-both-together>Can You Use Both Together?<a hidden class=anchor aria-hidden=true href=#can-you-use-both-together>#</a></h2><p>Yes, and increasingly, experienced teams do exactly this. The hybrid pattern uses each framework for what it does best.</p><h3 id=integration-patterns>Integration Patterns<a hidden class=anchor aria-hidden=true href=#integration-patterns>#</a></h3><p>The most common integration pattern uses LlamaIndex as the retrieval backend and LangChain as the orchestration frontend: `````python
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
 from langchain.chains import create_retrieval_chain
-from langchain_openai import ChatOpenAI</p>
-<h1 id="use-llamaindex-for-ingestion-and-indexing">Use LlamaIndex for ingestion and indexing<a hidden class="anchor" aria-hidden="true" href="#use-llamaindex-for-ingestion-and-indexing">#</a></h1>
-<p>docs = SimpleDirectoryReader(&ldquo;data&rdquo;).load_data()
+from langchain_openai import ChatOpenAI</p><h1 id=use-llamaindex-for-ingestion-and-indexing>Use LlamaIndex for ingestion and indexing<a hidden class=anchor aria-hidden=true href=#use-llamaindex-for-ingestion-and-indexing>#</a></h1><p>docs = SimpleDirectoryReader(&ldquo;data&rdquo;).load_data()
 index = VectorStoreIndex.from_documents(docs)
-retriever = index.as_retriever()</p>
-<h1 id="use-langchain-for-the-rest-of-the-application">Use LangChain for the rest of the application<a hidden class="anchor" aria-hidden="true" href="#use-langchain-for-the-rest-of-the-application">#</a></h1>
-<p>model = ChatOpenAI(model=&ldquo;gpt-4o&rdquo;)</p>
-<h1 id="-build-your-langchain-app-using-llamaindex-retrieval">&hellip; build your LangChain app using LlamaIndex retrieval<a hidden class="anchor" aria-hidden="true" href="#-build-your-langchain-app-using-llamaindex-retrieval">#</a></h1>
-<pre tabindex="0"><code>
+retriever = index.as_retriever()</p><h1 id=use-langchain-for-the-rest-of-the-application>Use LangChain for the rest of the application<a hidden class=anchor aria-hidden=true href=#use-langchain-for-the-rest-of-the-application>#</a></h1><p>model = ChatOpenAI(model=&ldquo;gpt-4o&rdquo;)</p><h1 id=-build-your-langchain-app-using-llamaindex-retrieval>&mldr; build your LangChain app using LlamaIndex retrieval<a hidden class=anchor aria-hidden=true href=#-build-your-langchain-app-using-llamaindex-retrieval>#</a></h1><pre tabindex=0><code>
 ### LlamaIndex as RAG Backend + LangChain for Orchestration
 
 In this pattern, LlamaIndex handles document loading, parsing, chunking, embedding, and retrieval. LangChain handles prompt engineering, tool integration, agent logic, and deployment. The combination gives you LlamaIndex&#39;s retrieval quality with LangChain&#39;s orchestration flexibility.
@@ -522,63 +81,8 @@ def search_docs(query: str) -&gt; str: &#34;&#34;&#34;Search the company documen
 model = ChatOpenAI(model=&#34;gpt-4o&#34;)
 agent = create_openai_tools_agent(model, [search_docs], prompt)
 executor = AgentExecutor(agent=agent, tools=[search_docs])
-</code></pre><h2 id="2025-updates-what-is-new-in-both-frameworks">2025 Updates: What is New in Both Frameworks<a hidden class="anchor" aria-hidden="true" href="#2025-updates-what-is-new-in-both-frameworks">#</a></h2>
-<h3 id="langchain-03-and-langgraph-updates">LangChain 0.3+ and LangGraph Updates<a hidden class="anchor" aria-hidden="true" href="#langchain-03-and-langgraph-updates">#</a></h3>
-<p>LangChain 0.3, released in late 2024, introduced significant improvements: - <strong>Simplified initialization</strong>: The <code>init_chat_model</code> function provides a unified interface for all major providers</p>
-<ul>
-<li><strong>LangGraph 0.2</strong>: Added subgraph support, checkpointing improvements, and human-in-the-loop patterns</li>
-<li><strong>LangSmith GA</strong>: General availability with expanded evaluation capabilities</li>
-<li><strong>Better streaming</strong>: Improved streaming support across all component types</li>
-</ul>
-<h3 id="llamaindex-v012-new-features">LlamaIndex v0.12+ New Features<a hidden class="anchor" aria-hidden="true" href="#llamaindex-v012-new-features">#</a></h3>
-<p>LlamaIndex v0.12 brought major enhancements: - <strong>Workflows API</strong>: A new event-driven system for building complex agent interactions</p>
-<ul>
-<li><strong>LlamaCloud</strong>: Managed service for enterprise document processing and retrieval</li>
-<li><strong>Improved multi-modal support</strong>: Better handling of PDFs with images and tables</li>
-<li><strong>Agentic RAG v2</strong>: Smarter query planning and retrieval strategies</li>
-</ul>
-<h3 id="emerging-trends-and-roadmaps">Emerging Trends and Roadmaps<a hidden class="anchor" aria-hidden="true" href="#emerging-trends-and-roadmaps">#</a></h3>
-<p>Both frameworks are converging on similar capabilities. LangChain is improving its retrieval features. LlamaIndex is expanding its agent support. The competition benefits developers, as both frameworks rapidly adopt best practices from each other.</p>
-<h2 id="final-verdict-which-one-should-you-pick">Final Verdict: Which One Should You Pick?<a hidden class="anchor" aria-hidden="true" href="#final-verdict-which-one-should-you-pick">#</a></h2>
-<p>Choose <strong>LangChain</strong> if: - You need general-purpose LLM orchestration</p>
-<ul>
-<li>Agents and tool use are central to your application</li>
-<li>You want the largest ecosystem and community</li>
-<li>You need the integrated LangGraph + LangSmith toolchain</li>
-<li>Your application involves complex multi-step workflows beyond retrieval</li>
-</ul>
-<p>Choose <strong>LlamaIndex</strong> if: - Your primary use case is document Q&amp;A or RAG</p>
-<ul>
-<li>You need advanced document parsing and indexing</li>
-<li>Knowledge graph construction is important</li>
-<li>You want simpler APIs for data-heavy applications</li>
-<li>You prioritize retrieval quality over orchestration flexibility</li>
-</ul>
-<p>Use <strong>both</strong> if: - You are building a serious production RAG application</p>
-<ul>
-<li>You want the best retrieval quality with the most flexible orchestration</li>
-<li>Your team has the capacity to manage two frameworks</li>
-</ul>
-<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
-<h3 id="is-llamaindex-better-than-langchain-for-rag">Is LlamaIndex better than LangChain for RAG?<a hidden class="anchor" aria-hidden="true" href="#is-llamaindex-better-than-langchain-for-rag">#</a></h3>
-<p>Yes, LlamaIndex generally produces better retrieval quality out of the box. Its advanced indexing strategies — hierarchical indices, auto-merging, knowledge graphs — extract more relevant context from documents than LangChain&rsquo;s default vector search. However, LangChain can achieve comparable results with manual optimization. For production RAG applications, the hybrid approach (LlamaIndex for retrieval, LangChain for orchestration) often delivers the best outcomes.</p>
-<h3 id="can-i-use-llamaindex-and-langchain-together">Can I use LlamaIndex and LangChain together?<a hidden class="anchor" aria-hidden="true" href="#can-i-use-llamaindex-and-langchain-together">#</a></h3>
-<p>Absolutely. The most common pattern uses LlamaIndex&rsquo;s <code>query_engine</code> or <code>retriever</code> wrapped as a LangChain tool. LangChain handles the agent logic, prompt engineering, and deployment, while LlamaIndex manages document ingestion and retrieval. This combination leverages each framework&rsquo;s strengths.</p>
-<h3 id="which-framework-has-better-performance">Which framework has better performance?<a hidden class="anchor" aria-hidden="true" href="#which-framework-has-better-performance">#</a></h3>
-<p>Performance depends on the metric. LlamaIndex typically achieves higher retrieval accuracy on document Q&amp;A benchmarks. LangChain has lower framework overhead for simple chains and better latency for non-retrieval tasks. In production, both frameworks spend most of their time waiting for LLM API responses, so framework performance differences rarely matter.</p>
-<h3 id="is-llamaindex-easier-to-learn-than-langchain">Is LlamaIndex easier to learn than LangChain?<a hidden class="anchor" aria-hidden="true" href="#is-llamaindex-easier-to-learn-than-langchain">#</a></h3>
-<p>Generally yes. LlamaIndex&rsquo;s higher-level abstractions mean you can build a working RAG application in fewer lines of code. The ````load-index-query``` pattern is intuitive. LangChain has a steeper learning curve due to its more granular component model and larger API surface. However, LangChain&quot;s flexibility pays off for complex applications.</p>
-<h3 id="which-one-has-better-enterprise-support">Which one has better enterprise support?<a hidden class="anchor" aria-hidden="true" href="#which-one-has-better-enterprise-support">#</a></h3>
-<p>Both offer enterprise support plans. LangChain has LangSmith for production observability and LangGraph Cloud for managed hosting, giving it an edge in enterprise tooling. LlamaIndex offers LlamaCloud for managed document processing. For large deployments, evaluate both platforms against your specific observability and security requirements.</p>
-<hr>
-<h2 id="recommended-infrastructure">Recommended Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-infrastructure">#</a></h2>
-<p>To run any of the tools above reliably 24/7, infrastructure matters: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.</p>
-<ul>
-<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.</li>
-</ul>
-<p><em>Affiliate links — no extra cost to you, helps keep dibi8.com running.</em></p>
-<p>{
-&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+</code></pre><h2 id=2025-updates-what-is-new-in-both-frameworks>2025 Updates: What is New in Both Frameworks<a hidden class=anchor aria-hidden=true href=#2025-updates-what-is-new-in-both-frameworks>#</a></h2><h3 id=langchain-03-and-langgraph-updates>LangChain 0.3+ and LangGraph Updates<a hidden class=anchor aria-hidden=true href=#langchain-03-and-langgraph-updates>#</a></h3><p>LangChain 0.3, released in late 2024, introduced significant improvements: - <strong>Simplified initialization</strong>: The <code>init_chat_model</code> function provides a unified interface for all major providers</p><ul><li><strong>LangGraph 0.2</strong>: Added subgraph support, checkpointing improvements, and human-in-the-loop patterns</li><li><strong>LangSmith GA</strong>: General availability with expanded evaluation capabilities</li><li><strong>Better streaming</strong>: Improved streaming support across all component types</li></ul><h3 id=llamaindex-v012-new-features>LlamaIndex v0.12+ New Features<a hidden class=anchor aria-hidden=true href=#llamaindex-v012-new-features>#</a></h3><p>LlamaIndex v0.12 brought major enhancements: - <strong>Workflows API</strong>: A new event-driven system for building complex agent interactions</p><ul><li><strong>LlamaCloud</strong>: Managed service for enterprise document processing and retrieval</li><li><strong>Improved multi-modal support</strong>: Better handling of PDFs with images and tables</li><li><strong>Agentic RAG v2</strong>: Smarter query planning and retrieval strategies</li></ul><h3 id=emerging-trends-and-roadmaps>Emerging Trends and Roadmaps<a hidden class=anchor aria-hidden=true href=#emerging-trends-and-roadmaps>#</a></h3><p>Both frameworks are converging on similar capabilities. LangChain is improving its retrieval features. LlamaIndex is expanding its agent support. The competition benefits developers, as both frameworks rapidly adopt best practices from each other.</p><h2 id=final-verdict-which-one-should-you-pick>Final Verdict: Which One Should You Pick?<a hidden class=anchor aria-hidden=true href=#final-verdict-which-one-should-you-pick>#</a></h2><p>Choose <strong>LangChain</strong> if: - You need general-purpose LLM orchestration</p><ul><li>Agents and tool use are central to your application</li><li>You want the largest ecosystem and community</li><li>You need the integrated LangGraph + LangSmith toolchain</li><li>Your application involves complex multi-step workflows beyond retrieval</li></ul><p>Choose <strong>LlamaIndex</strong> if: - Your primary use case is document Q&amp;A or RAG</p><ul><li>You need advanced document parsing and indexing</li><li>Knowledge graph construction is important</li><li>You want simpler APIs for data-heavy applications</li><li>You prioritize retrieval quality over orchestration flexibility</li></ul><p>Use <strong>both</strong> if: - You are building a serious production RAG application</p><ul><li>You want the best retrieval quality with the most flexible orchestration</li><li>Your team has the capacity to manage two frameworks</li></ul><h2 id=frequently-asked-questions>Frequently Asked Questions<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions>#</a></h2><h3 id=is-llamaindex-better-than-langchain-for-rag>Is LlamaIndex better than LangChain for RAG?<a hidden class=anchor aria-hidden=true href=#is-llamaindex-better-than-langchain-for-rag>#</a></h3><p>Yes, LlamaIndex generally produces better retrieval quality out of the box. Its advanced indexing strategies — hierarchical indices, auto-merging, knowledge graphs — extract more relevant context from documents than LangChain&rsquo;s default vector search. However, LangChain can achieve comparable results with manual optimization. For production RAG applications, the hybrid approach (LlamaIndex for retrieval, LangChain for orchestration) often delivers the best outcomes.</p><h3 id=can-i-use-llamaindex-and-langchain-together>Can I use LlamaIndex and LangChain together?<a hidden class=anchor aria-hidden=true href=#can-i-use-llamaindex-and-langchain-together>#</a></h3><p>Absolutely. The most common pattern uses LlamaIndex&rsquo;s <code>query_engine</code> or <code>retriever</code> wrapped as a LangChain tool. LangChain handles the agent logic, prompt engineering, and deployment, while LlamaIndex manages document ingestion and retrieval. This combination leverages each framework&rsquo;s strengths.</p><h3 id=which-framework-has-better-performance>Which framework has better performance?<a hidden class=anchor aria-hidden=true href=#which-framework-has-better-performance>#</a></h3><p>Performance depends on the metric. LlamaIndex typically achieves higher retrieval accuracy on document Q&amp;A benchmarks. LangChain has lower framework overhead for simple chains and better latency for non-retrieval tasks. In production, both frameworks spend most of their time waiting for LLM API responses, so framework performance differences rarely matter.</p><h3 id=is-llamaindex-easier-to-learn-than-langchain>Is LlamaIndex easier to learn than LangChain?<a hidden class=anchor aria-hidden=true href=#is-llamaindex-easier-to-learn-than-langchain>#</a></h3><p>Generally yes. LlamaIndex&rsquo;s higher-level abstractions mean you can build a working RAG application in fewer lines of code. The ````load-index-query``` pattern is intuitive. LangChain has a steeper learning curve due to its more granular component model and larger API surface. However, LangChain"s flexibility pays off for complex applications.</p><h3 id=which-one-has-better-enterprise-support>Which one has better enterprise support?<a hidden class=anchor aria-hidden=true href=#which-one-has-better-enterprise-support>#</a></h3><p>Both offer enterprise support plans. LangChain has LangSmith for production observability and LangGraph Cloud for managed hosting, giving it an edge in enterprise tooling. LlamaIndex offers LlamaCloud for managed document processing. For large deployments, evaluate both platforms against your specific observability and security requirements.</p><hr><h2 id=recommended-infrastructure>Recommended Infrastructure<a hidden class=anchor aria-hidden=true href=#recommended-infrastructure>#</a></h2><p>To run any of the tools above reliably 24/7, infrastructure matters: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.</li></ul><p><em>Affiliate links — no extra cost to you, helps keep dibi8.com running.</em></p><p>{
+&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;LlamaIndex vs LangChain (2025): Which LLM Framework Should You Choose?&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-18&rdquo;,
@@ -592,142 +96,18 @@ executor = AgentExecutor(agent=agent, tools=[search_docs])
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/llamaindex-vs-langchain%22">https://dibi8.com/resources/llamaindex-vs-langchain"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/llamaindex-vs-langchain%22>https://dibi8.com/resources/llamaindex-vs-langchain"</a>
 }
-}
-</script></p>
-<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
-<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
-<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
-<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
-<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
-<p><strong>问：AI Agent的安全性如何保证？</strong></p>
-<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
-<p><strong>问：AI Agent的学习成本有多高？</strong></p>
-<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
-<p><strong>问：能否自定义AI Agent的行为？</strong></p>
-<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
-<hr>
-
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
-      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="https://dibi8.com/ai-coding-agents/llamafile-portable-local-llm/">
-    <span class="title">« 上一页</span>
-    <span>AI Tool Guide</span>
-  </a>
-  <a class="next" href="https://dibi8.com/ai-coding-agents/llamaindex/">
-    <span class="title">下一页 »</span>
-    <span>AI Tool Guide</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
-
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
-        <polyline points="17 11 12 6 7 11"></polyline>
-        <polyline points="17 18 12 13 7 18"></polyline>
-    </svg>
-</a>
-
-
-<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-        <span style="font-size:20px;">🌐</span>
-        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
-    </div>
-    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
-        <option value="">Select language...</option>
-        <option value="zh">中文 (Chinese)</option>
-        <option value="en">English</option>
-        <option value="ko">한국어 (Korean)</option>
-        <option value="vi">Tiếng Việt (Vietnamese)</option>
-        <option value="ja">日本語 (Japanese)</option>
-        <option value="fr">Français (French)</option>
-        <option value="de">Deutsch (German)</option>
-        <option value="es">Español (Spanish)</option>
-        <option value="ar">العربية (Arabic)</option>
-        <option value="pt">Português (Portuguese)</option>
-        <option value="ru">Русский (Russian)</option>
-        <option value="hi">हिन्दी (Hindi)</option>
-        <option value="th">ไทย (Thai)</option>
-        <option value="id">Indonesia (Indonesian)</option>
-    </select>
-</div>
-
-<script>
-function translatePage(lang) {
-    if (!lang) return;
-    
-    
-    const url = window.location.href;
-    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
-    
-    
-    window.open(translatedUrl, '_blank');
-}
-
-
-(function() {
-    var navLang = navigator.language || navigator.userLanguage;
-    var langMap = {
-        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
-        'en': 'en',
-        'ko': 'ko',
-        'vi': 'vi',
-        'ja': 'ja',
-        'fr': 'fr',
-        'de': 'de',
-        'es': 'es',
-        'ar': 'ar',
-        'pt': 'pt',
-        'ru': 'ru',
-        'hi': 'hi',
-        'th': 'th',
-        'id': 'id'
-    };
-    var detected = langMap[navLang] || 'en';
-    document.getElementById('lang-select').value = detected;
-})();
-</script>
-
-
-<div id="google_translate_element" style="display:none;"></div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'zh',
-        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
-        autoDisplay: false
-    }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-</body>
-
-</html>
+}</script></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p><hr></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/llamafile-portable-local-llm/><span class=title>« 上一页</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/ai-coding-agents/llamaindex/><span class=title>下一页 »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
+<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script></body></html>

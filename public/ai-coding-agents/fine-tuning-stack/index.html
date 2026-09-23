@@ -1,221 +1,13 @@
-<!DOCTYPE html>
-<html lang="zh" dir="auto" data-theme="dark">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>AI Tool Guide | Dibi8</title>
-<meta name="keywords" content="ai, tools">
-<meta name="description" content="Technical guide and comparison">
-<meta name="author" content="">
-<link rel="canonical" href="https://dibi8.com/ai-coding-agents/fine-tuning-stack/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://dibi8.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/fine-tuning-stack/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/fine-tuning-stack/">
-  <meta property="og:site_name" content="Dibi8">
-  <meta property="og:title" content="AI Tool Guide">
-  <meta property="og:description" content="Technical guide and comparison">
-  <meta property="og:locale" content="zh_cn">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="ai-coding-agents">
-    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:tag" content="Ai">
-    <meta property="article:tag" content="Tools">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI Tool Guide">
-  <meta name="twitter:description" content="Technical guide and comparison">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "AI Coding Agents - dibi8",
-      "item": "https://dibi8.com/ai-coding-agents/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "AI Tool Guide",
-      "item": "https://dibi8.com/ai-coding-agents/fine-tuning-stack/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "AI Tool Guide",
-  "name": "AI Tool Guide",
-  "description": "Technical guide and comparison",
-  "keywords": [
-    "ai", "tools"
-  ],
-  "articleBody": "title: “Fine-Tuning Stack 2026: 5-Component Pipeline From Datase… description: “Technical guide and comparison.” date: 2026-05-21T00:00:00+08:00 lastmod: 2026-05-21T00:00:00+08:00 tech_stack: - Python\nPyTorch CUDA YAML application_domain: Collections source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-21” draft: false categories: [“collections”] tags: [“fine-tuning”, “llm”, “stack”, “collection”] aliases: /posts/fine-tuning-stack/- LLM fine-tuning in 2026 finally has a coherent stack — the days of duct-taping HuggingFace Trainer + DeepSpeed configs + custom eval scripts are over. This collection assembles the 5-component pipeline that takes you from raw dataset to a production-deployed fine-tuned model, with a clean split between fast iteration (Unsloth) and production deploy (Axolotl). $50-300/mo training infrastructure depending on scale.\nIf you’re building a domain-specific model, instruction-tuning open-weight base models, doing DPO/GRPO alignment, or running production fine-tuning pipelines — this is the stack.\nTL;DR — The Stack at a Glance | # | Component | Stage | Role | Deep dive | |\n|\n|\n|\n|\n| | 1 | Unsloth | Experiment | Fast single-GPU fine-tuning, 2× speed + 70% less VRAM | Unsloth 2026 guide | | 2 | Axolotl | Production | YAML-driven multi-GPU production fine-tuning | Axolotl 2026 guide | | 3 | HuggingFace datasets + Hub | Data | Version dataset, share with team, push trained weights | [HF docs] | | 4 | Weights \u0026 Biases (or alternative) | Eval | Track loss curves, eval scores, hyperparameter sweeps | [W\u0026B docs] | | 5 | vLLM | Serving | Production multi-tenant serving of fine-tuned model | Local LLM Runner comparison |\nTotal monthly cost (excluding training capital): - Hobbyist (rent GPU 10 hrs/week): $30-60/mo\nProduction team (1-2 dedicated GPUs + monitoring): $200-400/mo Small AI lab (8× H100 cluster): $2000-5000/mo Compare against managed fine-tuning platforms: Together fine-tuning ~$0.50/M tokens (adds up fast for big datasets), OpenAI fine-tuning $25/M tokens (insane at scale). Self-hosted beats both at any meaningful volume + you own the weights.\n1. Why “The Fine-Tuning Stack” Needed Defining in 2026 Three shifts that crystallized the stack: 1. Unsloth + Axolotl reached production maturity — the “fast experiment + scale production” split is now clean 2. GRPO became the default RL fine-tuning (post-DeepSeek-R1) — both Unsloth and Axolotl support it natively 3. Open-weight base models hit GPT-4 class — Llama 3.3 70B, Qwen 3 32B, DeepSeek V3. Fine-tuning these for your domain now genuinely competitive with closed alternatives\nResult: fine-tuning has moved from research → engineering practice. The stack reflects that.\n2. Architecture — The Experiment-to-Production Pipeline ┌──────────────────────────────────────────────────┐ │ Dataset (JSONL: prompt/response or messages) │ │ → HuggingFace datasets library │ │ → Push to HuggingFace Hub (versioning) │ └────────────────┬─────────────────────────────────┘ │ ▼ ┌──────────────────────────────────────────────────┐ │ Experiment phase (single GPU, fast iteration) │ │ → Unsloth on rented RTX 4090 / H100 │ │ → 50+ short QLoRA runs to find winning recipe │ │ → W\u0026B logs loss curves + eval scores │ └────────────────┬─────────────────────────────────┘ │ (winning recipe identified) ▼ ┌──────────────────────────────────────────────────┐ │ Production phase (multi-GPU, long training) │ │ → Axolotl YAML config (git-tracked) │ │ → 8× H100 cluster for full / long-context fine-tune│ │ → W\u0026B logs final eval │ └────────────────┬─────────────────────────────────┘ │ ▼ ┌──────────────────────────────────────────────────┐ │ Deploy phase │ │ → Merge LoRA + base weights │ │ → Push merged model to HuggingFace Hub │ │ → vLLM serves the model behind LiteLLM gateway │ └──────────────────────────────────────────────────┘ The split is what makes this work — Unsloth’s fast iteration for the “what works” exploration, Axolotl’s robustness for the “now scale it” production run.\n3. Component 1 — Unsloth (Experiment Phase) The role: Where you spend 80% of your fine-tuning time. Iterate on dataset format, hyperparams, base model choice. Each experiment cycle: 30 min - 3 hours on a single rented GPU.\nWhy Unsloth wins here: 2× faster than HF TRL = 2× more experiments per dollar. 70% less VRAM = experiments on a $1500 RTX 4090 instead of needing an A100. See our Unsloth deep-dive.\nQuick install: `````bash pip install unsloth\n**Pattern**: rent RTX 4090 on Vast.ai ($0.40-0.60/hr) or RunPod, run 10-20 experiments over a weekend, find the winning recipe, capture in a notebook for team review. ## 4. Component 2 — Axolotl (Production Phase) **The role**: When you've found the winning recipe, scale it up — full fine-tune, longer context, multi-epoch, multi-GPU. The YAML config Axolotl uses is git-trackable, ops-handoff-friendly. **Why Axolotl wins here**: Multi-node distributed training that works out of the box, broadest method support (DPO/GRPO/KTO/ORPO/GDPO), config-as-code for reproducibility. See our [Axolotl deep-dive](/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/). **Quick install**: `````bash pip install axolotl Pattern: Take the hyperparams from your Unsloth winning recipe → write Axolotl YAML → run on 8× H100 cluster (Vast.ai ~$15-25/hr) for the final 6-12 hour production run → push final weights to HF Hub.\n5. Component 3 — HuggingFace Datasets + Hub (Data Layer) The role: Version your dataset. Share datasets across team. Push trained model weights for collaborative testing.\nWhy this is the obvious pick: HF has won the AI dataset distribution layer (like GitHub for code, HF Hub for models + datasets). Every fine-tuning tool integrates with it natively.\nQuick install: `````bash pip install datasets huggingface-cli login\n**Pattern**: `````python from datasets import load_dataset, Dataset # Local prep + push data = Dataset.from_json(\"my_data.jsonl\") data.push_to_hub(\"yourname/my-finetune-dataset\", private=True) # Team member loads data = load_dataset(\"yourname/my-finetune-dataset\") For sensitive data (medical / financial / proprietary), use private datasets on HF Hub — they’re access-controlled.\n6. Component 4 — Weights \u0026 Biases (Eval Tracking) The role: When you run 50 experiments to find the winning recipe, you need a way to compare them. W\u0026B is the de-facto choice — auto-logs loss curves, eval scores, hyperparams, hardware utilization.\nQuick install (works with both Unsloth and Axolotl via env var): `````bash pip install wandb wandb login export WANDB_PROJECT=“my-finetune-project”\nNow every Unsloth / Axolotl training run auto-logs to your W\u0026B dashboard. **Cost**: W\u0026B free tier is generous (single user, unlimited public projects). Team / private projects: $50/user/mo. Alternatives: **MLflow** (self-hosted, free, less polished), **TensorBoard** (basic but free + local). ## 7. Component 5 — vLLM (Serving Phase) **The role**: Once you\"ve fine-tuned a model, serve it to your users. vLLM is the production multi-tenant serving choice — PagedAttention + continuous batching make it the throughput champion. See our [Local LLM Runner comparison](/resources/llm-frameworks/local-llm-runner-comparison-2026/) for the full rundown of why vLLM beats Ollama / LM Studio / llama.cpp for production multi-user serving. **Quick install + serve a fine-tuned model**: `````bash pip install vllm vllm serve yourname/my-finetuned-llama \\ --enable-lora \\ --lora-modules my-lora=path/to/lora_weights \\ --port 8000 Behind a LiteLLM gateway for auth + rate limiting + per-customer virtual keys = production-ready multi-tenant LLM API on infra you own.\n8. Day 1 Pipeline Setup (3-4 hours) Datasets in JSONL format (varies) — prep train.jsonl and eval.jsonl, push to HF Hub private Rent RTX 4090 GPU (10 min) — Vast.ai or for experiment phase Install Unsloth + W\u0026B (10 min) — ````pip install unsloth wandb``` First QLoRA run (60 min) — Section 3 of Unsloth guide, fine-tune Llama 3.2 8B for 1 epoch, verify W\u0026B logs appear Iterate 5-10 short experiments (~half a day) — vary learning rate, LoRA rank, dataset slice. Find the recipe with best eval score Translate recipe to Axolotl YAML (30 min) — same hyperparams in YAML format, git commit Rent 8× H100 cluster for production run (Vast.ai ~$15-20/hr × 6-12 hours = $90-240) on a for the data + monitoring side Run Axolotl production training — pushes final weights to HF Hub Deploy via vLLM — serve the fine-tuned model on a dedicated 24 GB GPU + LiteLLM gateway Eval against base model — does your fine-tune actually beat the base on your eval set? If not, iterate After 3-4 hours of setup + 1-2 weeks of experiments, you have your own fine-tuned model deployed in production.\n9. Cost Breakdown | Item | Hobbyist | Production team | Small AI lab | |\n|\n|\n|\n| | Experiment GPU (rented as needed) | $30-60/mo | $100-200/mo | $300-500/mo | | Production training (rented for runs) | $0-50/mo | $200-400/mo | $1500-3000/mo | | Dedicated serving GPU (vLLM) | $0 (use Ollama instead) | $200/mo (RTX 4090) | $1000/mo (H100) | | HF Hub | $0 (free for public + private up to 1 GB) | $9/mo (Pro) | $20/user/mo (Enterprise) | | W\u0026B | $0 (free tier) | $50/user/mo | $50/user/mo | | Misc storage / bandwidth | $5 | $20 | $50 | | Total | ~$35-115/mo | ~$580-880/mo | ~$2870-4570/mo |\nCompare against managed: Together fine-tuning at $0.50/M tokens × 100M token dataset = $50 per fine-tuning run × 10 experiments = $500/mo just for experiments. Self-host wins above ~10 fine-tunes/month.\n10. Upgrade Path When you outgrow this stack: - Need to fine-tune \u003e 70B models routinely — Buy or long-lease H100 cluster instead of renting\nCompliance / data residency — Move from Vast.ai to dedicated bare-metal in your jurisdiction Multi-tenant fine-tuning SaaS — Add user isolation layer; consider LangSmith or similar managed eval Continuous fine-tuning loop — Pair with AI Agent Tool Chain for automated retraining triggers when production model degrades Domain-specific RL — Add reward modeling + GRPO loops (both Unsloth and Axolotl support; just more compute-hungry) TL;DR — The Recipe 5 components for production LLM fine-tuning, $50-300/mo for hobbyist to production team: 1. Unsloth — fast single-GPU experiment phase 2. Axolotl — production multi-GPU phase 3. HuggingFace datasets + Hub — data versioning + model distribution 4. Weights \u0026 Biases — eval tracking 5. vLLM — production serving\nRent a for experiments, scale to Vast.ai 8× H100 for production runs, deploy final model on a dedicated 24 GB GPU. End-to-end self-hosted, weights you own, costs that scale with how serious you are.\nCompanion collections: Cheap LLM Stack covers the inference cost side post-deployment. AI Agent Tool Chain for automated fine-tuning loops. Knowledge Base Stack for RAG as an alternative to fine-tuning in some cases.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Fine-Tuning Stack 2026: 5-Component Pipeline From Dataset to Production-Deployed LLM”, “datePublished”: “2026-05-21”, “dateModified”: “2026-05-21”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/fine-tuning-stack\" } } Related Articles 12-factor-agents-production-llm-software-2026 12-factor-agents 1m-context-window-llm-2026-real-test 9router-smart-llm-proxy-token-saver-free-coding ai-engineering-from-scratch Found this helpful? Join our Telegram community for daily AI tool updates!\n",
-  "wordCount" : "1710",
-  "inLanguage": "zh",
-  "datePublished": "2026-09-20T00:00:00Z",
-  "dateModified": "2026-09-20T00:00:00Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/ai-coding-agents/fine-tuning-stack/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/favicon.ico"
-    }
-  }
-}
-</script>
-</head>
-<body id="top">
-    <header class="header">
-    <nav class="header-nav">
-        <div class="logo">
-            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu" class="menu">
-            <li>
-                <a href="https://dibi8.com/categories/" title="Categories">
-                    <span>Categories</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/tools/" title="Tools">
-                    <span>🛠 Tools</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/collections/" title="Collections">
-                    <span>Collections</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">主页</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-        <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-</nav>
-    <h1 class="post-title entry-hint-parent">
-      AI Tool Guide
-    </h1>
-    <div class="post-description">
-      Technical guide and comparison
-    </div>
-    <div class="post-meta">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span>
-
-</div>
-  </header> <details class="toc" >
-    <summary accesskey="c" title="(Alt + C)">
-        <span class="title">目录</span>
-    </summary>
-
-    <div class="inner"><ul>
-            <li>
-                <a href="#tldr--the-stack-at-a-glance" aria-label="TL;DR — The Stack at a Glance">TL;DR — The Stack at a Glance</a></li>
-            <li>
-                <a href="#1-why-the-fine-tuning-stack-needed-defining-in-2026" aria-label="1. Why &ldquo;The Fine-Tuning Stack&rdquo; Needed Defining in 2026">1. Why &ldquo;The Fine-Tuning Stack&rdquo; Needed Defining in 2026</a></li>
-            <li>
-                <a href="#2-architecture--the-experiment-to-production-pipeline" aria-label="2. Architecture — The Experiment-to-Production Pipeline">2. Architecture — The Experiment-to-Production Pipeline</a></li>
-            <li>
-                <a href="#3-component-1--unsloth-experiment-phase" aria-label="3. Component 1 — Unsloth (Experiment Phase)">3. Component 1 — Unsloth (Experiment Phase)</a></li>
-            <li>
-                <a href="#5-component-3--huggingface-datasets--hub-data-layer" aria-label="5. Component 3 — HuggingFace Datasets &#43; Hub (Data Layer)">5. Component 3 — HuggingFace Datasets + Hub (Data Layer)</a></li>
-            <li>
-                <a href="#6-component-4--weights--biases-eval-tracking" aria-label="6. Component 4 — Weights &amp; Biases (Eval Tracking)">6. Component 4 — Weights &amp; Biases (Eval Tracking)</a></li>
-            <li>
-                <a href="#8-day-1-pipeline-setup-3-4-hours" aria-label="8. Day 1 Pipeline Setup (3-4 hours)">8. Day 1 Pipeline Setup (3-4 hours)</a></li>
-            <li>
-                <a href="#9-cost-breakdown" aria-label="9. Cost Breakdown">9. Cost Breakdown</a></li>
-            <li>
-                <a href="#10-upgrade-path" aria-label="10. Upgrade Path">10. Upgrade Path</a></li>
-            <li>
-                <a href="#tldr--the-recipe" aria-label="TL;DR — The Recipe">TL;DR — The Recipe</a></li>
-            <li>
-                <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
-            </li>
-        </ul>
-    </div>
-</details>
-
-  <div class="post-content md-content"><p>title: &ldquo;Fine-Tuning Stack 2026: 5-Component Pipeline From Datase&hellip;
+<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8 - AI工具目录</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/fine-tuning-stack/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/fine-tuning-stack/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/fine-tuning-stack/"><meta property="og:site_name" content="Dibi8 - AI工具目录"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/fine-tuning-stack/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “Fine-Tuning Stack 2026: 5-Component Pipeline From Datase… description: “Technical guide and comparison.” date: 2026-05-21T00:00:00+08:00 lastmod: 2026-05-21T00:00:00+08:00 tech_stack: - Python\nPyTorch CUDA YAML application_domain: Collections source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-21” draft: false categories: [“collections”] tags: [“fine-tuning”, “llm”, “stack”, “collection”] aliases: /posts/fine-tuning-stack/- LLM fine-tuning in 2026 finally has a coherent stack — the days of duct-taping HuggingFace Trainer + DeepSpeed configs + custom eval scripts are over. This collection assembles the 5-component pipeline that takes you from raw dataset to a production-deployed fine-tuned model, with a clean split between fast iteration (Unsloth) and production deploy (Axolotl). $50-300/mo training infrastructure depending on scale.\nIf you’re building a domain-specific model, instruction-tuning open-weight base models, doing DPO/GRPO alignment, or running production fine-tuning pipelines — this is the stack.\nTL;DR — The Stack at a Glance | # | Component | Stage | Role | Deep dive | |\n|\n|\n|\n|\n| | 1 | Unsloth | Experiment | Fast single-GPU fine-tuning, 2× speed + 70% less VRAM | Unsloth 2026 guide | | 2 | Axolotl | Production | YAML-driven multi-GPU production fine-tuning | Axolotl 2026 guide | | 3 | HuggingFace datasets + Hub | Data | Version dataset, share with team, push trained weights | [HF docs] | | 4 | Weights \u0026 Biases (or alternative) | Eval | Track loss curves, eval scores, hyperparameter sweeps | [W\u0026B docs] | | 5 | vLLM | Serving | Production multi-tenant serving of fine-tuned model | Local LLM Runner comparison |\nTotal monthly cost (excluding training capital): - Hobbyist (rent GPU 10 hrs/week): $30-60/mo\nProduction team (1-2 dedicated GPUs + monitoring): $200-400/mo Small AI lab (8× H100 cluster): $2000-5000/mo Compare against managed fine-tuning platforms: Together fine-tuning ~$0.50/M tokens (adds up fast for big datasets), OpenAI fine-tuning $25/M tokens (insane at scale). Self-hosted beats both at any meaningful volume + you own the weights.\n1. Why “The Fine-Tuning Stack” Needed Defining in 2026 Three shifts that crystallized the stack: 1. Unsloth + Axolotl reached production maturity — the “fast experiment + scale production” split is now clean 2. GRPO became the default RL fine-tuning (post-DeepSeek-R1) — both Unsloth and Axolotl support it natively 3. Open-weight base models hit GPT-4 class — Llama 3.3 70B, Qwen 3 32B, DeepSeek V3. Fine-tuning these for your domain now genuinely competitive with closed alternatives\nResult: fine-tuning has moved from research → engineering practice. The stack reflects that.\n2. Architecture — The Experiment-to-Production Pipeline ┌──────────────────────────────────────────────────┐ │ Dataset (JSONL: prompt/response or messages) │ │ → HuggingFace datasets library │ │ → Push to HuggingFace Hub (versioning) │ └────────────────┬─────────────────────────────────┘ │ ▼ ┌──────────────────────────────────────────────────┐ │ Experiment phase (single GPU, fast iteration) │ │ → Unsloth on rented RTX 4090 / H100 │ │ → 50+ short QLoRA runs to find winning recipe │ │ → W\u0026B logs loss curves + eval scores │ └────────────────┬─────────────────────────────────┘ │ (winning recipe identified) ▼ ┌──────────────────────────────────────────────────┐ │ Production phase (multi-GPU, long training) │ │ → Axolotl YAML config (git-tracked) │ │ → 8× H100 cluster for full / long-context fine-tune│ │ → W\u0026B logs final eval │ └────────────────┬─────────────────────────────────┘ │ ▼ ┌──────────────────────────────────────────────────┐ │ Deploy phase │ │ → Merge LoRA + base weights │ │ → Push merged model to HuggingFace Hub │ │ → vLLM serves the model behind LiteLLM gateway │ └──────────────────────────────────────────────────┘ The split is what makes this work — Unsloth’s fast iteration for the “what works” exploration, Axolotl’s robustness for the “now scale it” production run.\n3. Component 1 — Unsloth (Experiment Phase) The role: Where you spend 80% of your fine-tuning time. Iterate on dataset format, hyperparams, base model choice. Each experiment cycle: 30 min - 3 hours on a single rented GPU.\nWhy Unsloth wins here: 2× faster than HF TRL = 2× more experiments per dollar. 70% less VRAM = experiments on a $1500 RTX 4090 instead of needing an A100. See our Unsloth deep-dive.\nQuick install: `````bash pip install unsloth\n**Pattern**: rent RTX 4090 on Vast.ai ($0.40-0.60/hr) or RunPod, run 10-20 experiments over a weekend, find the winning recipe, capture in a notebook for team review. ## 4. Component 2 — Axolotl (Production Phase) **The role**: When you've found the winning recipe, scale it up — full fine-tune, longer context, multi-epoch, multi-GPU. The YAML config Axolotl uses is git-trackable, ops-handoff-friendly. **Why Axolotl wins here**: Multi-node distributed training that works out of the box, broadest method support (DPO/GRPO/KTO/ORPO/GDPO), config-as-code for reproducibility. See our [Axolotl deep-dive](/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/). **Quick install**: `````bash pip install axolotl Pattern: Take the hyperparams from your Unsloth winning recipe → write Axolotl YAML → run on 8× H100 cluster (Vast.ai ~$15-25/hr) for the final 6-12 hour production run → push final weights to HF Hub.\n5. Component 3 — HuggingFace Datasets + Hub (Data Layer) The role: Version your dataset. Share datasets across team. Push trained model weights for collaborative testing.\nWhy this is the obvious pick: HF has won the AI dataset distribution layer (like GitHub for code, HF Hub for models + datasets). Every fine-tuning tool integrates with it natively.\nQuick install: `````bash pip install datasets huggingface-cli login\n**Pattern**: `````python from datasets import load_dataset, Dataset # Local prep + push data = Dataset.from_json(\"my_data.jsonl\") data.push_to_hub(\"yourname/my-finetune-dataset\", private=True) # Team member loads data = load_dataset(\"yourname/my-finetune-dataset\") For sensitive data (medical / financial / proprietary), use private datasets on HF Hub — they’re access-controlled.\n6. Component 4 — Weights \u0026 Biases (Eval Tracking) The role: When you run 50 experiments to find the winning recipe, you need a way to compare them. W\u0026B is the de-facto choice — auto-logs loss curves, eval scores, hyperparams, hardware utilization.\nQuick install (works with both Unsloth and Axolotl via env var): `````bash pip install wandb wandb login export WANDB_PROJECT=“my-finetune-project”\nNow every Unsloth / Axolotl training run auto-logs to your W\u0026B dashboard. **Cost**: W\u0026B free tier is generous (single user, unlimited public projects). Team / private projects: $50/user/mo. Alternatives: **MLflow** (self-hosted, free, less polished), **TensorBoard** (basic but free + local). ## 7. Component 5 — vLLM (Serving Phase) **The role**: Once you\"ve fine-tuned a model, serve it to your users. vLLM is the production multi-tenant serving choice — PagedAttention + continuous batching make it the throughput champion. See our [Local LLM Runner comparison](/resources/llm-frameworks/local-llm-runner-comparison-2026/) for the full rundown of why vLLM beats Ollama / LM Studio / llama.cpp for production multi-user serving. **Quick install + serve a fine-tuned model**: `````bash pip install vllm vllm serve yourname/my-finetuned-llama \\ --enable-lora \\ --lora-modules my-lora=path/to/lora_weights \\ --port 8000 Behind a LiteLLM gateway for auth + rate limiting + per-customer virtual keys = production-ready multi-tenant LLM API on infra you own.\n8. Day 1 Pipeline Setup (3-4 hours) Datasets in JSONL format (varies) — prep train.jsonl and eval.jsonl, push to HF Hub private Rent RTX 4090 GPU (10 min) — Vast.ai or for experiment phase Install Unsloth + W\u0026B (10 min) — ````pip install unsloth wandb``` First QLoRA run (60 min) — Section 3 of Unsloth guide, fine-tune Llama 3.2 8B for 1 epoch, verify W\u0026B logs appear Iterate 5-10 short experiments (~half a day) — vary learning rate, LoRA rank, dataset slice. Find the recipe with best eval score Translate recipe to Axolotl YAML (30 min) — same hyperparams in YAML format, git commit Rent 8× H100 cluster for production run (Vast.ai ~$15-20/hr × 6-12 hours = $90-240) on a for the data + monitoring side Run Axolotl production training — pushes final weights to HF Hub Deploy via vLLM — serve the fine-tuned model on a dedicated 24 GB GPU + LiteLLM gateway Eval against base model — does your fine-tune actually beat the base on your eval set? If not, iterate After 3-4 hours of setup + 1-2 weeks of experiments, you have your own fine-tuned model deployed in production.\n9. Cost Breakdown | Item | Hobbyist | Production team | Small AI lab | |\n|\n|\n|\n| | Experiment GPU (rented as needed) | $30-60/mo | $100-200/mo | $300-500/mo | | Production training (rented for runs) | $0-50/mo | $200-400/mo | $1500-3000/mo | | Dedicated serving GPU (vLLM) | $0 (use Ollama instead) | $200/mo (RTX 4090) | $1000/mo (H100) | | HF Hub | $0 (free for public + private up to 1 GB) | $9/mo (Pro) | $20/user/mo (Enterprise) | | W\u0026B | $0 (free tier) | $50/user/mo | $50/user/mo | | Misc storage / bandwidth | $5 | $20 | $50 | | Total | ~$35-115/mo | ~$580-880/mo | ~$2870-4570/mo |\nCompare against managed: Together fine-tuning at $0.50/M tokens × 100M token dataset = $50 per fine-tuning run × 10 experiments = $500/mo just for experiments. Self-host wins above ~10 fine-tunes/month.\n10. Upgrade Path When you outgrow this stack: - Need to fine-tune \u003e 70B models routinely — Buy or long-lease H100 cluster instead of renting\nCompliance / data residency — Move from Vast.ai to dedicated bare-metal in your jurisdiction Multi-tenant fine-tuning SaaS — Add user isolation layer; consider LangSmith or similar managed eval Continuous fine-tuning loop — Pair with AI Agent Tool Chain for automated retraining triggers when production model degrades Domain-specific RL — Add reward modeling + GRPO loops (both Unsloth and Axolotl support; just more compute-hungry) TL;DR — The Recipe 5 components for production LLM fine-tuning, $50-300/mo for hobbyist to production team: 1. Unsloth — fast single-GPU experiment phase 2. Axolotl — production multi-GPU phase 3. HuggingFace datasets + Hub — data versioning + model distribution 4. Weights \u0026 Biases — eval tracking 5. vLLM — production serving\nRent a for experiments, scale to Vast.ai 8× H100 for production runs, deploy final model on a dedicated 24 GB GPU. End-to-end self-hosted, weights you own, costs that scale with how serious you are.\nCompanion collections: Cheap LLM Stack covers the inference cost side post-deployment. AI Agent Tool Chain for automated fine-tuning loops. Knowledge Base Stack for RAG as an alternative to fine-tuning in some cases.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Fine-Tuning Stack 2026: 5-Component Pipeline From Dataset to Production-Deployed LLM”, “datePublished”: “2026-05-21”, “dateModified”: “2026-05-21”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/fine-tuning-stack\" } } Related Articles 12-factor-agents-production-llm-software-2026 12-factor-agents 1m-context-window-llm-2026-real-test 9router-smart-llm-proxy-token-saver-free-coding ai-engineering-from-scratch Found this helpful? Join our Telegram community for daily AI tool updates!\n","wordCount":"1710","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/fine-tuning-stack/"},"publisher":{"@type":"Organization","name":"Dibi8 - AI工具目录","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 - AI工具目录 (Alt + H)">Dibi8 - AI工具目录</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#tldr--the-stack-at-a-glance aria-label="TL;DR — The Stack at a Glance">TL;DR — The Stack at a Glance</a></li><li><a href=#1-why-the-fine-tuning-stack-needed-defining-in-2026 aria-label="1. Why &ldquo;The Fine-Tuning Stack&rdquo; Needed Defining in 2026">1. Why &ldquo;The Fine-Tuning Stack&rdquo; Needed Defining in 2026</a></li><li><a href=#2-architecture--the-experiment-to-production-pipeline aria-label="2. Architecture — The Experiment-to-Production Pipeline">2. Architecture — The Experiment-to-Production Pipeline</a></li><li><a href=#3-component-1--unsloth-experiment-phase aria-label="3. Component 1 — Unsloth (Experiment Phase)">3. Component 1 — Unsloth (Experiment Phase)</a></li><li><a href=#5-component-3--huggingface-datasets--hub-data-layer aria-label="5. Component 3 — HuggingFace Datasets + Hub (Data Layer)">5. Component 3 — HuggingFace Datasets + Hub (Data Layer)</a></li><li><a href=#6-component-4--weights--biases-eval-tracking aria-label="6. Component 4 — Weights & Biases (Eval Tracking)">6. Component 4 — Weights & Biases (Eval Tracking)</a></li><li><a href=#8-day-1-pipeline-setup-3-4-hours aria-label="8. Day 1 Pipeline Setup (3-4 hours)">8. Day 1 Pipeline Setup (3-4 hours)</a></li><li><a href=#9-cost-breakdown aria-label="9. Cost Breakdown">9. Cost Breakdown</a></li><li><a href=#10-upgrade-path aria-label="10. Upgrade Path">10. Upgrade Path</a></li><li><a href=#tldr--the-recipe aria-label="TL;DR — The Recipe">TL;DR — The Recipe</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;Fine-Tuning Stack 2026: 5-Component Pipeline From Datase&mldr;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
-tech_stack: - Python</p>
-<ul>
-<li>PyTorch</li>
-<li>CUDA</li>
-<li>YAML
+tech_stack: - Python</p><ul><li>PyTorch</li><li>CUDA</li><li>YAML
 application_domain: Collections
 source_version: &rsquo;'
 licensing_model: Open Source
@@ -228,43 +20,15 @@ last_maintained: &ldquo;2026-05-21&rdquo;
 draft: false
 categories: [&ldquo;collections&rdquo;]
 tags: [&ldquo;fine-tuning&rdquo;, &ldquo;llm&rdquo;, &ldquo;stack&rdquo;, &ldquo;collection&rdquo;]
-aliases:</li>
-<li>/posts/fine-tuning-stack/-</li>
-</ul>
-<hr>
-<p>LLM fine-tuning in 2026 finally has a coherent stack — the days of duct-taping HuggingFace Trainer + DeepSpeed configs + custom eval scripts are over. This collection assembles the <strong>5-component pipeline</strong> that takes you from raw dataset to a production-deployed fine-tuned model, with a clean split between fast iteration (Unsloth) and production deploy (Axolotl). $50-300/mo training infrastructure depending on scale.</p>
-<p>If you&rsquo;re building a domain-specific model, instruction-tuning open-weight base models, doing DPO/GRPO alignment, or running production fine-tuning pipelines — this is the stack.</p>
-<h2 id="tldr--the-stack-at-a-glance">TL;DR — The Stack at a Glance<a hidden class="anchor" aria-hidden="true" href="#tldr--the-stack-at-a-glance">#</a></h2>
-<p>| # | Component | Stage | Role | Deep dive |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
-| 1 | <strong>Unsloth</strong> | Experiment | Fast single-GPU fine-tuning, 2× speed + 70% less VRAM | <a href="/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/">Unsloth 2026 guide</a> |
-| 2 | <strong>Axolotl</strong> | Production | YAML-driven multi-GPU production fine-tuning | <a href="/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/">Axolotl 2026 guide</a> |
+aliases:</li><li>/posts/fine-tuning-stack/-</li></ul><hr><p>LLM fine-tuning in 2026 finally has a coherent stack — the days of duct-taping HuggingFace Trainer + DeepSpeed configs + custom eval scripts are over. This collection assembles the <strong>5-component pipeline</strong> that takes you from raw dataset to a production-deployed fine-tuned model, with a clean split between fast iteration (Unsloth) and production deploy (Axolotl). $50-300/mo training infrastructure depending on scale.</p><p>If you&rsquo;re building a domain-specific model, instruction-tuning open-weight base models, doing DPO/GRPO alignment, or running production fine-tuning pipelines — this is the stack.</p><h2 id=tldr--the-stack-at-a-glance>TL;DR — The Stack at a Glance<a hidden class=anchor aria-hidden=true href=#tldr--the-stack-at-a-glance>#</a></h2><p>| # | Component | Stage | Role | Deep dive |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 1 | <strong>Unsloth</strong> | Experiment | Fast single-GPU fine-tuning, 2× speed + 70% less VRAM | <a href=/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/>Unsloth 2026 guide</a> |
+| 2 | <strong>Axolotl</strong> | Production | YAML-driven multi-GPU production fine-tuning | <a href=/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/>Axolotl 2026 guide</a> |
 | 3 | <strong>HuggingFace datasets + Hub</strong> | Data | Version dataset, share with team, push trained weights | [HF docs] |
-| 4 | <strong>Weights &amp; Biases (or alternative)</strong> | Eval | Track loss curves, eval scores, hyperparameter sweeps | [W&amp;B docs] |
-| 5 | <strong>vLLM</strong> | Serving | Production multi-tenant serving of fine-tuned model | <a href="/resources/llm-frameworks/local-llm-runner-comparison-2026/">Local LLM Runner comparison</a> |</p>
-<p><strong>Total monthly cost</strong> (excluding training capital): - <strong>Hobbyist</strong> (rent GPU 10 hrs/week): <strong>$30-60/mo</strong></p>
-<ul>
-<li><strong>Production team</strong> (1-2 dedicated GPUs + monitoring): <strong>$200-400/mo</strong></li>
-<li><strong>Small AI lab</strong> (8× H100 cluster): <strong>$2000-5000/mo</strong></li>
-</ul>
-<p>Compare against managed fine-tuning platforms: Together fine-tuning ~$0.50/M tokens (adds up fast for big datasets), OpenAI fine-tuning $25/M tokens (insane at scale). Self-hosted beats both at any meaningful volume + you own the weights.</p>
-<h2 id="1-why-the-fine-tuning-stack-needed-defining-in-2026">1. Why &ldquo;The Fine-Tuning Stack&rdquo; Needed Defining in 2026<a hidden class="anchor" aria-hidden="true" href="#1-why-the-fine-tuning-stack-needed-defining-in-2026">#</a></h2>
-<p>Three shifts that crystallized the stack: 1. <strong>Unsloth + Axolotl reached production maturity</strong> — the &ldquo;fast experiment + scale production&rdquo; split is now clean
+| 4 | <strong>Weights & Biases (or alternative)</strong> | Eval | Track loss curves, eval scores, hyperparameter sweeps | [W&amp;B docs] |
+| 5 | <strong>vLLM</strong> | Serving | Production multi-tenant serving of fine-tuned model | <a href=/resources/llm-frameworks/local-llm-runner-comparison-2026/>Local LLM Runner comparison</a> |</p><p><strong>Total monthly cost</strong> (excluding training capital): - <strong>Hobbyist</strong> (rent GPU 10 hrs/week): <strong>$30-60/mo</strong></p><ul><li><strong>Production team</strong> (1-2 dedicated GPUs + monitoring): <strong>$200-400/mo</strong></li><li><strong>Small AI lab</strong> (8× H100 cluster): <strong>$2000-5000/mo</strong></li></ul><p>Compare against managed fine-tuning platforms: Together fine-tuning ~$0.50/M tokens (adds up fast for big datasets), OpenAI fine-tuning $25/M tokens (insane at scale). Self-hosted beats both at any meaningful volume + you own the weights.</p><h2 id=1-why-the-fine-tuning-stack-needed-defining-in-2026>1. Why &ldquo;The Fine-Tuning Stack&rdquo; Needed Defining in 2026<a hidden class=anchor aria-hidden=true href=#1-why-the-fine-tuning-stack-needed-defining-in-2026>#</a></h2><p>Three shifts that crystallized the stack: 1. <strong>Unsloth + Axolotl reached production maturity</strong> — the &ldquo;fast experiment + scale production&rdquo; split is now clean
 2. <strong>GRPO became the default RL fine-tuning</strong> (post-DeepSeek-R1) — both Unsloth and Axolotl support it natively
-3. <strong>Open-weight base models hit GPT-4 class</strong> — Llama 3.3 70B, Qwen 3 32B, DeepSeek V3. Fine-tuning these for your domain now genuinely competitive with closed alternatives</p>
-<p>Result: fine-tuning has moved from research → engineering practice. The stack reflects that.</p>
-<h2 id="2-architecture--the-experiment-to-production-pipeline">2. Architecture — The Experiment-to-Production Pipeline<a hidden class="anchor" aria-hidden="true" href="#2-architecture--the-experiment-to-production-pipeline">#</a></h2>
-<pre tabindex="0"><code>   ┌──────────────────────────────────────────────────┐
+3. <strong>Open-weight base models hit GPT-4 class</strong> — Llama 3.3 70B, Qwen 3 32B, DeepSeek V3. Fine-tuning these for your domain now genuinely competitive with closed alternatives</p><p>Result: fine-tuning has moved from research → engineering practice. The stack reflects that.</p><h2 id=2-architecture--the-experiment-to-production-pipeline>2. Architecture — The Experiment-to-Production Pipeline<a hidden class=anchor aria-hidden=true href=#2-architecture--the-experiment-to-production-pipeline>#</a></h2><pre tabindex=0><code>   ┌──────────────────────────────────────────────────┐
    │ Dataset (JSONL: prompt/response or messages)      │
    │  → HuggingFace datasets library                  │
    │  → Push to HuggingFace Hub (versioning)          │
@@ -293,13 +57,8 @@ aliases:</li>
    │  → Push merged model to HuggingFace Hub          │
    │  → vLLM serves the model behind LiteLLM gateway  │
    └──────────────────────────────────────────────────┘
-</code></pre><p>The split is what makes this work — Unsloth&rsquo;s fast iteration for the &ldquo;what works&rdquo; exploration, Axolotl&rsquo;s robustness for the &ldquo;now scale it&rdquo; production run.</p>
-<h2 id="3-component-1--unsloth-experiment-phase">3. Component 1 — Unsloth (Experiment Phase)<a hidden class="anchor" aria-hidden="true" href="#3-component-1--unsloth-experiment-phase">#</a></h2>
-<p><strong>The role</strong>: Where you spend 80% of your fine-tuning time. Iterate on dataset format, hyperparams, base model choice. Each experiment cycle: 30 min - 3 hours on a single rented GPU.</p>
-<p><strong>Why Unsloth wins here</strong>: 2× faster than HF TRL = 2× more experiments per dollar. 70% less VRAM = experiments on a $1500 RTX 4090 instead of needing an A100. See our <a href="/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/">Unsloth deep-dive</a>.</p>
-<p><strong>Quick install</strong>: `````bash
-pip install unsloth</p>
-<pre tabindex="0"><code>
+</code></pre><p>The split is what makes this work — Unsloth&rsquo;s fast iteration for the &ldquo;what works&rdquo; exploration, Axolotl&rsquo;s robustness for the &ldquo;now scale it&rdquo; production run.</p><h2 id=3-component-1--unsloth-experiment-phase>3. Component 1 — Unsloth (Experiment Phase)<a hidden class=anchor aria-hidden=true href=#3-component-1--unsloth-experiment-phase>#</a></h2><p><strong>The role</strong>: Where you spend 80% of your fine-tuning time. Iterate on dataset format, hyperparams, base model choice. Each experiment cycle: 30 min - 3 hours on a single rented GPU.</p><p><strong>Why Unsloth wins here</strong>: 2× faster than HF TRL = 2× more experiments per dollar. 70% less VRAM = experiments on a $1500 RTX 4090 instead of needing an A100. See our <a href=/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/>Unsloth deep-dive</a>.</p><p><strong>Quick install</strong>: `````bash
+pip install unsloth</p><pre tabindex=0><code>
 **Pattern**: rent RTX 4090 on Vast.ai ($0.40-0.60/hr) or RunPod, run 10-20 experiments over a weekend, find the winning recipe, capture in a notebook for team review.
 
 ## 4. Component 2 — Axolotl (Production Phase)
@@ -310,14 +69,9 @@ pip install unsloth</p>
 
 **Quick install**: `````bash
 pip install axolotl
-</code></pre><p><strong>Pattern</strong>: Take the hyperparams from your Unsloth winning recipe → write Axolotl YAML → run on 8× H100 cluster (Vast.ai ~$15-25/hr) for the final 6-12 hour production run → push final weights to HF Hub.</p>
-<h2 id="5-component-3--huggingface-datasets--hub-data-layer">5. Component 3 — HuggingFace Datasets + Hub (Data Layer)<a hidden class="anchor" aria-hidden="true" href="#5-component-3--huggingface-datasets--hub-data-layer">#</a></h2>
-<p><strong>The role</strong>: Version your dataset. Share datasets across team. Push trained model weights for collaborative testing.</p>
-<p><strong>Why this is the obvious pick</strong>: HF has won the AI dataset distribution layer (like GitHub for code, HF Hub for models + datasets). Every fine-tuning tool integrates with it natively.</p>
-<p><strong>Quick install</strong>: `````bash
+</code></pre><p><strong>Pattern</strong>: Take the hyperparams from your Unsloth winning recipe → write Axolotl YAML → run on 8× H100 cluster (Vast.ai ~$15-25/hr) for the final 6-12 hour production run → push final weights to HF Hub.</p><h2 id=5-component-3--huggingface-datasets--hub-data-layer>5. Component 3 — HuggingFace Datasets + Hub (Data Layer)<a hidden class=anchor aria-hidden=true href=#5-component-3--huggingface-datasets--hub-data-layer>#</a></h2><p><strong>The role</strong>: Version your dataset. Share datasets across team. Push trained model weights for collaborative testing.</p><p><strong>Why this is the obvious pick</strong>: HF has won the AI dataset distribution layer (like GitHub for code, HF Hub for models + datasets). Every fine-tuning tool integrates with it natively.</p><p><strong>Quick install</strong>: `````bash
 pip install datasets
-huggingface-cli login</p>
-<pre tabindex="0"><code>
+huggingface-cli login</p><pre tabindex=0><code>
 **Pattern**: `````python
 from datasets import load_dataset, Dataset
 
@@ -327,14 +81,10 @@ data.push_to_hub(&#34;yourname/my-finetune-dataset&#34;, private=True)
 
 # Team member loads
 data = load_dataset(&#34;yourname/my-finetune-dataset&#34;)
-</code></pre><p>For sensitive data (medical / financial / proprietary), use <strong>private datasets</strong> on HF Hub — they&rsquo;re access-controlled.</p>
-<h2 id="6-component-4--weights--biases-eval-tracking">6. Component 4 — Weights &amp; Biases (Eval Tracking)<a hidden class="anchor" aria-hidden="true" href="#6-component-4--weights--biases-eval-tracking">#</a></h2>
-<p><strong>The role</strong>: When you run 50 experiments to find the winning recipe, you need a way to compare them. W&amp;B is the de-facto choice — auto-logs loss curves, eval scores, hyperparams, hardware utilization.</p>
-<p><strong>Quick install</strong> (works with both Unsloth and Axolotl via env var): `````bash
+</code></pre><p>For sensitive data (medical / financial / proprietary), use <strong>private datasets</strong> on HF Hub — they&rsquo;re access-controlled.</p><h2 id=6-component-4--weights--biases-eval-tracking>6. Component 4 — Weights & Biases (Eval Tracking)<a hidden class=anchor aria-hidden=true href=#6-component-4--weights--biases-eval-tracking>#</a></h2><p><strong>The role</strong>: When you run 50 experiments to find the winning recipe, you need a way to compare them. W&amp;B is the de-facto choice — auto-logs loss curves, eval scores, hyperparams, hardware utilization.</p><p><strong>Quick install</strong> (works with both Unsloth and Axolotl via env var): `````bash
 pip install wandb
 wandb login
-export WANDB_PROJECT=&ldquo;my-finetune-project&rdquo;</p>
-<pre tabindex="0"><code>
+export WANDB_PROJECT=&ldquo;my-finetune-project&rdquo;</p><pre tabindex=0><code>
 Now every Unsloth / Axolotl training run auto-logs to your W&amp;B dashboard.
 
 **Cost**: W&amp;B free tier is generous (single user, unlimited public projects). Team / private projects: $50/user/mo. Alternatives: **MLflow** (self-hosted, free, less polished), **TensorBoard** (basic but free + local).
@@ -351,59 +101,20 @@ vllm serve yourname/my-finetuned-llama \
   --enable-lora \
   --lora-modules my-lora=path/to/lora_weights \
   --port 8000
-</code></pre><p>Behind a <a href="/resources/llm-frameworks/litellm/">LiteLLM gateway</a> for auth + rate limiting + per-customer virtual keys = production-ready multi-tenant LLM API on infra you own.</p>
-<h2 id="8-day-1-pipeline-setup-3-4-hours">8. Day 1 Pipeline Setup (3-4 hours)<a hidden class="anchor" aria-hidden="true" href="#8-day-1-pipeline-setup-3-4-hours">#</a></h2>
-<ol>
-<li><strong>Datasets in JSONL format</strong> (varies) — prep <code>train.jsonl</code> and <code>eval.jsonl</code>, push to HF Hub private</li>
-<li><strong>Rent RTX 4090 GPU</strong> (10 min) — Vast.ai or  for experiment phase</li>
-<li><strong>Install Unsloth + W&amp;B</strong> (10 min) — ````pip install unsloth wandb```</li>
-<li><strong>First QLoRA run</strong> (60 min) — Section 3 of Unsloth guide, fine-tune Llama 3.2 8B for 1 epoch, verify W&amp;B logs appear</li>
-<li><strong>Iterate 5-10 short experiments</strong> (~half a day) — vary learning rate, LoRA rank, dataset slice. Find the recipe with best eval score</li>
-<li><strong>Translate recipe to Axolotl YAML</strong> (30 min) — same hyperparams in YAML format, git commit</li>
-<li><strong>Rent 8× H100 cluster</strong> for production run (Vast.ai ~$15-20/hr × 6-12 hours = $90-240) on a  for the data + monitoring side</li>
-<li><strong>Run Axolotl production training</strong> — pushes final weights to HF Hub</li>
-<li><strong>Deploy via vLLM</strong> — serve the fine-tuned model on a dedicated 24 GB GPU + LiteLLM gateway</li>
-<li><strong>Eval against base model</strong> — does your fine-tune actually beat the base on your eval set? If not, iterate</li>
-</ol>
-<p>After 3-4 hours of setup + 1-2 weeks of experiments, you have your own fine-tuned model deployed in production.</p>
-<h2 id="9-cost-breakdown">9. Cost Breakdown<a hidden class="anchor" aria-hidden="true" href="#9-cost-breakdown">#</a></h2>
-<p>| Item | Hobbyist | Production team | Small AI lab |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+</code></pre><p>Behind a <a href=/resources/llm-frameworks/litellm/>LiteLLM gateway</a> for auth + rate limiting + per-customer virtual keys = production-ready multi-tenant LLM API on infra you own.</p><h2 id=8-day-1-pipeline-setup-3-4-hours>8. Day 1 Pipeline Setup (3-4 hours)<a hidden class=anchor aria-hidden=true href=#8-day-1-pipeline-setup-3-4-hours>#</a></h2><ol><li><strong>Datasets in JSONL format</strong> (varies) — prep <code>train.jsonl</code> and <code>eval.jsonl</code>, push to HF Hub private</li><li><strong>Rent RTX 4090 GPU</strong> (10 min) — Vast.ai or for experiment phase</li><li><strong>Install Unsloth + W&amp;B</strong> (10 min) — ````pip install unsloth wandb```</li><li><strong>First QLoRA run</strong> (60 min) — Section 3 of Unsloth guide, fine-tune Llama 3.2 8B for 1 epoch, verify W&amp;B logs appear</li><li><strong>Iterate 5-10 short experiments</strong> (~half a day) — vary learning rate, LoRA rank, dataset slice. Find the recipe with best eval score</li><li><strong>Translate recipe to Axolotl YAML</strong> (30 min) — same hyperparams in YAML format, git commit</li><li><strong>Rent 8× H100 cluster</strong> for production run (Vast.ai ~$15-20/hr × 6-12 hours = $90-240) on a for the data + monitoring side</li><li><strong>Run Axolotl production training</strong> — pushes final weights to HF Hub</li><li><strong>Deploy via vLLM</strong> — serve the fine-tuned model on a dedicated 24 GB GPU + LiteLLM gateway</li><li><strong>Eval against base model</strong> — does your fine-tune actually beat the base on your eval set? If not, iterate</li></ol><p>After 3-4 hours of setup + 1-2 weeks of experiments, you have your own fine-tuned model deployed in production.</p><h2 id=9-cost-breakdown>9. Cost Breakdown<a hidden class=anchor aria-hidden=true href=#9-cost-breakdown>#</a></h2><p>| Item | Hobbyist | Production team | Small AI lab |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | Experiment GPU (rented as needed) | $30-60/mo | $100-200/mo | $300-500/mo |
 | Production training (rented for runs) | $0-50/mo | $200-400/mo | $1500-3000/mo |
 | Dedicated serving GPU (vLLM) | $0 (use Ollama instead) | $200/mo (RTX 4090) | $1000/mo (H100) |
 | HF Hub | $0 (free for public + private up to 1 GB) | $9/mo (Pro) | $20/user/mo (Enterprise) |
 | W&amp;B | $0 (free tier) | $50/user/mo | $50/user/mo |
 | Misc storage / bandwidth | $5 | $20 | $50 |
-| <strong>Total</strong> | <strong>~$35-115/mo</strong> | <strong>~$580-880/mo</strong> | <strong>~$2870-4570/mo</strong> |</p>
-<p>Compare against managed: Together fine-tuning at $0.50/M tokens × 100M token dataset = $50 per fine-tuning run × 10 experiments = $500/mo just for experiments. Self-host wins above ~10 fine-tunes/month.</p>
-<h2 id="10-upgrade-path">10. Upgrade Path<a hidden class="anchor" aria-hidden="true" href="#10-upgrade-path">#</a></h2>
-<p>When you outgrow this stack: - <strong>Need to fine-tune &gt; 70B models routinely</strong> — Buy or long-lease H100 cluster instead of renting</p>
-<ul>
-<li><strong>Compliance / data residency</strong> — Move from Vast.ai to dedicated bare-metal in your jurisdiction</li>
-<li><strong>Multi-tenant fine-tuning SaaS</strong> — Add user isolation layer; consider LangSmith or similar managed eval</li>
-<li><strong>Continuous fine-tuning loop</strong> — Pair with <a href="/collections/ai-agent-tool-chain/">AI Agent Tool Chain</a> for automated retraining triggers when production model degrades</li>
-<li><strong>Domain-specific RL</strong> — Add reward modeling + GRPO loops (both Unsloth and Axolotl support; just more compute-hungry)</li>
-</ul>
-<h2 id="tldr--the-recipe">TL;DR — The Recipe<a hidden class="anchor" aria-hidden="true" href="#tldr--the-recipe">#</a></h2>
-<p><strong>5 components for production LLM fine-tuning, $50-300/mo for hobbyist to production team</strong>: 1. <strong>Unsloth</strong> — fast single-GPU experiment phase
+| <strong>Total</strong> | <strong>~$35-115/mo</strong> | <strong>~$580-880/mo</strong> | <strong>~$2870-4570/mo</strong> |</p><p>Compare against managed: Together fine-tuning at $0.50/M tokens × 100M token dataset = $50 per fine-tuning run × 10 experiments = $500/mo just for experiments. Self-host wins above ~10 fine-tunes/month.</p><h2 id=10-upgrade-path>10. Upgrade Path<a hidden class=anchor aria-hidden=true href=#10-upgrade-path>#</a></h2><p>When you outgrow this stack: - <strong>Need to fine-tune > 70B models routinely</strong> — Buy or long-lease H100 cluster instead of renting</p><ul><li><strong>Compliance / data residency</strong> — Move from Vast.ai to dedicated bare-metal in your jurisdiction</li><li><strong>Multi-tenant fine-tuning SaaS</strong> — Add user isolation layer; consider LangSmith or similar managed eval</li><li><strong>Continuous fine-tuning loop</strong> — Pair with <a href=/collections/ai-agent-tool-chain/>AI Agent Tool Chain</a> for automated retraining triggers when production model degrades</li><li><strong>Domain-specific RL</strong> — Add reward modeling + GRPO loops (both Unsloth and Axolotl support; just more compute-hungry)</li></ul><h2 id=tldr--the-recipe>TL;DR — The Recipe<a hidden class=anchor aria-hidden=true href=#tldr--the-recipe>#</a></h2><p><strong>5 components for production LLM fine-tuning, $50-300/mo for hobbyist to production team</strong>: 1. <strong>Unsloth</strong> — fast single-GPU experiment phase
 2. <strong>Axolotl</strong> — production multi-GPU phase
 3. <strong>HuggingFace datasets + Hub</strong> — data versioning + model distribution
-4. <strong>Weights &amp; Biases</strong> — eval tracking
-5. <strong>vLLM</strong> — production serving</p>
-<p>Rent a  for experiments, scale to Vast.ai 8× H100 for production runs, deploy final model on a dedicated 24 GB GPU. End-to-end self-hosted, weights you own, costs that scale with how serious you are.</p>
-<hr>
-<p><em>Companion collections: <a href="/collections/cheap-llm-stack/">Cheap LLM Stack</a> covers the inference cost side post-deployment. <a href="/collections/ai-agent-tool-chain/">AI Agent Tool Chain</a> for automated fine-tuning loops. <a href="/collections/knowledge-base-stack/">Knowledge Base Stack</a> for RAG as an alternative to fine-tuning in some cases.</em></p>
-<p>{
-&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+4. <strong>Weights & Biases</strong> — eval tracking
+5. <strong>vLLM</strong> — production serving</p><p>Rent a for experiments, scale to Vast.ai 8× H100 for production runs, deploy final model on a dedicated 24 GB GPU. End-to-end self-hosted, weights you own, costs that scale with how serious you are.</p><hr><p><em>Companion collections: <a href=/collections/cheap-llm-stack/>Cheap LLM Stack</a> covers the inference cost side post-deployment. <a href=/collections/ai-agent-tool-chain/>AI Agent Tool Chain</a> for automated fine-tuning loops. <a href=/collections/knowledge-base-stack/>Knowledge Base Stack</a> for RAG as an alternative to fine-tuning in some cases.</em></p><p>{
+&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Fine-Tuning Stack 2026: 5-Component Pipeline From Dataset to Production-Deployed LLM&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-21&rdquo;,
@@ -417,141 +128,18 @@ vllm serve yourname/my-finetuned-llama \
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/fine-tuning-stack%22">https://dibi8.com/resources/fine-tuning-stack"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/fine-tuning-stack%22>https://dibi8.com/resources/fine-tuning-stack"</a>
 }
-}
-</script></p>
-<hr>
-<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
-<ul>
-<li><a href="/ai-coding-agents/fine-tuning-stack/">12-factor-agents-production-llm-software-2026</a></li>
-<li><a href="/ai-coding-agents/fine-tuning-stack/">12-factor-agents</a></li>
-<li><a href="/ai-coding-agents/fine-tuning-stack/">1m-context-window-llm-2026-real-test</a></li>
-<li><a href="/ai-coding-agents/fine-tuning-stack/">9router-smart-llm-proxy-token-saver-free-coding</a></li>
-<li><a href="/ai-coding-agents/fine-tuning-stack/">ai-engineering-from-scratch</a></li>
-</ul>
-<hr>
-<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
-
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
-      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="https://dibi8.com/ai-coding-agents/faster-whisper/">
-    <span class="title">« 上一页</span>
-    <span>AI Tool Guide</span>
-  </a>
-  <a class="next" href="https://dibi8.com/ai-coding-agents/firecrawl-dev-utils-2026/">
-    <span class="title">下一页 »</span>
-    <span>AI Tool Guide</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
-
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
-        <polyline points="17 11 12 6 7 11"></polyline>
-        <polyline points="17 18 12 13 7 18"></polyline>
-    </svg>
-</a>
-
-
-<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-        <span style="font-size:20px;">🌐</span>
-        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
-    </div>
-    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
-        <option value="">Select language...</option>
-        <option value="zh">中文 (Chinese)</option>
-        <option value="en">English</option>
-        <option value="ko">한국어 (Korean)</option>
-        <option value="vi">Tiếng Việt (Vietnamese)</option>
-        <option value="ja">日本語 (Japanese)</option>
-        <option value="fr">Français (French)</option>
-        <option value="de">Deutsch (German)</option>
-        <option value="es">Español (Spanish)</option>
-        <option value="ar">العربية (Arabic)</option>
-        <option value="pt">Português (Portuguese)</option>
-        <option value="ru">Русский (Russian)</option>
-        <option value="hi">हिन्दी (Hindi)</option>
-        <option value="th">ไทย (Thai)</option>
-        <option value="id">Indonesia (Indonesian)</option>
-    </select>
-</div>
-
-<script>
-function translatePage(lang) {
-    if (!lang) return;
-    
-    
-    const url = window.location.href;
-    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
-    
-    
-    window.open(translatedUrl, '_blank');
-}
-
-
-(function() {
-    var navLang = navigator.language || navigator.userLanguage;
-    var langMap = {
-        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
-        'en': 'en',
-        'ko': 'ko',
-        'vi': 'vi',
-        'ja': 'ja',
-        'fr': 'fr',
-        'de': 'de',
-        'es': 'es',
-        'ar': 'ar',
-        'pt': 'pt',
-        'ru': 'ru',
-        'hi': 'hi',
-        'th': 'th',
-        'id': 'id'
-    };
-    var detected = langMap[navLang] || 'en';
-    document.getElementById('lang-select').value = detected;
-})();
-</script>
-
-
-<div id="google_translate_element" style="display:none;"></div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'zh',
-        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
-        autoDisplay: false
-    }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-</body>
-
-</html>
+}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/ai-coding-agents/fine-tuning-stack/>12-factor-agents-production-llm-software-2026</a></li><li><a href=/ai-coding-agents/fine-tuning-stack/>12-factor-agents</a></li><li><a href=/ai-coding-agents/fine-tuning-stack/>1m-context-window-llm-2026-real-test</a></li><li><a href=/ai-coding-agents/fine-tuning-stack/>9router-smart-llm-proxy-token-saver-free-coding</a></li><li><a href=/ai-coding-agents/fine-tuning-stack/>ai-engineering-from-scratch</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/faster-whisper/><span class=title>« 上一页</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/ai-coding-agents/firecrawl-dev-utils-2026/><span class=title>下一页 »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
+<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script></body></html>

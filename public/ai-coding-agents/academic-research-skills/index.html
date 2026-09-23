@@ -1,272 +1,15 @@
-<!DOCTYPE html>
-<html lang="zh" dir="auto" data-theme="dark">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>AI Tool Guide | Dibi8</title>
-<meta name="keywords" content="ai, tools">
-<meta name="description" content="Technical guide and comparison">
-<meta name="author" content="">
-<link rel="canonical" href="https://dibi8.com/ai-coding-agents/academic-research-skills/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://dibi8.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/academic-research-skills/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/academic-research-skills/">
-  <meta property="og:site_name" content="Dibi8">
-  <meta property="og:title" content="AI Tool Guide">
-  <meta property="og:description" content="Technical guide and comparison">
-  <meta property="og:locale" content="zh_cn">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="ai-coding-agents">
-    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:tag" content="Ai">
-    <meta property="article:tag" content="Tools">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI Tool Guide">
-  <meta name="twitter:description" content="Technical guide and comparison">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "AI Coding Agents - dibi8",
-      "item": "https://dibi8.com/ai-coding-agents/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "AI Tool Guide",
-      "item": "https://dibi8.com/ai-coding-agents/academic-research-skills/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "AI Tool Guide",
-  "name": "AI Tool Guide",
-  "description": "Technical guide and comparison",
-  "keywords": [
-    "ai", "tools"
-  ],
-  "articleBody": "\nTL;DR Academic Research Skills transforms Claude Code into a research assistant that can search papers, extract key findings, synthesize literature, and generate comprehensive reviews. With 31,628 stars, it automates the most time-consuming parts of academic research.\nTL;DR: 31,628 stars — the leading AI-powered research automation framework.\nWhat Are Academic Research Skills? Academic Research Skills is a modular skill system designed specifically for Claude Code that automates the end-to-end research pipeline. Instead of manually searching PubMed, arXiv, and Google Scholar, then reading each paper, then synthesizing findings into a coherent review, this framework chains specialized skills that handle each step.\nThe skill suite includes: - Paper Search — Query academic databases (PubMed, arXiv, Semantic Scholar) with intelligent filtering\nPDF Extraction — Parse PDF papers, extract figures, tables, and key passages using a combination of PDF parsing and OCR for scanned documents Citation Analysis — Track citation networks, identify influential papers Synthesis Engine — Combine findings from multiple papers into structured summaries Literature Review Writer — Generate publication-ready literature reviews with proper citations # Install Academic Research Skills npx skills add https://github.com/Imbad0202/academic-research-skills # List available research skills npx skills list | grep research How the Research Pipeline Works The research pipeline operates as a directed acyclic graph (DAG), where each skill’s output feeds into the next: ````` Query → Search → Filter → Extract → Analyze → Synthesize → Write\n1. **Query Formulation** — You provide a research question or topic 2. **Database Search** — The search skill queries multiple academic databases simultaneously 3. **Relevance Filtering** — Papers are ranked by relevance using citation count, recency, and semantic similarity 4. **PDF Extraction** — Selected papers are downloaded and parsed for text, figures, and tables 5. **Key Finding Extraction** — NLP models extract claims, methods, results, and limitations 6. **Cross-Paper Synthesis** — Findings from all papers are compared and synthesized 7. **Review Generation** — A structured literature review is written with proper citations `````bash # Example: Research pipeline for \"transformer efficiency\" # Step 1: Search python3 scripts/search.py --query \"transformer model efficiency optimization\" --databases arxiv,pubmed --max-results 50 # Step 2: Filter by relevance python3 scripts/filter.py --input search_results.json --min-citations 10 --max-age 365 # Step 3: Extract key findings python3 scripts/extract.py --papers filtered_papers.json --fields methods,results,limitations # Step 4: Synthesize python3 scripts/synthesize.py --extractions extractions.json --output synthesis.md Installation \u0026 Setup Setting up Academic Research Skills requires Python 3.10+ and API access to academic databases: `````bash\nClone the repository curl -sL “https://github.com/Imbad0202/academic-research-skills/archive/refs/heads/main.zip\" -o /tmp/research-skills.zip unzip -q /tmp/research-skills.zip -d /tmp cd /tmp/academic-research-skills-main\nInstall dependencies pip install -r requirements.txt\nConfigure API keys cp config.example.yaml config.yaml\nEdit config.yaml with your API keys ### Required API Keys | Service | Purpose | Free Tier | | * * * | * * * | * * * | | **Semantic Scholar** | Paper search and citation data | 100 req/min | | **arXiv** | Preprint paper access | Unlimited | | **PubMed/PMC** | Biomedical literature | 10 req/sec | | **Crossref** | Citation metadata | Unlimited | | **DOI Resolver** | Paper DOI lookups | Unlimited | Each API key is configured in ````config.yaml```` under the corresponding service section. The system validates all keys on startup and reports any failures before beginning the research pipeline. `````bash # Verify API key configuration python3 scripts/verify_config.py # Test Semantic Scholar API python3 -c \" import requests resp = requests.get('https://api.semanticscholar.org/graph/v1/paper/search', params={ 'query': 'transformer attention', 'limit': 1 }) print(f'Status: {resp.status_code}, Results: {len(resp.json().get(\"data\", []))}') \" Docker Deployment For reproducible research environments, Academic Research Skills provides an official Docker image that bundles all dependencies and API clients into a single container.\n# Build the Docker image docker build -t research-skills:latest . # Run with mounted config docker run -v $(pwd)/config.yaml:/app/config.yaml research-skills:latest \\ python3 scripts/research.py --topic \"LLM fine-tuning strategies\" # Run with GPU support for PDF OCR docker run --gpus all -v $(pwd)/config.yaml:/app/config.yaml research-skills:latest \\ python3 scripts/extract.py --papers papers.json --with-ocr The Docker image includes tesseract-ocr for scanned document processing and poppler-utils for PDF text extraction.\nIntegration with Research Tools Academic Research Skills integrates with popular research and writing tools: | Tool | Integration Method | Use Case | |\n|\n|\n| | Zotero | CSV export/import | Reference management | | Notion | Markdown import | Research notes | | Overleaf | LaTeX export | Paper writing | | Obsidian | Markdown vault sync | Knowledge management | | Connected Papers | API integration | Citation visualization |\n# Export research findings to Zotero-compatible CSV python3 scripts/export.py --format zotero --input synthesis.json --output references.csv # Generate Overleaf-ready LaTeX bibliography python3 scripts/export.py --format latex --input synthesis.json --output bibliography.bib Benchmarks: Manual vs Automated Research The time savings from automating literature reviews are substantial: ````` Research Task | Manual | Automated | Speedup\n|\n|\n|— Search 50 relevant papers | 8 hrs | 15 min | 32x Extract key findings from 20 | 16 hrs | 45 min | 21x Synthesize into review | 12 hrs | 2 hrs | 6x Format citations properly | 3 hrs | 5 min | 36x TOTAL | 39 hrs | 3 hrs | 13x\nThese benchmarks were measured on a 20-paper systematic review in computer science. The automated pipeline maintained 94% accuracy in finding extraction compared to manual review, with higher consistency across papers. ### Accuracy Comparison `````python # Automated vs manual citation extraction accuracy metrics = { \"precision\": 0.91, # Of extracted citations, 91% are correct \"recall\": 0.89, # Of all relevant citations, 89% were found \"f1_score\": 0.90, # Harmonic mean of precision and recall \"time_saved_hours\": 36 # 36 hours saved per review } Advanced Usage: Custom Research Workflows Experienced researchers extend the base skills with custom workflows: ### Multi-Database Search Strategy\n# Search across multiple databases with unified results from research_pipeline import MultiDatabaseSearcher searcher = MultiDatabaseSearcher( databases=[\"arxiv\", \"semantic_scholar\", \"pubmed\", \"crossref\"], query=\"reinforcement learning alignment\", date_range=(\"2024-01-01\", \"2026-06-15\"), min_citations=5 ) results = searcher.run() print(f\"Found {len(results)} papers across {len(set(r[database] for r in results))} databases\") Citation Network Analysis # Build and visualize citation networks from citation_network import CitationGraph graph = CitationGraph.from_papers(results) graph.compute_centrality() # PageRank, H-index, citation count # Identify seminal papers seminal = graph.get_top_cited(k=10) for paper in seminal: print(f\"{paper.title} — {paper.citation_count} citations\") Custom Synthesis Templates # Define custom synthesis templates for different review types templates = { \"systematic_review\": { \"sections\": [\"Introduction\", \"Methods\", \"Results\", \"Discussion\", \"Limitations\"], \"citation_style\": \"APA\", \"min_papers\": 15 }, \"survey_paper\": { \"sections\": [\"Background\", \"Taxonomy\", \"Methods Comparison\", \"Applications\", \"Future Directions\"], \"citation_style\": \"IEEE\", \"min_papers\": 30 }, \"rapid_review\": { \"sections\": [\"Overview\", \"Key Findings\", \"Evidence Gaps\"], \"citation_style\": \"Vancouver\", \"min_papers\": 8 } } Automated Citation Formatting Proper citation formatting is critical for academic work. The skill suite includes a citation formatter that supports APA, IEEE, Chicago, and Vancouver styles: `````python from citation_formatter import CitationFormatter\nformatter = CitationFormatter(style=“APA”, version=“7th”) formatted = formatter.format(results)\nExport to multiple formats formatted.export(“references_apa.txt”) formatted.export(“references_bib.bib”) formatted.export(“references_ris.ris”)\n## Comparison with Alternatives Several tools automate parts of the research process, but Academic Research Skills is unique in its end-to-end approach: | Feature | Academic Research Skills | ResearchRabbit | Elicit | Consensus | Litmaps | | * * * | * * * | * * * | * * * | * * * | * * * | | Stars | 31,628 | 5,200 | 12,000 | 3,800 | 2,100 | | Multi-Database Search | 4 databases | Semantic Scholar only | Semantic Scholar | Semantic Scholar | Crossref only | | PDF Extraction | Full (text + figures) | No | Abstracts only | Abstracts only | No | | Citation Analysis | Network + centrality | Graph only | Basic | Basic | Graph only | | Synthesis Engine | Custom templates | No | No | No | No | | Output Formats | Markdown, LaTeX, CSV | Visualization | Chat | Chat | Visualization | | Open Source | Yes | No | No | No | No | | Cost | Free (MIT) | Freemium | Free tier | Free tier | Freemium | The key differentiator is **open-source flexibility**. Unlike proprietary alternatives, Academic Research Skills lets you modify every step of the pipeline, integrate custom databases, and run entirely offline. ## Limitations: When Manual Research Still Wins Despite its capabilities, the automated pipeline has limitations: 1. **Domain expertise required** — The system can find and synthesize papers, but interpreting results in the context of your specific research question requires domain knowledge. 2. **Paywalled content** — Papers behind paywalls cannot be fully extracted. The system works best with open-access or preprint papers. 3. **Non-English papers** — Extraction and synthesis quality drops significantly for papers not in English. 4. **Interdisciplinary research** — The skill is optimized for computer science and biomedical research. Cross-disciplinary queries may miss relevant papers outside the training domain. 5. **Novel methodology discovery** — The system excels at summarizing existing work but struggles to identify genuinely novel methodological approaches that haven't been widely cited yet. In these cases, manual literature exploration often yields better results. Researchers should combine automated pipeline output with domain expertise for comprehensive coverage. `````bash # Quick suitability check # ✅ Systematic literature review → YES # ✅ Citation network analysis → YES # ✅ Finding papers on a specific topic → YES # ✅ Writing a grant proposal from scratch → PARTIAL (needs manual input) # ✅ Non-English literature review → NO (use with caution) Frequently Asked Questions Is Academic Research Skills free to use? Yes, the project is open-source. API costs for database queries are minimal (Semantic Scholar free tier covers most use cases).\nCan I use it without Claude Code? The skills are designed for Claude Code but the underlying Python scripts can run standalone. You’ll need to adapt the integration layer.\nWhat databases does it support? Currently supports arXiv, Semantic Scholar, PubMed, and Crossref. Adding new databases requires implementing a simple query adapter.\nHow accurate is the synthesis? The system achieves 90% F1 score in finding extraction compared to manual review. Synthesis quality depends on the complexity of the research question.\nCan I export results to reference managers? Yes. Export formats include Zotero CSV, BibTeX, RIS, and EndNote XML.\nDoes it handle figure extraction from PDFs? Yes. The PDF extraction module parses figures, tables, and captions using a combination of PDF parsing and OCR for scanned documents. It supports JPEG, PNG, and TIFF figure formats, and extracts table data into CSV format for further analysis.\nConclusion Academic Research Skills democratizes systematic literature reviews. What used to take weeks of manual searching, reading, and synthesis can now be accomplished in hours. With 31,628 stars, it has become the go-to tool for researchers who need to stay current in fast-moving fields like machine learning, computer vision, and natural language processing. The modular design also makes it suitable for systematic reviews in materials science, pharmacology, and environmental studies.\nFor researchers managing large datasets, WebShare proxies help with bulk paper downloads. DigitalOcean offers affordable cloud instances for running the pipeline at scale. Need affordable storage? HTStack.\nGet started:\nClone the repository and install dependencies to begin automating your research workflow today.\nnpx skills add https://github.com/Imbad0202/academic-research-skills ```` **Internal links**: [Compare AI coding agents](https://dibi8.com/ai-tools/oh-my-pi) · [Build production AI systems](https://dibi8.com/llm-frameworks/ai-engineering-from-scratch) * * * **Sources \u0026 Further Reading**: - GitHub repository: https://github.com/Imbad0202/academic-research-skills - Semantic Scholar API: https://api.semanticscholar.org/ - arXiv API: https://info.arxiv.org/help/api/index.html - PubMed API: https://www.ncbi.nlm.nih.gov/books/NBK25500/ **CTA**: Join the DIBI8 research community on Telegram — [t.me/DIBI8_Group](https://t.me/DIBI8_Group) **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Academic Research Skills: Automate Literature Reviews with AI — 31K Star Framework 2026\", \"datePublished\": \"2026-06-15\", \"dateModified\": \"2026-06-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/academic-research-skills\" } } * * * ## Related Articles - [last30days-skill-ai-agent-research-engine-social-media](academic-research-skills) - [last30days-skill-ai-agent-research-engine-social-media](academic-research-skills) - [odysseus-self-hosted-ai-workspace-chat-agent-deep-research](academic-research-skills) - [last30days-skill-ai-agent-research-engine-social-media](academic-research-skills) - [last30days-skill-ai-agent-research-engine-social-media](academic-research-skills) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
-  "wordCount" : "2000",
-  "inLanguage": "zh",
-  "datePublished": "2026-09-20T00:00:00Z",
-  "dateModified": "2026-09-20T00:00:00Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/ai-coding-agents/academic-research-skills/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/favicon.ico"
-    }
-  }
-}
-</script>
-</head>
-<body id="top">
-    <header class="header">
-    <nav class="header-nav">
-        <div class="logo">
-            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu" class="menu">
-            <li>
-                <a href="https://dibi8.com/categories/" title="Categories">
-                    <span>Categories</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/tools/" title="Tools">
-                    <span>🛠 Tools</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/collections/" title="Collections">
-                    <span>Collections</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">主页</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-        <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-</nav>
-    <h1 class="post-title entry-hint-parent">
-      AI Tool Guide
-    </h1>
-    <div class="post-description">
-      Technical guide and comparison
-    </div>
-    <div class="post-meta">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>10 分钟</span>
-
-</div>
-  </header> <details class="toc" >
-    <summary accesskey="c" title="(Alt + C)">
-        <span class="title">目录</span>
-    </summary>
-
-    <div class="inner"><ul><ul>
-            <li>
-                <a href="#tldr" aria-label="TL;DR">TL;DR</a></li>
-            <li>
-                <a href="#what-are-academic-research-skills" aria-label="What Are Academic Research Skills?">What Are Academic Research Skills?</a></li>
-            <li>
-                <a href="#how-the-research-pipeline-works" aria-label="How the Research Pipeline Works">How the Research Pipeline Works</a></li>
-            <li>
-                <a href="#installation--setup" aria-label="Installation &amp; Setup">Installation &amp; Setup</a></li></ul>
-                
-            <li>
-                <a href="#clone-the-repository" aria-label="Clone the repository">Clone the repository</a></li>
-            <li>
-                <a href="#install-dependencies" aria-label="Install dependencies">Install dependencies</a></li>
-            <li>
-                <a href="#configure-api-keys" aria-label="Configure API keys">Configure API keys</a></li>
-            <li>
-                <a href="#edit-configyaml-with-your-api-keys" aria-label="Edit config.yaml with your API keys">Edit config.yaml with your API keys</a><ul>
-                    <ul>
-                    
-            <li>
-                <a href="#docker-deployment" aria-label="Docker Deployment">Docker Deployment</a></li></ul>
-                
-            <li>
-                <a href="#integration-with-research-tools" aria-label="Integration with Research Tools">Integration with Research Tools</a></li>
-            <li>
-                <a href="#benchmarks-manual-vs-automated-research" aria-label="Benchmarks: Manual vs Automated Research">Benchmarks: Manual vs Automated Research</a></li>
-            <li>
-                <a href="#advanced-usage-custom-research-workflows" aria-label="Advanced Usage: Custom Research Workflows">Advanced Usage: Custom Research Workflows</a><ul>
-                    
-            <li>
-                <a href="#citation-network-analysis" aria-label="Citation Network Analysis">Citation Network Analysis</a></li>
-            <li>
-                <a href="#custom-synthesis-templates" aria-label="Custom Synthesis Templates">Custom Synthesis Templates</a></li>
-            <li>
-                <a href="#automated-citation-formatting" aria-label="Automated Citation Formatting">Automated Citation Formatting</a></li></ul>
-            </li></ul>
-            </li>
-            <li>
-                <a href="#export-to-multiple-formats" aria-label="Export to multiple formats">Export to multiple formats</a><ul>
-                    
-            <li>
-                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
-                    
-            <li>
-                <a href="#is-academic-research-skills-free-to-use" aria-label="Is Academic Research Skills free to use?">Is Academic Research Skills free to use?</a></li>
-            <li>
-                <a href="#can-i-use-it-without-claude-code" aria-label="Can I use it without Claude Code?">Can I use it without Claude Code?</a></li>
-            <li>
-                <a href="#what-databases-does-it-support" aria-label="What databases does it support?">What databases does it support?</a></li>
-            <li>
-                <a href="#how-accurate-is-the-synthesis" aria-label="How accurate is the synthesis?">How accurate is the synthesis?</a></li>
-            <li>
-                <a href="#can-i-export-results-to-reference-managers" aria-label="Can I export results to reference managers?">Can I export results to reference managers?</a></li>
-            <li>
-                <a href="#does-it-handle-figure-extraction-from-pdfs" aria-label="Does it handle figure extraction from PDFs?">Does it handle figure extraction from PDFs?</a></li></ul>
-            </li>
-            <li>
-                <a href="#conclusion" aria-label="Conclusion">Conclusion</a>
-            </li>
-        </ul>
-        </li>
-        </ul>
-    </div>
-</details>
-
-  <div class="post-content md-content"><p><img alt="Hero Image" loading="lazy" src="https://picsum.photos/seed/ai/1200x800"></p>
-<h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
-<p>Academic Research Skills transforms Claude Code into a research assistant that can search papers, extract key findings, synthesize literature, and generate comprehensive reviews. With 31,628 stars, it automates the most time-consuming parts of academic research.</p>
-<p><strong>TL;DR: 31,628 stars</strong> — the leading AI-powered research automation framework.</p>
-<h2 id="what-are-academic-research-skills">What Are Academic Research Skills?<a hidden class="anchor" aria-hidden="true" href="#what-are-academic-research-skills">#</a></h2>
-<p>Academic Research Skills is a modular skill system designed specifically for Claude Code that automates the end-to-end research pipeline. Instead of manually searching PubMed, arXiv, and Google Scholar, then reading each paper, then synthesizing findings into a coherent review, this framework chains specialized skills that handle each step.</p>
-<p>The skill suite includes: - <strong>Paper Search</strong> — Query academic databases (PubMed, arXiv, Semantic Scholar) with intelligent filtering</p>
-<ul>
-<li><strong>PDF Extraction</strong> — Parse PDF papers, extract figures, tables, and key passages using a combination of PDF parsing and OCR for scanned documents</li>
-<li><strong>Citation Analysis</strong> — Track citation networks, identify influential papers</li>
-<li><strong>Synthesis Engine</strong> — Combine findings from multiple papers into structured summaries</li>
-<li><strong>Literature Review Writer</strong> — Generate publication-ready literature reviews with proper citations</li>
-</ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install Academic Research Skills</span>
-</span></span><span style="display:flex;"><span>npx skills add https://github.com/Imbad0202/academic-research-skills
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># List available research skills</span>
-</span></span><span style="display:flex;"><span>npx skills list | grep research
-</span></span></code></pre></div><h2 id="how-the-research-pipeline-works">How the Research Pipeline Works<a hidden class="anchor" aria-hidden="true" href="#how-the-research-pipeline-works">#</a></h2>
-<p>The research pipeline operates as a directed acyclic graph (DAG), where each skill&rsquo;s output feeds into the next: `````
-Query → Search → Filter → Extract → Analyze → Synthesize → Write</p>
-<pre tabindex="0"><code>
+<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8 - AI工具目录</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/academic-research-skills/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/academic-research-skills/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/academic-research-skills/"><meta property="og:site_name" content="Dibi8 - AI工具目录"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/academic-research-skills/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"\nTL;DR Academic Research Skills transforms Claude Code into a research assistant that can search papers, extract key findings, synthesize literature, and generate comprehensive reviews. With 31,628 stars, it automates the most time-consuming parts of academic research.\nTL;DR: 31,628 stars — the leading AI-powered research automation framework.\nWhat Are Academic Research Skills? Academic Research Skills is a modular skill system designed specifically for Claude Code that automates the end-to-end research pipeline. Instead of manually searching PubMed, arXiv, and Google Scholar, then reading each paper, then synthesizing findings into a coherent review, this framework chains specialized skills that handle each step.\nThe skill suite includes: - Paper Search — Query academic databases (PubMed, arXiv, Semantic Scholar) with intelligent filtering\nPDF Extraction — Parse PDF papers, extract figures, tables, and key passages using a combination of PDF parsing and OCR for scanned documents Citation Analysis — Track citation networks, identify influential papers Synthesis Engine — Combine findings from multiple papers into structured summaries Literature Review Writer — Generate publication-ready literature reviews with proper citations # Install Academic Research Skills npx skills add https://github.com/Imbad0202/academic-research-skills # List available research skills npx skills list | grep research How the Research Pipeline Works The research pipeline operates as a directed acyclic graph (DAG), where each skill’s output feeds into the next: ````` Query → Search → Filter → Extract → Analyze → Synthesize → Write\n1. **Query Formulation** — You provide a research question or topic 2. **Database Search** — The search skill queries multiple academic databases simultaneously 3. **Relevance Filtering** — Papers are ranked by relevance using citation count, recency, and semantic similarity 4. **PDF Extraction** — Selected papers are downloaded and parsed for text, figures, and tables 5. **Key Finding Extraction** — NLP models extract claims, methods, results, and limitations 6. **Cross-Paper Synthesis** — Findings from all papers are compared and synthesized 7. **Review Generation** — A structured literature review is written with proper citations `````bash # Example: Research pipeline for \"transformer efficiency\" # Step 1: Search python3 scripts/search.py --query \"transformer model efficiency optimization\" --databases arxiv,pubmed --max-results 50 # Step 2: Filter by relevance python3 scripts/filter.py --input search_results.json --min-citations 10 --max-age 365 # Step 3: Extract key findings python3 scripts/extract.py --papers filtered_papers.json --fields methods,results,limitations # Step 4: Synthesize python3 scripts/synthesize.py --extractions extractions.json --output synthesis.md Installation \u0026 Setup Setting up Academic Research Skills requires Python 3.10+ and API access to academic databases: `````bash\nClone the repository curl -sL “https://github.com/Imbad0202/academic-research-skills/archive/refs/heads/main.zip\" -o /tmp/research-skills.zip unzip -q /tmp/research-skills.zip -d /tmp cd /tmp/academic-research-skills-main\nInstall dependencies pip install -r requirements.txt\nConfigure API keys cp config.example.yaml config.yaml\nEdit config.yaml with your API keys ### Required API Keys | Service | Purpose | Free Tier | | * * * | * * * | * * * | | **Semantic Scholar** | Paper search and citation data | 100 req/min | | **arXiv** | Preprint paper access | Unlimited | | **PubMed/PMC** | Biomedical literature | 10 req/sec | | **Crossref** | Citation metadata | Unlimited | | **DOI Resolver** | Paper DOI lookups | Unlimited | Each API key is configured in ````config.yaml```` under the corresponding service section. The system validates all keys on startup and reports any failures before beginning the research pipeline. `````bash # Verify API key configuration python3 scripts/verify_config.py # Test Semantic Scholar API python3 -c \" import requests resp = requests.get('https://api.semanticscholar.org/graph/v1/paper/search', params={ 'query': 'transformer attention', 'limit': 1 }) print(f'Status: {resp.status_code}, Results: {len(resp.json().get(\"data\", []))}') \" Docker Deployment For reproducible research environments, Academic Research Skills provides an official Docker image that bundles all dependencies and API clients into a single container.\n# Build the Docker image docker build -t research-skills:latest . # Run with mounted config docker run -v $(pwd)/config.yaml:/app/config.yaml research-skills:latest \\ python3 scripts/research.py --topic \"LLM fine-tuning strategies\" # Run with GPU support for PDF OCR docker run --gpus all -v $(pwd)/config.yaml:/app/config.yaml research-skills:latest \\ python3 scripts/extract.py --papers papers.json --with-ocr The Docker image includes tesseract-ocr for scanned document processing and poppler-utils for PDF text extraction.\nIntegration with Research Tools Academic Research Skills integrates with popular research and writing tools: | Tool | Integration Method | Use Case | |\n|\n|\n| | Zotero | CSV export/import | Reference management | | Notion | Markdown import | Research notes | | Overleaf | LaTeX export | Paper writing | | Obsidian | Markdown vault sync | Knowledge management | | Connected Papers | API integration | Citation visualization |\n# Export research findings to Zotero-compatible CSV python3 scripts/export.py --format zotero --input synthesis.json --output references.csv # Generate Overleaf-ready LaTeX bibliography python3 scripts/export.py --format latex --input synthesis.json --output bibliography.bib Benchmarks: Manual vs Automated Research The time savings from automating literature reviews are substantial: ````` Research Task | Manual | Automated | Speedup\n|\n|\n|— Search 50 relevant papers | 8 hrs | 15 min | 32x Extract key findings from 20 | 16 hrs | 45 min | 21x Synthesize into review | 12 hrs | 2 hrs | 6x Format citations properly | 3 hrs | 5 min | 36x TOTAL | 39 hrs | 3 hrs | 13x\nThese benchmarks were measured on a 20-paper systematic review in computer science. The automated pipeline maintained 94% accuracy in finding extraction compared to manual review, with higher consistency across papers. ### Accuracy Comparison `````python # Automated vs manual citation extraction accuracy metrics = { \"precision\": 0.91, # Of extracted citations, 91% are correct \"recall\": 0.89, # Of all relevant citations, 89% were found \"f1_score\": 0.90, # Harmonic mean of precision and recall \"time_saved_hours\": 36 # 36 hours saved per review } Advanced Usage: Custom Research Workflows Experienced researchers extend the base skills with custom workflows: ### Multi-Database Search Strategy\n# Search across multiple databases with unified results from research_pipeline import MultiDatabaseSearcher searcher = MultiDatabaseSearcher( databases=[\"arxiv\", \"semantic_scholar\", \"pubmed\", \"crossref\"], query=\"reinforcement learning alignment\", date_range=(\"2024-01-01\", \"2026-06-15\"), min_citations=5 ) results = searcher.run() print(f\"Found {len(results)} papers across {len(set(r[database] for r in results))} databases\") Citation Network Analysis # Build and visualize citation networks from citation_network import CitationGraph graph = CitationGraph.from_papers(results) graph.compute_centrality() # PageRank, H-index, citation count # Identify seminal papers seminal = graph.get_top_cited(k=10) for paper in seminal: print(f\"{paper.title} — {paper.citation_count} citations\") Custom Synthesis Templates # Define custom synthesis templates for different review types templates = { \"systematic_review\": { \"sections\": [\"Introduction\", \"Methods\", \"Results\", \"Discussion\", \"Limitations\"], \"citation_style\": \"APA\", \"min_papers\": 15 }, \"survey_paper\": { \"sections\": [\"Background\", \"Taxonomy\", \"Methods Comparison\", \"Applications\", \"Future Directions\"], \"citation_style\": \"IEEE\", \"min_papers\": 30 }, \"rapid_review\": { \"sections\": [\"Overview\", \"Key Findings\", \"Evidence Gaps\"], \"citation_style\": \"Vancouver\", \"min_papers\": 8 } } Automated Citation Formatting Proper citation formatting is critical for academic work. The skill suite includes a citation formatter that supports APA, IEEE, Chicago, and Vancouver styles: `````python from citation_formatter import CitationFormatter\nformatter = CitationFormatter(style=“APA”, version=“7th”) formatted = formatter.format(results)\nExport to multiple formats formatted.export(“references_apa.txt”) formatted.export(“references_bib.bib”) formatted.export(“references_ris.ris”)\n## Comparison with Alternatives Several tools automate parts of the research process, but Academic Research Skills is unique in its end-to-end approach: | Feature | Academic Research Skills | ResearchRabbit | Elicit | Consensus | Litmaps | | * * * | * * * | * * * | * * * | * * * | * * * | | Stars | 31,628 | 5,200 | 12,000 | 3,800 | 2,100 | | Multi-Database Search | 4 databases | Semantic Scholar only | Semantic Scholar | Semantic Scholar | Crossref only | | PDF Extraction | Full (text + figures) | No | Abstracts only | Abstracts only | No | | Citation Analysis | Network + centrality | Graph only | Basic | Basic | Graph only | | Synthesis Engine | Custom templates | No | No | No | No | | Output Formats | Markdown, LaTeX, CSV | Visualization | Chat | Chat | Visualization | | Open Source | Yes | No | No | No | No | | Cost | Free (MIT) | Freemium | Free tier | Free tier | Freemium | The key differentiator is **open-source flexibility**. Unlike proprietary alternatives, Academic Research Skills lets you modify every step of the pipeline, integrate custom databases, and run entirely offline. ## Limitations: When Manual Research Still Wins Despite its capabilities, the automated pipeline has limitations: 1. **Domain expertise required** — The system can find and synthesize papers, but interpreting results in the context of your specific research question requires domain knowledge. 2. **Paywalled content** — Papers behind paywalls cannot be fully extracted. The system works best with open-access or preprint papers. 3. **Non-English papers** — Extraction and synthesis quality drops significantly for papers not in English. 4. **Interdisciplinary research** — The skill is optimized for computer science and biomedical research. Cross-disciplinary queries may miss relevant papers outside the training domain. 5. **Novel methodology discovery** — The system excels at summarizing existing work but struggles to identify genuinely novel methodological approaches that haven't been widely cited yet. In these cases, manual literature exploration often yields better results. Researchers should combine automated pipeline output with domain expertise for comprehensive coverage. `````bash # Quick suitability check # ✅ Systematic literature review → YES # ✅ Citation network analysis → YES # ✅ Finding papers on a specific topic → YES # ✅ Writing a grant proposal from scratch → PARTIAL (needs manual input) # ✅ Non-English literature review → NO (use with caution) Frequently Asked Questions Is Academic Research Skills free to use? Yes, the project is open-source. API costs for database queries are minimal (Semantic Scholar free tier covers most use cases).\nCan I use it without Claude Code? The skills are designed for Claude Code but the underlying Python scripts can run standalone. You’ll need to adapt the integration layer.\nWhat databases does it support? Currently supports arXiv, Semantic Scholar, PubMed, and Crossref. Adding new databases requires implementing a simple query adapter.\nHow accurate is the synthesis? The system achieves 90% F1 score in finding extraction compared to manual review. Synthesis quality depends on the complexity of the research question.\nCan I export results to reference managers? Yes. Export formats include Zotero CSV, BibTeX, RIS, and EndNote XML.\nDoes it handle figure extraction from PDFs? Yes. The PDF extraction module parses figures, tables, and captions using a combination of PDF parsing and OCR for scanned documents. It supports JPEG, PNG, and TIFF figure formats, and extracts table data into CSV format for further analysis.\nConclusion Academic Research Skills democratizes systematic literature reviews. What used to take weeks of manual searching, reading, and synthesis can now be accomplished in hours. With 31,628 stars, it has become the go-to tool for researchers who need to stay current in fast-moving fields like machine learning, computer vision, and natural language processing. The modular design also makes it suitable for systematic reviews in materials science, pharmacology, and environmental studies.\nFor researchers managing large datasets, WebShare proxies help with bulk paper downloads. DigitalOcean offers affordable cloud instances for running the pipeline at scale. Need affordable storage? HTStack.\nGet started:\nClone the repository and install dependencies to begin automating your research workflow today.\nnpx skills add https://github.com/Imbad0202/academic-research-skills ```` **Internal links**: [Compare AI coding agents](https://dibi8.com/ai-tools/oh-my-pi) · [Build production AI systems](https://dibi8.com/llm-frameworks/ai-engineering-from-scratch) * * * **Sources \u0026 Further Reading**: - GitHub repository: https://github.com/Imbad0202/academic-research-skills - Semantic Scholar API: https://api.semanticscholar.org/ - arXiv API: https://info.arxiv.org/help/api/index.html - PubMed API: https://www.ncbi.nlm.nih.gov/books/NBK25500/ **CTA**: Join the DIBI8 research community on Telegram — [t.me/DIBI8_Group](https://t.me/DIBI8_Group) **Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Academic Research Skills: Automate Literature Reviews with AI — 31K Star Framework 2026\", \"datePublished\": \"2026-06-15\", \"dateModified\": \"2026-06-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/academic-research-skills\" } } * * * ## Related Articles - [last30days-skill-ai-agent-research-engine-social-media](academic-research-skills) - [last30days-skill-ai-agent-research-engine-social-media](academic-research-skills) - [odysseus-self-hosted-ai-workspace-chat-agent-deep-research](academic-research-skills) - [last30days-skill-ai-agent-research-engine-social-media](academic-research-skills) - [last30days-skill-ai-agent-research-engine-social-media](academic-research-skills) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ","wordCount":"2000","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/academic-research-skills/"},"publisher":{"@type":"Organization","name":"Dibi8 - AI工具目录","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 - AI工具目录 (Alt + H)">Dibi8 - AI工具目录</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>10 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><ul><li><a href=#tldr aria-label=TL;DR>TL;DR</a></li><li><a href=#what-are-academic-research-skills aria-label="What Are Academic Research Skills?">What Are Academic Research Skills?</a></li><li><a href=#how-the-research-pipeline-works aria-label="How the Research Pipeline Works">How the Research Pipeline Works</a></li><li><a href=#installation--setup aria-label="Installation & Setup">Installation & Setup</a></li></ul><li><a href=#clone-the-repository aria-label="Clone the repository">Clone the repository</a></li><li><a href=#install-dependencies aria-label="Install dependencies">Install dependencies</a></li><li><a href=#configure-api-keys aria-label="Configure API keys">Configure API keys</a></li><li><a href=#edit-configyaml-with-your-api-keys aria-label="Edit config.yaml with your API keys">Edit config.yaml with your API keys</a><ul><ul><li><a href=#docker-deployment aria-label="Docker Deployment">Docker Deployment</a></li></ul><li><a href=#integration-with-research-tools aria-label="Integration with Research Tools">Integration with Research Tools</a></li><li><a href=#benchmarks-manual-vs-automated-research aria-label="Benchmarks: Manual vs Automated Research">Benchmarks: Manual vs Automated Research</a></li><li><a href=#advanced-usage-custom-research-workflows aria-label="Advanced Usage: Custom Research Workflows">Advanced Usage: Custom Research Workflows</a><ul><li><a href=#citation-network-analysis aria-label="Citation Network Analysis">Citation Network Analysis</a></li><li><a href=#custom-synthesis-templates aria-label="Custom Synthesis Templates">Custom Synthesis Templates</a></li><li><a href=#automated-citation-formatting aria-label="Automated Citation Formatting">Automated Citation Formatting</a></li></ul></li></ul></li><li><a href=#export-to-multiple-formats aria-label="Export to multiple formats">Export to multiple formats</a><ul><li><a href=#frequently-asked-questions aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul><li><a href=#is-academic-research-skills-free-to-use aria-label="Is Academic Research Skills free to use?">Is Academic Research Skills free to use?</a></li><li><a href=#can-i-use-it-without-claude-code aria-label="Can I use it without Claude Code?">Can I use it without Claude Code?</a></li><li><a href=#what-databases-does-it-support aria-label="What databases does it support?">What databases does it support?</a></li><li><a href=#how-accurate-is-the-synthesis aria-label="How accurate is the synthesis?">How accurate is the synthesis?</a></li><li><a href=#can-i-export-results-to-reference-managers aria-label="Can I export results to reference managers?">Can I export results to reference managers?</a></li><li><a href=#does-it-handle-figure-extraction-from-pdfs aria-label="Does it handle figure extraction from PDFs?">Does it handle figure extraction from PDFs?</a></li></ul></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li></ul></li></ul></div></details><div class="post-content md-content"><p><img alt="Hero Image" loading=lazy src=https://picsum.photos/seed/ai/1200x800></p><h2 id=tldr>TL;DR<a hidden class=anchor aria-hidden=true href=#tldr>#</a></h2><p>Academic Research Skills transforms Claude Code into a research assistant that can search papers, extract key findings, synthesize literature, and generate comprehensive reviews. With 31,628 stars, it automates the most time-consuming parts of academic research.</p><p><strong>TL;DR: 31,628 stars</strong> — the leading AI-powered research automation framework.</p><h2 id=what-are-academic-research-skills>What Are Academic Research Skills?<a hidden class=anchor aria-hidden=true href=#what-are-academic-research-skills>#</a></h2><p>Academic Research Skills is a modular skill system designed specifically for Claude Code that automates the end-to-end research pipeline. Instead of manually searching PubMed, arXiv, and Google Scholar, then reading each paper, then synthesizing findings into a coherent review, this framework chains specialized skills that handle each step.</p><p>The skill suite includes: - <strong>Paper Search</strong> — Query academic databases (PubMed, arXiv, Semantic Scholar) with intelligent filtering</p><ul><li><strong>PDF Extraction</strong> — Parse PDF papers, extract figures, tables, and key passages using a combination of PDF parsing and OCR for scanned documents</li><li><strong>Citation Analysis</strong> — Track citation networks, identify influential papers</li><li><strong>Synthesis Engine</strong> — Combine findings from multiple papers into structured summaries</li><li><strong>Literature Review Writer</strong> — Generate publication-ready literature reviews with proper citations</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install Academic Research Skills</span>
+</span></span><span style=display:flex><span>npx skills add https://github.com/Imbad0202/academic-research-skills
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># List available research skills</span>
+</span></span><span style=display:flex><span>npx skills list | grep research
+</span></span></code></pre></div><h2 id=how-the-research-pipeline-works>How the Research Pipeline Works<a hidden class=anchor aria-hidden=true href=#how-the-research-pipeline-works>#</a></h2><p>The research pipeline operates as a directed acyclic graph (DAG), where each skill&rsquo;s output feeds into the next: `````
+Query → Search → Filter → Extract → Analyze → Synthesize → Write</p><pre tabindex=0><code>
 1. **Query Formulation** — You provide a research question or topic
 2. **Database Search** — The search skill queries multiple academic databases simultaneously
 3. **Relevance Filtering** — Papers are ranked by relevance using citation count, recency, and semantic similarity
@@ -288,18 +31,9 @@ python3 scripts/extract.py --papers filtered_papers.json --fields methods,result
 
 # Step 4: Synthesize
 python3 scripts/synthesize.py --extractions extractions.json --output synthesis.md
-</code></pre><h2 id="installation--setup">Installation &amp; Setup<a hidden class="anchor" aria-hidden="true" href="#installation--setup">#</a></h2>
-<p>Setting up Academic Research Skills requires Python 3.10+ and API access to academic databases: `````bash</p>
-<h1 id="clone-the-repository">Clone the repository<a hidden class="anchor" aria-hidden="true" href="#clone-the-repository">#</a></h1>
-<p>curl -sL &ldquo;<a href="https://github.com/Imbad0202/academic-research-skills/archive/refs/heads/main.zip%22">https://github.com/Imbad0202/academic-research-skills/archive/refs/heads/main.zip"</a> -o /tmp/research-skills.zip
+</code></pre><h2 id=installation--setup>Installation & Setup<a hidden class=anchor aria-hidden=true href=#installation--setup>#</a></h2><p>Setting up Academic Research Skills requires Python 3.10+ and API access to academic databases: `````bash</p><h1 id=clone-the-repository>Clone the repository<a hidden class=anchor aria-hidden=true href=#clone-the-repository>#</a></h1><p>curl -sL &ldquo;<a href=https://github.com/Imbad0202/academic-research-skills/archive/refs/heads/main.zip%22>https://github.com/Imbad0202/academic-research-skills/archive/refs/heads/main.zip"</a> -o /tmp/research-skills.zip
 unzip -q /tmp/research-skills.zip -d /tmp
-cd /tmp/academic-research-skills-main</p>
-<h1 id="install-dependencies">Install dependencies<a hidden class="anchor" aria-hidden="true" href="#install-dependencies">#</a></h1>
-<p>pip install -r requirements.txt</p>
-<h1 id="configure-api-keys">Configure API keys<a hidden class="anchor" aria-hidden="true" href="#configure-api-keys">#</a></h1>
-<p>cp config.example.yaml config.yaml</p>
-<h1 id="edit-configyaml-with-your-api-keys">Edit config.yaml with your API keys<a hidden class="anchor" aria-hidden="true" href="#edit-configyaml-with-your-api-keys">#</a></h1>
-<pre tabindex="0"><code>
+cd /tmp/academic-research-skills-main</p><h1 id=install-dependencies>Install dependencies<a hidden class=anchor aria-hidden=true href=#install-dependencies>#</a></h1><p>pip install -r requirements.txt</p><h1 id=configure-api-keys>Configure API keys<a hidden class=anchor aria-hidden=true href=#configure-api-keys>#</a></h1><p>cp config.example.yaml config.yaml</p><h1 id=edit-configyaml-with-your-api-keys>Edit config.yaml with your API keys<a hidden class=anchor aria-hidden=true href=#edit-configyaml-with-your-api-keys>#</a></h1><pre tabindex=0><code>
 ### Required API Keys
 
 | Service | Purpose | Free Tier |
@@ -331,53 +65,34 @@ resp = requests.get(&#39;https://api.semanticscholar.org/graph/v1/paper/search&#
 })
 print(f&#39;Status: {resp.status_code}, Results: {len(resp.json().get(&#34;data&#34;, []))}&#39;)
 &#34;
-</code></pre><h3 id="docker-deployment">Docker Deployment<a hidden class="anchor" aria-hidden="true" href="#docker-deployment">#</a></h3>
-<p>For reproducible research environments, Academic Research Skills provides an official Docker image that bundles all dependencies and API clients into a single container.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Build the Docker image</span>
-</span></span><span style="display:flex;"><span>docker build -t research-skills:latest .
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run with mounted config</span>
-</span></span><span style="display:flex;"><span>docker run -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/config.yaml:/app/config.yaml research-skills:latest <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  python3 scripts/research.py --topic <span style="color:#e6db74">&#34;LLM fine-tuning strategies&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run with GPU support for PDF OCR</span>
-</span></span><span style="display:flex;"><span>docker run --gpus all -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/config.yaml:/app/config.yaml research-skills:latest <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  python3 scripts/extract.py --papers papers.json --with-ocr
-</span></span></code></pre></div><p>The Docker image includes tesseract-ocr for scanned document processing and poppler-utils for PDF text extraction.</p>
-<h2 id="integration-with-research-tools">Integration with Research Tools<a hidden class="anchor" aria-hidden="true" href="#integration-with-research-tools">#</a></h2>
-<p>Academic Research Skills integrates with popular research and writing tools: | Tool | Integration Method | Use Case |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+</code></pre><h3 id=docker-deployment>Docker Deployment<a hidden class=anchor aria-hidden=true href=#docker-deployment>#</a></h3><p>For reproducible research environments, Academic Research Skills provides an official Docker image that bundles all dependencies and API clients into a single container.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Build the Docker image</span>
+</span></span><span style=display:flex><span>docker build -t research-skills:latest .
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Run with mounted config</span>
+</span></span><span style=display:flex><span>docker run -v <span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span>/config.yaml:/app/config.yaml research-skills:latest <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  python3 scripts/research.py --topic <span style=color:#e6db74>&#34;LLM fine-tuning strategies&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Run with GPU support for PDF OCR</span>
+</span></span><span style=display:flex><span>docker run --gpus all -v <span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span>/config.yaml:/app/config.yaml research-skills:latest <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  python3 scripts/extract.py --papers papers.json --with-ocr
+</span></span></code></pre></div><p>The Docker image includes tesseract-ocr for scanned document processing and poppler-utils for PDF text extraction.</p><h2 id=integration-with-research-tools>Integration with Research Tools<a hidden class=anchor aria-hidden=true href=#integration-with-research-tools>#</a></h2><p>Academic Research Skills integrates with popular research and writing tools: | Tool | Integration Method | Use Case |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | <strong>Zotero</strong> | CSV export/import | Reference management |
 | <strong>Notion</strong> | Markdown import | Research notes |
 | <strong>Overleaf</strong> | LaTeX export | Paper writing |
 | <strong>Obsidian</strong> | Markdown vault sync | Knowledge management |
-| <strong>Connected Papers</strong> | API integration | Citation visualization |</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Export research findings to Zotero-compatible CSV</span>
-</span></span><span style="display:flex;"><span>python3 scripts/export.py --format zotero --input synthesis.json --output references.csv
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate Overleaf-ready LaTeX bibliography</span>
-</span></span><span style="display:flex;"><span>python3 scripts/export.py --format latex --input synthesis.json --output bibliography.bib
-</span></span></code></pre></div><h2 id="benchmarks-manual-vs-automated-research">Benchmarks: Manual vs Automated Research<a hidden class="anchor" aria-hidden="true" href="#benchmarks-manual-vs-automated-research">#</a></h2>
-<p>The time savings from automating literature reviews are substantial: `````
-Research Task                  | Manual | Automated | Speedup</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|&mdash;
-Search 50 relevant papers      | 8 hrs  | 15 min    | 32x
-Extract key findings from 20   | 16 hrs | 45 min    | 21x
-Synthesize into review         | 12 hrs | 2 hrs     | 6x
-Format citations properly      | 3 hrs  | 5 min     | 36x
-TOTAL                          | 39 hrs | 3 hrs     | 13x</p>
-<pre tabindex="0"><code>
+| <strong>Connected Papers</strong> | API integration | Citation visualization |</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Export research findings to Zotero-compatible CSV</span>
+</span></span><span style=display:flex><span>python3 scripts/export.py --format zotero --input synthesis.json --output references.csv
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Generate Overleaf-ready LaTeX bibliography</span>
+</span></span><span style=display:flex><span>python3 scripts/export.py --format latex --input synthesis.json --output bibliography.bib
+</span></span></code></pre></div><h2 id=benchmarks-manual-vs-automated-research>Benchmarks: Manual vs Automated Research<a hidden class=anchor aria-hidden=true href=#benchmarks-manual-vs-automated-research>#</a></h2><p>The time savings from automating literature reviews are substantial: `````
+Research Task | Manual | Automated | Speedup</p><hr><p>|</p><hr><p>|</p><hr><p>|&mdash;
+Search 50 relevant papers | 8 hrs | 15 min | 32x
+Extract key findings from 20 | 16 hrs | 45 min | 21x
+Synthesize into review | 12 hrs | 2 hrs | 6x
+Format citations properly | 3 hrs | 5 min | 36x
+TOTAL | 39 hrs | 3 hrs | 13x</p><pre tabindex=0><code>
 These benchmarks were measured on a 20-paper systematic review in computer science. The automated pipeline maintained 94% accuracy in finding extraction compared to manual review, with higher consistency across papers.
 
 ### Accuracy Comparison
@@ -390,59 +105,50 @@ metrics = {
     &#34;f1_score&#34;: 0.90,     # Harmonic mean of precision and recall
     &#34;time_saved_hours&#34;: 36 # 36 hours saved per review
 }
-</code></pre><h2 id="advanced-usage-custom-research-workflows">Advanced Usage: Custom Research Workflows<a hidden class="anchor" aria-hidden="true" href="#advanced-usage-custom-research-workflows">#</a></h2>
-<p>Experienced researchers extend the base skills with custom workflows: ### Multi-Database Search Strategy</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Search across multiple databases with unified results</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> research_pipeline <span style="color:#f92672">import</span> MultiDatabaseSearcher
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>searcher <span style="color:#f92672">=</span> MultiDatabaseSearcher(
-</span></span><span style="display:flex;"><span>    databases<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;arxiv&#34;</span>, <span style="color:#e6db74">&#34;semantic_scholar&#34;</span>, <span style="color:#e6db74">&#34;pubmed&#34;</span>, <span style="color:#e6db74">&#34;crossref&#34;</span>],
-</span></span><span style="display:flex;"><span>    query<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;reinforcement learning alignment&#34;</span>,
-</span></span><span style="display:flex;"><span>    date_range<span style="color:#f92672">=</span>(<span style="color:#e6db74">&#34;2024-01-01&#34;</span>, <span style="color:#e6db74">&#34;2026-06-15&#34;</span>),
-</span></span><span style="display:flex;"><span>    min_citations<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> searcher<span style="color:#f92672">.</span>run()
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Found </span><span style="color:#e6db74">{</span>len(results)<span style="color:#e6db74">}</span><span style="color:#e6db74"> papers across </span><span style="color:#e6db74">{</span>len(set(r[database] <span style="color:#66d9ef">for</span> r <span style="color:#f92672">in</span> results))<span style="color:#e6db74">}</span><span style="color:#e6db74"> databases&#34;</span>)
-</span></span></code></pre></div><h3 id="citation-network-analysis">Citation Network Analysis<a hidden class="anchor" aria-hidden="true" href="#citation-network-analysis">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Build and visualize citation networks</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> citation_network <span style="color:#f92672">import</span> CitationGraph
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>graph <span style="color:#f92672">=</span> CitationGraph<span style="color:#f92672">.</span>from_papers(results)
-</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>compute_centrality()  <span style="color:#75715e"># PageRank, H-index, citation count</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Identify seminal papers</span>
-</span></span><span style="display:flex;"><span>seminal <span style="color:#f92672">=</span> graph<span style="color:#f92672">.</span>get_top_cited(k<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> paper <span style="color:#f92672">in</span> seminal: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>paper<span style="color:#f92672">.</span>title<span style="color:#e6db74">}</span><span style="color:#e6db74"> — </span><span style="color:#e6db74">{</span>paper<span style="color:#f92672">.</span>citation_count<span style="color:#e6db74">}</span><span style="color:#e6db74"> citations&#34;</span>)
-</span></span></code></pre></div><h3 id="custom-synthesis-templates">Custom Synthesis Templates<a hidden class="anchor" aria-hidden="true" href="#custom-synthesis-templates">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Define custom synthesis templates for different review types</span>
-</span></span><span style="display:flex;"><span>templates <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;systematic_review&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;sections&#34;</span>: [<span style="color:#e6db74">&#34;Introduction&#34;</span>, <span style="color:#e6db74">&#34;Methods&#34;</span>, <span style="color:#e6db74">&#34;Results&#34;</span>, <span style="color:#e6db74">&#34;Discussion&#34;</span>, <span style="color:#e6db74">&#34;Limitations&#34;</span>],
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;citation_style&#34;</span>: <span style="color:#e6db74">&#34;APA&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;min_papers&#34;</span>: <span style="color:#ae81ff">15</span>
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;survey_paper&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;sections&#34;</span>: [<span style="color:#e6db74">&#34;Background&#34;</span>, <span style="color:#e6db74">&#34;Taxonomy&#34;</span>, <span style="color:#e6db74">&#34;Methods Comparison&#34;</span>, <span style="color:#e6db74">&#34;Applications&#34;</span>, <span style="color:#e6db74">&#34;Future Directions&#34;</span>],
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;citation_style&#34;</span>: <span style="color:#e6db74">&#34;IEEE&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;min_papers&#34;</span>: <span style="color:#ae81ff">30</span>
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;rapid_review&#34;</span>: {
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;sections&#34;</span>: [<span style="color:#e6db74">&#34;Overview&#34;</span>, <span style="color:#e6db74">&#34;Key Findings&#34;</span>, <span style="color:#e6db74">&#34;Evidence Gaps&#34;</span>],
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;citation_style&#34;</span>: <span style="color:#e6db74">&#34;Vancouver&#34;</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;min_papers&#34;</span>: <span style="color:#ae81ff">8</span>
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h3 id="automated-citation-formatting">Automated Citation Formatting<a hidden class="anchor" aria-hidden="true" href="#automated-citation-formatting">#</a></h3>
-<p>Proper citation formatting is critical for academic work. The skill suite includes a citation formatter that supports APA, IEEE, Chicago, and Vancouver styles: `````python
-from citation_formatter import CitationFormatter</p>
-<p>formatter = CitationFormatter(style=&ldquo;APA&rdquo;, version=&ldquo;7th&rdquo;)
-formatted = formatter.format(results)</p>
-<h1 id="export-to-multiple-formats">Export to multiple formats<a hidden class="anchor" aria-hidden="true" href="#export-to-multiple-formats">#</a></h1>
-<p>formatted.export(&ldquo;references_apa.txt&rdquo;)
+</code></pre><h2 id=advanced-usage-custom-research-workflows>Advanced Usage: Custom Research Workflows<a hidden class=anchor aria-hidden=true href=#advanced-usage-custom-research-workflows>#</a></h2><p>Experienced researchers extend the base skills with custom workflows: ### Multi-Database Search Strategy</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Search across multiple databases with unified results</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> research_pipeline <span style=color:#f92672>import</span> MultiDatabaseSearcher
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>searcher <span style=color:#f92672>=</span> MultiDatabaseSearcher(
+</span></span><span style=display:flex><span>    databases<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;arxiv&#34;</span>, <span style=color:#e6db74>&#34;semantic_scholar&#34;</span>, <span style=color:#e6db74>&#34;pubmed&#34;</span>, <span style=color:#e6db74>&#34;crossref&#34;</span>],
+</span></span><span style=display:flex><span>    query<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;reinforcement learning alignment&#34;</span>,
+</span></span><span style=display:flex><span>    date_range<span style=color:#f92672>=</span>(<span style=color:#e6db74>&#34;2024-01-01&#34;</span>, <span style=color:#e6db74>&#34;2026-06-15&#34;</span>),
+</span></span><span style=display:flex><span>    min_citations<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> searcher<span style=color:#f92672>.</span>run()
+</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Found </span><span style=color:#e6db74>{</span>len(results)<span style=color:#e6db74>}</span><span style=color:#e6db74> papers across </span><span style=color:#e6db74>{</span>len(set(r[database] <span style=color:#66d9ef>for</span> r <span style=color:#f92672>in</span> results))<span style=color:#e6db74>}</span><span style=color:#e6db74> databases&#34;</span>)
+</span></span></code></pre></div><h3 id=citation-network-analysis>Citation Network Analysis<a hidden class=anchor aria-hidden=true href=#citation-network-analysis>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Build and visualize citation networks</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>from</span> citation_network <span style=color:#f92672>import</span> CitationGraph
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>graph <span style=color:#f92672>=</span> CitationGraph<span style=color:#f92672>.</span>from_papers(results)
+</span></span><span style=display:flex><span>graph<span style=color:#f92672>.</span>compute_centrality()  <span style=color:#75715e># PageRank, H-index, citation count</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Identify seminal papers</span>
+</span></span><span style=display:flex><span>seminal <span style=color:#f92672>=</span> graph<span style=color:#f92672>.</span>get_top_cited(k<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>)
+</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> paper <span style=color:#f92672>in</span> seminal: print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>paper<span style=color:#f92672>.</span>title<span style=color:#e6db74>}</span><span style=color:#e6db74> — </span><span style=color:#e6db74>{</span>paper<span style=color:#f92672>.</span>citation_count<span style=color:#e6db74>}</span><span style=color:#e6db74> citations&#34;</span>)
+</span></span></code></pre></div><h3 id=custom-synthesis-templates>Custom Synthesis Templates<a hidden class=anchor aria-hidden=true href=#custom-synthesis-templates>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Define custom synthesis templates for different review types</span>
+</span></span><span style=display:flex><span>templates <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;systematic_review&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;sections&#34;</span>: [<span style=color:#e6db74>&#34;Introduction&#34;</span>, <span style=color:#e6db74>&#34;Methods&#34;</span>, <span style=color:#e6db74>&#34;Results&#34;</span>, <span style=color:#e6db74>&#34;Discussion&#34;</span>, <span style=color:#e6db74>&#34;Limitations&#34;</span>],
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;citation_style&#34;</span>: <span style=color:#e6db74>&#34;APA&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;min_papers&#34;</span>: <span style=color:#ae81ff>15</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;survey_paper&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;sections&#34;</span>: [<span style=color:#e6db74>&#34;Background&#34;</span>, <span style=color:#e6db74>&#34;Taxonomy&#34;</span>, <span style=color:#e6db74>&#34;Methods Comparison&#34;</span>, <span style=color:#e6db74>&#34;Applications&#34;</span>, <span style=color:#e6db74>&#34;Future Directions&#34;</span>],
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;citation_style&#34;</span>: <span style=color:#e6db74>&#34;IEEE&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;min_papers&#34;</span>: <span style=color:#ae81ff>30</span>
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;rapid_review&#34;</span>: {
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;sections&#34;</span>: [<span style=color:#e6db74>&#34;Overview&#34;</span>, <span style=color:#e6db74>&#34;Key Findings&#34;</span>, <span style=color:#e6db74>&#34;Evidence Gaps&#34;</span>],
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;citation_style&#34;</span>: <span style=color:#e6db74>&#34;Vancouver&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;min_papers&#34;</span>: <span style=color:#ae81ff>8</span>
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h3 id=automated-citation-formatting>Automated Citation Formatting<a hidden class=anchor aria-hidden=true href=#automated-citation-formatting>#</a></h3><p>Proper citation formatting is critical for academic work. The skill suite includes a citation formatter that supports APA, IEEE, Chicago, and Vancouver styles: `````python
+from citation_formatter import CitationFormatter</p><p>formatter = CitationFormatter(style=&ldquo;APA&rdquo;, version=&ldquo;7th&rdquo;)
+formatted = formatter.format(results)</p><h1 id=export-to-multiple-formats>Export to multiple formats<a hidden class=anchor aria-hidden=true href=#export-to-multiple-formats>#</a></h1><p>formatted.export(&ldquo;references_apa.txt&rdquo;)
 formatted.export(&ldquo;references_bib.bib&rdquo;)
-formatted.export(&ldquo;references_ris.ris&rdquo;)</p>
-<pre tabindex="0"><code>
+formatted.export(&ldquo;references_ris.ris&rdquo;)</p><pre tabindex=0><code>
 ## Comparison with Alternatives
 
 Several tools automate parts of the research process, but Academic Research Skills is unique in its end-to-end approach: | Feature | Academic Research Skills | ResearchRabbit | Elicit | Consensus | Litmaps |
@@ -489,216 +195,88 @@ Despite its capabilities, the automated pipeline has limitations: 1. **Domain ex
 # ✅ Finding papers on a specific topic → YES
 # ✅ Writing a grant proposal from scratch → PARTIAL (needs manual input)
 # ✅ Non-English literature review → NO (use with caution)
-</code></pre><h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
-<h3 id="is-academic-research-skills-free-to-use">Is Academic Research Skills free to use?<a hidden class="anchor" aria-hidden="true" href="#is-academic-research-skills-free-to-use">#</a></h3>
-<p>Yes, the project is open-source. API costs for database queries are minimal (Semantic Scholar free tier covers most use cases).</p>
-<h3 id="can-i-use-it-without-claude-code">Can I use it without Claude Code?<a hidden class="anchor" aria-hidden="true" href="#can-i-use-it-without-claude-code">#</a></h3>
-<p>The skills are designed for Claude Code but the underlying Python scripts can run standalone. You&rsquo;ll need to adapt the integration layer.</p>
-<h3 id="what-databases-does-it-support">What databases does it support?<a hidden class="anchor" aria-hidden="true" href="#what-databases-does-it-support">#</a></h3>
-<p>Currently supports arXiv, Semantic Scholar, PubMed, and Crossref. Adding new databases requires implementing a simple query adapter.</p>
-<h3 id="how-accurate-is-the-synthesis">How accurate is the synthesis?<a hidden class="anchor" aria-hidden="true" href="#how-accurate-is-the-synthesis">#</a></h3>
-<p>The system achieves 90% F1 score in finding extraction compared to manual review. Synthesis quality depends on the complexity of the research question.</p>
-<h3 id="can-i-export-results-to-reference-managers">Can I export results to reference managers?<a hidden class="anchor" aria-hidden="true" href="#can-i-export-results-to-reference-managers">#</a></h3>
-<p>Yes. Export formats include Zotero CSV, BibTeX, RIS, and EndNote XML.</p>
-<h3 id="does-it-handle-figure-extraction-from-pdfs">Does it handle figure extraction from PDFs?<a hidden class="anchor" aria-hidden="true" href="#does-it-handle-figure-extraction-from-pdfs">#</a></h3>
-<p>Yes. The PDF extraction module parses figures, tables, and captions using a combination of PDF parsing and OCR for scanned documents. It supports JPEG, PNG, and TIFF figure formats, and extracts table data into CSV format for further analysis.</p>
-<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
-<p>Academic Research Skills democratizes systematic literature reviews. What used to take weeks of manual searching, reading, and synthesis can now be accomplished in hours. With 31,628 stars, it has become the go-to tool for researchers who need to stay current in fast-moving fields like machine learning, computer vision, and natural language processing. The modular design also makes it suitable for systematic reviews in materials science, pharmacology, and environmental studies.</p>
-<p>For researchers managing large datasets, <a href="https://proxy.webshare.io/?&amp;promo=oa14d5f0wx4f">WebShare proxies</a> help with bulk paper downloads. <a href="https://m.do.co/oa14d5f0wx4f">DigitalOcean</a> offers affordable cloud instances for running the pipeline at scale. Need affordable storage? <a href="https://htstack.com/?referral_code=oa14d5f0wx4f">HTStack</a>.</p>
-<p><strong>Get started:</strong></p>
-<p>Clone the repository and install dependencies to begin automating your research workflow today.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npx skills add https://github.com/Imbad0202/academic-research-skills
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**Internal links**: <span style="color:#f92672">[</span>Compare AI coding agents<span style="color:#f92672">](</span>https://dibi8.com/ai-tools/oh-my-pi<span style="color:#f92672">)</span> · <span style="color:#f92672">[</span>Build production AI systems<span style="color:#f92672">](</span>https://dibi8.com/llm-frameworks/ai-engineering-from-scratch<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>* * *
-</span></span><span style="display:flex;"><span>**Sources &amp; Further Reading**: - GitHub repository: https://github.com/Imbad0202/academic-research-skills
-</span></span><span style="display:flex;"><span>- Semantic Scholar API: https://api.semanticscholar.org/
-</span></span><span style="display:flex;"><span>- arXiv API: https://info.arxiv.org/help/api/index.html
-</span></span><span style="display:flex;"><span>- PubMed API: https://www.ncbi.nlm.nih.gov/books/NBK25500/
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**CTA**: Join the DIBI8 research community on Telegram — <span style="color:#f92672">[</span>t.me/DIBI8_Group<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;Academic Research Skills: Automate Literature Reviews with AI — 31K Star Framework 2026&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-06-15&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-06-15&#34;</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
-</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
-</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/resources/academic-research-skills&#34;</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span><span style="display:flex;"><span>&lt;/script&gt;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>* * *
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>last30days-skill-ai-agent-research-engine-social-media<span style="color:#f92672">](</span>academic-research-skills<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>last30days-skill-ai-agent-research-engine-social-media<span style="color:#f92672">](</span>academic-research-skills<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>odysseus-self-hosted-ai-workspace-chat-agent-deep-research<span style="color:#f92672">](</span>academic-research-skills<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>last30days-skill-ai-agent-research-engine-social-media<span style="color:#f92672">](</span>academic-research-skills<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>last30days-skill-ai-agent-research-engine-social-media<span style="color:#f92672">](</span>academic-research-skills<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>* * *
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>*Found this helpful? <span style="color:#f92672">[</span>Join our Telegram community<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> daily AI tool updates!*
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions (FAQ)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**问：AI Agent和传统自动化有什么区别？**
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**问：如何选择合适的AI Agent框架？**
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**问：AI Agent的安全性如何保证？**
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**问：AI Agent的学习成本有多高？**
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>**问：能否自定义AI Agent的行为？**
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</span></span></code></pre></div>
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
-      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="https://dibi8.com/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/">
-    <span class="title">« 上一页</span>
-    <span>AI Tool Guide</span>
-  </a>
-  <a class="next" href="https://dibi8.com/ai-coding-agents/act/">
-    <span class="title">下一页 »</span>
-    <span>AI Tool Guide</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
-
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
-        <polyline points="17 11 12 6 7 11"></polyline>
-        <polyline points="17 18 12 13 7 18"></polyline>
-    </svg>
-</a>
-
-
-<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-        <span style="font-size:20px;">🌐</span>
-        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
-    </div>
-    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
-        <option value="">Select language...</option>
-        <option value="zh">中文 (Chinese)</option>
-        <option value="en">English</option>
-        <option value="ko">한국어 (Korean)</option>
-        <option value="vi">Tiếng Việt (Vietnamese)</option>
-        <option value="ja">日本語 (Japanese)</option>
-        <option value="fr">Français (French)</option>
-        <option value="de">Deutsch (German)</option>
-        <option value="es">Español (Spanish)</option>
-        <option value="ar">العربية (Arabic)</option>
-        <option value="pt">Português (Portuguese)</option>
-        <option value="ru">Русский (Russian)</option>
-        <option value="hi">हिन्दी (Hindi)</option>
-        <option value="th">ไทย (Thai)</option>
-        <option value="id">Indonesia (Indonesian)</option>
-    </select>
-</div>
-
-<script>
-function translatePage(lang) {
-    if (!lang) return;
-    
-    
-    const url = window.location.href;
-    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
-    
-    
-    window.open(translatedUrl, '_blank');
-}
-
-
-(function() {
-    var navLang = navigator.language || navigator.userLanguage;
-    var langMap = {
-        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
-        'en': 'en',
-        'ko': 'ko',
-        'vi': 'vi',
-        'ja': 'ja',
-        'fr': 'fr',
-        'de': 'de',
-        'es': 'es',
-        'ar': 'ar',
-        'pt': 'pt',
-        'ru': 'ru',
-        'hi': 'hi',
-        'th': 'th',
-        'id': 'id'
-    };
-    var detected = langMap[navLang] || 'en';
-    document.getElementById('lang-select').value = detected;
-})();
-</script>
-
-
-<div id="google_translate_element" style="display:none;"></div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'zh',
-        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
-        autoDisplay: false
-    }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-</body>
-
-</html>
+</code></pre><h2 id=frequently-asked-questions>Frequently Asked Questions<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions>#</a></h2><h3 id=is-academic-research-skills-free-to-use>Is Academic Research Skills free to use?<a hidden class=anchor aria-hidden=true href=#is-academic-research-skills-free-to-use>#</a></h3><p>Yes, the project is open-source. API costs for database queries are minimal (Semantic Scholar free tier covers most use cases).</p><h3 id=can-i-use-it-without-claude-code>Can I use it without Claude Code?<a hidden class=anchor aria-hidden=true href=#can-i-use-it-without-claude-code>#</a></h3><p>The skills are designed for Claude Code but the underlying Python scripts can run standalone. You&rsquo;ll need to adapt the integration layer.</p><h3 id=what-databases-does-it-support>What databases does it support?<a hidden class=anchor aria-hidden=true href=#what-databases-does-it-support>#</a></h3><p>Currently supports arXiv, Semantic Scholar, PubMed, and Crossref. Adding new databases requires implementing a simple query adapter.</p><h3 id=how-accurate-is-the-synthesis>How accurate is the synthesis?<a hidden class=anchor aria-hidden=true href=#how-accurate-is-the-synthesis>#</a></h3><p>The system achieves 90% F1 score in finding extraction compared to manual review. Synthesis quality depends on the complexity of the research question.</p><h3 id=can-i-export-results-to-reference-managers>Can I export results to reference managers?<a hidden class=anchor aria-hidden=true href=#can-i-export-results-to-reference-managers>#</a></h3><p>Yes. Export formats include Zotero CSV, BibTeX, RIS, and EndNote XML.</p><h3 id=does-it-handle-figure-extraction-from-pdfs>Does it handle figure extraction from PDFs?<a hidden class=anchor aria-hidden=true href=#does-it-handle-figure-extraction-from-pdfs>#</a></h3><p>Yes. The PDF extraction module parses figures, tables, and captions using a combination of PDF parsing and OCR for scanned documents. It supports JPEG, PNG, and TIFF figure formats, and extracts table data into CSV format for further analysis.</p><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>Academic Research Skills democratizes systematic literature reviews. What used to take weeks of manual searching, reading, and synthesis can now be accomplished in hours. With 31,628 stars, it has become the go-to tool for researchers who need to stay current in fast-moving fields like machine learning, computer vision, and natural language processing. The modular design also makes it suitable for systematic reviews in materials science, pharmacology, and environmental studies.</p><p>For researchers managing large datasets, <a href="https://proxy.webshare.io/?&amp;promo=oa14d5f0wx4f">WebShare proxies</a> help with bulk paper downloads. <a href=https://m.do.co/oa14d5f0wx4f>DigitalOcean</a> offers affordable cloud instances for running the pipeline at scale. Need affordable storage? <a href="https://htstack.com/?referral_code=oa14d5f0wx4f">HTStack</a>.</p><p><strong>Get started:</strong></p><p>Clone the repository and install dependencies to begin automating your research workflow today.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>npx skills add https://github.com/Imbad0202/academic-research-skills
+</span></span><span style=display:flex><span><span style=color:#e6db74>````</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**Internal links**: <span style=color:#f92672>[</span>Compare AI coding agents<span style=color:#f92672>](</span>https://dibi8.com/ai-tools/oh-my-pi<span style=color:#f92672>)</span> · <span style=color:#f92672>[</span>Build production AI systems<span style=color:#f92672>](</span>https://dibi8.com/llm-frameworks/ai-engineering-from-scratch<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span>**Sources &amp; Further Reading**: - GitHub repository: https://github.com/Imbad0202/academic-research-skills
+</span></span><span style=display:flex><span>- Semantic Scholar API: https://api.semanticscholar.org/
+</span></span><span style=display:flex><span>- arXiv API: https://info.arxiv.org/help/api/index.html
+</span></span><span style=display:flex><span>- PubMed API: https://www.ncbi.nlm.nih.gov/books/NBK25500/
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**CTA**: Join the DIBI8 research community on Telegram — <span style=color:#f92672>[</span>t.me/DIBI8_Group<span style=color:#f92672>](</span>https://t.me/DIBI8_Group<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**Disclosure**: This article contains affiliate links. If you sign up through our links, we may earn a commission at no extra cost to you.
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@context&#34;</span>: <span style=color:#e6db74>&#34;https://schema.org&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Article&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;headline&#34;</span>: <span style=color:#e6db74>&#34;Academic Research Skills: Automate Literature Reviews with AI — 31K Star Framework 2026&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;datePublished&#34;</span>: <span style=color:#e6db74>&#34;2026-06-15&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;dateModified&#34;</span>: <span style=color:#e6db74>&#34;2026-06-15&#34;</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;publisher&#34;</span>: <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;logo&#34;</span>: <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;ImageObject&#34;</span>,
+</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
+</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mainEntityOfPage&#34;</span>: <span style=color:#f92672>{</span>
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;WebPage&#34;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/resources/academic-research-skills&#34;</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
+</span></span><span style=display:flex><span>&lt;/script&gt;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span><span style=color:#75715e>## Related Articles</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>last30days-skill-ai-agent-research-engine-social-media<span style=color:#f92672>](</span>academic-research-skills<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>last30days-skill-ai-agent-research-engine-social-media<span style=color:#f92672>](</span>academic-research-skills<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>odysseus-self-hosted-ai-workspace-chat-agent-deep-research<span style=color:#f92672>](</span>academic-research-skills<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>last30days-skill-ai-agent-research-engine-social-media<span style=color:#f92672>](</span>academic-research-skills<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>last30days-skill-ai-agent-research-engine-social-media<span style=color:#f92672>](</span>academic-research-skills<span style=color:#f92672>)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>* * *
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>*Found this helpful? <span style=color:#f92672>[</span>Join our Telegram community<span style=color:#f92672>](</span>https://t.me/DIBI8_Group<span style=color:#f92672>)</span> <span style=color:#66d9ef>for</span> daily AI tool updates!*
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e>## Frequently Asked Questions (FAQ)</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**问：AI Agent和传统自动化有什么区别？**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**问：如何选择合适的AI Agent框架？**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**问：AI Agent的安全性如何保证？**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**问：AI Agent的学习成本有多高？**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>**问：能否自定义AI Agent的行为？**
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/><span class=title>« 上一页</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/ai-coding-agents/act/><span class=title>下一页 »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
+<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script></body></html>

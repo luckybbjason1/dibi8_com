@@ -1,335 +1,27 @@
-<!DOCTYPE html>
-<html lang="zh" dir="auto" data-theme="dark">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>AI Tool Guide | Dibi8</title>
-<meta name="keywords" content="ai, tools">
-<meta name="description" content="Technical guide and comparison">
-<meta name="author" content="">
-<link rel="canonical" href="https://dibi8.com/ai-coding-agents/huggingface-transformers-guide/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://dibi8.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/huggingface-transformers-guide/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/huggingface-transformers-guide/">
-  <meta property="og:site_name" content="Dibi8">
-  <meta property="og:title" content="AI Tool Guide">
-  <meta property="og:description" content="Technical guide and comparison">
-  <meta property="og:locale" content="zh_cn">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="ai-coding-agents">
-    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:tag" content="Ai">
-    <meta property="article:tag" content="Tools">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI Tool Guide">
-  <meta name="twitter:description" content="Technical guide and comparison">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "AI Coding Agents - dibi8",
-      "item": "https://dibi8.com/ai-coding-agents/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "AI Tool Guide",
-      "item": "https://dibi8.com/ai-coding-agents/huggingface-transformers-guide/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "AI Tool Guide",
-  "name": "AI Tool Guide",
-  "description": "Technical guide and comparison",
-  "keywords": [
-    "ai", "tools"
-  ],
-  "articleBody": "{\u003c/* resource-info */\u003e}\nIf you work with natural language processing or large language models in 2025, you use Hugging Face Transformers. The library has become the standard infrastructure for the entire NLP field — powering everything from research prototypes at Stanford and MIT to production systems at Google and Microsoft. Over 500,000 pretrained models sit on the Hugging Face Hub, downloaded collectively more than 100 million times per month.\nThis guide takes you from the basics of the Transformers library to production deployment. Whether you are fine-tuning BERT for sentiment analysis or serving GPT-style models at scale, you will find concrete code examples, performance benchmarks, and troubleshooting advice based on real production experience.\nWhat is Hugging Face Transformers? Hugging Face Transformers is an open-source Python library that provides pre-trained transformer models and tools for natural language processing, computer vision, audio processing, and multimodal tasks. Originally focused on NLP, the library now supports tasks across virtually every modality of machine learning.\nThe library’s core value proposition is simple: download a state-of-the-art model in one line of code and use it for your task in five. This accessibility democratized transformer models — what once required a PhD and months of engineering now takes minutes.\nThe Hugging Face Ecosystem: Hub, Datasets, Accelerate Transformers does not stand alone. It is part of a broader ecosystem of tools: | Tool | Purpose | Why It Matters | |\n|\n|\n| | Transformers | Pre-trained models and training APIs | Core model library | | Hub | Model and dataset hosting | 500,000+ models available instantly | | Datasets | Standardized dataset library | 20,000+ datasets ready for training | | Accelerate | Simplified distributed training | Run on multi-GPU or TPU without code changes | | PEFT | Parameter-efficient fine-tuning | Fine-tune 70B models on consumer GPUs | | TRL | Reinforcement learning from human feedback | Train models with RLHF |\nThis integrated toolchain means you can go from idea to fine-tuned model without leaving the Hugging Face ecosystem.\nWhy It is the Most Popular NLP Library Several factors drove Transformers to dominance. The library abstracts every major transformer architecture — BERT, GPT, T5, LLaMA, Mistral — behind a unified API. It supports PyTorch, TensorFlow, and JAX, so you are not locked into a single framework. The Hugging Face Hub creates a social network for models, where researchers publish and the community votes on the best checkpoints.\nCrucially, the library handles the messy details: tokenization alignment, attention mask construction, padding strategies, and model-specific quirks. You focus on your task; Transformers handles the infrastructure.\nKey Features and Capabilities 500,000+ Pretrained Models The Hugging Face Hub hosts models for virtually every NLP task and many beyond. The catalog includes foundation models like BERT, GPT-2, T5, and LLaMA; fine-tuned variants for specific languages and domains; and experimental architectures from recent papers. You can search by task, language, library, and license.\nSupport for 200+ Languages While early transformer models focused on English, the Hub now contains strong models for Arabic, Chinese, Hindi, Japanese, and hundreds of other languages. Multilingual models like XLM-RoBERTa and mBERT handle 100 languages in a single checkpoint.\nPyTorch, TensorFlow, and JAX Compatibility Transformers supports all three major deep learning frameworks. Most new models ship with PyTorch implementations first, but TensorFlow and JAX support follows quickly. You can even export models to ONNX for inference in other runtimes.\nInstallation and Environment Setup Getting started requires minimal setup. You need Python 3.8+ and a basic understanding of deep learning concepts.\nInstalling Transformers and Dependencies pip install transformers pip install torch # or tensorflow, or flax For the full ecosystem experience: `````bash pip install transformers datasets accelerate peft trl\n### Setting Up GPU Support (CUDA) GPU acceleration is essential for training and large-scale inference. Install the CUDA-compatible PyTorch version: `````bash pip install torch --index-url https://download.pytorch.org/whl/cu121 Verify GPU availability: `````python import torch print(torch.cuda.is_available()) # Should print True print(torch.cuda.get_device_name(0)) # Your GPU model\n### Using Google Colab for Free GPU Access If you lack local GPU resources, [Google Colab](https://colab.research.google.com) provides free Tesla T4 GPUs. Simply switch the runtime to GPU mode (Runtime \u003e Change runtime type \u003e GPU) and install the libraries in the first cell. For larger models, Colab Pro ($9.99/month) offers more memory and faster GPUs. ## The Pipeline API: The Easiest Way to Start The pipeline API is Transformers' highest-level interface. It handles tokenization, model inference, and output parsing in a single function call. Here is how to perform common NLP tasks: ### Text Classification `````python from transformers import pipeline classifier = pipeline(\"sentiment-analysis\") result = classifier(\"This movie was absolutely fantastic!\") # [{'label': 'POSITIVE', 'score': 0.9998}] Named Entity Recognition (NER) ner = pipeline(\"ner\", aggregation_strategy=\"simple\") result = ner(\"Apple Inc. was founded by Steve Jobs in California.\") # [{'entity_group': 'ORG', 'word': 'Apple Inc.'}, ...] Question Answering qa = pipeline(\"question-answering\") result = qa( question=\"What is the capital of France?\", context=\"Paris is the capital and largest city of France.\" ) # {'answer': 'Paris', 'score': 0.99} Text Generation generator = pipeline(\"text-generation\", model=\"gpt2\") result = generator(\"The future of AI is\", max_length=30, num_return_sequences=1) Summarization summarizer = pipeline(\"summarization\", model=\"facebook/bart-large-cnn\") result = summarizer(long_article_text, max_length=130, min_length=30) Translation translator = pipeline(\"translation_en_to_de\", model=\"t5-base\") result = translator(\"Hello, how are you?\") The pipeline API is perfect for prototyping and small-scale applications. For production use, you will want the direct model API for finer control and better performance.\nWorking with Pretrained Models For production applications, use the Auto classes directly. This gives you control over batching, device placement, and output processing.\nLoading Models and Tokenizers from transformers import AutoModel, AutoTokenizer model_name = \"bert-base-uncased\" tokenizer = AutoTokenizer.from_pretrained(model_name) model = AutoModel.from_pretrained(model_name) The AutoModel family automatically selects the correct architecture based on the model name. For specific tasks, use specialized classes: `````python from transformers import AutoModelForSequenceClassification from transformers import AutoModelForCausalLM from transformers import AutoModelForSeq2SeqLM\nClassification tasks (sentiment, NER) cls_model = AutoModelForSequenceClassification.from_pretrained(“distilbert-base-uncased”)\nText generation (GPT-style) gen_model = AutoModelForCausalLM.from_pretrained(“gpt2”)\nTranslation, summarization (T5, BART) seq2seq_model = AutoModelForSeq2SeqLM.from_pretrained(“t5-small”)\n### Model Classes: Encoder, Decoder, Encoder-Decoder Understanding transformer architecture types helps you choose the right model: | Architecture | Examples | Best For | | * * * | * * * | * * * | | **Encoder-only** | BERT, RoBERTa, DistilBERT | Classification, NER, similarity | | **Decoder-only** | GPT, LLaMA, Mistral | Text generation, completion | | **Encoder-Decoder** | T5, BART, PEGASUS | Translation, summarization | ### Understanding Model Configurations Each model has a configuration object that defines its architecture — number of layers, hidden dimensions, attention heads, vocabulary size: `````python from transformers import AutoConfig config = AutoConfig.from_pretrained(\"bert-base-uncased\") print(config.num_hidden_layers) # 12 print(config.hidden_size) # 768 Saving and Loading Models Locally # Save model.save_pretrained(\"./my_model\") tokenizer.save_pretrained(\"./my_model\") # Load from local path model = AutoModel.from_pretrained(\"./my_model\") Tokenization Deep Dive Tokenization converts text into numbers that models understand. It is often the source of subtle bugs in NLP pipelines.\nWhat is Tokenization and Why It Matters Tokenization splits text into subword units. “Tokenization” might become [\"Token\", \"ization\"] — two subword tokens that the model can represent efficiently. This matters because model inputs are fixed-length, and tokenization determines how much text fits in the context window.\nWordPiece, BPE, and SentencePiece Algorithms Different tokenizers use different algorithms: | Algorithm | Used By | Approach | |\n|\n|\n| | WordPiece | BERT, DistilBERT | Greedy subword merging | | BPE | GPT, RoBERTa | Merges most frequent pairs | | SentencePiece | T5, LLaMA | Language-agnostic character-level | | Unigram | Albert, XLNet | Probabilistic subword pruning |\nWorking with the Tokenizer API text = \"Hello, Transformers!\" tokens = tokenizer.tokenize(text) # ['hello', ',', 'transform', '##ers', '!'] ids = tokenizer.encode(text) # [101, 7592, 117, 19082, 1168, 106, 102] # Full encoding with attention mask encoded = tokenizer(text, padding=True, truncation=True, max_length=512, return_tensors=\"pt\") # encoded[input_ids], encoded[attention_mask] Handling Special Tokens and Padding Tokenizers add special tokens automatically: [CLS] (classification start), [SEP] (separator), [PAD] (padding). The attention mask tells the model which tokens are real versus padding. Always pass the attention mask to avoid incorrect results.\nFine-Tuning Models for Your Use Case Fine-tuning adapts a pretrained model to your specific task and dataset. This typically outperforms using pretrained models directly.\nPreparing Your Dataset The Datasets library simplifies data preparation: `````python from datasets import load_dataset\ndataset = load_dataset(“imdb”)\ndataset[train], dataset[test] with ’text’ and ’label’ columns def tokenize_function(examples): return tokenizer(examples[“text”], padding=“max_length”, truncation=True)\ntokenized = dataset.map(tokenize_function, batched=True)\n### Using the Trainer API The Trainer class handles training loops, evaluation, checkpointing, and logging: `````python from transformers import Trainer, TrainingArguments training_args = TrainingArguments( output_dir=\"./results\", learning_rate=2e-5, per_device_train_batch_size=16, num_train_epochs=3, weight_decay=0.01, evaluation_strategy=\"epoch\", save_strategy=\"epoch\", load_best_model_at_end=True, ) trainer = Trainer( model=model, args=training_args, train_dataset=tokenized[\"train\"], eval_dataset=tokenized[\"test\"], ) trainer.train() Custom Training Loops with PyTorch For full control, write your own training loop: `````python from torch.optim import AdamW from torch.utils.data import DataLoader\noptimizer = AdamW(model.parameters(), lr=5e-5) train_loader = DataLoader(tokenized[“train”], batch_size=8, shuffle=True)\nmodel.train() for epoch in range(3): for batch in train_loader: optimizer.zero_grad() outputs = model(**batch) loss = outputs.loss loss.backward() optimizer.step()\n### Fine-Tuning BERT for Classification The most common fine-tuning task: `````python from transformers import AutoModelForSequenceClassification model = AutoModelForSequenceClassification.from_pretrained( \"bert-base-uncased\", num_labels=2 ) # Then train with Trainer or custom loop Fine-Tuning GPT for Text Generation from transformers import AutoModelForCausalLM, DataCollatorForLanguageModeling model = AutoModelForCausalLM.from_pretrained(\"gpt2\") data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False) # Use with Trainer for causal language modeling Using LoRA for Efficient Fine-Tuning Full fine-tuning updates billions of parameters, requiring massive GPU memory. LoRA (Low-Rank Adaptation) freezes the base model and trains small adapter matrices, reducing trainable parameters by 99% while maintaining 95%+ of full fine-tuning quality: `````python from peft import LoraConfig, get_peft_model\nlora_config = LoraConfig( r=16, # rank lora_alpha=32, target_modules=[“q_proj”, “v_proj”], lora_dropout=0.05, bias=“none”, task_type=“CAUSAL_LM” )\nmodel = get_peft_model(model, lora_config) model.print_trainable_parameters()\ntrainable params: 9M || all params: 7B || trainable%: 0.13 ## Model Optimization and Deployment ### Quantization (INT8, INT4) Quantization reduces model precision from 32-bit floats to 8-bit or 4-bit integers, cutting memory usage by 4-8x: `````python from transformers import BitsAndBytesConfig import torch bnb_config = BitsAndBytesConfig( load_in_4bit=True, bnb_4bit_quant_type=\"nf4\", bnb_4bit_compute_dtype=torch.float16 ) model = AutoModelForCausalLM.from_pretrained( \"meta-llama/Llama-2-7b\", quantization_config=bnb_config ) Model Distillation Distillation trains a smaller “student” model to mimic a larger “teacher.” DistilBERT, for example, retains 97% of BERT’s performance at 60% of the size and 40% faster inference.\nONNX Export and Inference Export models to ONNX for optimized inference in production: `````python from transformers import AutoModelForSequenceClassification import torch\nmodel = AutoModelForSequenceClassification.from_pretrained(“distilbert-base-uncased”) torch.onnx.export( model, (torch.zeros(1, 128, dtype=torch.long),), # dummy input “model.onnx”, input_names=[“input_ids”], output_names=[“logits”], dynamic_axes={“input_ids”: {0: “batch”, 1: “sequence”}} )\n### Deploying with Hugging Face Inference API For zero-infrastructure deployment, use the [Hugging Face Inference API](https://huggingface.co/docs/api-inference): `````python import requests API_URL = \"https://api-inference.huggingface.co/models/bert-base-uncased\" headers = {\"Authorization\": f\"Bearer {token}\"} def query(payload): response = requests.post(API_URL, headers=headers, json=payload) return response.json() result = query({\"inputs\": \"The answer to life is [MASK].\"}) Local Deployment with Transformers For production, serve models with Text Generation Inference (TGI) or the pipeline with Flask/FastAPI: `````python from fastapi import FastAPI from transformers import pipeline\napp = FastAPI() pipe = pipeline(“text-classification”, model=“distilbert-base-uncased”)\n@app.post(\"/classify\") def classify(text: str): return pipe(text)[0]\n## Top Hugging Face Models in 2025 | Model | Architecture | Best For | Size | | * * * | * * * | * * * | * * * | | **BERT-base-uncased** | Encoder | Classification, NER | 110M | | **RoBERTa-large** | Encoder | Classification benchmarks | 355M | | **GPT-2** | Decoder | Text generation, prototyping | 124M-1.5B | | **T5-base** | Encoder-Decoder | Translation, summarization | 220M | | **BART-large** | Encoder-Decoder | Summarization, generation | 400M | | **XLM-RoBERTa** | Encoder | Multilingual tasks | 270M | | **LLaMA-3-8B** | Decoder | General purpose, local deployment | 8B | | **Mistral-7B** | Decoder | Efficient instruction following | 7B | ## Common Errors and Troubleshooting ### CUDA Out of Memory Solutions - Reduce batch size (try 1 if necessary) - Use gradient accumulation to simulate larger batches - Enable gradient checkpointing: ````model.gradient_checkpointing_enable()```` - Use LoRA or full quantization - Clear CUDA cache: ````torch.cuda.empty_cache()```` ### Model Compatibility Issues Always check the model card on Hugging Face Hub. Some models require specific tokenizer versions or have custom code dependencies. The ````trust_remote_code=True```` flag loads custom model architectures but should only be used for trusted sources. ### Token Length Limitations and Solutions All models have maximum context lengths. BERT handles 512 tokens; GPT-2 handles 1,024; modern LLaMA models handle up to 128,000. For long documents: - Use models with longer contexts (RoBERTa: 512, Longformer: 4096) - Apply sliding window approaches - Split documents and aggregate predictions ## Frequently Asked Questions ### Is Hugging Face Transformers free to use? Yes, the Transformers library is completely free and open-source under the Apache 2.0 license. You can use it commercially without restrictions. Individual models may have their own licenses — always check the model card before using a model commercially. The Hugging Face Hub offers free hosting for public models, with paid plans for private repositories and enterprise features. ### What is the difference between Hugging Face Hub and the Transformers library? The Transformers library is the Python code you install with ````pip install transformers````. It provides model implementations, training utilities, and inference APIs. The Hugging Face Hub is a web platform (huggingface.co) that hosts models, datasets, and spaces. You download models from the Hub using the Transformers library — they work together but are separate things. ### Can I use Hugging Face models commercially? Most models on the Hub carry permissive licenses (Apache 2.0, MIT) that allow commercial use. However, some models — particularly those derived from LLaMA — have restrictive licenses. Always verify the license field on the model card before deploying commercially. Models from Meta's LLaMA family require acceptance of a specific license agreement. ### How do I choose the right pretrained model? Start with these questions: What is your task (classification, generation, translation)? What language do you need? What is your compute budget? For English classification, ````distilbert-base-uncased```` is a reliable default. For generation, ````Mistral-7B-Instruct``` offers excellent quality at a manageable size. Check the model card's benchmark scores and community downloads — popular models with high ratings are usually safe choices. ### Does Hugging Face support fine-tuning on custom datasets? Absolutely. The Datasets library makes it easy to load custom data from CSV, JSON, Parquet, or text files. Combine it with the Trainer API or PyTorch training loops to fine-tune any model on your data. PEFT methods like LoRA make fine-tuning feasible even on consumer hardware. ## Conclusion and Resources Hugging Face Transformers has earned its position as the backbone of modern NLP. The combination of 500,000+ pretrained models, a unified API across architectures, and a rich ecosystem of supporting tools makes it the most productive starting point for any NLP project. Start with the pipeline API for quick experiments. Move to Auto classes for production applications. Fine-tune with the Trainer API when you have labeled data. Optimize with quantization and ONNX when you need speed. The library scales with your needs from prototype to production. For continued learning, follow the [official documentation](https://huggingface.co/docs/transformers), explore the [Hugging Face Hub](https://huggingface.co/models), and join the community forums. The field moves fast, and the Hub is where new breakthroughs appear first. * * * ## Recommended Infrastructure To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven. *Affiliate links — no extra cost to you, helps keep dibi8.com running.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Hugging Face Transformers: The Complete Developer''s Guide (2025)\", \"datePublished\": \"2026-05-18\", \"dateModified\": \"2026-05-18\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/huggingface-transformers-guide\" } } ## Frequently Asked Questions (FAQ) **问：LangChain和LlamaIndex哪个更好？** LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。 **问：如何评估LLM框架的性能？** 基准测试包括：推理速度、准确率、资源消耗、可扩展性。 **问：开源LLM框架的商业使用限制？** 大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。 **问：是否需要GPU才能运行LLM框架？** 推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。 **问：企业级部署的最佳实践？** 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。 * * * ",
-  "wordCount" : "2615",
-  "inLanguage": "zh",
-  "datePublished": "2026-09-20T00:00:00Z",
-  "dateModified": "2026-09-20T00:00:00Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/ai-coding-agents/huggingface-transformers-guide/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/favicon.ico"
-    }
-  }
-}
-</script>
-</head>
-<body id="top">
-    <header class="header">
-    <nav class="header-nav">
-        <div class="logo">
-            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu" class="menu">
-            <li>
-                <a href="https://dibi8.com/categories/" title="Categories">
-                    <span>Categories</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/tools/" title="Tools">
-                    <span>🛠 Tools</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/collections/" title="Collections">
-                    <span>Collections</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">主页</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-        <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-</nav>
-    <h1 class="post-title entry-hint-parent">
-      AI Tool Guide
-    </h1>
-    <div class="post-description">
-      Technical guide and comparison
-    </div>
-    <div class="post-meta">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>13 分钟</span>
-
-</div>
-  </header> <details class="toc" >
-    <summary accesskey="c" title="(Alt + C)">
-        <span class="title">目录</span>
-    </summary>
-
-    <div class="inner"><ul><ul>
-            <li>
-                <a href="#what-is-hugging-face-transformers" aria-label="What is Hugging Face Transformers?">What is Hugging Face Transformers?</a><ul>
-                    
-            <li>
-                <a href="#the-hugging-face-ecosystem-hub-datasets-accelerate" aria-label="The Hugging Face Ecosystem: Hub, Datasets, Accelerate">The Hugging Face Ecosystem: Hub, Datasets, Accelerate</a></li>
-            <li>
-                <a href="#why-it-is-the-most-popular-nlp-library" aria-label="Why It is the Most Popular NLP Library">Why It is the Most Popular NLP Library</a></li></ul>
-            </li>
-            <li>
-                <a href="#key-features-and-capabilities" aria-label="Key Features and Capabilities">Key Features and Capabilities</a><ul>
-                    
-            <li>
-                <a href="#500000-pretrained-models" aria-label="500,000&#43; Pretrained Models">500,000+ Pretrained Models</a></li>
-            <li>
-                <a href="#support-for-200-languages" aria-label="Support for 200&#43; Languages">Support for 200+ Languages</a></li>
-            <li>
-                <a href="#pytorch-tensorflow-and-jax-compatibility" aria-label="PyTorch, TensorFlow, and JAX Compatibility">PyTorch, TensorFlow, and JAX Compatibility</a></li></ul>
-            </li>
-            <li>
-                <a href="#installation-and-environment-setup" aria-label="Installation and Environment Setup">Installation and Environment Setup</a><ul>
-                    
-            <li>
-                <a href="#installing-transformers-and-dependencies" aria-label="Installing Transformers and Dependencies">Installing Transformers and Dependencies</a></li>
-            <li>
-                <a href="#named-entity-recognition-ner" aria-label="Named Entity Recognition (NER)">Named Entity Recognition (NER)</a></li>
-            <li>
-                <a href="#question-answering" aria-label="Question Answering">Question Answering</a></li>
-            <li>
-                <a href="#text-generation" aria-label="Text Generation">Text Generation</a></li>
-            <li>
-                <a href="#summarization" aria-label="Summarization">Summarization</a></li>
-            <li>
-                <a href="#translation" aria-label="Translation">Translation</a></li></ul>
-            </li>
-            <li>
-                <a href="#working-with-pretrained-models" aria-label="Working with Pretrained Models">Working with Pretrained Models</a><ul>
-                    
-            <li>
-                <a href="#loading-models-and-tokenizers" aria-label="Loading Models and Tokenizers">Loading Models and Tokenizers</a></li></ul>
-            </li></ul>
-                
-            <li>
-                <a href="#classification-tasks-sentiment-ner" aria-label="Classification tasks (sentiment, NER)">Classification tasks (sentiment, NER)</a></li>
-            <li>
-                <a href="#text-generation-gpt-style" aria-label="Text generation (GPT-style)">Text generation (GPT-style)</a></li>
-            <li>
-                <a href="#translation-summarization-t5-bart" aria-label="Translation, summarization (T5, BART)">Translation, summarization (T5, BART)</a><ul>
-                    <ul>
-                    
-            <li>
-                <a href="#saving-and-loading-models-locally" aria-label="Saving and Loading Models Locally">Saving and Loading Models Locally</a></li></ul>
-                
-            <li>
-                <a href="#tokenization-deep-dive" aria-label="Tokenization Deep Dive">Tokenization Deep Dive</a><ul>
-                    
-            <li>
-                <a href="#what-is-tokenization-and-why-it-matters" aria-label="What is Tokenization and Why It Matters">What is Tokenization and Why It Matters</a></li>
-            <li>
-                <a href="#wordpiece-bpe-and-sentencepiece-algorithms" aria-label="WordPiece, BPE, and SentencePiece Algorithms">WordPiece, BPE, and SentencePiece Algorithms</a></li>
-            <li>
-                <a href="#working-with-the-tokenizer-api" aria-label="Working with the Tokenizer API">Working with the Tokenizer API</a></li>
-            <li>
-                <a href="#handling-special-tokens-and-padding" aria-label="Handling Special Tokens and Padding">Handling Special Tokens and Padding</a></li></ul>
-            </li>
-            <li>
-                <a href="#fine-tuning-models-for-your-use-case" aria-label="Fine-Tuning Models for Your Use Case">Fine-Tuning Models for Your Use Case</a><ul>
-                    
-            <li>
-                <a href="#preparing-your-dataset" aria-label="Preparing Your Dataset">Preparing Your Dataset</a></li></ul>
-            </li></ul>
-            </li>
-            <li>
-                <a href="#datasettrain-datasettest-with-text-and-label-columns" aria-label="dataset[train], dataset[test] with &rsquo;text&rsquo; and &rsquo;label&rsquo; columns">dataset[train], dataset[test] with &rsquo;text&rsquo; and &rsquo;label&rsquo; columns</a><ul>
-                    <ul>
-                    
-            <li>
-                <a href="#custom-training-loops-with-pytorch" aria-label="Custom Training Loops with PyTorch">Custom Training Loops with PyTorch</a></li>
-            <li>
-                <a href="#fine-tuning-gpt-for-text-generation" aria-label="Fine-Tuning GPT for Text Generation">Fine-Tuning GPT for Text Generation</a></li>
-            <li>
-                <a href="#using-lora-for-efficient-fine-tuning" aria-label="Using LoRA for Efficient Fine-Tuning">Using LoRA for Efficient Fine-Tuning</a></li></ul>
-                </ul>
-            </li>
-            <li>
-                <a href="#trainable-params-9m--all-params-7b--trainable-013" aria-label="trainable params: 9M || all params: 7B || trainable%: 0.13">trainable params: 9M || all params: 7B || trainable%: 0.13</a><ul>
-                    <ul>
-                    
-            <li>
-                <a href="#model-distillation" aria-label="Model Distillation">Model Distillation</a></li>
-            <li>
-                <a href="#onnx-export-and-inference" aria-label="ONNX Export and Inference">ONNX Export and Inference</a></li>
-            <li>
-                <a href="#local-deployment-with-transformers" aria-label="Local Deployment with Transformers">Local Deployment with Transformers</a>
-            </li>
-        </ul>
-        </ul>
-        </li>
-        </ul>
-    </div>
-</details>
-
-  <div class="post-content md-content"><p>{&lt;/* resource-info */&gt;}</p>
-<p>If you work with natural language processing or large language models in 2025, you use Hugging Face Transformers. The library has become the standard infrastructure for the entire NLP field — powering everything from research prototypes at Stanford and MIT to production systems at Google and Microsoft. Over 500,000 pretrained models sit on the <a href="https://huggingface.co/models">Hugging Face Hub</a>, downloaded collectively more than 100 million times per month.</p>
-<p>This guide takes you from the basics of the Transformers library to production deployment. Whether you are fine-tuning BERT for sentiment analysis or serving GPT-style models at scale, you will find concrete code examples, performance benchmarks, and troubleshooting advice based on real production experience.</p>
-<h2 id="what-is-hugging-face-transformers">What is Hugging Face Transformers?<a hidden class="anchor" aria-hidden="true" href="#what-is-hugging-face-transformers">#</a></h2>
-<p>Hugging Face Transformers is an open-source Python library that provides pre-trained transformer models and tools for natural language processing, computer vision, audio processing, and multimodal tasks. Originally focused on NLP, the library now supports tasks across virtually every modality of machine learning.</p>
-<p>The library&rsquo;s core value proposition is simple: download a state-of-the-art model in one line of code and use it for your task in five. This accessibility democratized transformer models — what once required a PhD and months of engineering now takes minutes.</p>
-<h3 id="the-hugging-face-ecosystem-hub-datasets-accelerate">The Hugging Face Ecosystem: Hub, Datasets, Accelerate<a hidden class="anchor" aria-hidden="true" href="#the-hugging-face-ecosystem-hub-datasets-accelerate">#</a></h3>
-<p>Transformers does not stand alone. It is part of a broader ecosystem of tools: | Tool | Purpose | Why It Matters |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8 - AI工具目录</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/huggingface-transformers-guide/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/huggingface-transformers-guide/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/huggingface-transformers-guide/"><meta property="og:site_name" content="Dibi8 - AI工具目录"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/huggingface-transformers-guide/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"{\u003c/* resource-info */\u003e}\nIf you work with natural language processing or large language models in 2025, you use Hugging Face Transformers. The library has become the standard infrastructure for the entire NLP field — powering everything from research prototypes at Stanford and MIT to production systems at Google and Microsoft. Over 500,000 pretrained models sit on the Hugging Face Hub, downloaded collectively more than 100 million times per month.\nThis guide takes you from the basics of the Transformers library to production deployment. Whether you are fine-tuning BERT for sentiment analysis or serving GPT-style models at scale, you will find concrete code examples, performance benchmarks, and troubleshooting advice based on real production experience.\nWhat is Hugging Face Transformers? Hugging Face Transformers is an open-source Python library that provides pre-trained transformer models and tools for natural language processing, computer vision, audio processing, and multimodal tasks. Originally focused on NLP, the library now supports tasks across virtually every modality of machine learning.\nThe library’s core value proposition is simple: download a state-of-the-art model in one line of code and use it for your task in five. This accessibility democratized transformer models — what once required a PhD and months of engineering now takes minutes.\nThe Hugging Face Ecosystem: Hub, Datasets, Accelerate Transformers does not stand alone. It is part of a broader ecosystem of tools: | Tool | Purpose | Why It Matters | |\n|\n|\n| | Transformers | Pre-trained models and training APIs | Core model library | | Hub | Model and dataset hosting | 500,000+ models available instantly | | Datasets | Standardized dataset library | 20,000+ datasets ready for training | | Accelerate | Simplified distributed training | Run on multi-GPU or TPU without code changes | | PEFT | Parameter-efficient fine-tuning | Fine-tune 70B models on consumer GPUs | | TRL | Reinforcement learning from human feedback | Train models with RLHF |\nThis integrated toolchain means you can go from idea to fine-tuned model without leaving the Hugging Face ecosystem.\nWhy It is the Most Popular NLP Library Several factors drove Transformers to dominance. The library abstracts every major transformer architecture — BERT, GPT, T5, LLaMA, Mistral — behind a unified API. It supports PyTorch, TensorFlow, and JAX, so you are not locked into a single framework. The Hugging Face Hub creates a social network for models, where researchers publish and the community votes on the best checkpoints.\nCrucially, the library handles the messy details: tokenization alignment, attention mask construction, padding strategies, and model-specific quirks. You focus on your task; Transformers handles the infrastructure.\nKey Features and Capabilities 500,000+ Pretrained Models The Hugging Face Hub hosts models for virtually every NLP task and many beyond. The catalog includes foundation models like BERT, GPT-2, T5, and LLaMA; fine-tuned variants for specific languages and domains; and experimental architectures from recent papers. You can search by task, language, library, and license.\nSupport for 200+ Languages While early transformer models focused on English, the Hub now contains strong models for Arabic, Chinese, Hindi, Japanese, and hundreds of other languages. Multilingual models like XLM-RoBERTa and mBERT handle 100 languages in a single checkpoint.\nPyTorch, TensorFlow, and JAX Compatibility Transformers supports all three major deep learning frameworks. Most new models ship with PyTorch implementations first, but TensorFlow and JAX support follows quickly. You can even export models to ONNX for inference in other runtimes.\nInstallation and Environment Setup Getting started requires minimal setup. You need Python 3.8+ and a basic understanding of deep learning concepts.\nInstalling Transformers and Dependencies pip install transformers pip install torch # or tensorflow, or flax For the full ecosystem experience: `````bash pip install transformers datasets accelerate peft trl\n### Setting Up GPU Support (CUDA) GPU acceleration is essential for training and large-scale inference. Install the CUDA-compatible PyTorch version: `````bash pip install torch --index-url https://download.pytorch.org/whl/cu121 Verify GPU availability: `````python import torch print(torch.cuda.is_available()) # Should print True print(torch.cuda.get_device_name(0)) # Your GPU model\n### Using Google Colab for Free GPU Access If you lack local GPU resources, [Google Colab](https://colab.research.google.com) provides free Tesla T4 GPUs. Simply switch the runtime to GPU mode (Runtime \u003e Change runtime type \u003e GPU) and install the libraries in the first cell. For larger models, Colab Pro ($9.99/month) offers more memory and faster GPUs. ## The Pipeline API: The Easiest Way to Start The pipeline API is Transformers' highest-level interface. It handles tokenization, model inference, and output parsing in a single function call. Here is how to perform common NLP tasks: ### Text Classification `````python from transformers import pipeline classifier = pipeline(\"sentiment-analysis\") result = classifier(\"This movie was absolutely fantastic!\") # [{'label': 'POSITIVE', 'score': 0.9998}] Named Entity Recognition (NER) ner = pipeline(\"ner\", aggregation_strategy=\"simple\") result = ner(\"Apple Inc. was founded by Steve Jobs in California.\") # [{'entity_group': 'ORG', 'word': 'Apple Inc.'}, ...] Question Answering qa = pipeline(\"question-answering\") result = qa( question=\"What is the capital of France?\", context=\"Paris is the capital and largest city of France.\" ) # {'answer': 'Paris', 'score': 0.99} Text Generation generator = pipeline(\"text-generation\", model=\"gpt2\") result = generator(\"The future of AI is\", max_length=30, num_return_sequences=1) Summarization summarizer = pipeline(\"summarization\", model=\"facebook/bart-large-cnn\") result = summarizer(long_article_text, max_length=130, min_length=30) Translation translator = pipeline(\"translation_en_to_de\", model=\"t5-base\") result = translator(\"Hello, how are you?\") The pipeline API is perfect for prototyping and small-scale applications. For production use, you will want the direct model API for finer control and better performance.\nWorking with Pretrained Models For production applications, use the Auto classes directly. This gives you control over batching, device placement, and output processing.\nLoading Models and Tokenizers from transformers import AutoModel, AutoTokenizer model_name = \"bert-base-uncased\" tokenizer = AutoTokenizer.from_pretrained(model_name) model = AutoModel.from_pretrained(model_name) The AutoModel family automatically selects the correct architecture based on the model name. For specific tasks, use specialized classes: `````python from transformers import AutoModelForSequenceClassification from transformers import AutoModelForCausalLM from transformers import AutoModelForSeq2SeqLM\nClassification tasks (sentiment, NER) cls_model = AutoModelForSequenceClassification.from_pretrained(“distilbert-base-uncased”)\nText generation (GPT-style) gen_model = AutoModelForCausalLM.from_pretrained(“gpt2”)\nTranslation, summarization (T5, BART) seq2seq_model = AutoModelForSeq2SeqLM.from_pretrained(“t5-small”)\n### Model Classes: Encoder, Decoder, Encoder-Decoder Understanding transformer architecture types helps you choose the right model: | Architecture | Examples | Best For | | * * * | * * * | * * * | | **Encoder-only** | BERT, RoBERTa, DistilBERT | Classification, NER, similarity | | **Decoder-only** | GPT, LLaMA, Mistral | Text generation, completion | | **Encoder-Decoder** | T5, BART, PEGASUS | Translation, summarization | ### Understanding Model Configurations Each model has a configuration object that defines its architecture — number of layers, hidden dimensions, attention heads, vocabulary size: `````python from transformers import AutoConfig config = AutoConfig.from_pretrained(\"bert-base-uncased\") print(config.num_hidden_layers) # 12 print(config.hidden_size) # 768 Saving and Loading Models Locally # Save model.save_pretrained(\"./my_model\") tokenizer.save_pretrained(\"./my_model\") # Load from local path model = AutoModel.from_pretrained(\"./my_model\") Tokenization Deep Dive Tokenization converts text into numbers that models understand. It is often the source of subtle bugs in NLP pipelines.\nWhat is Tokenization and Why It Matters Tokenization splits text into subword units. “Tokenization” might become [\"Token\", \"ization\"] — two subword tokens that the model can represent efficiently. This matters because model inputs are fixed-length, and tokenization determines how much text fits in the context window.\nWordPiece, BPE, and SentencePiece Algorithms Different tokenizers use different algorithms: | Algorithm | Used By | Approach | |\n|\n|\n| | WordPiece | BERT, DistilBERT | Greedy subword merging | | BPE | GPT, RoBERTa | Merges most frequent pairs | | SentencePiece | T5, LLaMA | Language-agnostic character-level | | Unigram | Albert, XLNet | Probabilistic subword pruning |\nWorking with the Tokenizer API text = \"Hello, Transformers!\" tokens = tokenizer.tokenize(text) # ['hello', ',', 'transform', '##ers', '!'] ids = tokenizer.encode(text) # [101, 7592, 117, 19082, 1168, 106, 102] # Full encoding with attention mask encoded = tokenizer(text, padding=True, truncation=True, max_length=512, return_tensors=\"pt\") # encoded[input_ids], encoded[attention_mask] Handling Special Tokens and Padding Tokenizers add special tokens automatically: [CLS] (classification start), [SEP] (separator), [PAD] (padding). The attention mask tells the model which tokens are real versus padding. Always pass the attention mask to avoid incorrect results.\nFine-Tuning Models for Your Use Case Fine-tuning adapts a pretrained model to your specific task and dataset. This typically outperforms using pretrained models directly.\nPreparing Your Dataset The Datasets library simplifies data preparation: `````python from datasets import load_dataset\ndataset = load_dataset(“imdb”)\ndataset[train], dataset[test] with ’text’ and ’label’ columns def tokenize_function(examples): return tokenizer(examples[“text”], padding=“max_length”, truncation=True)\ntokenized = dataset.map(tokenize_function, batched=True)\n### Using the Trainer API The Trainer class handles training loops, evaluation, checkpointing, and logging: `````python from transformers import Trainer, TrainingArguments training_args = TrainingArguments( output_dir=\"./results\", learning_rate=2e-5, per_device_train_batch_size=16, num_train_epochs=3, weight_decay=0.01, evaluation_strategy=\"epoch\", save_strategy=\"epoch\", load_best_model_at_end=True, ) trainer = Trainer( model=model, args=training_args, train_dataset=tokenized[\"train\"], eval_dataset=tokenized[\"test\"], ) trainer.train() Custom Training Loops with PyTorch For full control, write your own training loop: `````python from torch.optim import AdamW from torch.utils.data import DataLoader\noptimizer = AdamW(model.parameters(), lr=5e-5) train_loader = DataLoader(tokenized[“train”], batch_size=8, shuffle=True)\nmodel.train() for epoch in range(3): for batch in train_loader: optimizer.zero_grad() outputs = model(**batch) loss = outputs.loss loss.backward() optimizer.step()\n### Fine-Tuning BERT for Classification The most common fine-tuning task: `````python from transformers import AutoModelForSequenceClassification model = AutoModelForSequenceClassification.from_pretrained( \"bert-base-uncased\", num_labels=2 ) # Then train with Trainer or custom loop Fine-Tuning GPT for Text Generation from transformers import AutoModelForCausalLM, DataCollatorForLanguageModeling model = AutoModelForCausalLM.from_pretrained(\"gpt2\") data_collator = DataCollatorForLanguageModeling(tokenizer, mlm=False) # Use with Trainer for causal language modeling Using LoRA for Efficient Fine-Tuning Full fine-tuning updates billions of parameters, requiring massive GPU memory. LoRA (Low-Rank Adaptation) freezes the base model and trains small adapter matrices, reducing trainable parameters by 99% while maintaining 95%+ of full fine-tuning quality: `````python from peft import LoraConfig, get_peft_model\nlora_config = LoraConfig( r=16, # rank lora_alpha=32, target_modules=[“q_proj”, “v_proj”], lora_dropout=0.05, bias=“none”, task_type=“CAUSAL_LM” )\nmodel = get_peft_model(model, lora_config) model.print_trainable_parameters()\ntrainable params: 9M || all params: 7B || trainable%: 0.13 ## Model Optimization and Deployment ### Quantization (INT8, INT4) Quantization reduces model precision from 32-bit floats to 8-bit or 4-bit integers, cutting memory usage by 4-8x: `````python from transformers import BitsAndBytesConfig import torch bnb_config = BitsAndBytesConfig( load_in_4bit=True, bnb_4bit_quant_type=\"nf4\", bnb_4bit_compute_dtype=torch.float16 ) model = AutoModelForCausalLM.from_pretrained( \"meta-llama/Llama-2-7b\", quantization_config=bnb_config ) Model Distillation Distillation trains a smaller “student” model to mimic a larger “teacher.” DistilBERT, for example, retains 97% of BERT’s performance at 60% of the size and 40% faster inference.\nONNX Export and Inference Export models to ONNX for optimized inference in production: `````python from transformers import AutoModelForSequenceClassification import torch\nmodel = AutoModelForSequenceClassification.from_pretrained(“distilbert-base-uncased”) torch.onnx.export( model, (torch.zeros(1, 128, dtype=torch.long),), # dummy input “model.onnx”, input_names=[“input_ids”], output_names=[“logits”], dynamic_axes={“input_ids”: {0: “batch”, 1: “sequence”}} )\n### Deploying with Hugging Face Inference API For zero-infrastructure deployment, use the [Hugging Face Inference API](https://huggingface.co/docs/api-inference): `````python import requests API_URL = \"https://api-inference.huggingface.co/models/bert-base-uncased\" headers = {\"Authorization\": f\"Bearer {token}\"} def query(payload): response = requests.post(API_URL, headers=headers, json=payload) return response.json() result = query({\"inputs\": \"The answer to life is [MASK].\"}) Local Deployment with Transformers For production, serve models with Text Generation Inference (TGI) or the pipeline with Flask/FastAPI: `````python from fastapi import FastAPI from transformers import pipeline\napp = FastAPI() pipe = pipeline(“text-classification”, model=“distilbert-base-uncased”)\n@app.post(\"/classify\") def classify(text: str): return pipe(text)[0]\n## Top Hugging Face Models in 2025 | Model | Architecture | Best For | Size | | * * * | * * * | * * * | * * * | | **BERT-base-uncased** | Encoder | Classification, NER | 110M | | **RoBERTa-large** | Encoder | Classification benchmarks | 355M | | **GPT-2** | Decoder | Text generation, prototyping | 124M-1.5B | | **T5-base** | Encoder-Decoder | Translation, summarization | 220M | | **BART-large** | Encoder-Decoder | Summarization, generation | 400M | | **XLM-RoBERTa** | Encoder | Multilingual tasks | 270M | | **LLaMA-3-8B** | Decoder | General purpose, local deployment | 8B | | **Mistral-7B** | Decoder | Efficient instruction following | 7B | ## Common Errors and Troubleshooting ### CUDA Out of Memory Solutions - Reduce batch size (try 1 if necessary) - Use gradient accumulation to simulate larger batches - Enable gradient checkpointing: ````model.gradient_checkpointing_enable()```` - Use LoRA or full quantization - Clear CUDA cache: ````torch.cuda.empty_cache()```` ### Model Compatibility Issues Always check the model card on Hugging Face Hub. Some models require specific tokenizer versions or have custom code dependencies. The ````trust_remote_code=True```` flag loads custom model architectures but should only be used for trusted sources. ### Token Length Limitations and Solutions All models have maximum context lengths. BERT handles 512 tokens; GPT-2 handles 1,024; modern LLaMA models handle up to 128,000. For long documents: - Use models with longer contexts (RoBERTa: 512, Longformer: 4096) - Apply sliding window approaches - Split documents and aggregate predictions ## Frequently Asked Questions ### Is Hugging Face Transformers free to use? Yes, the Transformers library is completely free and open-source under the Apache 2.0 license. You can use it commercially without restrictions. Individual models may have their own licenses — always check the model card before using a model commercially. The Hugging Face Hub offers free hosting for public models, with paid plans for private repositories and enterprise features. ### What is the difference between Hugging Face Hub and the Transformers library? The Transformers library is the Python code you install with ````pip install transformers````. It provides model implementations, training utilities, and inference APIs. The Hugging Face Hub is a web platform (huggingface.co) that hosts models, datasets, and spaces. You download models from the Hub using the Transformers library — they work together but are separate things. ### Can I use Hugging Face models commercially? Most models on the Hub carry permissive licenses (Apache 2.0, MIT) that allow commercial use. However, some models — particularly those derived from LLaMA — have restrictive licenses. Always verify the license field on the model card before deploying commercially. Models from Meta's LLaMA family require acceptance of a specific license agreement. ### How do I choose the right pretrained model? Start with these questions: What is your task (classification, generation, translation)? What language do you need? What is your compute budget? For English classification, ````distilbert-base-uncased```` is a reliable default. For generation, ````Mistral-7B-Instruct``` offers excellent quality at a manageable size. Check the model card's benchmark scores and community downloads — popular models with high ratings are usually safe choices. ### Does Hugging Face support fine-tuning on custom datasets? Absolutely. The Datasets library makes it easy to load custom data from CSV, JSON, Parquet, or text files. Combine it with the Trainer API or PyTorch training loops to fine-tune any model on your data. PEFT methods like LoRA make fine-tuning feasible even on consumer hardware. ## Conclusion and Resources Hugging Face Transformers has earned its position as the backbone of modern NLP. The combination of 500,000+ pretrained models, a unified API across architectures, and a rich ecosystem of supporting tools makes it the most productive starting point for any NLP project. Start with the pipeline API for quick experiments. Move to Auto classes for production applications. Fine-tune with the Trainer API when you have labeled data. Optimize with quantization and ONNX when you need speed. The library scales with your needs from prototype to production. For continued learning, follow the [official documentation](https://huggingface.co/docs/transformers), explore the [Hugging Face Hub](https://huggingface.co/models), and join the community forums. The field moves fast, and the Hub is where new breakthroughs appear first. * * * ## Recommended Infrastructure To run any of the tools above reliably 24/7, infrastructure matters: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven. *Affiliate links — no extra cost to you, helps keep dibi8.com running.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Hugging Face Transformers: The Complete Developer''s Guide (2025)\", \"datePublished\": \"2026-05-18\", \"dateModified\": \"2026-05-18\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/huggingface-transformers-guide\" } } ## Frequently Asked Questions (FAQ) **问：LangChain和LlamaIndex哪个更好？** LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。 **问：如何评估LLM框架的性能？** 基准测试包括：推理速度、准确率、资源消耗、可扩展性。 **问：开源LLM框架的商业使用限制？** 大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。 **问：是否需要GPU才能运行LLM框架？** 推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。 **问：企业级部署的最佳实践？** 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。 * * * ","wordCount":"2615","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/huggingface-transformers-guide/"},"publisher":{"@type":"Organization","name":"Dibi8 - AI工具目录","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 - AI工具目录 (Alt + H)">Dibi8 - AI工具目录</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>13 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><ul><li><a href=#what-is-hugging-face-transformers aria-label="What is Hugging Face Transformers?">What is Hugging Face Transformers?</a><ul><li><a href=#the-hugging-face-ecosystem-hub-datasets-accelerate aria-label="The Hugging Face Ecosystem: Hub, Datasets, Accelerate">The Hugging Face Ecosystem: Hub, Datasets, Accelerate</a></li><li><a href=#why-it-is-the-most-popular-nlp-library aria-label="Why It is the Most Popular NLP Library">Why It is the Most Popular NLP Library</a></li></ul></li><li><a href=#key-features-and-capabilities aria-label="Key Features and Capabilities">Key Features and Capabilities</a><ul><li><a href=#500000-pretrained-models aria-label="500,000+ Pretrained Models">500,000+ Pretrained Models</a></li><li><a href=#support-for-200-languages aria-label="Support for 200+ Languages">Support for 200+ Languages</a></li><li><a href=#pytorch-tensorflow-and-jax-compatibility aria-label="PyTorch, TensorFlow, and JAX Compatibility">PyTorch, TensorFlow, and JAX Compatibility</a></li></ul></li><li><a href=#installation-and-environment-setup aria-label="Installation and Environment Setup">Installation and Environment Setup</a><ul><li><a href=#installing-transformers-and-dependencies aria-label="Installing Transformers and Dependencies">Installing Transformers and Dependencies</a></li><li><a href=#named-entity-recognition-ner aria-label="Named Entity Recognition (NER)">Named Entity Recognition (NER)</a></li><li><a href=#question-answering aria-label="Question Answering">Question Answering</a></li><li><a href=#text-generation aria-label="Text Generation">Text Generation</a></li><li><a href=#summarization aria-label=Summarization>Summarization</a></li><li><a href=#translation aria-label=Translation>Translation</a></li></ul></li><li><a href=#working-with-pretrained-models aria-label="Working with Pretrained Models">Working with Pretrained Models</a><ul><li><a href=#loading-models-and-tokenizers aria-label="Loading Models and Tokenizers">Loading Models and Tokenizers</a></li></ul></li></ul><li><a href=#classification-tasks-sentiment-ner aria-label="Classification tasks (sentiment, NER)">Classification tasks (sentiment, NER)</a></li><li><a href=#text-generation-gpt-style aria-label="Text generation (GPT-style)">Text generation (GPT-style)</a></li><li><a href=#translation-summarization-t5-bart aria-label="Translation, summarization (T5, BART)">Translation, summarization (T5, BART)</a><ul><ul><li><a href=#saving-and-loading-models-locally aria-label="Saving and Loading Models Locally">Saving and Loading Models Locally</a></li></ul><li><a href=#tokenization-deep-dive aria-label="Tokenization Deep Dive">Tokenization Deep Dive</a><ul><li><a href=#what-is-tokenization-and-why-it-matters aria-label="What is Tokenization and Why It Matters">What is Tokenization and Why It Matters</a></li><li><a href=#wordpiece-bpe-and-sentencepiece-algorithms aria-label="WordPiece, BPE, and SentencePiece Algorithms">WordPiece, BPE, and SentencePiece Algorithms</a></li><li><a href=#working-with-the-tokenizer-api aria-label="Working with the Tokenizer API">Working with the Tokenizer API</a></li><li><a href=#handling-special-tokens-and-padding aria-label="Handling Special Tokens and Padding">Handling Special Tokens and Padding</a></li></ul></li><li><a href=#fine-tuning-models-for-your-use-case aria-label="Fine-Tuning Models for Your Use Case">Fine-Tuning Models for Your Use Case</a><ul><li><a href=#preparing-your-dataset aria-label="Preparing Your Dataset">Preparing Your Dataset</a></li></ul></li></ul></li><li><a href=#datasettrain-datasettest-with-text-and-label-columns aria-label="dataset[train], dataset[test] with &rsquo;text&rsquo; and &rsquo;label&rsquo; columns">dataset[train], dataset[test] with &rsquo;text&rsquo; and &rsquo;label&rsquo; columns</a><ul><ul><li><a href=#custom-training-loops-with-pytorch aria-label="Custom Training Loops with PyTorch">Custom Training Loops with PyTorch</a></li><li><a href=#fine-tuning-gpt-for-text-generation aria-label="Fine-Tuning GPT for Text Generation">Fine-Tuning GPT for Text Generation</a></li><li><a href=#using-lora-for-efficient-fine-tuning aria-label="Using LoRA for Efficient Fine-Tuning">Using LoRA for Efficient Fine-Tuning</a></li></ul></ul></li><li><a href=#trainable-params-9m--all-params-7b--trainable-013 aria-label="trainable params: 9M || all params: 7B || trainable%: 0.13">trainable params: 9M || all params: 7B || trainable%: 0.13</a><ul><ul><li><a href=#model-distillation aria-label="Model Distillation">Model Distillation</a></li><li><a href=#onnx-export-and-inference aria-label="ONNX Export and Inference">ONNX Export and Inference</a></li><li><a href=#local-deployment-with-transformers aria-label="Local Deployment with Transformers">Local Deployment with Transformers</a></li></ul></ul></li></ul></div></details><div class="post-content md-content"><p>{&lt;/* resource-info */>}</p><p>If you work with natural language processing or large language models in 2025, you use Hugging Face Transformers. The library has become the standard infrastructure for the entire NLP field — powering everything from research prototypes at Stanford and MIT to production systems at Google and Microsoft. Over 500,000 pretrained models sit on the <a href=https://huggingface.co/models>Hugging Face Hub</a>, downloaded collectively more than 100 million times per month.</p><p>This guide takes you from the basics of the Transformers library to production deployment. Whether you are fine-tuning BERT for sentiment analysis or serving GPT-style models at scale, you will find concrete code examples, performance benchmarks, and troubleshooting advice based on real production experience.</p><h2 id=what-is-hugging-face-transformers>What is Hugging Face Transformers?<a hidden class=anchor aria-hidden=true href=#what-is-hugging-face-transformers>#</a></h2><p>Hugging Face Transformers is an open-source Python library that provides pre-trained transformer models and tools for natural language processing, computer vision, audio processing, and multimodal tasks. Originally focused on NLP, the library now supports tasks across virtually every modality of machine learning.</p><p>The library&rsquo;s core value proposition is simple: download a state-of-the-art model in one line of code and use it for your task in five. This accessibility democratized transformer models — what once required a PhD and months of engineering now takes minutes.</p><h3 id=the-hugging-face-ecosystem-hub-datasets-accelerate>The Hugging Face Ecosystem: Hub, Datasets, Accelerate<a hidden class=anchor aria-hidden=true href=#the-hugging-face-ecosystem-hub-datasets-accelerate>#</a></h3><p>Transformers does not stand alone. It is part of a broader ecosystem of tools: | Tool | Purpose | Why It Matters |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | <strong>Transformers</strong> | Pre-trained models and training APIs | Core model library |
 | <strong>Hub</strong> | Model and dataset hosting | 500,000+ models available instantly |
 | <strong>Datasets</strong> | Standardized dataset library | 20,000+ datasets ready for training |
 | <strong>Accelerate</strong> | Simplified distributed training | Run on multi-GPU or TPU without code changes |
 | <strong>PEFT</strong> | Parameter-efficient fine-tuning | Fine-tune 70B models on consumer GPUs |
-| <strong>TRL</strong> | Reinforcement learning from human feedback | Train models with RLHF |</p>
-<p>This integrated toolchain means you can go from idea to fine-tuned model without leaving the Hugging Face ecosystem.</p>
-<h3 id="why-it-is-the-most-popular-nlp-library">Why It is the Most Popular NLP Library<a hidden class="anchor" aria-hidden="true" href="#why-it-is-the-most-popular-nlp-library">#</a></h3>
-<p>Several factors drove Transformers to dominance. The library abstracts every major transformer architecture — BERT, GPT, T5, LLaMA, Mistral — behind a unified API. It supports PyTorch, TensorFlow, and JAX, so you are not locked into a single framework. The Hugging Face Hub creates a social network for models, where researchers publish and the community votes on the best checkpoints.</p>
-<p>Crucially, the library handles the messy details: tokenization alignment, attention mask construction, padding strategies, and model-specific quirks. You focus on your task; Transformers handles the infrastructure.</p>
-<h2 id="key-features-and-capabilities">Key Features and Capabilities<a hidden class="anchor" aria-hidden="true" href="#key-features-and-capabilities">#</a></h2>
-<h3 id="500000-pretrained-models">500,000+ Pretrained Models<a hidden class="anchor" aria-hidden="true" href="#500000-pretrained-models">#</a></h3>
-<p>The Hugging Face Hub hosts models for virtually every NLP task and many beyond. The catalog includes foundation models like BERT, GPT-2, T5, and LLaMA; fine-tuned variants for specific languages and domains; and experimental architectures from recent papers. You can search by task, language, library, and license.</p>
-<h3 id="support-for-200-languages">Support for 200+ Languages<a hidden class="anchor" aria-hidden="true" href="#support-for-200-languages">#</a></h3>
-<p>While early transformer models focused on English, the Hub now contains strong models for Arabic, Chinese, Hindi, Japanese, and hundreds of other languages. Multilingual models like XLM-RoBERTa and mBERT handle 100 languages in a single checkpoint.</p>
-<h3 id="pytorch-tensorflow-and-jax-compatibility">PyTorch, TensorFlow, and JAX Compatibility<a hidden class="anchor" aria-hidden="true" href="#pytorch-tensorflow-and-jax-compatibility">#</a></h3>
-<p>Transformers supports all three major deep learning frameworks. Most new models ship with PyTorch implementations first, but TensorFlow and JAX support follows quickly. You can even export models to ONNX for inference in other runtimes.</p>
-<h2 id="installation-and-environment-setup">Installation and Environment Setup<a hidden class="anchor" aria-hidden="true" href="#installation-and-environment-setup">#</a></h2>
-<p>Getting started requires minimal setup. You need Python 3.8+ and a basic understanding of deep learning concepts.</p>
-<h3 id="installing-transformers-and-dependencies">Installing Transformers and Dependencies<a hidden class="anchor" aria-hidden="true" href="#installing-transformers-and-dependencies">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install transformers
-</span></span><span style="display:flex;"><span>pip install torch  <span style="color:#75715e"># or tensorflow, or flax</span>
+| <strong>TRL</strong> | Reinforcement learning from human feedback | Train models with RLHF |</p><p>This integrated toolchain means you can go from idea to fine-tuned model without leaving the Hugging Face ecosystem.</p><h3 id=why-it-is-the-most-popular-nlp-library>Why It is the Most Popular NLP Library<a hidden class=anchor aria-hidden=true href=#why-it-is-the-most-popular-nlp-library>#</a></h3><p>Several factors drove Transformers to dominance. The library abstracts every major transformer architecture — BERT, GPT, T5, LLaMA, Mistral — behind a unified API. It supports PyTorch, TensorFlow, and JAX, so you are not locked into a single framework. The Hugging Face Hub creates a social network for models, where researchers publish and the community votes on the best checkpoints.</p><p>Crucially, the library handles the messy details: tokenization alignment, attention mask construction, padding strategies, and model-specific quirks. You focus on your task; Transformers handles the infrastructure.</p><h2 id=key-features-and-capabilities>Key Features and Capabilities<a hidden class=anchor aria-hidden=true href=#key-features-and-capabilities>#</a></h2><h3 id=500000-pretrained-models>500,000+ Pretrained Models<a hidden class=anchor aria-hidden=true href=#500000-pretrained-models>#</a></h3><p>The Hugging Face Hub hosts models for virtually every NLP task and many beyond. The catalog includes foundation models like BERT, GPT-2, T5, and LLaMA; fine-tuned variants for specific languages and domains; and experimental architectures from recent papers. You can search by task, language, library, and license.</p><h3 id=support-for-200-languages>Support for 200+ Languages<a hidden class=anchor aria-hidden=true href=#support-for-200-languages>#</a></h3><p>While early transformer models focused on English, the Hub now contains strong models for Arabic, Chinese, Hindi, Japanese, and hundreds of other languages. Multilingual models like XLM-RoBERTa and mBERT handle 100 languages in a single checkpoint.</p><h3 id=pytorch-tensorflow-and-jax-compatibility>PyTorch, TensorFlow, and JAX Compatibility<a hidden class=anchor aria-hidden=true href=#pytorch-tensorflow-and-jax-compatibility>#</a></h3><p>Transformers supports all three major deep learning frameworks. Most new models ship with PyTorch implementations first, but TensorFlow and JAX support follows quickly. You can even export models to ONNX for inference in other runtimes.</p><h2 id=installation-and-environment-setup>Installation and Environment Setup<a hidden class=anchor aria-hidden=true href=#installation-and-environment-setup>#</a></h2><p>Getting started requires minimal setup. You need Python 3.8+ and a basic understanding of deep learning concepts.</p><h3 id=installing-transformers-and-dependencies>Installing Transformers and Dependencies<a hidden class=anchor aria-hidden=true href=#installing-transformers-and-dependencies>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install transformers
+</span></span><span style=display:flex><span>pip install torch  <span style=color:#75715e># or tensorflow, or flax</span>
 </span></span></code></pre></div><p>For the full ecosystem experience: `````bash
-pip install transformers datasets accelerate peft trl</p>
-<pre tabindex="0"><code>
+pip install transformers datasets accelerate peft trl</p><pre tabindex=0><code>
 ### Setting Up GPU Support (CUDA)
 
 GPU acceleration is essential for training and large-scale inference. Install the CUDA-compatible PyTorch version: `````bash
 pip install torch --index-url https://download.pytorch.org/whl/cu121
 </code></pre><p>Verify GPU availability: `````python
 import torch
-print(torch.cuda.is_available())  # Should print True
-print(torch.cuda.get_device_name(0))  # Your GPU model</p>
-<pre tabindex="0"><code>
+print(torch.cuda.is_available()) # Should print True
+print(torch.cuda.get_device_name(0)) # Your GPU model</p><pre tabindex=0><code>
 ### Using Google Colab for Free GPU Access
 
 If you lack local GPU resources, [Google Colab](https://colab.research.google.com) provides free Tesla T4 GPUs. Simply switch the runtime to GPU mode (Runtime &gt; Change runtime type &gt; GPU) and install the libraries in the first cell. For larger models, Colab Pro ($9.99/month) offers more memory and faster GPUs.
@@ -344,46 +36,30 @@ from transformers import pipeline
 classifier = pipeline(&#34;sentiment-analysis&#34;)
 result = classifier(&#34;This movie was absolutely fantastic!&#34;)
 # [{&#39;label&#39;: &#39;POSITIVE&#39;, &#39;score&#39;: 0.9998}]
-</code></pre><h3 id="named-entity-recognition-ner">Named Entity Recognition (NER)<a hidden class="anchor" aria-hidden="true" href="#named-entity-recognition-ner">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>ner <span style="color:#f92672">=</span> pipeline(<span style="color:#e6db74">&#34;ner&#34;</span>, aggregation_strategy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;simple&#34;</span>)
-</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> ner(<span style="color:#e6db74">&#34;Apple Inc. was founded by Steve Jobs in California.&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># [{&#39;entity_group&#39;: &#39;ORG&#39;, &#39;word&#39;: &#39;Apple Inc.&#39;}, ...]</span>
-</span></span></code></pre></div><h3 id="question-answering">Question Answering<a hidden class="anchor" aria-hidden="true" href="#question-answering">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>qa <span style="color:#f92672">=</span> pipeline(<span style="color:#e6db74">&#34;question-answering&#34;</span>)
-</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> qa(
-</span></span><span style="display:flex;"><span>    question<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;What is the capital of France?&#34;</span>,
-</span></span><span style="display:flex;"><span>    context<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Paris is the capital and largest city of France.&#34;</span>
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># {&#39;answer&#39;: &#39;Paris&#39;, &#39;score&#39;: 0.99}</span>
-</span></span></code></pre></div><h3 id="text-generation">Text Generation<a hidden class="anchor" aria-hidden="true" href="#text-generation">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>generator <span style="color:#f92672">=</span> pipeline(<span style="color:#e6db74">&#34;text-generation&#34;</span>, model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt2&#34;</span>)
-</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> generator(<span style="color:#e6db74">&#34;The future of AI is&#34;</span>, max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">30</span>, num_return_sequences<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
-</span></span></code></pre></div><h3 id="summarization">Summarization<a hidden class="anchor" aria-hidden="true" href="#summarization">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>summarizer <span style="color:#f92672">=</span> pipeline(<span style="color:#e6db74">&#34;summarization&#34;</span>, model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;facebook/bart-large-cnn&#34;</span>)
-</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> summarizer(long_article_text, max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">130</span>, min_length<span style="color:#f92672">=</span><span style="color:#ae81ff">30</span>)
-</span></span></code></pre></div><h3 id="translation">Translation<a hidden class="anchor" aria-hidden="true" href="#translation">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>translator <span style="color:#f92672">=</span> pipeline(<span style="color:#e6db74">&#34;translation_en_to_de&#34;</span>, model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;t5-base&#34;</span>)
-</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> translator(<span style="color:#e6db74">&#34;Hello, how are you?&#34;</span>)
-</span></span></code></pre></div><p>The pipeline API is perfect for prototyping and small-scale applications. For production use, you will want the direct model API for finer control and better performance.</p>
-<h2 id="working-with-pretrained-models">Working with Pretrained Models<a hidden class="anchor" aria-hidden="true" href="#working-with-pretrained-models">#</a></h2>
-<p>For production applications, use the Auto classes directly. This gives you control over batching, device placement, and output processing.</p>
-<h3 id="loading-models-and-tokenizers">Loading Models and Tokenizers<a hidden class="anchor" aria-hidden="true" href="#loading-models-and-tokenizers">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> transformers <span style="color:#f92672">import</span> AutoModel, AutoTokenizer
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>model_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;bert-base-uncased&#34;</span>
-</span></span><span style="display:flex;"><span>tokenizer <span style="color:#f92672">=</span> AutoTokenizer<span style="color:#f92672">.</span>from_pretrained(model_name)
-</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> AutoModel<span style="color:#f92672">.</span>from_pretrained(model_name)
+</code></pre><h3 id=named-entity-recognition-ner>Named Entity Recognition (NER)<a hidden class=anchor aria-hidden=true href=#named-entity-recognition-ner>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>ner <span style=color:#f92672>=</span> pipeline(<span style=color:#e6db74>&#34;ner&#34;</span>, aggregation_strategy<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;simple&#34;</span>)
+</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> ner(<span style=color:#e6db74>&#34;Apple Inc. was founded by Steve Jobs in California.&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#75715e># [{&#39;entity_group&#39;: &#39;ORG&#39;, &#39;word&#39;: &#39;Apple Inc.&#39;}, ...]</span>
+</span></span></code></pre></div><h3 id=question-answering>Question Answering<a hidden class=anchor aria-hidden=true href=#question-answering>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>qa <span style=color:#f92672>=</span> pipeline(<span style=color:#e6db74>&#34;question-answering&#34;</span>)
+</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> qa(
+</span></span><span style=display:flex><span>    question<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;What is the capital of France?&#34;</span>,
+</span></span><span style=display:flex><span>    context<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Paris is the capital and largest city of France.&#34;</span>
+</span></span><span style=display:flex><span>)
+</span></span><span style=display:flex><span><span style=color:#75715e># {&#39;answer&#39;: &#39;Paris&#39;, &#39;score&#39;: 0.99}</span>
+</span></span></code></pre></div><h3 id=text-generation>Text Generation<a hidden class=anchor aria-hidden=true href=#text-generation>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>generator <span style=color:#f92672>=</span> pipeline(<span style=color:#e6db74>&#34;text-generation&#34;</span>, model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt2&#34;</span>)
+</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> generator(<span style=color:#e6db74>&#34;The future of AI is&#34;</span>, max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>30</span>, num_return_sequences<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>)
+</span></span></code></pre></div><h3 id=summarization>Summarization<a hidden class=anchor aria-hidden=true href=#summarization>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>summarizer <span style=color:#f92672>=</span> pipeline(<span style=color:#e6db74>&#34;summarization&#34;</span>, model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;facebook/bart-large-cnn&#34;</span>)
+</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> summarizer(long_article_text, max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>130</span>, min_length<span style=color:#f92672>=</span><span style=color:#ae81ff>30</span>)
+</span></span></code></pre></div><h3 id=translation>Translation<a hidden class=anchor aria-hidden=true href=#translation>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>translator <span style=color:#f92672>=</span> pipeline(<span style=color:#e6db74>&#34;translation_en_to_de&#34;</span>, model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;t5-base&#34;</span>)
+</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> translator(<span style=color:#e6db74>&#34;Hello, how are you?&#34;</span>)
+</span></span></code></pre></div><p>The pipeline API is perfect for prototyping and small-scale applications. For production use, you will want the direct model API for finer control and better performance.</p><h2 id=working-with-pretrained-models>Working with Pretrained Models<a hidden class=anchor aria-hidden=true href=#working-with-pretrained-models>#</a></h2><p>For production applications, use the Auto classes directly. This gives you control over batching, device placement, and output processing.</p><h3 id=loading-models-and-tokenizers>Loading Models and Tokenizers<a hidden class=anchor aria-hidden=true href=#loading-models-and-tokenizers>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> transformers <span style=color:#f92672>import</span> AutoModel, AutoTokenizer
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>model_name <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;bert-base-uncased&#34;</span>
+</span></span><span style=display:flex><span>tokenizer <span style=color:#f92672>=</span> AutoTokenizer<span style=color:#f92672>.</span>from_pretrained(model_name)
+</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> AutoModel<span style=color:#f92672>.</span>from_pretrained(model_name)
 </span></span></code></pre></div><p>The <code>AutoModel</code> family automatically selects the correct architecture based on the model name. For specific tasks, use specialized classes: `````python
 from transformers import AutoModelForSequenceClassification
 from transformers import AutoModelForCausalLM
-from transformers import AutoModelForSeq2SeqLM</p>
-<h1 id="classification-tasks-sentiment-ner">Classification tasks (sentiment, NER)<a hidden class="anchor" aria-hidden="true" href="#classification-tasks-sentiment-ner">#</a></h1>
-<p>cls_model = AutoModelForSequenceClassification.from_pretrained(&ldquo;distilbert-base-uncased&rdquo;)</p>
-<h1 id="text-generation-gpt-style">Text generation (GPT-style)<a hidden class="anchor" aria-hidden="true" href="#text-generation-gpt-style">#</a></h1>
-<p>gen_model = AutoModelForCausalLM.from_pretrained(&ldquo;gpt2&rdquo;)</p>
-<h1 id="translation-summarization-t5-bart">Translation, summarization (T5, BART)<a hidden class="anchor" aria-hidden="true" href="#translation-summarization-t5-bart">#</a></h1>
-<p>seq2seq_model = AutoModelForSeq2SeqLM.from_pretrained(&ldquo;t5-small&rdquo;)</p>
-<pre tabindex="0"><code>
+from transformers import AutoModelForSeq2SeqLM</p><h1 id=classification-tasks-sentiment-ner>Classification tasks (sentiment, NER)<a hidden class=anchor aria-hidden=true href=#classification-tasks-sentiment-ner>#</a></h1><p>cls_model = AutoModelForSequenceClassification.from_pretrained(&ldquo;distilbert-base-uncased&rdquo;)</p><h1 id=text-generation-gpt-style>Text generation (GPT-style)<a hidden class=anchor aria-hidden=true href=#text-generation-gpt-style>#</a></h1><p>gen_model = AutoModelForCausalLM.from_pretrained(&ldquo;gpt2&rdquo;)</p><h1 id=translation-summarization-t5-bart>Translation, summarization (T5, BART)<a hidden class=anchor aria-hidden=true href=#translation-summarization-t5-bart>#</a></h1><p>seq2seq_model = AutoModelForSeq2SeqLM.from_pretrained(&ldquo;t5-small&rdquo;)</p><pre tabindex=0><code>
 ### Model Classes: Encoder, Decoder, Encoder-Decoder
 
 Understanding transformer architecture types helps you choose the right model: | Architecture | Examples | Best For |
@@ -406,53 +82,29 @@ from transformers import AutoConfig
 config = AutoConfig.from_pretrained(&#34;bert-base-uncased&#34;)
 print(config.num_hidden_layers)  # 12
 print(config.hidden_size)  # 768
-</code></pre><h3 id="saving-and-loading-models-locally">Saving and Loading Models Locally<a hidden class="anchor" aria-hidden="true" href="#saving-and-loading-models-locally">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Save</span>
-</span></span><span style="display:flex;"><span>model<span style="color:#f92672">.</span>save_pretrained(<span style="color:#e6db74">&#34;./my_model&#34;</span>)
-</span></span><span style="display:flex;"><span>tokenizer<span style="color:#f92672">.</span>save_pretrained(<span style="color:#e6db74">&#34;./my_model&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load from local path</span>
-</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> AutoModel<span style="color:#f92672">.</span>from_pretrained(<span style="color:#e6db74">&#34;./my_model&#34;</span>)
-</span></span></code></pre></div><h2 id="tokenization-deep-dive">Tokenization Deep Dive<a hidden class="anchor" aria-hidden="true" href="#tokenization-deep-dive">#</a></h2>
-<p>Tokenization converts text into numbers that models understand. It is often the source of subtle bugs in NLP pipelines.</p>
-<h3 id="what-is-tokenization-and-why-it-matters">What is Tokenization and Why It Matters<a hidden class="anchor" aria-hidden="true" href="#what-is-tokenization-and-why-it-matters">#</a></h3>
-<p>Tokenization splits text into subword units. &ldquo;Tokenization&rdquo; might become <code>[&quot;Token&quot;, &quot;ization&quot;]</code> — two subword tokens that the model can represent efficiently. This matters because model inputs are fixed-length, and tokenization determines how much text fits in the context window.</p>
-<h3 id="wordpiece-bpe-and-sentencepiece-algorithms">WordPiece, BPE, and SentencePiece Algorithms<a hidden class="anchor" aria-hidden="true" href="#wordpiece-bpe-and-sentencepiece-algorithms">#</a></h3>
-<p>Different tokenizers use different algorithms: | Algorithm | Used By | Approach |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+</code></pre><h3 id=saving-and-loading-models-locally>Saving and Loading Models Locally<a hidden class=anchor aria-hidden=true href=#saving-and-loading-models-locally>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Save</span>
+</span></span><span style=display:flex><span>model<span style=color:#f92672>.</span>save_pretrained(<span style=color:#e6db74>&#34;./my_model&#34;</span>)
+</span></span><span style=display:flex><span>tokenizer<span style=color:#f92672>.</span>save_pretrained(<span style=color:#e6db74>&#34;./my_model&#34;</span>)
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Load from local path</span>
+</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> AutoModel<span style=color:#f92672>.</span>from_pretrained(<span style=color:#e6db74>&#34;./my_model&#34;</span>)
+</span></span></code></pre></div><h2 id=tokenization-deep-dive>Tokenization Deep Dive<a hidden class=anchor aria-hidden=true href=#tokenization-deep-dive>#</a></h2><p>Tokenization converts text into numbers that models understand. It is often the source of subtle bugs in NLP pipelines.</p><h3 id=what-is-tokenization-and-why-it-matters>What is Tokenization and Why It Matters<a hidden class=anchor aria-hidden=true href=#what-is-tokenization-and-why-it-matters>#</a></h3><p>Tokenization splits text into subword units. &ldquo;Tokenization&rdquo; might become <code>["Token", "ization"]</code> — two subword tokens that the model can represent efficiently. This matters because model inputs are fixed-length, and tokenization determines how much text fits in the context window.</p><h3 id=wordpiece-bpe-and-sentencepiece-algorithms>WordPiece, BPE, and SentencePiece Algorithms<a hidden class=anchor aria-hidden=true href=#wordpiece-bpe-and-sentencepiece-algorithms>#</a></h3><p>Different tokenizers use different algorithms: | Algorithm | Used By | Approach |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | <strong>WordPiece</strong> | BERT, DistilBERT | Greedy subword merging |
 | <strong>BPE</strong> | GPT, RoBERTa | Merges most frequent pairs |
 | <strong>SentencePiece</strong> | T5, LLaMA | Language-agnostic character-level |
-| <strong>Unigram</strong> | Albert, XLNet | Probabilistic subword pruning |</p>
-<h3 id="working-with-the-tokenizer-api">Working with the Tokenizer API<a hidden class="anchor" aria-hidden="true" href="#working-with-the-tokenizer-api">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello, Transformers!&#34;</span>
-</span></span><span style="display:flex;"><span>tokens <span style="color:#f92672">=</span> tokenizer<span style="color:#f92672">.</span>tokenize(text)
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># [&#39;hello&#39;, &#39;,&#39;, &#39;transform&#39;, &#39;##ers&#39;, &#39;!&#39;]</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>ids <span style="color:#f92672">=</span> tokenizer<span style="color:#f92672">.</span>encode(text)
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># [101, 7592, 117, 19082, 1168, 106, 102]</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Full encoding with attention mask</span>
-</span></span><span style="display:flex;"><span>encoded <span style="color:#f92672">=</span> tokenizer(text, padding<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, truncation<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">512</span>, return_tensors<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pt&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># encoded[input_ids], encoded[attention_mask]</span>
-</span></span></code></pre></div><h3 id="handling-special-tokens-and-padding">Handling Special Tokens and Padding<a hidden class="anchor" aria-hidden="true" href="#handling-special-tokens-and-padding">#</a></h3>
-<p>Tokenizers add special tokens automatically: <code>[CLS]</code> (classification start), <code>[SEP]</code> (separator), <code>[PAD]</code> (padding). The attention mask tells the model which tokens are real versus padding. Always pass the attention mask to avoid incorrect results.</p>
-<h2 id="fine-tuning-models-for-your-use-case">Fine-Tuning Models for Your Use Case<a hidden class="anchor" aria-hidden="true" href="#fine-tuning-models-for-your-use-case">#</a></h2>
-<p>Fine-tuning adapts a pretrained model to your specific task and dataset. This typically outperforms using pretrained models directly.</p>
-<h3 id="preparing-your-dataset">Preparing Your Dataset<a hidden class="anchor" aria-hidden="true" href="#preparing-your-dataset">#</a></h3>
-<p>The Datasets library simplifies data preparation: `````python
-from datasets import load_dataset</p>
-<p>dataset = load_dataset(&ldquo;imdb&rdquo;)</p>
-<h1 id="datasettrain-datasettest-with-text-and-label-columns">dataset[train], dataset[test] with &rsquo;text&rsquo; and &rsquo;label&rsquo; columns<a hidden class="anchor" aria-hidden="true" href="#datasettrain-datasettest-with-text-and-label-columns">#</a></h1>
-<p>def tokenize_function(examples): return tokenizer(examples[&ldquo;text&rdquo;], padding=&ldquo;max_length&rdquo;, truncation=True)</p>
-<p>tokenized = dataset.map(tokenize_function, batched=True)</p>
-<pre tabindex="0"><code>
+| <strong>Unigram</strong> | Albert, XLNet | Probabilistic subword pruning |</p><h3 id=working-with-the-tokenizer-api>Working with the Tokenizer API<a hidden class=anchor aria-hidden=true href=#working-with-the-tokenizer-api>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>text <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Hello, Transformers!&#34;</span>
+</span></span><span style=display:flex><span>tokens <span style=color:#f92672>=</span> tokenizer<span style=color:#f92672>.</span>tokenize(text)
+</span></span><span style=display:flex><span><span style=color:#75715e># [&#39;hello&#39;, &#39;,&#39;, &#39;transform&#39;, &#39;##ers&#39;, &#39;!&#39;]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>ids <span style=color:#f92672>=</span> tokenizer<span style=color:#f92672>.</span>encode(text)
+</span></span><span style=display:flex><span><span style=color:#75715e># [101, 7592, 117, 19082, 1168, 106, 102]</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Full encoding with attention mask</span>
+</span></span><span style=display:flex><span>encoded <span style=color:#f92672>=</span> tokenizer(text, padding<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, truncation<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>512</span>, return_tensors<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;pt&#34;</span>)
+</span></span><span style=display:flex><span><span style=color:#75715e># encoded[input_ids], encoded[attention_mask]</span>
+</span></span></code></pre></div><h3 id=handling-special-tokens-and-padding>Handling Special Tokens and Padding<a hidden class=anchor aria-hidden=true href=#handling-special-tokens-and-padding>#</a></h3><p>Tokenizers add special tokens automatically: <code>[CLS]</code> (classification start), <code>[SEP]</code> (separator), <code>[PAD]</code> (padding). The attention mask tells the model which tokens are real versus padding. Always pass the attention mask to avoid incorrect results.</p><h2 id=fine-tuning-models-for-your-use-case>Fine-Tuning Models for Your Use Case<a hidden class=anchor aria-hidden=true href=#fine-tuning-models-for-your-use-case>#</a></h2><p>Fine-tuning adapts a pretrained model to your specific task and dataset. This typically outperforms using pretrained models directly.</p><h3 id=preparing-your-dataset>Preparing Your Dataset<a hidden class=anchor aria-hidden=true href=#preparing-your-dataset>#</a></h3><p>The Datasets library simplifies data preparation: `````python
+from datasets import load_dataset</p><p>dataset = load_dataset(&ldquo;imdb&rdquo;)</p><h1 id=datasettrain-datasettest-with-text-and-label-columns>dataset[train], dataset[test] with &rsquo;text&rsquo; and &rsquo;label&rsquo; columns<a hidden class=anchor aria-hidden=true href=#datasettrain-datasettest-with-text-and-label-columns>#</a></h1><p>def tokenize_function(examples): return tokenizer(examples[&ldquo;text&rdquo;], padding=&ldquo;max_length&rdquo;, truncation=True)</p><p>tokenized = dataset.map(tokenize_function, batched=True)</p><pre tabindex=0><code>
 ### Using the Trainer API
 
 The Trainer class handles training loops, evaluation, checkpointing, and logging: `````python
@@ -477,19 +129,15 @@ trainer = Trainer(
 )
 
 trainer.train()
-</code></pre><h3 id="custom-training-loops-with-pytorch">Custom Training Loops with PyTorch<a hidden class="anchor" aria-hidden="true" href="#custom-training-loops-with-pytorch">#</a></h3>
-<p>For full control, write your own training loop: `````python
+</code></pre><h3 id=custom-training-loops-with-pytorch>Custom Training Loops with PyTorch<a hidden class=anchor aria-hidden=true href=#custom-training-loops-with-pytorch>#</a></h3><p>For full control, write your own training loop: `````python
 from torch.optim import AdamW
-from torch.utils.data import DataLoader</p>
-<p>optimizer = AdamW(model.parameters(), lr=5e-5)
-train_loader = DataLoader(tokenized[&ldquo;train&rdquo;], batch_size=8, shuffle=True)</p>
-<p>model.train()
+from torch.utils.data import DataLoader</p><p>optimizer = AdamW(model.parameters(), lr=5e-5)
+train_loader = DataLoader(tokenized[&ldquo;train&rdquo;], batch_size=8, shuffle=True)</p><p>model.train()
 for epoch in range(3): for batch in train_loader: optimizer.zero_grad()
 outputs = model(**batch)
 loss = outputs.loss
 loss.backward()
-optimizer.step()</p>
-<pre tabindex="0"><code>
+optimizer.step()</p><pre tabindex=0><code>
 ### Fine-Tuning BERT for Classification
 
 The most common fine-tuning task: `````python
@@ -500,27 +148,21 @@ model = AutoModelForSequenceClassification.from_pretrained(
     num_labels=2
 )
 # Then train with Trainer or custom loop
-</code></pre><h3 id="fine-tuning-gpt-for-text-generation">Fine-Tuning GPT for Text Generation<a hidden class="anchor" aria-hidden="true" href="#fine-tuning-gpt-for-text-generation">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> transformers <span style="color:#f92672">import</span> AutoModelForCausalLM, DataCollatorForLanguageModeling
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> AutoModelForCausalLM<span style="color:#f92672">.</span>from_pretrained(<span style="color:#e6db74">&#34;gpt2&#34;</span>)
-</span></span><span style="display:flex;"><span>data_collator <span style="color:#f92672">=</span> DataCollatorForLanguageModeling(tokenizer, mlm<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use with Trainer for causal language modeling</span>
-</span></span></code></pre></div><h3 id="using-lora-for-efficient-fine-tuning">Using LoRA for Efficient Fine-Tuning<a hidden class="anchor" aria-hidden="true" href="#using-lora-for-efficient-fine-tuning">#</a></h3>
-<p>Full fine-tuning updates billions of parameters, requiring massive GPU memory. LoRA (Low-Rank Adaptation) freezes the base model and trains small adapter matrices, reducing trainable parameters by 99% while maintaining 95%+ of full fine-tuning quality: `````python
-from peft import LoraConfig, get_peft_model</p>
-<p>lora_config = LoraConfig(
-r=16,  # rank
+</code></pre><h3 id=fine-tuning-gpt-for-text-generation>Fine-Tuning GPT for Text Generation<a hidden class=anchor aria-hidden=true href=#fine-tuning-gpt-for-text-generation>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> transformers <span style=color:#f92672>import</span> AutoModelForCausalLM, DataCollatorForLanguageModeling
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>model <span style=color:#f92672>=</span> AutoModelForCausalLM<span style=color:#f92672>.</span>from_pretrained(<span style=color:#e6db74>&#34;gpt2&#34;</span>)
+</span></span><span style=display:flex><span>data_collator <span style=color:#f92672>=</span> DataCollatorForLanguageModeling(tokenizer, mlm<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>)
+</span></span><span style=display:flex><span><span style=color:#75715e># Use with Trainer for causal language modeling</span>
+</span></span></code></pre></div><h3 id=using-lora-for-efficient-fine-tuning>Using LoRA for Efficient Fine-Tuning<a hidden class=anchor aria-hidden=true href=#using-lora-for-efficient-fine-tuning>#</a></h3><p>Full fine-tuning updates billions of parameters, requiring massive GPU memory. LoRA (Low-Rank Adaptation) freezes the base model and trains small adapter matrices, reducing trainable parameters by 99% while maintaining 95%+ of full fine-tuning quality: `````python
+from peft import LoraConfig, get_peft_model</p><p>lora_config = LoraConfig(
+r=16, # rank
 lora_alpha=32,
 target_modules=[&ldquo;q_proj&rdquo;, &ldquo;v_proj&rdquo;],
 lora_dropout=0.05,
 bias=&ldquo;none&rdquo;,
 task_type=&ldquo;CAUSAL_LM&rdquo;
-)</p>
-<p>model = get_peft_model(model, lora_config)
-model.print_trainable_parameters()</p>
-<h1 id="trainable-params-9m--all-params-7b--trainable-013">trainable params: 9M || all params: 7B || trainable%: 0.13<a hidden class="anchor" aria-hidden="true" href="#trainable-params-9m--all-params-7b--trainable-013">#</a></h1>
-<pre tabindex="0"><code>
+)</p><p>model = get_peft_model(model, lora_config)
+model.print_trainable_parameters()</p><h1 id=trainable-params-9m--all-params-7b--trainable-013>trainable params: 9M || all params: 7B || trainable%: 0.13<a hidden class=anchor aria-hidden=true href=#trainable-params-9m--all-params-7b--trainable-013>#</a></h1><pre tabindex=0><code>
 ## Model Optimization and Deployment
 
 ### Quantization (INT8, INT4)
@@ -539,22 +181,17 @@ model = AutoModelForCausalLM.from_pretrained(
     &#34;meta-llama/Llama-2-7b&#34;,
     quantization_config=bnb_config
 )
-</code></pre><h3 id="model-distillation">Model Distillation<a hidden class="anchor" aria-hidden="true" href="#model-distillation">#</a></h3>
-<p>Distillation trains a smaller &ldquo;student&rdquo; model to mimic a larger &ldquo;teacher.&rdquo; DistilBERT, for example, retains 97% of BERT&rsquo;s performance at 60% of the size and 40% faster inference.</p>
-<h3 id="onnx-export-and-inference">ONNX Export and Inference<a hidden class="anchor" aria-hidden="true" href="#onnx-export-and-inference">#</a></h3>
-<p>Export models to ONNX for optimized inference in production: `````python
+</code></pre><h3 id=model-distillation>Model Distillation<a hidden class=anchor aria-hidden=true href=#model-distillation>#</a></h3><p>Distillation trains a smaller &ldquo;student&rdquo; model to mimic a larger &ldquo;teacher.&rdquo; DistilBERT, for example, retains 97% of BERT&rsquo;s performance at 60% of the size and 40% faster inference.</p><h3 id=onnx-export-and-inference>ONNX Export and Inference<a hidden class=anchor aria-hidden=true href=#onnx-export-and-inference>#</a></h3><p>Export models to ONNX for optimized inference in production: `````python
 from transformers import AutoModelForSequenceClassification
-import torch</p>
-<p>model = AutoModelForSequenceClassification.from_pretrained(&ldquo;distilbert-base-uncased&rdquo;)
+import torch</p><p>model = AutoModelForSequenceClassification.from_pretrained(&ldquo;distilbert-base-uncased&rdquo;)
 torch.onnx.export(
 model,
-(torch.zeros(1, 128, dtype=torch.long),),  # dummy input
+(torch.zeros(1, 128, dtype=torch.long),), # dummy input
 &ldquo;model.onnx&rdquo;,
 input_names=[&ldquo;input_ids&rdquo;],
 output_names=[&ldquo;logits&rdquo;],
 dynamic_axes={&ldquo;input_ids&rdquo;: {0: &ldquo;batch&rdquo;, 1: &ldquo;sequence&rdquo;}}
-)</p>
-<pre tabindex="0"><code>
+)</p><pre tabindex=0><code>
 ### Deploying with Hugging Face Inference API
 
 For zero-infrastructure deployment, use the [Hugging Face Inference API](https://huggingface.co/docs/api-inference): `````python
@@ -567,15 +204,11 @@ def query(payload): response = requests.post(API_URL, headers=headers, json=payl
     return response.json()
 
 result = query({&#34;inputs&#34;: &#34;The answer to life is [MASK].&#34;})
-</code></pre><h3 id="local-deployment-with-transformers">Local Deployment with Transformers<a hidden class="anchor" aria-hidden="true" href="#local-deployment-with-transformers">#</a></h3>
-<p>For production, serve models with Text Generation Inference (TGI) or the <code>pipeline</code> with Flask/FastAPI: `````python
+</code></pre><h3 id=local-deployment-with-transformers>Local Deployment with Transformers<a hidden class=anchor aria-hidden=true href=#local-deployment-with-transformers>#</a></h3><p>For production, serve models with Text Generation Inference (TGI) or the <code>pipeline</code> with Flask/FastAPI: `````python
 from fastapi import FastAPI
-from transformers import pipeline</p>
-<p>app = FastAPI()
-pipe = pipeline(&ldquo;text-classification&rdquo;, model=&ldquo;distilbert-base-uncased&rdquo;)</p>
-<p>@app.post(&quot;/classify&quot;)
-def classify(text: str): return pipe(text)[0]</p>
-<pre tabindex="0"><code>
+from transformers import pipeline</p><p>app = FastAPI()
+pipe = pipeline(&ldquo;text-classification&rdquo;, model=&ldquo;distilbert-base-uncased&rdquo;)</p><p>@app.post("/classify")
+def classify(text: str): return pipe(text)[0]</p><pre tabindex=0><code>
 ## Top Hugging Face Models in 2025
 
 | Model | Architecture | Best For | Size |
@@ -706,121 +339,11 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 
 
 * * *
-</code></pre>
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
-      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="https://dibi8.com/ai-coding-agents/httpie/">
-    <span class="title">« 上一页</span>
-    <span>AI Tool Guide</span>
-  </a>
-  <a class="next" href="https://dibi8.com/ai-coding-agents/impeccable-ai-design-language-harness-quality-ui/">
-    <span class="title">下一页 »</span>
-    <span>AI Tool Guide</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
-
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
-        <polyline points="17 11 12 6 7 11"></polyline>
-        <polyline points="17 18 12 13 7 18"></polyline>
-    </svg>
-</a>
-
-
-<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-        <span style="font-size:20px;">🌐</span>
-        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
-    </div>
-    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
-        <option value="">Select language...</option>
-        <option value="zh">中文 (Chinese)</option>
-        <option value="en">English</option>
-        <option value="ko">한국어 (Korean)</option>
-        <option value="vi">Tiếng Việt (Vietnamese)</option>
-        <option value="ja">日本語 (Japanese)</option>
-        <option value="fr">Français (French)</option>
-        <option value="de">Deutsch (German)</option>
-        <option value="es">Español (Spanish)</option>
-        <option value="ar">العربية (Arabic)</option>
-        <option value="pt">Português (Portuguese)</option>
-        <option value="ru">Русский (Russian)</option>
-        <option value="hi">हिन्दी (Hindi)</option>
-        <option value="th">ไทย (Thai)</option>
-        <option value="id">Indonesia (Indonesian)</option>
-    </select>
-</div>
-
-<script>
-function translatePage(lang) {
-    if (!lang) return;
-    
-    
-    const url = window.location.href;
-    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
-    
-    
-    window.open(translatedUrl, '_blank');
-}
-
-
-(function() {
-    var navLang = navigator.language || navigator.userLanguage;
-    var langMap = {
-        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
-        'en': 'en',
-        'ko': 'ko',
-        'vi': 'vi',
-        'ja': 'ja',
-        'fr': 'fr',
-        'de': 'de',
-        'es': 'es',
-        'ar': 'ar',
-        'pt': 'pt',
-        'ru': 'ru',
-        'hi': 'hi',
-        'th': 'th',
-        'id': 'id'
-    };
-    var detected = langMap[navLang] || 'en';
-    document.getElementById('lang-select').value = detected;
-})();
-</script>
-
-
-<div id="google_translate_element" style="display:none;"></div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'zh',
-        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
-        autoDisplay: false
-    }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-</body>
-
-</html>
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/httpie/><span class=title>« 上一页</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/ai-coding-agents/impeccable-ai-design-language-harness-quality-ui/><span class=title>下一页 »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
+<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script></body></html>

@@ -1,260 +1,9 @@
-<!DOCTYPE html>
-<html lang="zh" dir="auto" data-theme="dark">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>AI Tool Guide | Dibi8</title>
-<meta name="keywords" content="ai, tools">
-<meta name="description" content="Technical guide and comparison">
-<meta name="author" content="">
-<link rel="canonical" href="https://dibi8.com/ai-coding-agents/flowise/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://dibi8.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/flowise/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/flowise/">
-  <meta property="og:site_name" content="Dibi8">
-  <meta property="og:title" content="AI Tool Guide">
-  <meta property="og:description" content="Technical guide and comparison">
-  <meta property="og:locale" content="zh_cn">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="ai-coding-agents">
-    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:tag" content="Ai">
-    <meta property="article:tag" content="Tools">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI Tool Guide">
-  <meta name="twitter:description" content="Technical guide and comparison">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "AI Coding Agents - dibi8",
-      "item": "https://dibi8.com/ai-coding-agents/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "AI Tool Guide",
-      "item": "https://dibi8.com/ai-coding-agents/flowise/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "AI Tool Guide",
-  "name": "AI Tool Guide",
-  "description": "Technical guide and comparison",
-  "keywords": [
-    "ai", "tools"
-  ],
-  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“flowise”, “langchain”, “ai agents”, “rag”, “docker”, “llm”, “open source”, “no-code”] aliases:\n/posts/flowise/ /resources/ai-tools/flowise-ai-workflow-builder-lowcode/- Introduction Building LLM-powered applications used to mean writing hundreds of lines of Python to wire together models, vector stores, retrieval chains, and memory modules. Then Flowise arrived and changed the rules. With 52,948 GitHub stars and a thriving community, Flowise is the open-source visual builder that lets you construct AI agents and RAG pipelines by dragging, dropping, and connecting nodes on a canvas — no code required. Whether you are prototyping a customer support chatbot or deploying a document Q\u0026A system on a $5 VPS, this guide walks you through a production-grade Flowise setup from zero to deployed in under five minutes.\nWhat Is Flowise? Flowise is an open-source, drag-and-drop visual builder for creating LLM workflows and AI agents using LangChain under the hood. It provides a node-based canvas where each component — chat models, embeddings, vector stores, tools, agents, and chains — is represented as a node that you connect to form executable pipelines. Flowise supports over 200 LangChain integrations including OpenAI, Anthropic, Ollama, Qdrant, Weaviate, and Chroma, making it one of the most integration-rich visual AI builders available.\nHow Flowise Works Flowise is built on a modular architecture that maps visual nodes directly to LangChain classes. Understanding this architecture helps you build more complex flows and debug issues faster.\nFlowise visual canvas showing connected LLM nodes — each node maps to a LangChain class\nFlowise drag-and-drop interface in action — building a RAG pipeline without writing code\nCore Components Chat Models — The LLM engine (OpenAI GPT-4o, Claude, Ollama local models, Hugging Face, Bedrock, Gemini) Embeddings — Convert text to vectors for semantic search (OpenAI, HuggingFace, Cohere) Vector Stores — Persist embeddings for retrieval (Chroma, Qdrant, Weaviate, Pinecone, pgvector) Document Loaders — Ingest data from PDFs, web pages, text files, Notion, Confluence Chains — Orchestrate multi-step LLM operations (Conversational Retrieval QA, LLM Chain) Agents — Autonomous reasoning systems that choose tools dynamically (ReAct, OpenAI Functions) Memory — Maintain conversation context across turns (Buffer Memory, Window Buffer, Redis-backed) Three Builder Modes Flowise offers three distinct visual builders: - Assistant — Beginner-friendly chatbot builder with RAG support. Upload documents, configure responses, and deploy.\nChatflow — Full node-based canvas for building custom conversational AI with explicit control over every component. Agentflow — Multi-step agent workflows with conditional logic, loops, tool calling, and human-in-the-loop approval. Every flow you build automatically exposes a REST API endpoint and an embeddable chat widget, making deployment a one-click operation.\nInstallation \u0026 Setup You have four ways to install Flowise. Each fits a different environment and skill level.\nOption 1: NPM (Fastest for Local Development) Requires Node.js v18.15.0 or v20+. This is the fastest path from install to a running canvas.\n# Install Flowise globally npm install -g flowise # Or install a specific version npm install -g flowise@3.1.2 # Start Flowise npx flowise start Open http://localhost:3000 in your browser. The first boot creates a SQLite database at ~/.flowise automatically.\nOption 2: Docker (Recommended for Production) This is the most reliable deployment path. Flowise provides official images on Docker Hub with multi-arch support.\n# Pull and run the official image docker run -d -p 3000:3000 \\ --name flowise \\ -e FLOWISE_USERNAME=admin \\ -e FLOWISE_PASSWORD=secure-password \\ flowiseai/flowise:latest Visit http://localhost:3000 and log in with the credentials you set.\nOption 3: Docker Compose (Production-Ready with Database) For persistent deployments, use Docker Compose with PostgreSQL and volume mounts.\n# docker-compose.yml version: '3.8' services: flowise: image: flowiseai/flowise:latest ports: - \"3000:3000\" environment: - PORT=3000 - DATABASE_TYPE=postgres - DATABASE_HOST=postgres - DATABASE_PORT=5432 - DATABASE_NAME=flowise - DATABASE_USER=flowise - DATABASE_PASSWORD=${DB_PASSWORD:-changeme} - FLOWISE_USERNAME=${FLOWISE_USER:-admin} - FLOWISE_PASSWORD=${FLOWISE_PASS:-changeme} - SECRETKEY_PATH=/root/.flowise - JWT_AUTH_TOKEN_SECRET=${JWT_SECRET:-random-secret-change-in-prod} - JWT_REFRESH_TOKEN_SECRET=${JWT_REFRESH:-another-random-secret} volumes: - flowise_data:/root/.flowise depends_on: - postgres restart: unless-stopped postgres: image: postgres:16-alpine environment: - POSTGRES_USER=flowise - POSTGRES_PASSWORD=${DB_PASSWORD:-changeme} - POSTGRES_DB=flowise volumes: - postgres_data:/var/lib/postgresql/data restart: unless-stopped volumes: flowise_data: postgres_data: ````` Start with: `````bash docker compose up -d Option 4: Deploy to DigitalOcean Droplet For a cloud-hosted instance on a reliable VPS, deploy Flowise to DigitalOcean in minutes.\n# On a fresh Ubuntu 24.04 droplet (2 vCPU / 2GB RAM / $12/month) apt update \u0026\u0026 apt install -y docker.io docker-compose # Clone the Flowise repo git clone https://github.com/FlowiseAI/Flowise.git cd Flowise/docker # Copy environment template cp .env.example .env # Edit .env with your settings nano .env Example .env for DigitalOcean deployment: `````bash PORT=3000 DATABASE_TYPE=sqlite DATABASE_PATH=/root/.flowise SECRETKEY_PATH=/root/.flowise LOG_PATH=/root/.flowise/logs BLOB_STORAGE_PATH=/root/.flowise/storage FLOWISE_USERNAME=admin FLOWISE_PASSWORD=your-secure-password-here JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 32) JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 32)\nStart the service: `````bash docker compose up -d Affiliate Disclosure: The DigitalOcean link above is an affiliate link. We may earn a commission at no extra cost to you. We only recommend infrastructure we would use ourselves.\nEnvironment Variables Reference | Variable | Description | Default | |\n|\n|\n| | PORT | HTTP server port | 3000 | | DATABASE_TYPE | Database engine (sqlite, postgres) | sqlite | | DATABASE_PATH | SQLite file path | ~/.flowise | | FLOWISE_USERNAME | Admin username | — | | FLOWISE_PASSWORD | Admin password | — | | JWT_AUTH_TOKEN_SECRET | Access token secret | auto-generated | | JWT_REFRESH_TOKEN_SECRET | Refresh token secret | auto-generated | | BLOB_STORAGE_PATH | File upload storage path | ~/.flowise/storage | | DISABLE_FLOWISE_TELEMETRY | Disable anonymous telemetry | false |\nIntegration with Popular Tools OpenAI Integration Most users start with OpenAI models. Configure the API key in Flowise UI under Credentials, then use ChatOpenAI nodes in your flows.\n# Add OpenAI API key as environment variable (optional but recommended) export OPENAI_API_KEY=sk-your-key-here Ollama (Local LLMs) Running local models with Ollama eliminates API costs and keeps data on-premise. This setup is ideal for privacy-sensitive deployments.\n# docker-compose-ollama.yml version: '3.8' services: ollama: image: ollama/ollama:latest ports: - \"11434:11434\" volumes: - ollama_data:/root/.ollama restart: unless-stopped flowise: image: flowiseai/flowise:latest ports: - \"3000:3000\" environment: - PORT=3000 - OLLAMA_BASE_URL=http://ollama:11434 depends_on: - ollama restart: unless-stopped volumes: ollama_data: ````` Pull a model and start using it: `````bash # Pull a lightweight model for testing docker exec -it ollama ollama pull qwen2:7b # Or pull Llama 3 docker exec -it ollama ollama pull llama3.1:8b In the Flowise canvas, select ChatOllama node and set the model name to qwen2:7b or llama3.1:8b.\nChroma Vector Store (RAG Setup) For production RAG pipelines, Chroma provides a lightweight vector database that works seamlessly with Flowise.\n# Add to docker-compose.yml chroma: image: chromadb/chroma:latest ports: - \"8000:8000\" volumes: - chroma_data:/chroma/chroma restart: unless-stopped Build a RAG pipeline in Flowise: 1. Drag a PDF Loader or Text File node 2. Connect to a Text Splitter node (set chunk size to 1000, overlap to 200) 3. Connect to an OpenAI Embeddings (or Ollama Embeddings) node 4. Connect to a Chroma vector store node 5. Add a Conversational Retrieval QA Chain node 6. Connect a Chat Model (ChatOpenAI or ChatOllama) to the chain 7. Click Save and Run\nQdrant (Scalable Vector Search) For high-throughput RAG with hybrid search, Qdrant outperforms in-memory stores.\n# Add Qdrant to your compose file qdrant: image: qdrant/qdrant:latest ports: - \"6333:6333\" - \"6334:6334\" volumes: - qdrant_data:/qdrant/storage restart: unless-stopped In Flowise, use the Qdrant vector store node with host http://qdrant:6333.\nWeaviate (Enterprise Vector Database) weaviate: image: semitechnologies/weaviate:latest ports: - \"8080:8080\" environment: QUERY_DEFAULTS_LIMIT: 25 AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: true PERSISTENCE_DATA_PATH: '/var/lib/weaviate' volumes: - weaviate_data:/var/lib/weaviate restart: unless-stopped API Deployment Every flow automatically exposes a REST API. Export your chatflow and integrate it anywhere.\n# Test your deployed flow with curl curl -X POST \"http://localhost:3000/api/v1/prediction/your-chatflow-id\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"question\": \"What is the return policy?\", \"overrideConfig\": { \"sessionId\": \"user_001\" } }' Response: `````json { “text”: “Based on our documentation, the return policy allows returns within 30 days of purchase with the original receipt.”, “sourceDocuments”: [ { “pageContent”: “Returns are accepted within 30 days of purchase…”, “metadata”: { “source”: “return-policy.pdf”, “page”: 3 } } ] }\nPython SDK example: `````python import requests FLOWISE_API = \"http://localhost:3000/api/v1/prediction/your-chatflow-id\" def ask(question, session_id=\"user_001\"): resp = requests.post(FLOWISE_API, json={ \"question\": question, \"overrideConfig\": {\"sessionId\": session_id} }) return resp.json()[\"text\"] answer = ask(\"What are your shipping options?\") print(answer) Embedding in Websites Flowise generates a JavaScript embed snippet for any chatflow. The widget supports custom themes, avatars, starter prompts, and multi-language welcome messages.\nCustomizable embed chat widget with theming options — deploy to any website with one script tag\nPaste this into any HTML page: `````html import Chatbot from ‘https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js'; Chatbot.init({ chatflowid: ‘your-chatflow-id’, apiHost: ‘https://your-flowise-server.com’, theme: { button: { backgroundColor: ‘#3B81F6’, right: 20, bottom: 20, size: medium }, chatWindow: { title: “Support Assistant” welcomeMessage: ‘Hello! How can I help you today?’, backgroundColor: ‘#ffffff’, height: 700, width: 400 } } }); ## Benchmarks / Real-World Use Cases Flowise performance characteristics based on community reports and our own testing: | Metric | Value | Notes | | * * * | * * * | * * * | | Cold start (Docker) | 3-5 seconds | On 2 vCPU VPS | | First response latency | 1.5-3s | With GPT-4o, depends on prompt | | RAG query end-to-end | 2-4s | Chroma vector store, 1K chunks | | Concurrent users | 50-200 | SQLite backend; use PostgreSQL for more | | Memory usage (idle) | ~180 MB | Single container | | Memory usage (active) | 300-600 MB | Depends on model and context | | Flow setup time (RAG) | 10-15 min | From blank canvas to working chatbot | | Minimum VPS spec | 1 vCPU / 1 GB RAM | $4-5/month VPS works | | Production VPS spec | 2 vCPU / 4 GB RAM | Recommended with PostgreSQL | ### Comparison: Flowise vs Alternatives | Feature | Flowise | Dify | n8n | LangChain | | * * * | * * * | * * * | * * * | * * * | | GitHub Stars | 52,948 | 50,000+ | 49,500 | 110,000+ | | License | MIT | Apache-2.0 | Fair-code | MIT | | Visual Builder | Drag-and-drop canvas | App-centric UI | Workflow editor | Code-only | | Primary Use Case | LLM chatbots \u0026 RAG | Full-stack AI apps | Workflow automation | Code-first SDK | | LangChain Native | Yes (direct mapping) | Custom abstraction | Via AI nodes | It IS LangChain | | LLM Support | 200+ (all LangChain) | 50+ | 70+ AI nodes | All providers | | Vector Stores | Chroma, Qdrant, Weaviate, Pinecone, pgvector | Built-in knowledge base | Via LangChain nodes | All stores | | Local LLM (Ollama) | Native node | Native integration | Via HTTP request | Native | | Embeddable Chat Widget | Yes (auto-generated) | Yes | Via webhook | Manual build | | REST API (auto-generated) | Yes | Yes | Yes | Manual build | | Multi-agent Workflows | Agentflow (sequential) | Workflow orchestration | Yes (with AI nodes) | LangGraph | | Scheduling / Triggers | Limited | Limited | Full (cron, webhook) | Manual | | Self-hosting Complexity | Low (1 container) | Medium (multi-service) | Low-Medium | N/A (library) | | Minimum RAM | ~1 GB | 4 GB | 300 MB | N/A | | Cloud Price (Starter) | $35/month | $59/month | ~$24/month | N/A | | Non-technical UX | Good | Excellent | Good | Requires coding | ### When to Choose What - **Flowise**: Best for teams building conversational AI (chatbots, RAG) who want the fastest prototype-to-deployment path with full LangChain compatibility. - **Dify**: Choose when you need a full-stack AI application platform with built-in knowledge management, prompt versioning, and team collaboration. - **n8n**: Choose when your AI agent is part of a broader automation pipeline with 400+ SaaS integrations, scheduling, and error handling. - **LangChain**: Use directly when you need full code control, version control for prompts, and CI/CD integration. ## Advanced Usage / Production Hardening ### Security Checklist Before exposing Flowise to the internet, complete these steps: `````bash # 1. Enable authentication (REQUIRED) FLOWISE_USERNAME=admin FLOWISE_PASSWORD=$(openssl rand -base64 24) # 2. Set strong JWT secrets JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 64) JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 64) # 3. Run behind HTTPS with a reverse proxy # Nginx configuration snippet: server { listen 443 ssl http2; server_name flowise.yourdomain.com; ssl_certificate /path/to/cert.pem; ssl_certificate_key /path/to/key.pem; location / { proxy_pass http://localhost:3000; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \"upgrade\"; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; } } # 4. Disable telemetry if desired DISABLE_FLOWISE_TELEMETRY=true # 5. Set CORS for embed widgets CORS_ORIGINS=https://yourdomain.com,https://app.yourdomain.com Scaling with Queue Mode For high-traffic deployments, Flowise supports queue-based processing with Redis workers.\n# docker-compose-queue.yml version: '3.8' services: redis: image: redis:alpine restart: unless-stopped flowise: image: flowiseai/flowise:latest ports: - \"3000:3000\" environment: - PORT=3000 - QUEUE_NAME=flowise-queue - QUEUE_REDIS_URL=redis://redis:6379 restart: unless-stopped flowise-worker: image: flowiseai/flowise-worker:latest environment: - QUEUE_NAME=flowise-queue - QUEUE_REDIS_URL=redis://redis:6379 restart: unless-stopped Scale workers horizontally: `````bash docker compose -f docker-compose-queue.yml up -d –scale flowise-worker=3\n### Backup Strategy `````bash # Backup SQLite database docker exec flowise tar czf /tmp/backup.tar.gz /root/.flowise docker cp flowise:/tmp/backup.tar.gz ./flowise-backup-$(date +%Y%m%d).tar.gz # Backup PostgreSQL docker exec flowise-postgres pg_dump -U flowise flowise \u003e flowise-db-$(date +%Y%m%d).sql # Automated daily backup via cron (add to crontab) 0 2 * * * /usr/local/bin/backup-flowise.sh \u003e\u003e /var/log/flowise-backup.log 2\u003e\u00261 Monitoring with Docker # View real-time logs docker compose logs -f flowise # Check resource usage docker stats flowise # Health check endpoint curl http://localhost:3000/api/v1/ping Limitations / Honest Assessment Flowise is not the right tool for every AI project. Here is what it does NOT do well: 1. Complex Multi-Agent Orchestration: Flowise Agentflow supports sequential agents, but cyclic multi-agent patterns (like those in LangGraph or AutoGen) require workarounds. Teams building research agents or debate-style multi-agent systems should consider LangGraph directly.\nNon-Chat Workflows: Flowise is optimized for conversational AI. Batch document processing, ETL pipelines, or scheduled data transformations are better handled by n8n or Python scripts.\nVersion Control: Visual flows cannot be diffed in Git the way code can. Collaboration across large teams requires discipline about exporting and versioning JSON flow definitions manually.\nAdvanced Debugging: While Flowise shows execution logs, it lacks node-level timing breakdowns and token-usage traces that Dify provides natively. Debugging complex retrieval failures requires reading raw logs.\nEnterprise Governance: RBAC exists in the Pro tier, but audit trails, compliance frameworks (ISO 42001, EU AI Act), and fleet management are not first-class features. Regulated industries may need additional governance layers.\nLangChain Dependency: Flowise inherits LangChain’s limitations. If LangChain drops support for a model or introduces a breaking change, Flowise follows. This coupling is a feature for LangChain users and a constraint for everyone else.\nFrequently Asked Questions How do I install Flowise on a server without Node.js? Use Docker. The official flowiseai/flowise image bundles all dependencies. A single docker run command gets you running without installing Node.js, pnpm, or any build tools on the host.\nCan Flowise work with local LLMs like Llama or Qwen? Yes. Flowise has native integration with Ollama. Start an Ollama container (or local instance), pull any GGUF model, then select the ChatOllama node in the Flowise canvas. Your data never leaves your server — no API keys required.\nHow does Flowise compare to Dify for building RAG chatbots? Flowise is faster to set up (one container, no database required) and gives you explicit control over each LangChain component. Dify has a more polished knowledge base UI with automatic chunking and better debugging. Choose Flowise for speed and LangChain compatibility; choose Dify for team collaboration and built-in knowledge management.\nIs Flowise free for commercial use? Yes. Flowise is released under the MIT license. You can self-host it, modify it, embed it in commercial products, and sell services built on it — all without paying licensing fees. The cloud-hosted version has paid tiers starting at $35/month.\nWhat is the minimum server spec for running Flowise in production? A $5/month VPS with 1 vCPU and 1 GB RAM handles small-to-medium workloads with SQLite. For production with PostgreSQL and concurrent users, allocate 2 vCPUs and 4 GB RAM. The Flowise container itself uses ~180 MB at idle; the LLM (if self-hosted via Ollama) consumes the most resources.\nCan I export a Flowise chatbot as an API? Every chatflow and agentflow automatically gets a REST API endpoint at /api/v1/prediction/{flow-id}. The UI generates curl, Python, and JavaScript code snippets. You can also export an embeddable chat widget with one click.\nHow do I upgrade Flowise to a new version? For Docker deployments, pull the latest image and restart: `````bash docker pull flowiseai/flowise:latest docker compose up -d\nFor NPM installations, run ````npm update -g flowise````. Always back up your ````~/.flowise```` directory before upgrading. ## Conclusion Flowise removes the barrier between idea and deployed AI agent. With 52,948 GitHub stars, MIT licensing, and a visual canvas that maps directly to LangChain's component model, it is the pragmatic choice for developers who want to ship LLM-powered chatbots and RAG systems without writing boilerplate code. Start with ````npx flowise start```` for a local prototype. Move to Docker Compose with PostgreSQL for production. Connect Ollama for fully private, API-key-free deployments. And when you need to scale, add Redis queue workers and horizontal worker replicas. **Action items for this week:** 1. Deploy Flowise locally with Docker (````docker run -p 3000:3000 flowiseai/flowise```) 2. Build your first RAG pipeline with a PDF loader, text splitter, and Chroma vector store 3. Export the REST API and embed the chat widget on a test page 4. Join the [FlowiseAI Telegram group](https://t.me/flowiseai) for community support and weekly tips ## Recommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. *Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.* ## Sources \u0026 Further Reading 1. [Flowise Official Documentation](https://docs.flowiseai.com/) — Complete docs for installation, configuration, and API reference 2. [Flowise GitHub Repository](https://github.com/FlowiseAI/Flowise) — Source code, issues, and releases 3. [Flowise Cloud Pricing](https://flowiseai.com/pricing) — Cloud-hosted plans and enterprise features 4. [LangChain Documentation](https://js.langchain.com/) — The underlying framework Flowise is built on 5. [Ollama Download](https://ollama.com/download) — Local LLM runtime for private deployments 6. [Chroma Database](https://www.trychroma.com/) — Open-source vector database for RAG 7. [Qdrant Vector Database](https://qdrant.tech/) — High-performance vector search for production 8. [Flowise vs Dify Comparison](https://toolhalla.ai/blog/dify-vs-flowise-vs-langflow-2026) — Detailed head-to-head by ToolHalla 9. [Flowise Embed Widget Docs](https://www.npmjs.com/package/flowise-embed) — NPM package for embedding chatbots 10. [DigitalOcean Docker Deployment Guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-24-04) — Docker setup for Ubuntu servers { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Flowise: Build AI Agents Visually with 52K+ Stars — 5-Minute Drag-and-Drop Setup Guide for 2026\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/flowise\" } } * * * ## Related Articles - [12-factor-agents-production-llm-software-2026](flowise) - [12-factor-agents](flowise) - [1m-context-window-llm-2026-real-test](flowise) - [9router-smart-llm-proxy-token-saver-free-coding](flowise) - [ai-engineering-from-scratch](flowise) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
-  "wordCount" : "3198",
-  "inLanguage": "zh",
-  "datePublished": "2026-09-20T00:00:00Z",
-  "dateModified": "2026-09-20T00:00:00Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/ai-coding-agents/flowise/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/favicon.ico"
-    }
-  }
-}
-</script>
-</head>
-<body id="top">
-    <header class="header">
-    <nav class="header-nav">
-        <div class="logo">
-            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu" class="menu">
-            <li>
-                <a href="https://dibi8.com/categories/" title="Categories">
-                    <span>Categories</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/tools/" title="Tools">
-                    <span>🛠 Tools</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/collections/" title="Collections">
-                    <span>Collections</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">主页</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-        <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-</nav>
-    <h1 class="post-title entry-hint-parent">
-      AI Tool Guide
-    </h1>
-    <div class="post-description">
-      Technical guide and comparison
-    </div>
-    <div class="post-meta">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>16 分钟</span>
-
-</div>
-  </header> <details class="toc" >
-    <summary accesskey="c" title="(Alt + C)">
-        <span class="title">目录</span>
-    </summary>
-
-    <div class="inner"><ul>
-            <li>
-                <a href="#introduction" aria-label="Introduction">Introduction</a></li>
-            <li>
-                <a href="#what-is-flowise" aria-label="What Is Flowise?">What Is Flowise?</a></li>
-            <li>
-                <a href="#how-flowise-works" aria-label="How Flowise Works">How Flowise Works</a><ul>
-                    
-            <li>
-                <a href="#core-components" aria-label="Core Components">Core Components</a></li>
-            <li>
-                <a href="#three-builder-modes" aria-label="Three Builder Modes">Three Builder Modes</a></li></ul>
-            </li>
-            <li>
-                <a href="#installation--setup" aria-label="Installation &amp; Setup">Installation &amp; Setup</a><ul>
-                    
-            <li>
-                <a href="#option-1-npm-fastest-for-local-development" aria-label="Option 1: NPM (Fastest for Local Development)">Option 1: NPM (Fastest for Local Development)</a></li>
-            <li>
-                <a href="#option-2-docker-recommended-for-production" aria-label="Option 2: Docker (Recommended for Production)">Option 2: Docker (Recommended for Production)</a></li>
-            <li>
-                <a href="#option-3-docker-compose-production-ready-with-database" aria-label="Option 3: Docker Compose (Production-Ready with Database)">Option 3: Docker Compose (Production-Ready with Database)</a></li>
-            <li>
-                <a href="#option-4-deploy-to-digitalocean-droplet" aria-label="Option 4: Deploy to DigitalOcean Droplet">Option 4: Deploy to DigitalOcean Droplet</a></li>
-            <li>
-                <a href="#environment-variables-reference" aria-label="Environment Variables Reference">Environment Variables Reference</a></li></ul>
-            </li>
-            <li>
-                <a href="#integration-with-popular-tools" aria-label="Integration with Popular Tools">Integration with Popular Tools</a><ul>
-                    
-            <li>
-                <a href="#openai-integration" aria-label="OpenAI Integration">OpenAI Integration</a></li>
-            <li>
-                <a href="#ollama-local-llms" aria-label="Ollama (Local LLMs)">Ollama (Local LLMs)</a></li>
-            <li>
-                <a href="#chroma-vector-store-rag-setup" aria-label="Chroma Vector Store (RAG Setup)">Chroma Vector Store (RAG Setup)</a></li>
-            <li>
-                <a href="#qdrant-scalable-vector-search" aria-label="Qdrant (Scalable Vector Search)">Qdrant (Scalable Vector Search)</a></li>
-            <li>
-                <a href="#weaviate-enterprise-vector-database" aria-label="Weaviate (Enterprise Vector Database)">Weaviate (Enterprise Vector Database)</a></li>
-            <li>
-                <a href="#api-deployment" aria-label="API Deployment">API Deployment</a></li>
-            <li>
-                <a href="#embedding-in-websites" aria-label="Embedding in Websites">Embedding in Websites</a></li>
-            <li>
-                <a href="#scaling-with-queue-mode" aria-label="Scaling with Queue Mode">Scaling with Queue Mode</a></li>
-            <li>
-                <a href="#monitoring-with-docker" aria-label="Monitoring with Docker">Monitoring with Docker</a></li></ul>
-            </li>
-            <li>
-                <a href="#limitations--honest-assessment" aria-label="Limitations / Honest Assessment">Limitations / Honest Assessment</a></li>
-            <li>
-                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
-                    
-            <li>
-                <a href="#how-do-i-install-flowise-on-a-server-without-nodejs" aria-label="How do I install Flowise on a server without Node.js?">How do I install Flowise on a server without Node.js?</a></li>
-            <li>
-                <a href="#can-flowise-work-with-local-llms-like-llama-or-qwen" aria-label="Can Flowise work with local LLMs like Llama or Qwen?">Can Flowise work with local LLMs like Llama or Qwen?</a></li>
-            <li>
-                <a href="#how-does-flowise-compare-to-dify-for-building-rag-chatbots" aria-label="How does Flowise compare to Dify for building RAG chatbots?">How does Flowise compare to Dify for building RAG chatbots?</a></li>
-            <li>
-                <a href="#is-flowise-free-for-commercial-use" aria-label="Is Flowise free for commercial use?">Is Flowise free for commercial use?</a></li>
-            <li>
-                <a href="#what-is-the-minimum-server-spec-for-running-flowise-in-production" aria-label="What is the minimum server spec for running Flowise in production?">What is the minimum server spec for running Flowise in production?</a></li>
-            <li>
-                <a href="#can-i-export-a-flowise-chatbot-as-an-api" aria-label="Can I export a Flowise chatbot as an API?">Can I export a Flowise chatbot as an API?</a></li>
-            <li>
-                <a href="#how-do-i-upgrade-flowise-to-a-new-version" aria-label="How do I upgrade Flowise to a new version?">How do I upgrade Flowise to a new version?</a>
-            </li>
-        </ul>
-        </li>
-        </ul>
-    </div>
-</details>
-
-  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8 - AI工具目录</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/flowise/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/flowise/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/flowise/"><meta property="og:site_name" content="Dibi8 - AI工具目录"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/flowise/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“flowise”, “langchain”, “ai agents”, “rag”, “docker”, “llm”, “open source”, “no-code”] aliases:\n/posts/flowise/ /resources/ai-tools/flowise-ai-workflow-builder-lowcode/- Introduction Building LLM-powered applications used to mean writing hundreds of lines of Python to wire together models, vector stores, retrieval chains, and memory modules. Then Flowise arrived and changed the rules. With 52,948 GitHub stars and a thriving community, Flowise is the open-source visual builder that lets you construct AI agents and RAG pipelines by dragging, dropping, and connecting nodes on a canvas — no code required. Whether you are prototyping a customer support chatbot or deploying a document Q\u0026A system on a $5 VPS, this guide walks you through a production-grade Flowise setup from zero to deployed in under five minutes.\nWhat Is Flowise? Flowise is an open-source, drag-and-drop visual builder for creating LLM workflows and AI agents using LangChain under the hood. It provides a node-based canvas where each component — chat models, embeddings, vector stores, tools, agents, and chains — is represented as a node that you connect to form executable pipelines. Flowise supports over 200 LangChain integrations including OpenAI, Anthropic, Ollama, Qdrant, Weaviate, and Chroma, making it one of the most integration-rich visual AI builders available.\nHow Flowise Works Flowise is built on a modular architecture that maps visual nodes directly to LangChain classes. Understanding this architecture helps you build more complex flows and debug issues faster.\nFlowise visual canvas showing connected LLM nodes — each node maps to a LangChain class\nFlowise drag-and-drop interface in action — building a RAG pipeline without writing code\nCore Components Chat Models — The LLM engine (OpenAI GPT-4o, Claude, Ollama local models, Hugging Face, Bedrock, Gemini) Embeddings — Convert text to vectors for semantic search (OpenAI, HuggingFace, Cohere) Vector Stores — Persist embeddings for retrieval (Chroma, Qdrant, Weaviate, Pinecone, pgvector) Document Loaders — Ingest data from PDFs, web pages, text files, Notion, Confluence Chains — Orchestrate multi-step LLM operations (Conversational Retrieval QA, LLM Chain) Agents — Autonomous reasoning systems that choose tools dynamically (ReAct, OpenAI Functions) Memory — Maintain conversation context across turns (Buffer Memory, Window Buffer, Redis-backed) Three Builder Modes Flowise offers three distinct visual builders: - Assistant — Beginner-friendly chatbot builder with RAG support. Upload documents, configure responses, and deploy.\nChatflow — Full node-based canvas for building custom conversational AI with explicit control over every component. Agentflow — Multi-step agent workflows with conditional logic, loops, tool calling, and human-in-the-loop approval. Every flow you build automatically exposes a REST API endpoint and an embeddable chat widget, making deployment a one-click operation.\nInstallation \u0026 Setup You have four ways to install Flowise. Each fits a different environment and skill level.\nOption 1: NPM (Fastest for Local Development) Requires Node.js v18.15.0 or v20+. This is the fastest path from install to a running canvas.\n# Install Flowise globally npm install -g flowise # Or install a specific version npm install -g flowise@3.1.2 # Start Flowise npx flowise start Open http://localhost:3000 in your browser. The first boot creates a SQLite database at ~/.flowise automatically.\nOption 2: Docker (Recommended for Production) This is the most reliable deployment path. Flowise provides official images on Docker Hub with multi-arch support.\n# Pull and run the official image docker run -d -p 3000:3000 \\ --name flowise \\ -e FLOWISE_USERNAME=admin \\ -e FLOWISE_PASSWORD=secure-password \\ flowiseai/flowise:latest Visit http://localhost:3000 and log in with the credentials you set.\nOption 3: Docker Compose (Production-Ready with Database) For persistent deployments, use Docker Compose with PostgreSQL and volume mounts.\n# docker-compose.yml version: '3.8' services: flowise: image: flowiseai/flowise:latest ports: - \"3000:3000\" environment: - PORT=3000 - DATABASE_TYPE=postgres - DATABASE_HOST=postgres - DATABASE_PORT=5432 - DATABASE_NAME=flowise - DATABASE_USER=flowise - DATABASE_PASSWORD=${DB_PASSWORD:-changeme} - FLOWISE_USERNAME=${FLOWISE_USER:-admin} - FLOWISE_PASSWORD=${FLOWISE_PASS:-changeme} - SECRETKEY_PATH=/root/.flowise - JWT_AUTH_TOKEN_SECRET=${JWT_SECRET:-random-secret-change-in-prod} - JWT_REFRESH_TOKEN_SECRET=${JWT_REFRESH:-another-random-secret} volumes: - flowise_data:/root/.flowise depends_on: - postgres restart: unless-stopped postgres: image: postgres:16-alpine environment: - POSTGRES_USER=flowise - POSTGRES_PASSWORD=${DB_PASSWORD:-changeme} - POSTGRES_DB=flowise volumes: - postgres_data:/var/lib/postgresql/data restart: unless-stopped volumes: flowise_data: postgres_data: ````` Start with: `````bash docker compose up -d Option 4: Deploy to DigitalOcean Droplet For a cloud-hosted instance on a reliable VPS, deploy Flowise to DigitalOcean in minutes.\n# On a fresh Ubuntu 24.04 droplet (2 vCPU / 2GB RAM / $12/month) apt update \u0026\u0026 apt install -y docker.io docker-compose # Clone the Flowise repo git clone https://github.com/FlowiseAI/Flowise.git cd Flowise/docker # Copy environment template cp .env.example .env # Edit .env with your settings nano .env Example .env for DigitalOcean deployment: `````bash PORT=3000 DATABASE_TYPE=sqlite DATABASE_PATH=/root/.flowise SECRETKEY_PATH=/root/.flowise LOG_PATH=/root/.flowise/logs BLOB_STORAGE_PATH=/root/.flowise/storage FLOWISE_USERNAME=admin FLOWISE_PASSWORD=your-secure-password-here JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 32) JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 32)\nStart the service: `````bash docker compose up -d Affiliate Disclosure: The DigitalOcean link above is an affiliate link. We may earn a commission at no extra cost to you. We only recommend infrastructure we would use ourselves.\nEnvironment Variables Reference | Variable | Description | Default | |\n|\n|\n| | PORT | HTTP server port | 3000 | | DATABASE_TYPE | Database engine (sqlite, postgres) | sqlite | | DATABASE_PATH | SQLite file path | ~/.flowise | | FLOWISE_USERNAME | Admin username | — | | FLOWISE_PASSWORD | Admin password | — | | JWT_AUTH_TOKEN_SECRET | Access token secret | auto-generated | | JWT_REFRESH_TOKEN_SECRET | Refresh token secret | auto-generated | | BLOB_STORAGE_PATH | File upload storage path | ~/.flowise/storage | | DISABLE_FLOWISE_TELEMETRY | Disable anonymous telemetry | false |\nIntegration with Popular Tools OpenAI Integration Most users start with OpenAI models. Configure the API key in Flowise UI under Credentials, then use ChatOpenAI nodes in your flows.\n# Add OpenAI API key as environment variable (optional but recommended) export OPENAI_API_KEY=sk-your-key-here Ollama (Local LLMs) Running local models with Ollama eliminates API costs and keeps data on-premise. This setup is ideal for privacy-sensitive deployments.\n# docker-compose-ollama.yml version: '3.8' services: ollama: image: ollama/ollama:latest ports: - \"11434:11434\" volumes: - ollama_data:/root/.ollama restart: unless-stopped flowise: image: flowiseai/flowise:latest ports: - \"3000:3000\" environment: - PORT=3000 - OLLAMA_BASE_URL=http://ollama:11434 depends_on: - ollama restart: unless-stopped volumes: ollama_data: ````` Pull a model and start using it: `````bash # Pull a lightweight model for testing docker exec -it ollama ollama pull qwen2:7b # Or pull Llama 3 docker exec -it ollama ollama pull llama3.1:8b In the Flowise canvas, select ChatOllama node and set the model name to qwen2:7b or llama3.1:8b.\nChroma Vector Store (RAG Setup) For production RAG pipelines, Chroma provides a lightweight vector database that works seamlessly with Flowise.\n# Add to docker-compose.yml chroma: image: chromadb/chroma:latest ports: - \"8000:8000\" volumes: - chroma_data:/chroma/chroma restart: unless-stopped Build a RAG pipeline in Flowise: 1. Drag a PDF Loader or Text File node 2. Connect to a Text Splitter node (set chunk size to 1000, overlap to 200) 3. Connect to an OpenAI Embeddings (or Ollama Embeddings) node 4. Connect to a Chroma vector store node 5. Add a Conversational Retrieval QA Chain node 6. Connect a Chat Model (ChatOpenAI or ChatOllama) to the chain 7. Click Save and Run\nQdrant (Scalable Vector Search) For high-throughput RAG with hybrid search, Qdrant outperforms in-memory stores.\n# Add Qdrant to your compose file qdrant: image: qdrant/qdrant:latest ports: - \"6333:6333\" - \"6334:6334\" volumes: - qdrant_data:/qdrant/storage restart: unless-stopped In Flowise, use the Qdrant vector store node with host http://qdrant:6333.\nWeaviate (Enterprise Vector Database) weaviate: image: semitechnologies/weaviate:latest ports: - \"8080:8080\" environment: QUERY_DEFAULTS_LIMIT: 25 AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: true PERSISTENCE_DATA_PATH: '/var/lib/weaviate' volumes: - weaviate_data:/var/lib/weaviate restart: unless-stopped API Deployment Every flow automatically exposes a REST API. Export your chatflow and integrate it anywhere.\n# Test your deployed flow with curl curl -X POST \"http://localhost:3000/api/v1/prediction/your-chatflow-id\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"question\": \"What is the return policy?\", \"overrideConfig\": { \"sessionId\": \"user_001\" } }' Response: `````json { “text”: “Based on our documentation, the return policy allows returns within 30 days of purchase with the original receipt.”, “sourceDocuments”: [ { “pageContent”: “Returns are accepted within 30 days of purchase…”, “metadata”: { “source”: “return-policy.pdf”, “page”: 3 } } ] }\nPython SDK example: `````python import requests FLOWISE_API = \"http://localhost:3000/api/v1/prediction/your-chatflow-id\" def ask(question, session_id=\"user_001\"): resp = requests.post(FLOWISE_API, json={ \"question\": question, \"overrideConfig\": {\"sessionId\": session_id} }) return resp.json()[\"text\"] answer = ask(\"What are your shipping options?\") print(answer) Embedding in Websites Flowise generates a JavaScript embed snippet for any chatflow. The widget supports custom themes, avatars, starter prompts, and multi-language welcome messages.\nCustomizable embed chat widget with theming options — deploy to any website with one script tag\nPaste this into any HTML page: `````html import Chatbot from ‘https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js'; Chatbot.init({ chatflowid: ‘your-chatflow-id’, apiHost: ‘https://your-flowise-server.com’, theme: { button: { backgroundColor: ‘#3B81F6’, right: 20, bottom: 20, size: medium }, chatWindow: { title: “Support Assistant” welcomeMessage: ‘Hello! How can I help you today?’, backgroundColor: ‘#ffffff’, height: 700, width: 400 } } }); ## Benchmarks / Real-World Use Cases Flowise performance characteristics based on community reports and our own testing: | Metric | Value | Notes | | * * * | * * * | * * * | | Cold start (Docker) | 3-5 seconds | On 2 vCPU VPS | | First response latency | 1.5-3s | With GPT-4o, depends on prompt | | RAG query end-to-end | 2-4s | Chroma vector store, 1K chunks | | Concurrent users | 50-200 | SQLite backend; use PostgreSQL for more | | Memory usage (idle) | ~180 MB | Single container | | Memory usage (active) | 300-600 MB | Depends on model and context | | Flow setup time (RAG) | 10-15 min | From blank canvas to working chatbot | | Minimum VPS spec | 1 vCPU / 1 GB RAM | $4-5/month VPS works | | Production VPS spec | 2 vCPU / 4 GB RAM | Recommended with PostgreSQL | ### Comparison: Flowise vs Alternatives | Feature | Flowise | Dify | n8n | LangChain | | * * * | * * * | * * * | * * * | * * * | | GitHub Stars | 52,948 | 50,000+ | 49,500 | 110,000+ | | License | MIT | Apache-2.0 | Fair-code | MIT | | Visual Builder | Drag-and-drop canvas | App-centric UI | Workflow editor | Code-only | | Primary Use Case | LLM chatbots \u0026 RAG | Full-stack AI apps | Workflow automation | Code-first SDK | | LangChain Native | Yes (direct mapping) | Custom abstraction | Via AI nodes | It IS LangChain | | LLM Support | 200+ (all LangChain) | 50+ | 70+ AI nodes | All providers | | Vector Stores | Chroma, Qdrant, Weaviate, Pinecone, pgvector | Built-in knowledge base | Via LangChain nodes | All stores | | Local LLM (Ollama) | Native node | Native integration | Via HTTP request | Native | | Embeddable Chat Widget | Yes (auto-generated) | Yes | Via webhook | Manual build | | REST API (auto-generated) | Yes | Yes | Yes | Manual build | | Multi-agent Workflows | Agentflow (sequential) | Workflow orchestration | Yes (with AI nodes) | LangGraph | | Scheduling / Triggers | Limited | Limited | Full (cron, webhook) | Manual | | Self-hosting Complexity | Low (1 container) | Medium (multi-service) | Low-Medium | N/A (library) | | Minimum RAM | ~1 GB | 4 GB | 300 MB | N/A | | Cloud Price (Starter) | $35/month | $59/month | ~$24/month | N/A | | Non-technical UX | Good | Excellent | Good | Requires coding | ### When to Choose What - **Flowise**: Best for teams building conversational AI (chatbots, RAG) who want the fastest prototype-to-deployment path with full LangChain compatibility. - **Dify**: Choose when you need a full-stack AI application platform with built-in knowledge management, prompt versioning, and team collaboration. - **n8n**: Choose when your AI agent is part of a broader automation pipeline with 400+ SaaS integrations, scheduling, and error handling. - **LangChain**: Use directly when you need full code control, version control for prompts, and CI/CD integration. ## Advanced Usage / Production Hardening ### Security Checklist Before exposing Flowise to the internet, complete these steps: `````bash # 1. Enable authentication (REQUIRED) FLOWISE_USERNAME=admin FLOWISE_PASSWORD=$(openssl rand -base64 24) # 2. Set strong JWT secrets JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 64) JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 64) # 3. Run behind HTTPS with a reverse proxy # Nginx configuration snippet: server { listen 443 ssl http2; server_name flowise.yourdomain.com; ssl_certificate /path/to/cert.pem; ssl_certificate_key /path/to/key.pem; location / { proxy_pass http://localhost:3000; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \"upgrade\"; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; } } # 4. Disable telemetry if desired DISABLE_FLOWISE_TELEMETRY=true # 5. Set CORS for embed widgets CORS_ORIGINS=https://yourdomain.com,https://app.yourdomain.com Scaling with Queue Mode For high-traffic deployments, Flowise supports queue-based processing with Redis workers.\n# docker-compose-queue.yml version: '3.8' services: redis: image: redis:alpine restart: unless-stopped flowise: image: flowiseai/flowise:latest ports: - \"3000:3000\" environment: - PORT=3000 - QUEUE_NAME=flowise-queue - QUEUE_REDIS_URL=redis://redis:6379 restart: unless-stopped flowise-worker: image: flowiseai/flowise-worker:latest environment: - QUEUE_NAME=flowise-queue - QUEUE_REDIS_URL=redis://redis:6379 restart: unless-stopped Scale workers horizontally: `````bash docker compose -f docker-compose-queue.yml up -d –scale flowise-worker=3\n### Backup Strategy `````bash # Backup SQLite database docker exec flowise tar czf /tmp/backup.tar.gz /root/.flowise docker cp flowise:/tmp/backup.tar.gz ./flowise-backup-$(date +%Y%m%d).tar.gz # Backup PostgreSQL docker exec flowise-postgres pg_dump -U flowise flowise \u003e flowise-db-$(date +%Y%m%d).sql # Automated daily backup via cron (add to crontab) 0 2 * * * /usr/local/bin/backup-flowise.sh \u003e\u003e /var/log/flowise-backup.log 2\u003e\u00261 Monitoring with Docker # View real-time logs docker compose logs -f flowise # Check resource usage docker stats flowise # Health check endpoint curl http://localhost:3000/api/v1/ping Limitations / Honest Assessment Flowise is not the right tool for every AI project. Here is what it does NOT do well: 1. Complex Multi-Agent Orchestration: Flowise Agentflow supports sequential agents, but cyclic multi-agent patterns (like those in LangGraph or AutoGen) require workarounds. Teams building research agents or debate-style multi-agent systems should consider LangGraph directly.\nNon-Chat Workflows: Flowise is optimized for conversational AI. Batch document processing, ETL pipelines, or scheduled data transformations are better handled by n8n or Python scripts.\nVersion Control: Visual flows cannot be diffed in Git the way code can. Collaboration across large teams requires discipline about exporting and versioning JSON flow definitions manually.\nAdvanced Debugging: While Flowise shows execution logs, it lacks node-level timing breakdowns and token-usage traces that Dify provides natively. Debugging complex retrieval failures requires reading raw logs.\nEnterprise Governance: RBAC exists in the Pro tier, but audit trails, compliance frameworks (ISO 42001, EU AI Act), and fleet management are not first-class features. Regulated industries may need additional governance layers.\nLangChain Dependency: Flowise inherits LangChain’s limitations. If LangChain drops support for a model or introduces a breaking change, Flowise follows. This coupling is a feature for LangChain users and a constraint for everyone else.\nFrequently Asked Questions How do I install Flowise on a server without Node.js? Use Docker. The official flowiseai/flowise image bundles all dependencies. A single docker run command gets you running without installing Node.js, pnpm, or any build tools on the host.\nCan Flowise work with local LLMs like Llama or Qwen? Yes. Flowise has native integration with Ollama. Start an Ollama container (or local instance), pull any GGUF model, then select the ChatOllama node in the Flowise canvas. Your data never leaves your server — no API keys required.\nHow does Flowise compare to Dify for building RAG chatbots? Flowise is faster to set up (one container, no database required) and gives you explicit control over each LangChain component. Dify has a more polished knowledge base UI with automatic chunking and better debugging. Choose Flowise for speed and LangChain compatibility; choose Dify for team collaboration and built-in knowledge management.\nIs Flowise free for commercial use? Yes. Flowise is released under the MIT license. You can self-host it, modify it, embed it in commercial products, and sell services built on it — all without paying licensing fees. The cloud-hosted version has paid tiers starting at $35/month.\nWhat is the minimum server spec for running Flowise in production? A $5/month VPS with 1 vCPU and 1 GB RAM handles small-to-medium workloads with SQLite. For production with PostgreSQL and concurrent users, allocate 2 vCPUs and 4 GB RAM. The Flowise container itself uses ~180 MB at idle; the LLM (if self-hosted via Ollama) consumes the most resources.\nCan I export a Flowise chatbot as an API? Every chatflow and agentflow automatically gets a REST API endpoint at /api/v1/prediction/{flow-id}. The UI generates curl, Python, and JavaScript code snippets. You can also export an embeddable chat widget with one click.\nHow do I upgrade Flowise to a new version? For Docker deployments, pull the latest image and restart: `````bash docker pull flowiseai/flowise:latest docker compose up -d\nFor NPM installations, run ````npm update -g flowise````. Always back up your ````~/.flowise```` directory before upgrading. ## Conclusion Flowise removes the barrier between idea and deployed AI agent. With 52,948 GitHub stars, MIT licensing, and a visual canvas that maps directly to LangChain's component model, it is the pragmatic choice for developers who want to ship LLM-powered chatbots and RAG systems without writing boilerplate code. Start with ````npx flowise start```` for a local prototype. Move to Docker Compose with PostgreSQL for production. Connect Ollama for fully private, API-key-free deployments. And when you need to scale, add Redis queue workers and horizontal worker replicas. **Action items for this week:** 1. Deploy Flowise locally with Docker (````docker run -p 3000:3000 flowiseai/flowise```) 2. Build your first RAG pipeline with a PDF loader, text splitter, and Chroma vector store 3. Export the REST API and embed the chat widget on a test page 4. Join the [FlowiseAI Telegram group](https://t.me/flowiseai) for community support and weekly tips ## Recommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you'll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. *Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.* ## Sources \u0026 Further Reading 1. [Flowise Official Documentation](https://docs.flowiseai.com/) — Complete docs for installation, configuration, and API reference 2. [Flowise GitHub Repository](https://github.com/FlowiseAI/Flowise) — Source code, issues, and releases 3. [Flowise Cloud Pricing](https://flowiseai.com/pricing) — Cloud-hosted plans and enterprise features 4. [LangChain Documentation](https://js.langchain.com/) — The underlying framework Flowise is built on 5. [Ollama Download](https://ollama.com/download) — Local LLM runtime for private deployments 6. [Chroma Database](https://www.trychroma.com/) — Open-source vector database for RAG 7. [Qdrant Vector Database](https://qdrant.tech/) — High-performance vector search for production 8. [Flowise vs Dify Comparison](https://toolhalla.ai/blog/dify-vs-flowise-vs-langflow-2026) — Detailed head-to-head by ToolHalla 9. [Flowise Embed Widget Docs](https://www.npmjs.com/package/flowise-embed) — NPM package for embedding chatbots 10. [DigitalOcean Docker Deployment Guide](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-24-04) — Docker setup for Ubuntu servers { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Flowise: Build AI Agents Visually with 52K+ Stars — 5-Minute Drag-and-Drop Setup Guide for 2026\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/flowise\" } } * * * ## Related Articles - [12-factor-agents-production-llm-software-2026](flowise) - [12-factor-agents](flowise) - [1m-context-window-llm-2026-real-test](flowise) - [9router-smart-llm-proxy-token-saver-free-coding](flowise) - [ai-engineering-from-scratch](flowise) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ","wordCount":"3198","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/flowise/"},"publisher":{"@type":"Organization","name":"Dibi8 - AI工具目录","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 - AI工具目录 (Alt + H)">Dibi8 - AI工具目录</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>16 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#introduction aria-label=Introduction>Introduction</a></li><li><a href=#what-is-flowise aria-label="What Is Flowise?">What Is Flowise?</a></li><li><a href=#how-flowise-works aria-label="How Flowise Works">How Flowise Works</a><ul><li><a href=#core-components aria-label="Core Components">Core Components</a></li><li><a href=#three-builder-modes aria-label="Three Builder Modes">Three Builder Modes</a></li></ul></li><li><a href=#installation--setup aria-label="Installation & Setup">Installation & Setup</a><ul><li><a href=#option-1-npm-fastest-for-local-development aria-label="Option 1: NPM (Fastest for Local Development)">Option 1: NPM (Fastest for Local Development)</a></li><li><a href=#option-2-docker-recommended-for-production aria-label="Option 2: Docker (Recommended for Production)">Option 2: Docker (Recommended for Production)</a></li><li><a href=#option-3-docker-compose-production-ready-with-database aria-label="Option 3: Docker Compose (Production-Ready with Database)">Option 3: Docker Compose (Production-Ready with Database)</a></li><li><a href=#option-4-deploy-to-digitalocean-droplet aria-label="Option 4: Deploy to DigitalOcean Droplet">Option 4: Deploy to DigitalOcean Droplet</a></li><li><a href=#environment-variables-reference aria-label="Environment Variables Reference">Environment Variables Reference</a></li></ul></li><li><a href=#integration-with-popular-tools aria-label="Integration with Popular Tools">Integration with Popular Tools</a><ul><li><a href=#openai-integration aria-label="OpenAI Integration">OpenAI Integration</a></li><li><a href=#ollama-local-llms aria-label="Ollama (Local LLMs)">Ollama (Local LLMs)</a></li><li><a href=#chroma-vector-store-rag-setup aria-label="Chroma Vector Store (RAG Setup)">Chroma Vector Store (RAG Setup)</a></li><li><a href=#qdrant-scalable-vector-search aria-label="Qdrant (Scalable Vector Search)">Qdrant (Scalable Vector Search)</a></li><li><a href=#weaviate-enterprise-vector-database aria-label="Weaviate (Enterprise Vector Database)">Weaviate (Enterprise Vector Database)</a></li><li><a href=#api-deployment aria-label="API Deployment">API Deployment</a></li><li><a href=#embedding-in-websites aria-label="Embedding in Websites">Embedding in Websites</a></li><li><a href=#scaling-with-queue-mode aria-label="Scaling with Queue Mode">Scaling with Queue Mode</a></li><li><a href=#monitoring-with-docker aria-label="Monitoring with Docker">Monitoring with Docker</a></li></ul></li><li><a href=#limitations--honest-assessment aria-label="Limitations / Honest Assessment">Limitations / Honest Assessment</a></li><li><a href=#frequently-asked-questions aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul><li><a href=#how-do-i-install-flowise-on-a-server-without-nodejs aria-label="How do I install Flowise on a server without Node.js?">How do I install Flowise on a server without Node.js?</a></li><li><a href=#can-flowise-work-with-local-llms-like-llama-or-qwen aria-label="Can Flowise work with local LLMs like Llama or Qwen?">Can Flowise work with local LLMs like Llama or Qwen?</a></li><li><a href=#how-does-flowise-compare-to-dify-for-building-rag-chatbots aria-label="How does Flowise compare to Dify for building RAG chatbots?">How does Flowise compare to Dify for building RAG chatbots?</a></li><li><a href=#is-flowise-free-for-commercial-use aria-label="Is Flowise free for commercial use?">Is Flowise free for commercial use?</a></li><li><a href=#what-is-the-minimum-server-spec-for-running-flowise-in-production aria-label="What is the minimum server spec for running Flowise in production?">What is the minimum server spec for running Flowise in production?</a></li><li><a href=#can-i-export-a-flowise-chatbot-as-an-api aria-label="Can I export a Flowise chatbot as an API?">Can I export a Flowise chatbot as an API?</a></li><li><a href=#how-do-i-upgrade-flowise-to-a-new-version aria-label="How do I upgrade Flowise to a new version?">How do I upgrade Flowise to a new version?</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -271,108 +20,65 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
 tags: [&ldquo;flowise&rdquo;, &ldquo;langchain&rdquo;, &ldquo;ai agents&rdquo;, &ldquo;rag&rdquo;, &ldquo;docker&rdquo;, &ldquo;llm&rdquo;, &ldquo;open source&rdquo;, &ldquo;no-code&rdquo;]
-aliases:</p>
-<ul>
-<li>/posts/flowise/</li>
-<li>/resources/ai-tools/flowise-ai-workflow-builder-lowcode/-</li>
-</ul>
-<hr>
-<h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
-<p>Building LLM-powered applications used to mean writing hundreds of lines of Python to wire together models, vector stores, retrieval chains, and memory modules. Then Flowise arrived and changed the rules. With 52,948 GitHub stars and a thriving community, Flowise is the open-source visual builder that lets you construct AI agents and RAG pipelines by dragging, dropping, and connecting nodes on a canvas — no code required. Whether you are prototyping a customer support chatbot or deploying a document Q&amp;A system on a $5 VPS, this guide walks you through a production-grade Flowise setup from zero to deployed in under five minutes.</p>
-<h2 id="what-is-flowise">What Is Flowise?<a hidden class="anchor" aria-hidden="true" href="#what-is-flowise">#</a></h2>
-<p>Flowise is an open-source, drag-and-drop visual builder for creating LLM workflows and AI agents using LangChain under the hood. It provides a node-based canvas where each component — chat models, embeddings, vector stores, tools, agents, and chains — is represented as a node that you connect to form executable pipelines. Flowise supports over 200 LangChain integrations including OpenAI, Anthropic, Ollama, Qdrant, Weaviate, and Chroma, making it one of the most integration-rich visual AI builders available.</p>
-<h2 id="how-flowise-works">How Flowise Works<a hidden class="anchor" aria-hidden="true" href="#how-flowise-works">#</a></h2>
-<p>Flowise is built on a modular architecture that maps visual nodes directly to LangChain classes. Understanding this architecture helps you build more complex flows and debug issues faster.</p>
-<p><img alt="Flowise Architecture" loading="lazy" src="https://raw.githubusercontent.com/FlowiseAI/Flowise/main/images/flowise.png">
-<em>Flowise visual canvas showing connected LLM nodes — each node maps to a LangChain class</em></p>
-<p><img alt="Flowise Canvas Demo" loading="lazy" src="https://docs.flowiseai.com/~gitbook/image?url=https%3A%2F%2F823733684-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252F00tYLwhz5RyR7fJEhrWy%252Fuploads%252FDOgMs2ywc1bdE09oa10c%252FFlowiseIntro.gif%3Falt%3Dmedia%26token%3D55bbcbc6-e586-4a79-8923-20c2b39e7bf9&width=768&dpr=3&quality=100&sign=c6ac7b1&sv=2">
-<em>Flowise drag-and-drop interface in action — building a RAG pipeline without writing code</em></p>
-<h3 id="core-components">Core Components<a hidden class="anchor" aria-hidden="true" href="#core-components">#</a></h3>
-<ol>
-<li><strong>Chat Models</strong> — The LLM engine (OpenAI GPT-4o, Claude, Ollama local models, Hugging Face, Bedrock, Gemini)</li>
-<li><strong>Embeddings</strong> — Convert text to vectors for semantic search (OpenAI, HuggingFace, Cohere)</li>
-<li><strong>Vector Stores</strong> — Persist embeddings for retrieval (Chroma, Qdrant, Weaviate, Pinecone, pgvector)</li>
-<li><strong>Document Loaders</strong> — Ingest data from PDFs, web pages, text files, Notion, Confluence</li>
-<li><strong>Chains</strong> — Orchestrate multi-step LLM operations (Conversational Retrieval QA, LLM Chain)</li>
-<li><strong>Agents</strong> — Autonomous reasoning systems that choose tools dynamically (ReAct, OpenAI Functions)</li>
-<li><strong>Memory</strong> — Maintain conversation context across turns (Buffer Memory, Window Buffer, Redis-backed)</li>
-</ol>
-<h3 id="three-builder-modes">Three Builder Modes<a hidden class="anchor" aria-hidden="true" href="#three-builder-modes">#</a></h3>
-<p>Flowise offers three distinct visual builders: - <strong>Assistant</strong> — Beginner-friendly chatbot builder with RAG support. Upload documents, configure responses, and deploy.</p>
-<ul>
-<li><strong>Chatflow</strong> — Full node-based canvas for building custom conversational AI with explicit control over every component.</li>
-<li><strong>Agentflow</strong> — Multi-step agent workflows with conditional logic, loops, tool calling, and human-in-the-loop approval.</li>
-</ul>
-<p>Every flow you build automatically exposes a REST API endpoint and an embeddable chat widget, making deployment a one-click operation.</p>
-<h2 id="installation--setup">Installation &amp; Setup<a hidden class="anchor" aria-hidden="true" href="#installation--setup">#</a></h2>
-<p>You have four ways to install Flowise. Each fits a different environment and skill level.</p>
-<h3 id="option-1-npm-fastest-for-local-development">Option 1: NPM (Fastest for Local Development)<a hidden class="anchor" aria-hidden="true" href="#option-1-npm-fastest-for-local-development">#</a></h3>
-<p>Requires Node.js v18.15.0 or v20+. This is the fastest path from install to a running canvas.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install Flowise globally</span>
-</span></span><span style="display:flex;"><span>npm install -g flowise
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or install a specific version</span>
-</span></span><span style="display:flex;"><span>npm install -g flowise@3.1.2
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start Flowise</span>
-</span></span><span style="display:flex;"><span>npx flowise start
-</span></span></code></pre></div><p>Open <code>http://localhost:3000</code> in your browser. The first boot creates a SQLite database at <code>~/.flowise</code> automatically.</p>
-<h3 id="option-2-docker-recommended-for-production">Option 2: Docker (Recommended for Production)<a hidden class="anchor" aria-hidden="true" href="#option-2-docker-recommended-for-production">#</a></h3>
-<p>This is the most reliable deployment path. Flowise provides official images on Docker Hub with multi-arch support.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Pull and run the official image</span>
-</span></span><span style="display:flex;"><span>docker run -d -p 3000:3000 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  --name flowise <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  -e FLOWISE_USERNAME<span style="color:#f92672">=</span>admin <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  -e FLOWISE_PASSWORD<span style="color:#f92672">=</span>secure-password <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  flowiseai/flowise:latest
-</span></span></code></pre></div><p>Visit <code>http://localhost:3000</code> and log in with the credentials you set.</p>
-<h3 id="option-3-docker-compose-production-ready-with-database">Option 3: Docker Compose (Production-Ready with Database)<a hidden class="anchor" aria-hidden="true" href="#option-3-docker-compose-production-ready-with-database">#</a></h3>
-<p>For persistent deployments, use Docker Compose with PostgreSQL and volume mounts.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">services: flowise: image</span>: <span style="color:#ae81ff">flowiseai/flowise:latest</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;3000:3000&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">PORT=3000</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_TYPE=postgres</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_HOST=postgres</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_PORT=5432</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_NAME=flowise</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_USER=flowise</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_PASSWORD=${DB_PASSWORD:-changeme}</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">FLOWISE_USERNAME=${FLOWISE_USER:-admin}</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">FLOWISE_PASSWORD=${FLOWISE_PASS:-changeme}</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">SECRETKEY_PATH=/root/.flowise</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">JWT_AUTH_TOKEN_SECRET=${JWT_SECRET:-random-secret-change-in-prod}</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">JWT_REFRESH_TOKEN_SECRET=${JWT_REFRESH:-another-random-secret}</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">flowise_data:/root/.flowise</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>: - <span style="color:#ae81ff">postgres</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">postgres: image</span>: <span style="color:#ae81ff">postgres:16-alpine</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">POSTGRES_USER=flowise</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">POSTGRES_PASSWORD=${DB_PASSWORD:-changeme}</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">POSTGRES_DB=flowise</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">postgres_data:/var/lib/postgresql/data</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes: flowise_data: postgres_data</span>: <span style="color:#ae81ff">`````</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">Start with</span>: <span style="color:#ae81ff">`````bash</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">docker compose up -d</span>
-</span></span></code></pre></div><h3 id="option-4-deploy-to-digitalocean-droplet">Option 4: Deploy to DigitalOcean Droplet<a hidden class="anchor" aria-hidden="true" href="#option-4-deploy-to-digitalocean-droplet">#</a></h3>
-<p>For a cloud-hosted instance on a reliable VPS, deploy Flowise to DigitalOcean in minutes.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># On a fresh Ubuntu 24.04 droplet (2 vCPU / 2GB RAM / $12/month)</span>
-</span></span><span style="display:flex;"><span>apt update <span style="color:#f92672">&amp;&amp;</span> apt install -y docker.io docker-compose
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Clone the Flowise repo</span>
-</span></span><span style="display:flex;"><span>git clone https://github.com/FlowiseAI/Flowise.git
-</span></span><span style="display:flex;"><span>cd Flowise/docker
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Copy environment template</span>
-</span></span><span style="display:flex;"><span>cp .env.example .env
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Edit .env with your settings</span>
-</span></span><span style="display:flex;"><span>nano .env
+aliases:</p><ul><li>/posts/flowise/</li><li>/resources/ai-tools/flowise-ai-workflow-builder-lowcode/-</li></ul><hr><h2 id=introduction>Introduction<a hidden class=anchor aria-hidden=true href=#introduction>#</a></h2><p>Building LLM-powered applications used to mean writing hundreds of lines of Python to wire together models, vector stores, retrieval chains, and memory modules. Then Flowise arrived and changed the rules. With 52,948 GitHub stars and a thriving community, Flowise is the open-source visual builder that lets you construct AI agents and RAG pipelines by dragging, dropping, and connecting nodes on a canvas — no code required. Whether you are prototyping a customer support chatbot or deploying a document Q&amp;A system on a $5 VPS, this guide walks you through a production-grade Flowise setup from zero to deployed in under five minutes.</p><h2 id=what-is-flowise>What Is Flowise?<a hidden class=anchor aria-hidden=true href=#what-is-flowise>#</a></h2><p>Flowise is an open-source, drag-and-drop visual builder for creating LLM workflows and AI agents using LangChain under the hood. It provides a node-based canvas where each component — chat models, embeddings, vector stores, tools, agents, and chains — is represented as a node that you connect to form executable pipelines. Flowise supports over 200 LangChain integrations including OpenAI, Anthropic, Ollama, Qdrant, Weaviate, and Chroma, making it one of the most integration-rich visual AI builders available.</p><h2 id=how-flowise-works>How Flowise Works<a hidden class=anchor aria-hidden=true href=#how-flowise-works>#</a></h2><p>Flowise is built on a modular architecture that maps visual nodes directly to LangChain classes. Understanding this architecture helps you build more complex flows and debug issues faster.</p><p><img alt="Flowise Architecture" loading=lazy src=https://raw.githubusercontent.com/FlowiseAI/Flowise/main/images/flowise.png>
+<em>Flowise visual canvas showing connected LLM nodes — each node maps to a LangChain class</em></p><p><img alt="Flowise Canvas Demo" loading=lazy src="https://docs.flowiseai.com/~gitbook/image?url=https%3A%2F%2F823733684-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252F00tYLwhz5RyR7fJEhrWy%252Fuploads%252FDOgMs2ywc1bdE09oa10c%252FFlowiseIntro.gif%3Falt%3Dmedia%26token%3D55bbcbc6-e586-4a79-8923-20c2b39e7bf9&width=768&dpr=3&quality=100&sign=c6ac7b1&sv=2">
+<em>Flowise drag-and-drop interface in action — building a RAG pipeline without writing code</em></p><h3 id=core-components>Core Components<a hidden class=anchor aria-hidden=true href=#core-components>#</a></h3><ol><li><strong>Chat Models</strong> — The LLM engine (OpenAI GPT-4o, Claude, Ollama local models, Hugging Face, Bedrock, Gemini)</li><li><strong>Embeddings</strong> — Convert text to vectors for semantic search (OpenAI, HuggingFace, Cohere)</li><li><strong>Vector Stores</strong> — Persist embeddings for retrieval (Chroma, Qdrant, Weaviate, Pinecone, pgvector)</li><li><strong>Document Loaders</strong> — Ingest data from PDFs, web pages, text files, Notion, Confluence</li><li><strong>Chains</strong> — Orchestrate multi-step LLM operations (Conversational Retrieval QA, LLM Chain)</li><li><strong>Agents</strong> — Autonomous reasoning systems that choose tools dynamically (ReAct, OpenAI Functions)</li><li><strong>Memory</strong> — Maintain conversation context across turns (Buffer Memory, Window Buffer, Redis-backed)</li></ol><h3 id=three-builder-modes>Three Builder Modes<a hidden class=anchor aria-hidden=true href=#three-builder-modes>#</a></h3><p>Flowise offers three distinct visual builders: - <strong>Assistant</strong> — Beginner-friendly chatbot builder with RAG support. Upload documents, configure responses, and deploy.</p><ul><li><strong>Chatflow</strong> — Full node-based canvas for building custom conversational AI with explicit control over every component.</li><li><strong>Agentflow</strong> — Multi-step agent workflows with conditional logic, loops, tool calling, and human-in-the-loop approval.</li></ul><p>Every flow you build automatically exposes a REST API endpoint and an embeddable chat widget, making deployment a one-click operation.</p><h2 id=installation--setup>Installation & Setup<a hidden class=anchor aria-hidden=true href=#installation--setup>#</a></h2><p>You have four ways to install Flowise. Each fits a different environment and skill level.</p><h3 id=option-1-npm-fastest-for-local-development>Option 1: NPM (Fastest for Local Development)<a hidden class=anchor aria-hidden=true href=#option-1-npm-fastest-for-local-development>#</a></h3><p>Requires Node.js v18.15.0 or v20+. This is the fastest path from install to a running canvas.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Install Flowise globally</span>
+</span></span><span style=display:flex><span>npm install -g flowise
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Or install a specific version</span>
+</span></span><span style=display:flex><span>npm install -g flowise@3.1.2
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Start Flowise</span>
+</span></span><span style=display:flex><span>npx flowise start
+</span></span></code></pre></div><p>Open <code>http://localhost:3000</code> in your browser. The first boot creates a SQLite database at <code>~/.flowise</code> automatically.</p><h3 id=option-2-docker-recommended-for-production>Option 2: Docker (Recommended for Production)<a hidden class=anchor aria-hidden=true href=#option-2-docker-recommended-for-production>#</a></h3><p>This is the most reliable deployment path. Flowise provides official images on Docker Hub with multi-arch support.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Pull and run the official image</span>
+</span></span><span style=display:flex><span>docker run -d -p 3000:3000 <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  --name flowise <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  -e FLOWISE_USERNAME<span style=color:#f92672>=</span>admin <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  -e FLOWISE_PASSWORD<span style=color:#f92672>=</span>secure-password <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  flowiseai/flowise:latest
+</span></span></code></pre></div><p>Visit <code>http://localhost:3000</code> and log in with the credentials you set.</p><h3 id=option-3-docker-compose-production-ready-with-database>Option 3: Docker Compose (Production-Ready with Database)<a hidden class=anchor aria-hidden=true href=#option-3-docker-compose-production-ready-with-database>#</a></h3><p>For persistent deployments, use Docker Compose with PostgreSQL and volume mounts.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3.8&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>services: flowise: image</span>: <span style=color:#ae81ff>flowiseai/flowise:latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;3000:3000&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>PORT=3000</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_TYPE=postgres</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_HOST=postgres</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_PORT=5432</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_NAME=flowise</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_USER=flowise</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_PASSWORD=${DB_PASSWORD:-changeme}</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>FLOWISE_USERNAME=${FLOWISE_USER:-admin}</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>FLOWISE_PASSWORD=${FLOWISE_PASS:-changeme}</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>SECRETKEY_PATH=/root/.flowise</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>JWT_AUTH_TOKEN_SECRET=${JWT_SECRET:-random-secret-change-in-prod}</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>JWT_REFRESH_TOKEN_SECRET=${JWT_REFRESH:-another-random-secret}</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>flowise_data:/root/.flowise</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>depends_on</span>: - <span style=color:#ae81ff>postgres</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>postgres: image</span>: <span style=color:#ae81ff>postgres:16-alpine</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>POSTGRES_USER=flowise</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>POSTGRES_PASSWORD=${DB_PASSWORD:-changeme}</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>POSTGRES_DB=flowise</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>postgres_data:/var/lib/postgresql/data</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>volumes: flowise_data: postgres_data</span>: <span style=color:#ae81ff>`````</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>Start with</span>: <span style=color:#ae81ff>`````bash</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>docker compose up -d</span>
+</span></span></code></pre></div><h3 id=option-4-deploy-to-digitalocean-droplet>Option 4: Deploy to DigitalOcean Droplet<a hidden class=anchor aria-hidden=true href=#option-4-deploy-to-digitalocean-droplet>#</a></h3><p>For a cloud-hosted instance on a reliable VPS, deploy Flowise to DigitalOcean in minutes.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># On a fresh Ubuntu 24.04 droplet (2 vCPU / 2GB RAM / $12/month)</span>
+</span></span><span style=display:flex><span>apt update <span style=color:#f92672>&amp;&amp;</span> apt install -y docker.io docker-compose
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Clone the Flowise repo</span>
+</span></span><span style=display:flex><span>git clone https://github.com/FlowiseAI/Flowise.git
+</span></span><span style=display:flex><span>cd Flowise/docker
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Copy environment template</span>
+</span></span><span style=display:flex><span>cp .env.example .env
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Edit .env with your settings</span>
+</span></span><span style=display:flex><span>nano .env
 </span></span></code></pre></div><p>Example <code>.env</code> for DigitalOcean deployment: `````bash
 PORT=3000
 DATABASE_TYPE=sqlite
@@ -383,20 +89,11 @@ BLOB_STORAGE_PATH=/root/.flowise/storage
 FLOWISE_USERNAME=admin
 FLOWISE_PASSWORD=your-secure-password-here
 JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 32)
-JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 32)</p>
-<pre tabindex="0"><code>
+JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 32)</p><pre tabindex=0><code>
 Start the service: `````bash
 docker compose up -d
-</code></pre><p><em>Affiliate Disclosure: The DigitalOcean link above is an affiliate link. We may earn a commission at no extra cost to you. We only recommend infrastructure we would use ourselves.</em></p>
-<h3 id="environment-variables-reference">Environment Variables Reference<a hidden class="anchor" aria-hidden="true" href="#environment-variables-reference">#</a></h3>
-<p>| Variable | Description | Default |
-|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|</p>
-<hr>
-<p>|
+</code></pre><p><em>Affiliate Disclosure: The DigitalOcean link above is an affiliate link. We may earn a commission at no extra cost to you. We only recommend infrastructure we would use ourselves.</em></p><h3 id=environment-variables-reference>Environment Variables Reference<a hidden class=anchor aria-hidden=true href=#environment-variables-reference>#</a></h3><p>| Variable | Description | Default |
+|</p><hr><p>|</p><hr><p>|</p><hr><p>|
 | <code>PORT</code> | HTTP server port | 3000 |
 | <code>DATABASE_TYPE</code> | Database engine (sqlite, postgres) | sqlite |
 | <code>DATABASE_PATH</code> | SQLite file path | ~/.flowise |
@@ -405,90 +102,73 @@ docker compose up -d
 | <code>JWT_AUTH_TOKEN_SECRET</code> | Access token secret | auto-generated |
 | <code>JWT_REFRESH_TOKEN_SECRET</code> | Refresh token secret | auto-generated |
 | <code>BLOB_STORAGE_PATH</code> | File upload storage path | ~/.flowise/storage |
-| <code>DISABLE_FLOWISE_TELEMETRY</code> | Disable anonymous telemetry | false |</p>
-<h2 id="integration-with-popular-tools">Integration with Popular Tools<a hidden class="anchor" aria-hidden="true" href="#integration-with-popular-tools">#</a></h2>
-<h3 id="openai-integration">OpenAI Integration<a hidden class="anchor" aria-hidden="true" href="#openai-integration">#</a></h3>
-<p>Most users start with OpenAI models. Configure the API key in Flowise UI under Credentials, then use <code>ChatOpenAI</code> nodes in your flows.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Add OpenAI API key as environment variable (optional but recommended)</span>
-</span></span><span style="display:flex;"><span>export OPENAI_API_KEY<span style="color:#f92672">=</span>sk-your-key-here
-</span></span></code></pre></div><h3 id="ollama-local-llms">Ollama (Local LLMs)<a hidden class="anchor" aria-hidden="true" href="#ollama-local-llms">#</a></h3>
-<p>Running local models with Ollama eliminates API costs and keeps data on-premise. This setup is ideal for privacy-sensitive deployments.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose-ollama.yml</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">services: ollama: image</span>: <span style="color:#ae81ff">ollama/ollama:latest</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;11434:11434&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">ollama_data:/root/.ollama</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">flowise: image</span>: <span style="color:#ae81ff">flowiseai/flowise:latest</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;3000:3000&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">PORT=3000</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">OLLAMA_BASE_URL=http://ollama:11434</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>: - <span style="color:#ae81ff">ollama</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes: ollama_data</span>: <span style="color:#ae81ff">`````</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">Pull a model and start using it</span>: <span style="color:#ae81ff">`````bash</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Pull a lightweight model for testing</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">docker exec -it ollama ollama pull qwen2:7b</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or pull Llama 3</span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">docker exec -it ollama ollama pull llama3.1:8b</span>
-</span></span></code></pre></div><p>In the Flowise canvas, select <code>ChatOllama</code> node and set the model name to <code>qwen2:7b</code> or <code>llama3.1:8b</code>.</p>
-<h3 id="chroma-vector-store-rag-setup">Chroma Vector Store (RAG Setup)<a hidden class="anchor" aria-hidden="true" href="#chroma-vector-store-rag-setup">#</a></h3>
-<p>For production RAG pipelines, Chroma provides a lightweight vector database that works seamlessly with Flowise.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Add to docker-compose.yml</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">chroma: image</span>: <span style="color:#ae81ff">chromadb/chroma:latest</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;8000:8000&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">chroma_data:/chroma/chroma</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+| <code>DISABLE_FLOWISE_TELEMETRY</code> | Disable anonymous telemetry | false |</p><h2 id=integration-with-popular-tools>Integration with Popular Tools<a hidden class=anchor aria-hidden=true href=#integration-with-popular-tools>#</a></h2><h3 id=openai-integration>OpenAI Integration<a hidden class=anchor aria-hidden=true href=#openai-integration>#</a></h3><p>Most users start with OpenAI models. Configure the API key in Flowise UI under Credentials, then use <code>ChatOpenAI</code> nodes in your flows.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Add OpenAI API key as environment variable (optional but recommended)</span>
+</span></span><span style=display:flex><span>export OPENAI_API_KEY<span style=color:#f92672>=</span>sk-your-key-here
+</span></span></code></pre></div><h3 id=ollama-local-llms>Ollama (Local LLMs)<a hidden class=anchor aria-hidden=true href=#ollama-local-llms>#</a></h3><p>Running local models with Ollama eliminates API costs and keeps data on-premise. This setup is ideal for privacy-sensitive deployments.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose-ollama.yml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3.8&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>services: ollama: image</span>: <span style=color:#ae81ff>ollama/ollama:latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;11434:11434&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>ollama_data:/root/.ollama</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>flowise: image</span>: <span style=color:#ae81ff>flowiseai/flowise:latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;3000:3000&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>PORT=3000</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>OLLAMA_BASE_URL=http://ollama:11434</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>depends_on</span>: - <span style=color:#ae81ff>ollama</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>volumes: ollama_data</span>: <span style=color:#ae81ff>`````</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#f92672>Pull a model and start using it</span>: <span style=color:#ae81ff>`````bash</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Pull a lightweight model for testing</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>docker exec -it ollama ollama pull qwen2:7b</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Or pull Llama 3</span>
+</span></span><span style=display:flex><span><span style=color:#ae81ff>docker exec -it ollama ollama pull llama3.1:8b</span>
+</span></span></code></pre></div><p>In the Flowise canvas, select <code>ChatOllama</code> node and set the model name to <code>qwen2:7b</code> or <code>llama3.1:8b</code>.</p><h3 id=chroma-vector-store-rag-setup>Chroma Vector Store (RAG Setup)<a hidden class=anchor aria-hidden=true href=#chroma-vector-store-rag-setup>#</a></h3><p>For production RAG pipelines, Chroma provides a lightweight vector database that works seamlessly with Flowise.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># Add to docker-compose.yml</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>chroma: image</span>: <span style=color:#ae81ff>chromadb/chroma:latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;8000:8000&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>chroma_data:/chroma/chroma</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
 </span></span></code></pre></div><p>Build a RAG pipeline in Flowise: 1. Drag a <strong>PDF Loader</strong> or <strong>Text File</strong> node
 2. Connect to a <strong>Text Splitter</strong> node (set chunk size to 1000, overlap to 200)
 3. Connect to an <strong>OpenAI Embeddings</strong> (or <strong>Ollama Embeddings</strong>) node
 4. Connect to a <strong>Chroma</strong> vector store node
 5. Add a <strong>Conversational Retrieval QA Chain</strong> node
 6. Connect a <strong>Chat Model</strong> (ChatOpenAI or ChatOllama) to the chain
-7. Click <strong>Save</strong> and <strong>Run</strong></p>
-<h3 id="qdrant-scalable-vector-search">Qdrant (Scalable Vector Search)<a hidden class="anchor" aria-hidden="true" href="#qdrant-scalable-vector-search">#</a></h3>
-<p>For high-throughput RAG with hybrid search, Qdrant outperforms in-memory stores.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Add Qdrant to your compose file</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">qdrant: image</span>: <span style="color:#ae81ff">qdrant/qdrant:latest</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;6333:6333&#34;</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;6334:6334&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">qdrant_data:/qdrant/storage</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
-</span></span></code></pre></div><p>In Flowise, use the <code>Qdrant</code> vector store node with host <code>http://qdrant:6333</code>.</p>
-<h3 id="weaviate-enterprise-vector-database">Weaviate (Enterprise Vector Database)<a hidden class="anchor" aria-hidden="true" href="#weaviate-enterprise-vector-database">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>  <span style="color:#f92672">weaviate: image</span>: <span style="color:#ae81ff">semitechnologies/weaviate:latest</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;8080:8080&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment: QUERY_DEFAULTS_LIMIT</span>: <span style="color:#ae81ff">25</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED</span>: <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">PERSISTENCE_DATA_PATH</span>: <span style="color:#e6db74">&#39;/var/lib/weaviate&#39;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">weaviate_data:/var/lib/weaviate</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
-</span></span></code></pre></div><h3 id="api-deployment">API Deployment<a hidden class="anchor" aria-hidden="true" href="#api-deployment">#</a></h3>
-<p>Every flow automatically exposes a REST API. Export your chatflow and integrate it anywhere.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Test your deployed flow with curl</span>
-</span></span><span style="display:flex;"><span>curl -X POST <span style="color:#e6db74">&#34;http://localhost:3000/api/v1/prediction/your-chatflow-id&#34;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;question&#34;: &#34;What is the return policy?&#34;,
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;overrideConfig&#34;: {
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;sessionId&#34;: &#34;user_001&#34;
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
+7. Click <strong>Save</strong> and <strong>Run</strong></p><h3 id=qdrant-scalable-vector-search>Qdrant (Scalable Vector Search)<a hidden class=anchor aria-hidden=true href=#qdrant-scalable-vector-search>#</a></h3><p>For high-throughput RAG with hybrid search, Qdrant outperforms in-memory stores.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># Add Qdrant to your compose file</span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>qdrant: image</span>: <span style=color:#ae81ff>qdrant/qdrant:latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;6333:6333&#34;</span>
+</span></span><span style=display:flex><span>      - <span style=color:#e6db74>&#34;6334:6334&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>qdrant_data:/qdrant/storage</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span></code></pre></div><p>In Flowise, use the <code>Qdrant</code> vector store node with host <code>http://qdrant:6333</code>.</p><h3 id=weaviate-enterprise-vector-database>Weaviate (Enterprise Vector Database)<a hidden class=anchor aria-hidden=true href=#weaviate-enterprise-vector-database>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span>  <span style=color:#f92672>weaviate: image</span>: <span style=color:#ae81ff>semitechnologies/weaviate:latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;8080:8080&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment: QUERY_DEFAULTS_LIMIT</span>: <span style=color:#ae81ff>25</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED</span>: <span style=color:#66d9ef>true</span>
+</span></span><span style=display:flex><span>      <span style=color:#f92672>PERSISTENCE_DATA_PATH</span>: <span style=color:#e6db74>&#39;/var/lib/weaviate&#39;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>weaviate_data:/var/lib/weaviate</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span></code></pre></div><h3 id=api-deployment>API Deployment<a hidden class=anchor aria-hidden=true href=#api-deployment>#</a></h3><p>Every flow automatically exposes a REST API. Export your chatflow and integrate it anywhere.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Test your deployed flow with curl</span>
+</span></span><span style=display:flex><span>curl -X POST <span style=color:#e6db74>&#34;http://localhost:3000/api/v1/prediction/your-chatflow-id&#34;</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;question&#34;: &#34;What is the return policy?&#34;,
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;overrideConfig&#34;: {
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>      &#34;sessionId&#34;: &#34;user_001&#34;
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>    }
+</span></span></span><span style=display:flex><span><span style=color:#e6db74>  }&#39;</span>
 </span></span></code></pre></div><p>Response: `````json
 {
 &ldquo;text&rdquo;: &ldquo;Based on our documentation, the return policy allows returns within 30 days of purchase with the original receipt.&rdquo;,
 &ldquo;sourceDocuments&rdquo;: [
 {
-&ldquo;pageContent&rdquo;: &ldquo;Returns are accepted within 30 days of purchase&hellip;&rdquo;,
+&ldquo;pageContent&rdquo;: &ldquo;Returns are accepted within 30 days of purchase&mldr;&rdquo;,
 &ldquo;metadata&rdquo;: { &ldquo;source&rdquo;: &ldquo;return-policy.pdf&rdquo;, &ldquo;page&rdquo;: 3 }
 }
 ]
-}</p>
-<pre tabindex="0"><code>
+}</p><pre tabindex=0><code>
 Python SDK example: `````python
 import requests
 
@@ -502,15 +182,12 @@ def ask(question, session_id=&#34;user_001&#34;): resp = requests.post(FLOWISE_A
 
 answer = ask(&#34;What are your shipping options?&#34;)
 print(answer)
-</code></pre><h3 id="embedding-in-websites">Embedding in Websites<a hidden class="anchor" aria-hidden="true" href="#embedding-in-websites">#</a></h3>
-<p>Flowise generates a JavaScript embed snippet for any chatflow. The widget supports custom themes, avatars, starter prompts, and multi-language welcome messages.</p>
-<p><img alt="Flowise Embed Widget" loading="lazy" src="https://raw.githubusercontent.com/FlowiseAI/FlowiseChatEmbed/main/assets/embedded-chat-config.png">
-<em>Customizable embed chat widget with theming options — deploy to any website with one script tag</em></p>
-<p>Paste this into any HTML page: `````html
-import Chatbot from &lsquo;<a href="https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js%27;">https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';</a>
+</code></pre><h3 id=embedding-in-websites>Embedding in Websites<a hidden class=anchor aria-hidden=true href=#embedding-in-websites>#</a></h3><p>Flowise generates a JavaScript embed snippet for any chatflow. The widget supports custom themes, avatars, starter prompts, and multi-language welcome messages.</p><p><img alt="Flowise Embed Widget" loading=lazy src=https://raw.githubusercontent.com/FlowiseAI/FlowiseChatEmbed/main/assets/embedded-chat-config.png>
+<em>Customizable embed chat widget with theming options — deploy to any website with one script tag</em></p><p>Paste this into any HTML page: `````html
+import Chatbot from &lsquo;<a href=https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js%27;>https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js';</a>
 Chatbot.init({
 chatflowid: &lsquo;your-chatflow-id&rsquo;,
-apiHost: &lsquo;<a href="https://your-flowise-server.com">https://your-flowise-server.com</a>&rsquo;,
+apiHost: &lsquo;<a href=https://your-flowise-server.com>https://your-flowise-server.com</a>&rsquo;,
 theme: {
 button: {
 backgroundColor: &lsquo;#3B81F6&rsquo;,
@@ -526,9 +203,7 @@ height: 700,
 width: 400
 }
 }
-});
-</script></p>
-<pre tabindex="0"><code>
+});</script></p><pre tabindex=0><code>
 ## Benchmarks / Real-World Use Cases
 
 Flowise performance characteristics based on community reports and our own testing: | Metric | Value | Notes |
@@ -623,27 +298,24 @@ DISABLE_FLOWISE_TELEMETRY=true
 
 # 5. Set CORS for embed widgets
 CORS_ORIGINS=https://yourdomain.com,https://app.yourdomain.com
-</code></pre><h3 id="scaling-with-queue-mode">Scaling with Queue Mode<a hidden class="anchor" aria-hidden="true" href="#scaling-with-queue-mode">#</a></h3>
-<p>For high-traffic deployments, Flowise supports queue-based processing with Redis workers.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose-queue.yml</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">services: redis: image</span>: <span style="color:#ae81ff">redis:alpine</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">flowise: image</span>: <span style="color:#ae81ff">flowiseai/flowise:latest</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;3000:3000&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">PORT=3000</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">QUEUE_NAME=flowise-queue</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">QUEUE_REDIS_URL=redis://redis:6379</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">flowise-worker: image</span>: <span style="color:#ae81ff">flowiseai/flowise-worker:latest</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">QUEUE_NAME=flowise-queue</span>
-</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">QUEUE_REDIS_URL=redis://redis:6379</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</code></pre><h3 id=scaling-with-queue-mode>Scaling with Queue Mode<a hidden class=anchor aria-hidden=true href=#scaling-with-queue-mode>#</a></h3><p>For high-traffic deployments, Flowise supports queue-based processing with Redis workers.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose-queue.yml</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3.8&#39;</span>
+</span></span><span style=display:flex><span><span style=color:#f92672>services: redis: image</span>: <span style=color:#ae81ff>redis:alpine</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>flowise: image</span>: <span style=color:#ae81ff>flowiseai/flowise:latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;3000:3000&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>PORT=3000</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>QUEUE_NAME=flowise-queue</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>QUEUE_REDIS_URL=redis://redis:6379</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#f92672>flowise-worker: image</span>: <span style=color:#ae81ff>flowiseai/flowise-worker:latest</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>QUEUE_NAME=flowise-queue</span>
+</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>QUEUE_REDIS_URL=redis://redis:6379</span>
+</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
 </span></span></code></pre></div><p>Scale workers horizontally: `````bash
-docker compose -f docker-compose-queue.yml up -d &ndash;scale flowise-worker=3</p>
-<pre tabindex="0"><code>
+docker compose -f docker-compose-queue.yml up -d &ndash;scale flowise-worker=3</p><pre tabindex=0><code>
 ### Backup Strategy
 
 `````bash
@@ -656,52 +328,17 @@ docker exec flowise-postgres pg_dump -U flowise flowise &gt; flowise-db-$(date +
 
 # Automated daily backup via cron (add to crontab)
 0 2 * * * /usr/local/bin/backup-flowise.sh &gt;&gt; /var/log/flowise-backup.log 2&gt;&amp;1
-</code></pre><h3 id="monitoring-with-docker">Monitoring with Docker<a hidden class="anchor" aria-hidden="true" href="#monitoring-with-docker">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># View real-time logs</span>
-</span></span><span style="display:flex;"><span>docker compose logs -f flowise
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check resource usage</span>
-</span></span><span style="display:flex;"><span>docker stats flowise
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Health check endpoint</span>
-</span></span><span style="display:flex;"><span>curl http://localhost:3000/api/v1/ping
-</span></span></code></pre></div><h2 id="limitations--honest-assessment">Limitations / Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations--honest-assessment">#</a></h2>
-<p>Flowise is not the right tool for every AI project. Here is what it does NOT do well: 1. <strong>Complex Multi-Agent Orchestration</strong>: Flowise Agentflow supports sequential agents, but cyclic multi-agent patterns (like those in LangGraph or AutoGen) require workarounds. Teams building research agents or debate-style multi-agent systems should consider LangGraph directly.</p>
-<ol start="2">
-<li>
-<p><strong>Non-Chat Workflows</strong>: Flowise is optimized for conversational AI. Batch document processing, ETL pipelines, or scheduled data transformations are better handled by n8n or Python scripts.</p>
-</li>
-<li>
-<p><strong>Version Control</strong>: Visual flows cannot be diffed in Git the way code can. Collaboration across large teams requires discipline about exporting and versioning JSON flow definitions manually.</p>
-</li>
-<li>
-<p><strong>Advanced Debugging</strong>: While Flowise shows execution logs, it lacks node-level timing breakdowns and token-usage traces that Dify provides natively. Debugging complex retrieval failures requires reading raw logs.</p>
-</li>
-<li>
-<p><strong>Enterprise Governance</strong>: RBAC exists in the Pro tier, but audit trails, compliance frameworks (ISO 42001, EU AI Act), and fleet management are not first-class features. Regulated industries may need additional governance layers.</p>
-</li>
-<li>
-<p><strong>LangChain Dependency</strong>: Flowise inherits LangChain&rsquo;s limitations. If LangChain drops support for a model or introduces a breaking change, Flowise follows. This coupling is a feature for LangChain users and a constraint for everyone else.</p>
-</li>
-</ol>
-<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
-<h3 id="how-do-i-install-flowise-on-a-server-without-nodejs">How do I install Flowise on a server without Node.js?<a hidden class="anchor" aria-hidden="true" href="#how-do-i-install-flowise-on-a-server-without-nodejs">#</a></h3>
-<p>Use Docker. The official <code>flowiseai/flowise</code> image bundles all dependencies. A single <code>docker run</code> command gets you running without installing Node.js, pnpm, or any build tools on the host.</p>
-<h3 id="can-flowise-work-with-local-llms-like-llama-or-qwen">Can Flowise work with local LLMs like Llama or Qwen?<a hidden class="anchor" aria-hidden="true" href="#can-flowise-work-with-local-llms-like-llama-or-qwen">#</a></h3>
-<p>Yes. Flowise has native integration with Ollama. Start an Ollama container (or local instance), pull any GGUF model, then select the <code>ChatOllama</code> node in the Flowise canvas. Your data never leaves your server — no API keys required.</p>
-<h3 id="how-does-flowise-compare-to-dify-for-building-rag-chatbots">How does Flowise compare to Dify for building RAG chatbots?<a hidden class="anchor" aria-hidden="true" href="#how-does-flowise-compare-to-dify-for-building-rag-chatbots">#</a></h3>
-<p>Flowise is faster to set up (one container, no database required) and gives you explicit control over each LangChain component. Dify has a more polished knowledge base UI with automatic chunking and better debugging. Choose Flowise for speed and LangChain compatibility; choose Dify for team collaboration and built-in knowledge management.</p>
-<h3 id="is-flowise-free-for-commercial-use">Is Flowise free for commercial use?<a hidden class="anchor" aria-hidden="true" href="#is-flowise-free-for-commercial-use">#</a></h3>
-<p>Yes. Flowise is released under the MIT license. You can self-host it, modify it, embed it in commercial products, and sell services built on it — all without paying licensing fees. The cloud-hosted version has paid tiers starting at $35/month.</p>
-<h3 id="what-is-the-minimum-server-spec-for-running-flowise-in-production">What is the minimum server spec for running Flowise in production?<a hidden class="anchor" aria-hidden="true" href="#what-is-the-minimum-server-spec-for-running-flowise-in-production">#</a></h3>
-<p>A $5/month VPS with 1 vCPU and 1 GB RAM handles small-to-medium workloads with SQLite. For production with PostgreSQL and concurrent users, allocate 2 vCPUs and 4 GB RAM. The Flowise container itself uses ~180 MB at idle; the LLM (if self-hosted via Ollama) consumes the most resources.</p>
-<h3 id="can-i-export-a-flowise-chatbot-as-an-api">Can I export a Flowise chatbot as an API?<a hidden class="anchor" aria-hidden="true" href="#can-i-export-a-flowise-chatbot-as-an-api">#</a></h3>
-<p>Every chatflow and agentflow automatically gets a REST API endpoint at <code>/api/v1/prediction/{flow-id}</code>. The UI generates curl, Python, and JavaScript code snippets. You can also export an embeddable chat widget with one click.</p>
-<h3 id="how-do-i-upgrade-flowise-to-a-new-version">How do I upgrade Flowise to a new version?<a hidden class="anchor" aria-hidden="true" href="#how-do-i-upgrade-flowise-to-a-new-version">#</a></h3>
-<p>For Docker deployments, pull the latest image and restart: `````bash
+</code></pre><h3 id=monitoring-with-docker>Monitoring with Docker<a hidden class=anchor aria-hidden=true href=#monitoring-with-docker>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># View real-time logs</span>
+</span></span><span style=display:flex><span>docker compose logs -f flowise
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Check resource usage</span>
+</span></span><span style=display:flex><span>docker stats flowise
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Health check endpoint</span>
+</span></span><span style=display:flex><span>curl http://localhost:3000/api/v1/ping
+</span></span></code></pre></div><h2 id=limitations--honest-assessment>Limitations / Honest Assessment<a hidden class=anchor aria-hidden=true href=#limitations--honest-assessment>#</a></h2><p>Flowise is not the right tool for every AI project. Here is what it does NOT do well: 1. <strong>Complex Multi-Agent Orchestration</strong>: Flowise Agentflow supports sequential agents, but cyclic multi-agent patterns (like those in LangGraph or AutoGen) require workarounds. Teams building research agents or debate-style multi-agent systems should consider LangGraph directly.</p><ol start=2><li><p><strong>Non-Chat Workflows</strong>: Flowise is optimized for conversational AI. Batch document processing, ETL pipelines, or scheduled data transformations are better handled by n8n or Python scripts.</p></li><li><p><strong>Version Control</strong>: Visual flows cannot be diffed in Git the way code can. Collaboration across large teams requires discipline about exporting and versioning JSON flow definitions manually.</p></li><li><p><strong>Advanced Debugging</strong>: While Flowise shows execution logs, it lacks node-level timing breakdowns and token-usage traces that Dify provides natively. Debugging complex retrieval failures requires reading raw logs.</p></li><li><p><strong>Enterprise Governance</strong>: RBAC exists in the Pro tier, but audit trails, compliance frameworks (ISO 42001, EU AI Act), and fleet management are not first-class features. Regulated industries may need additional governance layers.</p></li><li><p><strong>LangChain Dependency</strong>: Flowise inherits LangChain&rsquo;s limitations. If LangChain drops support for a model or introduces a breaking change, Flowise follows. This coupling is a feature for LangChain users and a constraint for everyone else.</p></li></ol><h2 id=frequently-asked-questions>Frequently Asked Questions<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions>#</a></h2><h3 id=how-do-i-install-flowise-on-a-server-without-nodejs>How do I install Flowise on a server without Node.js?<a hidden class=anchor aria-hidden=true href=#how-do-i-install-flowise-on-a-server-without-nodejs>#</a></h3><p>Use Docker. The official <code>flowiseai/flowise</code> image bundles all dependencies. A single <code>docker run</code> command gets you running without installing Node.js, pnpm, or any build tools on the host.</p><h3 id=can-flowise-work-with-local-llms-like-llama-or-qwen>Can Flowise work with local LLMs like Llama or Qwen?<a hidden class=anchor aria-hidden=true href=#can-flowise-work-with-local-llms-like-llama-or-qwen>#</a></h3><p>Yes. Flowise has native integration with Ollama. Start an Ollama container (or local instance), pull any GGUF model, then select the <code>ChatOllama</code> node in the Flowise canvas. Your data never leaves your server — no API keys required.</p><h3 id=how-does-flowise-compare-to-dify-for-building-rag-chatbots>How does Flowise compare to Dify for building RAG chatbots?<a hidden class=anchor aria-hidden=true href=#how-does-flowise-compare-to-dify-for-building-rag-chatbots>#</a></h3><p>Flowise is faster to set up (one container, no database required) and gives you explicit control over each LangChain component. Dify has a more polished knowledge base UI with automatic chunking and better debugging. Choose Flowise for speed and LangChain compatibility; choose Dify for team collaboration and built-in knowledge management.</p><h3 id=is-flowise-free-for-commercial-use>Is Flowise free for commercial use?<a hidden class=anchor aria-hidden=true href=#is-flowise-free-for-commercial-use>#</a></h3><p>Yes. Flowise is released under the MIT license. You can self-host it, modify it, embed it in commercial products, and sell services built on it — all without paying licensing fees. The cloud-hosted version has paid tiers starting at $35/month.</p><h3 id=what-is-the-minimum-server-spec-for-running-flowise-in-production>What is the minimum server spec for running Flowise in production?<a hidden class=anchor aria-hidden=true href=#what-is-the-minimum-server-spec-for-running-flowise-in-production>#</a></h3><p>A $5/month VPS with 1 vCPU and 1 GB RAM handles small-to-medium workloads with SQLite. For production with PostgreSQL and concurrent users, allocate 2 vCPUs and 4 GB RAM. The Flowise container itself uses ~180 MB at idle; the LLM (if self-hosted via Ollama) consumes the most resources.</p><h3 id=can-i-export-a-flowise-chatbot-as-an-api>Can I export a Flowise chatbot as an API?<a hidden class=anchor aria-hidden=true href=#can-i-export-a-flowise-chatbot-as-an-api>#</a></h3><p>Every chatflow and agentflow automatically gets a REST API endpoint at <code>/api/v1/prediction/{flow-id}</code>. The UI generates curl, Python, and JavaScript code snippets. You can also export an embeddable chat widget with one click.</p><h3 id=how-do-i-upgrade-flowise-to-a-new-version>How do I upgrade Flowise to a new version?<a hidden class=anchor aria-hidden=true href=#how-do-i-upgrade-flowise-to-a-new-version>#</a></h3><p>For Docker deployments, pull the latest image and restart: `````bash
 docker pull flowiseai/flowise:latest
-docker compose up -d</p>
-<pre tabindex="0"><code>
+docker compose up -d</p><pre tabindex=0><code>
 For NPM installations, run ````npm update -g flowise````. Always back up your ````~/.flowise```` directory before upgrading.
 
 ## Conclusion
@@ -799,121 +436,11 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 **问：能否自定义AI Agent的行为？**
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</code></pre>
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
-      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="https://dibi8.com/ai-coding-agents/flowise-ai-workflow-builder-lowcode/">
-    <span class="title">« 上一页</span>
-    <span>AI Tool Guide</span>
-  </a>
-  <a class="next" href="https://dibi8.com/ai-coding-agents/free-llm-api-resources-ai-development/">
-    <span class="title">下一页 »</span>
-    <span>AI Tool Guide</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
-
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
-        <polyline points="17 11 12 6 7 11"></polyline>
-        <polyline points="17 18 12 13 7 18"></polyline>
-    </svg>
-</a>
-
-
-<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-        <span style="font-size:20px;">🌐</span>
-        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
-    </div>
-    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
-        <option value="">Select language...</option>
-        <option value="zh">中文 (Chinese)</option>
-        <option value="en">English</option>
-        <option value="ko">한국어 (Korean)</option>
-        <option value="vi">Tiếng Việt (Vietnamese)</option>
-        <option value="ja">日本語 (Japanese)</option>
-        <option value="fr">Français (French)</option>
-        <option value="de">Deutsch (German)</option>
-        <option value="es">Español (Spanish)</option>
-        <option value="ar">العربية (Arabic)</option>
-        <option value="pt">Português (Portuguese)</option>
-        <option value="ru">Русский (Russian)</option>
-        <option value="hi">हिन्दी (Hindi)</option>
-        <option value="th">ไทย (Thai)</option>
-        <option value="id">Indonesia (Indonesian)</option>
-    </select>
-</div>
-
-<script>
-function translatePage(lang) {
-    if (!lang) return;
-    
-    
-    const url = window.location.href;
-    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
-    
-    
-    window.open(translatedUrl, '_blank');
-}
-
-
-(function() {
-    var navLang = navigator.language || navigator.userLanguage;
-    var langMap = {
-        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
-        'en': 'en',
-        'ko': 'ko',
-        'vi': 'vi',
-        'ja': 'ja',
-        'fr': 'fr',
-        'de': 'de',
-        'es': 'es',
-        'ar': 'ar',
-        'pt': 'pt',
-        'ru': 'ru',
-        'hi': 'hi',
-        'th': 'th',
-        'id': 'id'
-    };
-    var detected = langMap[navLang] || 'en';
-    document.getElementById('lang-select').value = detected;
-})();
-</script>
-
-
-<div id="google_translate_element" style="display:none;"></div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'zh',
-        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
-        autoDisplay: false
-    }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-</body>
-
-</html>
+</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/flowise-ai-workflow-builder-lowcode/><span class=title>« 上一页</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/ai-coding-agents/free-llm-api-resources-ai-development/><span class=title>下一页 »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
+<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script></body></html>

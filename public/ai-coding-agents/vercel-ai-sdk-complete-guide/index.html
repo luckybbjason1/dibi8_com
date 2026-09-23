@@ -1,273 +1,28 @@
-<!DOCTYPE html>
-<html lang="zh" dir="auto" data-theme="dark">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>AI Tool Guide | Dibi8</title>
-<meta name="keywords" content="ai, tools">
-<meta name="description" content="Technical guide and comparison">
-<meta name="author" content="">
-<link rel="canonical" href="https://dibi8.com/ai-coding-agents/vercel-ai-sdk-complete-guide/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://dibi8.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/vercel-ai-sdk-complete-guide/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/vercel-ai-sdk-complete-guide/">
-  <meta property="og:site_name" content="Dibi8">
-  <meta property="og:title" content="AI Tool Guide">
-  <meta property="og:description" content="Technical guide and comparison">
-  <meta property="og:locale" content="zh_cn">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="ai-coding-agents">
-    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:tag" content="Ai">
-    <meta property="article:tag" content="Tools">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI Tool Guide">
-  <meta name="twitter:description" content="Technical guide and comparison">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "AI Coding Agents - dibi8",
-      "item": "https://dibi8.com/ai-coding-agents/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "AI Tool Guide",
-      "item": "https://dibi8.com/ai-coding-agents/vercel-ai-sdk-complete-guide/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "AI Tool Guide",
-  "name": "AI Tool Guide",
-  "description": "Technical guide and comparison",
-  "keywords": [
-    "ai", "tools"
-  ],
-  "articleBody": "TL;DR Vercel AI SDK is the most popular open-source framework for building AI-powered user interfaces in 2026, supporting 30k+ stars on GitHub. This comprehensive guide covers installation, streaming responses, tool calling, provider integration, and production deployment patterns for building chat interfaces, AI assistants, and generative UI applications.\nWhat Is Vercel AI SDK? Vercel AI SDK is a TypeScript library that provides a unified API for integrating large language models into web applications. It supports both server-side and client-side rendering, making it compatible with React Server Components, Next.js, SvelteKit, SolidStart, and Nuxt. The SDK handles streaming, error handling, and provider abstraction so you can switch between OpenAI, Anthropic, Google Gemini, and other providers without changing your application code.\nKey Features Provider Agnostic: Switch between OpenAI, Anthropic, Google, Mistral, and 20+ providers with minimal code changes React Server Components: Native support for RSC streaming and server-side rendering Streaming Responses: Real-time token-by-token streaming with built-in UI components Tool Calling: Built-in support for function calling and tool execution Type Safety: Full TypeScript support with automatic type inference for model outputs Framework Support: Works with Next.js, SvelteKit, SolidStart, Nuxt, Express, and Hono UI Components: Pre-built streaming UI components for rapid development Data Streaming: Custom data streaming beyond text for rich interactive experiences Architecture Overview The AI SDK follows a layered architecture: 1. Core Layer: Provider-agnostic API for LLM interactions (text generation, embeddings) 2. Adapter Layer: Provider-specific implementations (OpenAI, Anthropic, Google, etc.) 3. UI Layer: React components for streaming chat interfaces 4. Middleware Layer: Server-side helpers for route handlers and API endpoints\n// Provider-agnostic API import { generateText } from 'ai'; import { openai } from '@ai-sdk/openai'; const { text } = await generateText({ model: openai('gpt-4o'), prompt: 'Write a poem about artificial intelligence', }); Installation Guide Basic Installation npm install ai # Or with specific provider npm install ai @ai-sdk/openai @ai-sdk/anthropic Next.js Project Setup npx create-next-app@latest my-ai-app --typescript cd my-ai-app npm install ai @ai-sdk/openai Create .env.local: ````` OPENAI_API_KEY=sk-your-key-here ANTHROPIC_API_KEY=sk-ant-your-key-here\n### Verify Installation `````typescript import { generateText } from 'ai'; import { openai } from '@ai-sdk/openai'; async function main() { const { text, usage } = await generateText({ model: openai('gpt-4o-mini'), prompt: 'Say hello in 5 words', }); console.log(text); // \"Hello! How can I help you today?\" console.log(usage); // { promptTokens: 10, completionTokens: 8 } } main(); Core APIs Text Generation The simplest way to interact with LLMs: `````typescript import { generateText } from ‘ai’; import { anthropic } from ‘@ai-sdk/anthropic’;\nconst { text, toolCalls, toolResults, usage } = await generateText({ model: anthropic(‘claude-3-5-sonnet-20241022’), prompt: ‘What is the weather in Tokyo?’, maxTokens: 500, temperature: 0.7, });\nconsole.log(text); console.log(‘Tokens used:’, usage.totalTokens);\n### Chat Completions Build conversational interfaces with message history: `````typescript import { streamText } from 'ai'; import { openai } from '@ai-sdk/openai'; const result = streamText({ model: openai('gpt-4o'), system: 'You are a helpful coding assistant.', messages: [ { role: 'user', content: 'How do I reverse a linked list?' }, ], maxTokens: 1000, temperature: 0.3, }); for await (const textPart of result.textStream) { process.stdout.write(textPart); } Embedding Generation Create vector representations for semantic search: `````typescript import { embed } from ‘ai’; import { openai } from ‘@ai-sdk/openai’;\nconst { embedding } = await embed({ model: openai.embedding(’text-embedding-3-small’), value: ‘Machine learning is a subset of artificial intelligence’, });\nconsole.log(Embedding dimension: ${embedding.length}); // Output: Embedding dimension: 1536\n### Structured Outputs Generate typed JSON responses: `````typescript import { generateObject } from 'ai'; import { z } from 'zod'; const movie = await generateObject({ model: openai('gpt-4o'), schema: z.object({ title: z.string(), year: z.number(), genre: z.enum(['Action', 'Drama', 'Comedy', 'Sci-Fi']), rating: z.number().min(0).max(10), }), prompt: 'Recommend a great sci-fi movie from the 2020s', }); console.log(movie.object.title); // Example: \"Dune: Part Two\" Streaming Responses Text Stream Real-time token streaming for chat interfaces: `````typescript import { streamText } from ‘ai’; import { anthropic } from ‘@ai-sdk/anthropic’;\nconst result = streamText({ model: anthropic(‘claude-3-5-sonnet-20241022’), messages: [{ role: ‘user’, content: ‘Explain quantum computing’ }], onFinish: ({ text, usage }) =\u003e { console.log(‘Generation complete’); console.log(‘Tokens:’, usage); }, });\n// Consume the stream const fullText = result.textStream; for await (const chunk of fullText) { console.log(chunk); }\n### Data Stream Send custom structured data alongside text: `````typescript import { streamResponse } from 'ai'; export async function POST(request: Request) { return streamResponse( request, async ({ sendMessage, abortController }) =\u003e { sendMessage('loading', { status: 'processing' }); const result = await streamText({ model: openai('gpt-4o'), prompt: 'Analyze this data and provide insights', onFinish: ({ text }) =\u003e { sendMessage('complete', { analysis: text }); }, }); // Send intermediate data chunks for await (const part of result.fullStream) { if (part.type === 'step-start') { sendMessage('step', { step: part.stepIndex }); } } }, ); } Client-Side Streaming Component 'use client'; import { useChat } from '@ai-sdk/react'; export default function Chat() { const { messages, input, handleSubmit, isLoading } = useChat({ api: '/api/chat', onResponse(response) { console.log('Response received'); }, onFinish() { console.log('Generation complete'); }, }); return ( \u003cdiv className=\"chat-container\"\u003e \u003cdiv className=\"messages\"\u003e {messages.map((m) =\u003e ( \u003cdiv key={m.id} className={````message ${m.role}````}\u003e \u003cstrong\u003e{m.role === 'user' ? 'You' : 'AI'}:\u003c/strong\u003e \u003cp\u003e{m.content}\u003c/p\u003e \u003c/div\u003e ))} \u003c/div\u003e \u003cform onSubmit={handleSubmit}\u003e \u003cinput value={input} onChange={(e) =\u003e setInput(e.target.value)} placeholder=\"Ask anything...\" /\u003e \u003cbutton type=\"submit\" disabled={isLoading}\u003e {isLoading ? 'Thinking...' : 'Send'} \u003c/button\u003e \u003c/form\u003e \u003c/div\u003e ); } Tool Calling Defining Tools Define tools that the model can call: ````typescript import { tool } from ‘ai’; import { z } from ‘zod’;\nconst result = await generateText({ model: openai(‘gpt-4o’), messages: [ { role: ‘user’, content: ‘What is the weather in San Francisco?’ }, ], tools: { getWeather: tool({ description: “Technical guide and comparison.” parameters: z.object({ location: z.string().d…\" }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/vercel-ai-sdk-complete-guide\" } } Related Articles vercel-ai-sdk-edge-compute vercel-ai-sdk-edge-compute vercel-ai-sdk-edge-compute vercel-ai-sdk-edge-compute Found this helpful? Join our Telegram community for daily AI tool updates!\n",
-  "wordCount" : "944",
-  "inLanguage": "zh",
-  "datePublished": "2026-09-20T00:00:00Z",
-  "dateModified": "2026-09-20T00:00:00Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/ai-coding-agents/vercel-ai-sdk-complete-guide/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/favicon.ico"
-    }
-  }
-}
-</script>
-</head>
-<body id="top">
-    <header class="header">
-    <nav class="header-nav">
-        <div class="logo">
-            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu" class="menu">
-            <li>
-                <a href="https://dibi8.com/categories/" title="Categories">
-                    <span>Categories</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/tools/" title="Tools">
-                    <span>🛠 Tools</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/collections/" title="Collections">
-                    <span>Collections</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">主页</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-        <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-</nav>
-    <h1 class="post-title entry-hint-parent">
-      AI Tool Guide
-    </h1>
-    <div class="post-description">
-      Technical guide and comparison
-    </div>
-    <div class="post-meta">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span>
-
-</div>
-  </header> <details class="toc" >
-    <summary accesskey="c" title="(Alt + C)">
-        <span class="title">目录</span>
-    </summary>
-
-    <div class="inner"><ul>
-            <li>
-                <a href="#tldr" aria-label="TL;DR">TL;DR</a></li>
-            <li>
-                <a href="#what-is-vercel-ai-sdk" aria-label="What Is Vercel AI SDK?">What Is Vercel AI SDK?</a><ul>
-                    
-            <li>
-                <a href="#key-features" aria-label="Key Features">Key Features</a></li>
-            <li>
-                <a href="#architecture-overview" aria-label="Architecture Overview">Architecture Overview</a></li></ul>
-            </li>
-            <li>
-                <a href="#installation-guide" aria-label="Installation Guide">Installation Guide</a><ul>
-                    
-            <li>
-                <a href="#basic-installation" aria-label="Basic Installation">Basic Installation</a></li>
-            <li>
-                <a href="#nextjs-project-setup" aria-label="Next.js Project Setup">Next.js Project Setup</a></li></ul>
-            </li>
-            <li>
-                <a href="#core-apis" aria-label="Core APIs">Core APIs</a><ul>
-                    
-            <li>
-                <a href="#text-generation" aria-label="Text Generation">Text Generation</a></li>
-            <li>
-                <a href="#embedding-generation" aria-label="Embedding Generation">Embedding Generation</a></li></ul>
-            </li>
-            <li>
-                <a href="#streaming-responses" aria-label="Streaming Responses">Streaming Responses</a><ul>
-                    
-            <li>
-                <a href="#text-stream" aria-label="Text Stream">Text Stream</a></li>
-            <li>
-                <a href="#client-side-streaming-component" aria-label="Client-Side Streaming Component">Client-Side Streaming Component</a></li></ul>
-            </li>
-            <li>
-                <a href="#tool-calling" aria-label="Tool Calling">Tool Calling</a><ul>
-                    
-            <li>
-                <a href="#defining-tools" aria-label="Defining Tools">Defining Tools</a></li></ul>
-            </li>
-            <li>
-                <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
-            </li>
-        </ul>
-    </div>
-</details>
-
-  <div class="post-content md-content"><h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
-<p>Vercel AI SDK is the most popular open-source framework for building AI-powered user interfaces in 2026, supporting 30k+ stars on GitHub. This comprehensive guide covers installation, streaming responses, tool calling, provider integration, and production deployment patterns for building chat interfaces, AI assistants, and generative UI applications.</p>
-<h2 id="what-is-vercel-ai-sdk">What Is Vercel AI SDK?<a hidden class="anchor" aria-hidden="true" href="#what-is-vercel-ai-sdk">#</a></h2>
-<p>Vercel AI SDK is a TypeScript library that provides a unified API for integrating large language models into web applications. It supports both server-side and client-side rendering, making it compatible with React Server Components, Next.js, SvelteKit, SolidStart, and Nuxt. The SDK handles streaming, error handling, and provider abstraction so you can switch between OpenAI, Anthropic, Google Gemini, and other providers without changing your application code.</p>
-<h3 id="key-features">Key Features<a hidden class="anchor" aria-hidden="true" href="#key-features">#</a></h3>
-<ul>
-<li><strong>Provider Agnostic</strong>: Switch between OpenAI, Anthropic, Google, Mistral, and 20+ providers with minimal code changes</li>
-<li><strong>React Server Components</strong>: Native support for RSC streaming and server-side rendering</li>
-<li><strong>Streaming Responses</strong>: Real-time token-by-token streaming with built-in UI components</li>
-<li><strong>Tool Calling</strong>: Built-in support for function calling and tool execution</li>
-<li><strong>Type Safety</strong>: Full TypeScript support with automatic type inference for model outputs</li>
-<li><strong>Framework Support</strong>: Works with Next.js, SvelteKit, SolidStart, Nuxt, Express, and Hono</li>
-<li><strong>UI Components</strong>: Pre-built streaming UI components for rapid development</li>
-<li><strong>Data Streaming</strong>: Custom data streaming beyond text for rich interactive experiences</li>
-</ul>
-<h3 id="architecture-overview">Architecture Overview<a hidden class="anchor" aria-hidden="true" href="#architecture-overview">#</a></h3>
-<p>The AI SDK follows a layered architecture: 1. <strong>Core Layer</strong>: Provider-agnostic API for LLM interactions (text generation, embeddings)
+<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8 - AI工具目录</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/vercel-ai-sdk-complete-guide/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/vercel-ai-sdk-complete-guide/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/vercel-ai-sdk-complete-guide/"><meta property="og:site_name" content="Dibi8 - AI工具目录"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/vercel-ai-sdk-complete-guide/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"TL;DR Vercel AI SDK is the most popular open-source framework for building AI-powered user interfaces in 2026, supporting 30k+ stars on GitHub. This comprehensive guide covers installation, streaming responses, tool calling, provider integration, and production deployment patterns for building chat interfaces, AI assistants, and generative UI applications.\nWhat Is Vercel AI SDK? Vercel AI SDK is a TypeScript library that provides a unified API for integrating large language models into web applications. It supports both server-side and client-side rendering, making it compatible with React Server Components, Next.js, SvelteKit, SolidStart, and Nuxt. The SDK handles streaming, error handling, and provider abstraction so you can switch between OpenAI, Anthropic, Google Gemini, and other providers without changing your application code.\nKey Features Provider Agnostic: Switch between OpenAI, Anthropic, Google, Mistral, and 20+ providers with minimal code changes React Server Components: Native support for RSC streaming and server-side rendering Streaming Responses: Real-time token-by-token streaming with built-in UI components Tool Calling: Built-in support for function calling and tool execution Type Safety: Full TypeScript support with automatic type inference for model outputs Framework Support: Works with Next.js, SvelteKit, SolidStart, Nuxt, Express, and Hono UI Components: Pre-built streaming UI components for rapid development Data Streaming: Custom data streaming beyond text for rich interactive experiences Architecture Overview The AI SDK follows a layered architecture: 1. Core Layer: Provider-agnostic API for LLM interactions (text generation, embeddings) 2. Adapter Layer: Provider-specific implementations (OpenAI, Anthropic, Google, etc.) 3. UI Layer: React components for streaming chat interfaces 4. Middleware Layer: Server-side helpers for route handlers and API endpoints\n// Provider-agnostic API import { generateText } from 'ai'; import { openai } from '@ai-sdk/openai'; const { text } = await generateText({ model: openai('gpt-4o'), prompt: 'Write a poem about artificial intelligence', }); Installation Guide Basic Installation npm install ai # Or with specific provider npm install ai @ai-sdk/openai @ai-sdk/anthropic Next.js Project Setup npx create-next-app@latest my-ai-app --typescript cd my-ai-app npm install ai @ai-sdk/openai Create .env.local: ````` OPENAI_API_KEY=sk-your-key-here ANTHROPIC_API_KEY=sk-ant-your-key-here\n### Verify Installation `````typescript import { generateText } from 'ai'; import { openai } from '@ai-sdk/openai'; async function main() { const { text, usage } = await generateText({ model: openai('gpt-4o-mini'), prompt: 'Say hello in 5 words', }); console.log(text); // \"Hello! How can I help you today?\" console.log(usage); // { promptTokens: 10, completionTokens: 8 } } main(); Core APIs Text Generation The simplest way to interact with LLMs: `````typescript import { generateText } from ‘ai’; import { anthropic } from ‘@ai-sdk/anthropic’;\nconst { text, toolCalls, toolResults, usage } = await generateText({ model: anthropic(‘claude-3-5-sonnet-20241022’), prompt: ‘What is the weather in Tokyo?’, maxTokens: 500, temperature: 0.7, });\nconsole.log(text); console.log(‘Tokens used:’, usage.totalTokens);\n### Chat Completions Build conversational interfaces with message history: `````typescript import { streamText } from 'ai'; import { openai } from '@ai-sdk/openai'; const result = streamText({ model: openai('gpt-4o'), system: 'You are a helpful coding assistant.', messages: [ { role: 'user', content: 'How do I reverse a linked list?' }, ], maxTokens: 1000, temperature: 0.3, }); for await (const textPart of result.textStream) { process.stdout.write(textPart); } Embedding Generation Create vector representations for semantic search: `````typescript import { embed } from ‘ai’; import { openai } from ‘@ai-sdk/openai’;\nconst { embedding } = await embed({ model: openai.embedding(’text-embedding-3-small’), value: ‘Machine learning is a subset of artificial intelligence’, });\nconsole.log(Embedding dimension: ${embedding.length}); // Output: Embedding dimension: 1536\n### Structured Outputs Generate typed JSON responses: `````typescript import { generateObject } from 'ai'; import { z } from 'zod'; const movie = await generateObject({ model: openai('gpt-4o'), schema: z.object({ title: z.string(), year: z.number(), genre: z.enum(['Action', 'Drama', 'Comedy', 'Sci-Fi']), rating: z.number().min(0).max(10), }), prompt: 'Recommend a great sci-fi movie from the 2020s', }); console.log(movie.object.title); // Example: \"Dune: Part Two\" Streaming Responses Text Stream Real-time token streaming for chat interfaces: `````typescript import { streamText } from ‘ai’; import { anthropic } from ‘@ai-sdk/anthropic’;\nconst result = streamText({ model: anthropic(‘claude-3-5-sonnet-20241022’), messages: [{ role: ‘user’, content: ‘Explain quantum computing’ }], onFinish: ({ text, usage }) =\u003e { console.log(‘Generation complete’); console.log(‘Tokens:’, usage); }, });\n// Consume the stream const fullText = result.textStream; for await (const chunk of fullText) { console.log(chunk); }\n### Data Stream Send custom structured data alongside text: `````typescript import { streamResponse } from 'ai'; export async function POST(request: Request) { return streamResponse( request, async ({ sendMessage, abortController }) =\u003e { sendMessage('loading', { status: 'processing' }); const result = await streamText({ model: openai('gpt-4o'), prompt: 'Analyze this data and provide insights', onFinish: ({ text }) =\u003e { sendMessage('complete', { analysis: text }); }, }); // Send intermediate data chunks for await (const part of result.fullStream) { if (part.type === 'step-start') { sendMessage('step', { step: part.stepIndex }); } } }, ); } Client-Side Streaming Component 'use client'; import { useChat } from '@ai-sdk/react'; export default function Chat() { const { messages, input, handleSubmit, isLoading } = useChat({ api: '/api/chat', onResponse(response) { console.log('Response received'); }, onFinish() { console.log('Generation complete'); }, }); return ( \u003cdiv className=\"chat-container\"\u003e \u003cdiv className=\"messages\"\u003e {messages.map((m) =\u003e ( \u003cdiv key={m.id} className={````message ${m.role}````}\u003e \u003cstrong\u003e{m.role === 'user' ? 'You' : 'AI'}:\u003c/strong\u003e \u003cp\u003e{m.content}\u003c/p\u003e \u003c/div\u003e ))} \u003c/div\u003e \u003cform onSubmit={handleSubmit}\u003e \u003cinput value={input} onChange={(e) =\u003e setInput(e.target.value)} placeholder=\"Ask anything...\" /\u003e \u003cbutton type=\"submit\" disabled={isLoading}\u003e {isLoading ? 'Thinking...' : 'Send'} \u003c/button\u003e \u003c/form\u003e \u003c/div\u003e ); } Tool Calling Defining Tools Define tools that the model can call: ````typescript import { tool } from ‘ai’; import { z } from ‘zod’;\nconst result = await generateText({ model: openai(‘gpt-4o’), messages: [ { role: ‘user’, content: ‘What is the weather in San Francisco?’ }, ], tools: { getWeather: tool({ description: “Technical guide and comparison.” parameters: z.object({ location: z.string().d…\" }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/vercel-ai-sdk-complete-guide\" } } Related Articles vercel-ai-sdk-edge-compute vercel-ai-sdk-edge-compute vercel-ai-sdk-edge-compute vercel-ai-sdk-edge-compute Found this helpful? Join our Telegram community for daily AI tool updates!\n","wordCount":"944","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/vercel-ai-sdk-complete-guide/"},"publisher":{"@type":"Organization","name":"Dibi8 - AI工具目录","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 - AI工具目录 (Alt + H)">Dibi8 - AI工具目录</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#tldr aria-label=TL;DR>TL;DR</a></li><li><a href=#what-is-vercel-ai-sdk aria-label="What Is Vercel AI SDK?">What Is Vercel AI SDK?</a><ul><li><a href=#key-features aria-label="Key Features">Key Features</a></li><li><a href=#architecture-overview aria-label="Architecture Overview">Architecture Overview</a></li></ul></li><li><a href=#installation-guide aria-label="Installation Guide">Installation Guide</a><ul><li><a href=#basic-installation aria-label="Basic Installation">Basic Installation</a></li><li><a href=#nextjs-project-setup aria-label="Next.js Project Setup">Next.js Project Setup</a></li></ul></li><li><a href=#core-apis aria-label="Core APIs">Core APIs</a><ul><li><a href=#text-generation aria-label="Text Generation">Text Generation</a></li><li><a href=#embedding-generation aria-label="Embedding Generation">Embedding Generation</a></li></ul></li><li><a href=#streaming-responses aria-label="Streaming Responses">Streaming Responses</a><ul><li><a href=#text-stream aria-label="Text Stream">Text Stream</a></li><li><a href=#client-side-streaming-component aria-label="Client-Side Streaming Component">Client-Side Streaming Component</a></li></ul></li><li><a href=#tool-calling aria-label="Tool Calling">Tool Calling</a><ul><li><a href=#defining-tools aria-label="Defining Tools">Defining Tools</a></li></ul></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li></ul></div></details><div class="post-content md-content"><h2 id=tldr>TL;DR<a hidden class=anchor aria-hidden=true href=#tldr>#</a></h2><p>Vercel AI SDK is the most popular open-source framework for building AI-powered user interfaces in 2026, supporting 30k+ stars on GitHub. This comprehensive guide covers installation, streaming responses, tool calling, provider integration, and production deployment patterns for building chat interfaces, AI assistants, and generative UI applications.</p><h2 id=what-is-vercel-ai-sdk>What Is Vercel AI SDK?<a hidden class=anchor aria-hidden=true href=#what-is-vercel-ai-sdk>#</a></h2><p>Vercel AI SDK is a TypeScript library that provides a unified API for integrating large language models into web applications. It supports both server-side and client-side rendering, making it compatible with React Server Components, Next.js, SvelteKit, SolidStart, and Nuxt. The SDK handles streaming, error handling, and provider abstraction so you can switch between OpenAI, Anthropic, Google Gemini, and other providers without changing your application code.</p><h3 id=key-features>Key Features<a hidden class=anchor aria-hidden=true href=#key-features>#</a></h3><ul><li><strong>Provider Agnostic</strong>: Switch between OpenAI, Anthropic, Google, Mistral, and 20+ providers with minimal code changes</li><li><strong>React Server Components</strong>: Native support for RSC streaming and server-side rendering</li><li><strong>Streaming Responses</strong>: Real-time token-by-token streaming with built-in UI components</li><li><strong>Tool Calling</strong>: Built-in support for function calling and tool execution</li><li><strong>Type Safety</strong>: Full TypeScript support with automatic type inference for model outputs</li><li><strong>Framework Support</strong>: Works with Next.js, SvelteKit, SolidStart, Nuxt, Express, and Hono</li><li><strong>UI Components</strong>: Pre-built streaming UI components for rapid development</li><li><strong>Data Streaming</strong>: Custom data streaming beyond text for rich interactive experiences</li></ul><h3 id=architecture-overview>Architecture Overview<a hidden class=anchor aria-hidden=true href=#architecture-overview>#</a></h3><p>The AI SDK follows a layered architecture: 1. <strong>Core Layer</strong>: Provider-agnostic API for LLM interactions (text generation, embeddings)
 2. <strong>Adapter Layer</strong>: Provider-specific implementations (OpenAI, Anthropic, Google, etc.)
 3. <strong>UI Layer</strong>: React components for streaming chat interfaces
-4. <strong>Middleware Layer</strong>: Server-side helpers for route handlers and API endpoints</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Provider-agnostic API
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">generateText</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;ai&#39;</span>;
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">openai</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@ai-sdk/openai&#39;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">text</span> } <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">generateText</span>({
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">model</span>: <span style="color:#66d9ef">openai</span>(<span style="color:#e6db74">&#39;gpt-4o&#39;</span>),
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">prompt</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Write a poem about artificial intelligence&#39;</span>,
-</span></span><span style="display:flex;"><span>});
-</span></span></code></pre></div><h2 id="installation-guide">Installation Guide<a hidden class="anchor" aria-hidden="true" href="#installation-guide">#</a></h2>
-<h3 id="basic-installation">Basic Installation<a hidden class="anchor" aria-hidden="true" href="#basic-installation">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install ai
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or with specific provider</span>
-</span></span><span style="display:flex;"><span>npm install ai @ai-sdk/openai @ai-sdk/anthropic
-</span></span></code></pre></div><h3 id="nextjs-project-setup">Next.js Project Setup<a hidden class="anchor" aria-hidden="true" href="#nextjs-project-setup">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npx create-next-app@latest my-ai-app --typescript
-</span></span><span style="display:flex;"><span>cd my-ai-app
-</span></span><span style="display:flex;"><span>npm install ai @ai-sdk/openai
+4. <strong>Middleware Layer</strong>: Server-side helpers for route handlers and API endpoints</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// Provider-agnostic API
+</span></span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>generateText</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;ai&#39;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>openai</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;@ai-sdk/openai&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>text</span> } <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>generateText</span>({
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>model</span>: <span style=color:#66d9ef>openai</span>(<span style=color:#e6db74>&#39;gpt-4o&#39;</span>),
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>prompt</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Write a poem about artificial intelligence&#39;</span>,
+</span></span><span style=display:flex><span>});
+</span></span></code></pre></div><h2 id=installation-guide>Installation Guide<a hidden class=anchor aria-hidden=true href=#installation-guide>#</a></h2><h3 id=basic-installation>Basic Installation<a hidden class=anchor aria-hidden=true href=#basic-installation>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>npm install ai
+</span></span><span style=display:flex><span><span style=color:#75715e># Or with specific provider</span>
+</span></span><span style=display:flex><span>npm install ai @ai-sdk/openai @ai-sdk/anthropic
+</span></span></code></pre></div><h3 id=nextjs-project-setup>Next.js Project Setup<a hidden class=anchor aria-hidden=true href=#nextjs-project-setup>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>npx create-next-app@latest my-ai-app --typescript
+</span></span><span style=display:flex><span>cd my-ai-app
+</span></span><span style=display:flex><span>npm install ai @ai-sdk/openai
 </span></span></code></pre></div><p>Create <code>.env.local</code>: `````
 OPENAI_API_KEY=sk-your-key-here
-ANTHROPIC_API_KEY=sk-ant-your-key-here</p>
-<pre tabindex="0"><code>
+ANTHROPIC_API_KEY=sk-ant-your-key-here</p><pre tabindex=0><code>
 ### Verify Installation
 
 `````typescript
@@ -285,20 +40,15 @@ async function main() {
 }
 
 main();
-</code></pre><h2 id="core-apis">Core APIs<a hidden class="anchor" aria-hidden="true" href="#core-apis">#</a></h2>
-<h3 id="text-generation">Text Generation<a hidden class="anchor" aria-hidden="true" href="#text-generation">#</a></h3>
-<p>The simplest way to interact with LLMs: `````typescript
+</code></pre><h2 id=core-apis>Core APIs<a hidden class=anchor aria-hidden=true href=#core-apis>#</a></h2><h3 id=text-generation>Text Generation<a hidden class=anchor aria-hidden=true href=#text-generation>#</a></h3><p>The simplest way to interact with LLMs: `````typescript
 import { generateText } from &lsquo;ai&rsquo;;
-import { anthropic } from &lsquo;@ai-sdk/anthropic&rsquo;;</p>
-<p>const { text, toolCalls, toolResults, usage } = await generateText({
+import { anthropic } from &lsquo;@ai-sdk/anthropic&rsquo;;</p><p>const { text, toolCalls, toolResults, usage } = await generateText({
 model: anthropic(&lsquo;claude-3-5-sonnet-20241022&rsquo;),
 prompt: &lsquo;What is the weather in Tokyo?&rsquo;,
 maxTokens: 500,
 temperature: 0.7,
-});</p>
-<p>console.log(text);
-console.log(&lsquo;Tokens used:&rsquo;, usage.totalTokens);</p>
-<pre tabindex="0"><code>
+});</p><p>console.log(text);
+console.log(&lsquo;Tokens used:&rsquo;, usage.totalTokens);</p><pre tabindex=0><code>
 ### Chat Completions
 
 Build conversational interfaces with message history: `````typescript
@@ -318,17 +68,13 @@ const result = streamText({
 for await (const textPart of result.textStream) {
   process.stdout.write(textPart);
 }
-</code></pre><h3 id="embedding-generation">Embedding Generation<a hidden class="anchor" aria-hidden="true" href="#embedding-generation">#</a></h3>
-<p>Create vector representations for semantic search: `````typescript
+</code></pre><h3 id=embedding-generation>Embedding Generation<a hidden class=anchor aria-hidden=true href=#embedding-generation>#</a></h3><p>Create vector representations for semantic search: `````typescript
 import { embed } from &lsquo;ai&rsquo;;
-import { openai } from &lsquo;@ai-sdk/openai&rsquo;;</p>
-<p>const { embedding } = await embed({
+import { openai } from &lsquo;@ai-sdk/openai&rsquo;;</p><p>const { embedding } = await embed({
 model: openai.embedding(&rsquo;text-embedding-3-small&rsquo;),
 value: &lsquo;Machine learning is a subset of artificial intelligence&rsquo;,
-});</p>
-<p>console.log(<code>Embedding dimension: ${embedding.length}</code>);
-// Output: Embedding dimension: 1536</p>
-<pre tabindex="0"><code>
+});</p><p>console.log(<code>Embedding dimension: ${embedding.length}</code>);
+// Output: Embedding dimension: 1536</p><pre tabindex=0><code>
 ### Structured Outputs
 
 Generate typed JSON responses: `````typescript
@@ -347,25 +93,20 @@ const movie = await generateObject({
 });
 
 console.log(movie.object.title); // Example: &#34;Dune: Part Two&#34;
-</code></pre><h2 id="streaming-responses">Streaming Responses<a hidden class="anchor" aria-hidden="true" href="#streaming-responses">#</a></h2>
-<h3 id="text-stream">Text Stream<a hidden class="anchor" aria-hidden="true" href="#text-stream">#</a></h3>
-<p>Real-time token streaming for chat interfaces: `````typescript
+</code></pre><h2 id=streaming-responses>Streaming Responses<a hidden class=anchor aria-hidden=true href=#streaming-responses>#</a></h2><h3 id=text-stream>Text Stream<a hidden class=anchor aria-hidden=true href=#text-stream>#</a></h3><p>Real-time token streaming for chat interfaces: `````typescript
 import { streamText } from &lsquo;ai&rsquo;;
-import { anthropic } from &lsquo;@ai-sdk/anthropic&rsquo;;</p>
-<p>const result = streamText({
+import { anthropic } from &lsquo;@ai-sdk/anthropic&rsquo;;</p><p>const result = streamText({
 model: anthropic(&lsquo;claude-3-5-sonnet-20241022&rsquo;),
 messages: [{ role: &lsquo;user&rsquo;, content: &lsquo;Explain quantum computing&rsquo; }],
-onFinish: ({ text, usage }) =&gt; {
+onFinish: ({ text, usage }) => {
 console.log(&lsquo;Generation complete&rsquo;);
 console.log(&lsquo;Tokens:&rsquo;, usage);
 },
-});</p>
-<p>// Consume the stream
+});</p><p>// Consume the stream
 const fullText = result.textStream;
 for await (const chunk of fullText) {
 console.log(chunk);
-}</p>
-<pre tabindex="0"><code>
+}</p><pre tabindex=0><code>
 ### Data Stream
 
 Send custom structured data alongside text: `````typescript
@@ -394,52 +135,48 @@ export async function POST(request: Request) {
     },
   );
 }
-</code></pre><h3 id="client-side-streaming-component">Client-Side Streaming Component<a hidden class="anchor" aria-hidden="true" href="#client-side-streaming-component">#</a></h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#e6db74">&#39;use client&#39;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">useChat</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@ai-sdk/react&#39;</span>;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Chat() {</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">messages</span>, <span style="color:#a6e22e">input</span>, <span style="color:#a6e22e">handleSubmit</span>, <span style="color:#a6e22e">isLoading</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">useChat</span>({
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">api</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;/api/chat&#39;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">onResponse</span>(<span style="color:#a6e22e">response</span>) {
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Response received&#39;</span>);
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">onFinish() {</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Generation complete&#39;</span>);
-</span></span><span style="display:flex;"><span>    },
-</span></span><span style="display:flex;"><span>  });
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> (
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;chat-container&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;messages&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>        {<span style="color:#a6e22e">messages</span>.<span style="color:#a6e22e">map</span>((<span style="color:#a6e22e">m</span>) <span style="color:#f92672">=&gt;</span> (
-</span></span><span style="display:flex;"><span>          &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">key</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">id</span>} <span style="color:#a6e22e">className</span><span style="color:#f92672">=</span>{<span style="color:#e6db74">````</span><span style="color:#a6e22e">message</span> <span style="color:#a6e22e">$</span>{<span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">role</span>}<span style="color:#e6db74">````</span>}&gt;
-</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">strong</span>&gt;{<span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">role</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;user&#39;</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;You&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;AI&#39;</span>}<span style="color:#f92672">:</span>&lt;/<span style="color:#f92672">strong</span>&gt;
-</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">p</span>&gt;{<span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">content</span>}&lt;/<span style="color:#f92672">p</span>&gt;
-</span></span><span style="display:flex;"><span>          &lt;/<span style="color:#f92672">div</span>&gt;
-</span></span><span style="display:flex;"><span>        ))}
-</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">div</span>&gt;
-</span></span><span style="display:flex;"><span>      
-</span></span><span style="display:flex;"><span>      &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">onSubmit</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">handleSubmit</span>}&gt;
-</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">input</span> 
-</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">input</span>} 
-</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">onChange</span><span style="color:#f92672">=</span>{(<span style="color:#a6e22e">e</span>) <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">setInput</span>(<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">value</span>)}
-</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">placeholder</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Ask anything...&#34;</span>
-</span></span><span style="display:flex;"><span>        /&gt;
-</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">disabled</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">isLoading</span>}&gt;
-</span></span><span style="display:flex;"><span>          {<span style="color:#a6e22e">isLoading</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;Thinking...&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Send&#39;</span>}
-</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">button</span>&gt;
-</span></span><span style="display:flex;"><span>      &lt;/<span style="color:#f92672">form</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
-</span></span><span style="display:flex;"><span>  );
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h2 id="tool-calling">Tool Calling<a hidden class="anchor" aria-hidden="true" href="#tool-calling">#</a></h2>
-<h3 id="defining-tools">Defining Tools<a hidden class="anchor" aria-hidden="true" href="#defining-tools">#</a></h3>
-<p>Define tools that the model can call: ````typescript
+</code></pre><h3 id=client-side-streaming-component>Client-Side Streaming Component<a hidden class=anchor aria-hidden=true href=#client-side-streaming-component>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-tsx data-lang=tsx><span style=display:flex><span><span style=color:#e6db74>&#39;use client&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useChat</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;@ai-sdk/react&#39;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>Chat() {</span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>messages</span>, <span style=color:#a6e22e>input</span>, <span style=color:#a6e22e>handleSubmit</span>, <span style=color:#a6e22e>isLoading</span> } <span style=color:#f92672>=</span> <span style=color:#a6e22e>useChat</span>({
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>api</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;/api/chat&#39;</span>,
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>onResponse</span>(<span style=color:#a6e22e>response</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;Response received&#39;</span>);
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>onFinish() {</span>
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>&#39;Generation complete&#39;</span>);
+</span></span><span style=display:flex><span>    },
+</span></span><span style=display:flex><span>  });
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;chat-container&#34;</span>&gt;
+</span></span><span style=display:flex><span>      &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;messages&#34;</span>&gt;
+</span></span><span style=display:flex><span>        {<span style=color:#a6e22e>messages</span>.<span style=color:#a6e22e>map</span>((<span style=color:#a6e22e>m</span>) <span style=color:#f92672>=&gt;</span> (
+</span></span><span style=display:flex><span>          &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>key</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>m</span>.<span style=color:#a6e22e>id</span>} <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span>{<span style=color:#e6db74>````</span><span style=color:#a6e22e>message</span> <span style=color:#a6e22e>$</span>{<span style=color:#a6e22e>m</span>.<span style=color:#a6e22e>role</span>}<span style=color:#e6db74>````</span>}&gt;
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>strong</span>&gt;{<span style=color:#a6e22e>m</span>.<span style=color:#a6e22e>role</span> <span style=color:#f92672>===</span> <span style=color:#e6db74>&#39;user&#39;</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#39;You&#39;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;AI&#39;</span>}<span style=color:#f92672>:</span>&lt;/<span style=color:#f92672>strong</span>&gt;
+</span></span><span style=display:flex><span>            &lt;<span style=color:#f92672>p</span>&gt;{<span style=color:#a6e22e>m</span>.<span style=color:#a6e22e>content</span>}&lt;/<span style=color:#f92672>p</span>&gt;
+</span></span><span style=display:flex><span>          &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>        ))}
+</span></span><span style=display:flex><span>      &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>      
+</span></span><span style=display:flex><span>      &lt;<span style=color:#f92672>form</span> <span style=color:#a6e22e>onSubmit</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>handleSubmit</span>}&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>input</span> 
+</span></span><span style=display:flex><span>          <span style=color:#a6e22e>value</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>input</span>} 
+</span></span><span style=display:flex><span>          <span style=color:#a6e22e>onChange</span><span style=color:#f92672>=</span>{(<span style=color:#a6e22e>e</span>) <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>setInput</span>(<span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>target</span>.<span style=color:#a6e22e>value</span>)}
+</span></span><span style=display:flex><span>          <span style=color:#a6e22e>placeholder</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Ask anything...&#34;</span>
+</span></span><span style=display:flex><span>        /&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;submit&#34;</span> <span style=color:#a6e22e>disabled</span><span style=color:#f92672>=</span>{<span style=color:#a6e22e>isLoading</span>}&gt;
+</span></span><span style=display:flex><span>          {<span style=color:#a6e22e>isLoading</span> <span style=color:#f92672>?</span> <span style=color:#e6db74>&#39;Thinking...&#39;</span> <span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;Send&#39;</span>}
+</span></span><span style=display:flex><span>        &lt;/<span style=color:#f92672>button</span>&gt;
+</span></span><span style=display:flex><span>      &lt;/<span style=color:#f92672>form</span>&gt;
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><h2 id=tool-calling>Tool Calling<a hidden class=anchor aria-hidden=true href=#tool-calling>#</a></h2><h3 id=defining-tools>Defining Tools<a hidden class=anchor aria-hidden=true href=#defining-tools>#</a></h3><p>Define tools that the model can call: ````typescript
 import { tool } from &lsquo;ai&rsquo;;
-import { z } from &lsquo;zod&rsquo;;</p>
-<p>const result = await generateText({
+import { z } from &lsquo;zod&rsquo;;</p><p>const result = await generateText({
 model: openai(&lsquo;gpt-4o&rsquo;),
 messages: [
 { role: &lsquo;user&rsquo;, content: &lsquo;What is the weather in San Francisco?&rsquo; },
@@ -448,147 +185,25 @@ tools: {
 getWeather: tool({
 description: &ldquo;Technical guide and comparison.&rdquo;
 parameters: z.object({
-location: z.string().d&hellip;&quot;
+location: z.string().d&mldr;"
 },
 &ldquo;publisher&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/vercel-ai-sdk-complete-guide%22">https://dibi8.com/resources/vercel-ai-sdk-complete-guide"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/vercel-ai-sdk-complete-guide%22>https://dibi8.com/resources/vercel-ai-sdk-complete-guide"</a>
 }
-}
-</script></p>
-<hr>
-<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
-<ul>
-<li><a href="/ai-coding-agents/vercel-ai-sdk-complete-guide/">vercel-ai-sdk-edge-compute</a></li>
-<li><a href="/ai-coding-agents/vercel-ai-sdk-complete-guide/">vercel-ai-sdk-edge-compute</a></li>
-<li><a href="/ai-coding-agents/vercel-ai-sdk-complete-guide/">vercel-ai-sdk-edge-compute</a></li>
-<li><a href="/ai-coding-agents/vercel-ai-sdk-complete-guide/">vercel-ai-sdk-edge-compute</a></li>
-</ul>
-<hr>
-<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
-
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
-      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="https://dibi8.com/ai-coding-agents/vector-db-2026-qdrant-weaviate-milvus/">
-    <span class="title">« 上一页</span>
-    <span>AI Tool Guide</span>
-  </a>
-  <a class="next" href="https://dibi8.com/ai-coding-agents/vercel-ai-sdk-edge-compute/">
-    <span class="title">下一页 »</span>
-    <span>AI Tool Guide</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
-
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
-        <polyline points="17 11 12 6 7 11"></polyline>
-        <polyline points="17 18 12 13 7 18"></polyline>
-    </svg>
-</a>
-
-
-<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-        <span style="font-size:20px;">🌐</span>
-        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
-    </div>
-    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
-        <option value="">Select language...</option>
-        <option value="zh">中文 (Chinese)</option>
-        <option value="en">English</option>
-        <option value="ko">한국어 (Korean)</option>
-        <option value="vi">Tiếng Việt (Vietnamese)</option>
-        <option value="ja">日本語 (Japanese)</option>
-        <option value="fr">Français (French)</option>
-        <option value="de">Deutsch (German)</option>
-        <option value="es">Español (Spanish)</option>
-        <option value="ar">العربية (Arabic)</option>
-        <option value="pt">Português (Portuguese)</option>
-        <option value="ru">Русский (Russian)</option>
-        <option value="hi">हिन्दी (Hindi)</option>
-        <option value="th">ไทย (Thai)</option>
-        <option value="id">Indonesia (Indonesian)</option>
-    </select>
-</div>
-
-<script>
-function translatePage(lang) {
-    if (!lang) return;
-    
-    
-    const url = window.location.href;
-    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
-    
-    
-    window.open(translatedUrl, '_blank');
-}
-
-
-(function() {
-    var navLang = navigator.language || navigator.userLanguage;
-    var langMap = {
-        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
-        'en': 'en',
-        'ko': 'ko',
-        'vi': 'vi',
-        'ja': 'ja',
-        'fr': 'fr',
-        'de': 'de',
-        'es': 'es',
-        'ar': 'ar',
-        'pt': 'pt',
-        'ru': 'ru',
-        'hi': 'hi',
-        'th': 'th',
-        'id': 'id'
-    };
-    var detected = langMap[navLang] || 'en';
-    document.getElementById('lang-select').value = detected;
-})();
-</script>
-
-
-<div id="google_translate_element" style="display:none;"></div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'zh',
-        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
-        autoDisplay: false
-    }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-</body>
-
-</html>
+}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/ai-coding-agents/vercel-ai-sdk-complete-guide/>vercel-ai-sdk-edge-compute</a></li><li><a href=/ai-coding-agents/vercel-ai-sdk-complete-guide/>vercel-ai-sdk-edge-compute</a></li><li><a href=/ai-coding-agents/vercel-ai-sdk-complete-guide/>vercel-ai-sdk-edge-compute</a></li><li><a href=/ai-coding-agents/vercel-ai-sdk-complete-guide/>vercel-ai-sdk-edge-compute</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/vector-db-2026-qdrant-weaviate-milvus/><span class=title>« 上一页</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/ai-coding-agents/vercel-ai-sdk-edge-compute/><span class=title>下一页 »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
+<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script></body></html>

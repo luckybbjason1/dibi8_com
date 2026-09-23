@@ -1,304 +1,35 @@
-<!DOCTYPE html>
-<html lang="zh" dir="auto" data-theme="dark">
-
-<head><meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>AI Tool Guide | Dibi8</title>
-<meta name="keywords" content="ai, tools">
-<meta name="description" content="Technical guide and comparison">
-<meta name="author" content="">
-<link rel="canonical" href="https://dibi8.com/ai-coding-agents/mempalace/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://dibi8.com/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
-<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="zh" href="https://dibi8.com/ai-coding-agents/mempalace/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript>
-<script>
-    if (localStorage.getItem("pref-theme") === "light") {
-        document.querySelector("html").dataset.theme = 'light';
-    }
-
-</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/mempalace/">
-  <meta property="og:site_name" content="Dibi8">
-  <meta property="og:title" content="AI Tool Guide">
-  <meta property="og:description" content="Technical guide and comparison">
-  <meta property="og:locale" content="zh_cn">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="ai-coding-agents">
-    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
-    <meta property="article:tag" content="Ai">
-    <meta property="article:tag" content="Tools">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI Tool Guide">
-  <meta name="twitter:description" content="Technical guide and comparison">
-
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position":  1 ,
-      "name": "AI Coding Agents - dibi8",
-      "item": "https://dibi8.com/ai-coding-agents/"
-    }, 
-    {
-      "@type": "ListItem",
-      "position":  2 ,
-      "name": "AI Tool Guide",
-      "item": "https://dibi8.com/ai-coding-agents/mempalace/"
-    }
-  ]
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BlogPosting",
-  "headline": "AI Tool Guide",
-  "name": "AI Tool Guide",
-  "description": "Technical guide and comparison",
-  "keywords": [
-    "ai", "tools"
-  ],
-  "articleBody": "title: “MemPalace vs Mem0: 96.6% Recall Benchmark \u0026 Best AI Memo…” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Go\nPython application_domain: “Ai Tools” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: \"\" file_md5: \"\" download_url: \"\" backup_url: \"\" last_maintained: “2026-05-15” draft: false aliases: /posts/mempalace/ faqs: - q: ‘What is MemPalace and how does it give an AI memory?’ a: ‘MemPalace is a free, open-source, local-first AI memory system that stores your conversation and project history as verbatim text and retrieves it with semantic search. It creates a structured memory layer outside the model so your AI assistant can recall exact past context instead of starting every chat from zero.’ q: ‘How do you install MemPalace?’ a: ‘MemPalace is a Python tool that installs via uv (uv tool install mempalace) or pip (pip install mempalace). After installing, run mempalace init ~/projects/myapp to initialize it for your project.’ q: ‘How does MemPalace compare to Mem0 on recall accuracy?’ a: ‘On the LongMemEval benchmark, MemPalace reports a 96.6% recall rate versus 89.2% for Mem0. MemPalace also runs fully locally with zero API calls, while Mem0 requires a paid OpenAI API.’ q: ‘How does MemPalace organize stored memory?’ a: ‘MemPalace uses a palace metaphor with three levels: Wings for people and projects, Rooms for topics within those projects, and Drawers that hold the original content stored verbatim. This lets you scope a search to a specific project wing or topic room instead of querying a flat vector database.’ q: ‘Does MemPalace work with Claude Code and other AI tools?’ a: ‘Yes. MemPalace ships native plugins including a .claude-plugin directory for Claude Code, a .codex-plugin directory for OpenAI Codex, and a .agents/plugins directory for MCP-compatible tools, plus support for Gemini CLI and local models. It exposes an MCP-compatible endpoint out of the box for persistent coding-agent memory.’— {\u003c/* resource-info */\u003e}\nMemPalace: Give Your AI a Perfect Memory (Free, Open Source, 51K+ Stars) Every AI conversation starts from zero. You explain your stack, your preferences, and your project history over and over. MemPalace fixes that. It is the best-benchmarked open-source AI memory system, and it is completely free.\nWith 51,745 GitHub stars and a growing ecosystem of plugins, MemPalace stores your conversation history as verbatim text and retrieves it with semantic search. Your AI assistant finally remembers.\nBenchmark Comparison: MemPalace vs Mem0 vs Mastra When evaluating AI memory systems, performance and resource consumption are critical. Here is how MemPalace stacks up in the LongMemEval benchmark: | Feature/Metric | MemPalace | Mem0 | Mastra | Hindsight | | :— | :— | :— | :— | :— | | Recall Rate | 96.6% | 89.2% | 85.5% | 91.0% | | API Calls Required| Zero (Local) | OpenAI API (Paid) | Anthropic API | Zero | | Storage Architecture| Verbatim + Vector | Vector Only | Graph + Vector | Vector Only | | Claude Code Support| Yes (Native) | Manual integration | Yes | No |\nWhy AI Memory Matters Large language models have a fixed context window. Once a conversation exceeds that limit, earlier details are lost or compressed. For developers working across multiple projects, this means repeatedly re-explaining architecture decisions, coding standards, and past debugging sessions.\nMemPalace solves this by creating a structured, searchable memory layer outside the model itself. It does not summarize or paraphrase your history. It keeps the original text intact and retrieves the exact passages your AI needs, when it needs them.\nHow MemPalace Works MemPalace organizes memory using a palace metaphor: - Wings — People and projects\nRooms — Topics within those projects Drawers — Original content stored verbatim This structure lets you scope searches precisely. Instead of dumping everything into a flat vector database, you can search within a specific project wing or topic room.\nThe retrieval layer is pluggable. The default backend is ChromaDB, and the interface is defined in ```mempalace/backends/base.py````. You can swap in an alternative backend without touching the rest of the system.\nImportantly, nothing leaves your machine unless you opt in. MemPalace is local-first by design.\nQuickstart: Install in Seconds MemPalace is written in Python and installs cleanly via uv or pip: `````shell\nRecommended: install with uv uv tool install mempalace\nOr use pip pip install mempalace\nInitialize for your project mempalace init ~/projects/myapp\nOnce installed, you can start mining content and searching memory immediately. * * * ## Mining Your Project History MemPalace can ingest both project files and conversation history. Here is how to populate your palace: `````shell # Mine a project directory mempalace mine ~/projects/myapp # Mine Claude Code conversations (scoped by project) mempalace mine ~/.claude/projects/ --mode convos --wing myapp # Search your memory mempalace search \"why did we switch to GraphQL\" # Load context into a new session mempalace wake-up The mine command indexes your content. The search command runs semantic retrieval. And wake-up loads the most relevant context into your current AI session so you can pick up exactly where you left off.\nPlugin Ecosystem MemPalace ships with native plugins for popular AI tools: - Claude Code — .claude-plugin directory\nOpenAI Codex — .codex-plugin directory MCP-compatible tools — .agents/plugins directory Gemini CLI and local models This means you can integrate MemPalace into your existing workflow without switching editors or rewriting prompts.\nBenchmarks and Performance MemPalace markets itself as the best-benchmarked open-source AI memory system. The repository includes a ````benchmarks/``` directory with reproducible tests comparing retrieval accuracy, latency, and memory usage against other memory solutions. If you care about measurable performance rather than marketing claims, this is a strong signal.\nWhen to Use MemPalace MemPalace is ideal if you: - Work on long-running projects with complex context\nUse AI assistants daily and hate repeating yourself Want a free, open-source alternative to proprietary memory services Need local-first storage for privacy or compliance Prefer structured retrieval over flat vector search If your AI sessions are short and self-contained, you may not need a memory system. But for developers, researchers, and power users, MemPalace turns every new chat into a continuation rather than a restart.\nRelated Articles Hermes Agent: Self-Improving AI - AI with learning loop AI Tools Directory 2024 - AI tools guide DS4: DeepSeek V4 Flash - Local LLM Free Claude Code - Free AI coding Agent Skills: AI Coding - AI skills Conclusion MemPalace gives your AI a memory that is structured, searchable, and private. With over 51,000 GitHub stars, a pluggable backend architecture, and native support for Claude, Codex, and MCP tools, it is the most credible open-source option in the AI memory space.\nInstall it today, mine your first project, and stop re-explaining your stack to every new chat session.\nRelated Articles Recommended Tools For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.\n**** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing. Affiliate link — supports dibi8.com at no cost to you.\nPublished on dibi8.com — May 10, 2026\nFAQ: Running MemPalace in Production Q: How much RAM is required for MemPalace? A: MemPalace is highly optimized. It can run smoothly on machines with just 8GB of RAM, but for large-scale production with thousands of long-term sessions, 16GB is recommended.\nQ: Can I integrate MemPalace with Claude Code? A: Yes! MemPalace provides an MCP-compatible endpoint out of the box, allowing seamless integration with Claude Code for persistent coding agent memory.\nQ: ChromaDB vs Pinecone for local memory? A: MemPalace uses ChromaDB locally to ensure zero latency and zero API costs, making it superior to Pinecone for localized, privacy-focused agent workflows.\nReferences \u0026 Sources ChromaDB Mem0 Mastra Pinecone Model Context Protocol (MCP) { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “MemPalace vs Mem0: 96.6% Recall Benchmark \u0026 Best AI Memory Framework (2026)”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/mempalace\" } } Why This Matters Understanding mempalace vs mem0: 96.6% recall benchmark \u0026 best ai memory framework (2026) is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion MemPalace vs Mem0: 96.6% Recall Benchmark \u0026 Best AI Memory Framework (2026) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\n",
-  "wordCount" : "1527",
-  "inLanguage": "zh",
-  "datePublished": "2026-09-20T00:00:00Z",
-  "dateModified": "2026-09-20T00:00:00Z",
-  "mainEntityOfPage": {
-    "@type": "WebPage",
-    "@id": "https://dibi8.com/ai-coding-agents/mempalace/"
-  },
-  "publisher": {
-    "@type": "Organization",
-    "name": "Dibi8",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://dibi8.com/favicon.ico"
-    }
-  }
-}
-</script>
-</head>
-<body id="top">
-    <header class="header">
-    <nav class="header-nav">
-        <div class="logo">
-            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
-            <div class="logo-switches">
-                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
-                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
-                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                        stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                </button>
-            </div>
-        </div>
-        <ul id="menu" class="menu">
-            <li>
-                <a href="https://dibi8.com/categories/" title="Categories">
-                    <span>Categories</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/tools/" title="Tools">
-                    <span>🛠 Tools</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://dibi8.com/collections/" title="Collections">
-                    <span>Collections</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</header>
-<main class="main">
-
-<article class="post-single">
-  <header class="post-header">
-    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
-            <a href="/">主页</a>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-                <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
-        <polyline points="9 18 15 12 9 6"></polyline>
-    </svg>
-</nav>
-    <h1 class="post-title entry-hint-parent">
-      AI Tool Guide
-    </h1>
-    <div class="post-description">
-      Technical guide and comparison
-    </div>
-    <div class="post-meta">
-
-<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>8 分钟</span>
-
-</div>
-  </header> <details class="toc" >
-    <summary accesskey="c" title="(Alt + C)">
-        <span class="title">目录</span>
-    </summary>
-
-    <div class="inner"><ul>
-            <li>
-                <a href="#mempalace-give-your-ai-a-perfect-memory-free-open-source-51k-stars" aria-label="MemPalace: Give Your AI a Perfect Memory (Free, Open Source, 51K&#43; Stars)">MemPalace: Give Your AI a Perfect Memory (Free, Open Source, 51K+ Stars)</a><ul>
-                    
-            <li>
-                <a href="#benchmark-comparison-mempalace-vs-mem0-vs-mastra" aria-label="Benchmark Comparison: MemPalace vs Mem0 vs Mastra">Benchmark Comparison: MemPalace vs Mem0 vs Mastra</a></li>
-            <li>
-                <a href="#why-ai-memory-matters" aria-label="Why AI Memory Matters">Why AI Memory Matters</a></li>
-            <li>
-                <a href="#how-mempalace-works" aria-label="How MemPalace Works">How MemPalace Works</a></li>
-            <li>
-                <a href="#quickstart-install-in-seconds" aria-label="Quickstart: Install in Seconds">Quickstart: Install in Seconds</a></li></ul>
-            </li>
-            <li>
-                <a href="#recommended-install-with-uv" aria-label="Recommended: install with uv">Recommended: install with uv</a></li>
-            <li>
-                <a href="#or-use-pip" aria-label="Or use pip">Or use pip</a></li>
-            <li>
-                <a href="#initialize-for-your-project" aria-label="Initialize for your project">Initialize for your project</a><ul>
-                    
-            <li>
-                <a href="#plugin-ecosystem" aria-label="Plugin Ecosystem">Plugin Ecosystem</a></li>
-            <li>
-                <a href="#benchmarks-and-performance" aria-label="Benchmarks and Performance">Benchmarks and Performance</a></li>
-            <li>
-                <a href="#when-to-use-mempalace" aria-label="When to Use MemPalace">When to Use MemPalace</a></li>
-            <li>
-                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
-            <li>
-                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
-            <li>
-                <a href="#related-articles-1" aria-label="Related Articles">Related Articles</a></li>
-            <li>
-                <a href="#recommended-tools" aria-label="Recommended Tools">Recommended Tools</a></li>
-            <li>
-                <a href="#faq-running-mempalace-in-production" aria-label="FAQ: Running MemPalace in Production">FAQ: Running MemPalace in Production</a></li>
-            <li>
-                <a href="#references--sources" aria-label="References &amp; Sources">References &amp; Sources</a></li>
-            <li>
-                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
-                    
-            <li>
-                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
-            <li>
-                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
-            </li>
-            <li>
-                <a href="#conclusion-1" aria-label="Conclusion">Conclusion</a>
-            </li>
-        </ul>
-        </li>
-        </ul>
-    </div>
-</details>
-
-  <div class="post-content md-content"><p>title: &ldquo;MemPalace vs Mem0: 96.6% Recall Benchmark &amp; Best AI Memo&hellip;&rdquo;
+<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8 - AI工具目录</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/mempalace/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/ai-coding-agents/mempalace/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/mempalace/"><meta property="og:site_name" content="Dibi8 - AI工具目录"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh_cn"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/mempalace/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “MemPalace vs Mem0: 96.6% Recall Benchmark \u0026 Best AI Memo…” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Go\nPython application_domain: “Ai Tools” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: \"\" file_md5: \"\" download_url: \"\" backup_url: \"\" last_maintained: “2026-05-15” draft: false aliases: /posts/mempalace/ faqs: - q: ‘What is MemPalace and how does it give an AI memory?’ a: ‘MemPalace is a free, open-source, local-first AI memory system that stores your conversation and project history as verbatim text and retrieves it with semantic search. It creates a structured memory layer outside the model so your AI assistant can recall exact past context instead of starting every chat from zero.’ q: ‘How do you install MemPalace?’ a: ‘MemPalace is a Python tool that installs via uv (uv tool install mempalace) or pip (pip install mempalace). After installing, run mempalace init ~/projects/myapp to initialize it for your project.’ q: ‘How does MemPalace compare to Mem0 on recall accuracy?’ a: ‘On the LongMemEval benchmark, MemPalace reports a 96.6% recall rate versus 89.2% for Mem0. MemPalace also runs fully locally with zero API calls, while Mem0 requires a paid OpenAI API.’ q: ‘How does MemPalace organize stored memory?’ a: ‘MemPalace uses a palace metaphor with three levels: Wings for people and projects, Rooms for topics within those projects, and Drawers that hold the original content stored verbatim. This lets you scope a search to a specific project wing or topic room instead of querying a flat vector database.’ q: ‘Does MemPalace work with Claude Code and other AI tools?’ a: ‘Yes. MemPalace ships native plugins including a .claude-plugin directory for Claude Code, a .codex-plugin directory for OpenAI Codex, and a .agents/plugins directory for MCP-compatible tools, plus support for Gemini CLI and local models. It exposes an MCP-compatible endpoint out of the box for persistent coding-agent memory.’— {\u003c/* resource-info */\u003e}\nMemPalace: Give Your AI a Perfect Memory (Free, Open Source, 51K+ Stars) Every AI conversation starts from zero. You explain your stack, your preferences, and your project history over and over. MemPalace fixes that. It is the best-benchmarked open-source AI memory system, and it is completely free.\nWith 51,745 GitHub stars and a growing ecosystem of plugins, MemPalace stores your conversation history as verbatim text and retrieves it with semantic search. Your AI assistant finally remembers.\nBenchmark Comparison: MemPalace vs Mem0 vs Mastra When evaluating AI memory systems, performance and resource consumption are critical. Here is how MemPalace stacks up in the LongMemEval benchmark: | Feature/Metric | MemPalace | Mem0 | Mastra | Hindsight | | :— | :— | :— | :— | :— | | Recall Rate | 96.6% | 89.2% | 85.5% | 91.0% | | API Calls Required| Zero (Local) | OpenAI API (Paid) | Anthropic API | Zero | | Storage Architecture| Verbatim + Vector | Vector Only | Graph + Vector | Vector Only | | Claude Code Support| Yes (Native) | Manual integration | Yes | No |\nWhy AI Memory Matters Large language models have a fixed context window. Once a conversation exceeds that limit, earlier details are lost or compressed. For developers working across multiple projects, this means repeatedly re-explaining architecture decisions, coding standards, and past debugging sessions.\nMemPalace solves this by creating a structured, searchable memory layer outside the model itself. It does not summarize or paraphrase your history. It keeps the original text intact and retrieves the exact passages your AI needs, when it needs them.\nHow MemPalace Works MemPalace organizes memory using a palace metaphor: - Wings — People and projects\nRooms — Topics within those projects Drawers — Original content stored verbatim This structure lets you scope searches precisely. Instead of dumping everything into a flat vector database, you can search within a specific project wing or topic room.\nThe retrieval layer is pluggable. The default backend is ChromaDB, and the interface is defined in ```mempalace/backends/base.py````. You can swap in an alternative backend without touching the rest of the system.\nImportantly, nothing leaves your machine unless you opt in. MemPalace is local-first by design.\nQuickstart: Install in Seconds MemPalace is written in Python and installs cleanly via uv or pip: `````shell\nRecommended: install with uv uv tool install mempalace\nOr use pip pip install mempalace\nInitialize for your project mempalace init ~/projects/myapp\nOnce installed, you can start mining content and searching memory immediately. * * * ## Mining Your Project History MemPalace can ingest both project files and conversation history. Here is how to populate your palace: `````shell # Mine a project directory mempalace mine ~/projects/myapp # Mine Claude Code conversations (scoped by project) mempalace mine ~/.claude/projects/ --mode convos --wing myapp # Search your memory mempalace search \"why did we switch to GraphQL\" # Load context into a new session mempalace wake-up The mine command indexes your content. The search command runs semantic retrieval. And wake-up loads the most relevant context into your current AI session so you can pick up exactly where you left off.\nPlugin Ecosystem MemPalace ships with native plugins for popular AI tools: - Claude Code — .claude-plugin directory\nOpenAI Codex — .codex-plugin directory MCP-compatible tools — .agents/plugins directory Gemini CLI and local models This means you can integrate MemPalace into your existing workflow without switching editors or rewriting prompts.\nBenchmarks and Performance MemPalace markets itself as the best-benchmarked open-source AI memory system. The repository includes a ````benchmarks/``` directory with reproducible tests comparing retrieval accuracy, latency, and memory usage against other memory solutions. If you care about measurable performance rather than marketing claims, this is a strong signal.\nWhen to Use MemPalace MemPalace is ideal if you: - Work on long-running projects with complex context\nUse AI assistants daily and hate repeating yourself Want a free, open-source alternative to proprietary memory services Need local-first storage for privacy or compliance Prefer structured retrieval over flat vector search If your AI sessions are short and self-contained, you may not need a memory system. But for developers, researchers, and power users, MemPalace turns every new chat into a continuation rather than a restart.\nRelated Articles Hermes Agent: Self-Improving AI - AI with learning loop AI Tools Directory 2024 - AI tools guide DS4: DeepSeek V4 Flash - Local LLM Free Claude Code - Free AI coding Agent Skills: AI Coding - AI skills Conclusion MemPalace gives your AI a memory that is structured, searchable, and private. With over 51,000 GitHub stars, a pluggable backend architecture, and native support for Claude, Codex, and MCP tools, it is the most credible open-source option in the AI memory space.\nInstall it today, mine your first project, and stop re-explaining your stack to every new chat session.\nRelated Articles Recommended Tools For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.\n**** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing. Affiliate link — supports dibi8.com at no cost to you.\nPublished on dibi8.com — May 10, 2026\nFAQ: Running MemPalace in Production Q: How much RAM is required for MemPalace? A: MemPalace is highly optimized. It can run smoothly on machines with just 8GB of RAM, but for large-scale production with thousands of long-term sessions, 16GB is recommended.\nQ: Can I integrate MemPalace with Claude Code? A: Yes! MemPalace provides an MCP-compatible endpoint out of the box, allowing seamless integration with Claude Code for persistent coding agent memory.\nQ: ChromaDB vs Pinecone for local memory? A: MemPalace uses ChromaDB locally to ensure zero latency and zero API costs, making it superior to Pinecone for localized, privacy-focused agent workflows.\nReferences \u0026 Sources ChromaDB Mem0 Mastra Pinecone Model Context Protocol (MCP) { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “MemPalace vs Mem0: 96.6% Recall Benchmark \u0026 Best AI Memory Framework (2026)”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/mempalace\" } } Why This Matters Understanding mempalace vs mem0: 96.6% recall benchmark \u0026 best ai memory framework (2026) is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion MemPalace vs Mem0: 96.6% Recall Benchmark \u0026 Best AI Memory Framework (2026) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\n","wordCount":"1527","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/mempalace/"},"publisher":{"@type":"Organization","name":"Dibi8 - AI工具目录","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 - AI工具目录 (Alt + H)">Dibi8 - AI工具目录</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
+<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></button></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>主页</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>8 分钟</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#mempalace-give-your-ai-a-perfect-memory-free-open-source-51k-stars aria-label="MemPalace: Give Your AI a Perfect Memory (Free, Open Source, 51K+ Stars)">MemPalace: Give Your AI a Perfect Memory (Free, Open Source, 51K+ Stars)</a><ul><li><a href=#benchmark-comparison-mempalace-vs-mem0-vs-mastra aria-label="Benchmark Comparison: MemPalace vs Mem0 vs Mastra">Benchmark Comparison: MemPalace vs Mem0 vs Mastra</a></li><li><a href=#why-ai-memory-matters aria-label="Why AI Memory Matters">Why AI Memory Matters</a></li><li><a href=#how-mempalace-works aria-label="How MemPalace Works">How MemPalace Works</a></li><li><a href=#quickstart-install-in-seconds aria-label="Quickstart: Install in Seconds">Quickstart: Install in Seconds</a></li></ul></li><li><a href=#recommended-install-with-uv aria-label="Recommended: install with uv">Recommended: install with uv</a></li><li><a href=#or-use-pip aria-label="Or use pip">Or use pip</a></li><li><a href=#initialize-for-your-project aria-label="Initialize for your project">Initialize for your project</a><ul><li><a href=#plugin-ecosystem aria-label="Plugin Ecosystem">Plugin Ecosystem</a></li><li><a href=#benchmarks-and-performance aria-label="Benchmarks and Performance">Benchmarks and Performance</a></li><li><a href=#when-to-use-mempalace aria-label="When to Use MemPalace">When to Use MemPalace</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#related-articles-1 aria-label="Related Articles">Related Articles</a></li><li><a href=#recommended-tools aria-label="Recommended Tools">Recommended Tools</a></li><li><a href=#faq-running-mempalace-in-production aria-label="FAQ: Running MemPalace in Production">FAQ: Running MemPalace in Production</a></li><li><a href=#references--sources aria-label="References & Sources">References & Sources</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion-1 aria-label=Conclusion>Conclusion</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;MemPalace vs Mem0: 96.6% Recall Benchmark & Best AI Memo&mldr;&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Go</p>
-<ul>
-<li>Python
+tech_stack: - Go</p><ul><li>Python
 application_domain: &ldquo;Ai Tools&rdquo;
-source_version: &quot;&quot;
+source_version: ""
 licensing_model: &ldquo;Open Source&rdquo;
 license_type: &ldquo;MIT&rdquo;
-file_size: &quot;&quot;
-file_md5: &quot;&quot;
-download_url: &quot;&quot;
-backup_url: &quot;&quot;
+file_size: ""
+file_md5: ""
+download_url: ""
+backup_url: ""
 last_maintained: &ldquo;2026-05-15&rdquo;
 draft: false
-aliases:</li>
-<li>/posts/mempalace/
+aliases:</li><li>/posts/mempalace/
 faqs: - q: &lsquo;What is MemPalace and how does it give an AI memory?&rsquo;
-a: &lsquo;MemPalace is a free, open-source, local-first AI memory system that stores your conversation and project history as verbatim text and retrieves it with semantic search. It creates a structured memory layer outside the model so your AI assistant can recall exact past context instead of starting every chat from zero.&rsquo;</li>
-<li>q: &lsquo;How do you install MemPalace?&rsquo;
-a: &lsquo;MemPalace is a Python tool that installs via uv (uv tool install mempalace) or pip (pip install mempalace). After installing, run mempalace init ~/projects/myapp to initialize it for your project.&rsquo;</li>
-<li>q: &lsquo;How does MemPalace compare to Mem0 on recall accuracy?&rsquo;
-a: &lsquo;On the LongMemEval benchmark, MemPalace reports a 96.6% recall rate versus 89.2% for Mem0. MemPalace also runs fully locally with zero API calls, while Mem0 requires a paid OpenAI API.&rsquo;</li>
-<li>q: &lsquo;How does MemPalace organize stored memory?&rsquo;
-a: &lsquo;MemPalace uses a palace metaphor with three levels: Wings for people and projects, Rooms for topics within those projects, and Drawers that hold the original content stored verbatim. This lets you scope a search to a specific project wing or topic room instead of querying a flat vector database.&rsquo;</li>
-<li>q: &lsquo;Does MemPalace work with Claude Code and other AI tools?&rsquo;
-a: &lsquo;Yes. MemPalace ships native plugins including a .claude-plugin directory for Claude Code, a .codex-plugin directory for OpenAI Codex, and a .agents/plugins directory for MCP-compatible tools, plus support for Gemini CLI and local models. It exposes an MCP-compatible endpoint out of the box for persistent coding-agent memory.&rsquo;&mdash;</li>
-</ul>
-<p>{&lt;/* resource-info */&gt;}</p>
-<h1 id="mempalace-give-your-ai-a-perfect-memory-free-open-source-51k-stars">MemPalace: Give Your AI a Perfect Memory (Free, Open Source, 51K+ Stars)<a hidden class="anchor" aria-hidden="true" href="#mempalace-give-your-ai-a-perfect-memory-free-open-source-51k-stars">#</a></h1>
-<p>Every AI conversation starts from zero. You explain your stack, your preferences, and your project history over and over. MemPalace fixes that. It is the best-benchmarked open-source AI memory system, and it is completely free.</p>
-<p>With <strong>51,745 GitHub stars</strong> and a growing ecosystem of plugins, MemPalace stores your conversation history as verbatim text and retrieves it with semantic search. Your AI assistant finally remembers.</p>
-<hr>
-<h2 id="benchmark-comparison-mempalace-vs-mem0-vs-mastra">Benchmark Comparison: MemPalace vs Mem0 vs Mastra<a hidden class="anchor" aria-hidden="true" href="#benchmark-comparison-mempalace-vs-mem0-vs-mastra">#</a></h2>
-<p>When evaluating AI memory systems, performance and resource consumption are critical. Here is how MemPalace stacks up in the <strong>LongMemEval</strong> benchmark: | Feature/Metric | MemPalace | Mem0 | Mastra | Hindsight |
+a: &lsquo;MemPalace is a free, open-source, local-first AI memory system that stores your conversation and project history as verbatim text and retrieves it with semantic search. It creates a structured memory layer outside the model so your AI assistant can recall exact past context instead of starting every chat from zero.&rsquo;</li><li>q: &lsquo;How do you install MemPalace?&rsquo;
+a: &lsquo;MemPalace is a Python tool that installs via uv (uv tool install mempalace) or pip (pip install mempalace). After installing, run mempalace init ~/projects/myapp to initialize it for your project.&rsquo;</li><li>q: &lsquo;How does MemPalace compare to Mem0 on recall accuracy?&rsquo;
+a: &lsquo;On the LongMemEval benchmark, MemPalace reports a 96.6% recall rate versus 89.2% for Mem0. MemPalace also runs fully locally with zero API calls, while Mem0 requires a paid OpenAI API.&rsquo;</li><li>q: &lsquo;How does MemPalace organize stored memory?&rsquo;
+a: &lsquo;MemPalace uses a palace metaphor with three levels: Wings for people and projects, Rooms for topics within those projects, and Drawers that hold the original content stored verbatim. This lets you scope a search to a specific project wing or topic room instead of querying a flat vector database.&rsquo;</li><li>q: &lsquo;Does MemPalace work with Claude Code and other AI tools?&rsquo;
+a: &lsquo;Yes. MemPalace ships native plugins including a .claude-plugin directory for Claude Code, a .codex-plugin directory for OpenAI Codex, and a .agents/plugins directory for MCP-compatible tools, plus support for Gemini CLI and local models. It exposes an MCP-compatible endpoint out of the box for persistent coding-agent memory.&rsquo;&mdash;</li></ul><p>{&lt;/* resource-info */>}</p><h1 id=mempalace-give-your-ai-a-perfect-memory-free-open-source-51k-stars>MemPalace: Give Your AI a Perfect Memory (Free, Open Source, 51K+ Stars)<a hidden class=anchor aria-hidden=true href=#mempalace-give-your-ai-a-perfect-memory-free-open-source-51k-stars>#</a></h1><p>Every AI conversation starts from zero. You explain your stack, your preferences, and your project history over and over. MemPalace fixes that. It is the best-benchmarked open-source AI memory system, and it is completely free.</p><p>With <strong>51,745 GitHub stars</strong> and a growing ecosystem of plugins, MemPalace stores your conversation history as verbatim text and retrieves it with semantic search. Your AI assistant finally remembers.</p><hr><h2 id=benchmark-comparison-mempalace-vs-mem0-vs-mastra>Benchmark Comparison: MemPalace vs Mem0 vs Mastra<a hidden class=anchor aria-hidden=true href=#benchmark-comparison-mempalace-vs-mem0-vs-mastra>#</a></h2><p>When evaluating AI memory systems, performance and resource consumption are critical. Here is how MemPalace stacks up in the <strong>LongMemEval</strong> benchmark: | Feature/Metric | MemPalace | Mem0 | Mastra | Hindsight |
 | :&mdash; | :&mdash; | :&mdash; | :&mdash; | :&mdash; |
 | <strong>Recall Rate</strong> | <strong>96.6%</strong> | 89.2% | 85.5% | 91.0% |
 | <strong>API Calls Required</strong>| <strong>Zero (Local)</strong> | OpenAI API (Paid) | Anthropic API | Zero |
 | <strong>Storage Architecture</strong>| Verbatim + Vector | Vector Only | Graph + Vector | Vector Only |
-| <strong>Claude Code Support</strong>| Yes (Native) | Manual integration | Yes | No |</p>
-<h2 id="why-ai-memory-matters">Why AI Memory Matters<a hidden class="anchor" aria-hidden="true" href="#why-ai-memory-matters">#</a></h2>
-<p>Large language models have a fixed context window. Once a conversation exceeds that limit, earlier details are lost or compressed. For developers working across multiple projects, this means repeatedly re-explaining architecture decisions, coding standards, and past debugging sessions.</p>
-<p>MemPalace solves this by creating a <strong>structured, searchable memory layer</strong> outside the model itself. It does not summarize or paraphrase your history. It keeps the original text intact and retrieves the exact passages your AI needs, when it needs them.</p>
-<hr>
-<h2 id="how-mempalace-works">How MemPalace Works<a hidden class="anchor" aria-hidden="true" href="#how-mempalace-works">#</a></h2>
-<p>MemPalace organizes memory using a palace metaphor: - <strong>Wings</strong> — People and projects</p>
-<ul>
-<li><strong>Rooms</strong> — Topics within those projects</li>
-<li><strong>Drawers</strong> — Original content stored verbatim</li>
-</ul>
-<p>This structure lets you scope searches precisely. Instead of dumping everything into a flat vector database, you can search within a specific project wing or topic room.</p>
-<p>The retrieval layer is pluggable. The default backend is <strong>ChromaDB</strong>, and the interface is defined in ```mempalace/backends/base.py````. You can swap in an alternative backend without touching the rest of the system.</p>
-<p>Importantly, <strong>nothing leaves your machine unless you opt in</strong>. MemPalace is local-first by design.</p>
-<hr>
-<h2 id="quickstart-install-in-seconds">Quickstart: Install in Seconds<a hidden class="anchor" aria-hidden="true" href="#quickstart-install-in-seconds">#</a></h2>
-<p>MemPalace is written in Python and installs cleanly via <code>uv</code> or <code>pip</code>: `````shell</p>
-<h1 id="recommended-install-with-uv">Recommended: install with uv<a hidden class="anchor" aria-hidden="true" href="#recommended-install-with-uv">#</a></h1>
-<p>uv tool install mempalace</p>
-<h1 id="or-use-pip">Or use pip<a hidden class="anchor" aria-hidden="true" href="#or-use-pip">#</a></h1>
-<p>pip install mempalace</p>
-<h1 id="initialize-for-your-project">Initialize for your project<a hidden class="anchor" aria-hidden="true" href="#initialize-for-your-project">#</a></h1>
-<p>mempalace init ~/projects/myapp</p>
-<pre tabindex="0"><code>
+| <strong>Claude Code Support</strong>| Yes (Native) | Manual integration | Yes | No |</p><h2 id=why-ai-memory-matters>Why AI Memory Matters<a hidden class=anchor aria-hidden=true href=#why-ai-memory-matters>#</a></h2><p>Large language models have a fixed context window. Once a conversation exceeds that limit, earlier details are lost or compressed. For developers working across multiple projects, this means repeatedly re-explaining architecture decisions, coding standards, and past debugging sessions.</p><p>MemPalace solves this by creating a <strong>structured, searchable memory layer</strong> outside the model itself. It does not summarize or paraphrase your history. It keeps the original text intact and retrieves the exact passages your AI needs, when it needs them.</p><hr><h2 id=how-mempalace-works>How MemPalace Works<a hidden class=anchor aria-hidden=true href=#how-mempalace-works>#</a></h2><p>MemPalace organizes memory using a palace metaphor: - <strong>Wings</strong> — People and projects</p><ul><li><strong>Rooms</strong> — Topics within those projects</li><li><strong>Drawers</strong> — Original content stored verbatim</li></ul><p>This structure lets you scope searches precisely. Instead of dumping everything into a flat vector database, you can search within a specific project wing or topic room.</p><p>The retrieval layer is pluggable. The default backend is <strong>ChromaDB</strong>, and the interface is defined in ```mempalace/backends/base.py````. You can swap in an alternative backend without touching the rest of the system.</p><p>Importantly, <strong>nothing leaves your machine unless you opt in</strong>. MemPalace is local-first by design.</p><hr><h2 id=quickstart-install-in-seconds>Quickstart: Install in Seconds<a hidden class=anchor aria-hidden=true href=#quickstart-install-in-seconds>#</a></h2><p>MemPalace is written in Python and installs cleanly via <code>uv</code> or <code>pip</code>: `````shell</p><h1 id=recommended-install-with-uv>Recommended: install with uv<a hidden class=anchor aria-hidden=true href=#recommended-install-with-uv>#</a></h1><p>uv tool install mempalace</p><h1 id=or-use-pip>Or use pip<a hidden class=anchor aria-hidden=true href=#or-use-pip>#</a></h1><p>pip install mempalace</p><h1 id=initialize-for-your-project>Initialize for your project<a hidden class=anchor aria-hidden=true href=#initialize-for-your-project>#</a></h1><p>mempalace init ~/projects/myapp</p><pre tabindex=0><code>
 Once installed, you can start mining content and searching memory immediately.
 
 * * *
@@ -317,78 +48,13 @@ mempalace search &#34;why did we switch to GraphQL&#34;
 
 # Load context into a new session
 mempalace wake-up
-</code></pre><p>The <code>mine</code> command indexes your content. The <code>search</code> command runs semantic retrieval. And <code>wake-up</code> loads the most relevant context into your current AI session so you can pick up exactly where you left off.</p>
-<hr>
-<h2 id="plugin-ecosystem">Plugin Ecosystem<a hidden class="anchor" aria-hidden="true" href="#plugin-ecosystem">#</a></h2>
-<p>MemPalace ships with native plugins for popular AI tools: - <strong>Claude Code</strong> — <code>.claude-plugin</code> directory</p>
-<ul>
-<li><strong>OpenAI Codex</strong> — <code>.codex-plugin</code> directory</li>
-<li><strong>MCP-compatible tools</strong> — <code>.agents/plugins</code> directory</li>
-<li><strong>Gemini CLI</strong> and local models</li>
-</ul>
-<p>This means you can integrate MemPalace into your existing workflow without switching editors or rewriting prompts.</p>
-<hr>
-<h2 id="benchmarks-and-performance">Benchmarks and Performance<a hidden class="anchor" aria-hidden="true" href="#benchmarks-and-performance">#</a></h2>
-<p>MemPalace markets itself as the <strong>best-benchmarked</strong> open-source AI memory system. The repository includes a ````benchmarks/``` directory with reproducible tests comparing retrieval accuracy, latency, and memory usage against other memory solutions. If you care about measurable performance rather than marketing claims, this is a strong signal.</p>
-<hr>
-<h2 id="when-to-use-mempalace">When to Use MemPalace<a hidden class="anchor" aria-hidden="true" href="#when-to-use-mempalace">#</a></h2>
-<p>MemPalace is ideal if you: - Work on long-running projects with complex context</p>
-<ul>
-<li>Use AI assistants daily and hate repeating yourself</li>
-<li>Want a <strong>free, open-source</strong> alternative to proprietary memory services</li>
-<li>Need <strong>local-first</strong> storage for privacy or compliance</li>
-<li>Prefer structured retrieval over flat vector search</li>
-</ul>
-<p>If your AI sessions are short and self-contained, you may not need a memory system. But for developers, researchers, and power users, MemPalace turns every new chat into a continuation rather than a restart.</p>
-<hr>
-<ul>
-<li></li>
-</ul>
-<hr>
-<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
-<ul>
-<li><a href="/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/">Hermes Agent: Self-Improving AI</a> - AI with learning loop</li>
-<li><a href="/resources/dev-utils/ai-tools-directory/">AI Tools Directory 2024</a> - AI tools guide</li>
-<li><a href="/resources/ai-tools/ds4-deepseek-flash-local-inference/">DS4: DeepSeek V4 Flash</a> - Local LLM</li>
-<li><a href="/resources/ai-tools/free-claude-code-open-source-proxy/">Free Claude Code</a> - Free AI coding</li>
-<li>Agent Skills: AI Coding - AI skills</li>
-</ul>
-<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
-<p>MemPalace gives your AI a memory that is structured, searchable, and private. With over 51,000 GitHub stars, a pluggable backend architecture, and native support for Claude, Codex, and MCP tools, it is the most credible open-source option in the AI memory space.</p>
-<p>Install it today, mine your first project, and stop re-explaining your stack to every new chat session.</p>
-<hr>
-<h2 id="related-articles-1">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles-1">#</a></h2>
-<hr>
-<ul>
-<li></li>
-</ul>
-<hr>
-<h2 id="recommended-tools">Recommended Tools<a hidden class="anchor" aria-hidden="true" href="#recommended-tools">#</a></h2>
-<p>For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.</p>
-<ul>
-<li>**** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.</li>
-</ul>
-<p><em>Affiliate link — supports dibi8.com at no cost to you.</em></p>
-<p><em>Published on dibi8.com — May 10, 2026</em></p>
-<h2 id="faq-running-mempalace-in-production">FAQ: Running MemPalace in Production<a hidden class="anchor" aria-hidden="true" href="#faq-running-mempalace-in-production">#</a></h2>
-<p><strong>Q: How much RAM is required for MemPalace?</strong>
-A: MemPalace is highly optimized. It can run smoothly on machines with just 8GB of RAM, but for large-scale production with thousands of long-term sessions, 16GB is recommended.</p>
-<p><strong>Q: Can I integrate MemPalace with Claude Code?</strong>
-A: Yes! MemPalace provides an MCP-compatible endpoint out of the box, allowing seamless integration with Claude Code for persistent coding agent memory.</p>
-<p><strong>Q: ChromaDB vs Pinecone for local memory?</strong>
-A: MemPalace uses ChromaDB locally to ensure zero latency and zero API costs, making it superior to Pinecone for localized, privacy-focused agent workflows.</p>
-<h2 id="references--sources">References &amp; Sources<a hidden class="anchor" aria-hidden="true" href="#references--sources">#</a></h2>
-<ul>
-<li><a href="https://github.com/chroma-core/chroma">ChromaDB</a></li>
-<li><a href="https://github.com/mem0ai/mem0">Mem0</a></li>
-<li><a href="https://github.com/mastra-ai/mastra">Mastra</a></li>
-<li><a href="https://www.pinecone.io/">Pinecone</a></li>
-<li><a href="https://modelcontextprotocol.io/">Model Context Protocol (MCP)</a></li>
-</ul>
-<p>{
-&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+</code></pre><p>The <code>mine</code> command indexes your content. The <code>search</code> command runs semantic retrieval. And <code>wake-up</code> loads the most relevant context into your current AI session so you can pick up exactly where you left off.</p><hr><h2 id=plugin-ecosystem>Plugin Ecosystem<a hidden class=anchor aria-hidden=true href=#plugin-ecosystem>#</a></h2><p>MemPalace ships with native plugins for popular AI tools: - <strong>Claude Code</strong> — <code>.claude-plugin</code> directory</p><ul><li><strong>OpenAI Codex</strong> — <code>.codex-plugin</code> directory</li><li><strong>MCP-compatible tools</strong> — <code>.agents/plugins</code> directory</li><li><strong>Gemini CLI</strong> and local models</li></ul><p>This means you can integrate MemPalace into your existing workflow without switching editors or rewriting prompts.</p><hr><h2 id=benchmarks-and-performance>Benchmarks and Performance<a hidden class=anchor aria-hidden=true href=#benchmarks-and-performance>#</a></h2><p>MemPalace markets itself as the <strong>best-benchmarked</strong> open-source AI memory system. The repository includes a ````benchmarks/``` directory with reproducible tests comparing retrieval accuracy, latency, and memory usage against other memory solutions. If you care about measurable performance rather than marketing claims, this is a strong signal.</p><hr><h2 id=when-to-use-mempalace>When to Use MemPalace<a hidden class=anchor aria-hidden=true href=#when-to-use-mempalace>#</a></h2><p>MemPalace is ideal if you: - Work on long-running projects with complex context</p><ul><li>Use AI assistants daily and hate repeating yourself</li><li>Want a <strong>free, open-source</strong> alternative to proprietary memory services</li><li>Need <strong>local-first</strong> storage for privacy or compliance</li><li>Prefer structured retrieval over flat vector search</li></ul><p>If your AI sessions are short and self-contained, you may not need a memory system. But for developers, researchers, and power users, MemPalace turns every new chat into a continuation rather than a restart.</p><hr><ul><li></li></ul><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/>Hermes Agent: Self-Improving AI</a> - AI with learning loop</li><li><a href=/resources/dev-utils/ai-tools-directory/>AI Tools Directory 2024</a> - AI tools guide</li><li><a href=/resources/ai-tools/ds4-deepseek-flash-local-inference/>DS4: DeepSeek V4 Flash</a> - Local LLM</li><li><a href=/resources/ai-tools/free-claude-code-open-source-proxy/>Free Claude Code</a> - Free AI coding</li><li>Agent Skills: AI Coding - AI skills</li></ul><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>MemPalace gives your AI a memory that is structured, searchable, and private. With over 51,000 GitHub stars, a pluggable backend architecture, and native support for Claude, Codex, and MCP tools, it is the most credible open-source option in the AI memory space.</p><p>Install it today, mine your first project, and stop re-explaining your stack to every new chat session.</p><hr><h2 id=related-articles-1>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles-1>#</a></h2><hr><ul><li></li></ul><hr><h2 id=recommended-tools>Recommended Tools<a hidden class=anchor aria-hidden=true href=#recommended-tools>#</a></h2><p>For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.</p><ul><li>**** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.</li></ul><p><em>Affiliate link — supports dibi8.com at no cost to you.</em></p><p><em>Published on dibi8.com — May 10, 2026</em></p><h2 id=faq-running-mempalace-in-production>FAQ: Running MemPalace in Production<a hidden class=anchor aria-hidden=true href=#faq-running-mempalace-in-production>#</a></h2><p><strong>Q: How much RAM is required for MemPalace?</strong>
+A: MemPalace is highly optimized. It can run smoothly on machines with just 8GB of RAM, but for large-scale production with thousands of long-term sessions, 16GB is recommended.</p><p><strong>Q: Can I integrate MemPalace with Claude Code?</strong>
+A: Yes! MemPalace provides an MCP-compatible endpoint out of the box, allowing seamless integration with Claude Code for persistent coding agent memory.</p><p><strong>Q: ChromaDB vs Pinecone for local memory?</strong>
+A: MemPalace uses ChromaDB locally to ensure zero latency and zero API costs, making it superior to Pinecone for localized, privacy-focused agent workflows.</p><h2 id=references--sources>References & Sources<a hidden class=anchor aria-hidden=true href=#references--sources>#</a></h2><ul><li><a href=https://github.com/chroma-core/chroma>ChromaDB</a></li><li><a href=https://github.com/mem0ai/mem0>Mem0</a></li><li><a href=https://github.com/mastra-ai/mastra>Mastra</a></li><li><a href=https://www.pinecone.io/>Pinecone</a></li><li><a href=https://modelcontextprotocol.io/>Model Context Protocol (MCP)</a></li></ul><p>{
+&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;MemPalace vs Mem0: 96.6% Recall Benchmark &amp; Best AI Memory Framework (2026)&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;MemPalace vs Mem0: 96.6% Recall Benchmark & Best AI Memory Framework (2026)&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-15&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-15&rdquo;,
 &ldquo;author&rdquo;: {
@@ -400,174 +66,22 @@ A: MemPalace uses ChromaDB locally to ensure zero latency and zero API costs, ma
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/mempalace%22">https://dibi8.com/resources/mempalace"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/mempalace%22>https://dibi8.com/resources/mempalace"</a>
 }
-}
-</script></p>
-<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
-<p>Understanding mempalace vs mem0: 96.6% recall benchmark &amp; best ai memory framework (2026) is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
-<ul>
-<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
-<li><strong>Quality</strong>: Improve output consistency</li>
-<li><strong>Scalability</strong>: Handle larger workloads</li>
-<li><strong>Cost</strong>: Reduce operational expenses</li>
-</ul>
-<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
-<p>Organizations are using similar approaches to: 1. Automate code review processes
+}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding mempalace vs mem0: 96.6% recall benchmark & best ai memory framework (2026) is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
-4. Streamline deployment pipelines</p>
-<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
-<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
-<ul>
-<li>Identify repetitive tasks</li>
-<li>Measure current time costs</li>
-<li>Define success metrics</li>
-</ul>
-<ol start="2">
-<li>
-<p><strong>Choose Your Approach</strong></p>
-<ul>
-<li>Start with simple automations</li>
-<li>Gradually increase complexity</li>
-<li>Test and iterate</li>
-</ul>
-</li>
-<li>
-<p><strong>Measure Results</strong></p>
-<ul>
-<li>Track time savings</li>
-<li>Monitor quality improvements</li>
-<li>Calculate ROI</li>
-</ul>
-</li>
-</ol>
-<h2 id="conclusion-1">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion-1">#</a></h2>
-<p>MemPalace vs Mem0: 96.6% Recall Benchmark &amp; Best AI Memory Framework (2026) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
-<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
-<hr>
-<p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~5 minutes</em></p>
-
-
-  </div>
-
-  <footer class="post-footer">
-    <ul class="post-tags">
-      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
-      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
-    </ul>
-<nav class="paginav">
-  <a class="prev" href="https://dibi8.com/ai-coding-agents/mempalace-open-source-ai-memory-system/">
-    <span class="title">« 上一页</span>
-    <span>AI Tool Guide</span>
-  </a>
-  <a class="next" href="https://dibi8.com/ai-coding-agents/metabase-business-intelligence-open/">
-    <span class="title">下一页 »</span>
-    <span>AI Tool Guide</span>
-  </a>
-</nav>
-
-  </footer>
-</article>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
-
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
-</footer>
-<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
-        <polyline points="17 11 12 6 7 11"></polyline>
-        <polyline points="17 18 12 13 7 18"></polyline>
-    </svg>
-</a>
-
-
-<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
-        <span style="font-size:20px;">🌐</span>
-        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
-    </div>
-    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
-        <option value="">Select language...</option>
-        <option value="zh">中文 (Chinese)</option>
-        <option value="en">English</option>
-        <option value="ko">한국어 (Korean)</option>
-        <option value="vi">Tiếng Việt (Vietnamese)</option>
-        <option value="ja">日本語 (Japanese)</option>
-        <option value="fr">Français (French)</option>
-        <option value="de">Deutsch (German)</option>
-        <option value="es">Español (Spanish)</option>
-        <option value="ar">العربية (Arabic)</option>
-        <option value="pt">Português (Portuguese)</option>
-        <option value="ru">Русский (Russian)</option>
-        <option value="hi">हिन्दी (Hindi)</option>
-        <option value="th">ไทย (Thai)</option>
-        <option value="id">Indonesia (Indonesian)</option>
-    </select>
-</div>
-
-<script>
-function translatePage(lang) {
-    if (!lang) return;
-    
-    
-    const url = window.location.href;
-    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
-    
-    
-    window.open(translatedUrl, '_blank');
-}
-
-
-(function() {
-    var navLang = navigator.language || navigator.userLanguage;
-    var langMap = {
-        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
-        'en': 'en',
-        'ko': 'ko',
-        'vi': 'vi',
-        'ja': 'ja',
-        'fr': 'fr',
-        'de': 'de',
-        'es': 'es',
-        'ar': 'ar',
-        'pt': 'pt',
-        'ru': 'ru',
-        'hi': 'hi',
-        'th': 'th',
-        'id': 'id'
-    };
-    var detected = langMap[navLang] || 'en';
-    document.getElementById('lang-select').value = detected;
-})();
-</script>
-
-
-<div id="google_translate_element" style="display:none;"></div>
-<script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'zh',
-        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
-        autoDisplay: false
-    }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-</body>
-
-</html>
+4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion-1>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion-1>#</a></h2><p>MemPalace vs Mem0: 96.6% Recall Benchmark & Best AI Memory Framework (2026) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~5 minutes</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/mempalace-open-source-ai-memory-system/><span class=title>« 上一页</span>
+<span>AI Tool Guide</span>
+</a><a class=next href=https://dibi8.com/ai-coding-agents/metabase-business-intelligence-open/><span class=title>下一页 »</span>
+<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8 - AI工具目录</a></span> ·
+<span>Powered by
+<a href=https://gohugo.io/ rel=noopener target=_blank>Hugo</a> &
+<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg></a><div id=translation-widget style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,.15);font-family:-apple-system,BlinkMacSystemFont,segoe ui,Roboto,sans-serif"><div style=display:flex;align-items:center;gap:8px;margin-bottom:8px><span style=font-size:20px>🌐</span>
+<span style=font-size:13px;font-weight:600;color:#333>Translate / 翻译</span></div><select id=lang-select style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer" onchange=translatePage(this.value)><option value>Select language...</option><option value=zh>中文 (Chinese)</option><option value=en>English</option><option value=ko>한국어 (Korean)</option><option value=vi>Tiếng Việt (Vietnamese)</option><option value=ja>日本語 (Japanese)</option><option value=fr>Français (French)</option><option value=de>Deutsch (German)</option><option value=es>Español (Spanish)</option><option value=ar>العربية (Arabic)</option><option value=pt>Português (Portuguese)</option><option value=ru>Русский (Russian)</option><option value=hi>हिन्दी (Hindi)</option><option value=th>ไทย (Thai)</option><option value=id>Indonesia (Indonesian)</option></select></div><script>function translatePage(e){if(!e)return;const t=window.location.href,n="https://translate.google.com/translate?sl=auto&tl="+e+"&u="+encodeURIComponent(t);window.open(n,"_blank")}(function(){var e=navigator.language||navigator.userLanguage,t={zh:"zh","zh-CN":"zh","zh-TW":"zh",en:"en",ko:"ko",vi:"vi",ja:"ja",fr:"fr",de:"de",es:"es",ar:"ar",pt:"pt",ru:"ru",hi:"hi",th:"th",id:"id"},n=t[e]||"en";document.getElementById("lang-select").value=n})()</script><div id=google_translate_element style=display:none></div><script type=text/javascript>function googleTranslateElementInit(){new google.translate.TranslateElement({pageLanguage:"zh",includedLanguages:"zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id",autoDisplay:!1},"google_translate_element")}</script><script type=text/javascript src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script></body></html>
