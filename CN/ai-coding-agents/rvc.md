@@ -1,12 +1,12 @@
 ---
-title: "Clone the repository"
+title: "RVC: Real-Time Voice Conversion AI模型"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "rvc"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "Clone the repository"
+title: "RVC: Real-Time Voice Conversion AI模型"
 description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
