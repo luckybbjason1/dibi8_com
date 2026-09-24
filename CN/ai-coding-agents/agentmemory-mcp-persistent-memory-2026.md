@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Verify the server starts"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "agentmemory-mcp-persistent-memory-2026"

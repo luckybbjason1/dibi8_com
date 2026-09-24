@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Claude Code Subagent Patterns: 5 Multi-Agent Workflows That Save Hours Every Day (2026)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "claude-code-subagent-patterns-multi-agent-workflows-2026"

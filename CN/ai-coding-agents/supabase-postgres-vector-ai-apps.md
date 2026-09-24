@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Your project comes with:  - PostgreSQL 16 database"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "supabase-postgres-vector-ai-apps"

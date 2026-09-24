@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-coding-agent-monthly-bill-2026-real-receipts"

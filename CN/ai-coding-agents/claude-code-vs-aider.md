@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Claude Code vs Aider in 2026: Commercial vs Open Source CLI Showdown"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "claude-code-vs-aider"

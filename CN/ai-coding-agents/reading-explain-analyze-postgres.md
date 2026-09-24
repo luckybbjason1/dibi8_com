@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Reading EXPLAIN ANALYZE in Postgres Without Getting Lost"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "reading-explain-analyze-postgres"

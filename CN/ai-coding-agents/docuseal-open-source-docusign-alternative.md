@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "DocuSeal Review: Cut Document Signing Costs by 90% with This Open-Source DocuSign Alternative"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "docuseal-open-source-docusign-alternative"

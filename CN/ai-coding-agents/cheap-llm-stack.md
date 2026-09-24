@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "The Cheap LLM Stack 2026: How to Run Production AI on $0-15/Month Using Free Tiers and Token Compression"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "cheap-llm-stack"

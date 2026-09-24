@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Then add agentmemory to your LangGraph MCP toolset"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-agent-tool-chain"

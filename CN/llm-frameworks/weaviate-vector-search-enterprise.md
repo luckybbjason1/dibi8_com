@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Returns: {"hostname":"...", "version":"1.31.0", "modules":{...}}"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "weaviate-vector-search-enterprise"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "AI Agent Memory Persistence 2026: Letta vs Mem0 vs A-MEM"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-agent-memory-persistence-letta-mem0-a-mem-2026"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Multi-Agent Pipeline Postmortem: 5 Ways Subagent Orchestration Goes Wrong (2026)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "multi-agent-pipeline-postmortem-5-failures-2026"

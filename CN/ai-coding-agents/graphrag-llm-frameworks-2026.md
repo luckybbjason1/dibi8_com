@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "put your .txt or .csv documents into ./ragtest/input"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "graphrag-llm-frameworks-2026"

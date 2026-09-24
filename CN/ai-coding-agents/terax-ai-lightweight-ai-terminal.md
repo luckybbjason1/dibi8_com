@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Terax AI: The Lightweight AI Terminal Emulator That Understands You"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "terax-ai-lightweight-ai-terminal"

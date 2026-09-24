@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "The Problem: Juggling Six AI Services and Never Knowing Which One Is Out"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-token-monitor-conky-linux"

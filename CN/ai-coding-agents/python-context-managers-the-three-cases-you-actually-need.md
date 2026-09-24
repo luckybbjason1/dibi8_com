@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Environment is back to whatever it was here."
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "python-context-managers-the-three-cases-you-actually-need"

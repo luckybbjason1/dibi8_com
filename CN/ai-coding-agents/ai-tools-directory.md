@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "AI Tools Directory 2024: Your Complete Guide to the Best AI Tools"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-tools-directory"

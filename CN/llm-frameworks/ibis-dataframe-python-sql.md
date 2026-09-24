@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Ibis looks familiar to any pandas user"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ibis-dataframe-python-sql"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "AI Agent Memory Systems 2026: The Infrastructure Layer You Can't Ignore"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-agent-memory-systems-open-source-infrastructure-2026"

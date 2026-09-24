@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Open Source AI Agent Framework Top 10 (2026)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "open-source-ai-agent-framework-top-10-2026"

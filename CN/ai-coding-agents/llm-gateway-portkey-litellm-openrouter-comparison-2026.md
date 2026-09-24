@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Portkey vs LiteLLM vs OpenRouter 2026: The Honest LLM Gateway Decision Guide (Latency, Cost & Self-Hosting)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "llm-gateway-portkey-litellm-openrouter-comparison-2026"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Claude Code vs Cline in 2026: Autonomy or Control?"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "claude-code-vs-cline"

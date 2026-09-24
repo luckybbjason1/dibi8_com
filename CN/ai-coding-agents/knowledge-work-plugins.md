@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Install Knowledge Work Plugins"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "knowledge-work-plugins"

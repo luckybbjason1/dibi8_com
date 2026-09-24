@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "For local models via Ollama or LM Studio"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "autogen-multi-agent-framework"

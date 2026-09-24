@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "No installation required — Zerion is a web-based dApp"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "zerion-wallet-portfolio-tracker"

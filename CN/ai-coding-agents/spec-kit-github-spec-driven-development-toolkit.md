@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Spec Kit: GitHub's Revolutionary Spec-Driven Development Toolkit"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "spec-kit-github-spec-driven-development-toolkit"

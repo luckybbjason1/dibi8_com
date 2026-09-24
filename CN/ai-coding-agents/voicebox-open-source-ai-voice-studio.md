@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "VoiceBox: The Open-Source AI Voice Studio"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "voicebox-open-source-ai-voice-studio"

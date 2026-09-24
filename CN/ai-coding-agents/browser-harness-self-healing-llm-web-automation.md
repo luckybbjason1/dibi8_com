@@ -1,12 +1,12 @@
 ---
-title: "AI Tool Guide"
+title: "脆弱的选择器，页面一改就失效"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "browser-harness-self-healing-llm-web-automation"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "AI Tool Guide"
+title: "脆弱的选择器，页面一改就失效"
 description: "Technical guide and comparison."
   Playwright 和 Selenium。
 date: 2026-05-15T04:20:25+09:00

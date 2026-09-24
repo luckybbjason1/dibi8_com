@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "LLM Inference Cost Optimization: Run Any Model for Pennies — The 2026 Definitive Guide"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "llm-inference-cost-optimization-guide-2026"

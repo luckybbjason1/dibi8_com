@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "AI-SEO & GEO Toolkit Stack 2026: 6 Free Tools for Traditional SEO + Generative Engine Optimization"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-seo-geo-toolkit-stack"

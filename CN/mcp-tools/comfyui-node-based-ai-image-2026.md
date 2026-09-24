@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Opens UI at http://localhost:8188"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "comfyui-node-based-ai-image-2026"

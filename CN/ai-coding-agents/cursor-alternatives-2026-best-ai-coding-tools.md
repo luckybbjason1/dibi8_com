@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "AI Coding Tools 2026: The Cursor Monopoly Is Over — A Developer's Guide to the 7 Best Alternatives"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "cursor-alternatives-2026-best-ai-coding-tools"

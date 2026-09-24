@@ -1,12 +1,12 @@
 ---
-title: "AI Tool Guide"
+title: "... load model with FastLanguageModel as in section 3 ..."
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "unsloth-fast-llm-fine-tuning-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "AI Tool Guide"
+title: "... load model with FastLanguageModel as in section 3 ..."
 description: "Technical guide and comparison."
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00

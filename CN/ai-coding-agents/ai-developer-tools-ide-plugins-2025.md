@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Best AI Developer Tools & IDE Plugins 2025: Beyond Code Generation"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-developer-tools-ide-plugins-2025"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Bitcoin-Classic (BTCC): A Bitcoin Fork That Lets Ordinary People Mine with CPU"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "bitcoin-classic-btcc-cpu-mining-bitcoin-fork"

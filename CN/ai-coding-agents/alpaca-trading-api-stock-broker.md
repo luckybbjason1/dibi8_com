@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Your API credentials will look like this: API_KEY = PKABCDEF1234567890EXAMPLE"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "alpaca-trading-api-stock-broker"

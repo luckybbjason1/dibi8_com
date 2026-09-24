@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Scrapling Reviewed: A Faster, Stealthier Take on Python Scraping"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "scrapling-python-stealthy-web-scraping-review"

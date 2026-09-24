@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "7B parameter model (recommended for most use cases)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "bytedance-ui-tars-desktop-ai-agent-guide"

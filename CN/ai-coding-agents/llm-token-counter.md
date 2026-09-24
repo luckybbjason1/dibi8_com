@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "LLM Token Counter — GPT-4, Claude, Gemini Tokenization Comparison"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "llm-token-counter"

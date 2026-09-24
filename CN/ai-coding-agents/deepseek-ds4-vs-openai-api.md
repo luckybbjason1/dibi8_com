@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Stop Paying OpenAI: Local Inference with DeepSeek (DS4) vs API Costs"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "deepseek-ds4-vs-openai-api"

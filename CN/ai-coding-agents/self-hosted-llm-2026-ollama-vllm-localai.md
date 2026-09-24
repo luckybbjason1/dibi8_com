@@ -1,12 +1,12 @@
 ---
-title: "AI Tool Guide"
+title: "Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "self-hosted-llm-2026-ollama-vllm-localai"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "AI Tool Guide"
+title: "Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI"
 description: "Technical guide and comparison."
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00

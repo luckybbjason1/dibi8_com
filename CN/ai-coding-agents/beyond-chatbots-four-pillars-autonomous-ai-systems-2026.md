@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Beyond Chatbots: The 4 Pillars of Autonomous AI Systems in 2026"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "beyond-chatbots-four-pillars-autonomous-ai-systems-2026"

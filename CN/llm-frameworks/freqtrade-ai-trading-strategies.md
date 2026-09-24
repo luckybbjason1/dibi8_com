@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Create the user_data directory structure"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "freqtrade-ai-trading-strategies"

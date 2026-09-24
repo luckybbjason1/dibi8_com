@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Create a new Next.js project with TypeScript"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "vercel-ai-sdk-edge-compute"

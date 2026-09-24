@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Run without installing — uses npx"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "repomix-pack-repo-for-llm-context-2026"

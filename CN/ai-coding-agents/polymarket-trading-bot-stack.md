@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "polymarket-trading-bot-stack"

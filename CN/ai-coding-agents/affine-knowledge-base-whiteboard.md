@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "- AFFiNE server (web + API + sync)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "affine-knowledge-base-whiteboard"

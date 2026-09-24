@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Add to OpenCode's MCP config:  { "agentmemory": { "command": "mem0-mcp", "args": [] } }"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "self-hosted-ai-coding-workflow"

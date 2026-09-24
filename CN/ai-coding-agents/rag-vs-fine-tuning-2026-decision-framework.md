@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "RAG vs Fine-Tuning 2026: Data-Driven Decision Framework"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "rag-vs-fine-tuning-2026-decision-framework"

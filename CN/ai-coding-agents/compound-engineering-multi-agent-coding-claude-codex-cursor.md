@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Compound Engineering: Multi-Agent Orchestration Plugin — 2026 Guide"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "compound-engineering-multi-agent-coding-claude-codex-cursor"

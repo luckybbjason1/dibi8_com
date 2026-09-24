@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "GPT Researcher: Autonomous Agent for Deep Research Reports — Practical 2026 Guide"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "gpt-researcher-llm-frameworks-2026"

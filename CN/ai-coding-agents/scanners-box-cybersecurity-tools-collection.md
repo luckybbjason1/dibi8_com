@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Basic usage"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "scanners-box-cybersecurity-tools-collection"

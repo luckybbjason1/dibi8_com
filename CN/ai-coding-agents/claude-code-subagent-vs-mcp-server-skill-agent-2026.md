@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Subagent vs MCP Server vs Skill: When to Build Each Claude Code Extension (2026)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "claude-code-subagent-vs-mcp-server-skill-agent-2026"

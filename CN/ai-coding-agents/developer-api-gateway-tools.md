@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Best Developer API Gateway Tools 2025: Kong vs NGINX Plus vs Traefik vs Apigee Compared"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "developer-api-gateway-tools"

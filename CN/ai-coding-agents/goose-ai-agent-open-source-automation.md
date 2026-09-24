@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "What Is Goose?"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "goose-ai-agent-open-source-automation"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Multi-provider setup via environment variables"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "lobe-chat-openai-alternative-ui"

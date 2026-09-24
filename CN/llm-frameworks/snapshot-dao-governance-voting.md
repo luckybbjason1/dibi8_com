@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Step 1: Ensure you own an ENS domain"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "snapshot-dao-governance-voting"
@@ -730,7 +730,7 @@ function notifyDiscord(proposal: any) {
   // Send notification to Discord webhook
   const message = {
     embeds: [{
-title: "AI Tool Guide"
+title: "Step 1: Ensure you own an ENS domain"
       url: ````https://snapshot.org/#/${proposal.space.id}/proposal/${proposal.id}````,
       description: "Technical guide and comparison."
       fields: [

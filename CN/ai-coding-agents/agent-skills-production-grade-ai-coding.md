@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Agent Skills: How Development Teams Can Ship Production-Ready Code 5x Faster"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "agent-skills-production-grade-ai-coding"

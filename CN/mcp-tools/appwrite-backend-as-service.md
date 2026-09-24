@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Download the official compose file (v1.6.x)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "appwrite-backend-as-service"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Ollama vs vLLM in 2026: Local Dev Simplicity vs Production Throughput"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ollama-vs-vllm"

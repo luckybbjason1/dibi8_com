@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Vibe Coding 2026: The Korean Concept Explained for the Rest of Us"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "vibe-coding-2026-korean-concept-explained"

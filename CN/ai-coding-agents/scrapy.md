@@ -1,12 +1,12 @@
 ---
-title: "AI Tool Guide"
+title: "Create a virtual environment"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "scrapy"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "AI Tool Guide"
+title: "Create a virtual environment"
 description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00

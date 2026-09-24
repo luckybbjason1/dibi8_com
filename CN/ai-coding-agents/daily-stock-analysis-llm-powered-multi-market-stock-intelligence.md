@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Daily Stock Analysis: LLM-Powered Multi-Market Stock Intelligence"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "daily-stock-analysis-llm-powered-multi-market-stock-intelligence"

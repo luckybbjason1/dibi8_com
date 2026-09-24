@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "OpenAI Codex CLI vs Claude Code in 2026: Which Agent Wins?"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "openai-codex-cli-vs-claude-code"

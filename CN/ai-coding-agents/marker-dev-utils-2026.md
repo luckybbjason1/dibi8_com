@@ -1,12 +1,12 @@
 ---
-title: "AI Tool Guide"
+title: "Activate the virtual environment (assuming you're using venv)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "marker-dev-utils-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "AI Tool Guide"
+title: "Activate the virtual environment (assuming you're using venv)"
 description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00

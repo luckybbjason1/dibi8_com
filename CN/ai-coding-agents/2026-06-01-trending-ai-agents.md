@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Top 8 Trending Repos This Week"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "2026-06-01-trending-ai-agents"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Then add to .env:  VIDEO_GEN_LOCAL_ENABLED=true"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "openmontage-agentic-video-production-system"

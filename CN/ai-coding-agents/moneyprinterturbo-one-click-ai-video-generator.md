@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "MoneyPrinterTurbo: One-Click AI Video Generator with 90K+ Stars"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "moneyprinterturbo-one-click-ai-video-generator"

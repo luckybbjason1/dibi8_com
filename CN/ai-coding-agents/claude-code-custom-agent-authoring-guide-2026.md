@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Claude Code Custom Agent Authoring: Build Reusable Subagents That Enforce Your Standards (2026)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "claude-code-custom-agent-authoring-guide-2026"

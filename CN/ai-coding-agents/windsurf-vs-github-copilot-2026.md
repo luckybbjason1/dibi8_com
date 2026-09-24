@@ -1,12 +1,12 @@
 ---
-title: "AI Tool Guide"
+title: "Why This Matters"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "windsurf-vs-github-copilot-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "AI Tool Guide"
+title: "Why This Matters"
 description: "Technical guide and comparison."
   },
   "publisher": {

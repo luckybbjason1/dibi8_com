@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Expected: trivy version 0.65.x"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "trivy-production-security-scanner-2026"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "MCP Servers 2026: The 100+ Server Ecosystem Map and a Decision Tree for Picking the Right Ones"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "mcp-servers-2026-rankings-selection-guide"

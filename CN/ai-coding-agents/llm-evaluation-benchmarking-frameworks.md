@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "LLM Evaluation & Benchmarking Frameworks 2025: EleutherAI LM Eval, OpenCompass, BIG-bench Compared"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "llm-evaluation-benchmarking-frameworks"

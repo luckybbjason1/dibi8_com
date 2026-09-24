@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Codebase-Memory-MCP: High-Performance Code Intelligence for AI Coding Agents"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "codebase-memory-mcp-high-performance-code-intelligence"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Addy Osmani's Agent Skills: The Production-Grade Approach"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "agent-skills-production-workflows"

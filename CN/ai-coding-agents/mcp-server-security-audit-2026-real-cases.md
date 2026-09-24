@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "MCP Server Security Audit 2026: 5 Real Community Server Reviews + Trap Patterns"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "mcp-server-security-audit-2026-real-cases"

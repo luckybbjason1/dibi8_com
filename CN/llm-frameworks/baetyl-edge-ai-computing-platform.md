@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Introduction: The $12 Trillion Edge AI Gap"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "baetyl-edge-ai-computing-platform"

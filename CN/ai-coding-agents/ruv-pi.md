@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Example: Define a custom tool for Pi"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ruv-pi"

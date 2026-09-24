@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Best Knowledge Graph Tools & Frameworks 2025: Neo4j, RDFlib, Amazon Neptune, Stardog Compared"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "knowledge-graph-tools-frameworks"

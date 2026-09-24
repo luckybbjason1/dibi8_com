@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Talk to a local exo cluster with the standard OpenAI client"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "exo-dev-utils-2026"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Nuwa-Skill: Distill Any Person Thinking Model into AI Agent Skill — 23,000 Stars — Guide 2026"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "nuwa-skill-distill-thinking-model-ai-agent-skills"

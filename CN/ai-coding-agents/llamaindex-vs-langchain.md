@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Use LlamaIndex for ingestion and indexing"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "llamaindex-vs-langchain"

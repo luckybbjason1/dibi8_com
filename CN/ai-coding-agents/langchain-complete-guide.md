@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Works with OpenAI, Anthropic, Google, and 20+ providers"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "langchain-complete-guide"

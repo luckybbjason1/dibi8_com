@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "npm — easiest path"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "github-trending-projects-may-2026"

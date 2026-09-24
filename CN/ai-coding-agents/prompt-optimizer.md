@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Prompt Optimizer — Restructure, Trim Fillers, Save Tokens (GPT / Claude / Gemini / DeepSeek)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "prompt-optimizer"

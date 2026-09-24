@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Why Feature Engineering is the Bottleneck in ML Pipelines"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "feature-engineering-tools-automation"

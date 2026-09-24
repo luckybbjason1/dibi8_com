@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Load settings from environment"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-agent-frameworks-comparison-2026"

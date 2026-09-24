@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Initialize Vanna with your API key"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "vanna-ai-sql-generation"

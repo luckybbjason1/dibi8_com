@@ -1,12 +1,12 @@
 ---
-title: "AI Tool Guide"
+title: "Install Netdata with all defaultscurl -Ss https://get.netdata.cloud/kickstart.sh | sudo bash"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "netdata"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "AI Tool Guide"
+title: "Install Netdata with all defaultscurl -Ss https://get.netdata.cloud/kickstart.sh | sudo bash"
 description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00

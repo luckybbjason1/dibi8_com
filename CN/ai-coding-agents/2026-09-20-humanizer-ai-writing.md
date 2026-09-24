@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Install via npx (recommended)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "2026-09-20-humanizer-ai-writing"

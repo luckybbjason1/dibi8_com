@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: ".env — minimal configuration for local Ollama"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "docker-genai-stack-local-development"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "zenml-env\Scripts\activate   Windows"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "zenml-mlops-pipeline-framework"

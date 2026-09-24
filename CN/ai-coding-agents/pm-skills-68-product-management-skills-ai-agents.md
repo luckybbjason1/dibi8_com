@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "PM-Skills: 68 Product Management Skills and 42 Workflows for AI Agents"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "pm-skills-68-product-management-skills-ai-agents"

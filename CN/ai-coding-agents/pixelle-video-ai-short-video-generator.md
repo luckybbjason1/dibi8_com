@@ -1,12 +1,12 @@
 ---
-title: "AI Tool Guide"
+title: "Pixelle-Video Review: AI Auto Short Video Generator — One Topic to Full Video"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "pixelle-video-ai-short-video-generator"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "AI Tool Guide"
+title: "Pixelle-Video Review: AI Auto Short Video Generator — One Topic to Full Video"
 description: "Technical guide and comparison."
   topic and get a complete video with script, AI images, voiceover, and BGM.
 date: 2026-05-15T04:20:25+09:00

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Install crewai with all recommended extras"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "crewai-multi-agent-orchestration"

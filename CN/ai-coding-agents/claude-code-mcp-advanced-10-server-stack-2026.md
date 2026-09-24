@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Claude Code MCP Advanced 2026: The 10-Server Production Stack"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "claude-code-mcp-advanced-10-server-stack-2026"

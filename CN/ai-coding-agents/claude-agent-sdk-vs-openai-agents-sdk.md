@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Claude Agent SDK vs OpenAI Agents SDK in 2026: Which to Build On?"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "claude-agent-sdk-vs-openai-agents-sdk"

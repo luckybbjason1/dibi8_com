@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Midjourney Alternative (2026): Why ComfyUI is the Free, Open-Source Standard"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "comfyui-vs-midjourney"

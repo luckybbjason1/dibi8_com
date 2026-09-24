@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Best AI Code Generators 2025: GitHub Copilot vs Cursor vs Tabnine Compared"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "best-ai-code-generators-2025"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "docker-compose.yml"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "n8n-ai-workflow-automation-self-hosted-2026"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Include speedups (recommended for production)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "aiohttp-async-web-scraping"

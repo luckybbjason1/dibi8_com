@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "DS4 (DwarfStar 4): Running DeepSeek V4 Flash Locally with Metal & CUDA — The Complete Guide"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ds4-deepseek-flash-local-inference"

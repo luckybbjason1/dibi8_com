@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Best API Documentation Generation Tools 2025: Swagger, Postman Docs, ReadMe, Mintlify Compared"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "api-documentation-generation-tools"

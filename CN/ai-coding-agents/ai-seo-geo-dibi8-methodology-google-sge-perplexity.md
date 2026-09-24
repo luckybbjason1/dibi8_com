@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "What we measured before vs what we should have measured:  Before: organic_sessions, bounce_rate, pages_per_session"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-seo-geo-dibi8-methodology-google-sge-perplexity"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Best Cursor Alternatives 2026: 7 AI Coding Tools Compared (Claude Code, Cline, Copilot, Windsurf, Continue.dev, Zed)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-coding-tools-cursor-alternatives-2026"

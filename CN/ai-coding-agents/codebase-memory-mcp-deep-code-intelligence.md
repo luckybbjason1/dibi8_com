@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Clone the repository"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "codebase-memory-mcp-deep-code-intelligence"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Install Jesse"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "jesse-ai-trading-framework"

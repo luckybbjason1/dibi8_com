@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "open-notebook: The Open-Source Notebook LM Alternative That Supports 15+ AI Providers — Self-Hosted, 28,000 Stars — Setup Guide 2026"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "open-notebook-open-source-notebooklm-alternative-15-ai-providers"

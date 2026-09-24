@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Create and start all containers"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "docmost-team-docs-collaboration"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "MemPalace: Give Your AI a Perfect Memory (Free, Open Source, 51K+ Stars)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "mempalace"

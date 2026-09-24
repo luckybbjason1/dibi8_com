@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Top 10 Free MCP Tools in 2026: Best Model Context Protocol Servers"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "free-mcp-tools-top10-2026"

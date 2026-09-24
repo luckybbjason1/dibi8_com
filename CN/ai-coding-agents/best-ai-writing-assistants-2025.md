@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Best AI Writing Assistants 2025: Jasper, Copy.ai, Writesonic & ChatGPT Compared"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "best-ai-writing-assistants-2025"

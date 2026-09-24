@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Install Oh My Pi on a fresh Raspberry Pi OS"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "oh-my-pi"

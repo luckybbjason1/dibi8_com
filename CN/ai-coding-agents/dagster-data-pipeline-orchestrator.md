@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Define the repository of assets"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "dagster-data-pipeline-orchestrator"

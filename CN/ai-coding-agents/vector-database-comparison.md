@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "What Are Vector Databases and Why Do You Need One?"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "vector-database-comparison"

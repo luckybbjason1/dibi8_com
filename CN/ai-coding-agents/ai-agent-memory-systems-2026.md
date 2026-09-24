@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "AI Agent Memory Systems 2026: Mem0 vs agentmemory vs Hindsight vs MemPalace (Open-Source Compared)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-agent-memory-systems-2026"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "process_uploads.sh — Process all uploaded documents daily"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "microsoft-markitdown-file-to-markdown-converter-cli"

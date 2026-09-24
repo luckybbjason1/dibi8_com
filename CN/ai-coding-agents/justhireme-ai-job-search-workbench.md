@@ -1,12 +1,12 @@
 ---
-title: "AI Tool Guide"
+title: "问题：找工作就是一份全职工作"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "justhireme-ai-job-search-workbench"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "AI Tool Guide"
+title: "问题：找工作就是一份全职工作"
 description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00

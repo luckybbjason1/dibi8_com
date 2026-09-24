@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Apple's Container: Docker-Like Experience on Mac with 37K Stars"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "apple-container"

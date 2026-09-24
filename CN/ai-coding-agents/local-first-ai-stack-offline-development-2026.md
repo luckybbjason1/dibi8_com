@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Local-First AI Stack 2026: Offline Development Environment"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "local-first-ai-stack-offline-development-2026"

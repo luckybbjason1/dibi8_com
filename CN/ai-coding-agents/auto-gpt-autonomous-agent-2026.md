@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Expected: Python 3.10.x or higher"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "auto-gpt-autonomous-agent-2026"

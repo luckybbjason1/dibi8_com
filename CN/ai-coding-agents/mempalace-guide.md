@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Claude Code Session Memory: How to Integrate MemPalace for 96.6% Recall (2026 Guide)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "mempalace-guide"

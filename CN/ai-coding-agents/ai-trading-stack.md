@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "TL;DR — The Stack at a Glance"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-trading-stack"

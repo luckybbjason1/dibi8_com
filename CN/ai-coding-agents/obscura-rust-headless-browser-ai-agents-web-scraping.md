@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Obscura: Rust Headless Browser for AI Agents — 14,000 Stars — 30MB Memory, 85ms Load — Setup Guide 2026"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "obscura-rust-headless-browser-ai-agents-web-scraping"

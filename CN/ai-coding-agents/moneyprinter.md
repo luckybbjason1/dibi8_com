@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "MoneyPrinterTurbo: Generate HD Short Videos with AI in One Command — 83,000 Stars Open-Source Video Creator — A Practical Guide 2026"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "moneyprinter"

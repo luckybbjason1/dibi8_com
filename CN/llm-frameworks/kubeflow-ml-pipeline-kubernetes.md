@@ -1,12 +1,12 @@
 ---
-title: "AI Tool Guide"
+title: "High-level component view"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "kubeflow-ml-pipeline-kubernetes"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "AI Tool Guide"
+title: "High-level component view"
 description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Step 1: Sign up at https://zapper.xyz and navigate to Developer Settings"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "zapper-defi-dashboard-aggregator"

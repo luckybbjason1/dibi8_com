@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Run SearXNG"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "local-deep-research-local-first-ai-deep-research-tool"

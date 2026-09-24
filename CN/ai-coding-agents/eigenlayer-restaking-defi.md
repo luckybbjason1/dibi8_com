@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Step 1: Stake ETH on Ethereum beacon chain"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "eigenlayer-restaking-defi"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Agent-Reach: Free Internet Access for Your AI Agent"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "agent-reach-internet-access-ai-agents"

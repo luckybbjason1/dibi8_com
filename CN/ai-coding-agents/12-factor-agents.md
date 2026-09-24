@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Initialize a new 12-factor agent project"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "12-factor-agents"

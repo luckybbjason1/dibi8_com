@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Model selection mapping for different use cases"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "perplexity-api-rag-search"

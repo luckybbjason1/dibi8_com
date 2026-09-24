@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Supermemory: The Fastest Open-Source AI Memory API for Building LLM Apps That Remember Everything"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "supermemory-open-source-ai-memory-api"

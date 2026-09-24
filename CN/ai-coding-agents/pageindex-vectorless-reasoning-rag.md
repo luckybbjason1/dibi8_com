@@ -1,12 +1,12 @@
 ---
-title: "AI Tool Guide"
+title: "What is PageIndex?"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "pageindex-vectorless-reasoning-rag"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "AI Tool Guide"
+title: "What is PageIndex?"
 description: "Technical guide and comparison."
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00

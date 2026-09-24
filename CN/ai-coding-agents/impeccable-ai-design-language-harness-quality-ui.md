@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Impeccable: The Design Language That Makes AI-Generated UIs Actually Look Good — 2026 Review"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "impeccable-ai-design-language-harness-quality-ui"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Install + run a model in 30 seconds"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "local-llm-runner-comparison-2026"

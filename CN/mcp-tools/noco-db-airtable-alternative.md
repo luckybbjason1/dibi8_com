@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Create a directory for NocoDB data"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "noco-db-airtable-alternative"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Cross-Border AI Marketing Stack 2026: 7-Tool Setup for Chinese Teams Shipping Globally"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "cross-border-ai-marketing-stack"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "GEO Optimization Checklist: Make ChatGPT Cite You Using Toprank (Free AI SEO Agent)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "toprank-guide"

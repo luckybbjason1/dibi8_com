@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Minara Review 2026: The AI Trading Platform on Hyperliquid That Compresses Your Bloomberg Terminal Into One Chat Box"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "minara-ai-trading-hyperliquid-review-2026"

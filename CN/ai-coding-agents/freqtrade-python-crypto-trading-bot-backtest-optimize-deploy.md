@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Freqtrade: 51,300 Stars for Python Crypto Trading Bot — Backtest, Optimize, Deploy — A Practical Guide 2026"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "freqtrade-python-crypto-trading-bot-backtest-optimize-deploy"

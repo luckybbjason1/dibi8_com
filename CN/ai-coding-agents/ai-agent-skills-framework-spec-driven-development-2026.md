@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Safe Git Skill"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-agent-skills-framework-spec-driven-development-2026"

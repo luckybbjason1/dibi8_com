@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Best AI Image Generators 2026"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "best-ai-image-generators"

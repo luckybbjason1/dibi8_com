@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Routine daily inventory — global packages, toolchains, extensions, MCP configs"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "bumblebee-supply-chain-scanner-perplexity-2026"

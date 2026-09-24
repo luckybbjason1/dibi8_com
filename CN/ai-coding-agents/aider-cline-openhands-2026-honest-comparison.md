@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Aider vs Cline vs OpenHands 2026: Honest 3-Way OSS Comparison"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "aider-cline-openhands-2026-honest-comparison"

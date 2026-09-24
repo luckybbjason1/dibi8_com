@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "prompts.chat: 163k+ Prompts -- The Open-Source Prompt Library Guide 2026"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "prompts-chat"

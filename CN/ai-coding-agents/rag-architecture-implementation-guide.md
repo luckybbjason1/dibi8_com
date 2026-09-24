@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Load and chunk"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "rag-architecture-implementation-guide"

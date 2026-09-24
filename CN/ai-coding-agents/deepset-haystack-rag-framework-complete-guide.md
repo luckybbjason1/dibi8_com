@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "For full features with all document converters"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "deepset-haystack-rag-framework-complete-guide"

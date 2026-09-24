@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Anthropic Financial Services: How Financial Teams Can Automate Analysis & Boost ROI by 300%"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "anthropic-financial-services-ai-finance-automation"

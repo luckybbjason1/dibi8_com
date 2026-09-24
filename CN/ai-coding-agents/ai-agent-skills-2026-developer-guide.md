@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Install individual skills on demand (recommended)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-agent-skills-2026-developer-guide"

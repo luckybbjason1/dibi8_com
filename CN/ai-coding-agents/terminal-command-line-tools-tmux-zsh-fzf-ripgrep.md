@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Change prefix to Ctrl+A (easier to reach)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "terminal-command-line-tools-tmux-zsh-fzf-ripgrep"

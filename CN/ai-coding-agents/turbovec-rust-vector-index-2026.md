@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Create a TurboVec index with 4-bit quantization"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "turbovec-rust-vector-index-2026"

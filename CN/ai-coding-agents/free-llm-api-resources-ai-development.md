@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Groq API (free tier)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "free-llm-api-resources-ai-development"

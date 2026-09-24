@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Install Ollama, then pull a coding-optimized model"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "opencode-open-source-claude-code-alternative-2026"

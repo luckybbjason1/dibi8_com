@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Conceptual solver auction flow"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "cow-protocol-mev-protection"

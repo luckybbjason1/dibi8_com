@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "markitdown: Convert Files & Office Docs to Markdown (141K Stars) — Practical 2026 Guide"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "markitdown-dev-utils-2026"

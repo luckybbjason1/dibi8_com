@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "The complete MLflow architecture in one diagram:  1. Tracking Server (REST API + UI)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "mlflow-experiment-tracking-production"

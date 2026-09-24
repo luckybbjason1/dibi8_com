@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Why Fine-Tune Large Language Models?"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "llm-fine-tuning-frameworks-comparison"

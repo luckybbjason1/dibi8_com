@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Vector DB 2026 Selection: Qdrant vs Weaviate vs Milvus"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "vector-db-2026-qdrant-weaviate-milvus"

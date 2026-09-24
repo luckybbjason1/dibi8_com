@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Methodology"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "2026-05-25-trending-ai-agents"

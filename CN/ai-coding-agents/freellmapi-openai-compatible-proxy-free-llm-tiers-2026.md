@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "FreeLLMAPI: Stack 16 Free LLM Tiers Behind One OpenAI-Compatible Endpoint"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "freellmapi-openai-compatible-proxy-free-llm-tiers-2026"

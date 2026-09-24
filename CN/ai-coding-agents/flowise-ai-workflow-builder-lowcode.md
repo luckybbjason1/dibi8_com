@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Flowise stores flow definitions as JSON in the database"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "flowise-ai-workflow-builder-lowcode"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Cursor vs Windsurf in 2026: Which AI IDE Wins?"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "cursor-vs-windsurf"

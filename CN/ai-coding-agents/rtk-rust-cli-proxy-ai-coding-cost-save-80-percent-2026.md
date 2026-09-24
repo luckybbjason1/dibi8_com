@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "I Cut My AI Coding Bill by 80% With This Rust CLI Proxy — Here's the Exact Setup (rtk Guide 2026)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026"

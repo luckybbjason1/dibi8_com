@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Single-node 8-GPU pretraining"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "nanochat-karpathy-train-your-own-llm-100-dollars-2026"

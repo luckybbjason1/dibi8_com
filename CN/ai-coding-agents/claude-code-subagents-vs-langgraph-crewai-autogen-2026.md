@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Claude Code Subagents vs LangGraph vs CrewAI vs AutoGen (2026): When to Graduate to a Standalone Framework"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "claude-code-subagents-vs-langgraph-crewai-autogen-2026"

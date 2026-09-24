@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "For LLaMA-based models"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "fastchat-open-source-llm-chatbot-platform"

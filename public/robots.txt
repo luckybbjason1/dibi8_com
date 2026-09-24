@@ -1,3 +1,14 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# Prevent tracking parameter crawling
+Disallow: *?_gl=
+Disallow: *?_ga=
+Disallow: *?_up=
+Disallow: *?_gid=
+
+# Sitemap
 Sitemap: https://dibi8.com/sitemap.xml
+
+# Crawl-delay for polite bots
+Crawl-delay: 1

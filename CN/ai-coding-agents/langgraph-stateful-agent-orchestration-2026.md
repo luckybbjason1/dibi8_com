@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Or with Postgres checkpointer: pip install -U langgraph langgraph-checkpoint-postgres"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "langgraph-stateful-agent-orchestration-2026"

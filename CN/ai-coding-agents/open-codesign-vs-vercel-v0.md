@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Vercel v0 Open Source Alternative: Build UIs Locally with Open Codesign"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "open-codesign-vs-vercel-v0"

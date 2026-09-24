@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Clone the official repository"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "chatwoot-open-source-customer-support-ai"

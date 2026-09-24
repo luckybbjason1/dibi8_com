@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Register your AI agent as a trader"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "hkuds-ai-trader"

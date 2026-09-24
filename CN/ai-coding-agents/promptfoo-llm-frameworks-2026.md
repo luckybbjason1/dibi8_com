@@ -1,12 +1,12 @@
 ---
-title: "AI Tool Guide"
+title: "promptfooconfig.yaml"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "promptfoo-llm-frameworks-2026"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "AI Tool Guide"
+title: "promptfooconfig.yaml"
 description: "Technical guide and comparison."
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00

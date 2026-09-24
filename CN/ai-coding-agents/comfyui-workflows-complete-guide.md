@@ -1,12 +1,12 @@
 ---
-title: "AI Tool Guide"
+title: "Conceptual flow (actual ComfyUI uses visual connections)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "comfyui-workflows-complete-guide"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "AI Tool Guide"
+title: "Conceptual flow (actual ComfyUI uses visual connections)"
 description: "Technical guide and comparison."
   Build complex pipelines with nodes, manage dependencies, and create shareable workflow
   templates.

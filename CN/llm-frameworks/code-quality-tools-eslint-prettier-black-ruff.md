@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Code Quality Tools Guide: ESLint, Prettier, Black, Ruff & More"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "code-quality-tools-eslint-prettier-black-ruff"

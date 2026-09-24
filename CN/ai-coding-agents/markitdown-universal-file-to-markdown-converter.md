@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Full installation with all format support"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "markitdown-universal-file-to-markdown-converter"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "TradingAgents：8.2 万星的 LLM 多智能体交易框架 — 2026 实战指南"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "tradingagents-llm-multi-agent-trading-framework-2026"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "For Claude Code"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "mattpocock-skills-ai-agent-framework-guide"

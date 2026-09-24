@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "feature_store.yaml — Feast project configuration"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "feast-feature-store-ml"

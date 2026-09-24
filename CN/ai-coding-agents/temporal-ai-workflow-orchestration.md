@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Option A: Docker Compose (recommended for local dev)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "temporal-ai-workflow-orchestration"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "The AI Agent Code of Ethics (2026): A Practical Governance Framework for Autonomous Agents"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-agent-code-of-ethics"

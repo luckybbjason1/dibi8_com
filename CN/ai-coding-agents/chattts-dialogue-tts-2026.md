@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Or via pip: pip install ChatTTS"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "chattts-dialogue-tts-2026"

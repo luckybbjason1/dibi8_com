@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Gemini CLI vs Claude Code in 2026: Which AI Coding Agent Wins?"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "gemini-cli-vs-claude-code"

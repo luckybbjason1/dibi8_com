@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Price of token A in terms of token B"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "pancake-trading-bot-defi-bsc"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "ML Systems Book: MIT Press Textbook on Machine Learning Systems Engineering"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ml-systems-book-mit-press-textbook"

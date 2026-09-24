@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "2. Copy and edit environment variables"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "activepieces-workflow-automation"

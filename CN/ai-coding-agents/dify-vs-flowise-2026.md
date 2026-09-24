@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Dify vs Flowise in 2026: Full-Stack AI App Platform vs Lightweight LLM Canvas"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "dify-vs-flowise-2026"

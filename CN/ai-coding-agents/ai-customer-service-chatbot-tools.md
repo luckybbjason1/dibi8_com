@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Best AI Customer Service Chatbot Tools 2025: Intercom, Zendesk AI & More"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-customer-service-chatbot-tools"

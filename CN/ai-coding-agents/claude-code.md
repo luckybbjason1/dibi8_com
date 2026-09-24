@@ -1,12 +1,12 @@
 ---
-title: "AI Tool Guide"
+title: "Install via the official installer (auto-updates in background)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "claude-code"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "AI Tool Guide"
+title: "Install via the official installer (auto-updates in background)"
 description: "Technical guide and comparison."
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00

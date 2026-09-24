@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Open Codesign: The Open-Source Claude Design Alternative with 5,790+ Stars"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "open-codesign-claude-design-alternative"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Top 15 Product Hunt Alternatives to Launch Your Startup in 2026"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "product-hunt-alternatives"

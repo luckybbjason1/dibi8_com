@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "WorldMonitor: Real-Time Global Intelligence Dashboard"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "worldmonitor-real-time-global-intelligence-dashboard"

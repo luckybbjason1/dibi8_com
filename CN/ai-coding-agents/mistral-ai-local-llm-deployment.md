@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Update system packages"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "mistral-ai-local-llm-deployment"

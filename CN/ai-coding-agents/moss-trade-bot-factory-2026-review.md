@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Moss Trade Bot Factory Review 2026: AI Agent Quant Workbench — Why Pretty Backtests Lie"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "moss-trade-bot-factory-2026-review"

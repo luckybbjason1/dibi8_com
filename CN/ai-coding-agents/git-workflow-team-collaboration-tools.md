@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Git Workflow & Team Collaboration Tools: A Developer''s Complete Guide"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "git-workflow-team-collaboration-tools"

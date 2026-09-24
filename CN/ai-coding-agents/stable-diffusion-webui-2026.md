@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Stable Diffusion WebUI 2026 (AUTOMATIC1111): 163k-Star Self-Hosted Image Generation — Complete Guide"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "stable-diffusion-webui-2026"

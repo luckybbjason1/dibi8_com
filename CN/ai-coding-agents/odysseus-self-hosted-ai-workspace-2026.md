@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Odysseus: The Self-Hosted AI Workspace That Hit 63,000 GitHub Stars in 9 Days — 2026 Setup Guide"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "odysseus-self-hosted-ai-workspace-2026"

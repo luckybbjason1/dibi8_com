@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Introduction: The 47-Second Query That Killed a Demo"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "pgvector-postgres-vector-extension"

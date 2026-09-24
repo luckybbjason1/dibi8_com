@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "AutoML Tools Compared: AutoGluon, H2O, TPOT, Auto-sklearn, and Google AutoML Guide"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "automl-tools-comparison-guide"

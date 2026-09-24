@@ -1,12 +1,12 @@
 ---
-title: "AI Tool Guide"
+title: "Example: Ask Cascade to implement a feature"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "windsurf-ai-ide"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "AI Tool Guide"
+title: "Example: Ask Cascade to implement a feature"
 description: "Technical guide and comparison."
   code, debugs, and ships features autonomously. Pricing, benchmarks, and real-world
   workflows.

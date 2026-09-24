@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "AGENTS.md — AI Engineering Assistant Guide"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "openai-codex-cli-terminal-ai-coding-agent-2026"

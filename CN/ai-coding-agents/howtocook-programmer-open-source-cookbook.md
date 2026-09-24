@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Tomato Scrambled Eggs (西红柿炒鸡蛋) ⭐"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "howtocook-programmer-open-source-cookbook"

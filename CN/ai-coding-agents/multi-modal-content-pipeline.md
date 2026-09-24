@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Combine narration audio + b-roll video"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "multi-modal-content-pipeline"

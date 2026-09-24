@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "ChatGPT Pro vs Claude Pro in 2026: Which $20 (or $200) AI Subscription Wins?"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "chatgpt-pro-vs-claude-pro"

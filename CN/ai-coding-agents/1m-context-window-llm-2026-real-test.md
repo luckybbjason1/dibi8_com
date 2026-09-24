@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "1m context window LLM 2026"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "1m-context-window-llm-2026-real-test"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Langflow: 148k Stars for Visual LLM Workflows -- Technical Deep Dive 2026"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "langflow-visual-llm-workflow-builder-2026"

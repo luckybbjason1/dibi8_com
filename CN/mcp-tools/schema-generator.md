@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Schema.org JSON-LD Generator — Article / Organization / FAQ / Product"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "schema-generator"

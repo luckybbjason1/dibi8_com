@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Best VS Code AI Extensions for Developers in 2025: Boost Productivity"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "vs-code-ai-extensions-developers"

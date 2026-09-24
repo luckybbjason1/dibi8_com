@@ -1,12 +1,12 @@
 ---
-title: "AI Tool Guide"
+title: "What is TabPFN?"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "tabpfn-foundation-model-tabular-data"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "AI Tool Guide"
+title: "What is TabPFN?"
   Data'
 description: "Technical guide and comparison."
   traditional ML methods. No hyperparameter tuning needed, works in seconds.

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "What Is Moralis?"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "moralis-web3-data-api"

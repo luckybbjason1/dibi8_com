@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor vs Codex"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "2026-09-20-ai-coding-agents-full-comparison"

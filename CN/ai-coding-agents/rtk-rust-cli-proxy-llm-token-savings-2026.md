@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Restart Claude Code / Cursor / your agent"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "rtk-rust-cli-proxy-llm-token-savings-2026"

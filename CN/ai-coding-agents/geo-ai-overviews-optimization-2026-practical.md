@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "GEO / AI Overviews Optimization 2026: Practical Guide"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "geo-ai-overviews-optimization-2026-practical"

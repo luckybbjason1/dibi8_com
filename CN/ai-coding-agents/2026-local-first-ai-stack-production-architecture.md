@@ -1,12 +1,12 @@
 ---
-title: "AI Tool Guide"
+title: "2026 本地优先 AI 栈：生产级架构参考（14 个开源工具拆解）"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "2026-local-first-ai-stack-production-architecture"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "AI Tool Guide"
+title: "2026 本地优先 AI 栈：生产级架构参考（14 个开源工具拆解）"
 description: "Technical guide and comparison."
 date: 2026-05-23T00:00:00+08:00
 lastmod: 2026-05-23T00:00:00+08:00

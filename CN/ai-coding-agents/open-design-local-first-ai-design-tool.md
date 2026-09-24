@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Open Design: The Ultimate Local-First AI Design Tool Replacing Claude Design"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "open-design-local-first-ai-design-tool"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Initialize a new run with your configuration"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "wandb-ml-experiment-tracking-platform-2026"

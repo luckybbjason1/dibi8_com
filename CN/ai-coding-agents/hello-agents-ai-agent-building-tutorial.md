@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Hello-Agents: How Datawhale's Open-Source AI Agent Tutorial Helps You Build Production-Grade Agents from Scratch"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "hello-agents-ai-agent-building-tutorial"

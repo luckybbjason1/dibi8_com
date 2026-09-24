@@ -1,12 +1,12 @@
 ---
-title: "AI Tool Guide"
+title: "Traditional LLM setup (complex)"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "llamafile-portable-local-llm"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "AI Tool Guide"
+title: "Traditional LLM setup (complex)"
 description: "Technical guide and comparison."
   locally without installation, GPU requirements, or complex setup. One binary, any
   platform.

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "openai whisper complete guide"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "openai-whisper-complete-guide"

@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "After signup, navigate to the Console to get your credentials:  - Customer ID"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "vectara-rag-as-service-platform"

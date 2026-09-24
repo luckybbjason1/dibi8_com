@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Python SDK for institutional yield management"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "pendle-yield-tokenization-defi"

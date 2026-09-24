@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Gemini CLI vs Claude Code 2026: Real Comparison on 5 Workflows"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "gemini-cli-vs-claude-code-2026-real-comparison"

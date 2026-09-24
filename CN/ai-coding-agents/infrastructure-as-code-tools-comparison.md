@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Infrastructure as Code Tools 2025: Terraform vs Pulumi vs AWS CDK vs Crossplane Compared"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "infrastructure-as-code-tools-comparison"

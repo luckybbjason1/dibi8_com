@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Last30Days-Skill: AI Agent Search Engine That Scores Social Media by Real Engagement"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "last30days-skill-ai-agent-research-engine-social-media"

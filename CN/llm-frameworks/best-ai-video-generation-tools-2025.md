@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Best AI Video Generation Tools 2025: Sora, Runway, Pika & More Compared"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "best-ai-video-generation-tools-2025"

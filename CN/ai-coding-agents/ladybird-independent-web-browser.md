@@ -1,12 +1,12 @@
 ---
-title: "AI Tool Guide"
+title: "Clone repository"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ladybird-independent-web-browser"
 category: "ai-tools"
 tags: ["ai", "tools"]
 ---
-title: "AI Tool Guide"
+title: "Clone repository"
 description: "Technical guide and comparison."
   No Chrome dependencies, no corporate influence, pure open source.
 date: 2026-05-15T04:20:25+09:00

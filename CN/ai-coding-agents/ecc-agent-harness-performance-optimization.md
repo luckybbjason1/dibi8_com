@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "ECC: Agent Harness Performance Optimization — 2026 Guide"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ecc-agent-harness-performance-optimization"

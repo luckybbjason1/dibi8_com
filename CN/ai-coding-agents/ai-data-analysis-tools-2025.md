@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Best AI Data Analysis Tools 2025: ChatGPT, Julius, Tableau AI & More"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "ai-data-analysis-tools-2025"

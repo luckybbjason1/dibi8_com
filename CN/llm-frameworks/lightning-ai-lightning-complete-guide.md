@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "For full features"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "lightning-ai-lightning-complete-guide"

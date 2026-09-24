@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "ComfyUI Workflow 2026: Setup + 5 Production Templates"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "comfyui-workflow-2026-5-production-templates"

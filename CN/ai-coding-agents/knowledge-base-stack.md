@@ -1,5 +1,5 @@
 ---
-title: "AI Tool Guide"
+title: "Web UI on :80, API on :9380"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "knowledge-base-stack"
