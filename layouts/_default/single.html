@@ -1,0 +1,110 @@
+{{- define "main" }}
+<article class="max-w-4xl mx-auto px-4 py-12">
+  <!-- Breadcrumb -->
+  <nav class="flex items-center space-x-2 text-sm text-zinc-500 mb-8" aria-label="Breadcrumb">
+    <a href="/" class="hover:text-violet-400 transition-colors">首页</a>
+    <span>/</span>
+    <a href="/categories/" class="hover:text-violet-400 transition-colors">分类</a>
+    <span>/</span>
+    <span class="text-zinc-100">{{ .Title }}</span>
+  </nav>
+  
+  <!-- Article Header -->
+  <header class="mb-8">
+    <h1 class="text-4xl font-bold text-zinc-100 mb-4">{{ .Title }}</h1>
+    {{ with .Description }}
+    <p class="text-xl text-zinc-400">{{ . | plainify | safeHTML }}</p>
+    {{ end }}
+  </header>
+  
+  <!-- Article Content -->
+  <div class="prose prose-invert prose-lg max-w-none mb-12">
+    {{ .Content }}
+  </div>
+  
+  <!-- Tools List -->
+  <section class="mt-12">
+    <h2 class="text-2xl font-bold text-zinc-100 mb-6">相关工具</h2>
+    <div class="grid md:grid-cols-2 gap-6">
+      {{ range .Pages }}
+      <article class="p-6 bg-zinc-900/50 border border-zinc-800 rounded-2xl hover:border-violet-500/50 transition-all">
+        <h3 class="text-lg font-semibold text-zinc-100 mb-2">
+          <a href="{{ .RelPermalink }}" class="hover:text-violet-400 transition-colors">
+            {{ .Title }}
+          </a>
+        </h3>
+        <p class="text-zinc-500 text-sm mb-4">
+          {{ .Description | plainify | truncate 100 }}
+        </p>
+        <div class="flex items-center justify-between">
+          {{ range first 3 .Params.tags }}
+          <span class="text-xs text-zinc-600">#{{ . }}</span>
+          {{ end }}
+          <a href="{{ .RelPermalink }}" class="text-violet-400 hover:text-violet-300 text-sm font-medium">
+            查看详情 →
+          </a>
+        </div>
+      </article>
+      {{ end }}
+    </div>
+  </section>
+  
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "{{ .Title }}",
+    "description": {{ with .Description }}{{ . | plainify | jsonify }}{{ else }}{{ .Title | jsonify }}{{ end }},
+    "url": "{{ .Permalink }}",
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首页",
+          "item": "{{ .Site.BaseURL }}"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "分类",
+          "item": "{{ .Site.BaseURL }}categories/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "{{ .Title }}"
+        }
+      ]
+    }
+  }
+  </script>
+</article>
+
+<!-- Related Tools Navigation -->
+<nav class="max-w-4xl mx-auto px-4 py-8 border-t border-zinc-800">
+  <div class="flex items-center justify-between">
+    {{ with .PrevInSection }}
+    <a href="{{ .RelPermalink }}" class="flex items-center space-x-2 text-zinc-400 hover:text-violet-400 transition-colors">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+      <span>{{ .Title }}</span>
+    </a>
+    {{ else }}
+    <span></span>
+    {{ end }}
+    
+    {{ with .NextInSection }}
+    <a href="{{ .RelPermalink }}" class="flex items-center space-x-2 text-zinc-400 hover:text-violet-400 transition-colors">
+      <span>{{ .Title }}</span>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </a>
+    {{ end }}
+  </div>
+</nav>
+{{- end }}
