@@ -1,5 +1,5 @@
 ---
-title: "Add to OpenCode's MCP config:  { "agentmemory": { "command": "mem0-mcp", "args": [] } }"
+title: "Add to OpenCode's MCP config:"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "self-hosted-ai-coding-workflow"

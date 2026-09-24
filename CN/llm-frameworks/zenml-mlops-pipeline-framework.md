@@ -1,5 +1,5 @@
 ---
-title: "zenml-env\Scripts\activate   Windows"
+title: "zenml-envScriptsactivate   Windows"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "zenml-mlops-pipeline-framework"

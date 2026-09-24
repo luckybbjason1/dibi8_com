@@ -1,5 +1,5 @@
 ---
-title: "Verify — should return {"title":"qdrant","version":"1.13.0"}"
+title: "Verify — should return"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "qdrant-vector-database-rust"

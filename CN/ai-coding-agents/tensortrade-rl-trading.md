@@ -1,5 +1,5 @@
 ---
-title: "tensortrade-env\Scripts\activate   Windows"
+title: "tensortrade-envScriptsactivate   Windows"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "tensortrade-rl-trading"

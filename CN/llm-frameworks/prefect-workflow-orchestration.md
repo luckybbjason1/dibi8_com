@@ -1,5 +1,5 @@
 ---
-title: "prefect-env\Scripts\activate   Windows"
+title: "prefect-envScriptsactivate   Windows"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "prefect-workflow-orchestration"

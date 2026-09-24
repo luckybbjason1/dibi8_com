@@ -1,5 +1,5 @@
 ---
-title: "whisper-env\Scripts\activate   Windows"
+title: "whisper-envScriptsactivate   Windows"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "openai-whisper"
