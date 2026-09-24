@@ -1,5 +1,5 @@
 ---
-title: "Clone the repository"
+title: "codebase memory mcp deep code intelligence"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "codebase-memory-mcp-deep-code-intelligence"

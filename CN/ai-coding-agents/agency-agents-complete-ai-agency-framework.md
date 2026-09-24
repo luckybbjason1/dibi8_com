@@ -1,5 +1,5 @@
 ---
-title: "Clone the repository"
+title: "agency agents complete ai agency framework"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "agency-agents-complete-ai-agency-framework"

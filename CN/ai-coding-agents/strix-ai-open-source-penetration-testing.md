@@ -1,5 +1,5 @@
 ---
-title: "Clone the repository"
+title: "strix ai open source penetration testing"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "strix-ai-open-source-penetration-testing"

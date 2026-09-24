@@ -1,5 +1,5 @@
 ---
-title: "2. Copy and edit environment variables"
+title: "ActivePieces: 开源自动化工作流平台配置指南"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "activepieces-workflow-automation"
