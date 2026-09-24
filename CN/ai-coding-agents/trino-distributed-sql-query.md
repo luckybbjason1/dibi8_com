@@ -1,5 +1,5 @@
 ---
-title: "/etc/trino/config.properties — Coordinator Node"
+title: "Trino 分布式 SQL 查询引擎配置指南"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "trino-distributed-sql-query"

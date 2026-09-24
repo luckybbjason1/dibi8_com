@@ -1,5 +1,5 @@
 ---
-title: "- AFFiNE server (web + API + sync)"
+title: "AFFiNE: 开源知识库与白板协作平台"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "affine-knowledge-base-whiteboard"

@@ -1,5 +1,5 @@
 ---
-title: "[{'label': 'POSITIVE', 'score': 0.9998}]"
+title: "文本情感分析工具评测"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "huggingface-transformers-guide"

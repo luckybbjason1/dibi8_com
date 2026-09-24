@@ -1,5 +1,5 @@
 ---
-title: ".env — minimal configuration for local Ollama"
+title: "Ollama 本地部署环境配置"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "docker-genai-stack-local-development"

@@ -1,5 +1,5 @@
 ---
-title: "~/.ripgreprc"
+title: "Ripgrep 配置文件与搜索技巧"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "code-search-replace-tools-grep-modern-alternatives"
