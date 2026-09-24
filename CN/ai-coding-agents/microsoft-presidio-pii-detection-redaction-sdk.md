@@ -1,5 +1,5 @@
 ---
-title: ""XXX Smith's SSN is  and his email is [HASH]""
+title: "Microsoft Presidio PII Detection SDK"
 description: "Technical guide and comparison"
 date: 2026-09-20
 slug: "microsoft-presidio-pii-detection-redaction-sdk"
