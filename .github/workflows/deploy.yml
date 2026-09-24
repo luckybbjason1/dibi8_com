@@ -2,9 +2,8 @@ name: Deploy to Cloudflare Pages
 
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:  # 允许手动触发
+    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -13,6 +12,8 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,11 +28,12 @@ jobs:
           extended: true
 
       - name: Build
-        run: hugo --minify --quiet
+        run: hugo --minify
 
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy public --project-name=dibi8-com --branch=main
+      - name: Deploy
+        run: |
+          echo "Deploying to Cloudflare Pages..."
+          npx wrangler@3 pages deploy public --project-name=dibi8-com --branch=main
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

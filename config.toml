@@ -1,14 +1,13 @@
 # Hugo Configuration for dibi8.com
 baseURL = "https://dibi8.com/"
-languageCode = "zh-cn"
 title = "Dibi8 - AI工具目录"
 theme = "PaperMod"
 
 # Enable pluralize link titles
 pluralizelisttitles = true
 
-# Content directory
-contentDir = "content"
+# Content directory - use CN folder
+contentDir = "CN"
 
 # Output format
 enableRobotsTXT = true
@@ -27,36 +26,35 @@ enableGitInfo = false
   collection = "collections"
 
 # Languages configuration - only Chinese (CN) as source
-[languages]
-  [languages.zh]
-    weight = 1
-    title = "Dibi8 - AI工具目录"
-    languageName = "中文"
-    contentDir = "CN"
+[languages.zh]
+  weight = 1
+  title = "Dibi8 - AI工具目录"
+  label = "中文"  # Use label instead of languageName
+  contentDir = "CN"
 
 # Menu configuration
 [[menu.main]]
   identifier = "categories"
-  name = "Categories"
+  name = "分类"
   pageRef = "categories"
   weight = 10
 
 [[menu.main]]
   identifier = "tools"
-  name = "🛠 Tools"
+  name = "工具"
   pageRef = "tools"
   weight = 20
 
 [[menu.main]]
   identifier = "collections"
-  name = "Collections"
+  name = "合集"
   pageRef = "collections"
   weight = 30
 
 # Params
 [params]
   env = "production"
-  description = "Hand-tested AI coding agent tools and open-source LLM frameworks"
+  description = "发现最佳AI工具，比较功能、价格和评价"
   defaultTheme = "dark"
   ShowReadingTime = true
   ShowShareButtons = false
