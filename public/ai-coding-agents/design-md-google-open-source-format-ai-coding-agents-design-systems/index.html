@@ -1,0 +1,538 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESIGN.md: Google&#39;s Open-Source Format for Giving AI Coding Agents a Design System | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">DESIGN.md: Google&#39;s Open-Source Format for Giving AI Coding Agents a Design System</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">DESIGN.md: Google&#39;s Open-Source Format for Giving AI Coding Agents a Design System</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <h1 id="designmd-googles-open-source-format-for-giving-ai-coding-agents-a-design-system">DESIGN.md: Google&rsquo;s Open-Source Format for Giving AI Coding Agents a Design System</h1>
+<p><img alt="DESIGN.md Format Specification" loading="lazy" src="https://opengraph.github.com/github/google-labs-code/design.md"></p>
+<p><img alt="DESIGN.md Philosophy Document" loading="lazy" src="https://raw.githubusercontent.com/google-labs-code/design.md/main/PHILOSOPHY.md"></p>
+<h2 id="introduction">Introduction</h2>
+<p>When you ask an AI coding agent to build a landing page, it produces something functional — but rarely beautiful. The problem isn&rsquo;t the model&rsquo;s capability; it&rsquo;s the lack of a shared design language. Every prompt starts from scratch, every generation drifts from the last, and there&rsquo;s no persistent memory of what &ldquo;our design&rdquo; actually looks like.</p>
+<p><strong>DESIGN.md</strong> by Google Labs Code solves this. It&rsquo;s an open-source format specification that gives AI coding agents a persistent, structured understanding of your design system — combining YAML color tokens, typography specs, and spacing rules with natural language prose that describes the <em>intent</em> behind every value. With 20,800+ GitHub stars and 2,319 stars gained in a single day, it&rsquo;s currently the hottest design tool on GitHub.</p>
+<h2 id="what-is-designmd">What Is DESIGN.md?</h2>
+<p>DESIGN.md is a markdown file that serves as the single source of truth for a project&rsquo;s visual identity. It&rsquo;s designed to be read by AI coding agents (Claude, ChatGPT, Codex, Cursor, etc.) so they can generate UI that consistently matches your brand — without you having to re-explain your design system every time.</p>
+<p>The format has two complementary layers: ````
+┌──────────────────────────────────────────────────┐
+│              DESIGN.md Structure                  │
+├──────────────────────────────────────────────────┤
+│                                                  │
+│  &mdash;                                           │
+│  name: My Brand                                │
+│  &mdash;                                           │
+│                                                  │
+│  ## Colors                                     │
+│  <code>yaml                                       │ │  colors: │ │    paper: '#F4F0E4'                             │ │    ink: '#1E1A14'                               │ │    accent: '#C3402A'                            │ │  </code>                                           │
+│  <!-- Prose -->                                │
+│  A warm paper-and-ink system with a single     │
+│  vermilion accent for diagrams only.           │
+│                                                  │
+│  ## Typography                                 │
+│  <code>yaml                                       │ │  typography: │ │    heading: 'Playfair Display'                 │ │    body: 'Source Serif 4'                      │ │    mono: 'JetBrains Mono'                      │ │  </code>                                           │
+│                                                  │
+│  ## Spacing                                    │
+│  <code>yaml                                       │ │  spacing: │ │    unit: 8px                                   │ │    scale: [4, 8, 16, 24, 32, 48, 64]           │ │  </code>                                           │
+│                                                  │
+│  ## Do&rsquo;s and Don&rsquo;ts                            │
+│  - <strong>Do</strong> use the accent color only in charts  │
+│  - <strong>Don&rsquo;t</strong> add gradients or glass effects    │
+│                                                  │
+└──────────────────────────────────────────────────┘</p>
+<pre tabindex="0"><code>
+The YAML tokens provide machine-readable values. The prose provides human-readable *context* — explaining why a color is ````#F4F0E4```` (warmed xerox stock, never pure white) rather than just stating the hex code. This distinction is what makes DESIGN.md fundamentally different from a design token JSON file.
+
+## Why Prose Matters More Than Tokens
+
+The designers behind DESIGN.md made a deliberate choice: **the prose is the most vital part of the specification**. Their philosophy document explains it perfectly: &gt; *&#34;A design that references &#39;A 1970s graduate lecture handout in the tradition of an old and established university&#39; evokes a complete world: the one color of ink, the generous margins, the serif set at a reading size, and the absence of decoration. That single sentence carries more useful information than a dozen metric values.&#34;*
+
+This is a profound insight about AI-assisted development. When you tell an LLM &#34;use a warm, premium editorial aesthetic,&#34; it generates something generic. When you tell it &#34;a 1970s graduate lecture handout,&#34; it understands the entire cultural reference — the paper texture, the restrained typography, the absence of decorative elements. The model fills in all the gaps from its training data.
+
+DESIGN.md formalizes this principle. The tokens are context, not instructions. The prose carries the creative intent. Together, they give agents both precision and imagination.
+
+## How It Works Under the Hood
+
+The DESIGN.md repository is structured as a Bun monorepo with Turbo for orchestration: `````
+design.md/
+├── packages/
+│   └── cli/                    # @google/design.md CLI toolkit
+│       ├── src/                # TypeScript source
+│       └── scripts/            # Build scripts
+├── docs/                       # Specification documentation
+├── examples/                   # Example DESIGN.md files
+├── .agents/skills/             # Agent skill definitions
+├── package.json                # Bun workspace config
+├── turbo.json                  # Turbo build orchestration
+├── tsconfig.base.json          # Shared TypeScript config
+└── PHILOSOPHY.md               # Design philosophy manifesto
+</code></pre><p>The CLI tool (<code>@google/design.md</code>) provides: - <strong>Linting</strong>: Validates DESIGN.md files against the specification schema</p>
+<ul>
+<li><strong>Token extraction</strong>: Parses YAML blocks into structured data</li>
+<li><strong>Agent integration</strong>: Ships as an <code>.agents/skills/</code> definition for Claude, ChatGPT, and other coding agents</li>
+</ul>
+<p>The linter enforces that required sections (name, colors, typography, spacing, rounded, components) are present while allowing arbitrary custom sections for motion, iconography, elevation, and other design dimensions specific to each project.</p>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="1-install-the-cli">1. Install the CLI</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bun install -g @google/design.md
+</span></span></code></pre></div><p>Or use it directly with npx: `````bash
+npx @google/design.md lint DESIGN.md</p>
+<pre tabindex="0"><code>
+### 2. Create Your First DESIGN.md
+
+Start with the minimal required structure: `````markdown
+
+* * *
+name: My Project Design
+
+* * *
+## Colors
+
+`````yaml
+colors: primary: &#39;#2563EB&#39;
+  background: &#39;#FFFFFF&#39;
+  text: &#39;#111827&#39;
+</code></pre><p>A clean blue-and-white system for a professional SaaS product.</p>
+<h2 id="typography">Typography</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">typography: heading</span>: <span style="color:#e6db74">&#39;Inter&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">body</span>: <span style="color:#e6db74">&#39;Inter&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mono</span>: <span style="color:#e6db74">&#39;JetBrains Mono&#39;</span>
+</span></span></code></pre></div><p>Single-family typography system for consistency.</p>
+<h2 id="spacing">Spacing</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">spacing: unit</span>: <span style="color:#ae81ff">4px</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">scale</span>: [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">48</span>, <span style="color:#ae81ff">64</span>]
+</span></span></code></pre></div><p>4px base grid, 8px for larger elements.</p>
+<pre tabindex="0"><code>
+### 3. Ship It to Your Coding Agents
+
+Add DESIGN.md to your project repository. When working with any coding agent, reference the file in your system prompt: `````
+System: Read the DESIGN.md file in the project root.
+All UI components must follow the design specifications defined there.
+</code></pre><p>The agent will now consistently apply your design system across every generation.</p>
+<h2 id="real-world-examples">Real-World Examples</h2>
+<p>The repository includes several example DESIGN.md files demonstrating different aesthetic approaches: <strong>Graduate Lecture Handout</strong>: A warm paper canvas with single-ink typography and vermilion accents limited to diagrams. The prose specifies &ldquo;A graduate-level computer science lecture handout in the tradition of an old established university&rdquo; — instantly communicating margins, serif fonts, and restraint.</p>
+<p><strong>Motion Design System</strong>: Defines timing constants for UI feedback (120ms for hover/press, 250ms for content transitions) with a mechanical easing curve. The prose emphasizes &ldquo;Nothing bounces, nothing overshoots, nothing lingers&rdquo; — giving agents a clear temporal aesthetic.</p>
+<p><strong>Custom Design Dimensions</strong>: The format accepts any section name. One team defines <code>motion</code> tokens as CSS animation curves; another uses audio-domain time constants measured in buffer blocks. The spec standardizes where consistency helps and leaves flexibility where it matters more.</p>
+<h2 id="why-this-matters-for-ai-assisted-development">Why This Matters for AI-Assisted Development</h2>
+<p>DESIGN.md addresses a fundamental bottleneck in AI-assisted development: <strong>design consistency at scale</strong>.</p>
+<p>Without a design specification, every AI-generated page, component, or screen is a fresh creative exercise. The agent doesn&rsquo;t know your brand colors beyond what&rsquo;s in the prompt, doesn&rsquo;t understand your spacing philosophy, and has no memory of what &ldquo;done&rdquo; looks like for your project.</p>
+<p>With DESIGN.md: - <strong>Agents have persistent design memory</strong> — the file lives in your repo, version-controlled and reviewed</p>
+<ul>
+<li><strong>Multiple agents stay consistent</strong> — Claude, ChatGPT, and Codex all read the same file</li>
+<li><strong>Design reviews become automated</strong> — the linter catches violations before they reach production</li>
+<li><strong>New developers onboard instantly</strong> — the file <em>is</em> the design system documentation</li>
+</ul>
+<p>The format is particularly powerful for teams using multiple AI coding tools. Instead of each tool having its own implicit understanding of your design, everyone reads the same authoritative source.</p>
+<h2 id="limitations-and-trade-offs">Limitations and Trade-offs</h2>
+<p>DESIGN.md is not a silver bullet. Several considerations: 1. <strong>Agent-dependent quality</strong>: The effectiveness depends on how well each agent reads and follows the prose. Some agents may parse the YAML but ignore the narrative descriptions.</p>
+<ol start="2">
+<li>
+<p><strong>No visual rendering</strong>: DESIGN.md is a specification, not a rendering engine. You still need the agent (or a human designer) to translate the specs into actual code.</p>
+</li>
+<li>
+<p><strong>Learning curve</strong>: Writing good prose descriptions requires design thinking. Teams without a designated designer may struggle to articulate their aesthetic intent clearly.</p>
+</li>
+<li>
+<p><strong>Not a replacement for Figma</strong>: DESIGN.md complements design tools rather than replacing them. The ideal workflow uses Figma for visual design and DESIGN.md for agent communication.</p>
+</li>
+<li>
+<p><strong>Still young</strong>: At 20.8k stars and 2 months old, the format is evolving rapidly. Breaking changes between versions are possible.</p>
+</li>
+</ol>
+<h2 id="community-and-adoption">Community and Adoption</h2>
+<p>DESIGN.md is developed by Google Labs Code and has attracted significant attention: - <strong>20,800+ stars</strong> on GitHub (2,319 gained in a single day)</p>
+<ul>
+<li><strong>1,700+ forks</strong> with active community contributions</li>
+<li><strong>40+ commits</strong> in 2 months with rapid iteration</li>
+<li><strong>18 issues</strong> and <strong>17 pull requests</strong> showing active development</li>
+<li><strong>4 published tags</strong> with semantic versioning</li>
+</ul>
+<p>The format has inspired derivative projects and integrations across the AI coding agent ecosystem. Multiple agent skill definitions have emerged, and the ````.agents/skills/``` directory provides ready-to-use configurations for popular coding agents.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>DESIGN.md represents a fundamental shift in how we communicate design to AI. Rather than trying to encode every visual decision into rigid tokens, it embraces the strength of natural language — letting prose carry the creative intent while YAML provides the machine-readable scaffolding.</p>
+<p>For teams building AI-assisted design workflows, it&rsquo;s worth trying. Create a DESIGN.md for your next project, add it to your coding agent&rsquo;s context, and see how much more consistent your generated UI becomes. The format is simple enough to start with today and flexible enough to grow with your design system.</p>
+<p>In a landscape where every developer now has access to AI coding agents, DESIGN.md provides the missing piece: a shared language between human design intent and machine execution. That&rsquo;s why it&rsquo;s currently the hottest project on GitHub — and why it&rsquo;s likely to become a standard practice in AI-assisted development.</p>
+<p>For teams deploying infrastructure at scale: try <a href="https://www.htstack.com/">HTStack</a> for high-performance cloud hosting that integrates seamlessly with design system workflows.</p>
+<p>For production-ready AI coding workflows: check out <a href="https://bsmkweb.cc">Binance</a> for enterprise-grade API trading infrastructure.</p>
+<p>For financial AI applications: <a href="https://promoohubly.com">OKX</a> offers robust trading APIs and market data feeds.</p>
+<p>Check out internal guides on AI Coding Agent Comparison and Developer Tooling Best Practices for deeper dives into building a complete AI-assisted development workflow.</p>
+<p>Join the DIBI8 community on <a href="https://t.me/DIBI8_Group">Telegram</a> for daily discussions on AI tools, dev utilities, and open-source projects.</p>
+<hr>
+<p><strong>Sources &amp; Further Reading</strong>: - Official repository: <a href="https://github.com/google-labs-code/design.md">https://github.com/google-labs-code/design.md</a></p>
+<ul>
+<li>DESIGN.md philosophy: <a href="https://github.com/google-labs-code/design.md/blob/main/PHILOSOPHY.md">https://github.com/google-labs-code/design.md/blob/main/PHILOSOPHY.md</a></li>
+<li>CLI toolkit: <a href="https://github.com/google-labs-code/design.md/tree/main/packages/cli">https://github.com/google-labs-code/design.md/tree/main/packages/cli</a></li>
+<li>Example DESIGN.md files: <a href="https://github.com/google-labs-code/design.md/tree/main/examples">https://github.com/google-labs-code/design.md/tree/main/examples</a></li>
+<li>Agent skill definitions: <a href="https://github.com/google-labs-code/design.md/tree/main/.agents/skills">https://github.com/google-labs-code/design.md/tree/main/.agents/skills</a></li>
+<li>Contributing guidelines: <a href="https://github.com/google-labs-code/design.md/blob/main/CONTRIBUTING.md">https://github.com/google-labs-code/design.md/blob/main/CONTRIBUTING.md</a></li>
+</ul>
+<p><strong>Disclosure</strong>: This article contains affiliate links. If you sign up through our links, we may earn a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;DESIGN.md: Google&rsquo;s Open-Source Format for Giving AI Coding Agents a Design System&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-06-27&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-06-27&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/design-md-google-open-source-format-ai-coding-agents-design-systems%22">https://dibi8.com/resources/design-md-google-open-source-format-ai-coding-agents-design-systems"</a>
+}
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">ai-engineering-from-scratch</a></li>
+<li><a href="/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">compound-engineering-multi-agent-coding-claude-codex-cursor</a></li>
+<li><a href="/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">personal-ai-infrastructure-daniel-miessler</a></li>
+<li><a href="/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">prompts-chat</a></li>
+<li><a href="/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">llm-inference-cost-optimization-guide-2026</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fdesign-md-google-open-source-format-ai-coding-agents-design-systems%2f&text=DESIGN.md%3a%20Google%27s%20Open-Source%20Format%20for%20Giving%20AI%20Coding%20Agents%20a%20Design%20System" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fdesign-md-google-open-source-format-ai-coding-agents-design-systems%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

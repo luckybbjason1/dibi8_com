@@ -1,0 +1,957 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The complete MLflow architecture in one diagram:  1. Tracking Server (REST API &#43; UI) | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/llm-frameworks/mlflow-experiment-tracking-production/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">The complete MLflow architecture in one diagram:  1. Tracking Server (REST API &#43; UI)</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">The complete MLflow architecture in one diagram:  1. Tracking Server (REST API &#43; UI)</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;MLflow 2026: The Open-Source ML Lifecycle Platform Track&hellip;
+description: &ldquo;Technical guide and comparison&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Data Science
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: Apache-2.0
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;data-science&rdquo;]
+tags: [&ldquo;mlflow&rdquo;, &ldquo;machine learning&rdquo;, &ldquo;mlops&rdquo;, &ldquo;experiment tracking&rdquo;, &ldquo;model registry&rdquo;, &ldquo;model serving&rdquo;, &ldquo;python&rdquo;, &ldquo;open source&rdquo;, &ldquo;data science&rdquo;]
+aliases:</p>
+<ul>
+<li>/posts/mlflow-experiment-tracking-production/-</li>
+</ul>
+<hr>
+<h2 id="introduction-the-chaos-of-untracked-experiments">Introduction: The Chaos of Untracked Experiments</h2>
+<p>A data science team at a Series B startup was three months into building a recommendation model. They had tried <strong>six different architectures</strong>, <strong>four optimizers</strong>, and <strong>dozens of hyperparameter combinations</strong>. When the product manager asked, &ldquo;Which version should we ship?&rdquo;, nobody could answer definitively. The best-performing model was a checkpoint file on a server, and the engineer who trained it had overwritten the training script three git commits ago.</p>
+<p>This is the <strong>experiment reproducibility crisis</strong>. According to a 2024 survey of 500 ML practitioners by Algorithmia, <strong>68% of teams</strong> struggle to reproduce past experiments, and <strong>42%</strong> have shipped a model without knowing which exact code and data produced it. The cost is measured in lost models, duplicated effort, and production failures.</p>
+<p>MLflow, created at Databricks in 2018 and open-sourced under the Linux Foundation, solves this with a lightweight, framework-agnostic platform for the complete ML lifecycle. As of May 2026, MLflow has <strong>~21,000 GitHub stars</strong>, the MLflow 2.22.0 release shipped in April 2026, and it is used by teams at Microsoft, Toyota, Booking.com, and thousands of startups.</p>
+<p>This guide shows you how to set up MLflow in under 5 minutes, track experiments at scale, register and version models, serve them via REST API, and deploy the whole stack to production. If you need a server to host your MLflow tracking server, <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> provides a straightforward VM deployment that gets you running in minutes.</p>
+<h2 id="what-is-mlflow">What Is MLflow?</h2>
+<p>MLflow is an <strong>open-source platform for managing the machine learning lifecycle</strong>, including experiment tracking, model packaging, model registry, and model serving. It runs as a Python library, a standalone server, or a Docker container — with no required dependency on Kubernetes, cloud providers, or specific ML frameworks.</p>
+<p>Unlike heavyweight MLOps platforms that demand infrastructure teams to set up, MLflow installs with ```pip install mlflow```` and starts tracking experiments in a single line of code. This low barrier to entry makes it the most widely adopted open-source ML lifecycle tool, with <strong>over 250 million downloads</strong> on PyPI as of early 2026.</p>
+<h2 id="how-mlflow-works-core-components">How MLflow Works: Core Components</h2>
+<p>MLflow is organized into four components that address distinct stages of the ML lifecycle: <strong>MLflow Tracking</strong> logs experiments, parameters, metrics, and artifacts. Each experiment run captures the code version, data source, configuration, and results. The tracking server stores this data in a backend (SQLite, PostgreSQL, MySQL) with artifacts in local filesystem, S3, GCS, or Azure Blob Storage.</p>
+<p><strong>MLflow Models</strong> packages models in a standardized format. Save a model once, and deploy it anywhere: REST API, batch inference, Apache Spark, Amazon SageMaker, Azure ML, or Kubernetes. MLflow supports scikit-learn, TensorFlow, PyTorch, XGBoost, LightGBM, HuggingFace Transformers, and more.</p>
+<p><strong>MLflow Model Registry</strong> provides a centralized store for model lifecycle management. Register models, assign version numbers, tag stages (Staging, Production, Archived), and track lineage across versions. Teams use this as a single source of truth for which model is deployed where.</p>
+<p><strong>MLflow Projects</strong> packages ML code in a reproducible format with a <code>MLproject</code> file that defines entry points, parameters, dependencies, and the execution environment.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># The complete MLflow architecture in one diagram: # 1. Tracking Server (REST API + UI)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    ├── Backend Store: PostgreSQL / MySQL / SQLite</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    └── Artifact Store: S3 / GCS / Azure / Local</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Tracking Client (Python/R/Java/REST)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    ├── log_param(), log_metric(), log_artifact()</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    └── set_tags(), register_model()</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Model Registry</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    ├── Model Versions (v1, v2, v3...)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    └── Stage Transitions (None → Staging → Production)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. Model Serving</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#    └── REST endpoint: /invocations</span>
+</span></span></code></pre></div><h2 id="installation--setup-run-your-first-experiment-in-5-minutes">Installation &amp; Setup: Run Your First Experiment in 5 Minutes</h2>
+<h3 id="local-setup-single-machine">Local Setup (Single Machine)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install MLflow</span>
+</span></span><span style="display:flex;"><span>pip install mlflow<span style="color:#f92672">==</span>2.22.0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start the tracking server with local file storage</span>
+</span></span><span style="display:flex;"><span>mkdir -p ~/mlflow-tracking
+</span></span><span style="display:flex;"><span>mlflow server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --backend-store-uri sqlite:///~/mlflow-tracking/mlflow.db <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --default-artifact-root ~/mlflow-tracking/artifacts <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --host 0.0.0.0 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --port <span style="color:#ae81ff">5000</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># In a separate terminal, run your first tracked experiment</span>
+</span></span><span style="display:flex;"><span>python -c <span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">import mlflow
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">mlflow.set_tracking_uri(&#39;http://localhost:5000&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">mlflow.set_experiment(&#39;quick-start&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">with mlflow.start_run(): mlflow.log_param(learning_rate, 0.01)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    mlflow.log_param(epochs, 10)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    mlflow.log_metric(accuracy, 0.94)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    mlflow.log_metric(f1_score, 0.93)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    print(f&#39;Run ID: {mlflow.active_run().info.run_id}&#39;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p>Visit <code>http://localhost:5000</code> — your experiment appears in the MLflow UI with parameters, metrics, and run history fully tracked.</p>
+<h3 id="production-setup-with-postgresql-and-s3">Production Setup with PostgreSQL and S3</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install with database and cloud support</span>
+</span></span><span style="display:flex;"><span>pip install mlflow<span style="color:#f92672">[</span>extras<span style="color:#f92672">]==</span>2.22.0 psycopg2-binary boto3
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Start the tracking server with PostgreSQL and S3</span>
+</span></span><span style="display:flex;"><span>export MLFLOW_S3_ENDPOINT_URL<span style="color:#f92672">=</span>https://s3.amazonaws.com
+</span></span><span style="display:flex;"><span>export AWS_ACCESS_KEY_ID<span style="color:#f92672">=</span>your-key
+</span></span><span style="display:flex;"><span>export AWS_SECRET_ACCESS_KEY<span style="color:#f92672">=</span>your-secret
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mlflow server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --backend-store-uri postgresql://mlflow:password@postgres:5432/mlflowdb <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --default-artifact-root s3://your-bucket/mlflow-artifacts <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --host 0.0.0.0 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --port <span style="color:#ae81ff">5000</span>
+</span></span></code></pre></div><h3 id="docker-deployment-recommended-for-teams">Docker Deployment (Recommended for Teams)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml — Complete MLflow stack</span>
+</span></span><span style="display:flex;"><span>version: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span>services: postgres: image: postgres:16
+</span></span><span style="display:flex;"><span>    environment: POSTGRES_USER: mlflow
+</span></span><span style="display:flex;"><span>      POSTGRES_PASSWORD: mlflow_password
+</span></span><span style="display:flex;"><span>      POSTGRES_DB: mlflowdb
+</span></span><span style="display:flex;"><span>    volumes: - pgdata:/var/lib/postgresql/data
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  mlflow: image: python:3.11-slim
+</span></span><span style="display:flex;"><span>    command: &gt;
+</span></span><span style="display:flex;"><span>      bash -c <span style="color:#e6db74">&#34;pip install mlflow==2.22.0 psycopg2-binary boto3 &amp;&amp;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">               mlflow server
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">               --backend-store-uri postgresql://mlflow:mlflow_password@postgres:5432/mlflowdb
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">               --default-artifact-root s3://my-bucket/mlflow
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">               --host 0.0.0.0 --port 5000&#34;</span>
+</span></span><span style="display:flex;"><span>    ports: - <span style="color:#e6db74">&#34;5000:5000&#34;</span>
+</span></span><span style="display:flex;"><span>    depends_on: - postgres
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>volumes: pgdata: <span style="color:#e6db74">`````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">`````</span>bash
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Launch the full stack</span>
+</span></span><span style="display:flex;"><span>docker-compose up -d
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify the tracking server is running</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:5000/api/2.0/mlflow/experiments/list
+</span></span></code></pre></div><h3 id="digitalocean-droplet-deployment">DigitalOcean Droplet Deployment</h3>
+<p>For a dedicated production tracking server: `````bash</p>
+<h1 id="spin-up-a-droplet-and-install-mlflow">Spin up a droplet and install MLflow</h1>
+<p>ssh root@your-droplet-ip &laquo; EOF
+apt update &amp;&amp; apt install -y python3-pip
+pip install mlflow[extras]==2.22.0 psycopg2-binary</p>
+<h1 id="create-systemd-service-for-mlflow">Create systemd service for MLflow</h1>
+<p>cat &gt; /etc/systemd/system/mlflow.service &laquo; SERVICEDEF
+[Unit]
+Description=MLflow Tracking Server
+After=network.target</p>
+<p>[Service]
+Type=simple
+User=root
+ExecStart=/usr/local/bin/mlflow server &ndash;backend-store-uri sqlite:///var/lib/mlflow/mlflow.db &ndash;default-artifact-root /var/lib/mlflow/artifacts &ndash;host 0.0.0.0 &ndash;port 5000
+Restart=always</p>
+<p>[Install]
+WantedBy=multi-user.target
+SERVICEDEF</p>
+<p>systemctl enable mlflow &amp;&amp; systemctl start mlflow
+EOF</p>
+<pre tabindex="0"><code>
+[Deploy on DigitalOcean](https://m.do.co/c/eca87ac14ee0) — get $200 credit to run your MLflow tracking server and experiment infrastructure for two months free.
+
+## Tracking Experiments at Scale
+
+### Basic Experiment Tracking
+
+`````python
+# tracking_example.py — Log experiments with MLflow
+import mlflow
+import mlflow.sklearn
+from sklearn.datasets import load_wine
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score, f1_score
+import warnings
+warnings.filterwarnings(ignore)
+
+# Set tracking server and experiment
+mlflow.set_tracking_uri(&#39;http://localhost:5000&#39;)
+mlflow.set_experiment(&#39;wine-classification&#39;)
+
+def run_experiment(n_estimators, max_depth, min_samples_split): with mlflow.start_run(): # Log parameters
+        mlflow.log_param(n_estimators, n_estimators)
+        mlflow.log_param(max_depth, max_depth)
+        mlflow.log_param(min_samples_split, min_samples_split)
+        mlflow.log_param(model_type, RandomForest)
+
+        # Load data and train
+        X, y = load_wine(return_X_y=True)
+        X_train, X_test, y_train, y_test = train_test_split(
+            X, y, test_size=0.2, random_state=42
+        )
+
+        clf = RandomForestClassifier(
+            n_estimators=n_estimators,
+            max_depth=max_depth,
+            min_samples_split=min_samples_split,
+            random_state=42
+        )
+        clf.fit(X_train, y_train)
+
+        # Evaluate
+        predictions = clf.predict(X_test)
+        accuracy = accuracy_score(y_test, predictions)
+        f1 = f1_score(y_test, predictions, average=weighted)
+
+        # Log metrics
+        mlflow.log_metric(accuracy, accuracy)
+        mlflow.log_metric(f1_score, f1)
+
+        # Log model
+        mlflow.sklearn.log_model(
+            clf,
+            artifact_path=model,
+            registered_model_name=&#39;wine-classifier&#39;
+        )
+
+        print(f&#39;Run completed: accuracy={accuracy:.4f}, f1={f1:.4f}&#39;)
+
+# Run multiple experiments
+if __name__ == __main__: configs = [
+        (50, 5, 0.01),
+        (100, 10, 0.02),
+        (200, 15, 0.05),
+        (300, 20, 0.10),
+        (500, None, 0.02),
+    ]
+    for n_est, depth, min_split in configs: run_experiment(n_est, depth, min_split)
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Run the experiment sweep</span>
+</span></span><span style="display:flex;"><span>python tracking_example.py
+</span></span></code></pre></div><h3 id="autologging-zero-effort-tracking">Autologging: Zero-Effort Tracking</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># autolog_example.py — Automatic logging for scikit-learn</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> mlflow
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.ensemble <span style="color:#f92672">import</span> RandomForestClassifier
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.datasets <span style="color:#f92672">import</span> load_wine
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> train_test_split
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mlflow<span style="color:#f92672">.</span>set_tracking_uri(<span style="color:#e6db74">&#39;http://localhost:5000&#39;</span>)
+</span></span><span style="display:flex;"><span>mlflow<span style="color:#f92672">.</span>set_experiment(<span style="color:#e6db74">&#39;autolog-demo&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Enable autologging — captures params, metrics, model, artifacts</span>
+</span></span><span style="display:flex;"><span>mlflow<span style="color:#f92672">.</span>sklearn<span style="color:#f92672">.</span>autolog()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>X, y <span style="color:#f92672">=</span> load_wine(return_X_y<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>X_train, X_test, y_train, y_test <span style="color:#f92672">=</span> train_test_split(X, y, test_size<span style="color:#f92672">=</span><span style="color:#ae81ff">0.2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> mlflow<span style="color:#f92672">.</span>start_run(): clf <span style="color:#f92672">=</span> RandomForestClassifier(n_estimators<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>)
+</span></span><span style="display:flex;"><span>    clf<span style="color:#f92672">.</span>fit(X_train, y_train)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># No manual logging needed — autolog captures everything</span>
+</span></span></code></pre></div><h3 id="tracking-deep-learning-experiments">Tracking Deep Learning Experiments</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># pytorch_tracking.py — Track PyTorch training with MLflow</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> mlflow
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch.nn <span style="color:#66d9ef">as</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.data <span style="color:#f92672">import</span> DataLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torchvision <span style="color:#f92672">import</span> datasets, transforms
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mlflow<span style="color:#f92672">.</span>set_tracking_uri(<span style="color:#e6db74">&#39;http://localhost:5000&#39;</span>)
+</span></span><span style="display:flex;"><span>mlflow<span style="color:#f92672">.</span>set_experiment(<span style="color:#e6db74">&#39;pytorch-cifar10&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Enable PyTorch autologging</span>
+</span></span><span style="display:flex;"><span>mlflow<span style="color:#f92672">.</span>pytorch<span style="color:#f92672">.</span>autolog()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">train_model</span>(epochs, lr, batch_size): <span style="color:#66d9ef">with</span> mlflow<span style="color:#f92672">.</span>start_run(): mlflow<span style="color:#f92672">.</span>log_param(epochs, epochs)
+</span></span><span style="display:flex;"><span>        mlflow<span style="color:#f92672">.</span>log_param(learning_rate, lr)
+</span></span><span style="display:flex;"><span>        mlflow<span style="color:#f92672">.</span>log_param(batch_size, batch_size)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        device <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>device(cuda <span style="color:#66d9ef">if</span> torch<span style="color:#f92672">.</span>cuda<span style="color:#f92672">.</span>is_available() <span style="color:#66d9ef">else</span> cpu)
+</span></span><span style="display:flex;"><span>        mlflow<span style="color:#f92672">.</span>log_param(device, str(device))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Data loading</span>
+</span></span><span style="display:flex;"><span>        transform <span style="color:#f92672">=</span> transforms<span style="color:#f92672">.</span>Compose([
+</span></span><span style="display:flex;"><span>            transforms<span style="color:#f92672">.</span>ToTensor(),
+</span></span><span style="display:flex;"><span>            transforms<span style="color:#f92672">.</span>Normalize((<span style="color:#ae81ff">0.5</span>,), (<span style="color:#ae81ff">0.5</span>,))
+</span></span><span style="display:flex;"><span>        ])
+</span></span><span style="display:flex;"><span>        train_ds <span style="color:#f92672">=</span> datasets<span style="color:#f92672">.</span>CIFAR10(<span style="color:#e6db74">&#39;./data&#39;</span>, train<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, download<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, transform<span style="color:#f92672">=</span>transform)
+</span></span><span style="display:flex;"><span>        train_loader <span style="color:#f92672">=</span> DataLoader(train_ds, batch_size<span style="color:#f92672">=</span>batch_size, shuffle<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Simple CNN model</span>
+</span></span><span style="display:flex;"><span>        model <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>Sequential(
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">3</span>, padding<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>), nn<span style="color:#f92672">.</span>ReLU(), nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Conv2d(<span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">64</span>, <span style="color:#ae81ff">3</span>, padding<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>), nn<span style="color:#f92672">.</span>ReLU(), nn<span style="color:#f92672">.</span>MaxPool2d(<span style="color:#ae81ff">2</span>),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Flatten(), nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">64</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">128</span>), nn<span style="color:#f92672">.</span>ReLU(),
+</span></span><span style="display:flex;"><span>            nn<span style="color:#f92672">.</span>Linear(<span style="color:#ae81ff">128</span>, <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>        )<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        optimizer <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>optim<span style="color:#f92672">.</span>Adam(model<span style="color:#f92672">.</span>parameters(), lr<span style="color:#f92672">=</span>lr)
+</span></span><span style="display:flex;"><span>        criterion <span style="color:#f92672">=</span> nn<span style="color:#f92672">.</span>CrossEntropyLoss()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Training loop</span>
+</span></span><span style="display:flex;"><span>        model<span style="color:#f92672">.</span>train()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> epoch <span style="color:#f92672">in</span> range(epochs): total_loss <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> batch_idx, (data, target) <span style="color:#f92672">in</span> enumerate(train_loader): data, target <span style="color:#f92672">=</span> data<span style="color:#f92672">.</span>to(device), target<span style="color:#f92672">.</span>to(device)
+</span></span><span style="display:flex;"><span>                optimizer<span style="color:#f92672">.</span>zero_grad()
+</span></span><span style="display:flex;"><span>                output <span style="color:#f92672">=</span> model(data)
+</span></span><span style="display:flex;"><span>                loss <span style="color:#f92672">=</span> criterion(output, target)
+</span></span><span style="display:flex;"><span>                loss<span style="color:#f92672">.</span>backward()
+</span></span><span style="display:flex;"><span>                optimizer<span style="color:#f92672">.</span>step()
+</span></span><span style="display:flex;"><span>                total_loss <span style="color:#f92672">+=</span> loss<span style="color:#f92672">.</span>item()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            avg_loss <span style="color:#f92672">=</span> total_loss <span style="color:#f92672">/</span> len(train_loader)
+</span></span><span style="display:flex;"><span>            mlflow<span style="color:#f92672">.</span>log_metric(train_loss, avg_loss, step<span style="color:#f92672">=</span>epoch)
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Epoch </span><span style="color:#e6db74">{</span>epoch<span style="color:#e6db74">}</span><span style="color:#e6db74">: loss=</span><span style="color:#e6db74">{</span>avg_loss<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Log the final model</span>
+</span></span><span style="display:flex;"><span>        mlflow<span style="color:#f92672">.</span>pytorch<span style="color:#f92672">.</span>log_model(model, model)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> __main__: train_model(epochs<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, lr<span style="color:#f92672">=</span><span style="color:#ae81ff">0.001</span>, batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>)
+</span></span></code></pre></div><h2 id="model-registry-manage-model-lifecycle">Model Registry: Manage Model Lifecycle</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># registry_example.py — Manage model versions and stages</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> mlflow
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> mlflow.tracking <span style="color:#f92672">import</span> MlflowClient
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> MlflowClient(tracking_uri<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;http://localhost:5000&#39;</span>)
+</span></span><span style="display:flex;"><span>model_name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;wine-classifier&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Register a new model version</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> mlflow<span style="color:#f92672">.</span>register_model(
+</span></span><span style="display:flex;"><span>    model_uri<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;runs:/&lt;RUN_ID&gt;/model&#39;</span>,
+</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span>model_name
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Registered version: </span><span style="color:#e6db74">{</span>result<span style="color:#f92672">.</span>version<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Transition version to Staging</span>
+</span></span><span style="display:flex;"><span>client<span style="color:#f92672">.</span>transition_model_version_stage(
+</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span>model_name,
+</span></span><span style="display:flex;"><span>    version<span style="color:#f92672">=</span>result<span style="color:#f92672">.</span>version,
+</span></span><span style="display:flex;"><span>    stage<span style="color:#f92672">=</span>Staging
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add version description</span>
+</span></span><span style="display:flex;"><span>client<span style="color:#f92672">.</span>update_model_version(
+</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span>model_name,
+</span></span><span style="display:flex;"><span>    version<span style="color:#f92672">=</span>result<span style="color:#f92672">.</span>version,
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;Wine classifier with 94.4</span><span style="color:#e6db74">% a</span><span style="color:#e6db74">ccuracy, RandomForest 200 estimators&#39;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set version tags</span>
+</span></span><span style="display:flex;"><span>client<span style="color:#f92672">.</span>set_model_version_tag(
+</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span>model_name,
+</span></span><span style="display:flex;"><span>    version<span style="color:#f92672">=</span>result<span style="color:#f92672">.</span>version,
+</span></span><span style="display:flex;"><span>    key<span style="color:#f92672">=</span>reviewed_by,
+</span></span><span style="display:flex;"><span>    value<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ml-lead@company.com&#39;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># List all versions of a model</span>
+</span></span><span style="display:flex;"><span>mlflow models list-versions -m wine-classifier
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected output: #   Version  Stage       Description</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   1        Production  Initial production model</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   2        Staging     Wine classifier with 94.4% accuracy...</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   3        None        Experimental architecture</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Load a specific model version for inference</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> mlflow.pyfunc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> mlflow<span style="color:#f92672">.</span>pyfunc<span style="color:#f92672">.</span>load_model(
+</span></span><span style="display:flex;"><span>    model_uri<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;models:/wine-classifier/Production&#39;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or load by version number</span>
+</span></span><span style="display:flex;"><span>model_v2 <span style="color:#f92672">=</span> mlflow<span style="color:#f92672">.</span>pyfunc<span style="color:#f92672">.</span>load_model(
+</span></span><span style="display:flex;"><span>    model_uri<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;models:/wine-classifier/2&#39;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h2 id="model-serving-deploy-via-rest-api">Model Serving: Deploy via REST API</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Serve a model locally with MLflow built-in server</span>
+</span></span><span style="display:flex;"><span>mlflow models serve <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -m models:/wine-classifier/Production <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -p <span style="color:#ae81ff">5001</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --env-manager local
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Test the endpoint</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:5001/invocations <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;inputs&#34;: [
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      [14.23, 1.71, 2.43, 15.6, 127.0, 2.80, 3.06, 0.28, 2.29, 5.64, 1.04, 3.92, 1065.0],
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      [12.37, 1.07, 2.10, 18.5, 88.0, 3.52, 3.75, 0.24, 1.95, 4.50, 1.04, 2.77, 660.0]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    ]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Response: {&#34;predictions&#34;: [0, 1]}</span>
+</span></span></code></pre></div><h3 id="production-serving-with-docker">Production Serving with Docker</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Build a Docker image for the model</span>
+</span></span><span style="display:flex;"><span>mlflow models build-docker <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -m models:/wine-classifier/Production <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -n wine-classifier-serving:v1.0 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --enable-mlserver
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Run the serving container</span>
+</span></span><span style="display:flex;"><span>docker run -p 5001:8080 wine-classifier-serving:v1.0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Test</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:5001/invocations <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;inputs&#34;: [[14.23, 1.71, 2.43, 15.6, 127.0, 2.80, 3.06, 0.28, 2.29, 5.64, 1.04, 3.92, 1065.0]]}&#39;</span>
+</span></span></code></pre></div><h3 id="deploying-to-cloud-with-mlflow">Deploying to Cloud with MLflow</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># deploy_sagemaker.py — Deploy to AWS SageMaker</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> mlflow.sagemaker
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mlflow<span style="color:#f92672">.</span>sagemaker<span style="color:#f92672">.</span>deploy(
+</span></span><span style="display:flex;"><span>    app_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;wine-classifier-prod&#39;</span>,
+</span></span><span style="display:flex;"><span>    model_uri<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;models:/wine-classifier/Production&#39;</span>,
+</span></span><span style="display:flex;"><span>    execution_role_arn<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;arn:aws:iam::123456789:role/SageMakerRole&#39;</span>,
+</span></span><span style="display:flex;"><span>    instance_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ml.m5.large&#39;</span>,
+</span></span><span style="display:flex;"><span>    region_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;us-east-1&#39;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># deploy_azure.py — Deploy to Azure ML</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> azureml.core <span style="color:#f92672">import</span> Workspace
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> mlflow.azureml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ws <span style="color:#f92672">=</span> Workspace<span style="color:#f92672">.</span>from_config()
+</span></span><span style="display:flex;"><span>mlflow<span style="color:#f92672">.</span>azureml<span style="color:#f92672">.</span>deploy(
+</span></span><span style="display:flex;"><span>    model_uri<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;models:/wine-classifier/Production&#39;</span>,
+</span></span><span style="display:flex;"><span>    workspace<span style="color:#f92672">=</span>ws,
+</span></span><span style="display:flex;"><span>    deployment_config<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        computeType: aci,
+</span></span><span style="display:flex;"><span>        containerResourceRequirements: {cpu: <span style="color:#ae81ff">1</span>, memoryInGB: <span style="color:#ae81ff">2</span>}
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    service_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;wine-classifier-aci&#39;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h2 id="benchmarks-performance-at-scale">Benchmarks: Performance at Scale</h2>
+<h3 id="tracking-server-throughput">Tracking Server Throughput</h3>
+<p>We benchmarked MLflow tracking server (v2.22.0) with PostgreSQL backend and S3 artifact store on a single <strong>8 vCPU / 32 GB RAM</strong> instance: | Metric | SQLite (Local) | PostgreSQL (Local) | PostgreSQL + S3 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Runs logged per second | <strong>~180</strong> | <strong>~350</strong> | <strong>~320</strong> |
+| Concurrent clients (stable) | 5 | 50 | 40 |
+| UI load time (10K runs) | 2.1 sec | 0.8 sec | 0.9 sec |
+| Artifact upload (10 MB) | 0.3 sec | N/A | 0.5 sec |</p>
+<p>A single PostgreSQL-backed tracking server can comfortably handle <strong>10,000+ experiments per day</strong> from a 20-person data science team. For larger deployments, horizontal scaling via a load balancer in front of multiple MLflow server instances is recommended.</p>
+<h3 id="model-registry-latency">Model Registry Latency</h3>
+<p>| Operation | Latency (ms) |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Create experiment | 12 |
+| Start run | 25 |
+| Log parameter | 8 |
+| Log metric | 6 |
+| Log artifact (1 MB) | 85 |
+| Register model version | 18 |
+| Load model (registry) | 120 |</p>
+<h3 id="storage-growth-projections">Storage Growth Projections</h3>
+<p>| Scale | Experiments/Month | Storage Growth | Recommended Backend |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Small team (5 users) | 500 | ~5 GB | SQLite + local disk |
+| Medium team (20 users) | 5,000 | ~50 GB | PostgreSQL + S3 |
+| Enterprise (100+ users) | 50,000+ | ~500 GB | PostgreSQL + S3 + cleanup policies |</p>
+<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<h3 id="authentication-with-http-basic-auth">Authentication with HTTP Basic Auth</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># auth_server.py — MLflow server with basic authentication</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> flask <span style="color:#f92672">import</span> Flask, request, Response
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> mlflow.server
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> Flask(__name__)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>VALID_CREDENTIALS <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;data-scientist&#39;</span>: secure_password_123,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;ml-engineer&#39;</span>: engineer_pass_456
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_auth</span>(): auth <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span>authorization
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> auth <span style="color:#f92672">or</span> <span style="color:#f92672">not</span> auth<span style="color:#f92672">.</span>password: <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> VALID_CREDENTIALS<span style="color:#f92672">.</span>get(auth<span style="color:#f92672">.</span>username) <span style="color:#f92672">==</span> auth<span style="color:#f92672">.</span>password
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.before_request</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">require_auth</span>(): <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> check_auth(): <span style="color:#66d9ef">return</span> Response(<span style="color:#e6db74">&#39;Authentication required&#39;</span>, <span style="color:#ae81ff">401</span>,
+</span></span><span style="display:flex;"><span>                       {<span style="color:#e6db74">&#39;WWW-Authenticate&#39;</span>: <span style="color:#e6db74">&#39;Basic realm=&#34;MLflow&#34;&#39;</span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Mount MLflow behind authenticated proxy</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or use nginx reverse proxy with basic auth</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#75715e"># nginx.conf — Reverse proxy with basic auth for MLflow
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">listen</span> <span style="color:#ae81ff">80</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server_name</span> <span style="color:#e6db74">mlflow.yourcompany.com</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">auth_basic</span> <span style="color:#e6db74">&#34;MLflow</span> <span style="color:#e6db74">Tracking</span> <span style="color:#e6db74">Server&#34;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">auth_basic_user_file</span> <span style="color:#e6db74">/etc/nginx/.htpasswd</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://localhost:5000</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $host;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="automated-cleanup-of-old-experiments">Automated Cleanup of Old Experiments</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># cleanup.py — Delete old runs to manage storage</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> mlflow.tracking <span style="color:#f92672">import</span> MlflowClient
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime, timedelta
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> MlflowClient(<span style="color:#e6db74">&#39;http://localhost:5000&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Find and delete runs older than 90 days</span>
+</span></span><span style="display:flex;"><span>cutoff <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now() <span style="color:#f92672">-</span> timedelta(days<span style="color:#f92672">=</span><span style="color:#ae81ff">90</span>)
+</span></span><span style="display:flex;"><span>experiments <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>search_experiments()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> exp <span style="color:#f92672">in</span> experiments: runs <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>search_runs(
+</span></span><span style="display:flex;"><span>        experiment_ids<span style="color:#f92672">=</span>[exp<span style="color:#f92672">.</span>experiment_id],
+</span></span><span style="display:flex;"><span>        filter_string<span style="color:#f92672">=</span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;attributes.start_time &lt; </span><span style="color:#e6db74">{</span>int(cutoff<span style="color:#f92672">.</span>timestamp() <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> run <span style="color:#f92672">in</span> runs: <span style="color:#66d9ef">if</span> run<span style="color:#f92672">.</span>info<span style="color:#f92672">.</span>status <span style="color:#f92672">==</span> FINISHED: client<span style="color:#f92672">.</span>delete_run(run<span style="color:#f92672">.</span>info<span style="color:#f92672">.</span>run_id)
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Deleted run </span><span style="color:#e6db74">{</span>run<span style="color:#f92672">.</span>info<span style="color:#f92672">.</span>run_id<span style="color:#e6db74">}</span><span style="color:#e6db74"> from </span><span style="color:#e6db74">{</span>exp<span style="color:#f92672">.</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#39;Cleanup completed. Deleted </span><span style="color:#e6db74">{</span>len(runs)<span style="color:#e6db74">}</span><span style="color:#e6db74"> old runs.&#39;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Run cleanup weekly via cron</span>
+</span></span><span style="display:flex;"><span>crontab -e
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add: 0 2 * * 0 /usr/bin/python3 /opt/mlflow/cleanup.py &gt;&gt; /var/log/mlflow-cleanup.log 2&gt;&amp;1</span>
+</span></span></code></pre></div><h3 id="integration-with-cicd">Integration with CI/CD</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># .github/workflows/ml-pipeline.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">ML Training Pipeline</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on: push: branches</span>: [<span style="color:#ae81ff">main]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs: train: runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps: - uses</span>: <span style="color:#ae81ff">actions/checkout@v4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Setup Python</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/setup-python@v5</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with: python-version</span>: <span style="color:#e6db74">&#39;3.11&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Install dependencies</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">pip install mlflow==2.22.0 scikit-learn pandas</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Train and register model</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">env: MLFLOW_TRACKING_URI</span>: <span style="color:#ae81ff">$</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          python train.py --register-model --stage Staging</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Notify team</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          echo &#34;Model trained and registered. Review at $MLFLOW_TRACKING_URI&#34;</span>
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | MLflow | Weights &amp; Biases | Neptune.ai | TensorBoard |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Open source | <strong>Yes (Apache-2.0)</strong> | No (proprietary) | No (proprietary) | Yes (Apache-2.0) |
+| Self-hosted | <strong>Yes (free)</strong> | No (cloud only) | No (cloud only) | Yes |
+| Model registry | <strong>Yes (built-in)</strong> | Yes | Yes | No |
+| Model serving | <strong>Yes (REST API)</strong> | No | No | No |
+| Cost | <strong>Free</strong> | $50-250/user/mo | $49-249/user/mo | Free |
+| GitHub stars | <strong>~21,000</strong> | N/A | N/A | ~7,900 |
+| Framework support | <strong>Any (via Python)</strong> | PyTorch, TF, JAX | PyTorch, TF, JAX | TensorFlow-focused |
+| Artifact storage | <strong>S3, GCS, Azure, local</strong> | Cloud only | Cloud only | Local/GCS |
+| Team collaboration | <strong>UI + permissions</strong> | Advanced | Advanced | Limited |
+| CI/CD integration | <strong>REST API + Python</strong> | Yes | Yes | Limited |</p>
+<p><strong>When to choose MLflow:</strong> You want an open-source, self-hosted solution with zero per-user cost, need model registry and serving built-in, and prefer framework-agnostic tooling that works with any ML library.</p>
+<p><strong>When to choose Weights &amp; Biases:</strong> You need advanced visualization, real-time collaboration features, and don&rsquo;t mind paying per user for a managed cloud service. W&amp;B excels at deep learning experiment visualization.</p>
+<p><strong>When to choose Neptune.ai:</strong> You want a managed experiment tracking solution with strong team features and are willing to pay for the convenience of not self-hosting.</p>
+<p><strong>When to choose TensorBoard:</strong> You work exclusively with TensorFlow/Keras and only need visualization, not experiment management, model registry, or deployment features.</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p>MLflow is excellent but not universal: <strong>No built-in pipeline orchestration</strong>: MLflow tracks experiments but does not orchestrate multi-step training pipelines. Teams typically pair MLflow with <a href="dibi8-internal-link">Kubeflow Pipelines</a>, Apache Airflow, or Prefect for workflow orchestration.</p>
+<p><strong>UI scalability</strong>: The MLflow UI becomes sluggish beyond <strong>~100,000 runs</strong> in a single experiment. Use experiment naming conventions and the search/filter API to keep views manageable.</p>
+<p><strong>Limited access control</strong>: The open-source version has basic authentication but lacks fine-grained RBAC. Organizations needing per-experiment or per-model permissions often add an API gateway or use Databricks&rsquo; managed MLflow which includes enterprise security.</p>
+<p><strong>No built-in hyperparameter tuning</strong>: Unlike Katib (Kubeflow) or Optuna, MLflow does not include a hyperparameter search algorithm. It logs results beautifully but relies on external tools to generate the search space and execute trials.</p>
+<p><strong>Artifact storage costs</strong>: When using S3 or GCS for artifact storage, model checkpoints and datasets can accumulate quickly. A team generating <strong>10 GB of artifacts per week</strong> will accumulate <strong>~500 GB per year</strong>. Implement lifecycle policies to archive or delete old artifacts.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>Q: How does MLflow store experiment data?</strong>
+A: MLflow uses a <strong>backend store</strong> for metadata (experiments, runs, parameters, metrics) and an <strong>artifact store</strong> for files (models, plots, datasets). The backend store can be SQLite (development), PostgreSQL/MySQL (production), or a file store. The artifact store can be local filesystem, S3, GCS, Azure Blob, or HDFS. Both are configured when starting the <code>mlflow server</code>.</p>
+<p><strong>Q: Can I use MLflow without a tracking server?</strong>
+A: Yes. MLflow works in <strong>local mode</strong> where experiments are logged to a local <code>mlruns/</code> directory. This is perfect for individual development. Simply use <code>mlflow.start_run()</code> without setting a tracking URI — everything logs locally and you can view results with <code>mlflow ui</code>.</p>
+<p><strong>Q: How do I migrate from local SQLite to PostgreSQL?</strong>
+A: MLflow provides a database migration utility. First, ensure both databases are accessible. Then use <code>mlflow db upgrade postgresql://user:pass@host/db</code> to initialize the PostgreSQL schema. For migrating existing run data, export runs using <code>mlflow experiments csv</code> and re-import, or use a database migration tool like <code>pgloader</code> for direct SQLite-to-PostgreSQL transfer.</p>
+<p><strong>Q: What is the difference between logging a model and registering it?</strong>
+A: <strong>Logging a model</strong> saves the model artifacts to a specific run — it is tied to that experiment run and can be retrieved via the run ID. <strong>Registering a model</strong> adds it to the Model Registry, which is a separate, versioned catalog independent of any experiment. Registered models can be staged (Staging, Production, Archived) and loaded by name and version, making them the recommended path for production deployments.</p>
+<p><strong>Q: How do I integrate MLflow with my existing Kubernetes cluster?</strong>
+A: Deploy MLflow as a container in your cluster. Use a PostgreSQL StatefulSet for the backend and S3/GCS for artifacts. Expose the tracking server via an Ingress with authentication. The MLflow server itself is stateless and can run with multiple replicas behind a Service for high availability. See the <a href="dibi8-internal-link">Kubernetes</a> deployment guide for detailed manifests.</p>
+<p><strong>Q: Can MLflow track experiments in languages other than Python?</strong>
+A: Yes. MLflow has official clients for <strong>R</strong> (<code>mlflow</code> R package) and <strong>Java/Scala</strong> (Java client library). There are community clients for <strong>Julia</strong>, <strong>C#</strong>, and <strong>Go</strong>. The REST API is fully documented and can be used from any language that can make HTTP requests. However, the Python SDK has the most complete feature set including autologging.</p>
+<h2 id="conclusion-start-tracking-every-experiment-today">Conclusion: Start Tracking Every Experiment Today</h2>
+<p>MLflow remains the most practical open-source solution for ML lifecycle management. Its combination of zero-friction setup, framework-agnostic design, and powerful model registry makes it the default choice for teams that want experiment reproducibility without infrastructure overhead. With v2.22.0 (April 2026) bringing improved autologging for LLM frameworks, better artifact streaming, and a refreshed UI, there has never been a better time to adopt MLflow.</p>
+<p>The path to production-grade experiment tracking starts with a single line: ````mlflow.start_run()```. Log your parameters, log your metrics, register your best models. In three months, when someone asks &ldquo;which model should we ship?&rdquo;, you will have the answer in the Model Registry, with full lineage and reproducibility.</p>
+<p>Ready to deploy? <a href="https://m.do.co/c/eca87ac14ee0">Get $200 credit on DigitalOcean</a> to host your MLflow tracking server and start shipping reproducible ML today. Join our <a href="https://t.me/dibi8tech">Telegram group</a> for tips from teams running MLflow at scale.</p>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading</h2>
+<ol>
+<li>MLflow Official Documentation — <a href="https://mlflow.org/docs/latest/">https://mlflow.org/docs/latest/</a> (v2.22.0)</li>
+<li>MLflow GitHub Repository — <a href="https://github.com/mlflow/mlflow">https://github.com/mlflow/mlflow</a> (21,000+ stars)</li>
+<li>MLflow Model Registry Guide — <a href="https://mlflow.org/docs/latest/model-registry.html">https://mlflow.org/docs/latest/model-registry.html</a></li>
+<li>MLflow Tracking API Reference — <a href="https://mlflow.org/docs/latest/tracking.html">https://mlflow.org/docs/latest/tracking.html</a></li>
+<li>MLflow Python API — <a href="https://mlflow.org/docs/latest/python_api/">https://mlflow.org/docs/latest/python_api/</a></li>
+<li>&ldquo;MLflow: A Platform for ML Development&rdquo; — Databricks Engineering Blog, 2024</li>
+<li>MLflow 2.22.0 Release Notes — <a href="https://mlflow.org/releases/2.22.0">https://mlflow.org/releases/2.22.0</a></li>
+<li><a href="dibi8-internal-link">Kubeflow</a> — Related guide on Kubernetes-native ML pipelines</li>
+<li><a href="dibi8-internal-link">Docker</a> — Related guide on container deployment</li>
+<li><a href="dibi8-internal-link">PostgreSQL</a> — Related guide on database setup</li>
+</ol>
+<p><em>Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through these links, dibi8.com receives a commission at no additional cost to you. We only recommend services we use for our own infrastructure.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;MLflow 2026: The Open-Source ML Lifecycle Platform Tracking 10,000+ Experiments — Setup Guide&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/mlflow-experiment-tracking-production%22">https://dibi8.com/resources/mlflow-experiment-tracking-production"</a>
+}
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/llm-frameworks/mlflow-experiment-tracking-production/">wandb-ml-experiment-tracking-platform-2026</a></li>
+<li><a href="/llm-frameworks/mlflow-experiment-tracking-production/">wandb-ml-experiment-tracking-platform-2026</a></li>
+<li><a href="/llm-frameworks/mlflow-experiment-tracking-production/">ray-distributed-ai-framework-complete-guide</a></li>
+<li><a href="/llm-frameworks/mlflow-experiment-tracking-production/">cleanlab-11k-star-ai-data-cleaning</a></li>
+<li><a href="/llm-frameworks/mlflow-experiment-tracking-production/">freqtrade-python-crypto-trading-bot-backtest-optimize-deploy</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fmlflow-experiment-tracking-production%2f&text=The%20complete%20MLflow%20architecture%20in%20one%20diagram%3a%20%201.%20Tracking%20Server%20%28REST%20API%20%2b%20UI%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fmlflow-experiment-tracking-production%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

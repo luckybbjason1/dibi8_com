@@ -1,0 +1,806 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obscura: Rust Headless Browser for AI Agents — 14,000 Stars — 30MB Memory, 85ms Load — Setup Guide 2026 | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/obscura-rust-headless-browser-ai-agents-web-scraping/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Obscura: Rust Headless Browser for AI Agents — 14,000 Stars — 30MB Memory, 85ms Load — Setup Guide 2026</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Obscura: Rust Headless Browser for AI Agents — 14,000 Stars — 30MB Memory, 85ms Load — Setup Guide 2026</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <h1 id="obscura-rust-headless-browser-for-ai-agents--14000-stars--30mb-memory-85ms-load--setup-guide-2026">Obscura: Rust Headless Browser for AI Agents — 14,000 Stars — 30MB Memory, 85ms Load — Setup Guide 2026</h1>
+<pre tabindex="0"><code>┌───────────────────────────────────────────────────┐
+│             Obscura Architecture                    │
+│                                                     │
+│  ┌─────────────────────────────────────────────┐   │
+│  │           CLI / Server Interface              │   │
+│  │  fetch │ serve │ scrape │ eval │ dump        │   │
+│  └──────────────────────┬──────────────────────┘   │
+│                         │                           │
+│          ┌──────────────┼──────────────┐           │
+│          ▼              ▼              ▼           │
+│  ┌────────────┐  ┌────────────┐  ┌──────────┐    │
+│  │  fetch()   │  │  serve()   │  │ scrape() │    │
+│  │ Single page │  │ CDP server │  │ Parallel │    │
+│  └─────┬──────┘  └─────┬──────┘  └────┬─────┘    │
+│        │               │               │           │
+│        ▼               ▼               ▼           │
+│  ┌─────────────────────────────────────────────┐   │
+│  │           Rust Core Engine                   │   │
+│  │  • V8 JavaScript engine                      │   │
+│  │  • Chrome DevTools Protocol (CDP)            │   │
+│  │  • Stealth mode (anti-detection)             │   │
+│  │  • Tracker blocking                          │   │
+│  └─────────────────────────────────────────────┘   │
+│                                                     │
+│  ┌─────────────────────────────────────────────┐   │
+│  │     Drop-in replacement for Chrome           │   │
+│  │     ✅ Puppeteer      ✅ Playwright          │   │
+│  └─────────────────────────────────────────────┘   │
+└───────────────────────────────────────────────────┘
+</code></pre><p>Obscura is a headless browser engine written in Rust, purpose-built for web scraping and AI agent automation. At just 30MB of memory usage and 85ms page load times, it dramatically outperforms headless Chrome while providing built-in anti-detection features.</p>
+<p>Created by <code>h4ckf0r0day</code>, Obscura has reached 14,788 GitHub stars and is designed as a drop-in replacement for headless Chrome when used with Puppeteer and Playwright. The key differentiator: it runs real JavaScript via V8 but with a fraction of the resource overhead.</p>
+<p>This guide covers installation, CLI usage, CDP server setup, puppeteer/playwright integration, and production deployment.</p>
+<h2 id="what-is-obscura">What Is Obscura?</h2>
+<p>Obscura is a headless browser engine that implements the Chrome DevTools Protocol (CDP) in Rust. Unlike headless Chrome, which is essentially a stripped-down Chrome browser, Obscura is built from the ground up for automation — not desktop browsing.</p>
+<p>The key metrics that set Obscura apart: | Metric | Obscura | Headless Chrome |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Memory | <strong>30 MB</strong> | 200+ MB |
+| Binary size | <strong>70 MB</strong> | 300+ MB |
+| Anti-detect | <strong>Built-in</strong> | None |
+| Page load | <strong>85 ms</strong> | ~500 ms |
+| Startup | <strong>Instant</strong> | ~2 seconds |
+| Puppeteer | <strong>Yes</strong> | Yes |
+| Playwright | <strong>Yes</strong> | Yes |</p>
+<p>This isn&rsquo;t a toy — it&rsquo;s a production-grade browser engine that happens to be 7x more memory-efficient than Chrome.</p>
+<h3 id="why-obscura">Why &ldquo;Obscura&rdquo;?</h3>
+<p>The name references the Latin word for &ldquo;darkness&rdquo; or &ldquo;hidden&rdquo; — apt for a browser built for stealth. In an era of bot detection, AI agent fingerprinting, and anti-scraping measures, Obscura provides built-in anti-detection capabilities that headless Chrome simply doesn&rsquo;t have.</p>
+<h2 id="how-obscura-works">How Obscura Works</h2>
+<p>Obscura uses the V8 JavaScript engine (the same engine that powers Chrome and Node.js) to execute JavaScript, but its browser rendering pipeline is custom-built in Rust. This means it gets Chrome-level JavaScript compatibility with Rust-level performance.</p>
+<pre tabindex="0"><code>Request (fetch / scrape / serve)
+    │
+    ▼
+┌─────────────────────────────┐
+│    Command Parser            │
+│  (CLI args, CDP commands)    │
+└─────────────┬───────────────┘
+              │
+              ▼
+┌─────────────────────────────┐
+│    Navigation Manager        │
+│  (URL resolution, redirects, │
+│   proxy handling)            │
+└─────────────┬───────────────┘
+              │
+              ▼
+┌─────────────────────────────┐
+│    V8 JavaScript Engine      │
+│  (JS execution, DOM building, │
+│   CSS rendering, APIs)       │
+└─────────────┬───────────────┘
+              │
+              ▼
+┌─────────────────────────────┐
+│    Output Processor          │
+│  (HTML dump, JSON, text,     │
+│   eval result, assets)       │
+└─────────────────────────────┘
+</code></pre><p>The <code>serve</code> command starts a CDP-compatible server that accepts connections from Puppeteer and Playwright. The <code>fetch</code> command runs one-off page operations. The <code>scrape</code> command runs parallel page operations with configurable concurrency.</p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<h3 id="binary-install-recommended">Binary Install (Recommended)</h3>
+<p>Download the latest binary from the <a href="https://github.com/h4ckf0r0day/obscura/releases">Releases page</a>: `````bash</p>
+<h1 id="linux-x86_64">Linux x86_64</h1>
+<p>curl -LO <a href="https://github.com/h4ckf0r0day/obscura/releases/latest/download/obscura-x86_64-linux.tar.gz">https://github.com/h4ckf0r0day/obscura/releases/latest/download/obscura-x86_64-linux.tar.gz</a>
+tar xzf obscura-x86_64-linux.tar.gz
+./obscura fetch <a href="https://example.com">https://example.com</a> &ndash;eval &ldquo;document.title&rdquo;</p>
+<h1 id="linux-arm64-aarch64">Linux ARM64 (aarch64)</h1>
+<p>curl -LO <a href="https://github.com/h4ckf0r0day/obscura/releases/latest/download/obscura-aarch64-linux.tar.gz">https://github.com/h4ckf0r0day/obscura/releases/latest/download/obscura-aarch64-linux.tar.gz</a>
+tar xzf obscura-aarch64-linux.tar.gz</p>
+<h1 id="macos-apple-silicon">macOS Apple Silicon</h1>
+<p>curl -LO <a href="https://github.com/h4ckf0r0day/obscura/releases/latest/download/obscura-aarch64-macos.tar.gz">https://github.com/h4ckf0r0day/obscura/releases/latest/download/obscura-aarch64-macos.tar.gz</a>
+tar xzf obscura-aarch64-macos.tar.gz</p>
+<h1 id="macos-intel">macOS Intel</h1>
+<p>curl -LO <a href="https://github.com/h4ckf0r0day/obscura/releases/latest/download/obscura-x86_64-macos.tar.gz">https://github.com/h4ckf0r0day/obscura/releases/latest/download/obscura-x86_64-macos.tar.gz</a>
+tar xzf obscura-x86_64-macos.tar.gz</p>
+<h1 id="windows">Windows</h1>
+<h1 id="download-the-zip-from-the-releases-page-and-extract-manually">Download the .zip from the releases page and extract manually</h1>
+<pre tabindex="0"><code>
+No Chrome, no Node.js, no dependencies. Release archives include both ````obscura```` and ````obscura-worker```` binaries — keep them in the same directory for the parallel ````scrape```` command.
+
+Linux releases target Ubuntu 22.04 (glibc 2.35+) for compatibility with common LTS servers.
+
+### Arch Linux (AUR)
+
+`````bash
+yay -S obscura-browser
+</code></pre><h3 id="docker">Docker</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d --name obscura -p 127.0.0.1:9222:9222 h4ckf0r0day/obscura
+</span></span></code></pre></div><p>The Docker image is multi-stage built on <code>distroless/cc</code> — no shell, no package manager, approximately 57 MB compressed.</p>
+<h3 id="build-from-source">Build from Source</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/h4ckf0r0day/obscura.git
+</span></span><span style="display:flex;"><span>cd obscura
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Standard build (first build takes ~5 min due to V8 compilation)</span>
+</span></span><span style="display:flex;"><span>cargo build --release
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># With stealth mode (anti-detection + tracker blocking)</span>
+</span></span><span style="display:flex;"><span>cargo build --release --features stealth
+</span></span></code></pre></div><p>Requires Rust 1.75+ (<a href="https://rustup.rs">rustup.rs</a>). Subsequent builds are fast thanks to cargo&rsquo;s caching.</p>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="fetch-a-page">Fetch a Page</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Get the page title</span>
+</span></span><span style="display:flex;"><span>obscura fetch https://example.com --eval <span style="color:#e6db74">&#34;document.title&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Extract all links</span>
+</span></span><span style="display:flex;"><span>obscura fetch https://example.com --dump links
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Render JavaScript and dump HTML</span>
+</span></span><span style="display:flex;"><span>obscura fetch https://news.ycombinator.com --dump html
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Write output to a file</span>
+</span></span><span style="display:flex;"><span>obscura fetch https://example.com --dump text --output page.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Stream raw response body (binary-safe; for images, JSON, CSS)</span>
+</span></span><span style="display:flex;"><span>obscura fetch https://picsum.photos/200/300 --dump original &gt; photo.jpg
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># List every sub-resource URL (NDJSON format)</span>
+</span></span><span style="display:flex;"><span>obscura fetch https://example.com --dump assets
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Fetch through a proxy</span>
+</span></span><span style="display:flex;"><span>obscura --proxy socks5://127.0.0.1:1080 fetch https://example.com --dump text
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Wait for dynamic content to load</span>
+</span></span><span style="display:flex;"><span>obscura fetch https://example.com --wait-until networkidle0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set navigation timeout for slow pages</span>
+</span></span><span style="display:flex;"><span>obscura fetch https://example.com --timeout <span style="color:#ae81ff">10</span>
+</span></span></code></pre></div><h3 id="start-the-cdp-server">Start the CDP Server</h3>
+<p>For Puppeteer/Playwright compatibility: `````bash</p>
+<h1 id="standard-cdp-server">Standard CDP server</h1>
+<p>obscura serve &ndash;port 9222</p>
+<h1 id="with-stealth-mode-anti-detection--tracker-blocking">With stealth mode (anti-detection + tracker blocking)</h1>
+<p>obscura serve &ndash;port 9222 &ndash;stealth</p>
+<pre tabindex="0"><code>
+Once running, connect with Puppeteer or Playwright: `````javascript
+// Puppeteer connection
+const puppeteer = require(&#39;puppeteer-core&#39;);
+
+const browser = await puppeteer.connect({
+  browserURL: &#39;http://127.0.0.1:9222&#39;,
+});
+
+const page = await browser.newPage();
+await page.goto(&#39;https://example.com&#39;);
+console.log(await page.title());
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Playwright connection
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">chromium</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;@playwright/test&#39;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">browser</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">chromium</span>.<span style="color:#a6e22e">connectOverCDP</span>(<span style="color:#e6db74">&#39;http://127.0.0.1:9222&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">context</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">browser</span>.<span style="color:#a6e22e">newContext</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">page</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">newPage</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">page</span>.<span style="color:#66d9ef">goto</span>(<span style="color:#e6db74">&#39;https://example.com&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#66d9ef">await</span> <span style="color:#a6e22e">page</span>.<span style="color:#a6e22e">title</span>());
+</span></span></code></pre></div><h3 id="scrape-in-parallel">Scrape in Parallel</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Scrape multiple pages in parallel</span>
+</span></span><span style="display:flex;"><span>obscura scrape url1 url2 url3 ... <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --concurrency <span style="color:#ae81ff">25</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --eval <span style="color:#e6db74">&#34;document.querySelector(&#39;h1&#39;).textContent&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Scrape and save results</span>
+</span></span><span style="display:flex;"><span>obscura scrape site.com/page1 site.com/page2 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --concurrency <span style="color:#ae81ff">50</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --dump html <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --output-dir ./scraped/
+</span></span></code></pre></div><p>The <code>scrape</code> command requires both <code>obscura</code> and <code>obscura-worker</code> binaries in the same directory.</p>
+<h2 id="integration-with-popular-frameworks">Integration with Popular Frameworks</h2>
+<h3 id="puppeteer-integration">Puppeteer Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Use Obscura as a Puppeteer browser
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">puppeteer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;puppeteer-extra&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">StealthPlugin</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;puppeteer-extra-plugin-stealth&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">puppeteer</span>.<span style="color:#a6e22e">use</span>(<span style="color:#a6e22e">StealthPlugin</span>());
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Connect to Obscura CDP server
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">browser</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">puppeteer</span>.<span style="color:#a6e22e">connect</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">browserURL</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;http://localhost:9222&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">defaultViewport</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Your existing Puppeteer code works unchanged
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">page</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">browser</span>.<span style="color:#a6e22e">newPage</span>();
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">page</span>.<span style="color:#66d9ef">goto</span>(<span style="color:#e6db74">&#39;https://target-site.com&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">page</span>.<span style="color:#a6e22e">$$eval</span>(<span style="color:#e6db74">&#39;.item&#39;</span>, <span style="color:#a6e22e">items</span> =&gt;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">items</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">i</span> =&gt; <span style="color:#a6e22e">i</span>.<span style="color:#a6e22e">textContent</span>)
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h3 id="playwright-integration">Playwright Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Python Playwright connection</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> playwright.sync_api <span style="color:#f92672">import</span> sync_playwright
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> sync_playwright() <span style="color:#66d9ef">as</span> p: browser <span style="color:#f92672">=</span> p<span style="color:#f92672">.</span>chromium<span style="color:#f92672">.</span>connect_over_cdp(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;http://localhost:9222&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    page <span style="color:#f92672">=</span> browser<span style="color:#f92672">.</span>new_page()
+</span></span><span style="display:flex;"><span>    page<span style="color:#f92672">.</span>goto(<span style="color:#e6db74">&#34;https://example.com&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(page<span style="color:#f92672">.</span>title())
+</span></span><span style="display:flex;"><span>    browser<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div><h3 id="ai-agent-integration">AI Agent Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Use Obscura in an AI agent workflow</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> subprocess
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fetch_page_text</span>(url): <span style="color:#e6db74">&#34;&#34;&#34;Fetch a page and extract text using Obscura&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> subprocess<span style="color:#f92672">.</span>run(
+</span></span><span style="display:flex;"><span>        [<span style="color:#e6db74">&#34;./obscura&#34;</span>, <span style="color:#e6db74">&#34;fetch&#34;</span>, url, <span style="color:#e6db74">&#34;--dump&#34;</span>, <span style="color:#e6db74">&#34;text&#34;</span>],
+</span></span><span style="display:flex;"><span>        capture_output<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, text<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> result<span style="color:#f92672">.</span>stdout
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># AI agent can use this to fetch and analyze web content</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">analyze_page</span>(agent, url): content <span style="color:#f92672">=</span> fetch_page_text(url)
+</span></span><span style="display:flex;"><span>    agent<span style="color:#f92672">.</span>prompt(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Analyze this page content:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">{</span>content<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="web-scraping-pipeline">Web Scraping Pipeline</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Automated scraping pipeline using Obscura</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define target URLs</span>
+</span></span><span style="display:flex;"><span>urls<span style="color:#f92672">=(</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;https://example.com/page1&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;https://example.com/page2&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;https://example.com/page3&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Scrape all pages in parallel</span>
+</span></span><span style="display:flex;"><span>obscura scrape <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>urls[@]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --concurrency <span style="color:#ae81ff">20</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --dump html <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --output-dir ./output/ <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --timeout <span style="color:#ae81ff">15</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Post-process results</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> f in ./output/*.html; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  echo <span style="color:#e6db74">&#34;Processing: </span><span style="color:#66d9ef">$(</span>basename $f<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>  ./obscura fetch <span style="color:#e6db74">&#34;</span>$f<span style="color:#e6db74">&#34;</span> --dump text --output <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>f%.html<span style="color:#e6db74">}</span><span style="color:#e6db74">.txt&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><h2 id="benchmarks--performance">Benchmarks &amp; Performance</h2>
+<h3 id="resource-usage">Resource Usage</h3>
+<p>| Scenario | Obscura | Headless Chrome |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Idle browser | 30 MB RAM | 200+ MB RAM |
+| Single page load | ~5 MB additional | ~50 MB additional |
+| 100 concurrent pages | ~300 MB total | ~20+ GB total |
+| Binary size | 70 MB | 300+ MB |
+| Docker image | 57 MB (distroless) | 500+ MB |</p>
+<h3 id="page-load-performance">Page Load Performance</h3>
+<p>| Page Type | Obscura | Headless Chrome |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Static HTML | ~15 ms | ~80 ms |
+| JS-rendered SPA | ~85 ms | ~500 ms |
+| Heavy dashboard | ~200 ms | ~1500 ms |
+| Page startup | Instant | ~2 seconds |</p>
+<h3 id="memory-scaling-test-100-concurrent-pages">Memory Scaling Test (100 concurrent pages)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Test with Obscura</span>
+</span></span><span style="display:flex;"><span>obscura scrape <span style="color:#66d9ef">$(</span>seq -w <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">100</span> | sed <span style="color:#e6db74">&#39;s/^/https://example.com\/page_/&#39;</span><span style="color:#66d9ef">)</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --concurrency <span style="color:#ae81ff">100</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --dump text <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --output /dev/null
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Total RAM: ~280-320 MB</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Equivalent test with headless Chrome (Puppeteer)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Total RAM: ~15-25 GB</span>
+</span></span></code></pre></div><h2 id="advanced-usage">Advanced Usage</h2>
+<h3 id="stealth-mode">Stealth Mode</h3>
+<p>The stealth feature provides built-in anti-detection capabilities: `````bash</p>
+<h1 id="build-with-stealth-support">Build with stealth support</h1>
+<p>cargo build &ndash;release &ndash;features stealth</p>
+<h1 id="or-use-the-binary-with-stealth-flag">Or use the binary with stealth flag</h1>
+<p>./obscura serve &ndash;port 9222 &ndash;stealth</p>
+<h1 id="stealth-mode-includes----navigator-plugin-spoofing">Stealth mode includes: # - Navigator plugin spoofing</h1>
+<h1 id="--webgl-renderer-obfuscation">- WebGL renderer obfuscation</h1>
+<h1 id="--permissions-api-handling">- Permissions API handling</h1>
+<h1 id="--chrome-runtime-property-masking">- Chrome runtime property masking</h1>
+<h1 id="--tracker-script-blocking">- Tracker script blocking</h1>
+<pre tabindex="0"><code>
+### Proxy Support
+
+`````bash
+# HTTP proxy
+obscura --proxy http://user:pass@proxy.example.com:8080 \
+  fetch https://example.com
+
+# SOCKS5 proxy
+obscura --proxy socks5://127.0.0.1:1080 \
+  fetch https://example.com
+
+# Proxy with Puppeteer
+const browser = await puppeteer.connect({
+  browserURL: &#39;http://localhost:9222&#39;,
+  defaultBrowserOptions: {
+    args: [--proxy-server=http://proxy:8080]
+  }
+});
+</code></pre><h3 id="custom-navigation-options">Custom Navigation Options</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Wait for specific element to appear</span>
+</span></span><span style="display:flex;"><span>obscura fetch https://example.com <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --wait-selector <span style="color:#e6db74">&#34;.content-loaded&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Wait for specific network condition</span>
+</span></span><span style="display:flex;"><span>obscura fetch https://example.com <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --wait-until networkidle0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Custom viewport size</span>
+</span></span><span style="display:flex;"><span>obscura fetch https://example.com <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --viewport 1920x1080
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># User agent override</span>
+</span></span><span style="display:flex;"><span>obscura fetch https://example.com <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --user-agent <span style="color:#e6db74">&#34;Mozilla/5.0 (compatible; MyBot/1.0)&#34;</span>
+</span></span></code></pre></div><h3 id="cookie-and-session-management">Cookie and Session Management</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Set cookies before loading a page</span>
+</span></span><span style="display:flex;"><span>obscura --cookie <span style="color:#e6db74">&#34;session=abc123; token=xyz789&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  fetch https://private.example.com
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Extract cookies from a session</span>
+</span></span><span style="display:flex;"><span>obscura fetch https://example.com <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --dump cookies --output cookies.json
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | Obscura | Headless Chrome | Playwright Browser | Selenium |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Memory usage | 30 MB | 200+ MB | 150+ MB | 300+ MB |
+| Language | Rust | C++ | TypeScript/JS | Multi |
+| CDP support | Native | Native | Via Chrome | Via Chrome |
+| Puppeteer | ✅ Yes | ✅ Yes | ✅ Yes | ❌ No |
+| Playwright | ✅ Yes | ✅ Yes | ✅ Yes | ❌ No |
+| Anti-detect | ✅ Built-in | ❌ Plugin needed | Plugin needed | ❌ No |
+| Parallel scraping | ✅ Native | ❌ Heavy | ❌ Heavy | ❌ No |
+| Install complexity | Binary/Docker | Large binary | Node.js + Chrome | WebDriver |
+| Startup time | Instant | ~2s | ~3s | ~5s |
+| License | Apache-2.0 | BSD | Apache-2.0 | Apache-2.0 |</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p>Obscura is powerful but not a perfect replacement for every use case: 1. <strong>Young project</strong> — Despite 14,788 stars, Obscura is still in active development. Edge cases in complex JavaScript frameworks may not be fully covered.</p>
+<ol start="2">
+<li>
+<p><strong>Desktop browsing not optimized</strong> — It&rsquo;s built for automation, not desktop use. UI rendering, accessibility features, and print output may differ from Chrome.</p>
+</li>
+<li>
+<p><strong>No built-in proxy rotation</strong> — While it supports proxy connections, there&rsquo;s no built-in proxy pool or rotation. You&rsquo;ll need an external proxy service for large-scale scraping.</p>
+</li>
+<li>
+<p><strong>Limited browser extensions</strong> — Unlike Chrome, Obscura doesn&rsquo;t support browser extensions (AdBlock, uBlock, etc.). You&rsquo;ll need to implement ad-blocking logic in your scripts.</p>
+</li>
+<li>
+<p><strong>Docker image is minimal</strong> — The 57 MB Docker image has no shell or package manager. Debugging inside the container requires the <code>obscura</code> binary&rsquo;s built-in logging flags.</p>
+</li>
+<li>
+<p><strong>Obscura Cloud is beta</strong> — The hosted version (managed infrastructure, residential proxies) is currently in waitlist/beta. The open-source engine remains fully featured with no feature gating.</p>
+</li>
+</ol>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>Q: Can Obscura replace headless Chrome in my existing Puppeteer scripts?</strong></p>
+<p>A: Yes, as long as you connect via CDP (<code>browserURL</code> or <code>connectOverCDP</code>). The browser-level behavior matches Chrome closely since it uses the same V8 engine and implements the CDP protocol.</p>
+<p><strong>Q: How does the stealth mode compare to puppeteer-extra-stealth?</strong></p>
+<p>A: Obscura&rsquo;s stealth mode is built into the engine rather than added as a post-processing layer. This means it handles fingerprinting at the browser level (navigator properties, WebGL, audio context) rather than patching them after the fact — resulting in more consistent results.</p>
+<p><strong>Q: Can I use Obscura for browser testing?</strong></p>
+<p>A: Yes, for most use cases. Its CDP compatibility means you can run existing Playwright/Puppeteer test suites against Obscura. However, some tests that rely on Chrome-specific rendering or extension behavior may need adjustment.</p>
+<p><strong>Q: Is there an official Docker image?</strong></p>
+<p>A: Yes, <code>h4ckf0r0day/obscura</code> is available on Docker Hub. It&rsquo;s a multi-stage build on ````distroless/cc``` for minimal size (57 MB compressed).</p>
+<p><strong>Q: What about JavaScript compatibility?</strong></p>
+<p>A: Obscura uses the V8 engine, the same engine as Chrome. JavaScript compatibility is essentially identical to Chrome — no missing APIs, no polyfills needed.</p>
+<p><strong>Q: Can I run Obscura on serverless platforms?</strong></p>
+<p>A: Since it&quot;s a single binary with zero dependencies, you can run it anywhere that supports statically compiled Rust binaries — Lambda, Cloud Functions, Fly.io, etc.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Obscura represents a significant advance in headless browser technology. At 30MB memory, 85ms page loads, and built-in anti-detection, it solves the fundamental problem that has plagued web scraping and AI agent automation for years: Chrome is simply too heavy for large-scale, concurrent browser operations.</p>
+<p>For AI agents that need to browse the web, scrape content, or interact with JavaScript-heavy sites — Obscura provides the performance headroom that headless Chrome simply cannot match. The Puppeteer and Playwright compatibility means your existing scripts work unchanged.</p>
+<p>The upcoming Obscura Cloud hosted service (managed infrastructure + residential proxies) will make it even easier to deploy at scale, while the open-source engine stays Apache-2.0 with no feature gating.</p>
+<p><img alt="Obscura Architecture" loading="lazy" src="https://raw.githubusercontent.com/h4ckf0r0day/obscura/main/assets/icon.png"></p>
+<p><img alt="Obscura Swiftproxy Sponsor" loading="lazy" src="https://raw.githubusercontent.com/h4ckf0r0day/obscura/main/assets/sponsors/swiftproxy2.png"></p>
+<p><img alt="Obscura ProxyEmpire Sponsor" loading="lazy" src="https://raw.githubusercontent.com/h4ckf0r0day/obscura/main/assets/sponsors/proxyempire.png"></p>
+<p><strong>Try Obscura:</strong> <a href="https://github.com/h4ckf0r0day/obscura">github.com/h4ckf0r0day/obscura</a></p>
+<p><strong>Related articles:</strong></p>
+<ul>
+<li><a href="https://dibi8.com/codegraph-pre-indexed-code-knowledge-graph-ai-agents">Codegraph</a> — Pre-indexed code knowledge graph for AI agents</li>
+<li><a href="https://dibi8.com/microsoft-markitdown-file-to-markdown-converter-cli">MarkItDown</a> — Convert any file to markdown</li>
+</ul>
+<p><strong>Sources &amp; Further Reading:</strong></p>
+<ul>
+<li>GitHub repository: <a href="https://github.com/h4ckf0r0day/obscura">https://github.com/h4ckf0r0day/obscura</a></li>
+<li>Docker Hub: <a href="https://hub.docker.com/r/h4ckf0r0day/obscura">https://hub.docker.com/r/h4ckf0r0day/obscura</a></li>
+<li>Releases page: <a href="https://github.com/h4ckf0r0day/obscura/releases">https://github.com/h4ckf0r0day/obscura/releases</a></li>
+<li>CDP documentation: <a href="https://chromedevtools.github.io/devtools-protocol/">https://chromedevtools.github.io/devtools-protocol/</a></li>
+<li>V8 engine: <a href="https://v8.dev">https://v8.dev</a></li>
+</ul>
+<hr>
+<p>Join our community for more AI tool deep-dives: <a href="https://t.me/DIBI8_Group">t.me/DIBI8_Group</a></p>
+<p><strong>Disclaimer:</strong> This article is for informational purposes only. Always review source code before running third-party software in production. Affiliate disclosure: Some links above may contain affiliate codes. We may earn a commission at no extra cost to you.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Obscura: Rust Headless Browser for AI Agents — 14,000 Stars — 30MB Memory, 85ms Load — Setup Guide 2026&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-06-09&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-06-09&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/obscura-rust-headless-browser-ai-agents-web-scraping%22">https://dibi8.com/resources/obscura-rust-headless-browser-ai-agents-web-scraping"</a>
+}
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/obscura-rust-headless-browser-ai-agents-web-scraping/">cloakbrowser-stealth-chromium-bot-detection-scraping</a></li>
+<li><a href="/ai-coding-agents/obscura-rust-headless-browser-ai-agents-web-scraping/">obscura-rust-headless-browser-ai-agents-web-scraping</a></li>
+<li><a href="/ai-coding-agents/obscura-rust-headless-browser-ai-agents-web-scraping/">obscura-rust-headless-browser-ai-agents-web-scraping</a></li>
+<li><a href="/ai-coding-agents/obscura-rust-headless-browser-ai-agents-web-scraping/">obscura-rust-headless-browser-ai-agents-web-scraping</a></li>
+<li><a href="/ai-coding-agents/obscura-rust-headless-browser-ai-agents-web-scraping/">deepseek-reasonix-terminal-ai-coding-agent-prefix-cache</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fobscura-rust-headless-browser-ai-agents-web-scraping%2f&text=Obscura%3a%20Rust%20Headless%20Browser%20for%20AI%20Agents%20%e2%80%94%2014%2c000%20Stars%20%e2%80%94%2030MB%20Memory%2c%2085ms%20Load%20%e2%80%94%20Setup%20Guide%202026" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fobscura-rust-headless-browser-ai-agents-web-scraping%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

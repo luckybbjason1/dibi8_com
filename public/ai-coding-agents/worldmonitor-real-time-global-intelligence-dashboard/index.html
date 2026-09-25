@@ -1,0 +1,740 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WorldMonitor: Real-Time Global Intelligence Dashboard | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/worldmonitor-real-time-global-intelligence-dashboard/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">WorldMonitor: Real-Time Global Intelligence Dashboard</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">WorldMonitor: Real-Time Global Intelligence Dashboard</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;WorldMonitor: Real-Time Global Intelligence Dashboard fo&hellip;
+description: &ldquo;Technical guide and comparison&rdquo;
+date: 2026-06-25
+lastmod: 2026-06-25
+draft: false
+lang: en
+category: ai-tools
+tags: [&ldquo;ai&rdquo;, &ldquo;dashboard&rdquo;, &ldquo;geopolitics&rdquo;, &ldquo;monitoring&rdquo;, &ldquo;news&rdquo;, &ldquo;opensource&rdquo;, &ldquo;osint&rdquo;, &ldquo;palantir&rdquo;, &ldquo;situation-awareness&rdquo;]
+slug: worldmonitor-real-time-global-intelligence-dashboard</p>
+<h1 id="worldmonitor-real-time-global-intelligence-dashboard">WorldMonitor: Real-Time Global Intelligence Dashboard</h1>
+<p><strong>WorldMonitor</strong> is an open-source, real-time global intelligence dashboard that aggregates news, geopolitical events, and infrastructure data into a unified situational awareness interface. With <strong>59,524 GitHub stars</strong>, it has emerged as the leading open-source alternative to commercial platforms like Palantir Gotham for geopolitical monitoring and OSINT analysis.</p>
+<p>This article covers installation, configuration, data sources, API usage, deployment options, and practical applications for journalists, researchers, and security analysts.</p>
+<h2 id="tldr">TL;DR</h2>
+<p>WorldMonitor transforms fragmented global data streams into a single, actionable intelligence dashboard. It ingests news from 50+ sources, tracks geopolitical events in real-time, monitors critical infrastructure worldwide, and provides AI-powered analysis with customizable alerting. Perfect for anyone who needs a comprehensive, real-time view of global events without paying enterprise prices.</p>
+<h2 id="what-is-worldmonitor">What Is WorldMonitor?</h2>
+<p>WorldMonitor is a self-hosted intelligence dashboard that combines multiple data sources into a unified view of global events. Unlike traditional news aggregators that simply collect headlines, WorldMonitor applies AI-powered analysis to correlate events, detect patterns, and surface actionable intelligence.</p>
+<p>The platform was designed for journalists, researchers, policy analysts, and security professionals who need real-time situational awareness across multiple geographic regions and data categories. It supports both single-instance deployments for individual analysts and distributed architectures for team-wide operations.</p>
+<p>Key capabilities include: - <strong>Multi-source news aggregation</strong> from RSS feeds, APIs, and web scrapers covering 50+ global news sources</p>
+<ul>
+<li><strong>Geopolitical event tracking</strong> with real-time mapping and timeline visualization</li>
+<li><strong>Infrastructure monitoring</strong> for critical facilities including power grids, telecom towers, and transportation hubs</li>
+<li><strong>AI-powered correlation engine</strong> that identifies relationships between seemingly unrelated events</li>
+<li><strong>Customizable alerting</strong> based on keywords, regions, event types, or severity thresholds</li>
+<li><strong>Historical analysis</strong> with searchable archive spanning months of aggregated data</li>
+<li><strong>API access</strong> for programmatic integration with other intelligence tools</li>
+</ul>
+<h2 id="installation-guide">Installation Guide</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>Before installing WorldMonitor, ensure your system meets the following requirements: - <strong>Operating System</strong>: Ubuntu 22.04 LTS, Debian 12, or macOS 14+</p>
+<ul>
+<li><strong>CPU</strong>: 4 cores minimum (8 cores recommended for production)</li>
+<li><strong>RAM</strong>: 8GB minimum (16GB recommended)</li>
+<li><strong>Storage</strong>: 50GB SSD (grows with data retention period)</li>
+<li><strong>Network</strong>: Outbound internet access for data collection</li>
+<li><strong>Dependencies</strong>: Node.js 20+, Python 3.11+, PostgreSQL 15+</li>
+</ul>
+<h3 id="option-1-docker-compose-deployment-recommended">Option 1: Docker Compose Deployment (Recommended)</h3>
+<p>The fastest way to get started is with the provided Docker Compose configuration: ````bash
+git clone <a href="https://github.com/koala73/worldmonitor.git">https://github.com/koala73/worldmonitor.git</a>
+cd worldmonitor</p>
+<h1 id="copy-the-example-configuration">Copy the example configuration</h1>
+<p>cp config.example.yaml config.yaml</p>
+<h1 id="start-all-services">Start all services</h1>
+<p>docker compose up -d</p>
+<pre tabindex="0"><code>
+This spins up the application server, PostgreSQL database, Redis cache, and the web frontend. Default credentials are set in the ``.env`` file — change them immediately for production use.
+
+### Option 2: Manual Installation
+
+For users who need fine-grained control over their deployment: `````bash
+# Clone the repository
+git clone https://github.com/koala73/worldmonitor.git
+cd worldmonitor
+
+# Install backend dependencies
+pip install -r requirements.txt
+
+# Install frontend dependencies
+cd frontend &amp;&amp; npm install &amp;&amp; cd ..
+
+# Set up the database
+createdb worldmonitor
+psql worldmonitor &lt; migrations/001_init.sql
+
+# Configure the application
+cp config.example.yaml config.yaml
+# Edit config.yaml with your settings
+
+# Run database migrations
+python manage.py migrate
+
+# Start the application server
+python manage.py runserver 0.0.0.0:8000
+
+# Start the frontend (in a separate terminal)
+cd frontend &amp;&amp; npm run start
+</code></pre><h3 id="option-3-kubernetes-deployment">Option 3: Kubernetes Deployment</h3>
+<p>For production-scale deployments across multiple nodes: `````yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata: name: worldmonitor
+spec: replicas: 3
+selector: matchLabels: app: worldmonitor
+template: metadata: labels: app: worldmonitor
+spec: containers: - name: worldmonitor
+image: ghcr.io/koala73/worldmonitor:latest
+ports: - containerPort: 8000
+envFrom: - configMapRef: name: worldmonitor-config
+resources: requests: memory: &ldquo;2Gi&rdquo;
+cpu: &ldquo;1000m&rdquo;
+limits: memory: &ldquo;4Gi&rdquo;
+cpu: &ldquo;2000m&rdquo;</p>
+<pre tabindex="0"><code>
+## Configuration Deep Dive
+
+### Data Sources Configuration
+
+WorldMonitor supports multiple data source types. Configure them in ``config.yaml``: `````yaml
+data_sources: rss_feeds: enabled: true
+
+### AI Analysis Pipeline
+
+The AI-powered analysis engine processes incoming data through multiple stages: `````python
+from worldmonitor.ai.pipeline import AnalysisPipeline
+from worldmonitor.ai.models import EventClassifier, CorrelationEngine
+
+# Initialize the analysis pipeline
+pipeline = AnalysisPipeline(
+    classifier=EventClassifier(model=&#34;worldmonitor/classifier-v3&#34;),
+    correlation=CorrelationEngine(model=&#34;worldmonitor/correlation-v2&#34;),
+    embedding_model=&#34;worldmonitor/embedding-multilingual&#34;
+)
+
+# Process a batch of news articles
+results = await pipeline.process_batch(
+    articles=batch_data,
+    min_confidence=0.7,
+    include_correlations=True
+)
+
+# Get correlated events for a specific region
+correlated = await pipeline.get_correlated_events(
+    region=&#34;east_asia&#34;,
+    time_window=&#34;24h&#34;,
+    event_types=[&#34;political&#34;, &#34;economic&#34;]
+)
+</code></pre><h3 id="alert-configuration">Alert Configuration</h3>
+<p>Set up custom alerts based on your monitoring priorities: `````yaml
+alerts: rules: - name: &ldquo;Major Conflict Detection&rdquo;
+conditions: - field: &ldquo;event_type&rdquo;
+operator: &ldquo;eq&rdquo;
+value: &ldquo;armed_conflict&rdquo;
+- field: &ldquo;severity&rdquo;
+operator: &ldquo;gte&rdquo;
+value: 7
+actions: - type: &ldquo;notification&rdquo;
+channels: [&ldquo;email&rdquo;, &ldquo;telegram&rdquo;]
+template: &ldquo;high_severity_conflict&rdquo;
+- type: &ldquo;dashboard_highlight&rdquo;
+duration: &ldquo;3600&rdquo;</p>
+<pre><code>- name: &quot;Infrastructure Disruption&quot;
+  conditions: - field: &quot;infrastructure_type&quot;
+      operator: &quot;in&quot;
+      value: [&quot;power_grid&quot;, &quot;telecom&quot;, &quot;transport&quot;]
+    - field: &quot;status&quot;
+      operator: &quot;eq&quot;
+      value: &quot;disrupted&quot;
+  actions: - type: &quot;notification&quot;
+      channels: [&quot;email&quot;, &quot;slack&quot;, &quot;pagerduty&quot;]
+      template: &quot;infrastructure_alert&quot;
+    - type: &quot;geopoint_map&quot;
+      zoom_level: 12
+
+- name: &quot;Keyword Surge Detection&quot;
+  conditions: - field: &quot;keywords&quot;
+      operator: &quot;contains_any&quot;
+      value: [&quot;sanctions&quot;, &quot;embargo&quot;, &quot;tariff&quot;, &quot;trade_war&quot;]
+    - field: &quot;volume_change&quot;
+      operator: &quot;gte&quot;
+      value: 200
+  actions: - type: &quot;notification&quot;
+      channels: [&quot;email&quot;]
+      template: &quot;keyword_surge&quot;
+      cooldown: &quot;1800&quot;
+</code></pre>
+<pre tabindex="0"><code>
+## Core Features in Detail
+
+### Global News Aggregation Engine
+
+WorldMonitor&#39;s news aggregation engine pulls from over 50 sources across multiple languages. The system uses intelligent deduplication to avoid reporting the same story from multiple outlets, while preserving regional perspectives on major events.
+
+`````bash
+# Query aggregated news with filters
+curl -X GET &#34;https://your-worldmonitor/api/v1/news&#34; \
+  -H &#34;Authorization: Bearer ${WM_API_KEY}&#34; \
+  -d &#34;region=east_asia&amp;categories=politics,economy&amp;min_severity=5&amp;hours=24&#34;
+
+# Get deduplicated stories
+curl -X GET &#34;https://your-worldmonitor/api/v1/news/deduplicated&#34; \
+  -H &#34;Authorization: Bearer ${WM_API_KEY}&#34; \
+  -d &#34;cluster_window=3600&amp;language=en&#34;
+</code></pre><h3 id="geopolitical-event-mapping">Geopolitical Event Mapping</h3>
+<p>Events are plotted on an interactive world map with color-coded severity levels. Users can filter by event type, region, date range, and source confidence score. The timeline view shows event progression and identifies cascading effects.</p>
+<h3 id="infrastructure-tracking-module">Infrastructure Tracking Module</h3>
+<p>The infrastructure module maintains a database of critical facilities worldwide, including: - Power plants and electrical grids</p>
+<ul>
+<li>Telecommunications towers and fiber routes</li>
+<li>Transportation hubs (airports, seaports, rail stations)</li>
+<li>Water treatment facilities</li>
+<li>Data centers and cloud infrastructure</li>
+</ul>
+<p>Each facility is tagged with ownership, capacity, and risk level. Changes in status trigger automatic alerts and map updates.</p>
+<h3 id="ai-correlation-engine">AI Correlation Engine</h3>
+<p>The proprietary correlation engine identifies relationships between events that appear unrelated on the surface. For example, it might detect that a political statement in one country correlates with market movements in another, or that infrastructure disruptions in Region A preceded similar events in Region B.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> worldmonitor.correlation <span style="color:#f92672">import</span> CorrelationEngine
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>engine <span style="color:#f92672">=</span> CorrelationEngine()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Find correlations between recent events</span>
+</span></span><span style="display:flex;"><span>correlations <span style="color:#f92672">=</span> engine<span style="color:#f92672">.</span>find_correlations(
+</span></span><span style="display:flex;"><span>    events<span style="color:#f92672">=</span>event_list,
+</span></span><span style="display:flex;"><span>    max_lag_hours<span style="color:#f92672">=</span><span style="color:#ae81ff">72</span>,
+</span></span><span style="display:flex;"><span>    min_strength<span style="color:#f92672">=</span><span style="color:#ae81ff">0.6</span>,
+</span></span><span style="display:flex;"><span>    correlation_types<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;temporal&#34;</span>, <span style="color:#e6db74">&#34;geographic&#34;</span>, <span style="color:#e6db74">&#34;thematic&#34;</span>]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> corr <span style="color:#f92672">in</span> correlations: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Strength: </span><span style="color:#e6db74">{</span>corr<span style="color:#f92672">.</span>strength<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Type: </span><span style="color:#e6db74">{</span>corr<span style="color:#f92672">.</span>type<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Events: </span><span style="color:#e6db74">{</span>corr<span style="color:#f92672">.</span>event_ids<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Explanation: </span><span style="color:#e6db74">{</span>corr<span style="color:#f92672">.</span>explanation<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h2 id="api-reference">API Reference</h2>
+<p>WorldMonitor exposes a comprehensive REST API for programmatic access: ### Authentication</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Obtain an API token</span>
+</span></span><span style="display:flex;"><span>curl -X POST <span style="color:#e6db74">&#34;https://your-worldmonitor/api/v1/auth/login&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;username&#34;: &#34;admin&#34;, &#34;password&#34;: &#34;${WM_PASSWORD}&#34;}&#39;</span>
+</span></span></code></pre></div><h3 id="news-api">News API</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># List recent news with pagination</span>
+</span></span><span style="display:flex;"><span>curl <span style="color:#e6db74">&#34;https://your-worldmonitor/api/v1/news?page=1&amp;per_page=50&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span><span style="color:#e6db74">${</span>WM_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get news by region</span>
+</span></span><span style="display:flex;"><span>curl <span style="color:#e6db74">&#34;https://your-worldmonitor/api/v1/news?region=south_asia&amp;date_from=2026-06-01&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span><span style="color:#e6db74">${</span>WM_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Search by keyword</span>
+</span></span><span style="display:flex;"><span>curl <span style="color:#e6db74">&#34;https://your-worldmonitor/api/v1/news/search?q=trade+sanctions&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span><span style="color:#e6db74">${</span>WM_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><h3 id="events-api">Events API</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># List geopolitical events</span>
+</span></span><span style="display:flex;"><span>curl <span style="color:#e6db74">&#34;https://your-worldmonitor/api/v1/events?type=political&amp;severity_gte=6&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span><span style="color:#e6db74">${</span>WM_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get event details</span>
+</span></span><span style="display:flex;"><span>curl <span style="color:#e6db74">&#34;https://your-worldmonitor/api/v1/events/EVT-2026-0625-001&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span><span style="color:#e6db74">${</span>WM_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get event timeline</span>
+</span></span><span style="display:flex;"><span>curl <span style="color:#e6db74">&#34;https://your-worldmonitor/api/v1/events/EVT-2026-0625-001/timeline&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span><span style="color:#e6db74">${</span>WM_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><h3 id="alerts-api">Alerts API</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># List active alerts</span>
+</span></span><span style="display:flex;"><span>curl <span style="color:#e6db74">&#34;https://your-worldmonitor/api/v1/alerts?status=active&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span><span style="color:#e6db74">${</span>WM_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Acknowledge an alert</span>
+</span></span><span style="display:flex;"><span>curl -X PUT <span style="color:#e6db74">&#34;https://your-worldmonitor/api/v1/alerts/ALT-001/acknowledge&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span><span style="color:#e6db74">${</span>WM_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;acknowledged_by&#34;: &#34;analyst@example.com&#34;, &#34;notes&#34;: &#34;Investigating&#34;}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create custom alert rule</span>
+</span></span><span style="display:flex;"><span>curl -X POST <span style="color:#e6db74">&#34;https://your-worldmonitor/api/v1/alerts/rules&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span><span style="color:#e6db74">${</span>WM_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;name&#34;: &#34;Custom Rule&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;conditions&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;regions&#34;: [&#34;east_asia&#34;],
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;event_types&#34;: [&#34;political&#34;],
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;severity_min&#34;: 5
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    },
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;actions&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;channels&#34;: [&#34;email&#34;],
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;recipients&#34;: [&#34;team@example.com&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
+</span></span></code></pre></div><h2 id="deployment-options">Deployment Options</h2>
+<h3 id="single-instance-personal-analyst">Single-Instance (Personal Analyst)</h3>
+<p>For individual journalists or researchers, a single Docker Compose deployment on a 4-core VPS is sufficient: `````
+Server: 4 vCPU, 8GB RAM, 100GB SSD
+Cost: ~$20/month (DigitalOcean / HTStack)
+Capacity: ~1,000 events/day, 30-day retention</p>
+<pre tabindex="0"><code>
+### Team Deployment
+
+For analyst teams of 5-20 people, add Redis clustering and PostgreSQL read replicas: `````
+App Servers: 3x 4 vCPU, 16GB RAM (behind load balancer)
+Database: PostgreSQL primary + 2 read replicas
+Cache: Redis Cluster (3 nodes)
+Storage: 500GB SSD + S3 archival
+Cost: ~$200/month
+Capacity: ~10,000 events/day, 90-day retention
+</code></pre><h3 id="enterprisedistributed">Enterprise/Distributed</h3>
+<p>For government or large organizational deployments: `````
+Multi-region deployment with data sovereignty controls
+Horizontal scaling across 10+ application nodes
+PostgreSQL with Patroni for automatic failover
+Object storage for historical data archival
+Integration with existing SIEM/SOC platforms
+Cost: Custom pricing
+Capacity: Unlimited, with geo-distributed data collection</p>
+<pre tabindex="0"><code>
+## Integration with Other Tools
+
+WorldMonitor integrates seamlessly with popular intelligence and communication tools: ### Slack Integration
+
+`````bash
+# Install the Slack app
+curl -X POST &#34;https://your-worldmonitor/api/v1/integrations/slack&#34; \
+  -H &#34;Authorization: Bearer ${WM_TOKEN}&#34; \
+  -H &#34;Content-Type: application/json&#34; \
+  -d &#39;{
+    &#34;channel&#34;: &#34;#global-events&#34;,
+    &#34;alert_rules&#34;: [&#34;major_conflict&#34;, &#34;infrastructure_disruption&#34;],
+    &#34;digest_frequency&#34;: &#34;hourly&#34;
+  }&#39;
+</code></pre><h3 id="telegram-bot">Telegram Bot</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create a Telegram bot integration</span>
+</span></span><span style="display:flex;"><span>curl -X POST <span style="color:#e6db74">&#34;https://your-worldmonitor/api/v1/integrations/telegram&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span><span style="color:#e6db74">${</span>WM_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;bot_token&#34;: &#34;${TELEGRAM_BOT_TOKEN}&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;chat_id&#34;: &#34;${TELEGRAM_CHAT_ID}&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;alert_rules&#34;: [&#34;all_high_severity&#34;]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
+</span></span></code></pre></div><h3 id="grafana-dashboard">Grafana Dashboard</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Export metrics for Grafana</span>
+</span></span><span style="display:flex;"><span>curl -X POST <span style="color:#e6db74">&#34;https://your-worldmonitor/api/v1/metrics/grafana&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span><span style="color:#e6db74">${</span>WM_TOKEN<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;datasource&#34;</span>: <span style="color:#e6db74">&#34;prometheus&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;dashboard_template&#34;</span>: <span style="color:#e6db74">&#34;worldmonitor-overview&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span><span style="color:#e6db74">&#34;
+</span></span></span></code></pre></div><h3 id="elk-stack--elasticsearch">ELK Stack / Elasticsearch</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># WorldMonitor Elasticsearch output configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">output: elasticsearch: hosts</span>: [<span style="color:#e6db74">&#34;https://es-cluster.internal:9200&#34;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">index</span>: <span style="color:#e6db74">&#34;worldmonitor-%{+yyyy.MM.dd}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">username</span>: <span style="color:#e6db74">&#34;${ES_USER}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">password</span>: <span style="color:#e6db74">&#34;${ES_PASS}&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">template_overwrite</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">bulk_size</span>: <span style="color:#ae81ff">500</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">flush_interval</span>: <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Comparison: WorldMonitor vs Commercial Alternatives</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">| Feature | WorldMonitor | Palantir Gotham | Meltwater | Brandwatch |</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Join the community</span>: [<span style="color:#ae81ff">Telegram](https://t.me/DIBI8_Group) · [HuggingFace](https://huggingface.co/collections/nvidia/cosmos3)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Internal links</span>: [<span style="color:#ae81ff">nvidia-cosmos-world-models-platform-2026](https://dibi8.com/en/resources/ai-tools/nvidia-cosmos-world-models-platform-2026) · [bytedance-ui-tars-desktop-ai-agent-guide](https://dibi8.com/en/resources/ai-tools/bytedance-ui-tars-desktop-ai-agent-guide)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">**Disclosure**:</span> <span style="color:#ae81ff">This article mentions tools that may have affiliate relationships. We do not accept payment for reviews. All opinions are our own.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;@context&#34;: </span><span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;@type&#34;: </span><span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;headline&#34;: </span><span style="color:#e6db74">&#34;WorldMonitor: Real-Time Global Intelligence Dashboard for Geopolitical Monitoring&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;datePublished&#34;: </span><span style="color:#e6db74">&#34;2026-06-25&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;dateModified&#34;: </span><span style="color:#e6db74">&#34;2026-06-25&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;author&#34;: </span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;@type&#34;: </span><span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;name&#34;: </span><span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;publisher&#34;: </span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;@type&#34;: </span><span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;name&#34;: </span><span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;logo&#34;: </span>{
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;@type&#34;: </span><span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;url&#34;: </span><span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;mainEntityOfPage&#34;: </span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;@type&#34;: </span><span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;@id&#34;: </span><span style="color:#e6db74">&#34;https://dibi8.com/resources/worldmonitor-real-time-global-intelligence-dashboard&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">&lt;/script&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- [<span style="color:#ae81ff">12</span>-<span style="color:#ae81ff">factor-agents](worldmonitor-real-time-global-intelligence-dashboard)</span>
+</span></span><span style="display:flex;"><span>- [<span style="color:#e6db74">2026-05-25</span>-<span style="color:#ae81ff">trending-ai-agents](worldmonitor-real-time-global-intelligence-dashboard)</span>
+</span></span><span style="display:flex;"><span>- [<span style="color:#e6db74">2026-06-01</span>-<span style="color:#ae81ff">trending-ai-agents](worldmonitor-real-time-global-intelligence-dashboard)</span>
+</span></span><span style="display:flex;"><span>- [<span style="color:#e6db74">2026-06-08</span>-<span style="color:#ae81ff">trending-ai-agents](worldmonitor-real-time-global-intelligence-dashboard)</span>
+</span></span><span style="display:flex;"><span>- [<span style="color:#e6db74">2026-06-15</span>-<span style="color:#ae81ff">trending-ai-agents](worldmonitor-real-time-global-intelligence-dashboard)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#75715e">*Found</span> <span style="color:#ae81ff">this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions (FAQ)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">**问：AI代码助手的安全性如何？**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">代码不会上传到服务器（本地运行），但仍需注意依赖包安全、配置文件保护。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">**问：如何防止AI生成的代码包含漏洞？**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">实施SAST扫描、代码审查、依赖审计、以及安全编码培训。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">**问：敏感数据如何处理？**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">使用本地模型、环境变量管理密钥、避免在提示中包含敏感信息。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">**问：开源VS闭源AI工具的安全性对比？**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">开源可审计代码，闭源依赖供应商安全承诺。混合策略最佳。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">**问：AI工具的安全审计要点？**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">检查认证机制、数据传输加密、存储安全、访问控制、以及日志审计。</span>
+</span></span></code></pre></div>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fworldmonitor-real-time-global-intelligence-dashboard%2f&text=WorldMonitor%3a%20Real-Time%20Global%20Intelligence%20Dashboard" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fworldmonitor-real-time-global-intelligence-dashboard%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

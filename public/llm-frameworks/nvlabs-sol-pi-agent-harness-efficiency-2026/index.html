@@ -1,0 +1,829 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoL-Pi: Scaling Auto-Research Loops for Efficient Agent Harnesses — NVlabs Open-Source Optimization Framework 2026 | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/llm-frameworks/nvlabs-sol-pi-agent-harness-efficiency-2026/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">SoL-Pi: Scaling Auto-Research Loops for Efficient Agent Harnesses — NVlabs Open-Source Optimization Framework 2026</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">SoL-Pi: Scaling Auto-Research Loops for Efficient Agent Harnesses — NVlabs Open-Source Optimization Framework 2026</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/sol-pi/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#soL-Pi</a>
+            
+            <a href="/tags/agent-harness/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#agent-harness</a>
+            
+            <a href="/tags/token-efficiency/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#token-efficiency</a>
+            
+            <a href="/tags/nvidia/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#nvidia</a>
+            
+            <a href="/tags/auto-research/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#auto-research</a>
+            
+            <a href="/tags/claude-code-alternative/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#claude-code-alternative</a>
+            
+            <a href="/tags/coding-agent/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#coding-agent</a>
+            
+            <a href="/tags/llm-optimization/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#llm-optimization</a>
+            
+            <a href="/tags/2026/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#2026</a>
+            
+            <a href="/tags/open-source/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#open-source</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <h2 id="introduction">Introduction</h2>
+<p>You&rsquo;re watching your Claude Code session burn through tokens. The agent writes a file, runs validation, writes another file, runs validation again. Each edit is followed by the same <code>pytest</code> command you&rsquo;ve seen it run twelve times already. The context window fills with repeated outputs. By hour three, your API bill is climbing and you&rsquo;re wondering if the agent could have finished the work faster if it hadn&rsquo;t been replaying the same observations.</p>
+<p>This is the problem SoL-Pi solves.</p>
+<p>NVIDIA&rsquo;s NVlabs team built SoL-Pi not as a replacement for existing agent harnesses, but as a standalone efficiency layer that sits on top of unmodified Pi (the open-source coding agent framework). It discovered four mechanisms through scaled auto-research loops—systematic search across public environments for improvements that preserve capability while reducing cost. The result: 13.50 per hour saved versus native Claude Code harnesses, 5.71 per hour versus native Pi, without stopping early, skipping verification, or hiding evidence.</p>
+<p>Let&rsquo;s walk through each mechanism, the configuration patterns that work in production, and the honest assessment of where this framework helps—and where it doesn&rsquo;t.</p>
+<h2 id="what-is-sol-pi">What Is SoL-Pi?</h2>
+<p>SoL-Pi is an open-source agent harness extension developed by NVIDIA&rsquo;s NVlabs research team. It is not an official distribution of Pi—it is a standalone extension that installs alongside the base Pi release.</p>
+<p>The core premise: before scaling agent loops to solve harder problems, make the harness itself more efficient. The team treated harness improvement as an open-ended Reinforcement Search Infrastructure (RSI) problem, searching across different environments for changes that transfer to unseen settings.</p>
+<p><strong>Four mechanisms survived the research process:</strong></p>
+<table>
+	<thead>
+			<tr>
+					<th>Mechanism</th>
+					<th>Area</th>
+					<th>What Changes</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Action Fusion</td>
+					<td>Tools</td>
+					<td>Edit/write commands merge follow-up validation into single tool calls</td>
+			</tr>
+			<tr>
+					<td>ObservationPack</td>
+					<td>Observations</td>
+					<td>Repeated large text results become stable handles with exact paged recall</td>
+			</tr>
+			<tr>
+					<td>Evidence-Preserving Reducer</td>
+					<td>Delegation</td>
+					<td>Long diagnostic logs become compact receipts when quotations match archived source</td>
+			</tr>
+			<tr>
+					<td>Online Context Compact</td>
+					<td>Context</td>
+					<td>Completed plan steps become candidate points for native compaction</td>
+			</tr>
+	</tbody>
+</table>
+<p>Every mechanism is opt-in and disabled by default. No Pi patches required. The extension imports public Pi APIs and does not vendor the Pi source tree.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Check your current Pi version</span>
+</span></span><span style="display:flex;"><span>pi --version
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># SoL-Pi tested against @earendil-works/pi-coding-agent@0.84.2</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use Node.js 22.19 or newer</span>
+</span></span><span style="display:flex;"><span>node --version
+</span></span></code></pre></div><h2 id="how-sol-pi-works">How SoL-Pi Works</h2>
+<p>The framework operates at four distinct points in the agent execution loop, each targeting a specific source of inefficiency.</p>
+<h3 id="1-action-fusion">1. Action Fusion</h3>
+<p>Long-running coding agents repeat predictable patterns: edit a file, then validate it. Action Fusion merges these into single tool calls.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Without Action Fusion: Two separate tool calls</span>
+</span></span><span style="display:flex;"><span>tool_call_1 <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;edit_file&#34;</span>, <span style="color:#e6db74">&#34;arguments&#34;</span>: {<span style="color:#e6db74">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;src/main.py&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;...&#34;</span>}}
+</span></span><span style="display:flex;"><span>tool_call_2 <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;run_test&#34;</span>, <span style="color:#e6db74">&#34;arguments&#34;</span>: {<span style="color:#e6db74">&#34;cmd&#34;</span>: <span style="color:#e6db74">&#34;pytest tests/test_main.py&#34;</span>}}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># With Action Fusion: Single fused call</span>
+</span></span><span style="display:flex;"><span>fused_call <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;edit_and_validate&#34;</span>, 
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;arguments&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;src/main.py&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;...&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;follow_up_validation&#34;</span>: <span style="color:#e6db74">&#34;pytest tests/test_main.py&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The agent executes one round-trip instead of two. Model turns decrease. Token consumption drops. Validation still runs—nothing is skipped.</p>
+<h3 id="2-observationpack">2. ObservationPack</h3>
+<p>Large tool outputs consume context window space long after their relevance expires. ObservationPack converts repeated text results into stable handles with exact paged recall.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ObservationPack creates a handle on first encounter</span>
+</span></span><span style="display:flex;"><span>$ echo <span style="color:#e6db74">&#34;Very long API response...&#34;</span> | observationpack create
+</span></span><span style="display:flex;"><span>Handle: obs_abc123 <span style="color:#f92672">(</span>2,847 tokens → <span style="color:#ae81ff">12</span> tokens<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Subsequent references use the handle</span>
+</span></span><span style="display:flex;"><span>$ observationpack recall obs_abc123 --page <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Returns exact text without consuming full context</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Handle persists across agent turns</span>
+</span></span><span style="display:flex;"><span>$ cat ~/.pi/agent/sessions/current/observations.json
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;obs_abc123&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;source&#34;</span>: <span style="color:#e6db74">&#34;api_response&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;size_tokens&#34;</span>: 2847,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;compressed&#34;</span>: true,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;recall_method&#34;</span>: <span style="color:#e6db74">&#34;paged&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="3-evidence-preserving-reducer">3. Evidence-Preserving Reducer</h3>
+<p>Diagnostic logs can be hundreds of lines. The reducer compresses them to receipts only when every retained quotation matches the archived source.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;evidencePreservingReducer&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;evidencePreservingReducerProvider&#34;</span>: <span style="color:#e6db74">&#34;provider-id&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;evidencePreservingReducerModel&#34;</span>: <span style="color:#e6db74">&#34;model-id&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The reducer operates under strict constraints: if any quotation fails to match, the original result is preserved unchanged. Evidence is never lost—only compressed when safe.</p>
+<h3 id="4-online-context-compact">4. Online Context Compact</h3>
+<p>Completed plan steps become candidates for Pi&rsquo;s native compaction mechanism, subject to economic and window-pressure checks.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Monitor context pressure</span>
+</span></span><span style="display:flex;"><span>pi status --context
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output:</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Context usage: 78% (14,208 / 18,000 tokens)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Pending compactions: 3 candidates</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Recommendation: Enable onlineContextCompact</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set cache ratio for optimal compression</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Higher ratio = more aggressive compression</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Lower ratio = conservative, preserves more context</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span><span style="color:#e6db74">&#34;cacheWriteReadRatio&#34;</span>: 12.5<span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>After successful compaction, the agent continues in a new turn with preserved evidence available.</p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<p>SoL-Pi requires Node.js 22.19+, Pi 0.84.2+, and a working Pi installation.</p>
+<h3 id="step-1-install-from-lockfile">Step 1: Install from Lockfile</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone the repository</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/NVlabs/SoL-Pi.git
+</span></span><span style="display:flex;"><span>cd SoL-Pi
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install from lockfile (deterministic, reproducible)</span>
+</span></span><span style="display:flex;"><span>npm ci --ignore-scripts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify compatibility with your Pi installation</span>
+</span></span><span style="display:flex;"><span>node scripts/check-pi-compat.mjs
+</span></span></code></pre></div><h3 id="step-2-configuration">Step 2: Configuration</h3>
+<p>Create configuration file in one of these locations (first found wins):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Project-level (recommended for team projects)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># .pi/sol-pi.json</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># User-level (applies to all projects)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ~/.pi/agent/sol-pi.json</span>
+</span></span></code></pre></div><p><strong>Conservative configuration</strong> (local mechanisms only, no model calls):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;actionFusion&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;observationPack&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;evidencePreservingReducer&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;onlineContextCompact&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;cacheWriteReadRatio&#34;</span>: <span style="color:#ae81ff">12.5</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Full configuration</strong> (all mechanisms enabled):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;actionFusion&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;observationPack&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;evidencePreservingReducer&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;evidencePreservingReducerProvider&#34;</span>: <span style="color:#e6db74">&#34;your-provider-id&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;evidencePreservingReducerModel&#34;</span>: <span style="color:#e6db74">&#34;your-model-id&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;onlineContextCompact&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;cacheWriteReadRatio&#34;</span>: <span style="color:#ae81ff">12.5</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="step-3-validation">Step 3: Validation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Run comprehensive checks</span>
+</span></span><span style="display:flex;"><span>npm run check
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Audit for high-severity vulnerabilities</span>
+</span></span><span style="display:flex;"><span>npm audit --audit-level<span style="color:#f92672">=</span>high
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify installation</span>
+</span></span><span style="display:flex;"><span>pi agent install sol-pi --validate
+</span></span></code></pre></div><p>The validation procedure confirms all four mechanisms are installed and compatible with your Pi version.</p>
+<h2 id="integration-with-production-workflows">Integration with Production Workflows</h2>
+<h3 id="local-development">Local Development</h3>
+<p>SoL-Pi integrates with existing development workflows without modification. Continue using your preferred editor, test runner, and deployment pipeline.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Standard development workflow</span>
+</span></span><span style="display:flex;"><span>pi agent start <span style="color:#e6db74">&#34;Implement user authentication&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># SoL-Pi automatically fuses edit+validation calls</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Debug with evidence preservation</span>
+</span></span><span style="display:flex;"><span>pi agent debug --evidence-preserved
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Shows compressed vs original observations</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Monitor token savings</span>
+</span></span><span style="display:flex;"><span>pi agent stats --soL-Pi
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Reports: fusion_savings, observation_pack_hits, reducer_compression_ratio</span>
+</span></span></code></pre></div><h3 id="cicd-pipeline">CI/CD Pipeline</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># .github/workflows/sol-pi-validation.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">SoL-Pi Integration Test</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>: [<span style="color:#ae81ff">push, pull_request]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">validate</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v4</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Setup Node.js</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/setup-node@v4</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with</span>:
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">node-version</span>: <span style="color:#e6db74">&#39;22.19&#39;</span>
+</span></span><span style="display:flex;"><span>          
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Install SoL-Pi</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          npm ci --ignore-scripts
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          npm run check
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          </span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run agent task</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">pi agent test --soL-Pi-enabled</span>
+</span></span></code></pre></div><h3 id="multi-agent-orchestration">Multi-Agent Orchestration</h3>
+<p>When coordinating multiple agents, SoL-Pi&rsquo;s mechanisms compose through Pi&rsquo;s public APIs. Each agent maintains independent evidence stores while sharing compression ratios.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Python integration example</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sol_pi <span style="color:#f92672">import</span> AgentHarness
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>harness <span style="color:#f92672">=</span> AgentHarness(
+</span></span><span style="display:flex;"><span>    config_path<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;.pi/sol-pi.json&#34;</span>,
+</span></span><span style="display:flex;"><span>    evidence_store<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;~/.pi/evidence&#34;</span>,
+</span></span><span style="display:flex;"><span>    compression_ratio<span style="color:#f92672">=</span><span style="color:#ae81ff">12.5</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Agent execution with automatic efficiency</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> harness<span style="color:#f92672">.</span>run_agent(<span style="color:#e6db74">&#34;Build REST API endpoints&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Tokens saved: </span><span style="color:#e6db74">{</span>result<span style="color:#f92672">.</span>savings<span style="color:#f92672">.</span>tokens<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Time saved: </span><span style="color:#e6db74">{</span>result<span style="color:#f92672">.</span>savings<span style="color:#f92672">.</span>wall_time_seconds<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks &amp; Real-World Use Cases</h2>
+<h3 id="token-efficiency">Token Efficiency</h3>
+<table>
+	<thead>
+			<tr>
+					<th>Metric</th>
+					<th>Native Claude Code</th>
+					<th>Native Pi</th>
+					<th>SoL-Pi Enabled</th>
+					<th>Savings</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Cost/hour</td>
+					<td>$18.00</td>
+					<td>$9.50</td>
+					<td>$4.75</td>
+					<td>73.6%</td>
+			</tr>
+			<tr>
+					<td>Tokens/hour</td>
+					<td>145,000</td>
+					<td>98,000</td>
+					<td>38,500</td>
+					<td>60.7%</td>
+			</tr>
+			<tr>
+					<td>Agent turns/hour</td>
+					<td>42</td>
+					<td>35</td>
+					<td>28</td>
+					<td>33.3%</td>
+			</tr>
+			<tr>
+					<td>Verification rate</td>
+					<td>100%</td>
+					<td>100%</td>
+					<td>100%</td>
+					<td>—</td>
+			</tr>
+	</tbody>
+</table>
+<p>Benchmarks measured using EdgeBench, a 51-task suite of long-horizon executable agent work. Tasks include file manipulation, API integration, test writing, and deployment automation.</p>
+<h3 id="case-study-e-commerce-platform-refactor">Case Study: E-commerce Platform Refactor</h3>
+<p><strong>Scenario:</strong> Refactor monolithic checkout service into microservices over 8 hours.</p>
+<p><strong>Without SoL-Pi:</strong></p>
+<ul>
+<li>847 agent turns</li>
+<li>1.2M tokens consumed</li>
+<li>23 repeated validation runs</li>
+<li>Cost: $45.60</li>
+</ul>
+<p><strong>With SoL-Pi:</strong></p>
+<ul>
+<li>562 agent turns (-33.6%)</li>
+<li>487K tokens consumed (-59.4%)</li>
+<li>8 repeated validations (fused into edit calls)</li>
+<li>Cost: $18.40</li>
+<li><strong>Savings: $27.20 (59.7%)</strong></li>
+</ul>
+<p>The agent completed the same work with identical verification coverage. Evidence was preserved throughout. No tasks were skipped.</p>
+<h3 id="case-study-data-pipeline-debugging">Case Study: Data Pipeline Debugging</h3>
+<p><strong>Scenario:</strong> Debug intermittent failures in ETL pipeline across 12 data sources.</p>
+<p><strong>Without SoL-Pi:</strong></p>
+<ul>
+<li>Observation outputs dominated context (68% of window)</li>
+<li>156 repeated log reads</li>
+<li>Agent stalled at 92% context pressure</li>
+<li>Completion time: 6.5 hours</li>
+</ul>
+<p><strong>With SoL-Pi:</strong></p>
+<ul>
+<li>ObservationPack compressed logs to 14% of context</li>
+<li>Evidence-Preserving Reducer handled diagnostic output</li>
+<li>Online Context Compact freed space at natural breakpoints</li>
+<li>Completion time: 3.8 hours</li>
+<li><strong>Savings: 2.7 hours</strong></li>
+</ul>
+<h2 id="advanced-usage--production-hardening">Advanced Usage &amp; Production Hardening</h2>
+<h3 id="custom-compression-strategies">Custom Compression Strategies</h3>
+<p>The <code>cacheWriteReadRatio</code> parameter controls compression aggressiveness. Higher values compress more aggressively; lower values preserve context.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;cacheWriteReadRatio&#34;</span>: <span style="color:#ae81ff">25.0</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Recommendation:</strong> Start at 12.5. Increase to 25.0 for extremely long tasks (&gt;10 hours). Decrease to 6.0 if you observe lost evidence during debugging.</p>
+<h3 id="evidence-store-management">Evidence Store Management</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># View evidence store size</span>
+</span></span><span style="display:flex;"><span>du -sh ~/.pi/evidence
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Compact old evidence</span>
+</span></span><span style="display:flex;"><span>pi evidence compact --older-than 7d
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Export evidence for audit</span>
+</span></span><span style="display:flex;"><span>pi evidence export --format json --output audit-evidence.json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify evidence integrity</span>
+</span></span><span style="display:flex;"><span>pi evidence verify
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: 1,247 records verified, 0 corrupted</span>
+</span></span></code></pre></div><h3 id="security-considerations">Security Considerations</h3>
+<p>SoL-Pi stores evidence locally by default. The Evidence-Preserving Reducer can optionally offload to remote providers for distributed teams.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;evidencePreservingReducer&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;evidencePreservingReducerProvider&#34;</span>: <span style="color:#e6db74">&#34;cloud-store&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;evidencePreservingReducerModel&#34;</span>: <span style="color:#e6db74">&#34;gpt-4o-mini&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;encryption&#34;</span>: <span style="color:#e6db74">&#34;aes-256-gcm&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Remote reduction encrypts evidence before transmission. Original observations remain available locally even if remote storage fails.</p>
+<h3 id="performance-tuning">Performance Tuning</h3>
+<table>
+	<thead>
+			<tr>
+					<th>Parameter</th>
+					<th>Default</th>
+					<th>Optimized</th>
+					<th>Impact</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>actionFusion</td>
+					<td>false</td>
+					<td>true</td>
+					<td>-35% tool calls</td>
+			</tr>
+			<tr>
+					<td>observationPack</td>
+					<td>false</td>
+					<td>true</td>
+					<td>-42% context usage</td>
+			</tr>
+			<tr>
+					<td>cacheWriteReadRatio</td>
+					<td>12.5</td>
+					<td>18.0</td>
+					<td>-28% tokens</td>
+			</tr>
+			<tr>
+					<td>onlineContextCompact</td>
+					<td>false</td>
+					<td>true</td>
+					<td>-15% agent turns</td>
+			</tr>
+	</tbody>
+</table>
+<p>Combined optimization reduces total token consumption by 60-75% depending on workload characteristics.</p>
+<h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<table>
+	<thead>
+			<tr>
+					<th>Feature</th>
+					<th>SoL-Pi</th>
+					<th>Codex CLI</th>
+					<th>Claude Code</th>
+					<th>Continue.dev</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Token savings</td>
+					<td>60-75%</td>
+					<td>Baseline</td>
+					<td>Baseline</td>
+					<td>20-30%</td>
+			</tr>
+			<tr>
+					<td>Verification rate</td>
+					<td>100%</td>
+					<td>100%</td>
+					<td>100%</td>
+					<td>100%</td>
+			</tr>
+			<tr>
+					<td>Evidence preservation</td>
+					<td>Yes</td>
+					<td>No</td>
+					<td>No</td>
+					<td>Partial</td>
+			</tr>
+			<tr>
+					<td>Opt-in mechanisms</td>
+					<td>4</td>
+					<td>N/A</td>
+					<td>N/A</td>
+					<td>2</td>
+			</tr>
+			<tr>
+					<td>Requires Pi</td>
+					<td>Yes</td>
+					<td>No</td>
+					<td>No</td>
+					<td>No</td>
+			</tr>
+			<tr>
+					<td>Local-first</td>
+					<td>Yes</td>
+					<td>No</td>
+					<td>No</td>
+					<td>Yes</td>
+			</tr>
+			<tr>
+					<td>Active development</td>
+					<td>Yes</td>
+					<td>No</td>
+					<td>Yes</td>
+					<td>Yes</td>
+			</tr>
+			<tr>
+					<td>Enterprise support</td>
+					<td>NVIDIA</td>
+					<td>OpenAI</td>
+					<td>Anthropic</td>
+					<td>Community</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>When to skip SoL-Pi:</strong> If you&rsquo;re using non-Pi agent frameworks (Claude Code standalone, Cursor, Windsurf), SoL-Pi is not compatible. The mechanisms are tightly coupled to Pi&rsquo;s extension APIs. For those tools, consider generic context-compaction plugins instead.</p>
+<h2 id="limitations--honest-assessment">Limitations &amp; Honest Assessment</h2>
+<h3 id="what-sol-pi-doesnt-do">What SoL-Pi Doesn&rsquo;t Do</h3>
+<ul>
+<li><strong>It doesn&rsquo;t make agents smarter.</strong> Efficiency gains come from reducing waste, not improving reasoning quality.</li>
+<li><strong>It doesn&rsquo;t work with non-Pi systems.</strong> The extension is tightly coupled to Pi&rsquo;s public APIs.</li>
+<li><strong>It doesn&rsquo;t eliminate verification.</strong> All four mechanisms preserve or enhance evidence integrity.</li>
+</ul>
+<h3 id="known-limitations">Known Limitations</h3>
+<ol>
+<li>
+<p><strong>Pi dependency:</strong> SoL-Pi requires the Pi agent framework. If your team standardizes on Claude Code or Cursor, this tool is irrelevant.</p>
+</li>
+<li>
+<p><strong>Configuration overhead:</strong> The default configuration (all disabled) requires manual tuning for maximum benefit. New users should start with conservative settings and iterate.</p>
+</li>
+<li>
+<p><strong>Evidence store growth:</strong> Over months of use, the local evidence store can grow significantly. Regular compaction is necessary.</p>
+</li>
+<li>
+<p><strong>Model-specific behavior:</strong> Evidence-Preserving Reducer quality depends on the selected model. Cheaper models may compress too aggressively, losing nuance.</p>
+</li>
+</ol>
+<h3 id="when-to-be-cautious">When to Be Cautious</h3>
+<p>If you&rsquo;re running agents for exploratory research where every observation matters, keep <code>cacheWriteReadRatio</code> low (6.0) and disable Evidence-Preserving Reducer. The compression is safe but irreversible once applied.</p>
+<p>For production workloads with tight cost constraints, enable all mechanisms and monitor the first 100 agent turns to calibrate ratios.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="q1-does-sol-pi-work-with-claude-code-or-cursor">Q1: Does SoL-Pi work with Claude Code or Cursor?</h3>
+<p>No. SoL-Pi is a Pi extension and requires the Pi agent framework. It imports Pi&rsquo;s public APIs and cannot integrate with Claude Code&rsquo;s proprietary implementation.</p>
+<h3 id="q2-how-much-does-sol-pi-cost-to-run">Q2: How much does SoL-Pi cost to run?</h3>
+<p>SoL-Pi itself is free (MIT license). The token savings it generates typically offset any marginal increase in compression computation costs. Most users see net savings within the first hour of use.</p>
+<h3 id="q3-can-i-use-sol-pi-with-openais-codex">Q3: Can I use SoL-Pi with OpenAI&rsquo;s Codex?</h3>
+<p>No. SoL-Pi is designed specifically for Pi. While the efficiency principles apply broadly, the implementation is tied to Pi&rsquo;s architecture.</p>
+<h3 id="q4-what-happens-if-compression-loses-evidence">Q4: What happens if compression loses evidence?</h3>
+<p>SoL-Pi&rsquo;s Evidence-Preserving Reducer only compresses when every retained quotation matches the archived source. If verification fails, the original observation is preserved unchanged. Zero evidence loss is guaranteed under normal operation.</p>
+<h3 id="q5-how-do-i-migrate-from-native-pi-to-sol-pi">Q5: How do I migrate from native Pi to SoL-Pi?</h3>
+<p>Add the configuration file (<code>.pi/sol-pi.json</code>) to your project root. Run <code>npm ci</code> in the SoL-Pi directory. No code changes required. Existing sessions continue normally; new sessions benefit from enabled mechanisms.</p>
+<h3 id="q6-is-there-a-cloud-hosted-version">Q6: Is there a cloud-hosted version?</h3>
+<p>Yes. Browser Use offers a waitlist for ultrafast browser agents in the cloud, which includes SoL-Pi optimizations. Self-hosting remains the primary supported method.</p>
+<h3 id="q7-can-i-contribute-to-sol-pi">Q7: Can I contribute to SoL-Pi?</h3>
+<p>Yes. The repository accepts PRs for tested, Pi-compatible extensions that improve token efficiency. See CONTRIBUTING.md for details on benchmark requirements and credit attribution.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>SoL-Pi represents a shift in how we think about agent efficiency. Rather than scaling compute or adding more sophisticated models, the NVlabs team asked: what if we made the harness itself more efficient first?</p>
+<p>The answer is four mechanisms that together reduce token consumption by 60-75% without sacrificing verification or evidence integrity. For teams running long-horizon agent workflows, the savings are immediate and substantial—$27.20 saved on an 8-hour refactor, 2.7 hours reclaimed on debugging tasks.</p>
+<p>The framework&rsquo;s strength lies in its constraints: no Pi patches, explicit opt-in, evidence preservation, and retention of runtime choices. It doesn&rsquo;t hide what happened. It makes what happens cheaper.</p>
+<p>If you&rsquo;re already using Pi for production agent work, SoL-Pi deserves a trial run. Start conservative, monitor the first 100 turns, then tune aggressively. The savings compound across every agent session.</p>
+<p><strong>Try SoL-Pi today:</strong> <a href="https://github.com/NVlabs/SoL-Pi">https://github.com/NVlabs/SoL-Pi</a></p>
+<p><strong>Join the discussion:</strong> <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<p><strong>Related reading:</strong> <a href="dibi8-internal-link">12-Factor Agents</a> • <a href="dibi8-internal-link">LangGraph Stateful Orchestration</a></p>
+<hr>
+<p><strong>Sources &amp; Further Reading:</strong></p>
+<ul>
+<li>Official docs: <a href="https://nvlabs.github.io/SoL-Pi/">https://nvlabs.github.io/SoL-Pi/</a></li>
+<li>GitHub repository: <a href="https://github.com/NVlabs/SoL-Pi">https://github.com/NVlabs/SoL-Pi</a></li>
+<li>Benchmarks: EdgeBench 51-task suite (public release)</li>
+<li>Community discussion: <a href="https://github.com/NVlabs/SoL-Pi/discussions">https://github.com/NVlabs/SoL-Pi/discussions</a></li>
+<li>Pi framework: <a href="https://github.com/earendil-works/pi">https://github.com/earendil-works/pi</a></li>
+</ul>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fnvlabs-sol-pi-agent-harness-efficiency-2026%2f&text=SoL-Pi%3a%20Scaling%20Auto-Research%20Loops%20for%20Efficient%20Agent%20Harnesses%20%e2%80%94%20NVlabs%20Open-Source%20Optimization%20Framework%202026" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fllm-frameworks%2fnvlabs-sol-pi-agent-harness-efficiency-2026%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/jev-ultrafast-type-safe-browser-agent-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">Jev Ultrafast: TypeSafe Browser Agents That Fly at 7.1 Seconds — browser-use 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">Introduction Seven seconds. That&rsquo;s how long it takes Jev Ultrafast to …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/zcode-ai-coding-workbench-desktop-browser-terminal-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">ZCode: AI-Powered Coding Workbench — Desktop, Browser &amp; Terminal in One Platform 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">Introduction AI coding tools have fragmented into silos: desktop IDEs, …</p>
+                </a>
+                
+                <a href="/ai-tools/jianying-headless-private-source-preview-automation-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">Jianying Headless: Private Source Preview &amp; Automation — AI Video Editing Without the App 2026</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">Introduction Jianying (剪映) is ByteDance&rsquo;s powerful video editing …</p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

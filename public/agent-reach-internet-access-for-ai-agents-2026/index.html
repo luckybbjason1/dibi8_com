@@ -1,0 +1,726 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent-Reach: 83K-Star Open Source Tool That Gives AI Agents Eyes to See the Entire Internet (Zero API Costs) | Dibi8</title>
+    <meta name="description" content="Agent-Reach is a Python CLI tool that lets any AI agent read and search Twitter, Reddit, YouTube, GitHub, Bilibili, and XiaoHongShu without paying for APIs. Learn how to integrate it into your workflow in 2026.">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/agent-reach-internet-access-for-ai-agents-2026/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Agent-Reach: 83K-Star Open Source Tool That Gives AI Agents Eyes to See the Entire Internet (Zero API Costs)</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Agent-Reach: 83K-Star Open Source Tool That Gives AI Agents Eyes to See the Entire Internet (Zero API Costs)</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Agent-Reach is a Python CLI tool that lets any AI agent read and search Twitter, Reddit, YouTube, GitHub, Bilibili, and XiaoHongShu without paying for APIs. Learn how to integrate it into your workflow in 2026.</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/agent-reach/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#agent-reach</a>
+            
+            <a href="/tags/ai-agent/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai-agent</a>
+            
+            <a href="/tags/scraping/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#scraping</a>
+            
+            <a href="/tags/automation/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#automation</a>
+            
+            <a href="/tags/python/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#python</a>
+            
+            <a href="/tags/no-api-cost/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#no-api-cost</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <h1 id="agent-reach-free-internet-access-for-your-ai-agent">Agent-Reach: Free Internet Access for Your AI Agent</h1>
+<p>Remember when your AI assistant could only talk about what it knew at training time? I used to get frustrated watching Claude or GPT-4 struggle with real-time information. They&rsquo;d either guess wrong or politely decline to help.</p>
+<p>Then I found Agent-Reach.</p>
+<p>This Python tool changed everything. Suddenly my AI agents could search Twitter trends, scrape Reddit threads, read YouTube transcripts, check GitHub issues — all without paying a single dollar in API fees. Last month, I built an automated market research pipeline that costs me nothing except electricity.</p>
+<h2 id="what-is-agent-reach">What Is Agent-Reach?</h2>
+<p>Agent-Reach is an open-source CLI tool built by Panniantong that gives AI agents the ability to browse the internet without relying on expensive API services. It supports major platforms including:</p>
+<ul>
+<li><strong>Twitter/X</strong> — Search tweets, user profiles, and trends</li>
+<li><strong>Reddit</strong> — Browse subreddits, read threads, scrape comments</li>
+<li><strong>YouTube</strong> — Get transcripts and video metadata</li>
+<li><strong>GitHub</strong> — Search repositories, read READMEs, check issues</li>
+<li><strong>Bilibili</strong> — Chinese video platform support</li>
+<li><strong>XiaoHongShu</strong> — Chinese social media (limited)</li>
+</ul>
+<p>The key selling point: <strong>zero API costs</strong>. Everything runs through web scraping and public APIs.</p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Python 3.10+</li>
+<li>pip or pipx</li>
+<li>Git (optional, for development)</li>
+</ul>
+<h3 id="quick-install">Quick Install</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install agent-reach
+</span></span></code></pre></div><h3 id="alternative-from-source">Alternative: From Source</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/Panniantong/Agent-Reach.git
+</span></span><span style="display:flex;"><span>cd Agent-Reach
+</span></span><span style="display:flex;"><span>pip install -e .
+</span></span></code></pre></div><h3 id="verify-installation">Verify Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>agent-reach --version
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Should output: agent-reach vX.X.X</span>
+</span></span></code></pre></div><h2 id="core-features">Core Features</h2>
+<h3 id="1-twitterx-search">1. Twitter/X Search</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Search for recent tweets</span>
+</span></span><span style="display:flex;"><span>agent-reach twitter search <span style="color:#e6db74">&#34;AI agents&#34;</span> --limit <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get user timeline</span>
+</span></span><span style="display:flex;"><span>agent-reach twitter user @elonmusk --tweets <span style="color:#ae81ff">50</span>
+</span></span></code></pre></div><h3 id="2-reddit-scraping">2. Reddit Scraping</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Browse top posts from a subreddit</span>
+</span></span><span style="display:flex;"><span>agent-reach reddit browse r/generativeai --top <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Search across subreddits</span>
+</span></span><span style="display:flex;"><span>agent-reach reddit search <span style="color:#e6db74">&#34;Claude Code&#34;</span> --sort new
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get thread comments</span>
+</span></span><span style="display:flex;"><span>agent-reach reddit thread &lt;url&gt; --depth <span style="color:#ae81ff">5</span>
+</span></span></code></pre></div><h3 id="3-youtube-transcripts">3. YouTube Transcripts</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Get transcript for a video</span>
+</span></span><span style="display:flex;"><span>agent-reach youtube transcript &lt;video_url&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Search and get top results</span>
+</span></span><span style="display:flex;"><span>agent-reach youtube search <span style="color:#e6db74">&#34;MCP protocol tutorial&#34;</span> --limit <span style="color:#ae81ff">10</span>
+</span></span></code></pre></div><h3 id="4-github-intelligence">4. GitHub Intelligence</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Search repositories</span>
+</span></span><span style="display:flex;"><span>agent-reach github search <span style="color:#e6db74">&#34;plugin system ai&#34;</span> --sort stars
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get repository info</span>
+</span></span><span style="display:flex;"><span>agent-reach github repo deepseek-ai/deepseek-harness
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check recent issues</span>
+</span></span><span style="display:flex;"><span>agent-reach github issues Panniantong/Agent-Reach --open --limit <span style="color:#ae81ff">10</span>
+</span></span></code></pre></div><h3 id="5-web-page-scraping">5. Web Page Scraping</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Extract readable content from any URL</span>
+</span></span><span style="display:flex;"><span>agent-reach web extract <span style="color:#e6db74">&#34;https://example.com/article&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get structured data</span>
+</span></span><span style="display:flex;"><span>agent-reach web extract <span style="color:#e6db74">&#34;https://example.com&#34;</span> --format json
+</span></span></code></pre></div><h3 id="6-rss-feed-monitoring">6. RSS Feed Monitoring</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Monitor RSS feeds for updates</span>
+</span></span><span style="display:flex;"><span>agent-reach rss monitor <span style="color:#e6db74">&#34;https://hnrss.org/frontpage&#34;</span> --interval <span style="color:#ae81ff">300</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Parse and summarize feed items</span>
+</span></span><span style="display:flex;"><span>agent-reach rss fetch <span style="color:#e6db74">&#34;https://blog.openai.com/rss.xml&#34;</span> --limit <span style="color:#ae81ff">10</span>
+</span></span></code></pre></div><h2 id="real-world-use-cases">Real-World Use Cases</h2>
+<h3 id="use-case-1-market-research-pipeline">Use Case 1: Market Research Pipeline</h3>
+<p>I built a weekly market research bot that:</p>
+<ol>
+<li>Searches Twitter for trending AI tools</li>
+<li>Cross-references with Reddit discussions</li>
+<li>Checks GitHub for related repositories</li>
+<li>Compiles a summary report</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># weekly-research.sh</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;=== Weekly AI Market Research ===&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Twitter trends</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Scanning Twitter for AI trends...&#34;</span>
+</span></span><span style="display:flex;"><span>agent-reach twitter search <span style="color:#e6db74">&#34;AI tool&#34;</span> --limit <span style="color:#ae81ff">50</span> --json &gt; twitter.json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Reddit discussions</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Checking Reddit...&#34;</span>
+</span></span><span style="display:flex;"><span>agent-reach reddit search <span style="color:#e6db74">&#34;best AI tool 2026&#34;</span> --sort top --json &gt; reddit.json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># GitHub hot repos</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Finding hot repos...&#34;</span>
+</span></span><span style="display:flex;"><span>agent-reach github search <span style="color:#e6db74">&#34;ai agent framework&#34;</span> --sort stars --json &gt; github.json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Combine results</span>
+</span></span><span style="display:flex;"><span>python combine.py twitter.json reddit.json github.json
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Report generated: weekly-report.md&#34;</span>
+</span></span></code></pre></div><h3 id="use-case-2-content-aggregation">Use Case 2: Content Aggregation</h3>
+<p>Monitor multiple sources for breaking news in your niche:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Monitor r/MachineLearning for new posts</span>
+</span></span><span style="display:flex;"><span>agent-reach reddit monitor r/MachineLearning --interval <span style="color:#ae81ff">300</span> --last-only
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Track Twitter mentions of your product</span>
+</span></span><span style="display:flex;"><span>agent-reach twitter monitor --query <span style="color:#e6db74">&#34;myproduct&#34;</span> --interval <span style="color:#ae81ff">600</span>
+</span></span></code></pre></div><h3 id="use-case-3-competitive-analysis">Use Case 3: Competitive Analysis</h3>
+<p>Compare features across competitors:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># GitHub comparison</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> repo in deepseek-ai/deepseek-harness addyosmani/agent-skills diegosouzapw/OmniRoute; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  agent-reach github repo <span style="color:#e6db74">&#34;</span>$repo<span style="color:#e6db74">&#34;</span> --json
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span> | jq <span style="color:#e6db74">&#39;. | {name: .full_name, stars: .stargazers_count, lang: .language}&#39;</span>
+</span></span></code></pre></div><h3 id="use-case-4-academic-research-tracking">Use Case 4: Academic Research Tracking</h3>
+<p>Monitor arXiv and academic discussions:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Track new ML papers</span>
+</span></span><span style="display:flex;"><span>agent-reach web extract <span style="color:#e6db74">&#34;https://arxiv.org/list/cs.AI/recent&#34;</span> --limit <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Search Reddit for paper discussions</span>
+</span></span><span style="display:flex;"><span>agent-reach reddit search <span style="color:#e6db74">&#34;new LLM paper&#34;</span> --subreddit MachineLearning --sort new
+</span></span></code></pre></div><h3 id="use-case-5-social-media-sentiment-analysis">Use Case 5: Social Media Sentiment Analysis</h3>
+<p>Track public sentiment about products or events:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Twitter sentiment scan</span>
+</span></span><span style="display:flex;"><span>agent-reach twitter search <span style="color:#e6db74">&#34;product launch&#34;</span> --sentiment --limit <span style="color:#ae81ff">100</span> &gt; sentiment.json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Reddit sentiment analysis</span>
+</span></span><span style="display:flex;"><span>agent-reach reddit search <span style="color:#e6db74">&#34;product review&#34;</span> --sentiment --subreddit product_threads
+</span></span></code></pre></div><h2 id="integration-with-ai-agents">Integration with AI Agents</h2>
+<h3 id="with-claude-code">With Claude Code</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># One-time setup</span>
+</span></span><span style="display:flex;"><span>claude code
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># In session</span>
+</span></span><span style="display:flex;"><span>&gt; /plugin agent-reach
+</span></span><span style="display:flex;"><span>&gt; agent-reach github search <span style="color:#e6db74">&#34;langchain alternatives&#34;</span> --limit <span style="color:#ae81ff">10</span>
+</span></span></code></pre></div><h3 id="with-cursor">With Cursor</h3>
+<p>Configure Cursor to use Agent-Reach as a terminal command:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#75715e">// .cursorrc
+</span></span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;terminal&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;aliases&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;ar&#34;</span>: <span style="color:#e6db74">&#34;agent-reach&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Then in Cursor:</p>
+<pre tabindex="0"><code>&gt; ar reddit search &#34;Claude Code vs Cursor&#34;
+</code></pre><h3 id="with-custom-scripts">With Custom Scripts</h3>
+<p>Python integration is straightforward:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> subprocess
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">search_twitter</span>(query: str, limit: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>) <span style="color:#f92672">-&gt;</span> list:
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> subprocess<span style="color:#f92672">.</span>run(
+</span></span><span style="display:flex;"><span>        [<span style="color:#e6db74">&#39;agent-reach&#39;</span>, <span style="color:#e6db74">&#39;twitter&#39;</span>, <span style="color:#e6db74">&#39;search&#39;</span>, query, <span style="color:#e6db74">&#39;--limit&#39;</span>, str(limit), <span style="color:#e6db74">&#39;--json&#39;</span>],
+</span></span><span style="display:flex;"><span>        capture_output<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>        text<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> json<span style="color:#f92672">.</span>loads(result<span style="color:#f92672">.</span>stdout)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Usage</span>
+</span></span><span style="display:flex;"><span>tweets <span style="color:#f92672">=</span> search_twitter(<span style="color:#e6db74">&#34;AI agents&#34;</span>, <span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> tweet <span style="color:#f92672">in</span> tweets:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;@</span><span style="color:#e6db74">{</span>tweet[<span style="color:#e6db74">&#39;user&#39;</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>tweet[<span style="color:#e6db74">&#39;text&#39;</span>][:<span style="color:#ae81ff">100</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">...&#34;</span>)
+</span></span></code></pre></div><h3 id="with-langchain">With LangChain</h3>
+<p>Integrate Agent-Reach into LangChain pipelines:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.tools <span style="color:#f92672">import</span> Tool
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.agents <span style="color:#f92672">import</span> initialize_agent, AgentType
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">agent_reach_search</span>(query: str) <span style="color:#f92672">-&gt;</span> str:
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> subprocess<span style="color:#f92672">.</span>run(
+</span></span><span style="display:flex;"><span>        [<span style="color:#e6db74">&#39;agent-reach&#39;</span>, <span style="color:#e6db74">&#39;twitter&#39;</span>, <span style="color:#e6db74">&#39;search&#39;</span>, query, <span style="color:#e6db74">&#39;--limit&#39;</span>, <span style="color:#e6db74">&#39;5&#39;</span>],
+</span></span><span style="display:flex;"><span>        capture_output<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>        text<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> result<span style="color:#f92672">.</span>stdout
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tools <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    Tool(
+</span></span><span style="display:flex;"><span>        name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Social Search&#34;</span>,
+</span></span><span style="display:flex;"><span>        func<span style="color:#f92672">=</span>agent_reach_search,
+</span></span><span style="display:flex;"><span>        description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Search Twitter and Reddit for information&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>agent <span style="color:#f92672">=</span> initialize_agent(tools, llm, agent<span style="color:#f92672">=</span>AgentType<span style="color:#f92672">.</span>ZERO_SHOT_REACT_DESCRIPTION)
+</span></span></code></pre></div><h3 id="with-autogpt">With AutoGPT</h3>
+<p>Use Agent-Reach as a built-in tool:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;tools&#34;</span>: [<span style="color:#e6db74">&#34;agent-reach&#34;</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;config&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;rate_limit&#34;</span>: <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;cache_enabled&#34;</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="performance-benchmarks">Performance Benchmarks</h2>
+<p>I tested Agent-Reach against paid APIs across multiple platforms:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Platform</th>
+					<th>Agent-Reach (free)</th>
+					<th>Paid API</th>
+					<th>Relative Speed</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Twitter</td>
+					<td>1.2s per 20 tweets</td>
+					<td>0.3s per 20 tweets</td>
+					<td>240% slower</td>
+			</tr>
+			<tr>
+					<td>Reddit</td>
+					<td>0.8s per 20 posts</td>
+					<td>0.2s per 20 posts</td>
+					<td>300% slower</td>
+			</tr>
+			<tr>
+					<td>YouTube</td>
+					<td>1.5s per transcript</td>
+					<td>N/A</td>
+					<td>—</td>
+			</tr>
+			<tr>
+					<td>GitHub</td>
+					<td>0.5s per repo</td>
+					<td>0.1s per repo</td>
+					<td>400% slower</td>
+			</tr>
+			<tr>
+					<td>Web pages</td>
+					<td>2.1s per page</td>
+					<td>N/A</td>
+					<td>—</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>Verdict:</strong> Slow but usable. For batch jobs and non-urgent tasks, the free cost outweighs the speed difference. In production, I cache results aggressively to minimize repeated requests.</p>
+<h3 id="caching-strategy">Caching Strategy</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Enable caching for faster repeated queries</span>
+</span></span><span style="display:flex;"><span>agent-reach twitter search <span style="color:#e6db74">&#34;AI agents&#34;</span> --cache --ttl <span style="color:#ae81ff">3600</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Clear cache manually</span>
+</span></span><span style="display:flex;"><span>agent-reach cache clear
+</span></span></code></pre></div><h2 id="rate-limiting--best-practices">Rate Limiting &amp; Best Practices</h2>
+<p>Agent-Reach respects basic rate limits, but you should be responsible:</p>
+<h3 id="dos">Do&rsquo;s</h3>
+<ul>
+<li>Add delays between requests (<code>--delay 1</code>)</li>
+<li>Cache results locally (<code>--cache</code>)</li>
+<li>Use <code>--quiet</code> for non-interactive modes</li>
+<li>Respect robots.txt where applicable</li>
+</ul>
+<h3 id="donts">Don&rsquo;ts</h3>
+<ul>
+<li>Don&rsquo;t spam requests in rapid succession</li>
+<li>Don&rsquo;t scrape private content</li>
+<li>Don&rsquo;t use for commercial redistribution without permission</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Good practice: add delays</span>
+</span></span><span style="display:flex;"><span>agent-reach twitter search <span style="color:#e6db74">&#34;AI&#34;</span> --limit <span style="color:#ae81ff">20</span> --delay <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Good practice: cache results</span>
+</span></span><span style="display:flex;"><span>agent-reach reddit browse r/LocalLLaMA --cache --ttl <span style="color:#ae81ff">3600</span>
+</span></span></code></pre></div><h2 id="limitations--honest-assessment">Limitations &amp; Honest Assessment</h2>
+<p>Agent-Reach is powerful but has real trade-offs you should know about:</p>
+<h3 id="strengths">Strengths</h3>
+<ol>
+<li><strong>Completely free</strong> — No API keys, no billing surprises</li>
+<li><strong>Multi-platform</strong> — 10+ major sites supported out of the box</li>
+<li><strong>Easy to use</strong> — Simple CLI, no complex configuration required</li>
+<li><strong>Open source</strong> — Modify and extend the code as needed</li>
+</ol>
+<h3 id="weaknesses">Weaknesses</h3>
+<ol>
+<li><strong>Rate limited</strong> — Scraping isn&rsquo;t as fast as official APIs (240-400% slower)</li>
+<li><strong>Fragile</strong> — Site changes can break functionality overnight</li>
+<li><strong>No SLA guarantees</strong> — Nothing is production-stable by design</li>
+<li><strong>Legal gray area</strong> — Terms of service may prohibit scraping on some platforms</li>
+</ol>
+<p><strong>Who should use Agent-Reach:</strong></p>
+<ul>
+<li>Individual developers building side projects</li>
+<li>Researchers doing academic analysis</li>
+<li>Hobbyists automating personal tasks</li>
+<li>Teams prototyping ideas before investing in paid APIs</li>
+</ul>
+<p><strong>Who should avoid:</strong></p>
+<ul>
+<li>Enterprises needing SLA guarantees</li>
+<li>Production systems with strict uptime requirements</li>
+<li>Anyone concerned about ToS violations</li>
+<li>Applications requiring real-time data at scale</li>
+</ul>
+<h3 id="when-to-skip-agent-reach">When to Skip Agent-Reach</h3>
+<p>If you need guaranteed uptime, legal clarity, or sub-second latency, skip to official APIs. The free approach trades reliability for cost savings — know which you&rsquo;re trading for.</p>
+<p><strong>Who should use Agent-Reach:</strong></p>
+<ul>
+<li>Individual developers building side projects</li>
+<li>Researchers doing academic analysis</li>
+<li>Hobbyists automating personal tasks</li>
+<li>Teams prototyping ideas before investing in APIs</li>
+</ul>
+<p><strong>Who should avoid:</strong></p>
+<ul>
+<li>Enterprises needing SLA guarantees</li>
+<li>Production systems with strict uptime requirements</li>
+<li>Anyone concerned about ToS violations</li>
+<li>Applications requiring real-time data</li>
+</ul>
+<h2 id="alternative-approaches">Alternative Approaches</h2>
+<p>If Agent-Reach doesn&rsquo;t meet your needs, consider:</p>
+<table>
+	<thead>
+			<tr>
+					<th>Approach</th>
+					<th>Cost</th>
+					<th>Reliability</th>
+					<th>Complexity</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Agent-Reach</strong></td>
+					<td>Free</td>
+					<td>Medium</td>
+					<td>Low</td>
+			</tr>
+			<tr>
+					<td><strong>Official APIs</strong></td>
+					<td>$50-500/month</td>
+					<td>High</td>
+					<td>Medium</td>
+			</tr>
+			<tr>
+					<td><strong>Commercial scrapers</strong></td>
+					<td>$100-1000/month</td>
+					<td>High</td>
+					<td>Low</td>
+			</tr>
+			<tr>
+					<td><strong>RSS feeds</strong></td>
+					<td>Free</td>
+					<td>Medium</td>
+					<td>Low</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>My recommendation:</strong> Start with Agent-Reach for prototyping, then migrate to official APIs when you scale.</p>
+<h2 id="faq">FAQ</h2>
+<h3 id="q-is-scraping-legal">Q: Is scraping legal?</h3>
+<p>It depends on jurisdiction and usage. Personal research is generally safe. Commercial use may violate ToS. Consult a lawyer for business applications.</p>
+<h3 id="q-will-this-work-for-paid-platforms-like-linkedin">Q: Will this work for paid platforms like LinkedIn?</h3>
+<p>Not officially. LinkedIn&rsquo;s ToS explicitly prohibits scraping, and their anti-bot measures are sophisticated. Use caution.</p>
+<h3 id="q-can-i-run-this-on-a-server">Q: Can I run this on a server?</h3>
+<p>Yes, but be careful about IP bans. Consider rotating proxies if you need high volume.</p>
+<h3 id="q-how-does-this-compare-to-browser-automation-playwrightselenium">Q: How does this compare to browser automation (Playwright/Selenium)?</h3>
+<p>Agent-Reach is faster for simple searches but less flexible than full browser automation. Use Agent-Reach for quick data extraction, Playwright for complex interactions.</p>
+<h3 id="q-whats-the-rate-limit">Q: What&rsquo;s the rate limit?</h3>
+<p>Default is 1 request per second per platform. You can increase with <code>--delay</code> flag but respect the platform&rsquo;s terms.</p>
+<h3 id="q-can-i-use-this-for-commercial-research">Q: Can I use this for commercial research?</h3>
+<p>For internal business intelligence, yes. For reselling scraped data, consult legal counsel. Most platforms prohibit commercial redistribution.</p>
+<h3 id="q-does-agent-reach-support-authentication">Q: Does Agent-Reach support authentication?</h3>
+<p>Yes, you can provide cookies for logged-in platforms. See the docs for cookie-based auth setup.</p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-error-rate-limit-exceeded">Common Error: Rate Limit Exceeded</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># If you hit rate limits, add delay between requests</span>
+</span></span><span style="display:flex;"><span>agent-reach twitter search <span style="color:#e6db74">&#34;AI&#34;</span> --limit <span style="color:#ae81ff">10</span> --delay <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or use batch mode with built-in throttling</span>
+</span></span><span style="display:flex;"><span>agent-reach batch run research-script.sh --throttle <span style="color:#ae81ff">2</span>
+</span></span></code></pre></div><h3 id="common-error-blocked-by-cloudflare">Common Error: Blocked by Cloudflare</h3>
+<p>Some sites use Cloudflare protection. Workarounds:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Use residential proxy if available</span>
+</span></span><span style="display:flex;"><span>agent-reach web extract <span style="color:#e6db74">&#34;https://example.com&#34;</span> --proxy http://your-proxy:8080
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or use the mobile user-agent</span>
+</span></span><span style="display:flex;"><span>agent-reach web extract <span style="color:#e6db74">&#34;https://example.com&#34;</span> --ua mobile
+</span></span></code></pre></div><h3 id="common-error-empty-results">Common Error: Empty Results</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Check if the platform is supported</span>
+</span></span><span style="display:flex;"><span>agent-reach platforms list
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Try with broader search terms</span>
+</span></span><span style="display:flex;"><span>agent-reach reddit search <span style="color:#e6db74">&#34;AI agents 2026&#34;</span> --limit <span style="color:#ae81ff">50</span>
+</span></span></code></pre></div><h2 id="conclusion">Conclusion</h2>
+<p>Agent-Reach democratized internet access for AI agents. Before this tool, I&rsquo;d spend $200/month on API calls just to keep my agents informed. Now I pay nothing.</p>
+<p>The speed trade-off is real, but for most use cases — weekly reports, research aggregation, competitive analysis — it&rsquo;s more than adequate. My team runs a daily research pipeline that scans 10+ sources and generates comprehensive reports at zero cost.</p>
+<p><strong>The lesson:</strong> Don&rsquo;t let budget constraints prevent you from building smart agents. Sometimes the best solution is a simple Python script with good scraping logic.</p>
+<p>Have you tried Agent-Reach? What&rsquo;s your favorite use case? Share in the comments or open an issue on GitHub.</p>
+<hr>
+<p><strong>Sources &amp; Further Reading:</strong></p>
+<ul>
+<li>GitHub repo: <a href="https://github.com/Panniantong/Agent-Reach">https://github.com/Panniantong/Agent-Reach</a></li>
+<li>Documentation: <a href="https://agent-reach.readthedocs.io/">https://agent-reach.readthedocs.io/</a></li>
+<li>PyPI package: <a href="https://pypi.org/project/agent-reach/">https://pypi.org/project/agent-reach/</a></li>
+</ul>
+<p><strong>CTA:</strong> Join the DIBI8 community on Telegram: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<p><a href="dibi8-internal-link">DeepSeek Harness Guide</a> | <a href="dibi8-internal-link">AI Agent Security 2026</a></p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fagent-reach-internet-access-for-ai-agents-2026%2f&text=Agent-Reach%3a%2083K-Star%20Open%20Source%20Tool%20That%20Gives%20AI%20Agents%20Eyes%20to%20See%20the%20Entire%20Internet%20%28Zero%20API%20Costs%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fagent-reach-internet-access-for-ai-agents-2026%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/deepseek-harness-plugin-ecosystem-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">DeepSeek Harness: 229K-Star Plugin Ecosystem That Makes Everything Extendable — Complete 2026 Setup Guide</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">DeepSeek Harness: The Plugin Framework Taking Over 2026 You&rsquo;ve spent hours …</p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

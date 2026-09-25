@@ -1,0 +1,553 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南） | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/12-factor-agents-production-llm-software-2026/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo;
+description: &ldquo;AI tool guide&rdquo;
+date: 2026-05-23T00:00:00+08:00
+lastmod: 2026-05-23T00:00:00+08:00
+tech_stack: []
+application_domain: LLM Frameworks
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: Apache-2.0
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-22&rdquo;
+draft: false
+categories: [&ldquo;llm-frameworks&rdquo;]
+tags: [&ldquo;12-factor-agents&rdquo;, &ldquo;production-ai&rdquo;, &ldquo;llm-engineering&rdquo;, &ldquo;agent-architecture&rdquo;, &ldquo;humanlayer&rdquo;, &ldquo;agent-design-patterns&rdquo;, &ldquo;context-window&rdquo;, &ldquo;prompt-engineering&rdquo;, &ldquo;tool-calls&rdquo;, &ldquo;developer-productivity&rdquo;]
+aliases:</p>
+<ul>
+<li>/zh/posts/12-factor-agents-production-llm-software-2026/
+image: &ldquo;<a href="https://github.com/humanlayer/12-factor-agents/blob/main/img/110-natural-language-tool-calls.png%22">https://github.com/humanlayer/12-factor-agents/blob/main/img/110-natural-language-tool-calls.png"</a></li>
+</ul>
+<hr>
+<p><img alt="Hero Image" loading="lazy" src="https://picsum.photos/seed/large-language-model/1200x800"></p>
+<h1 id="12-factor-agents-解读构建生产级-llm-软件的-12-条原则2026-完整指南">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h1>
+<h2 id="为什么用-langchain-就行已经不灵了">为什么&quot;用 LangChain 就行&quot;已经不灵了</h2>
+<p>每个把 LLM 功能上线给真实用户的工程师都撞过同一面墙：原型在 notebook 里跑得漂亮，付费用户第一次从不同角度发请求时立刻崩盘。Agent 幻觉出一个工具调用，上下文窗口在 session 中段爆炸，错误悄悄被吞掉，重试无限自旋，事后剖析才发现——连写这玩意儿的工程师自己都搞不清 agent 失败时到底在干什么。</p>
+<p>2025–2026 的 agent AI 生态产生了十几个号称&quot;让 agent 生产可用&quot;的框架——LangChain、LangGraph、CrewAI、AutoGen、OpenAI Agents SDK、Pydantic AI，名单越来越长。每一个都解决了 <em>demo 问题</em>（组合工具调用、子 agent 路由）。几乎没有一个解决了 <em>生产问题</em>（意料外输入下的可预测行为、可观察的失败模式、可恢复的 session）。</p>
+<p><a href="https://github.com/humanlayer/12-factor-agents"><strong>12-Factor Agents</strong></a>（GitHub：```humanlayer/12-factor-agents````，<strong>截至 2026 年 5 月已 22,000+ stars</strong>）是 Dex Horthy 和 HumanLayer 团队给这个 gap 的答案。模仿 Heroku 2011 年那份 12-Factor App 方法论，它是一份 <em>方法论</em>——不是框架，不是 runtime，不是 SaaS——用来思考&quot;真实客户会用的&quot;LLM 软件。</p>
+<p>代码 Apache 2.0，文档 CC BY-SA 4.0。273 次 commit 还在涨，主要 TypeScript 配 Python 和 Jupyter 示例方便上手。</p>
+<hr>
+<h2 id="核心洞察">核心洞察</h2>
+<p>框架抽象掉了 agent 出错时最重要的四件事：</p>
+<ol>
+<li><strong>当时发出的 prompt</strong>。</li>
+<li><strong>当时活跃的上下文窗口</strong>。</li>
+<li><strong>决定下一步该做什么的控制流</strong>。</li>
+<li><strong>需要在崩溃后存活的执行 state</strong>。</li>
+</ol>
+<p>12-Factor Agents 论证：<em>这四件事每一件</em> 都应该是你拥有的代码——不是框架隐藏的魔法。结果是你 repo 里多一些代码、半夜 3 点出事故时少祈祷几次。</p>
+<p>下面是全部 12 条因子，以及每一条在实战中的含义。</p>
+<hr>
+<h2 id="12-条因子">12 条因子</h2>
+<h3 id="1-自然语言到工具调用">1. 自然语言到工具调用</h3>
+<p>LLM 的工作是把用户意图翻译成结构化的工具调用——仅此而已。不要让 LLM &ldquo;做那件事&rdquo;，让它产出 <em>描述</em> 那件事的 JSON，然后用确定性代码去执行。这一条约束消除了一整类幻觉驱动的事故。</p>
+<h3 id="2-拥有你自己的-prompts">2. 拥有你自己的 prompts</h3>
+<p>Prompt 是 <em>代码</em>。它属于你的 repo、属于版本控制、属于代码审查。藏在框架 prompt 库里的模板是技术债，等你升级框架那一天悄悄改变行为。如果 agent 的行为取决于一个字符串，那个字符串归你管。</p>
+<h3 id="3-拥有你自己的上下文窗口">3. 拥有你自己的上下文窗口</h3>
+<p>当前在模型上下文里的消息集合，是决定行为的最大单一因素。自动摘要、自动剪枝、自动注入记忆的框架——好用，直到不好用。自己写上下文组装逻辑。你应该能打印出送进每一次 LLM 调用的精确消息数组。</p>
+<h3 id="4-工具就是结构化输出">4. 工具就是结构化输出</h3>
+<p>&ldquo;工具&quot;不是一个魔法 Function 对象——它是一个 JSON Schema，约束 LLM 的输出形状。一旦内化这个观点，你就能造出 LLM 并不真正&quot;执行&quot;的&quot;工具&rdquo;：状态转换、决策分支、escalation 请求。任何需要 LLM 承诺一种 shape 的东西都能是工具。</p>
+<h3 id="5-统一执行-state-和业务-state">5. 统一执行 state 和业务 state</h3>
+<p>你的 agent 有两个状态机：一个&quot;我在对话哪一步&rdquo;，一个&quot;用户的订单/工单/项目处于什么阶段&quot;。12-Factor 论证这两个应该是 <em>同一个</em> 状态机。把它们分开是&quot;agent 以为做完了但订单还 pending&quot;这类 bug 的最大来源。</p>
+<h3 id="6-launch--pause--resume-用简单-api">6. Launch / Pause / Resume 用简单 API</h3>
+<p>你的 agent 必须能在跑到中途被暂停、之后被恢复——可能在另一台机器、可能在人工审批之后。这意味着整个 session state 必须可序列化。不能依赖 local 变量闭包魔法。不能&quot;LLM client 对象在内存里持续保活对话&quot;。纯数据，写到持久层。</p>
+<h3 id="7-通过工具调用联系人类">7. 通过工具调用联系人类</h3>
+<p>当 agent 需要人类输入——审批、补充信息、escalation——它应该 <em>emit 一个 tool call</em>，不要原地停住。Tool call 进入人类监控的同一个队列/UI/收件箱。和因子 4 同模式，应用到人在环场景。HumanLayer 的产品就是这条原则的产品化。</p>
+<h3 id="8-拥有你自己的控制流">8. 拥有你自己的控制流</h3>
+<p>&ldquo;调 LLM → 跑工具 → 再调 LLM → 看是否完成 → 再调 LLM&rdquo; 的 for 循环是每个 agent 的心脏。隐藏它的框架（&ldquo;你只要 yield 就好，循环我们帮你管&rdquo;）剥夺了你在关键点注入自定义逻辑的能力——限流、预算上限、人工 checkpoint、重试。自己写循环，二十行的事。</p>
+<h3 id="9-把错误紧凑回上下文窗口">9. 把错误紧凑回上下文窗口</h3>
+<p>工具调用失败时，正确做法是把 <em>简短的结构化</em> 错误信息塞回 LLM 下一轮，让它做反应。不是 crash。不是悄悄重试。不是 log-and-pray。一条 200 字符 &ldquo;TOOL_FAILED: HTTP 503 from /api/orders, payload too large&rdquo; 已经足够让 LLM 做出合理的下一步——退避、试小 payload、escalate 给人类。</p>
+<h3 id="10-小而聚焦的-agent">10. 小而聚焦的 agent</h3>
+<p>一个&quot;什么都做&quot;的巨型 agent 是 debug 噩梦。十二个小 agent，每个三个工具一个职责，可测试可恢复。这跟微服务同 pattern，同样的 trade-off：协调开销大一些，故障隔离好得多。</p>
+<h3 id="11-哪都能触发用户在哪你就在哪">11. 哪都能触发，用户在哪你就在哪</h3>
+<p>Agent 的输入不该跟单一渠道耦合。Slack 消息、邮件、表单、GitHub issue、Telegram 机器人、cron 任务——同一个 agent。这需要因子 2（拥有 prompts）和因子 5（统一 state）先打牢，但回报是加新输入源不用重写 agent。</p>
+<h3 id="12-让你的-agent-成为无状态-reducer">12. 让你的 agent 成为无状态 reducer</h3>
+<p>Agent 是一个纯函数：<code>state, event → new state, output</code>。无隐藏 mutation。没有&quot;agent 因为有 self.history 属性所以记得&quot;。所有影响输出的都在输入里。这一条让其他一切成为可能——没有这条，因子 5、6、10 都是空想。</p>
+<hr>
+<h2 id="应用到真实栈">应用到真实栈</h2>
+<h3 id="应用到-claude-code-工作流">应用到 <a href="https://dibi8.com/zh/vs/claude-code-vs-aider/">Claude Code</a> 工作流</h3>
+<p>Claude Code 设计上已经实现了因子 1、4、7——tool call 是结构化输出，MCP server 提供人在环，工具目录归你（你项目的 MCP 配置）。需要你关注的是因子 2（system prompt 通过 CLAUDE.md 自定义）、因子 3（上下文窗口部分由 Claude 组装，但 pagefind/<a href="https://dibi8.com/zh/resources/dev-utils/codegraph-pre-indexed-knowledge-graph-2026/">CodeGraph</a> 集成让你能塑形）、因子 9（工具返回错误时确保紧凑且结构化）。</p>
+<h3 id="应用到-mcp-为基础-的-agent-栈">应用到 <a href="https://dibi8.com/zh/resources/llm-frameworks/mcp-deep-dive-definitive-2026-guide/">MCP 为基础</a> 的 agent 栈</h3>
+<p>MCP 把因子 4 做到极致（工具就是标准化协议上的结构化输出），并辅助因子 11（任何 MCP 客户端都能驱动任何 MCP server）。MCP 自身对因子 5、6、8、12 沉默——这些你得在 MCP 之上自己造。</p>
+<h3 id="应用到-hermes-agent--opencode--自定义栈">应用到 <a href="https://dibi8.com/zh/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/">Hermes Agent</a> / <a href="https://dibi8.com/zh/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/">OpenCode</a> / 自定义栈</h3>
+<p>它们让你在因子 1、4、8 上有起步领先（内置 agent loop、结构化 tool call）。你仍需自己带因子 2（prompts）、因子 3（上下文塑形）、因子 5–6（state 持久化）、因子 12（无状态化）。</p>
+<hr>
+<h2 id="12-factor-agents-与主流框架营销的分歧">12-Factor Agents 与主流框架营销的分歧</h2>
+<p>宣言里有几条原则跟&quot;用我们框架就忘掉细节&quot;的话术正面对撞：</p>
+<ul>
+<li><strong>因子 2 vs prompt 库</strong>：多数 agent 框架自带 prompt 库。12-Factor 说：把 prompt 复制进你 repo，然后它们归你。</li>
+<li><strong>因子 3 vs 自动记忆</strong>：框架喜欢提供自动记忆（&ldquo;开箱 RAG&rdquo;）。12-Factor 说：那是&quot;为什么 agent 在做这事&quot;的最大单一谜团源。自己写组装逻辑。</li>
+<li><strong>因子 8 vs 隐藏循环的 runtime</strong>：托管 runtime 隐藏循环很方便，直到你需要注入自定义逻辑。12-Factor 说：自己写循环，它很小。</li>
+</ul>
+<p>这不是反框架，是反&quot;隐藏太多&quot;的框架。把框架当库用，不要当黑箱。</p>
+<hr>
+<h2 id="12-factor-agents-不是什么">12-Factor Agents 不是什么</h2>
+<p>把期待校准好：</p>
+<ul>
+<li><strong>不是 runtime</strong>。没有 ````pip install twelve-factor-agents```。是文字、示例、模式。</li>
+<li><strong>不是单语言的东西</strong>。示例是 TypeScript 和 Python，但原则语言无关。</li>
+<li><strong>不是宗教</strong>。有些因子（特别是因子 10——小而聚焦）涉及真实 trade-off。宣言本身对此诚实。</li>
+<li><strong>未完工</strong>。273 commit 还在涨，issue 和讨论持续迭代措辞。</li>
+</ul>
+<hr>
+<h2 id="谁该读">谁该读</h2>
+<p><strong>是的，从头读到尾，如果你：</strong></p>
+<ul>
+<li>在上线（或即将上线）LLM 功能给付费客户。</li>
+<li>过去 60 天调过&quot;demo 时是好的&quot;那种 agent 事故。</li>
+<li>在手撸 agent 循环和采用 LangGraph/CrewAI/Agents SDK 之间纠结。</li>
+<li>在做 <a href="https://dibi8.com/zh/vs/claude-code-vs-aider/">Cursor 对比 Claude Code</a> 之类的厂商对比，想要一个&quot;生产可用&quot;到底意味着什么的 checklist。</li>
+</ul>
+<p><strong>可以略读，如果你：</strong></p>
+<ul>
+<li>还在&quot;第一个 agent&quot;demo 阶段（读因子 1 和 2，以后再回来）。</li>
+<li>只用托管无代码平台（n8n、Zapier），自己不写 agent 循环。</li>
+</ul>
+<hr>
+<h2 id="结论">结论</h2>
+<p>12-Factor Agents 是 2026 年被引用最多的 LLM 软件宣言，原因充分：它把&quot;过去两年里上线生产 agent 的工程师独立汇聚到的模式&quot;用词语固化下来了。Heroku 12-Factor 的类比不是装腔——两份文档都编纂了 <em>真实用户依赖之后什么不再可选</em>。</p>
+<p>宣言推动的最大单一思想转变：<strong>agent 是软件，软件需要被运营它的团队理解</strong>。隐藏这个契约的框架是技术债，不是生产力。</p>
+<p>把 12 条因子 + <a href="https://dibi8.com/zh/resources/dev-utils/codegraph-pre-indexed-knowledge-graph-2026/">像 CodeGraph 一样的 token 效率符号层</a> + <a href="https://dibi8.com/zh/resources/llm-frameworks/rtk-rust-cli-proxy-llm-token-savings-2026/">像 rtk 一样的成本感知 LLM 代理</a> + <a href="https://dibi8.com/zh/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/">像 CC Switch 一样的统一 CLI 控制面</a> 组合起来，你就有了 2026 年生产 AI 栈的架构骨架。</p>
+<hr>
+<p><strong>GitHub</strong>：<a href="https://github.com/humanlayer/12-factor-agents">humanlayer/12-factor-agents</a> · <strong>协议</strong>：Apache 2.0（代码）/ CC BY-SA 4.0（内容）· <strong>Stars</strong>：22K+ · <strong>作者</strong>：Dex Horthy / HumanLayer</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-23&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-23&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/12-factor-agents-production-llm-software-2026%22">https://dibi8.com/resources/12-factor-agents-production-llm-software-2026"</a>
+}
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters</h2>
+<p>Understanding 12-factor agents 解读：构建生产级 llm 软件的 12 条原则（2026 完整指南） is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications</h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
+2. Generate documentation automatically
+3. Build internal knowledge bases
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started</h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南） represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~5 minutes</em></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/">12-factor-agents</a></li>
+<li><a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/">12-factor-agents</a></li>
+<li><a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/">12-factor-agents</a></li>
+<li><a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/">12-factor-agents</a></li>
+<li><a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/">prompts-chat</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+<h2 id="tool-comparison">Tool Comparison</h2>
+<p>| Feature | Claude Code | Cursor | Codex CLI | OpenCode |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Price</strong> | $20/month | $20/month | Free | Free |
+| <strong>Interface</strong> | CLI + IDE | Full IDE | CLI | CLI |
+| <strong>License</strong> | Proprietary | Commercial | Apache 2.0 | MIT |
+| <strong>GitHub Stars</strong> | N/A | N/A | N/A | 45,000+ |
+| <strong>Best For</strong> | Complex reasoning | Daily coding | Fast iteration | Customization |</p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2f12-factor-agents-production-llm-software-2026%2f&text=12-Factor%20Agents%20%e8%a7%a3%e8%af%bb%ef%bc%9a%e6%9e%84%e5%bb%ba%e7%94%9f%e4%ba%a7%e7%ba%a7%20LLM%20%e8%bd%af%e4%bb%b6%e7%9a%84%2012%20%e6%9d%a1%e5%8e%9f%e5%88%99%ef%bc%882026%20%e5%ae%8c%e6%95%b4%e6%8c%87%e5%8d%97%ef%bc%89" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2f12-factor-agents-production-llm-software-2026%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-15-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 15 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

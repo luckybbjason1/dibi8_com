@@ -1,0 +1,715 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using aider-install (recommended) | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/aider/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Using aider-install (recommended)</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Using aider-install (recommended)</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;Using aider-install (recommended)&rdquo;
+description: &ldquo;AI tool guide&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Llm Frameworks
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: Apache-2.0
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;llm-frameworks&rdquo;]
+tags: [&ldquo;aider&rdquo;, &ldquo;ai-pair-programming&rdquo;, &ldquo;terminal-ai&rdquo;, &ldquo;cli-coding&rdquo;, &ldquo;git-ai&rdquo;, &ldquo;llm-tools&rdquo;, &ldquo;open-source&rdquo;]
+aliases:</p>
+<ul>
+<li>/posts/aider/-</li>
+</ul>
+<hr>
+<h2 id="introduction">Introduction</h2>
+<p>The terminal has always been where power users live. In 2026, it is also where the most capable AI coding assistant operates. Aider, an open-source terminal AI pair programming tool with over 45,000 GitHub stars, has quietly become the weapon of choice for developers who want AI assistance without abandoning their existing editor or paying a monthly subscription. Unlike IDE-locked alternatives, Aider works with VS Code, Vim, Neovim, Emacs, or any text editor — because it operates on your git repository directly, not inside an editor plugin. If you have been searching for an aider tutorial, comparing aider vs claude code, or looking for a production-grade ai pair programming setup, this guide covers installation, configuration, benchmarks, and honest trade-offs.</p>
+<h2 id="what-is-aider">What Is Aider?</h2>
+<p>Aider is AI pair programming in your terminal. It is a command-line tool that pairs you with a large language model to edit code in your local git repository. Aider reads your codebase, makes changes across multiple files, and automatically commits each change with a descriptive message. It is model-agnostic, supporting OpenAI GPT, Anthropic Claude, DeepSeek, Google Gemini, local models via Ollama, and over a dozen other providers. Every edit is a discrete git commit — giving you a granular audit trail and trivial rollback capability.</p>
+<h2 id="how-aider-works">How Aider Works</h2>
+<p>Aider&rsquo;s architecture centers on three core concepts: the repo map, the edit format, and the architect mode.</p>
+<p><img alt="Aider architecture" loading="lazy" src="https://aider.chat/assets/logo.svg"></p>
+<p><strong>Repo Map:</strong> Before making any changes, Aider builds a map of your codebase using tree-sitter parsers. This map tells the LLM where functions, classes, and types are defined across files — enabling multi-file edits without loading the entire repository into context. For a 50,000-line Python project, the repo map typically consumes under 2,000 tokens, leaving the majority of the context window available for the actual editing task.</p>
+<p><strong>Edit Format:</strong> Aider uses structured diff formats (unified diff, diff-fenced, or the editor-diff format) to tell the LLM exactly how to modify files. This is more reliable than asking the model to output entire files, especially for large codebases. The polyglot benchmark leaderboard shows that models using diff-based editing achieve 88-98% correct edit format rates.</p>
+<p><strong>Architect Mode:</strong> For complex changes, Aider separates planning from execution. A reasoning model (like o3 or Claude Opus) drafts the architectural plan, while a fast editing model (like GPT-4.1) executes the file changes. This two-model approach cuts costs by 40-60% on routine edits while maintaining high quality on complex refactors.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>aider --model o3 --editor-model gpt-4.1 --architect
+</span></span></code></pre></div><h2 id="installation--setup">Installation &amp; Setup</h2>
+<p>Getting started with Aider takes under five minutes. You need Python 3.8-3.13 and an API key from at least one LLM provider.</p>
+<p><strong>Step 1 — Install Aider:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Using aider-install (recommended)</span>
+</span></span><span style="display:flex;"><span>python -m pip install aider-install
+</span></span><span style="display:flex;"><span>aider-install
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or using uv</span>
+</span></span><span style="display:flex;"><span>python -m pip install uv
+</span></span><span style="display:flex;"><span>uv tool install --force --python python3.12 --with pip aider-chat@latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or one-liner for Mac/Linux</span>
+</span></span><span style="display:flex;"><span>curl -LsSf https://aider.chat/install.sh | sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or one-liner for Windows</span>
+</span></span><span style="display:flex;"><span>powershell -ExecutionPolicy ByPass -c <span style="color:#e6db74">&#34;irm https://aider.chat/install.ps1 | iex&#34;</span>
+</span></span></code></pre></div><p><strong>Step 2 — Configure your API key:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Claude (Anthropic)</span>
+</span></span><span style="display:flex;"><span>export ANTHROPIC_API_KEY<span style="color:#f92672">=</span>sk-ant-api03-your-key
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># OpenAI</span>
+</span></span><span style="display:flex;"><span>export OPENAI_API_KEY<span style="color:#f92672">=</span>sk-proj-your-key
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># DeepSeek</span>
+</span></span><span style="display:flex;"><span>export DEEPSEEK_API_KEY<span style="color:#f92672">=</span>sk-your-key
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Google Gemini</span>
+</span></span><span style="display:flex;"><span>export GEMINI_API_KEY<span style="color:#f92672">=</span>your-key
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or use a .env file in your project root</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;ANTHROPIC_API_KEY=sk-ant-api03-your-key&#34;</span> &gt; .env
+</span></span></code></pre></div><p><strong>Step 3 — Start coding:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd /to/your/project
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># With Claude Sonnet</span>
+</span></span><span style="display:flex;"><span>aider --model sonnet
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># With OpenAI GPT-5</span>
+</span></span><span style="display:flex;"><span>aider --model gpt-5
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># With DeepSeek (budget option)</span>
+</span></span><span style="display:flex;"><span>aider --model deepseek --api-key deepseek<span style="color:#f92672">=</span>sk-your-key
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># With local model via Ollama</span>
+</span></span><span style="display:flex;"><span>ollama pull qwen2.5-coder:32b
+</span></span><span style="display:flex;"><span>aider --model ollama/qwen2.5-coder:32b
+</span></span></code></pre></div><p><strong>Docker alternative:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -it --rm <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>:/app <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -e ANTHROPIC_API_KEY<span style="color:#f92672">=</span>$ANTHROPIC_API_KEY <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  paulgauthier/aider <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model sonnet
+</span></span></code></pre></div><h2 id="integration-with-popular-tools">Integration with Popular Tools</h2>
+<h3 id="vs-code">VS Code</h3>
+<p>Aider does not require a VS Code extension. Start Aider in your project terminal, then edit files in VS Code as usual. Aider watches the git repository and commits changes automatically. For a tighter workflow, use the <code>--watch-files</code> flag: `````bash</p>
+<h1 id="in-terminal-1-start-aider">In terminal 1: start aider</h1>
+<p>aider &ndash;model sonnet &ndash;watch-files</p>
+<h1 id="in-vs-code-add-ai-comments-like--ai-refactor-this-to-use-asyncawait">In VS Code: add AI comments like &ldquo;// AI: refactor this to use async/await&rdquo;</h1>
+<h1 id="aider-picks-up-the-comment-makes-the-change-and-commits-it">Aider picks up the comment, makes the change, and commits it</h1>
+<pre tabindex="0"><code>
+### Vim / Neovim
+
+Aider fits naturally into a Vim workflow. Run it in a tmux split alongside your editor: `````bash
+# tmux config for aider + vim
+tmux new-session -d -s aider-vim
+tmux split-window -h -t aider-vim
+tmux send-keys -t aider-vim.0 &#39;vim .&#39; C-m
+tmux send-keys -t aider-vim.1 &#39;aider --model sonnet&#39; C-m
+tmux attach -t aider-vim
+</code></pre><h3 id="git--github">Git &amp; GitHub</h3>
+<p>Aider&rsquo;s git integration is its standout feature. Every AI-assisted edit becomes a discrete commit: `````bash</p>
+<h1 id="inside-an-aider-session">Inside an aider session</h1>
+<blockquote>
+<p>/add src/auth.js src/middleware.js
+Add JWT token validation to the auth middleware</p>
+</blockquote>
+<h1 id="aider-makes-the-change-and-commits--main-a1b2c3d-feat-add-jwt-token-validation-to-auth-middleware">Aider makes the change and commits: # [main a1b2c3d] feat: Add JWT token validation to auth middleware</h1>
+<h1 id="2-files-changed-45-insertions-12-deletions-">2 files changed, 45 insertions(+), 12 deletions(-)</h1>
+<h1 id="review-commits-before-pushing">Review commits before pushing</h1>
+<p>git log &ndash;oneline -10
+git diff HEAD~3..HEAD  # review last 3 AI commits</p>
+<h1 id="push-to-github">Push to GitHub</h1>
+<p>git push origin main</p>
+<pre tabindex="0"><code>
+### GitLab CI/CD Integration
+
+`````yaml
+# .gitlab-ci.yml - AI code review pipeline
+ai-review: image: python:3.12
+  before_script: - pip install aider-chat
+  script: - aider --model sonnet --message &#34;Review this MR for security issues&#34; --no-auto-commits
+  rules: - if: $CI_PIPELINE_SOURCE == &#34;merge_request_event&#34;
+</code></pre><h3 id="pre-commit-hooks">Pre-commit Hooks</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># .pre-commit-config.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">repos: - repo</span>: <span style="color:#ae81ff">local</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">hooks: - id</span>: <span style="color:#ae81ff">aider-lint</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run aider lint fixes</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">entry</span>: <span style="color:#ae81ff">aider --lint-cmd &#34;npm run lint&#34; --lint</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">language</span>: <span style="color:#ae81ff">system</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">pass_filenames</span>: <span style="color:#66d9ef">false</span>
+</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases</h2>
+<p>Aider maintains the most widely cited LLM coding benchmark in the industry. The polyglot benchmark tests 225 challenging Exercism exercises across C++, Go, Java, JavaScript, Python, and Rust.</p>
+<h3 id="polyglot-leaderboard-top-models-may-2026">Polyglot Leaderboard (Top Models, May 2026)</h3>
+<p>| Model | Score | Cost/Run | Edit Format |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| GPT-5 (high) | 88.0% | $29.08 | diff |
+| GPT-5 (medium) | 86.7% | $17.69 | diff |
+| o3-pro (high) | 84.9% | $146.32 | diff |
+| Gemini 2.5 Pro (32k think) | 83.1% | $49.88 | diff-fenced |
+| GPT-5 (low) | 81.3% | $10.37 | diff |
+| Grok-4 (high) | 79.6% | $59.62 | diff |
+| DeepSeek-V3.2 Reasoner | 74.2% | $1.30 | diff |</p>
+<p>The cost gap is staggering: DeepSeek V3.2 Reasoner scores 74.2% at $1.30 per benchmark run — over twenty times cheaper than frontier models. For routine refactoring, boilerplate generation, and test writing, it is the pragmatic choice.</p>
+<h3 id="aiders-own-benchmarks-aider-coding">Aider&rsquo;s Own Benchmarks (aider coding)</h3>
+<p>Aider also benchmarks itself on real-world coding tasks using the aider coding benchmark: | Model | Pass Rate | Avg Tokens | Latency |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Claude Sonnet 4 | 72% | 18,400 | 45s |
+| GPT-4.1 | 68% | 22,100 | 38s |
+| DeepSeek V3.2 | 61% | 25,600 | 52s |
+| Gemini 2.5 Pro | 69% | 19,800 | 41s |</p>
+<h3 id="real-world-productivity-data">Real-World Productivity Data</h3>
+<p>Based on community reports and developer surveys in 2026: - <strong>Solo developers:</strong> Average 35-45% reduction in boilerplate coding time when using Aider with Sonnet or GPT-5</p>
+<ul>
+<li><strong>Refactoring tasks:</strong> Multi-file refactors that took 4-6 hours manually complete in 45-90 minutes with Aider</li>
+<li><strong>Test generation:</strong> Line coverage increases from 60% to 85% on average when using Aider to write tests for existing code</li>
+<li><strong>Git history:</strong> Aider users report 3-5x more commits per day due to automatic commit granularity, making code review easier</li>
+</ul>
+<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<h3 id="security-restricting-file-access">Security: Restricting File Access</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Only allow edits to specific directories</span>
+</span></span><span style="display:flex;"><span>aider --model sonnet --read-only src/ --edit docs/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use a .aiderignore file</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;*.secret&#34;</span> &gt; .aiderignore
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;config/prod.yml&#34;</span> &gt;&gt; .aiderignore
+</span></span></code></pre></div><h3 id="prompt-caching-for-cost-reduction">Prompt Caching for Cost Reduction</h3>
+<p>Aider supports prompt caching for Anthropic Claude and OpenAI models, reducing API costs by 40-60% on multi-turn conversations: `````bash</p>
+<h1 id="prompt-caching-is-automatic-for-supported-models">Prompt caching is automatic for supported models</h1>
+<p>aider &ndash;model sonnet &ndash;cache-prompts</p>
+<h1 id="check-cache-statistics">Check cache statistics</h1>
+<h1 id="look-for-cache-hit-in-the-output-to-confirm-savings">Look for &ldquo;Cache hit&rdquo; in the output to confirm savings</h1>
+<pre tabindex="0"><code>
+### Custom Model Aliases
+
+`````bash
+# ~/.aider.conf.yml
+model-alias: - fast: gpt-4.1
+  - smart: claude-sonnet-4
+  - cheap: deepseek/deepseek-chat
+  - local: ollama/qwen2.5-coder:32b
+</code></pre><p>Usage: `````bash
+aider &ndash;model fast    # uses gpt-4.1
+aider &ndash;model smart   # uses claude-sonnet-4
+aider &ndash;model cheap   # uses DeepSeek</p>
+<pre tabindex="0"><code>
+### Linting and Testing Integration
+
+`````bash
+# Auto-run lint after each edit
+aider --model sonnet --lint-cmd &#34;npm run lint&#34;
+
+# Auto-run tests after each edit
+aider --model sonnet --test-cmd &#34;npm test&#34; --auto-test
+
+# Only commit if tests pass
+aider --model sonnet --test-cmd &#34;pytest&#34; --auto-test --test-first
+</code></pre><h3 id="yaml-configuration-file">YAML Configuration File</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># ~/.aider.conf.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">model</span>: <span style="color:#ae81ff">sonnet</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">editor</span>: <span style="color:#ae81ff">nvim</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">auto-commits</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">dirty-commits</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">lint-cmd</span>: <span style="color:#e6db74">&#34;npm run lint&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">test-cmd</span>: <span style="color:#e6db74">&#34;npm test&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">cache-prompts</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">show-model-warnings</span>: <span style="color:#66d9ef">false</span>
+</span></span></code></pre></div><h3 id="monitoring-with-analytics">Monitoring with Analytics</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Set analytics log for cost tracking</span>
+</span></span><span style="display:flex;"><span>export AIDER_ANALYTICS_LOG<span style="color:#f92672">=</span>/var/log/aider/analytics.jsonl
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Track per-project costs</span>
+</span></span><span style="display:flex;"><span>aider --model sonnet --analytics-log ./logs/aider.jsonl
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | Aider | Claude Code | Cursor | Codex CLI |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Price</strong> | Free + API keys | $20+/mo Pro | $20/mo Pro | ChatGPT Plus $20/mo |
+| <strong>Open Source</strong> | Apache-2.0 | Proprietary | Proprietary | Proprietary |
+| <strong>Model Choice</strong> | Any provider | Claude only | Limited | OpenAI only |
+| <strong>Git Integration</strong> | Auto-commit per change | Manual commit | Manual commit | Manual commit |
+| <strong>Interface</strong> | Terminal | Terminal + IDE plugin | Full IDE | Terminal |
+| <strong>Repo Map</strong> | Yes (tree-sitter) | Yes | Yes | Limited |
+| <strong>Architect Mode</strong> | Yes (separate plan/execute) | No | No | No |
+| <strong>Local Models</strong> | Full Ollama support | No | No | No |
+| <strong>Cost/Month (moderate use)</strong> | $5-15 | $20-100 | $20 | $20 |
+| <strong>SWE-bench Score</strong> | N/A (benchmarks LLMs) | 72.5% | N/A | 68% |</p>
+<h3 id="when-to-choose-which">When to Choose Which</h3>
+<p><strong>Choose Aider when:</strong></p>
+<ul>
+<li>You want model freedom (Claude today, DeepSeek tomorrow, local model offline)</li>
+<li>You live in the terminal and use vim/emacs</li>
+<li>You want automatic git commits for every AI edit</li>
+<li>You avoid monthly subscriptions and prefer pay-per-use API pricing</li>
+<li>You need architect mode for complex multi-model workflows</li>
+</ul>
+<p><strong>Choose Claude Code when:</strong></p>
+<ul>
+<li>You want the simplest possible setup with zero configuration</li>
+<li>You are already paying for Claude Pro</li>
+<li>You need the absolute best reasoning quality (Opus 4.6)</li>
+<li>You want Slack integration and multi-agent teams</li>
+<li>You prefer a polished, vendor-supported experience</li>
+</ul>
+<p><strong>Choose Cursor when:</strong></p>
+<ul>
+<li>You want AI inside a full IDE with autocomplete</li>
+<li>You prefer a GUI for reviewing diffs</li>
+<li>You need the best tab-completion experience</li>
+<li>Your team wants a shared AI coding environment</li>
+</ul>
+<p><strong>Choose Codex CLI when:</strong></p>
+<ul>
+<li>You already have ChatGPT Plus</li>
+<li>You want async background task execution</li>
+<li>You prefer OpenAI models exclusively</li>
+</ul>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p>Aider is not the right tool for every developer or every situation. Here is what it is NOT good for: <strong>GUI-dependent workflows:</strong> If you need to see rendered UI, drag-and-drop file management, or visual diff review, Aider&rsquo;s terminal interface will frustrate you. Cursor or Windsurf are better fits.</p>
+<p><strong>Non-developers:</strong> Aider assumes git fluency, terminal comfort, and API key management. A developer who does not know how to set environment variables will struggle. Cursor&rsquo;s one-click installer is a better on-ramp.</p>
+<p><strong>Real-time collaboration:</strong> Aider is a single-user tool. There is no shared session state, no real-time multiplayer, and no team dashboard. For pair programming with a human colleague, use VS Code Live Share + Cursor.</p>
+<p><strong>Windows native feel:</strong> While Aider works on Windows (via WSL or native Python), the terminal-first experience is optimized for Unix-like environments. Windows developers report occasional path and encoding issues.</p>
+<p><strong>Non-coding tasks:</strong> Aider is purpose-built for editing code in git repositories. It is not a general-purpose chatbot, document editor, or system administration tool. For those, use Claude Code or the raw LLM API.</p>
+<p><strong>Model quality variance:</strong> Because Aider supports any model, your experience varies dramatically. A local 7B parameter model will produce noticeably worse results than Claude Sonnet or GPT-5. The freedom to choose comes with the responsibility to pick appropriate models for the task.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>Q: How much does Aider cost per month?</strong>
+A: Aider itself is free and open source. You only pay for LLM API usage. Moderate usage (50 tasks/week) costs approximately $5-15/month with DeepSeek, $15-40/month with Claude Sonnet, and $20-60/month with GPT-5. There is no subscription fee for Aider itself.</p>
+<p><strong>Q: Can I use Aider with my existing code editor?</strong>
+A: Yes — that is Aider&rsquo;s core design principle. Aider runs in a terminal and operates on your git repository. You can use VS Code, Vim, Neovim, Emacs, Sublime Text, or any other editor simultaneously. Changes made by Aider appear in your editor&rsquo;s file watcher immediately.</p>
+<p><strong>Q: Is Aider safe for production codebases?</strong>
+A: Aider commits every change to git with a descriptive message, so you can review and revert any edit. However, you should always review AI-generated code before merging to main. Use <code>git diff</code> to inspect changes, run your test suite with <code>--auto-test</code>, and enable branch protection on GitHub/GitLab.</p>
+<p><strong>Q: Which LLM model works best with Aider?</strong>
+A: According to the Aider polyglot leaderboard, GPT-5 (high) achieves the highest score at 88.0%, followed by Claude Sonnet 4 at ~84% and Gemini 2.5 Pro at 83.1%. For cost-sensitive work, DeepSeek V3.2 Reasoner at 74.2% and $1.30 per benchmark run offers the best value.</p>
+<p><strong>Q: Can Aider work without an internet connection?</strong>
+A: Yes, if you use a local model via Ollama or LM Studio. Install the model locally (<code>ollama pull qwen2.5-coder:32b</code>), then run <code>aider --model ollama/qwen2.5-coder:32b</code>. Note that local models are slower and less capable than cloud APIs for complex multi-file edits.</p>
+<p><strong>Q: How does Aider compare to GitHub Copilot?</strong>
+A: Copilot provides inline autocomplete inside your IDE. Aider is a conversational agent that makes multi-file edits and commits them to git. They complement each other — many developers use Copilot for daily autocomplete and Aider for larger refactors and feature implementation. Copilot costs $10-19/month; Aider is free plus API usage.</p>
+<p><strong>Q: Can I use Aider in my company&rsquo;s private repository?</strong>
+A: Yes. Aider operates entirely locally — your code never leaves your machine except via the LLM API calls you initiate. For maximum privacy, use a local model via Ollama so no code leaves your network at all. Always review your organization&rsquo;s AI usage policies before using any AI coding tool.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Aider is the most flexible, cost-effective AI pair programming tool available in 2026. With 45,000+ GitHub stars, model-agnostic architecture, and git-native workflow, it fills a unique niche: terminal-first AI coding without vendor lock-in or subscription fees. For developers who live in the command line, value automatic commit tracking, and want the freedom to switch between Claude, GPT, DeepSeek, and local models, Aider is the practical choice.</p>
+<p><strong>Action items to get started:</strong></p>
+<ol>
+<li>Install Aider with <code>curl -LsSf https://aider.chat/install.sh | sh</code></li>
+<li>Set your <code>ANTHROPIC_API_KEY</code> or <code>OPENAI_API_KEY</code></li>
+<li>Run <code>aider --model sonnet</code> in your project directory</li>
+<li>Add files with <code>/add</code>, then describe what you want in natural language</li>
+<li>Review the auto-commits with ````git log``` before pushing</li>
+</ol>
+<p>Join the Aider community on <a href="https://discord.gg/Y7X7bhMQFV">Discord</a> or <a href="https://t.me/dibi8opensource">Telegram</a> to share tips, get help, and stay updated on new releases.</p>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading</h2>
+<ul>
+<li><a href="https://github.com/Aider-AI/aider">Aider GitHub Repository</a> — 45,000+ stars, Apache-2.0 licensed</li>
+<li><a href="https://aider.chat/docs/">Aider Official Documentation</a></li>
+<li><a href="https://aider.chat/docs/leaderboards/">Aider LLM Leaderboards</a> — polyglot benchmark results</li>
+<li><a href="https://aider.chat/docs/install.html">Aider Installation Guide</a></li>
+<li><a href="https://aider.chat/docs/usage.html">Aider Usage Documentation</a></li>
+<li><a href="https://docs.anthropic.com/en/docs/claude-code">Claude Code Documentation</a></li>
+<li><a href="https://www.cursor.com/">Cursor AI Code Editor</a></li>
+<li><a href="https://github.com/openai/codex">OpenAI Codex CLI</a></li>
+<li><a href="https://exercism.org/">Exercism Polyglot Exercises</a> — the benchmark Aider uses</li>
+<li><a href="https://aider.chat/HISTORY.html">Aider Release History</a></li>
+<li><a href="https://aider.chat/docs/config.html">Aider Configuration Reference</a></li>
+</ul>
+<p><em>This article is for informational purposes. Aider is open-source software under the Apache-2.0 license. Always review AI-generated code before deploying to production.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Aider: 45K+ Stars — Terminal AI Pair Programming vs Claude Code, Cursor in 2026&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/aider%22">https://dibi8.com/resources/aider"</a>
+}
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/aider/">prompts-chat</a></li>
+<li><a href="/ai-coding-agents/aider/">prompts-chat</a></li>
+<li><a href="/ai-coding-agents/aider/">prompts-chat</a></li>
+<li><a href="/ai-coding-agents/aider/">claude-code-vs-aider</a></li>
+<li><a href="/ai-coding-agents/aider/">claude-code-vs-aider</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2faider%2f&text=Using%20aider-install%20%28recommended%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2faider%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

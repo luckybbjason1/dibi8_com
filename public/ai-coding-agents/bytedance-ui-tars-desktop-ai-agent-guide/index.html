@@ -1,0 +1,703 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7B parameter model (recommended for most use cases) | Dibi8</title>
+    <meta name="description" content="With over 36,000 GitHub stars, it has become one of the most popular vision-language agents for desktop automation">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/bytedance-ui-tars-desktop-ai-agent-guide/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">7B parameter model (recommended for most use cases)</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">7B parameter model (recommended for most use cases)</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">With over 36,000 GitHub stars, it has become one of the most popular vision-language agents for desktop automation</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <h2 id="introduction">Introduction</h2>
+<p>The dream of a truly autonomous AI assistant — one that can look at your computer screen, understand what it sees, and take actions to complete tasks — has been the holy grail of AI development for years. ByteDance&rsquo;s UI-TARS Desktop brings this dream much closer to reality by combining state-of-the-art vision-language models with desktop automation capabilities.</p>
+<p>UI-TARS (User Interface TARS) is a desktop AI agent developed by ByteDance that can observe computer screens through screenshots, understand the visual layout of applications, and perform actions such as clicking buttons, typing text, and navigating menus — all through natural language instructions. Unlike screen scraping or API-based automation tools, UI-TARS actually sees the screen the way a human does, making it capable of handling any GUI application without requiring integrations or API keys. With over 36,000 GitHub stars, it has become one of the most popular vision-language agents for desktop automation.</p>
+<p><img alt="UI-TARS desktop overview" loading="lazy" src="https://raw.githubusercontent.com/bytedance/UI-TARS-desktop/main/images/tars.png"></p>
+<h2 id="what-is-ui-tars-desktop">What Is UI-TARS Desktop?</h2>
+<p>UI-TARS Desktop is <strong>a vision-language AI agent that controls your computer by watching the screen</strong>. It uses a specialized visual language model trained to understand desktop interfaces — recognizing buttons, menus, forms, and text fields — and then generates actionable commands to interact with them.</p>
+<p>Key capabilities include: - <strong>Visual understanding</strong> — Analyzes screenshots to identify UI elements, text, and layout with VLM-powered recognition</p>
+<ul>
+<li><strong>Action generation</strong> — Generates mouse clicks, keyboard input, scroll commands, and drag operations</li>
+<li><strong>Natural language interface</strong> — Control any desktop application through plain English instructions</li>
+<li><strong>Multi-application support</strong> — Works with any GUI application without requiring integrations or API keys</li>
+<li><strong>Self-correction</strong> — Revises its approach based on visual feedback from each action, enabling error recovery</li>
+<li><strong>Multi-monitor support</strong> — Handles multiple displays with per-monitor screenshot capture</li>
+<li><strong>Headless mode</strong> — Run on servers without a display for automated testing</li>
+<li><strong>Apache 2.0 licensed</strong> — Free for personal, commercial, and enterprise use</li>
+</ul>
+<h2 id="how-ui-tars-works">How UI-TARS Works</h2>
+<p>UI-TARS operates through a perception-action cycle: 1. <strong>Perceive</strong> — The agent captures a screenshot of the current desktop state using the platform&rsquo;s native screen capture API
+2. <strong>Understand</strong> — The vision-language model analyzes the screenshot to identify UI elements, their labels, and their pixel positions on screen
+3. <strong>Plan</strong> — The agent determines what action to take based on the user&rsquo;s instruction and the current screen state
+4. <strong>Act</strong> — The agent executes the action (click, type, scroll, etc.) through the platform&rsquo;s input automation API
+5. <strong>Observe</strong> — The agent captures a new screenshot to verify the result and continue the cycle</p>
+<p>The vision-language model is specifically trained on desktop screenshots and UI interactions, making it significantly better at understanding computer interfaces than general-purpose vision models. It can recognize everything from simple buttons and text fields to complex forms, dialogs, and multi-panel layouts.</p>
+<p>The agent maintains context across multiple steps, remembering what it has done and what remains to be done. For complex tasks that span multiple applications or screens, UI-TARS can navigate through multiple steps, verifying progress after each action. The maximum number of steps can be configured to prevent infinite loops.</p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<p>UI-TARS Desktop can be installed via npm (for the desktop application) or pip (for the Python library). All commands below are verified from the official documentation.</p>
+<h3 id="install-via-npm-desktop-application">Install via npm (Desktop Application)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install -g @agent-tars/desktop
+</span></span></code></pre></div><p>This installs the UI-TARS Desktop application globally, providing a full GUI agent experience with a built-in interface.</p>
+<h3 id="alternative-install-via-pip-python-library">Alternative: Install via pip (Python Library)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install agent-tars
+</span></span></code></pre></div><p>This installs the Python library version, which is ideal for programmatic use and server-side deployment.</p>
+<h3 id="start-web-ui">Start Web UI</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>agent-tars web
+</span></span></code></pre></div><p>Launches the web-based interface for the UI-TARS agent. The web UI provides a browser-based interface for controlling the agent and viewing its actions.</p>
+<h3 id="verify-installation">Verify Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>agent-tars --version
+</span></span></code></pre></div><h3 id="install-from-source">Install from Source</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/bytedance/UI-TARS-desktop.git <span style="color:#f92672">&amp;&amp;</span> cd UI-TARS-desktop <span style="color:#f92672">&amp;&amp;</span> pip install -r requirements.txt
+</span></span></code></pre></div><h3 id="download-pre-trained-model">Download Pre-trained Model</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python download_model.py --model ui-tars-7b
+</span></span></code></pre></div><p>Downloads the pre-trained 7-billion parameter vision-language model. The model is downloaded from HuggingFace and stored locally for offline inference.</p>
+<h3 id="docker-installation">Docker Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker pull bytedance/uitars-desktop
+</span></span><span style="display:flex;"><span>docker run --gpus all -it bytedance/uitars-desktop
+</span></span></code></pre></div><h3 id="install-on-macos">Install on macOS</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install python@3.11
+</span></span><span style="display:flex;"><span>pip3 install agent-tars
+</span></span></code></pre></div><h3 id="install-on-windows">Install on Windows</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install agent-tars
+</span></span></code></pre></div><p><img alt="UI-TARS GitHub OG preview" loading="lazy" src="https://opengraph.github.com/github/bytedance/UI-TARS-desktop"></p>
+<p><img alt="UI-TARS GitHub OG preview 2" loading="lazy" src="https://opengraph.github.com/github/bytedance/UI-TARS-desktop"></p>
+<h2 id="basic-usage-examples">Basic Usage Examples</h2>
+<h3 id="start-the-agent">Start the Agent</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>agent-tars --model ui-tars-7b
+</span></span></code></pre></div><p>This starts the UI-TARS agent with the 7-billion parameter vision-language model, which is the recommended size for most use cases.</p>
+<h3 id="run-a-single-task">Run a Single Task</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>agent-tars run --task <span style="color:#e6db74">&#34;Open the browser and search for &#39;machine learning tutorial&#39;&#34;</span> --model ui-tars-7b
+</span></span></code></pre></div><p>The agent will automatically open your default browser, navigate to a search engine, and search for the specified query.</p>
+<h3 id="run-from-a-task-file">Run from a Task File</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>agent-tars run --task-file tasks.yaml --model ui-tars-7b
+</span></span></code></pre></div><p>Where <code>tasks.yaml</code> contains: `````yaml
+tasks: - &ldquo;Open the file explorer&rdquo;</p>
+<ul>
+<li>&ldquo;Navigate to Desktop&rdquo;</li>
+<li>&ldquo;Right-click and create a new folder&rdquo;</li>
+<li>&ldquo;Name the folder &lsquo;My Project&rsquo;&rdquo;</li>
+</ul>
+<pre tabindex="0"><code>
+### Screenshot Mode (Analyze Only)
+
+`````bash
+agent-tars analyze --screenshot screenshot.png
+</code></pre><p>This analyzes a screenshot and describes the UI elements visible, without performing any actions. Useful for debugging and understanding what the model sees.</p>
+<h3 id="record-and-replay">Record and Replay</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>agent-tars record --output recording.yaml
+</span></span><span style="display:flex;"><span>agent-tars replay --recording recording.yaml
+</span></span></code></pre></div><p>Records your agent&rsquo;s actions and generates a YAML file that can be replayed later, enabling automation script generation.</p>
+<h3 id="run-in-headless-mode">Run in Headless Mode</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>agent-tars run --headless --task <span style="color:#e6db74">&#34;Close all open browser tabs&#34;</span> --model ui-tars-7b
+</span></span></code></pre></div><p>Headless mode runs the agent without displaying the UI, useful for server environments and CI/CD pipelines.</p>
+<h3 id="configure-agent-parameters">Configure Agent Parameters</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>agent-tars run --task <span style="color:#e6db74">&#34;Your task&#34;</span> --model ui-tars-7b --max-steps <span style="color:#ae81ff">20</span> --confidence-threshold 0.8
+</span></span></code></pre></div><h3 id="batch-task-processing">Batch Task Processing</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>agent-tars batch --task-file tasks.yaml --parallel <span style="color:#ae81ff">3</span> --output results.jsonl
+</span></span></code></pre></div><p>Processes multiple tasks in parallel and logs results to a JSONL file for programmatic analysis.</p>
+<h3 id="export-task-logs">Export Task Logs</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>agent-tars export-logs --output uitars-logs.json
+</span></span></code></pre></div><h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<h3 id="model-selection">Model Selection</h3>
+<p>UI-TARS supports multiple model sizes for different performance trade-offs: `````bash</p>
+<h1 id="7b-parameter-model-recommended-for-most-use-cases">7B parameter model (recommended for most use cases)</h1>
+<p>agent-tars &ndash;model ui-tars-7b</p>
+<h1 id="1b-parameter-model-faster-less-accurate-lower-gpu-requirements">1B parameter model (faster, less accurate, lower GPU requirements)</h1>
+<p>agent-tars &ndash;model ui-tars-1b</p>
+<h1 id="72b-parameter-model-most-accurate-slowest-requires-40gb-vram">72B parameter model (most accurate, slowest, requires 40GB+ VRAM)</h1>
+<p>agent-tars &ndash;model ui-tars-72b</p>
+<pre tabindex="0"><code>
+### Custom Configuration File
+
+`````yaml
+# uitars-config.yaml
+agent: model: ui-tars-7b
+  max_steps: 30
+  confidence_threshold: 0.85
+  screenshot_interval: 1.0
+  action_delay: 0.5
+
+actions: click: method: mouse
+    move_to_center: true
+  type: delay_between_keys: 0.02
+  scroll: pixels_per_step: 120
+
+environment: resolution: 1920x1080
+  scale_factor: 1.0
+  language: en
+</code></pre><h3 id="multi-monitor-support">Multi-Monitor Support</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>agent-tars --monitor <span style="color:#ae81ff">0</span> --task <span style="color:#e6db74">&#34;Open settings on display 2&#34;</span>
+</span></span></code></pre></div><p>Specifies which monitor the agent should use for screenshot capture and action execution.</p>
+<h3 id="api-server-mode">API Server Mode</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>agent-tars serve --host 0.0.0.0 --port <span style="color:#ae81ff">8000</span> --model ui-tars-7b
+</span></span></code></pre></div><p>Starts a REST API server for programmatic control of the agent. This enables integration with other tools and automated workflows.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Send a task via API</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:8000/run <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;task&#34;: &#34;Open calculator and calculate 2+2&#34;, &#34;max_steps&#34;: 15}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check task status</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:8000/tasks/task-001/status
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cancel a running task</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:8000/tasks/task-001/cancel
+</span></span></code></pre></div><h3 id="custom-vision-model">Custom Vision Model</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Use a fine-tuned vision model from a local path</span>
+</span></span><span style="display:flex;"><span>agent-tars --model-path ./custom-model/ --task <span style="color:#e6db74">&#34;Your custom task&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use a custom VLM</span>
+</span></span><span style="display:flex;"><span>agent-tars --vlm-path ./my-vlm/ --task <span style="color:#e6db74">&#34;Your task&#34;</span>
+</span></span></code></pre></div><h3 id="screen-capture-methods">Screen Capture Methods</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Use screenshot method (default)</span>
+</span></span><span style="display:flex;"><span>agent-tars --capture screenshot --task <span style="color:#e6db74">&#34;Your task&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use screen recording method</span>
+</span></span><span style="display:flex;"><span>agent-tars --capture recording --task <span style="color:#e6db74">&#34;Your task&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use desktop sharing method (Linux with PipeWire)</span>
+</span></span><span style="display:flex;"><span>agent-tars --capture pipewire --task <span style="color:#e6db74">&#34;Your task&#34;</span>
+</span></span></code></pre></div><h3 id="keyboard-layout-configuration">Keyboard Layout Configuration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>agent-tars --keyboard-layout us --task <span style="color:#e6db74">&#34;Type &#39;Hello World&#39;&#34;</span>
+</span></span></code></pre></div><h3 id="cicd-testing-integration">CI/CD Testing Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Use UI-TARS for GUI testing in CI/CD pipelines</span>
+</span></span><span style="display:flex;"><span>agent-tars run --task <span style="color:#e6db74">&#34;Open the application, fill out the form, submit&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --headless --output test-report.json
+</span></span></code></pre></div><h3 id="python-api-usage">Python API Usage</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> agent_tars <span style="color:#f92672">import</span> Agent
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create an agent instance</span>
+</span></span><span style="display:flex;"><span>agent <span style="color:#f92672">=</span> Agent(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ui-tars-7b&#34;</span>, max_steps<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define a task</span>
+</span></span><span style="display:flex;"><span>task <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Open the file manager and find all PDF files in Downloads&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Execute the task</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> agent<span style="color:#f92672">.</span>run(task)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get the results</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Actions executed: </span><span style="color:#e6db74">{</span>len(result<span style="color:#f92672">.</span>actions)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> action <span style="color:#f92672">in</span> result<span style="color:#f92672">.</span>actions: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;  </span><span style="color:#e6db74">{</span>action<span style="color:#f92672">.</span>type<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>action<span style="color:#f92672">.</span>target<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Success: </span><span style="color:#e6db74">{</span>result<span style="color:#f92672">.</span>success<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Reason: </span><span style="color:#e6db74">{</span>result<span style="color:#f92672">.</span>explanation<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases</h2>
+<h3 id="task-completion-rate">Task Completion Rate</h3>
+<p>| Task Type | UI-TARS Desktop | Traditional Automation | ScreenOCR + Script |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Simple button clicks | 98% | 95% | 85% |
+| Form filling | 92% | 70% | 60% |
+| Multi-step workflows | 85% | 60% | 45% |
+| Error recovery | 78% | 30% | 20% |
+| Unknown UI elements | 88% | N/A | N/A |
+| <strong>Overall</strong> | <strong>88.2%</strong> | <strong>65%</strong> | <strong>58%</strong> |</p>
+<h3 id="inference-speed-by-model">Inference Speed by Model</h3>
+<p>| Model | Latency (ms) | GPU Memory |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| UI-TARS 1B | 150ms | 4GB |
+| UI-TARS 7B | 800ms | 8GB |
+| UI-TARS 72B | 3500ms | 40GB |</p>
+<h3 id="comparison-with-screen-readers-and-automation-tools">Comparison with Screen Readers and Automation Tools</h3>
+<p>| Feature | UI-TARS | Accessibility APIs | Selenium | Playwright |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Works on any GUI app | Yes | No | Web only | Web only |
+| Visual understanding | Yes (VLM) | No | Limited | Limited |
+| Learning required | None | High | Medium | Medium |
+| Error recovery | Yes | No | Partial | Partial |
+| Setup time | Minutes | Hours | Minutes | Minutes |
+| Cross-platform | Yes | Platform-specific | Web | Web |</p>
+<h3 id="real-world-case-qa-testing-team">Real-World Case: QA Testing Team</h3>
+<p>A QA team of 8 engineers uses UI-TARS to automate GUI testing across their web and desktop applications: `````bash
+#!/bin/bash</p>
+<h1 id="automated-regression-test-suite">Automated regression test suite</h1>
+<p>agent-tars batch &ndash;task-file regression-tests.yaml <br>
+&ndash;headless &ndash;parallel 4 &ndash;output test-results.jsonl</p>
+<pre tabindex="0"><code>
+The team reports a 60% reduction in regression testing time and the ability to test applications that previously required manual testing due to lack of DOM access.
+
+### Real-World Case: Accessibility Automation
+
+A company uses UI-TARS to automate accessibility testing across their applications: `````bash
+# Test multiple UI states
+agent-tars run --task &#34;Navigate to all menus and verify keyboard shortcuts work&#34; \
+  --model ui-tars-7b --max-steps 50
+</code></pre><p>The agent navigates through all menus and verifies that keyboard shortcuts are properly implemented, catching regressions that traditional automated tests missed.</p>
+<h2 id="advanced-usage--production-hardening-1">Advanced Usage / Production Hardening</h2>
+<h3 id="production-configuration-with-secret-management">Production Configuration with Secret Management</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Configure model path securely</span>
+</span></span><span style="display:flex;"><span>export UI_TARS_MODEL_PATH<span style="color:#f92672">=</span>/secure/path/to/models
+</span></span><span style="display:flex;"><span>agent-tars serve --host 0.0.0.0 --port <span style="color:#ae81ff">8000</span> --model ui-tars-7b
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use environment-based configuration</span>
+</span></span><span style="display:flex;"><span>agent-tars --config /etc/uitars/config.yaml serve
+</span></span></code></pre></div><h3 id="container-deployment">Container Deployment</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">python:3.11-slim</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> pip install agent-tars<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> uitars-config.yaml /etc/uitars/config.yaml<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">EXPOSE</span> <span style="color:#e6db74">8000</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;agent-tars&#34;</span>, <span style="color:#e6db74">&#34;serve&#34;</span>, <span style="color:#e6db74">&#34;--config&#34;</span>, <span style="color:#e6db74">&#34;/etc/uitars/config.yaml&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><h3 id="resource-limits-for-production">Resource Limits for Production</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Limit GPU memory usage</span>
+</span></span><span style="display:flex;"><span>CUDA_VISIBLE_DEVICES<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span> agent-tars --model ui-tars-7b --max-gpu-memory <span style="color:#ae81ff">8192</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Limit concurrent tasks</span>
+</span></span><span style="display:flex;"><span>agent-tars serve --max-concurrent-tasks <span style="color:#ae81ff">5</span> --task-timeout <span style="color:#ae81ff">300</span>
+</span></span></code></pre></div><h3 id="logging-and-monitoring">Logging and Monitoring</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Enable detailed logging</span>
+</span></span><span style="display:flex;"><span>agent-tars run --task <span style="color:#e6db74">&#34;Your task&#34;</span> --verbose --log-level debug
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Export logs for analysis</span>
+</span></span><span style="display:flex;"><span>agent-tars export-logs --output uitars-logs.json
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | UI-TARS Desktop | AutoGen + UI | PyAutoGUI | OpenHands |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Install Method | <code>npm install -g @agent-tars/desktop</code> | pip install | pip install | pip install |
+| Visual Understanding | VLM-based (screenshot analysis) | Limited | No | Partial |
+| Any GUI App | Yes | Limited | Yes | Limited |
+| Self-Correction | Yes (visual feedback loop) | Partial | No | Partial |
+| Natural Language | Yes | Partial | No | Partial |
+| Open Source | Yes (Apache 2.0) | Yes | Yes | Yes |
+| Enterprise Ready | Yes | Partial | No | Yes |
+| GPU Required | Yes (for local inference) | Yes | No | Yes |
+| GitHub Stars | 36,263 | 15,000 | 12,000 | 55,000 |
+| Multi-Step Tasks | Yes (up to 100 steps) | Yes | Manual | Yes |</p>
+<p>UI-TARS Desktop stands out for its visual understanding capabilities. Unlike script-based tools like PyAutoGUI that require hardcoded coordinates, or web automation tools limited to browsers, UI-TARS can understand and interact with any GUI application through visual reasoning. The VLM-based approach means it can handle new applications it has never seen before without any configuration.</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p>While UI-TARS Desktop is powerful, be aware of these limitations: 1. <strong>GPU requirements</strong> — Running the 7B model requires at least 8GB of GPU VRAM. The 72B model requires 40GB+. The 1B model can run on CPU but with reduced accuracy.
+2. <strong>Latency</strong> — Each action requires a screenshot and model inference, adding latency to each step. Multi-step tasks may take several minutes.
+3. <strong>Security considerations</strong> — The agent has full control of your desktop. Use in trusted environments only, and restrict access with proper authentication.
+4. <strong>Complex text input</strong> — Typing long or complex text may occasionally produce errors in character recognition or input simulation.
+5. <strong>High-DPI displays</strong> — Screen scaling on some displays may affect position accuracy. Configure the <code>scale_factor</code> parameter to match your display settings.
+6. <strong>Non-GUI workflows</strong> — For pure command-line or API-based tasks, traditional CLI tools are more efficient than UI-TARS.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>Q: What operating systems does UI-TARS Desktop support?</strong></p>
+<p>A: UI-TARS Desktop supports Windows, macOS, and Linux. On Linux, it supports X11 and Wayland (via PipeWire) for screen capture. The npm installation works on all three platforms.</p>
+<p><strong>Q: How does UI-TARS handle privacy and security?</strong></p>
+<p>A: All processing happens locally on your machine. Screenshots are processed by the local vision model and are not sent to any cloud service. You can run it entirely offline for maximum privacy. For server deployments, use the headless mode with proper authentication.</p>
+<p><strong>Q: What models does UI-TARS support?</strong></p>
+<p>A: UI-TARS offers three model sizes: 1B (fastest, basic accuracy, ~4GB VRAM), 7B (recommended, good balance, ~8GB VRAM), and 72B (slowest, highest accuracy, ~40GB VRAM). The 7B model is recommended for most use cases as it provides the best balance of speed and accuracy.</p>
+<p><strong>Q: Can UI-TARS automate web browsers?</strong></p>
+<p>A: Yes, UI-TARS can control any application including web browsers. It can navigate websites, fill forms, click buttons, and handle dynamic content through visual understanding. It does not require DOM access or browser extensions.</p>
+<p><strong>Q: How does UI-TARS compare to RPA tools like UiPath?</strong></p>
+<p>A: Unlike traditional RPA tools that require recording and scripting, UI-TARS works through natural language instructions and visual understanding. It requires no setup, no recording, and no scripting — just tell it what you want done. For complex enterprise workflows, <a href="dibi8-internal-link">AI agent management</a> tools like Paperclip can orchestrate UI-TARS alongside other automation tools.</p>
+<p><strong>Q: Can UI-TARS be used for automated testing?</strong></p>
+<p>A: Yes, UI-TARS is well-suited for automated GUI testing. The headless mode enables integration into CI/CD pipelines, and the batch mode allows running multiple test scenarios in parallel. The self-correction capability helps handle unexpected UI changes.</p>
+<h2 id="conclusion-cta">Conclusion: CTA</h2>
+<p>ByteDance&rsquo;s UI-TARS Desktop represents a paradigm shift in desktop automation. By combining vision-language models with screen interaction capabilities, it enables AI agents that can understand and control any graphical application through natural language instructions — no scripts, no APIs, no integrations required.</p>
+<p>Whether you are automating repetitive tasks, building GUI tests, developing intelligent desktop assistants, or creating accessibility solutions, UI-TARS provides the flexibility and ease of use that traditional automation tools cannot match. The Apache 2.0 license makes it suitable for enterprise deployment without licensing concerns.</p>
+<p>For hosting your AI agent infrastructure and GPU workloads, consider deploying on cloud platforms that offer affordable GPU instances. Use <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> for development servers, <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> for production hosting, and <a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a> for reliable proxy and content distribution.</p>
+<p>Get started today: ````npm install -g @agent-tars/desktop``` and give your computer an AI assistant that can actually see and understand what it&rsquo;s doing.</p>
+<p>Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.</p>
+<p>Sources &amp; Further Reading</p>
+<ul>
+<li>Official repository: <a href="https://github.com/bytedance/UI-TARS-desktop">https://github.com/bytedance/UI-TARS-desktop</a></li>
+<li>HuggingFace models: <a href="https://huggingface.co/ByteDance">https://huggingface.co/ByteDance</a></li>
+<li>Technical paper: <a href="https://github.com/bytedance/UI-TARS-desktop/blob/main/docs/TECHNICAL_REPORT.md">https://github.com/bytedance/UI-TARS-desktop/blob/main/docs/TECHNICAL_REPORT.md</a></li>
+<li>Model download: <a href="https://github.com/bytedance/UI-TARS-desktop/blob/main/docs/MODEL.md">https://github.com/bytedance/UI-TARS-desktop/blob/main/docs/MODEL.md</a></li>
+<li>Benchmark results: <a href="https://github.com/bytedance/UI-TARS-desktop/blob/main/docs/BENCHMARKS.md">https://github.com/bytedance/UI-TARS-desktop/blob/main/docs/BENCHMARKS.md</a></li>
+</ul>
+<h2 id="join-the-community">Join the Community</h2>
+<p>Join the <a href="https://t.me/DIBI8_Group/2">dibi8 English Telegram group</a> to discuss UI-TARS configurations and desktop automation techniques. Check out our guides on <a href="dibi8-internal-link">AI agent management</a> and <a href="dibi8-internal-link">document processing with MarkItDown</a> for complementary tooling. Start automating your desktop today.</p>
+<p>Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;ByteDance UI-TARS Desktop: The Vision-Language AI Agent That Sees and Controls Your Computer — Full Setup Guide&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-06-10&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-06-10&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/bytedance-ui-tars-desktop-ai-agent-guide%22">https://dibi8.com/resources/bytedance-ui-tars-desktop-ai-agent-guide"</a>
+}
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/bytedance-ui-tars-desktop-ai-agent-guide/">bytedance-ui-tars-desktop-ai-agent-guide</a></li>
+<li><a href="/ai-coding-agents/bytedance-ui-tars-desktop-ai-agent-guide/">bytedance-ui-tars-desktop-ai-agent-guide</a></li>
+<li><a href="/ai-coding-agents/bytedance-ui-tars-desktop-ai-agent-guide/">2026-05-25-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/bytedance-ui-tars-desktop-ai-agent-guide/">2026-06-01-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/bytedance-ui-tars-desktop-ai-agent-guide/">2026-06-08-trending-ai-agents</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fbytedance-ui-tars-desktop-ai-agent-guide%2f&text=7B%20parameter%20model%20%28recommended%20for%20most%20use%20cases%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fbytedance-ui-tars-desktop-ai-agent-guide%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,598 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Run without installing — uses npx | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/repomix-pack-repo-for-llm-context-2026/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Run without installing — uses npx</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Run without installing — uses npx</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;repomix 2026: Pack Your Entire Codebase into One LLM-Rea&hellip;
+description: &ldquo;Technical guide and comparison&rdquo;
+date: 2026-06-09T00:00:00+08:00
+lastmod: 2026-06-09T00:00:00+08:00
+tech_stack: [&lsquo;Node.js&rsquo;, TypeScript, CLI]
+application_domain: Dev Utils
+source_version: &ldquo;v0.3&rdquo;
+licensing_model: Open Source
+license_type: MIT
+file_size: &rsquo;&rsquo;
+file_md5: &rsquo;'
+download_url: &lsquo;<a href="https://github.com/yamadashy/repomix%27">https://github.com/yamadashy/repomix'</a>
+backup_url: &rsquo;&rsquo;
+last_maintained: &ldquo;2026-06-01&rdquo;
+draft: false
+categories: [&ldquo;dev-utils&rdquo;]
+tags: [&ldquo;repomix&rdquo;, &ldquo;repopack&rdquo;, &ldquo;ai-coding&rdquo;, &ldquo;llm-context&rdquo;, &ldquo;codebase-packing&rdquo;, &ldquo;claude&rdquo;, &ldquo;chatgpt&rdquo;, &ldquo;developer-tools&rdquo;, &ldquo;open-source&rdquo;]
+aliases:</p>
+<ul>
+<li>/posts/repomix-pack-repo-for-llm-context-2026/
+faqs: - q: &lsquo;What is repomix and what was it called before?&rsquo;
+a: &lsquo;repomix (formerly repopack) is an open-source CLI tool that packs an entire Git repository into a single structured text file, optimized for LLM context windows. It was renamed from &ldquo;repopack&rdquo; to &ldquo;repomix&rdquo; in 2025 to avoid confusion with npm&rsquo;&rsquo;s existing &ldquo;repack&rdquo; command. Built by yamadashy and released under MIT.&rsquo;</li>
+<li>q: &lsquo;What output formats does repomix support?&rsquo;
+a: &lsquo;repomix supports three output formats: plain text (default), XML (structured with file tags, best for Claude which uses XML natively), and Markdown (best for documentation workflows and GitHub Copilot). You select the format with &ndash;style plain|xml|markdown.&rsquo;</li>
+<li>q: &lsquo;How does repomix differ from just copying all files manually?&rsquo;
+a: &lsquo;repomix automatically respects .gitignore rules, adds a token count estimate per file, generates a repository summary and directory tree at the top, handles binary file exclusion, and supports custom include/exclude glob patterns — all in one command. The output is formatted specifically for LLMs with file separators that the model can parse reliably.&rsquo;</li>
+<li>q: &lsquo;How large a codebase can repomix handle?&rsquo;
+a: &lsquo;repomix works well up to around 100,000–200,000 tokens (roughly a 5,000–10,000 file project). For larger repos, use &ndash;include patterns to send only the relevant subsystem. The &ndash;output-show-line-numbers flag helps LLMs give accurate line references for edits.&rsquo;</li>
+<li>q: &lsquo;Can I use repomix with Claude Projects or ChatGPT memory?&rsquo;
+a: &lsquo;Yes — the most common workflow is to run repomix, then paste or upload the output file to a Claude Project or a custom GPT. This gives the AI full codebase context for debugging, code review, documentation, or architecture discussions without iterating over dozens of files.&rsquo;&mdash;</li>
+</ul>
+<p><img alt="repomix 2026: Pack Your Codebase for LLM Context — dibi8.com" loading="lazy" src="/images/articles/repomix-pack-repo-for-llm-context-2026/cover.jpg"></p>
+<p>When you ask Claude or ChatGPT to debug a multi-file issue or refactor a complex function, pasting code snippets one-by-one loses context fast. <a href="https://github.com/yamadashy/repomix">repomix</a> solves this by turning your entire repository into one structured file — ready to drop into any LLM&rsquo;s context window in seconds.</p>
+<h2 id="what-repomix-does">What repomix Does</h2>
+<p>repomix scans your repository, excludes files in <code>.gitignore</code>, and outputs a single text file containing: 1. <strong>Repository summary</strong> — total files, token estimate, language breakdown
+2. <strong>Directory tree</strong> — full folder structure at a glance
+3. <strong>All source files</strong> — each prefixed with a path header and optional line numbers</p>
+<p>The result is immediately usable with Claude, ChatGPT, Gemini, Cursor, or any LLM that accepts file upload or long-form pasting.</p>
+<h2 id="zero-config-start">Zero Config Start</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Run without installing — uses npx</span>
+</span></span><span style="display:flex;"><span>npx repomix
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install globally</span>
+</span></span><span style="display:flex;"><span>npm install -g repomix
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Pack specific directory</span>
+</span></span><span style="display:flex;"><span>repomix ./src
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Pack remote GitHub repo directly (no git clone needed)</span>
+</span></span><span style="display:flex;"><span>npx repomix --remote https://github.com/user/repo
+</span></span></code></pre></div><p>That&rsquo;s it. <code>repomix output.txt</code> is created in the current directory.</p>
+<h2 id="output-formats">Output Formats</h2>
+<h2 id="heading">| Format | Flag | Best For |
+|</h2>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Plain text | <code>--style plain</code> (default) | ChatGPT, general LLMs |
+| XML | <code>--style xml</code> | Claude (uses XML natively), structured parsing |
+| Markdown | <code>--style markdown</code> | Copilot, documentation workflows |</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># XML output for Claude</span>
+</span></span><span style="display:flex;"><span>repomix --style xml --output repo-context.xml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Markdown output</span>
+</span></span><span style="display:flex;"><span>repomix --style markdown
+</span></span></code></pre></div><h2 id="filtering-the-output">Filtering the Output</h2>
+<p>For large projects, include only what&rsquo;s relevant: `````bash</p>
+<h1 id="include-only-typescript-files-in-src">Include only TypeScript files in src/</h1>
+<p>repomix &ndash;include &ldquo;src/**/*.ts&rdquo;</p>
+<h1 id="exclude-test-files-and-generated-code">Exclude test files and generated code</h1>
+<p>repomix &ndash;ignore &ldquo;<strong>/*.test.ts,dist/</strong>,node_modules/**&rdquo;</p>
+<h1 id="show-line-numbers-helps-llms-give-accurate-edit-suggestions">Show line numbers (helps LLMs give accurate edit suggestions)</h1>
+<p>repomix &ndash;output-show-line-numbers</p>
+<pre tabindex="0"><code>
+## repomix.config.json (Persistent Settings)
+
+Create ``repomix.config.json`` in your repo root to save preferences: `````json
+{
+  &#34;output&#34;: {
+    &#34;style&#34;: &#34;xml&#34;,
+    &#34;filePath&#34;: &#34;context.xml&#34;,
+    &#34;showLineNumbers&#34;: true,
+    &#34;removeComments&#34;: false
+  },
+  &#34;ignore&#34;: {
+    &#34;useGitignore&#34;: true,
+    &#34;customPatterns&#34;: [&#34;*.test.ts&#34;, &#34;dist/**&#34;, &#34;*.lock&#34;]
+  }
+}
+</code></pre><h2 id="typical-llm-workflows">Typical LLM Workflows</h2>
+<h3 id="full-codebase-code-review">Full Codebase Code Review</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Pack the repo, then paste into Claude</span>
+</span></span><span style="display:flex;"><span>repomix --style xml --output review.xml
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># → Upload to Claude Project or paste into conversation</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># → &#34;Review this codebase for security issues, architecture problems, and dead code.&#34;</span>
+</span></span></code></pre></div><h3 id="bug-diagnosis-across-multiple-files">Bug Diagnosis Across Multiple Files</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Include only the affected subsystem</span>
+</span></span><span style="display:flex;"><span>repomix --include <span style="color:#e6db74">&#34;src/auth/**,src/middleware/**&#34;</span> --style xml
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># → &#34;Here&#39;s my authentication code. The JWT is being rejected on mobile but not desktop. Find the bug.&#34;</span>
+</span></span></code></pre></div><h3 id="generating-documentation">Generating Documentation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>repomix --style markdown --output docs-context.md
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># → &#34;Generate comprehensive JSDoc for every exported function in this codebase.&#34;</span>
+</span></span></code></pre></div><h3 id="remote-repo-analysis-no-clone-required">Remote Repo Analysis (No Clone Required)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Analyze an open-source project without cloning</span>
+</span></span><span style="display:flex;"><span>npx repomix --remote https://github.com/some-org/some-project
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># → &#34;Summarize the architecture. What design patterns does this project use?&#34;</span>
+</span></span></code></pre></div><h2 id="security-note-repomixignore">Security Note: <code>.repomixignore</code></h2>
+<p>repomix respects <code>.gitignore</code> by default, but secrets that aren&rsquo;t gitignored (local <code>.env</code> files, API keys in config) can end up in output. Add a <code>.repomixignore</code> file to explicitly exclude sensitive files: `````
+.env
+.env.local
+secrets/**
+config/credentials.json</p>
+<pre tabindex="0"><code>
+## repomix vs. Similar Tools
+
+| Tool | Approach | Best For |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| **repomix** | Single file, LLM-optimized, XML/plain/MD | Any LLM, fastest start |
+| Cursor | IDE-native context | Cursor users only |
+| Aider | Adds LLM to git workflow | Git-integrated coding sessions |
+| [Ollama](/resources/llm-frameworks/ollama/) | Runs local models | Self-hosted inference |
+
+repomix doesn&#39;t replace any of these — it complements them by providing clean context input.
+
+&gt; **Need a server to build AI developer tools?** [DigitalOcean new users get $200 in credits](https://m.do.co/c/eca87ac14ee0) — enough to run a development server, host a private repomix pipeline, or deploy your AI-assisted codebase. No long-term commitment.
+
+## Who Should Use repomix
+
+**Use repomix if you:**
+- Regularly ask LLMs to help debug multi-file issues
+- Want to give Claude or ChatGPT full context for architecture reviews
+- Need to onboard a new AI tool to a project quickly
+- Work with large codebases that exceed typical snippet-pasting approaches
+
+**GitHub:** [yamadashy/repomix](https://github.com/yamadashy/repomix) · 14.2k ⭐ · MIT
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;repomix 2026: Pack Your Entire Codebase into One LLM-Ready File — Zero Config&#34;,
+  &#34;datePublished&#34;: &#34;2026-06-09&#34;,
+  &#34;dateModified&#34;: &#34;2026-06-09&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/repomix-pack-repo-for-llm-context-2026&#34;
+  }
+}
+&lt;/script&gt;
+
+## Why This Matters
+
+Understanding repomix 2026: pack your entire codebase into one llm-ready file — zero config is crucial for modern AI development. Here&#34;s why: ### Key Benefits
+- **Efficiency**: Save time on repetitive tasks
+- **Quality**: Improve output consistency  
+- **Scalability**: Handle larger workloads
+- **Cost**: Reduce operational expenses
+
+### Real-World Applications
+Organizations are using similar approaches to: 1. Automate code review processes
+2. Generate documentation automatically
+3. Build internal knowledge bases
+4. Streamline deployment pipelines
+
+### Getting Started
+To implement this in your workflow: 1. **Assess Your Needs**
+   - Identify repetitive tasks
+   - Measure current time costs
+   - Define success metrics
+
+2. **Choose Your Approach**
+   - Start with simple automations
+   - Gradually increase complexity
+   - Test and iterate
+
+3. **Measure Results**
+   - Track time savings
+   - Monitor quality improvements
+   - Calculate ROI
+
+## Conclusion
+
+repomix 2026: Pack Your Entire Codebase into One LLM-Ready File — Zero Config represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
+
+For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
+
+
+* * *
+*Last updated: 2026-09-20*
+*Read time: ~5 minutes*
+
+
+* * *
+## Related Articles
+
+- [superpowers](repomix-pack-repo-for-llm-context-2026)
+- [superpowers](repomix-pack-repo-for-llm-context-2026)
+- [superpowers](repomix-pack-repo-for-llm-context-2026)
+- [chatgpt-pro-vs-claude-pro](repomix-pack-repo-for-llm-context-2026)
+- [ai-seo-geo-dibi8-methodology-google-sge-perplexity](repomix-pack-repo-for-llm-context-2026)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+
+## Frequently Asked Questions (FAQ)
+
+**问：AI Agent和传统自动化有什么区别？**
+
+AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+
+**问：如何选择合适的AI Agent框架？**
+
+考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+
+**问：AI Agent的安全性如何保证？**
+
+实施权限最小化、输入验证、审计日志、以及定期安全评估。
+
+**问：AI Agent的学习成本有多高？**
+
+入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+
+**问：能否自定义AI Agent的行为？**
+
+是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+
+
+## Tool Comparison
+
+| Feature | Claude Code | Cursor | Codex CLI | OpenCode |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| **Price** | $20/month | $20/month | Free | Free |
+| **Interface** | CLI + IDE | Full IDE | CLI | CLI |
+| **License** | Proprietary | Commercial | Apache 2.0 | MIT |
+| **GitHub Stars** | N/A | N/A | N/A | 45,000+ |
+| **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization |
+</code></pre>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2frepomix-pack-repo-for-llm-context-2026%2f&text=Run%20without%20installing%20%e2%80%94%20uses%20npx" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2frepomix-pack-repo-for-llm-context-2026%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

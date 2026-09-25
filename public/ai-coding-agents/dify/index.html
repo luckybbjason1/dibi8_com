@@ -1,0 +1,911 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate a cryptographically secure secret | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/dify/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Generate a cryptographically secure secret</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Generate a cryptographically secure secret</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;Dify: Build Production-Grade AI Agents Visually in 5 Min&hellip;
+description: &ldquo;Technical guide and comparison&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Llm Frameworks
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: Apache-2.0
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;llm-frameworks&rdquo;]
+tags: [&ldquo;dify&rdquo;, &ldquo;ai agent builder&rdquo;, &ldquo;llm workflow&rdquo;, &ldquo;rag&rdquo;, &ldquo;docker deployment&rdquo;, &ldquo;open-source ai&rdquo;, &ldquo;visual workflow builder&rdquo;, &ldquo;production ai&rdquo;]
+aliases:</p>
+<ul>
+<li>/posts/dify/</li>
+<li>/resources/llm-frameworks/dify-architecture-b2b-agent-orchestration/-</li>
+</ul>
+<hr>
+<p>Most teams ship AI chatbots the hard way. They wire Flask routes to OpenAI APIs, hand-craft prompt templates in JSON files, and build RAG pipelines from scratch with embedding models, vector stores, and chunking logic. Three months later, the prototype is unmaintainable, the product manager cannot update a prompt without a developer, and the knowledge base sync is a cron job that fails silently.</p>
+<p><strong>Dify</strong> solves this. It is an open-source platform that packages visual workflow design, production-grade RAG, multi-model support, and API publishing into a single deployable stack. With <strong>141,955 GitHub stars</strong>, <strong>1,298 contributors</strong>, and releases every 2–4 weeks, Dify has become the default choice for teams that want to ship AI applications without writing orchestration boilerplate. This guide walks you through a production-ready Dify setup in under 5 minutes, then shows you how to integrate it with real tools and scale it.</p>
+<h2 id="what-is-dify">What Is Dify?</h2>
+<p><strong>Dify</strong> is a production-ready platform for agentic workflow development. Think of it as the missing application layer between raw LLM APIs and end-user AI products. Dify provides a visual canvas where you drag, drop, and connect nodes — LLM calls, knowledge retrieval, HTTP requests, code execution, conditional branches — into complete AI applications.</p>
+<p>The platform is built on a <strong>Beehive (hexagonal) architecture</strong> with modular components: a Python Flask API service, a Celery worker queue, a Next.js frontend, a plugin daemon for model providers, and a secure sandbox for code execution. It supports <strong>30+ vector databases</strong> (Weaviate, Qdrant, pgvector, Milvus), <strong>20+ LLM providers</strong> (OpenAI, Anthropic, Azure OpenAI, AWS Bedrock, Ollama, Groq), and ships with hybrid search, re-ranking, built-in observability, and RESTful API generation out of the box.</p>
+<p>Key application types you can build: - <strong>Chatbot</strong> — Conversational AI with memory, knowledge base, and tool calling</p>
+<ul>
+<li><strong>Text Generator</strong> — Single-shot completion apps for summarization, translation, coding</li>
+<li><strong>Agent</strong> — Autonomous AI with ReAct, Function Calling, and Chain-of-Thought reasoning</li>
+<li><strong>Workflow</strong> — Multi-step visual pipelines with conditional logic and parallel execution</li>
+</ul>
+<h2 id="how-dify-works">How Dify Works</h2>
+<p>Dify&rsquo;s architecture separates concerns into discrete services that communicate through well-defined APIs. Understanding this helps you debug, scale, and harden your deployment.</p>
+<h3 id="architecture-overview">Architecture Overview</h3>
+<p><img alt="Dify Architecture Diagram" loading="lazy" src="https://res.cloudinary.com/asset-cloudinary/image/upload/v1776523341/Dify_-_railway_arch_xp1wuv.png"></p>
+<p>| Service | Port | Technology | Purpose |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Web Frontend | 3000 | Next.js | Visual builder, dashboard, management UI |
+| API Service | 5001 | Python Flask | REST API endpoints, business logic |
+| Worker | — | Celery | Async task processing, document indexing |
+| Worker Beat | — | Celery | Scheduled task dispatcher |
+| Plugin Daemon | 5002 | Python | Model provider plugin runtime |
+| Sandbox | 5003 | Python | Secure code execution environment |
+| SSRF Proxy | — | Nginx | Security isolation for outbound requests |</p>
+<h3 id="data-layer">Data Layer</h3>
+<p>| Component | Default | Alternatives |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Metadata DB | PostgreSQL 15 | AWS RDS, Cloud SQL |
+| Cache/Queue | Redis 7 | AWS ElastiCache, Redis Cloud |
+| Vector Store | Weaviate 1.27 | Qdrant, Milvus, pgvector |
+| File Storage | Local volume | S3, MinIO, GCS |</p>
+<h3 id="workflow-execution-engine">Workflow Execution Engine</h3>
+<p>Dify&rsquo;s workflow engine uses a DAG (Directed Acyclic Graph) execution model with parallel processing support. Each node in a workflow can run sequentially or in parallel threads, with a variable pool system that enables data sharing across nodes while maintaining isolation. The engine enforces execution limits of <strong>500 steps per workflow</strong> and a <strong>1,200-second timeout</strong> to prevent runaway processes.</p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>Before you start, ensure your machine meets these requirements: | Resource | Minimum | Recommended |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| CPU | 2 cores | 4+ cores |
+| RAM | 4 GiB | 8 GiB |
+| Disk | 20 GB | 50 GB SSD |
+| Docker | 19.03+ | Latest |
+| Docker Compose | 2.24.0+ | Latest |</p>
+<h3 id="step-1--clone-dify">Step 1 — Clone Dify</h3>
+<p>Clone the latest release from GitHub: ````bash
+git clone &ndash;branch &ldquo;$(curl -s <a href="https://api.github.com/repos/langgenius/dify/releases/latest">https://api.github.com/repos/langgenius/dify/releases/latest</a> | jq -r .tag_name)&rdquo; <a href="https://github.com/langgenius/dify.git">https://github.com/langgenius/dify.git</a></p>
+<pre tabindex="0"><code>
+This checks out the most recent stable tag (v1.14.2 at the time of writing).
+
+### Step 2 — Configure Environment
+
+`````bash
+cd dify/docker
+cp .env.example .env
+</code></pre><p>Edit <code>.env</code> to set a secure secret key: `````bash</p>
+<h1 id="generate-a-cryptographically-secure-secret">Generate a cryptographically secure secret</h1>
+<p>SECRET=$(openssl rand -hex 32)
+sed -i &ldquo;s/SECRET_KEY=.*/SECRET_KEY=${SECRET}/&rdquo; .env</p>
+<pre tabindex="0"><code>
+Key variables to review in ``.env``: `````bash
+# Core settings
+CONSOLE_API_URL=http://localhost:5001
+CONSOLE_WEB_URL=http://localhost:3000
+SERVICE_API_URL=http://localhost:5001
+APP_API_URL=http://localhost:5001
+APP_WEB_URL=http://localhost:3000
+
+# Database
+DB_USERNAME=postgres
+DB_PASSWORD=difyai123456
+DB_HOST=db
+DB_PORT=5432
+DB_DATABASE=dify
+
+# Redis
+REDIS_HOST=redis
+REDIS_PORT=6379
+REDIS_DB=0
+
+# Vector store (Weaviate by default)
+VECTOR_STORE=weaviate
+WEAVIATE_ENDPOINT=http://weaviate:8080
+WEAVIATE_API_KEY=WVF5YThaHlkYwhGUSmCRgsX3tD5ngdN8pkih
+</code></pre><h3 id="step-3--start-dify">Step 3 — Start Dify</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div><p>This starts 11 containers: 5 core services and 6 dependencies. Verify everything is running: `````bash
+docker compose ps</p>
+<pre tabindex="0"><code>
+You should see all containers in an ````Up (healthy)```` state. The first startup takes 60–90 seconds as the API service runs database migrations.
+
+### Step 4 — Initialize Admin Account
+
+Open your browser and navigate to: `````
+http://localhost/install
+</code></pre><p>Complete the setup wizard with your email and password. After setup, log in at: `````
+http://localhost</p>
+<pre tabindex="0"><code>
+### Step 5 — Add Your First Model Provider
+
+Navigate to **Settings → Model Provider** and add an API key for at least one provider. For OpenAI: 1. Select &#34;OpenAI&#34; from the provider list
+2. Paste your API key (````sk-...````)
+3. Click &#34;Save&#34;
+
+For local development with Ollama: 1. Ensure Ollama is running locally (````ollama serve````)
+2. Select &#34;Ollama&#34; from the provider list
+3. Set the base URL to ````http://host.docker.internal:11434````
+4. Select a downloaded model (e.g., ````llama3.1:8b````)
+
+`````bash
+# Pull a lightweight model for testing
+ollama pull llama3.1:8b
+</code></pre><p>Your Dify instance is now ready to build AI applications.</p>
+<h2 id="integration-with-popular-tools">Integration with Popular Tools</h2>
+<h3 id="openai--anthropic-claude">OpenAI / Anthropic Claude</h3>
+<p>Adding major LLM providers is a configuration change, not a deployment. After adding your API key in <strong>Settings → Model Provider</strong>, create your first chat app: 1. Go to <strong>Studio → Create App → Chatbot</strong>
+2. Name it &ldquo;Support Assistant&rdquo;
+3. In the prompt editor, write your system prompt
+4. Select your model (GPT-4o, Claude Sonnet, etc.) from the dropdown
+5. Click <strong>Publish</strong></p>
+<p>Access the app via API: `````bash
+curl -X POST &lsquo;http://localhost/v1/chat-messages&rsquo; <br>
+-H &lsquo;Authorization: Bearer YOUR_APP_API_KEY&rsquo; <br>
+-H &lsquo;Content-Type: application/json&rsquo; <br>
+-d &lsquo;{
+&ldquo;inputs&rdquo;: {},
+&ldquo;query&rdquo;: &ldquo;How do I reset my password?&rdquo;,
+&ldquo;response_mode&rdquo;: &ldquo;streaming&rdquo;,
+&ldquo;conversation_id&rdquo;: &ldquo;&rdquo;,
+&ldquo;user&rdquo;: &ldquo;user-123&rdquo;
+}&rsquo;</p>
+<pre tabindex="0"><code>
+### Ollama (Local LLMs)
+
+For air-gapped or cost-sensitive environments, Ollama integration lets you run local models: `````bash
+# Start Ollama
+ollama serve
+
+# Pull a model
+ollama pull llama3.1:8b
+ollama pull qwen2.5:14b
+</code></pre><p>In Dify, go to <strong>Settings → Model Provider → Ollama</strong> and configure: | Field | Value |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Model Name | <code>llama3.1:8b</code> |
+| Base URL | <code>http://host.docker.internal:11434</code> |</p>
+<p>Use local models for development and switch to cloud models for production without changing your app logic.</p>
+<h3 id="qdrant-vector-store">Qdrant Vector Store</h3>
+<p>Replace Weaviate with Qdrant for better performance at scale: `````bash
+cd dify/docker
+cp envs/vectorstores/qdrant.env.example envs/vectorstores/qdrant.env</p>
+<pre tabindex="0"><code>
+Edit ``envs/vectorstores/qdrant.env``: `````bash
+VECTOR_STORE=qdrant
+QDRANT_URL=http://qdrant:6333
+QDRANT_API_KEY=your-api-key
+QDRANT_CLIENT_TIMEOUT=20
+</code></pre><p>Add Qdrant to your <code>docker-compose.override.yaml</code>: `````yaml
+services: qdrant: image: qdrant/qdrant:latest
+ports: - &ldquo;6333:6333&rdquo;
+volumes: - qdrant_data:/qdrant/storage
+environment: - QDRANT__SERVICE__API_KEY=your-api-key</p>
+<p>volumes: qdrant_data: `````</p>
+<p>Restart Dify: `````bash
+docker compose down
+docker compose up -d</p>
+<pre tabindex="0"><code>
+### Weaviate
+
+Weaviate is the default vector store and works out of the box. For production, use an external Weaviate cluster: `````bash
+# In .env
+VECTOR_STORE=weaviate
+WEAVIATE_ENDPOINT=https://your-cluster.weaviate.network
+WEAVIATE_API_KEY=your-api-key
+</code></pre><h3 id="claude-code-integration">Claude Code Integration</h3>
+<p>Export your Dify app as an MCP (Model Context Protocol) server and connect it to Claude Code: 1. In your Dify app, go to <strong>API Access → MCP Server</strong>
+2. Enable MCP publishing
+3. Copy the MCP server URL
+4. In Claude Code, run: `````bash
+claude config add mcp.dify http://localhost:5001/your-mcp-endpoint</p>
+<pre tabindex="0"><code>
+Your Dify workflows are now callable directly from Claude Code conversations.
+
+## Benchmarks / Real-World Use Cases
+
+### Performance Characteristics
+
+Based on community benchmarks and load testing data: | Metric | 1 CPU / 2 GB RAM | 4 CPU / 8 GB RAM | 8 CPU / 16 GB RAM |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| QPS (no model call) | 3 req/s | 8 req/s | 11 req/s |
+| QPS (with GPT-4o) | 2 req/s | 5 req/s | 6 req/s |
+| P95 Latency (workflow) | 2.1s | 1.2s | 0.8s |
+| Concurrent Users | ~20 | ~100 | ~500 |
+
+*Note: Actual throughput depends heavily on LLM provider latency and workflow complexity.*
+
+### Document Indexing Performance
+
+| Operation | 100 Docs | 1,000 Docs | 10,000 Docs |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Upload + Chunk | 30s | 4 min | 35 min |
+| Embedding (OpenAI) | 45s | 6 min | 50 min |
+| Total Index Time | 75s | 10 min | 85 min |
+
+### Cost Comparison (Self-Hosted Monthly)
+
+| Scale | VPS Cost | LLM Cost | Total |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Dev / 1 user | $20 | $5–10 | $25–30 |
+| Small team / 50 users | $40 | $50–100 | $90–140 |
+| Enterprise / 500 users | $200 | $500–1,000 | $700–1,200 |
+
+### Real-World Deployment Patterns
+
+**Customer Support Chatbot** — A 40-person SaaS company deployed a Dify chatbot trained on 800 pages of product documentation. Resolution rate increased from 45% to 78%, and support ticket volume dropped by 35% within the first month.
+
+**Internal Knowledge Assistant** — A fintech team built a RAG-powered assistant over 50,000 internal documents. Employees get sourced answers in 2.3 seconds on average, replacing a manual wiki search that took 5–10 minutes.
+
+**Lead Qualification Agent** — A B2B startup built a workflow that scores inbound leads using GPT-4o, queries a PostgreSQL database for historical conversion data, and routes hot leads to sales via Slack. Response time: under 10 seconds per lead.
+
+## Advanced Usage / Production Hardening
+
+### Environment Isolation
+
+For production, never use the default ``.env`` values. Create environment-specific configs: `````bash
+# Production environment
+cp .env .env.production
+</code></pre><p>Critical changes for production: `````bash</p>
+<h1 id="security">Security</h1>
+<p>SECRET_KEY=$(openssl rand -hex 48)
+CONSOLE_API_URL=https://dify.yourcompany.com
+CONSOLE_WEB_URL=https://dify.yourcompany.com
+SERVICE_API_URL=https://dify.yourcompany.com</p>
+<h1 id="database-external">Database (external)</h1>
+<p>DB_HOST=your-rds-endpoint.amazonaws.com
+DB_USERNAME=dify_prod
+DB_PASSWORD=<strong-password></p>
+<h1 id="redis-external">Redis (external)</h1>
+<p>REDIS_HOST=your-elasticache-endpoint
+REDIS_PASSWORD=<strong-password>
+REDIS_USE_SSL=true</p>
+<h1 id="file-storage-s3">File storage (S3)</h1>
+<p>STORAGE_TYPE=s3
+S3_USE_AWS_MANAGED_IAM=false
+S3_ENDPOINT=https://s3.amazonaws.com
+S3_BUCKET_NAME=dify-prod-uploads
+S3_ACCESS_KEY=AKIA&hellip;
+S3_SECRET_KEY=&hellip;
+S3_REGION=us-east-1</p>
+<pre tabindex="0"><code>
+### Reverse Proxy with SSL
+
+Use Nginx or Traefik for TLS termination: `````nginx
+server {
+    listen 443 ssl http2;
+    server_name dify.yourcompany.com;
+
+    ssl_certificate /path/to/cert.pem;
+    ssl_certificate_key /path/to/key.pem;
+
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    location /v1/ {
+        proxy_pass http://localhost:5001;
+        proxy_set_header Host $host;
+        proxy_read_timeout 300s;
+    }
+}
+</code></pre><h3 id="monitoring-and-observability">Monitoring and Observability</h3>
+<p>Dify exposes metrics via the API service. For production monitoring, set up: `````yaml</p>
+<h1 id="docker-composemonitoringyaml">docker-compose.monitoring.yaml</h1>
+<p>services: prometheus: image: prom/prometheus:latest
+volumes: - ./prometheus.yml:/etc/prometheus/prometheus.yml
+ports: - &ldquo;9090:9090&rdquo;</p>
+<p>grafana: image: grafana/grafana:latest
+ports: - &ldquo;3001:3000&rdquo;
+volumes: - grafana_data:/var/lib/grafana</p>
+<p>node-exporter: image: prom/node-exporter:latest
+ports: - &ldquo;9100:9100&rdquo;</p>
+<p>volumes: grafana_data: `````</p>
+<p>Key metrics to track: | Metric | Warning Threshold | Critical Threshold |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| API Response Time (P95) | &gt; 2s | &gt; 5s |
+| Worker Queue Depth | &gt; 100 | &gt; 500 |
+| Error Rate | &gt; 1% | &gt; 5% |
+| Disk Usage | &gt; 70% | &gt; 85% |
+| Memory Usage | &gt; 75% | &gt; 90% |</p>
+<h3 id="backup-strategy">Backup Strategy</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># backup-dify.sh — Run daily via cron</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>DATE<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>date +%Y%m%d_%H%M%S<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>BACKUP_DIR<span style="color:#f92672">=</span>/backups/dify
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># PostgreSQL backup</span>
+</span></span><span style="display:flex;"><span>docker exec dify-db pg_dump -U postgres dify &gt; $BACKUP_DIR/dify_db_$DATE.sql
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Redis backup</span>
+</span></span><span style="display:flex;"><span>docker exec dify-redis redis-cli BGSAVE
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># File storage backup (if using local volume)</span>
+</span></span><span style="display:flex;"><span>tar czf $BACKUP_DIR/dify_uploads_$DATE.tar.gz /var/lib/docker/volumes/dify_uploads/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Upload to S3 (optional)</span>
+</span></span><span style="display:flex;"><span>aws s3 sync $BACKUP_DIR/ s3://your-backup-bucket/dify/ --delete
+</span></span></code></pre></div><h3 id="scaling-workers">Scaling Workers</h3>
+<p>For high-volume document processing, scale Celery workers horizontally: `````bash</p>
+<h1 id="docker-composeoverrideyaml">docker-compose.override.yaml</h1>
+<p>services: worker: deploy: replicas: 3
+environment: - CELERY_WORKER_CONCURRENCY=8</p>
+<p>worker-beat: deploy: replicas: 1  # Keep exactly 1 beat instance</p>
+<pre tabindex="0"><code>
+## Comparison with Alternatives
+
+| Feature | Dify | Flowise | n8n | LangChain |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| **GitHub Stars** | 141,955 | 51,000 | 182,000 | 110,000 |
+| **License** | Apache-2.0 | MIT | Fair-code | MIT |
+| **Primary Use Case** | AI app platform | LLM prototyping | Workflow automation | Code-first framework |
+| **Visual Builder** | Yes (canvas) | Yes (node graph) | Yes (linear flow) | No (code only) |
+| **Learning Curve** | Very low | Medium | Medium | High |
+| **Built-in RAG** | Excellent (dataset-native) | Good (LangChain) | Basic (via nodes) | Build yourself |
+| **Vector DB Support** | 30+ | 10+ | 5+ | 20+ |
+| **LLM Providers** | 20+ | 15+ | 10+ | 50+ |
+| **Multi-Agent** | Moderate | Strong (v2.0) | Basic | Strong (LangGraph) |
+| **Non-Technical Users** | Best in class | Not ideal | Not ideal | No |
+| **SaaS Connectors** | ~80 | ~100 | 400+ | Build yourself |
+| **Self-Hosting** | Docker, K8s, Helm | Docker, K8s | Docker, K8s | N/A (library) |
+| **API Generation** | Auto-generated | Manual | Webhook-based | Manual |
+| **Evaluation Tools** | Strong (datasets) | Minimal | None | LangSmith (external) |
+| **Min RAM (Self-Hosted)** | 4 GB | 1 GB | 300 MB | N/A |
+| **Cloud Price (Entry)** | $59/mo | $35/mo | $24/mo | Free (library) |
+
+### When to Choose What
+
+- **Choose Dify** when you are building customer-facing AI apps, need strong RAG, want non-technical team members to manage prompts and knowledge bases, or need auto-generated APIs. Dify is the fastest path from idea to deployed AI product.
+- **Choose Flowise** when you are a developer who likes LangChain abstractions and wants a visual prototyping layer. Flowise has the cleanest &#34;eject&#34; path — export your flow as JSON and translate it to Python LangChain code.
+- **Choose n8n** when your AI agent is one step in a larger automation workflow. n8n&#39;s 400+ SaaS connectors and battle-tested scheduling, retries, and error handling are unmatched for ops-heavy integrations.
+- **Choose LangChain** when you need full code-level control, CI/CD integration, sub-second latency, or complex multi-agent orchestration that low-code tools cannot express.
+
+## Limitations / Honest Assessment
+
+Dify is not the right tool for every AI project. Here is what it is **not** good at: **1. Sub-Second Latency Workloads**
+Dify&#39;s P95 latency for simple workflows is ~1.2 seconds, primarily due to database queries between nodes. If you need sub-500ms responses (e.g., real-time suggestion engines), use a code-first framework like LangGraph or deploy a dedicated FastAPI service.
+
+**2. Complex Data Structures**
+The workflow canvas has shallow support for deeply nested objects. When you need complex input/output schemas with nested arrays and conditional fields, Dify forces workarounds that would not be necessary in code.
+
+**3. Heavy-Duty Workflow Automation**
+Dify workflows are AI-centric. If your automation mostly moves data between Salesforce, HubSpot, Slack, and a database with minimal AI, n8n is the better fit. Dify&#39;s non-AI connector library is limited compared to n8n&#39;s 400+ integrations.
+
+**4. Large-Scale Multi-Agent Systems**
+While Dify supports agent nodes, complex multi-agent collaboration with shared state and dynamic planning is better handled by LangGraph or CrewAI. Dify&#39;s agent capabilities are sufficient for most use cases but not research-grade multi-agent orchestration.
+
+**5. Memory-Bound Document Processing**
+Dataset indexing is synchronous and can take minutes for large uploads. Document processing with very large knowledge bases (100K+ documents) shows memory pressure that requires careful worker scaling.
+
+## Frequently Asked Questions
+
+**Q: How do I install Dify on a cloud VPS?**
+The process is identical to local installation. Provision a VPS with 4 GB RAM minimum (DigitalOcean, Hetzner, or AWS Lightsail work well), install Docker and Docker Compose, clone the repo, and run ````docker compose up -d````. For a one-click deployment, use the [DigitalOcean Dify Marketplace app](https://www.digitalocean.com).
+
+**Q: Can Dify run entirely offline?**
+Yes. Configure Ollama as your model provider and run local models like Llama 3.1, Qwen 2.5, or Mistral. All Dify services run inside Docker with no external dependencies required. The only limitation is that you cannot use cloud LLM APIs without internet access.
+
+**Q: How do I upgrade Dify to a new version?**
+`````bash
+cd dify/docker
+docker compose down
+git fetch --tags
+git checkout $(curl -s https://api.github.com/repos/langgenius/dify/releases/latest | jq -r .tag_name)
+docker compose pull
+docker compose up -d
+````
+Always check the release notes for breaking changes and new required environment variables before upgrading.
+
+**Q: What is the difference between Dify&#39;s Chatbot and Agent app types?**
+A Chatbot app follows a fixed prompt template with optional knowledge retrieval. An Agent app uses ReAct or Function Calling reasoning to autonomously decide which tools to call and in what order. Use Chatbot for straightforward Q&amp;A and Agent for complex tasks requiring tool use and reasoning.
+
+**Q: Can I use my own embedding model instead of OpenAI&#39;s?**
+Yes. Dify supports multiple embedding providers including Ollama (local), Cohere, Jina, and Hugging Face. Go to **Settings → Model Provider** and add your preferred embedding model. You can even use different models for embedding and generation.
+
+**Q: How does Dify handle data privacy and security?**
+Dify is self-hosted — your data never leaves your infrastructure unless you choose to use cloud LLM APIs. All file storage, vector embeddings, and conversation history live in your PostgreSQL and vector database. The SSRF proxy isolates outbound requests, and the sandbox runs untrusted code in a restricted environment.
+
+**Q: Is there a limit on how many knowledge bases or apps I can create?**
+No hard limits exist in the open-source version. Practical limits depend on your infrastructure: disk space for documents, vector database capacity for embeddings, and API worker throughput for queries. Most teams run 50+ apps and 20+ knowledge bases on a single 8 GB RAM instance without issues.
+
+**Q: Can I contribute to Dify or build custom plugins?**
+Yes. Dify has an active plugin ecosystem. You can build custom model provider plugins, tool plugins, or agent strategy plugins using Python. The plugin daemon supports hot-reload during development, making the iteration loop fast. See the [plugin development docs](https://docs.dify.ai/en/plugins) for details.
+
+## Conclusion
+
+Dify fills a gap that pure frameworks and simple chatbot builders miss. It gives you a **visual workflow builder** with **production-grade RAG**, **auto-generated APIs**, and **multi-model support** in a single deployable stack. For teams shipping AI applications — not just prototyping — this combination saves weeks of integration work.
+
+In 5 minutes, you cloned Dify, started 11 containers, created an admin account, and connected your first LLM provider. From there, you can build chatbots, agents, text generators, and complex workflows — all with a visual canvas that non-technical team members can use.
+
+**Action items for this week:**
+1. Deploy Dify on your infrastructure using the Docker Compose setup above
+2. Create a knowledge base with your product documentation
+3. Build a chatbot app and test it with the REST API
+4. Share your deployment experience in the [dibi8 developer community](https://t.me/dibi8hub) on Telegram
+
+*This article contains affiliate links. If you purchase through these links, we may earn a commission at no extra cost to you. This helps us maintain open-source tooling guides like this one.*
+
+
+
+## Recommended Hosting &amp; Infrastructure
+
+Before you deploy any of the tools above into production, you&#39;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
+
+*Affiliate links — they don&#34;t cost you extra and they help keep dibi8.com running.*
+
+## Sources &amp; Further Reading
+
+1. Dify Official Documentation — https://docs.dify.ai/
+2. Dify GitHub Repository — https://github.com/langgenius/dify
+3. Dify Docker Compose Deployment Guide — https://docs.dify.ai/en/self-host/quick-start/docker-compose
+4. Dify API Reference — https://docs.dify.ai/en/use-dify/publish/developing-with-apis
+5. Dify Plugin Development — https://docs.dify.ai/en/plugins
+6. Dify Architecture Blog Post — https://dify.ai/blog/dify-rolls-out-new-architecture
+7. Dify v1.14.2 Release Notes — https://github.com/langgenius/dify/releases/tag/1.14.2
+8. Flowise GitHub Repository — https://github.com/FlowiseAI/Flowise
+9. n8n GitHub Repository — https://github.com/n8n-io/n8n
+10. LangChain Documentation — https://python.langchain.com/
+11. Comparison: Dify vs Flowise vs n8n — https://rapidclaw.dev/blog/low-code-ai-agent-platforms-compared-2026
+12. Ollama Local LLM Setup — https://ollama.com/download
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;Dify: Build Production-Grade AI Agents Visually in 5 Minutes — 141K+ Stars Setup Guide for 2026&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-19&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-19&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/dify&#34;
+  }
+}
+&lt;/script&gt;
+
+
+* * *
+## Related Articles
+
+- [dify-vs-flowise-2026](dify)
+- [dify-vs-flowise-2026](dify)
+- [dify-vs-flowise-2026](dify)
+- [12-factor-agents-production-llm-software-2026](dify)
+- [12-factor-agents](dify)
+
+
+* * *
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+
+## Frequently Asked Questions (FAQ)
+
+**问：AI Agent和传统自动化有什么区别？**
+
+AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+
+**问：如何选择合适的AI Agent框架？**
+
+考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+
+**问：AI Agent的安全性如何保证？**
+
+实施权限最小化、输入验证、审计日志、以及定期安全评估。
+
+**问：AI Agent的学习成本有多高？**
+
+入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+
+**问：能否自定义AI Agent的行为？**
+
+是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</code></pre>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fdify%2f&text=Generate%20a%20cryptographically%20secure%20secret" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fdify%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

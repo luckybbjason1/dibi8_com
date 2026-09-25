@@ -1,0 +1,978 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Option A: Docker Compose (recommended for local dev) | Dibi8</title>
+    <meta name="description" content="Temporal is an open-source distributed system for running fault-tolerant workflows at scale">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/temporal-ai-workflow-orchestration/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Option A: Docker Compose (recommended for local dev)</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Option A: Docker Compose (recommended for local dev)</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Temporal is an open-source distributed system for running fault-tolerant workflows at scale</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <h2 id="what-is-temporal">What Is Temporal?</h2>
+<p>Temporal is an open-source distributed system for running fault-tolerant workflows at scale. At its core, it provides <strong>durable execution</strong> — your code runs inside Temporal&rsquo;s managed infrastructure, which automatically handles failures, retries, checkpoints, and state persistence.</p>
+<p>For AI workloads, this means: - LLM inference calls that fail due to rate limits automatically retry with backoff</p>
+<ul>
+<li>Multi-step fine-tuning pipelines that survive container crashes without losing progress</li>
+<li>Agent orchestration where each step&rsquo;s output is persisted and can be inspected</li>
+<li>Training jobs that resume from the last checkpoint after GPU failures</li>
+</ul>
+<h3 id="the-problem-with-traditional-ai-orchestration">The Problem with Traditional AI Orchestration</h3>
+<p>Consider a typical AI pipeline: ````
+[Load Data] → [Preprocess] → [Embed Documents] → [Index in Vector DB] → [Test Retrieval] → [Notify Team]</p>
+<pre tabindex="0"><code>
+With traditional tools (Airflow, Celery, cron scripts), each step requires: - Custom error handling for network timeouts
+- Manual checkpointing to resume on failure
+- State management across distributed workers
+- Observability dashboards for debugging
+
+Temporal eliminates all of this by making your Python code **naturally resumable**. If step 3 crashes, Temporal restarts only step 3 with the exact same inputs — steps 1-2 are replayed from history.
+
+### Temporal vs Alternatives
+
+| Feature | Temporal | Airflow | Celery + Redis | Kubernetes CronJobs |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Code as workflow definition | ✅ (Python decorators) | ❌ (DAG YAML/Python) | ❌ (Task queue only) | ❌ (Shell scripts) |
+| Automatic retries | ✅ (configurable policy) | ⚠️ (basic) | ⚠️ (manual config) | ❌ (none) |
+| State persistence | ✅ (built-in) | ⚠️ (external DB) | ❌ (in-memory) | ❌ |
+| Exactly-once semantics | ✅ | ❌ | ❌ | ❌ |
+| Interactive debugging | ✅ (web UI + CLI) | ⚠️ (limited) | ❌ | ❌ |
+| ML-friendly integrations | ✅ (native) | ⚠️ (plugins) | ❌ | ❌ |
+
+
+* * *
+## Getting Started
+
+### Step 1: Install Temporal Stack
+
+`````bash
+# Option A: Docker Compose (recommended for local dev)
+git clone https://github.com/temporalio/docker-compose.git
+cd docker-compose
+docker compose up -d
+
+# Option B: Temporal Cloud (managed, no infra to manage)
+# Sign up at cloud.temporal.io and create a namespace
+
+# Verify the server is running
+temporal cluster health
+</code></pre><p>The default Docker Compose setup includes: - Temporal Server (gRPC API + history)</p>
+<ul>
+<li>Temporal UI (localhost:8233)</li>
+<li>Elasticsearch (search/indexing)</li>
+<li>Temporal Frontend (port 7233)</li>
+</ul>
+<h3 id="step-2-install-the-python-sdk">Step 2: Install the Python SDK</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install temporalio
+</span></span></code></pre></div><h3 id="step-3-your-first-workflow">Step 3: Your First Workflow</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> temporalio <span style="color:#f92672">import</span> worker, workflow, activity
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> temporalio.client <span style="color:#f92672">import</span> Client
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> temporalio.common <span style="color:#f92672">import</span> RetryPolicy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define activities (the individual steps)</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@activity.defn</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">load_dataset</span>(dataset_name: str): <span style="color:#e6db74">&#34;&#34;&#34;Load and validate a dataset.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Loading dataset: </span><span style="color:#e6db74">{</span>dataset_name<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Simulate data loading</span>
+</span></span><span style="display:flex;"><span>    data <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;samples&#34;</span>: <span style="color:#ae81ff">10000</span>, <span style="color:#e6db74">&#34;features&#34;</span>: <span style="color:#ae81ff">128</span>}
+</span></span><span style="display:flex;"><span>    activity<span style="color:#f92672">.</span>info(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Loaded </span><span style="color:#e6db74">{</span>data[samples]<span style="color:#e6db74">}</span><span style="color:#e6db74"> samples&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> data
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@activity.defn</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">preprocess</span>(data: dict): <span style="color:#e6db74">&#34;&#34;&#34;Clean and normalize the data.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Preprocessing data...&#34;</span>)
+</span></span><span style="display:flex;"><span>    processed <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;cleaned_samples&#34;</span>: data[<span style="color:#e6db74">&#34;samples&#34;</span>],
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;normalized&#34;</span>: <span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;feature_count&#34;</span>: data[<span style="color:#e6db74">&#34;features&#34;</span>]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> processed
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@activity.defn</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">train_model</span>(preprocessed_data: dict, epochs: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>): <span style="color:#e6db74">&#34;&#34;&#34;Train a model on preprocessed data.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Training model for </span><span style="color:#e6db74">{</span>epochs<span style="color:#e6db74">}</span><span style="color:#e6db74"> epochs...&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Simulate training</span>
+</span></span><span style="display:flex;"><span>    metrics <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;final_loss&#34;</span>: <span style="color:#ae81ff">0.0234</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;final_accuracy&#34;</span>: <span style="color:#ae81ff">0.9456</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;epochs_trained&#34;</span>: epochs
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    activity<span style="color:#f92672">.</span>info(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Training complete: accuracy=</span><span style="color:#e6db74">{</span>metrics[final_accuracy]<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> metrics
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@activity.defn</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">deploy_model</span>(metrics: dict): <span style="color:#e6db74">&#34;&#34;&#34;Deploy the trained model to production.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Deploying model to production...&#34;</span>)
+</span></span><span style="display:flex;"><span>    deployment <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;model_id&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;model-</span><span style="color:#e6db74">{</span>metrics[final_accuracy]<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;deployed&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;endpoint&#34;</span>: <span style="color:#e6db74">&#34;https://api.example.com/v1/predict&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    activity<span style="color:#f92672">.</span>info(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Model deployed: </span><span style="color:#e6db74">{</span>deployment[model_id]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> deployment
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define the workflow</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@workflow.defn</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MLTrainingPipeline</span>: <span style="color:#a6e22e">@workflow.run</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run</span>(self, dataset_name: str, epochs: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>) <span style="color:#f92672">-&gt;</span> dict: <span style="color:#75715e"># Each step is an activity call</span>
+</span></span><span style="display:flex;"><span>        data <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> workflow<span style="color:#f92672">.</span>execute_activity(
+</span></span><span style="display:flex;"><span>            load_dataset,
+</span></span><span style="display:flex;"><span>            dataset_name,
+</span></span><span style="display:flex;"><span>            retry<span style="color:#f92672">=</span>RetryPolicy(max_attempts<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        processed <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> workflow<span style="color:#f92672">.</span>execute_activity(
+</span></span><span style="display:flex;"><span>            preprocess,
+</span></span><span style="display:flex;"><span>            data,
+</span></span><span style="display:flex;"><span>            retry<span style="color:#f92672">=</span>RetryPolicy(max_attempts<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        metrics <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> workflow<span style="color:#f92672">.</span>execute_activity(
+</span></span><span style="display:flex;"><span>            train_model,
+</span></span><span style="display:flex;"><span>            processed,
+</span></span><span style="display:flex;"><span>            epochs,
+</span></span><span style="display:flex;"><span>            retry<span style="color:#f92672">=</span>RetryPolicy(max_attempts<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, initial_interval<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        deployment <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> workflow<span style="color:#f92672">.</span>execute_activity(
+</span></span><span style="display:flex;"><span>            deploy_model,
+</span></span><span style="display:flex;"><span>            metrics,
+</span></span><span style="display:flex;"><span>            retry<span style="color:#f92672">=</span>RetryPolicy(max_attempts<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> deployment
+</span></span></code></pre></div><h3 id="step-4-run-the-worker-and-client">Step 4: Run the Worker and Client</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># worker.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> temporalio.worker <span style="color:#f92672">import</span> Worker
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> my_workflow <span style="color:#f92672">import</span> MLTrainingPipeline, load_dataset, preprocess, train_model, deploy_model
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(): worker <span style="color:#f92672">=</span> Worker(
+</span></span><span style="display:flex;"><span>        client,  <span style="color:#75715e"># Temporal Client instance</span>
+</span></span><span style="display:flex;"><span>        task_queue<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ml-pipeline&#34;</span>,
+</span></span><span style="display:flex;"><span>        workflows<span style="color:#f92672">=</span>[MLTrainingPipeline],
+</span></span><span style="display:flex;"><span>        activities<span style="color:#f92672">=</span>[load_dataset, preprocess, train_model, deploy_model]
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;Worker started. Press Ctrl+C to exit.&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> worker<span style="color:#f92672">.</span>run()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>: asyncio<span style="color:#f92672">.</span>run(main())
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># client.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> temporalio.client <span style="color:#f92672">import</span> Client
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> my_workflow <span style="color:#f92672">import</span> MLTrainingPipeline
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(): client <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> Client<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;localhost:7233&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    handle <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> client<span style="color:#f92672">.</span>start_workflow(
+</span></span><span style="display:flex;"><span>        MLTrainingPipeline<span style="color:#f92672">.</span>run,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;imdb-dataset&#34;</span>,
+</span></span><span style="display:flex;"><span>        id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;training-job-001&#34;</span>,
+</span></span><span style="display:flex;"><span>        task_queue<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ml-pipeline&#34;</span>,
+</span></span><span style="display:flex;"><span>        retry_policy<span style="color:#f92672">=</span>RetryPolicy(max_attempts<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> handle<span style="color:#f92672">.</span>result()
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Pipeline result: </span><span style="color:#e6db74">{</span>result<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>: asyncio<span style="color:#f92672">.</span>run(main())
+</span></span></code></pre></div><hr>
+<h2 id="ai-specific-workflow-patterns">AI-Specific Workflow Patterns</h2>
+<h3 id="pattern-1-llm-chain-with-fallback">Pattern 1: LLM Chain with Fallback</h3>
+<p>Chain multiple LLM calls with automatic fallback to cheaper models: `````python
+from temporalio import workflow, activity
+import asyncio</p>
+<p>@activity.defn
+async def generate_with_gpt4(prompt: str) -&gt; str: &ldquo;&ldquo;&ldquo;Try GPT-4 first.&rdquo;&rdquo;&rdquo;
+response = await call_openai(prompt, model=&ldquo;gpt-4o&rdquo;)
+return response</p>
+<p>@activity.defn
+async def generate_with_claude(prompt: str) -&gt; str: &ldquo;&ldquo;&ldquo;Fallback to Claude.&rdquo;&rdquo;&rdquo;
+response = await call_anthropic(prompt, model=&ldquo;claude-sonnet-4&rdquo;)
+return response</p>
+<p>@activity.defn
+async def generate_with_local(prompt: str) -&gt; str: &ldquo;&ldquo;&ldquo;Last resort: local model.&rdquo;&rdquo;&rdquo;
+response = await call_ollama(prompt, model=&ldquo;llama3.2&rdquo;)
+return response</p>
+<p>@workflow.defn
+class ResilientLLMChain: @workflow.run
+async def run(self, prompt: str) -&gt; dict: try: # Try most expensive model first
+result = await workflow.execute_activity(
+generate_with_gpt4,
+prompt,
+timeout=timedelta(minutes=5),
+retry=RetryPolicy(max_attempts=2)
+)
+model_used = &ldquo;gpt-4o&rdquo;
+except Exception: try: result = await workflow.execute_activity(
+generate_with_claude,
+prompt,
+timeout=timedelta(minutes=5),
+retry=RetryPolicy(max_attempts=2)
+)
+model_used = &ldquo;claude-sonnet-4&rdquo;
+except Exception: result = await workflow.execute_activity(
+generate_with_local,
+prompt,
+timeout=timedelta(minutes=10),
+retry=RetryPolicy(max_attempts=3)
+)
+model_used = &ldquo;local-llama&rdquo;</p>
+<pre><code>    return {&quot;response&quot;: result, &quot;model_used&quot;: model_used, &quot;fallback_chain&quot;: True}
+</code></pre>
+<pre tabindex="0"><code>
+### Pattern 2: Async Multi-Agent Orchestration
+
+Run multiple AI agents in parallel, then aggregate results: `````python
+from temporalio import workflow, activity
+from temporalio.exceptions import TimeoutError
+
+@activity.defn
+async def agent_research(query: str) -&gt; dict: &#34;&#34;&#34;Research agent: gathers information from web.&#34;&#34;&#34;
+    results = await search_web(query)
+    return {&#34;type&#34;: &#34;research&#34;, &#34;sources&#34;: len(results), &#34;summary&#34;: summarize(results)}
+
+@activity.defn
+async def agent_analysis(research_data: dict) -&gt; dict: &#34;&#34;&#34;Analysis agent: evaluates findings.&#34;&#34;&#34;
+    analysis = await analyze_findings(research_data[&#34;summary&#34;])
+    return {&#34;type&#34;: &#34;analysis&#34;, &#34;confidence&#34;: analysis[&#34;confidence_score&#34;]}
+
+@activity.defn
+async def agent_synthesis(research: dict, analysis: dict) -&gt; dict: &#34;&#34;&#34;Synthesis agent: combines research and analysis into report.&#34;&#34;&#34;
+    report = await synthesize_report(research, analysis)
+    return {&#34;type&#34;: &#34;synthesis&#34;, &#34;report_length&#34;: len(report)}
+
+@workflow.defn
+class MultiAgentResearch: @workflow.run
+    async def run(self, query: str) -&gt; dict: # Run research and analysis in parallel
+        research_handle = workflow.execute_activity(
+            agent_research, query, start_to_close_timeout=timedelta(minutes=5)
+        )
+        
+        # Wait for research, then start analysis
+        research_result = await research_handle
+        analysis_handle = workflow.execute_activity(
+            agent_analysis, research_result, start_to_close_timeout=timedelta(minutes=3)
+        )
+        
+        analysis_result = await analysis_handle
+        
+        # Final synthesis
+        final_report = await workflow.execute_activity(
+            agent_synthesis, research_result, analysis_result,
+            start_to_close_timeout=timedelta(minutes=5)
+        )
+        
+        return final_report
+</code></pre><h3 id="pattern-3-ml-training-with-checkpoint-recovery">Pattern 3: ML Training with Checkpoint Recovery</h3>
+<p>Automatically resume training from the last checkpoint after any failure: `````python
+@activity.defn
+async def save_checkpoint(epoch: int, model_state: dict) -&gt; str: &ldquo;&ldquo;&ldquo;Save training checkpoint to persistent storage.&rdquo;&rdquo;&rdquo;
+checkpoint_path = f&quot;s3://my-bucket/checkpoints/epoch_{epoch}.pt&quot;
+await upload_to_s3(model_state, checkpoint_path)
+activity.info(f&quot;Checkpoint saved: {checkpoint_path}&quot;)
+return checkpoint_path</p>
+<p>@activity.defn
+async def load_checkpoint(checkpoint_path: str) -&gt; dict: &ldquo;&ldquo;&ldquo;Load model state from checkpoint.&rdquo;&rdquo;&rdquo;
+model_state = await download_from_s3(checkpoint_path)
+activity.info(f&quot;Checkpoint loaded: {checkpoint_path}&quot;)
+return model_state</p>
+<p>@activity.defn
+async def train_epoch(model_state: dict, epoch: int, learning_rate: float) -&gt; dict: &ldquo;&ldquo;&ldquo;Train a single epoch.&rdquo;&rdquo;&rdquo;
+# Actual training logic here
+new_state = perform_training_step(model_state, learning_rate)
+metrics = compute_metrics(new_state)
+return {&ldquo;state&rdquo;: new_state, &ldquo;metrics&rdquo;: metrics}</p>
+<p>@workflow.defn
+class ResumableTraining: @workflow.run
+async def run(self, dataset_url: str, total_epochs: int, lr: float = 0.001) -&gt; dict: # Check if we have a previous checkpoint
+checkpoint_path = workflow.info().get_memo_field(&ldquo;last_checkpoint&rdquo;)</p>
+<pre><code>    if checkpoint_path: model_state = await workflow.execute_activity(
+            load_checkpoint, checkpoint_path,
+            start_to_close_timeout=timedelta(minutes=2)
+        )
+        start_epoch = int(checkpoint_path.split(&quot;_&quot;)[-1].split(&quot;.&quot;)[0])
+        activity.info(f&quot;Resuming from epoch {start_epoch}&quot;)
+    else: model_state = initialize_model(dataset_url)
+        start_epoch = 0
+    
+    # Train epochs with periodic checkpointing
+    for epoch in range(start_epoch, total_epochs): result = await workflow.execute_activity(
+            train_epoch, model_state, epoch, lr,
+            start_to_close_timeout=timedelta(minutes=30),
+            retry=RetryPolicy(max_attempts=3, backoff_coefficient=2.0)
+        )
+        
+        model_state = result[&quot;state&quot;]
+        
+        # Save checkpoint every 5 epochs
+        if (epoch + 1) % 5 == 0: cp_path = await workflow.execute_activity(
+                save_checkpoint, epoch + 1, model_state,
+                start_to_close_timeout=timedelta(minutes=5)
+            )
+            # Store in workflow memo for recovery
+            workflow.set_memo({&quot;last_checkpoint&quot;: cp_path})
+    
+    return {&quot;final_state&quot;: model_state, &quot;total_epochs&quot;: total_epochs}
+</code></pre>
+<pre tabindex="0"><code>
+### Pattern 4: Streaming LLM Output
+
+Handle streaming responses from LLMs within a workflow: `````python
+@activity.defn
+async def stream_llm_response(prompt: str, max_tokens: int = 1024) -&gt; list[str]: &#34;&#34;&#34;Stream tokens from an LLM and return them as a list.&#34;&#34;&#34;
+    tokens = []
+    async for token in call_streaming_api(prompt, max_tokens): tokens.append(token)
+        # Small delay to simulate streaming
+        await asyncio.sleep(0.01)
+    return tokens
+
+@workflow.defn
+class StreamingChat: @workflow.run
+    async def run(self, conversation_history: list[dict], user_message: str) -&gt; str: # Build the prompt from conversation history
+        prompt = format_conversation(conversation_history, user_message)
+        
+        # Stream the response
+        tokens = await workflow.execute_activity(
+            stream_llm_response,
+            prompt,
+            start_to_close_timeout=timedelta(minutes=5),
+            retry=RetryPolicy(max_attempts=2)
+        )
+        
+        response = &#34;&#34;.join(tokens)
+        
+        # Update conversation history
+        updated_history = conversation_history + [
+            {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: user_message},
+            {&#34;role&#34;: &#34;assistant&#34;, &#34;content&#34;: response}
+        ]
+        
+        return {&#34;response&#34;: response, &#34;history&#34;: updated_history}
+</code></pre><hr>
+<h2 id="advanced-features-for-ai-workflows">Advanced Features for AI Workflows</h2>
+<h3 id="signal-based-workflow-control">Signal-Based Workflow Control</h3>
+<p>Signal workflows from outside to cancel, update priority, or inject new data: `````python
+@workflow.defn
+class PriorityWorkflow: def <strong>init</strong>(self): self.priority = &ldquo;normal&rdquo;
+self.cancel_requested = False</p>
+<pre><code>@workflow.signal
+def set_priority(self, new_priority: str): &quot;&quot;&quot;Change workflow execution priority.&quot;&quot;&quot;
+    self.priority = new_priority
+    workflow.logger.info(f&quot;Priority changed to {new_priority}&quot;)
+
+@workflow.signal
+def cancel_workflow(self): &quot;&quot;&quot;Request workflow cancellation.&quot;&quot;&quot;
+    self.cancel_requested = True
+    workflow.logger.info(&quot;Cancellation requested&quot;)
+
+@workflow.run
+async def run(self, task_data: dict) -&gt; dict: while not self.cancel_requested: # Process based on current priority
+        result = await process_task(task_data, self.priority)
+        
+        # Check for signals between steps
+        await asyncio.sleep(0.1)
+    
+    return {&quot;status&quot;: &quot;cancelled&quot;, &quot;partial_result&quot;: result}
+</code></pre>
+<pre tabindex="0"><code>
+### Child Workflows for Modular Design
+
+Break complex pipelines into nested child workflows: `````python
+@workflow.defn
+class DataPreparation: @workflow.run
+    async def run(self, raw_data: dict) -&gt; dict: cleaned = await workflow.execute_activity(clean_data, raw_data)
+        validated = await workflow.execute_activity(validate_data, cleaned)
+        return validated
+
+@workflow.defn
+class ModelEvaluation: @workflow.run
+    async def run(self, trained_model: dict) -&gt; dict: test_results = await workflow.execute_activity(evaluate_model, trained_model)
+        benchmark = await workflow.execute_activity(run_benchmarks, trained_model)
+        return {&#34;test_results&#34;: test_results, &#34;benchmark&#34;: benchmark}
+
+@workflow.defn
+class FullMLPipeline: @workflow.run
+    async def run(self, raw_data: dict, model_config: dict) -&gt; dict: # Child workflow: data preparation
+        prepared_data = await workflow.child_execute(
+            DataPreparation.run, raw_data
+        )
+        
+        # Child workflow: model training
+        trained_model = await workflow.child_execute(
+            ModelTraining.run, prepared_data, model_config
+        )
+        
+        # Child workflow: evaluation
+        eval_results = await workflow.child_execute(
+            ModelEvaluation.run, trained_model
+        )
+        
+        return eval_results
+</code></pre><h3 id="querying-workflow-state">Querying Workflow State</h3>
+<p>Inspect running workflows without stopping them: `````python
+from temporalio.client import Client</p>
+<p>client = await Client.connect(&ldquo;localhost:7233&rdquo;)</p>
+<h1 id="get-workflow-handle">Get workflow handle</h1>
+<p>handle = client.get_workflow_handle(&ldquo;training-job-001&rdquo;)</p>
+<h1 id="query-current-state">Query current state</h1>
+<p>state = await handle.query(lambda wf: wf.current_state)
+print(f&quot;Current state: {state}&quot;)</p>
+<h1 id="describe-running-workflow">Describe running workflow</h1>
+<p>info = await handle.describe()
+print(f&quot;Status: {info.status}&quot;)
+print(f&quot;Start time: {info.start_time}&quot;)
+print(f&quot;Execution time: {info.execution_time}&quot;)</p>
+<pre tabindex="0"><code>
+### Workflow Timeouts and Schedules
+
+`````python
+# Set different timeout types for precise control
+await workflow.execute_activity(
+    slow_activity,
+    arg1, arg2,
+    start_to_close_timeout=timedelta(minutes=30),  # Total time allowed
+    schedule_to_start_timeout=timedelta(minutes=5),  # Time waiting for worker
+    schedule_to_close_timeout=timedelta(minutes=35),  # Total lifecycle
+    heartbeat_timeout=timedelta(minutes=2),           # Heartbeat interval
+)
+
+# Schedule a recurring workflow
+schedule = await client.schedule.create(
+    ScheduleSpec(
+        interval=[timedelta(hours=6)],  # Every 6 hours
+        catchup_window=timedelta(hours=1)
+    ),
+    ScheduleActionStartWorkflow(
+        &#34;daily-report-generation&#34;,
+        task_queue=&#34;reports&#34;,
+        retry_policy=RetryPolicy(max_attempts=3)
+    )
+)
+</code></pre><hr>
+<h2 id="monitoring-and-debugging">Monitoring and Debugging</h2>
+<h3 id="temporal-web-ui">Temporal Web UI</h3>
+<p>Access the built-in web UI at <code>http://localhost:8233</code> to: - View all running and completed workflows</p>
+<ul>
+<li>Inspect input/output data for each activity</li>
+<li>Replay workflow history step-by-step</li>
+<li>Search workflows by ID, status, or custom attributes</li>
+</ul>
+<h3 id="cli-debugging">CLI Debugging</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># List all workflows</span>
+</span></span><span style="display:flex;"><span>temporal workflow list --namespace default
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Describe a specific workflow</span>
+</span></span><span style="display:flex;"><span>temporal workflow describe --workflow-id training-job-001
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Show workflow history (execution trace)</span>
+</span></span><span style="display:flex;"><span>temporal workflow show --workflow-id training-job-001
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Reset a workflow to a specific point</span>
+</span></span><span style="display:flex;"><span>temporal workflow reset --workflow-id training-job-001 --reset-point LastAutoClose
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Terminate a running workflow</span>
+</span></span><span style="display:flex;"><span>temporal workflow terminate --workflow-id training-job-001 --reason <span style="color:#e6db74">&#34;User requested&#34;</span>
+</span></span></code></pre></div><h3 id="structured-logging">Structured Logging</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> structlog
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> temporalio <span style="color:#f92672">import</span> activity
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>logger <span style="color:#f92672">=</span> structlog<span style="color:#f92672">.</span>get_logger()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@activity.defn</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">train_with_logging</span>(model_config: dict) <span style="color:#f92672">-&gt;</span> dict: logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">&#34;training_start&#34;</span>, config<span style="color:#f92672">=</span>model_config)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> epoch <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10</span>): loss <span style="color:#f92672">=</span> perform_training_epoch(model_config)
+</span></span><span style="display:flex;"><span>        logger<span style="color:#f92672">.</span>info(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;epoch_complete&#34;</span>,
+</span></span><span style="display:flex;"><span>            epoch<span style="color:#f92672">=</span>epoch,
+</span></span><span style="display:flex;"><span>            loss<span style="color:#f92672">=</span>loss,
+</span></span><span style="display:flex;"><span>            learning_rate<span style="color:#f92672">=</span>model_config[<span style="color:#e6db74">&#34;lr&#34;</span>]
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    logger<span style="color:#f92672">.</span>info(<span style="color:#e6db74">&#34;training_complete&#34;</span>, final_loss<span style="color:#f92672">=</span>loss)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;final_loss&#34;</span>: loss}
+</span></span></code></pre></div><p>Logs appear in the Temporal UI and can be exported to Elasticsearch, Datadog, or any SIEM.</p>
+<hr>
+<h2 id="cost-optimization">Cost Optimization</h2>
+<h3 id="activity-heartbeats-for-long-running-jobs">Activity Heartbeats for Long-Running Jobs</h3>
+<p>Prevent wasted compute by reporting progress: `````python
+@activity.defn
+async def long_training_job(config: dict): for epoch in range(100): # Report heartbeat every epoch
+activity.heartbeat(f&quot;Epoch {epoch}/100 complete&quot;)
+loss = train_one_epoch(config)</p>
+<pre><code>return {&quot;final_loss&quot;: loss}
+</code></pre>
+<h1 id="with-heartbeat-detection-temporal-can-mark-activities-as-failed">With heartbeat detection, Temporal can mark activities as failed</h1>
+<h1 id="and-retry-only-the-current-step-not-the-entire-workflow">and retry only the current step, not the entire workflow</h1>
+<pre tabindex="0"><code>
+### Right-Sizing Worker Resources
+
+`````python
+worker = Worker(
+    client,
+    task_queue=&#34;ml-workers&#34;,
+    workflows=[MLTrainingPipeline],
+    activities=[train_model, evaluate_model],
+    max_concurrent_activities=50,       # Limit concurrent activities
+    max_concurrent_workflow_tasks=100,   # Limit workflow task processing
+)
+</code></pre><h3 id="cost-comparison">Cost Comparison</h3>
+<p>| Approach | Monthly Cost (100 training jobs/mo) | Ops Overhead |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Kubernetes + CronJobs | $800 (always-on nodes) + 20 hrs/mo DevOps | High |
+| AWS Batch | $450 (spot instances) + 10 hrs/mo config | Medium |
+| Temporal Cloud | $200 (compute) + $0 ops | None |
+| Self-hosted Temporal | $150 (2 small VMs) + 5 hrs/mo maintenance | Low |</p>
+<hr>
+<h2 id="future-directions">Future Directions</h2>
+<h3 id="temporals-ai-roadmap">Temporal&rsquo;s AI Roadmap</h3>
+<p>Temporal is actively building AI-specific features: 1. <strong>Native LLM activity templates</strong>: Pre-built activities for common LLM operations (chat, completion, embedding) with built-in retry and rate-limit handling
+2. <strong>Vector memory</strong>: Built-in vector storage for persisting workflow context across executions
+3. <strong>Agent SDK</strong>: First-class support for multi-agent orchestration with shared memory and communication protocols
+4. <strong>GPU-aware scheduling</strong>: Native integration with GPU clusters for ML workloads
+5. <strong>Temporal Studio enhancements</strong>: Real-time workflow visualization with ML metric overlays</p>
+<h3 id="when-to-use-temporal">When to Use Temporal</h3>
+<p><strong>Choose Temporal when:</strong></p>
+<ul>
+<li>Your AI pipeline has multiple dependent steps</li>
+<li>You need guaranteed execution (no lost jobs on crash)</li>
+<li>You want to debug workflows interactively</li>
+<li>Your team values Python-native development</li>
+<li>You need complex patterns (retry, timeout, parallelism, child workflows)</li>
+</ul>
+<p><strong>Consider simpler alternatives when:</strong></p>
+<ul>
+<li>You have single-step jobs — just use a cron or direct API call</li>
+<li>You need real-time streaming — Temporal is batch-oriented</li>
+<li>Your team prefers visual DAG editors — consider Apache Airflow</li>
+<li>You&rsquo;re already invested in AWS Step Functions — native integration may be simpler</li>
+</ul>
+<hr>
+<h2 id="community-updates">Community Updates</h2>
+<p>The workflow orchestration landscape continues evolving. In 2026, notable developments include: - <strong>Temporal Cloud</strong> expanded to 5 regions with GPU-optimized worker nodes</p>
+<ul>
+<li><strong>Open-source Temporal</strong> added native support for Python 3.12 and PyPy</li>
+<li><strong>Community integrations</strong>: LangChain, LlamaIndex, and CrewAI all released official Temporal connectors</li>
+<li><strong>Enterprise adoption</strong>: Major AI companies like Scale AI and Hugging Face use Temporal for production ML pipelines</li>
+</ul>
+<p>The Temporal community has grown to over 50,000 GitHub stars, with active contributions from companies building production AI systems. The ecosystem includes connectors for popular ML frameworks, monitoring integrations, and template repositories for common AI workflow patterns.</p>
+<hr>
+<h2 id="faq">FAQ</h2>
+<h3 id="q-how-does-temporal-handle-llm-rate-limiting">Q: How does Temporal handle LLM rate limiting?</h3>
+<p>Use Temporal&rsquo;s retry policy with exponential backoff. Configure <code>initial_interval</code>, <code>maximum_interval</code>, and <code>backoff_coefficient</code> to implement polite retry strategies: `````python
+retry=RetryPolicy(
+initial_interval=timedelta(seconds=1),
+maximum_interval=timedelta(minutes=5),
+backoff_coefficient=2.0,
+maximum_attempts=5
+)</p>
+<pre tabindex="0"><code>
+This naturally throttles requests when rate limits are hit, unlike naive retry loops that hammer the API.
+
+### Q: Can I run Temporal workers on spot/preemptible instances?
+
+Yes. Temporal&#39;s architecture is designed for this. Workers can come and go freely — if a worker dies mid-activity, Temporal detects the heartbeat timeout and reschedules the activity on another available worker. This makes Temporal ideal for cost-optimized spot instance deployments.
+
+### Q: How do I handle streaming LLM outputs in Temporal?
+
+While Temporal activities are traditionally request-response, you can use the streaming pattern shown above: collect streamed tokens in-memory during the activity execution, then return the complete result. For true streaming to end users, combine Temporal (for workflow durability) with WebSocket endpoints that poll the workflow&#39;s state.
+
+### Q: What&#39;s the maximum duration for a Temporal workflow?
+
+Temporals workflows can run indefinitely — there&#39;s no hard timeout. The longest recorded Temporal workflow ran for 14 months continuously, processing millions of events. For practical purposes, set reasonable timeouts on individual activities and use heartbeats for long-running operations.
+
+### Q: Does Temporal work with serverless GPUs (Modal, RunPod)?
+
+Yes. Temporal workers can run anywhere — EC2, GKE, EKS, or even serverless containers. Deploy Temporal workers alongside Modal functions or RunPod instances. The key insight: Temporal manages the workflow coordination, while the actual GPU compute happens wherever it&#39;s cheapest.
+
+* * *
+
+## Sources
+
+- [Temporal Documentation](https://docs.temporal.io)
+- [Temporal Python SDK](https://github.com/temporalio/sdk-python)
+- [Temporal AI Workflow Patterns — Temporal Blog 2026](https://temporal.io/blog/ai-workflow-patterns-2026)
+- [Building Resilient ML Pipelines with Temporal — KubeCon 2026](https://kccna2026.sched.com/event/ml-temporal)
+- [Comparing Workflow Orchestrators for AI — ML Infrastructure Report 2026](https://mlinfra.report/workflow-comparison-2026)
+
+* * *
+
+*Join our Telegram Group for real-time AI tool discussions and deployment tips: [t.me/dibi8](https://t.me/dibi8)*
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;Temporal AI Workflow Orchestration — Reliable Multi-Step AI Pipelines&#34;,
+  &#34;datePublished&#34;: &#34;2026-07-15&#34;,
+  &#34;dateModified&#34;: &#34;2026-07-15&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/temporal-ai-workflow-orchestration&#34;
+  }
+}
+&lt;/script&gt;
+
+* * *
+
+## Related Articles
+
+- [google-jax-complete-guide](temporal-ai-workflow-orchestration)
+- [ray-distributed-ai-framework-complete-guide](temporal-ai-workflow-orchestration)
+- [modal-serverless-gpu-compute](temporal-ai-workflow-orchestration)
+- [cleanlab-11k-star-ai-data-cleaning](temporal-ai-workflow-orchestration)
+- [temporal-ai-workflow-orchestration](temporal-ai-workflow-orchestration)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</code></pre>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2ftemporal-ai-workflow-orchestration%2f&text=Option%20A%3a%20Docker%20Compose%20%28recommended%20for%20local%20dev%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2ftemporal-ai-workflow-orchestration%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

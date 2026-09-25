@@ -1,0 +1,856 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using uv (recommended) | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/browser-use/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Using uv (recommended)</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Using uv (recommended)</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;Using uv (recommended)&rdquo;
+description: &ldquo;AI tool guide&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Llm Frameworks
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: MIT
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;llm-frameworks&rdquo;]
+tags: [&ldquo;browser-use&rdquo;, &ldquo;ai-agents&rdquo;, &ldquo;playwright&rdquo;, &ldquo;browser-automation&rdquo;, &ldquo;web-scraping&rdquo;, &ldquo;llm&rdquo;, &ldquo;python&rdquo;, &ldquo;open-source&rdquo;]
+aliases:</p>
+<ul>
+<li>/posts/browser-use/-</li>
+</ul>
+<hr>
+<p><img alt="Browser Use Logo" loading="lazy" src="https://raw.githubusercontent.com/browser-use/browser-use/main/docs/static/img/browser-use-logo.png"></p>
+<blockquote>
+<p><strong>GitHub</strong>: <a href="https://github.com/browser-use/browser-use">browser-use/browser-use</a> | <strong>Stars</strong>: 94,731 | <strong>License</strong>: MIT | <strong>Version</strong>: 0.12.7</p>
+</blockquote>
+<hr>
+<h2 id="introduction">Introduction</h2>
+<p>Writing and maintaining Selenium scripts for modern web automation is a slow death by a thousand selectors. A class name changes, a button moves, and your entire pipeline collapses at 3 AM. Browser Use, an open-source Python framework launched in late 2024 by Magnus Müller and Gregor Žunič, takes a different approach: it hands the browser controls to a large language model and lets the AI figure out what to click, type, and read. With 94,731 GitHub stars, 319 contributors, and an 89.1% success rate on the WebVoyager benchmark, it has become the de facto open-source standard for AI-driven browser automation. This tutorial covers the setup, real benchmark data, integration with popular LLMs, and a head-to-head comparison against Selenium, Puppeteer, and Scrapy.</p>
+<hr>
+<h2 id="what-is-browser-use">What Is Browser Use?</h2>
+<p>Browser Use is a Python library (≥3.11) that connects any LangChain-compatible LLM to a real web browser via Playwright. Instead of hardcoding CSS selectors or XPath expressions, you describe the task in natural language — &ldquo;find the cheapest flight from NYC to SFO next Friday&rdquo; — and the agent handles navigation, form filling, clicking, and data extraction autonomously.</p>
+<h3 id="key-design-principles">Key Design Principles</h3>
+<ul>
+<li><strong>Model-agnostic</strong>: Works with OpenAI GPT-4o/5.1, Anthropic Claude Sonnet 4, Google Gemini 3 Flash, and local models via LiteLLM.</li>
+<li><strong>DOM distillation</strong>: Strips pages to essential interactive elements before sending them to the LLM, cutting token consumption by up to 60%.</li>
+<li><strong>Multi-tab support</strong>: Agents can operate across multiple browser tabs simultaneously.</li>
+<li><strong>Persistent memory</strong>: Maintains context and conversation history across navigation steps.</li>
+<li><strong>Built on Playwright</strong>: Inherits all Playwright features — stealth mode, proxy support, network interception, and video recording.</li>
+</ul>
+<hr>
+<h2 id="how-browser-use-works">How Browser Use Works</h2>
+<p>Browser Use operates on a continuous <strong>observe → plan → act → verify</strong> loop: ### Architecture Overview</p>
+<pre tabindex="0"><code>┌─────────────┐    DOM + Screenshot     ┌─────────────┐
+│   Browser   │ ──────────────────────&gt; │     LLM     │
+│  (Playwright)│                        │(Claude/GPT/)│
+│             │ &lt;────────────────────── │   Gemini    │
+└─────────────┘     Action (click/type) └─────────────┘
+      ↑                                        │
+      └────────── Page State Change ───────────┘
+</code></pre><p><img alt="Browser Use Agent Loop Architecture" loading="lazy" src="https://raw.githubusercontent.com/browser-use/browser-use/main/docs/static/img/agent-loop-diagram.png"></p>
+<h3 id="the-agent-loop-in-detail">The Agent Loop in Detail</h3>
+<ol>
+<li><strong>Capture</strong>: Browser Use takes a DOM snapshot and screenshot of the current page.</li>
+<li><strong>Distill</strong>: The DOM is filtered to only interactive elements (buttons, inputs, links), reducing noise.</li>
+<li><strong>Reason</strong>: The LLM receives the distilled page state and the user&rsquo;s goal, then plans the next action.</li>
+<li><strong>Execute</strong>: Browser Use translates the LLM&rsquo;s decision into Playwright API calls (<code>page.click()</code>, <code>page.fill()</code>).</li>
+<li><strong>Verify</strong>: The loop repeats until the task is complete or <code>max_steps</code> is reached.</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> browser_use <span style="color:#f92672">import</span> Agent, Browser
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(): browser <span style="color:#f92672">=</span> Browser()
+</span></span><span style="display:flex;"><span>    agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>        task<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Find the number of stars of the browser-use repo&#34;</span>,
+</span></span><span style="display:flex;"><span>        llm<span style="color:#f92672">=</span>ChatOpenAI(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4.1&#34;</span>),
+</span></span><span style="display:flex;"><span>        browser<span style="color:#f92672">=</span>browser,
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> agent<span style="color:#f92672">.</span>run()
+</span></span><span style="display:flex;"><span>    print(result)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>: asyncio<span style="color:#f92672">.</span>run(main())
+</span></span></code></pre></div><hr>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Python 3.11 or higher</li>
+<li>A Playwright-compatible browser (Chromium recommended)</li>
+<li>An API key from your preferred LLM provider</li>
+</ul>
+<h3 id="step-1-install-browser-use">Step 1: Install Browser Use</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Using uv (recommended)</span>
+</span></span><span style="display:flex;"><span>uv init
+</span></span><span style="display:flex;"><span>uv add browser-use
+</span></span><span style="display:flex;"><span>uv sync
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Using pip</span>
+</span></span><span style="display:flex;"><span>pip install browser-use
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install Chromium if not already present</span>
+</span></span><span style="display:flex;"><span>playwright install chromium
+</span></span></code></pre></div><h3 id="step-2-configure-environment-variables">Step 2: Configure Environment Variables</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># .env file</span>
+</span></span><span style="display:flex;"><span>OPENAI_API_KEY<span style="color:#f92672">=</span>sk-your-openai-key
+</span></span><span style="display:flex;"><span>ANTHROPIC_API_KEY<span style="color:#f92672">=</span>sk-ant-your-anthropic-key
+</span></span><span style="display:flex;"><span>GOOGLE_API_KEY<span style="color:#f92672">=</span>your-google-api-key
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Optional: Browser Use Cloud for stealth browsers</span>
+</span></span><span style="display:flex;"><span>BROWSER_USE_API_KEY<span style="color:#f92672">=</span>your-cloud-key
+</span></span></code></pre></div><h3 id="step-3-run-your-first-agent">Step 3: Run Your First Agent</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> browser_use <span style="color:#f92672">import</span> Agent, Browser, ChatBrowserUse
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(): browser <span style="color:#f92672">=</span> Browser()
+</span></span><span style="display:flex;"><span>    agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>        task<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;List the top 20 posts on Hacker News today with their points&#34;</span>,
+</span></span><span style="display:flex;"><span>        llm<span style="color:#f92672">=</span>ChatBrowserUse(),
+</span></span><span style="display:flex;"><span>        browser<span style="color:#f92672">=</span>browser,
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> agent<span style="color:#f92672">.</span>run()
+</span></span><span style="display:flex;"><span>    print(result<span style="color:#f92672">.</span>output)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>: asyncio<span style="color:#f92672">.</span>run(main())
+</span></span></code></pre></div><p><img alt="Browser Use Quick Start Interface" loading="lazy" src="https://docs.browser-use.com/assets/images/quickstart-browser-use-cloud.png"></p>
+<h3 id="docker-setup-production">Docker Setup (Production)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Dockerfile</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">python:3.11-slim</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> pip install browser-use playwright<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> playwright install chromium<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> playwright install-deps<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> . .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;python&#34;</span>, <span style="color:#e6db74">&#34;agent.py&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: browser-use: build</span>: <span style="color:#ae81ff">.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">OPENAI_API_KEY=${OPENAI_API_KEY}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./scripts:/app</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">command</span>: <span style="color:#ae81ff">python agent.py</span>
+</span></span></code></pre></div><hr>
+<h2 id="integration-with-popular-tools">Integration with Popular Tools</h2>
+<h3 id="openai-gpt-4o--gpt-51">OpenAI GPT-4o / GPT-5.1</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> browser_use <span style="color:#f92672">import</span> Agent, Browser
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">search_flights</span>(): agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>        task<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Find the cheapest flight from NYC to London next week&#34;</span>,
+</span></span><span style="display:flex;"><span>        llm<span style="color:#f92672">=</span>ChatOpenAI(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>, temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>),
+</span></span><span style="display:flex;"><span>        browser<span style="color:#f92672">=</span>Browser(),
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> agent<span style="color:#f92672">.</span>run()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncio<span style="color:#f92672">.</span>run(search_flights())
+</span></span></code></pre></div><h3 id="anthropic-claude-sonnet-4">Anthropic Claude Sonnet 4</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> browser_use <span style="color:#f92672">import</span> Agent, Browser
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_anthropic <span style="color:#f92672">import</span> ChatAnthropic
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">extract_data</span>(): agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>        task<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Extract all pricing plans from example.com/pricing&#34;</span>,
+</span></span><span style="display:flex;"><span>        llm<span style="color:#f92672">=</span>ChatAnthropic(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;claude-sonnet-4-6&#34;</span>),
+</span></span><span style="display:flex;"><span>        browser<span style="color:#f92672">=</span>Browser(),
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> agent<span style="color:#f92672">.</span>run()
+</span></span><span style="display:flex;"><span>    print(result<span style="color:#f92672">.</span>output)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncio<span style="color:#f92672">.</span>run(extract_data())
+</span></span></code></pre></div><h3 id="google-gemini-3-flash">Google Gemini 3 Flash</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> browser_use <span style="color:#f92672">import</span> Agent, Browser
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_google_genai <span style="color:#f92672">import</span> ChatGoogleGenerativeAI
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">research_topic</span>(): agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>        task<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Research the latest AI news and summarize top 5 stories&#34;</span>,
+</span></span><span style="display:flex;"><span>        llm<span style="color:#f92672">=</span>ChatGoogleGenerativeAI(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gemini-3-flash-preview&#34;</span>),
+</span></span><span style="display:flex;"><span>        browser<span style="color:#f92672">=</span>Browser(),
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> agent<span style="color:#f92672">.</span>run()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncio<span style="color:#f92672">.</span>run(research_topic())
+</span></span></code></pre></div><h3 id="ollama-local-models">Ollama (Local Models)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> browser_use <span style="color:#f92672">import</span> Agent, Browser
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_ollama <span style="color:#f92672">import</span> ChatOllama
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">local_automation</span>(): agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>        task<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Fill out the contact form on example.com/contact&#34;</span>,
+</span></span><span style="display:flex;"><span>        llm<span style="color:#f92672">=</span>ChatOllama(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;qwen2.5:72b&#34;</span>),
+</span></span><span style="display:flex;"><span>        browser<span style="color:#f92672">=</span>Browser(),
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> agent<span style="color:#f92672">.</span>run()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncio<span style="color:#f92672">.</span>run(local_automation())
+</span></span></code></pre></div><h3 id="playwright-direct-integration">Playwright Direct Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> playwright.async_api <span style="color:#f92672">import</span> async_playwright
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> browser_use <span style="color:#f92672">import</span> Agent
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">hybrid_automation</span>(): <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> async_playwright() <span style="color:#66d9ef">as</span> p: browser <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> p<span style="color:#f92672">.</span>chromium<span style="color:#f92672">.</span>launch(headless<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        page <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> browser<span style="color:#f92672">.</span>new_page()
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Deterministic Playwright step</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> page<span style="color:#f92672">.</span>goto(<span style="color:#e6db74">&#34;https://example.com&#34;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Hand off to Browser Use agent for complex task</span>
+</span></span><span style="display:flex;"><span>        agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>            task<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Navigate to pricing and extract all plan details&#34;</span>,
+</span></span><span style="display:flex;"><span>            llm<span style="color:#f92672">=</span>ChatOpenAI(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>),
+</span></span><span style="display:flex;"><span>            browser<span style="color:#f92672">=</span>browser,
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> agent<span style="color:#f92672">.</span>run()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> browser<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> result
+</span></span></code></pre></div><hr>
+<h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases</h2>
+<h3 id="webvoyager-benchmark-results">WebVoyager Benchmark Results</h3>
+<p>The WebVoyager benchmark evaluates browser agents on 586 diverse real-world web tasks. Browser Use ranks #7 on the global leaderboard with an 89.1% success rate — the highest among fully open-source frameworks.</p>
+<p><img alt="WebVoyager Leaderboard showing Browser Use at 89.1%" loading="lazy" src="https://docs.browser-use.com/assets/images/webvoyager-benchmark-2026.png"></p>
+<p>| Rank | System | Score | Organization |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| 1 | Alumnium | 98.6% | Alumnium |
+| 2 | Surfer 2 | 97.1% | H Company |
+| 3 | Magnitude | 93.9% | Magnitude |
+| 4 | AIME Browser-Use | 92.34% | Aime |
+| 6 | Browserable | 90.4% | Browserable |
+| <strong>7</strong> | <strong>Browser Use</strong> | <strong>89.1%</strong> | <strong>Browser Use</strong> |
+| 8 | GLM-5V-Turbo | 88.5% | Z.ai |
+| 9 | Agent Kura | 87.0% | Kura |
+| 9 | OpenAI Operator | 87% | OpenAI |
+| 11 | Skyvern 2.0 | 85.85% | Skyvern |
+| 12 | Project Mariner | 83.5% | Google |</p>
+<h3 id="performance-metrics-vs-traditional-tools">Performance Metrics (vs Traditional Tools)</h3>
+<p>| Metric | Browser Use (AI) | Playwright | Puppeteer | Selenium |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Cold start to first navigation | ~0.5–0.8s | ~0.4–0.7s | ~0.3–0.5s | ~1.2–2.5s |
+| Idle RAM (per instance) | ~100–150MB | ~90–130MB | ~60–100MB | ~180–280MB |
+| Static pages / minute | ~8–15 (AI loop) | ~35–55 | ~40–60 | ~18–35 |
+| Novel site success rate | 89.1% | N/A | N/A | N/A |
+| Selector maintenance | None | High | High | High |
+| LLM cost per 10-step task | $0.02–$0.30 | $0 | $0 | $0 |</p>
+<h3 id="real-world-cost-analysis">Real-World Cost Analysis</h3>
+<p>| LLM Provider | Cost per Task (avg 10 steps) | Best For |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| GPT-4o | ~$0.15–$0.30 | Complex reasoning tasks |
+| Claude Sonnet 4 | ~$0.10–$0.20 | Production reliability |
+| Gemini 3 Flash | ~$0.02–$0.05 | Cost-sensitive batch jobs |
+| Local (Qwen2.5-72B) | ~$0.005 (GPU cost) | Privacy-first deployments |</p>
+<h3 id="use-case-automated-price-monitoring">Use Case: Automated Price Monitoring</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> browser_use <span style="color:#f92672">import</span> Agent, Browser
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">monitor_prices</span>(): urls <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;https://amazon.com/dp/B0DHTYW7P5&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;https://bestbuy.com/site/xyz&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;https://newegg.com/product/abc&#34;</span>,
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    results <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> url <span style="color:#f92672">in</span> urls: agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>            task<span style="color:#f92672">=</span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Go to </span><span style="color:#e6db74">{</span>url<span style="color:#e6db74">}</span><span style="color:#e6db74"> and extract the current price, availability, and seller name&#34;</span>,
+</span></span><span style="display:flex;"><span>            llm<span style="color:#f92672">=</span>ChatOpenAI(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o-mini&#34;</span>),
+</span></span><span style="display:flex;"><span>            browser<span style="color:#f92672">=</span>Browser(),
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> agent<span style="color:#f92672">.</span>run()
+</span></span><span style="display:flex;"><span>        results<span style="color:#f92672">.</span>append({<span style="color:#e6db74">&#34;url&#34;</span>: url, <span style="color:#e6db74">&#34;data&#34;</span>: result<span style="color:#f92672">.</span>output})
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> results
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run daily via cron or scheduled task</span>
+</span></span><span style="display:flex;"><span>prices <span style="color:#f92672">=</span> asyncio<span style="color:#f92672">.</span>run(monitor_prices())
+</span></span></code></pre></div><hr>
+<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<h3 id="parallel-agent-execution">Parallel Agent Execution</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> browser_use <span style="color:#f92672">import</span> Agent, Browser
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run_parallel_agents</span>(tasks): browser <span style="color:#f92672">=</span> Browser()
+</span></span><span style="display:flex;"><span>    agents <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>        Agent(task<span style="color:#f92672">=</span>task, llm<span style="color:#f92672">=</span>ChatOpenAI(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o-mini&#34;</span>), browser<span style="color:#f92672">=</span>browser)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> task <span style="color:#f92672">in</span> tasks
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>    results <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>gather(<span style="color:#f92672">*</span>[agent<span style="color:#f92672">.</span>run() <span style="color:#66d9ef">for</span> agent <span style="color:#f92672">in</span> agents])
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> results
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>tasks <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Find iPhone 16 price on Amazon&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Find iPhone 16 price on Best Buy&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Find iPhone 16 price on Apple Store&#34;</span>,
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> asyncio<span style="color:#f92672">.</span>run(run_parallel_agents(tasks))
+</span></span></code></pre></div><h3 id="proxy-configuration-for-scraping">Proxy Configuration for Scraping</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> browser_use <span style="color:#f92672">import</span> Browser, BrowserConfig
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> browser_use <span style="color:#f92672">import</span> Agent
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>config <span style="color:#f92672">=</span> BrowserConfig(
+</span></span><span style="display:flex;"><span>    proxy<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;server&#34;</span>: <span style="color:#e6db74">&#34;http://proxy.example.com:8080&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;username&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;password&#34;</span>: <span style="color:#e6db74">&#34;pass&#34;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    headless<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>browser <span style="color:#f92672">=</span> Browser(config<span style="color:#f92672">=</span>config)
+</span></span><span style="display:flex;"><span>agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    task<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Extract data from a geo-restricted site&#34;</span>,
+</span></span><span style="display:flex;"><span>    llm<span style="color:#f92672">=</span>ChatOpenAI(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>),
+</span></span><span style="display:flex;"><span>    browser<span style="color:#f92672">=</span>browser,
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="session-persistence-and-authentication">Session Persistence and Authentication</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> browser_use <span style="color:#f92672">import</span> Browser, BrowserConfig, Agent
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use persistent browser profile to maintain login state</span>
+</span></span><span style="display:flex;"><span>config <span style="color:#f92672">=</span> BrowserConfig(
+</span></span><span style="display:flex;"><span>    user_data_dir<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./browser_profile&#34;</span>,
+</span></span><span style="display:flex;"><span>    headless<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,  <span style="color:#75715e"># Use headed mode for initial login</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">authenticated_task</span>(): browser <span style="color:#f92672">=</span> Browser(config<span style="color:#f92672">=</span>config)
+</span></span><span style="display:flex;"><span>    agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>        task<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Download my monthly invoice from the billing page&#34;</span>,
+</span></span><span style="display:flex;"><span>        llm<span style="color:#f92672">=</span>ChatOpenAI(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>),
+</span></span><span style="display:flex;"><span>        browser<span style="color:#f92672">=</span>browser,
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> agent<span style="color:#f92672">.</span>run()
+</span></span></code></pre></div><h3 id="error-handling-and-retries">Error Handling and Retries</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> browser_use <span style="color:#f92672">import</span> Agent, Browser
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">robust_agent</span>(task, max_retries<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>): <span style="color:#66d9ef">for</span> attempt <span style="color:#f92672">in</span> range(max_retries): <span style="color:#66d9ef">try</span>: agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>                task<span style="color:#f92672">=</span>task,
+</span></span><span style="display:flex;"><span>                llm<span style="color:#f92672">=</span>ChatOpenAI(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>),
+</span></span><span style="display:flex;"><span>                browser<span style="color:#f92672">=</span>Browser(),
+</span></span><span style="display:flex;"><span>                max_steps<span style="color:#f92672">=</span><span style="color:#ae81ff">25</span>,  <span style="color:#75715e"># Limit steps to prevent runaway loops</span>
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>            result <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> agent<span style="color:#f92672">.</span>run()
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> result<span style="color:#f92672">.</span>success: <span style="color:#66d9ef">return</span> result
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Attempt </span><span style="color:#e6db74">{</span>attempt <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> failed: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> attempt)  <span style="color:#75715e"># Exponential backoff</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">Exception</span>(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Task failed after </span><span style="color:#e6db74">{</span>max_retries<span style="color:#e6db74">}</span><span style="color:#e6db74"> attempts&#34;</span>)
+</span></span></code></pre></div><h3 id="monitoring-with-prometheus">Monitoring with Prometheus</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> prometheus_client <span style="color:#f92672">import</span> Counter, Histogram, start_http_server
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> browser_use <span style="color:#f92672">import</span> Agent, Browser
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>agent_runs <span style="color:#f92672">=</span> Counter(<span style="color:#e6db74">&#34;browseruse_agent_runs_total&#34;</span>, <span style="color:#e6db74">&#34;Total agent runs&#34;</span>)
+</span></span><span style="display:flex;"><span>agent_failures <span style="color:#f92672">=</span> Counter(<span style="color:#e6db74">&#34;browseruse_agent_failures_total&#34;</span>, <span style="color:#e6db74">&#34;Total agent failures&#34;</span>)
+</span></span><span style="display:flex;"><span>agent_duration <span style="color:#f92672">=</span> Histogram(<span style="color:#e6db74">&#34;browseruse_agent_duration_seconds&#34;</span>, <span style="color:#e6db74">&#34;Agent run duration&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>start_http_server(<span style="color:#ae81ff">8000</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">monitored_agent</span>(task): agent_runs<span style="color:#f92672">.</span>inc()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> agent_duration<span style="color:#f92672">.</span>time(): <span style="color:#66d9ef">try</span>: agent <span style="color:#f92672">=</span> Agent(task<span style="color:#f92672">=</span>task, llm<span style="color:#f92672">=</span>llm, browser<span style="color:#f92672">=</span>Browser())
+</span></span><span style="display:flex;"><span>            result <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> agent<span style="color:#f92672">.</span>run()
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> result
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span>: agent_failures<span style="color:#f92672">.</span>inc()
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">raise</span>
+</span></span></code></pre></div><hr>
+<h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | Browser Use | Scrapy | Puppeteer | Selenium |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Language</strong> | Python | Python | JavaScript/TypeScript | Python, Java, C#, JS |
+| <strong>AI-Native</strong> | Yes (LLM-driven) | No | No | No |
+| <strong>JavaScript Rendering</strong> | Yes (via Playwright) | No (needs Splash/Playwright) | Yes (Chromium) | Yes (all browsers) |
+| <strong>Selector Maintenance</strong> | None (AI vision) | High (XPath/CSS) | High (CSS) | High (XPath/CSS) |
+| <strong>Multi-Browser Support</strong> | Chromium, Firefox, WebKit | N/A | Chromium only | Chrome, Firefox, Safari, Edge |
+| <strong>WebVoyager Success Rate</strong> | 89.1% | N/A | N/A | N/A |
+| <strong>Speed (pages/min)</strong> | ~8–15 | ~200+ (static) | ~40–60 | ~18–35 |
+| <strong>Setup Complexity</strong> | Low (pip install) | Medium | Low (npm) | High (WebDriver) |
+| <strong>Cost per 1K tasks</strong> | $20–$300 (LLM) | Free (infra only) | Free (infra only) | Free (infra only) |
+| <strong>Best For</strong> | AI agents, complex tasks | Large-scale static scraping | Chrome automation, testing | Cross-browser testing, legacy |
+| <strong>GitHub Stars</strong> | 94,731 | 54,200 | 90,800 | 25,400 |</p>
+<h3 id="when-to-choose-what">When to Choose What</h3>
+<ul>
+<li><strong>Browser Use</strong>: Complex multi-step tasks on dynamic sites where writing selectors is impractical. AI agents that need to adapt to changing UIs.</li>
+<li><strong>Scrapy</strong>: High-volume extraction of static HTML pages. Best for structured crawling at scale.</li>
+<li><strong>Puppeteer</strong>: Chrome-only automation where speed matters and you control the target site. Ideal for PDF generation and screenshots.</li>
+<li><strong>Selenium</strong>: Cross-browser testing for enterprise applications with strict browser coverage requirements.</li>
+</ul>
+<hr>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p>Browser Use is not a universal replacement for traditional browser automation. Here is what it is not good for: 1. <strong>High-volume, low-cost scraping</strong>: At $0.02–$0.30 per task in LLM costs, scraping 100,000 pages costs $2,000–$30,000. Scrapy + HTTP requests costs pennies for the same volume on static sites.</p>
+<ol start="2">
+<li>
+<p><strong>Deterministic testing</strong>: AI agents are non-deterministic. The same task may take different paths on each run. Use Playwright or Selenium for CI/CD test suites that require 100% reproducibility.</p>
+</li>
+<li>
+<p><strong>Real-time applications</strong>: Each action requires an LLM inference call (2–5 seconds). Sub-second response requirements are not achievable with the current agent loop architecture.</p>
+</li>
+<li>
+<p><strong>Simple, stable sites</strong>: If the target site never changes and has clean selectors, traditional automation is faster, cheaper, and more reliable.</p>
+</li>
+<li>
+<p><strong>LLM dependency</strong>: You are bound to the availability and pricing of third-party LLM APIs. Rate limits can bottleneck production workloads.</p>
+</li>
+</ol>
+<hr>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="what-is-browser-use-used-for">What is Browser Use used for?</h3>
+<p>Browser Use is a Python framework that lets LLMs control web browsers via Playwright. It is used for AI-driven web automation — tasks like form filling, data extraction, price monitoring, and multi-step web workflows where traditional selector-based automation would be brittle or impractical.</p>
+<h3 id="how-does-browser-use-compare-to-selenium">How does Browser Use compare to Selenium?</h3>
+<p>Browser Use requires zero selector maintenance (AI reads the page), handles dynamic UIs natively, and achieves 89.1% on the WebVoyager benchmark. Selenium is faster for simple tasks (~18–35 pages/min vs ~8–15), supports more browsers, and has no per-task LLM cost. Use Selenium for cross-browser testing; use Browser Use for complex AI-driven tasks.</p>
+<h3 id="what-llms-work-with-browser-use">What LLMs work with Browser Use?</h3>
+<p>Any LangChain-compatible LLM: OpenAI GPT-4o/5.1, Anthropic Claude Sonnet 4, Google Gemini 3 Flash, and local models via Ollama (Qwen2.5, Llama 3, Mistral). The framework is model-agnostic through LiteLLM.</p>
+<h3 id="how-much-does-browser-use-cost">How much does Browser Use cost?</h3>
+<p>The framework is free (MIT license). You pay for LLM API usage: approximately $0.02–$0.30 per 10-step task depending on the model. Browser Use Cloud offers managed stealth browsers starting at $29/month.</p>
+<h3 id="can-i-run-browser-use-in-docker">Can I run Browser Use in Docker?</h3>
+<p>Yes. Install <code>browser-use</code> and <code>playwright</code> in a Python 3.11+ container, run <code>playwright install chromium</code>, and set your API keys via environment variables. A sample Dockerfile is provided in the Installation section above.</p>
+<h3 id="does-browser-use-solve-captchas">Does Browser Use solve CAPTCHAs?</h3>
+<p>Browser Use does not solve CAPTCHAs natively. For protected sites, pair it with Browser Use Cloud (built-in CAPTCHA solving), or integrate with a dedicated CAPTCHA service like 2Captcha or CapSolver.</p>
+<h3 id="how-do-i-handle-authentication-in-browser-use">How do I handle authentication in Browser Use?</h3>
+<p>Use persistent browser profiles (<code>user_data_dir</code> in <code>BrowserConfig</code>) to maintain cookies and login state across sessions. For OAuth or 2FA flows, run the initial login in headed mode, then switch to headless for subsequent tasks.</p>
+<h3 id="what-is-the-difference-between-browser-use-and-stagehand">What is the difference between Browser Use and Stagehand?</h3>
+<p>Browser Use is a fully autonomous agent framework — the LLM controls all navigation decisions. Stagehand (by Browserbase) adds AI primitives (<code>act()</code>, <code>extract()</code>, <code>observe()</code>) on top of Playwright for hybrid workflows where deterministic and AI-driven steps coexist. Choose Browser Use for full autonomy; choose Stagehand for surgical AI enhancement of existing Playwright scripts.</p>
+<hr>
+<h2 id="conclusion">Conclusion</h2>
+<p>Browser Use has earned its 94,731 GitHub stars by solving a genuine pain point: maintaining browser automation scripts on modern, ever-changing websites. Its 89.1% WebVoyager success rate, model-agnostic design, and Playwright foundation make it the best open-source choice for AI-driven web automation in 2026.</p>
+<p>The framework is not without tradeoffs — LLM costs add up at scale, and deterministic testing remains the domain of Selenium and Playwright. But for teams building AI agents that need to navigate arbitrary websites, fill forms, extract data, and adapt to UI changes without human intervention, Browser Use is the most mature open-source option available.</p>
+<p><strong>Action items</strong>: 1. Clone the <a href="https://github.com/browser-use/browser-use">browser-use/browser-use</a> repository
+2. Run ````pip install browser-use``` and set up your first agent with the code examples above
+3. Evaluate the WebVoyager benchmark against your use case
+4. Join the <a href="https://link.browser-use.com/discord">Browser Use Discord</a> for community support and production tips</p>
+<blockquote>
+<p><strong>Want more AI automation tutorials?</strong> Join our <a href="https://t.me/dibi8opensource">Telegram group</a> for weekly deep-dives on open-source AI tools, production deployment tips, and benchmark data.</p>
+</blockquote>
+<hr>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading</h2>
+<ul>
+<li><a href="https://github.com/browser-use/browser-use">Browser Use GitHub Repository</a></li>
+<li><a href="https://docs.browser-use.com">Browser Use Official Documentation</a></li>
+<li><a href="https://cloud.browser-use.com">Browser Use Cloud Platform</a></li>
+<li><a href="https://leaderboard.steel.dev/">WebVoyager Benchmark Leaderboard</a></li>
+<li><a href="https://use-apify.com/blog/playwright-vs-puppeteer-vs-selenium-2026">Playwright vs Puppeteer vs Selenium 2026 Benchmarks</a></li>
+<li><a href="https://awesomeagents.ai/tools/best-ai-browser-automation-tools-2026/">AI Browser Automation Tools Comparison 2026</a></li>
+<li><a href="https://www.coronium.io/blog/browser-use-proxy-setup">Browser Use Proxy Setup Guide</a></li>
+<li><a href="https://www.nxcode.io/resources/news/stagehand-vs-browser-use-vs-playwright-ai-browser-automation-2026">Stagehand vs Browser Use vs Playwright Comparison</a></li>
+</ul>
+<hr>
+<p><em>This article was written for developers who need production-grade browser automation. All benchmark data is sourced from publicly available leaderboards and independent testing as of May 2026.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Browser Use: 94K+ Stars — Benchmarking AI Browser Automation in 2026&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/browser-use%22">https://dibi8.com/resources/browser-use"</a>
+}
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/browser-use/">cloakbrowser-stealth-chromium-bot-detection-scraping</a></li>
+<li><a href="/ai-coding-agents/browser-use/">obscura-rust-headless-browser-ai-agents-web-scraping</a></li>
+<li><a href="/ai-coding-agents/browser-use/">obscura-rust-headless-browser-ai-agents-web-scraping</a></li>
+<li><a href="/ai-coding-agents/browser-use/">obscura-rust-headless-browser-ai-agents-web-scraping</a></li>
+<li><a href="/ai-coding-agents/browser-use/">12-factor-agents-production-llm-software-2026</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fbrowser-use%2f&text=Using%20uv%20%28recommended%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fbrowser-use%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

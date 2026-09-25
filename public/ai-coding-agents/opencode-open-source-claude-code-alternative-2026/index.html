@@ -1,0 +1,674 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install Ollama, then pull a coding-optimized model | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Install Ollama, then pull a coding-optimized model</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Install Ollama, then pull a coding-optimized model</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;OpenCode: The Open-Source AI Coding Agent That Overtook &hellip;
+description: &ldquo;Technical guide and comparison&rdquo;
+date: 2026-05-20T00:00:00+08:00
+lastmod: 2026-05-20T00:00:00+08:00
+tech_stack: []
+application_domain: Llm Frameworks
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: MIT
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-20&rdquo;
+draft: false
+categories: [&ldquo;llm-frameworks&rdquo;]
+tags: [&ldquo;opencode&rdquo;, &ldquo;ai-coding-agent&rdquo;, &ldquo;claude-code-alternative&rdquo;, &ldquo;open-source&rdquo;]
+aliases:</p>
+<ul>
+<li>/posts/opencode-open-source-claude-code-alternative-2026/-</li>
+</ul>
+<hr>
+<p>{&lt;/* resource-info */&gt;}</p>
+<blockquote>
+<p><strong>TL;DR</strong>: OpenCode is a free, MIT-licensed terminal AI coding agent with 160K+ GitHub stars. It supports 75+ LLM providers, integrates LSP for ~50ms codebase navigation, and costs $0 in software fees. This guide walks you from installation to production-grade workflows.</p>
+</blockquote>
+<hr>
+<h2 id="why-opencode-became-the-fastest-growing-ai-dev-tool-of-2026">Why OpenCode Became the Fastest-Growing AI Dev Tool of 2026</h2>
+<p>The AI coding tool landscape in 2026 is defined by a single tension: <strong>convenience versus freedom</strong>. Closed-source tools like Claude Code and Cursor offer polished out-of-the-box experiences, but they lock you into proprietary models, fixed pricing tiers, and opaque data handling. OpenCode took the opposite bet—and won.</p>
+<p>By May 2026, OpenCode had accumulated <strong>over 160,000 GitHub stars</strong>, overtaking Claude Code (122K) to become the most-starred open-source coding agent in history. Its growth wasn&rsquo;t driven by marketing; it was driven by three structural advantages that matter to professional developers: 1. <strong>Provider Agnosticism</strong>: Switch between GPT-5.5, Gemini 3.1 Pro, Claude Sonnet 4.6, DeepSeek-V4, local Ollama models, and 70+ other providers without rewriting your workflow.
+2. <strong>Zero Software Cost</strong>: MIT-licensed, no subscription. You pay only for the API tokens you consume—or nothing at all if you run local models.
+3. <strong>Terminal-Native Speed</strong>: Built on OpenTUI (TypeScript API + Zig backend) with native LSP integration, delivering symbol navigation in <strong>~50 milliseconds</strong> instead of the 45-second text searches common in other agents.</p>
+<hr>
+<h2 id="what-opencode-actually-is-and-isnt">What OpenCode Actually Is (And Isn&rsquo;t)</h2>
+<p>OpenCode is <strong>not</strong> a code completion plugin like GitHub Copilot. It is an <strong>autonomous coding agent</strong> that operates inside your terminal, reads your entire codebase, executes shell commands, manages Git operations, and orchestrates external tools via the Model Context Protocol (MCP).</p>
+<p>Think of it as a senior engineer who lives in your terminal, understands your project conventions via ```AGENTS.md````, and can implement features end-to-end while keeping you in the approval loop.</p>
+<h3 id="architecture-at-a-glance">Architecture at a Glance</h3>
+<pre tabindex="0"><code>┌─────────────────────────────────────────┐
+│  User Input (Natural Language)          │
+├─────────────────────────────────────────┤
+│  OpenTUI Frontend (Zig + TypeScript)    │
+├─────────────────────────────────────────┤
+│  LSP Integration │  Models.dev Router  │
+│  (~50ms symbols) │  (75+ providers)    │
+├─────────────────────────────────────────┤
+│  Sandbox Shell │  Git Native │  MCP Bus │
+└─────────────────────────────────────────┘
+</code></pre><p>The LSP integration is the architectural differentiator. Most AI coding agents parse code as raw text, which collapses at scale. OpenCode hooks into Language Server Protocol servers, giving it structured understanding of types, imports, and call graphs—critical for refactoring across large monorepos.</p>
+<hr>
+<h2 id="installation-choose-your-path">Installation: Choose Your Path</h2>
+<h3 id="universal-installer-macos--linux">Universal Installer (macOS &amp; Linux)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://opencode.ai/install | bash
+</span></span></code></pre></div><p>This detects your OS, installs dependencies, and sets up the <code>opencode</code> binary globally. Typical install time: <strong>under 60 seconds</strong>.</p>
+<h3 id="package-managers">Package Managers</h3>
+<p>| Platform | Command |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| npm / bun / pnpm | <code>npm install -g opencode-ai</code> |
+| Homebrew | <code>brew install anomalyco/tap/opencode</code> |
+| Arch Linux | <code>sudo pacman -S opencode</code> |
+| Windows (Scoop) | <code>scoop install opencode</code> |
+| Windows (Chocolatey) | <code>choco install opencode</code> |
+| Docker | <code>docker run -it --rm ghcr.io/anomalyco/opencode</code> |</p>
+<p><strong>Windows recommendation</strong>: Use WSL2 for the TUI, or install the <a href="https://opencode.ai/download">Desktop App</a> for a native GUI experience.</p>
+<hr>
+<h2 id="connecting-your-first-ai-provider">Connecting Your First AI Provider</h2>
+<p>Launch OpenCode with <code>opencode</code>, then type <code>/connect</code>.</p>
+<h3 id="option-a-bring-your-own-key-byok">Option A: Bring Your Own Key (BYOK)</h3>
+<p>Ideal if you already have API subscriptions. Supported providers include: - <strong>Anthropic</strong> (Claude Sonnet 4.6, Opus 4.7)</p>
+<ul>
+<li><strong>OpenAI</strong> (GPT-5.4, GPT-5.5, o3)</li>
+<li><strong>Google</strong> (Gemini 3.1 Pro, Gemini 2.0 Flash)</li>
+<li><strong>AWS Bedrock</strong>, <strong>Azure OpenAI</strong>, <strong>Groq</strong></li>
+<li><strong>OpenRouter</strong> (aggregates dozens of frontier and open-weight models)</li>
+</ul>
+<h3 id="option-b-opencode-zen">Option B: OpenCode Zen</h3>
+<p>A curated model service managed by the OpenCode team. Pre-tested for coding tasks, hosted in the US with zero data retention. Prepaid from $20; zero markup on token pricing.</p>
+<h3 id="option-c-local-models-via-ollama">Option C: Local Models via Ollama</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install Ollama, then pull a coding-optimized model</span>
+</span></span><span style="display:flex;"><span>ollama pull gemma4:9b
+</span></span><span style="display:flex;"><span>ollama pull qwen3:14b
+</span></span></code></pre></div><p>In OpenCode, select <code>ollama://gemma4:9b</code>. <strong>Zero API cost. Zero data leaving your machine.</strong> This is the preferred setup for defense contractors, healthcare orgs under HIPAA, and anyone working with sensitive IP.</p>
+<hr>
+<h2 id="project-initialization-the-agentsmd-contract">Project Initialization: The AGENTS.md Contract</h2>
+<p>Before OpenCode can work effectively, it needs to understand your project. The <code>/init</code> command generates an <code>AGENTS.md</code> file at your repository root—a living document that encodes your conventions.</p>
+<h3 id="a-strong-agentsmd-template">A Strong AGENTS.md Template</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span># Project: E-Commerce Microservices Platform
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Stack
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Go 1.24 + Fiber web framework
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> PostgreSQL 16 (via sqlc for type-safe queries)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Redis 7 for caching and sessions
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> gRPC for inter-service communication
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Docker Compose for local dev
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Conventions
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> All HTTP handlers live in ```<span style="color:#e6db74">`internal/handlers/{domain}/`</span>```
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Database migrations are in ```<span style="color:#e6db74">`db/migrations/`</span>```, never edit manually
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Use ```<span style="color:#e6db74">`slog`</span>``<span style="color:#e6db74">` for structured logging; no `</span>``<span style="color:#e6db74">`fmt.Println`</span>``` in production code
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Errors wrap with ```<span style="color:#e6db74">`github.com/pkg/errors`</span>``` to preserve stack traces
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Tests must achieve &gt;80% coverage; use ```<span style="color:#e6db74">`testify`</span>``` assertions
+</span></span></code></pre></div><p><strong>Commit this file to Git.</strong> When a teammate clones the repo and runs OpenCode, they inherit the same context—making AI assistance consistent across your team.</p>
+<hr>
+<h2 id="the-planbuild-workflow-safety-without-friction">The Plan/Build Workflow: Safety Without Friction</h2>
+<p>OpenCode uses a <strong>bistable mode system</strong> toggled with the Tab key: ### Plan Mode (Read-Only)</p>
+<p>Describe what you want. OpenCode analyzes the codebase, proposes a detailed execution plan—files to modify, reasoning for each change, risk assessment—and <strong>waits for your approval</strong>. No files are touched.</p>
+<p><strong>Example prompt</strong>: &gt; &ldquo;Refactor the payment service to use idempotency keys for all Stripe webhook handlers. Identify race conditions in the current implementation.&rdquo;</p>
+<p>Plan mode outputs: 1. Affected files and line ranges
+2. Proposed idempotency key schema
+3. Database migration requirements
+4. Test cases that need updating
+5. A rollback strategy</p>
+<p>Review, iterate, then proceed.</p>
+<h3 id="build-mode-execution">Build Mode (Execution)</h3>
+<p>OpenCode writes code, runs tests, fixes failures iteratively, and commits changes. Experimental <strong>background subagents</strong> allow parallel task execution—e.g., one agent refactoring while another writes tests and a third updates API documentation.</p>
+<hr>
+<h2 id="real-world-workflow-building-a-feature-end-to-end">Real-World Workflow: Building a Feature End-to-End</h2>
+<p><strong>Scenario</strong>: Add OAuth 2.0 login with Google and GitHub to an existing Express + Prisma application.</p>
+<p><strong>Step 1</strong>: Initialize and select model</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd my-app
+</span></span><span style="display:flex;"><span>opencode
+</span></span><span style="display:flex;"><span>/init
+</span></span><span style="display:flex;"><span>/connect  <span style="color:#75715e"># Select Gemini 3.1 Pro for 1M-token context window</span>
+</span></span></code></pre></div><p><strong>Step 2</strong>: Plan mode prompt</p>
+<pre tabindex="0"><code>&gt; Add Google and GitHub OAuth 2.0 login. Use Passport.js with JWT session
+&gt; strategy. Update Prisma schema with User and Account models following
+&gt; NextAuth conventions. Add protected route middleware. Write integration
+&gt; tests with supertest.
+</code></pre><p>OpenCode identifies: - <code>src/auth/</code> directory needs creation</p>
+<ul>
+<li><code>prisma/schema.prisma</code> needs User/Account/Session models</li>
+<li><code>.env.example</code> needs GOOGLE_CLIENT_ID, GITHUB_CLIENT_ID</li>
+<li><code>src/middleware/requireAuth.ts</code> for route protection</li>
+<li><code>tests/auth/oauth.test.ts</code> for coverage</li>
+</ul>
+<p><strong>Step 3</strong>: Switch to Build mode and execute
+OpenCode creates the files, runs <code>prisma migrate dev</code>, executes <code>npm test</code>, and fixes a missing <code>passport.serializeUser</code> configuration it detected during test failures.</p>
+<p><strong>Step 4</strong>: Review and share</p>
+<pre tabindex="0"><code>&gt; /share
+</code></pre><p>Generates a read-only link. Send it to your team for async review of the AI&rsquo;s reasoning before merging.</p>
+<hr>
+<h2 id="multi-model-strategy-optimize-cost-and-quality">Multi-Model Strategy: Optimize Cost and Quality</h2>
+<p>The killer feature of OpenCode is <strong>task-appropriate model selection</strong>. A monolithic approach—using Claude Opus for everything—is economically irrational.</p>
+<p>| Task Type | Recommended Model | Estimated Cost |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Linting, formatting, simple refactors | Gemma 4 (local/Ollama) | $0 |
+| Standard feature implementation | DeepSeek-V4 API or GPT-5.4 | ~$0.50-2.00/task |
+| Complex architectural design | Gemini 3.1 Pro (1M context) | ~$2.00-5.00/task |
+| Security audit, vulnerability analysis | Claude Sonnet 4.6 | ~$1.00-3.00/task |
+| Legacy code migration (COBOL→Go) | Claude Opus 4.7 (xhigh effort) | ~$5.00-10.00/task |</p>
+<p>Teams report <strong>60-80% cost reductions</strong> compared to single-model subscriptions by routing each task to the cheapest capable model.</p>
+<hr>
+<h2 id="extending-opencode-with-mcp-servers">Extending OpenCode with MCP Servers</h2>
+<p>The Model Context Protocol (MCP) transforms OpenCode from a coding agent into a general-purpose automation engine.</p>
+<h3 id="example-postgresql-mcp">Example: PostgreSQL MCP</h3>
+<p>Add to <code>~/.config/opencode/opencode.json</code>: `````json
+{
+&ldquo;mcpServers&rdquo;: {
+&ldquo;db&rdquo;: {
+&ldquo;command&rdquo;: [&ldquo;npx&rdquo;, &ldquo;-y&rdquo;, &ldquo;@modelcontextprotocol/server-postgres&rdquo;],
+&ldquo;env&rdquo;: { &ldquo;DATABASE_URL&rdquo;: &ldquo;postgresql://localhost/devdb&rdquo; }
+}
+}
+}</p>
+<pre tabindex="0"><code>
+Now you can prompt: &gt; &#34;Show me the schema of the orders table and suggest indexes for the slow query in ````src/reports/quarterly.ts````.&#34;
+
+OpenCode queries the live database, reads the query code, and proposes ````CREATE INDEX```` statements with EXPLAIN ANALYZE verification.
+
+### Popular MCP Integrations
+
+| Server | Capability |
+|
+* * *
+|
+* * *
+|
+| ````@modelcontextprotocol/server-postgres```` | Schema inspection, query optimization |
+| ````@modelcontextprotocol/server-browser```` | Web scraping, visual regression testing |
+| ````@modelcontextprotocol/server-github```` | Issue creation, PR review, automated releases |
+| ````@modelcontextprotocol/server-slack```` | Notify channels on build status |
+
+* * *
+
+## Head-to-Head: OpenCode vs. The Competition
+
+| Capability | OpenCode | Claude Code | Cursor | GitHub Copilot |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| License | MIT (open source) | Proprietary | Proprietary | Proprietary |
+| Monthly software fee | $0 | $20-$200 | $20 | $10-$39 |
+| Model flexibility | 75+ providers | Anthropic only | Limited | Limited |
+| Local/offline mode | ✅ Ollama/vLLM | ❌ | ❌ | ❌ |
+| Terminal-native | ✅ | ✅ | ❌ | ❌ |
+| IDE extensions | VS Code, Cursor, Zed | ❌ | Built-in IDE | VS Code, JetBrains |
+| LSP integration | ✅ ~50ms | ❌ Text search | Via VS Code | Via VS Code |
+| MCP support | ✅ | ✅ | ❌ | ❌ |
+| Agent Teams | Subagents (experimental) | ✅ Full | ❌ | ❌ |
+
+**When to choose what**: - **OpenCode**: Cost-conscious teams, privacy requirements, model flexibility, custom workflows
+- **Claude Code**: Deep Anthropic integration, enterprise compliance (SOC2), Agent Teams for large orgs
+- **Cursor**: Visual designers, non-terminal users, all-in-one IDE preference
+- **Copilot**: Microsoft ecosystem lock-in, simplest setup for individual developers
+
+* * *
+
+## Advanced Configuration and Performance Tuning
+
+### Custom Model Routing Rules
+
+Create ``~/.config/opencode/model-routes.json``: `````json
+{
+  &#34;routes&#34;: [
+    { &#34;pattern&#34;: &#34;refactor|lint|format&#34;, &#34;model&#34;: &#34;ollama://gemma4:9b&#34; },
+    { &#34;pattern&#34;: &#34;security|audit|vulnerability&#34;, &#34;model&#34;: &#34;anthropic://claude-sonnet-4.6&#34; },
+    { &#34;pattern&#34;: &#34;architecture|design|microservice&#34;, &#34;model&#34;: &#34;google://gemini-3.1-pro&#34; }
+  ]
+}
+</code></pre><p>OpenCode automatically selects the cheapest appropriate model based on your prompt keywords.</p>
+<h3 id="workspace-persistence">Workspace Persistence</h3>
+<p>OpenCode&rsquo;s experimental <strong>Workspaces</strong> feature saves full session context—including file states, conversation history, and LSP caches—so you can resume a complex refactoring task days later without losing context.</p>
+<hr>
+<h2 id="troubleshooting-common-issues">Troubleshooting Common Issues</h2>
+<p><strong>&ldquo;Context too large&rdquo; errors</strong></p>
+<ul>
+<li>Disable unused MCP servers in <code>opencode.json</code></li>
+<li>Use per-agent tool configuration to limit active MCPs</li>
+<li>Switch to Gemini 3.1 Pro for its 1M+ token window</li>
+</ul>
+<p><strong>Slow responses on large codebases</strong></p>
+<ul>
+<li>Ensure LSP server is running (<code>/lsp status</code> in OpenCode)</li>
+<li>Exclude <code>node_modules/</code>, <code>.git/</code>, and build artifacts from indexing</li>
+<li>Use <code>.opencodeignore</code> syntax identical to <code>.gitignore</code></li>
+</ul>
+<p><strong>Model provider timeouts</strong></p>
+<ul>
+<li>Increase timeout in provider config (default: 30s)</li>
+<li>For local models, verify Ollama is responsive: <code>curl http://localhost:11434/api/tags</code></li>
+</ul>
+<hr>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before deploying these tools into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&rsquo;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="conclusion-the-modular-future-of-ai-coding">Conclusion: The Modular Future of AI Coding</h2>
+<p>The 2025-2026 AI coding tool wars reveal a clear pattern: as frontier models converge in capability (GPT-5.5, Claude Sonnet 4.6, Gemini 3.1 Pro now score within 5% of each other on SWE-bench), <strong>the differentiation shifts to the orchestration layer</strong>. OpenCode&rsquo;s bet is that developers want to own this layer—to mix, match, and migrate models as the market evolves.</p>
+<p>160,000 stars later, that bet appears to be paying off. OpenCode won&rsquo;t replace senior engineers, but it eliminates the boilerplate tax that consumes 30-40% of a developer&quot;s week. The remaining time is for architecture, for taste, for the decisions that only humans can make.</p>
+<p>Install it today. Your terminal is already open.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://opencode.ai/install | bash
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**References**
+</span></span><span style="display:flex;"><span>- GitHub Repository: https://github.com/anomalyco/opencode
+</span></span><span style="display:flex;"><span>- Documentation: https://opencode.ai/docs
+</span></span><span style="display:flex;"><span>- MCP Specification: https://modelcontextprotocol.io
+</span></span><span style="display:flex;"><span>- Models.dev Directory: https://models.dev
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Last updated: 2026-05-19. The AI tooling landscape evolves rapidly; verify details against official documentation.*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;OpenCode: The Open-Source AI Coding Agent That Overtook Claude Code in 2026 — A Complete Setup &amp; Workflow Guide&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-05-20&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-05-20&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/resources/opencode-open-source-claude-code-alternative-2026&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-05-25-trending-ai-agents<span style="color:#f92672">](</span>opencode-open-source-claude-code-alternative-2026<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-01-trending-ai-agents<span style="color:#f92672">](</span>opencode-open-source-claude-code-alternative-2026<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-08-trending-ai-agents<span style="color:#f92672">](</span>opencode-open-source-claude-code-alternative-2026<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-15-trending-ai-agents<span style="color:#f92672">](</span>opencode-open-source-claude-code-alternative-2026<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-22-trending-ai-agents<span style="color:#f92672">](</span>opencode-open-source-claude-code-alternative-2026<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Found this helpful? <span style="color:#f92672">[</span>Join our Telegram community<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> daily AI tool updates!*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions (FAQ)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent和传统自动化有什么区别？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：如何选择合适的AI Agent框架？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的安全性如何保证？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的学习成本有多高？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：能否自定义AI Agent的行为？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</span></span></code></pre></div>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fopencode-open-source-claude-code-alternative-2026%2f&text=Install%20Ollama%2c%20then%20pull%20a%20coding-optimized%20model" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fopencode-open-source-claude-code-alternative-2026%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

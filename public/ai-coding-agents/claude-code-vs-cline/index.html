@@ -1,0 +1,511 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code vs Cline in 2026: Autonomy or Control? | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/claude-code-vs-cline/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Claude Code vs Cline in 2026: Autonomy or Control?</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Claude Code vs Cline in 2026: Autonomy or Control?</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <h1 id="claude-code-vs-cline-in-2026-autonomy-or-control">Claude Code vs Cline in 2026: Autonomy or Control?</h1>
+<h2 id="quick-answer">Quick Answer</h2>
+<p><strong>Claude Code</strong> wins for developers who trust the agent to run autonomously — plan, edit, test, retry in one loop — and want maximum per-token quality plus scheduled Routines. <strong>Cline</strong> wins for developers who want to approve every step, swap models freely, and keep costs low by routing to cheaper providers.</p>
+<p>Use <strong>Claude Code</strong> if: you live in the terminal, want full agent autonomy, are happy on Claude models, and value features like Routines for unattended runs.</p>
+<p>Use <strong>Cline</strong> if: you want a VS Code extension that shows and asks before every change, the freedom to use any model (Claude/GPT/DeepSeek/Gemini/local), and the lowest possible token bill.</p>
+<hr>
+<h2 id="side-by-side-comparison">Side-by-Side Comparison</h2>
+<p>| Feature | Claude Code | Cline |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Interface</strong> | Terminal CLI (+ VS Code, JetBrains, Slack, web) | VS Code extension (GUI) |
+| <strong>Open source</strong> | No | Yes |
+| <strong>Model support</strong> | Tuned for Claude (Sonnet 4.6 / Opus 4.8) | Any model (Claude, GPT, DeepSeek, Gemini, local Ollama) |
+| <strong>Execution style</strong> | Autonomous loop (plan → edit → test → retry) | Step-by-step: approve every diff/command/fetch |
+| <strong>Per-token efficiency</strong> | Highest (purpose-tuned; Anthropic 77.2% SWE-bench 2026) | Excellent with Claude; varies by chosen model |
+| <strong>Pricing</strong> | Claude Pro/Max subscription, or API pay-per-token | Free extension; pay only for inference (~$5-15/mo on Sonnet 4.6) |
+| <strong>Cost floor</strong> | Bounded by Anthropic pricing | Route to DeepSeek/Gemini Flash/local to cut cost |
+| <strong>Scheduled runs</strong> | Yes — Routines (nightly checks, webhook→PR, etc.) | No productized scheduler yet |
+| <strong>Human-in-the-loop</strong> | Optional (trusts the loop) | Built-in (approve everything) |
+| <strong>Best for</strong> | Autonomous multi-step work, scheduled automation | Control, model freedom, cost optimization |</p>
+<hr>
+<h2 id="when-to-choose-claude-code">When to Choose Claude Code</h2>
+<h3 id="use-case-1-autonomous-multi-step-work">Use case 1: Autonomous multi-step work</h3>
+<p>You want to hand off a whole ticket — &ldquo;refactor this module, update the tests, run them, fix what breaks&rdquo; — and let the agent finish it in one loop. Claude Code is built to run without you babysitting every diff. (See our <a href="https://dibi8.com/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/">subagent patterns</a> for orchestrating this at scale.)</p>
+<h3 id="use-case-2-scheduled--unattended-automation">Use case 2: Scheduled / unattended automation</h3>
+<p>Routines (May 2026) let you set &ldquo;nightly migration check,&rdquo; &ldquo;webhook → PR,&rdquo; or &ldquo;Friday TODO cleanup&rdquo; without building a scheduler. This is a genuine lead over open-source agents for production automation.</p>
+<h3 id="use-case-3-maximum-per-token-quality-on-claude">Use case 3: Maximum per-token quality on Claude</h3>
+<p>Purpose-tuned for Claude models, Claude Code squeezes more useful work out of each token — Anthropic&rsquo;s 77.2% SWE-bench (2026) is the highest published coding-agent score. If you&rsquo;re on Claude anyway, you get the most out of it here.</p>
+<hr>
+<h2 id="when-to-choose-cline">When to Choose Cline</h2>
+<h3 id="use-case-1-you-want-to-approve-every-change">Use case 1: You want to approve every change</h3>
+<p>Every diff, every terminal command, every web fetch is reviewed before it runs. Nothing happens you didn&rsquo;t okay. For sensitive codebases — or for learning — this visibility is the whole point.</p>
+<h3 id="use-case-2-model-freedom">Use case 2: Model freedom</h3>
+<p>Cline is model-agnostic: Claude, GPT, DeepSeek, Gemini, or a local Ollama model. Hedge against single-vendor risk, or match the model to the task (cheap model for boilerplate, frontier model for hard reasoning).</p>
+<h3 id="use-case-3-lowest-cost">Use case 3: Lowest cost</h3>
+<p>The extension is free; you pay only for inference. Route boilerplate to DeepSeek or Gemini Flash, or run a local model, and your bill drops to near-zero. A typical Cline-on-Sonnet-4.6 developer spends just $5-15/month.</p>
+<hr>
+<h2 id="pricing-deep-dive">Pricing Deep Dive</h2>
+<h3 id="claude-code">Claude Code</h3>
+<ul>
+<li><strong>Subscription</strong>: bundled with a Claude Pro/Max plan, or</li>
+<li><strong>API</strong>: pay-per-token via the Anthropic API</li>
+<li>Heavy API users spend more, but you get top per-token efficiency + integrated tooling (CLI/IDE/Slack/web) + Routines.</li>
+</ul>
+<h3 id="cline">Cline</h3>
+<ul>
+<li><strong>Extension</strong>: free, open source</li>
+<li><strong>Inference</strong>: you bring your own API key (or local model)</li>
+<li>Typical: <strong>$5-15/month</strong> on Claude Sonnet 4.6 via API; <strong>near-zero</strong> if you route to DeepSeek/Gemini Flash/local.</li>
+</ul>
+<p>→ Cline wins the raw cost floor through model routing. Claude Code wins per-token <em>value</em> on Claude, plus features you can&rsquo;t get in a pure extension.</p>
+<hr>
+<h2 id="the-real-axis-control-vs-autonomy">The Real Axis: Control vs Autonomy</h2>
+<p>Strip away the feature lists and the choice is philosophical: - <strong>Cline = control.</strong> A human approves every action. Slower, but you never get a surprise diff. Ideal when the blast radius of a wrong edit is high, or when you&rsquo;re still building trust in agentic coding.</p>
+<ul>
+<li><strong>Claude Code = autonomy.</strong> The agent plans and executes a multi-step task, runs tests, sees failures, fixes, retries — and only surfaces the result. Faster and more powerful, but you&rsquo;re trusting the loop.</li>
+</ul>
+<p>Neither is universally &ldquo;right.&rdquo; The mature move is to match the tool to the risk: Cline for the sensitive refactor you want to watch, Claude Code for the routine ticket you want <em>done</em>.</p>
+<hr>
+<h2 id="dibi8s-take">dibi8&rsquo;s Take</h2>
+<p>We run dibi8&rsquo;s pipelines on <strong>Claude Code</strong> — our work is file-and-shell-heavy (read content, build with Hugo, deploy, verify) and we want the autonomy plus the terminal-native fit. The per-token efficiency on Claude is the clincher for our usage.</p>
+<p>But if we were onboarding a junior dev, working on a high-stakes codebase, or trying to minimize spend by routing to cheaper models, we&rsquo;d reach for <strong>Cline</strong> without hesitation — the approve-every-step model is exactly the right default when control matters more than speed.</p>
+<p>Honest decision tree: - Trust the loop, on Claude, want speed + Routines → <strong>Claude Code</strong></p>
+<ul>
+<li>Want to approve everything, swap models, minimize cost → <strong>Cline</strong></li>
+<li>Comparing against IDE-style tools too? See <a href="https://dibi8.com/vs/cursor-vs-claude-code/">Cursor vs Claude Code</a> and <a href="https://dibi8.com/vs/claude-code-vs-aider/">Claude Code vs Aider</a>.</li>
+</ul>
+<hr>
+<h2 id="faq">FAQ</h2>
+<p>(rendered via faqs frontmatter — visible inline + JSON-LD for AIO)</p>
+<hr>
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+<li><a href="https://dibi8.com/vs/cursor-vs-claude-code/">Cursor vs Claude Code</a> — IDE-style AI coding vs terminal agent.</li>
+<li><a href="https://dibi8.com/vs/claude-code-vs-aider/">Claude Code vs Aider</a> — two terminal agents head-to-head.</li>
+<li><a href="https://dibi8.com/resources/llm-frameworks/claude-code-subagents-vs-langgraph-crewai-autogen-2026/">Claude Code Subagents vs LangGraph/CrewAI/AutoGen</a> — when to graduate to a framework.</li>
+<li><a href="https://dibi8.com/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/">Subagent Patterns</a> — orchestrating autonomous multi-agent work.</li>
+</ul>
+<h2 id="recommended-tools">Recommended Tools</h2>
+<p><strong>Cline lets you use any model — which means you&rsquo;ll want flexible API access</strong>, especially when routing between Claude, GPT, and DeepSeek to balance cost and quality.</p>
+<ul>
+<li>**** — Claude / OpenAI / DeepSeek API proxy. One key for multiple top models at ~30% of official pricing; perfect for Cline&rsquo;s multi-model routing, or when direct Anthropic/OpenAI access is rate-limited in your region.</li>
+<li>**** — Hong Kong VPS if you want to self-host a local model (Ollama) for Cline to route to. Same IDC behind dibi8.com.</li>
+</ul>
+<p><em>Affiliate links — support dibi8.com at no extra cost to you.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Claude Code vs Cline in 2026: Autonomy or Control?&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-29&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-29&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/claude-code-vs-cline%22">https://dibi8.com/resources/claude-code-vs-cline"</a>
+}
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters</h2>
+<p>Understanding claude code vs cline in 2026: autonomy or control? is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications</h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
+2. Generate documentation automatically
+3. Build internal knowledge bases
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started</h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>Claude Code vs Cline in 2026: Autonomy or Control? represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~5 minutes</em></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/claude-code-vs-cline/">gemini-cli-vs-claude-code</a></li>
+<li><a href="/ai-coding-agents/claude-code-vs-cline/">cc-switch-all-in-one-ai-coding-agent-manager</a></li>
+<li><a href="/ai-coding-agents/claude-code-vs-cline/">claude-code-vs-aider</a></li>
+<li><a href="/ai-coding-agents/claude-code-vs-cline/">cursor-vs-claude-code</a></li>
+<li><a href="/ai-coding-agents/claude-code-vs-cline/">openai-codex-cli-vs-claude-code</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fclaude-code-vs-cline%2f&text=Claude%20Code%20vs%20Cline%20in%202026%3a%20Autonomy%20or%20Control%3f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fclaude-code-vs-cline%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

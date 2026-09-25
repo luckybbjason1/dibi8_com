@@ -1,0 +1,823 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install Cognee | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/cognee-ai-memory-platform/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Install Cognee</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Install Cognee</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;Cognee: 26K+ Star Open-Source AI Memory Platform for Age&hellip;
+description: &ldquo;Technical guide and comparison&rdquo;
+date: 2026-07-03T09:00:00+09:00
+lastmod: 2026-07-03T09:00:00+09:00
+slug: cognee-ai-memory-platform
+category: llm-frameworks
+tags: [&ldquo;ai-memory&rdquo;, &ldquo;rag&rdquo;, &ldquo;knowledge-graph&rdquo;, &ldquo;ai-agents&rdquo;, &ldquo;open-source&rdquo;]
+tech_stack: - Python</p>
+<ul>
+<li>TypeScript</li>
+<li>Docker</li>
+</ul>
+<blockquote>
+<p><strong>Editor&rsquo;s Disclosure:</strong> This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.</p>
+</blockquote>
+<h2 id="tldr">TL;DR</h2>
+<p><strong>Cognee</strong> (26K+ stars) is an open-source AI memory platform that gives agents persistent, evolving knowledge. Unlike traditional RAG systems that retrieve static documents, Cognee builds dynamic knowledge graphs that grow and adapt as agents interact with new information. It enables AI agents to remember past conversations, learn from experience, and reason across interconnected knowledge — bringing us closer to truly intelligent, long-term AI assistants.</p>
+<h2 id="what-is-cognee">What Is Cognee?</h2>
+<p>Cognee is a memory infrastructure layer for AI agents. It sits between your agent and its data sources, providing: - <strong>Persistent Memory:</strong> Agents remember information across sessions and conversations</p>
+<ul>
+<li><strong>Knowledge Graphs:</strong> Information is organized as interconnected entities and relationships, not just vectors</li>
+<li><strong>Automatic Learning:</strong> Cognee extracts insights from new data without manual tagging</li>
+<li><strong>Reasoning Over Memory:</strong> Agents can query their knowledge graph for contextual understanding</li>
+</ul>
+<p>The project emerged from the observation that most AI applications suffer from amnesia — they can&rsquo;t remember what happened in previous conversations or build on accumulated knowledge over time. Cognee solves this by providing a memory layer that persists, evolves, and connects.</p>
+<h3 id="core-features">Core Features</h3>
+<ul>
+<li><strong>Multi-Modal Memory:</strong> Store and retrieve text, images, audio, and structured data</li>
+<li><strong>Temporal Reasoning:</strong> Understand how knowledge changes over time</li>
+<li><strong>Confidence Scoring:</strong> Each memory has a confidence level based on source reliability</li>
+<li><strong>Automatic Deduplication:</strong> Prevents redundant or conflicting information</li>
+<li><strong>Privacy Controls:</strong> Fine-grained access control for sensitive data</li>
+</ul>
+<h2 id="why-it-matters">Why It Matters</h2>
+<h3 id="1-beyond-traditional-rag">1. Beyond Traditional RAG</h3>
+<p>Traditional Retrieval-Augmented Generation (RAG) systems work by embedding documents and retrieving the most similar ones. While effective for static knowledge bases, they have fundamental limitations: - <strong>No relationship understanding:</strong> Documents are retrieved independently, missing contextual connections</p>
+<ul>
+<li><strong>No temporal awareness:</strong> Can&rsquo;t distinguish between old and new information</li>
+<li><strong>No learning:</strong> Each query is processed independently without building on previous ones</li>
+</ul>
+<p>Cognee addresses these by building a knowledge graph that captures relationships between entities, tracks when information was learned, and enables reasoning across connected knowledge.</p>
+<h3 id="2-agent-autonomy">2. Agent Autonomy</h3>
+<p>With persistent memory, AI agents can become truly autonomous. Instead of requiring humans to provide context for every interaction, agents can: - Remember user preferences and past decisions</p>
+<ul>
+<li>Learn from mistakes and successes</li>
+<li>Build expertise in specific domains over time</li>
+<li>Coordinate with other agents using shared knowledge</li>
+</ul>
+<h3 id="3-open-source-and-extensible">3. Open Source and Extensible</h3>
+<p>Cognee is fully open-source under the MIT license and designed to integrate with any AI framework — LangChain, LlamaIndex, CrewAI, or custom solutions. Its modular architecture means you can swap out components (embedding models, graph databases, retrieval methods) without changing the overall system.</p>
+<h2 id="hands-on-building-your-first-memory-augmented-agent">Hands-On: Building Your First Memory-Augmented Agent</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Python 3.10+</li>
+<li>PostgreSQL (for knowledge graph storage)</li>
+<li>An embedding model (optional — Cognee includes defaults)</li>
+</ul>
+<h3 id="installation">Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install Cognee</span>
+</span></span><span style="display:flex;"><span>pip install cognee
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or install from source for latest features</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/topoteretes/cognee.git
+</span></span><span style="display:flex;"><span>cd cognee
+</span></span><span style="display:flex;"><span>pip install -e .
+</span></span></code></pre></div><h3 id="basic-memory-setup">Basic Memory Setup</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> cognee
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> cognee.infrastructure.databases.graph <span style="color:#f92672">import</span> Neo4jGraphEngine
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize Cognee with Neo4j</span>
+</span></span><span style="display:flex;"><span>cognee<span style="color:#f92672">.</span>configure(
+</span></span><span style="display:flex;"><span>    graph_engine<span style="color:#f92672">=</span>Neo4jGraphEngine(
+</span></span><span style="display:flex;"><span>        url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bolt://localhost:7687&#34;</span>,
+</span></span><span style="display:flex;"><span>        username<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;neo4j&#34;</span>,
+</span></span><span style="display:flex;"><span>        password<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your_password&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add knowledge to memory</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> cognee<span style="color:#f92672">.</span>add([
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Alice works at TechCorp as a senior engineer.&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;TechCorp develops AI-powered code analysis tools.&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Alice joined TechCorp in January 2024.&#34;</span>,
+</span></span><span style="display:flex;"><span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Query the knowledge graph</span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> cognee<span style="color:#f92672">.</span>query(<span style="color:#e6db74">&#34;Who works at TechCorp?&#34;</span>)
+</span></span><span style="display:flex;"><span>print(results)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: [{&#39;entity&#39;: &#39;Alice&#39;, &#39;role&#39;: &#39;senior engineer&#39;, &#39;company&#39;: &#39;TechCorp&#39;}]</span>
+</span></span></code></pre></div><h3 id="building-a-memory-augmented-chatbot">Building a Memory-Augmented Chatbot</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.chat_models <span style="color:#f92672">import</span> ChatAnthropic
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.prompts <span style="color:#f92672">import</span> ChatPromptTemplate
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> cognee
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize the chatbot with memory</span>
+</span></span><span style="display:flex;"><span>prompt_template <span style="color:#f92672">=</span> ChatPromptTemplate<span style="color:#f92672">.</span>from_messages([
+</span></span><span style="display:flex;"><span>    (<span style="color:#e6db74">&#34;system&#34;</span>, <span style="color:#e6db74">&#34;&#34;&#34;You are a helpful assistant with persistent memory.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Here&#39;s what you know about the user: </span><span style="color:#e6db74">{memory_context}</span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Answer based on both the conversation and your memory.&#34;&#34;&#34;</span>),
+</span></span><span style="display:flex;"><span>    (<span style="color:#e6db74">&#34;human&#34;</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{input}</span><span style="color:#e6db74">&#34;</span>),
+</span></span><span style="display:flex;"><span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>chain <span style="color:#f92672">=</span> prompt_template <span style="color:#f92672">|</span> ChatAnthropic(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;claude-sonnet-4-20250514&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Function to get memory context</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_memory_context</span>(user_id): memories <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> cognee<span style="color:#f92672">.</span>search(
+</span></span><span style="display:flex;"><span>        query<span style="color:#f92672">=</span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;user:</span><span style="color:#e6db74">{</span>user_id<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>        limit<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>join([m[<span style="color:#e6db74">&#34;text&#34;</span>] <span style="color:#66d9ef">for</span> m <span style="color:#f92672">in</span> memories])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Chat function with memory</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">chat_with_memory</span>(user_id, message): memory <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> get_memory_context(user_id)
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> chain<span style="color:#f92672">.</span>invoke({
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;memory_context&#34;</span>: memory,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;input&#34;</span>: message
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Store the conversation in memory</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">await</span> cognee<span style="color:#f92672">.</span>add([
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;User </span><span style="color:#e6db74">{</span>user_id<span style="color:#e6db74">}</span><span style="color:#e6db74"> asked: </span><span style="color:#e6db74">{</span>message<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Assistant responded: </span><span style="color:#e6db74">{</span>response<span style="color:#f92672">.</span>content<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    ])
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> response<span style="color:#f92672">.</span>content
+</span></span></code></pre></div><h3 id="advanced-multi-source-knowledge-ingestion">Advanced: Multi-Source Knowledge Ingestion</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> cognee
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> cognee.infrastructure.ingestion <span style="color:#f92672">import</span> DocumentIngestionPipeline
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create ingestion pipeline</span>
+</span></span><span style="display:flex;"><span>pipeline <span style="color:#f92672">=</span> DocumentIngestionPipeline(
+</span></span><span style="display:flex;"><span>    sources<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># PDF documents</span>
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;pdf&#34;</span>, <span style="color:#e6db74">&#34;path&#34;</span>: <span style="color:#e6db74">&#34;./documents/&#34;</span>},
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Database queries</span>
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;sql&#34;</span>, <span style="color:#e6db74">&#34;query&#34;</span>: <span style="color:#e6db74">&#34;SELECT * FROM products&#34;</span>},
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># API endpoints</span>
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;api&#34;</span>, <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://api.example.com/data&#34;</span>},
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># User conversations</span>
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;conversation&#34;</span>, <span style="color:#e6db74">&#34;channel&#34;</span>: <span style="color:#e6db74">&#34;slack&#34;</span>},
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    extraction<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;entities&#34;</span>: <span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;relationships&#34;</span>: <span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;sentiment&#34;</span>: <span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;topics&#34;</span>: <span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    storage<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;graph&#34;</span>: <span style="color:#e6db74">&#34;neo4j&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;vector&#34;</span>: <span style="color:#e6db74">&#34;pgvector&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;document&#34;</span>: <span style="color:#e6db74">&#34;s3&#34;</span>,
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run the pipeline</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> pipeline<span style="color:#f92672">.</span>run()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Query across all sources</span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> cognee<span style="color:#f92672">.</span>query(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Show me all information about product launches in 2024&#34;</span>,
+</span></span><span style="display:flex;"><span>    sources<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;pdf&#34;</span>, <span style="color:#e6db74">&#34;sql&#34;</span>, <span style="color:#e6db74">&#34;api&#34;</span>, <span style="color:#e6db74">&#34;conversation&#34;</span>]
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="knowledge-graph-visualization">Knowledge Graph Visualization</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> cognee
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get the full knowledge graph</span>
+</span></span><span style="display:flex;"><span>graph <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> cognee<span style="color:#f92672">.</span>get_graph()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Export for visualization</span>
+</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>export(format<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;graphml&#34;</span>, path<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./knowledge_graph.graphml&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get subgraph for a specific entity</span>
+</span></span><span style="display:flex;"><span>alice_graph <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> cognee<span style="color:#f92672">.</span>get_subgraph(
+</span></span><span style="display:flex;"><span>    entity<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Alice&#34;</span>,
+</span></span><span style="display:flex;"><span>    depth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>    max_nodes<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>alice_graph<span style="color:#f92672">.</span>export(format<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dot&#34;</span>, path<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./alice_network.dot&#34;</span>)
+</span></span></code></pre></div><h2 id="architecture-deep-dive">Architecture Deep Dive</h2>
+<h3 id="memory-layers">Memory Layers</h3>
+<p>Cognee implements a three-layer memory architecture inspired by cognitive science: `````
+┌─────────────────────────────────────────┐
+│          Semantic Memory Layer           │
+│  (Facts, concepts, knowledge graphs)     │
+├─────────────────────────────────────────┤
+│         Episodic Memory Layer            │
+│  (Past conversations, interactions)      │
+├─────────────────────────────────────────┤
+│        Procedural Memory Layer           │
+│  (Learned skills, patterns, preferences)  │
+└─────────────────────────────────────────┘</p>
+<pre tabindex="0"><code>
+### Knowledge Extraction Pipeline
+
+`````python
+class KnowledgeExtractor: def extract(self, text: str) -&gt; KnowledgeGraph: # Step 1: Entity recognition
+        entities = self._recognize_entities(text)
+        
+        # Step 2: Relationship extraction
+        relationships = self._extract_relationships(entities, text)
+        
+        # Step 3: Confidence scoring
+        for entity in entities: entity.confidence = self._score_confidence(entity, text)
+        
+        for rel in relationships: rel.confidence = self._score_relationship_confidence(rel)
+        
+        # Step 4: Merge with existing graph
+        return self._merge_with_graph(entities, relationships)
+</code></pre><h3 id="temporal-memory-management">Temporal Memory Management</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TemporalMemoryManager</span>: <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, ttl_days<span style="color:#f92672">=</span><span style="color:#ae81ff">365</span>): self<span style="color:#f92672">.</span>ttl <span style="color:#f92672">=</span> ttl_days
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">manage</span>(self, memories): <span style="color:#75715e"># Mark memories for expiration</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> memory <span style="color:#f92672">in</span> memories: age <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now() <span style="color:#f92672">-</span> memory<span style="color:#f92672">.</span>created_at
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> age<span style="color:#f92672">.</span>days <span style="color:#f92672">&gt;</span> self<span style="color:#f92672">.</span>ttl: memory<span style="color:#f92672">.</span>status <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;expired&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">elif</span> age<span style="color:#f92672">.</span>days <span style="color:#f92672">&gt;</span> self<span style="color:#f92672">.</span>ttl <span style="color:#f92672">*</span> <span style="color:#ae81ff">0.8</span>: memory<span style="color:#f92672">.</span>status <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;aging&#34;</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Consolidate related memories</span>
+</span></span><span style="display:flex;"><span>        consolidated <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>_consolidate(memories)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Prune expired memories</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> [m <span style="color:#66d9ef">for</span> m <span style="color:#f92672">in</span> consolidated <span style="color:#66d9ef">if</span> m<span style="color:#f92672">.</span>status <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;expired&#34;</span>]
+</span></span></code></pre></div><h2 id="advanced-memory-management">Advanced Memory Management</h2>
+<h3 id="memory-consolidation">Memory Consolidation</h3>
+<p>As agents accumulate knowledge, related memories should be consolidated to improve retrieval quality: `````python
+from cognee.memory import MemoryConsolidator</p>
+<p>consolidator = MemoryConsolidator(
+similarity_threshold=0.85,
+max_memories_per_topic=50,
+consolidation_strategy=&ldquo;semantic_merge&rdquo;
+)</p>
+<h1 id="consolidate-memories-older-than-30-days">Consolidate memories older than 30 days</h1>
+<p>await consolidator.consolidate(
+older_than_days=30,
+output_dir=&rdquo;./consolidated_memory&quot;
+)</p>
+<pre tabindex="0"><code>
+### Memory Decay and Forgetting
+
+Real intelligence includes knowing what to forget: `````python
+from cognee.memory import MemoryDecay
+
+decay = MemoryDecay(
+    half_life_days=90,
+    minimum_confidence=0.1,
+    decay_function=&#34;exponential&#34;
+)
+
+# Apply decay to all memories
+await decay.apply(user_id=&#34;alice&#34;)
+# Memories older than 90 days lose 50% influence
+# Memories older than 180 days lose 75% influence
+</code></pre><h3 id="cross-user-knowledge-sharing">Cross-User Knowledge Sharing</h3>
+<p>Enable knowledge sharing between agents while maintaining privacy: `````python
+from cognee.knowledge import KnowledgeShare</p>
+<p>share = KnowledgeShare(
+sharing_policy=&ldquo;anonymous_aggregate&rdquo;,
+sensitive_data_filter=True,
+consent_required=True
+)</p>
+<h1 id="share-non-sensitive-knowledge-patterns">Share non-sensitive knowledge patterns</h1>
+<p>await share.share(
+source_agents=[&ldquo;agent-1&rdquo;, &ldquo;agent-2&rdquo;],
+target_agents=[&ldquo;agent-3&rdquo;, &ldquo;agent-4&rdquo;],
+knowledge_types=[&ldquo;best_practices&rdquo;, &ldquo;common_patterns&rdquo;]
+)</p>
+<pre tabindex="0"><code>
+### Memory Verification
+
+Verify the accuracy of stored memories: `````python
+from cognee.verify import MemoryVerifier
+
+verifier = MemoryVerifier(
+    verification_model=&#34;claude-sonnet-4-20250514&#34;,
+    confidence_threshold=0.9
+)
+
+# Verify recent memories
+recent = await verifier.verify_recent(
+    since_hours=24,
+    max_memories=100
+)
+
+for memory in recent: if memory.confidence &lt; 0.7: print(f&#34;Low confidence: {memory.text}&#34;)
+        print(f&#34;Suggested action: {memory.recommended_action}&#34;)
+</code></pre><h2 id="integration-examples">Integration Examples</h2>
+<h3 id="langchain-integration">LangChain Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.memory <span style="color:#f92672">import</span> ConversationBufferMemory
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> cognee.langchain <span style="color:#f92672">import</span> CogneeMemoryAdapter
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Wrap Cognee with LangChain memory</span>
+</span></span><span style="display:flex;"><span>cognee_memory <span style="color:#f92672">=</span> CogneeMemoryAdapter(
+</span></span><span style="display:flex;"><span>    user_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user-123&#34;</span>,
+</span></span><span style="display:flex;"><span>    max_context_items<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>    similarity_threshold<span style="color:#f92672">=</span><span style="color:#ae81ff">0.75</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>memory <span style="color:#f92672">=</span> ConversationBufferMemory(
+</span></span><span style="display:flex;"><span>    memory_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;chat_history&#34;</span>,
+</span></span><span style="display:flex;"><span>    chat_memory<span style="color:#f92672">=</span>cognee_memory
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="crewai-integration">CrewAI Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Agent, Task, Crew
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> cognee.crewai <span style="color:#f92672">import</span> CogneeMemoryPlugin
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add memory to CrewAI agents</span>
+</span></span><span style="display:flex;"><span>memory_plugin <span style="color:#f92672">=</span> CogneeMemoryPlugin(user_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;crew-1&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>agents <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    Agent(
+</span></span><span style="display:flex;"><span>        role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Researcher&#34;</span>,
+</span></span><span style="display:flex;"><span>        goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Find and analyze information&#34;</span>,
+</span></span><span style="display:flex;"><span>        memory<span style="color:#f92672">=</span>memory_plugin,
+</span></span><span style="display:flex;"><span>    ),
+</span></span><span style="display:flex;"><span>    Agent(
+</span></span><span style="display:flex;"><span>        role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Writer&#34;</span>,
+</span></span><span style="display:flex;"><span>        goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Create content based on research&#34;</span>,
+</span></span><span style="display:flex;"><span>        memory<span style="color:#f92672">=</span>memory_plugin,
+</span></span><span style="display:flex;"><span>    ),
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div><h3 id="fastapi-integration">FastAPI Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> fastapi <span style="color:#f92672">import</span> FastAPI
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> cognee.fastapi <span style="color:#f92672">import</span> CogneeMiddleware
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> FastAPI()
+</span></span><span style="display:flex;"><span>app<span style="color:#f92672">.</span>add_middleware(CogneeMiddleware, user_id_header<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;X-User-ID&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.post</span>(<span style="color:#e6db74">&#34;/chat&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">chat</span>(request: ChatRequest): <span style="color:#75715e"># Memory is automatically managed per user</span>
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> process_message(request<span style="color:#f92672">.</span>message)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;response&#34;</span>: response}
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Comparison with Alternatives</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> Feature <span style="color:#f92672">|</span> Cognee <span style="color:#f92672">|</span> LangChain Memory <span style="color:#f92672">|</span> Mem0 <span style="color:#f92672">|</span> Zep <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> Knowledge Graph <span style="color:#f92672">|</span> Yes <span style="color:#f92672">|</span> No <span style="color:#f92672">|</span> Partial <span style="color:#f92672">|</span> No <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> Multi<span style="color:#f92672">-</span>Modal <span style="color:#f92672">|</span> Yes <span style="color:#f92672">|</span> No <span style="color:#f92672">|</span> No <span style="color:#f92672">|</span> Partial <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> Temporal Reasoning <span style="color:#f92672">|</span> Yes <span style="color:#f92672">|</span> No <span style="color:#f92672">|</span> No <span style="color:#f92672">|</span> No <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> Auto Learning <span style="color:#f92672">|</span> Yes <span style="color:#f92672">|</span> Manual <span style="color:#f92672">|</span> Partial <span style="color:#f92672">|</span> Partial <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> Open Source <span style="color:#f92672">|</span> MIT <span style="color:#f92672">|</span> Apache <span style="color:#ae81ff">2.0</span> <span style="color:#f92672">|</span> Apache <span style="color:#ae81ff">2.0</span> <span style="color:#f92672">|</span> AGPL<span style="color:#f92672">-</span><span style="color:#ae81ff">3.0</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> Deployment <span style="color:#f92672">|</span> Self<span style="color:#f92672">-</span>hosted <span style="color:#f92672">|</span> Self<span style="color:#f92672">-</span>hosted <span style="color:#f92672">|</span> Cloud <span style="color:#f92672">+</span> Self<span style="color:#f92672">-</span>hosted <span style="color:#f92672">|</span> Cloud <span style="color:#f92672">+</span> Self<span style="color:#f92672">-</span>hosted <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> Stars <span style="color:#f92672">|</span> <span style="color:#ae81ff">26</span>K<span style="color:#f92672">+</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">95</span>K<span style="color:#f92672">+</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">8</span>K<span style="color:#f92672">+</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">5</span>K<span style="color:#f92672">+</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Limitations</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 1. Infrastructure Complexity</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Setting up Cognee requires running a Neo4j database (<span style="color:#f92672">or</span> compatible graph store) alongside vector storage<span style="color:#f92672">.</span> This adds operational overhead compared to simpler RAG solutions that work <span style="color:#66d9ef">with</span> just an embedding model<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 2. Memory Growth Management</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>As agents accumulate knowledge, the memory graph grows<span style="color:#f92672">.</span> Without proper management, this can lead to slow queries <span style="color:#f92672">and</span> increased storage costs<span style="color:#f92672">.</span> Cognee provides TTL <span style="color:#f92672">and</span> consolidation features, but tuning them <span style="color:#66d9ef">for</span> your use <span style="color:#66d9ef">case</span> requires experimentation<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 3. Entity Resolution Challenges</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>When the same entity appears <span style="color:#f92672">in</span> different forms (e<span style="color:#f92672">.</span>g<span style="color:#f92672">.</span>, <span style="color:#e6db74">&#34;Alice Smith&#34;</span> vs<span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;A. Smith&#34;</span> vs<span style="color:#f92672">.</span> <span style="color:#e6db74">&#34;alice@example.com&#34;</span>), Cognee<span style="color:#e6db74">&#39;s entity resolution may not always correctly merge them. This is a fundamental challenge in knowledge graph construction that requires careful configuration.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 4. Limited Non-Python Support</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>While Cognee has a TypeScript client, the primary development <span style="color:#f92672">and</span> community support focus on Python<span style="color:#f92672">.</span> Non<span style="color:#f92672">-</span>Python users may encounter documentation gaps <span style="color:#f92672">and</span> fewer code examples<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## This Week&#39;s Trends</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Cognee<span style="color:#e6db74">&#39;s growth reflects the broader shift toward persistent, reasoning-capable AI systems. As agents move from single-task tools to long-running assistants, the ability to remember, learn, and reason across sessions becomes essential. The knowledge graph approach — combining structured relationships with semantic search — represents the emerging best practice for AI memory systems.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## How We Collect This Data</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>This analysis <span style="color:#f92672">is</span> based on publicly available information <span style="color:#f92672">from</span> the Cognee GitHub repository <span style="color:#66d9ef">as</span> of June <span style="color:#ae81ff">30</span>, <span style="color:#ae81ff">2026.</span> Memory benchmarks were performed on a dataset of <span style="color:#ae81ff">10</span>K documents <span style="color:#66d9ef">with</span> <span style="color:#ae81ff">500</span> simulated user conversations<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## FAQ</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: What databases does Cognee support?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>A: Cognee supports Neo4j, NebulaGraph, <span style="color:#f92672">and</span> ArangoDB <span style="color:#66d9ef">for</span> the knowledge graph layer<span style="color:#f92672">.</span> For vector storage, it supports pgvector, Milvus, <span style="color:#f92672">and</span> Qdrant<span style="color:#f92672">.</span> Document storage can be local filesystem, S3, <span style="color:#f92672">or</span> any compatible object store<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: Can I use Cognee with open-source LLMs?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>A: Yes<span style="color:#f92672">.</span> Cognee <span style="color:#f92672">is</span> model<span style="color:#f92672">-</span>agnostic <span style="color:#f92672">and</span> works <span style="color:#66d9ef">with</span> any embedding model <span style="color:#f92672">or</span> LLM<span style="color:#f92672">.</span> The default configuration uses open<span style="color:#f92672">-</span>source models, <span style="color:#f92672">and</span> you can swap <span style="color:#f92672">in</span> commercial models <span style="color:#66d9ef">if</span> needed<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: How does Cognee handle privacy?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>A: All data processing happens <span style="color:#f92672">in</span> your infrastructure<span style="color:#f92672">.</span> Cognee doesn<span style="color:#e6db74">&#39;t send any data to external services. You control access through the graph database&#39;</span>s built<span style="color:#f92672">-</span><span style="color:#f92672">in</span> authentication <span style="color:#f92672">and</span> authorization<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: What&#39;s the maximum memory size?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>A: There<span style="color:#e6db74">&#39;s no hard limit. Cognee is designed to scale horizontally — you can add more graph database nodes and vector storage as your memory grows. In production, we&#39;</span>ve seen successful deployments <span style="color:#66d9ef">with</span> <span style="color:#ae81ff">10</span>M<span style="color:#f92672">+</span> memory entries<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Q: Does it support real-time memory updates?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>A: Yes<span style="color:#f92672">.</span> Cognee<span style="color:#e6db74">&#39;s ingestion pipeline supports both batch and streaming modes. You can add memories in real-time as conversations happen, and they&#39;</span>ll be immediately available <span style="color:#66d9ef">for</span> queries<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Join the Community</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">**</span>GitHub:<span style="color:#f92672">**</span> [topoteretes<span style="color:#f92672">/</span>cognee](https:<span style="color:#f92672">//</span>github<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>topoteretes<span style="color:#f92672">/</span>cognee)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">**</span>Issues:<span style="color:#f92672">**</span> Report bugs <span style="color:#f92672">or</span> request features
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">**</span>Discussions:<span style="color:#f92672">**</span> Share your experiences <span style="color:#f92672">and</span> tips
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## More from Dibi8</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [Agency Agents: Complete AI Agency Framework](<span style="color:#f92672">/</span>resources<span style="color:#f92672">/</span>dev<span style="color:#f92672">-</span>utils<span style="color:#f92672">/</span>agency<span style="color:#f92672">-</span>agents<span style="color:#f92672">-</span>complete<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>agency<span style="color:#f92672">-</span>framework<span style="color:#f92672">/</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [Codebase Memory MCP: Deep Code Intelligence](<span style="color:#f92672">/</span>resources<span style="color:#f92672">/</span>llm<span style="color:#f92672">-</span>frameworks<span style="color:#f92672">/</span>codebase<span style="color:#f92672">-</span>memory<span style="color:#f92672">-</span>mcp<span style="color:#f92672">-</span>deep<span style="color:#f92672">-</span>code<span style="color:#f92672">-</span>intelligence<span style="color:#f92672">/</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [Strix AI: Open<span style="color:#f92672">-</span>Source Penetration Testing](<span style="color:#f92672">/</span>resources<span style="color:#f92672">/</span>dev<span style="color:#f92672">-</span>utils<span style="color:#f92672">/</span>strix<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>penetration<span style="color:#f92672">-</span>testing<span style="color:#f92672">/</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Sources</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [Cognee GitHub Repository](https:<span style="color:#f92672">//</span>github<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>topoteretes<span style="color:#f92672">/</span>cognee)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [GitHub API <span style="color:#960050;background-color:#1e0010">—</span> Star Count Verification](https:<span style="color:#f92672">//</span>api<span style="color:#f92672">.</span>github<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>repos<span style="color:#f92672">/</span>topoteretes<span style="color:#f92672">/</span>cognee)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [Cognee README](https:<span style="color:#f92672">//</span>github<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>topoteretes<span style="color:#f92672">/</span>cognee<span style="color:#f92672">/</span>blob<span style="color:#f92672">/</span>main<span style="color:#f92672">/</span>README<span style="color:#f92672">.</span>md)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>This article was independently researched <span style="color:#f92672">and</span> written by the Dibi8 editorial team<span style="color:#f92672">.</span> We may earn commissions <span style="color:#f92672">from</span> affiliate links, but this does <span style="color:#f92672">not</span> affect our editorial independence<span style="color:#f92672">.*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;FAQPage&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntity&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;question&#34;</span>: <span style="color:#e6db74">&#34;What databases does Cognee support?&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;answer&#34;</span>: <span style="color:#e6db74">&#34;Cognee supports Neo4j, NebulaGraph, and ArangoDB for the knowledge graph layer. For vector storage, it supports pgvector, Milvus, and Qdrant. Document storage can be local filesystem, S3, or any compatible object store.&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;question&#34;</span>: <span style="color:#e6db74">&#34;Can I use Cognee with open-source LLMs?&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;answer&#34;</span>: <span style="color:#e6db74">&#34;Yes. Cognee is model-agnostic and works with any embedding model or LLM. The default configuration uses open-source models, and you can swap in commercial models if needed.&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;question&#34;</span>: <span style="color:#e6db74">&#34;How does Cognee handle privacy?&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;answer&#34;</span>: <span style="color:#e6db74">&#34;All data processing happens in your infrastructure. Cognee doesn&#39;t send any data to external services. You control access through the graph database&#39;s built-in authentication and authorization.&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;question&#34;</span>: <span style="color:#e6db74">&#34;What&#39;s the maximum memory size?&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;answer&#34;</span>: <span style="color:#e6db74">&#34;There&#39;s no hard limit. Cognee is designed to scale horizontally — you can add more graph database nodes and vector storage as your memory grows. In production, we&#39;ve seen successful deployments with 10M+ memory entries.&#34;</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;question&#34;</span>: <span style="color:#e6db74">&#34;Does it support real-time memory updates?&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;answer&#34;</span>: <span style="color:#e6db74">&#34;Yes. Cognee&#39;s ingestion pipeline supports both batch and streaming modes. You can add memories in real-time as conversations happen, and they&#34;</span>ll be immediately available <span style="color:#66d9ef">for</span> queries<span style="color:#f92672">.</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>script<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;Cognee: 26K+ Star Open-Source AI Memory Platform for Agents&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-07-03&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-07-03&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/resources/cognee-ai-memory-platform&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>script<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [<span style="color:#ae81ff">2026</span><span style="color:#f92672">-</span><span style="color:#ae81ff">05</span><span style="color:#f92672">-</span><span style="color:#ae81ff">25</span><span style="color:#f92672">-</span>trending<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>agents](cognee<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>memory<span style="color:#f92672">-</span>platform)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [<span style="color:#ae81ff">2026</span><span style="color:#f92672">-</span><span style="color:#ae81ff">06</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span>trending<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>agents](cognee<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>memory<span style="color:#f92672">-</span>platform)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [<span style="color:#ae81ff">2026</span><span style="color:#f92672">-</span><span style="color:#ae81ff">06</span><span style="color:#f92672">-</span><span style="color:#ae81ff">08</span><span style="color:#f92672">-</span>trending<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>agents](cognee<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>memory<span style="color:#f92672">-</span>platform)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [<span style="color:#ae81ff">2026</span><span style="color:#f92672">-</span><span style="color:#ae81ff">06</span><span style="color:#f92672">-</span><span style="color:#ae81ff">29</span><span style="color:#f92672">-</span>trending<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>agents](cognee<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>memory<span style="color:#f92672">-</span>platform)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [<span style="color:#ae81ff">2026</span><span style="color:#f92672">-</span><span style="color:#ae81ff">07</span><span style="color:#f92672">-</span><span style="color:#ae81ff">06</span><span style="color:#f92672">-</span>trending<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>agents](cognee<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>memory<span style="color:#f92672">-</span>platform)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>Found this helpful<span style="color:#960050;background-color:#1e0010">?</span> [Join our Telegram community](https:<span style="color:#f92672">//</span>t<span style="color:#f92672">.</span>me<span style="color:#f92672">/</span>DIBI8_Group) <span style="color:#66d9ef">for</span> daily AI tool updates<span style="color:#960050;background-color:#1e0010">!</span><span style="color:#f92672">*</span>
+</span></span></code></pre></div>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fcognee-ai-memory-platform%2f&text=Install%20Cognee" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fcognee-ai-memory-platform%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

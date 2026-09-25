@@ -1,0 +1,621 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLflow vs Weights &amp; Biases vs Neptune: MLOps Experiment Tracking Platform Guide 2024 | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/mlops-platform-comparison-mlflow-wandb-neptune/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">MLflow vs Weights &amp; Biases vs Neptune: MLOps Experiment Tracking Platform Guide 2024</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">MLflow vs Weights &amp; Biases vs Neptune: MLOps Experiment Tracking Platform Guide 2024</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <h1 id="mlflow-vs-weights--biases-vs-neptune-mlops-experiment-tracking-platform-guide-2024">MLflow vs Weights &amp; Biases vs Neptune: MLOps Experiment Tracking Platform Guide 2024</h1>
+<p>{&lt;/* resource-info */&gt;}</p>
+<p>Machine learning in production is fundamentally different from training models in Jupyter notebooks. The transition from experimentation to deployment introduces challenges that pure research environments never encounter: tracking hundreds of hyperparameter combinations, versioning datasets alongside models, reproducing results months later, and collaborating across teams with different specializations. Experiment tracking platforms solve these problems by providing a centralized system of record for the entire ML lifecycle.</p>
+<p>This guide compares the three leading experiment tracking platforms in 2024: <a href="https://mlflow.org">MLflow</a>, <a href="https://wandb.ai">Weights &amp; Biases (W&amp;B)</a>, and <a href="https://neptune.ai">Neptune</a>. Each occupies a distinct position in the MLOps landscape — MLflow as the open-source standard backed by Databricks, W&amp;B as the collaboration-focused SaaS platform, and Neptune as the metadata management specialist for production systems. We evaluate them on pricing, deployment flexibility, collaboration features, LLM support, and ease of setup.</p>
+<h2 id="what-is-mlops-and-why-experiment-tracking-matters">What is MLOps and Why Experiment Tracking Matters</h2>
+<p>MLOps (Machine Learning Operations) encompasses the practices, tools, and culture required to deploy and maintain ML models in production reliably. The MLOps lifecycle typically includes: 1. <strong>Experimentation:</strong> Data scientists train models with different architectures, hyperparameters, and datasets.
+2. <strong>Tracking:</strong> Every experiment&rsquo;s parameters, metrics, artifacts, and code versions are logged systematically.
+3. <strong>Model Registry:</strong> The best-performing models are versioned and promoted through stages (Staging → Production → Archived).
+4. <strong>Deployment:</strong> Registered models are packaged and deployed to production serving infrastructure.
+5. <strong>Monitoring:</strong> Production predictions are tracked for drift, latency, and accuracy degradation.</p>
+<p>Experiment tracking sits at the foundation of this lifecycle. Without it, you cannot reproduce experiments, compare results scientifically, or maintain audit trails for regulatory compliance. A <a href="https://www.gartner.com">2023 survey by Gartner</a> found that 47% of ML projects fail to reach production because teams cannot reproduce experimental results — a problem that proper tracking eliminates.</p>
+<h2 id="mlflow-the-open-source-standard">MLflow: The Open-Source Standard</h2>
+<p><a href="https://mlflow.org">MLflow</a>, originally developed at Databricks and donated to the Linux Foundation in 2020, is the most widely adopted open-source MLOps platform. With over 17,000 GitHub stars and integration with every major ML framework, MLflow has become the default choice for teams that prioritize flexibility and zero licensing costs.</p>
+<p>MLflow consists of four components: | Component | Purpose |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Tracking</strong> | Log parameters, metrics, artifacts, and code versions for every experiment run |
+| <strong>Projects</strong> | Package ML code in a reproducible format with dependency specifications |
+| <strong>Models</strong> | Standardize model packaging across frameworks (scikit-learn, PyTorch, TensorFlow, XGBoost, etc.) |
+| <strong>Model Registry</strong> | Version models, manage lifecycle stages, and track lineage |</p>
+<h3 id="mlflow-tracking-and-model-registry">MLflow Tracking and Model Registry</h3>
+<p>The MLflow Tracking API is intentionally minimal. Logging a training run requires just a few lines of code: ````python
+import mlflow</p>
+<p>mlflow.start_run(): mlflow.log_param(&rsquo;learning_rate&rsquo;, 0.01)
+mlflow.log_metric(&lsquo;accuracy&rsquo;, 0.95)
+mlflow.log_artifact(&lsquo;confusion_matrix.png&rsquo;)
+mlflow.sklearn.log_model(model, &lsquo;model&rsquo;)</p>
+<pre tabindex="0"><code>
+The Model Registry provides versioned model storage with stage transitions: - **Staging:** Candidate models under evaluation
+- **Production:** Approved models serving live traffic
+- **Archived:** Deprecated models retained for historical reference
+
+REST API access enables programmatic integration with CI/CD pipelines. Jenkins, GitHub Actions, or GitLab CI can query the registry to promote models that pass validation tests automatically.
+
+**Deployment options:**
+- **Self-hosted:** Run the MLflow Tracking Server on your own infrastructure (EC2, GKE, on-premise). Full control over data residency and security.
+- **Databricks:** Managed MLflow instance integrated with Databricks notebooks, jobs, and model serving.
+- **Community hosting:** Free tier at [dagshub.com](https://dagshub.com) provides hosted MLflow with Git integration.
+
+**Best for:** Teams with strict data governance requirements, budget-conscious organizations, Databricks ecosystem users, and those who need full deployment flexibility.
+
+**Limitations:** The UI is functional but dated compared to W&amp;B and Neptune. Collaboration features (sharing, commenting) are minimal. Hyperparameter optimization requires external tools like Optuna or Hyperopt. Setup and maintenance of self-hosted instances require DevOps investment.
+
+## Weights &amp; Biases (W&amp;B): Collaboration-Focused Platform
+
+[Weights &amp; Biases](https://wandb.ai), founded in 2017 and now part of the CoreWeave family, built its reputation on real-time experiment visualization and team collaboration. Unlike MLflow&#39;s utilitarian approach, W&amp;B prioritizes the researcher experience with beautiful visualizations, instant sharing, and tools specifically designed for deep learning workflows.
+
+W&amp;B&#39;s feature set extends beyond basic experiment tracking: - **Real-time dashboards.** Metrics stream live during training. Watch loss curves update every second as your model trains across a GPU cluster.
+- **Team workspaces.** Organize experiments into projects with granular permissions. Comment on runs, tag important experiments, and create shared collections.
+- **Hyperparameter Sweeps.** Built-in Bayesian optimization, grid search, and random search for hyperparameter tuning. Launch parallel sweep agents across a cluster with a single command.
+- **Artifact lineage.** Track datasets, models, and evaluation results as versioned artifacts with full dependency graphs. Know exactly which dataset version produced which model.
+- **Reports.** Create interactive documents combining charts, tables, and text that update automatically as new experiments complete. Share with stakeholders who never see code.
+
+### W&amp;B Sweeps and Reports
+
+W&amp;B Sweeps supports three search strategies: 1. **Bayesian search.** Uses a Gaussian Process model to predict which hyperparameter combinations are most promising, focusing compute on promising regions. Most efficient for expensive training runs.
+2. **Random search.** Samples hyperparameters uniformly from defined distributions. Better than grid search for high-dimensional spaces, per the [Bergstra &amp; Bengio 2012 paper](https://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a.pdf).
+3. **Grid search.** Exhaustively evaluates all combinations. Only practical for small search spaces.
+
+W&amp;B Reports transform experiment tracking into communication. A report might include live-updating charts comparing the top 10 experiments, a table of final metrics, and explanatory text. When shared with a link, stakeholders see a polished dashboard rather than raw experiment logs.
+
+**Pricing:**
+- **Free tier:** Personal use, public projects, limited storage
+- **Team:** $50/user/month — private projects, advanced collaboration, priority support
+- **Enterprise:** Custom pricing — SSO, audit logs, dedicated infrastructure, custom contracts
+
+**Best for:** Research teams, deep learning practitioners, collaborative ML projects, and teams that value visualization quality and ease of use over deployment flexibility.
+
+**Limitations:** No self-hosted option — data must reside on W&amp;B&#39;s cloud infrastructure. Pricing escalates quickly for large teams. Less suited for strict compliance environments that require on-premise deployment.
+
+## Neptune: Metadata Management for Production ML
+
+[Neptune](https://neptune.ai), founded in 2017 and headquartered in Poland, takes a metadata-first approach to experiment tracking. While MLflow tracks experiments and W&amp;B tracks research, Neptune tracks all metadata associated with ML systems — experiments, datasets, models, CI/CD runs, and production monitoring events — in a unified namespace.
+
+Neptune&#39;s architecture reflects its production-first philosophy: - **Hierarchical namespace.** Organize metadata in nested structures: ````project/experiment/run/metric````. This scales to thousands of runs without UI slowdown.
+- **On-premise deployment.** Run Neptune entirely within your infrastructure. Data never leaves your network — critical for healthcare, finance, and defense applications.
+- **CI/CD integration.** Track every training pipeline execution, not just manual experiments. Connect runs to Git commits, Jenkins builds, and GitHub Actions workflows.
+- **Flexible metadata types.** Log scalars, images, videos, audio, HTML, and custom objects. Store dataset fingerprints, model signatures, and evaluation reports alongside metrics.
+
+### Neptune&#39;s Query Language and Monitoring
+
+Neptune provides a powerful query language (Neptune Query Language, NQL) for searching across experiments: `````sql
+((accuracy &gt; 0.95) AND (model_size &lt; 100MB)) OR (tags CONTAINS production_candidate)
+</code></pre><p>Queries filter runs by any logged metadata, enabling complex analyses like &ldquo;find all experiments from the past month that achieved &gt;95% accuracy with model size under 100 MB.&rdquo;</p>
+<p>Custom dashboards aggregate metrics across runs and projects. Drift detection integrations (Evidently AI, WhyLabs) can push alerts to Neptune, creating a unified view of model health in production.</p>
+<p><strong>Pricing:</strong></p>
+<ul>
+<li><strong>Free tier:</strong> Individual use, 1 user, limited storage</li>
+<li><strong>Team:</strong> $49/user/month — unlimited users, advanced querying, priority support</li>
+<li><strong>Enterprise:</strong> Custom pricing — on-premise deployment, SSO, audit logs, SLA guarantees</li>
+</ul>
+<p><strong>Best for:</strong> Production ML systems, regulated industries requiring on-premise deployment, teams managing thousands of experiments, and organizations that need flexible metadata structures.</p>
+<p><strong>Limitations:</strong> Smaller community than MLflow and W&amp;B. Fewer framework-specific integrations (though the generic logging API covers most use cases). Learning curve for the query language and hierarchical namespace model.</p>
+<h2 id="detailed-platform-comparison">Detailed Platform Comparison</h2>
+<p>| Feature | MLflow | W&amp;B | Neptune |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>License</strong> | Apache 2.0 | Proprietary | Proprietary |
+| <strong>Pricing (entry)</strong> | Free | Free (public) | Free (1 user) |
+| <strong>Pricing (team)</strong> | Self-hosted cost | $50/user/mo | $49/user/mo |
+| <strong>Self-hosted / on-premise</strong> | Yes | No | Yes (Enterprise) |
+| <strong>Open source</strong> | Yes | Partial (client SDK) | No |
+| <strong>UI quality</strong> | Functional | Excellent | Good |
+| <strong>Real-time streaming</strong> | No | Yes | Yes |
+| <strong>Hyperparameter sweeps</strong> | Via external tools | Built-in | Limited |
+| <strong>Model registry</strong> | Built-in | Built-in | Built-in |
+| <strong>Collaboration features</strong> | Minimal | Extensive | Moderate |
+| <strong>Reports / dashboards</strong> | No | Yes (excellent) | Yes (custom) |
+| <strong>CI/CD integration</strong> | REST API | API + webhooks | Native |
+| <strong>LLM support</strong> | MLflow LLM, Prompt Management | W&amp;B Prompts, LLM Evals | Run tracking |
+| <strong>Artifact storage</strong> | Local / S3 / GCS / Azure | W&amp;B cloud (or self-hosted) | Neptune cloud (or on-prem) |
+| <strong>Learning curve</strong> | Low | Low | Moderate |
+| <strong>Best for</strong> | Budget-conscious, on-premise | Research, collaboration | Production, compliance |</p>
+<h2 id="llm-and-agent-development-support">LLM and Agent Development Support</h2>
+<p>The rise of large language models and AI agents in 2023-2024 has pushed experiment tracking platforms to adapt their offerings.</p>
+<p><strong>MLflow&rsquo;s LLM features</strong> (launched in mid-2023) include: - <strong>MLflow LLM:</strong> Track prompts, responses, and token usage for LLM applications. Log OpenAI, Anthropic, and local model calls with the same API as traditional ML experiments.</p>
+<ul>
+<li><strong>Prompt Management:</strong> Version prompt templates, compare prompt variants, and associate prompts with specific model versions.</li>
+<li><strong>MLflow AI Gateway:</strong> A unified endpoint for routing requests to multiple LLM providers with rate limiting, caching, and credential management.</li>
+</ul>
+<p><strong>W&amp;B&rsquo;s LLM features</strong> include: - <strong>W&amp;B Prompts:</strong> Visualize prompt-response pairs, track chain-of-thought reasoning, and debug prompt engineering iterations.</p>
+<ul>
+<li><strong>LLM Evaluations:</strong> Automated evaluation of LLM outputs using BLEU, ROUGE, and custom scoring functions.</li>
+<li><strong>W&amp;B Weave:</strong> A newer product (beta as of late 2024) for tracing and debugging LLM agent workflows with detailed execution graphs.</li>
+</ul>
+<p><strong>Neptune&rsquo;s LLM support</strong> is more minimal but functional: - General experiment tracking works for LLM fine-tuning runs (LoRA, QLoRA, full fine-tuning).</p>
+<ul>
+<li>Custom metadata logging captures prompts, hyperparameters, and evaluation metrics.</li>
+<li>Less specialized tooling compared to MLflow and W&amp;B, but the flexible namespace accommodates any metadata structure.</li>
+</ul>
+<h2 id="decision-framework-which-platform-to-choose">Decision Framework: Which Platform to Choose</h2>
+<p>Your choice depends on organizational constraints and workflow priorities: <strong>Choose MLflow if:</strong></p>
+<ul>
+<li>You require on-premise deployment for data governance or compliance</li>
+<li>Budget is a primary constraint (self-hosted MLflow is free)</li>
+<li>You use Databricks as your primary compute platform</li>
+<li>You want maximum flexibility and are willing to invest in setup and maintenance</li>
+<li>You need the MLflow AI Gateway for multi-provider LLM routing</li>
+</ul>
+<p><strong>Choose Weights &amp; Biases if:</strong></p>
+<ul>
+<li>Your team prioritizes ease of use and visual appeal</li>
+<li>You run deep learning experiments requiring hyperparameter sweeps</li>
+<li>Real-time collaboration and reporting are essential</li>
+<li>SaaS deployment is acceptable for your data classification level</li>
+<li>You need specialized LLM prompt tracking and evaluation tools</li>
+</ul>
+<p><strong>Choose Neptune if:</strong></p>
+<ul>
+<li>You operate in a regulated industry requiring on-premise deployment</li>
+<li>You manage production systems with thousands of runs</li>
+<li>Flexible metadata structures are critical for your use case</li>
+<li>CI/CD integration and automated pipeline tracking are priorities</li>
+<li>You need hierarchical organization for complex multi-project setups</li>
+</ul>
+<h2 id="setting-up-your-first-experiment-in-each-platform">Setting Up Your First Experiment in Each Platform</h2>
+<p>Here is the code to log a simple experiment across all three platforms — training a scikit-learn classifier on the Iris dataset: <strong>MLflow:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> mlflow
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> mlflow.sklearn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.ensemble <span style="color:#f92672">import</span> RandomForestClassifier
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.datasets <span style="color:#f92672">import</span> load_iris
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> train_test_split
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.metrics <span style="color:#f92672">import</span> accuracy_score
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>iris <span style="color:#f92672">=</span> load_iris()
+</span></span><span style="display:flex;"><span>X_train, X_test, y_train, y_test <span style="color:#f92672">=</span> train_test_split(
+</span></span><span style="display:flex;"><span>    iris<span style="color:#f92672">.</span>data, iris<span style="color:#f92672">.</span>target, test_size<span style="color:#f92672">=</span><span style="color:#ae81ff">0.2</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mlflow<span style="color:#f92672">.</span>set_experiment(<span style="color:#e6db74">&#39;iris-classification&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> mlflow<span style="color:#f92672">.</span>start_run(): clf <span style="color:#f92672">=</span> RandomForestClassifier(n_estimators<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>, max_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>)
+</span></span><span style="display:flex;"><span>    clf<span style="color:#f92672">.</span>fit(X_train, y_train)
+</span></span><span style="display:flex;"><span>    accuracy <span style="color:#f92672">=</span> accuracy_score(y_test, clf<span style="color:#f92672">.</span>predict(X_test))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    mlflow<span style="color:#f92672">.</span>log_param(<span style="color:#e6db74">&#39;n_estimators&#39;</span>, <span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>    mlflow<span style="color:#f92672">.</span>log_param(<span style="color:#e6db74">&#39;max_depth&#39;</span>, <span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>    mlflow<span style="color:#f92672">.</span>log_metric(<span style="color:#e6db74">&#39;accuracy&#39;</span>, accuracy)
+</span></span><span style="display:flex;"><span>    mlflow<span style="color:#f92672">.</span>sklearn<span style="color:#f92672">.</span>log_model(clf, <span style="color:#e6db74">&#39;model&#39;</span>)
+</span></span></code></pre></div><p><strong>Weights &amp; Biases:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> wandb
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.ensemble <span style="color:#f92672">import</span> RandomForestClassifier
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.datasets <span style="color:#f92672">import</span> load_iris
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> train_test_split
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.metrics <span style="color:#f92672">import</span> accuracy_score
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wandb<span style="color:#f92672">.</span>init(project<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;iris-classification&#39;</span>)
+</span></span><span style="display:flex;"><span>iris <span style="color:#f92672">=</span> load_iris()
+</span></span><span style="display:flex;"><span>X_train, X_test, y_train, y_test <span style="color:#f92672">=</span> train_test_split(
+</span></span><span style="display:flex;"><span>    iris<span style="color:#f92672">.</span>data, iris<span style="color:#f92672">.</span>target, test_size<span style="color:#f92672">=</span><span style="color:#ae81ff">0.2</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>clf <span style="color:#f92672">=</span> RandomForestClassifier(n_estimators<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>, max_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>)
+</span></span><span style="display:flex;"><span>clf<span style="color:#f92672">.</span>fit(X_train, y_train)
+</span></span><span style="display:flex;"><span>accuracy <span style="color:#f92672">=</span> accuracy_score(y_test, clf<span style="color:#f92672">.</span>predict(X_test))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wandb<span style="color:#f92672">.</span>config<span style="color:#f92672">.</span>update({<span style="color:#e6db74">&#39;n_estimators&#39;</span>: <span style="color:#ae81ff">100</span>, <span style="color:#e6db74">&#39;max_depth&#39;</span>: <span style="color:#ae81ff">5</span>})
+</span></span><span style="display:flex;"><span>wandb<span style="color:#f92672">.</span>log({<span style="color:#e6db74">&#39;accuracy&#39;</span>: accuracy})
+</span></span><span style="display:flex;"><span>wandb<span style="color:#f92672">.</span>sklearn<span style="color:#f92672">.</span>plot_confusion_matrix(y_test, clf<span style="color:#f92672">.</span>predict(X_test), iris<span style="color:#f92672">.</span>target_names)
+</span></span></code></pre></div><p><strong>Neptune:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> neptune
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.ensemble <span style="color:#f92672">import</span> RandomForestClassifier
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.datasets <span style="color:#f92672">import</span> load_iris
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.model_selection <span style="color:#f92672">import</span> train_test_split
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sklearn.metrics <span style="color:#f92672">import</span> accuracy_score
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>run <span style="color:#f92672">=</span> neptune<span style="color:#f92672">.</span>init_run(project<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;your-workspace/iris-classification&#39;</span>)
+</span></span><span style="display:flex;"><span>iris <span style="color:#f92672">=</span> load_iris()
+</span></span><span style="display:flex;"><span>X_train, X_test, y_train, y_test <span style="color:#f92672">=</span> train_test_split(
+</span></span><span style="display:flex;"><span>    iris<span style="color:#f92672">.</span>data, iris<span style="color:#f92672">.</span>target, test_size<span style="color:#f92672">=</span><span style="color:#ae81ff">0.2</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>run[parameters<span style="color:#f92672">/</span>n_estimators] <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span>run[parameters<span style="color:#f92672">/</span>max_depth] <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>clf <span style="color:#f92672">=</span> RandomForestClassifier(n_estimators<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>, max_depth<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>)
+</span></span><span style="display:flex;"><span>clf<span style="color:#f92672">.</span>fit(X_train, y_train)
+</span></span><span style="display:flex;"><span>accuracy <span style="color:#f92672">=</span> accuracy_score(y_test, clf<span style="color:#f92672">.</span>predict(X_test))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>run[metrics<span style="color:#f92672">/</span>accuracy] <span style="color:#f92672">=</span> accuracy
+</span></span><span style="display:flex;"><span>run<span style="color:#f92672">.</span>stop()
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Is MLflow completely free to use?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Yes<span style="color:#f92672">.</span> MLflow <span style="color:#f92672">is</span> open<span style="color:#f92672">-</span>source under the Apache <span style="color:#ae81ff">2.0</span> license <span style="color:#f92672">and</span> free to use <span style="color:#f92672">in</span> any context <span style="color:#960050;background-color:#1e0010">—</span> personal, academic, <span style="color:#f92672">or</span> commercial<span style="color:#f92672">.</span> You can self<span style="color:#f92672">-</span>host the tracking server, model registry, <span style="color:#f92672">and</span> UI without paying licensing fees<span style="color:#f92672">.</span> The only costs are infrastructure (servers, storage, bandwidth)<span style="color:#f92672">.</span> Databricks offers a managed MLflow service that incurs platform charges, but the open<span style="color:#f92672">-</span>source project itself has no paid components<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Can I self-host Weights &amp; Biases?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>No<span style="color:#f92672">.</span> As of <span style="color:#ae81ff">2024</span>, W<span style="color:#f92672">&amp;</span>B does <span style="color:#f92672">not</span> offer an on<span style="color:#f92672">-</span>premise <span style="color:#f92672">or</span> self<span style="color:#f92672">-</span>hosted deployment option<span style="color:#f92672">.</span> All experiment data <span style="color:#f92672">is</span> stored on W<span style="color:#f92672">&amp;</span><span style="color:#e6db74">B</span><span style="color:#e6db74">&#34;s cloud infrastructure. For teams with data residency requirements, this is often a dealbreaker. Alternatives with self-hosted options include MLflow, Neptune, and [TensorBoard](https://www.tensorflow.org/tensorboard).</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Which tool is best for hyperparameter tuning?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Weights <span style="color:#f92672">&amp;</span> Biases has the most mature hyperparameter optimization system<span style="color:#f92672">.</span> W<span style="color:#f92672">&amp;</span>B Sweeps supports Bayesian optimization, random search, <span style="color:#f92672">and</span> grid search <span style="color:#66d9ef">with</span> parallel execution across clusters<span style="color:#f92672">.</span> The sweep visualizations <span style="color:#960050;background-color:#1e0010">—</span> parallel coordinates plots, hyperparameter importance rankings, <span style="color:#f92672">and</span> correlation matrices <span style="color:#960050;background-color:#1e0010">—</span> are industry<span style="color:#f92672">-</span>leading<span style="color:#f92672">.</span> MLflow users typically pair MLflow Tracking <span style="color:#66d9ef">with</span> Optuna <span style="color:#f92672">or</span> Ray Tune <span style="color:#66d9ef">for</span> hyperparameter search<span style="color:#f92672">.</span> Neptune has basic sweep logging but lacks built<span style="color:#f92672">-</span><span style="color:#f92672">in</span> optimization algorithms<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### How do these tools handle LLM experiment tracking?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>MLflow leads <span style="color:#f92672">in</span> dedicated LLM tooling <span style="color:#66d9ef">with</span> its MLflow LLM module, Prompt Management, <span style="color:#f92672">and</span> AI Gateway<span style="color:#f92672">.</span> W<span style="color:#f92672">&amp;</span>B offers Prompts <span style="color:#f92672">and</span> the newer Weave product <span style="color:#66d9ef">for</span> agent tracing<span style="color:#f92672">.</span> Neptune handles LLM experiments through its general metadata tracking <span style="color:#960050;background-color:#1e0010">—</span> you log prompts, responses, <span style="color:#f92672">and</span> metrics manually<span style="color:#f92672">.</span> For teams heavily invested <span style="color:#f92672">in</span> LLM development, MLflow <span style="color:#f92672">or</span> W<span style="color:#f92672">&amp;</span>B provide more specialized features<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Can I migrate experiments between these platforms?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Migration <span style="color:#f92672">is</span> possible but <span style="color:#f92672">not</span> seamless<span style="color:#f92672">.</span> Each platform uses its own data model <span style="color:#f92672">and</span> storage format<span style="color:#f92672">.</span> The most practical approach <span style="color:#f92672">is</span> to maintain parallel logging during a transition period <span style="color:#960050;background-color:#1e0010">—</span> log the same experiment to both the old <span style="color:#f92672">and</span> new platform <span style="color:#66d9ef">for</span> <span style="color:#ae81ff">30</span><span style="color:#f92672">-</span><span style="color:#ae81ff">60</span> days<span style="color:#f92672">.</span> For MLflow specifically, the open<span style="color:#f92672">-</span>source nature means you can export the SQLite<span style="color:#f92672">/</span>PostgreSQL backing store <span style="color:#f92672">and</span> transform it<span style="color:#f92672">.</span> W<span style="color:#f92672">&amp;</span>B <span style="color:#f92672">and</span> Neptune offer API access to retrieve run data <span style="color:#66d9ef">for</span> export<span style="color:#f92672">.</span> Plan <span style="color:#66d9ef">for</span> a manual migration effort rather than expecting automated tooling<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Recommended Infrastructure</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>To run any of the tools above reliably <span style="color:#ae81ff">24</span><span style="color:#f92672">/</span><span style="color:#ae81ff">7</span>, infrastructure matters: <span style="color:#f92672">-</span> <span style="color:#f92672">**</span>[DigitalOcean](https:<span style="color:#f92672">//</span>m<span style="color:#f92672">.</span>do<span style="color:#f92672">.</span>co<span style="color:#f92672">/</span>c<span style="color:#f92672">/</span>eca87ac14ee0)<span style="color:#f92672">**</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">200</span> free credit, <span style="color:#ae81ff">14</span><span style="color:#f92672">+</span> <span style="color:#66d9ef">global</span> regions, one<span style="color:#f92672">-</span>click droplets <span style="color:#66d9ef">for</span> AI<span style="color:#f92672">/</span>dev workloads<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">**</span>[HTStack](https:<span style="color:#f92672">//</span>my<span style="color:#f92672">.</span>htstack<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>aff<span style="color:#f92672">.</span>php<span style="color:#960050;background-color:#1e0010">?</span>aff<span style="color:#f92672">=</span><span style="color:#ae81ff">27187</span>)<span style="color:#f92672">**</span> <span style="color:#960050;background-color:#1e0010">—</span> Hong Kong VPS <span style="color:#66d9ef">with</span> low latency <span style="color:#66d9ef">for</span> mainland China access<span style="color:#f92672">.</span> This <span style="color:#f92672">is</span> the same IDC hosting dibi8<span style="color:#f92672">.</span>com <span style="color:#960050;background-color:#1e0010">—</span> production<span style="color:#f92672">-</span>proven<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>Affiliate links <span style="color:#960050;background-color:#1e0010">—</span> no extra cost to you, helps keep dibi8<span style="color:#f92672">.</span>com running<span style="color:#f92672">.*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;MLflow vs Weights &amp; Biases vs Neptune: MLOps Experiment Tracking Platform Guide 2024&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-05-18&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-05-18&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/resources/mlops-platform-comparison-mlflow-wandb-neptune&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>script<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span></code></pre></div>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmlops-platform-comparison-mlflow-wandb-neptune%2f&text=MLflow%20vs%20Weights%20%26%20Biases%20vs%20Neptune%3a%20MLOps%20Experiment%20Tracking%20Platform%20Guide%202024" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmlops-platform-comparison-mlflow-wandb-neptune%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

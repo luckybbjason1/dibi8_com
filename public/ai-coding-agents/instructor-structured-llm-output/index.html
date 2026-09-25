@@ -1,0 +1,910 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install Instructor | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/instructor-structured-llm-output/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Install Instructor</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Install Instructor</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;Instructor: The Python Library That Forces LLMs to Outpu&hellip;
+description: &ldquo;Technical guide and comparison&rdquo;
+date: 2026-05-20T00:00:00+08:00
+lastmod: 2026-05-20T00:00:00+08:00
+tech_stack: []
+application_domain: Llm Frameworks
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: MIT
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-20&rdquo;
+draft: false
+categories: [&ldquo;llm-frameworks&rdquo;]
+tags: [&ldquo;instructor&rdquo;]
+aliases:</p>
+<ul>
+<li>/posts/instructor-structured-llm-output/-</li>
+</ul>
+<hr>
+<p><em>Last updated: May 19, 2026</em></p>
+<p>If you&rsquo;ve ever tried to get a Large Language Model to consistently output valid JSON, you know the pain. One response is perfect. The next misses a closing brace. The third includes explanatory text before the JSON. The fourth returns valid JSON but with the wrong schema. This inconsistency makes LLMs unreliable for production applications that need structured data — until <strong>Instructor</strong> arrived on the scene.</p>
+<p>Instructor is a Python library that patches the OpenAI client (and 10+ other LLM providers) to guarantee structured, type-safe, validated outputs using <strong>Pydantic models</strong>. It transforms the wild west of LLM text generation into a predictable, software-engineered process. With 11,000+ GitHub stars, MIT license, and a thriving community, Instructor has become the de facto standard for structured LLM output in Python. This guide covers everything from basic setup to advanced multi-provider patterns in 2026.</p>
+<hr>
+<h2 id="what-is-instructor-and-why-does-it-matter">What Is Instructor and Why Does It Matter?</h2>
+<p>Instructor, created by <strong>Jason Liu</strong> (```jxnl````), is a lightweight Python library that sits on top of your existing LLM client and enforces structured output through Pydantic model validation. Instead of receiving raw text from an LLM and praying it parses correctly, you define a Pydantic schema and Instructor ensures every response conforms to that schema — or automatically retries with a corrected prompt.</p>
+<p>The problem Instructor solves is fundamental: LLMs generate text, but applications need data. Every developer who has shipped an LLM feature to production has experienced the 2 AM pager when <code>json.loads()</code> crashes because the model added &ldquo;Here&rsquo;s your result:&rdquo; before the JSON object. Instructor eliminates this entire class of errors.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install Instructor</span>
+</span></span><span style="display:flex;"><span>pip install instructor
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install your preferred LLM client (OpenAI shown)</span>
+</span></span><span style="display:flex;"><span>pip install openai
+</span></span></code></pre></div><hr>
+<h2 id="core-concept-patching-the-openai-client">Core Concept: Patching the OpenAI Client</h2>
+<p>Instructor&rsquo;s magic happens through <strong>client patching</strong>. Instead of calling OpenAI&rsquo;s API directly, you create a patched client that intercepts responses, validates them against your Pydantic model, and handles failures automatically.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> instructor
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> openai <span style="color:#f92672">import</span> OpenAI
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Patch the OpenAI client with Instructor</span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> instructor<span style="color:#f92672">.</span>from_openai(OpenAI())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define your output schema as a Pydantic model</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">UserProfile</span>(BaseModel): name: str
+</span></span><span style="display:flex;"><span>    age: int
+</span></span><span style="display:flex;"><span>    email: str
+</span></span><span style="display:flex;"><span>    interests: list[str]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Extract structured data from natural language</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">extract_profile</span>(user_description: <span style="color:#e6db74">&#34;Technical guide and comparison&#34;</span>
+</span></span><span style="display:flex;"><span>        model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>        response_model<span style="color:#f92672">=</span>UserProfile,
+</span></span><span style="display:flex;"><span>        messages<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Extract a user profile from this description: &#34;</span>Technical guide <span style="color:#f92672">and</span> comparison<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        ]
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Usage</span>
+</span></span><span style="display:flex;"><span>profile <span style="color:#f92672">=</span> extract_profile(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Sarah is a 28-year-old software engineer from Seattle. &#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;She loves hiking, photography, and reading sci-fi novels. &#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Her email is sarah.chen@example.com&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(profile)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># UserProfile(name=Sarah, age=28, email=&#39;sarah.chen@example.com&#39;, </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#             interests=[hiking, photography, &#39;reading sci-fi novels&#39;])</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Access typed fields directly</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Name: </span><span style="color:#e6db74">{</span>profile<span style="color:#f92672">.</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">, Age: </span><span style="color:#e6db74">{</span>profile<span style="color:#f92672">.</span>age<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Email valid: </span><span style="color:#e6db74">{</span><span style="color:#e6db74">&#39;@&#39;</span> <span style="color:#f92672">in</span> profile<span style="color:#f92672">.</span>email<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><p>Notice how <code>response_model=UserProfile</code> tells Instructor to validate the LLM&rsquo;s output against our schema. The result is a fully typed Pydantic object — not a raw string or untyped dictionary.</p>
+<hr>
+<h2 id="handling-validation-failures-with-automatic-retry">Handling Validation Failures with Automatic Retry</h2>
+<p>What happens when the LLM produces invalid output? Instructor&rsquo;s default behavior is to <strong>re-ask</strong> the model with feedback about what went wrong, creating a self-correcting loop.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel, Field, field_validator
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ValidatedProduct</span>(BaseModel): name: str <span style="color:#f92672">=</span> Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Product name, max 50 characters&#34;</span>)
+</span></span><span style="display:flex;"><span>    price: float <span style="color:#f92672">=</span> Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Price in USD, must be positive&#34;</span>)
+</span></span><span style="display:flex;"><span>    category: str <span style="color:#f92672">=</span> Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;One of: electronics, clothing, food, books&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@field_validator</span>(category)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">validate_category</span>(cls, v): allowed <span style="color:#f92672">=</span> {electronics, clothing, food, books}
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> v<span style="color:#f92672">.</span>lower() <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> allowed: <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Category must be one of: </span><span style="color:#e6db74">{</span>allowed<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> v<span style="color:#f92672">.</span>lower()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@field_validator</span>(price)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">validate_price</span>(cls, v): <span style="color:#66d9ef">if</span> v <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">0</span>: <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;Price must be positive&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> round(v, <span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Instructor automatically retries on validation failure</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">parse_product</span>(description: <span style="color:#e6db74">&#34;Technical guide and comparison&#34;</span>
+</span></span><span style="display:flex;"><span>        model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>        response_model<span style="color:#f92672">=</span>ValidatedProduct,
+</span></span><span style="display:flex;"><span>        max_retries<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>,  <span style="color:#75715e"># Retry up to 3 times with feedback</span>
+</span></span><span style="display:flex;"><span>        messages<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>            {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Parse this product: </span><span style="color:#e6db74">{</span>description<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>}
+</span></span><span style="display:flex;"><span>        ]
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># This will work even if the first attempt has issues</span>
+</span></span><span style="display:flex;"><span>product <span style="color:#f92672">=</span> parse_product(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Wireless Bluetooth headphones with noise cancellation, priced at $79.99. &#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Electronics category.&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(product)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ValidatedProduct(name=&#39;Wireless Bluetooth Headphones&#39;, </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#                  price=79.99, category=electronics)</span>
+</span></span></code></pre></div><hr>
+<h2 id="nested-models-and-complex-schemas">Nested Models and Complex Schemas</h2>
+<p>Real-world applications need more than flat structures. Instructor handles arbitrarily nested Pydantic models with ease.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Optional, List
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel, Field
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Address</span>(BaseModel): street: str
+</span></span><span style="display:flex;"><span>    city: str
+</span></span><span style="display:flex;"><span>    state: str <span style="color:#f92672">=</span> Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2-letter state code&#34;</span>)
+</span></span><span style="display:flex;"><span>    zip_code: str
+</span></span><span style="display:flex;"><span>    country: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;US&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OrderItem</span>(BaseModel): product_name: str
+</span></span><span style="display:flex;"><span>    quantity: int <span style="color:#f92672">=</span> Field(ge<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Must be at least 1&#34;</span>)
+</span></span><span style="display:flex;"><span>    unit_price: float <span style="color:#f92672">=</span> Field(gt<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">total</span>(self) <span style="color:#f92672">-&gt;</span> float: <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>quantity <span style="color:#f92672">*</span> self<span style="color:#f92672">.</span>unit_price
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomerOrder</span>(BaseModel): customer_name: str
+</span></span><span style="display:flex;"><span>    customer_email: str
+</span></span><span style="display:flex;"><span>    shipping_address: Address
+</span></span><span style="display:flex;"><span>    billing_address: Optional[Address] <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>    items: List[OrderItem]
+</span></span><span style="display:flex;"><span>    order_notes: Optional[str] <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@property</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">grand_total</span>(self) <span style="color:#f92672">-&gt;</span> float: <span style="color:#66d9ef">return</span> sum(item<span style="color:#f92672">.</span>total <span style="color:#66d9ef">for</span> item <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>items)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">extract_order</span>(email_text: str) <span style="color:#f92672">-&gt;</span> CustomerOrder: <span style="color:#66d9ef">return</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>        model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>        response_model<span style="color:#f92672">=</span>CustomerOrder,
+</span></span><span style="display:flex;"><span>        messages<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>            {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Extract order from email:</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">{</span>email_text<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>}
+</span></span><span style="display:flex;"><span>        ]
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>order <span style="color:#f92672">=</span> extract_order(<span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Hi, I&#39;d like to place an order.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Customer: John Smith (john.smith@email.com)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Ship to: 123 Oak Street, San Francisco, CA 94102
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Items: - MacBook Pro M3, qty 1, $1999
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- USB-C Hub, qty 2, $49 each
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Please gift wrap the laptop.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Customer: </span><span style="color:#e6db74">{</span>order<span style="color:#f92672">.</span>customer_name<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Shipping to: </span><span style="color:#e6db74">{</span>order<span style="color:#f92672">.</span>shipping_address<span style="color:#f92672">.</span>city<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Order total: $</span><span style="color:#e6db74">{</span>order<span style="color:#f92672">.</span>grand_total<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Optional fields with default values are handled gracefully</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Optional
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Event</span>(BaseModel): name: str
+</span></span><span style="display:flex;"><span>    start_time: datetime
+</span></span><span style="display:flex;"><span>    end_time: Optional[datetime] <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>    location: Optional[str] <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>    description: <span style="color:#e6db74">&#34;Technical guide and comparison&#34;</span>
+</span></span><span style="display:flex;"><span>event <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o-mini&#34;</span>,
+</span></span><span style="display:flex;"><span>    response_model<span style="color:#f92672">=</span>Event,
+</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Team standup meeting tomorrow at 10 AM in Conference Room B&#34;</span>
+</span></span><span style="display:flex;"><span>    }]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Event: </span><span style="color:#e6db74">{</span>event<span style="color:#f92672">.</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Starts: </span><span style="color:#e6db74">{</span>event<span style="color:#f92672">.</span>start_time<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Location: </span><span style="color:#e6db74">{</span>event<span style="color:#f92672">.</span>location<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)  <span style="color:#75715e"># Conference Room B</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Description: &#39;</span><span style="color:#e6db74">{</span>event<span style="color:#f92672">.</span>description<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;&#34;</span>)  <span style="color:#75715e"># Uses default empty string</span>
+</span></span></code></pre></div><hr>
+<h2 id="multi-provider-support-beyond-openai">Multi-Provider Support: Beyond OpenAI</h2>
+<p>Instructor doesn&rsquo;t lock you into OpenAI. It supports 10+ LLM providers with the same API, making vendor switching effortless.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># --- Anthropic Claude ---</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> anthropic
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> instructor
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>anthropic_client <span style="color:#f92672">=</span> instructor<span style="color:#f92672">.</span>from_anthropic(anthropic<span style="color:#f92672">.</span>Anthropic())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> anthropic_client<span style="color:#f92672">.</span>messages<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;claude-sonnet-4-20250514&#34;</span>,
+</span></span><span style="display:flex;"><span>    response_model<span style="color:#f92672">=</span>UserProfile,
+</span></span><span style="display:flex;"><span>    max_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">1024</span>,
+</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Extract: Mike is 35, likes tennis&#34;</span>}]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(result)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># --- Google Gemini ---</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> google.generativeai <span style="color:#66d9ef">as</span> genai
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> instructor
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>gemini_client <span style="color:#f92672">=</span> instructor<span style="color:#f92672">.</span>from_gemini(
+</span></span><span style="display:flex;"><span>    genai<span style="color:#f92672">.</span>GenerativeModel(<span style="color:#e6db74">&#34;gemini-2.5-pro&#34;</span>)
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> gemini_client<span style="color:#f92672">.</span>generate_content(
+</span></span><span style="display:flex;"><span>    response_model<span style="color:#f92672">=</span>UserProfile,
+</span></span><span style="display:flex;"><span>    contents<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;Extract: Lisa is 29, likes cooking and yoga&#34;</span>]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(result)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># --- Cohere ---</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> cohere
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> instructor
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cohere_client <span style="color:#f92672">=</span> instructor<span style="color:#f92672">.</span>from_cohere(cohere<span style="color:#f92672">.</span>Client())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> cohere_client<span style="color:#f92672">.</span>chat(
+</span></span><span style="display:flex;"><span>    response_model<span style="color:#f92672">=</span>UserProfile,
+</span></span><span style="display:flex;"><span>    message<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Extract: David is 42, likes golf and fishing&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(result)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Model configuration with system prompts and temperature</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CodeReview</span>(BaseModel): quality_score: int  <span style="color:#75715e"># 1-10</span>
+</span></span><span style="display:flex;"><span>    issues_found: list[str]
+</span></span><span style="display:flex;"><span>    suggestions: list[str]
+</span></span><span style="display:flex;"><span>    is_safe_to_merge: bool
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>review <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>    response_model<span style="color:#f92672">=</span>CodeReview,
+</span></span><span style="display:flex;"><span>    temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0.2</span>,  <span style="color:#75715e"># Lower temperature for more deterministic output</span>
+</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;system&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;You are a senior software engineer conducting code reviews.&#34;</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Review this function:</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">def divide(a, b):</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">    return a / b&#34;</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Quality: </span><span style="color:#e6db74">{</span>review<span style="color:#f92672">.</span>quality_score<span style="color:#e6db74">}</span><span style="color:#e6db74">/10&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Safe to merge: </span><span style="color:#e6db74">{</span>review<span style="color:#f92672">.</span>is_safe_to_merge<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><hr>
+<h2 id="batch-processing-for-high-volume-applications">Batch Processing for High-Volume Applications</h2>
+<p>When processing thousands of items, individual API calls are too slow. Instructor supports batch processing with asyncio for concurrent execution.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> instructor
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> openai <span style="color:#f92672">import</span> AsyncOpenAI
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use async client for batch processing</span>
+</span></span><span style="display:flex;"><span>async_client <span style="color:#f92672">=</span> instructor<span style="color:#f92672">.</span>from_openai(AsyncOpenAI())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SentimentResult</span>(BaseModel): text: str
+</span></span><span style="display:flex;"><span>    sentiment: str  <span style="color:#75715e"># &#34;positive&#34;, &#34;negative&#34;, &#34;neutral&#34;</span>
+</span></span><span style="display:flex;"><span>    confidence: float
+</span></span><span style="display:flex;"><span>    key_phrases: list[str]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">analyze_single</span>(text: str) <span style="color:#f92672">-&gt;</span> SentimentResult: <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> async_client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>        model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o-mini&#34;</span>,
+</span></span><span style="display:flex;"><span>        response_model<span style="color:#f92672">=</span>SentimentResult,
+</span></span><span style="display:flex;"><span>        messages<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>            {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Analyze sentiment: </span><span style="color:#e6db74">{</span>text<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>}
+</span></span><span style="display:flex;"><span>        ]
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">analyze_batch</span>(texts: list[str]) <span style="color:#f92672">-&gt;</span> list[SentimentResult]: <span style="color:#e6db74">&#34;&#34;&#34;Process multiple texts concurrently.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    tasks <span style="color:#f92672">=</span> [analyze_single(text) <span style="color:#66d9ef">for</span> text <span style="color:#f92672">in</span> texts]
+</span></span><span style="display:flex;"><span>    results <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>gather(<span style="color:#f92672">*</span>tasks)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> results
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Process 100 reviews concurrently</span>
+</span></span><span style="display:flex;"><span>texts <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;This product exceeded my expectations!&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Terrible quality, broke after one day.&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;It&#39;s okay, nothing special but does the job.&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># ... 97 more items</span>
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> asyncio<span style="color:#f92672">.</span>run(analyze_batch(texts))
+</span></span><span style="display:flex;"><span>positive <span style="color:#f92672">=</span> sum(<span style="color:#ae81ff">1</span> <span style="color:#66d9ef">for</span> r <span style="color:#f92672">in</span> results <span style="color:#66d9ef">if</span> r<span style="color:#f92672">.</span>sentiment <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;positive&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Positive: </span><span style="color:#e6db74">{</span>positive<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">{</span>len(results)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><hr>
+<h2 id="streaming-structured-output">Streaming Structured Output</h2>
+<p>For real-time applications, Instructor supports streaming partial results as they arrive from the LLM.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Iterable
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PartialArticle</span>(BaseModel): title: str
+</span></span><span style="display:flex;"><span>    sections: list[str]
+</span></span><span style="display:flex;"><span>    key_points: list[str]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Stream structured data as it&#39;s generated</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">stream_article</span>(topic: str) <span style="color:#f92672">-&gt;</span> Iterable[PartialArticle]: <span style="color:#66d9ef">return</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create_partial(
+</span></span><span style="display:flex;"><span>        model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>        response_model<span style="color:#f92672">=</span>PartialArticle,
+</span></span><span style="display:flex;"><span>        stream<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>        messages<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>            {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Write an article outline about: </span><span style="color:#e6db74">{</span>topic<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>}
+</span></span><span style="display:flex;"><span>        ]
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Consume partial results as they arrive</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> partial <span style="color:#f92672">in</span> stream_article(<span style="color:#e6db74">&#34;renewable energy trends 2026&#34;</span>): print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Title: </span><span style="color:#e6db74">{</span>partial<span style="color:#f92672">.</span>title<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Sections so far: </span><span style="color:#e6db74">{</span>len(partial<span style="color:#f92672">.</span>sections)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;)</span>
+</span></span></code></pre></div><hr>
+<h2 id="built-in-retry-with-re-asking">Built-in Retry with Re-asking</h2>
+<p>Instructor&rsquo;s retry system doesn&rsquo;t just repeat the request — it provides the LLM with specific feedback about what failed validation, enabling self-correction.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel, field_validator
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StrictDateRange</span>(BaseModel): start_date: str <span style="color:#f92672">=</span> Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;YYYY-MM-DD format&#34;</span>)
+</span></span><span style="display:flex;"><span>    end_date: str <span style="color:#f92672">=</span> Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;YYYY-MM-DD format, must be after start&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@field_validator</span>(start_date, end_date)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">validate_date_format</span>(cls, v): <span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+</span></span><span style="display:flex;"><span>        datetime<span style="color:#f92672">.</span>strptime(v, <span style="color:#e6db74">&#34;%Y-%m-</span><span style="color:#e6db74">%d</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> v
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@field_validator</span>(end_date)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@classmethod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">validate_order</span>(cls, end, info): start <span style="color:#f92672">=</span> info<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>get(start_date)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> start <span style="color:#f92672">and</span> end <span style="color:#f92672">&lt;=</span> start: <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ValueError</span>(<span style="color:#e6db74">&#34;end_date must be after start_date&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> end
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Instructor will retry with specific validation error feedback</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">extract_date_range</span>(text: str) <span style="color:#f92672">-&gt;</span> StrictDateRange: <span style="color:#66d9ef">return</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>        model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>        response_model<span style="color:#f92672">=</span>StrictDateRange,
+</span></span><span style="display:flex;"><span>        max_retries<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>        messages<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>            {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Extract date range: </span><span style="color:#e6db74">{</span>text<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>}
+</span></span><span style="display:flex;"><span>        ]
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Even if the model initially swaps dates or uses wrong format,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Instructor will re-ask with the specific error message</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span>: result <span style="color:#f92672">=</span> extract_date_range(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;The project ran from March 15, 2026 to January 10, 2026&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    print(result)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Failed after max retries: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><hr>
+<h2 id="using-literals-for-constrained-classification">Using Literals for Constrained Classification</h2>
+<p>For classification tasks, use Python&rsquo;s <code>Literal</code> type to constrain outputs to specific values.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Literal
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SupportTicket</span>(BaseModel): customer_query: str
+</span></span><span style="display:flex;"><span>    category: Literal[
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;billing&#34;</span>, 
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;technical_support&#34;</span>, 
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;account_access&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;feature_request&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;refund&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;general_inquiry&#34;</span>
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>    priority: Literal[<span style="color:#e6db74">&#34;low&#34;</span>, <span style="color:#e6db74">&#34;medium&#34;</span>, <span style="color:#e6db74">&#34;high&#34;</span>, <span style="color:#e6db74">&#34;urgent&#34;</span>]
+</span></span><span style="display:flex;"><span>    suggested_response: str
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">classify_ticket</span>(ticket_text: str) <span style="color:#f92672">-&gt;</span> SupportTicket: <span style="color:#66d9ef">return</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>        model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o-mini&#34;</span>,
+</span></span><span style="display:flex;"><span>        response_model<span style="color:#f92672">=</span>SupportTicket,
+</span></span><span style="display:flex;"><span>        messages<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;system&#34;</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;You are a customer support triage specialist.&#34;</span>
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>            {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Classify this ticket:</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">{</span>ticket_text<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>}
+</span></span><span style="display:flex;"><span>        ]
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Classification is guaranteed to be one of the allowed values</span>
+</span></span><span style="display:flex;"><span>ticket <span style="color:#f92672">=</span> classify_ticket(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;I was charged twice for my subscription this month. &#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Please refund the duplicate charge immediately.&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Category: </span><span style="color:#e6db74">{</span>ticket<span style="color:#f92672">.</span>category<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)  <span style="color:#75715e"># Always &#34;billing&#34;</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Priority: </span><span style="color:#e6db74">{</span>ticket<span style="color:#f92672">.</span>priority<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)  <span style="color:#75715e"># Always one of the 4 values</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Extracting structured data from long documents</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ExtractedFact</span>(BaseModel): subject: str
+</span></span><span style="display:flex;"><span>    predicate: str
+</span></span><span style="display:flex;"><span>    object_: str
+</span></span><span style="display:flex;"><span>    confidence: float
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DocumentExtraction</span>(BaseModel): title: str
+</span></span><span style="display:flex;"><span>    facts: list[ExtractedFact]
+</span></span><span style="display:flex;"><span>    entities: list[str]
+</span></span><span style="display:flex;"><span>    summary: str
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>extraction <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>    response_model<span style="color:#f92672">=</span>DocumentExtraction,
+</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;content&#34;</span>: (
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Extract structured information from this text:</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Apple Inc. was founded by Steve Jobs and Steve Wozniak &#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;on April 1, 1976. The company is headquartered in &#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Cupertino, California. Tim Cook became CEO in 2011.&#34;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>    }]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Title: </span><span style="color:#e6db74">{</span>extraction<span style="color:#f92672">.</span>title<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Entities found: </span><span style="color:#e6db74">{</span>extraction<span style="color:#f92672">.</span>entities<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Total facts: </span><span style="color:#e6db74">{</span>len(extraction<span style="color:#f92672">.</span>facts)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><hr>
+<h2 id="integration-with-fastapi-for-production-apis">Integration with FastAPI for Production APIs</h2>
+<p>Instructor shines in API development. Here&rsquo;s a complete FastAPI endpoint with structured LLM output: `````python
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+import instructor
+from openai import OpenAI</p>
+<p>app = FastAPI(title=&ldquo;Structured LLM API&rdquo;)
+client = instructor.from_openai(OpenAI())</p>
+<h1 id="request-schema">Request schema</h1>
+<p>class ExtractionRequest(BaseModel): text: str
+extract_fields: list[str]</p>
+<h1 id="response-schema">Response schema</h1>
+<p>class ExtractedData(BaseModel): entities: list[dict]
+relationships: list[dict]
+summary: str</p>
+<p>@app.post(&quot;/extract&rdquo;, response_model=ExtractedData)
+async def extract_entities(request: ExtractionRequest): &ldquo;&ldquo;&ldquo;Extract structured entities from unstructured text.&rdquo;&rdquo;&rdquo;
+try: result = client.chat.completions.create(
+model=&ldquo;gpt-4o&rdquo;,
+response_model=ExtractedData,
+messages=[
+{
+&ldquo;role&rdquo;: &ldquo;user&rdquo;,
+&ldquo;content&rdquo;: (
+f&quot;Extract entities from this text. &quot;
+f&quot;Focus on: {&rsquo;, &lsquo;.join(request.extract_fields)}\n\n&quot;
+f&quot;Text: {request.text}&quot;
+)
+}
+]
+)
+return result
+except Exception as e: raise HTTPException(status_code=500, detail=str(e))</p>
+<h1 id="run-with-uvicorn-mainapp-reload">Run with: uvicorn main:app &ndash;reload</h1>
+<pre tabindex="0"><code>
+* * *
+
+## Advanced: Function Calling Alternative
+
+Instructor can replace OpenAI&#39;s function calling with more powerful Pydantic-based schemas.
+
+`````python
+from typing import Type
+
+class SearchQuery(BaseModel): &#34;&#34;&#34;Generated search query with parameters&#34;&#34;&#34;
+    keywords: list[str]
+    filters: dict[str, str]
+    sort_by: Literal[&#34;relevance&#34;, &#34;date&#34;, &#34;price_asc&#34;, &#34;price_desc&#34;]
+    
+def generate_search(user_request: str) -&gt; SearchQuery: return client.chat.completions.create(
+        model=&#34;gpt-4o&#34;,
+        response_model=SearchQuery,
+        messages=[
+            {
+                &#34;role&#34;: &#34;user&#34;,
+                &#34;content&#34;: f&#34;Generate an optimized search query for: {user_request}&#34;
+            }
+        ]
+    )
+
+query = generate_search(
+    &#34;Find wireless earbuds under $100 with good battery life, newest first&#34;
+)
+print(query.keywords)  # [&#39;wireless earbuds&#39;, bluetooth]
+print(query.filters)   # {max_price: 100}
+print(query.sort_by)   # date
+</code></pre><hr>
+<h2 id="error-handling-and-logging">Error Handling and Logging</h2>
+<p>Production systems need visibility into Instructor&rsquo;s retry behavior. Configure logging for debugging.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> logging
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> instructor
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Enable detailed logging</span>
+</span></span><span style="display:flex;"><span>instructor<span style="color:#f92672">.</span>enable_logging()
+</span></span><span style="display:flex;"><span>logging<span style="color:#f92672">.</span>basicConfig(level<span style="color:#f92672">=</span>logging<span style="color:#f92672">.</span>DEBUG)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or configure specific loggers</span>
+</span></span><span style="display:flex;"><span>logger <span style="color:#f92672">=</span> logging<span style="color:#f92672">.</span>getLogger(<span style="color:#e6db74">&#34;instructor&#34;</span>)
+</span></span><span style="display:flex;"><span>logger<span style="color:#f92672">.</span>setLevel(logging<span style="color:#f92672">.</span>INFO)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add file handler for production</span>
+</span></span><span style="display:flex;"><span>handler <span style="color:#f92672">=</span> logging<span style="color:#f92672">.</span>FileHandler(<span style="color:#e6db74">&#34;instructor.log&#34;</span>)
+</span></span><span style="display:flex;"><span>handler<span style="color:#f92672">.</span>setFormatter(logging<span style="color:#f92672">.</span>Formatter(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#39;</span><span style="color:#e6db74">%(asctime)s</span><span style="color:#e6db74"> - </span><span style="color:#e6db74">%(name)s</span><span style="color:#e6db74"> - </span><span style="color:#e6db74">%(levelname)s</span><span style="color:#e6db74"> - </span><span style="color:#e6db74">%(message)s</span><span style="color:#e6db74">&#39;</span>
+</span></span><span style="display:flex;"><span>))
+</span></span><span style="display:flex;"><span>logger<span style="color:#f92672">.</span>addHandler(handler)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># All retry attempts and validation errors are now logged</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>    response_model<span style="color:#f92672">=</span>UserProfile,
+</span></span><span style="display:flex;"><span>    max_retries<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Extract: Jane, age 25, likes art&#34;</span>}]
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><hr>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="what-llm-providers-does-instructor-support">What LLM providers does Instructor support?</h3>
+<p>Instructor supports <strong>OpenAI</strong> (GPT-4, GPT-4o, GPT-3.5), <strong>Anthropic</strong> (Claude 3/3.5/4 Sonnet, Opus, Haiku), <strong>Google</strong> (Gemini 1.5/2.0/2.5 Pro, Flash), <strong>Cohere</strong>, <strong>Mistral</strong>, <strong>Groq</strong>, <strong>Ollama</strong> (local models), <strong>Azure OpenAI</strong>, <strong>AWS Bedrock</strong>, <strong>Fireworks AI</strong>, and <strong>Together AI</strong>. The same <code>response_model</code> API works identically across all providers.</p>
+<h3 id="how-is-instructor-different-from-openais-json-mode">How is Instructor different from OpenAI&rsquo;s JSON mode?</h3>
+<p>OpenAI&rsquo;s JSON mode guarantees valid JSON syntax but provides <strong>no schema validation</strong>. The model can still return JSON with wrong field names, incorrect types, missing required fields, or values outside expected ranges. Instructor adds a Pydantic validation layer that catches all these issues and triggers automatic retry with corrective feedback. JSON mode is a syntax guarantee; Instructor is a semantic guarantee.</p>
+<h3 id="does-instructor-work-with-localopen-source-models">Does Instructor work with local/open-source models?</h3>
+<p>Yes. Instructor works with any model accessible through a supported client library. For local models, use the <strong>Ollama</strong> or <strong>llama-cpp-python</strong> integrations. For models hosted on vLLM or TGI, use the OpenAI-compatible API. The key requirement is that the model has sufficient instruction-following capability to generate structured text that maps to JSON.</p>
+<h3 id="what-is-the-performance-overhead-of-instructor">What is the performance overhead of Instructor?</h3>
+<p>Instructor adds minimal overhead — typically <strong>10-50ms</strong> per call for Pydantic validation. The retry mechanism adds latency only when validation fails (which should be &lt; 5% of calls with capable models). For high-throughput applications, use <code>gpt-4o-mini</code> or local models with async batch processing. The overhead is negligible compared to the LLM API latency itself (typically 500ms-5s).</p>
+<h3 id="how-does-the-retryre-asking-mechanism-work">How does the retry/re-asking mechanism work?</h3>
+<p>When validation fails, Instructor catches the Pydantic <code>ValidationError</code>, extracts the specific error messages (e.g., &ldquo;age must be a positive integer&rdquo;), and sends a new request to the LLM that includes: the original prompt, the incorrect response, and the validation error details. This creates a self-correcting loop that resolves most issues in 1-2 retries. You control the maximum retries via the <code>max_retries</code> parameter.</p>
+<h3 id="can-i-use-instructor-with-asyncawait-patterns">Can I use Instructor with async/await patterns?</h3>
+<p>Yes. Instructor fully supports async through <code>AsyncOpenAI</code>, <code>AsyncAnthropic</code>, and other async clients. Use <code>await client.chat.completions.create()</code> for single calls or batch with <code>asyncio.gather()</code> for concurrent processing. Streaming is also supported in async mode via <code>create_partial()</code>.</p>
+<h3 id="is-instructor-suitable-for-enterprise-production-deployments">Is Instructor suitable for enterprise production deployments?</h3>
+<p>Absolutely. Instructor&rsquo;s 11,000+ GitHub stars, MIT license, active maintenance, and Pydantic-based architecture make it enterprise-ready. It integrates cleanly with FastAPI, monitoring systems (Datadog, Prometheus), and structured logging. The validation layer adds reliability that raw LLM APIs cannot match. Many Fortune 500 companies use Instructor in production data pipelines.</p>
+<hr>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.</li>
+</ul>
+<p><em>Affiliate links — they don&rsquo;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Instructor transforms LLMs from unpredictable text generators into reliable structured data sources. By combining the power of Pydantic validation with intelligent retry logic, it solves the #1 problem facing production LLM deployments: output consistency. Whether you&rsquo;re extracting entities from documents, classifying support tickets, or building complex multi-step agent systems, Instructor provides the type safety and reliability that professional applications demand.</p>
+<p>The library&rsquo;s multi-provider support means you&rsquo;re never locked into a single LLM vendor. Its seamless integration with FastAPI, async patterns, and streaming makes it suitable for everything from background batch jobs to real-time APIs. With 11,000+ stars and an active community, Instructor has earned its place as an essential tool in the modern AI developer&rsquo;s toolkit.</p>
+<p>If you&rsquo;re still parsing raw LLM outputs with ````json.loads()``` and crossing your fingers, it&quot;s time to upgrade. Install Instructor today and experience what it means to have <strong>100% valid JSON, 100% of the time</strong>.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Instructor: The Python Library That Forces LLMs to Output Valid JSON 100% of the Time — 2026 Guide&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-20&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-20&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/instructor-structured-llm-output%22">https://dibi8.com/resources/instructor-structured-llm-output"</a>
+}
+}
+</script></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p>
+<p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p>
+<p><strong>问：如何评估LLM框架的性能？</strong></p>
+<p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p>
+<p><strong>问：开源LLM框架的商业使用限制？</strong></p>
+<p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p>
+<p><strong>问：是否需要GPU才能运行LLM框架？</strong></p>
+<p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p>
+<p><strong>问：企业级部署的最佳实践？</strong></p>
+<p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2finstructor-structured-llm-output%2f&text=Install%20Instructor" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2finstructor-structured-llm-output%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

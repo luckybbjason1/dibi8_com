@@ -1,0 +1,722 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemPalace: The Best-Benchmarked Open-Source AI Memory System Saves 96.6% of R@5 on LongMemEval — Zero API Calls | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/mempalace-open-source-ai-memory-system/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">MemPalace: The Best-Benchmarked Open-Source AI Memory System Saves 96.6% of R@5 on LongMemEval — Zero API Calls</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">MemPalace: The Best-Benchmarked Open-Source AI Memory System Saves 96.6% of R@5 on LongMemEval — Zero API Calls</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <h1 id="mempalace-the-best-benchmarked-open-source-ai-memory-system-saves-966-of-r5-on-longmemeval--zero-api-calls">MemPalace: The Best-Benchmarked Open-Source AI Memory System Saves 96.6% of R@5 on LongMemEval — Zero API Calls</h1>
+<hr>
+<h2 id="tldr">TL;DR</h2>
+<p>MemPalace is a local-first AI memory system that stores conversation history as <strong>verbatim text</strong> and retrieves it with semantic search. It achieves <strong>96.6% R@5 raw</strong> on LongMemEval — the best benchmarked score for any open-source memory system — with <strong>zero API calls</strong>. It&rsquo;s built for developers who want their AI agents to remember everything without sending data to any external service.</p>
+<p>| Metric | MemPalace | Mem0 | Memory Bank |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Benchmark | 96.6% R@5 raw | 78.2% R@5 | 71.4% R@5 |
+| API Calls | 0 | 1-3 per session | 5-8 per session |
+| Storage | Local-first | Cloud-dependent | Hybrid |
+| Install | ```uv tool install mempalace<code>|</code>pip install mem0```` | Docker only |</p>
+<hr>
+<h2 id="what-it-is">What It Is</h2>
+<p>MemPalace solves one problem: <strong>AI agents forget what you told them last week.</strong></p>
+<p>It stores your conversation history as verbatim text — no summarization, no extraction, no paraphrasing. The index is structured: people and projects become <em>wings</em>, topics become <em>rooms</em>, and original content lives in <em>drawers</em> — so searches can be scoped rather than run against a flat corpus.</p>
+<p>The retrieval layer is pluggable. The current default is <strong>ChromaDB</strong>; alternative backends can be dropped in without touching the rest of the system. Nothing leaves your machine unless you opt in.</p>
+<p><strong>Key capabilities:</strong></p>
+<ul>
+<li>Verbatim storage of conversation history</li>
+<li>Semantic search with structured indexing (wings/rooms/drawers)</li>
+<li>Pluggable backend (ChromaDB default, custom backends supported)</li>
+<li>96.6% R@5 raw on LongMemEval benchmark</li>
+<li>Zero external API calls</li>
+<li>Integrates with Claude Code, Cursor, Windsurf, and any MCP-compatible agent</li>
+</ul>
+<hr>
+<h2 id="how-it-works-30-seconds">How It Works (30 Seconds)</h2>
+<pre tabindex="0"><code>Your Conversation → MemPalace Index (Local)
+                         ↓
+                Semantic Search Query
+                         ↓
+              Retrieved Context (Wings/Rooms/Drawers)
+                         ↓
+              Agent Gets Structured Memory
+</code></pre><p>MemPalace works in three layers: <strong>Layer 1 — Storage:</strong> Every conversation is stored verbatim. No AI processing, no summarization. The original text is preserved exactly as written.</p>
+<p><strong>Layer 2 — Index:</strong> Conversations are structured into a knowledge graph. People and projects become <em>wings</em>, topics become <em>rooms</em>, and original content lives in <em>drawers</em>. This structured index enables scoped searches instead of flat corpus searches.</p>
+<p><strong>Layer 3 — Retrieval:</strong> When an agent needs context, it queries the pluggable retrieval layer (default: ChromaDB). Results are returned as structured context, not raw text.</p>
+<p>The retrieval layer uses semantic search with hybrid keyword boosting. By default, MemPalace uses ChromaDB with the <code>all-MiniLM-L6-v2</code> embedding model, but you can swap in any backend that implements the <code>mempalace/backends/base.py</code> interface. This includes: - <code>chromadb</code>: Default backend, good for most use cases</p>
+<ul>
+<li><code>qdrant</code>: Faster for large datasets, supports filtering</li>
+<li><code>weaviate</code>: Production-ready, supports GraphQL queries</li>
+<li>Custom backends: Implement the base interface for any vector database</li>
+</ul>
+<hr>
+<h2 id="auto-save-hooks">Auto-Save Hooks</h2>
+<p>MemPalace can automatically save conversations from supported agents. For Claude Code, you need to configure auto-save hooks: `````bash</p>
+<h1 id="enable-auto-save-for-claude-code">Enable auto-save for Claude Code</h1>
+<p>mempalace hooks enable claude-code</p>
+<h1 id="view-current-hooks">View current hooks</h1>
+<p>mempalace hooks list</p>
+<h1 id="test-the-hooks">Test the hooks</h1>
+<p>mempalace hooks test</p>
+<pre tabindex="0"><code>
+The hooks work by intercepting agent sessions and automatically storing them to your memory palace. This means you don&#39;t have to manually save conversations — they&#39;re persisted as you work.
+
+* * *
+
+## Requirements
+
+- Python 3.9+
+- ````uv```` or ````pip```` for installation
+- ~500MB disk space for embedding model and initial index
+- ~500MB RAM for ChromaDB operation (more for large datasets)
+
+* * *
+
+## Quickstart (60 Seconds)
+
+Install MemPalace in an isolated environment to avoid PEP 668 errors: `````bash
+# Recommended: uv tool install (isolated on your PATH)
+uv tool install mempalace
+
+# Initialize for your project
+mempalace init ~/projects/myapp
+
+# Start Claude Code with mempalace hooks
+claude
+</code></pre><p>Or using pipx: `````bash
+pipx install mempalace
+mempalace init ~/projects/myapp</p>
+<pre tabindex="0"><code>
+Or inside a virtualenv (if you want ``import mempalace`` available): `````bash
+python -m venv .venv &amp;&amp; source .venv/bin/activate
+pip install mempalace
+mempalace init ~/projects/myapp
+</code></pre><hr>
+<h2 id="when-to-use--when-to-skip">When to Use / When to Skip</h2>
+<p><strong>Great fit if you…</strong></p>
+<ul>
+<li>Run AI coding agents daily and want persistent memory across sessions</li>
+<li>Work across multiple agents and want shared memory via MCP</li>
+<li>Need verbatim recall — originals always retrievable</li>
+<li>Want zero external API calls for privacy</li>
+</ul>
+<p><strong>Skip it if you…</strong></p>
+<ul>
+<li>Only use a single provider&rsquo;s native memory and don&rsquo;t need cross-agent sync</li>
+<li>Work in a sandboxed environment where local processes can&rsquo;t run</li>
+<li>Need cloud-based memory sharing across team members</li>
+</ul>
+<hr>
+<h2 id="benchmarks">Benchmarks</h2>
+<p>MemPalace achieved <strong>96.6% R@5 raw</strong> on LongMemEval — the best benchmarked score for any open-source memory system.</p>
+<h3 id="longmemeval-results">LongMemEval Results</h3>
+<p>| Mode | R@5 | LLM Required | API Calls |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>MemPalace (Raw)</strong> | <strong>96.6%</strong> | None | 0 |
+| MemPalace (Hybrid v4) | 98.4% | None | 0 |
+| MemPalace (Hybrid + LLM Rerank) | ≥99% | Any capable model | 1 |
+| Memory Bank (OpenAI) | 78.2% | Claude/GPT | 3-5 |
+| Mem0 | 71.4% | Claude/GPT | 1-2 |
+| Direct LLM Context | 65.3% | N/A | N/A |</p>
+<p><em>Source: <a href="https://github.com/MemPalace/mempalace">LongMemEval benchmark</a> — measured on 10K document retrieval task, 95% confidence interval.</em></p>
+<h3 id="why-966-matters">Why 96.6% Matters</h3>
+<p>Most memory systems achieve their scores through <strong>context expansion</strong> — stuffing more tokens into the window. MemPalace achieves its score through <strong>structured retrieval</strong>: wings → rooms → drawers. You&rsquo;re not asking &ldquo;everything I&rsquo;ve ever said&rdquo;, you&rsquo;re asking &ldquo;everything about person X in project Y&rdquo;.</p>
+<p>The raw 96.6% requires <strong>no API key, no cloud, and no LLM at any stage</strong>. The hybrid pipeline adds keyword boosting, temporal-proximity boosting, and preference-pattern extraction; the held-out 98.4% is the honest generalisable figure.</p>
+<hr>
+<h2 id="knowledge-graph-architecture">Knowledge Graph Architecture</h2>
+<p>The structured memory graph is MemPalace&rsquo;s secret sauce.</p>
+<pre tabindex="0"><code>                    [Wing: Person]
+                   /              \
+           [Room: Project A]   [Room: Project B]
+              /     \               |
+        [Drawer: #1] [Drawer: #2] [Drawer: #3]
+         (original)  (original)   (original)
+</code></pre><p><strong>How it works:</strong></p>
+<ol>
+<li><strong>Wings</strong> = People, organizations, or major projects</li>
+<li><strong>Rooms</strong> = Topics, features, or workstreams within a wing</li>
+<li><strong>Drawers</strong> = Original conversation segments</li>
+</ol>
+<p>This structure enables scoped searches: `````bash</p>
+<h1 id="search-across-all-wings">Search across all wings</h1>
+<p>mempalace search &ldquo;auth implementation&rdquo;</p>
+<h1 id="search-within-a-specific-wing">Search within a specific wing</h1>
+<p>mempalace search &ldquo;auth&rdquo; &ndash;wing &ldquo;Person-A&rdquo;</p>
+<h1 id="search-within-a-room">Search within a room</h1>
+<p>mempalace search &ldquo;auth&rdquo; &ndash;wing &ldquo;Person-A&rdquo; &ndash;room &ldquo;Project-A&rdquo;</p>
+<pre tabindex="0"><code>
+### Backup and Restore
+
+Since MemPalace stores data locally, you should back up your memory regularly: `````bash
+# Backup your memory palace
+mempalace backup ~/backups/mempalace-$(date +%Y-%m-%d).tar.gz
+
+# Restore from backup
+mempalace restore ~/backups/mempalace-2026-06-10.tar.gz
+
+# Schedule automatic backups with cron
+0 2 * * * mempalace backup ~/backups/mempalace-$(date +\%Y-\%m-\%d).tar.gz
+</code></pre><p>The backup includes all memory files, configuration, and the cached embedding model. You can restore to a different machine by copying the backup and running <code>mempalace init</code> to register the restored data.</p>
+<hr>
+<h2 id="mcp-server-integration">MCP Server Integration</h2>
+<p>MemPalace includes a built-in MCP server for use with Claude Code, Cursor, and other MCP-compatible agents.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Start the MCP server</span>
+</span></span><span style="display:flex;"><span>mempalace mcp --port <span style="color:#ae81ff">8765</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># In Claude Code config (~/.claude/settings.json): {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mcpServers&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;mempalace&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;mempalace&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;args&#34;</span>: <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;mcp&#34;</span>, <span style="color:#e6db74">&#34;--port&#34;</span>, <span style="color:#e6db74">&#34;8765&#34;</span><span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>The MCP server exposes: - <code>mempalace_store</code>: Store conversation segment</p>
+<ul>
+<li><code>mempalace_query</code>: Retrieve context via semantic search</li>
+<li><code>mempalace_list_wings</code>: List available wings</li>
+<li><code>mempalace_list_rooms</code>: List rooms within a wing</li>
+</ul>
+<hr>
+<h2 id="in-depth-python-api">In Depth: Python API</h2>
+<p>If you&rsquo;re not using MCP-compatible agents, you can use MemPalace&rsquo;s Python API directly: `````python
+import mempalace</p>
+<h1 id="initialize-memory-store">Initialize memory store</h1>
+<p>memory = mempalace.Store(&quot;~/projects/myapp&quot;)</p>
+<h1 id="store-a-conversation-segment">Store a conversation segment</h1>
+<p>memory.store({
+&ldquo;role&rdquo;: &ldquo;user&rdquo;,
+&ldquo;content&rdquo;: &ldquo;How do I implement OAuth2 with Google?&rdquo;
+})
+memory.store({
+&ldquo;role&rdquo;: &ldquo;assistant&rdquo;,
+&ldquo;content&rdquo;: &ldquo;You&rsquo;ll need to create a Google Cloud project&hellip;&rdquo;
+})</p>
+<h1 id="query-for-relevant-context">Query for relevant context</h1>
+<p>results = memory.query(&ldquo;OAuth2 Google implementation&rdquo;)
+for result in results: print(f&quot;[{result.wing}/{result.room}]: {result.content[:200]}&quot;)</p>
+<h1 id="list-all-wings">List all wings</h1>
+<p>for wing in memory.list_wings(): print(f&quot;Wing: {wing.name} ({len(wing.rooms)} rooms)&quot;)</p>
+<pre tabindex="0"><code>
+The Python API mirrors the CLI but gives you programmatic access to the memory graph. This is useful for: - Custom agent integrations
+- Batch processing conversation history
+- Building dashboards over your memory
+- Automated backup workflows
+
+* * *
+
+## Docker Deployment
+
+For server-side or containerized deployments: `````bash
+# Build the Docker image
+docker build -t mempalace-server .
+
+# Run the MCP server in Docker
+docker run -d \
+  --name mempalace \
+  -v /data:/data \
+  -p 8765:8765 \
+  mempalace-server \
+  mcp --port 8765
+</code></pre><p>Everything persists under <code>/data</code> (palace, config, and the cached embedding model), so mount a volume there. This setup works well for: - Shared team memory (multiple machines accessing same database)</p>
+<ul>
+<li>CI/CD pipelines that need agent memory</li>
+<li>Production environments with Docker orchestration</li>
+</ul>
+<hr>
+<h2 id="compared-to-alternatives">Compared to Alternatives</h2>
+<p>| Feature | MemPalace | Mem0 | Memory Bank | Local RAG |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Verbatim Storage | ✓ | ✗ | ✗ | ✗ |
+| Structured Index | Wings/Rooms/Drawers | Flat vector | Chat history | Embeddings |
+| API Required | 0 | 1-3 | 5-8 | 0 |
+| Local First | ✓ | ✗ | ✗ | ✓ |
+| MCP Server | Built-in | Plugin | No | No |
+| Benchmark | 96.6% R@5 | 78.2% | 71.4% | N/A |
+| Stars | 55,206 | 12,400 | 8,900 | 18,200 |</p>
+<p>MemPalace&rsquo;s structured approach (wings → rooms → drawers) is what drives the 96.6% benchmark. Other systems use flat vector search or token-expanding context windows, which hit practical limits at ~200K tokens.</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p>MemPalace is not for everyone: - <strong>Not for cloud teams</strong>: If you need shared memory across team members working on different machines, MemPalace&rsquo;s local-first design doesn&rsquo;t help</p>
+<ul>
+<li><strong>Requires Python environment</strong>: Installation needs <code>uv</code> or <code>pip</code> with a compatible Python version</li>
+<li><strong>ChromaDB by default</strong>: While pluggable, most users will use ChromaDB which requires ~500MB RAM for the embedding model</li>
+<li><strong>No cloud backup</strong>: Your memory stays local. If your disk fails, your memory is gone (unless you back it up)</li>
+</ul>
+<p>It&rsquo;s built for <strong>individual developers</strong> who want persistent, private memory for their AI agents.</p>
+<hr>
+<h2 id="real-world-use-cases">Real-World Use Cases</h2>
+<h3 id="use-case-1-persistent-coding-context">Use Case 1: Persistent Coding Context</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Start a new Claude Code session</span>
+</span></span><span style="display:flex;"><span>claude
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Claude Code automatically queries MemPalace for relevant context</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># when you ask about previous work on the same feature</span>
+</span></span><span style="display:flex;"><span>&gt; <span style="color:#e6db74">&#34;Remember when we implemented OAuth2 last week?&#34;</span>
+</span></span><span style="display:flex;"><span>&gt; <span style="color:#f92672">[</span>MemPalace retrieves: Wing <span style="color:#e6db74">&#34;Person-A&#34;</span> → Room <span style="color:#e6db74">&#34;Project-A&#34;</span> → Drawer: <span style="color:#75715e">#3]</span>
+</span></span></code></pre></div><p>This use case is perfect for developers who work on long-term projects and need their AI agent to remember previous implementations, decisions, and constraints.</p>
+<h3 id="use-case-2-research-context">Use Case 2: Research Context</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Store research notes from your agent</span>
+</span></span><span style="display:flex;"><span>mempalace store <span style="color:#e6db74">&#34;Research: LangGraph vs LangChain for agent orchestration&#34;</span>
+</span></span><span style="display:flex;"><span>mempalace store <span style="color:#e6db74">&#34;Key finding: LangGraph has better state management...&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Later, query for all research notes</span>
+</span></span><span style="display:flex;"><span>mempalace search <span style="color:#e6db74">&#34;agent orchestration comparison&#34;</span> --wing <span style="color:#e6db74">&#34;Research&#34;</span>
+</span></span></code></pre></div><p>Perfect for researchers who want to maintain a searchable knowledge base across multiple research sessions.</p>
+<h3 id="use-case-3-team-knowledge-base">Use Case 3: Team Knowledge Base</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Share memory across team members (Docker deployment)</span>
+</span></span><span style="display:flex;"><span>docker run -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --name mempalace <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -v /data:/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -p 8765:8765 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  mempalace-server mcp --port <span style="color:#ae81ff">8765</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Each team member connects to the shared memory server</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># with different access levels per project</span>
+</span></span></code></pre></div><p>For teams that need shared memory but want to maintain data privacy and control.</p>
+<hr>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="q1-does-mempalace-store-my-data-in-the-cloud">Q1: Does MemPalace store my data in the cloud?</h3>
+<p>No. MemPalace is local-first. Your conversation history, memory index, and embeddings all stay on your machine. No API calls are made to external services by default.</p>
+<h3 id="q2-can-i-use-mempalace-with-any-ai-agent">Q2: Can I use MemPalace with any AI agent?</h3>
+<p>Yes, if it supports MCP (Model Context Protocol). Claude Code, Cursor, Windsurf, and other MCP-compatible agents work out of the box. For non-MCP agents, you can use the Python API directly.</p>
+<h3 id="q3-how-does-the-966-benchmark-compare-to-other-memory-systems">Q3: How does the 96.6% benchmark compare to other memory systems?</h3>
+<p>MemPalace&rsquo;s 96.6% R@5 raw on LongMemEval is the best benchmarked score for open-source memory systems. Most competitors achieve 70-80% through context expansion (storing more tokens), not structured retrieval.</p>
+<h3 id="q4-can-i-switch-the-backend-from-chromadb">Q4: Can I switch the backend from ChromaDB?</h3>
+<p>Yes. The retrieval layer is pluggable. The default is ChromaDB, but you can drop in any backend that implements <code>mempalace/backends/base.py</code>. Custom backends are supported.</p>
+<h3 id="q5-what-happens-if-i-delete-my-memory-files">Q5: What happens if I delete my memory files?</h3>
+<p>Since MemPalace is local-first, there&rsquo;s no cloud recovery. If you delete your memory files, the data is gone unless you&quot;ve manually backed it up. Consider setting up automatic backups if your memory is valuable.</p>
+<hr>
+<h2 id="sources--further-reading">Sources &amp; Further Reading</h2>
+<ul>
+<li>Official docs: <a href="https://mempalaceofficial.com">mempalaceofficial.com</a></li>
+<li>GitHub repository: <a href="https://github.com/MemPalace/mempalace">MemPalace/mempalace</a></li>
+<li>Benchmarks: <a href="https://github.com/MemPalace/mempalace/blob/main/benchmarks/BENCHMARKS.md">benchmarks/BENCHMARKS.md</a></li>
+<li>LongMemEval results: <a href="https://github.com/MemPalace/mempalace#benchmarks">96.6% R@5 raw</a></li>
+<li>MCP server docs: <a href="https://mempalaceofficial.com/concepts/the-palace.html">mempalaceofficial.com/concepts/the-palace</a></li>
+</ul>
+<hr>
+<h2 id="conclusion-build-ai-agents-that-actually-remember">Conclusion: Build AI Agents That Actually Remember</h2>
+<p>MemPalace solves the &ldquo;goldfish agent&rdquo; problem. It stores your conversation history verbatim, indexes it structurally, and retrieves it with 96.6% accuracy — with zero API calls.</p>
+<p><strong>Try it now:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>uv tool install mempalace
+</span></span><span style="display:flex;"><span>mempalace init ~/projects/myapp
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>For self-hosted memory on a VPS or dedicated server, consider using <span style="color:#f92672">[</span>HTStack<span style="color:#f92672">](</span>https://my.htstack.com/aff.php?aff<span style="color:#f92672">=</span>27187<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> affordable GPU hosting, or <span style="color:#f92672">[</span>DigitalOcean<span style="color:#f92672">](</span>https://m.do.co/c/eca87ac14ee0<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> easy cloud deployment.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Join the **dibi8 <span style="color:#f92672">[</span>English Telegram group<span style="color:#f92672">](</span>https://t.me/DIBI8_Group/2<span style="color:#f92672">)</span>** <span style="color:#66d9ef">for</span> discussions on AI memory systems, agent architecture, and open-source tools.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Related articles: - <span style="color:#f92672">[</span>LangChain Complete Guide<span style="color:#f92672">](</span>dibi8-internal-link/llm-frameworks/langchain-complete-guide<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>Vector Database Comparison<span style="color:#f92672">](</span>dibi8-internal-link/data-science/vector-database-comparison<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>MCP Deep Dive<span style="color:#f92672">](</span>dibi8-internal-link/llm-frameworks/mcp-deep-dive<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Some links above are affiliate links. dibi8.com may earn a commission <span style="color:#66d9ef">if</span> you sign up, at no extra cost to you. Helps keep the site running and the content free.*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;MemPalace: The Best-Benchmarked Open-Source AI Memory System Saves 96.6% of R@5 on LongMemEval — Zero API Calls&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-06-10&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-06-10&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/resources/mempalace-open-source-ai-memory-system&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>mempalace-open-source-ai-memory-system<span style="color:#f92672">](</span>mempalace-open-source-ai-memory-system<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>cognee-ai-memory-platform<span style="color:#f92672">](</span>mempalace-open-source-ai-memory-system<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>cognee-ai-memory-platform<span style="color:#f92672">](</span>mempalace-open-source-ai-memory-system<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>supermemory-open-source-ai-memory-api<span style="color:#f92672">](</span>mempalace-open-source-ai-memory-system<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>understand-anything-interactive-knowledge-graphs-codebases<span style="color:#f92672">](</span>mempalace-open-source-ai-memory-system<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Found this helpful? <span style="color:#f92672">[</span>Join our Telegram community<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> daily AI tool updates!*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions (FAQ)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent和传统自动化有什么区别？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：如何选择合适的AI Agent框架？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的安全性如何保证？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的学习成本有多高？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：能否自定义AI Agent的行为？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</span></span></code></pre></div>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmempalace-open-source-ai-memory-system%2f&text=MemPalace%3a%20The%20Best-Benchmarked%20Open-Source%20AI%20Memory%20System%20Saves%2096.6%25%20of%20R%405%20on%20LongMemEval%20%e2%80%94%20Zero%20API%20Calls" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmempalace-open-source-ai-memory-system%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

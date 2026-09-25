@@ -1,0 +1,601 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Or with Postgres checkpointer: pip install -U langgraph langgraph-checkpoint-postgres | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/langgraph-stateful-agent-orchestration-2026/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Or with Postgres checkpointer: pip install -U langgraph langgraph-checkpoint-postgres</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Or with Postgres checkpointer: pip install -U langgraph langgraph-checkpoint-postgres</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;LangGraph 1.2 in Production: Stateful Agent Orchestratio&hellip;
+description: &ldquo;AI tool guide&rdquo;
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
+tech_stack: - Python</p>
+<ul>
+<li>TypeScript</li>
+<li>PostgreSQL</li>
+<li>Redis
+application_domain: Llm Frameworks
+source_version: &ldquo;1.2.1&rdquo;
+licensing_model: Open Source
+license_type: MIT
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-21&rdquo;
+draft: false
+categories: [&ldquo;llm-frameworks&rdquo;]
+tags: [&ldquo;langgraph&rdquo;, &ldquo;agent&rdquo;, &ldquo;stateful&rdquo;, &ldquo;orchestration&rdquo;, &ldquo;langchain&rdquo;, &ldquo;production&rdquo;]
+aliases:</li>
+<li>/posts/langgraph-stateful-agent-orchestration-2026/-</li>
+</ul>
+<hr>
+<p>If you&rsquo;ve built a simple LLM agent and watched it forget everything when the process restarts, lose half its progress when one tool call times out, or silently corrupt state when two events fire concurrently — you&rsquo;ve hit the wall <strong>LangGraph</strong> is designed to break through.</p>
+<p>LangGraph is the LangChain team&rsquo;s <strong>low-level orchestration framework for stateful, long-running agents</strong>. Where LangChain provides components (&ldquo;here&rsquo;s an LLM wrapper, here&rsquo;s a tool, compose them yourself&rdquo;) and CrewAI provides high-level role abstractions (&ldquo;here&rsquo;s a researcher agent and a writer agent&rdquo;), LangGraph sits in between: a graph-based state machine where you explicitly model nodes (functions / agents), edges (transitions), and persistent state. Durable execution + human-in-loop + state tracking are first-class concerns, not afterthoughts.</p>
+<p>By mid-2026 it has <strong>32.6k GitHub stars</strong> and shipped v1.2.1, making it the most popular framework specifically for production agent workflows that need to survive crashes, restarts, and multi-hour runs.</p>
+<h2 id="1-what-langgraph-actually-is-and-isnt">1. What LangGraph Actually Is (and Isn&rsquo;t)</h2>
+<p><strong>It is</strong>: A graph-based agent runtime where you define ```nodes<code>(Python/TS functions, often containing LLM calls),</code>edges<code>(deterministic or LLM-decided transitions), and a</code>state```` object that persists across the entire workflow.</p>
+<p><strong>It isn&rsquo;t</strong>: - A drop-in replacement for LangChain (it complements LangChain; many LangGraph nodes wrap LangChain components)</p>
+<ul>
+<li>A no-code tool (it&rsquo;s developer-first, Python or TypeScript)</li>
+<li>A high-level &ldquo;describe agents in natural language&rdquo; tool — that&rsquo;s CrewAI&rsquo;s domain</li>
+</ul>
+<p>The mental model: <strong>&ldquo;agent workflow = explicit state machine, not implicit conversation.&rdquo;</strong> You draw the graph, LangGraph runs it.</p>
+<h2 id="2-why-stateful-matters-the-bug-langgraph-fixes">2. Why &ldquo;Stateful&rdquo; Matters (the bug LangGraph fixes)</h2>
+<p>Three failure modes that kill production agents without proper state management: 1. <strong>Crash mid-workflow</strong> → agent restarts from zero, redoes 30 minutes of work, loses any user-facing progress
+2. <strong>Concurrent tool calls</strong> → state mutations interleave unpredictably, agent ends up in invalid state
+3. <strong>Multi-hour workflows</strong> → process gets killed by cloud provider&rsquo;s idle timeout, no resume point</p>
+<p>LangGraph&rsquo;s <code>Checkpointer</code> (backed by Postgres, Redis, or in-memory) snapshots state after every node execution. Crash? Restart from the last checkpoint. Need to inject human feedback? Pause at a checkpoint, modify state, resume. Need to debug? Replay any checkpoint deterministically.</p>
+<p>This is the bug that makes you say &ldquo;I should have used LangGraph&rdquo; — usually after week 3 of trying to make a custom solution work.</p>
+<h2 id="3-quick-install-5-minutes">3. Quick Install (5 minutes)</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install -U langgraph langchain langchain-openai
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or with Postgres checkpointer: pip install -U langgraph langgraph-checkpoint-postgres</span>
+</span></span></code></pre></div><p>A minimal stateful agent — counts up to 5 with checkpointed state that survives process restarts: `````python
+from typing import TypedDict
+from langgraph.graph import StateGraph, START, END
+from langgraph.checkpoint.memory import MemorySaver</p>
+<p>class State(TypedDict): counter: int</p>
+<p>def increment(state: State) -&gt; State: return {&ldquo;counter&rdquo;: state[&ldquo;counter&rdquo;] + 1}</p>
+<p>def should_continue(state: State) -&gt; str: return &ldquo;increment&rdquo; if state[&ldquo;counter&rdquo;] &lt; 5 else END</p>
+<p>graph = StateGraph(State)
+graph.add_node(&ldquo;increment&rdquo;, increment)
+graph.add_edge(START, &ldquo;increment&rdquo;)
+graph.add_conditional_edges(&ldquo;increment&rdquo;, should_continue)</p>
+<p>app = graph.compile(checkpointer=MemorySaver())</p>
+<h1 id="run-with-a-thread_id-for-state-persistence">Run with a thread_id for state persistence</h1>
+<p>config = {&ldquo;configurable&rdquo;: {&ldquo;thread_id&rdquo;: &ldquo;demo-1&rdquo;}}
+result = app.invoke({&ldquo;counter&rdquo;: 0}, config=config)
+print(result)  # {counter: 5}</p>
+<pre tabindex="0"><code>
+Swap ````MemorySaver()```` for ````PostgresSaver(connection_string)```` and the same graph survives container restarts.
+
+## 4. The 4 Killer Features You&#39;ll Actually Use
+
+### Durable Execution (````Checkpointer````)
+Every node return value is snapshotted. Process dies? Resume from ````thread_id```` and ````checkpoint_id````. This alone is worth adopting LangGraph for any agent running &gt; 5 minutes.
+
+### Human-in-the-Loop (````interrupt````)
+Mark a node as interruptible. Workflow pauses, surfaces state to a UI, waits for human input, resumes. The only sane way to build &#34;AI proposes a change, human approves&#34; workflows.
+
+`````python
+from langgraph.types import interrupt
+
+def approval_gate(state): user_decision = interrupt({&#34;proposed_action&#34;: state[&#34;plan&#34;]})
+    return {&#34;approved&#34;: user_decision}
+</code></pre><h3 id="memory-layer-add_messages">Memory Layer (<code>add_messages</code>)</h3>
+<p>Built-in short-term (within-thread) and long-term (cross-thread) memory. Use the <code>add_messages</code> reducer for conversational state, or plug in <a href="/resources/llm-frameworks/mem0/">mem0</a> via <a href="/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/">AgentMemory MCP</a> for semantic recall across threads.</p>
+<h3 id="langsmith-integration">LangSmith Integration</h3>
+<p>Every node execution, every state transition, every LLM call appears in LangSmith&rsquo;s trace viewer. Visual debugging of &ldquo;why did the agent go down that branch?&rdquo; — invaluable for complex graphs.</p>
+<h2 id="5-production-deployment-pattern">5. Production Deployment Pattern</h2>
+<p>The 4-component pattern most teams settle on: `````
+┌──────────────────────────┐
+│  Your app / FastAPI       │
+│  (LangGraph SDK or REST)  │
+└─────────┬────────────────┘
+│
+▼
+┌──────────────────────────┐
+│  LangGraph Server         │
+│  (langgraph dev / deploy) │
+└─────────┬────────────────┘
+│ checkpoint write
+▼
+┌──────────────────────────┐
+│  PostgreSQL              │  ← state durability
+└──────────────────────────┘
+│ trace stream
+▼
+┌──────────────────────────┐
+│  LangSmith (or self-host) │  ← observability
+└──────────────────────────┘</p>
+<pre tabindex="0"><code>
+A standard prod deploy: containerize the LangGraph app, point it at managed Postgres for checkpoints, configure LangSmith for traces. The  works for stateless tier; for serious workloads grab a  (8 GB minimum) + DO Managed Postgres for low-latency state writes.
+
+## 6. LangGraph vs LangChain vs CrewAI vs AutoGen (When to Pick What)
+
+| Need | Pick |
+|
+* * *
+|
+* * *
+|
+| Stateful, long-running, must-survive-restart agent | **LangGraph** |
+| Quick LLM-powered app (chatbot, RAG, simple agent) | **LangChain** alone |
+| Role-based multi-agent team (&#34;researcher&#34; + &#34;writer&#34; + &#34;critic&#34;) | **CrewAI** |
+| Conversational group-chat agents, debate/decision workflows | **AutoGen** (note: Microsoft has shifted AutoGen to maintenance mode; eval the Microsoft Agent Framework for new projects) |
+| Maximum control + LangChain ecosystem | **LangGraph** (best of both) |
+
+The honest summary from 2026 production teams: **LangGraph wins on durability and control, CrewAI wins on time-to-first-demo, AutoGen wins on multi-agent conversations** (but is in transition). For anything that needs to survive a deploy or a crash, LangGraph is the default pick.
+
+## 7. Real-World Use Cases (where LangGraph shines)
+
+**Customer support automation**: Multi-turn tickets that pause for human escalation, persist context for days, resume seamlessly when the customer replies.
+
+**Code agents (long-running)**: Agents that refactor a codebase across dozens of files, with checkpoints after each file so a crash doesn&#39;t lose 4 hours of work. Pair with our [Self-Hosted AI Coding Workflow](/collections/self-hosted-ai-coding-workflow/) for the full stack.
+
+**Research / report generation**: Multi-step research workflows (search → extract → synthesize → write) where each stage produces durable artifacts. Failures resume at the last good checkpoint.
+
+**Workflow automation with human approval**: AI plans the action, system pauses at an ````interrupt````, surfaces plan to user, resumes only when approved.
+
+**Multi-tenant agent products**: Each customer gets a ````thread_id````, state is fully isolated, you can replay any customer&#39;s session for debugging.
+
+## 8. Pitfalls (the things you&#39;ll hit on day 3)
+
+1. **Designing too many fine-grained nodes** — every node = a checkpoint write. 50-node graphs run slowly. Coalesce related ops into single nodes
+2. **Forgetting reducers** — state updates without a reducer get *replaced*, not *merged*. Bug source #1 for new users
+3. **Skipping ````interrupt```` for write actions** — agents that take irreversible actions (sending email, charging cards) without human-in-loop checkpoints WILL eventually do something bad
+4. **Not using LangSmith from day 1** — debugging a 20-node graph from print statements is misery. Wire up LangSmith before you have problems
+5. **Treating LangGraph state as a free-for-all database** — keep state lean. Reference large objects by ID, store the actual blob in S3 / Postgres
+
+## 9. Migration: LangChain Agent → LangGraph
+
+If you have a working LangChain ````AgentExecutor```` or ````create_react_agent```` pipeline, migration to LangGraph is mechanical: 1. Define your state TypedDict (mirror what you currently pass between steps)
+2. Wrap each LangChain tool/step as a LangGraph node
+3. Add a ````Checkpointer```` (start with ````MemorySaver````, swap to Postgres later)
+4. Add edges to model the control flow that was previously implicit in your LangChain code
+
+The payoff: durable execution + human-in-loop + replay debugging, with most of your LangChain components untouched.
+
+## 10. When NOT to Use LangGraph
+
+- **Stateless single-turn LLM calls** — overkill, just use the LLM SDK
+- **Simple RAG (retrieve → answer)** — LangChain&#39;s ````RetrievalQA``` chain is one line and fine
+- **Pure conversational chatbots** — LangChain + a message store is simpler
+- **Team has zero Python experience** — CrewAI&#39;s role-based abstraction is more approachable
+
+## TL;DR
+
+LangGraph = **graph-based stateful agent runtime** for production workloads that need to survive crashes, support human checkpoints, and run for hours. 32.6k stars, v1.2.1, MIT. Pairs naturally with LangChain (which you probably already use). Pick it over CrewAI when you need control, over LangChain alone when you need durability, over AutoGen for anything outside multi-agent conversation.
+
+Spin up a  with Postgres, run the example in section 3, and you&#39;ll see why teams running real agents in production gravitate here.
+
+
+* * *
+*Want to see LangGraph in a larger context? See our [AI Agent Tool Chain collection](/collections/) for how it fits alongside MCP servers, AgentMemory, and code execution sandboxes — coming soon.*
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;LangGraph 1.2 in Production: Stateful Agent Orchestration That Survives Crashes (Complete 2026 Guide)&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-21&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-21&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/langgraph-stateful-agent-orchestration-2026&#34;
+  }
+}
+&lt;/script&gt;
+
+## Why This Matters
+
+Understanding langgraph 1.2 in production: stateful agent orchestration that survives crashes (complete 2026 guide) is crucial for modern AI development. Here&#34;s why: ### Key Benefits
+- **Efficiency**: Save time on repetitive tasks
+- **Quality**: Improve output consistency  
+- **Scalability**: Handle larger workloads
+- **Cost**: Reduce operational expenses
+
+### Real-World Applications
+Organizations are using similar approaches to: 1. Automate code review processes
+2. Generate documentation automatically
+3. Build internal knowledge bases
+4. Streamline deployment pipelines
+
+### Getting Started
+To implement this in your workflow: 1. **Assess Your Needs**
+   - Identify repetitive tasks
+   - Measure current time costs
+   - Define success metrics
+
+2. **Choose Your Approach**
+   - Start with simple automations
+   - Gradually increase complexity
+   - Test and iterate
+
+3. **Measure Results**
+   - Track time savings
+   - Monitor quality improvements
+   - Calculate ROI
+
+## Conclusion
+
+LangGraph 1.2 in Production: Stateful Agent Orchestration That Survives Crashes (Complete 2026 Guide) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
+
+For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
+
+
+* * *
+*Last updated: 2026-09-20*
+*Read time: ~7 minutes*
+
+* * *
+
+## Related Articles
+
+- [temporal-ai-workflow-orchestration](langgraph-stateful-agent-orchestration-2026)
+- [langgraph-vs-crewai](langgraph-stateful-agent-orchestration-2026)
+- [temporal-ai-workflow-orchestration](langgraph-stateful-agent-orchestration-2026)
+- [langgraph-vs-crewai](langgraph-stateful-agent-orchestration-2026)
+- [temporal-ai-workflow-orchestration](langgraph-stateful-agent-orchestration-2026)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+
+## Frequently Asked Questions (FAQ)
+
+**问：AI Agent和传统自动化有什么区别？**
+
+AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+
+**问：如何选择合适的AI Agent框架？**
+
+考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+
+**问：AI Agent的安全性如何保证？**
+
+实施权限最小化、输入验证、审计日志、以及定期安全评估。
+
+**问：AI Agent的学习成本有多高？**
+
+入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+
+**问：能否自定义AI Agent的行为？**
+
+是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</code></pre>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2flanggraph-stateful-agent-orchestration-2026%2f&text=Or%20with%20Postgres%20checkpointer%3a%20pip%20install%20-U%20langgraph%20langgraph-checkpoint-postgres" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2flanggraph-stateful-agent-orchestration-2026%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

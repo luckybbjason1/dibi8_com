@@ -1,0 +1,828 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official website (always verify the URL) | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/mcp-tools/revoke-crypto-permission-manager/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Official website (always verify the URL)</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Official website (always verify the URL)</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p><strong>Date:</strong> 2026-05-19<br>
+<strong>Category:</strong> AI Trading<br>
+<strong>Tool:</strong> Revoke.cash<br>
+<strong>GitHub:</strong> <a href="https://github.com/RevokeCash/revoke.cash">RevokeCash/revoke.cash</a> (★ 2,500 · GPL-3.0 License)<br>
+<strong>Affiliate Disclosure:</strong> <em>This article contains affiliate links. We may earn a commission if you register through our partner links — at no extra cost to you. Our editorial opinions remain independent.</em></p>
+<hr>
+<h2 id="introduction-the-hidden-danger-of-token-approvals">Introduction: The Hidden Danger of Token Approvals</h2>
+<p>Every time you swap tokens on Uniswap, deposit into a yield vault, or mint an NFT, you&rsquo;re granting <strong>token approvals</strong> — permissions that allow smart contracts to spend your tokens. Most users don&rsquo;t realize that these approvals often default to <strong>unlimited amounts</strong> and remain active indefinitely, even after you&rsquo;ve finished using the protocol.</p>
+<p>This invisible threat has led to hundreds of millions in losses. The infamous <strong>Uniswap V2 exploit</strong> (2020), the <strong>Badger DAO frontend attack</strong> (2021), and countless other incidents were made possible by lingering, unlimited token approvals that attackers exploited.</p>
+<p>Enter <strong>Revoke.cash</strong> — the open-source token approval manager built by <a href="https://github.com/RevokeCash">RevokeCash</a> under the GPL-3.0 license. With <strong>2,500+ GitHub stars</strong> and over <strong>$1 billion in protected DeFi assets</strong>, Revoke.cash has become the essential security tool that every crypto user needs in their defensive arsenal.</p>
+<p><strong>👉 Want to trade on a secure exchange? <a href="https://www.bsmkweb.cc/register?ref=DIBI8">Register on Binance</a> — the world&rsquo;s most trusted crypto platform.</strong></p>
+<hr>
+<h2 id="what-is-revokecash-understanding-token-approvals">What Is Revoke.cash? Understanding Token Approvals</h2>
+<p>When you interact with a DeFi protocol, you must first <strong>approve</strong> the protocol&rsquo;s smart contract to access your tokens. This is an ERC-20 mechanism designed to prevent contracts from arbitrarily spending your funds. However, most dApps request <strong>unlimited approvals</strong> (```type(uint256).max````) to save users gas on future transactions.</p>
+<p>The problem? That approval persists forever — even if: - The protocol gets hacked</p>
+<ul>
+<li>You stop using the dApp</li>
+<li>A malicious frontend replaces the legitimate one</li>
+<li>The protocol deploys a vulnerable upgrade</li>
+</ul>
+<p>Revoke.cash solves this by providing a simple interface to <strong>view and revoke</strong> all your token approvals across multiple blockchains.</p>
+<h3 id="the-erc-20-approval-mechanism">The ERC-20 Approval Mechanism</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-solidity" data-lang="solidity"><span style="display:flex;"><span><span style="color:#75715e">// SPDX-License-Identifier: MIT
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">pragma solidity</span> <span style="color:#f92672">^</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">8</span>.<span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IERC20</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// The approval function that Revoke.cash helps manage
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">approve</span>(<span style="color:#66d9ef">address</span> spender, <span style="color:#66d9ef">uint256</span> amount) <span style="color:#66d9ef">external</span> <span style="color:#66d9ef">returns</span> (<span style="color:#66d9ef">bool</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">allowance</span>(<span style="color:#66d9ef">address</span> owner, <span style="color:#66d9ef">address</span> spender) <span style="color:#66d9ef">external</span> <span style="color:#66d9ef">view</span> <span style="color:#66d9ef">returns</span> (<span style="color:#66d9ef">uint256</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// When you &#34;approve&#34; Uniswap, this is what happens: // token.approve(uniswapRouter, 115792089237316195423570985008687907853269984665640564039457584007913129639935)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// This number = type(uint256).max = UNLIMITED
+</span></span></span></code></pre></div><hr>
+<h2 id="quick-start-guide-using-revokecash">Quick Start Guide: Using Revoke.cash</h2>
+<p>Getting started with Revoke.cash takes under two minutes. Here&rsquo;s how to audit and clean up your approvals.</p>
+<h3 id="step-1--visit-revokecash">Step 1 — Visit Revoke.cash</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Official website (always verify the URL)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># https://revoke.cash</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Common phishing domains to AVOID: # - revokecash.com (fake)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - revoke-cash.app (fake)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - revok3.cash (fake)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Always bookmark the official URL after your first visit</span>
+</span></span></code></pre></div><h3 id="step-2--connect-your-wallet">Step 2 — Connect Your Wallet</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Revoke.cash supports all major wallets
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">supportedWallets</span> <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;MetaMask&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;WalletConnect v2&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Coinbase Wallet&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Rainbow&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Ledger Live&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Trezor (via MetaMask)&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Phantom (EVM mode)&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;Trust Wallet&#34;</span>
+</span></span><span style="display:flex;"><span>];
+</span></span></code></pre></div><h3 id="step-3--view-all-active-approvals">Step 3 — View All Active Approvals</h3>
+<p>Once connected, Revoke.cash automatically scans your address and displays: `````bash</p>
+<h1 id="revokecash-dashboard-shows--">Revoke.cash Dashboard shows: # ┌────────────────┬─────────────────┬──────────────┬──────────┐</h1>
+<h1 id="-token-----------approved-spender-amount--------risk-----">│ Token          │ Approved Spender│ Amount       │ Risk     │</h1>
+<h1 id="heading">├────────────────┼─────────────────┼──────────────┼──────────┤</h1>
+<h1 id="-usdc------------uniswap-v3-------unlimited------high--">│ USDC           │ Uniswap V3      │ Unlimited    │ ⚠️ High  │</h1>
+<h1 id="-weth------------aave-v3----------unlimited------high--">│ WETH           │ Aave V3         │ Unlimited    │ ⚠️ High  │</h1>
+<h1 id="-dai-------------1inch------------5000-dai------med---">│ DAI            │ 1inch           │ 5,000 DAI    │ 🟡 Med   │</h1>
+<h1 id="-usdt------------unknown-contract-unlimited------crit--">│ USDT           │ Unknown Contract│ Unlimited    │ 🔴 Crit  │</h1>
+<h1 id="heading-1">└────────────────┴─────────────────┴──────────────┴──────────┘</h1>
+<pre tabindex="0"><code>
+### Step 4 — Revoke Risky Approvals
+
+`````javascript
+// Revoke.cash executes a new approval with amount = 0
+// This effectively cancels the previous unlimited approval
+
+// Example: Revoking USDC approval from a suspicious contract
+const tokenContract = new ethers.Contract(
+  &#34;0xA0b86a33E6441c17d1dd4e6028a4b153575cC69A&#34;, // USDC
+  ERC20_ABI,
+  signer
+);
+
+// Setting approval to 0 revokes all permissions
+const tx = await tokenContract.approve(&#34;0xSuspiciousContract&#34;, 0);
+await tx.wait();
+console.log(&#34;Approval revoked! Transaction:&#34;, tx.hash);
+</code></pre><hr>
+<h2 id="deep-dive-how-revokecash-works-under-the-hood">Deep Dive: How Revoke.cash Works Under the Hood</h2>
+<p>Revoke.cash doesn&rsquo;t have any special powers — it simply provides a user-friendly interface for a fundamental blockchain operation. Understanding this helps you trust (and verify) the process.</p>
+<h3 id="the-technical-mechanism">The Technical Mechanism</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-solidity" data-lang="solidity"><span style="display:flex;"><span><span style="color:#75715e">// To &#34;revoke&#34; an approval, you simply approve 0 tokens
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// This is the ONLY way to remove a previous approval
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">revokeApproval</span>(<span style="color:#66d9ef">address</span> token, <span style="color:#66d9ef">address</span> spender) <span style="color:#66d9ef">external</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// approve(spender, 0) overwrites the previous allowance
+</span></span></span><span style="display:flex;"><span>    IERC20(token).approve(spender, <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// After this transaction, spender cannot move ANY of your tokens
+</span></span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Alternative: approve with a specific limited amount
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setLimitedApproval</span>(<span style="color:#66d9ef">address</span> token, <span style="color:#66d9ef">address</span> spender, <span style="color:#66d9ef">uint256</span> amount) <span style="color:#66d9ef">external</span> {
+</span></span><span style="display:flex;"><span>    IERC20(token).approve(spender, amount);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Spender can only spend up to amount tokens
+</span></span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="event-log-analysis">Event Log Analysis</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Revoke.cash reads Approval events from the blockchain
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">filter</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">address</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">tokenAddress</span>,           <span style="color:#75715e">// The token contract
+</span></span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">topics</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ethers</span>.<span style="color:#a6e22e">utils</span>.<span style="color:#a6e22e">id</span>(<span style="color:#e6db74">&#34;Approval(address,address,uint256)&#34;</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ethers</span>.<span style="color:#a6e22e">utils</span>.<span style="color:#a6e22e">hexZeroPad</span>(<span style="color:#a6e22e">userAddress</span>, <span style="color:#ae81ff">32</span>),  <span style="color:#75715e">// Your address (owner)
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">null</span>                                       <span style="color:#75715e">// Any spender
+</span></span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Query all historical approval events
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">approvalEvents</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">provider</span>.<span style="color:#a6e22e">getLogs</span>({
+</span></span><span style="display:flex;"><span>  ...<span style="color:#a6e22e">filter</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fromBlock</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">toBlock</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;latest&#34;</span>
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// The most recent event for each (owner, spender, token) triplet
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// represents the CURRENT active approval
+</span></span></span></code></pre></div><h3 id="reading-current-allowances">Reading Current Allowances</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Direct contract call to check current allowance
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">checkAllowance</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">tokenAddress</span>, <span style="color:#a6e22e">owner</span>, <span style="color:#a6e22e">spender</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">token</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ethers</span>.<span style="color:#a6e22e">Contract</span>(<span style="color:#a6e22e">tokenAddress</span>, <span style="color:#a6e22e">ERC20_ABI</span>, <span style="color:#a6e22e">provider</span>);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">allowance</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">token</span>.<span style="color:#a6e22e">allowance</span>(<span style="color:#a6e22e">owner</span>, <span style="color:#a6e22e">spender</span>);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">MAX_UINT256</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ethers</span>.<span style="color:#a6e22e">BigNumber</span>.<span style="color:#a6e22e">from</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;115792089237316195423570985008687907853269984665640564039457584007913129639935&#34;</span>
+</span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">allowance</span>.<span style="color:#a6e22e">eq</span>(<span style="color:#a6e22e">MAX_UINT256</span>)) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;UNLIMITED&#34;</span>, <span style="color:#a6e22e">risk</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;CRITICAL&#34;</span> };
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">allowance</span>.<span style="color:#a6e22e">gt</span>(<span style="color:#ae81ff">0</span>)) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;LIMITED&#34;</span>, <span style="color:#a6e22e">amount</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">allowance</span>.<span style="color:#a6e22e">toString</span>(), <span style="color:#a6e22e">risk</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;MEDIUM&#34;</span> };
+</span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;REVOKED&#34;</span>, <span style="color:#a6e22e">risk</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;NONE&#34;</span> };
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><hr>
+<h2 id="multi-chain-support-protecting-assets-across-networks">Multi-Chain Support: Protecting Assets Across Networks</h2>
+<p>Revoke.cash supports all major EVM-compatible chains, allowing you to audit approvals wherever you interact with DeFi.</p>
+<h3 id="supported-networks-2026">Supported Networks (2026)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Complete network support as of 2026</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">ethereum: chain_id</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">rpc_required</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">features</span>: [<span style="color:#e6db74">&#34;Full support&#34;</span>, <span style="color:#e6db74">&#34;NFT approvals&#34;</span>, <span style="color:#e6db74">&#34;Permit2&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">polygon: chain_id</span>: <span style="color:#ae81ff">137</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">rpc_required</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">features</span>: [<span style="color:#e6db74">&#34;Full support&#34;</span>, <span style="color:#e6db74">&#34;Low gas revokes&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">arbitrum: chain_id</span>: <span style="color:#ae81ff">42161</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">rpc_required</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">features</span>: [<span style="color:#e6db74">&#34;Full support&#34;</span>, <span style="color:#e6db74">&#34;Nitro compatible&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">optimism: chain_id</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">rpc_required</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">features</span>: [<span style="color:#e6db74">&#34;Full support&#34;</span>, <span style="color:#e6db74">&#34;Bedrock compatible&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">base: chain_id</span>: <span style="color:#ae81ff">8453</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">rpc_required</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">features</span>: [<span style="color:#e6db74">&#34;Full support&#34;</span>, <span style="color:#e6db74">&#34;Coinbase ecosystem&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">bnb_chain: chain_id</span>: <span style="color:#ae81ff">56</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">rpc_required</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">features</span>: [<span style="color:#e6db74">&#34;Full support&#34;</span>, <span style="color:#e6db74">&#34;PancakeSwap approvals&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">avalanche: chain_id</span>: <span style="color:#ae81ff">43114</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">rpc_required</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">features</span>: [<span style="color:#e6db74">&#34;C-Chain support&#34;</span>, <span style="color:#e6db74">&#34;TraderJoe approvals&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">fantom: chain_id</span>: <span style="color:#ae81ff">250</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">rpc_required</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">features</span>: [<span style="color:#e6db74">&#34;Full support&#34;</span>, <span style="color:#e6db74">&#34;SpookySwap/SpiritSwap&#34;</span>]
+</span></span></code></pre></div><h3 id="switching-networks">Switching Networks</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Revoke.cash auto-detects your current network
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Switch networks in your wallet to audit approvals on different chains
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">switchNetwork</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">chainId</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> window.<span style="color:#a6e22e">ethereum</span>.<span style="color:#a6e22e">request</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">method</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;wallet_switchEthereumChain&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">params</span><span style="color:#f92672">:</span> [{ <span style="color:#a6e22e">chainId</span><span style="color:#f92672">:</span> <span style="color:#e6db74">````</span><span style="color:#ae81ff">0</span><span style="color:#a6e22e">x$</span>{<span style="color:#a6e22e">chainId</span>.<span style="color:#a6e22e">toString</span>(<span style="color:#ae81ff">16</span>)}<span style="color:#e6db74">````</span> }]
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Revoke.cash will automatically refresh for the new chain
+</span></span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Example: Switch to Polygon
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">switchNetwork</span>(<span style="color:#ae81ff">137</span>);
+</span></span></code></pre></div><hr>
+<h2 id="the-browser-extension-real-time-protection">The Browser Extension: Real-Time Protection</h2>
+<p>Revoke.cash offers a <strong>browser extension</strong> that provides proactive security alerts before you sign potentially dangerous approvals.</p>
+<h3 id="extension-installation">Extension Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Chrome Web Store: # https://chrome.google.com/webstore/detail/revokecash/revokecash-extension</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Firefox Add-ons: # https://addons.mozilla.org/firefox/addon/revokecash/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Features: # - Warns before signing unlimited approvals</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Alerts when approving known malicious contracts</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Shows estimated USD value at risk</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - One-click revoke from popup</span>
+</span></span></code></pre></div><h3 id="extension-configuration">Extension Configuration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Extension settings (configurable via popup)
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">extensionConfig</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Warn when approval exceeds this USD threshold
+</span></span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">warnThresholdUSD</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1000</span>,
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Block known phishing contracts automatically
+</span></span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">blockKnownScams</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Show risk rating for each approval
+</span></span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">showRiskRating</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Alert on Permit signatures (gasless approvals)
+</span></span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">warnOnPermit</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Dark mode
+</span></span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">theme</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;dark&#34;</span>
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h3 id="how-the-extension-intercepts-approvals">How the Extension Intercepts Approvals</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// The extension monitors ethereum.request() calls
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">originalRequest</span> <span style="color:#f92672">=</span> window.<span style="color:#a6e22e">ethereum</span>.<span style="color:#a6e22e">request</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>window.<span style="color:#a6e22e">ethereum</span>.<span style="color:#a6e22e">request</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">args</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">method</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;eth_sendTransaction&#34;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">tx</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">params</span>[<span style="color:#ae81ff">0</span>];
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Detect approval transactions
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">isApprovalTransaction</span>(<span style="color:#a6e22e">tx</span>)) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">spender</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">decodeSpender</span>(<span style="color:#a6e22e">tx</span>.<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">token</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">tx</span>.<span style="color:#a6e22e">to</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">amount</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">decodeAmount</span>(<span style="color:#a6e22e">tx</span>.<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Check if contract is known malicious
+</span></span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">await</span> <span style="color:#a6e22e">isKnownScam</span>(<span style="color:#a6e22e">spender</span>)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">showCriticalWarning</span>(<span style="color:#e6db74">&#34;KNOWN SCAM CONTRACT DETECTED!&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Promise.<span style="color:#a6e22e">reject</span>(<span style="color:#e6db74">&#34;Blocked by Revoke.cash&#34;</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Warn on unlimited approvals
+</span></span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">isUnlimited</span>(<span style="color:#a6e22e">amount</span>)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">showWarning</span>(<span style="color:#e6db74">&#34;Unlimited approval detected. Consider setting a limit.&#34;</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">originalRequest</span>(<span style="color:#a6e22e">args</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><hr>
+<h2 id="advanced-permit-and-permit2-signatures">Advanced: Permit and Permit2 Signatures</h2>
+<p>Modern DeFi uses <strong>gasless approvals</strong> through EIP-2612 <code>permit()</code> and Uniswap&rsquo;s <strong>Permit2</strong> contract. These are especially dangerous because they don&rsquo;t require an on-chain transaction — just a signature.</p>
+<h3 id="understanding-permit-signatures">Understanding Permit Signatures</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-solidity" data-lang="solidity"><span style="display:flex;"><span><span style="color:#75715e">// EIP-2612 permit: Off-chain signature becomes on-chain approval
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">permit</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">address</span> owner,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">address</span> spender,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">uint256</span> value,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">uint256</span> deadline,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">uint8</span> v,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bytes32</span> r,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bytes32</span> s
+</span></span><span style="display:flex;"><span>) <span style="color:#66d9ef">external</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// After this call, spender can spend value tokens
+</span></span></span><span style="display:flex;"><span>    <span style="color:#75715e">// The user NEVER sent a transaction — only signed a message!
+</span></span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="detecting-permit2-approvals">Detecting Permit2 Approvals</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Uniswap&#39;s Permit2 contract uses a different pattern
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">PERMIT2_ADDRESS</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0x000000000022D473030F116dDEE9F6B43aC78BA3&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">checkPermit2Allowance</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">owner</span>, <span style="color:#a6e22e">token</span>, <span style="color:#a6e22e">spender</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">permit2</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ethers</span>.<span style="color:#a6e22e">Contract</span>(<span style="color:#a6e22e">PERMIT2_ADDRESS</span>, <span style="color:#a6e22e">PERMIT2_ABI</span>, <span style="color:#a6e22e">provider</span>);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">allowance</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">permit2</span>.<span style="color:#a6e22e">allowance</span>(<span style="color:#a6e22e">owner</span>, <span style="color:#a6e22e">token</span>, <span style="color:#a6e22e">spender</span>);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">amount</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">allowance</span>.<span style="color:#a6e22e">amount</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">expiration</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">allowance</span>.<span style="color:#a6e22e">expiration</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">nonce</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">allowance</span>.<span style="color:#a6e22e">nonce</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">isActive</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">allowance</span>.<span style="color:#a6e22e">expiration</span> <span style="color:#f92672">&gt;</span> Math.<span style="color:#a6e22e">floor</span>(Date.<span style="color:#a6e22e">now</span>() <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000</span>)
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h3 id="revoking-permit2-allowances">Revoking Permit2 Allowances</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Revoking Permit2 requires a transaction to the Permit2 contract
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">revokePermit2</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">token</span>, <span style="color:#a6e22e">spender</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">permit2</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ethers</span>.<span style="color:#a6e22e">Contract</span>(<span style="color:#a6e22e">PERMIT2_ADDRESS</span>, <span style="color:#a6e22e">PERMIT2_ABI</span>, <span style="color:#a6e22e">signer</span>);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Set amount to 0 and expiration to now
+</span></span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">tx</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">permit2</span>.<span style="color:#a6e22e">approve</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">token</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">spender</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">0</span>,                                      <span style="color:#75715e">// amount = 0
+</span></span></span><span style="display:flex;"><span>    Math.<span style="color:#a6e22e">floor</span>(Date.<span style="color:#a6e22e">now</span>() <span style="color:#f92672">/</span> <span style="color:#ae81ff">1000</span>)           <span style="color:#75715e">// expiration = now
+</span></span></span><span style="display:flex;"><span>  );
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">tx</span>.<span style="color:#a6e22e">wait</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;Permit2 allowance revoked!&#34;</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><hr>
+<h2 id="gas-efficient-revoking-strategies">Gas-Efficient Revoking Strategies</h2>
+<p>Revoking approvals costs gas. Here are strategies to minimize costs while maintaining security.</p>
+<h3 id="batch-revoking">Batch Revoking</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Use multicall to revoke multiple approvals in one transaction
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">multicall3Address</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0xcA11bde05977b3631167028862bE2a173976CA11&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">batchRevoke</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">revocations</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">multicall</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ethers</span>.<span style="color:#a6e22e">Contract</span>(<span style="color:#a6e22e">multicall3Address</span>, <span style="color:#a6e22e">MULTICALL_ABI</span>, <span style="color:#a6e22e">signer</span>);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">calls</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">revocations</span>.<span style="color:#a6e22e">map</span>(({ <span style="color:#a6e22e">token</span>, <span style="color:#a6e22e">spender</span> }) =&gt; ({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">target</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">token</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">allowFailure</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">callData</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ethers</span>.<span style="color:#a6e22e">Contract</span>(<span style="color:#a6e22e">token</span>, <span style="color:#a6e22e">ERC20_ABI</span>).<span style="color:#66d9ef">interface</span>.<span style="color:#a6e22e">encodeFunctionData</span>(
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;approve&#34;</span>, [<span style="color:#a6e22e">spender</span>, <span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>  }));
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">tx</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">multicall</span>.<span style="color:#a6e22e">aggregate3</span>(<span style="color:#a6e22e">calls</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">tx</span>.<span style="color:#a6e22e">wait</span>();
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">````</span><span style="color:#a6e22e">Revoked</span> <span style="color:#a6e22e">$</span>{<span style="color:#a6e22e">revocations</span>.<span style="color:#a6e22e">length</span>} <span style="color:#a6e22e">approvals</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">one</span> <span style="color:#a6e22e">tx</span><span style="color:#f92672">!</span><span style="color:#e6db74">````</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h3 id="timing-your-revokes">Timing Your Revokes</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Strategy: Revoke during low gas periods</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Weekends typically have lower gas</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Early morning UTC (2AM - 6AM) is usually cheapest</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Use https://etherscan.io/gastracker to monitor</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Example gas costs for revoking: # ┌─────────────────┬──────────────┬─────────────────┐</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># │ Network         │ Gas Units    │ Cost (at 20 gwei)│</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ├─────────────────┼──────────────┼─────────────────┤</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># │ Ethereum        │ ~46,000      │ ~$2.30          │</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># │ Polygon         │ ~46,000      │ ~$0.02          │</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># │ Arbitrum        │ ~46,000      │ ~$0.50          │</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># │ Optimism        │ ~46,000      │ ~$0.30          │</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># │ BNB Chain       │ ~46,000      │ ~$0.10          │</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># └─────────────────┴──────────────┴─────────────────┘</span>
+</span></span></code></pre></div><hr>
+<h2 id="security-alert-system">Security Alert System</h2>
+<p>Revoke.cash monitors known exploits and proactively alerts users who may have approvals with compromised protocols.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Subscribe to security alerts (via browser extension or Telegram)
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">subscribeToAlerts</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">address</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Methods: // 1. Browser extension (push notifications)
+</span></span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 2. Telegram bot: @RevokeCashBot
+</span></span></span><span style="display:flex;"><span>  <span style="color:#75715e">// 3. Email alerts via revokesafe.eth
+</span></span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">alertConfig</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">address</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">address</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alertTypes</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;PROTOCOL_EXPLOIT&#34;</span>,      <span style="color:#75715e">// When a protocol you approved gets hacked
+</span></span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;NEW_UNLIMITED_APPROVAL&#34;</span>, <span style="color:#75715e">// When you grant an unlimited approval
+</span></span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;SUSPICIOUS_CONTRACT&#34;</span>    <span style="color:#75715e">// When you approve a flagged contract
+</span></span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">channels</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;browser&#34;</span>, <span style="color:#e6db74">&#34;telegram&#34;</span>, <span style="color:#e6db74">&#34;email&#34;</span>]
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">alertConfig</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><hr>
+<h2 id="best-practices-for-token-approval-security">Best Practices for Token Approval Security</h2>
+<h3 id="the-security-checklist">The Security Checklist</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># WEEKLY ROUTINE: # 1. Visit revoke.cash and scan all active approvals</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Revoke unlimited approvals for protocols you&#39;re not actively using</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Check the &#34;Risk&#34; column for unknown spenders</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># BEFORE EVERY MAJOR TRANSACTION: # 1. Verify the contract address on Etherscan</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Check if the spender is a known protocol</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. If prompted for unlimited approval, set a custom limit instead</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># AFTER PROTOCOL EXPLOITS: # 1. Immediately check revoke.cash if you ever used the protocol</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Revoke ALL approvals with the compromised contract</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Monitor your address for unauthorized transfers</span>
+</span></span></code></pre></div><h3 id="using-limited-approvals">Using Limited Approvals</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Instead of unlimited approval, set a specific amount
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">setLimitedApproval</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">token</span>, <span style="color:#a6e22e">spender</span>, <span style="color:#a6e22e">humanAmount</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">decimals</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">token</span>.<span style="color:#a6e22e">decimals</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">amount</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ethers</span>.<span style="color:#a6e22e">utils</span>.<span style="color:#a6e22e">parseUnits</span>(<span style="color:#a6e22e">humanAmount</span>, <span style="color:#a6e22e">decimals</span>);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Approve exactly what you need + small buffer
+</span></span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">tx</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">token</span>.<span style="color:#a6e22e">approve</span>(<span style="color:#a6e22e">spender</span>, <span style="color:#a6e22e">amount</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">tx</span>.<span style="color:#a6e22e">wait</span>();
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">````</span><span style="color:#a6e22e">Approved</span> <span style="color:#a6e22e">$</span>{<span style="color:#a6e22e">humanAmount</span>} <span style="color:#a6e22e">tokens</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">$</span>{<span style="color:#a6e22e">spender</span>}<span style="color:#e6db74">````</span>);
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Example: Only approve 1000 USDC for a swap
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">setLimitedApproval</span>(<span style="color:#a6e22e">usdcContract</span>, <span style="color:#a6e22e">uniswapRouter</span>, <span style="color:#e6db74">&#34;1000&#34;</span>);
+</span></span></code></pre></div><h3 id="the-burner-wallet-strategy">The &ldquo;Burner Wallet&rdquo; Strategy</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// For exploring new/untested protocols: // 1. Create a separate &#34;burner&#34; wallet
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 2. Only transfer funds you can afford to lose
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 3. Grant approvals from the burner wallet
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 4. After use, revoke all approvals and sweep remaining funds back
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">burnerStrategy</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">maxFunds</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;0.1 ETH&#34;</span>,           <span style="color:#75715e">// Maximum exposure
+</span></span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">approvalPolicy</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;LIMITED_ONLY&#34;</span>, <span style="color:#75715e">// Never unlimited
+</span></span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">postUseAction</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;REVOKE_ALL&#34;</span>     <span style="color:#75715e">// Always cleanup after
+</span></span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#a6e22e">FAQ</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Frequently</span> <span style="color:#a6e22e">Asked</span> <span style="color:#a6e22e">Questions</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#a6e22e">Q1</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Is</span> <span style="color:#a6e22e">Revoke</span>.<span style="color:#a6e22e">cash</span> <span style="color:#a6e22e">free</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">use</span><span style="color:#f92672">?**</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">A</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Yes</span>, <span style="color:#a6e22e">Revoke</span>.<span style="color:#a6e22e">cash</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">completely</span> <span style="color:#a6e22e">free</span>. <span style="color:#a6e22e">It</span><span style="color:#e6db74">&#39;s an open-source project (GPL-3.0) maintained by the community. You only pay the standard network gas fee for revoke transactions. The browser extension is also free.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">**Q2: Can Revoke.cash steal my tokens?**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">A: No. Revoke.cash is a non-custodial interface — it never holds your keys or has any special access. You sign all transactions directly through your own wallet. The code is fully open-source and auditable on GitHub.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">**Q3: What&#39;</span><span style="color:#a6e22e">s</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">difference</span> <span style="color:#a6e22e">between</span> <span style="color:#a6e22e">revoking</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">disconnecting</span> <span style="color:#a6e22e">my</span> <span style="color:#a6e22e">wallet</span><span style="color:#f92672">?**</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">A</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Disconnecting</span> <span style="color:#a6e22e">your</span> <span style="color:#a6e22e">wallet</span> <span style="color:#a6e22e">only</span> <span style="color:#a6e22e">removes</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">frontend</span> <span style="color:#a6e22e">connection</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">Revoke</span>.<span style="color:#a6e22e">cash</span>. <span style="color:#a6e22e">It</span> <span style="color:#a6e22e">does</span> <span style="color:#a6e22e">NOT</span> <span style="color:#a6e22e">remove</span> <span style="color:#a6e22e">token</span> <span style="color:#a6e22e">approvals</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">blockchain</span>. <span style="color:#a6e22e">Revoking</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">an</span> <span style="color:#a6e22e">on</span><span style="color:#f92672">-</span><span style="color:#a6e22e">chain</span> <span style="color:#a6e22e">action</span> <span style="color:#a6e22e">that</span> <span style="color:#a6e22e">permanently</span> <span style="color:#a6e22e">removes</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">smart</span> <span style="color:#a6e22e">contract</span><span style="color:#e6db74">&#39;s permission to spend your tokens.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">**Q4: Do I need to revoke approvals on every blockchain separately?**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">A: Yes, token approvals are chain-specific. If you approved USDC on Uniswap on Ethereum, that approval only exists on Ethereum. You need to check and revoke approvals on each chain where you&#39;</span><span style="color:#a6e22e">ve</span> <span style="color:#a6e22e">interacted</span> <span style="color:#66d9ef">with</span> <span style="color:#a6e22e">DeFi</span> <span style="color:#a6e22e">protocols</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#a6e22e">Q5</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">What</span> <span style="color:#a6e22e">are</span> <span style="color:#a6e22e">Permit2</span> <span style="color:#a6e22e">approvals</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">how</span> <span style="color:#a6e22e">are</span> <span style="color:#a6e22e">they</span> <span style="color:#a6e22e">different</span><span style="color:#f92672">?**</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">A</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Uniswap</span><span style="color:#e6db74">&#39;s Permit2 system allows gasless approvals through off-chain signatures. These don&#39;</span><span style="color:#a6e22e">t</span> <span style="color:#a6e22e">appear</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">regular</span> <span style="color:#a6e22e">on</span><span style="color:#f92672">-</span><span style="color:#a6e22e">chain</span> <span style="color:#a6e22e">transactions</span> <span style="color:#a6e22e">but</span> <span style="color:#a6e22e">still</span> <span style="color:#a6e22e">grant</span> <span style="color:#a6e22e">spending</span> <span style="color:#a6e22e">permissions</span>. <span style="color:#a6e22e">Revoke</span>.<span style="color:#a6e22e">cash</span> <span style="color:#a6e22e">can</span> <span style="color:#a6e22e">detect</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">revoke</span> <span style="color:#a6e22e">Permit2</span> <span style="color:#a6e22e">allowances</span> <span style="color:#a6e22e">through</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">dedicated</span> <span style="color:#66d9ef">interface</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#a6e22e">Q6</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Should</span> <span style="color:#a6e22e">I</span> <span style="color:#a6e22e">revoke</span> <span style="color:#a6e22e">ALL</span> <span style="color:#a6e22e">approvals</span>, <span style="color:#a6e22e">even</span> <span style="color:#a6e22e">from</span> <span style="color:#a6e22e">trusted</span> <span style="color:#a6e22e">protocols</span><span style="color:#f92672">?**</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">A</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Not</span> <span style="color:#a6e22e">necessarily</span>. <span style="color:#a6e22e">For</span> <span style="color:#a6e22e">protocols</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">use</span> <span style="color:#a6e22e">regularly</span> (<span style="color:#a6e22e">like</span> <span style="color:#a6e22e">Aave</span> <span style="color:#a6e22e">or</span> <span style="color:#a6e22e">Uniswap</span>), <span style="color:#a6e22e">maintaining</span> <span style="color:#a6e22e">an</span> <span style="color:#a6e22e">approval</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">convenient</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">risk</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">low</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">established</span> <span style="color:#a6e22e">protocols</span>. <span style="color:#a6e22e">Focus</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">revoking</span><span style="color:#f92672">:</span> (<span style="color:#ae81ff">1</span>) <span style="color:#a6e22e">unlimited</span> <span style="color:#a6e22e">approvals</span>, (<span style="color:#ae81ff">2</span>) <span style="color:#a6e22e">approvals</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">protocols</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">no</span> <span style="color:#a6e22e">longer</span> <span style="color:#a6e22e">use</span>, <span style="color:#a6e22e">and</span> (<span style="color:#ae81ff">3</span>) <span style="color:#a6e22e">approvals</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">unknown</span> <span style="color:#a6e22e">contracts</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#a6e22e">Q7</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Can</span> <span style="color:#a6e22e">someone</span> <span style="color:#a6e22e">steal</span> <span style="color:#a6e22e">my</span> <span style="color:#a6e22e">NFTs</span> <span style="color:#a6e22e">through</span> <span style="color:#a6e22e">approvals</span><span style="color:#f92672">?**</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">A</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Yes</span><span style="color:#f92672">!</span> <span style="color:#a6e22e">ERC</span><span style="color:#f92672">-</span><span style="color:#ae81ff">721</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">ERC</span><span style="color:#f92672">-</span><span style="color:#ae81ff">1155</span> <span style="color:#a6e22e">token</span> <span style="color:#a6e22e">approvals</span> <span style="color:#a6e22e">work</span> <span style="color:#a6e22e">similarly</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">ERC</span><span style="color:#f92672">-</span><span style="color:#ae81ff">20.</span> <span style="color:#a6e22e">If</span> <span style="color:#a6e22e">you</span><span style="color:#e6db74">&#39;ve approved an NFT marketplace or random contract, they can transfer your NFTs. Revoke.cash supports revoking NFT approvals as well — look for the &#34;NFT&#34; tab on the dashboard.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">**Q8: What happens if I don&#39;</span><span style="color:#a6e22e">t</span> <span style="color:#a6e22e">revoke</span> <span style="color:#a6e22e">approvals</span><span style="color:#f92672">?**</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">A</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Your</span> <span style="color:#a6e22e">tokens</span> <span style="color:#a6e22e">remain</span> <span style="color:#a6e22e">at</span> <span style="color:#a6e22e">risk</span> <span style="color:#a6e22e">indefinitely</span>. <span style="color:#a6e22e">If</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">approved</span> <span style="color:#a6e22e">contract</span> <span style="color:#a6e22e">gets</span> <span style="color:#a6e22e">exploited</span>, <span style="color:#a6e22e">hacked</span>, <span style="color:#a6e22e">or</span> <span style="color:#a6e22e">turns</span> <span style="color:#a6e22e">malicious</span>, <span style="color:#a6e22e">your</span> <span style="color:#a6e22e">entire</span> <span style="color:#a6e22e">approved</span> <span style="color:#a6e22e">balance</span> <span style="color:#a6e22e">can</span> <span style="color:#a6e22e">be</span> <span style="color:#a6e22e">drained</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">single</span> <span style="color:#a6e22e">transaction</span>. <span style="color:#a6e22e">Many</span> <span style="color:#a6e22e">high</span><span style="color:#f92672">-</span><span style="color:#a6e22e">profile</span> <span style="color:#a6e22e">hacks</span> (<span style="color:#a6e22e">like</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">$600M</span> <span style="color:#a6e22e">Poly</span> <span style="color:#a6e22e">Network</span> <span style="color:#a6e22e">exploit</span>) <span style="color:#a6e22e">were</span> <span style="color:#a6e22e">possible</span> <span style="color:#a6e22e">because</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">lingering</span> <span style="color:#a6e22e">approvals</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#a6e22e">Recommended</span> <span style="color:#a6e22e">Hosting</span> <span style="color:#f92672">&amp;</span> <span style="color:#a6e22e">Infrastructure</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Before</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">deploy</span> <span style="color:#a6e22e">any</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">tools</span> <span style="color:#a6e22e">above</span> <span style="color:#a6e22e">into</span> <span style="color:#a6e22e">production</span>, <span style="color:#a6e22e">you</span><span style="color:#e6db74">&#39;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">*Affiliate links — they don&#39;</span><span style="color:#a6e22e">t</span> <span style="color:#a6e22e">cost</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">extra</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">they</span> <span style="color:#a6e22e">help</span> <span style="color:#a6e22e">keep</span> <span style="color:#a6e22e">dibi8</span>.<span style="color:#a6e22e">com</span> <span style="color:#a6e22e">running</span>.<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#a6e22e">Conclusion</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">Make</span> <span style="color:#a6e22e">Revoke</span>.<span style="color:#a6e22e">cash</span> <span style="color:#a6e22e">Part</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">Your</span> <span style="color:#a6e22e">Security</span> <span style="color:#a6e22e">Routine</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">In</span> <span style="color:#a6e22e">DeFi</span>, <span style="color:#a6e22e">security</span> <span style="color:#a6e22e">isn</span><span style="color:#e6db74">&#39;t a one-time setup — it&#39;</span><span style="color:#a6e22e">s</span> <span style="color:#a6e22e">an</span> <span style="color:#a6e22e">ongoing</span> <span style="color:#a6e22e">practice</span>. <span style="color:#a6e22e">Revoke</span>.<span style="color:#a6e22e">cash</span>, <span style="color:#66d9ef">with</span> <span style="color:#a6e22e">its</span> <span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">500</span><span style="color:#f92672">+</span> <span style="color:#a6e22e">GitHub</span> <span style="color:#a6e22e">stars</span><span style="color:#f92672">**</span>, <span style="color:#f92672">**</span><span style="color:#a6e22e">browser</span> <span style="color:#a6e22e">extension</span><span style="color:#f92672">**</span>, <span style="color:#a6e22e">and</span> <span style="color:#f92672">**</span><span style="color:#a6e22e">multi</span><span style="color:#f92672">-</span><span style="color:#a6e22e">chain</span> <span style="color:#a6e22e">support</span><span style="color:#f92672">**</span>, <span style="color:#a6e22e">provides</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">simplest</span> <span style="color:#a6e22e">yet</span> <span style="color:#a6e22e">most</span> <span style="color:#a6e22e">effective</span> <span style="color:#a6e22e">way</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">audit</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">manage</span> <span style="color:#a6e22e">your</span> <span style="color:#a6e22e">token</span> <span style="color:#a6e22e">approvals</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">With</span> <span style="color:#a6e22e">over</span> <span style="color:#f92672">**</span><span style="color:#a6e22e">$1</span> <span style="color:#a6e22e">billion</span> <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">protected</span> <span style="color:#a6e22e">assets</span><span style="color:#f92672">**</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">regular</span> <span style="color:#a6e22e">security</span> <span style="color:#a6e22e">alerts</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">exploited</span> <span style="color:#a6e22e">protocols</span>, <span style="color:#a6e22e">Revoke</span>.<span style="color:#a6e22e">cash</span> <span style="color:#a6e22e">has</span> <span style="color:#a6e22e">proven</span> <span style="color:#a6e22e">itself</span> <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">an</span> <span style="color:#a6e22e">essential</span> <span style="color:#a6e22e">tool</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">every</span> <span style="color:#a6e22e">crypto</span> <span style="color:#a6e22e">user</span><span style="color:#e6db74">&#39;s security stack. Make it a weekly habit — spend 5 minutes on revoke.cash and potentially save your entire portfolio.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">**Looking for a secure place to trade? [Sign up on Binance](https://www.bsmkweb.cc/register?ref=DIBI8) — the world&#39;</span><span style="color:#a6e22e">s</span> <span style="color:#a6e22e">largest</span> <span style="color:#a6e22e">crypto</span> <span style="color:#a6e22e">exchange</span> <span style="color:#66d9ef">with</span> <span style="color:#a6e22e">industry</span><span style="color:#f92672">-</span><span style="color:#a6e22e">leading</span> <span style="color:#a6e22e">security</span>, <span style="color:#a6e22e">lowest</span> <span style="color:#a6e22e">fees</span>, <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">insurance</span> <span style="color:#a6e22e">fund</span> <span style="color:#a6e22e">protection</span>.<span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#a6e22e">Disclaimer</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">This</span> <span style="color:#a6e22e">article</span> <span style="color:#a6e22e">is</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">informational</span> <span style="color:#a6e22e">purposes</span> <span style="color:#a6e22e">only</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">does</span> <span style="color:#a6e22e">not</span> <span style="color:#a6e22e">constitute</span> <span style="color:#a6e22e">financial</span> <span style="color:#a6e22e">or</span> <span style="color:#a6e22e">security</span> <span style="color:#a6e22e">advice</span>. <span style="color:#a6e22e">Always</span> <span style="color:#a6e22e">verify</span> <span style="color:#a6e22e">contract</span> <span style="color:#a6e22e">addresses</span>, <span style="color:#a6e22e">use</span> <span style="color:#a6e22e">hardware</span> <span style="color:#a6e22e">wallets</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">significant</span> <span style="color:#a6e22e">holdings</span>, <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">practice</span> <span style="color:#a6e22e">good</span> <span style="color:#a6e22e">operational</span> <span style="color:#a6e22e">security</span>. <span style="color:#a6e22e">This</span> <span style="color:#a6e22e">post</span> <span style="color:#a6e22e">contains</span> <span style="color:#a6e22e">affiliate</span> <span style="color:#a6e22e">links</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">we</span> <span style="color:#a6e22e">may</span> <span style="color:#a6e22e">receive</span> <span style="color:#a6e22e">compensation</span> <span style="color:#a6e22e">at</span> <span style="color:#a6e22e">no</span> <span style="color:#a6e22e">cost</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">when</span> <span style="color:#a6e22e">you</span> <span style="color:#a6e22e">use</span> <span style="color:#a6e22e">our</span> <span style="color:#a6e22e">partner</span> <span style="color:#a6e22e">links</span>.<span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;revoke-crypto-permission-manager&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;2026-05-20&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;2026-05-20&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://dibi8.com/resources/revoke-crypto-permission-manager&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;</span><span style="color:#960050;background-color:#1e0010">/script&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#a6e22e">Frequently</span> <span style="color:#a6e22e">Asked</span> <span style="color:#a6e22e">Questions</span> (<span style="color:#a6e22e">FAQ</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#a6e22e">问</span><span style="color:#960050;background-color:#1e0010">：</span><span style="color:#a6e22e">量化交易的风险有多大</span><span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">取决于策略设计</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#a6e22e">资金管理</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#a6e22e">市场波动</span><span style="color:#960050;background-color:#1e0010">。</span><span style="color:#a6e22e">建议先用模拟账户测试</span><span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#a6e22e">问</span><span style="color:#960050;background-color:#1e0010">：</span><span style="color:#a6e22e">如何选择适合的交易策略</span><span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">根据风险承受能力</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#a6e22e">时间投入</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#a6e22e">资金规模选择</span><span style="color:#960050;background-color:#1e0010">。</span><span style="color:#a6e22e">高频需要技术</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">低频需要分析</span><span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#a6e22e">问</span><span style="color:#960050;background-color:#1e0010">：</span><span style="color:#a6e22e">回测结果可信吗</span><span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">回测有局限性</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">需警惕过拟合</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#a6e22e">前视偏差</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#a6e22e">忽略滑点和手续费</span><span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#a6e22e">问</span><span style="color:#960050;background-color:#1e0010">：</span><span style="color:#a6e22e">需要编程基础吗</span><span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">基础策略可使用低代码平台</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">高级策略需要Python</span><span style="color:#f92672">/</span><span style="color:#a6e22e">C</span><span style="color:#f92672">++</span><span style="color:#a6e22e">编程能力</span><span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#a6e22e">问</span><span style="color:#960050;background-color:#1e0010">：</span><span style="color:#a6e22e">交易系统的维护成本</span><span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">包括服务器费用</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#a6e22e">数据订阅</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#a6e22e">算法更新</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#a6e22e">以及监控维护时间</span><span style="color:#960050;background-color:#1e0010">。</span>
+</span></span></code></pre></div>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fmcp-tools%2frevoke-crypto-permission-manager%2f&text=Official%20website%20%28always%20verify%20the%20URL%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fmcp-tools%2frevoke-crypto-permission-manager%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

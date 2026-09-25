@@ -1,0 +1,600 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add to OpenCode&#39;s MCP config: | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/self-hosted-ai-coding-workflow/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Add to OpenCode&#39;s MCP config:</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Add to OpenCode&#39;s MCP config:</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;Self-Hosted AI Coding Workflow: The Complete $6/Month St&hellip;
+description: &ldquo;Technical guide and comparison&rdquo;
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
+tech_stack: - Docker</p>
+<ul>
+<li>Python</li>
+<li>TypeScript</li>
+<li>PostgreSQL
+application_domain: Collections
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: MIT
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-21&rdquo;
+draft: false
+categories: [&ldquo;collections&rdquo;]
+tags: [&ldquo;self-hosted&rdquo;, &ldquo;ai coding&rdquo;, &ldquo;stack&rdquo;, &ldquo;workflow&rdquo;, &ldquo;collection&rdquo;]
+aliases:</li>
+<li>/posts/self-hosted-ai-coding-workflow/-</li>
+</ul>
+<hr>
+<p>If you&rsquo;ve been paying $20/mo for Cursor + $80/mo for Claude Code Pro + $19/mo for Copilot + $50/mo for Replit credits + $120/mo for OpenAI API top-ups, you&rsquo;re at <strong>$289/month</strong> of AI coding spend. After 12 months that&rsquo;s <strong>$3,468</strong> — for tools you don&rsquo;t own, can&rsquo;t audit, and can have rate-limited or shut off without notice.</p>
+<p>This collection assembles the <strong>7-component self-hosted alternative</strong> that runs on a <strong>$6/month VPS</strong> and matches 90%+ of the SaaS feature set. We&rsquo;ve published a deep dive on each component over the past 90 days. This page is the <strong>complete stack assembly</strong> — what to install, in what order, with which configs, plus the upgrade path when you outgrow the $6 tier.</p>
+<h2 id="tldr--the-stack-at-a-glance">TL;DR — The Stack at a Glance</h2>
+<p>| # | Component | Tool | Why | Deep dive |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| 1 | Editor / Agent | <strong>OpenCode</strong> | Open-source Claude Code alternative, runs DeepSeek-V4 at $0.007/task vs $0.14 | <a href="/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/">OpenCode setup</a> |
+| 2 | Local LLM Runner | <strong>Ollama</strong> | 137k stars, one-line install, 22 tok/sec on a 5-year-old M1 | <a href="/resources/llm-frameworks/ollama/">Ollama guide</a> |
+| 3 | LLM Gateway | <strong>LiteLLM</strong> | 47.8k stars, unified API for 100+ models, self-hosted | <a href="/resources/llm-frameworks/litellm/">LiteLLM gateway</a> |
+| 4 | Token-Saving Proxy | <strong>9Router</strong> | RTK compression cuts coding-agent tokens 20-40% | <a href="/resources/llm-frameworks/9router-smart-llm-proxy-token-saver-free-coding/">9Router setup</a> |
+| 5 | Memory Layer | <strong>mem0 + AgentMemory MCP</strong> | Persistent semantic recall across sessions | <a href="/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/">AgentMemory MCP</a> |
+| 6 | Code Context MCP | <strong>filesystem + git + tavily search</strong> | Anthropic reference + community + search | <a href="/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/">MCP server registry</a> |
+| 7 | Multi-CLI Switcher | <strong>CC Switch</strong> | One-click between Claude / Codex / Gemini CLI / OpenCode | <a href="/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/">CC Switch guide</a> |</p>
+<p><strong>Total monthly cost</strong> (4GB VPS + storage): <strong>$6</strong> at the entry tier. Up to ~$30/month at the &ldquo;team of 5&rdquo; tier with PostgreSQL + Redis + replicated LiteLLM proxy.</p>
+<h2 id="1-why-this-stack-exists-in-2026">1. Why This Stack Exists in 2026</h2>
+<p>Three things changed between 2024 and 2026 that made self-hosted AI coding finally viable: 1. <strong>Open-weight models caught up</strong>: DeepSeek-V4, Qwen 3 Coder, GLM-4.6 Coder are within 5% of Claude/GPT-5 on coding benchmarks while being free or near-free
+2. <strong>MCP standardized tool integration</strong>: instead of every editor reinventing how to call file/git/search tools, the protocol is now a USB-C port — see <a href="/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/">MCP Server Registry guide</a> for the 19,700+ servers now available
+3. <strong>Local LLM runners are production-grade</strong>: Ollama, vLLM, and llama.cpp run at acceptable speed on consumer hardware</p>
+<p>The math worked in 2024 too, but the experience was painful. In 2026, the gap closed.</p>
+<h2 id="2-architecture-overview">2. Architecture Overview</h2>
+<pre tabindex="0"><code>                  ┌─────────────────────────────┐
+                  │   Your machine / VPS ($6)   │
+                  │                             │
+   You type  →    │  OpenCode (editor/agent)    │
+                  │           │                 │
+                  │           ▼                 │
+                  │  CC Switch (1-click CLI)    │
+                  │           │                 │
+                  │           ▼                 │
+                  │  LiteLLM Gateway :4000      │
+                  │           │                 │
+                  │     ┌─────┴─────┐           │
+                  │     │           │           │
+                  │     ▼           ▼           │
+                  │  9Router    Direct          │
+                  │  (RTK comp) (premium)       │
+                  │     │           │           │
+                  └─────┼───────────┼───────────┘
+                        │           │
+              ┌─────────┴───┐  ┌────┴──────┐
+              ▼             ▼  ▼           ▼
+          Ollama       DeepSeek API   Claude API
+          (local)      (free coding)  (premium)
+
+      MCP servers (filesystem + git + memory + tavily-search)
+      mounted on OpenCode via claude_desktop_config.json
+</code></pre><p>The pattern: <strong>OpenCode is the editor brain, LiteLLM is the traffic cop, 9Router compresses, MCP servers expose the world.</strong> Swap any component without touching the others.</p>
+<h2 id="3-component-1--opencode-editor--agent">3. Component 1 — OpenCode (Editor / Agent)</h2>
+<p><strong>The role</strong>: This is what you actually type into. Replaces Cursor + Claude Code Pro.</p>
+<p><strong>Why this pick</strong>: Open-source agent that speaks MCP natively. On the same refactor task (400-line React component), OpenCode + DeepSeek-V4 = 18 sec, $0.007. Claude Code (Sonnet) = 12 sec, $0.14. Twenty-times cheaper, 5% slower.</p>
+<p><strong>Quick install</strong>: `````bash
+npm install -g @opencode-ai/opencode
+opencode &ndash;version  # 1.x</p>
+<pre tabindex="0"><code>
+Point it at your LiteLLM gateway (next component) via config and you&#39;re done.
+
+**Full setup** including provider routing rules, MCP server connection, and editor integration: see our [OpenCode complete guide](/resources/llm-frameworks/opencode-open-source-claude-code-alternative-2026/).
+
+## 4. Component 2 — Ollama (Local LLM Runner)
+
+**The role**: Run smaller models entirely on your own hardware. 100% offline option for sensitive code.
+
+**Why this pick**: 137k stars. Single-binary install. Llama 3.2 3B runs at 22 tok/sec on a 5-year-old M1 MacBook with 8GB RAM. Qwen 3 Coder 14B runs comfortably on a 16GB M-series Mac or any 32GB Linux box.
+
+**Quick install**: `````bash
+curl -fsSL https://ollama.com/install.sh | sh
+ollama pull qwen3-coder:14b
+ollama serve  # exposes :11434 OpenAI-compatible API
+</code></pre><p>LiteLLM picks up Ollama as a provider automatically.</p>
+<p><strong>Full setup</strong> with model selection by hardware tier and the quantization tradeoffs that matter: see our <a href="/resources/llm-frameworks/ollama/">Ollama production guide</a>.</p>
+<h2 id="5-component-3--litellm-unified-gateway">5. Component 3 — LiteLLM (Unified Gateway)</h2>
+<p><strong>The role</strong>: One OpenAI-compatible API in front of every model — Ollama (local), DeepSeek (cheap), Claude (premium), Gemini (free tier). Your editor only talks to LiteLLM; LiteLLM routes based on your config.</p>
+<p><strong>Why this pick</strong>: 47.8k stars, the most-starred LLM gateway. 8ms P95 latency at 1k RPS. Free if self-hosted. Compared in detail in our <a href="/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/">Portkey vs LiteLLM vs OpenRouter 2026 guide</a>.</p>
+<p><strong>Quick deploy on a 4GB VPS</strong> (we recommend  for sub-30ms latency to mainland China users, or  for everywhere else): `````bash
+docker run -d &ndash;name litellm -p 4000:4000 <br>
+-e LITELLM_MASTER_KEY=sk-your-secret <br>
+-e OLLAMA_API_BASE=http://host.docker.internal:11434 <br>
+-e DEEPSEEK_API_KEY=$DEEPSEEK_KEY <br>
+-e ANTHROPIC_API_KEY=$CLAUDE_KEY <br>
+ghcr.io/berriai/litellm:main-stable</p>
+<pre tabindex="0"><code>
+**Full setup** with virtual keys, spend tracking, fallback rules: see our [LiteLLM production gateway 2026](/resources/llm-frameworks/litellm/).
+
+## 6. Component 4 — 9Router (Token-Saving Proxy)
+
+**The role**: Sit between LiteLLM and your &#34;premium&#34; providers (Claude / GPT-5). Compress repeated content (file headers, system prompts, codebase context) before sending. **Cuts billable tokens 20-40% for coding agents.**
+
+**Why this matters**: Coding agents are pathological token consumers — they send the entire codebase context every turn. At $3/M input tokens on Claude Sonnet, this adds up fast. 9Router&#39;s RTK (Repetition-Token Compression) is the only proxy designed specifically for this workload.
+
+**Quick install**: `````bash
+docker run -d --name 9router -p 9999:9999 \
+  -e PROVIDERS=anthropic,openai,gemini,deepseek \
+  ghcr.io/rtk-ai/9router:latest
+</code></pre><p>Point LiteLLM&rsquo;s premium provider endpoints at <code>localhost:9999</code> instead of direct.</p>
+<p><strong>Full setup</strong>: <a href="/resources/llm-frameworks/9router-smart-llm-proxy-token-saver-free-coding/">9Router smart proxy guide</a>.</p>
+<h2 id="7-component-5--memory-layer-mem0--agentmemory-mcp">7. Component 5 — Memory Layer (mem0 + AgentMemory MCP)</h2>
+<p><strong>The role</strong>: Persistent semantic memory across coding sessions. &ldquo;Remember that we use Tailwind v4 and the auth lives in <code>src/lib/auth.ts</code>&rdquo; — and the agent actually remembers next Monday.</p>
+<p><strong>Why this pick</strong>: mem0 is the open-source semantic memory layer with 30k+ stars. AgentMemory is the MCP server that exposes it to any MCP host (OpenCode / Claude Desktop / Cursor).</p>
+<p><strong>Quick install</strong>: `````bash
+npm install -g @mem0/mem0-mcp</p>
+<h1 id="add-to-opencodes-mcp-config---agentmemory--command-mem0-mcp-args---">Add to OpenCode&rsquo;s MCP config: # { &ldquo;agentmemory&rdquo;: { &ldquo;command&rdquo;: &ldquo;mem0-mcp&rdquo;, &ldquo;args&rdquo;: [] } }</h1>
+<pre tabindex="0"><code>
+**Full setup** with the embedding model picks and vector DB choices: see our [AgentMemory MCP guide](/resources/llm-frameworks/agentmemory-mcp-persistent-memory-2026/).
+
+## 8. Component 6 — Code Context MCP (filesystem + git + tavily-search)
+
+**The role**: Give the agent eyes and hands. Read your project files, inspect your git history, search the web — all via the MCP protocol.
+
+**The minimum set**: - ````modelcontextprotocol/server-filesystem```` (Anthropic reference)
+- ````modelcontextprotocol/server-git```` (Anthropic reference)
+- ````tavily-mcp```` (LLM-formatted web search results)
+
+**Quick install** (all 3 added to OpenCode&#39;s ``claude_desktop_config.json``): `````json
+{
+  &#34;mcpServers&#34;: {
+    &#34;filesystem&#34;: {
+      &#34;command&#34;: &#34;npx&#34;,
+      &#34;args&#34;: [&#34;-y&#34;, &#34;@modelcontextprotocol/server-filesystem&#34;, &#34;/home/user/projects&#34;]
+    },
+    &#34;git&#34;: {
+      &#34;command&#34;: &#34;uvx&#34;,
+      &#34;args&#34;: [&#34;mcp-server-git&#34;, &#34;--repository&#34;, &#34;/home/user/projects/your-repo&#34;]
+    },
+    &#34;tavily&#34;: {
+      &#34;command&#34;: &#34;npx&#34;,
+      &#34;args&#34;: [&#34;-y&#34;, &#34;@tavily/mcp&#34;],
+      &#34;env&#34;: {&#34;TAVILY_API_KEY&#34;: &#34;tvly-xxx&#34;}
+    }
+  }
+}
+</code></pre><p>Tavily has a generous free tier (1,000 searches/mo) so this stays within the $6 budget.</p>
+<p><strong>Full menu of 19,700+ available MCP servers and how to pick more</strong>: see our <a href="/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/">MCP Server Registry comprehensive guide 2026</a>.</p>
+<h2 id="9-component-7--cc-switch-multi-cli-orchestrator">9. Component 7 — CC Switch (Multi-CLI Orchestrator)</h2>
+<p><strong>The role</strong>: When you want to use Claude Code natively (not via OpenCode) for a specific task — or jump to Codex for Rust speed — CC Switch is the 1-click swap. Single config, all your AI CLIs share MCP servers.</p>
+<p><strong>Why this pick</strong>: A 75k-star Rust + Tauri desktop app that means you stop maintaining 5 separate <code>~/.claude_desktop_config.json</code> files for 5 different CLIs.</p>
+<p><strong>Quick install</strong>: Download from <a href="https://github.com/farion1231/cc-switch/releases">farion1231/cc-switch releases</a>. Configure each CLI with one click.</p>
+<p><strong>Full guide</strong>: <a href="/resources/dev-utils/cc-switch-unified-ai-cli-control-center-2026/">CC Switch unified AI CLI control center</a>.</p>
+<h2 id="10-assembly-order--day-1-setup-90-minutes">10. Assembly Order — Day 1 Setup (90 minutes)</h2>
+<p>If you&rsquo;re starting from scratch, do it in this order: 1. <strong>Spin up infrastructure</strong> (15 min) — Order a , install Docker, open ports 4000 (LiteLLM) + 9999 (9Router) + 11434 (Ollama)
+2. <strong>Ollama first</strong> (10 min) — Install + pull <code>qwen3-coder:14b</code> (~9 GB). Confirm <code>curl localhost:11434/api/tags</code> works
+3. <strong>LiteLLM second</strong> (15 min) — Docker run with the env vars from sec. 5. Confirm <code>curl localhost:4000/v1/models -H &quot;Authorization: Bearer sk-your-secret&quot;</code> lists Ollama models
+4. <strong>9Router third</strong> (10 min) — Optional but recommended. Add to LiteLLM&rsquo;s premium provider config
+5. <strong>OpenCode fourth</strong> (15 min) — Install locally, point at LiteLLM at <code>https://your-vps:4000/v1</code>, test a basic prompt
+6. <strong>MCP servers fifth</strong> (15 min) — filesystem + git + tavily added to OpenCode config. Test by asking &ldquo;list the files in this repo&rdquo;
+7. <strong>mem0 + AgentMemory sixth</strong> (10 min) — ````npm i -g mem0-mcp```, add to config, test by saying &ldquo;remember we use Tailwind v4&rdquo;
+8. <strong>CC Switch last</strong> (optional) — Only if you want native Claude Code / Codex side-by-side</p>
+<p>You now have a $6/month AI coding stack matching 90% of the $289/month SaaS bundle.</p>
+<h2 id="11-monthly-cost-breakdown">11. Monthly Cost Breakdown</h2>
+<p>| Item | Entry tier | Team of 5 tier |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| VPS (4 GB → 16 GB) | $6 | $24 |
+| Ollama models | $0 (you own the disk) | $0 |
+| LiteLLM | $0 (self-hosted) | $0 |
+| 9Router | $0 (self-hosted) | $0 |
+| Tavily search | $0 (1k req free tier) | $5 (paid tier) |
+| mem0 / AgentMemory | $0 (self-hosted) | $0 |
+| DeepSeek API (cheap inference for hard tasks) | ~$2-5 | ~$10-15 |
+| Claude API (rare, premium fallback) | <del>$1-3 | <del>$5-10 |
+| <strong>Total</strong> | **</del>$6-14** | **</del>$30-50** |</p>
+<p>Compare against $289/month for Cursor + Claude Code Pro + Copilot + Replit + OpenAI top-ups.</p>
+<h2 id="12-upgrade-path">12. Upgrade Path</h2>
+<p>When your stack outgrows the $6 tier (more than 1 dev, more than 1 project, persistent state matters): - <strong>Add Postgres</strong> for LiteLLM spend tracking + virtual keys per project ( $15/mo)</p>
+<ul>
+<li><strong>Add Redis</strong> for LiteLLM caching (1 GB managed Redis $10/mo)</li>
+<li><strong>Move LiteLLM behind a load balancer</strong> with 3 replicas — see <a href="/resources/llm-frameworks/llm-gateway-portkey-litellm-openrouter-comparison-2026/">Portkey vs LiteLLM 2026 guide</a> sec. 4 for the Kubernetes pattern</li>
+<li><strong>Add Grafana + Loki</strong> for full observability — log every prompt, every fallback, every cost spike</li>
+<li><strong>Add team-level RBAC</strong> via LiteLLM enterprise tier (custom pricing)</li>
+</ul>
+<p>The point: you started with $6/mo and <em>own the entire stack</em>. Every upgrade is a deliberate cost decision tied to a specific need — not a SaaS lock-in trap.</p>
+<h2 id="tldr--the-7-component-recipe">TL;DR — The 7-Component Recipe</h2>
+<ol>
+<li><strong>OpenCode</strong> — the editor brain</li>
+<li><strong>Ollama</strong> — local fallback</li>
+<li><strong>LiteLLM</strong> — unified gateway</li>
+<li><strong>9Router</strong> — token compression</li>
+<li><strong>mem0 + AgentMemory</strong> — persistent memory</li>
+<li><strong>MCP servers</strong> (filesystem + git + tavily) — context + tools</li>
+<li><strong>CC Switch</strong> — multi-CLI orchestration</li>
+</ol>
+<p>Total: $6/month. Total: 90 minutes to assemble. Total: zero vendor lock-in.</p>
+<p>If you&quot;re spending $200+/mo on AI coding SaaS, this stack pays for itself in week 1. Spin up a , follow sec. 10, and report back next week.</p>
+<hr>
+<p><em>Bookmark this page — we update component picks quarterly as new open-source releases land. Last updated: 2026-05-21.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Self-Hosted AI Coding Workflow: The Complete $6/Month Stack for 2026&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-21&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-21&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/self-hosted-ai-coding-workflow%22">https://dibi8.com/resources/self-hosted-ai-coding-workflow"</a>
+}
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/self-hosted-ai-coding-workflow/">12-factor-agents</a></li>
+<li><a href="/ai-coding-agents/self-hosted-ai-coding-workflow/">2026-05-25-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/self-hosted-ai-coding-workflow/">2026-06-01-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/self-hosted-ai-coding-workflow/">2026-06-08-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/self-hosted-ai-coding-workflow/">2026-06-15-trending-ai-agents</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fself-hosted-ai-coding-workflow%2f&text=Add%20to%20OpenCode%27s%20MCP%20config%3a" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fself-hosted-ai-coding-workflow%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

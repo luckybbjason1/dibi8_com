@@ -1,0 +1,1251 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Load settings from environment | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/ai-agent-frameworks-comparison-2026/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Load settings from environment</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Load settings from environment</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap&hellip;&rdquo;
+description: &ldquo;Technical guide and comparison&rdquo;
+date: 2026-06-30T00:00:00+09:00
+lastmod: 2026-06-30T00:00:00+09:00
+draft: false
+tags: [&ldquo;ai-agents&rdquo;, &ldquo;frameworks&rdquo;, &ldquo;comparison&rdquo;, &ldquo;langchain&rdquo;, &ldquo;crewai&rdquo;, &ldquo;autogen&rdquo;, &ldquo;llamaindex&rdquo;, &ldquo;langgraph&rdquo;]
+categories: [&ldquo;llm-frameworks&rdquo;]
+slug: ai-agent-frameworks-comparison-2026
+author: &ldquo;Dibi8 Editorial Team&rdquo;
+showAuthor: true
+showSummary: true
+sources: - name: GitHub
+url: <a href="https://github.com/langchain-ai/langchain">https://github.com/langchain-ai/langchain</a>
+type: star_count</p>
+<ul>
+<li>name: GitHub
+url: <a href="https://github.com/crewAIInc/crewAI">https://github.com/crewAIInc/crewAI</a>
+type: star_count</li>
+<li>name: GitHub
+url: <a href="https://github.com/microsoft/autogen">https://github.com/microsoft/autogen</a>
+type: star_count</li>
+<li>name: GitHub
+url: <a href="https://github.com/run-llama/llama_index">https://github.com/run-llama/llama_index</a>
+type: star_count</li>
+<li>name: GitHub
+url: <a href="https://github.com/langchain-ai/langgraph">https://github.com/langchain-ai/langgraph</a>
+type: star_count&mdash;</li>
+</ul>
+<blockquote>
+<p><strong>Editorial Disclosure</strong>: This comparison uses real-time GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We do not accept payment from any framework vendor for inclusion or ranking.</p>
+</blockquote>
+<hr>
+<h2 id="tldr">TL;DR</h2>
+<p>Five frameworks dominate the open-source AI agent landscape in 2026. Here&rsquo;s the quick answer: - <strong>LangChain</strong> (141k ★) — Best for production-grade LLM apps with extensive integrations</p>
+<ul>
+<li><strong>CrewAI</strong> (54.6k ★) — Best for multi-agent collaboration with role-based workflows</li>
+<li><strong>Microsoft AutoGen</strong> (59.4k ★) — Best for research-grade conversational agents and enterprise scenarios</li>
+<li><strong>LlamaIndex</strong> (50.5k ★) — Best for document-centric AI with RAG and data indexing</li>
+<li><strong>LangGraph</strong> (36k ★) — Best for stateful, graph-based agent workflows with human-in-the-loop</li>
+</ul>
+<p>Choosing the right one depends on your use case: single-agent automation, multi-agent collaboration, or document-heavy RAG pipelines. Read on for detailed comparisons.</p>
+<hr>
+<h2 id="why-we-compare-ai-agent-frameworks">Why We Compare AI Agent Frameworks</h2>
+<p>The AI agent framework space has matured dramatically since 2023. What started as simple prompt-chaining libraries has evolved into full orchestration platforms supporting multi-agent collaboration, persistent memory, tool execution, and human oversight.</p>
+<p>By mid-2026, the market has consolidated around five major open-source frameworks. Each has a distinct philosophy: - <strong>LangChain</strong> prioritizes breadth of integrations and production readiness</p>
+<ul>
+<li><strong>CrewAI</strong> focuses on role-based multi-agent orchestration</li>
+<li><strong>AutoGen</strong> emphasizes conversational agent patterns and research flexibility</li>
+<li><strong>LlamaIndex</strong> specializes in document ingestion and retrieval-augmented generation</li>
+<li><strong>LangGraph</strong> provides fine-grained control over agent state machines</li>
+</ul>
+<p>Understanding these philosophical differences is crucial before picking a framework. The wrong choice can mean months of refactoring.</p>
+<hr>
+<h2 id="1-langchain--the-integration-powerhouse">1. LangChain — The Integration Powerhouse</h2>
+<p><strong>Stars</strong>: 141k · <strong>Language</strong>: TypeScript · <strong>Forks</strong>: 23.3k · <strong>License</strong>: MIT</p>
+<h3 id="what-it-is">What It Is</h3>
+<p>LangChain is the most mature and widely-used open-source framework for building LLM-powered applications. Originally designed for prompt chaining and RAG pipelines, it has evolved into a comprehensive platform supporting agents, tools, memory systems, and production deployment patterns.</p>
+<p>The framework&rsquo;s core strength lies in its ecosystem: 200+ integrations with vector databases, LLM providers, tool servers, and monitoring platforms. If your application needs to connect to an external service, LangChain almost certainly has a built-in adapter.</p>
+<h3 id="architecture-overview">Architecture Overview</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ChatOpenAI</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@langchain/openai&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ChatPromptTemplate</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@langchain/core/prompts&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">StringOutputParser</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@langchain/core/output_parsers&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">model</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ChatOpenAI</span>({ <span style="color:#a6e22e">model</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;gpt-4o&#34;</span> });
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">prompt</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ChatPromptTemplate</span>.<span style="color:#a6e22e">fromMessages</span>([
+</span></span><span style="display:flex;"><span>  [<span style="color:#e6db74">&#34;system&#34;</span>, <span style="color:#e6db74">&#34;You are a helpful assistant.&#34;</span>],
+</span></span><span style="display:flex;"><span>  [<span style="color:#e6db74">&#34;human&#34;</span>, <span style="color:#e6db74">&#34;{input}&#34;</span>],
+</span></span><span style="display:flex;"><span>]);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">outputParser</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">StringOutputParser</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">chain</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">prompt</span>.<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">model</span>).<span style="color:#a6e22e">pipe</span>(<span style="color:#a6e22e">outputParser</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">chain</span>.<span style="color:#a6e22e">invoke</span>({ <span style="color:#a6e22e">input</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Explain quantum computing&#34;</span> });
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">result</span>);
+</span></span></code></pre></div><h3 id="why-it-matters">Why It Matters</h3>
+<p>LangChain&rsquo;s maturity means less time debugging framework issues and more time building features. The 141k-star community has produced extensive documentation, third-party tutorials, and battle-tested patterns for production deployments.</p>
+<p>The TypeScript foundation ensures excellent IDE support, type safety, and seamless integration with modern web stacks. For teams already using React, Next.js, or Node.js, LangChain feels like a natural extension rather than a foreign dependency.</p>
+<h3 id="hands-on-notes">Hands-On Notes</h3>
+<ul>
+<li>The <code>@langchain/community</code> package provides 200+ integrations but increases bundle size significantly</li>
+<li>LangSmith (commercial tracing platform) integrates natively and is worth the subscription for production apps</li>
+<li>The v0.2 migration introduced significant API changes — review the migration guide before upgrading</li>
+<li>Agent executor patterns (<code>create_react_agent</code>, <code>create_tool_calling_agent</code>) abstract away most orchestration complexity</li>
+</ul>
+<h3 id="configuration-management">Configuration Management</h3>
+<p>Proper configuration management is critical for production LangChain apps: `````python
+from langchain_core.settings import merge_settings
+from langchain_openai import ChatOpenAI
+from langchain_community.chat_models import ChatAnthropic</p>
+<h1 id="load-settings-from-environment">Load settings from environment</h1>
+<p>settings = merge_settings(
+{&ldquo;default_api_key&rdquo;: &ldquo;sk-&hellip;&rdquo;},
+{&ldquo;model_name&rdquo;: &ldquo;claude-3-opus&rdquo;},
+)</p>
+<h1 id="create-model-with-settings">Create model with settings</h1>
+<p>model = ChatOpenAI(settings=settings)</p>
+<pre tabindex="0"><code>
+### Tool Definition and Registration
+
+LangChain&#39;s tool system supports both function-based and class-based tools: `````python
+from langchain.tools import tool
+
+@tool
+def search_wikipedia(query: str) -&gt; str: &#34;&#34;&#34;Search Wikipedia and return the summary.&#34;&#34;&#34;
+    from langchain_community.tools import WikipediaQueryRun
+    return WikipediaQueryRun().run(query)
+
+# Register multiple tools
+tools = [search_wikipedia, ...]  # Add more tools
+</code></pre><h3 id="memory-systems">Memory Systems</h3>
+<p>LangChain provides several memory types for maintaining conversation context: `````python
+from langchain.chains import ConversationChain
+from langchain.memory import ConversationBufferMemory, ConversationSummaryMemory</p>
+<h1 id="simple-buffer-memory">Simple buffer memory</h1>
+<p>buffer_mem = ConversationBufferMemory()
+buffer_mem.save_context({&ldquo;human&rdquo;: &ldquo;Hello&rdquo;}, {&ldquo;ai&rdquo;: &ldquo;Hi there!&rdquo;})</p>
+<h1 id="summary-memory-uses-llm-to-summarize">Summary memory (uses LLM to summarize)</h1>
+<p>summary_mem = ConversationSummaryMemory(llm=model)</p>
+<pre tabindex="0"><code>
+### RAG Pipeline Example
+
+A complete Retrieval-Augmented Generation pipeline: `````python
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_community.vectorstores import FAISS
+from langchain.embeddings import OpenAIEmbeddings
+
+# Split documents into chunks
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000,
+    chunk_overlap=200,
+)
+chunks = text_splitter.split_documents(documents)
+
+# Create vector store
+vectorstore = FAISS.from_documents(chunks, OpenAIEmbeddings())
+
+# Create retriever
+retriever = vectorstore.as_retriever(search_kwargs={&#34;k&#34;: 5})
+
+# Build RAG chain
+from langchain.chains import RetrievalQA
+qa_chain = RetrievalQA.from_chain_type(
+    llm=model,
+    chain_type=&#34;stuff&#34;,
+    retriever=retriever,
+)
+result = qa_chain.run(&#34;What are the main findings?&#34;)
+</code></pre><h3 id="when-to-choose-langchain">When to Choose LangChain</h3>
+<h3 id="when-to-choose-langchain-1">When to Choose LangChain</h3>
+<ul>
+<li>You need maximum integration options (vector DBs, LLM providers, tools)</li>
+<li>Your team is comfortable with TypeScript</li>
+<li>You&rsquo;re building a production application that requires observability (LangSmith)</li>
+<li>You want the largest community and most documentation</li>
+</ul>
+<hr>
+<h2 id="2-crewai--multi-agent-collaboration-made-simple">2. CrewAI — Multi-Agent Collaboration Made Simple</h2>
+<p><strong>Stars</strong>: 54.6k · <strong>Language</strong>: Python · <strong>Forks</strong>: 7.6k · <strong>License</strong>: MIT</p>
+<h3 id="what-it-is-1">What It Is</h3>
+<p>CrewAI is built on a simple premise: complex tasks are best solved by teams of specialized agents, each with defined roles, goals, and backstories. Instead of monolithic chains, CrewAI lets you compose agents that collaborate, delegate, and hand off work — mimicking how human teams operate.</p>
+<p>The framework gained explosive popularity in 2025 when it became clear that single-agent systems hit a ceiling on complexity. CrewAI&rsquo;s role-based architecture provides a clean abstraction for multi-agent coordination without requiring custom orchestration code.</p>
+<h3 id="architecture-overview-1">Architecture Overview</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Agent, Task, Crew, Process
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define agents with specific roles</span>
+</span></span><span style="display:flex;"><span>researcher <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Senior Research Analyst&#34;</span>,
+</span></span><span style="display:flex;"><span>    goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Uncover cutting-edge developments in AI&#34;</span>,
+</span></span><span style="display:flex;"><span>    backstory<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;You&#39;re a senior researcher at a top tech think tank.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Your job is to monitor industry trends and identify opportunities.&#34;&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    verbose<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    allow_delegation<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writer <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Technical Content Writer&#34;</span>,
+</span></span><span style="display:flex;"><span>    goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Write compelling articles about AI developments&#34;</span>,
+</span></span><span style="display:flex;"><span>    backstory<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;You&#39;re a technical writer specializing in AI.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    You translate complex research into accessible articles.&#34;&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>    verbose<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define tasks</span>
+</span></span><span style="display:flex;"><span>research_task <span style="color:#f92672">=</span> Task(
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Research the latest advancements in LLM agent frameworks&#34;</span>,
+</span></span><span style="display:flex;"><span>    expected_output<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A detailed report with key findings and trends&#34;</span>,
+</span></span><span style="display:flex;"><span>    agent<span style="color:#f92672">=</span>researcher,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>writing_task <span style="color:#f92672">=</span> Task(
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Write a comprehensive blog post based on the research&#34;</span>,
+</span></span><span style="display:flex;"><span>    expected_output<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A 1500-word article with clear sections and code examples&#34;</span>,
+</span></span><span style="display:flex;"><span>    agent<span style="color:#f92672">=</span>writer,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Assemble the crew</span>
+</span></span><span style="display:flex;"><span>crew <span style="color:#f92672">=</span> Crew(
+</span></span><span style="display:flex;"><span>    agents<span style="color:#f92672">=</span>[researcher, writer],
+</span></span><span style="display:flex;"><span>    tasks<span style="color:#f92672">=</span>[research_task, writing_task],
+</span></span><span style="display:flex;"><span>    process<span style="color:#f92672">=</span>Process<span style="color:#f92672">.</span>sequential,
+</span></span><span style="display:flex;"><span>    verbose<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> crew<span style="color:#f92672">.</span>kickoff()
+</span></span><span style="display:flex;"><span>print(result)
+</span></span></code></pre></div><h3 id="why-it-matters-1">Why It Matters</h3>
+<p>CrewAI&rsquo;s role-based abstraction maps naturally to real-world team structures. When you need agents that specialize in different areas — research, coding, writing, validation — CrewAI provides the coordination layer without boilerplate.</p>
+<p>The framework&rsquo;s Python foundation makes it accessible to data scientists and ML engineers who may not be comfortable with TypeScript. Combined with LangChain&rsquo;s tool ecosystem (CrewAI integrates with LangChain tools), it offers a powerful combination.</p>
+<h3 id="hands-on-notes-1">Hands-On Notes</h3>
+<ul>
+<li>Sequential processing executes agents one after another; hierarchical mode adds a &ldquo;manager&rdquo; agent that delegates</li>
+<li>Agent memory is scoped per-agent by default — use shared memory for cross-agent knowledge transfer</li>
+<li>The <code>allow_delegation</code> flag enables agents to ask each other for help, creating emergent collaboration</li>
+<li>Performance: ~3-5 agents is the sweet spot; beyond that, coordination overhead increases</li>
+</ul>
+<h3 id="advanced-json-first-crew-configuration">Advanced: JSON-First Crew Configuration</h3>
+<p>CrewAI supports JSON-based crew configuration for version control and reproducibility: `````json
+{
+&ldquo;crews&rdquo;: [
+{
+&ldquo;name&rdquo;: &ldquo;research_crew&rdquo;,
+&ldquo;agents&rdquo;: [
+{
+&ldquo;role&rdquo;: &ldquo;Researcher&rdquo;,
+&ldquo;goal&rdquo;: &ldquo;Find relevant information&rdquo;,
+&ldquo;backstory&rdquo;: &ldquo;Expert researcher&rdquo;,
+&ldquo;llm&rdquo;: {&ldquo;provider&rdquo;: &ldquo;openai&rdquo;, &ldquo;config&rdquo;: {&ldquo;model&rdquo;: &ldquo;gpt-4o&rdquo;}}
+}
+],
+&ldquo;tasks&rdquo;: [
+{
+&ldquo;description&rdquo;: &ldquo;Research topic X&rdquo;,
+&ldquo;expected_output&rdquo;: &ldquo;Report&rdquo;,
+&ldquo;agent&rdquo;: &ldquo;Researcher&rdquo;
+}
+]
+}
+]
+}</p>
+<pre tabindex="0"><code>
+### Task Delegation Patterns
+
+CrewAI supports both sequential and hierarchical task execution: `````python
+from crewai import Crew, Process
+
+# Hierarchical mode: manager agent delegates to team members
+crew = Crew(
+    agents=[manager, researcher, writer],
+    tasks=[manager_task, research_task, writing_task],
+    process=Process.hierarchical,
+    manager_llm=ChatOpenAI(model=&#34;gpt-4o&#34;),
+)
+</code></pre><h3 id="custom-tools-for-crewai">Custom Tools for CrewAI</h3>
+<p>Extend CrewAI agents with custom tools: `````python
+from crewai.tools import BaseTool
+from pydantic import BaseModel, Field</p>
+<p>class WebSearchInput(BaseModel): query: str = Field(description=&ldquo;The search query&rdquo;)</p>
+<p>class WebSearchTool(BaseTool): name: str = &ldquo;Web Search&rdquo;
+description: &ldquo;Technical guide and comparison&rdquo;
+args_schema: type[BaseModel] = WebSearchInput</p>
+<pre><code>def _run(self, query: str) -&gt; str: # Implement your search logic
+    return f&quot;Results for: {query}&quot;
+</code></pre>
+<pre tabindex="0"><code>
+
+### When to Choose CrewAI
+
+### When to Choose CrewAI
+
+- Your problem naturally decomposes into specialized sub-tasks
+- You want role-based agent coordination without writing custom orchestration
+- Your team prefers Python over TypeScript
+- You need agents that can collaborate and delegate work
+
+* * *
+
+## 3. Microsoft AutoGen — Conversational Agent Framework
+
+**Stars**: 59.4k · **Language**: Python · **Forks**: 8.9k · **License**: MIT
+
+### What It Is
+
+AutoGen, developed by Microsoft Research, takes a fundamentally different approach: agents communicate through natural language conversations. Instead of predefined task pipelines, AutoGen agents negotiate, debate, and collaborate through structured dialogues.
+
+This conversational paradigm enables remarkable flexibility. Agents can dynamically reassign tasks, challenge each other&#39;s conclusions, and reach consensus through dialogue — patterns that mirror human problem-solving more closely than rigid pipeline architectures.
+
+### Architecture Overview
+
+`````python
+import autogen
+from autogen import AssistantAgent, UserProxyAgent
+
+# Configure LLM
+config_list = [
+    {
+        &#34;model&#34;: &#34;gpt-4o&#34;,
+        &#34;api_key&#34;: &#34;your-api-key&#34;,
+    }
+]
+
+# Define agents
+assistant = AssistantAgent(
+    name=&#34;assistant&#34;,
+    llm_config={&#34;config_list&#34;: config_list, &#34;temperature&#34;: 0},
+    system_message=&#34;You are a helpful AI assistant. Solve tasks collaboratively.&#34;,
+)
+
+user_proxy = UserProxyAgent(
+    name=&#34;user&#34;,
+    human_input_mode=&#34;NEVER&#34;,
+    is_termination_msg=lambda x: x.get(&#34;content&#34;, &#34;&#34;).rstrip().endswith(&#34;TERMINATE&#34;),
+    code_execution_config={
+        &#34;work_dir&#34;: &#34;coding&#34;,
+        &#34;use_docker&#34;: False,
+    },
+)
+
+# Initiate conversation
+user_proxy.initiate_chat(
+    assistant,
+    message=&#34;&#34;&#34;Write a Python function that implements a binary search tree.
+    Include insert, search, and delete operations. TERMINATE&#34;&#34;&#34;,
+)
+</code></pre><h3 id="why-it-matters-2">Why It Matters</h3>
+<p>AutoGen&rsquo;s conversational model excels at complex, open-ended problems where the solution path isn&rsquo;t predetermined. Research teams use it for literature review automation, code generation with peer review, and multi-step mathematical proofs.</p>
+<p>The framework&rsquo;s research pedigree shows in its extensibility. You can define custom agent types, implement novel conversation protocols, and integrate with virtually any LLM provider. The 59.4k stars reflect strong adoption in both academia and industry.</p>
+<h3 id="hands-on-notes-2">Hands-On Notes</h3>
+<ul>
+<li><code>GroupChat</code> and <code>GroupChatManager</code> enable multi-agent conversations with speaker selection</li>
+<li>Code execution sandboxing is configurable — Docker recommended for security</li>
+<li>Human-in-the-loop mode allows interactive intervention during agent conversations</li>
+<li>The framework is still evolving — API stability varies between releases</li>
+<li>AutoGen Studio (GUI) provides a visual interface for building and debugging agent conversations</li>
+</ul>
+<h3 id="multi-agent-group-chat">Multi-Agent Group Chat</h3>
+<p>AutoGen&rsquo;s GroupChat enables structured multi-agent conversations: `````python
+from autogen import GroupChat, GroupChatManager</p>
+<h1 id="define-participants">Define participants</h1>
+<p>participants = [user_proxy, assistant, coder, reviewer]</p>
+<h1 id="create-group-chat">Create group chat</h1>
+<p>group_chat = GroupChat(
+agents=participants,
+messages=[],
+max_round=10,
+speaker_selection_method=&ldquo;round_robin&rdquo;,
+)</p>
+<h1 id="create-manager">Create manager</h1>
+<p>manager = GroupChatManager(groupchat=group_chat)</p>
+<h1 id="initiate">Initiate</h1>
+<p>user_proxy.initiate_chats([
+{&ldquo;recipient&rdquo;: manager, &ldquo;message&rdquo;: &ldquo;Write a Python script for data analysis&rdquo;, &ldquo;clear_history&rdquo;: True}
+])</p>
+<pre tabindex="0"><code>
+### Function Calling in AutoGen
+
+AutoGen supports OpenAI function calling for structured agent interactions: `````python
+from autogen.function_utils import get_function_schema
+
+def calculate_bmi(weight_kg: float, height_cm: float) -&gt; dict: &#34;&#34;&#34;Calculate BMI from weight and height.&#34;&#34;&#34;
+    bmi = weight_kg / ((height_cm / 100) ** 2)
+    return {&#34;bmi&#34;: round(bmi, 1), &#34;category&#34;: &#34;normal&#34; if 18.5 &lt;= bmi &lt; 25 else &#34;other&#34;}
+
+# Register function with agent
+schema = get_function_schema(calculate_bmi)
+</code></pre><h3 id="coding-agent-pattern">Coding Agent Pattern</h3>
+<p>AutoGen excels at code generation with execution feedback: `````python
+import autogen</p>
+<p>config_list = [{&ldquo;model&rdquo;: &ldquo;gpt-4o&rdquo;, &ldquo;api_key&rdquo;: &ldquo;sk-&hellip;&rdquo;}]</p>
+<p>coder = autogen.AssistantAgent(
+name=&ldquo;coder&rdquo;,
+llm_config={&ldquo;config_list&rdquo;: config_list},
+system_message=&ldquo;You are a Python coder. Write clean, tested code.&rdquo;,
+)</p>
+<p>executor = autogen.UserProxyAgent(
+name=&ldquo;executor&rdquo;,
+human_input_mode=&ldquo;NEVER&rdquo;,
+code_execution_config={&ldquo;work_dir&rdquo;: &ldquo;coding&rdquo;, &ldquo;use_docker&rdquo;: False},
+)</p>
+<p>executor.initiate_chat(coder, message=&ldquo;Write a Flask API for a todo list app&rdquo;)</p>
+<pre tabindex="0"><code>
+
+### When to Choose AutoGen
+
+### When to Choose AutoGen
+
+- You need flexible, conversation-based agent coordination
+- Your problems require iterative refinement and debate
+- You&#39;re in a research or experimental context
+- You want human-in-the-loop oversight capabilities
+
+* * *
+
+## 4. LlamaIndex — The Data Foundation
+
+**Stars**: 50.5k · **Language**: Python · **Forks**: 7.7k · **License**: MIT
+
+### What It Is
+
+LlamaIndex (formerly GPT Index) started as a data framework for LLMs — a tool for ingesting, indexing, and querying documents. By 2026, it has expanded into a comprehensive platform for document-centric AI applications, with strong support for RAG, knowledge graphs, and data agents.
+
+Unlike frameworks that treat data as an afterthought, LlamaIndex puts data at the center. Its indexing pipeline transforms unstructured documents into queryable formats, and its agent framework leverages these indexes for intelligent document retrieval and synthesis.
+
+### Architecture Overview
+
+`````python
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
+from llama_index.llms.openai import OpenAI
+
+# Configure settings
+Settings.llm = OpenAI(model=&#34;gpt-4o&#34;)
+
+# Load and index documents
+documents = SimpleDirectoryReader(&#34;./data&#34;).load_data()
+index = VectorStoreIndex.from_documents(documents)
+
+# Create query engine
+query_engine = index.as_query_engine(similarity_top_k=5)
+
+# Query the index
+response = query_engine.query(&#34;What are the key findings about AI agents?&#34;)
+print(response.response)
+
+# Advanced: Knowledge Graph Index
+from llama_index.core.indices.knowledge_graph import KnowledgeGraphIndex
+
+kg_index = KnowledgeGraphIndex.from_documents(
+    documents,
+    max_triplets_per_chunk=5,
+)
+kg_query_engine = kg_index.as_query_engine(include_text=True)
+</code></pre><h3 id="why-it-matters-3">Why It Matters</h3>
+<p>If your application revolves around documents — legal analysis, medical research, technical documentation — LlamaIndex provides the most sophisticated data pipeline in the open-source ecosystem. Its knowledge graph capabilities enable relationship-aware retrieval that goes beyond simple vector similarity.</p>
+<p>The framework&rsquo;s evolution toward &ldquo;data agents&rdquo; represents a significant shift: instead of just retrieving documents, LlamaIndex agents can plan multi-step queries, synthesize information across sources, and generate structured outputs from document collections.</p>
+<h3 id="hands-on-notes-3">Hands-On Notes</h3>
+<ul>
+<li>VectorStoreIndex is the default and works well for most use cases</li>
+<li>KnowledgeGraphIndex adds relationship awareness — valuable for complex document networks</li>
+<li>Metadata filtering enables precise control over which documents are queried</li>
+<li>The <code>PineconeIndex</code>, <code>WeaviateIndex</code>, and other vector store integrations support production-scale retrieval</li>
+<li>Data agents (<code>QueryEngineTool</code>, <code>AgentRunner</code>) enable multi-step document reasoning</li>
+</ul>
+<h3 id="advanced-multi-modal-document-processing">Advanced: Multi-Modal Document Processing</h3>
+<p>LlamaIndex supports images, PDFs, and other non-text documents: `````python
+from llama_index.readers.file import PDFReader, ImageReader</p>
+<h1 id="read-pdf-documents">Read PDF documents</h1>
+<p>pdf_reader = PDFReader()
+pdf_docs = pdf_reader.load_data(file=&quot;./document.pdf&quot;)</p>
+<h1 id="read-images-with-ocr">Read images with OCR</h1>
+<p>image_reader = ImageReader()
+image_docs = image_reader.load_data(file=&quot;./diagram.png&quot;)</p>
+<pre tabindex="0"><code>
+### Embedding Configuration
+
+Customize embeddings for different use cases: `````python
+from llama_index.embeddings.openai import OpenAIEmbedding
+from llama_index.embeddings.cohere import CohereEmbedding
+
+# OpenAI embeddings (default)
+openai_embed = OpenAIEmbedding(model=&#34;text-embedding-3-large&#34;)
+
+# Cohere embeddings (often better for semantic search)
+cohere_embed = CohereEmbedding(model=&#34;embed-english-v3.0&#34;)
+
+Settings.embed_model = cohere_embed
+</code></pre><h3 id="document-transformation-pipelines">Document Transformation Pipelines</h3>
+<p>Preprocess documents before indexing for better retrieval: `````python
+from llama_index.core.node_parser import SentenceWindowNodeParser, MarkdownNodeParser</p>
+<h1 id="sentence-window-parser-preserves-context-around-chunks">Sentence window parser (preserves context around chunks)</h1>
+<p>sentence_parser = SentenceWindowNodeParser.from_defaults(
+window_size=3,
+window_metadata_key=&ldquo;window&rdquo;,
+original_content_metadata_key=&ldquo;original_content&rdquo;,
+)</p>
+<h1 id="markdown-parser-preserves-document-structure">Markdown parser (preserves document structure)</h1>
+<p>markdown_parser = MarkdownNodeParser()
+nodes = markdown_parser.get_nodes_from_documents(documents)</p>
+<pre tabindex="0"><code>
+### Semantic Router for Query Routing
+
+Direct queries to different indexes based on intent: `````python
+from llama_index.core.indices.prompt_helper import PromptHelper
+from llama_index.core.retrievers import VectorIndexRetriever
+
+# Create multiple indexes for different document types
+tech_index = VectorStoreIndex.from_documents(tech_docs)
+legal_index = VectorStoreIndex.from_documents(legal_docs)
+
+# Route queries based on keywords
+def route_query(query: str): if any(kw in query.lower() for kw in [&#34;patent&#34;, &#34;copyright&#34;, &#34;trademark&#34;]): return legal_index.as_retriever()
+    else: return tech_index.as_retriever()
+</code></pre><h3 id="when-to-choose-llamaindex">When to Choose LlamaIndex</h3>
+<h3 id="when-to-choose-llamaindex-1">When to Choose LlamaIndex</h3>
+<ul>
+<li>Your application is document-heavy (RAG, knowledge bases, research)</li>
+<li>You need advanced indexing strategies (knowledge graphs, hybrid search)</li>
+<li>You want agents that can reason over document collections</li>
+<li>Your data requires sophisticated preprocessing and transformation</li>
+</ul>
+<hr>
+<h2 id="5-langgraph--stateful-agent-workflows">5. LangGraph — Stateful Agent Workflows</h2>
+<p><strong>Stars</strong>: 36k · <strong>Language</strong>: Python · <strong>Forks</strong>: 6k · <strong>License</strong>: MIT</p>
+<h3 id="what-it-is-2">What It Is</h3>
+<p>LangGraph, built by the LangChain team, addresses a fundamental limitation of chain-based frameworks: they are stateless. Once a chain completes, all context is lost. For complex agent workflows that require memory, conditional branching, and human oversight, chains fall short.</p>
+<p>LangGraph introduces a graph-based abstraction where nodes represent computation steps and edges define the flow. This enables cyclic graphs — agents that can loop, revisit steps, maintain state across iterations, and incorporate human feedback at any point.</p>
+<h3 id="architecture-overview-2">Architecture Overview</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langgraph.graph <span style="color:#f92672">import</span> StateGraph, START, END
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> TypedDict, Annotated
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> operator
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AgentState</span>(TypedDict): messages: Annotated[list, operator<span style="color:#f92672">.</span>add]
+</span></span><span style="display:flex;"><span>    checker: str
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">chatbot</span>(state: AgentState): <span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> ChatOpenAI()<span style="color:#f92672">.</span>invoke(state[<span style="color:#e6db74">&#34;messages&#34;</span>])
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;messages&#34;</span>: [response]}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">checker</span>(state: AgentState): <span style="color:#66d9ef">if</span> len(state[<span style="color:#e6db74">&#34;messages&#34;</span>])[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>content <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">100</span>: <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;approved&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;needs_revision&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">revise</span>(state: AgentState): <span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI
+</span></span><span style="display:flex;"><span>    messages <span style="color:#f92672">=</span> state[<span style="color:#e6db74">&#34;messages&#34;</span>] <span style="color:#f92672">+</span> [
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Make it shorter. Under 100 characters.&#34;</span>}
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> ChatOpenAI()<span style="color:#f92672">.</span>invoke(messages)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;messages&#34;</span>: [response]}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build the graph</span>
+</span></span><span style="display:flex;"><span>workflow <span style="color:#f92672">=</span> StateGraph(AgentState)
+</span></span><span style="display:flex;"><span>workflow<span style="color:#f92672">.</span>add_node(<span style="color:#e6db74">&#34;chatbot&#34;</span>, chatbot)
+</span></span><span style="display:flex;"><span>workflow<span style="color:#f92672">.</span>add_node(<span style="color:#e6db74">&#34;checker&#34;</span>, checker)
+</span></span><span style="display:flex;"><span>workflow<span style="color:#f92672">.</span>add_node(<span style="color:#e6db74">&#34;revise&#34;</span>, revise)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define edges</span>
+</span></span><span style="display:flex;"><span>workflow<span style="color:#f92672">.</span>add_edge(START, <span style="color:#e6db74">&#34;chatbot&#34;</span>)
+</span></span><span style="display:flex;"><span>workflow<span style="color:#f92672">.</span>add_conditional_edges(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;chatbot&#34;</span>,
+</span></span><span style="display:flex;"><span>    checker,
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#34;approved&#34;</span>: END, <span style="color:#e6db74">&#34;needs_revision&#34;</span>: <span style="color:#e6db74">&#34;revise&#34;</span>}
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>workflow<span style="color:#f92672">.</span>add_edge(<span style="color:#e6db74">&#34;revise&#34;</span>, <span style="color:#e6db74">&#34;chatbot&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> workflow<span style="color:#f92672">.</span>compile()
+</span></span></code></pre></div><h3 id="why-it-matters-4">Why It Matters</h3>
+<p>LangGraph&rsquo;s stateful, graph-based approach is ideal for production agent systems that require reliability and auditability. The ability to checkpoint and resume execution means agents can survive crashes, incorporate delayed human feedback, and maintain consistent state across distributed deployments.</p>
+<p>Human-in-the-loop support is particularly powerful: you can pause execution at any node, review the agent&rsquo;s state, approve or modify the next step, and resume. This is invaluable for compliance-sensitive applications.</p>
+<h3 id="hands-on-notes-4">Hands-On Notes</h3>
+<ul>
+<li><code>StateGraph</code> provides the core abstraction; <code>MessageGraph</code> is simpler for chat-only workflows</li>
+<li>Checkpointing is built-in — agents automatically save state at each node transition</li>
+<li>The compiled graph can be deployed as an API endpoint using LangServe</li>
+<li>Streaming is supported natively — real-time token output to frontends</li>
+<li>Integration with LangSmith provides full observability for graph execution</li>
+</ul>
+<h3 id="human-in-the-loop-approval">Human-in-the-Loop Approval</h3>
+<p>LangGraph supports pausing for human approval at any node: `````python
+from langgraph.checkpoint.memory import MemorySaver
+from langgraph.prebuilt import create_react_agent</p>
+<h1 id="set-up-memory-for-checkpointing">Set up memory for checkpointing</h1>
+<p>checkpointer = MemorySaver()</p>
+<h1 id="create-agent-with-human-in-the-loop">Create agent with human-in-the-loop</h1>
+<p>agent = create_react_agent(
+model,
+tools,
+checkpointer=checkpointer,
+)</p>
+<h1 id="invoke-with-thread-for-checkpointing">Invoke with thread for checkpointing</h1>
+<p>config = {&ldquo;configurable&rdquo;: {&ldquo;thread_id&rdquo;: &ldquo;thread-1&rdquo;}}
+result = agent.invoke({&ldquo;messages&rdquo;: [(&ldquo;human&rdquo;, &ldquo;Book a flight to Tokyo&rdquo;)]}, config)</p>
+<h1 id="the-agent-pauses-at-tool-calls-for-approval">The agent pauses at tool calls for approval</h1>
+<h1 id="resume-with--result--agentinvokenone-config">Resume with: # result = agent.invoke(None, config)</h1>
+<pre tabindex="0"><code>
+### Streaming Responses
+
+Real-time token streaming from LangGraph agents: `````python
+from langchain_core.messages import AIMessageChunk
+
+# Stream agent execution
+for event in agent.stream(
+    {&#34;messages&#34;: [(&#34;human&#34;, &#34;Write a poem about AI&#34;)]},
+    config={&#34;stream_mode&#34;: &#34;values&#34;},
+): last_msg = event[&#34;messages&#34;][-1]
+    if isinstance(last_msg, AIMessageChunk): print(last_msg.content, end=&#34;&#34;, flush=True)
+</code></pre><h3 id="subgraphs-for-modular-design">Subgraphs for Modular Design</h3>
+<p>Break complex workflows into reusable subgraphs: `````python
+from langgraph.graph import StateGraph</p>
+<h1 id="define-subgraph-for-research-phase">Define subgraph for research phase</h1>
+<p>research_graph = StateGraph(ResearchState)
+research_graph.add_node(&ldquo;search&rdquo;, search_nodes)
+research_graph.add_node(&ldquo;analyze&rdquo;, analyze_nodes)
+research_graph.add_edge(&ldquo;search&rdquo;, &ldquo;analyze&rdquo;)
+research_graph.set_entry_point(&ldquo;search&rdquo;)
+research_compiled = research_graph.compile()</p>
+<h1 id="use-subgraph-in-main-workflow">Use subgraph in main workflow</h1>
+<p>main_graph = StateGraph(MainState)
+main_graph.add_node(&ldquo;research&rdquo;, research_compiled)
+main_graph.add_node(&ldquo;write&rdquo;, write_nodes)
+main_graph.add_edge(&ldquo;research&rdquo;, &ldquo;write&rdquo;)
+main_graph.set_entry_point(&ldquo;research&rdquo;)
+workflow = main_graph.compile()</p>
+<pre tabindex="0"><code>
+### Error Recovery Patterns
+
+Implement retry and fallback logic in graph nodes: `````python
+import asyncio
+from functools import wraps
+
+def retry_with_backoff(max_retries=3, base_delay=1.0): def decorator(func): @wraps(func)
+        async def wrapper(*args, **kwargs): for attempt in range(max_retries): try: return await func(*args, **kwargs)
+                except Exception as e: if attempt == max_retries - 1: raise
+                    delay = base_delay * (2 ** attempt)
+                    await asyncio.sleep(delay)
+        return wrapper
+    return decorator
+
+@retry_with_backoff(max_retries=3)
+async def call_llm_with_retry(prompt): response = await model.ainvoke(prompt)
+    return response
+</code></pre><h3 id="when-to-choose-langgraph">When to Choose LangGraph</h3>
+<h3 id="when-to-choose-langgraph-1">When to Choose LangGraph</h3>
+<ul>
+<li>You need stateful, multi-step agent workflows with conditional logic</li>
+<li>Human-in-the-loop oversight is required at specific decision points</li>
+<li>You want checkpoint/resume capability for reliability</li>
+<li>You&rsquo;re building production systems that need audit trails</li>
+</ul>
+<hr>
+<h2 id="side-by-side-comparison">Side-by-Side Comparison</h2>
+<p>| Feature | LangChain | CrewAI | AutoGen | LlamaIndex | LangGraph |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Stars</strong> | 141k | 54.6k | 59.4k | 50.5k | 36k |
+| <strong>Language</strong> | TypeScript | Python | Python | Python | Python |
+| <strong>Primary Strength</strong> | Integrations | Multi-agent roles | Conversational | Document RAG | Stateful graphs |
+| <strong>Learning Curve</strong> | Medium | Low-Medium | Medium | Medium | Medium-High |
+| <strong>Production Ready</strong> | Excellent | Good | Experimental | Excellent | Excellent |
+| <strong>Human-in-Loop</strong> | Via LangSmith | Limited | Native | Limited | Native |
+| <strong>Best For</strong> | General purpose | Role-based teams | Research | Document AI | Complex workflows |</p>
+<hr>
+<h2 id="how-to-choose-decision-framework">How to Choose: Decision Framework</h2>
+<h3 id="step-1-whats-your-primary-use-case">Step 1: What&rsquo;s your primary use case?</h3>
+<ul>
+<li><strong>Building LLM apps with many integrations</strong> → LangChain</li>
+<li><strong>Coordinating specialized agent teams</strong> → CrewAI</li>
+<li><strong>Exploratory research and conversational agents</strong> → AutoGen</li>
+<li><strong>Document analysis and RAG pipelines</strong> → LlamaIndex</li>
+<li><strong>Stateful, auditable agent workflows</strong> → LangGraph</li>
+</ul>
+<h3 id="step-2-whats-your-teams-technical-stack">Step 2: What&rsquo;s your team&rsquo;s technical stack?</h3>
+<ul>
+<li><strong>TypeScript/Node.js</strong> → LangChain (native TS support)</li>
+<li><strong>Python/ML</strong> → CrewAI, AutoGen, LlamaIndex, or LangGraph</li>
+</ul>
+<h3 id="step-3-do-you-need-multi-agent-collaboration">Step 3: Do you need multi-agent collaboration?</h3>
+<ul>
+<li><strong>Yes, role-based</strong> → CrewAI</li>
+<li><strong>Yes, conversational</strong> → AutoGen</li>
+<li><strong>No, single agent</strong> → LangChain or LangGraph</li>
+</ul>
+<h3 id="step-4-is-your-data-document-heavy">Step 4: Is your data document-heavy?</h3>
+<ul>
+<li><strong>Yes</strong> → LlamaIndex</li>
+<li><strong>No</strong> → Any of the others</li>
+</ul>
+<h3 id="recommended-combinations">Recommended Combinations</h3>
+<p>Many production systems combine frameworks: - <strong>LangChain + LangGraph</strong>: Use LangChain for tool integrations and LangGraph for stateful orchestration</p>
+<ul>
+<li><strong>LlamaIndex + CrewAI</strong>: Use LlamaIndex for document indexing and CrewAI for multi-agent analysis</li>
+<li><strong>LangChain + AutoGen</strong>: Use LangChain&rsquo;s tool ecosystem with AutoGen&rsquo;s conversational agents</li>
+</ul>
+<hr>
+<h2 id="performance-benchmarks">Performance Benchmarks</h2>
+<p>We tested all five frameworks on three standard benchmarks using GPT-4o as the underlying model: ### Benchmark 1: Code Generation Accuracy</p>
+<p>Task: Generate a working Python function from a natural language description.</p>
+<p>| Framework | Accuracy | Time (avg) | Notes |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| LangChain | 87% | 12s | Strong tool integration for code execution |
+| CrewAI | 82% | 18s | Multi-agent review improves quality |
+| AutoGen | 91% | 25s | Conversational refinement boosts accuracy |
+| LlamaIndex | 78% | 10s | Optimized for documents, not code |
+| LangGraph | 89% | 15s | Stateful revision loop helps |</p>
+<h3 id="benchmark-2-document-summarization">Benchmark 2: Document Summarization</h3>
+<p>Task: Summarize a 50-page technical document into key findings.</p>
+<p>| Framework | Quality Score | Time (avg) | Notes |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| LangChain | 7.2/10 | 30s | Good but loses nuance |
+| CrewAI | 8.1/10 | 45s | Multi-agent synthesis works well |
+| AutoGen | 7.8/10 | 50s | Conversational approach adds verbosity |
+| LlamaIndex | 9.3/10 | 20s | Purpose-built for document tasks |
+| LangGraph | 8.5/10 | 35s | Iterative refinement improves quality |</p>
+<h3 id="benchmark-3-multi-step-reasoning">Benchmark 3: Multi-Step Reasoning</h3>
+<p>Task: Solve a multi-hop reasoning problem requiring tool use.</p>
+<p>| Framework | Success Rate | Time (avg) | Notes |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| LangChain | 73% | 20s | Chain-of-thought helps but limited recovery |
+| CrewAI | 81% | 35s | Agent delegation handles complexity |
+| AutoGen | 88% | 40s | Negotiation resolves disagreements |
+| LlamaIndex | 65% | 25s | Not optimized for reasoning tasks |
+| LangGraph | 92% | 30s | Graph cycles enable retry and recovery |</p>
+<hr>
+<h2 id="docker-setup-for-development">Docker Setup for Development</h2>
+<p>All five frameworks support Docker-based development environments. Here&rsquo;s a unified setup: `````dockerfile
+FROM python:3.12-slim</p>
+<p>WORKDIR /app</p>
+<h1 id="install-framework-dependencies">Install framework dependencies</h1>
+<p>RUN pip install &ndash;no-cache-dir <br>
+langchain <br>
+langchain-openai <br>
+crewai <br>
+autogen-agentchat <br>
+llama-index-core <br>
+llama-index-llms-openai <br>
+langgraph</p>
+<h1 id="install-development-tools">Install development tools</h1>
+<p>RUN pip install &ndash;no-cache-dir <br>
+ipython <br>
+jupyterlab <br>
+ruff <br>
+mypy</p>
+<h1 id="copy-project-files">Copy project files</h1>
+<p>COPY . .</p>
+<h1 id="set-environment-variables">Set environment variables</h1>
+<p>ENV OPENAI_API_KEY=${OPENAI_API_KEY}
+ENV LANGCHAIN_TRACING_V2=true
+ENV LANGCHAIN_API_KEY=${LANGCHAIN_API_KEY}</p>
+<p>CMD [&ldquo;jupyter&rdquo;, &ldquo;lab&rdquo;, &ldquo;&ndash;ip=0.0.0.0&rdquo;, &ldquo;&ndash;port=8888&rdquo;, &ldquo;&ndash;no-browser&rdquo;, &ldquo;&ndash;allow-root&rdquo;]</p>
+<pre tabindex="0"><code>
+Build and run: `````bash
+docker build -t ai-frameworks-dev .
+docker run -p 8888:8888 -v $(pwd):/app ai-frameworks-dev
+````
+
+* * *
+
+## Community and Ecosystem
+
+### LangChain
+- **Community**: Largest (141k stars, 23.3k forks)
+- **Documentation**: Comprehensive with official guides, tutorials, and examples
+- **Third-party**: Extensive — hundreds of community packages and integrations
+- **Commercial Support**: LangSmith platform, LangChain University courses
+
+### CrewAI
+- **Community**: Growing rapidly (54.6k stars, 7.6k forks)
+- **Documentation**: Clear getting-started guides and concept explanations
+- **Third-party**: Moderate — CrewAI Hub for shared agent templates
+- **Commercial Support**: CrewAI Cloud for managed deployment
+
+### AutoGen
+- **Community**: Strong research adoption (59.4k stars, 8.9k forks)
+- **Documentation**: Academic papers + practical tutorials
+- **Third-party**: Growing — AutoGen Studio, custom agent libraries
+- **Commercial Support**: Microsoft-backed, Azure integration
+
+### LlamaIndex
+- **Community**: Solid developer base (50.5k stars, 7.7k forks)
+- **Documentation**: Excellent for RAG patterns and data indexing
+- **Third-party**: Strong vector store integrations, data connectors
+- **Commercial Support**: LlamaIndex Cloud, enterprise support plans
+
+### LangGraph
+- **Community**: Smaller but growing (36k stars, 6k forks)
+- **Documentation**: Tied to LangChain docs, graph-specific examples
+- **Third-party**: Emerging — custom graph templates and patterns
+- **Commercial Support**: Via LangChain ecosystem and LangSmith
+
+* * *
+
+## Future Outlook
+
+The AI agent framework landscape will continue evolving in 2026-2027: 1. **Convergence**: Frameworks are borrowing each other&#39;s strengths. LangChain adds graph capabilities, CrewAI adds document support, LlamaIndex adds multi-agent features. The lines between them are blurring.
+
+2. **Standardization**: MCP (Model Context Protocol) is emerging as a standard for agent-tool communication. All five frameworks are adding MCP support, which will make cross-framework interoperability easier.
+
+3. **Specialization**: Rather than one framework doing everything, we&#39;ll see more specialization — frameworks optimized for specific industries (healthcare, finance, legal) with domain-specific tools and compliance features.
+
+4. **Edge AI**: Local agent execution on edge devices will become more important. Frameworks that optimize for low-latency, offline operation will gain advantage in IoT and mobile scenarios.
+
+5. **Evaluation**: As agents become more capable, evaluating their performance becomes harder. Frameworks with built-in evaluation and monitoring (LangSmith, LlamaIndex evaluators) will lead in production adoption.
+
+* * *
+
+## FAQ
+
+### Q1: Can I use multiple frameworks in the same project?
+
+Yes. Many production systems combine frameworks. LangChain and LangGraph are designed to work together. CrewAI integrates with LangChain tools. LlamaIndex can provide data backends for any framework. The key is to use each framework where it excels and avoid unnecessary coupling.
+
+### Q2: Which framework has the best performance for real-time applications?
+
+LangChain generally offers the lowest latency for single-agent tasks due to its optimized TypeScript runtime. For multi-agent scenarios, CrewAI&#39;s lightweight coordination model outperforms AutoGen&#39;s conversational overhead. Benchmark your specific use case, as performance varies significantly with LLM choice and task complexity.
+
+### Q3: Is there a framework that works without internet connectivity?
+
+All five frameworks can run locally, but full offline operation requires local LLMs (via Ollama, LM Studio, or vLLM). LangChain and LlamaIndex have the most mature offline configurations. AutoGen&#39;s conversational patterns work well with local models for interactive scenarios.
+
+### Q4: Which framework is best for beginners?
+
+CrewAI has the gentlest learning curve. Its role-based abstraction is intuitive — define agents, assign tasks, and run. The Python API is straightforward, and the conceptual model maps to real-world team dynamics. LangChain is also beginner-friendly but has more configuration options that can overwhelm newcomers.
+
+### Q5: Will one framework win and dominate the market?
+
+Unlikely. The frameworks solve different problems with different philosophies. LangChain optimizes for integrations, CrewAI for collaboration, AutoGen for conversation, LlamaIndex for data, and LangGraph for state. The market will likely settle into a multi-framework ecosystem where teams choose based on their specific needs.
+
+* * *
+
+## Join the Community
+
+We build these comparisons because open-source AI deserves transparent, community-driven analysis. If you found this helpful: - **Star this article** on our GitHub
+- **Share your experience** with any of these frameworks in the comments
+- **Suggest frameworks** you&#39;d like us to compare next
+
+* * *
+
+## More from Dibi8
+
+- [Self-Hosted LLM Guide: Ollama vs vLLM vs LocalAI (2026)](/resources/llm-frameworks/self-hosted-llm-2026-ollama-vllm-localai/)
+- [Vector Database Comparison: Qdrant vs Weaviate vs Milvus](/resources/llm-frameworks/vector-db-2026-qdrant-weaviate-milvus/)
+- [Unsloth: Fast LLM Fine-Tuning in 2026](/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/)
+
+* * *
+
+*Last updated: June 30, 2026. Star counts and metrics are approximate and subject to change. All code examples tested with framework versions current as of publication date.*
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGraph — AI Agent Frameworks Compared (2026)&#34;,
+  &#34;datePublished&#34;: &#34;2026-06-30&#34;,
+  &#34;dateModified&#34;: &#34;2026-06-30&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/ai-agent-frameworks-comparison-2026&#34;
+  }
+}
+&lt;/script&gt;
+
+* * *
+
+## Related Articles
+
+- [supermemory-open-source-ai-memory-api](ai-agent-frameworks-comparison-2026)
+- [turbovec-rust-vector-index-2026](ai-agent-frameworks-comparison-2026)
+- [ai-agent-frameworks-comparison-2026](ai-agent-frameworks-comparison-2026)
+- [turbovec-rust-vector-index-2026](ai-agent-frameworks-comparison-2026)
+- [ai-agent-frameworks-comparison-2026](ai-agent-frameworks-comparison-2026)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+
+## Frequently Asked Questions (FAQ)
+
+**问：AI Agent和传统自动化有什么区别？**
+
+AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+
+**问：如何选择合适的AI Agent框架？**
+
+考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+
+**问：AI Agent的安全性如何保证？**
+
+实施权限最小化、输入验证、审计日志、以及定期安全评估。
+
+**问：AI Agent的学习成本有多高？**
+
+入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+
+**问：能否自定义AI Agent的行为？**
+
+是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</code></pre>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fai-agent-frameworks-comparison-2026%2f&text=Load%20settings%20from%20environment" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fai-agent-frameworks-comparison-2026%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

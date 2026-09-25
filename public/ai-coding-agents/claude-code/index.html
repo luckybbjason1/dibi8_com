@@ -1,0 +1,766 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install via the official installer (auto-updates in background) | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/claude-code/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Install via the official installer (auto-updates in background)</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Install via the official installer (auto-updates in background)</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;Install via the official installer (auto-updates in background)&rdquo;
+description: &ldquo;AI tool guide&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Llm Frameworks
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: Anthropic Terms
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;llm-frameworks&rdquo;]
+tags: [&ldquo;claude-code&rdquo;, &ldquo;ai-coding-agent&rdquo;, &ldquo;terminal-coding&rdquo;, &ldquo;anthropic&rdquo;, &ldquo;claude-tutorial&rdquo;, &ldquo;claude-code-vs-aider&rdquo;, &ldquo;claude-code-setup&rdquo;]
+aliases:</p>
+<ul>
+<li>/posts/claude-code/-</li>
+</ul>
+<hr>
+<h2 id="introduction">Introduction</h2>
+<p>Terminal-based AI coding agents are reshaping how developers interact with codebases. Instead of copying snippets from browser tabs, you type a command in your terminal and watch an agent read your repository, plan changes, edit files, run tests, and commit to Git — all autonomously. Claude Code from Anthropic leads this category with 125,050 GitHub stars and a 1-million-token context window. This Claude Code tutorial covers the complete setup for beginners, production hardening, and a head-to-head comparison with Aider, OpenHands, and OpenAI Codex CLI so you can pick the right tool for your workflow.</p>
+<h2 id="what-is-claude-code">What Is Claude Code?</h2>
+<p>Claude Code is an agentic coding tool that lives in your terminal, understands your codebase, and executes tasks via natural language. Launched in February 2025 as a research preview and generally available by May 2025, it has become one of the most widely adopted AI developer tools among professional engineering teams. Unlike autocomplete plugins that suggest the next line, Claude Code operates at the project level: reading files, making cross-file edits, running shell commands, managing Git workflows, and iterating on test failures until the task is complete.</p>
+<p><img alt="Claude Code Demo" loading="lazy" src="https://raw.githubusercontent.com/anthropics/claude-code/main/demo.gif"></p>
+<h2 id="how-claude-code-works">How Claude Code Works</h2>
+<h3 id="architecture-overview">Architecture Overview</h3>
+<p>Claude Code runs as a Node.js CLI process that wraps the Claude API. It maintains a persistent session context, reading your project structure on startup and building an internal model of your codebase. The tool uses the Model Context Protocol (MCP) to connect external services — databases, APIs, documentation systems — and can spawn parallel sub-agents for complex multi-step tasks.</p>
+<p><img alt="Claude Code Desktop Interface" loading="lazy" src="https://cdn.prod.website-files.com/67ed58c92cfedc451ebbbca1/699cc378d1f485eb812d5db2_Screenshot%202026-02-23%20at%202.15.32%E2%80%AFPM.png"></p>
+<p>Key architectural components: - <strong>Context Engine</strong>: Ingests up to 1 million tokens of project context, allowing Claude Code to reason across entire repositories without truncation</p>
+<ul>
+<li><strong>Tool Use Loop</strong>: A built-in execution cycle where the agent reads files, runs commands, observes output, and decides the next action autonomously</li>
+<li><strong>Sub-Agent Orchestration</strong>: Parallel agent execution for independent tasks, such as refactoring one module while writing tests for another</li>
+<li><strong>Lifecycle Hooks</strong>: PreToolUse and PostToolUse events that let you intercept and control tool execution for deterministic behavior</li>
+</ul>
+<h3 id="core-concepts">Core Concepts</h3>
+<p>| Concept | Description |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| ```CLAUDE.md<code> | Project-level configuration file that defines coding standards, conventions, and custom instructions | | Plan Mode (</code>/plan<code>) | Claude outlines all intended changes before touching disk, giving you approval control | | Slash Commands | Reusable workflow shortcuts like </code>/init<code>, </code>/desktop<code>, </code>/mcp<code>, and </code>/bug```` |
+| MCP Integration | Connect external tools via the Model Context Protocol for database queries, API calls, and more |</p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<p>Claude Code installs in under 60 seconds on macOS, Linux, and Windows (via WSL or PowerShell). This section is a beginner-friendly setup guide that gets you from zero to your first coding session. No Node.js or Docker required — the native installer handles everything.</p>
+<h3 id="macos-and-linux-recommended-installer">macOS and Linux (Recommended Installer)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install via the official installer (auto-updates in background)</span>
+</span></span><span style="display:flex;"><span>curl -fsSL https://claude.ai/install.sh | bash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify the binary is in your PATH</span>
+</span></span><span style="display:flex;"><span>export PATH<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$HOME<span style="color:#e6db74">/.local/bin:</span>$PATH<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check installation</span>
+</span></span><span style="display:flex;"><span>claude --version
+</span></span></code></pre></div><h3 id="windows-powershell">Windows PowerShell</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Install via the PowerShell installer</span>
+</span></span><span style="display:flex;"><span>irm https<span style="color:#960050;background-color:#1e0010">:</span>//claude.ai/install.ps1 | iex
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify installation</span>
+</span></span><span style="display:flex;"><span>claude --version
+</span></span></code></pre></div><h3 id="homebrew-macoslinux--manual-updates">Homebrew (macOS/Linux — Manual Updates)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install via Homebrew (does not auto-update)</span>
+</span></span><span style="display:flex;"><span>brew install claude-code
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Update manually when needed</span>
+</span></span><span style="display:flex;"><span>brew upgrade claude-code
+</span></span></code></pre></div><h3 id="vs-code-extension">VS Code Extension</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install from the VS Code marketplace</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Open Extensions panel (Cmd+Shift+X / Ctrl+Shift+X)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Search &#34;Claude Code&#34; and install</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The extension connects to the same session running in your terminal</span>
+</span></span></code></pre></div><h3 id="authentication">Authentication</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Log in with your Anthropic account</span>
+</span></span><span style="display:flex;"><span>claude auth login
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># This opens a browser window. Claude Code requires a paid subscription: # - Claude Pro: $20/month</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Claude Max: $100/month (5x usage)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Claude Max 20x: $200/month (20x usage)</span>
+</span></span></code></pre></div><h3 id="first-session">First Session</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Navigate to your project</span>
+</span></span><span style="display:flex;"><span>cd /path/to/your-project
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start Claude Code</span>
+</span></span><span style="display:flex;"><span>claude
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ask it to orient itself</span>
+</span></span><span style="display:flex;"><span>What does this project <span style="color:#66d9ef">do</span>? Walk me through the architecture.
+</span></span></code></pre></div><h2 id="integration-with-popular-tools">Integration with Popular Tools</h2>
+<h3 id="vs-code">VS Code</h3>
+<p>The Claude Code extension embeds the CLI session inside your editor sidebar. Install it from the marketplace, authenticate once, and switch between terminal and IDE without losing context.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#75715e">// .vscode/settings.json — Recommended settings for Claude Code
+</span></span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;claude.code.enableInlineCompletion&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;claude.code.autoApproveEdits&#34;</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;claude.code.defaultModel&#34;</span>: <span style="color:#e6db74">&#34;claude-opus-4-6&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="cursor">Cursor</h3>
+<p>Since Cursor is a VS Code fork, Claude Code runs in Cursor&rsquo;s integrated terminal. The two tools complement each other: Cursor handles inline autocomplete and visual diffs, while Claude Code manages multi-file refactors and autonomous task execution.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># In Cursor&#39;s integrated terminal, simply run: cd your-project</span>
+</span></span><span style="display:flex;"><span>claude
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Both tools operate on the same filesystem without conflict</span>
+</span></span></code></pre></div><h3 id="github-integration">GitHub Integration</h3>
+<p>Tag <code>@claude</code> on GitHub pull requests or issues to trigger Claude Code analysis. The agent reads the PR diff, leaves review comments, and can suggest fixes.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Enable the GitHub integration</span>
+</span></span><span style="display:flex;"><span>claude auth login --github
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># In a PR comment, tag: @claude please review this change for security issues</span>
+</span></span></code></pre></div><h3 id="gitlab-cicd-pipeline">GitLab CI/CD Pipeline</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># .gitlab-ci.yml — Run Claude Code for automated code review</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">stages</span>: - <span style="color:#ae81ff">review</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">claude_review: stage</span>: <span style="color:#ae81ff">review</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">image</span>: <span style="color:#ae81ff">node:22</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">before_script</span>: - <span style="color:#ae81ff">curl -fsSL https://claude.ai/install.sh | bash</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">export PATH=&#34;$HOME/.local/bin:$PATH&#34;</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">claude auth login --token $CLAUDE_API_TOKEN</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">script</span>: - <span style="color:#ae81ff">claude review --diff HEAD~1 --output review.json</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">artifacts: reports: codequality</span>: <span style="color:#ae81ff">review.json</span>
+</span></span></code></pre></div><h3 id="jetbrains-ides">JetBrains IDEs</h3>
+<p>Install the Claude Code plugin from the JetBrains Marketplace. It works with WebStorm, IntelliJ, PyCharm, GoLand, and all other JetBrains products.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Inside any JetBrains IDE: # Settings → Plugins → Marketplace → Search &#34;Claude Code&#34; → Install → Restart</span>
+</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases</h2>
+<h3 id="swe-bench-verified">SWE-bench Verified</h3>
+<p>SWE-bench Verified is the gold-standard benchmark for AI coding agents, measuring the ability to resolve real GitHub issues. As of March 2026: <img alt="Claude Code in Action - Webinar Demo" loading="lazy" src="https://img.youtube.com/vi/iI_zWNunkc4/maxresdefault.jpg"></p>
+<p>| Agent / Model | SWE-bench Verified | Date | Source |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Claude Code + Opus 4.6 | <strong>80.8%</strong> | Mar 2026 | Anthropic |
+| Claude Code + Opus 4.5 | 64.3% | Dec 2025 | SWE-bench leaderboard |
+| Codex CLI + GPT-5.5 | 58.6% | Apr 2026 | OpenAI |
+| OpenHands + Opus 4.5 | 51.9% | Jan 2026 | Terminal-Bench |
+| Aider + Opus 4.6 | ~55% | Mar 2026 | Aider leaderboard (est.) |</p>
+<h3 id="terminal-bench-20">Terminal-Bench 2.0</h3>
+<p>Terminal-Bench measures real-world terminal task completion accuracy: | Agent | Model | Accuracy | Rank |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Codex CLI | GPT-5.5 | <strong>82.0%</strong> | #7 |
+| Claude Code | Opus 4.6 | <strong>58.0%</strong> | #51 |
+| Claude Code | Opus 4.5 | 52.1% | #62 |
+| OpenHands | Opus 4.5 | 51.9% | #63 |</p>
+<h3 id="real-world-productivity-metrics">Real-World Productivity Metrics</h3>
+<p>Based on aggregated developer reports from Q1 2026: | Metric | Claude Code | Aider | Codex CLI |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Avg. Time to First Commit | 4.2 min | 6.1 min | 3.8 min |
+| Multi-File Refactor Success | 78% | 62% | 71% |
+| Test Pass Rate (Autonomous) | 84% | 71% | 79% |
+| Token Burn per Task (avg) | High | Low | Medium |</p>
+<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<h3 id="claudemd-configuration">CLAUDE.md Configuration</h3>
+<p>The <code>CLAUDE.md</code> file is your project&rsquo;s instruction manual for Claude Code. Place it in your repository root.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span># CLAUDE.md — Project Configuration for Claude Code
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Coding Standards
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Use TypeScript strict mode with noImplicitAny
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Follow the existing Prettier configuration (.prettierrc)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> All functions must have JSDoc comments
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Prefer async/await over Promise chains
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Testing
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Run ```<span style="color:#e6db74">`npm test`</span>``` before committing any changes
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> New features require unit tests with &gt;80% coverage
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Use Vitest for unit tests, Playwright for E2E
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Git Workflow
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Use conventional commits (feat:, fix:, docs:, refactor:)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Create a new branch for each task; do not commit to main
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Run ```<span style="color:#e6db74">`npm run lint`</span>``` before each commit
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Architecture
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> /src/components — React components (PascalCase files)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> /src/lib — Utility functions (camelCase files)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> /src/api — Route handlers
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> /tests — Mirror the src structure
+</span></span></code></pre></div><h3 id="security-sandboxing">Security Sandboxing</h3>
+<p>Claude Code executes shell commands with your user permissions. For production environments, use sandboxing: `````bash</p>
+<h1 id="run-claude-code-in-a-docker-sandbox">Run Claude Code in a Docker sandbox</h1>
+<p>docker run -it &ndash;rm <br>
+-v $(pwd):/workspace <br>
+-w /workspace <br>
+&ndash;read-only <br>
+&ndash;tmpfs /tmp <br>
+node:22-slim <br>
+bash -c &ldquo;curl -fsSL <a href="https://claude.ai/install.sh">https://claude.ai/install.sh</a> | bash &amp;&amp; /root/.local/bin/claude&rdquo;</p>
+<pre tabindex="0"><code>
+### Permission Control with Lifecycle Hooks
+
+`````json
+// ~/.claude/settings.json — Global permission rules
+{
+  &#34;permissions&#34;: {
+    &#34;file_write&#34;: {
+      &#34;allowed_paths&#34;: [&#34;/home/dev/projects/*&#34;],
+      &#34;denied_paths&#34;: [&#34;/etc/*&#34;, &#34;/usr/local/bin/*&#34;]
+    },
+    &#34;shell_command&#34;: {
+      &#34;allowed_commands&#34;: [&#34;npm *&#34;, &#34;git *&#34;, &#34;pytest *&#34;, &#34;docker build *&#34;],
+      &#34;denied_commands&#34;: [&#34;rm -rf /&#34;, &#34;curl * | sh&#34;, &#34;sudo *&#34;]
+    }
+  },
+  &#34;hooks&#34;: {
+    &#34;PreToolUse&#34;: &#34;/home/dev/.claude/hooks/pre-tool.sh&#34;,
+    &#34;PostToolUse&#34;: &#34;/home/dev/.claude/hooks/post-tool.sh&#34;
+  }
+}
+</code></pre><h3 id="mcp-server-configuration">MCP Server Configuration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#75715e">// mcp.json — Connect external tools
+</span></span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;mcpServers&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;postgres&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;npx&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;args&#34;</span>: [<span style="color:#e6db74">&#34;-y&#34;</span>, <span style="color:#e6db74">&#34;@modelcontextprotocol/server-postgres&#34;</span>, <span style="color:#e6db74">&#34;postgresql://localhost/devdb&#34;</span>]
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;github&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;npx&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;args&#34;</span>: [<span style="color:#e6db74">&#34;-y&#34;</span>, <span style="color:#e6db74">&#34;@modelcontextprotocol/server-github&#34;</span>, <span style="color:#e6db74">&#34;--token&#34;</span>, <span style="color:#e6db74">&#34;$GITHUB_TOKEN&#34;</span>]
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;filesystem&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;npx&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;args&#34;</span>: [<span style="color:#e6db74">&#34;-y&#34;</span>, <span style="color:#e6db74">&#34;@modelcontextprotocol/server-filesystem&#34;</span>, <span style="color:#e6db74">&#34;/home/dev/projects&#34;</span>]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="monitoring-token-usage">Monitoring Token Usage</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Check current session token consumption</span>
+</span></span><span style="display:flex;"><span>claude status
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: # Session: 42m 12s</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Input tokens: 145,230 (cache hit: 67%)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output tokens: 28,441</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Estimated cost: $0.42</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Rate limit: 4,200/5,000 requests remaining</span>
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<h3 id="head-to-head-feature-comparison">Head-to-Head Feature Comparison</h3>
+<p>| Feature | Claude Code | Aider | OpenHands | Codex CLI |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>GitHub Stars</strong> | 125,050 | 32,800 | 73,913 | 83,000 |
+| <strong>License</strong> | Anthropic Terms | Apache-2.0 | MIT | Apache-2.0 |
+| <strong>Model Support</strong> | Claude only | Any LLM | Any LLM | OpenAI only |
+| <strong>Context Window</strong> | 1,000,000 tokens | ~200,000 tokens | ~200,000 tokens | ~200,000 tokens |
+| <strong>SWE-bench Verified</strong> | 80.8% (Opus 4.6) | ~55% | 51.9% | 58.6% (GPT-5.5) |
+| <strong>Terminal-Bench 2.0</strong> | 58.0% (Opus 4.6) | N/A | 51.9% | 82.0% (GPT-5.5) |
+| <strong>Pricing Model</strong> | Subscription ($20-$200/mo) | API costs only | Free (self-hosted) | Bundled with ChatGPT+ |
+| <strong>Git Integration</strong> | Good (branch-per-task) | Excellent (auto-commit) | Good | Good (worktree isolation) |
+| <strong>Multi-Agent</strong> | Yes (parallel sub-agents) | No | Yes | Yes (up to 6 agents) |
+| <strong>MCP Support</strong> | Native | Via plugins | Yes | Native |
+| <strong>IDE Extensions</strong> | VS Code, JetBrains | None | VS Code | VS Code |
+| <strong>Desktop App</strong> | Yes (macOS, Windows) | No | No | Yes (macOS, Windows) |
+| <strong>Auto-Approve</strong> | Configurable | Explicit approval | Configurable | Configurable |
+| <strong>Setup Time</strong> | &lt; 1 min | &lt; 2 min (pip) | 5-10 min (Docker) | &lt; 1 min |
+| <strong>Open Source</strong> | No | Yes | Yes | Yes |</p>
+<h3 id="when-to-choose-which-tool">When to Choose Which Tool</h3>
+<p><strong>Choose Claude Code when:</strong></p>
+<ul>
+<li>You need the highest SWE-bench score (80.8%) for complex bug fixing</li>
+<li>Your workflow centers on the terminal with occasional IDE use</li>
+<li>You want a 1-million-token context window for large monorepos</li>
+<li>You prefer predictable subscription pricing over per-token billing</li>
+<li>You need parallel sub-agents for multi-step autonomous tasks</li>
+</ul>
+<p><strong>Choose Aider when:</strong></p>
+<ul>
+<li>You want model flexibility (switch between GPT, Claude, Gemini, local models)</li>
+<li>Git auto-commit history is important for your team&rsquo;s audit trail</li>
+<li>You prefer explicit approval for every change before it hits disk</li>
+<li>You need a lightweight, open-source tool with zero subscription cost</li>
+<li>You are budget-conscious and want to control API spending per task</li>
+</ul>
+<p><strong>Choose OpenHands when:</strong></p>
+<ul>
+<li>You need a fully open-source, self-hosted solution</li>
+<li>Data privacy requires running everything on your own infrastructure</li>
+<li>You want a large community (73K+ stars) with active development</li>
+<li>MIT licensing matters for commercial redistribution</li>
+<li>You need multi-agent orchestration without vendor lock-in</li>
+</ul>
+<p><strong>Choose Codex CLI when:</strong></p>
+<ul>
+<li>You already have a ChatGPT Plus or Pro subscription</li>
+<li>Terminal-Bench speed matters most (82.0% accuracy)</li>
+<li>You want an open-source tool bundled with your existing AI subscription</li>
+<li>You need the lowest latency for interactive pair programming</li>
+<li>Multi-agent concurrency with up to 6 parallel agents is required</li>
+</ul>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p>Claude Code is a powerful tool, but it is not the right choice for every developer or team. Here is what the marketing materials do not tell you: 1. <strong>Subscription Lock-in</strong>: Claude Code requires a paid Anthropic subscription. The $20/month Pro tier is the entry point, and heavy users need the $100 or $200 Max tiers. Unlike Aider or OpenHands, you cannot bring your own API key and pay only for what you use.</p>
+<ol start="2">
+<li>
+<p><strong>Claude-Only Models</strong>: You cannot switch to GPT-5, Gemini, or a local model. If Claude Opus 4.6 struggles with a specific task, you have no fallback option within the same tool.</p>
+</li>
+<li>
+<p><strong>Terminal-First Limitation</strong>: There is no inline autocomplete while you type. If your workflow depends on real-time code suggestions inside the editor, Cursor or GitHub Copilot is a better fit. Claude Code operates in a separate terminal session.</p>
+</li>
+<li>
+<p><strong>Token Consumption</strong>: The 1-million-token context window is a double-edged sword. Claude Code aggressively loads context, and heavy usage can burn through rate limits quickly. Pro plan users report hitting throttling during long sessions with parallel sub-agents.</p>
+</li>
+<li>
+<p><strong>Visual Diff Review</strong>: Unlike Cursor&rsquo;s native side-by-side diff viewer, Claude Code shows changes via Git diff in the terminal or requires switching to the Desktop app. The terminal diff experience is functional but not polished.</p>
+</li>
+<li>
+<p><strong>Enterprise SSO Gap</strong>: As of May 2026, Claude Code lacks native OIDC/SCIM enterprise SSO. Teams requiring centralized identity management must use API-key-based workarounds.</p>
+</li>
+<li>
+<p><strong>No Free Tier</strong>: There is no evaluation tier. You must pay $20 before you can try the tool, unlike Cursor (50 free premium requests/month) or OpenHands (completely free).</p>
+</li>
+</ol>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>Q: Is Claude Code free to use?</strong>
+A: No. Claude Code requires a paid Anthropic subscription starting at $20/month for Claude Pro. There is no free tier. The Pro plan includes usage limits that scale with the tier; Max plans at $100 and $200 per month offer 5x and 20x capacity respectively. Teams and enterprise plans have additional per-seat pricing.</p>
+<p><strong>Q: How does Claude Code differ from GitHub Copilot?</strong>
+A: GitHub Copilot provides inline autocomplete suggestions as you type inside your IDE. Claude Code is a terminal-based agent that reads your entire codebase, plans multi-file changes, executes shell commands, runs tests, and commits to Git — all autonomously. Copilot assists while you type; Claude Code works while you review. They complement each other rather than compete.</p>
+<p><strong>Q: Can I use Claude Code without a terminal?</strong>
+A: Yes. Anthropic ships a Desktop App for macOS and Windows with a full GUI, integrated terminal, built-in diff viewer, and support for parallel agent sessions. There are also VS Code and JetBrains extensions that embed Claude Code inside your IDE. However, the terminal CLI remains the most feature-complete interface.</p>
+<p><strong>Q: What programming languages does Claude Code support?</strong>
+A: Claude Code is language-agnostic because it operates at the filesystem and shell level. It reads and edits any text-based code file. First-class support exists for Python, JavaScript, TypeScript, Go, Rust, Java, Ruby, and PHP. Niche languages work but may require more explicit instructions in your prompts.</p>
+<p><strong>Q: How does the 1-million-token context window help in practice?</strong>
+A: The large context window lets Claude Code load entire repositories — or substantial portions of them — without truncation. This matters for cross-file refactoring, understanding monorepo architectures, and debugging issues that span multiple modules. In practice, repositories under 500K lines of code fit comfortably within the context window.</p>
+<p><strong>Q: Is Claude Code safe for production codebases?</strong>
+A: Claude Code executes shell commands with your user permissions, which carries inherent risk. For production environments, run it in a Docker sandbox, configure lifecycle hooks to intercept dangerous commands, and always use Plan Mode (<code>/plan</code>) to review changes before execution. Never run Claude Code with sudo or on untrusted repositories without sandboxing.</p>
+<p><strong>Q: Can I use Claude Code alongside Cursor or VS Code?</strong>
+A: Yes. Many developers run both: Cursor handles the daily editing loop with inline autocomplete, while Claude Code manages large autonomous refactors in a terminal pane. They operate on the same Git repository without conflict, though concurrent edits to the same files can cause merge conflicts.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Claude Code represents the most capable terminal-native AI coding agent available in 2026. With 125,050 GitHub stars, an 80.8% SWE-bench Verified score, and a 1-million-token context window, it leads on reasoning depth and long-horizon task completion. The subscription model provides predictable pricing for heavy users, though the lack of a free tier and Claude-only model support are real trade-offs.</p>
+<p>For teams already standardized on Anthropic models, Claude Code is the natural choice. For developers needing model flexibility or zero subscription cost, Aider and OpenHands are strong open-source alternatives. For ChatGPT subscribers who want the fastest terminal agent, Codex CLI delivers competitive results at no additional cost.</p>
+<p><strong>Action items to get started:</strong></p>
+<ol>
+<li>Install Claude Code with <code>curl -fsSL https://claude.ai/install.sh | bash</code></li>
+<li>Authenticate with <code>claude auth login</code> and subscribe to Claude Pro ($20/month)</li>
+<li>Create a <code>CLAUDE.md</code> file in your primary project with coding standards</li>
+<li>Run ````claude``` in your project directory and ask it to walk through the architecture</li>
+<li>Join the <a href="https://t.me/dibi8channel">dibi8 Telegram group</a> to share tips and ask questions</li>
+</ol>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading</h2>
+<ul>
+<li><a href="https://docs.claude.com/en/docs/claude-code/">Claude Code Official Documentation</a></li>
+<li><a href="https://github.com/anthropics/claude-code">Claude Code GitHub Repository</a></li>
+<li><a href="https://www.swebench.com/">SWE-bench Verified Leaderboard</a></li>
+<li><a href="https://www.tbench.ai/leaderboard/terminal-bench/2.0">Terminal-Bench 2.0 Leaderboard</a></li>
+<li><a href="https://tech-insider.org/claude-code-vs-cursor-2026-2/">Claude Code vs Cursor 2026 Comparison</a></li>
+<li><a href="https://zenvanriel.com/ai-engineer-blog/aider-vs-claude-code/">Aider vs Claude Code Comparison</a></li>
+<li><a href="https://github.com/All-Hands-AI/OpenHands">OpenHands GitHub Repository</a></li>
+<li><a href="https://github.com/openai/codex">OpenAI Codex CLI Documentation</a></li>
+<li><a href="https://modelcontextprotocol.io/">Model Context Protocol Specification</a></li>
+<li><a href="https://www.anthropic.com/pricing">Anthropic Pricing Page</a></li>
+<li><a href="https://claude.com/download">Claude Code Desktop App Download</a></li>
+</ul>
+<hr>
+<p><em>Disclaimer: This article contains no affiliate links. All pricing and benchmark data reflect publicly available information as of May 2026. Verify current pricing on official vendor websites before making purchase decisions.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Claude Code: 125K+ Stars — The Terminal AI Coding Agent Complete Comparison vs Alternatives 2026&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/claude-code%22">https://dibi8.com/resources/claude-code"</a>
+}
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/claude-code/">claude-code-vs-cline</a></li>
+<li><a href="/ai-coding-agents/claude-code/">gemini-cli-vs-claude-code</a></li>
+<li><a href="/ai-coding-agents/claude-code/">cc-switch-all-in-one-ai-coding-agent-manager</a></li>
+<li><a href="/ai-coding-agents/claude-code/">claude-code-vs-aider</a></li>
+<li><a href="/ai-coding-agents/claude-code/">cursor-vs-claude-code</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fclaude-code%2f&text=Install%20via%20the%20official%20installer%20%28auto-updates%20in%20background%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fclaude-code%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

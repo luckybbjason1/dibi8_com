@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Python on Dibi8 - AI工具目录</title>
+    <link>https://dibi8.com/tags/python/</link>
+    <description>Recent content in Python on Dibi8 - AI工具目录</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 19 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://dibi8.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Agent-Reach: 83K-Star Open Source Tool That Gives AI Agents Eyes to See the Entire Internet (Zero API Costs)</title>
+      <link>https://dibi8.com/agent-reach-internet-access-for-ai-agents-2026/</link>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/agent-reach-internet-access-for-ai-agents-2026/</guid>
+      <description>Agent-Reach is a Python CLI tool that lets any AI agent read and search Twitter, Reddit, YouTube, GitHub, Bilibili, and XiaoHongShu without paying for APIs. Learn how to integrate it into your workflow in 2026.</description>
+    </item>
+    <item>
+      <title>AI Token Monitor: Track Claude, Gemini, Grok, Kimi Quota Live on Your Linux Desktop</title>
+      <link>https://dibi8.com/ai-token-monitor-conky-linux/</link>
+      <pubDate>Sat, 06 Jun 2026 00:00:00 +0800</pubDate>
+      <guid>https://dibi8.com/ai-token-monitor-conky-linux/</guid>
+      <description>Free open-source desktop widget for Linux that shows real-time AI token quotas with HP-bar progress visualization inside Conky. Supports Claude, Gemini, Grok, and Kimi with live API polling and reset countdowns.</description>
+    </item>
+  </channel>
+</rss>

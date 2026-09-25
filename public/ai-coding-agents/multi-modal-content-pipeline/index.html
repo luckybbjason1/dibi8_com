@@ -1,0 +1,551 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combine narration audio &#43; b-roll video | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/multi-modal-content-pipeline/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Combine narration audio &#43; b-roll video</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Combine narration audio &#43; b-roll video</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;Multi-Modal Content Pipeline 2026: The 5-Component Stack&hellip;
+description: &ldquo;Technical guide and comparison&rdquo;
+date: 2026-05-21T00:00:00+08:00
+lastmod: 2026-05-21T00:00:00+08:00
+tech_stack: - Python</p>
+<ul>
+<li>PyTorch</li>
+<li>CUDA</li>
+<li>FFmpeg
+application_domain: Collections
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: MIT
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-21&rdquo;
+draft: false
+categories: [&ldquo;collections&rdquo;]
+tags: [&ldquo;multi-modal&rdquo;, &ldquo;content pipeline&rdquo;, &ldquo;podcast&rdquo;, &ldquo;video&rdquo;, &ldquo;tts&rdquo;, &ldquo;stack&rdquo;, &ldquo;collection&rdquo;]
+aliases:</li>
+<li>/posts/multi-modal-content-pipeline/-</li>
+</ul>
+<hr>
+<p>The 2026 creator economy runs on multi-modal content — podcasts with AI co-hosts, short-form video with AI narration over generated visuals, blog posts with AI-illustrated header images, audiobooks read by stable AI voices. The SaaS-stack way costs $200-500/month (ElevenLabs + Midjourney + Descript + Pictory + a dozen others). This collection assembles the <strong>self-hosted 5-component alternative for $30-80/month</strong> — using the same models the SaaS providers use, on a GPU you rent by the hour.</p>
+<h2 id="tldr--the-stack-at-a-glance">TL;DR — The Stack at a Glance</h2>
+<p>| # | Component | Modality | Role | Deep dive |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| 1 | <strong>faster-whisper</strong> | Audio → Text | Transcribe / caption / subtitle generation | <a href="/resources/ai-tools/faster-whisper/">faster-whisper guide</a> |
+| 2 | <strong>ChatTTS</strong> | Text → Audio | Dialogue-quality TTS with prosody control | <a href="/resources/ai-tools/chattts-dialogue-tts-2026/">ChatTTS 2026</a> |
+| 3 | <strong>Stable Diffusion WebUI</strong> | Text → Image | Casual single-image generation (SDXL focus) | <a href="/resources/ai-tools/stable-diffusion-webui-2026/">SD WebUI 2026</a> |
+| 4 | <strong>ComfyUI</strong> | Text/Image → Image/Video/Audio | Workflow engine for complex multi-modal pipelines | <a href="/resources/ai-tools/comfyui-node-based-ai-image-2026/">ComfyUI 2026</a> |
+| 5 | <strong>FFmpeg</strong> | Video/Audio assembly | Compose final video / podcast deliverables | (industry standard, no deep-dive needed) |</p>
+<p><strong>Total monthly cost</strong> (rented GPU, 4 hours/day usage): <strong>~$30-50/mo</strong> (Vast.ai or ) • <strong>Always-on dedicated GPU</strong>: <strong>~$80-150/mo</strong></p>
+<p>Compare to SaaS equivalents: ElevenLabs ($22) + Midjourney ($30) + Descript ($24) + Pictory ($59) + Adobe Creative Cloud ($55) = $190/mo before any volume premiums.</p>
+<h2 id="1-why-multi-modal-self-hosting-crossed-the-line-in-2026">1. Why Multi-Modal Self-Hosting Crossed the Line in 2026</h2>
+<p>Three shifts: 1. <strong>Wan / Hunyuan / LTX-Video shipped open-source</strong> — 5-second clips at 720p on a 16 GB GPU. Worse than Sora, but free and yours.
+2. <strong>ChatTTS removed the &ldquo;AI narrator robot&rdquo; smell</strong> — first open-source TTS that handles dialogue prosody. See our <a href="/resources/ai-tools/chattts-dialogue-tts-2026/">ChatTTS deep dive</a>.
+3. <strong>ComfyUI became the glue</strong> — image + video + audio in one workflow, JSON-portable, <a href="/resources/ai-tools/comfyui-node-based-ai-image-2026/">ComfyUI Manager</a> handles installs.</p>
+<p>The unlock isn&rsquo;t any one tool; it&rsquo;s that they all speak workflow JSON and Python, so you can chain them into &ldquo;script → narration audio → header image → video clips → final composite&rdquo; without writing glue code.</p>
+<h2 id="2-architecture--the-creator-pipeline">2. Architecture — The Creator Pipeline</h2>
+<pre tabindex="0"><code>   Script / outline (you, or LLM-generated)
+            │
+            ▼
+   ┌─────────────────────────────────────────────┐
+   │ ChatTTS (dialogue narration generation)     │
+   └─────────────────┬───────────────────────────┘
+                     │
+   ┌─────────────────┴───────────────────────────┐
+   │ ComfyUI (image / b-roll video generation)   │
+   │   ├── SDXL for blog headers / thumbnails    │
+   │   ├── LTX-Video for short b-roll clips      │
+   │   └── Wan 2.2 for longer scenes             │
+   └─────────────────┬───────────────────────────┘
+                     │
+                     ▼
+   ┌─────────────────────────────────────────────┐
+   │ FFmpeg (assemble: audio + visuals → final)  │
+   └─────────────────┬───────────────────────────┘
+                     │
+                     ▼
+   ┌─────────────────────────────────────────────┐
+   │ faster-whisper (auto-caption / subtitles)   │
+   └─────────────────┬───────────────────────────┘
+                     │
+                     ▼
+              MP4 / WAV / PNG outputs
+</code></pre><p>The split: ChatTTS and SD WebUI cover the &ldquo;single-shot&rdquo; generation. ComfyUI covers any multi-step pipeline (especially video). FFmpeg is the boring-but-essential glue. faster-whisper handles the &ldquo;audio in&rdquo; side (transcription of recorded interviews) and the &ldquo;audio out&rdquo; side (auto-generating subtitle files).</p>
+<h2 id="3-component-1--faster-whisper-audio--text">3. Component 1 — faster-whisper (Audio → Text)</h2>
+<p><strong>The role</strong>: Transcribe interviews, podcasts, video soundtracks. Generate <code>.srt</code> subtitle files for any video output.</p>
+<p><strong>Why faster-whisper over openai-whisper</strong>: 4× faster on the same hardware via CTranslate2 backend, near-identical accuracy. The de-facto choice in 2026 for production transcription.</p>
+<p><strong>Quick install</strong>: `````bash
+pip install faster-whisper</p>
+<pre tabindex="0"><code>
+`````python
+from faster_whisper import WhisperModel
+
+model = WhisperModel(&#34;large-v3&#34;, device=&#34;cuda&#34;, compute_type=&#34;float16&#34;)
+segments, info = model.transcribe(&#34;input.mp3&#34;, beam_size=5)
+
+for segment in segments: print(f&#34;[{segment.start:.2f} → {segment.end:.2f}] {segment.text}&#34;)
+</code></pre><p><strong>Cost</strong>: $0 if self-hosted. ~5× real-time on RTX 3060, ~30× real-time on RTX 4090.</p>
+<p>Full setup including speaker diarization and SRT export: <a href="/resources/ai-tools/faster-whisper/">faster-whisper production guide</a>.</p>
+<h2 id="4-component-2--chattts-text--dialogue-audio">4. Component 2 — ChatTTS (Text → Dialogue Audio)</h2>
+<p><strong>The role</strong>: Generate narration that doesn&rsquo;t sound like a 1990s GPS. Stable speaker voices across episodes via embedding seeding.</p>
+<p><strong>Why this pick over OpenVoice / Coqui XTTS</strong>: ChatTTS handles dialogue prosody (laughter, pauses, interjections) at a level no other open-source TTS matches. For solo narration / audiobook, Coqui XTTS-v2 still wins. For agent voices, podcast co-hosts, multi-character — ChatTTS.</p>
+<p>⚠️ <strong>License caveat</strong>: Model weights are CC BY-NC 4.0 (non-commercial). For commercial podcasts that monetize directly, license commercially or use Coqui XTTS-v2.</p>
+<p>Full setup including prosody token reference and stable speaker pattern: <a href="/resources/ai-tools/chattts-dialogue-tts-2026/">ChatTTS dialogue TTS 2026</a>.</p>
+<h2 id="5-component-3--stable-diffusion-webui-casual-image-gen">5. Component 3 — Stable Diffusion WebUI (Casual Image Gen)</h2>
+<p><strong>The role</strong>: Day-to-day single image generation. Blog headers, thumbnails, illustrations. SDXL is the workhorse — fast enough on 8 GB GPU, great quality, huge LoRA library on Civitai.</p>
+<p><strong>Pattern</strong>: Use SD WebUI&rsquo;s UI for one-off image generation. When you need a pipeline (consistent character across multiple images, or video generation), graduate to ComfyUI.</p>
+<p>Full guide including model selection, ControlNet, LoRA: <a href="/resources/ai-tools/stable-diffusion-webui-2026/">Stable Diffusion WebUI 2026</a>.</p>
+<h2 id="6-component-4--comfyui-the-multi-modal-workflow-engine">6. Component 4 — ComfyUI (The Multi-Modal Workflow Engine)</h2>
+<p><strong>The role</strong>: Where the &ldquo;multi-modal&rdquo; actually happens. ComfyUI is the only mainstream UI that does image + video + audio generation in the same workflow, with day-1 support for new models (Wan, Hunyuan, LTX-Video, Stable Audio Open).</p>
+<p><strong>Killer multi-modal workflows to download from OpenArt</strong>: - &ldquo;AI Podcast Cover + Episode Art&rdquo; — generates square / portrait variants in one pass</p>
+<ul>
+<li>&ldquo;Story → 8-shot Comic&rdquo; — keeps character consistent across 8 generated panels</li>
+<li>&ldquo;Text → 5-second video clip&rdquo; via LTX-Video or Wan 2.2</li>
+<li>&ldquo;Image-to-video&rdquo; (animate a still photo) via Wan 2.2 i2v</li>
+<li>&ldquo;Multi-character audio dialogue&rdquo; via ChatTTS nodes (community custom node)</li>
+</ul>
+<p><strong>Hardware reality</strong>: 24 GB VRAM (RTX 4090) is the sweet spot for video. 8-12 GB handles all image work. Rent the 24 GB instance only when running video pipelines — for image-only days, use a 12 GB box.</p>
+<p>Full guide: <a href="/resources/ai-tools/comfyui-node-based-ai-image-2026/">ComfyUI node-based AI 2026</a>.</p>
+<h2 id="7-component-5--ffmpeg-the-boring-glue">7. Component 5 — FFmpeg (The Boring Glue)</h2>
+<p><strong>The role</strong>: Assemble final deliverables. Combine audio + video. Add subtitles. Compress to target sizes. Standard issue across all video creators.</p>
+<p><strong>The 3 commands you&rsquo;ll use 90% of the time</strong>: `````bash</p>
+<h1 id="combine-narration-audio--b-roll-video">Combine narration audio + b-roll video</h1>
+<p>ffmpeg -i visuals.mp4 -i narration.wav -c:v copy -c:a aac final.mp4</p>
+<h1 id="burn-subtitles-into-video">Burn subtitles into video</h1>
+<p>ffmpeg -i final.mp4 -vf &ldquo;subtitles=captions.srt&rdquo; final-with-subs.mp4</p>
+<h1 id="compress-for-youtube-target-5-mbmin">Compress for YouTube (target 5 MB/min)</h1>
+<p>ffmpeg -i source.mp4 -c:v libx264 -crf 23 -preset slow -c:a aac -b:a 192k upload.mp4</p>
+<pre tabindex="0"><code>
+No deep-dive needed — FFmpeg has a million guides online. Learn these 3 commands; defer learning the rest until you need it.
+
+## 8. Day 1 Setup Order (3-4 hours)
+
+1. **GPU instance** (15 min) — Rent a 24 GB GPU on Vast.ai ($0.50-1/hr) or order a . 24 GB needed for video; 12 GB enough if skipping video for now
+2. **Install Docker + Python venv basics** (15 min)
+3. **ComfyUI + ComfyUI Manager** (30 min) — Workhorse for all visual work
+4. **ChatTTS** (15 min) — Pre-generate 3-5 stable speakers, save embeddings
+5. **faster-whisper** (10 min) — ````pip install````, test on a sample audio
+6. **SD WebUI** (15 min) — Optional if you&#39;re already comfortable with ComfyUI alone
+7. **FFmpeg** (5 min) — ````apt install ffmpeg```
+8. **First real pipeline** (90 min) — Generate a 30-second test video: script → ChatTTS narration → ComfyUI 5 image panels → FFmpeg assembly → faster-whisper subtitles
+
+After 3-4 hours you have a working multi-modal pipeline you can iterate on weekly.
+
+## 9. Cost Breakdown
+
+| Item | Hobby (4 hrs/day) | Producer (8 hrs/day) | Studio (always-on) |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| GPU (24 GB, Vast.ai/RunPod) | $25-35/mo | $50-80/mo | — |
+| Dedicated GPU (DO / HTStack) | — | — | $120-200/mo |
+| Storage (model files + outputs) | $5 | $10 | $30 |
+| Bandwidth (output upload) | $0-5 | $5-15 | $20+ |
+| ChatTTS (license, if commercial) | $0 (NC OK) | $0-50 (commercial license) | $50-200 |
+| **Total** | **~$30-45/mo** | **~$65-145/mo** | **~$220-450/mo** |
+
+Compare to SaaS equivalents: ElevenLabs Creator ($22) + Midjourney Standard ($30) + Descript Creator ($24) + Pictory Standard ($59) = $135/mo minimum, with rate limits on each.
+
+## 10. Upgrade Path
+
+When you outgrow: - **&gt;1 hour of TTS / day** — Switch ChatTTS hosting from Vast.ai to dedicated GPU; commercial license if monetized
+- **Real-time video gen needed** — Move to dedicated H100 instance (~$2/hr or buy)
+- **Team of &gt;3 creators** — Add LiteLLM-style auth layer in front of ComfyUI to manage user quotas
+- **Distribution at scale** — Add CDN for output delivery (Cloudflare R2 or BunnyCDN)
+- **Pair with AI Agent stack** — Let an autonomous agent drive the pipeline. See [AI Agent Tool Chain](/collections/ai-agent-tool-chain/)
+
+## TL;DR — The Recipe
+
+**5 components for self-hosted multi-modal content production, $30-80/mo for solo creator**: 1. **faster-whisper** — STT and subtitles
+2. **ChatTTS** — dialogue-quality narration
+3. **SD WebUI** — casual single image gen
+4. **ComfyUI** — the multi-modal workflow engine (image / video / audio in one place)
+5. **FFmpeg** — boring-but-essential assembly
+
+Rent a  when you produce, shut it down when you don&#34;t. The math beats SaaS as soon as you cross ~2 hours/day of active content production.
+
+
+* * *
+*Companion collections: [Self-Hosted AI Coding Workflow](/collections/self-hosted-ai-coding-workflow/) and [Knowledge Base Stack](/collections/knowledge-base-stack/) for the dev side. [Cheap LLM Stack](/collections/cheap-llm-stack/) covers the script-generation cost side. [AI Agent Tool Chain](/collections/ai-agent-tool-chain/) for letting agents drive this pipeline autonomously.*
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;Multi-Modal Content Pipeline 2026: The 5-Component Stack for AI Podcasts, Videos, and Visual Content ($30-80/Month)&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-21&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-21&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/multi-modal-content-pipeline&#34;
+  }
+}
+&lt;/script&gt;
+
+
+* * *
+## Related Articles
+
+- [moneyprinterturbo-one-click-ai-video-generator](multi-modal-content-pipeline)
+- [moneyprinterturbo-one-click-ai-video-generator](multi-modal-content-pipeline)
+- [moneyprinterturbo-one-click-ai-video-generator](multi-modal-content-pipeline)
+- [prompts-chat](multi-modal-content-pipeline)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</code></pre>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmulti-modal-content-pipeline%2f&text=Combine%20narration%20audio%20%2b%20b-roll%20video" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmulti-modal-content-pipeline%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

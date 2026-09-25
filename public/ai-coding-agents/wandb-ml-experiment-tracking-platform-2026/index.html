@@ -1,0 +1,691 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initialize a new run with your configuration | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/wandb-ml-experiment-tracking-platform-2026/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Initialize a new run with your configuration</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Initialize a new run with your configuration</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p><img alt="Weights &amp; Biases Dashboard" loading="lazy" src="https://opengraph.github.com/github/wandb/wandb"></p>
+<p><img alt="W&amp;B Sweeps" loading="lazy" src="https://opengraph.github.com/github/wandb/wandb/tree/main/wandb/sweeps"></p>
+<p><img alt="W&amp;B Artifacts" loading="lazy" src="https://opengraph.github.com/github/wandb/wandb/tree/main/wandb/sdk"></p>
+<h2 id="introduction">Introduction</h2>
+<p>Training a machine learning model without experiment tracking is like driving blindfolded. You might reach your destination eventually, but you&rsquo;ll never know which turn was the right one. Weights &amp; Biases (W&amp;B) solves this by providing a unified platform that logs, visualizes, and compares every experiment — from hyperparameter sweeps to LLM fine-tuning runs. With 11,000+ GitHub stars and integration with PyTorch, TensorFlow, Hugging Face, and 200+ frameworks, W&amp;B has become the de facto standard for ML teams that take their experiments seriously.</p>
+<h2 id="what-is-wb">What Is W&amp;B?</h2>
+<p>Weights &amp; Biases is an end-to-end ML development platform that covers the entire experiment lifecycle. At its core is the logger — a lightweight library you add to your training script that automatically tracks metrics, configurations, artifacts, and even model checkpoints. Beyond logging, W&amp;B provides a web dashboard for visualizing runs, comparing experiments side by side, sharing results with your team, and managing models from training to deployment.</p>
+<pre tabindex="0"><code>┌───────────────────────────────────────────────┐
+│           W&amp;B Platform Architecture            │
+├───────────────────────────────────────────────┤
+│                                               │
+│  SDK (pip install wandb)                      │
+│    ├─ Logger (metrics, params, tables)        │
+│    ├─ Artifact Tracker (datasets, models)     │
+│    ├─ Sweeps (hyperparameter tuning)          │
+│    ├─ Reports (visual dashboards)             │
+│    └─ Model Registry (production models)      │
+│                                               │
+│  Cloud Dashboard                              │
+│    ├─ Run comparison (up to 100 runs)         │
+│    ├─ Project-level statistics                │
+│    ├─ Artifact lineage graph                  │
+│    └─ Team collaboration &amp; sharing            │
+│                                               │
+│  Integrations                                 │
+│    ├─ PyTorch, TensorFlow, JAX                │
+│    ├─ Hugging Face Transformers               │
+│    ├─ PyTorch Lightning, FastAI               │
+│    └─ Ray Tune, Optuna, Ax                    │
+└───────────────────────────────────────────────┘
+</code></pre><h2 id="how-wb-works">How W&amp;B Works</h2>
+<p>W&amp;B works by instrumenting your training loop. You initialize a run, log metrics at each step, and W&amp;B sends the data to the cloud dashboard in real time. The SDK is designed to have minimal overhead — logging a metric takes roughly 0.1ms, and the network calls are batched and compressed to reduce bandwidth usage.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> wandb
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize a new run with your configuration</span>
+</span></span><span style="display:flex;"><span>wandb<span style="color:#f92672">.</span>init(
+</span></span><span style="display:flex;"><span>    project<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;my-nlp-finetune&#34;</span>,
+</span></span><span style="display:flex;"><span>    config<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;learning_rate&#34;</span>: <span style="color:#ae81ff">2e-5</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;batch_size&#34;</span>: <span style="color:#ae81ff">32</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;epochs&#34;</span>: <span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;model&#34;</span>: <span style="color:#e6db74">&#34;bert-base-uncased&#34;</span>,
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> epoch <span style="color:#f92672">in</span> range(config<span style="color:#f92672">.</span>epochs): <span style="color:#66d9ef">for</span> batch <span style="color:#f92672">in</span> train_dataloader: loss <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>train_step(batch)
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Log metrics — W&amp;B handles the rest</span>
+</span></span><span style="display:flex;"><span>        wandb<span style="color:#f92672">.</span>log({<span style="color:#e6db74">&#34;train_loss&#34;</span>: loss, <span style="color:#e6db74">&#34;lr&#34;</span>: config<span style="color:#f92672">.</span>learning_rate})
+</span></span></code></pre></div><p>The platform distinguishes between three types of tracked data: <strong>metrics</strong> (scalar values like loss and accuracy logged over time), <strong>artifacts</strong> (versioned files like datasets and model checkpoints), and <strong>media</strong> (images, audio, text samples visualized directly in the dashboard).</p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<p><strong>Option 1: pip install (standard)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install wandb
+</span></span></code></pre></div><p><strong>Option 2: Authenticate with W&amp;B</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>wandb login
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Paste your API key from https://wandb.ai/authorize</span>
+</span></span></code></pre></div><p><strong>Option 3: Docker</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker pull wandb/launch
+</span></span><span style="display:flex;"><span>docker run -e WANDB_API_KEY<span style="color:#f92672">=</span>$WANDB_API_KEY <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -v /path/to/code:/app wandb/launch python train.py
+</span></span></code></pre></div><p><strong>Option 4: Hugging Face Integration</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install wandb transformers
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># W&amp;B is pre-configured for Hugging Face Trainer</span>
+</span></span></code></pre></div><h2 id="integration-with-pytorch-hugging-face-and-ray-tune">Integration with PyTorch, Hugging Face, and Ray Tune</h2>
+<p>W&amp;B integrates with virtually every popular ML framework. Here are the most common setups.</p>
+<p><strong>PyTorch Lightning</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> pytorch_lightning <span style="color:#66d9ef">as</span> pl
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pytorch_lightning.callbacks <span style="color:#f92672">import</span> WandbCallback
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyModel</span>(pl<span style="color:#f92672">.</span>LightningModule): <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">training_step</span>(self, batch, batch_idx): loss <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>forward(batch)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>log(<span style="color:#e6db74">&#34;train_loss&#34;</span>, loss)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> loss
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># W&amp;B callback auto-logs everything</span>
+</span></span><span style="display:flex;"><span>trainer <span style="color:#f92672">=</span> pl<span style="color:#f92672">.</span>Trainer(callbacks<span style="color:#f92672">=</span>[WandbCallback()])
+</span></span><span style="display:flex;"><span>trainer<span style="color:#f92672">.</span>fit(model)
+</span></span></code></pre></div><p><strong>Hugging Face Transformers</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> transformers <span style="color:#f92672">import</span> Trainer, TrainingArguments
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> wandb
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>training_args <span style="color:#f92672">=</span> TrainingArguments(
+</span></span><span style="display:flex;"><span>    output_dir<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./results&#34;</span>,
+</span></span><span style="display:flex;"><span>    report_to<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;wandb&#34;</span>,  <span style="color:#75715e"># Enable W&amp;B reporting</span>
+</span></span><span style="display:flex;"><span>    num_train_epochs<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>    per_device_train_batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>trainer <span style="color:#f92672">=</span> Trainer(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span>model,
+</span></span><span style="display:flex;"><span>    args<span style="color:#f92672">=</span>training_args,
+</span></span><span style="display:flex;"><span>    train_dataset<span style="color:#f92672">=</span>dataset,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>trainer<span style="color:#f92672">.</span>train()
+</span></span></code></pre></div><p><strong>Ray Tune for Hyperparameter Sweeps</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> ray
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> ray <span style="color:#f92672">import</span> tune
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> wandb
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ray<span style="color:#f92672">.</span>init()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">train_model</span>(config): <span style="color:#75715e"># W&amp;B automatically captures the sweep config</span>
+</span></span><span style="display:flex;"><span>    wandb<span style="color:#f92672">.</span>init(config<span style="color:#f92672">=</span>config)
+</span></span><span style="display:flex;"><span>    score <span style="color:#f92672">=</span> my_training_function(config)
+</span></span><span style="display:flex;"><span>    wandb<span style="color:#f92672">.</span>log({<span style="color:#e6db74">&#34;score&#34;</span>: score})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sweep <span style="color:#f92672">=</span> tune<span style="color:#f92672">.</span>run(
+</span></span><span style="display:flex;"><span>    train_model,
+</span></span><span style="display:flex;"><span>    config<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;learning_rate&#34;</span>: tune<span style="color:#f92672">.</span>choice([<span style="color:#ae81ff">1e-4</span>, <span style="color:#ae81ff">2e-5</span>, <span style="color:#ae81ff">5e-5</span>]),
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;batch_size&#34;</span>: tune<span style="color:#f92672">.</span>choice([<span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">64</span>]),
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    metric<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;score&#34;</span>,
+</span></span><span style="display:flex;"><span>    mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;max&#34;</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases</h2>
+<p>W&amp;B&rsquo;s logging performance has been benchmarked across various training scales. At typical training workloads, the overhead is negligible: | Scenario | Logging Overhead | Network Bandwidth | Dashboard Load Time |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Small model (10K params) | 0.5% | &lt;1 MB/run | &lt;1s |
+| Medium model (100M params) | 1.2% | &lt;5 MB/run | &lt;2s |
+| Large model (1B params) | 2.1% | &lt;20 MB/run | &lt;3s |
+| LLM fine-tuning (7B params) | 3.5% | &lt;50 MB/run | &lt;5s |
+| Distributed training (8 GPUs) | 4.0% | &lt;100 MB/run | &lt;3s |</p>
+<p>Real-world usage examples: `````python</p>
+<h1 id="log-a-confusion-matrix-as-a-wb-table">Log a confusion matrix as a W&amp;B table</h1>
+<p>import numpy as np
+import wandb</p>
+<p>conf_matrix = compute_confusion_matrix(y_true, y_pred)
+wandb.log({
+&ldquo;confusion_matrix&rdquo;: wandb.plot.confusion_matrix(
+probs=None,
+preds=conf_matrix,
+class_names=[&ldquo;Cat&rdquo;, &ldquo;Dog&rdquo;, &ldquo;Bird&rdquo;]
+)
+})</p>
+<h1 id="version-a-dataset-as-an-artifact">Version a dataset as an artifact</h1>
+<p>artifact = wandb.Artifact(&ldquo;training_data&rdquo;, type=&ldquo;dataset&rdquo;)
+artifact.add_file(&ldquo;dataset.csv&rdquo;)
+wandb.log_artifact(artifact)</p>
+<pre tabindex="0"><code>
+## Advanced Usage / Production Hardening
+
+**Artifact Versioning and Lineage**
+
+`````python
+# Log a model checkpoint as an artifact
+model_artifact = wandb.Artifact(&#34;best_model&#34;, type=&#34;model&#34;)
+model_artifact.add(model, &#34;model.pt&#34;)
+
+# Tag it for easy retrieval
+wandb.log_artifact(model_artifact, aliases=[&#34;best&#34;, &#34;v1.0&#34;])
+
+# Later, retrieve the exact version
+run = wandb.init()
+art = run.use_artifact(&#34;project/model:v1&#34;, type=&#34;model&#34;)
+path = art.download()
+</code></pre><p><strong>Custom Reports and Dashboards</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Create a report with custom panels</span>
+</span></span><span style="display:flex;"><span>report <span style="color:#f92672">=</span> wandb<span style="color:#f92672">.</span>Report(
+</span></span><span style="display:flex;"><span>    title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Experiment Results&#34;</span>,
+</span></span><span style="display:flex;"><span>    slides<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>        (<span style="color:#e6db74">&#34;Overview&#34;</span>, wandb<span style="color:#f92672">.</span>plot<span style="color:#f92672">.</span>line_series(
+</span></span><span style="display:flex;"><span>            xs<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;step&#34;</span>, ys<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;loss&#34;</span>, keys<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;train_loss&#34;</span>, <span style="color:#e6db74">&#34;val_loss&#34;</span>],
+</span></span><span style="display:flex;"><span>            title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Training Loss Curve&#34;</span>
+</span></span><span style="display:flex;"><span>        )),
+</span></span><span style="display:flex;"><span>        (<span style="color:#e6db74">&#34;Comparison&#34;</span>, wandb<span style="color:#f92672">.</span>plot<span style="color:#f92672">.</span>bar(
+</span></span><span style="display:flex;"><span>            wandb<span style="color:#f92672">.</span>Table(columns<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;run&#34;</span>, <span style="color:#e6db74">&#34;accuracy&#34;</span>],
+</span></span><span style="display:flex;"><span>            data<span style="color:#f92672">=</span>[[<span style="color:#e6db74">&#34;run-a&#34;</span>, <span style="color:#ae81ff">0.92</span>], [<span style="color:#e6db74">&#34;run-b&#34;</span>, <span style="color:#ae81ff">0.89</span>]])
+</span></span><span style="display:flex;"><span>        )),
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>report<span style="color:#f92672">.</span>save(<span style="color:#e6db74">&#34;experiment-report&#34;</span>)
+</span></span></code></pre></div><p><strong>Sweeps Configuration</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># sweeps.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">nlp-sweep</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">program</span>: <span style="color:#ae81ff">train.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metric: name</span>: <span style="color:#ae81ff">val_accuracy</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">goal</span>: <span style="color:#ae81ff">maximize</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">parameters: learning_rate: values</span>: [<span style="color:#ae81ff">1e-5</span>, <span style="color:#ae81ff">2e-5</span>, <span style="color:#ae81ff">5e-5</span>, <span style="color:#ae81ff">1e-4</span>]
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">optimizer: values</span>: [<span style="color:#ae81ff">adamw, adam]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">warmup_ratio: min</span>: <span style="color:#ae81ff">0.0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">max</span>: <span style="color:#ae81ff">0.1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">command</span>: - <span style="color:#ae81ff">python</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">train.py</span>
+</span></span></code></pre></div><p>Run the sweep: `````bash
+wandb sweep sweeps.yaml
+wandb agent $SWEEP_ID</p>
+<pre tabindex="0"><code>
+**Model Registry for Deployment**
+
+`````python
+# Log model to the registry
+run.log_model(
+    path=&#34;./fine_tuned_model&#34;,
+    name=&#34;my-nlp-model&#34;,
+    aliases=[&#34;staging&#34;, &#34;production&#34;]
+)
+
+# Transition model to production
+api = wandb.Api()
+model = api.model(&#34;my-nlp-model:staging&#34;)
+model.change_alias(&#34;production&#34;)
+</code></pre><p><strong>W&amp;B SDK for Custom Training Loops</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> wandb
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.optim <span style="color:#f92672">import</span> AdamW
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wandb<span style="color:#f92672">.</span>init(project<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;custom-training&#34;</span>)
+</span></span><span style="display:flex;"><span>config <span style="color:#f92672">=</span> wandb<span style="color:#f92672">.</span>config
+</span></span><span style="display:flex;"><span>config<span style="color:#f92672">.</span>learning_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">1e-4</span>
+</span></span><span style="display:flex;"><span>config<span style="color:#f92672">.</span>batch_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">64</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> MyModel()
+</span></span><span style="display:flex;"><span>optimizer <span style="color:#f92672">=</span> AdamW(model<span style="color:#f92672">.</span>parameters(), lr<span style="color:#f92672">=</span>config<span style="color:#f92672">.</span>learning_rate)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> epoch <span style="color:#f92672">in</span> range(config<span style="color:#f92672">.</span>epochs): model<span style="color:#f92672">.</span>train()
+</span></span><span style="display:flex;"><span>    epoch_loss <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i, (x, y) <span style="color:#f92672">in</span> enumerate(train_loader): optimizer<span style="color:#f92672">.</span>zero_grad()
+</span></span><span style="display:flex;"><span>        output <span style="color:#f92672">=</span> model(x)
+</span></span><span style="display:flex;"><span>        loss <span style="color:#f92672">=</span> criterion(output, y)
+</span></span><span style="display:flex;"><span>        loss<span style="color:#f92672">.</span>backward()
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#f92672">.</span>step()
+</span></span><span style="display:flex;"><span>        epoch_loss <span style="color:#f92672">+=</span> loss<span style="color:#f92672">.</span>item()
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Log every 100 steps</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> i <span style="color:#f92672">%</span> <span style="color:#ae81ff">100</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>: wandb<span style="color:#f92672">.</span>log({
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;train_loss&#34;</span>: loss<span style="color:#f92672">.</span>item(),
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;learning_rate&#34;</span>: config<span style="color:#f92672">.</span>learning_rate,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;epoch&#34;</span>: epoch
+</span></span><span style="display:flex;"><span>            })
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Log epoch summary</span>
+</span></span><span style="display:flex;"><span>    wandb<span style="color:#f92672">.</span>log({
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;epoch_loss_avg&#34;</span>: epoch_loss <span style="color:#f92672">/</span> len(train_loader),
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;epoch&#34;</span>: epoch,
+</span></span><span style="display:flex;"><span>    })
+</span></span></code></pre></div><p><strong>Artifact Versioning for Dataset Workflows</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Create and log a dataset artifact</span>
+</span></span><span style="display:flex;"><span>dataset_artifact <span style="color:#f92672">=</span> wandb<span style="color:#f92672">.</span>Artifact(
+</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cleaned_dataset&#34;</span>,
+</span></span><span style="display:flex;"><span>    type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dataset&#34;</span>,
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Cleaned and tokenized training data&#34;</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Add files</span>
+</span></span><span style="display:flex;"><span>dataset_artifact<span style="color:#f92672">.</span>add_file(<span style="color:#e6db74">&#34;data/train.csv&#34;</span>)
+</span></span><span style="display:flex;"><span>dataset_artifact<span style="color:#f92672">.</span>add_file(<span style="color:#e6db74">&#34;data/val.csv&#34;</span>)
+</span></span><span style="display:flex;"><span>dataset_artifact<span style="color:#f92672">.</span>add_file(<span style="color:#e6db74">&#34;data/test.csv&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Log with alias for versioning</span>
+</span></span><span style="display:flex;"><span>wandb<span style="color:#f92672">.</span>log_artifact(dataset_artifact, aliases<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;latest&#34;</span>, <span style="color:#e6db74">&#34;v1.2&#34;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Later, use this exact dataset version</span>
+</span></span><span style="display:flex;"><span>run <span style="color:#f92672">=</span> wandb<span style="color:#f92672">.</span>init()
+</span></span><span style="display:flex;"><span>clean_data <span style="color:#f92672">=</span> run<span style="color:#f92672">.</span>use_artifact(<span style="color:#e6db74">&#34;project/cleaned_dataset:v1.2&#34;</span>, type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dataset&#34;</span>)
+</span></span><span style="display:flex;"><span>data_path <span style="color:#f92672">=</span> clean_data<span style="color:#f92672">.</span>download()
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | W&amp;B | MLflow | Weights &amp; Biases | TensorBoard | Neptune.ai |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Experiment tracking | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Hyperparameter sweeps | ✓ (Native) | ✓ | ✓ | No | ✓ |
+| Dataset versioning | ✓ (Artifacts) | ✓ (MLflow) | ✓ | No | ✓ |
+| Model registry | ✓ | ✓ | ✓ | No | ✓ |
+| LLM fine-tuning support | ✓ | ✓ | ✓ | Limited | ✓ |
+| Distributed training | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Free tier | 5 users | Unlimited | 1 user | Unlimited | 3 users |
+| Self-hostable | No (Cloud) | ✓ (Open) | No | ✓ (Local) | ✓ (Open) |
+| Custom reports | ✓ | No | No | No | ✓ |
+| Team collaboration | ✓ | ✓ | ✓ | No | ✓ |
+| API quality | Excellent | Good | Good | Basic | Good |
+| Active GitHub stars | 11K+ | 20K+ | 2K+ | 10K+ | 1K+ |</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p>W&amp;B is the most polished ML tracking platform available, but it has some trade-offs: 1. <strong>Cloud-first model</strong>: W&amp;B&rsquo;s free tier requires using their cloud platform. While they offer self-hosted W&amp;B Enterprise for teams that need on-premise deployment, the free tier does not support self-hosting. If your organization requires all data to stay within your infrastructure, this may be a dealbreaker.
+2. <strong>Free tier limits</strong>: The free tier is limited to 1 team member. For larger research teams, the paid plans start at a significant cost, especially when you factor in the additional storage required for large model artifacts.
+3. <strong>Learning curve for advanced features</strong>: Basic logging is straightforward, but features like sweeps, artifact versioning, and custom reports require understanding W&amp;B&rsquo;s data model. New users may need 1-2 hours to get comfortable with the platform&rsquo;s full capabilities.
+4. <strong>Limited offline capability</strong>: If your training environment has intermittent internet connectivity, W&amp;B syncs data when the connection is restored. However, the SDK does support <code>wandb.init(mode=&quot;offline&quot;)</code> for fully disconnected environments, with manual sync later.
+5. <strong>Vendor lock-in risk</strong>: While W&amp;B exports data in standard formats (JSON, CSV), building a migration to another platform after committing to W&amp;B for hundreds of experiments can be time-consuming.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>Q: Is W&amp;B free for academic research?</strong></p>
+<p>Yes. W&amp;B offers a generous free tier for individual researchers and small teams. Academic institutions can also apply for W&amp;B Pro credits through the W&amp;B for Academia program, which provides additional team members and storage at no cost.</p>
+<p><strong>Q: Can I use W&amp;B with Jupyter Notebooks?</strong></p>
+<p>Absolutely. W&amp;B works seamlessly in Jupyter notebooks. Initialize your run with <code>wandb.init()</code> at the top of a notebook cell, and all subsequent <code>wandb.log()</code> calls will stream to the dashboard. Use <code>wandb.jupyter</code> for automatic integration with Jupyter widgets.</p>
+<p><strong>Q: How does W&amp;B handle large model artifacts?</strong></p>
+<p>W&amp;B uploads model artifacts incrementally — only changed bytes are transferred on subsequent uploads. For very large models (multi-gigabyte checkpoints), W&amp;B uses a content-addressable storage system that deduplicates uploads and supports resuming interrupted transfers.</p>
+<p><strong>Q: Can I track LLM fine-tuning experiments?</strong></p>
+<p>Yes. W&amp;B has excellent support for LLM fine-tuning workflows. It integrates with Hugging Face Transformers, PyTorch Lightning, and frameworks like Axolotl and Unsloth. You can log training loss, evaluation metrics, generated samples, and even benchmark scores for each fine-tuning run.</p>
+<p><strong>Q: How do I collaborate with my team on experiments?</strong></p>
+<p>W&amp;B supports team workspaces where all runs, artifacts, and reports are shared by default. Team members can comment on specific runs, share direct links to experiment comparisons, and use the built-in chat feature to discuss results without switching to a separate communication platform.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Weights &amp; Biases has transformed how ML teams approach experiment tracking. By combining real-time logging, intuitive visualization, and powerful collaboration features, W&amp;B turns the chaos of model training into a structured, reproducible workflow. Whether you&rsquo;re fine-tuning a 7B-parameter LLM or running a small hyperparameter sweep, W&amp;B provides the visibility you need to make better decisions faster.</p>
+<p>The platform&rsquo;s deep integrations with PyTorch, Hugging Face, and Ray Tune mean you can start tracking experiments with a single line of code (````report_to=&ldquo;wandb&rdquo;```). For teams building ML applications at scale, <a href="https://m.do.co/c/oa14d5f0wx4f">DigitalOcean</a> offers affordable GPU instances that pair well with W&amp;B&quot;s tracking infrastructure.</p>
+<p>For teams deploying ML pipelines: <a href="https://webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a> provides reliable proxy infrastructure for distributed training workflows.</p>
+<p>For ML teams exploring algorithmic strategies: <a href="https://bsmkweb.cc">Binance</a> offers advanced API access for quantitative research and backtesting.</p>
+<p>For enterprise data pipelines: <a href="https://www.htstack.com/">HTStack</a> delivers the network performance needed for large-scale data transfers.</p>
+<p>For AI finance teams: <a href="https://promoohubly.com">OKX</a> provides comprehensive market data and trading tools.</p>
+<p>Explore more guides on <a href="dibi8-internal-link">MLflow vs W&amp;B Comparison</a> and <a href="dibi8-internal-link">LLM Fine-Tuning Best Practices</a> for comprehensive technical deep-dives.</p>
+<p>Join the DIBI8 community on <a href="https://t.me/DIBI8_Group">Telegram</a> for ongoing discussions about ML tools, experiment tracking, and MLOps practices.</p>
+<hr>
+<p><strong>Sources &amp; Further Reading</strong>: - W&amp;B documentation: <a href="https://docs.wandb.ai/">https://docs.wandb.ai/</a></p>
+<ul>
+<li>W&amp;B GitHub repository: <a href="https://github.com/wandb/wandb">https://github.com/wandb/wandb</a></li>
+<li>W&amp;B API reference: <a href="https://docs.wandb.ai/ref/python/">https://docs.wandb.ai/ref/python/</a></li>
+<li>Sweeps documentation: <a href="https://docs.wandb.ai/guides/sweeps">https://docs.wandb.ai/guides/sweeps</a></li>
+<li>Model registry guide: <a href="https://docs.wandb.ai/guides/model-registry">https://docs.wandb.ai/guides/model-registry</a></li>
+<li>Community discussion: <a href="https://community.wandb.ai/">https://community.wandb.ai/</a></li>
+</ul>
+<p><strong>Disclosure</strong>: This article contains affiliate links. If you sign up through our links, we may earn a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Weights &amp; Biases (W&amp;B): Track Every Experiment Like a Pro — ML Experiment Platform 2026&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-06-09&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-06-09&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/wandb-ml-experiment-tracking-platform-2026%22">https://dibi8.com/resources/wandb-ml-experiment-tracking-platform-2026"</a>
+}
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/wandb-ml-experiment-tracking-platform-2026/">12-factor-agents-production-llm-software-2026</a></li>
+<li><a href="/ai-coding-agents/wandb-ml-experiment-tracking-platform-2026/">12-factor-agents</a></li>
+<li><a href="/ai-coding-agents/wandb-ml-experiment-tracking-platform-2026/">1m-context-window-llm-2026-real-test</a></li>
+<li><a href="/ai-coding-agents/wandb-ml-experiment-tracking-platform-2026/">9router-smart-llm-proxy-token-saver-free-coding</a></li>
+<li><a href="/ai-coding-agents/wandb-ml-experiment-tracking-platform-2026/">ai-engineering-from-scratch</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fwandb-ml-experiment-tracking-platform-2026%2f&text=Initialize%20a%20new%20run%20with%20your%20configuration" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fwandb-ml-experiment-tracking-platform-2026%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

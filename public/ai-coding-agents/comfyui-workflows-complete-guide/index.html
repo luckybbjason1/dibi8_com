@@ -1,0 +1,755 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptual flow (actual ComfyUI uses visual connections) | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/comfyui-workflows-complete-guide/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Conceptual flow (actual ComfyUI uses visual connections)</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Conceptual flow (actual ComfyUI uses visual connections)</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;Conceptual flow (actual ComfyUI uses visual connections)&rdquo;
+description: &ldquo;AI tool guide&rdquo;
+Build complex pipelines with nodes, manage dependencies, and create shareable workflow
+templates.
+tags: - comfyui</p>
+<ul>
+<li>ai-image-generation</li>
+<li>workflow</li>
+<li>nodes</li>
+<li>stable-diffusion</li>
+<li>visual-programming
+category: ai-tools
+date: 2026-07-16T00:00:00+00:00
+lastmod: 2026-07-16T00:00:00+00:00slug: comfyui-workflows-complete-guide&mdash;</li>
+</ul>
+<h2 id="tldr">TL;DR</h2>
+<p>ComfyUI is a powerful visual programming interface for AI image generation that lets you build complex pipelines by connecting nodes instead of writing code. It supports Stable Diffusion, Flux, SDXL, and dozens of other models. This guide covers workflow design patterns, node management, performance optimization, and how to create professional-grade image generation pipelines.</p>
+<hr>
+<h2 id="what-is-comfyui">What Is ComfyUI?</h2>
+<p>ComfyUI is a node-based graphical interface for running AI image generation models. Unlike traditional UIs where you adjust sliders and click &ldquo;generate,&rdquo; ComfyUI lets you <strong>build custom pipelines</strong> by connecting processing nodes together — similar to Blender&rsquo;s node system or TouchDesigner.</p>
+<p>The core philosophy: <strong>give users full control over every step of the generation process</strong>. This means you can: - Chain multiple models together (e.g., text → image → upscale → refine)</p>
+<ul>
+<li>Use conditional logic (if A then B else C)</li>
+<li>Process multiple images simultaneously</li>
+<li>Create reusable workflow templates</li>
+<li>Fine-tune every parameter at every stage</li>
+</ul>
+<h3 id="why-node-based-ai-workflows-matter">Why Node-Based AI Workflows Matter</h3>
+<p>Traditional AI image generators present a fixed pipeline: you enter a prompt, adjust settings, and get an image. But real-world creative work often requires: 1. <strong>Multi-stage processing</strong> — Generate base image, detect faces, upscale specific regions, apply style transfer
+2. <strong>Conditional generation</strong> — Different prompts based on detected content
+3. <strong>Batch processing</strong> — Generate variations efficiently
+4. <strong>Custom post-processing</strong> — Apply specific filters, compositing, or corrections</p>
+<p>Node-based workflows handle all of this natively.</p>
+<hr>
+<h2 id="core-concepts">Core Concepts</h2>
+<h3 id="nodes-and-connections">Nodes and Connections</h3>
+<p>Every operation in ComfyUI is a <strong>node</strong> — a self-contained processing unit with inputs and outputs: ````
+[Load Checkpoint] → [CLIP Text Encode] → [KSampler] → [VAE Decode] → [Save Image]
+│                    │                      │                │
+model              positive/negative        seed/samples      output</p>
+<pre tabindex="0"><code>
+Each node type handles a specific task: - **Model Loading**: Load Stable Diffusion checkpoints, LoRAs, embeddings
+- **Text Encoding**: Convert prompts to latent space representations
+- **Sampling**: Generate images using various algorithms (Euler, DPM++, DDIM)
+- **Post-processing**: Upscale, color correction, face enhancement
+- **Output**: Save images, stream results, trigger downstream actions
+
+### Workflow Architecture
+
+A complete ComfyUI workflow follows this pattern: `````python
+# Conceptual flow (actual ComfyUI uses visual connections)
+workflow = {
+    &#34;input&#34;: {
+        &#34;prompt_positive&#34;: &#34;a serene lake at sunset, photorealistic&#34;,
+        &#34;prompt_negative&#34;: &#34;blurry, low quality, distorted&#34;,
+        &#34;seed&#34;: 42,
+        &#34;steps&#34;: 30,
+        &#34;cfg_scale&#34;: 7.5
+    },
+    &#34;pipeline&#34;: [
+        &#34;load_checkpoint(sdxl_v1.0)&#34;,
+        &#34;encode_prompts(positive, negative)&#34;,
+        &#34;generate_latents(seed, steps, cfg)&#34;,
+        &#34;decode_latents(vae_model)&#34;,
+        &#34;post_process(image, upscale=2x)&#34;
+    ],
+    &#34;output&#34;: {
+        &#34;format&#34;: &#34;png&#34;,
+        &#34;resolution&#34;: &#34;1024x1024&#34;,
+        &#34;save_path&#34;: &#34;./outputs/&#34;
+    }
+}
+</code></pre><h3 id="key-node-categories">Key Node Categories</h3>
+<p>| Category | Purpose | Examples |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Model Loading | Load base models and extensions | CheckpointLoader, LoraLoader |
+| Conditioning | Process text prompts | CLIPTextEncode, Condition |
+| Sampling | Generate images | KSampler, Euler, DPM++ |
+| Latent Space | Manipulate latent representations | EmptyLatentImage, LatentUpscale |
+| VAE | Encode/decode between pixel and latent space | VAELoader, VAE Decode |
+| Post-Processing | Enhance and modify outputs | UpscaleImage, FaceRestore |
+| ControlNet | Guide generation with references | ControlNetApply, Preprocessor |
+| Output | Save and manage results | SaveImage, PreviewImage |</p>
+<hr>
+<h2 id="building-your-first-workflow">Building Your First Workflow</h2>
+<h3 id="basic-image-generation">Basic Image Generation</h3>
+<pre tabindex="0"><code>Step 1: Load Checkpoint → Select your model (SDXL, Flux, etc.)
+Step 2: CLIP Text Encode → Enter positive and negative prompts
+Step 3: KSampler → Set steps (20-50), CFG (7-12), seed
+Step 4: VAE Decode → Convert latent to pixel space
+Step 5: Save Image → Choose format and location
+</code></pre><h3 id="advanced-multi-stage-pipeline">Advanced: Multi-Stage Pipeline</h3>
+<p>For professional results, chain multiple stages: `````
+Stage 1: Base Generation
+├── Load Checkpoint (SDXL)
+├── Encode Prompts
+└── KSampler (low res, fast)</p>
+<p>Stage 2: Face Enhancement
+├── Load FaceRestore Model
+├── Detect Faces
+└── Restore Faces</p>
+<p>Stage 3: Upscaling
+├── Load Upscale Model (4x)
+├── Latent Upscale (2x)
+└── Pixel Upscale (2x)</p>
+<p>Stage 4: Final Polish
+├── Color Correction
+├── Detail Enhancement
+└── Save High-Res PNG</p>
+<pre tabindex="0"><code>
+* * *
+
+## Popular Workflow Patterns
+
+### Pattern 1: Iterative Refinement
+
+Generate a base image, evaluate, then refine specific aspects: `````json
+{
+  &#34;workflow_id&#34;: &#34;iterative-refinement&#34;,
+  &#34;stages&#34;: [
+    {&#34;name&#34;: &#34;base&#34;, &#34;steps&#34;: 20, &#34;resolution&#34;: &#34;512x512&#34;},
+    {&#34;name&#34;: &#34;refine&#34;, &#34;steps&#34;: 40, &#34;resolution&#34;: &#34;1024x1024&#34;, &#34;denoise&#34;: 0.6},
+    {&#34;name&#34;: &#34;detail&#34;, &#34;steps&#34;: 30, &#34;resolution&#34;: &#34;2048x2048&#34;, &#34;denoise&#34;: 0.3}
+  ]
+}
+</code></pre><h3 id="pattern-2-batch-variation-generation">Pattern 2: Batch Variation Generation</h3>
+<p>Generate multiple variations for comparison: `````json
+{
+&ldquo;workflow_id&rdquo;: &ldquo;batch-variations&rdquo;,
+&ldquo;config&rdquo;: {
+&ldquo;base_prompt&rdquo;: &ldquo;a futuristic cityscape&rdquo;,
+&ldquo;variations&rdquo;: [
+{&ldquo;seed&rdquo;: 100, &ldquo;style&rdquo;: &ldquo;cyberpunk&rdquo;},
+{&ldquo;seed&rdquo;: 200, &ldquo;style&rdquo;: &ldquo;art deco&rdquo;},
+{&ldquo;seed&rdquo;: 300, &ldquo;style&rdquo;: &ldquo;brutalist&rdquo;},
+{&ldquo;seed&rdquo;: 400, &ldquo;style&rdquo;: &ldquo;biophilic&rdquo;}
+],
+&ldquo;parallel_workers&rdquo;: 4
+}
+}</p>
+<pre tabindex="0"><code>
+### Pattern 3: ControlNet-Guided Generation
+
+Use reference images to guide composition: `````
+Input: Reference Image
+   ↓
+Canny Edge Detection → ControlNet (edge guidance)
+   ↓
+Depth Estimation → ControlNet (depth guidance)
+   ↓
+Combined Conditioning → KSampler
+   ↓
+Final Image with precise composition control
+</code></pre><h3 id="pattern-4-image-to-image-pipeline">Pattern 4: Image-to-Image Pipeline</h3>
+<p>Transform existing images while preserving structure: `````
+Original Image → Encode (VAE) → Add Noise → KSampler (denoise) → Decode (VAE) → Result</p>
+<pre tabindex="0"><code>
+Adjust denoising strength (0.1-0.9) to control transformation intensity.
+
+* * *
+
+## Model Management
+
+### Supported Models
+
+ComfyUI supports a wide range of models: | Model Type | Examples | Best For |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Stable Diffusion 1.5 | sd-v1-5, dreamshaper | Fast prototyping |
+| SDXL | sdxl_v1.0, juggernaut | High-quality base |
+| Flux | flux-dev, flux-schnell | Photorealistic |
+| Custom Checkpoints | Any Civitai model | Specific styles |
+| LoRAs | Style-specific fine-tunes | Style transfer |
+| Embeddings | Negative prompts, concepts | Prompt enhancement |
+
+### Installing Models
+
+`````bash
+# Download models to ComfyUI/models/checkpoints/
+wget -P models/checkpoints/ https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0/resolve/main/sd_xl_base_1.0.safetensors
+
+# Install LoRAs
+wget -P models/loras/ https://civitai.com/api/download/models/12345
+
+# Install VAEs
+wget -P models/vae/ https://huggingface.co/stabilityai/sdxl-vae/resolve/main/sdxl_vae.safetensors
+</code></pre><h3 id="managing-dependencies">Managing Dependencies</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;dependencies&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;checkpoints&#34;</span>: [<span style="color:#e6db74">&#34;sdxl_v1.0.safetensors&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;loras&#34;</span>: [<span style="color:#e6db74">&#34;realism_lora_v2.safetensors&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;vae&#34;</span>: [<span style="color:#e6db74">&#34;sdxl_vae.safetensors&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;controlnet&#34;</span>: [<span style="color:#e6db74">&#34;control_canny.safetensors&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;upscale&#34;</span>: [<span style="color:#e6db74">&#34;4x-UltraSharp.pth&#34;</span>]
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="performance-optimization">Performance Optimization</h2>
+<h3 id="gpu-memory-management">GPU Memory Management</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Optimize for different GPU sizes</span>
+</span></span><span style="display:flex;"><span>optimization_config <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;24GB_GPU&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;precision&#34;</span>: <span style="color:#e6db74">&#34;fp16&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;attention&#34;</span>: <span style="color:#e6db74">&#34;flash_attention_2&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;vram_optimize&#34;</span>: <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;12GB_GPU&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;precision&#34;</span>: <span style="color:#e6db74">&#34;fp16&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;attention&#34;</span>: <span style="color:#e6db74">&#34;xformers&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;vram_optimize&#34;</span>: <span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;split_execution&#34;</span>: <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;8GB_GPU&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;precision&#34;</span>: <span style="color:#e6db74">&#34;fp16&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;attention&#34;</span>: <span style="color:#e6db74">&#34;xformers&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;vram_optimize&#34;</span>: <span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;split_execution&#34;</span>: <span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;lowvram_mode&#34;</span>: <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="batch-processing-speed">Batch Processing Speed</h3>
+<p>| Configuration | Images/Minute | Quality |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Single, SDXL, 30 steps | 2-3 | High |
+| Batch 4, SDXL, 30 steps | 8-12 | High |
+| Batch 8, SD 1.5, 20 steps | 16-24 | Medium |
+| Single, Flux, 25 steps | 1-2 | Very High |</p>
+<h3 id="caching-strategies">Caching Strategies</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;caching&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;checkpoint_cache&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;lora_cache&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;vae_cache&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;embeddings_cache&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;max_cache_size_gb&#34;</span>: <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="advanced-techniques">Advanced Techniques</h2>
+<h3 id="technique-1-hierarchical-generation">Technique 1: Hierarchical Generation</h3>
+<p>Generate at low resolution first, then progressively upscale: `````
+Low Res (512x512) → Mid Res (1024x1024) → High Res (2048x2048)
+↓                   ↓                    ↓
+Coarse details     Fine details          Ultra details</p>
+<pre tabindex="0"><code>
+### Technique 2: Region-Based Editing
+
+Edit specific parts of an image without affecting others: `````
+Mask Selection → Inpaint Node → Local Prompt → KSampler (masked only)
+</code></pre><h3 id="technique-3-style-transfer-pipeline">Technique 3: Style Transfer Pipeline</h3>
+<p>Apply artistic styles while preserving content: `````
+Content Image → CLIP Vision → Style Reference → Cross-Attention → KSampler</p>
+<pre tabindex="0"><code>
+### Technique 4: Automated Quality Scoring
+
+Score and filter generated images automatically: `````
+Generated Images → CLIP Score Node → Filter (&gt; threshold) → Save Best
+</code></pre><hr>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="issue-1-out-of-memory-errors">Issue 1: Out of Memory Errors</h3>
+<pre tabindex="0"><code>Error: CUDA out of memory
+</code></pre><p><strong>Fixes:</strong></p>
+<ul>
+<li>Reduce batch size</li>
+<li>Enable <code>--lowvram</code> flag</li>
+<li>Use fp16 precision</li>
+<li>Close other GPU applications</li>
+<li>Split workflow into smaller stages</li>
+</ul>
+<h3 id="issue-2-slow-generation">Issue 2: Slow Generation</h3>
+<pre tabindex="0"><code>Warning: Generation taking longer than expected
+</code></pre><p><strong>Fixes:</strong></p>
+<ul>
+<li>Use faster sampler (Euler a, DPM++ 2M)</li>
+<li>Reduce steps (20-25 for most cases)</li>
+<li>Enable Flash Attention</li>
+<li>Use SD 1.5 instead of SDXL for speed</li>
+<li>Pre-load models to VRAM</li>
+</ul>
+<h3 id="issue-3-poor-quality-output">Issue 3: Poor Quality Output</h3>
+<pre tabindex="0"><code>Images look blurry or have artifacts
+</code></pre><p><strong>Fixes:</strong></p>
+<ul>
+<li>Increase steps to 30-50</li>
+<li>Adjust CFG scale (7-12)</li>
+<li>Use better checkpoint/LoRA</li>
+<li>Enable high-res fix</li>
+<li>Check negative prompt quality</li>
+</ul>
+<hr>
+<h2 id="comparison-comfyui-vs-alternatives">Comparison: ComfyUI vs Alternatives</h2>
+<p>| Feature | ComfyUI | Automatic1111 | Fooocus | SD WebUI Forge |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Node-based UI | ✅ | ❌ | ❌ | ❌ |
+| Custom pipelines | ✅ | Limited | ❌ | Limited |
+| Performance | Excellent | Good | Good | Excellent |
+| Learning curve | Steep | Moderate | Easy | Moderate |
+| Extension ecosystem | Growing | Large | Small | Growing |
+| Multi-GPU support | ✅ | ✅ | ❌ | ✅ |</p>
+<p>ComfyUI wins for complex, custom workflows. Other tools are easier for simple generation.</p>
+<hr>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="installation">Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone ComfyUI</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/comfyanonymous/ComfyUI.git
+</span></span><span style="display:flex;"><span>cd ComfyUI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install dependencies</span>
+</span></span><span style="display:flex;"><span>pip install -r requirements.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Download a model (optional, will auto-download on first run)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Place in models/checkpoints/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start ComfyUI</span>
+</span></span><span style="display:flex;"><span>python main.py --listen 0.0.0.0 --port <span style="color:#ae81ff">8188</span>
+</span></span></code></pre></div><h3 id="browser-interface">Browser Interface</h3>
+<p>Open <code>http://localhost:8188</code> in your browser. You&rsquo;ll see: - Empty canvas for building workflows</p>
+<ul>
+<li>Node library on the right</li>
+<li>Settings panel (gear icon)</li>
+<li>Queue and history tabs</li>
+</ul>
+<h3 id="loading-presets">Loading Presets</h3>
+<p>ComfyUI includes many preset workflows: - <strong>Basic</strong>: Simple text-to-image</p>
+<ul>
+<li><strong>Img2Img</strong>: Image-to-image transformation</li>
+<li><strong>ControlNet</strong>: Reference-guided generation</li>
+<li><strong>Upscale</strong>: Resolution enhancement</li>
+<li><strong>AnimateDiff</strong>: Animation generation</li>
+</ul>
+<hr>
+<h2 id="community-resources">Community Resources</h2>
+<h3 id="popular-workflow-templates">Popular Workflow Templates</h3>
+<ul>
+<li><strong>Juggernaut Workflow</strong>: Professional photorealistic generation</li>
+<li><strong>DreamShaper Flow</strong>: Artistic and illustration styles</li>
+<li><strong>RealVis Pipeline</strong>: Realistic portrait generation</li>
+<li><strong>Flux Dev Setup</strong>: Latest Flux model workflows</li>
+<li><strong>ControlNet Studio</strong>: Advanced pose and composition control</li>
+</ul>
+<h3 id="where-to-find-workflows">Where to Find Workflows</h3>
+<ul>
+<li><strong>Civitai</strong>: Community-shared workflows with models</li>
+<li><strong>ComfyUI Manager</strong>: Built-in workflow marketplace</li>
+<li><strong>GitHub</strong>: Open-source workflow collections</li>
+<li><strong>Discord</strong>: Active community sharing tips and templates</li>
+</ul>
+<hr>
+<h2 id="faq">FAQ</h2>
+<h3 id="q-do-i-need-a-powerful-gpu-for-comfyui">Q: Do I need a powerful GPU for ComfyUI?</h3>
+<p>ComfyUI is more efficient than most alternatives. A 12GB GPU (RTX 3060/4070) handles SDXL well. Even 8GB cards work with optimizations. CPU-only mode is possible but very slow.</p>
+<h3 id="q-can-i-use-comfyui-for-video-generation">Q: Can I use ComfyUI for video generation?</h3>
+<p>Yes. With AnimateDiff and other animation nodes, you can generate short videos and GIFs. The workflow adds temporal consistency nodes between frames.</p>
+<h3 id="q-how-do-i-share-workflows-with-others">Q: How do I share workflows with others?</h3>
+<p>Export as <code>.json</code> or ````.png``` files. Share via Civitai, GitHub, or Discord. Recipients import by dragging the file onto the ComfyUI canvas.</p>
+<h3 id="q-is-comfyui-free">Q: Is ComfyUI free?</h3>
+<p>Yes, ComfyUI is completely free and open-source. You only pay for electricity and GPU time. Some community nodes may require separate model downloads.</p>
+<h3 id="q-can-i-use-comfyui-with-cloud-gpus">Q: Can I use ComfyUI with cloud GPUs?</h3>
+<p>Absolutely. ComfyUI works on any GPU cloud: RunPod, Vast.ai, Lambda Labs, AWS EC2, Google Cloud. Just install and point to your model files.</p>
+<h3 id="q-whats-the-difference-between-comfyui-and-comfyui-manager">Q: What&rsquo;s the difference between ComfyUI and ComfyUI Manager?</h3>
+<p>ComfyUI is the core application. ComfyUI Manager is an extension that makes installing models, nodes, and workflows much easier. Install it first for the best experience.</p>
+<hr>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://docs.comfy.org">ComfyUI Official Documentation</a></li>
+<li><a href="https://github.com/comfyanonymous/ComfyUI">ComfyUI GitHub Repository</a></li>
+<li><a href="https://civitai.com">Civitai Model Library</a></li>
+<li><a href="https://github.com/ltdrdata/ComfyUI-Manager">ComfyUI Manager Extension</a></li>
+<li><a href="https://huggingface.co/stabilityai">Stable Diffusion Model Zoo</a></li>
+<li><a href="https://aigbenchmark.report/2026">AI Image Generation Benchmark Report 2026</a></li>
+</ul>
+<hr>
+<p><em>Join our Telegram group for real-time AI tool discussions and deployment tips: <a href="https://t.me/dibi8">t.me/dibi8</a></em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;ComfyUI Workflows — The Visual Programming Language for AI Image Generation&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-07-16&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-07-16&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/comfyui-workflows-complete-guide%22">https://dibi8.com/resources/comfyui-workflows-complete-guide"</a>
+}
+}
+</script></p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fcomfyui-workflows-complete-guide%2f&text=Conceptual%20flow%20%28actual%20ComfyUI%20uses%20visual%20connections%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fcomfyui-workflows-complete-guide%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

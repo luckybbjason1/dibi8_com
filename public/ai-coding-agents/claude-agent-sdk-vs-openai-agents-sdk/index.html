@@ -1,0 +1,503 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Agent SDK vs OpenAI Agents SDK in 2026: Which to Build On? | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/claude-agent-sdk-vs-openai-agents-sdk/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Claude Agent SDK vs OpenAI Agents SDK in 2026: Which to Build On?</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Claude Agent SDK vs OpenAI Agents SDK in 2026: Which to Build On?</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <h1 id="claude-agent-sdk-vs-openai-agents-sdk-in-2026-which-to-build-on">Claude Agent SDK vs OpenAI Agents SDK in 2026: Which to Build On?</h1>
+<h2 id="quick-answer">Quick Answer</h2>
+<p><strong>Claude Agent SDK</strong> wins when your agent needs to <em>act on a computer</em> — read files, run shell, edit code, reach systems via MCP — with deep reasoning behind it. <strong>OpenAI Agents SDK</strong> wins when you want a lightweight, managed, multi-vendor-flexible framework with first-class voice and multimodal.</p>
+<p>Use <strong>Claude Agent SDK</strong> if: you&rsquo;re building a developer assistant or any &ldquo;give the agent a computer&rdquo; tool, you&rsquo;re all-in on Claude, and you want the deepest OS access + strongest MCP ecosystem out of the box.</p>
+<p>Use <strong>OpenAI Agents SDK</strong> if: you want managed infrastructure (no servers), the freedom to swap LLMs across seven providers, voice/multimodal via the Realtime API, and explicit handoff/guardrail architecture for production hardening.</p>
+<hr>
+<h2 id="side-by-side-comparison">Side-by-Side Comparison</h2>
+<p>| Feature | Claude Agent SDK | OpenAI Agents SDK |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Core architecture</strong> | Hooks + subagents (intercept lifecycle, delegate context) | Handoffs + guardrails (transfer between agents, validate I/O) |
+| <strong>Philosophy</strong> | Implicit, flexible — suits rapid prototyping | Explicit, structured — enables production hardening |
+| <strong>Built-in tools</strong> | 8 (Read, Write, Edit, Bash, Glob, Grep, WebSearch, WebFetch) | Code interpreter, file search, web search (April 2026: + file ops, code exec, shell) |
+| <strong>OS access</strong> | Deepest — native file + shell, strongest MCP ecosystem | Model-native harness + native sandboxing (April 2026) |
+| <strong>Model support</strong> | Claude-only | 7 providers (model-agnostic) |
+| <strong>Voice / multimodal</strong> | Text + tools first; no native voice | GPT-4o images + Realtime API voice |
+| <strong>Infrastructure</strong> | You own the host (control + depth) | Runs on OpenAI infra (managed, no servers) |
+| <strong>Observability</strong> | Anthropic dashboard, structured logs + token tracking (limited custom telemetry) | OpenTelemetry (needs setup, unifies app + agent monitoring) |
+| <strong>Languages</strong> | Python + TypeScript | Python + TypeScript |
+| <strong>Lock-in</strong> | Anthropic models + hosted infra | Framework execution model (model swappable) |
+| <strong>Best for</strong> | Coding agents, &ldquo;give the agent a computer&rdquo; | Voice/multimodal, multi-vendor, managed teams |</p>
+<hr>
+<h2 id="when-to-choose-the-claude-agent-sdk">When to Choose the Claude Agent SDK</h2>
+<h3 id="use-case-1-developer-assistants--give-the-agent-a-computer">Use case 1: Developer assistants &amp; &ldquo;give the agent a computer&rdquo;</h3>
+<p>This is the Claude Agent SDK&rsquo;s home turf. The 8 built-in tools (Read/Write/Edit/Bash/Glob/Grep/WebSearch/WebFetch) mean an agent can read your repo, run tests, edit files, and search the web on day one — no glue code. Combined with the strongest MCP ecosystem, no other framework makes &ldquo;hand the agent a working machine&rdquo; this frictionless.</p>
+<h3 id="use-case-2-deep-reasoning-tasks">Use case 2: Deep-reasoning tasks</h3>
+<p>For complex code generation, multi-step analysis, or scientific research, Claude&rsquo;s extended thinking gives a structural advantage. The SDK is built to let that reasoning drive long tool-use loops.</p>
+<h3 id="use-case-3-youre-already-all-in-on-claude">Use case 3: You&rsquo;re already all-in on Claude</h3>
+<p>If your stack is Anthropic-native, the SDK&rsquo;s tight integration and zero-instrumentation observability (structured logs + token tracking on the Anthropic dashboard) are a real productivity win — provided you don&rsquo;t need custom telemetry injection.</p>
+<hr>
+<h2 id="when-to-choose-the-openai-agents-sdk">When to Choose the OpenAI Agents SDK</h2>
+<h3 id="use-case-1-voice--multimodal-products">Use case 1: Voice &amp; multimodal products</h3>
+<p>GPT-4o image understanding plus the Realtime API for voice make OpenAI the obvious pick for voice assistants and multimodal apps. The Claude Agent SDK has no native equivalent here.</p>
+<h3 id="use-case-2-managed-infrastructure-no-ops">Use case 2: Managed infrastructure, no ops</h3>
+<p>Code interpreter, file search, and web search run on OpenAI&rsquo;s infrastructure — nothing to deploy, nothing to scale. For teams that want to ship without owning a host, this is a major convenience.</p>
+<h3 id="use-case-3-multi-vendor-flexibility">Use case 3: Multi-vendor flexibility</h3>
+<p>The April 2026 update added a model-native harness (file ops, code execution, shell) and native sandboxing with support for seven providers. If you need to swap LLMs freely — or hedge against single-vendor risk — OpenAI&rsquo;s model abstraction lowers switching costs.</p>
+<hr>
+<h2 id="architecture-deep-dive">Architecture Deep Dive</h2>
+<p>The split is philosophical, and it shows up everywhere: - <strong>Claude = hooks + subagents.</strong> You intercept behavior at lifecycle points (a hook fires before a tool runs, after a response, etc.) and delegate heavy work to subagents that run in isolated context and hand back conclusions. It&rsquo;s an <em>implicit, composable</em> model — powerful, flexible, and a natural fit for rapid prototyping where you&rsquo;re still discovering the shape of the workflow. (If you&rsquo;ve read our <a href="https://dibi8.com/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/">subagent patterns</a>, this is the same mental model, SDK-ified.)</p>
+<ul>
+<li><strong>OpenAI = handoffs + guardrails.</strong> Conversations are <em>transferred</em> between specialized agents (a triage agent hands off to a billing agent), and guardrails validate inputs and outputs at each boundary. It&rsquo;s an <em>explicit, structured</em> model — more ceremony up front, but the boundaries are exactly what you want when hardening for production.</li>
+</ul>
+<p>Neither is &ldquo;better.&rdquo; Implicit composition is faster to prototype; explicit structure is easier to audit and harden.</p>
+<hr>
+<h2 id="production-considerations">Production Considerations</h2>
+<ul>
+<li><strong>Observability.</strong> Claude&rsquo;s is tightly coupled to Anthropic&rsquo;s dashboard — structured logs and token tracking with zero instrumentation, but limited customization (no custom telemetry without workarounds). OpenAI&rsquo;s OpenTelemetry support requires setup but enables unified monitoring across your agents <em>and</em> your application infrastructure.</li>
+<li><strong>Lock-in.</strong> Claude Agent SDK couples you to Anthropic models <em>and</em> hosted infra; switching means rewriting agent logic and tool integrations. OpenAI Agents SDK&rsquo;s model abstraction reduces model-switching cost, but you&rsquo;re still locked into the framework&rsquo;s execution model. Decide the multi-vendor question up front — it&rsquo;s the expensive-to-reverse choice.</li>
+</ul>
+<hr>
+<h2 id="dibi8s-take">dibi8&rsquo;s Take</h2>
+<p>We build dibi8&rsquo;s own pipelines on the Claude side of this fence — our multilingual article pipeline runs on Claude Code subagents, the &ldquo;give the agent a computer&rdquo; paradigm, because our work is file-and-shell-heavy (read content, build with Hugo, deploy, verify). For that shape of work, the deepest-OS-access SDK wins outright.</p>
+<p>But if we were shipping a <strong>voice product</strong> or needed to <strong>swap models across vendors</strong>, we&rsquo;d reach for the OpenAI Agents SDK without hesitation — managed infra and Realtime voice are genuine advantages Claude doesn&rsquo;t match today.</p>
+<p>The honest decision tree: - Coding / OS-heavy agent, all-in on Claude → <strong>Claude Agent SDK</strong></p>
+<ul>
+<li>Voice / multimodal / multi-vendor / managed ops → <strong>OpenAI Agents SDK</strong></li>
+<li>Still choosing <em>between frameworks vs built-in subagents</em> → read our <a href="https://dibi8.com/resources/llm-frameworks/claude-code-subagents-vs-langgraph-crewai-autogen-2026/">subagents vs LangGraph/CrewAI/AutoGen guide</a> first.</li>
+</ul>
+<hr>
+<h2 id="faq">FAQ</h2>
+<p>(rendered via faqs frontmatter — visible inline + JSON-LD for AIO)</p>
+<hr>
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+<li><a href="https://dibi8.com/resources/llm-frameworks/claude-code-subagents-vs-langgraph-crewai-autogen-2026/">Claude Code Subagents vs LangGraph vs CrewAI vs AutoGen</a> — when to graduate from built-in to a framework.</li>
+<li><a href="https://dibi8.com/resources/llm-frameworks/claude-code-subagent-vs-mcp-server-skill-agent-2026/">Subagent vs MCP Server vs Skill</a> — the three Claude Code extension points.</li>
+<li><a href="https://dibi8.com/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/">Custom Agent Authoring Guide</a> — building a specialist subagent.</li>
+<li><a href="https://dibi8.com/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/">Subagent Patterns</a> — the five orchestration workflows.</li>
+</ul>
+<h2 id="recommended-tools">Recommended Tools</h2>
+<p><strong>Building on either SDK means burning API tokens fast</strong> — especially when you&rsquo;re testing both head-to-head.</p>
+<ul>
+<li>**** — Claude / OpenAI / DeepSeek API proxy. Single key for multiple top models at ~30% of official pricing; ideal when comparing the two SDKs side-by-side or when direct Anthropic/OpenAI access is rate-limited in your region.</li>
+<li>**** — Hong Kong VPS to host your Claude-Agent-SDK agents (the deep-OS-access ones need a box you control). Same IDC behind dibi8.com.</li>
+</ul>
+<p><em>Affiliate links — support dibi8.com at no extra cost to you.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Claude Agent SDK vs OpenAI Agents SDK in 2026: Which to Build On?&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-29&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-29&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/claude-agent-sdk-vs-openai-agents-sdk%22">https://dibi8.com/resources/claude-agent-sdk-vs-openai-agents-sdk"</a>
+}
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters</h2>
+<p>Understanding claude agent sdk vs openai agents sdk in 2026: which to build on? is crucial for modern AI development. Here&quot;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications</h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
+2. Generate documentation automatically
+3. Build internal knowledge bases
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started</h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>Claude Agent SDK vs OpenAI Agents SDK in 2026: Which to Build On? represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~6 minutes</em></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/claude-agent-sdk-vs-openai-agents-sdk/">claude-code-vs-cline</a></li>
+<li><a href="/ai-coding-agents/claude-agent-sdk-vs-openai-agents-sdk/">cursor-vs-windsurf</a></li>
+<li><a href="/ai-coding-agents/claude-agent-sdk-vs-openai-agents-sdk/">deepseek-v3-vs-claude-sonnet</a></li>
+<li><a href="/ai-coding-agents/claude-agent-sdk-vs-openai-agents-sdk/">gemini-cli-vs-claude-code</a></li>
+<li><a href="/ai-coding-agents/claude-agent-sdk-vs-openai-agents-sdk/">chatgpt-pro-vs-claude-pro</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fclaude-agent-sdk-vs-openai-agents-sdk%2f&text=Claude%20Agent%20SDK%20vs%20OpenAI%20Agents%20SDK%20in%202026%3a%20Which%20to%20Build%20On%3f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fclaude-agent-sdk-vs-openai-agents-sdk%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

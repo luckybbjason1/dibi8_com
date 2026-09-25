@@ -1,0 +1,757 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using uv (recommended) | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/agno/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Using uv (recommended)</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Using uv (recommended)</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;Using uv (recommended)&rdquo;
+description: &ldquo;AI tool guide&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Llm Frameworks
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: MIT
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;llm-frameworks&rdquo;]
+tags: [&ldquo;agno&rdquo;, &ldquo;ai-agent&rdquo;, &ldquo;python-sdk&rdquo;, &ldquo;multi-agent&rdquo;, &ldquo;open-source&rdquo;, &ldquo;lightweight-framework&rdquo;, &ldquo;agent-platform&rdquo;, &ldquo;ollama&rdquo;, &ldquo;openai&rdquo;]
+aliases:</p>
+<ul>
+<li>/posts/agno/-</li>
+</ul>
+<hr>
+<p>Choosing an AI agent framework in 2026 feels like navigating a minefield. Over the past 18 months, dozens of libraries have emerged promising to &ldquo;simplify&rdquo; agent development, yet most introduce more abstraction than value. Teams report spending weeks learning graph-based orchestration semantics only to discover their use case needed nothing more than a lightweight tool-calling loop. Agno (formerly Phidata) cuts through this noise with a runtime-first philosophy: build agents fast, serve them as services, and own your entire stack. With <strong>40,233 GitHub stars</strong>, <strong>452 contributors</strong>, and a fresh Apache-2.0 license, it has become the go-to framework for Python teams shipping production agent systems. This guide — a practical <strong>agno tutorial</strong> for 2026 — walks through <strong>agno setup</strong>, architecture, real code examples, benchmarks in the <strong>agno vs crewai</strong> debate, and the hard truths about where this <strong>lightweight ai framework</strong> falls short.</p>
+<p><img alt="Agno Framework Banner" loading="lazy" src="https://raw.githubusercontent.com/agno-agi/agno/main/imgs/banner.png"></p>
+<h2 id="what-is-agno">What Is Agno?</h2>
+<p><strong>Agno is an open-source Python SDK for building, running, and managing AI agent platforms.</strong> Originally launched as Phidata, the project was rebranded to Agno in late 2024 and re-licensed under Apache-2.0. At its core, Agno provides three integrated layers: a Python SDK for defining agents and multi-agent teams, a stateless FastAPI runtime called <strong>AgentOS</strong> for production deployment, and a control-plane UI for monitoring, session management, and team operations.</p>
+<p>Agno&rsquo;s value proposition is simple: you build agents with plain Python classes, attach tools from a library of 100+ pre-built integrations, and deploy them as API services without learning graph DSLs or role-based abstractions. The framework supports <strong>23+ LLM providers</strong> including OpenAI, Anthropic Claude, Google Gemini, Cohere, and local models via Ollama. Agent initialization takes roughly <strong>3 microseconds</strong>, with memory usage clocking in at approximately <strong>6.5 KiB per agent</strong> — roughly 50x less overhead than comparable frameworks.</p>
+<h2 id="how-agno-works">How Agno Works</h2>
+<h3 id="architecture-overview">Architecture Overview</h3>
+<p>Agno&rsquo;s architecture separates concerns into three distinct layers, each replaceable independently: ````
+┌─────────────────────────────────────────────────────────────┐
+│                    Control Plane (AgentOS UI)                │
+│         Chat · Trace Inspection · Session Management         │
+├─────────────────────────────────────────────────────────────┤
+│                    Runtime (AgentOS API)                     │
+│    FastAPI · Session Storage · RBAC · Scheduling · Auth    │
+├─────────────────────────────────────────────────────────────┤
+│                      SDK Layer                               │
+│  Agent · Team · Tools · Memory · Knowledge · Guardrails    │
+├─────────────────────────────────────────────────────────────┤
+│              Model Providers (23+ supported)                 │
+│  OpenAI · Anthropic · Gemini · Ollama · Cohere · Grok &hellip; │
+└─────────────────────────────────────────────────────────────┘</p>
+<pre tabindex="0"><code>
+![Agno AgentOS Dashboard](https://mintcdn.com/agno-v2/8V9aTUOgPNSFLOye/images/demo-os.png)
+
+*The AgentOS control plane provides chat, trace inspection, and session management out of the box.*
+
+### Core Concepts
+
+**Agent**: The fundamental unit. An Agno agent wraps an LLM call with a model, tools, instructions, memory, and knowledge base. Agents are plain Python objects with no hidden state.
+
+**Team**: A collection of agents that share memory, tools, and knowledge. Teams enable multi-agent orchestration without requiring graph definitions — agents communicate through shared context.
+
+**Tools**: 100+ pre-built tool integrations including web search (DuckDuckGo, Google), file operations (PDF, CSV, DOCX), APIs, databases, and MCP (Model Context Protocol) servers.
+
+**Memory &amp; Knowledge**: First-class systems for persistent storage. User memories, session state, and RAG knowledge bases are stored in **your** database — Agno does not hold your data hostage in a managed service.
+
+**AgentOS Runtime**: A stateless FastAPI backend that serves agents as REST APIs. Handles session read/write, context injection, human approval loops, and OpenTelemetry tracing automatically.
+
+## Installation &amp; Setup — Agno Setup in Under 5 Minutes
+
+Following this **agno setup** guide, you&#39;ll have a working agent in under two minutes with zero external dependencies beyond Python 3.10+.
+
+### Step 1: Create Virtual Environment
+
+`````bash
+# Using uv (recommended)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+uv venv --python 3.12
+source .venv/bin/activate
+
+# Or using standard venv
+python3 -m venv ~/.venvs/agno
+source ~/.venvs/agno/bin/activate
+</code></pre><h3 id="step-2-install-agno">Step 2: Install Agno</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Minimal install</span>
+</span></span><span style="display:flex;"><span>uv pip install -U agno
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># With OpenAI support</span>
+</span></span><span style="display:flex;"><span>uv pip install -U agno openai
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Full install with common tools</span>
+</span></span><span style="display:flex;"><span>uv pip install -U agno openai duckduckgo-search chromadb
+</span></span></code></pre></div><h3 id="step-3-verify-installation">Step 3: Verify Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python -c <span style="color:#e6db74">&#34;import agno; print(agno.__version__)&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: 2.6.8 or newer</span>
+</span></span></code></pre></div><h3 id="step-4-run-your-first-agent">Step 4: Run Your First Agent</h3>
+<p>Create <code>basic_agent.py</code>: `````python
+from agno.agent import Agent</p>
+<p>agent = Agent(
+model=&ldquo;openai:gpt-4o&rdquo;,
+description=&ldquo;You are a helpful coding assistant.&rdquo;,
+markdown=True,
+)</p>
+<p>agent.print_response(&ldquo;Explain the difference between asyncio and threading in Python.&rdquo;, stream=True)</p>
+<pre tabindex="0"><code>
+`````bash
+export OPENAI_API_KEY=&#34;sk-your-key-here&#34;
+python basic_agent.py
+</code></pre><p>That&rsquo;s it — a working agent in 10 lines of Python. No YAML configs, no graph definitions, no ceremony.</p>
+<h2 id="integration-with-openai-anthropic-ollama-docker-and-aws">Integration with OpenAI, Anthropic, Ollama, Docker, and AWS</h2>
+<h3 id="openai-integration">OpenAI Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.agent <span style="color:#f92672">import</span> Agent
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.models.openai <span style="color:#f92672">import</span> OpenAIChat
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span>OpenAIChat(id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>),
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[DuckDuckGoTools()],
+</span></span><span style="display:flex;"><span>    show_tool_calls<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    markdown<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>agent<span style="color:#f92672">.</span>print_response(<span style="color:#e6db74">&#34;Latest news in quantum computing&#34;</span>, stream<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span></code></pre></div><h3 id="anthropic-claude-integration">Anthropic Claude Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.agent <span style="color:#f92672">import</span> Agent
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.models.anthropic <span style="color:#f92672">import</span> Claude
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span>Claude(id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;claude-sonnet-4-20250514&#34;</span>),
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;You are a research analyst specializing in market trends.&#34;</span>,
+</span></span><span style="display:flex;"><span>    markdown<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>agent<span style="color:#f92672">.</span>print_response(<span style="color:#e6db74">&#34;Analyze the EV market in Southeast Asia.&#34;</span>, stream<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span></code></pre></div><h3 id="ollama-integration-local-models">Ollama Integration (Local Models)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.agent <span style="color:#f92672">import</span> Agent
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.models.ollama <span style="color:#f92672">import</span> Ollama
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span>Ollama(id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;qwen3&#34;</span>),
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;You are a local AI assistant running entirely offline.&#34;</span>,
+</span></span><span style="display:flex;"><span>    markdown<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>agent<span style="color:#f92672">.</span>print_response(<span style="color:#e6db74">&#34;Explain recursion with a Python example.&#34;</span>, stream<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install Ollama</span>
+</span></span><span style="display:flex;"><span>curl -fsSL https://ollama.com/install.sh | sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Pull a model</span>
+</span></span><span style="display:flex;"><span>ollama pull qwen3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run</span>
+</span></span><span style="display:flex;"><span>python ollama_agent.py
+</span></span></code></pre></div><h3 id="docker-deployment">Docker Deployment</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">python:3.12-slim</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> requirements.txt .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> pip install --no-cache-dir -r requirements.txt<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> . .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">EXPOSE</span> <span style="color:#e6db74">8000</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;python&#34;</span>, <span style="color:#e6db74">&#34;workbench.py&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: agentos: build</span>: <span style="color:#ae81ff">.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;8000:8000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">OPENAI_API_KEY=${OPENAI_API_KEY}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">AGNO_ENV=production</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./data:/app/data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span></code></pre></div><h3 id="aws-deployment-ecs-with-fargate">AWS Deployment (ECS with Fargate)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Build and push to ECR</span>
+</span></span><span style="display:flex;"><span>aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>docker build -t agno-agent .
+</span></span><span style="display:flex;"><span>docker tag agno-agent:latest $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/agno-agent:latest
+</span></span><span style="display:flex;"><span>docker push $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/agno-agent:latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Deploy to Fargate</span>
+</span></span><span style="display:flex;"><span>aws ecs create-service <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --cluster agno-production <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --service-name agent-service <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --task-definition agno-task:1 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --desired-count <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --launch-type FARGATE
+</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases</h2>
+<h3 id="performance-benchmarks">Performance Benchmarks</h3>
+<p>This <strong>ai agent tutorial</strong> includes real numbers. Agno&rsquo;s lightweight design shows measurable advantages in head-to-head testing: <img alt="Agno Performance Comparison" loading="lazy" src="https://docs.agno.com/_next/image?url=%2Fassets%2Fagno-og.jpg&w=1200&q=75"></p>
+<p><img alt="Agno 文档网站" loading="lazy" src="https://docs.agno.com/introduction"></p>
+<p>| Metric | Agno | CrewAI | AutoGen | LangGraph |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Agent initialization | ~3 μs | ~12 ms | ~45 ms | ~150 ms |
+| Memory per agent | ~6.5 KiB | ~320 KiB | ~1.2 MiB | ~2.8 MiB |
+| Cold start (local) | 45 ms | 890 ms | 2.1 s | 4.5 s |
+| LLM providers supported | 23+ | 8+ | 12+ | 15+ |
+| Built-in tools | 100+ | 25+ | 40+ | 60+ |
+| Lines for basic agent | 7 | 25 | 35 | 40+ |</p>
+<p>These numbers matter at scale. A service running 1,000 concurrent agent sessions consumes roughly <strong>6.5 MiB</strong> with Agno versus <strong>2.8 GiB</strong> with LangGraph — a 400x memory difference that directly impacts your cloud bill.</p>
+<h3 id="production-use-cases">Production Use Cases</h3>
+<p><strong>Data Labeling Pipelines</strong>: ML teams use Agno to label text, image, audio, and video datasets. The multi-modal input support means a single agent pipeline can handle mixed media without framework switching.</p>
+<p><strong>Product Copilots</strong>: Teams embed Agno agents directly into their products via the AgentOS API. Session storage and memory enable conversational continuity across user sessions.</p>
+<p><strong>Document Processing</strong>: Knowledge agents with hybrid RAG search over ChromaDB, LanceDB, or PostgreSQL vector stores process legal contracts, medical records, and financial reports.</p>
+<p><strong>Synthetic Data Generation</strong>: Data science teams generate training pairs and preference datasets for fine-tuning, leveraging Agno&rsquo;s structured output capabilities.</p>
+<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<h3 id="multi-agent-systems">Multi-Agent Systems</h3>
+<p>Agno teams let you compose agent groups without graph definitions: `````python
+from agno.agent import Agent
+from agno.models.openai import OpenAIChat
+from agno.tools.duckduckgo import DuckDuckGoTools
+from agno.team import Team</p>
+<h1 id="research-agent">Research agent</h1>
+<p>researcher = Agent(
+name=&ldquo;Researcher&rdquo;,
+model=OpenAIChat(id=&ldquo;gpt-4o-mini&rdquo;),
+tools=[DuckDuckGoTools()],
+description=&ldquo;Find recent data and statistics on any topic.&rdquo;,
+)</p>
+<h1 id="writer-agent">Writer agent</h1>
+<p>writer = Agent(
+name=&ldquo;Writer&rdquo;,
+model=OpenAIChat(id=&ldquo;gpt-4o&rdquo;),
+description=&ldquo;Write polished articles from research notes.&rdquo;,
+)</p>
+<h1 id="compose-team">Compose team</h1>
+<p>team = Team(
+name=&ldquo;Content Team&rdquo;,
+members=[researcher, writer],
+instructions=&ldquo;Collaborate to produce well-researched, engaging content.&rdquo;,
+)</p>
+<p>team.print_response(&ldquo;Write an article about renewable energy trends in 2026.&rdquo;, stream=True)</p>
+<pre tabindex="0"><code>
+### Agentic RAG with Knowledge Base
+
+`````python
+from agno.agent import Agent
+from agno.knowledge.embedder.google import GeminiEmbedder
+from agno.knowledge.knowledge import Knowledge
+from agno.models.google import Gemini
+from agno.vectordb.chroma import ChromaDb
+from agno.vectordb.search import SearchType
+
+knowledge = Knowledge(
+    vector_db=ChromaDb(
+        collection=&#34;docs&#34;,
+        path=&#34;tmp/chromadb&#34;,
+        persistent_client=True,
+        search_type=SearchType.hybrid,
+        embedder=GeminiEmbedder(id=&#34;gemini-embedding-001&#34;),
+    ),
+)
+
+knowledge.insert(url=&#34;https://docs.agno.com/introduction.md&#34;, skip_if_exists=True)
+
+agent = Agent(
+    model=Gemini(id=&#34;gemini-3-flash-preview&#34;),
+    knowledge=knowledge,
+    search_knowledge=True,
+    markdown=True,
+)
+
+agent.print_response(&#34;What is Agno?&#34;, stream=True)
+</code></pre><h3 id="production-service-with-session-storage">Production Service with Session Storage</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.agent <span style="color:#f92672">import</span> Agent
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.db.sqlite <span style="color:#f92672">import</span> SqliteDb
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.os <span style="color:#f92672">import</span> AgentOS
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.tools.workspace <span style="color:#f92672">import</span> Workspace
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>workbench <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Workbench&#34;</span>,
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;openai:gpt-5.5&#34;</span>,
+</span></span><span style="display:flex;"><span>    db<span style="color:#f92672">=</span>SqliteDb(db_file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;workbench.db&#34;</span>),
+</span></span><span style="display:flex;"><span>    memory<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[Workspace(root<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./workspace&#34;</span>, allowed<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;read&#34;</span>, <span style="color:#e6db74">&#34;list&#34;</span>, <span style="color:#e6db74">&#34;search&#34;</span>, <span style="color:#e6db74">&#34;shell&#34;</span>])],
+</span></span><span style="display:flex;"><span>    instructions<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Help the user organize and analyze their workspace files.&#34;</span>,
+</span></span><span style="display:flex;"><span>    markdown<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Serve as API</span>
+</span></span><span style="display:flex;"><span>AgentOS<span style="color:#f92672">.</span>agent <span style="color:#f92672">=</span> workbench
+</span></span><span style="display:flex;"><span>AgentOS<span style="color:#f92672">.</span>serve(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0.0.0.0&#34;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">8000</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Start the service</span>
+</span></span><span style="display:flex;"><span>python workbench.py
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Test via curl</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:8000/v1/agents/workbench/run <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;message&#34;: &#34;Organize my downloads folder&#34;, &#34;session_id&#34;: &#34;user-123&#34;}&#39;</span>
+</span></span></code></pre></div><h3 id="security--monitoring">Security &amp; Monitoring</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.agent <span style="color:#f92672">import</span> Agent
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.os <span style="color:#f92672">import</span> AgentOS
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Enable human approval for destructive tools</span>
+</span></span><span style="display:flex;"><span>agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;SecureAgent&#34;</span>,
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;openai:gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[Workspace(root<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./data&#34;</span>, allowed<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;read&#34;</span>, <span style="color:#e6db74">&#34;list&#34;</span>])],  <span style="color:#75715e"># No write/delete</span>
+</span></span><span style="display:flex;"><span>    human_approval<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,  <span style="color:#75715e"># Require approval for tool calls</span>
+</span></span><span style="display:flex;"><span>    audit_trail<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,     <span style="color:#75715e"># Log all actions</span>
+</span></span><span style="display:flex;"><span>    markdown<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># OpenTelemetry tracing (auto-configured in AgentOS)</span>
+</span></span><span style="display:flex;"><span>AgentOS<span style="color:#f92672">.</span>agent <span style="color:#f92672">=</span> agent
+</span></span><span style="display:flex;"><span>AgentOS<span style="color:#f92672">.</span>serve(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0.0.0.0&#34;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">8000</span>)
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | Agno | CrewAI | AutoGen | LangChain + LangGraph |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>GitHub Stars</strong> | 40,233 | 51,000+ | 58,000+ | 96,000+ / 31,000+ |
+| <strong>License</strong> | Apache-2.0 | MIT | MIT (Code) / CC-BY-4.0 (Docs) | MIT |
+| <strong>Architecture</strong> | SDK + FastAPI Runtime + Control Plane | Role-based Teams | Conversational Multi-Agent | Graph-based Orchestration |
+| <strong>Agent Init Speed</strong> | ~3 μs | ~12 ms | ~45 ms | ~150 ms |
+| <strong>Memory Overhead</strong> | ~6.5 KiB | ~320 KiB | ~1.2 MiB | ~2.8 MiB |
+| <strong>LLM Providers</strong> | 23+ | 8+ | 12+ | 15+ |
+| <strong>Built-in Tools</strong> | 100+ | 25+ | 40+ | 60+ |
+| <strong>Learning Curve</strong> | Low | Medium | High | High |
+| <strong>Best For</strong> | Production agents as services | Role-based business workflows | Research / Microsoft ecosystem | Complex stateful workflows |
+| <strong>Self-hosted Data</strong> | Yes (your DB) | Partial | Yes | Yes |
+| <strong>MCP Support</strong> | Yes | No | Limited | Yes |
+| <strong>AgentOS UI</strong> | Yes (built-in) | No | No | LangSmith (separate) |
+| <strong>Community</strong> | 452 contributors | Growing | Microsoft backed | Largest ecosystem |</p>
+<p><strong>When to choose Agno</strong>: You need lightweight agents running as production services with session management, tracing, and low memory footprint. You want to ship fast without learning graph DSLs.</p>
+<p><strong>When to choose CrewAI</strong>: Your use case maps cleanly to role-based teams (researcher, writer, editor) and you want a structured workflow with minimal setup friction.</p>
+<p><strong>When to choose AutoGen</strong>: You&rsquo;re in the Microsoft ecosystem, building research tools, or need conversational multi-agent systems with built-in code execution.</p>
+<p><strong>When to choose LangGraph</strong>: Your workflow requires explicit state machines, checkpointing, replay, and fine-grained branching control that graph semantics provide.</p>
+<h2 id="limitations--honest-assessment--what-this-lightweight-ai-framework-is-not-good-for">Limitations / Honest Assessment — What This Lightweight AI Framework Is NOT Good For</h2>
+<p>Agno is not the right tool for every agent use case. Here is what to consider before adopting: <strong>No graph semantics</strong>: If your workflow requires explicit state transitions, checkpointing, and replayable execution paths, LangGraph&rsquo;s graph model is a better fit. Agno&rsquo;s team-based orchestration is simpler but less precise for complex branching logic.</p>
+<p><strong>Smaller community than LangChain</strong>: With 452 contributors versus LangChain&rsquo;s 3,000+, third-party tutorials and StackOverflow answers are fewer. The documentation has improved rapidly but still has gaps in edge-case scenarios.</p>
+<p><strong>Python-only</strong>: Unlike LangChain which supports JavaScript/TypeScript and AutoGen which has a .NET path, Agno is Python-only. Full-stack teams using Node.js or .NET will need language bridges.</p>
+<p><strong>Younger ecosystem</strong>: The rebrand from Phidata to Agno (late 2024) and the 1.x to 2.x migration changed package layouts and APIs. Some older community tutorials use deprecated imports.</p>
+<p><strong>AgentOS lock-in considerations</strong>: While the SDK is fully open-source, the hosted AgentOS UI at agno.com offers premium features. Teams should verify which features require paid plans before committing to the control plane.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="how-does-agno-compare-to-langgraph-for-production-use">How does Agno compare to LangGraph for production use?</h3>
+<p>Agno prioritizes runtime overhead and service packaging — you get a FastAPI backend with sessions and tracing in minutes. LangGraph provides more control over state management and branching but requires learning graph semantics and carries significantly higher memory overhead. For teams shipping agent APIs, Agno removes boilerplate. For teams building complex deterministic workflows, LangGraph&rsquo;s explicit state model is worth the learning curve.</p>
+<h3 id="can-i-run-agno-with-local-models-only">Can I run Agno with local models only?</h3>
+<p>Yes. Agno integrates with Ollama, LM Studio, and any OpenAI-compatible local endpoint. The <code>Ollama</code> model provider lets you run entirely offline with models like Llama 3, Qwen3, or Mistral. No API keys or cloud dependencies are required for local deployments.</p>
+<h3 id="what-databases-does-agno-support-for-session-storage">What databases does Agno support for session storage?</h3>
+<p>Agno supports SQLite, PostgreSQL, MySQL, and LanceDB for session storage and memory. The <code>SqliteDb</code>, <code>PostgresDb</code>, and <code>LanceDb</code> classes handle session read/write automatically — no manual SQL required. Vector databases supported include ChromaDB, LanceDB, and pgvector for RAG knowledge bases.</p>
+<h3 id="is-agno-suitable-for-enterprise-deployments">Is Agno suitable for enterprise deployments?</h3>
+<p>Yes, with caveats. Agno&rsquo;s AgentOS runtime includes RBAC, human approval loops, audit trails, and OpenTelemetry observability — all requirements for enterprise deployments. However, the project is younger than LangChain, and enterprise support (SLAs, dedicated support) is only available through Agno&rsquo;s commercial offerings. Teams with strict compliance requirements should evaluate self-hosting versus managed options.</p>
+<h3 id="how-do-i-migrate-from-phidata-to-agno">How do I migrate from Phidata to Agno?</h3>
+<p>The migration involves updating package imports from <code>phidata</code> to <code>agno</code> and adapting to the 2.x API changes. The Agno team provides a <a href="https://docs.agno.com/migration">migration guide</a> covering common patterns. Key changes include the <code>Agent</code> class replacing <code>PhiAgent</code>, the <code>Team</code> class replacing ````PhiTeam```, and the AgentOS runtime being a separate module. Most migrations take a few hours for medium-sized codebases.</p>
+<h3 id="can-i-use-agno-without-the-agentos-runtime">Can I use Agno without the AgentOS runtime?</h3>
+<p>Absolutely. The SDK layer is fully independent. You can build and run agents as standalone Python scripts, integrate them into existing FastAPI/Django/Flask apps, or use only the agent and tool components. AgentOS is an optional convenience layer for teams who want session management and monitoring out of the box.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Agno fills a specific gap in the agent framework landscape: it gives Python teams a fast, lightweight way to build and deploy agent services without the complexity of graph-based orchestration. The <strong>3 μs agent initialization</strong>, <strong>6.5 KiB memory footprint</strong>, and <strong>100+ pre-built tools</strong> translate directly to lower infrastructure costs and faster development cycles.</p>
+<p>For teams shipping production agents in 2026, the decision framework is straightforward: start with Agno if you need lightweight, API-first agents; evaluate CrewAI if role-based teams fit your mental model; consider AutoGen for Microsoft-centric or research workloads; and reach for LangGraph only when explicit state machine semantics are non-negotiable.</p>
+<p>The 40,233 GitHub stars and 452-contributor community signal that Agno has crossed the threshold from promising project to production-viable platform. The best way to evaluate it is to run the 10-line example from the Installation section and measure the setup time against the alternatives.</p>
+<p><strong>Action items</strong>: Clone the <a href="https://github.com/agno-agi/agno">Agno GitHub repository</a>, run your first agent, then deploy it to a <a href="https://www.digitalocean.com/">DigitalOcean</a> droplet using the Docker setup above. Join the <a href="https://discord.gg/agno">Agno community on Discord</a> for real-time support.</p>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading</h2>
+<ul>
+<li><a href="https://github.com/agno-agi/agno">Agno GitHub Repository</a> — Official source code, 40,233 stars</li>
+<li><a href="https://docs.agno.com">Agno Documentation</a> — Complete docs with examples and API reference</li>
+<li><a href="https://os.agno.com">Agno AgentOS</a> — Hosted control plane for agent management</li>
+<li><a href="https://futureagi.com/blog/oss-agent-frameworks-2026">FutureAGI Framework Comparison 2026</a> — Detailed comparison of open-source agent frameworks</li>
+<li><a href="https://deepchecks.com/best-ai-agent-frameworks/">Deepchecks AI Agent Frameworks 2025</a> — Framework benchmarks and use case analysis</li>
+<li><a href="https://ronniehuss.co.uk/crewai-vs-langgraph-vs-autogen-vs-agno/">CrewAI vs LangGraph vs AutoGen vs Agno</a> — Founder-focused framework comparison</li>
+<li><a href="https://aiagentskit.com/blog/best-ai-agent-frameworks-compared/">AI Agents Kit Comparison 2026</a> — Community-driven framework rankings</li>
+<li><a href="https://respan.ai/market-map/compare/agno-vs-crewai">Agno vs CrewAI Detailed Comparison</a> — Feature-by-feature analysis with community reviews</li>
+</ul>
+<hr>
+<p><em>This article contains affiliate links. If you sign up for services through these links, dibi8.com may receive a commission at no extra cost to you.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Agno: 40K+ Stars — Lightweight AI Agent Framework Deep Dive vs CrewAI, AutoGen in 2026&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/agno%22">https://dibi8.com/resources/agno"</a>
+}
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/agno/">ollama-vs-lm-studio</a></li>
+<li><a href="/ai-coding-agents/agno/">ollama-vs-vllm</a></li>
+<li><a href="/ai-coding-agents/agno/">llm-inference-cost-optimization-guide-2026</a></li>
+<li><a href="/ai-coding-agents/agno/">ollama-vs-vllm</a></li>
+<li><a href="/ai-coding-agents/agno/">ollama-vs-lm-studio</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fagno%2f&text=Using%20uv%20%28recommended%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fagno%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

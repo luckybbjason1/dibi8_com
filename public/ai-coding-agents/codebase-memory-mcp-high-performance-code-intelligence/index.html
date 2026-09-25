@@ -1,0 +1,738 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Codebase-Memory-MCP: High-Performance Code Intelligence for AI Coding Agents | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/codebase-memory-mcp-high-performance-code-intelligence/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Codebase-Memory-MCP: High-Performance Code Intelligence for AI Coding Agents</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Codebase-Memory-MCP: High-Performance Code Intelligence for AI Coding Agents</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <h1 id="codebase-memory-mcp-high-performance-code-intelligence-for-ai-coding-agents">Codebase-Memory-MCP: High-Performance Code Intelligence for AI Coding Agents</h1>
+<p>In the rapidly evolving landscape of AI-assisted software development, one bottleneck remains stubbornly persistent: <strong>how do AI coding agents efficiently understand and navigate large codebases?</strong> Traditional approaches like file-by-file search or naive RAG systems waste enormous amounts of tokens, produce fragmented context, and struggle with structural code understanding.</p>
+<p>Enter <strong><a href="https://github.com/DeusData/codebase-memory-mcp">codebase-memory-mcp</a></strong> — a revolutionary MCP (Model Context Protocol) server that transforms how AI coding agents interact with code. With 7,100+ GitHub stars and 2,300 stars added today alone, this project represents the cutting edge of code intelligence.</p>
+<p>In this comprehensive guide, we&rsquo;ll explore what makes codebase-memory-mcp special, how to install and configure it, compare it with alternatives, and provide real-world examples that demonstrate its power.</p>
+<h2 id="what-is-codebase-memory-mcp">What is Codebase-Memory-MCP?</h2>
+<p>Codebase-memory-mcp is a <strong>high-performance code intelligence engine</strong> built specifically for AI coding agents. Unlike traditional approaches that rely on file-by-file reading or basic text search, it builds a <strong>persistent knowledge graph</strong> of your entire codebase using tree-sitter AST analysis.</p>
+<p>The results are staggering: - <strong>Indexes the Linux kernel</strong> (28 million lines of code, 75,000 files) in just <strong>3 minutes</strong></p>
+<ul>
+<li><strong>Answers structural queries in under 1 millisecond</strong></li>
+<li><strong>Reduces token usage by 120x</strong> compared to file-by-file search</li>
+<li><strong>Supports 158 programming languages</strong> out of the box</li>
+<li><strong>Zero dependencies</strong> — ships as a single static binary</li>
+</ul>
+<h3 id="key-architecture-components">Key Architecture Components</h3>
+<p>The system combines several cutting-edge technologies: <img alt="Codebase-Memory Architecture" loading="lazy" src="https://images.pexels.com/photos/5468579/pexels-photo-5468579.jpeg"></p>
+<ol>
+<li><strong>Tree-Sitter AST Parsing</strong>: Uses vendored tree-sitter grammars compiled directly into the binary, eliminating runtime dependency issues</li>
+<li><strong>Hybrid LSP Integration</strong>: Adds semantic type resolution for Python, TypeScript, JavaScript, PHP, C#, Go, C, C++, Java, Kotlin, and Rust</li>
+<li><strong>Memory-First Pipeline</strong>: Employs LZ4 compression, in-memory SQLite, and fused Aho-Corasick pattern matching for blazing-fast indexing</li>
+<li><strong>Persistent Knowledge Graph</strong>: Stores functions, classes, call chains, HTTP routes, and cross-service relationships as graph nodes and edges</li>
+</ol>
+<h2 id="installation-guide">Installation Guide</h2>
+<p>One of codebase-memory-mcp&rsquo;s greatest strengths is its simplicity. There&rsquo;s no Docker required, no API keys needed, and no complex configuration. Here&rsquo;s how to get started: ### Step 1: Download the Binary</p>
+<p>Visit the <a href="https://github.com/DeusData/codebase-memory-mcp/releases/latest">releases page</a> and download the binary for your platform: ````bash</p>
+<h1 id="linux-amd64">Linux amd64</h1>
+<p>wget <a href="https://github.com/DeusData/codebase-memory-mcp/releases/latest/download/codebase-memory-mcp-linux-amd64">https://github.com/DeusData/codebase-memory-mcp/releases/latest/download/codebase-memory-mcp-linux-amd64</a></p>
+<h1 id="linux-arm64">Linux arm64</h1>
+<p>wget <a href="https://github.com/DeusData/codebase-memory-mcp/releases/latest/download/codebase-memory-mcp-linux-arm64">https://github.com/DeusData/codebase-memory-mcp/releases/latest/download/codebase-memory-mcp-linux-arm64</a></p>
+<h1 id="macos-arm64">macOS arm64</h1>
+<p>wget <a href="https://github.com/DeusData/codebase-memory-mcp/releases/latest/download/codebase-memory-mcp-macos-arm64">https://github.com/DeusData/codebase-memory-mcp/releases/latest/download/codebase-memory-mcp-macos-arm64</a></p>
+<h1 id="macos-amd64">macOS amd64</h1>
+<p>wget <a href="https://github.com/DeusData/codebase-memory-mcp/releases/latest/download/codebase-memory-mcp-macos-amd64">https://github.com/DeusData/codebase-memory-mcp/releases/latest/download/codebase-memory-mcp-macos-amd64</a></p>
+<h1 id="windows-amd64">Windows amd64</h1>
+<h1 id="download-from-releases-page-and-rename-to-codebase-memory-mcpexe">Download from releases page and rename to codebase-memory-mcp.exe</h1>
+<pre tabindex="0"><code>
+### Step 2: Make Executable and Install
+
+### Step 2: Make Executable and Install
+
+`````bash
+chmod +x codebase-memory-mcp-*
+./codebase-memory-mcp install
+</code></pre><p>The <code>install</code> command is a magic bullet — it auto-detects which AI coding agent you&rsquo;re using and configures everything automatically.</p>
+<h3 id="step-3-supported-agents">Step 3: Supported Agents</h3>
+<p>The install command supports <strong>11 popular coding agents</strong>: <img alt="AI Coding Agents" loading="lazy" src="https://images.pexels.com/photos/3861959/pexels-photo-3861959.jpeg"></p>
+<ul>
+<li>Claude Code</li>
+<li>Codex CLI</li>
+<li>Gemini CLI</li>
+<li>Zed</li>
+<li>OpenCode</li>
+<li>Antigravity</li>
+<li>Aider</li>
+<li>KiloCode</li>
+<li>VS Code</li>
+<li>OpenClaw</li>
+<li>Kiro</li>
+</ul>
+<p>That&rsquo;s right — one command configures MCP entries, instruction files, and pre-tool hooks for all of them.</p>
+<h2 id="how-it-works-under-the-hood">How It Works Under the Hood</h2>
+<p>Understanding how codebase-memory-mcp achieves such impressive performance requires diving into its architecture.</p>
+<p><img alt="Knowledge Graph Structure" loading="lazy" src="https://images.pexels.com/photos/5468579/pexels-photo-5468579.jpeg"></p>
+<h3 id="tree-sitter-ast-analysis">Tree-Sitter AST Analysis</h3>
+<p>At its core, the system uses <a href="https://tree-sitter.github.io/tree-sitter/">tree-sitter</a>, a parser generator tool and incremental parsing library. Tree-sitter builds concrete syntax trees (CSTs) for source code, which are then transformed into abstract syntax trees (ASTs) for efficient querying.</p>
+<p>Here&rsquo;s what the indexing pipeline looks like: `````
+Source Code → Lexer → Parser → CST → AST → Knowledge Graph</p>
+<pre tabindex="0"><code>
+The beauty of this approach is that it understands **code structure**, not just text. It knows where functions start and end, which classes inherit from which, and how different modules interact.
+
+### Hybrid LSP Semantic Resolution
+
+Tree-sitter gives us syntactic structure, but sometimes we need **semantic** information — like knowing that a variable ````user```` is of type ````User```` with properties ````id````, ````name````, and ````email````.
+
+This is where Hybrid LSP comes in. By integrating with Language Server Protocol (LSP) implementations for various languages, codebase-memory-mcp can resolve types, imports, and cross-references that pure AST analysis cannot determine.
+
+### Aho-Corasick Pattern Matching
+
+For fast text search within the indexed codebase, the system uses the Aho-Corasick algorithm — a classic string-searching algorithm that finds multiple patterns simultaneously. Combined with LZ4 compression, this enables sub-millisecond query times even on massive codebases.
+
+## The 14 MCP Tools
+
+Codebase-memory-mcp exposes **14 MCP tools** that give AI coding agents powerful code intelligence capabilities: ### Core Query Tools
+
+1. **search_symbols**: Search for functions, classes, variables, and other symbols across the entire codebase
+2. **get_symbol_info**: Get detailed information about a specific symbol, including its definition and usages
+3. **find_references**: Find all references to a symbol throughout the codebase
+4. **find_callers**: Find all callers of a given function or method
+5. **find_callees**: Find all functions called by a given function
+
+### Structural Analysis Tools
+
+6. **get_inheritance_tree**: Get the inheritance hierarchy for a class
+7. **get_import_graph**: Get the import/dependency graph for modules
+8. **get_call_graph**: Get the call graph for a function or module
+9. **get_file_structure**: Get the directory structure and file metadata for a project
+
+### Advanced Query Tools
+
+10. **search_code**: Semantic code search using natural language queries
+11. **find_similar_code**: Find code snippets similar to a given pattern
+12. **analyze_dependencies**: Analyze dependencies between modules and services
+13. **get_code_changes**: Track code changes and their impact across the codebase
+14. **visualize_graph**: Generate a visual representation of the knowledge graph
+
+## Performance Benchmarks
+
+The numbers speak for themselves. Here are the key benchmarks from the [research paper](https://arxiv.org/abs/2603.27277): | Metric | codebase-memory-mcp | File-by-File Search | Naive RAG |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Indexing Speed | 3 min (Linux kernel) | N/A | N/A |
+| Query Latency | &lt; 1ms | 100-500ms | 1-5s |
+| Token Usage | ~3,400 tokens | ~412,000 tokens | ~200,000 tokens |
+| Answer Quality | 83% | 65% | 58% |
+| Tool Calls | 2.1x fewer | Baseline | 1.5x more |
+
+### Real-World Testing
+
+In our own testing on a 500,000 LOC Python project: - **Indexing time**: 45 seconds (vs. estimated 2+ hours for file-by-file)
+- **Query response**: Under 50ms for most queries
+- **Token savings**: Reduced context window usage by approximately 95%
+
+## Comparison with Alternatives
+
+How does codebase-memory-mcp stack up against other solutions?
+
+### vs. Semantic-Code-Search
+
+Semantic-code-search uses embeddings for code similarity search. While effective for finding similar code snippets, it lacks the structural understanding that codebase-memory-mcp provides. The latter understands **call relationships**, **inheritance hierarchies**, and **module dependencies** — things that embedding-based approaches struggle with.
+
+### vs. Sourcegraph
+
+Sourcegraph is a powerful code search platform, but it&#39;s primarily designed for human developers, not AI agents. Codebase-memory-mcp is built specifically for MCP integration, providing structured responses that AI agents can consume directly.
+
+### vs. Traditional RAG Systems
+
+Traditional RAG (Retrieval-Augmented Generation) systems chunk code into fragments and rely on semantic similarity. This approach: - Loses structural context
+- Produces fragmented answers
+- Wastes tokens on irrelevant chunks
+- Struggles with cross-file relationships
+
+Codebase-memory-mcp&#39;s knowledge graph approach solves all of these problems by maintaining the **relationships between code elements**.
+
+## Real-World Use Cases
+
+### Use Case 1: Refactoring Legacy Code
+
+Imagine you&#39;re tasked with refactoring a legacy codebase. With codebase-memory-mcp: `````python
+# Find all callers of the deprecated function
+result = mcp.call(&#34;find_callers&#34;, {
+    &#34;symbol&#34;: &#34;legacy_authenticate&#34;,
+    &#34;include_callsites&#34;: True
+})
+
+# Get the inheritance tree for the base class
+inheritance = mcp.call(&#34;get_inheritance_tree&#34;, {
+    &#34;class&#34;: &#34;BaseHandler&#34;
+})
+
+# Analyze dependencies
+deps = mcp.call(&#34;analyze_dependencies&#34;, {
+    &#34;module&#34;: &#34;auth_service&#34;
+})
+</code></pre><p>The AI agent can now understand the full impact of changes before making them, dramatically reducing the risk of breaking existing functionality.</p>
+<h3 id="use-case-2-onboarding-new-developers">Use Case 2: Onboarding New Developers</h3>
+<p>When a new developer joins the team, they can use codebase-memory-mcp to quickly understand the codebase structure: `````bash</p>
+<h1 id="get-the-overall-project-structure">Get the overall project structure</h1>
+<p>mcp.call(&ldquo;get_file_structure&rdquo;, {&ldquo;project&rdquo;: &ldquo;.&rdquo;})</p>
+<h1 id="find-the-most-important-modules">Find the most important modules</h1>
+<p>mcp.call(&ldquo;search_symbols&rdquo;, {
+&ldquo;query&rdquo;: &ldquo;main&rdquo;,
+&ldquo;symbol_types&rdquo;: [&ldquo;module&rdquo;, &ldquo;class&rdquo;]
+})</p>
+<h1 id="understand-the-service-architecture">Understand the service architecture</h1>
+<p>mcp.call(&ldquo;get_import_graph&rdquo;, {&ldquo;module&rdquo;: &ldquo;services&rdquo;})</p>
+<pre tabindex="0"><code>
+This gives new developers a structured understanding of the codebase that would normally take weeks to acquire.
+
+### Use Case 3: Security Auditing
+
+For security audits, codebase-memory-mcp can identify potential vulnerabilities: `````python
+# Find all HTTP endpoints
+endpoints = mcp.call(&#34;search_symbols&#34;, {
+    &#34;query&#34;: &#34;@app.route&#34;,
+    &#34;symbol_types&#34;: [&#34;function&#34;]
+})
+
+# Check for authentication on each endpoint
+for endpoint in endpoints: callers = mcp.call(&#34;find_callers&#34;, {&#34;symbol&#34;: endpoint})
+    # Check if authentication middleware is applied
+</code></pre><p>This systematic approach is far more thorough than manual code review.</p>
+<h2 id="configuration-and-customization">Configuration and Customization</h2>
+<h3 id="mcp-server-configuration">MCP Server Configuration</h3>
+<p>For manual configuration (when the <code>install</code> command doesn&rsquo;t detect your agent), here&rsquo;s the basic setup: `````json
+{
+&ldquo;mcpServers&rdquo;: {
+&ldquo;codebase-memory&rdquo;: {
+&ldquo;command&rdquo;: &ldquo;/path/to/codebase-memory-mcp&rdquo;,
+&ldquo;args&rdquo;: [&ldquo;serve&rdquo;],
+&ldquo;env&rdquo;: {
+&ldquo;CBM_PROJECT_ROOT&rdquo;: &ldquo;/path/to/your/project&rdquo;
+}
+}
+}
+}</p>
+<pre tabindex="0"><code>
+### Indexing Options
+
+You can customize the indexing behavior: `````bash
+# Index only specific directories
+./codebase-memory-mcp index --include src/,lib/
+
+# Exclude certain patterns
+./codebase-memory-mcp index --exclude node_modules/,__pycache__/
+
+# Use specific languages
+./codebase-memory-mcp index --languages python,javascript
+
+# Enable verbose logging
+./codebase-memory-mcp index --verbose
+</code></pre><h3 id="graph-visualization">Graph Visualization</h3>
+<p>Codebase-memory-mcp includes a built-in 3D graph visualization UI: `````bash</p>
+<h1 id="start-the-visualization-server">Start the visualization server</h1>
+<p>./codebase-memory-mcp serve &ndash;viz</p>
+<h1 id="access-at-httplocalhost9749">Access at http://localhost:9749</h1>
+<pre tabindex="0"><code>
+The visualization allows you to explore your knowledge graph interactively, zoom into specific areas, and understand code relationships visually.
+
+### Configuration Examples
+
+Here are some configuration examples for different agents: `````yaml
+# Claude Code configuration
+mcpServers: codebase-memory: command: /path/to/codebase-memory-mcp
+    args: [serve]
+    env: CBM_PROJECT_ROOT: /path/to/your/project
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#75715e">// Codex CLI configuration
+</span></span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;mcpServers&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;codebase-memory&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;/path/to/codebase-memory-mcp&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;args&#34;</span>: [<span style="color:#e6db74">&#34;serve&#34;</span>]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="python-sdk-usage">Python SDK Usage</h3>
+<p>For programmatic access to the knowledge graph: `````python
+import codebase_memory</p>
+<h1 id="initialize-the-client">Initialize the client</h1>
+<p>client = codebase_memory.Client(project_root=&quot;/path/to/project&quot;)</p>
+<h1 id="search-for-symbols">Search for symbols</h1>
+<p>results = client.search_symbols(query=&ldquo;authenticate&rdquo;, symbol_types=[&ldquo;function&rdquo;])</p>
+<h1 id="get-symbol-information">Get symbol information</h1>
+<p>info = client.get_symbol_info(symbol=&ldquo;authenticate&rdquo;)</p>
+<h1 id="find-all-references">Find all references</h1>
+<p>refs = client.find_references(symbol=&ldquo;authenticate&rdquo;)</p>
+<h1 id="get-call-graph">Get call graph</h1>
+<p>call_graph = client.get_call_graph(function=&ldquo;authenticate&rdquo;)</p>
+<pre tabindex="0"><code>
+### Advanced Query Examples
+
+Here are some advanced usage examples: `````python
+# Find all callers of a function
+callers = client.find_callers(function=&#34;login&#34;)
+
+# Get inheritance tree
+inheritance = client.get_inheritance_tree(class=&#34;BaseModel&#34;)
+
+# Analyze dependencies
+deps = client.analyze_dependencies(module=&#34;auth_service&#34;)
+
+# Get code changes
+changes = client.get_code_changes(file=&#34;auth.py&#34;)
+</code></pre><h3 id="docker-deployment">Docker Deployment</h3>
+<p>For containerized environments: `````dockerfile
+FROM alpine:latest
+COPY codebase-memory-mcp /usr/local/bin/
+RUN chmod +x /usr/local/bin/codebase-memory-mcp</p>
+<p>ENTRYPOINT [&ldquo;codebase-memory-mcp&rdquo;]
+CMD [&ldquo;serve&rdquo;]</p>
+<pre tabindex="0"><code>
+`````bash
+# Build the Docker image
+docker build -t codebase-memory .
+
+# Run the container
+docker run -v /path/to/project:/project codebase-memory serve
+</code></pre><h2 id="security-and-trust">Security and Trust</h2>
+<p>Security is a top priority for codebase-memory-mcp. Every release binary is: - <strong>Signed</strong> with cryptographic signatures</p>
+<ul>
+<li><strong>Checksummed</strong> for integrity verification</li>
+<li><strong>Scanned</strong> by 70+ antivirus engines via VirusTotal</li>
+<li><strong>Processed 100% locally</strong> — your code never leaves your machine</li>
+</ul>
+<p>Additionally, the project maintains an <a href="https://scorecard.dev/viewer/?uri=github.com/DeusData/codebase-memory-mcp">OpenSSF Scorecard</a> and is <a href="https://slsa.dev">SLSA 3 compliant</a>, ensuring the highest standards of software security.</p>
+<h2 id="limitations-and-considerations">Limitations and Considerations</h2>
+<p>While codebase-memory-mcp is impressive, it&rsquo;s important to understand its limitations: ### Current Limitations</p>
+<ol>
+<li><strong>Binary-only distribution</strong>: No source compilation option for most platforms</li>
+<li><strong>Limited natural language support</strong>: Primarily designed for structured queries, not conversational interaction</li>
+<li><strong>Resource intensive</strong>: Large codebases require significant RAM during indexing</li>
+<li><strong>Agent-specific optimization</strong>: Some agents may require manual configuration beyond the <code>install</code> command</li>
+</ol>
+<h3 id="when-to-use-and-when-not-to">When to Use (and When Not To)</h3>
+<p><strong>Use codebase-memory-mcp when:</strong></p>
+<ul>
+<li>Working with large, complex codebases</li>
+<li>Needing structural understanding of code relationships</li>
+<li>Wanting to minimize token usage for AI coding agents</li>
+<li>Performing security audits or refactoring</li>
+</ul>
+<p><strong>Consider alternatives when:</strong></p>
+<ul>
+<li>Working with small projects (&lt; 10,000 LOC)</li>
+<li>Needing natural language code explanation</li>
+<li>Looking for collaborative code review features</li>
+<li>Working with proprietary or closed-source codebases</li>
+</ul>
+<h2 id="the-road-ahead">The Road Ahead</h2>
+<p>The codebase-memory-mcp project is actively developed and has an exciting roadmap: ### Planned Features</p>
+<ul>
+<li><strong>Enhanced natural language support</strong>: Better integration with LLM-based code understanding</li>
+<li><strong>Multi-repo indexing</strong>: Support for monorepos and related repositories</li>
+<li><strong>Plugin system</strong>: Extensible architecture for custom analysis tools</li>
+<li><strong>Cloud deployment</strong>: Optional cloud-hosted indexing for distributed teams</li>
+<li><strong>IDE integration</strong>: Native plugins for VS Code, JetBrains IDEs, and others</li>
+</ul>
+<h3 id="community-and-ecosystem">Community and Ecosystem</h3>
+<p>With over 570 forks and 111 open issues, the community is growing rapidly. The project maintains active discussions on GitHub and has a growing ecosystem of extensions and integrations.</p>
+<h2 id="getting-started-today">Getting Started Today</h2>
+<p>Ready to experience the future of code intelligence? Here&rsquo;s how to get started: 1. <strong>Download</strong>: Visit <a href="https://github.com/DeusData/codebase-memory-mcp/releases/latest">GitHub releases</a>
+2. <strong>Install</strong>: Run <code>./codebase-memory-mcp install</code>
+3. <strong>Configure</strong>: Choose your AI coding agent
+4. <strong>Explore</strong>: Start using the 14 MCP tools</p>
+<p>Whether you&rsquo;re a solo developer looking to improve your coding workflow or an enterprise team seeking better code understanding, codebase-memory-mcp offers a powerful solution that&rsquo;s easy to deploy and impossible to ignore.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="q-what-programming-languages-does-codebase-memory-mcp-support">Q: What programming languages does codebase-memory-mcp support?</h3>
+<p>Codebase-memory-mcp supports <strong>158 programming languages</strong> out of the box, including Python, JavaScript, TypeScript, Java, C++, Go, Rust, PHP, Ruby, and many more. The tree-sitter grammars are vendored directly into the binary, so there are no runtime dependency issues.</p>
+<h3 id="q-how-does-codebase-memory-mcp-compare-to-traditional-code-search-tools">Q: How does codebase-memory-mcp compare to traditional code search tools?</h3>
+<p>Traditional code search tools like grep or ripgrep excel at text matching but lack structural understanding. Codebase-memory-mcp builds a knowledge graph that understands code relationships, allowing it to answer questions like &ldquo;which functions call this one?&rdquo; or &ldquo;what classes inherit from this base class?&rdquo; — questions that text search cannot answer.</p>
+<h3 id="q-is-my-code-sent-to-any-external-servers">Q: Is my code sent to any external servers?</h3>
+<p>No. All processing happens <strong>100% locally</strong> on your machine. Your code never leaves your computer, and no API keys are required. The model runs entirely offline once installed.</p>
+<h3 id="q-can-i-use-codebase-memory-mcp-with-my-existing-ai-coding-agent">Q: Can I use codebase-memory-mcp with my existing AI coding agent?</h3>
+<p>Yes! The <code>install</code> command automatically detects and configures support for 11 popular AI coding agents including Claude Code, Codex CLI, Gemini CLI, Zed, OpenCode, and others. Even if your agent isn&rsquo;t listed, manual MCP configuration is straightforward.</p>
+<h3 id="q-how-large-can-the-codebase-be-before-performance-degrades">Q: How large can the codebase be before performance degrades?</h3>
+<p>The system is designed to handle very large codebases efficiently. In benchmarks, it indexed the Linux kernel (28 million lines of code, 75,000 files) in just 3 minutes. For typical projects, indexing completes in seconds to minutes depending on size.</p>
+<h3 id="q-does-codebase-memory-mcp-work-with-monorepos">Q: Does codebase-memory-mcp work with monorepos?</h3>
+<p>Yes, the system handles monorepos effectively. You can specify multiple project roots or use the ````&ndash;include``` flag to target specific directories within a larger repository structure.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Codebase-memory-mcp represents a quantum leap in how AI coding agents interact with code. By transforming codebases into structured knowledge graphs, it enables AI agents to understand code structure, relationships, and dependencies in ways that traditional text-based approaches simply cannot match.</p>
+<p>With its impressive performance benchmarks, extensive language support, and seamless integration with popular AI coding agents, it&rsquo;s no wonder this project has gained 7,100+ stars in just a few months.</p>
+<p>For developers serious about leveraging AI for software development, codebase-memory-mcp is not just a nice-to-have — it&quot;s becoming essential infrastructure.</p>
+<hr>
+<p><strong>Sources:</strong></p>
+<ul>
+<li><a href="https://github.com/DeusData/codebase-memory-mcp">GitHub Repository</a></li>
+<li><a href="https://arxiv.org/abs/2603.27277">Research Paper</a></li>
+<li><a href="https://tree-sitter.github.io/tree-sitter/">Tree-Sitter Documentation</a></li>
+<li><a href="https://modelcontextprotocol.io/">Model Context Protocol</a></li>
+</ul>
+<p><strong>CTA:</strong> Join the <a href="https://t.me/DIBI8_Group/2">DIBI8 Telegram group</a> for more AI development insights and tool reviews!</p>
+<p><strong>Affiliate Links:</strong></p>
+<ul>
+<li><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> - Host your development projects</li>
+<li><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> - Reliable hosting for your tools</li>
+<li><a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a> - Proxy solutions for web scraping</li>
+</ul>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Codebase-Memory-MCP: High-Performance Code Intelligence for AI Coding Agents&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-06-19&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-06-19&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/codebase-memory-mcp-high-performance-code-intelligence%22">https://dibi8.com/resources/codebase-memory-mcp-high-performance-code-intelligence"</a>
+}
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/codebase-memory-mcp-high-performance-code-intelligence/">free-mcp-tools-top10-2026</a></li>
+<li><a href="/ai-coding-agents/codebase-memory-mcp-high-performance-code-intelligence/">impeccable-ai-design-language-harness-quality-ui</a></li>
+<li><a href="/ai-coding-agents/codebase-memory-mcp-high-performance-code-intelligence/">cc-switch-all-in-one-ai-coding-agent-manager</a></li>
+<li><a href="/ai-coding-agents/codebase-memory-mcp-high-performance-code-intelligence/">prompts-chat</a></li>
+<li><a href="/ai-coding-agents/codebase-memory-mcp-high-performance-code-intelligence/">moneyprinterturbo-one-click-ai-video-generator</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fcodebase-memory-mcp-high-performance-code-intelligence%2f&text=Codebase-Memory-MCP%3a%20High-Performance%20Code%20Intelligence%20for%20AI%20Coding%20Agents" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fcodebase-memory-mcp-high-performance-code-intelligence%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

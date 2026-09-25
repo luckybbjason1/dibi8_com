@@ -1,0 +1,511 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Code Subagent Patterns: 5 Multi-Agent Workflows That Save Hours Every Day (2026) | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/claude-code-subagent-patterns-multi-agent-workflows-2026/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Claude Code Subagent Patterns: 5 Multi-Agent Workflows That Save Hours Every Day (2026)</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Claude Code Subagent Patterns: 5 Multi-Agent Workflows That Save Hours Every Day (2026)</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;Claude Code Subagent Patterns: 5 Multi-Agent Workflows T&hellip;
+description: &ldquo;Technical guide and comparison&rdquo;
+date: 2026-05-28T00:00:00+08:00
+lastmod: 2026-05-29T00:00:00+08:00
+tech_stack: [&lsquo;Claude Code&rsquo;, &lsquo;Agent SDK&rsquo;, CLI, Bash]
+application_domain: LLM Frameworks
+source_version: &rsquo;&rsquo;
+licensing_model: Commercial (Anthropic)
+license_type: Proprietary
+file_size: &rsquo;&rsquo;
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-28&rdquo;
+draft: false
+categories: [&ldquo;llm-frameworks&rdquo;]
+tags: [&ldquo;claude-code&rdquo;, &ldquo;subagents&rdquo;, &ldquo;multi-agent&rdquo;, &ldquo;ai-coding-agents&rdquo;, &ldquo;llm-frameworks&rdquo;, &ldquo;developer-tools&rdquo;, &ldquo;agent-sdk&rdquo;]
+aliases:</p>
+<ul>
+<li>/posts/claude-code-subagent-patterns/
+faq: - q: &ldquo;What exactly is a subagent in Claude Code, and how is it different from running another instance of the CLI?&rdquo;
+a: &ldquo;A subagent is a sandboxed Claude conversation spawned from within an active Claude session via the Agent (Task) tool. The parent only sees the subagent&rsquo;s final report — not the intermediate tool calls, file reads, or thinking. This is the key difference from launching a second CLI: the parent&rsquo;s context window is protected from the subagent&rsquo;s exploration noise. Subagents are spawned for parallel research, deep code exploration, and isolated experiments where you don&rsquo;t want the parent&rsquo;s working memory polluted.&rdquo;</li>
+<li>q: &ldquo;When should I NOT use a subagent and just keep working in the parent session?&rdquo;
+a: &ldquo;Skip subagents for trivial lookups where the parent already has the file open or the context loaded, for sequential edits where you need to see each intermediate state, and for tightly-coupled changes where the subagent would need to communicate back-and-forth (subagents are one-shot — they return a single report). The rule of thumb: if you can answer it in three or fewer tool calls from your current state, do it inline.&rdquo;</li>
+<li>q: &ldquo;How do I run multiple subagents in parallel safely?&rdquo;
+a: &ldquo;Invoke them in a single message with multiple Agent tool calls. The harness fans them out concurrently. Safety considerations: pass disjoint scopes (e.g., &lsquo;subagent A audits /auth/, B audits /payments/&rsquo;), avoid having two subagents write to the same file, and use git worktrees when subagents need to make non-trivial edits to overlapping code (each worktree gives a subagent its own working tree to avoid interference).&rdquo;</li>
+<li>q: &ldquo;What&rsquo;s the failure mode I should watch for with subagent-driven development?&rdquo;
+a: &ldquo;Subagents return summaries — they describe what they intended to do, not necessarily what they did. The most common failure is treating the subagent&rsquo;s report as ground truth without verification. Always check the actual file changes (git diff) or test results, not the prose summary. A subagent claiming &lsquo;I refactored the auth module&rsquo; might have made shallow edits that pass type-checking but break runtime behavior.&rdquo;</li>
+<li>q: &ldquo;Can I build my own specialized subagents, or am I stuck with the built-in ones?&rdquo;
+a: &ldquo;Claude Code supports custom agent definitions through the Agent SDK and agent frontmatter files. You can ship a team-specific &lsquo;database-migration-reviewer&rsquo; or &lsquo;security-auditor&rsquo; as a markdown file with a description, system prompt, and tool allowlist. When the parent agent decides to delegate, it can pick your custom type. This is how teams encode review checklists, compliance gates, and domain expertise into reusable agent personalities.&rdquo;</li>
+<li>q: &ldquo;How does Claude Code subagent pricing work — am I paying separately for each one?&rdquo;
+a: &ldquo;Each subagent invocation consumes tokens like any other Claude conversation. The cost is roughly the subagent&rsquo;s full context (system prompt + tools schema + task prompt + thinking + final report). For Pro and Max plans, subagent usage counts against the same usage allowance as the parent session. For API users, the cost is straightforward per-token billing. The savings come from offloading exploration that would otherwise bloat your parent context — you pay for the subagent, but your main session stays fast and focused.&rdquo;</li>
+</ul>
+<hr>
+<h1 id="claude-code-subagent-patterns-5-multi-agent-workflows-that-save-hours-every-day-2026">Claude Code Subagent Patterns: 5 Multi-Agent Workflows That Save Hours Every Day (2026)</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Single-threaded AI coding hit a wall in late 2025. You&rsquo;d ask Claude to &ldquo;refactor the payments module,&rdquo; it would read 30 files, fill up its context window with exploration, and then start making edits with half the working memory it needed. Half a year and one paradigm shift later, the answer turned out to be embarrassingly simple: <strong>stop doing everything in one conversation</strong>.</p>
+<p>This article walks through five Claude Code subagent patterns that have proven their worth in daily production use — across solo indie dev workflows, multi-engineer teams, and AI-assisted research pipelines. Each pattern includes the actual prompt shape, the failure mode it avoids, and the tradeoffs you accept by adopting it. None of these are theoretical. They&rsquo;re the patterns we use to ship faster without burning out our context windows.</p>
+<p>If you&rsquo;re already using Claude Code via the <a href="https://docs.anthropic.com/en/docs/claude-code">official CLI</a> and want to graduate from &ldquo;one big conversation&rdquo; to coordinated multi-agent workflows, this is the playbook. Compare with the <a href="/resources/llm-frameworks/superpowers/">Superpowers framework</a> and <a href="/vs/claude-code-vs-aider/">Aider&rsquo;s solo-agent model</a> to see how the subagent approach differs philosophically.</p>
+<h2 id="pattern-1-parallel-research-fan-out">Pattern 1: Parallel Research Fan-Out</h2>
+<p><strong>Problem.</strong> You need to answer &ldquo;where in the codebase do we handle X?&rdquo; and &ldquo;what&rsquo;s our pattern for Y?&rdquo; and &ldquo;are there any usages of deprecated function Z?&rdquo; — three independent questions. Doing them sequentially in your parent conversation means three rounds of file reads and three context-window injections. By the time you have all three answers, your parent has 40k tokens of grep output and no headroom for the actual work.</p>
+<p><strong>Pattern.</strong> Spawn three Explore subagents in parallel, one per question. Each runs in its own sandboxed context. Each returns a short report. Your parent sees three concise paragraphs instead of three grep dumps.</p>
+<pre tabindex="0"><code>Single message → 3 Agent tool calls: - Agent(&#34;Find auth handlers&#34;, subagent_type=&#34;Explore&#34;, prompt=&#34;...&#34;)
+  - Agent(&#34;Map state management&#34;, subagent_type=&#34;Explore&#34;, prompt=&#34;...&#34;)
+  - Agent(&#34;Find deprecated fn Z usages&#34;, subagent_type=&#34;Explore&#34;, prompt=&#34;...&#34;)
+</code></pre><p><strong>Failure mode it avoids.</strong> Context window bloat. Your parent stays light and can hold the actual implementation conversation.</p>
+<p><strong>Tradeoff.</strong> You pay for three subagent invocations instead of one parent conversation. For non-trivial searches the math wins — Explore subagents fan out across many tools and return only the synthesized answer.</p>
+<h2 id="pattern-2-worktree-isolation-for-risky-edits">Pattern 2: Worktree Isolation for Risky Edits</h2>
+<p><strong>Problem.</strong> You want a subagent to try a refactor, but if it goes sideways you don&rsquo;t want to manually <code>git reset --hard</code>. You also want the subagent to be able to run tests without interfering with your active changes in the main worktree.</p>
+<p><strong>Pattern.</strong> Use the worktree isolation parameter on the Agent invocation. The subagent operates in a temporary git worktree branched off your current state. If it makes changes, you get back the worktree path and can review, cherry-pick, or discard at your leisure. If it makes no changes, the worktree is auto-cleaned.</p>
+<pre tabindex="0"><code>Agent({
+  description: &#34;Technical guide and comparison&#34;
+  isolation: &#34;worktree&#34;,
+  prompt: &#34;Refactor controllers/orders.rb to extract the validation logic...&#34;
+})
+</code></pre><p><strong>Failure mode it avoids.</strong> Half-done refactors that contaminate your working tree before you&rsquo;ve had a chance to evaluate.</p>
+<p><strong>Tradeoff.</strong> Some scenarios — like adding a single function that the parent needs to immediately call — don&rsquo;t benefit from worktree isolation because you&rsquo;d just have to merge back anyway. Reserve this for exploratory or risky changes.</p>
+<h2 id="pattern-3-specialist-delegation">Pattern 3: Specialist Delegation</h2>
+<p><strong>Problem.</strong> Code review, security audits, accessibility audits, and SQL query optimization all benefit from a focused mindset that&rsquo;s hard to maintain when you&rsquo;re also writing the feature. Generic Claude is good at all of these, but specialized prompting is better.</p>
+<p><strong>Pattern.</strong> Use the <code>subagent_type</code> parameter to delegate to specialists. A <code>code-reviewer</code> subagent reads the diff and reports findings with confidence levels. A security-auditor reads the same diff with threat-modeling glasses on. You stay in your parent conversation building the feature.</p>
+<pre tabindex="0"><code>Agent({
+  description: &#34;Technical guide and comparison&#34;
+  subagent_type: &#34;code-reviewer&#34;,
+  prompt: &#34;Review the changes on branch feat/payment-gateway. I want a second
+   opinion on the retry logic — I&#39;ve checked idempotency but want
+   independent verification. Report: is this safe under concurrent failures?&#34;
+})
+</code></pre><p><strong>Failure mode it avoids.</strong> The &ldquo;I wrote it so it must be right&rdquo; blind spot. A separate agent with no context from your conversation is genuinely independent.</p>
+<p><strong>Tradeoff.</strong> Specialists have narrower toolkits than the general-purpose agent. Don&rsquo;t ask a code-reviewer to also generate the migration script.</p>
+<h2 id="pattern-4-context-window-protection-on-long-sessions">Pattern 4: Context Window Protection on Long Sessions</h2>
+<p><strong>Problem.</strong> You&rsquo;re four hours into a debugging session. Your parent context is heavy with stack traces, log dumps, and dead-end hypothesis branches. You need to &ldquo;go check something&rdquo; that requires reading 8 files. Doing it inline will tip you into compression and you&rsquo;ll lose the load-bearing context that holds your debugging state together.</p>
+<p><strong>Pattern.</strong> Treat your parent session as the strategic layer and push every exploratory dive to a subagent. The parent says &ldquo;go figure out X&rdquo; — the subagent returns &ldquo;the answer is Y, here&rsquo;s the one-line evidence.&rdquo; Your debugging state stays intact.</p>
+<p>This is the pattern that pays for itself the fastest. A two-hour debugging session that would have hit context compression at hour 1 can run cleanly for the full duration when exploration is offloaded.</p>
+<p><strong>Failure mode it avoids.</strong> Premature context compression mid-debug, which often drops the original symptom or the key reproduction step.</p>
+<p><strong>Tradeoff.</strong> You lose the ability to &ldquo;see&rdquo; the exploration. If the subagent&rsquo;s report is incomplete you have to spawn another one with a tighter prompt rather than asking a follow-up.</p>
+<h2 id="pattern-5-pipeline-orchestration-with-custom-agents">Pattern 5: Pipeline Orchestration with Custom Agents</h2>
+<p><strong>Problem.</strong> Your team has a documented review checklist with eight steps. Junior engineers skip steps 3, 5, and 7 when in a hurry. You want the checklist enforced without becoming the PR-review police.</p>
+<p><strong>Pattern.</strong> Codify the checklist as a custom subagent in your repo. Anyone with Claude Code installed can invoke it. The checklist becomes executable: it produces a structured report against each step.</p>
+<pre tabindex="0"><code>.claude/agents/migration-reviewer.md  # custom subagent definition
+.claude/agents/security-gate.md
+.claude/agents/perf-budget-checker.md
+````
+
+When a team member runs the orchestrator, it can fan out to all three: migration-reviewer audits SQL, security-gate audits auth touches, perf-budget-checker audits anything that touches the request hot path. Each returns a structured report. The orchestrator aggregates.
+
+**Failure mode it avoids.** Drift between &#34;the team&#39;s review standards&#34; and &#34;what actually gets checked when someone&#39;s in a hurry.&#34;
+
+**Tradeoff.** Custom agents are version-controlled artifacts. They need maintenance like any other code. Schedule a quarterly review or they rot.
+
+## The Underlying Principle
+
+All five patterns share one design intuition: **your parent conversation is a scarce resource, and subagents are the way to spend without exhausting it**. The parent is where the model is doing the thinking that matters. Subagents are how it gets the inputs without paying for them out of its working memory.
+
+This is the opposite of the &#34;one super-agent does everything&#34; instinct that dominated 2024-early 2025. That model collapsed under context pressure. The 2026 answer is delegated specialization with strict information boundaries — a small council instead of a single mind.
+
+## Setting Up Production-Ready Claude Code
+
+To run multi-agent workflows at scale you need three pieces of infrastructure: 1. **A reliable host for long-running sessions.** If you&#39;re running Claude Code in CI or against a server-side codebase, you need a VPS that won&#39;t drop your SSH session or get throttled. **** — Hong Kong VPS with low-latency access from mainland China and stable BGP routing. Same IDC that hosts dibi8.com, so we run our own multi-agent pipelines on it. Solid value tier for $5-12/month.
+
+2. **A cloud playground for parallel experiments.** When you&#39;re fanning out 6+ subagents that each need their own worktree, you want spare CPU. **** — $200 free credit for 60 days across 14+ global regions. Indie devs use this to host Claude Code orchestrators alongside their main app without resource contention.
+
+3. **A skills bundle.** If you&#39;re new to Claude Code subagents, the steepest part of the curve is writing custom agent definitions that don&#39;t fall over. We packaged five battle-tested skills as a $19 bundle on Gumroad — see the floating CTA in the corner — including the orchestrator prompts that ship the patterns above.
+
+## Related Reading
+
+- [OpenAI Codex CLI vs Claude Code](/vs/openai-codex-cli-vs-claude-code/) — How Codex&#39;s solo-agent approach compares to Claude Code&#39;s subagent model.
+- [Gemini CLI vs Claude Code](/vs/gemini-cli-vs-claude-code/) — Gemini&#39;s parallel research strategy vs Claude Code subagent fan-out.
+- [Cursor vs Claude Code](/vs/cursor-vs-claude-code/) — IDE-embedded agent vs CLI-driven orchestrator.
+- [MCP Servers 2026 Rankings](/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) — How MCP servers extend subagent capability beyond the bundled tool set.
+- [AI Coding Agent Landscape](/resources/llm-frameworks/ai-coding-agent-landscape-2026-skills-mcp-opensource/) — The broader ecosystem picture.
+
+## Verdict
+
+Subagents are not optional in 2026. If you&#39;re still doing every task in a single Claude conversation, you&#39;re paying for the privilege of premature context compression and lost reasoning state. The five patterns above — parallel fan-out, worktree isolation, specialist delegation, context protection, pipeline orchestration — each cost roughly an hour to learn and each saves multiples of that per week.
+
+Start with Pattern 1 (parallel research fan-out) — it&#34;s the lowest friction adoption point and the gains are immediate. Layer in the others as your sessions get longer and your tasks get heavier.
+
+The instinct to &#34;just keep typing into the main session&#34; dies hard. Override it. Spawn the subagent.
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;Claude Code Subagent Patterns: 5 Multi-Agent Workflows That Save Hours Every Day (2026)&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-28&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-28&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/claude-code-subagent-patterns-multi-agent-workflows-2026&#34;
+  }
+}
+&lt;/script&gt;
+
+
+* * *
+## Related Articles
+
+- [claude-code-vs-cline](claude-code-subagent-patterns-multi-agent-workflows-2026)
+- [gemini-cli-vs-claude-code](claude-code-subagent-patterns-multi-agent-workflows-2026)
+- [cc-switch-all-in-one-ai-coding-agent-manager](claude-code-subagent-patterns-multi-agent-workflows-2026)
+- [claude-code-vs-aider](claude-code-subagent-patterns-multi-agent-workflows-2026)
+- [cursor-vs-claude-code](claude-code-subagent-patterns-multi-agent-workflows-2026)
+
+
+* * *
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+
+## Frequently Asked Questions (FAQ)
+
+**问：AI Agent和传统自动化有什么区别？**
+
+AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+
+**问：如何选择合适的AI Agent框架？**
+
+考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+
+**问：AI Agent的安全性如何保证？**
+
+实施权限最小化、输入验证、审计日志、以及定期安全评估。
+
+**问：AI Agent的学习成本有多高？**
+
+入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+
+**问：能否自定义AI Agent的行为？**
+
+是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</code></pre>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fclaude-code-subagent-patterns-multi-agent-workflows-2026%2f&text=Claude%20Code%20Subagent%20Patterns%3a%205%20Multi-Agent%20Workflows%20That%20Save%20Hours%20Every%20Day%20%282026%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fclaude-code-subagent-patterns-multi-agent-workflows-2026%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

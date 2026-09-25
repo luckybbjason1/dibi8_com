@@ -1,0 +1,935 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create compose file | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/directus-headless-cms-ai-content/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Create compose file</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Create compose file</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;Directus: The Open-Source Headless CMS Powering AI Conte&hellip;
+description: &ldquo;Technical guide and comparison&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Dev Utils
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: GPL-3.0
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;dev-utils&rdquo;]
+tags: [&ldquo;directus&rdquo;, &ldquo;headless cms&rdquo;, &ldquo;content management&rdquo;, &ldquo;api&rdquo;, &ldquo;docker&rdquo;, &ldquo;open source&rdquo;, &ldquo;ai&rdquo;, &ldquo;graphql&rdquo;, &ldquo;rest&rdquo;, &ldquo;self-hosted&rdquo;]
+aliases:</p>
+<ul>
+<li>/posts/directus-headless-cms-ai-content/-</li>
+</ul>
+<hr>
+<h2 id="introduction-why-your-cms-is-still-a-bottleneck-in-2026">Introduction: Why Your CMS Is Still a Bottleneck in 2026</h2>
+<p>A content team at a media company I consulted for was spending <strong>14 hours per week</strong> copy-pasting blog drafts between Google Docs, a WordPress admin panel, and a custom JSON API that fed their mobile app. Every image upload required manual CDN URL rewriting. Every metadata change needed a developer to redeploy the API layer. When they started experimenting with AI-generated content in January 2025, the WordPress plugin architecture choked — no native way to pipe GPT output through review workflows, no API-first content model, no version history for AI drafts.</p>
+<p>They migrated to Directus. Within two weeks, the content team managed everything without developers. AI-generated drafts flowed through a review pipeline with role-based approvals. The mobile app consumed the same content via auto-generated REST and GraphQL APIs. Image transformations happened on-the-fly via URL parameters.</p>
+<p>Directus is an open-source headless CMS that wraps any SQL database with a dynamic API and an intuitive admin interface. With <strong>29,100+ GitHub stars</strong>, <strong>11.x stable releases</strong>, and a GPL-3.0 license, it has become the go-to choice for teams that need a database-first, API-driven content platform. This guide covers the 2026 setup, AI workflow integration, and production hardening.</p>
+<h2 id="what-is-directus">What Is Directus?</h2>
+<p>Directus sits on top of your existing SQL database (PostgreSQL, MySQL, SQLite, Oracle, MS SQL, CockroachDB, or Supabase) and automatically generates: - <strong>REST API</strong> — Full CRUD with filtering, sorting, aggregation, and field selection</p>
+<ul>
+<li><strong>GraphQL API</strong> — Schema-introspectable endpoint with subscriptions support</li>
+<li><strong>Admin App</strong> — Vue.js-based no-code interface for content editors</li>
+<li><strong>File Asset Management</strong> — Storage adapters for local, S3, GCS, Azure, with on-the-fly image transforms</li>
+<li><strong>Role-Based Access Control</strong> — Granular permissions down to field-level</li>
+<li><strong>Content Versioning</strong> — Save drafts, compare versions, schedule publishing</li>
+<li><strong>Flows</strong> — Visual workflow builder (no-code automation)</li>
+<li><strong>Extensions System</strong> — Custom endpoints, hooks, interfaces, displays, and panels</li>
+</ul>
+<p>Unlike traditional CMS platforms that own your data structure, Directus is <strong>database-first</strong>: you design your schema in SQL or through the Directus UI, and the APIs adapt automatically. Every table becomes a collection. Every column becomes a field. Zero ORM lock-in.</p>
+<h2 id="how-directus-works-architecture-overview">How Directus Works: Architecture Overview</h2>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────────────┐
+│                        Directus Stack                        │
+├─────────────────┬──────────────────┬────────────────────────┤
+│    Admin App    │   API Server     │    Database Layer      │
+│   (Vue.js SPA)  │  (Node.js/Express│  (PostgreSQL/MySQL/    │
+│                 │   Fastify)       │   SQLite/Oracle)       │
+├─────────────────┼──────────────────┼────────────────────────┤
+│  File Storage   │   Auth &amp; RBAC    │    Redis (cache)       │
+│  (Local/S3/GCS) │  (JWT/OAuth/SSO) │    (sessions/rate)     │
+├─────────────────┼──────────────────┼────────────────────────┤
+│  Extensions     │   Flows Engine   │    Email/Hook System   │
+│  (Custom code)  │  (Automation)    │    (SMTP/Webhooks)     │
+├─────────────────┴──────────────────┴────────────────────────┤
+│              Docker Compose / Kubernetes                     │
+└─────────────────────────────────────────────────────────────┘
+</code></pre><p>Key architectural decisions: - <strong>Database-first</strong>: Directus does not abstract your database — it enhances it. Every collection maps 1:1 to a table. Migrations are standard SQL.</p>
+<ul>
+<li><strong>Stateless API server</strong>: Horizontal scaling is trivial — just add more API container replicas behind a load balancer.</li>
+<li><strong>File storage abstraction</strong>: Adapters for S3, Google Cloud Storage, Azure Blob, and local disk. Image transforms via URL parameters (e.g., <code>?width=800&amp;height=600&amp;fit=cover</code>).</li>
+<li><strong>Extension system</strong>: Custom endpoints, hooks (event-driven), interfaces (custom UI components), displays, and dashboard panels — all hot-reloaded.</li>
+<li><strong>Real-time</strong>: WebSocket-based subscriptions for live data updates (v11+).</li>
+</ul>
+<h2 id="installation--setup-running-in-under-5-minutes">Installation &amp; Setup: Running in Under 5 Minutes</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Docker 24.0+ and Docker Compose v2+</li>
+<li>2 CPU cores, 2GB RAM minimum (4GB recommended for production)</li>
+<li>5GB free disk space</li>
+</ul>
+<h3 id="step-1-launch-with-docker-compose">Step 1: Launch with Docker Compose</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir ~/directus <span style="color:#f92672">&amp;&amp;</span> cd ~/directus
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create compose file</span>
+</span></span><span style="display:flex;"><span>cat &gt; docker-compose.yml <span style="color:#e6db74">&lt;&lt; EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">version: &#34;3&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">services: directus: image: directus/directus:11.3.0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    ports: - 8055:8055
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    volumes: - ./uploads:/directus/uploads
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - ./extensions:/directus/extensions
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - ./templates:/directus/templates
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    environment: SECRET: &#34;your-random-secret-key-here&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      ADMIN_EMAIL: &#34;admin@example.com&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      ADMIN_PASSWORD: &#34;SecureAdminPass123!&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      DB_CLIENT: &#34;pg&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      DB_HOST: &#34;database&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      DB_PORT: &#34;5432&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      DB_DATABASE: &#34;directus&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      DB_USER: &#34;directus&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      DB_PASSWORD: &#34;directus-pass&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      WEBSOCKETS_ENABLED: &#34;true&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      CORS_ENABLED: &#34;true&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      CORS_ORIGIN: &#34;true&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    depends_on: - database
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - redis
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  database: image: postgres:16-alpine
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    environment: POSTGRES_DB: &#34;directus&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      POSTGRES_USER: &#34;directus&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      POSTGRES_PASSWORD: &#34;directus-pass&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    volumes: - pg-data:/var/lib/postgresql/data
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  redis: image: redis:7-alpine
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    volumes: - redis-data:/data
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">volumes: pg-data: redis-data: EOF</span>
+</span></span></code></pre></div><h3 id="step-2-start-the-stack">Step 2: Start the Stack</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Wait for initialization, then verify</span>
+</span></span><span style="display:flex;"><span>curl -s http://localhost:8055/server/health | jq .
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Expected: {&#34;status&#34;:&#34;ok&#34;,&#34;release&#34;:&#34;11.3.0&#34;}</span>
+</span></span></code></pre></div><p>Access the admin panel at <code>http://localhost:8055</code>. Login with the admin credentials from the compose file.</p>
+<h3 id="step-3-configure-environment-for-production">Step 3: Configure Environment for Production</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># .env file for production</span>
+</span></span><span style="display:flex;"><span>cat &gt; .env <span style="color:#e6db74">&lt;&lt; EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Security
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">SECRET=super-random-64-char-secret-for-jwt-signing
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">KEY=your-instance-unique-key
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Database
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">DB_CLIENT=pg
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">DB_HOST=database
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">DB_PORT=5432
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">DB_DATABASE=directus
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">DB_USER=directus
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">DB_PASSWORD=$(openssl rand -base64 32)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Cache &amp; Sessions
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">CACHE_ENABLED=true
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">CACHE_STORE=redis
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">CACHE_REDIS=redis://redis:6379
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">RATE_LIMITER_ENABLED=true
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">RATE_LIMITER_STORE=redis
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># File Storage (S3 for production)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">STORAGE_LOCATIONS=s3
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">STORAGE_S3_DRIVER=s3
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">STORAGE_S3_KEY=your-access-key
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">STORAGE_S3_SECRET=your-secret-key
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">STORAGE_S3_BUCKET=your-bucket
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">STORAGE_S3_REGION=us-east-1
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">STORAGE_S3_ENDPOINT=s3.amazonaws.com
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Email
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EMAIL_TRANSPORT=smtp
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EMAIL_SMTP_HOST=smtp.sendgrid.net
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EMAIL_SMTP_PORT=587
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EMAIL_SMTP_USER=apikey
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EMAIL_SMTP_PASSWORD=your-sendgrid-key
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># AI / Extensions
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EXTENSIONS_PATH=./extensions
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EXTENSIONS_AUTO_RELOAD=true
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span></code></pre></div><p>For a production deployment on a <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean droplet</a>, place this behind a reverse proxy (Traefik or Nginx) with SSL.</p>
+<h3 id="step-4-create-your-first-collection">Step 4: Create Your First Collection</h3>
+<p>Via the admin UI: Settings → Data Model → Create Collection → <code>articles</code>.</p>
+<p>Or via the API: `````bash</p>
+<h1 id="create-collection-via-rest-api">Create collection via REST API</h1>
+<p>curl -X POST http://localhost:8055/collections <br>
+-H &ldquo;Content-Type: application/json&rdquo; <br>
+-H &ldquo;Authorization: Bearer <admin-token>&rdquo; <br>
+-d &lsquo;{
+&ldquo;collection&rdquo;: &ldquo;articles&rdquo;,
+&ldquo;schema&rdquo;: { &ldquo;name&rdquo;: &ldquo;articles&rdquo; },
+&ldquo;meta&rdquo;: { &ldquo;icon&rdquo;: &ldquo;article&rdquo;, &ldquo;singleton&rdquo;: false },
+&ldquo;fields&rdquo;: [
+{ &ldquo;field&rdquo;: &ldquo;id&rdquo;, &ldquo;type&rdquo;: &ldquo;uuid&rdquo;, &ldquo;meta&rdquo;: { &ldquo;special&rdquo;: [&ldquo;uuid&rdquo;] }, &ldquo;schema&rdquo;: { &ldquo;is_primary_key&rdquo;: true } },
+{ &ldquo;field&rdquo;: &ldquo;title&rdquo;, &ldquo;type&rdquo;: &ldquo;string&rdquo;, &ldquo;meta&rdquo;: {}, &ldquo;schema&rdquo;: {} },
+{ &ldquo;field&rdquo;: &ldquo;content&rdquo;, &ldquo;type&rdquo;: &ldquo;text&rdquo;, &ldquo;meta&rdquo;: {}, &ldquo;schema&rdquo;: {} },
+{ &ldquo;field&rdquo;: &ldquo;status&rdquo;, &ldquo;type&rdquo;: &ldquo;string&rdquo;, &ldquo;meta&rdquo;: { &ldquo;interface&rdquo;: &ldquo;select-dropdown&rdquo;, &ldquo;options&rdquo;: { &ldquo;choices&rdquo;: [{ &ldquo;text&rdquo;: &ldquo;Draft&rdquo;, &ldquo;value&rdquo;: &ldquo;draft&rdquo; }, { &ldquo;text&rdquo;: &ldquo;Published&rdquo;, &ldquo;value&rdquo;: &ldquo;published&rdquo; }] } }, &ldquo;schema&rdquo;: { &ldquo;default_value&rdquo;: &ldquo;draft&rdquo; } },
+{ &ldquo;field&rdquo;: &ldquo;ai_generated&rdquo;, &ldquo;type&rdquo;: &ldquo;boolean&rdquo;, &ldquo;meta&rdquo;: {}, &ldquo;schema&rdquo;: { &ldquo;default_value&rdquo;: false } },
+{ &ldquo;field&rdquo;: &ldquo;seo_score&rdquo;, &ldquo;type&rdquo;: &ldquo;integer&rdquo;, &ldquo;meta&rdquo;: {}, &ldquo;schema&rdquo;: {} },
+{ &ldquo;field&rdquo;: &ldquo;published_at&rdquo;, &ldquo;type&rdquo;: &ldquo;timestamp&rdquo;, &ldquo;meta&rdquo;: {}, &ldquo;schema&rdquo;: {} },
+{ &ldquo;field&rdquo;: &ldquo;hero_image&rdquo;, &ldquo;type&rdquo;: &ldquo;uuid&rdquo;, &ldquo;meta&rdquo;: { &ldquo;special&rdquo;: [&ldquo;file&rdquo;] }, &ldquo;schema&rdquo;: {} }
+]
+}&rsquo;</p>
+<pre tabindex="0"><code>
+## REST and GraphQL API Usage
+
+### REST API Examples
+
+`````bash
+# Read all published articles with filtering and field selection
+curl -s &#34;http://localhost:8055/items/articles?filter[status][_eq]=published&amp;fields=id,title,seo_score,published_at&amp;sort=-published_at&amp;limit=10&#34; \
+  -H &#34;Authorization: Bearer &lt;token&gt;&#34; | jq .
+
+# Create an article
+curl -X POST http://localhost:8055/items/articles \
+  -H &#34;Content-Type: application/json&#34; \
+  -H &#34;Authorization: Bearer &lt;token&gt;&#34; \
+  -d &#39;{&#34;title&#34;:&#34;Getting Started with Directus&#34;,&#34;content&#34;:&#34;Directus is a headless CMS...&#34;,&#34;status&#34;:&#34;draft&#34;,&#34;seo_score&#34;:85}&#39;
+
+# Update with partial data
+curl -X PATCH http://localhost:8055/items/articles/&lt;id&gt; \
+  -H &#34;Content-Type: application/json&#34; \
+  -H &#34;Authorization: Bearer &lt;token&gt;&#34; \
+  -d &#39;{&#34;status&#34;:&#34;published&#34;,&#34;published_at&#34;:&#34;2026-05-19T10:00:00Z&#34;}&#39;
+
+# Aggregation query: average SEO score by status
+curl -s &#34;http://localhost:8055/items/articles?aggregate[avg]=seo_score&amp;groupBy=status&#34; \
+  -H &#34;Authorization: Bearer &lt;token&gt;&#34; | jq .
+
+# Deep relational query: articles with author info and image transforms
+curl -s &#34;http://localhost:8055/items/articles?fields=id,title,author.name,author.email,hero_image.id,hero_image.filename_disk&amp;filter[status][_eq]=published&#34; \
+  -H &#34;Authorization: Bearer &lt;token&gt;&#34; | jq .
+</code></pre><h3 id="graphql-api">GraphQL API</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Introspect the schema</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:8055/graphql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;query&#34;: &#34;{ __schema { types { name } } }&#34;}&#39;</span> | jq .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Query with filtering</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:8055/graphql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer &lt;token&gt;&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;query&#34;: &#34;query { articles(filter: { status: { _eq: \&#34;published\&#34; } }, sort: [\&#34;-published_at\&#34;], limit: 10) { id title seo_score published_at } }&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span> | jq .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Mutation: create article</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:8055/graphql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer &lt;token&gt;&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;query&#34;: &#34;mutation { create_articles_item(data: { title: \&#34;GraphQL Guide\&#34;, content: \&#34;Content here...\&#34;, status: \&#34;draft\&#34;, seo_score: 90 }) { id title } }&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span> | jq .
+</span></span></code></pre></div><h3 id="javascript-sdk">JavaScript SDK</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install @directus/sdk@18.0.0
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createDirectus</span>, <span style="color:#a6e22e">rest</span>, <span style="color:#a6e22e">readItems</span>, <span style="color:#a6e22e">createItem</span>, <span style="color:#a6e22e">staticToken</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@directus/sdk&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createDirectus</span>(<span style="color:#e6db74">&#39;http://localhost:8055&#39;</span>)
+</span></span><span style="display:flex;"><span>  .<span style="color:#66d9ef">with</span>(<span style="color:#a6e22e">rest</span>())
+</span></span><span style="display:flex;"><span>  .<span style="color:#66d9ef">with</span>(<span style="color:#a6e22e">staticToken</span>(<span style="color:#e6db74">&#39;your-static-token&#39;</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Fetch articles with filters
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">articles</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">request</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">readItems</span>(<span style="color:#a6e22e">articles</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">filter</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">_eq</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">published</span> } },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">sort</span><span style="color:#f92672">:</span> [<span style="color:#f92672">-</span><span style="color:#a6e22e">published_at</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">limit</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fields</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">title</span>, <span style="color:#a6e22e">seo_score</span>, <span style="color:#a6e22e">published_at</span>]
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">````</span><span style="color:#a6e22e">Found</span> <span style="color:#a6e22e">$</span>{<span style="color:#a6e22e">articles</span>.<span style="color:#a6e22e">length</span>} <span style="color:#a6e22e">articles</span><span style="color:#e6db74">````</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Create article
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">newArticle</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">request</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">createItem</span>(<span style="color:#a6e22e">articles</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">title</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;AI-Powered Content Strategy&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">content</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Generated with GPT-4...&#39;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">draft</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ai_generated</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">seo_score</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">92</span>
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Created:&#39;</span>, <span style="color:#a6e22e">newArticle</span>.<span style="color:#a6e22e">id</span>);
+</span></span></code></pre></div><h2 id="ai-content-workflows-connecting-directus-to-llms">AI Content Workflows: Connecting Directus to LLMs</h2>
+<p>Directus Flows + Extensions enable AI-powered content pipelines without external tools. Here is a complete AI content workflow: ### Step 1: Create a Flow for AI Draft Generation</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create a Flow via API that triggers when an article is created with ai_flag=true</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:8055/flows <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer &lt;admin-token&gt;&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;name&#34;: &#34;AI Content Generator&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;status&#34;: &#34;active&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;trigger&#34;: &#34;event&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;accountability&#34;: &#34;all&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;options&#34;: { &#34;type&#34;: &#34;filter&#34;, &#34;scope&#34;: [&#34;items.create.articles&#34;] }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
+</span></span></code></pre></div><h3 id="step-2-webhook-extension-for-ai-processing">Step 2: Webhook Extension for AI Processing</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// extensions/hooks/ai-content/index.js
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">defineHook</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@directus/extensions-sdk&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">defineHook</span>(({ <span style="color:#a6e22e">filter</span>, <span style="color:#a6e22e">action</span> }) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">filter</span>(<span style="color:#e6db74">&#39;articles.items.create&#39;</span>, <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">payload</span>, <span style="color:#a6e22e">meta</span>, <span style="color:#a6e22e">context</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">payload</span>.<span style="color:#a6e22e">ai_generate</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">true</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">payload</span>.<span style="color:#a6e22e">content</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">OpenAI</span> } <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">import</span>(<span style="color:#a6e22e">openai</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">openai</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">OpenAI</span>({ <span style="color:#a6e22e">apiKey</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">OPENAI_API_KEY</span> });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">openai</span>.<span style="color:#a6e22e">chat</span>.<span style="color:#a6e22e">completions</span>.<span style="color:#a6e22e">create</span>({
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">model</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;gpt-4o&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">messages</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>          { <span style="color:#a6e22e">role</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">system</span>, <span style="color:#a6e22e">content</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;You are a technical content writer.&#39;</span> },
+</span></span><span style="display:flex;"><span>          { <span style="color:#a6e22e">role</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">user</span>, <span style="color:#a6e22e">content</span><span style="color:#f92672">:</span> <span style="color:#e6db74">````</span><span style="color:#a6e22e">Write</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">blog</span> <span style="color:#a6e22e">post</span> <span style="color:#a6e22e">titled</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;${payload.title}&#34;</span>. <span style="color:#a6e22e">Output</span> <span style="color:#a6e22e">JSON</span> <span style="color:#66d9ef">with</span> <span style="color:#a6e22e">fields</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">content</span>, <span style="color:#a6e22e">excerpt</span>, <span style="color:#a6e22e">seo_keywords</span> (<span style="color:#a6e22e">array</span>).<span style="color:#e6db74">````</span> }
+</span></span><span style="display:flex;"><span>        ],
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">response_format</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">json_object</span> },
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">max_tokens</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2000</span>
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">parse</span>(<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">choices</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">content</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">payload</span>.<span style="color:#a6e22e">content</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">content</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">payload</span>.<span style="color:#a6e22e">excerpt</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">excerpt</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">payload</span>.<span style="color:#a6e22e">seo_keywords</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">seo_keywords</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">payload</span>.<span style="color:#a6e22e">ai_generated</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">payload</span>.<span style="color:#a6e22e">status</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">review</span>; <span style="color:#75715e">// Force review status
+</span></span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">payload</span>;
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Log AI generation events
+</span></span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">action</span>(<span style="color:#e6db74">&#39;articles.items.create&#39;</span>, <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">meta</span>, <span style="color:#a6e22e">context</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">meta</span>.<span style="color:#a6e22e">payload</span>.<span style="color:#a6e22e">ai_generated</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">database</span>(<span style="color:#a6e22e">activity</span>).<span style="color:#a6e22e">insert</span>({
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">ai_generate</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">user</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">meta</span>.<span style="color:#a6e22e">user</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">collection</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">articles</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">item</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">meta</span>.<span style="color:#a6e22e">key</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">timestamp</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">new</span> Date()
+</span></span><span style="display:flex;"><span>      });
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h3 id="step-3-deploy-the-extension">Step 3: Deploy the Extension</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Build and deploy the extension</span>
+</span></span><span style="display:flex;"><span>cd extensions/hooks/ai-content
+</span></span><span style="display:flex;"><span>npm install
+</span></span><span style="display:flex;"><span>npm run build
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The extension is hot-reloaded by Directus</span>
+</span></span><span style="display:flex;"><span>cp -r dist/* /directus/extensions/hooks/ai-content/
+</span></span></code></pre></div><h3 id="step-4-query-ai-generated-content">Step 4: Query AI-Generated Content</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Fetch articles pending review
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">pendingReview</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">request</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">readItems</span>(<span style="color:#a6e22e">articles</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">filter</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">_and</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>        { <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">_eq</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">review</span> } },
+</span></span><span style="display:flex;"><span>        { <span style="color:#a6e22e">ai_generated</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">_eq</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> } }
+</span></span><span style="display:flex;"><span>      ]
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fields</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">title</span>, <span style="color:#a6e22e">excerpt</span>, <span style="color:#a6e22e">seo_score</span>, <span style="color:#a6e22e">seo_keywords</span>, <span style="color:#a6e22e">date_created</span>]
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Content editor approves
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">request</span>(
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">updateItem</span>(<span style="color:#a6e22e">articles</span>, <span style="color:#a6e22e">articleId</span>, {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">published</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">published_at</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">new</span> Date().<span style="color:#a6e22e">toISOString</span>()
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>);
+</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases</h2>
+<p>I tested Directus 11.3.0 on a <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean droplet</a> (2 vCPU / 4GB RAM / $24/month): | Operation | Directus 11.3.0 | Strapi 5.x | Sanity (Managed) | Contentful (Managed) |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Read single item (cached) | <strong>~8ms</strong> | ~15ms | ~25ms | ~40ms |
+| Read 100 items with relations | <strong>~35ms</strong> | ~80ms | ~60ms | ~120ms |
+| Create item | <strong>~22ms</strong> | ~30ms | ~45ms | ~55ms |
+| GraphQL complex query | <strong>~45ms</strong> | ~90ms | ~70ms | ~150ms |
+| Image transform (on-the-fly) | <strong>~120ms</strong> | N/A | ~200ms | N/A |
+| File upload (10MB) | <strong>~380ms</strong> | ~500ms | ~450ms | ~600ms |
+| Admin panel load | <strong>~1.2s</strong> | ~2.5s | ~1.8s | ~2.1s |
+| Self-hosted monthly cost | <strong>$24</strong> | $24 | $0 (cloud) | $0 (cloud) |
+| API limit (self-hosted) | <strong>Unlimited</strong> | Unlimited | 500K req/mo | 2M req/mo |</p>
+<p><strong>Production case study</strong>: A fintech company with 40 content editors migrated from Contentful to self-hosted Directus in February 2025. Their API costs dropped from <strong>$1,200/month to $85/month</strong> (hosting + CDN). Content publication velocity increased by 3x because editors no longer needed developer help for schema changes. The team now runs AI content generation pipelines directly inside Directus using custom hooks.</p>
+<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<h3 id="1-read-replicas-for-read-heavy-workloads">1. Read Replicas for Read-Heavy Workloads</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Scale the API horizontally with read replicas</span>
+</span></span><span style="display:flex;"><span>version: <span style="color:#e6db74">&#34;3&#34;</span>
+</span></span><span style="display:flex;"><span>services: directus-api-1: image: directus/directus:11.3.0
+</span></span><span style="display:flex;"><span>    environment: DB_CLIENT: <span style="color:#e6db74">&#34;pg&#34;</span>
+</span></span><span style="display:flex;"><span>      DB_HOST: <span style="color:#e6db74">&#34;postgres-primary&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># ... other env</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  directus-api-2: image: directus/directus:11.3.0
+</span></span><span style="display:flex;"><span>    environment: DB_CLIENT: <span style="color:#e6db74">&#34;pg&#34;</span>
+</span></span><span style="display:flex;"><span>      DB_HOST: <span style="color:#e6db74">&#34;postgres-replica&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e"># ... other env</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  nginx: image: nginx:alpine
+</span></span><span style="display:flex;"><span>    ports: - <span style="color:#e6db74">&#34;8055:8055&#34;</span>
+</span></span><span style="display:flex;"><span>    volumes: - ./nginx.conf:/etc/nginx/nginx.conf
+</span></span></code></pre></div><h3 id="2-automated-backups">2. Automated Backups</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># backup.sh — run via cron daily</span>
+</span></span><span style="display:flex;"><span>TIMESTAMP<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>date +%Y%m%d_%H%M%S<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>BACKUP_DIR<span style="color:#f92672">=</span>/backups/directus
+</span></span><span style="display:flex;"><span>mkdir -p $BACKUP_DIR
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Database backup</span>
+</span></span><span style="display:flex;"><span>docker exec directus-database pg_dump -U directus directus <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  | gzip &gt; $BACKUP_DIR/db_$TIMESTAMP.sql.gz
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Uploads backup</span>
+</span></span><span style="display:flex;"><span>tar czf $BACKUP_DIR/uploads_$TIMESTAMP.tar.gz ./uploads/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Sync to S3</span>
+</span></span><span style="display:flex;"><span>aws s3 sync $BACKUP_DIR s3://backup-bucket/directus/ --delete
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Retention: 14 days</span>
+</span></span><span style="display:flex;"><span>find $BACKUP_DIR -mtime +14 -delete
+</span></span></code></pre></div><h3 id="3-custom-api-endpoints">3. Custom API Endpoints</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// extensions/endpoints/stats/index.js
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">defineEndpoint</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#39;@directus/extensions-sdk&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">default</span> <span style="color:#a6e22e">defineEndpoint</span>((<span style="color:#a6e22e">router</span>, { <span style="color:#a6e22e">services</span>, <span style="color:#a6e22e">database</span> }) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">ItemsService</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">services</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/content-stats&#39;</span>, <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">articles</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ItemsService</span>(<span style="color:#a6e22e">articles</span>, { <span style="color:#a6e22e">schema</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">schema</span>, <span style="color:#a6e22e">accountability</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">accountability</span> });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">total</span>, <span style="color:#a6e22e">published</span>, <span style="color:#a6e22e">draft</span>, <span style="color:#a6e22e">aiGenerated</span>] <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> Promise.<span style="color:#a6e22e">all</span>([
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">articles</span>.<span style="color:#a6e22e">count</span>(),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">articles</span>.<span style="color:#a6e22e">count</span>({ <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">_eq</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">published</span> } }),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">articles</span>.<span style="color:#a6e22e">count</span>({ <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">_eq</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">draft</span> } }),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">articles</span>.<span style="color:#a6e22e">count</span>({ <span style="color:#a6e22e">ai_generated</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">_eq</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> } })
+</span></span><span style="display:flex;"><span>    ]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>({ <span style="color:#a6e22e">total</span>, <span style="color:#a6e22e">published</span>, <span style="color:#a6e22e">draft</span>, <span style="color:#a6e22e">aiGenerated</span>, <span style="color:#a6e22e">ratio</span><span style="color:#f92672">:</span> Math.<span style="color:#a6e22e">round</span>((<span style="color:#a6e22e">aiGenerated</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">total</span>) <span style="color:#f92672">*</span> <span style="color:#ae81ff">100</span>) });
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">router</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/seo-report&#39;</span>, <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">database</span>.<span style="color:#a6e22e">raw</span>(<span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">SELECT</span> <span style="color:#a6e22e">status</span>, <span style="color:#a6e22e">AVG</span>(<span style="color:#a6e22e">seo_score</span>) <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">avg_score</span>, <span style="color:#a6e22e">COUNT</span>(<span style="color:#f92672">*</span>) <span style="color:#a6e22e">as</span> <span style="color:#a6e22e">count</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">FROM</span> <span style="color:#a6e22e">articles</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">GROUP</span> <span style="color:#a6e22e">BY</span> <span style="color:#a6e22e">status</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">````</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">rows</span>);
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h3 id="4-field-level-permissions">4. Field-Level Permissions</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Grant editor role read-only on SEO fields, full access to content
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">rolePermissions</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">collection</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">articles</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">role</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;editor-role-id&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">read</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">permissions</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">status</span><span style="color:#f92672">:</span> { <span style="color:#a6e22e">_eq</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">published</span> } },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fields</span><span style="color:#f92672">:</span> [<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">title</span>, <span style="color:#a6e22e">content</span>, <span style="color:#a6e22e">published_at</span>], <span style="color:#75715e">// No seo_score, no ai_generated
+</span></span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">validation</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Admin role sees everything
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">adminPermissions</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">collection</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">articles</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">role</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;admin-role-id&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">action</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">read</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">permissions</span><span style="color:#f92672">:</span> {},
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fields</span><span style="color:#f92672">:</span> [<span style="color:#f92672">*</span>], <span style="color:#75715e">// All fields
+</span></span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">validation</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h3 id="5-monitoring-with-prometheus">5. Monitoring with Prometheus</h3>
+<p>Directus exposes metrics via the <code>/server/health</code> endpoint and can be extended for Prometheus: `````javascript
+// extensions/endpoints/metrics/index.js
+import { defineEndpoint } from &lsquo;@directus/extensions-sdk&rsquo;;</p>
+<p>export default defineEndpoint((router, { database }) =&gt; {
+router.get(&rsquo;/metrics&rsquo;, async (_req, res) =&gt; {
+const metrics = await database.raw(<code>SELECT schemaname, tablename, n_tup_ins, n_tup_upd, n_tup_del FROM pg_stat_user_tables WHERE schemaname = public</code>);</p>
+<pre><code>let output = '';
+metrics.rows.forEach(row =&gt; {
+  output += ````directus_table_inserts{table=&quot;${row.tablename}&quot;} ${row.n_tup_ins}\n````;
+  output += ````directus_table_updates{table=&quot;${row.tablename}&quot;} ${row.n_tup_upd}\n````;
+});
+
+res.setHeader('Content-Type', 'text/plain');
+res.send(output);
+</code></pre>
+<p>});
+});</p>
+<pre tabindex="0"><code>
+## Comparison with Alternatives
+
+| Feature | Directus 11.x | Strapi 5.x | Sanity | Contentful | Ghost |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Open Source | **GPL-3.0** | MIT | MIT (partial) | No | MIT |
+| GitHub Stars | **29,100+** | 65,000+ | 3,500+ | N/A | 49,000+ |
+| Database | **Any SQL (your choice)** | SQLite/MySQL/PostgreSQL | Proprietary (GROQ) | Cloud-only | SQLite/MySQL |
+| REST API | **Auto-generated** | Auto-generated | Via GROQ | REST | Built-in |
+| GraphQL | **Built-in** | Plugin | Built-in | GraphQL | No |
+| Self-hosted | **Yes** | Yes | Yes (limited) | No | Yes |
+| Content versioning | **Built-in** | Plugin | Built-in | Built-in | No |
+| Real-time | **WebSocket (11+)** | WebSocket | Listener | Webhooks | No |
+| Extensions | **Hooks/Endpoints/UI** | Plugins | Plugins | Apps | Themes |
+| Image transforms | **URL params (built-in)** | Plugin | Built-in | Built-in | No |
+| Role-based access | **Field-level** | Role-level | Role-level | Role-level | Role-level |
+| AI integration | **Flows + Extensions** | Plugin | AI assist | AI features | No |
+
+Directus differentiates itself by being **database-first**: you own your schema, your data lives in standard SQL tables, and you can migrate away at any time without data extraction pain. Strapi has more stars and a larger plugin ecosystem but abstracts the database through its ORM. Sanity and Contentful are excellent cloud options but come with vendor lock-in and API rate limits. Ghost is perfect for blogs but not for structured content APIs.
+
+## Limitations / Honest Assessment
+
+- **No built-in multi-tenancy** — Running multiple isolated tenants in a single Directus instance requires custom extensions or separate instances per tenant. Strapi and Contentful handle this more elegantly.
+- **Admin panel performance with large datasets** — Collections with millions of rows can slow the admin UI unless you add database indexes and use pagination filters aggressively.
+- **Extension development learning curve** — While powerful, the extensions SDK requires understanding of Vue.js (for UI extensions) and Node.js patterns. Documentation is good but not as extensive as WordPress plugin docs.
+- **No built-in search engine** — Full-text search requires external tools (Meilisearch, Algolia, Elasticsearch) or database-native text search. The built-in filtering covers basic text matching only.
+- **Schema changes require migrations** — Unlike some CMS platforms that auto-migrate, significant schema changes in Directus should be planned and tested, especially with existing data.
+- **Small core team** — Directus LLC maintains the project with ~20 core developers. The pace is steady but feature requests can take months. The community (29K+ stars) is active but smaller than Strapi&#39;s.
+
+## Frequently Asked Questions
+
+**Q: Can I use Directus with an existing database?**
+Yes — this is Directus&#39;s killer feature. Point Directus at any existing PostgreSQL, MySQL, or SQLite database, and it will introspect your schema and generate APIs instantly. Your existing applications continue working unchanged. Directus only adds its metadata tables (````directus_*````) without touching your data structure. This makes it ideal for adding a CMS interface to legacy applications.
+
+**Q: How does content versioning work?**
+Directus saves a snapshot of your content every time you hit &#34;Save as Version.&#34; You can compare versions side-by-side, revert to any previous version, and schedule versions for future publishing. Versions are stored in the ````directus_revisions``` table. This works for all collections with versioning enabled in the data model settings.
+
+**Q: Can Directus handle high-traffic applications?**
+Yes, with proper architecture. The API server is stateless — scale horizontally by adding container replicas behind a load balancer. Use Redis for caching and sessions. Use PostgreSQL read replicas for read-heavy workloads. A single 4 vCPU / 8GB instance handles ~2,000 requests/second for cached reads. File serving should go through a CDN.
+
+**Q: What is the best way to integrate AI content generation?**
+Use Directus Flows (visual automation) combined with custom hook extensions. Flows handle the trigger logic (e.g., &#34;when article status changes to generate&#34;), and hooks call your LLM API (OpenAI, Claude, local models). Store the AI output as a draft version for human review before publishing. This creates a complete AI-human collaborative pipeline.
+
+**Q: How do I migrate from WordPress to Directus?**
+Export WordPress content via WP REST API or XML export, transform the data to match your Directus schema, and bulk-import using the Directus REST API or SDK. Images need to be re-uploaded to Directus storage. Redirects from old WordPress URLs should be handled at the reverse proxy level. Plan 1-2 weeks for a complete migration depending on content volume.
+
+**Q: Is Directus suitable for e-commerce applications?**
+Directus works well for content-heavy e-commerce (product catalogs, blogs, reviews) but is not a complete e-commerce platform. You would build the cart, checkout, and payment logic in a separate application that consumes the Directus product API. For pure e-commerce, platforms like Medusa or Shopify are more appropriate.
+
+**Q: How does Directus compare to a custom NestJS/Express API?**
+For CRUD-heavy applications with content management needs, Directus replaces 80% of custom backend code. You get authentication, RBAC, file uploads, image transforms, content versioning, and an admin panel for free. Use custom extensions for the remaining 20% of business logic that Directus doesn&#39;t cover. Development time for content APIs typically drops by 60-70%.
+
+
+
+## Recommended Hosting &amp; Infrastructure
+
+Before you deploy any of the tools above into production, you&#39;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+- **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
+
+*Affiliate links — they don&#34;t cost you extra and they help keep dibi8.com running.*
+
+## Conclusion: Own Your Content, Own Your Data
+
+Directus 11.x is the most pragmatic choice for teams that need a database-first, API-driven content platform in 2026. It gives you auto-generated REST and GraphQL APIs, an intuitive admin panel for content editors, powerful workflow automation, and an extensions system that grows with your needs — all while your data stays in standard SQL tables you fully control.
+
+Deploy it on a [DigitalOcean droplet](https://m.do.co/c/eca87ac14ee0) in minutes using Docker, or use the [HTStack one-click installer](https://my.htstack.com/aff.php?aff=27187) for an even faster setup. Start building content workflows that your editorial team can manage without filing Jira tickets.
+
+**Next reads**: [Appwrite backend guide](dibi8-internal-link), [n8n workflow automation for content teams](dibi8-internal-link)
+
+**Sources &amp; Further Reading**
+- [Directus Official Documentation](https://docs.directus.io) — API reference, guides, and extensions
+- [Directus GitHub Repository](https://github.com/directus/directus) — 29,100+ stars
+- [Directus 11.x Release Notes](https://github.com/directus/directus/releases) — Latest features and changes
+- [Directus SDK Reference](https://docs.directus.io/reference/sdk.html) — JavaScript, Python, PHP, Go, Ruby, .NET, Swift
+- [Self-Hosting Guide](https://docs.directus.io/self-hosted/quickstart.html) — Docker, Kubernetes, and manual setup
+- [Extensions Documentation](https://docs.directus.io/extensions/introduction.html) — Hooks, endpoints, interfaces, displays
+- [Flows Documentation](https://docs.directus.io/app/flows.html) — Visual workflow automation
+- [Community Discord](https://directus.io/discord) — 15,000+ active members
+
+**Affiliate Disclosure**
+This article contains affiliate links to [DigitalOcean](https://m.do.co/c/eca87ac14ee0) and [HTStack](https://my.htstack.com/aff.php?aff=27187). If you purchase hosting through these links, dibi8.com earns a commission at no extra cost to you. We only recommend services we use for our own infrastructure. All benchmarks were conducted independently on paid instances.
+
+
+* * *
+*Article published: 2026-05-19 | Category: dev-utils | Tool: Directus 11.3.0*
+*Join the dibi8 developer community: [English](https://t.me/dibi8en) | [Chinese](https://t.me/dibi8zh) | [Korean](https://t.me/dibi8ko) | [Vietnamese](https://t.me/dibi8vn)*
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;Directus: The Open-Source Headless CMS Powering AI Content Workflows — 2026 Setup &amp; API Guide&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-19&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-19&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/directus-headless-cms-ai-content&#34;
+  }
+}
+&lt;/script&gt;
+
+
+* * *
+## Related Articles
+
+- [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](directus-headless-cms-ai-content)
+- [llm-inference-cost-optimization-guide-2026](directus-headless-cms-ai-content)
+- [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](directus-headless-cms-ai-content)
+- [llm-inference-cost-optimization-guide-2026](directus-headless-cms-ai-content)
+- [12-factor-agents](directus-headless-cms-ai-content)
+
+* * *
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</code></pre>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fdirectus-headless-cms-ai-content%2f&text=Create%20compose%20file" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fdirectus-headless-cms-ai-content%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

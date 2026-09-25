@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>System1 on Dibi8 - AI工具目录</title>
+    <link>https://dibi8.com/tags/system1/</link>
+    <description>Recent content in System1 on Dibi8 - AI工具目录</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Thu, 24 Sep 2026 00:00:00 +0800</lastBuildDate>
+    <atom:link href="https://dibi8.com/tags/system1/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Laya-MLX: Native Apple Silicon Decision Engine — 13.4ms Typed Inference 2026</title>
+      <link>https://dibi8.com/llm-frameworks/laya-mlx-native-apple-silicon-decision-engine-2026/</link>
+      <pubDate>Thu, 24 Sep 2026 00:00:00 +0800</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/laya-mlx-native-apple-silicon-decision-engine-2026/</guid>
+      <description>Laya-MLX brings Apple Silicon native inference to the Laya decision engine. 13.4ms latency on M3 Max, MLX framework optimization, Apache 2.0 licensed.</description>
+    </item>
+    <item>
+      <title>Laya: Non-Autoregressive System 1 Decision Engine — 33ms Typed Decisions Over 100 Languages 2026</title>
+      <link>https://dibi8.com/llm-frameworks/laya-non-autoregressive-system1-decision-engine-2026/</link>
+      <pubDate>Thu, 24 Sep 2026 00:00:00 +0800</pubDate>
+      <guid>https://dibi8.com/llm-frameworks/laya-non-autoregressive-system1-decision-engine-2026/</guid>
+      <description>AI tool comparison and guide</description>
+    </item>
+  </channel>
+</rss>

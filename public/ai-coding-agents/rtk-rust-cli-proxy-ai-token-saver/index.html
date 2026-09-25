@@ -1,0 +1,561 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux / macOS | Dibi8</title>
+    <meta name="description" content="## The Hidden Tax of AI-Powered Development">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/rtk-rust-cli-proxy-ai-token-saver/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Linux / macOS</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Linux / macOS</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">## The Hidden Tax of AI-Powered Development</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>{&lt;/* resource-info */&gt;}</p>
+<hr>
+<h2 id="the-hidden-tax-of-ai-powered-development">The Hidden Tax of AI-Powered Development</h2>
+<p>In 2026, AI coding agents like Claude Code, GitHub Copilot, Cursor, OpenAI Codex, and Gemini CLI have become embedded in daily developer workflows. But one cost is bleeding budgets silently: <strong>token consumption from routine shell commands</strong>.</p>
+<p>Here is what actually happens under the hood. When Claude Code runs ```cargo test<code>on a mid-sized Rust project and a few tests fail, the model still receives the full 200+ line output—including every single passing test you do not care about. A</code>git status```` call can easily push 2,000 tokens. A 30-minute coding session on a TypeScript or Rust project can burn through <strong>118,000 tokens</strong> just from standard shell interactions.</p>
+<p>You are not paying for AI intelligence. You are paying for redundant context that the model never needed.</p>
+<hr>
+<h2 id="what-is-rtk-a-smart-throttle-not-another-ai-tool">What Is RTK? A &ldquo;Smart Throttle,&rdquo; Not Another AI Tool</h2>
+<p><strong>RTK</strong> (Rust Token Killer) is a high-performance CLI proxy written in Rust, now sitting at <strong>45,000+ GitHub Stars</strong>. It does not replace your AI coding assistant. It sits transparently between your shell and the LLM, filtering and compressing command output so only actionable signal reaches the model.</p>
+<p>The project states its value in one line: <em>&ldquo;Reduces LLM token consumption by 60-90% on common dev commands.&rdquo;</em></p>
+<h3 id="key-characteristics">Key Characteristics</h3>
+<p>| Feature | Detail |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Single binary</strong> | One Rust executable, zero runtime dependencies, &lt;10ms overhead |
+| <strong>Zero-friction setup</strong> | One-command install, auto-hooks into your shell, no workflow changes |
+| <strong>100+ command rules</strong> | Built-in smart filters for git, test runners, build tools, package managers |
+| <strong>Auditable savings</strong> | <code>rtk gain</code> shows exactly how many tokens you saved per session |
+| <strong>Apache-2.0 licensed</strong> | Free for personal and commercial use |</p>
+<hr>
+<h2 id="how-rtk-works-signal-vs-noise">How RTK Works: Signal vs. Noise</h2>
+<p>RTK is built on a simple insight: <strong>roughly 80% of command output carries no decision value for an AI model</strong>.</p>
+<h3 id="compression-scenarios-in-practice">Compression Scenarios in Practice</h3>
+<p><strong>Scenario 1: <code>git status</code> output</strong></p>
+<p>Raw output may list 50 modified files with full paths and status markers. RTK: - Keeps the critical summary (files modified / added / deleted)</p>
+<ul>
+<li>Collapses repeated path prefixes</li>
+<li>Drops detailed diff markers irrelevant to the current task</li>
+</ul>
+<p><strong>Scenario 2: Test runner output</strong></p>
+<p>When <code>pytest</code> or <code>cargo test</code> executes: - Passing tests compress to a single statistic (&ldquo;47 passed&rdquo;)</p>
+<ul>
+<li>Only failing tests retain full error traces and logs</li>
+<li>The bulk of successful test noise never enters the LLM context</li>
+</ul>
+<p><strong>Scenario 3: Build and compile logs</strong></p>
+<p><code>npm run build</code> or <code>go build</code> output is stripped of: - Progress bars and timing metadata</p>
+<ul>
+<li>Everything except errors and warnings</li>
+<li>Successful builds reduce to a confirmation signal</li>
+</ul>
+<h3 id="architecture-at-a-glance">Architecture at a Glance</h3>
+<pre tabindex="0"><code>AI Agent (Claude Code / Cursor / Codex)
+    ↓ issues shell command
+RTK CLI Proxy (interception layer)
+    ↓ semantic filtering &amp; compression
+LLM API (receives only distilled signal)
+</code></pre><p>RTK does not blindly truncate. It applies <strong>semantic-aware compression</strong>—it understands the structure of different command outputs and knows which fragments matter for debugging and reasoning.</p>
+<hr>
+<h2 id="installation--setup-up-and-running-in-5-minutes">Installation &amp; Setup: Up and Running in 5 Minutes</h2>
+<h3 id="step-1-install-rtk">Step 1: Install RTK</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Linux / macOS</span>
+</span></span><span style="display:flex;"><span>curl -LsSf https://rtk-ai.app/install.sh | sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or build from source (Rust toolchain required)</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/rtk-ai/rtk.git
+</span></span><span style="display:flex;"><span>cd rtk <span style="color:#f92672">&amp;&amp;</span> cargo install --path .
+</span></span></code></pre></div><p>The binary is placed in <code>~/.local/bin/</code> or <code>~/.cargo/bin/</code>.</p>
+<h3 id="step-2-enable-the-shell-hook">Step 2: Enable the Shell Hook</h3>
+<p>RTK intercepts AI agent commands via a shell hook. Choose your shell: <strong>Bash / Zsh:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;eval &#34;$(rtk hook bash)&#34;&#39;</span> &gt;&gt; ~/.bashrc
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;eval &#34;$(rtk hook zsh)&#34;&#39;</span> &gt;&gt; ~/.zshrc
+</span></span></code></pre></div><p><strong>Fish:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-fish" data-lang="fish"><span style="display:flex;"><span><span style="color:#a6e22e">rtk</span> hook fish <span style="color:#f92672">|</span> source
+</span></span></code></pre></div><p>Reload your shell or open a new terminal window.</p>
+<h3 id="step-3-verify-the-installation">Step 3: Verify the Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rtk --version
+</span></span><span style="display:flex;"><span>rtk status          <span style="color:#75715e"># view active filters and coverage</span>
+</span></span><span style="display:flex;"><span>rtk discover        <span style="color:#75715e"># scan your workflow for optimizable commands</span>
+</span></span></code></pre></div><hr>
+<h2 id="integration-with-major-ai-coding-tools">Integration with Major AI Coding Tools</h2>
+<h3 id="claude-code">Claude Code</h3>
+<p>Claude Code uses Bash for command execution by default. Once the shell hook is active, every <code>git</code>, <code>test</code>, and <code>build</code> command Claude Code issues is automatically compressed by RTK. No extra configuration required.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Verify RTK impact in your last Claude Code session</span>
+</span></span><span style="display:flex;"><span>rtk gain --session<span style="color:#f92672">=</span>last
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Example output: Session saved 87,400 tokens (78% reduction)</span>
+</span></span></code></pre></div><h3 id="cursor-github-copilot-codex-gemini-cli">Cursor, GitHub Copilot, Codex, Gemini CLI</h3>
+<p>These tools also rely on shell commands to gather project context. As long as they execute in a Bash environment, RTK intercepts transparently. Cursor Composer mode, Copilot Agent mode, and Codex CLI agent are all compatible.</p>
+<h3 id="multi-agent-workflows">Multi-Agent Workflows</h3>
+<p>If you run multiple AI tools side-by-side—Cursor for frontend, Claude Code for backend—RTK governs token usage globally. No per-tool configuration needed.</p>
+<hr>
+<h2 id="benchmarks-real-token-bills-for-30-minute-sessions">Benchmarks: Real Token Bills for 30-Minute Sessions</h2>
+<p>Data sourced from official RTK benchmarks and community-verified measurements.</p>
+<h3 id="mid-sized-rust-project-200-source-files">Mid-Sized Rust Project (~200 source files)</h3>
+<p>| Metric | Without RTK | With RTK | Saved |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| 30-minute session total | ~118,000 | ~23,900 | <strong>~80%</strong> |
+| Single <code>cargo test</code> call | ~4,200 | ~340 | <strong>~92%</strong> |
+| Single <code>git status</code> call | ~2,100 | ~180 | <strong>~91%</strong> |
+| Single <code>git diff</code> call | ~8,500 | ~1,200 | <strong>~86%</strong> |</p>
+<h3 id="typescript--nodejs-project-nextjs-full-stack">TypeScript / Node.js Project (Next.js Full-Stack)</h3>
+<p>| Metric | Without RTK | With RTK | Saved |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Single <code>npm test</code> call | ~3,800 | ~420 | <strong>~89%</strong> |
+| <code>npm run build</code> errors | ~6,200 | ~890 | <strong>~86%</strong> |
+| ESLint batch output | ~5,400 | ~560 | <strong>~90%</strong> |</p>
+<h3 id="key-takeaways">Key Takeaways</h3>
+<ul>
+<li><strong>Test commands</strong> yield the highest savings (typically 85-95%), because detailed passing test output is worthless for debugging.</li>
+<li><strong>Git operations</strong> save a consistent 85-90%, thanks to repeated branch and path prefixes.</li>
+<li><strong>Build errors</strong> compress at 80-90%, preserving error messages while stripping noise.</li>
+</ul>
+<hr>
+<h2 id="advanced-usage-custom-rules--team-deployment">Advanced Usage: Custom Rules &amp; Team Deployment</h2>
+<h3 id="writing-custom-filters">Writing Custom Filters</h3>
+<p>RTK supports project-specific and command-specific compression policies: `````bash</p>
+<h1 id="add-a-custom-rule-for-a-proprietary-command">Add a custom rule for a proprietary command</h1>
+<p>rtk rule add &ldquo;my-custom-command&rdquo; &ndash;keep-pattern=&ldquo;ERROR|WARN&rdquo; &ndash;discard-pattern=&ldquo;INFO|DEBUG&rdquo;</p>
+<h1 id="list-all-active-rules">List all active rules</h1>
+<p>rtk rule list</p>
+<h1 id="temporarily-bypass-rtk-for-a-specific-command-useful-for-debugging">Temporarily bypass RTK for a specific command (useful for debugging)</h1>
+<p>rtk bypass &ndash;command=&ldquo;git log&rdquo;</p>
+<pre tabindex="0"><code>
+### Team-Level Deployment
+
+Organizations looking to centralize AI cost control can deploy RTK as a shared proxy layer: 1. **Shared configuration**: Commit ````.rtk.yml```` to the repo so all team members use identical filtering policies.
+2. **CI/CD integration**: Enable RTK in build pipelines to reduce token burn during automated testing.
+3. **Usage reporting**: Pipe ````rtk gain```` output into team dashboards for cross-project token visibility.
+
+`````yaml
+# Example .rtk.yml (project-level config)
+rules: - command: &#34;pytest&#34;
+    keep: &#34;FAILED|ERROR|skipped summary&#34;
+    compress_passed: true
+  - command: &#34;docker compose logs&#34;
+    max_lines: 50
+    tail_only: true
+  - command: &#34;terraform plan&#34;
+    keep: &#34;Plan:|changes to be made|Error:&#34;
+</code></pre><h3 id="security-and-privacy">Security and Privacy</h3>
+<p>RTK processes <strong>command output</strong>, not the commands themselves. When a command fails, RTK persists the full unfiltered output to local disk (default <code>~/.rtk/sessions/</code>), ensuring the model can access the raw version if needed. All processing is local—<strong>no data ever leaves your machine</strong>.</p>
+<hr>
+<h2 id="comparison-with-other-token-optimization-strategies">Comparison with Other Token Optimization Strategies</h2>
+<p>| Approach | Mechanism | Savings | Intrusiveness | Best For |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>RTK</strong> | Command output compression | 60-90% | Minimal (shell hook) | All Bash-driven agents |
+| context-mode | Sandbox output isolation | 98% | Medium (SDK integration) | Multi-platform agents |
+| lean-ctx | Shell hook + MCP server | 89-99% | Medium | MCP-enabled setups |
+| caveman | Minimal prompt style | 65% | High (requires prompt changes) | Claude Code users |
+| Manual curation | Human-edited output | Variable | Extreme | One-off debugging |</p>
+<p>RTK&rsquo;s defining advantage is <strong>zero intrusiveness</strong>. You do not rewrite prompts, integrate SDKs, or change how you interact with AI. It simply compresses data as it flows through the shell.</p>
+<hr>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>Q: Does RTK degrade the AI&quot;s ability to understand my codebase?</strong></p>
+<p>No. RTK compresses command <strong>output</strong> (passing tests, duplicate git paths, progress bars)—never source code. The model still receives accurate file contents, error traces, and critical status. If filtering is ever too aggressive, <code>rtk discover</code> flags anomalies for rule tuning.</p>
+<p><strong>Q: What about Windows support?</strong></p>
+<p>Full filtering works natively on Windows. The automatic shell hook requires WSL; native Windows users can configure command aliases via ````CLAUDE.md``` mode. Native Windows hook support is in active development (expected Q2 2026).</p>
+<p><strong>Q: What project sizes benefit most?</strong></p>
+<p>RTK shines on medium-to-large projects (100+ files) where test, build, and git output volume is substantial. Smaller projects still save tokens, but in lower absolute numbers. Installation cost is effectively zero, so it is worth testing on any project.</p>
+<p><strong>Q: Does it work with custom LLM providers or local models?</strong></p>
+<p>Yes. RTK does not call LLM APIs directly—it only processes data flowing <strong>from shell to AI agent</strong>. Whether you use OpenAI, Anthropic, Google, or local Ollama instances, RTK operates identically.</p>
+<hr>
+<h2 id="closing-cost-consciousness-in-the-age-of-agentic-coding">Closing: Cost Consciousness in the Age of Agentic Coding</h2>
+<p>In 2026, developers are no longer asking whether AI can write code. They are asking <strong>how much it costs</strong> and <strong>how to make that cost predictable and controllable</strong>.</p>
+<p>RTK represents a maturation in the tooling stack: <strong>not bigger models, but smarter infrastructure</strong>. Just as CDNs compressed web delivery and gzip compressed HTTP responses, RTK is the &ldquo;context compression layer&rdquo; for the AI era.</p>
+<p>45,000+ GitHub Stars. Apache-2.0. Single binary, zero dependencies. The numbers speak to a simple truth: when AI coding assistants become daily infrastructure, token optimization stops being an optional enhancement and becomes <strong>required tooling</strong>.</p>
+<hr>
+<p><strong>Resources</strong></p>
+<ul>
+<li>GitHub: <a href="https://github.com/rtk-ai/rtk">github.com/rtk-ai/rtk</a></li>
+<li>Documentation: <a href="https://rtk-ai.app">rtk-ai.app</a></li>
+<li>Latest release: v0.39.0 (as of May 2026)</li>
+<li>Community deep dive: <a href="https://dev.to/arshtechpro/how-rtk-reduces-llm-token-usage-for-ai-coding-agents-2kfd">Dev.to RTK review</a></li>
+</ul>
+<hr>
+<p><em>Tags: RTK, AI coding agent, LLM token optimization, Rust CLI tool, open source developer tools, Claude Code, Cursor IDE, GitHub Copilot, OpenAI Codex, token cost reduction, developer productivity 2026</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;RTK: The Open-Source Rust CLI Proxy That Slashes AI Coding Agent Token Costs by 60-90% — A Practical Setup Guide&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-14&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-14&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/rtk-rust-cli-proxy-ai-token-saver%22">https://dibi8.com/resources/rtk-rust-cli-proxy-ai-token-saver"</a>
+}
+}
+</script></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2frtk-rust-cli-proxy-ai-token-saver%2f&text=Linux%20%2f%20macOS" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2frtk-rust-cli-proxy-ai-token-saver%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

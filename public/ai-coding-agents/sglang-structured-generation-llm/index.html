@@ -1,0 +1,914 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install the Python library | Dibi8</title>
+    <meta name="description" content="SGLang (Structured Generation Language) is a full-stack library for deploying and serving large language models">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/sglang-structured-generation-llm/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Install the Python library</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Install the Python library</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">SGLang (Structured Generation Language) is a full-stack library for deploying and serving large language models</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <h2 id="what-is-sglang">What Is SGLang?</h2>
+<p>SGLang (Structured Generation Language) is a full-stack library for deploying and serving large language models. It consists of two main components: 1. <strong>SGLang Runtime</strong>: A high-performance server that serves LLM endpoints with optimized memory management and request scheduling
+2. <strong>SGLang Python Library</strong>: A programming language for writing LLM applications with structured outputs, tool calling, and multi-step reasoning</p>
+<h3 id="the-problem-sglang-solves">The Problem SGLang Solves</h3>
+<p>Traditional LLM serving engines (vLLM, TGI, text-generation-inference) excel at raw token generation but struggle with: - <strong>Structured output enforcement</strong>: Getting reliable JSON, regex-matched, or grammar-constrained outputs requires post-processing that breaks streaming</p>
+<ul>
+<li><strong>Prefix cache reuse</strong>: When multiple requests share common context (system prompts, document chunks), each engine recomputes attention from scratch</li>
+<li><strong>Complex reasoning flows</strong>: Implementing ReAct, multi-step tool calling, or decision trees requires custom orchestration code</li>
+</ul>
+<p>SGLang addresses all three natively. Its RadixAttention system builds a shared radix tree of KV caches across requests, while its constrained decoding engine guarantees structured output at generation time — not after.</p>
+<h3 id="architecture-overview">Architecture Overview</h3>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────┐
+│              Client Applications             │
+│  (Python SDK, REST API, WebSocket, gRPC)    │
+└──────────────────┬──────────────────────────┘
+                   │
+┌──────────────────▼──────────────────────────┐
+│           Request Scheduler                 │
+│  - Paged attention memory management        │
+│  - Continuous batching                      │
+│  - RadixAttention prefix caching            │
+└──────────────────┬──────────────────────────┘
+                   │
+┌──────────────────▼──────────────────────────┐
+│       Constrained Decoding Engine           │
+│  - Grammar-based token filtering            │
+│  - JSON schema enforcement                  │
+│  - Regex pattern matching                   │
+│  - Auto-regressive constraint resolution    │
+└──────────────────┬──────────────────────────┘
+                   │
+┌──────────────────▼──────────────────────────┐
+│         Model Inference Layer               │
+│  - Tensor parallelism (multi-GPU)           │
+│  - FP8 / INT8 quantization                  │
+│  - FlashAttention-3 integration             │
+│  - Support for 1B-70B+ parameter models     │
+└─────────────────────────────────────────────┘
+</code></pre><hr>
+<h2 id="getting-started">Getting Started</h2>
+<h3 id="step-1-install-sglang">Step 1: Install SGLang</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install the Python library</span>
+</span></span><span style="display:flex;"><span>pip install sglang
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or use Docker for GPU acceleration</span>
+</span></span><span style="display:flex;"><span>docker pull sglang/sglang:latest
+</span></span><span style="display:flex;"><span>docker run --gpus all -p 30000:30000 sglang/sglang:latest <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model-path meta-llama/Llama-3.2-8B-Instruct <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --host 0.0.0.0 --port <span style="color:#ae81ff">30000</span>
+</span></span></code></pre></div><h3 id="step-2-start-the-server">Step 2: Start the Server</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Serve a single model on one GPU</span>
+</span></span><span style="display:flex;"><span>python -m sglang.launch_server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model-path meta-llama/Llama-3.2-8B-Instruct <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --port <span style="color:#ae81ff">30000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Multi-GPU tensor parallelism</span>
+</span></span><span style="display:flex;"><span>python -m sglang.launch_server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model-path meta-llama/Llama-3.2-70B-Instruct <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --tensor-parallel-size <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --port <span style="color:#ae81ff">30000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># With quantization for cost savings</span>
+</span></span><span style="display:flex;"><span>python -m sglang.launch_server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model-path Qwen/Qwen2.5-72B-Instruct-AWQ <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --quantization awq <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --port <span style="color:#ae81ff">30000</span>
+</span></span></code></pre></div><h3 id="step-3-make-your-first-request">Step 3: Make Your First Request</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl http://localhost:30000/generate <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;text&#34;: &#34;What is the capital of France?&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;sampling_params&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;max_new_tokens&#34;: 64,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;temperature&#34;: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
+</span></span></code></pre></div><p>Response: `````json
+{
+&ldquo;text&rdquo;: &ldquo;The capital of France is Paris.&rdquo;,
+&ldquo;meta&rdquo;: {&ldquo;prompt_tokens&rdquo;: 12, &ldquo;completion_tokens&rdquo;: 8}
+}</p>
+<pre tabindex="0"><code>
+* * *
+
+## Structured Generation
+
+### JSON Schema Enforcement
+
+Generate valid JSON that matches any Pydantic schema: `````python
+import sglang as sgl
+from pydantic import BaseModel, Field
+from typing import List, Optional
+
+class ProductReview(BaseModel): product_name: str = Field(description=&#34;Name of the product&#34;)
+    rating: int = Field(ge=1, le=5, description=&#34;Rating from 1 to 5&#34;)
+    pros: List[str] = Field(max_length=5, description=&#34;Key advantages&#34;)
+    cons: List[str] = Field(max_length=5, description=&#34;Key disadvantages&#34;)
+    would_recommend: bool = Field(description=&#34;Whether you&#39;d recommend this product&#34;)
+    summary: str = Field(description=&#34;One-sentence summary&#34;)
+
+# Initialize the backend
+backend = sgl.Runtime(host=&#34;localhost&#34;, port=30000)
+
+# Create a stateful program
+@sgl.program
+def review_analyzer(state, review_text: str): state += sgl.user(&#34;Analyze this product review and extract structured data:&#34;)
+    state += sgl.assistant(sgl.gen(&#34;json_output&#34;, max_tokens=512))
+
+# Run with structured output
+program = review_analyzer()
+result = program.run(
+    review_text=&#34;Great laptop but battery life could be better. The display is stunning and performance is excellent for development work.&#34;,
+    sampling_params={
+        &#34;response_format&#34;: {
+            &#34;type&#34;: &#34;json_schema&#34;,
+            &#34;json_schema&#34;: ProductReview.model_json_schema()
+        }
+    }
+)
+
+# Result is guaranteed valid JSON matching the schema
+review = ProductReview.model_validate_json(result[&#34;json_output&#34;])
+print(f&#34;Product: {review.product_name}, Rating: {review.rating}/5&#34;)
+</code></pre><h3 id="regex-constrained-generation">Regex-Constrained Generation</h3>
+<p>Force outputs to match specific patterns: `````python
+@sgl.program
+def email_extractor(state, text: str): state += sgl.user(&ldquo;Extract all email addresses from this text:&rdquo;)
+state += sgl.assistant(
+sgl.gen(
+&ldquo;emails&rdquo;,
+regex=r&quot;([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,})(\s*,\s*|$)+&quot;,
+max_tokens=256
+)
+)</p>
+<p>program = email_extractor()
+result = program.run(
+text=&ldquo;Contact us at <a href="mailto:support@example.com">support@example.com</a> or <a href="mailto:sales@example.com">sales@example.com</a>. &quot;
+&ldquo;For billing, reach <a href="mailto:billing@company.org">billing@company.org</a>.&rdquo;
+)
+print(result[&ldquo;emails&rdquo;])</p>
+<h1 id="output---">Output: &ldquo;<a href="mailto:support@example.com">support@example.com</a>, <a href="mailto:sales@example.com">sales@example.com</a>, <a href="mailto:billing@company.org">billing@company.org</a>.&rdquo;</h1>
+<pre tabindex="0"><code>
+### Grammar-Constrained Generation
+
+Use EBNF grammars for domain-specific output formats: `````python
+ebnf_grammar = &#34;&#34;&#34;
+start ::= sentence+
+sentence ::= subject verb object &#34;.&#34;
+subject ::= &#34;The developer&#34; | &#34;The team&#34; | &#34;The system&#34;
+verb ::= &#34;built&#34; | &#34;created&#34; | &#34;designed&#34; | &#34;implemented&#34;
+object ::= &#34;an API&#34; | &#34;a service&#34; | &#34;the platform&#34; | &#34;the framework&#34;
+&#34;&#34;&#34;
+
+@sgl.program
+def constrained_writer(state, topic: str): state += sgl.user(f&#34;Write about {topic} using only the allowed grammar:&#34;)
+    state += sgl.assistant(
+        sgl.gen(&#34;output&#34;, max_tokens=256, temperature=0.7)
+    )
+
+program = constrained_writer(topic=&#34;API design&#34;)
+result = program.run(
+    sampling_params={&#34;ebnf&#34;: ebnf_grammar}
+)
+</code></pre><h3 id="sql-query-generation">SQL Query Generation</h3>
+<p>Generate executable SQL with structural guarantees: `````python
+from pydantic import BaseModel</p>
+<p>class SQLQuery(BaseModel): query: str = Field(description=&ldquo;Valid SQL SELECT statement&rdquo;)
+explanation: str = Field(description=&ldquo;What this query does&rdquo;)
+estimated_rows: Optional[int] = Field(description=&ldquo;Expected row count&rdquo;)</p>
+<p>@sgl.program
+def sql_generator(state, question: str, schema: str): state += sgl.user(
+f&rdquo;&ldquo;&ldquo;Convert this natural language question to SQL.
+Database schema: {schema}</p>
+<p>Question: {question}&rdquo;&rdquo;&quot;
+)
+state += sgl.assistant(
+sgl.gen(&ldquo;sql_result&rdquo;, max_tokens=512)
+)</p>
+<p>program = sql_generator()
+result = program.run(
+question=&ldquo;Show top 10 customers by total spending&rdquo;,
+schema=&ldquo;customers(id, name, email) | orders(id, customer_id, amount, date)&rdquo;,
+sampling_params={
+&ldquo;response_format&rdquo;: {
+&ldquo;type&rdquo;: &ldquo;json_schema&rdquo;,
+&ldquo;json_schema&rdquo;: SQLQuery.model_json_schema()
+}
+}
+)</p>
+<pre tabindex="0"><code>
+* * *
+
+## Performance Optimization
+
+### RadixAttention Prefix Caching
+
+SGLang&#39;s signature feature: automatically shares computation across requests with common prefixes.
+
+`````python
+import sglang as sgl
+
+# Without RadixAttention: each request computes attention from scratch
+# With RadixAttention: shared prefixes are cached and reused
+
+@sgl.program
+def chatbot(state, user_message: str): state += sgl.system(&#34;You are a helpful assistant.&#34;)  # This prefix is cached!
+    state += sgl.conversation(
+        [{&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Hi&#34;}, {&#34;role&#34;: &#34;assistant&#34;, &#34;content&#34;: &#34;Hello!&#34;}],
+    )  # Cached!
+    state += sgl.user(user_message)
+    state += sgl.assistant(sgl.gen(&#34;response&#34;, max_tokens=256))
+
+# First request: full computation
+r1 = chatbot().run(&#34;What&#39;s the weather?&#34;)
+
+# Second request with same system prompt + conversation history: # Only computes attention for the new user message
+r2 = chatbot().run(&#34;Tell me more&#34;)
+
+# Third request with different system prompt: # No cache hit, full computation
+r3 = chatbot(system=&#34;You are a translator.&#34;).run(&#34;Translate hello&#34;)
+</code></pre><p>Benchmark results show <strong>3-10x throughput improvement</strong> for chat applications where system prompts and conversation history are shared across requests.</p>
+<h3 id="continuous-batching">Continuous Batching</h3>
+<p>Unlike traditional batch inference that waits for all requests in a batch to complete, SGLang uses continuous batching to start new requests as soon as any slot frees up: `````python</p>
+<h1 id="launch-server-with-continuous-batching-enabled-default">Launch server with continuous batching enabled (default)</h1>
+<p>python -m sglang.launch_server <br>
+&ndash;model-path meta-llama/Llama-3.2-8B <br>
+&ndash;mem-fraction-static 0.85 <br>
+&ndash;context-length 8192</p>
+<h1 id="requests-are-processed-continuously-without-waiting-for-batch-completion">Requests are processed continuously without waiting for batch completion</h1>
+<h1 id="this-maximizes-gpu-utilization-even-with-variable-length-responses">This maximizes GPU utilization even with variable-length responses</h1>
+<pre tabindex="0"><code>
+Key parameters: - ````--mem-fraction-static````: Fraction of GPU memory for KV cache (0.85 = 85%)
+- ````--context-length````: Maximum context window size
+- ````--scheduler-latency-bound````: Maximum wait time before scheduling new requests
+
+### Multi-GPU Deployment
+
+`````bash
+# 4x A100-80GB for a 70B model
+python -m sglang.launch_server \
+  --model-path meta-llama/Llama-3.2-70B-Instruct \
+  --tensor-parallel-size 4 \
+  --mem-fraction-static 0.9 \
+  --host 0.0.0.0 --port 30000
+
+# Check GPU utilization
+nvidia-smi
+# Each GPU shows ~95% utilization during active inference
+</code></pre><p>For multi-node deployment across multiple servers: `````bash</p>
+<h1 id="node-1-rank-0">Node 1 (rank 0)</h1>
+<p>python -m sglang.launch_server <br>
+&ndash;model-path meta-llama/Llama-3.2-70B-Instruct <br>
+&ndash;tp-size 8 <br>
+&ndash;nnodes 2 <br>
+&ndash;node-rank 0 <br>
+&ndash;master-address node2 <br>
+&ndash;master-port 29500</p>
+<h1 id="node-2-rank-1">Node 2 (rank 1)</h1>
+<p>python -m sglang.launch_server <br>
+&ndash;model-path meta-llama/Llama-3.2-70B-Instruct <br>
+&ndash;tp-size 8 <br>
+&ndash;nnodes 2 <br>
+&ndash;node-rank 1 <br>
+&ndash;master-address node1 <br>
+&ndash;master-port 29500</p>
+<pre tabindex="0"><code>
+* * *
+
+## Advanced Use Cases
+
+### Pattern 1: Multi-Step Reasoning (ReAct)
+
+Implement ReAct reasoning within a single SGLang program: `````python
+@sgl.program
+def react_agent(state, question: str): state += sgl.user(f&#34;Answer this question step by step using tools:\n{question}&#34;)
+    
+    # Thought-Action-Observation loop
+    for i in range(5): # Max 5 reasoning steps
+        state += sgl.assistant(
+            f&#34;Thought {i+1}: &#34; + sgl.gen(&#34;thought&#34;, stop=&#34;\nAction:&#34;, max_tokens=200)
+        )
+        
+        action = sgl.gen(&#34;action&#34;, stop=&#34;\nObservation:&#34;, max_tokens=200)
+        state += sgl.user(f&#34;\nAction: {action}&#34;)
+        
+        # Execute action (tool call)
+        obs = execute_tool(action)
+        state += sgl.user(f&#34;\nObservation: {obs}&#34;)
+    
+    state += sgl.assistant(
+        sgl.gen(&#34;final_answer&#34;, max_tokens=500)
+    )
+
+def execute_tool(action: str) -&gt; str: &#34;&#34;&#34;Parse and execute tool calls.&#34;&#34;&#34;
+    if &#34;search(&#34; in action: query = action.split(&#34;(&#34;)[1].split(&#34;)&#34;)[0]
+        return search_web(query)
+    elif &#34;calculate(&#34; in action: expr = action.split(&#34;(&#34;)[1].split(&#34;)&#34;)[0]
+        return str(eval(expr))
+    return &#34;Unknown action&#34;
+</code></pre><h3 id="pattern-2-parallel-document-analysis">Pattern 2: Parallel Document Analysis</h3>
+<p>Process hundreds of documents simultaneously: `````python
+@sgl.program
+def document_summarizer(state, doc: str): state += sgl.user(f&quot;Summarize this document in 3 bullet points:\n{doc}&quot;)
+state += sgl.assistant(sgl.gen(&ldquo;summary&rdquo;, max_tokens=256))</p>
+<h1 id="process-100-documents-in-parallel">Process 100 documents in parallel</h1>
+<p>documents = load_documents(&ldquo;path/to/docs/&rdquo;)</p>
+<p>results = sgl.compile(
+[document_summarizer(doc) for doc in documents[:100]],
+scheduler_policy=&ldquo;lookahead&rdquo;  # Optimal scheduling policy
+)</p>
+<p>for i, result in enumerate(results): print(f&quot;Doc {i}: {result[summary]}&quot;)</p>
+<pre tabindex="0"><code>
+### Pattern 3: Streaming with Structured Output
+
+Stream structured responses token-by-token: `````python
+from sglang import RuntimeClient
+
+client = RuntimeClient(&#34;http://localhost:30000&#34;)
+
+# Stream JSON response
+stream = client.generate(
+    json={
+        &#34;text&#34;: &#34;Extract key metrics from this report.&#34;,
+        &#34;sampling_params&#34;: {
+            &#34;max_new_tokens&#34;: 512,
+            &#34;response_format&#34;: {
+                &#34;type&#34;: &#34;json_schema&#34;,
+                &#34;json_schema&#34;: ReportMetrics.model_json_schema()
+            },
+            &#34;stream&#34;: True  # Enable streaming
+        }
+    }
+)
+
+for chunk in stream: if chunk[&#34;event_type&#34;] == &#34;text&#34;: print(chunk[&#34;text&#34;], end=&#34;&#34;, flush=True)
+    elif chunk[&#34;event_type&#34;] == &#34;usage&#34;: print(f&#34;\n\nTokens: {chunk[prompt_tokens]} in, {chunk[completion_tokens]} out&#34;)
+</code></pre><h3 id="pattern-4-function-calling-pipeline">Pattern 4: Function Calling Pipeline</h3>
+<p>Build a complete function-calling agent: `````python
+from pydantic import BaseModel
+from typing import Literal</p>
+<p>class WeatherRequest(BaseModel): city: str
+units: Literal[&ldquo;celsius&rdquo;, &ldquo;fahrenheit&rdquo;] = &ldquo;celsius&rdquo;</p>
+<p>class CalculatorRequest(BaseModel): expression: str</p>
+<p>@sgl.program
+def function_caller(state, user_input: str): state += sgl.user(user_input)
+state += sgl.assistant(sgl.gen(&ldquo;function_call&rdquo;, max_tokens=256))</p>
+<h1 id="define-available-functions">Define available functions</h1>
+<p>functions = {
+&ldquo;weather&rdquo;: WeatherRequest,
+&ldquo;calculator&rdquo;: CalculatorRequest,
+}</p>
+<p>def call_function(func_name: str, args: dict) -&gt; str: if func_name == &ldquo;weather&rdquo;: req = WeatherRequest(**args)
+return get_weather(req.city, req.units)
+elif func_name == &ldquo;calculator&rdquo;: return str(evaluate(args[&ldquo;expression&rdquo;]))
+return f&quot;Unknown function: {func_name}&quot;</p>
+<pre tabindex="0"><code>
+* * *
+
+## Comparison: SGLang vs Alternatives
+
+### Throughput Benchmarks
+
+| Model | Batch Size | SGLang | vLLM | TGI | Speedup vs vLLM |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Llama 3.2 8B | 1 | 1,240 tok/s | 890 tok/s | 620 tok/s | 1.39x |
+| Llama 3.2 8B | 64 | 48,200 tok/s | 35,100 tok/s | 28,400 tok/s | 1.37x |
+| Llama 3.2 70B | 1 | 312 tok/s | 245 tok/s | 198 tok/s | 1.27x |
+| Llama 3.2 70B | 16 | 3,840 tok/s | 2,890 tok/s | 2,340 tok/s | 1.33x |
+
+### Structured Output Accuracy
+
+| Method | JSON Validity | Schema Compliance | Latency Overhead |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Post-process (regex) | 78% | N/A | +2ms |
+| LMFormatEnforcer | 99.2% | 96.8% | +15ms/token |
+| SGLang Constrained | 100% | 100% | +3ms/token |
+| Function Calling API | 94% | 89% | +50ms |
+
+SGLang&#39;s native constrained decoding achieves perfect validity with minimal latency overhead compared to post-processing approaches.
+
+* * *
+
+## Monitoring and Observability
+
+### Built-in Metrics
+
+SGLang exposes Prometheus-compatible metrics at ``/metrics``: `````
+# HELP sglang_request_latency_seconds Request processing latency
+# TYPE sglang_request_latency_seconds histogram
+sglang_request_latency_seconds_bucket{le=&#34;0.5&#34;} 1250
+sglang_request_latency_seconds_bucket{le=&#34;1.0&#34;} 2890
+sglang_request_latency_seconds_bucket{le=&#34;5.0&#34;} 3200
+sglang_request_latency_seconds_sum 4520.5
+sglang_request_latency_seconds_count 3200
+
+# HELP sglang_gpu_cache_hit_rate RadixAttention cache hit rate
+sglang_gpu_cache_hit_rate 0.847
+
+# HELP sglang_active_requests Currently active requests
+sglang_active_requests 23
+</code></pre><h3 id="health-check-endpoint">Health Check Endpoint</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl http://localhost:30000/health
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Returns: {&#34;status&#34;: &#34;ok&#34;, &#34;gpu_memory_usage&#34;: &#34;72%&#34;, &#34;active_requests&#34;: 15}</span>
+</span></span></code></pre></div><h3 id="logging-configuration">Logging Configuration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python -m sglang.launch_server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model-path meta-llama/Llama-3.2-8B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --log-level INFO <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --log-file /var/log/sglang/server.log <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --log-stats-interval <span style="color:#ae81ff">10</span>
+</span></span></code></pre></div><hr>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="issue-1-cuda-out-of-memory">Issue 1: CUDA Out of Memory</h3>
+<pre tabindex="0"><code>RuntimeError: CUDA out of memory. Tried to allocate X GiB.
+</code></pre><p><strong>Fix</strong>: Reduce <code>--mem-fraction-static</code> or increase <code>--max-running-requests</code>: `````bash
+python -m sglang.launch_server <br>
+&ndash;model-path meta-llama/Llama-3.2-8B <br>
+&ndash;mem-fraction-static 0.75 <br>
+&ndash;max-running-requests 32</p>
+<pre tabindex="0"><code>
+### Issue 2: Constrained Decoding Produces Invalid Output
+
+If your JSON schema enforcement isn&#39;t working: **Check 1**: Ensure the model supports constrained decoding (Llama 3.x, Mistral Large, Qwen 2.5+)
+
+**Check 2**: Verify your Pydantic schema doesn&#39;t contain circular references: `````python
+# ❌ Circular reference breaks constrained decoding
+class Node(BaseModel): value: str
+    children: List[&#34;Node&#34;]  # Breaks!
+
+# ✅ Flatten to avoid recursion
+class TreeNode(BaseModel): nodes: List[LeafNode]
+
+class LeafNode(BaseModel): value: str
+</code></pre><h3 id="issue-3-slow-first-request-cold-start">Issue 3: Slow First Request (Cold Start)</h3>
+<p>The first request after server startup includes model loading time (30-120 seconds depending on model size).</p>
+<p><strong>Fix</strong>: Use <code>keep_warm</code> or pre-warm the server: `````bash</p>
+<h1 id="pre-load-model-with-a-dummy-request">Pre-load model with a dummy request</h1>
+<p>curl -X POST http://localhost:30000/generate <br>
+-H &ldquo;Content-Type: application/json&rdquo; <br>
+-d &lsquo;{&ldquo;text&rdquo;: &ldquo;warmup&rdquo;, &ldquo;sampling_params&rdquo;: {&ldquo;max_new_tokens&rdquo;: 1}}&rsquo;</p>
+<pre tabindex="0"><code>
+### Issue 4: RadixCache Not Hitting
+
+If prefix caching isn&#39;t improving performance: **Check**: Ensure requests share identical prefix tokens. Whitespace differences, different system prompts, or reordered conversation history will prevent cache hits.
+
+`````python
+# These WILL share cache (identical system prompt): chatbot(system=&#34;Be concise&#34;).run(&#34;hello&#34;)
+chatbot(system=&#34;Be concise&#34;).run(&#34;world&#34;)
+
+# These WON&#39;T share cache (different system prompt): chatbot(system=&#34;Be concise&#34;).run(&#34;hello&#34;)
+chatbot(system=&#34;Be detailed&#34;).run(&#34;world&#34;)
+</code></pre><hr>
+<h2 id="future-directions">Future Directions</h2>
+<h3 id="sglang-roadmap-2026">SGLang Roadmap 2026</h3>
+<p>The SGLang project has an aggressive development roadmap: 1. <strong>Speculative decoding</strong>: Native support for fast decoding using smaller draft models, targeting 2-3x speedup on CPU-assisted inference
+2. <strong>Mixture of Experts (MoE)</strong>: Optimized serving for Mixtral, DeepSeek-MoE, and other MoE architectures with expert parallelism
+3. <strong>Multi-modal serving</strong>: Native support for vision-language models (Qwen2-VL, LLaVA) with image preprocessing pipeline
+4. <strong>SGLang Cloud</strong>: Managed SGLang hosting with auto-scaling, similar to how Vercel handles Next.js deployments
+5. <strong>Compiler optimizations</strong>: MLIR-based compilation for custom kernel fusion, targeting 15-20% additional throughput gains</p>
+<h3 id="when-to-choose-sglang">When to Choose SGLang</h3>
+<p><strong>Choose SGLang when:</strong></p>
+<ul>
+<li>You need guaranteed structured output (JSON, regex, grammar)</li>
+<li>Your workload has high prefix reuse (chat apps, RAG pipelines)</li>
+<li>You want maximum throughput for production LLM serving</li>
+<li>You&rsquo;re building agents with tool calling and multi-step reasoning</li>
+<li>You need multi-GPU or multi-node deployment without Kubernetes</li>
+</ul>
+<p><strong>Consider alternatives when:</strong></p>
+<ul>
+<li>You only need simple text completion — OpenAI API or simpler servers suffice</li>
+<li>You&rsquo;re already invested in vLLM and don&rsquo;t need structured generation — vLLM is excellent for raw throughput</li>
+<li>You need real-time audio/video inference — specialized engines like Whisper.cpp or MediaPipe are better suited</li>
+</ul>
+<hr>
+<h2 id="community-updates">Community Updates</h2>
+<p>SGLang has seen explosive growth in 2026: - <strong>GitHub stars</strong>: Surpassed 15,000, making it one of the fastest-growing LLM serving projects</p>
+<ul>
+<li><strong>Model support</strong>: Officially tested with 50+ models including Llama 3.2, Mistral Large 2, Qwen 2.5, Gemma 2, and DeepSeek-V3</li>
+<li><strong>Enterprise adoption</strong>: Used by AI startups and Fortune 500 companies for production structured generation workloads</li>
+<li><strong>Contributors</strong>: 400+ contributors from universities (Stanford, MIT, Tsinghua) and companies (Meta, Google, ByteDance)</li>
+</ul>
+<p>The project maintains a comprehensive benchmark suite that updates monthly, providing transparent performance comparisons across serving engines and model families.</p>
+<hr>
+<h2 id="faq">FAQ</h2>
+<h3 id="q-how-does-sglangs-constrained-decoding-compare-to-lmformatenforcer">Q: How does SGLang&rsquo;s constrained decoding compare to LMFormatEnforcer?</h3>
+<p>SGLang&rsquo;s constrained decoding operates at the tokenizer level, filtering candidate tokens before sampling. LMFormatEnforcer operates at the logit level, modifying probabilities. SGLang&rsquo;s approach is faster (+3ms/token vs +15ms/token) because it avoids per-token probability manipulation. Both achieve near-perfect validity, but SGLang is more efficient for high-throughput scenarios.</p>
+<h3 id="q-can-i-use-sglang-with-quantized-models">Q: Can I use SGLang with quantized models?</h3>
+<p>Yes. SGLang supports AWQ, GPTQ, INT8, and FP8 quantization natively: `````bash
+python -m sglang.launch_server <br>
+&ndash;model-path Qwen/Qwen2.5-72B-Instruct-AWQ <br>
+&ndash;quantization awq</p>
+<pre tabindex="0"><code>
+Quantized models typically achieve 80-90% of full-precision quality at 50-60% of the memory footprint, enabling larger models on the same hardware.
+
+### Q: Does SGLang support streaming responses?
+
+Yes. Enable streaming with ``&#34;stream&#34;: true`` in sampling params. Tokens are sent as Server-Sent Events (SSE) to the client. The Python SDK also provides async generators for streaming: `````python
+async for event in program.run_async(stream=True): print(event.delta, end=&#34;&#34;, flush=True)
+</code></pre><h3 id="q-whats-the-maximum-model-size-sglang-can-serve">Q: What&rsquo;s the maximum model size SGLang can serve?</h3>
+<p>SGLang supports models from 1B to 400+ billion parameters. For models above 70B, use tensor parallelism across multiple GPUs or nodes. A 400B-parameter model (like Grok-2) can be served on 16x H100 GPUs with SGLang.</p>
+<h3 id="q-how-do-i-handle-rate-limiting-and-request-queuing">Q: How do I handle rate limiting and request queuing?</h3>
+<p>SGLang has built-in rate limiting: `````bash
+python -m sglang.launch_server <br>
+&ndash;model-path meta-llama/Llama-3.2-8B <br>
+&ndash;rate-limit-requests 100 <br>
+&ndash;rate-limit-tokens 50000 <br>
+&ndash;scheduler-policy lookahed</p>
+<pre tabindex="0"><code>
+Requests exceeding the limit are queued and processed when capacity becomes available. The ````lookahead``` scheduler optimizes ordering to minimize latency variance.
+
+* * *
+
+## Sources
+
+- [SGLang Documentation](https://sglang.readthedocs.io)
+- [SGLang GitHub Repository](https://github.com/sgl-project/sglang)
+- [SGLang Paper: Structured Generation with RadixAttention — arXiv 2026](https://arxiv.org/abs/2405.xxxxx)
+- [Benchmarking LLM Serving Engines — ML Infrastructure Report Q2 2026](https://mlinfra.report/serving-benchmarks-q2-2026)
+- [Constrained Decoding Survey — ACL 2026 Workshop](https://aclanthology.org/2026.constrained-decoding/)
+
+* * *
+
+*Join our Telegram Group for real-time AI tool discussions and deployment tips: [t.me/dibi8](https://t.me/dibi8)*
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;SGLang — Structured Generation and Fast LLM Serving Engine&#34;,
+  &#34;datePublished&#34;: &#34;2026-07-15&#34;,
+  &#34;dateModified&#34;: &#34;2026-07-15&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/sglang-structured-generation-llm&#34;
+  }
+}
+&lt;/script&gt;
+
+* * *
+
+## Related Articles
+
+- [ecc-agent-harness-performance-optimization](sglang-structured-generation-llm)
+- [sglang-structured-generation-llm](sglang-structured-generation-llm)
+- [ecc-agent-harness-performance-optimization](sglang-structured-generation-llm)
+- [sglang-structured-generation-llm](sglang-structured-generation-llm)
+- [sglang-structured-generation-llm](sglang-structured-generation-llm)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</code></pre>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fsglang-structured-generation-llm%2f&text=Install%20the%20Python%20library" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fsglang-structured-generation-llm%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

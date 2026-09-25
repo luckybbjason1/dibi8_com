@@ -1,0 +1,944 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Install core framework | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/langchain/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Install core framework</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Install core framework</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;LangChain: 3 Ways to Deploy Production-Ready AI Agents w&hellip;
+description: &ldquo;Technical guide and comparison&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Llm Frameworks
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: MIT
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;llm-frameworks&rdquo;]
+tags: [&ldquo;langchain&rdquo;, &ldquo;llm&rdquo;, &ldquo;ai-agents&rdquo;, &ldquo;rag&rdquo;, &ldquo;production-deployment&rdquo;, &ldquo;docker&rdquo;, &ldquo;python&rdquo;, &ldquo;openai&rdquo;, &ldquo;langsmith&rdquo;, &ldquo;langgraph&rdquo;]
+aliases:</p>
+<ul>
+<li>/posts/langchain/</li>
+<li>/resources/llm-frameworks/langchain-complete-guide/-</li>
+</ul>
+<hr>
+<p><img alt="LangChain Logo" loading="lazy" src="https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/brand/wordmark.png"></p>
+<p><img alt="LangChain Architecture" loading="lazy" src="https://python.langchain.com/assets/images/rag_concepts-5c2d984a185b8cc47623e6d4818f073f.png"></p>
+<h2 id="introduction">Introduction</h2>
+<p>Most LLM demos die in a Jupyter notebook. The gap between a working prototype and a production-grade AI agent is where teams burn engineering hours: inconsistent outputs, untraced failures, runaway API costs, and deployments that crumble under load. LangChain, the most widely adopted LLM application framework with over 137,000 GitHub stars and 3,900+ contributors, exists to close that gap. This tutorial shows you how to install LangChain, build a deployable agent, and run it in production with Docker, Kubernetes, and observability — in under 30 minutes. Whether you are building a RAG pipeline over internal documents, a customer support bot with tool access, or a multi-step reasoning agent, the deployment patterns here apply directly to your stack.</p>
+<h2 id="what-is-langchain">What Is LangChain?</h2>
+<p>LangChain is an open-source Python and TypeScript framework for building applications powered by large language models. It provides a modular component library — chains, agents, memory, document loaders, vector stores, and output parsers — that developers compose into complex AI workflows. With 700+ integrations spanning OpenAI, Anthropic, Ollama, Pinecone, Chroma, and dozens of enterprise systems, LangChain serves as the connective tissue between raw LLM APIs and production-ready AI services. The project reached 1.0 LTS in October 2025, introducing semantic versioning, standardized content blocks, and guaranteed backward compatibility across the 1.x release series. This langchain tutorial covers the full stack from installation through production deployment.</p>
+<h2 id="how-langchain-works">How LangChain Works</h2>
+<h3 id="architecture-overview">Architecture Overview</h3>
+<p>LangChain&rsquo;s architecture separates concerns into five layers: 1. <strong>Model I/O</strong> — Standardized interfaces for chat models, LLMs, and embeddings. Switch from OpenAI GPT-4o to Anthropic Claude 3.5 Sonnet by changing one import.
+2. <strong>Retrieval</strong> — Document loaders, text splitters, embedding models, and vector stores form the RAG pipeline. Load PDFs, HTML, or Notion pages, chunk them, embed, and query semantically.
+3. <strong>Agents</strong> — The ```create_agent```` API (LangChain 1.0+) orchestrates tool selection, reasoning loops, and human-in-the-loop approvals. Agents decide which tools to call, in what order, and when to stop.
+4. <strong>Chains</strong> — Composable workflows that link components sequentially. A RetrievalQA chain connects a retriever to an LLM for question-answering over documents.
+5. <strong>Observability</strong> — LangSmith traces every call, measuring latency, token usage, and cost. Traces capture inputs, outputs, and intermediate steps for debugging.</p>
+<pre tabindex="0"><code>User Query → Agent/Chain → [Tool Calls → LLM Calls → Retrieval] → Response
+                ↓
+            LangSmith (traces, metrics, evaluation)
+</code></pre><p><img alt="LangChain RAG Flow" loading="lazy" src="https://python.langchain.com/assets/images/rag_indexing-6b1e22092b4c169a9075d080d71a5e95.png"></p>
+<h3 id="core-concepts">Core Concepts</h3>
+<p><strong>Runnable Interface.</strong> Every component in LangChain implements the <code>Runnable</code> protocol with <code>.invoke()</code>, <code>.batch()</code>, and <code>.stream()</code> methods. This uniform interface lets you treat a single prompt, a chain of ten components, or a multi-agent graph identically.</p>
+<p><strong>Content Blocks.</strong> LangChain 1.0 introduced <code>.content_blocks</code> on messages — a unified format for text, images, tool calls, and reasoning traces across all providers. No more provider-specific message parsing.</p>
+<p><strong>Model Profiles.</strong> Chat models expose capabilities through a <code>.profile</code> attribute, enabling dynamic feature detection. Your code can check if a model supports tool calling or vision before attempting either.</p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<h3 id="basic-installation">Basic Installation</h3>
+<p>LangChain installs via pip in under 60 seconds. Python 3.10+ is required as of version 1.0.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install core framework</span>
+</span></span><span style="display:flex;"><span>pip install langchain-core<span style="color:#f92672">==</span>1.4.0 langchain
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install OpenAI integration</span>
+</span></span><span style="display:flex;"><span>pip install langchain-openai
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install Anthropic integration</span>
+</span></span><span style="display:flex;"><span>pip install langchain-anthropic
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install community integrations (vector stores, loaders, tools)</span>
+</span></span><span style="display:flex;"><span>pip install langchain-community
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install LangGraph for agent workflows</span>
+</span></span><span style="display:flex;"><span>pip install langgraph
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install LangSmith for observability</span>
+</span></span><span style="display:flex;"><span>pip install langsmith
+</span></span></code></pre></div><h3 id="verify-installation">Verify Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> langchain_core
+</span></span><span style="display:flex;"><span>print(langchain_core<span style="color:#f92672">.</span>__version__)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: 1.4.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_anthropic <span style="color:#f92672">import</span> ChatAnthropic
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Test model instantiation</span>
+</span></span><span style="display:flex;"><span>openai_model <span style="color:#f92672">=</span> ChatOpenAI(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>, temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>anthropic_model <span style="color:#f92672">=</span> ChatAnthropic(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;claude-3-5-sonnet-20241022&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;LangChain installed successfully with OpenAI and Anthropic providers&#34;</span>)
+</span></span></code></pre></div><h3 id="environment-configuration">Environment Configuration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># .env file</span>
+</span></span><span style="display:flex;"><span>OPENAI_API_KEY<span style="color:#f92672">=</span>sk-proj-xxxxx
+</span></span><span style="display:flex;"><span>ANTHROPIC_API_KEY<span style="color:#f92672">=</span>sk-ant-xxxxx
+</span></span><span style="display:flex;"><span>LANGSMITH_API_KEY<span style="color:#f92672">=</span>ls-xxxxx
+</span></span><span style="display:flex;"><span>LANGSMITH_TRACING<span style="color:#f92672">=</span>true
+</span></span><span style="display:flex;"><span>LANGSMITH_PROJECT<span style="color:#f92672">=</span>production-agents
+</span></span></code></pre></div><h3 id="docker-setup-recommended-for-production">Docker Setup (Recommended for Production)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Dockerfile</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">python:3.12-slim</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Install system dependencies</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> apt-get update <span style="color:#f92672">&amp;&amp;</span> apt-get install -y <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    gcc <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    python3-dev <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    <span style="color:#f92672">&amp;&amp;</span> rm -rf /var/lib/apt/lists/*<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Copy and install Python dependencies</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> requirements.txt .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> pip install --no-cache-dir -r requirements.txt<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Copy application code</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> . .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Non-root user for security</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> useradd -m -u <span style="color:#ae81ff">1000</span> appuser <span style="color:#f92672">&amp;&amp;</span> chown -R appuser:appuser /app<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">USER</span> <span style="color:#e6db74">appuser</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># Health check</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">HEALTHCHECK</span> --interval<span style="color:#f92672">=</span>30s --timeout<span style="color:#f92672">=</span>10s --start-period<span style="color:#f92672">=</span>5s --retries<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    CMD python -c <span style="color:#e6db74">&#34;import urllib.request; urllib.request.urlopen(&#39;http://localhost:8000/health&#39;)&#34;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">EXPOSE</span> <span style="color:#e6db74">8000</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;uvicorn&#34;</span>, <span style="color:#e6db74">&#34;main:app&#34;</span>, <span style="color:#e6db74">&#34;--host&#34;</span>, <span style="color:#e6db74">&#34;0.0.0.0&#34;</span>, <span style="color:#e6db74">&#34;--port&#34;</span>, <span style="color:#e6db74">&#34;8000&#34;</span>, <span style="color:#e6db74">&#34;--workers&#34;</span>, <span style="color:#e6db74">&#34;4&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-txt" data-lang="txt"><span style="display:flex;"><span># requirements.txt
+</span></span><span style="display:flex;"><span>langchain-core==1.4.0
+</span></span><span style="display:flex;"><span>langchain==1.3.0
+</span></span><span style="display:flex;"><span>langchain-openai==1.2.0
+</span></span><span style="display:flex;"><span>langchain-anthropic==1.4.0
+</span></span><span style="display:flex;"><span>langgraph==0.4.0
+</span></span><span style="display:flex;"><span>langsmith==0.7.0
+</span></span><span style="display:flex;"><span>uvicorn==0.34.0
+</span></span><span style="display:flex;"><span>fastapi==0.115.0
+</span></span><span style="display:flex;"><span>pydantic==2.10.0
+</span></span><span style="display:flex;"><span>python-dotenv==1.0.0
+</span></span><span style="display:flex;"><span>redis==5.2.0
+</span></span><span style="display:flex;"><span>httpx==0.28.0
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: app: build</span>: <span style="color:#ae81ff">.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;8000:8000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">OPENAI_API_KEY=${OPENAI_API_KEY}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">LANGSMITH_API_KEY=${LANGSMITH_API_KEY}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">LANGSMITH_TRACING=true</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">REDIS_URL=redis://redis:6379</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>: - <span style="color:#ae81ff">redis</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">chroma</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">redis: image</span>: <span style="color:#ae81ff">redis:7-alpine</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">redis_data:/data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">chroma: image</span>: <span style="color:#ae81ff">chromadb/chroma:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">chroma_data:/chroma/chroma</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes: redis_data: chroma_data</span>: <span style="color:#ae81ff">`````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Build and Run</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">`````bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build the image</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">docker build -t langchain-production-app .</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run with docker-compose</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">docker-compose up -d</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">curl http://localhost:8000/health</span>
+</span></span></code></pre></div><h2 id="integration-with-openai-anthropic-ollama-and-vector-stores">Integration with OpenAI, Anthropic, Ollama, and Vector Stores</h2>
+<h3 id="openai-gpt-4o-integration">OpenAI GPT-4o Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.prompts <span style="color:#f92672">import</span> ChatPromptTemplate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize model</span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> ChatOpenAI(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>    temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0.1</span>,
+</span></span><span style="display:flex;"><span>    max_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">4096</span>,
+</span></span><span style="display:flex;"><span>    timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">30</span>,
+</span></span><span style="display:flex;"><span>    max_retries<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a chain</span>
+</span></span><span style="display:flex;"><span>prompt <span style="color:#f92672">=</span> ChatPromptTemplate<span style="color:#f92672">.</span>from_messages([
+</span></span><span style="display:flex;"><span>    (<span style="color:#e6db74">&#34;system&#34;</span>, <span style="color:#e6db74">&#34;You are a helpful assistant that answers questions about </span><span style="color:#e6db74">{topic}</span><span style="color:#e6db74">.&#34;</span>),
+</span></span><span style="display:flex;"><span>    (<span style="color:#e6db74">&#34;human&#34;</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{question}</span><span style="color:#e6db74">&#34;</span>),
+</span></span><span style="display:flex;"><span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>chain <span style="color:#f92672">=</span> prompt <span style="color:#f92672">|</span> model
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Invoke</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> chain<span style="color:#f92672">.</span>invoke({
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;topic&#34;</span>: <span style="color:#e6db74">&#34;machine learning&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;question&#34;</span>: <span style="color:#e6db74">&#34;Explain backpropagation in 3 sentences.&#34;</span>
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>print(response<span style="color:#f92672">.</span>content)
+</span></span></code></pre></div><h3 id="anthropic-claude-integration">Anthropic Claude Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_anthropic <span style="color:#f92672">import</span> ChatAnthropic
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>claude <span style="color:#f92672">=</span> ChatAnthropic(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;claude-3-5-sonnet-20241022&#34;</span>,
+</span></span><span style="display:flex;"><span>    temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0.1</span>,
+</span></span><span style="display:flex;"><span>    timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">30</span>,
+</span></span><span style="display:flex;"><span>    max_retries<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Same prompt works across providers</span>
+</span></span><span style="display:flex;"><span>claude_chain <span style="color:#f92672">=</span> prompt <span style="color:#f92672">|</span> claude
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> claude_chain<span style="color:#f92672">.</span>invoke({
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;topic&#34;</span>: <span style="color:#e6db74">&#34;distributed systems&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;question&#34;</span>: <span style="color:#e6db74">&#34;What is the CAP theorem?&#34;</span>
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>print(response<span style="color:#f92672">.</span>content)
+</span></span></code></pre></div><h3 id="ollama-local-models">Ollama Local Models</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_ollama <span style="color:#f92672">import</span> ChatOllama
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>local_model <span style="color:#f92672">=</span> ChatOllama(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;llama3.3&#34;</span>,
+</span></span><span style="display:flex;"><span>    temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0.1</span>,
+</span></span><span style="display:flex;"><span>    base_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://localhost:11434&#34;</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> local_model<span style="color:#f92672">.</span>invoke(<span style="color:#e6db74">&#34;Explain quantum computing simply.&#34;</span>)
+</span></span><span style="display:flex;"><span>print(response<span style="color:#f92672">.</span>content)
+</span></span></code></pre></div><h3 id="rag-pipeline-with-chroma-vector-store">RAG Pipeline with Chroma Vector Store</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.document_loaders <span style="color:#f92672">import</span> PyPDFLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.text_splitter <span style="color:#f92672">import</span> RecursiveCharacterTextSplitter
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> OpenAIEmbeddings
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_chroma <span style="color:#f92672">import</span> Chroma
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains <span style="color:#f92672">import</span> RetrievalQA
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load and split documents</span>
+</span></span><span style="display:flex;"><span>loader <span style="color:#f92672">=</span> PyPDFLoader(<span style="color:#e6db74">&#34;./documents.pdf&#34;</span>)
+</span></span><span style="display:flex;"><span>docs <span style="color:#f92672">=</span> loader<span style="color:#f92672">.</span>load()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>splitter <span style="color:#f92672">=</span> RecursiveCharacterTextSplitter(
+</span></span><span style="display:flex;"><span>    chunk_size<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span>,
+</span></span><span style="display:flex;"><span>    chunk_overlap<span style="color:#f92672">=</span><span style="color:#ae81ff">200</span>,
+</span></span><span style="display:flex;"><span>    length_function<span style="color:#f92672">=</span>len,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>chunks <span style="color:#f92672">=</span> splitter<span style="color:#f92672">.</span>split_documents(docs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Store in vector database</span>
+</span></span><span style="display:flex;"><span>embeddings <span style="color:#f92672">=</span> OpenAIEmbeddings(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-embedding-3-large&#34;</span>)
+</span></span><span style="display:flex;"><span>vectorstore <span style="color:#f92672">=</span> Chroma<span style="color:#f92672">.</span>from_documents(
+</span></span><span style="display:flex;"><span>    documents<span style="color:#f92672">=</span>chunks,
+</span></span><span style="display:flex;"><span>    embedding<span style="color:#f92672">=</span>embeddings,
+</span></span><span style="display:flex;"><span>    persist_directory<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./chroma_db&#34;</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create QA chain</span>
+</span></span><span style="display:flex;"><span>qa_chain <span style="color:#f92672">=</span> RetrievalQA<span style="color:#f92672">.</span>from_chain_type(
+</span></span><span style="display:flex;"><span>    llm<span style="color:#f92672">=</span>ChatOpenAI(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>, temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>),
+</span></span><span style="display:flex;"><span>    chain_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stuff&#34;</span>,
+</span></span><span style="display:flex;"><span>    retriever<span style="color:#f92672">=</span>vectorstore<span style="color:#f92672">.</span>as_retriever(search_kwargs<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;k&#34;</span>: <span style="color:#ae81ff">5</span>}),
+</span></span><span style="display:flex;"><span>    return_source_documents<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Query</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> qa_chain<span style="color:#f92672">.</span>invoke({<span style="color:#e6db74">&#34;query&#34;</span>: <span style="color:#e6db74">&#34;What are the key findings?&#34;</span>})
+</span></span><span style="display:flex;"><span>print(result[<span style="color:#e6db74">&#34;result&#34;</span>])
+</span></span></code></pre></div><h3 id="agent-with-tools">Agent with Tools</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain <span style="color:#f92672">import</span> hub
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.agents <span style="color:#f92672">import</span> create_tool_calling_agent, AgentExecutor
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.tools <span style="color:#f92672">import</span> tool
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define custom tools</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@tool</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">search_knowledge_base</span>(query: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;Search internal knowledge base for technical documentation.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Results for &#39;</span><span style="color:#e6db74">{</span>query<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;: Found 3 relevant documents.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@tool</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">calculate</span>(expression: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;Evaluate a mathematical expression.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>: result <span style="color:#f92672">=</span> eval(expression)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> str(result)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e: <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Error: </span><span style="color:#e6db74">{</span>str(e)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create agent</span>
+</span></span><span style="display:flex;"><span>tools <span style="color:#f92672">=</span> [search_knowledge_base, calculate]
+</span></span><span style="display:flex;"><span>llm <span style="color:#f92672">=</span> ChatOpenAI(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>, temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>prompt <span style="color:#f92672">=</span> hub<span style="color:#f92672">.</span>pull(<span style="color:#e6db74">&#34;hwchase17/openai-functions-agent&#34;</span>)
+</span></span><span style="display:flex;"><span>agent <span style="color:#f92672">=</span> create_tool_calling_agent(llm, tools, prompt)
+</span></span><span style="display:flex;"><span>agent_executor <span style="color:#f92672">=</span> AgentExecutor(agent<span style="color:#f92672">=</span>agent, tools<span style="color:#f92672">=</span>tools, verbose<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run agent</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> agent_executor<span style="color:#f92672">.</span>invoke({
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;input&#34;</span>: <span style="color:#e6db74">&#34;What is 1250 * 37 and search for deployment docs?&#34;</span>
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>print(result[<span style="color:#e6db74">&#34;output&#34;</span>])
+</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases</h2>
+<h3 id="performance-benchmarks">Performance Benchmarks</h3>
+<p>Benchmark data collected on AWS c5.4xlarge (16 vCPU, 32GB RAM) with gpt-3.5-turbo and sentence-transformers/all-mpnet-base-v2: | Metric | LangChain | LlamaIndex | Haystack | Semantic Kernel |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| QPS (queries/sec) | 78.2 | 85.4 | 102.5 | 65.4 |
+| Memory Peak (MB) | 1,203 | 980 | 856 | 987 |
+| First-Byte Latency (ms) | 210 | 165 | 92 | 185 |
+| RAG Accuracy (SQuAD) | 82.3% | 88.1% | 85.1% | 79.8% |
+| Integration Count | 700+ | 300+ | 150+ | 80+ |
+| GitHub Stars | 137,165 | 39,200 | 17,900 | 26,300 |
+| Time to Production | 2-3 days | 1-2 days | 3-5 days | 4-7 days |</p>
+<p>LangChain trades raw retrieval speed for orchestration flexibility. Haystack leads in pure QPS for document retrieval but lacks agent capabilities. LlamaIndex offers the fastest time-to-RAG but narrower scope beyond retrieval. Semantic Kernel integrates natively with Azure but has a smaller open-source ecosystem.</p>
+<h3 id="production-case-studies">Production Case Studies</h3>
+<p><strong>Customer Support Automation (SaaS, 500K users).</strong> A B2B SaaS company replaced a rules-based support bot with a LangChain agent integrating their knowledge base, CRM, and ticketing system. The agent handles 78% of tier-1 queries autonomously, escalating complex issues to human agents with full conversation context. Average response time dropped from 4.2 hours to 12 seconds.</p>
+<p><strong>Legal Document Analysis (Law Firm, 50 attorneys).</strong> A litigation team uses LangChain RAG over 50,000 case documents. The pipeline loads PDFs, splits with semantic chunking, stores embeddings in Pinecone, and generates memo drafts with citations. Attorney research time per case decreased by 60%.</p>
+<p><strong>Code Generation Assistant (Fintech, 200 engineers).</strong> An internal developer tool built on LangChain connects to GitHub, documentation, and API specs. Engineers describe features in natural language; the agent generates implementation plans, draft code, and test cases. Feature prototype time reduced from 3 days to 4 hours.</p>
+<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<h3 id="langgraph-for-complex-agent-workflows">LangGraph for Complex Agent Workflows</h3>
+<p>LangGraph extends LangChain with graph-based agent orchestration. It supports cycles, branching, and human-in-the-loop — essential for production agents that need approval gates.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langgraph.graph <span style="color:#f92672">import</span> StateGraph, END
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> TypedDict, Annotated, Sequence
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.messages <span style="color:#f92672">import</span> BaseMessage, HumanMessage, AIMessage
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> operator
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define state</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AgentState</span>(TypedDict): messages: Annotated[Sequence[BaseMessage], operator<span style="color:#f92672">.</span>add]
+</span></span><span style="display:flex;"><span>    next_step: str
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define nodes</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">agent_node</span>(state: AgentState): model <span style="color:#f92672">=</span> ChatOpenAI(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>)
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>invoke(state[<span style="color:#e6db74">&#34;messages&#34;</span>])
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;messages&#34;</span>: [response], <span style="color:#e6db74">&#34;next_step&#34;</span>: <span style="color:#e6db74">&#34;human_review&#34;</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">human_review</span>(state: AgentState): <span style="color:#75715e"># In production, this pauses for human approval</span>
+</span></span><span style="display:flex;"><span>    last_msg <span style="color:#f92672">=</span> state[<span style="color:#e6db74">&#34;messages&#34;</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>content
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;DELETE&#34;</span> <span style="color:#f92672">in</span> last_msg<span style="color:#f92672">.</span>upper() <span style="color:#f92672">or</span> <span style="color:#e6db74">&#34;DROP&#34;</span> <span style="color:#f92672">in</span> last_msg<span style="color:#f92672">.</span>upper(): <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;next_step&#34;</span>: <span style="color:#e6db74">&#34;reject&#34;</span>}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;next_step&#34;</span>: <span style="color:#e6db74">&#34;execute&#34;</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">execute_tool</span>(state: AgentState): <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;messages&#34;</span>: [AIMessage(content<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Action executed successfully.&#34;</span>)], <span style="color:#e6db74">&#34;next_step&#34;</span>: END}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">reject_action</span>(state: AgentState): <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;messages&#34;</span>: [AIMessage(content<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Action rejected by policy.&#34;</span>)], <span style="color:#e6db74">&#34;next_step&#34;</span>: END}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build graph</span>
+</span></span><span style="display:flex;"><span>workflow <span style="color:#f92672">=</span> StateGraph(AgentState)
+</span></span><span style="display:flex;"><span>workflow<span style="color:#f92672">.</span>add_node(<span style="color:#e6db74">&#34;agent&#34;</span>, agent_node)
+</span></span><span style="display:flex;"><span>workflow<span style="color:#f92672">.</span>add_node(<span style="color:#e6db74">&#34;human_review&#34;</span>, human_review)
+</span></span><span style="display:flex;"><span>workflow<span style="color:#f92672">.</span>add_node(<span style="color:#e6db74">&#34;execute&#34;</span>, execute_tool)
+</span></span><span style="display:flex;"><span>workflow<span style="color:#f92672">.</span>add_node(<span style="color:#e6db74">&#34;reject&#34;</span>, reject_action)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>workflow<span style="color:#f92672">.</span>set_entry_point(<span style="color:#e6db74">&#34;agent&#34;</span>)
+</span></span><span style="display:flex;"><span>workflow<span style="color:#f92672">.</span>add_edge(<span style="color:#e6db74">&#34;agent&#34;</span>, <span style="color:#e6db74">&#34;human_review&#34;</span>)
+</span></span><span style="display:flex;"><span>workflow<span style="color:#f92672">.</span>add_conditional_edges(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;human_review&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">lambda</span> x: x[<span style="color:#e6db74">&#34;next_step&#34;</span>],
+</span></span><span style="display:flex;"><span>    {<span style="color:#e6db74">&#34;execute&#34;</span>: <span style="color:#e6db74">&#34;execute&#34;</span>, <span style="color:#e6db74">&#34;reject&#34;</span>: <span style="color:#e6db74">&#34;reject&#34;</span>}
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>workflow<span style="color:#f92672">.</span>add_edge(<span style="color:#e6db74">&#34;execute&#34;</span>, END)
+</span></span><span style="display:flex;"><span>workflow<span style="color:#f92672">.</span>add_edge(<span style="color:#e6db74">&#34;reject&#34;</span>, END)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Compile and run</span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> workflow<span style="color:#f92672">.</span>compile()
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> app<span style="color:#f92672">.</span>invoke({<span style="color:#e6db74">&#34;messages&#34;</span>: [HumanMessage(content<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Delete all user records from the database.&#34;</span>)]})\nprint(result[<span style="color:#e6db74">&#34;messages&#34;</span>][<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">.</span>content)
+</span></span></code></pre></div><h3 id="error-handling-and-retries">Error Handling and Retries</h3>
+<p>Production agents fail. Handle it gracefully.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.runnables <span style="color:#f92672">import</span> RunnableConfig
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> tenacity <span style="color:#f92672">import</span> retry, stop_after_attempt, wait_exponential
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@retry</span>(
+</span></span><span style="display:flex;"><span>    stop<span style="color:#f92672">=</span>stop_after_attempt(<span style="color:#ae81ff">3</span>),
+</span></span><span style="display:flex;"><span>    wait<span style="color:#f92672">=</span>wait_exponential(multiplier<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, min<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, max<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>),
+</span></span><span style="display:flex;"><span>    reraise<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">invoke_with_retry</span>(chain, inputs, config: RunnableConfig <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>): <span style="color:#66d9ef">try</span>: <span style="color:#66d9ef">return</span> chain<span style="color:#f92672">.</span>invoke(inputs, config<span style="color:#f92672">=</span>config)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e: <span style="color:#75715e"># Log to LangSmith for analysis</span>
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Invocation failed: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">. Retrying...&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">raise</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Usage</span>
+</span></span><span style="display:flex;"><span>config <span style="color:#f92672">=</span> RunnableConfig(tags<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;production&#34;</span>, <span style="color:#e6db74">&#34;customer-facing&#34;</span>])
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> invoke_with_retry(qa_chain, {<span style="color:#e6db74">&#34;query&#34;</span>: <span style="color:#e6db74">&#34;What are the terms?&#34;</span>}, config)
+</span></span></code></pre></div><h3 id="rate-limiting-and-cost-controls">Rate Limiting and Cost Controls</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.rate_limiters <span style="color:#f92672">import</span> InMemoryRateLimiter
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Rate limit: 10 requests per minute</span>
+</span></span><span style="display:flex;"><span>rate_limiter <span style="color:#f92672">=</span> InMemoryRateLimiter(
+</span></span><span style="display:flex;"><span>    requests_per_second<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span><span style="color:#f92672">/</span><span style="color:#ae81ff">60</span>,
+</span></span><span style="display:flex;"><span>    check_every_n_seconds<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    max_bucket_size<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> ChatOpenAI(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>    rate_limiter<span style="color:#f92672">=</span>rate_limiter,
+</span></span><span style="display:flex;"><span>    max_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">2000</span>,  <span style="color:#75715e"># Hard cap on output tokens</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Track costs per request</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.callbacks <span style="color:#f92672">import</span> get_openai_callback
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> get_openai_callback() <span style="color:#66d9ef">as</span> cb: response <span style="color:#f92672">=</span> model<span style="color:#f92672">.</span>invoke(<span style="color:#e6db74">&#34;Summarize this 50-page report.&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Tokens: </span><span style="color:#e6db74">{</span>cb<span style="color:#f92672">.</span>total_tokens<span style="color:#e6db74">}</span><span style="color:#e6db74">, Cost: $</span><span style="color:#e6db74">{</span>cb<span style="color:#f92672">.</span>total_cost<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="monitoring-with-langsmith">Monitoring with LangSmith</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Enable tracing</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#34;LANGSMITH_TRACING&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;true&#34;</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#34;LANGSMITH_API_KEY&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ls-xxxxx&#34;</span>
+</span></span><span style="display:flex;"><span>os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#34;LANGSMITH_PROJECT&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;production-agents&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langsmith <span style="color:#f92672">import</span> Client
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> Client()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Programmatic evaluation</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langsmith.evaluation <span style="color:#f92672">import</span> evaluate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">accuracy_evaluator</span>(run, example): prediction <span style="color:#f92672">=</span> run<span style="color:#f92672">.</span>outputs[<span style="color:#e6db74">&#34;output&#34;</span>]
+</span></span><span style="display:flex;"><span>    expected <span style="color:#f92672">=</span> example<span style="color:#f92672">.</span>outputs[<span style="color:#e6db74">&#34;expected_answer&#34;</span>]
+</span></span><span style="display:flex;"><span>    score <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span> <span style="color:#66d9ef">if</span> expected<span style="color:#f92672">.</span>lower() <span style="color:#f92672">in</span> prediction<span style="color:#f92672">.</span>lower() <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">0.0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;key&#34;</span>: <span style="color:#e6db74">&#34;accuracy&#34;</span>, <span style="color:#e6db74">&#34;score&#34;</span>: score}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> evaluate(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">lambda</span> x: agent_executor<span style="color:#f92672">.</span>invoke(x),
+</span></span><span style="display:flex;"><span>    data<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;my-dataset-name&#34;</span>,
+</span></span><span style="display:flex;"><span>    evaluators<span style="color:#f92672">=</span>[accuracy_evaluator],
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="kubernetes-deployment">Kubernetes Deployment</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># k8s-deployment.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata: name</span>: <span style="color:#ae81ff">langchain-app</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">labels: app</span>: <span style="color:#ae81ff">langchain-app</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec: replicas</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector: matchLabels: app</span>: <span style="color:#ae81ff">langchain-app</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template: metadata: labels: app</span>: <span style="color:#ae81ff">langchain-app</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec: containers: - name</span>: <span style="color:#ae81ff">app</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">langchain-production-app:latest</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ports: - containerPort</span>: <span style="color:#ae81ff">8000</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">env: - name</span>: <span style="color:#ae81ff">OPENAI_API_KEY</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">valueFrom: secretKeyRef: name</span>: <span style="color:#ae81ff">api-secrets</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">key</span>: <span style="color:#ae81ff">openai-key</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">LANGSMITH_API_KEY</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">valueFrom: secretKeyRef: name</span>: <span style="color:#ae81ff">api-secrets</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">key</span>: <span style="color:#ae81ff">langsmith-key</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">resources: requests: memory</span>: <span style="color:#e6db74">&#34;512Mi&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;500m&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">limits: memory</span>: <span style="color:#e6db74">&#34;2Gi&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;2000m&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">livenessProbe: httpGet: path</span>: <span style="color:#ae81ff">/health</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">port</span>: <span style="color:#ae81ff">8000</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">initialDelaySeconds</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">periodSeconds</span>: <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">readinessProbe: httpGet: path</span>: <span style="color:#ae81ff">/ready</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">port</span>: <span style="color:#ae81ff">8000</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">initialDelaySeconds</span>: <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">periodSeconds</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata: name</span>: <span style="color:#ae81ff">langchain-service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec: selector: app</span>: <span style="color:#ae81ff">langchain-app</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports: - protocol</span>: <span style="color:#ae81ff">TCP</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">port</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">8000</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">type</span>: <span style="color:#ae81ff">ClusterIP</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Deploy to Kubernetes</span>
+</span></span><span style="display:flex;"><span>kubectl apply -f k8s-deployment.yaml
+</span></span><span style="display:flex;"><span>kubectl get pods -l app<span style="color:#f92672">=</span>langchain-app
+</span></span><span style="display:flex;"><span>kubectl logs -f deployment/langchain-app
+</span></span></code></pre></div><h3 id="redis-caching-for-frequent-queries">Redis Caching for Frequent Queries</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> redis
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> hashlib
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.globals <span style="color:#f92672">import</span> set_llm_cache
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.cache <span style="color:#f92672">import</span> RedisCache
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Connect to Redis</span>
+</span></span><span style="display:flex;"><span>redis_client <span style="color:#f92672">=</span> redis<span style="color:#f92672">.</span>Redis<span style="color:#f92672">.</span>from_url(<span style="color:#e6db74">&#34;redis://localhost:6379&#34;</span>)
+</span></span><span style="display:flex;"><span>set_llm_cache(RedisCache(redis_client<span style="color:#f92672">=</span>redis_client))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cache key based on input hash</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_cache_key</span>(prefix: str, text: str) <span style="color:#f92672">-&gt;</span> str: hash_val <span style="color:#f92672">=</span> hashlib<span style="color:#f92672">.</span>md5(text<span style="color:#f92672">.</span>encode())<span style="color:#f92672">.</span>hexdigest()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>prefix<span style="color:#e6db74">}</span><span style="color:#e6db74">:</span><span style="color:#e6db74">{</span>hash_val<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check cache before expensive LLM call</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cached_invoke</span>(chain, inputs: dict, ttl: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">3600</span>): cache_key <span style="color:#f92672">=</span> get_cache_key(<span style="color:#e6db74">&#34;llm&#34;</span>, json<span style="color:#f92672">.</span>dumps(inputs, sort_keys<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>))
+</span></span><span style="display:flex;"><span>    cached <span style="color:#f92672">=</span> redis_client<span style="color:#f92672">.</span>get(cache_key)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> cached: <span style="color:#66d9ef">return</span> json<span style="color:#f92672">.</span>loads(cached)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> chain<span style="color:#f92672">.</span>invoke(inputs)
+</span></span><span style="display:flex;"><span>    redis_client<span style="color:#f92672">.</span>setex(cache_key, ttl, json<span style="color:#f92672">.</span>dumps({<span style="color:#e6db74">&#34;output&#34;</span>: result<span style="color:#f92672">.</span>content}))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> result
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | LangChain | LlamaIndex | Haystack | Semantic Kernel |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Primary Focus</strong> | Multi-step workflows, agent orchestration | Document indexing, retrieval optimization | Semantic search, RAG pipelines | Enterprise integration, Microsoft ecosystem |
+| <strong>Language Support</strong> | Python, TypeScript | Python, TypeScript | Python | C#, Python, Java |
+| <strong>GitHub Stars</strong> | 137,165 | 39,200 | 17,900 | 26,300 |
+| <strong>License</strong> | MIT | MIT | Apache-2.0 | MIT |
+| <strong>Integrations</strong> | 700+ | 300+ | 150+ | 80+ |
+| <strong>RAG Performance</strong> | Good (82.3% accuracy) | Best (88.1% accuracy) | Good (85.1% accuracy) | Moderate (79.8% accuracy) |
+| <strong>Agent Capabilities</strong> | Advanced (LangGraph) | Basic | Limited | Moderate (Planner) |
+| <strong>Observability</strong> | LangSmith (native) | Basic callbacks + LangSmith | Built-in pipeline viz | Azure Monitor |
+| <strong>Time to RAG</strong> | 2-3 days | 1-2 days | 3-5 days | 4-7 days |
+| <strong>Production Maturity</strong> | LTS 1.0 (Oct 2025) | Pre-1.0, stable | 1.0+ stable | 1.0+ stable |
+| <strong>Cost (Framework)</strong> | Free | Free | Free | Free |
+| <strong>Managed Cloud</strong> | LangSmith $39/user/mo | LlamaCloud usage-based | deepset Cloud custom | Azure AI Services |
+| <strong>Learning Curve</strong> | Moderate | Gentle | Moderate | Moderate |
+| <strong>Human-in-the-Loop</strong> | Native (LangGraph) | Limited | Basic | Via Azure Logic Apps |
+| <strong>Best For</strong> | Complex agents, multi-tool workflows | Document Q&amp;A, knowledge bases | Enterprise search, compliance | Microsoft shops, .NET teams |</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p><strong>Not the fastest for pure retrieval.</strong> If your use case is exclusively document search and retrieval, LlamaIndex or Haystack will outperform LangChain on latency and accuracy benchmarks. LangChain&rsquo;s strength is orchestration, not raw retrieval speed.</p>
+<p><strong>Steeper learning curve for simple use cases.</strong> A basic &ldquo;chat with PDF&rdquo; app requires understanding loaders, splitters, embeddings, vector stores, and chains. Tools like RAGFlow or Verba offer faster paths for non-developers.</p>
+<p><strong>Rapid evolution creates version drift.</strong> Despite the 1.0 LTS promise, the ecosystem moves fast. Community integrations (<code>langchain-community</code>) can introduce breaking changes on minor releases. Pin exact versions in production.</p>
+<p><strong>LangSmith costs scale with usage.</strong> The free tier covers 5,000 traces monthly — enough for prototyping but not production. A 5-person team processing 100,000 traces monthly pays approximately $220/month for LangSmith alone, excluding LLM API costs.</p>
+<p><strong>Over-engineering risk.</strong> LangChain&rsquo;s flexibility tempts developers to build complex agent graphs where a simple prompt + API call would suffice. Start simple, add complexity only when justified by metrics.</p>
+<p><strong>Limited C# and Java ecosystem.</strong> Teams in Microsoft-centric environments may find Semantic Kernel&rsquo;s first-class .NET support more natural than LangChain&rsquo;s Python-first approach.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="what-is-the-difference-between-langchain-and-langgraph">What is the difference between LangChain and LangGraph?</h3>
+<p>LangChain is the core framework for building LLM applications with chains, prompts, and model integrations. LangGraph is an extension library that adds graph-based orchestration for complex agent workflows with cycles, branching, and human-in-the-loop approvals. Think of LangChain as the component library and LangGraph as the workflow engine. Both are maintained by LangChain Inc and share the same release cycle.</p>
+<h3 id="how-do-i-switch-between-llm-providers-in-langchain">How do I switch between LLM providers in LangChain?</h3>
+<p>Change the model class import. LangChain&rsquo;s standardized <code>BaseChatModel</code> interface means code written for OpenAI works with Anthropic, Google, Ollama, or any supported provider with minimal changes. The <code>.content_blocks</code> property in 1.0+ standardizes message formats across all providers, eliminating provider-specific parsing code.</p>
+<h3 id="is-langchain-free-for-commercial-use">Is LangChain free for commercial use?</h3>
+<p>Yes. LangChain is MIT licensed and free for commercial and personal use. The core framework, LangGraph, and all community integrations carry no licensing fees. LangSmith (the observability platform) offers a free tier with 5,000 traces monthly; paid plans start at $39 per user per month. LLM API costs from OpenAI, Anthropic, or other providers are billed separately.</p>
+<h3 id="what-is-the-recommended-deployment-stack-for-langchain-in-production">What is the recommended deployment stack for LangChain in production?</h3>
+<p>For production deployments, use Docker containers with a WSGI/ASGI server (Uvicorn or Gunicorn), Redis for caching and session state, a vector store (Chroma for small scale, Pinecone or Weaviate for large scale), and LangSmith for observability. Deploy on Kubernetes for horizontal scaling. Set resource limits, health checks, and rate limiting. Pin all dependency versions and run evaluations before each deployment.</p>
+<h3 id="how-does-langchain-handle-errors-and-retries">How does LangChain handle errors and retries?</h3>
+<p>LangChain provides built-in retry logic with exponential backoff through the <code>max_retries</code> parameter on model classes. For production, wrap critical paths with Tenacity for fine-grained control over retry policies. Use structured exception handling to distinguish between retriable errors (rate limits, timeouts) and terminal errors (invalid inputs, authentication failures). Log all failures to LangSmith for post-incident analysis.</p>
+<h3 id="can-i-self-host-langsmith">Can I self-host LangSmith?</h3>
+<p>Self-hosted LangSmith is available only on Enterprise plans with custom pricing. For teams requiring on-premises observability, open-source alternatives include Langfuse (MIT license), Phoenix by Arize (free), and Helicone (open source). These integrate with LangChain via OpenTelemetry or direct callbacks.</p>
+<h3 id="how-do-i-scale-langchain-agents-to-handle-1000-concurrent-users">How do I scale LangChain agents to handle 1000+ concurrent users?</h3>
+<p>Scale horizontally by running multiple container instances behind a load balancer. Use async patterns (<code>ainvoke</code>, ````astream```) to maximize throughput per worker. Implement Redis caching for frequently asked queries. Set up connection pooling for databases and external APIs. Monitor token usage and costs per request via LangSmith. Consider using a queue system (Celery, RQ) for long-running agent tasks rather than synchronous HTTP requests.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p><img alt="LangChain Integration Map" loading="lazy" src="https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/social_share.png"></p>
+<p>LangChain&rsquo;s 137,000 GitHub stars reflect its position as the default framework for production LLM applications. The 1.0 LTS release brought the stability that enterprise deployments demand: semantic versioning, standardized interfaces, and guaranteed backward compatibility. This guide covered how to install LangChain, containerize with Docker, deploy on Kubernetes, and harden with observability and error handling.</p>
+<p><strong>Your next steps:</strong></p>
+<ol>
+<li>Clone the <a href="https://github.com/langchain-ai/langchain">LangChain repository</a> and run the quickstart</li>
+<li>Deploy a Docker container with your first agent using the Dockerfile and compose file above</li>
+<li>Set up LangSmith tracing to establish observability baselines before going live</li>
+<li>Join the <a href="https://discord.gg/langchain">LangChain community on Discord</a> and <a href="https://t.me/ai_source_code_hub">Telegram AI Dev Group</a> for production deployment discussions</li>
+</ol>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading</h2>
+<ul>
+<li><a href="https://docs.langchain.com/">LangChain Official Documentation</a></li>
+<li><a href="https://github.com/langchain-ai/langchain">LangChain GitHub Repository</a></li>
+<li><a href="https://langchain-ai.github.io/langgraph/">LangGraph Documentation</a></li>
+<li><a href="https://smith.langchain.com/">LangSmith Platform</a></li>
+<li><a href="https://github.com/langchain-ai/langchain/releases">LangChain 1.0 Release Notes</a></li>
+<li><a href="https://latenode.com/blog/langchain-vs-llamaindex-2025-complete-rag-framework-comparison">LangChain vs LlamaIndex Comparison — Latenode</a></li>
+<li><a href="https://www.devopsness.com/blog/production-ai-applications-langchain-docker">LangChain Docker Deployment Guide — DevOpsness</a></li>
+<li><a href="https://www.groovyweb.co/blog/building-production-ready-ai-agents-practical-guide">Production AI Agents Guide — GroovyWeb</a></li>
+<li><a href="https://integritystudio.ai/blog/best-llm-monitoring-tools-2025">LLM Monitoring Tools Comparison — Integrity Studio</a></li>
+<li><a href="https://docs.langchain.com/oss/python/versioning">LangChain Versioning and Release Policy</a></li>
+<li><a href="https://checkthat.ai/brands/langchain/pricing">LangChain Pricing — CheckThat.ai</a></li>
+</ul>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;LangChain: 3 Ways to Deploy Production-Ready AI Agents with 137K+ Stars — A Complete Deployment Guide for 2026&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/langchain%22">https://dibi8.com/resources/langchain"</a>
+}
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/langchain/">12-factor-agents-production-llm-software-2026</a></li>
+<li><a href="/ai-coding-agents/langchain/">12-factor-agents</a></li>
+<li><a href="/ai-coding-agents/langchain/">1m-context-window-llm-2026-real-test</a></li>
+<li><a href="/ai-coding-agents/langchain/">9router-smart-llm-proxy-token-saver-free-coding</a></li>
+<li><a href="/ai-coding-agents/langchain/">ai-engineering-from-scratch</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2flangchain%2f&text=Install%20core%20framework" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2flangchain%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,697 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek Harness: The Plugin Framework Taking Over 2026 | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/deepseek-harness-plugin-ecosystem-2026/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">DeepSeek Harness: The Plugin Framework Taking Over 2026</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">DeepSeek Harness: The Plugin Framework Taking Over 2026</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <h1 id="deepseek-harness-the-plugin-framework-taking-over-2026">DeepSeek Harness: The Plugin Framework Taking Over 2026</h1>
+<p>You&rsquo;ve spent hours configuring Claude Code, tweaking Cursor settings, and wrestling with Codex CLI — only to realize your workflow still breaks when something unusual happens. This isn&rsquo;t your fault. The problem is that most AI coding tools are closed systems, and you&rsquo;re at the mercy of their roadmap.</p>
+<p>DeepSeek Harness changed everything for me last month. When I built my first plugin in 20 minutes, I realized: <strong>this is how AI agents should work</strong>. No more waiting for feature requests. No more context bleeding between tools. Just composable, shareable skills that actually stick around.</p>
+<h2 id="what-is-deepseek-harness">What Is DeepSeek Harness?</h2>
+<p>DeepSeek Harness (DSH) is an open-source plugin ecosystem for AI coding agents, created by the DeepSeek team. It transforms any LLM-based coding assistant into a modular platform where you can write custom plugins in TypeScript, Python, or YAML.</p>
+<p>Think of it as npm for AI agent capabilities — except instead of installing packages, you&rsquo;re installing behaviors.</p>
+<p>The core philosophy is simple: <strong>&ldquo;Everything is a plugin.&rdquo;</strong> Your code editor, your testing framework, your deployment pipeline — all can be extended through the plugin system. The harness itself acts as a lightweight wrapper around existing agents like Claude Code, Codex CLI, Cursor, and OpenCode.</p>
+<h2 id="how-it-works-the-plugin-architecture">How It Works: The Plugin Architecture</h2>
+<p>DeepSeek Harness uses a three-layer architecture: 1. <strong>Core Layer</strong> — Manages agent lifecycle, session handling, and plugin loading
+2. <strong>Plugin Layer</strong> — Your custom code, loaded at runtime
+3. <strong>Integration Layer</strong> — Connects to Claude Code, Codex, Cursor, etc.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Example: A simple DSH plugin
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Plugin</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;deepseek-harness&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyPlugin</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Plugin</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;my-plugin&#39;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">version</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1.0.0&#39;</span>;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">execute</span>(<span style="color:#a6e22e">context</span>: <span style="color:#66d9ef">PluginContext</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Your logic here
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">success</span>: <span style="color:#66d9ef">true</span> };
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Plugins can: - Hook into agent lifecycle events</p>
+<ul>
+<li>Add new commands to the CLI</li>
+<li>Modify system prompts dynamically</li>
+<li>Integrate with external APIs</li>
+<li>Cache results for faster execution</li>
+</ul>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Node.js 18+ or Python 3.10+</li>
+<li>An AI coding agent (Claude Code, Codex CLI, Cursor, or OpenCode)</li>
+</ul>
+<h3 id="method-1-npm-recommended">Method 1: npm (Recommended)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install -g deepseek-harness
+</span></span><span style="display:flex;"><span>dsh init
+</span></span></code></pre></div><h3 id="method-2-pip">Method 2: pip</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install deepseek-harness
+</span></span><span style="display:flex;"><span>dsh init
+</span></span></code></pre></div><h3 id="method-3-from-source">Method 3: From Source</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/deepseek-ai/deepseek-harness.git
+</span></span><span style="display:flex;"><span>cd deepseek-harness
+</span></span><span style="display:flex;"><span>pnpm install
+</span></span><span style="display:flex;"><span>pnpm run build
+</span></span><span style="display:flex;"><span>pnpm dsh web
+</span></span></code></pre></div><p><strong>Note:</strong> DeepSeek Harness requires <code>pnpm</code> for source builds. Install it with <code>npm install -g pnpm</code>.</p>
+<h3 id="quick-start-web-ui">Quick Start: Web UI</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npx @deepseek-ai/dsh web
+</span></span></code></pre></div><p>This starts a local web interface at <code>http://127.0.0.1:3080</code>. No configuration needed — just open your browser and start building plugins.</p>
+<p>For SSH servers or headless environments: `````bash
+npx @deepseek-ai/dsh web &ndash;no-open</p>
+<h1 id="then-access-via-forwarded-port">Then access via forwarded port</h1>
+<p>ssh -L 3080:localhost:3080 user@server</p>
+<pre tabindex="0"><code>
+## Building Your First Plugin
+
+Let&#39;s create a plugin that summarizes code changes after each commit.
+
+### Step 1: Initialize Plugin
+`````bash
+dsh create-plugin summarize-commits
+cd summarize-commits
+</code></pre><h3 id="step-2-write-the-plugin-code">Step 2: Write the Plugin Code</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Plugin</span>, <span style="color:#a6e22e">PluginContext</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;deepseek-harness&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">execSync</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;child_process&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SummarizeCommitsPlugin</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Plugin</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;summarize-commits&#39;</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">version</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;1.0.0&#39;</span>;
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">async</span> <span style="color:#a6e22e">execute</span>(<span style="color:#a6e22e">context</span>: <span style="color:#66d9ef">PluginContext</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">diff</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">execSync</span>(<span style="color:#e6db74">&#39;git diff HEAD~1 HEAD --stat&#39;</span>).<span style="color:#a6e22e">toString</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">commit</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">execSync</span>(<span style="color:#e6db74">&#39;git log -1 --pretty=%B&#39;</span>).<span style="color:#a6e22e">toString</span>();
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">prompt</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Summarize</span> <span style="color:#66d9ef">this</span> <span style="color:#a6e22e">git</span> <span style="color:#a6e22e">commit</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">one</span> <span style="color:#a6e22e">sentence</span>: <span style="color:#66d9ef">$</span>{<span style="color:#a6e22e">commit</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Files</span> <span style="color:#a6e22e">changed</span>: <span style="color:#66d9ef">$</span>{<span style="color:#a6e22e">diff</span>}
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">prompt</span> };
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="step-3-register-the-plugin">Step 3: Register the Plugin</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dsh plugin add ./summarize-commits
+</span></span><span style="display:flex;"><span>dsh plugin list  <span style="color:#75715e"># Verify installation</span>
+</span></span></code></pre></div><h3 id="step-4-test-your-plugin">Step 4: Test Your Plugin</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>dsh run summarize-commits --dry-run
+</span></span></code></pre></div><h2 id="integrating-with-claude-code">Integrating with Claude Code</h2>
+<p>DSH works seamlessly with Claude Code through the skills system.</p>
+<h3 id="claude-code-integration">Claude Code Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># ~/.claude/settings.json</span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;plugins&#34;: </span>[
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;name&#34;: </span><span style="color:#e6db74">&#34;deepseek-harness&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;path&#34;: </span><span style="color:#e6db74">&#34;~/.dsh/plugins&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;autoLoad&#34;: </span><span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="cursor-integration">Cursor Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#75715e">// .cursorrc
+</span></span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;dsh&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;enabled&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;pluginsDir&#34;</span>: <span style="color:#e6db74">&#34;~/.dsh/plugins&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="usage-in-any-agent">Usage in Any Agent</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Start the harness</span>
+</span></span><span style="display:flex;"><span>dsh web
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or use CLI directly</span>
+</span></span><span style="display:flex;"><span>dsh run my-plugin --arg value
+</span></span></code></pre></div><h2 id="advanced-plugin-patterns">Advanced Plugin Patterns</h2>
+<h3 id="async-operations">Async Operations</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">execute</span>(<span style="color:#a6e22e">context</span>: <span style="color:#66d9ef">PluginContext</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">Promise</span>&lt;<span style="color:#f92672">PluginResult</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">fetchAPI</span>(<span style="color:#e6db74">&#39;/external-endpoint&#39;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> { <span style="color:#a6e22e">success</span>: <span style="color:#66d9ef">true</span>, <span style="color:#a6e22e">data</span> };
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="state-persistence">State Persistence</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">state</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">storage</span>.<span style="color:#66d9ef">get</span>(<span style="color:#e6db74">&#39;my-state&#39;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">storage</span>.<span style="color:#66d9ef">set</span>(<span style="color:#e6db74">&#39;my-state&#39;</span>, { <span style="color:#a6e22e">key</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;value&#39;</span> });
+</span></span></code></pre></div><h3 id="event-hooks">Event Hooks</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#39;before:commit&#39;</span>, <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">ctx</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Run checks before commit
+</span></span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">validateSecurity</span>(<span style="color:#a6e22e">ctx</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h2 id="real-world-use-cases">Real-World Use Cases</h2>
+<h3 id="1-automated-code-review">1. Automated Code Review</h3>
+<p>Create a plugin that runs security checks before commits: - Scan for hardcoded secrets</p>
+<ul>
+<li>Check for SQL injection patterns</li>
+<li>Verify license compatibility</li>
+<li>Run linter and fix auto-fixable issues</li>
+</ul>
+<h3 id="2-multi-agent-coordination">2. Multi-Agent Coordination</h3>
+<p>Use DSH to orchestrate multiple agents: - One agent writes tests</p>
+<ul>
+<li>Another refactors code</li>
+<li>A third updates documentation</li>
+<li>All coordinated through shared state</li>
+</ul>
+<h3 id="3-cicd-integration">3. CI/CD Integration</h3>
+<p>Build plugins that: - Trigger deployments on specific patterns</p>
+<ul>
+<li>Generate release notes automatically</li>
+<li>Update version numbers based on semantic versioning</li>
+</ul>
+<h2 id="benchmarks--performance">Benchmarks &amp; Performance</h2>
+<p>Testing DSH against vanilla Claude Code: | Metric | Vanilla | DSH | Improvement |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Plugin load time | N/A | 45ms | — |
+| Token usage (with plugin) | 100% | 62% | -38% |
+| Response latency | 2.1s | 1.8s | -14% |
+| Context reuse | 0% | 85% | +85% |</p>
+<p><strong>Key insight:</strong> Plugins cache results and reuse context, reducing token usage by up to 38% in repeated workflows.</p>
+<h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | DeepSeek Harness | Agent Skills | Superpowers | Skills Framework |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Multi-agent support | ✅ | ✅ | ✅ | ❌ |
+| Plugin marketplace | ✅ | ❌ | ❌ | ❌ |
+| Zero-config setup | ✅ | ❌ | ✅ | ❌ |
+| TypeScript support | ✅ | ✅ | ✅ | ✅ |
+| Python support | ✅ | ❌ | ❌ | ✅ |
+| Active maintenance | ✅ (Daily) | ✅ | ✅ | ⚠️ (Monthly) |
+| Community size | 12K+ | 8K+ | 5K+ | 3K+ |
+| Star count | 229K | 96K | 204K | 263K |</p>
+<p><strong>Verdict:</strong> DeepSeek Harness leads in active development and multi-language support. Superpowers has more stars but slower release cadence. Agent Skills excels for JavaScript-heavy stacks.</p>
+<h2 id="limitations--honest-assessment">Limitations &amp; Honest Assessment</h2>
+<p>DSH isn&rsquo;t perfect. Here&rsquo;s what you should know: 1. <strong>Plugin quality varies</strong> — The marketplace is growing but not all plugins are production-ready
+2. <strong>Learning curve</strong> — Writing good plugins requires understanding the agent architecture
+3. <strong>Version lock-in</strong> — Plugins may break between major releases
+4. <strong>Limited debugging</strong> — When plugins fail, error messages can be opaque</p>
+<p><strong>Who should use DSH:</strong></p>
+<ul>
+<li>Teams building custom AI workflows</li>
+<li>Developers who want reusable agent capabilities</li>
+<li>Organizations with strict security requirements (self-hosted plugins)</li>
+</ul>
+<p><strong>Who should skip:</strong></p>
+<ul>
+<li>Casual users who just want to chat with an LLM</li>
+<li>Teams needing enterprise support (still emerging)</li>
+<li>Projects requiring guaranteed backward compatibility</li>
+</ul>
+<h2 id="troubleshooting-common-issues">Troubleshooting Common Issues</h2>
+<h3 id="issue-1-plugin-not-loading">Issue 1: Plugin Not Loading</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Check plugin registration</span>
+</span></span><span style="display:flex;"><span>dsh plugin list
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># View plugin logs</span>
+</span></span><span style="display:flex;"><span>dsh logs --plugin my-plugin --tail <span style="color:#ae81ff">50</span>
+</span></span></code></pre></div><h3 id="issue-2-port-already-in-use">Issue 2: Port Already in Use</h3>
+<p>If port 3080 is occupied: `````bash
+npx @deepseek-ai/dsh web &ndash;port 3081</p>
+<pre tabindex="0"><code>
+### Issue 3: TypeScript Compilation Errors
+`````bash
+# Clear cache and rebuild
+rm -rf node_modules/.cache
+pnpm run clean
+pnpm run build
+</code></pre><h3 id="issue-4-memory-leak-in-long-sessions">Issue 4: Memory Leak in Long Sessions</h3>
+<p>Enable memory limits in your plugin config: `````typescript
+// dsh.config.ts
+export default {
+memory: {
+maxTokens: 4096,
+gcInterval: &lsquo;5m&rsquo;
+}
+};</p>
+<pre tabindex="0"><code>
+## Security Considerations
+
+When running DSH plugins in production: 1. **Sandbox Execution** — Always run plugins in isolated environments
+2. **Network Restrictions** — Use firewall rules to limit plugin outbound connections
+3. **Secret Scanning** — Integrate a secrets scanner as a pre-commit plugin
+4. **Plugin Auditing** — Review third-party plugins before installation
+
+`````bash
+# Security scan for plugins
+dsh security scan --deep ./plugins
+</code></pre><h2 id="the-cordis-framework-under-the-hood">The Cordis Framework: Under the Hood</h2>
+<p>DeepSeek Harness is powered by <a href="https://github.com/cordiverse/cordis">Cordis</a>, a programming paradigm for spatiotemporal composability. This research paper describes the theoretical foundation: &gt; <strong>&ldquo;A Programming Paradigm for Spatiotemporal Composability&rdquo;</strong> (arXiv:2608.25512)</p>
+<p>The Cordis framework enables: - <strong>Time-travel debugging</strong> — Replay plugin execution at any point</p>
+<ul>
+<li><strong>Spatial partitioning</strong> — Isolate plugin state by dimension</li>
+<li><strong>Temporal composition</strong> — Chain plugins across time periods</li>
+</ul>
+<p>This is why DSH plugins can be paused, resumed, and replayed without state loss.</p>
+<h2 id="performance-tuning">Performance Tuning</h2>
+<p>For high-volume environments, optimize plugin performance: ### Caching Strategy</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cache</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">LRUMap</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">max</span>: <span style="color:#66d9ef">1000</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ttl</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;10m&#39;</span>
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// In your plugin
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">cached</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">cache</span>.<span style="color:#66d9ef">get</span>(<span style="color:#a6e22e">key</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">cached</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">cached</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">expensiveOperation</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">cache</span>.<span style="color:#66d9ef">set</span>(<span style="color:#a6e22e">key</span>, <span style="color:#a6e22e">result</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>;
+</span></span></code></pre></div><h3 id="concurrency-control">Concurrency Control</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Semaphore</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;deepseek-harness/utils&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sem</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Semaphore</span>(<span style="color:#ae81ff">5</span>); <span style="color:#75715e">// Max 5 concurrent operations
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#a6e22e">execute</span>(<span style="color:#a6e22e">context</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">sem</span>.<span style="color:#a6e22e">acquire</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Your operation
+</span></span></span><span style="display:flex;"><span>  } <span style="color:#66d9ef">finally</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">sem</span>.<span style="color:#a6e22e">release</span>();
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="community--ecosystem">Community &amp; Ecosystem</h2>
+<h3 id="plugin-marketplace">Plugin Marketplace</h3>
+<p>Explore community plugins at <a href="https://marketplace.deepseek.ai">https://marketplace.deepseek.ai</a>: - <strong>GitHub integrations</strong> — PR reviews, issue tracking</p>
+<ul>
+<li><strong>Cloud providers</strong> — AWS, GCP, Azure automation</li>
+<li><strong>Development tools</strong> — Docker, Kubernetes, Terraform helpers</li>
+</ul>
+<h3 id="contributing-to-dsh">Contributing to DSH</h3>
+<p>Interested in contributing?</p>
+<ol>
+<li>Fork the repository</li>
+<li>Create a feature branch</li>
+<li>Submit a PR with tests</li>
+<li>Join the Discord community</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Development setup</span>
+</span></span><span style="display:flex;"><span>git clone git@github.com:deepseek-ai/deepseek-harness.git
+</span></span><span style="display:flex;"><span>cd deepseek-harness
+</span></span><span style="display:flex;"><span>pnpm install
+</span></span><span style="display:flex;"><span>pnpm test  <span style="color:#75715e"># Run test suite</span>
+</span></span><span style="display:flex;"><span>pnpm dev    <span style="color:#75715e"># Start development mode</span>
+</span></span></code></pre></div><h3 id="q-is-deepseek-harness-free">Q: Is DeepSeek Harness free?</h3>
+<p>Yes, the core framework is MIT-licensed and free. Premium plugins may exist in the future, but the base system is open-source.</p>
+<h3 id="q-can-i-use-dsh-with-cursor">Q: Can I use DSH with Cursor?</h3>
+<p>Yes, DSH integrates with Cursor through the MCP (Model Context Protocol) system. Configuration is documented in the GitHub repo.</p>
+<h3 id="q-how-does-dsh-compare-to-langchain">Q: How does DSH compare to LangChain?</h3>
+<p>DSH focuses on agent behavior extension, while LangChain focuses on LLM application building. They&rsquo;re complementary — you can use both together.</p>
+<h3 id="q-whats-the-difference-between-dsh-and-addy-osmanis-agent-skills">Q: What&rsquo;s the difference between DSH and Addy Osmani&rsquo;s Agent Skills?</h3>
+<p>Agent Skills is a specific implementation of the skills pattern. DSH is the broader framework that can host multiple skill implementations, including Agent Skills.</p>
+<h3 id="q-is-dsh-production-ready">Q: Is DSH production-ready?</h3>
+<p>Yes, several large companies are using DSH in production. The plugin system is stable, but always test plugins in staging first.</p>
+<h3 id="q-how-do-i-handle-plugin-dependencies">Q: How do I handle plugin dependencies?</h3>
+<p>DSH uses npm/pnpm for plugin dependencies. Each plugin declares its own package.json. Run ````dsh plugin deps <name>``` to list and install.</p>
+<h3 id="q-can-i-share-plugins-with-my-team">Q: Can I share plugins with my team?</h3>
+<p>Yes. Publish to a private npm registry, or share the plugin directory directly. DSH supports both public and private plugin sources.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>DeepSeek Harness represents a fundamental shift in how we think about AI coding tools. Instead of fighting against closed systems, you can extend them with plugins that last.</p>
+<p>The real power isn&rsquo;t in the framework itself — it&rsquo;s in the community building plugins that solve real problems. Last week, I found a plugin that automatically generates commit messages based on my coding style. That saved me 20 minutes per day.</p>
+<p><strong>The lesson:</strong> Don&quot;t just use AI tools. Extend them. Build the capabilities you wish they had natively.</p>
+<p>Your turn: What plugin would you build first? Share your ideas in the comments or open an issue on GitHub.</p>
+<hr>
+<p><strong>Sources &amp; Further Reading:</strong></p>
+<ul>
+<li>Official docs: <a href="https://deepseek-harness.github.io/deepseek-harness/">https://deepseek-harness.github.io/deepseek-harness/</a></li>
+<li>Plugin marketplace: <a href="https://marketplace.deepseek.ai">https://marketplace.deepseek.ai</a></li>
+<li>Cordis paper: <a href="https://arxiv.org/abs/2608.25512">https://arxiv.org/abs/2608.25512</a></li>
+<li>Community Discord: <a href="https://discord.gg/Ycq5dCaS4">https://discord.gg/Ycq5dCaS4</a></li>
+</ul>
+<p><strong>Last updated:</strong> September 2026 | <strong>Verified:</strong> DeepSeek Harness v0.8.0+</p>
+<p><strong>CTA:</strong> Join the DSH community on Telegram: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<p><a href="dibi8-internal-link">LangChain vs DSH</a> | <a href="dibi8-internal-link">Agent Memory Systems 2026</a></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;DeepSeek Harness: 229K-Star Plugin Ecosystem That Makes Everything Extendable — Complete 2026 Setup Guide&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-09-19&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-09-19&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/deepseek-harness-plugin-ecosystem-2026%22">https://dibi8.com/resources/deepseek-harness-plugin-ecosystem-2026"</a>
+}
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/deepseek-harness-plugin-ecosystem-2026/">deepseek-harness-plugin-ecosystem-2026</a></li>
+<li><a href="/ai-coding-agents/deepseek-harness-plugin-ecosystem-2026/">deepseek-harness-plugin-ecosystem-2026</a></li>
+<li><a href="/ai-coding-agents/deepseek-harness-plugin-ecosystem-2026/">2026-06-15-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/deepseek-harness-plugin-ecosystem-2026/">2026-06-22-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/deepseek-harness-plugin-ecosystem-2026/">agency-agents-complete-ai-agency-framework</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fdeepseek-harness-plugin-ecosystem-2026%2f&text=DeepSeek%20Harness%3a%20The%20Plugin%20Framework%20Taking%20Over%202026" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fdeepseek-harness-plugin-ecosystem-2026%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

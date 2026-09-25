@@ -1,0 +1,971 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For full features with all document converters | Dibi8</title>
+    <meta name="description" content="Deepset Haystack is the leading open-source Python framework for building production-grade Retrieval-Augmented Generation (RAG) applications in 2026">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/deepset-haystack-rag-framework-complete-guide/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">For full features with all document converters</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">For full features with all document converters</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Deepset Haystack is the leading open-source Python framework for building production-grade Retrieval-Augmented Generation (RAG) applications in 2026</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <h2 id="tldr">TL;DR</h2>
+<p>Deepset Haystack is the leading open-source Python framework for building production-grade Retrieval-Augmented Generation (RAG) applications in 2026. This comprehensive guide covers document ingestion, embedding generation, vector search, pipeline orchestration, and LLM integration for building intelligent knowledge systems.</p>
+<h2 id="what-is-haystack">What Is Haystack?</h2>
+<p>Haystack is an end-to-end framework for building custom LLM applications centered around retrieval-augmented generation. Developed by Deepset, it provides composable components for every step of the RAG pipeline — from document loading and preprocessing to retrieval, ranking, and generation. With 20k+ stars on GitHub, Haystack has become the go-to framework for enterprise RAG deployments.</p>
+<h3 id="key-features">Key Features</h3>
+<ul>
+<li><strong>End-to-End Pipeline</strong>: Complete RAG pipeline from documents to answers</li>
+<li><strong>Document Store Agnostic</strong>: Works with Elasticsearch, OpenSearch, Pinecone, Weaviate, Milvus, and more</li>
+<li><strong>Embedding Integration</strong>: Built-in support for OpenAI, Hugging Face, Ollama, and custom embedders</li>
+<li><strong>Retrievers</strong>: BM25, dense vector, hybrid search with cross-encoders</li>
+<li><strong>Rankers</strong>: Cross-encoder reranking for improved precision</li>
+<li><strong>LLM Support</strong>: OpenAI, Anthropic, Hugging Face, Ollama, vLLM, and custom providers</li>
+<li><strong>Evaluation Tools</strong>: Built-in evaluation for retrieval and generation quality</li>
+<li><strong>Production Ready</strong>: Tested at enterprise scale with monitoring and observability</li>
+</ul>
+<h3 id="architecture-overview">Architecture Overview</h3>
+<p>Haystack follows a component-based architecture where each piece of the pipeline is a modular, swappable component: ````
+Documents → Preprocessing → Embedding → Storage → Retrieval → Reranking → Generation
+│            │              │           │          │           │           │
+└── FileConverter ──┘   └── Embedder ─┘   └── Retriever ─┘   └── Generator ──┘</p>
+<pre tabindex="0"><code>
+## Installation Guide
+
+### Basic Installation
+
+`````bash
+pip install haystack-ai
+# For full features with all document converters
+pip install &#34;haystack-ai[docx,pdf]&#34;
+</code></pre><h3 id="provider-specific-installations">Provider-Specific Installations</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># OpenAI integration</span>
+</span></span><span style="display:flex;"><span>pip install openai
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hugging Face integration</span>
+</span></span><span style="display:flex;"><span>pip install transformers sentence-transformers torch
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Elasticsearch document store</span>
+</span></span><span style="display:flex;"><span>pip install elasticsearch
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Weaviate document store</span>
+</span></span><span style="display:flex;"><span>pip install weaviate-client
+</span></span></code></pre></div><h3 id="verify-installation">Verify Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> haystack <span style="color:#f92672">import</span> Pipeline, Component
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check version</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> haystack
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Haystack version: </span><span style="color:#e6db74">{</span>haystack<span style="color:#f92672">.</span>__version__<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a simple pipeline</span>
+</span></span><span style="display:flex;"><span>pipeline <span style="color:#f92672">=</span> Pipeline()
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Pipeline created successfully!&#34;</span>)
+</span></span></code></pre></div><h2 id="building-your-first-rag-pipeline">Building Your First RAG Pipeline</h2>
+<h3 id="step-1-document-ingestion">Step 1: Document Ingestion</h3>
+<p>Load and preprocess documents: `````python
+from haystack import Pipeline, Document
+from haystack.components.converters import TextFileToDocument
+from haystack.components.preprocessors import DocumentCleaner, DocumentSplitter
+from haystack.components.embedders import SentenceTransformersDocumentEmbedder</p>
+<h1 id="load-documents-from-directory">Load documents from directory</h1>
+<p>converter = TextFileToDocument()
+cleaner = DocumentCleaner()
+splitter = DocumentSplitter(split_by=&ldquo;word&rdquo;, split_length=500, split_overlap=50)</p>
+<h1 id="process-documents">Process documents</h1>
+<p>result = converter.run(sources=[&quot;./documents/*.txt&quot;])
+documents = result[&ldquo;documents&rdquo;]</p>
+<h1 id="clean-and-split">Clean and split</h1>
+<p>result = cleaner.run(documents=documents)
+documents = result[&ldquo;documents&rdquo;]</p>
+<p>result = splitter.run(documents=documents)
+documents = result[&ldquo;documents&rdquo;]</p>
+<p>print(f&quot;Processed {len(documents)} document chunks&quot;)</p>
+<pre tabindex="0"><code>
+### Step 2: Generate Embeddings
+
+Convert text to vector embeddings: `````python
+from haystack.components.embedders import SentenceTransformersDocumentEmbedder
+
+# Use local embeddings (no API key needed)
+embedder = SentenceTransformersDocumentEmbedder(
+    model=&#34;sentence-transformers/all-MiniLM-L6-v2&#34;,
+    progress_bar=True
+)
+
+# Add embeddings to documents
+result = embedder.run(documents=documents)
+documents_with_embeddings = result[&#34;documents&#34;]
+
+print(f&#34;Embedded {len(documents_with_embeddings)} documents&#34;)
+</code></pre><h3 id="step-3-store-in-vector-database">Step 3: Store in Vector Database</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> haystack_integrations.document_stores.weaviate <span style="color:#f92672">import</span> WeaviateDocumentStore
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> haystack.components.writers <span style="color:#f92672">import</span> DocumentWriter
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Connect to Weaviate</span>
+</span></span><span style="display:flex;"><span>document_store <span style="color:#f92672">=</span> WeaviateDocumentStore(url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://localhost:8080&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Write documents to store</span>
+</span></span><span style="display:flex;"><span>writer <span style="color:#f92672">=</span> DocumentWriter(document_store<span style="color:#f92672">=</span>document_store)
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> writer<span style="color:#f92672">.</span>run(documents<span style="color:#f92672">=</span>documents_with_embeddings)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Wrote </span><span style="color:#e6db74">{</span>result[written]<span style="color:#e6db74">}</span><span style="color:#e6db74"> documents to store&#34;</span>)
+</span></span></code></pre></div><h3 id="step-4-build-retrieval-pipeline">Step 4: Build Retrieval Pipeline</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> haystack_integrations.components.retrievers.weaviate <span style="color:#f92672">import</span> WeaviateEmbeddingRetriever
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> haystack.components.builders <span style="color:#f92672">import</span> PromptBuilder
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> haystack_integrations.components.generators.openai <span style="color:#f92672">import</span> OpenAIGenerator
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Define retrieval and generation components</span>
+</span></span><span style="display:flex;"><span>retriever <span style="color:#f92672">=</span> WeaviateEmbeddingRetriever(document_store<span style="color:#f92672">=</span>document_store)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>prompt_builder <span style="color:#f92672">=</span> PromptBuilder(template<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Context: {</span><span style="color:#e6db74">% f</span><span style="color:#e6db74">or doc in documents %}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    {</span><span style="color:#e6db74">% e</span><span style="color:#e6db74">ndfor %}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Question: 
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Answer based on the context above: &#34;&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>generator <span style="color:#f92672">=</span> OpenAIGenerator(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build the pipeline</span>
+</span></span><span style="display:flex;"><span>rag_pipeline <span style="color:#f92672">=</span> Pipeline()
+</span></span><span style="display:flex;"><span>rag_pipeline<span style="color:#f92672">.</span>add_component(<span style="color:#e6db74">&#34;retriever&#34;</span>, retriever)
+</span></span><span style="display:flex;"><span>rag_pipeline<span style="color:#f92672">.</span>add_component(<span style="color:#e6db74">&#34;prompt_builder&#34;</span>, prompt_builder)
+</span></span><span style="display:flex;"><span>rag_pipeline<span style="color:#f92672">.</span>add_component(<span style="color:#e6db74">&#34;generator&#34;</span>, generator)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Connect components</span>
+</span></span><span style="display:flex;"><span>rag_pipeline<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;retriever.documents&#34;</span>, <span style="color:#e6db74">&#34;prompt_builder.documents&#34;</span>)
+</span></span><span style="display:flex;"><span>rag_pipeline<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;prompt_builder.prompt&#34;</span>, <span style="color:#e6db74">&#34;generator.prompt&#34;</span>)
+</span></span></code></pre></div><h3 id="step-5-query-the-pipeline">Step 5: Query the Pipeline</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">ask_question</span>(query: str, top_k: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>) <span style="color:#f92672">-&gt;</span> str: result <span style="color:#f92672">=</span> rag_pipeline<span style="color:#f92672">.</span>run({
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;retriever&#34;</span>: {<span style="color:#e6db74">&#34;query&#34;</span>: query, <span style="color:#e6db74">&#34;top_k&#34;</span>: top_k},
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;prompt_builder&#34;</span>: {<span style="color:#e6db74">&#34;question&#34;</span>: query}
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> result[<span style="color:#e6db74">&#34;generator&#34;</span>][<span style="color:#e6db74">&#34;replies&#34;</span>][<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>answer <span style="color:#f92672">=</span> ask_question(<span style="color:#e6db74">&#34;What are the main features of Haystack?&#34;</span>)
+</span></span><span style="display:flex;"><span>print(answer)
+</span></span></code></pre></div><h2 id="advanced-retrieval-strategies">Advanced Retrieval Strategies</h2>
+<h3 id="hybrid-search-bm25--dense">Hybrid Search (BM25 + Dense)</h3>
+<p>Combine keyword and semantic search for best results: `````python
+from haystack_integrations.document_stores.elasticsearch import ElasticsearchDocumentStore
+from haystack_integrations.components.retrievers.elasticsearch import ElasticsearchEmbeddingRetriever</p>
+<h1 id="elasticsearch-supports-hybrid-search-natively">Elasticsearch supports hybrid search natively</h1>
+<p>document_store = ElasticsearchDocumentStore(
+hosts=&ldquo;http://localhost:9200&rdquo;,
+index=&ldquo;documents&rdquo;
+)</p>
+<h1 id="hybrid-retriever-combines-bm25-and-dense-vectors">Hybrid retriever combines BM25 and dense vectors</h1>
+<p>retriever = ElasticsearchEmbeddingRetriever(
+document_store=document_store,
+top_k=10,
+filters={&ldquo;field_type&rdquo;: &ldquo;dense&rdquo;}
+)</p>
+<pre tabindex="0"><code>
+### Cross-Encoder Reranking
+
+Improve retrieval precision with cross-encoder reranking: `````python
+from haystack_integrations.components.rankers.transformers import TransformersRanker
+
+# Rerank retrieved documents using a cross-encoder
+ranker = TransformersRanker(
+    model=&#34;cross-encoder/ms-marco-MiniLM-L-6-v2&#34;,
+    top_k=5
+)
+
+# Integrate into pipeline
+rag_pipeline.add_component(&#34;ranker&#34;, ranker)
+rag_pipeline.connect(&#34;retriever.documents&#34;, &#34;ranker.documents&#34;)
+</code></pre><h3 id="multi-query-retrieval">Multi-Query Retrieval</h3>
+<p>Generate multiple queries for better coverage: `````python
+from haystack.components.generators.chat import OpenAIChatGenerator
+from haystack.components.builders import PromptBuilder</p>
+<p>multi_query_prompt = PromptBuilder(template=&quot;&quot;&quot;
+You are an AI assistant that generates search queries.
+Given the following question, generate 3 different search queries
+that could help find the answer.</p>
+<pre><code>Question: 
+
+Generate exactly 3 queries, one per line: &quot;&quot;&quot;)
+</code></pre>
+<p>multi_query_gen = OpenAIChatGenerator(model=&ldquo;gpt-4o-mini&rdquo;)</p>
+<h1 id="build-multi-query-pipeline">Build multi-query pipeline</h1>
+<p>mq_pipeline = Pipeline()
+mq_pipeline.add_component(&ldquo;prompt_builder&rdquo;, multi_query_prompt)
+mq_pipeline.add_component(&ldquo;generator&rdquo;, multi_query_gen)
+mq_pipeline.connect(&ldquo;prompt_builder.prompt&rdquo;, &ldquo;generator.prompt&rdquo;)</p>
+<h1 id="get-multiple-queries">Get multiple queries</h1>
+<p>result = mq_pipeline.run({&ldquo;prompt_builder&rdquo;: {&ldquo;question&rdquo;: original_query}})
+queries = result[&ldquo;generator&rdquo;][&ldquo;replies&rdquo;][0].split(&quot;\n&quot;)[:3]</p>
+<h1 id="retrieve-for-each-query">Retrieve for each query</h1>
+<p>all_docs = []
+for q in queries: docs = retriever.run(query=q.strip(), top_k=5)[&ldquo;documents&rdquo;]
+all_docs.extend(docs)</p>
+<h1 id="deduplicate-and-rank">Deduplicate and rank</h1>
+<p>unique_docs = deduplicate_documents(all_docs)</p>
+<pre tabindex="0"><code>
+## LLM Integration
+
+### Supported LLM Providers
+
+| Provider | Package | Models |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| OpenAI | haystack-integrations-generators-openai | GPT-4o, GPT-4 Turbo, o1 |
+| Anthropic | haystack-integrations-generators-anthropic | Claude 3.5 Sonnet, Haiku |
+| Hugging Face | haystack-integrations-generators-hugging-face | Any HF model |
+| Ollama | haystack-integrations-generators-ollama | Local models |
+| vLLM | haystack-integrations-generators-vllm | High-throughput serving |
+| Cohere | haystack-integrations-generators-cohere | Command R+, R |
+
+### Using Ollama for Local LLMs
+
+Run LLMs entirely locally with no API costs: `````python
+from haystack_integrations.components.generators.ollama import OllamaGenerator
+
+generator = OllamaGenerator(
+    model=&#34;llama3.1:8b&#34;,
+    url=&#34;http://localhost:11434&#34;,
+    generation_kwargs={
+        &#34;temperature&#34;: 0.7,
+        &#34;num_ctx&#34;: 4096,
+    }
+)
+
+# Generate response
+result = generator.run(prompt=&#34;Explain RAG in simple terms&#34;)
+print(result[&#34;replies&#34;][0])
+</code></pre><h3 id="streaming-responses">Streaming Responses</h3>
+<p>Stream LLM responses in real-time: `````python
+from haystack_integrations.components.generators.openai import OpenAIGenerator</p>
+<p>generator = OpenAIGenerator(
+model=&ldquo;gpt-4o&rdquo;,
+streaming_callback=lambda chunk: print(chunk.data.choices[0].delta.content, end=&quot;&quot;)
+)</p>
+<p>result = generator.run(prompt=&ldquo;Write a detailed explanation of machine learning&rdquo;)</p>
+<pre tabindex="0"><code>
+## Evaluation and Monitoring
+
+### Retrieval Evaluation
+
+Evaluate how well your retriever finds relevant documents: `````python
+from haystack import Pipeline
+from haystack.dataclasses import Document, GeneratedAnswer
+from haystack_integrations.components.evaluators.ragas import RagasEvaluator
+
+# Create evaluation pipeline
+evaluator = RagasEvaluator(
+    metrics=[&#34;faithfulness&#34;, &#34;context_precision&#34;, &#34;context_recall&#34;],
+    generator=OpenAIGenerator(model=&#34;gpt-4o&#34;),
+    embedder=SentenceTransformersDocumentEmbedder(
+        model=&#34;sentence-transformers/all-MiniLM-L6-v2&#34;
+    )
+)
+
+# Evaluate on test dataset
+results = evaluator.run(
+    questions=test_questions,
+    ground_truths=test_answers,
+    contexts=retrieved_documents
+)
+
+print(f&#34;Average faithfulness: {results[faithfulness]:.3f}&#34;)
+print(f&#34;Average context recall: {results[context_recall]:.3f}&#34;)
+</code></pre><h3 id="custom-evaluation-metrics">Custom Evaluation Metrics</h3>
+<p>Build custom evaluation pipelines: `````python
+from haystack import component</p>
+<p>@component
+class RelevanceChecker: @component.output_types(is_relevant=bool, confidence=float)
+def run(self, query: str, document: Document) -&gt; dict: # Simple relevance scoring
+keywords = set(query.lower().split())
+doc_words = set(document.content.lower().split())</p>
+<pre><code>    overlap = keywords.intersection(doc_words)
+    precision = len(overlap) / max(len(keywords), 1)
+    recall = len(overlap) / max(len(doc_words), 1)
+    
+    return {
+        &quot;is_relevant&quot;: precision &gt; 0.3,
+        &quot;confidence&quot;: (precision + recall) / 2
+    }
+</code></pre>
+<h1 id="use-in-pipeline">Use in pipeline</h1>
+<p>pipeline = Pipeline()
+pipeline.add_component(&ldquo;checker&rdquo;, RelevanceChecker())</p>
+<pre tabindex="0"><code>
+## Production Deployment
+
+### Docker Deployment
+
+`````dockerfile
+FROM python:3.11-slim
+
+RUN apt-get update &amp;&amp; apt-get install -y \
+    build-essential \
+    &amp;&amp; rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 8000
+CMD [&#34;uvicorn&#34;, &#34;app.main:app&#34;, &#34;--host&#34;, &#34;0.0.0.0&#34;, &#34;--port&#34;, &#34;8000&#34;]
+</code></pre><p>requirements.txt: `````
+haystack-ai
+fastapi
+uvicorn
+openai
+sentence-transformers</p>
+<pre tabindex="0"><code>
+### FastAPI Integration
+
+Build a REST API around your RAG pipeline: `````python
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+from haystack import Pipeline
+
+app = FastAPI(title=&#34;RAG API&#34;)
+
+# Load pipeline at startup
+rag_pipeline = load_rag_pipeline()
+
+class QueryRequest(BaseModel): question: str
+    top_k: int = 5
+    use_reranking: bool = True
+
+class QueryResponse(BaseModel): answer: str
+    sources: list
+    confidence: float
+
+@app.post(&#34;/query&#34;, response_model=QueryResponse)
+async def query(request: QueryRequest): try: result = await rag_pipeline.ainvoke({
+            &#34;retriever&#34;: {&#34;query&#34;: request.question, &#34;top_k&#34;: request.top_k},
+            &#34;prompt_builder&#34;: {&#34;question&#34;: request.question}
+        })
+        
+        answer = result[&#34;generator&#34;][&#34;replies&#34;][0]
+        
+        return QueryResponse(
+            answer=answer,
+            sources=result.get(&#34;sources&#34;, []),
+            confidence=result.get(&#34;confidence&#34;, 0.0)
+        )
+    except Exception as e: raise HTTPException(status_code=500, detail=str(e))
+</code></pre><h3 id="kubernetes-deployment">Kubernetes Deployment</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata: name</span>: <span style="color:#ae81ff">rag-service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec: replicas</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector: matchLabels: app</span>: <span style="color:#ae81ff">rag</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template: spec: containers: - name</span>: <span style="color:#ae81ff">rag-api</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">rag-service:latest</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ports: - containerPort</span>: <span style="color:#ae81ff">8000</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">resources: limits: cpu</span>: <span style="color:#e6db74">&#34;2&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;4Gi&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">nvidia.com/gpu</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">env: - name</span>: <span style="color:#ae81ff">OPENAI_API_KEY</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">valueFrom: secretKeyRef: name</span>: <span style="color:#ae81ff">api-keys</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">key</span>: <span style="color:#ae81ff">openai</span>
+</span></span><span style="display:flex;"><span>        - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">WEAVIATE_URL</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">valueFrom: secretKeyRef: name</span>: <span style="color:#ae81ff">weaviate</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">key</span>: <span style="color:#ae81ff">url</span>
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | Haystack | LangChain | LlamaIndex | RAGFlow |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Python Native | ✅ | ✅ | ✅ | Partial |
+| Type Safety | Good | Limited | Moderate | Limited |
+| Evaluation | Built-in | Manual | Manual | Basic |
+| Multi-Document Store | 15+ | 20+ | 10+ | 5+ |
+| Learning Curve | Easy | Steep | Moderate | Easy |
+| Enterprise Features | ✅ | Partial | Partial | ✅ |
+| Open Source | MIT | MIT | Apache 2.0 | Apache 2.0 |</p>
+<h3 id="document-preprocessing-pipeline">Document Preprocessing Pipeline</h3>
+<p>Efficient preprocessing is critical for RAG quality: `````python
+from haystack.components.preprocessors import RecursiveDocumentSplitter
+from haystack.components.preprocessors import DocumentCleaner
+from haystack.components.extractors import NamedEntityExtractor</p>
+<h1 id="advanced-document-splitting">Advanced document splitting</h1>
+<p>splitter = RecursiveDocumentSplitter(
+split_by=&ldquo;sentence&rdquo;,
+split_length=5,
+split_overlap=2,
+split_threshold=0.5
+)</p>
+<h1 id="clean-documents">Clean documents</h1>
+<p>cleaner = DocumentCleaner(
+lowercase=True,
+remove_empty_lines=True,
+remove_extra_whitespace=True,
+remove_repeated_substrings=True
+)</p>
+<h1 id="extract-entities-for-metadata-enrichment">Extract entities for metadata enrichment</h1>
+<p>extractor = NamedEntityExtractor(
+device=&ldquo;cuda&rdquo; if torch.cuda.is_available() else &ldquo;cpu&rdquo;
+)</p>
+<h1 id="full-preprocessing-pipeline">Full preprocessing pipeline</h1>
+<p>preprocess_pipeline = Pipeline()
+preprocess_pipeline.add_component(&ldquo;cleaner&rdquo;, cleaner)
+preprocess_pipeline.add_component(&ldquo;splitter&rdquo;, splitter)
+preprocess_pipeline.add_component(&ldquo;extractor&rdquo;, extractor)
+preprocess_pipeline.connect(&ldquo;cleaner.documents&rdquo;, &ldquo;splitter.documents&rdquo;)
+preprocess_pipeline.connect(&ldquo;splitter.documents&rdquo;, &ldquo;extractor.documents&rdquo;)</p>
+<p>result = preprocess_pipeline.run({&ldquo;cleaner&rdquo;: {&ldquo;documents&rdquo;: raw_documents}})
+processed_docs = result[&ldquo;extractor&rdquo;][&ldquo;documents&rdquo;]</p>
+<pre tabindex="0"><code>
+### Hybrid Search Implementation
+
+Combine keyword and semantic search for best retrieval: `````python
+from haystack_integrations.document_stores.elasticsearch import ElasticsearchDocumentStore
+from haystack_integrations.components.retrievers.elasticsearch import ElasticsearchEmbeddingRetriever
+from haystack_integrations.components.rankers.elasticsearch import ElasticsearchRanker
+
+# Connect to Elasticsearch cluster
+document_store = ElasticsearchDocumentStore(
+    hosts=&#34;http://localhost:9200&#34;,
+    index=&#34;rag_documents&#34;
+)
+
+# Hybrid retriever combines BM25 + dense vectors
+retriever = ElasticsearchEmbeddingRetriever(
+    document_store=document_store,
+    top_k=10,
+    filters={&#34;source_type&#34;: &#34;pdf&#34;},
+    query_embedding=query_embedding,
+    return_embedding=True
+)
+
+# Rank results with cross-encoder
+ranker = ElasticsearchRanker(
+    model=&#34;cross-encoder/ms-marco-MiniLM-L-6-v2&#34;,
+    top_k=5
+)
+
+# Build hybrid pipeline
+hybrid_pipeline = Pipeline()
+hybrid_pipeline.add_component(&#34;retriever&#34;, retriever)
+hybrid_pipeline.add_component(&#34;ranker&#34;, ranker)
+hybrid_pipeline.connect(&#34;retriever.documents&#34;, &#34;ranker.documents&#34;)
+
+result = hybrid_pipeline.run({
+    &#34;retriever&#34;: {&#34;query&#34;: user_question},
+    &#34;ranker&#34;: {&#34;query&#34;: user_question}
+})
+</code></pre><h3 id="multi-tenant-rag-architecture">Multi-Tenant RAG Architecture</h3>
+<p>Support multiple users with isolated knowledge bases: `````python
+from haystack import Pipeline, Document</p>
+<p>class MultiTenantRAG: def <strong>init</strong>(self): self.tenant_pipelines = {}
+self.tenant_stores = {}</p>
+<pre><code>def setup_tenant(self, tenant_id: str, document_store_url: str): &quot;&quot;&quot;Initialize RAG pipeline for a tenant&quot;&quot;&quot;
+    store = WeaviateDocumentStore(url=document_store_url)
+    
+    retriever = WeaviateEmbeddingRetriever(document_store=store)
+    prompt_builder = PromptBuilder(template=self.template)
+    generator = OpenAIGenerator(model=&quot;gpt-4o&quot;)
+    
+    pipeline = Pipeline()
+    pipeline.add_component(&quot;retriever&quot;, retriever)
+    pipeline.add_component(&quot;prompt_builder&quot;, prompt_builder)
+    pipeline.add_component(&quot;generator&quot;, generator)
+    pipeline.connect(&quot;retriever.documents&quot;, &quot;prompt_builder.documents&quot;)
+    pipeline.connect(&quot;prompt_builder.prompt&quot;, &quot;generator.prompt&quot;)
+    
+    self.tenant_pipelines[tenant_id] = pipeline
+    self.tenant_stores[tenant_id] = store
+
+async def query(self, tenant_id: str, question: str) -&gt; dict: &quot;&quot;&quot;Query tenant-specific RAG pipeline&quot;&quot;&quot;
+    pipeline = self.tenant_pipelines.get(tenant_id)
+    if not pipeline: raise ValueError(f&quot;Tenant {tenant_id} not configured&quot;)
+    
+    result = await pipeline.arun({
+        &quot;retriever&quot;: {&quot;query&quot;: question, &quot;top_k&quot;: 5},
+        &quot;prompt_builder&quot;: {&quot;question&quot;: question}
+    })
+    
+    return {
+        &quot;answer&quot;: result[&quot;generator&quot;][&quot;replies&quot;][0],
+        &quot;sources&quot;: len(result[&quot;retriever&quot;][&quot;documents&quot;])
+    }
+</code></pre>
+<pre tabindex="0"><code>
+### Embedding Model Selection Guide
+
+Choosing the right embedding model impacts retrieval quality: | Model | Dimensions | Max Tokens | mAP Score | Speed | Best For |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| all-MiniLM-L6-v2 | 384 | 256 | 42.3 | Fast | General purpose |
+| all-mpnet-base-v2 | 768 | 512 | 58.7 | Medium | High accuracy |
+| text-embedding-3-small | 1536 | 8191 | 61.2 | Fast | OpenAI API |
+| text-embedding-3-large | 3072 | 8191 | 63.5 | Slow | Maximum accuracy |
+| e5-mistral-7b-instruct | 4096 | 8192 | 65.1 | Slow | Research |
+
+`````python
+# Benchmark embedding models
+from sentence_transformers import SentenceTransformer
+import numpy as np
+
+def benchmark_model(model_name: str, test_queries: list, relevant_docs: list) -&gt; float: model = SentenceTransformer(model_name)
+    
+    query_embeddings = model.encode(test_queries)
+    doc_embeddings = model.encode(relevant_docs)
+    
+    # Compute recall@K
+    scores = np.dot(query_embeddings, doc_embeddings.T)
+    recalls = []
+    for i, score_row in enumerate(scores): top_k_idx = np.argsort(score_row)[-5:]
+        if i in top_k_idx: recalls.append(1.0)
+        else: recalls.append(0.0)
+    
+    return np.mean(recalls)
+
+# Compare models
+models = [
+    &#34;all-MiniLM-L6-v2&#34;,
+    &#34;all-mpnet-base-v2&#34;,
+    &#34;text-embedding-3-small&#34;
+]
+
+for model in models: recall = benchmark_model(model, queries, docs)
+    print(f&#34;{model}: Recall@5 = {recall:.3f}&#34;)
+````
+
+## Production Checklist
+
+- [ ] Select appropriate embedding model for your use case
+- [ ] Configure document chunking strategy based on content type
+- [ ] Set up monitoring for retrieval quality metrics
+- [ ] Implement caching for repeated queries
+- [ ] Add rate limiting for API endpoints
+- [ ] Configure fallback providers for reliability
+- [ ] Set up logging for audit trails
+- [ ] Test with production-quality input data
+- [ ] Implement prompt injection detection
+- [ ] Document resource requirements for each deployment
+
+
+## FAQ
+
+### Q1: How does Haystack compare to LangChain?
+
+Haystack focuses specifically on RAG pipelines with a simpler, more opinionated approach. LangChain is more general-purpose but requires more boilerplate for RAG. Haystack has better built-in evaluation tools and cleaner abstractions for document processing.
+
+### Q2: Can I use Haystack without any cloud APIs?
+
+Yes, Haystack works entirely offline with local models. Use Ollama for LLMs, sentence-transformers for embeddings, and Elasticsearch or Chroma for document storage. No API keys required.
+
+### Q3: What document formats does Haystack support?
+
+Haystack supports PDF, DOCX, TXT, HTML, Markdown, CSV, JSON, images (with OCR), and email files through its converter components. Custom converters can be added for proprietary formats.
+
+### Q4: How do I handle large document collections?
+
+Use chunking strategies appropriate for your data size. For millions of documents, combine Elasticsearch with hybrid search and implement pagination. Consider using distributed document stores like Weaviate or Milvus for horizontal scaling.
+
+### Q5: Is Haystack suitable for production use?
+
+Yes, Haystack is used in production by many enterprises. It supports monitoring, logging, and can be deployed with standard containerization tools. The pipeline architecture makes it easy to add retries, caching, and rate limiting.
+
+### Q6: How do I evaluate my RAG pipeline?
+
+Use Haystack&#39;s built-in evaluators for retrieval quality (recall, precision) and generation quality (faithfulness, answer relevance). Run evaluations regularly as you modify your pipeline configuration.
+
+### Q7: Can I customize the retrieval strategy?
+
+Yes, Haystack supports BM25, dense vector, hybrid search, and cross-encoder reranking. You can combine multiple strategies and tune parameters like top_k, similarity thresholds, and filter conditions.
+
+## Sources
+
+- [Haystack Documentation](https://docs.haystack.deepset.ai/)
+- [Haystack GitHub Repository](https://github.com/deepset-ai/haystack)
+- [Deepset Blog](https://www.deepset.ai/blog)
+- [Haystack Integrations](https://docs.haystack.deepset.ai/docs/integrations)
+
+## Call to Action
+
+Build production-ready RAG applications with Haystack. [Start building](https://dibi8.com/auth/) today with our deployment guides and pipeline templates.
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;Deepset Haystack — Build Production-Ready RAG Applications with Python&#34;,
+  &#34;datePublished&#34;: &#34;2026-07-17&#34;,
+  &#34;dateModified&#34;: &#34;2026-07-17&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/deepset-haystack-rag-framework-complete-guide&#34;
+  }
+}
+&lt;/script&gt;
+
+
+* * *
+## Related Articles
+
+- [markitdown-universal-file-to-markdown-converter](deepset-haystack-rag-framework-complete-guide)
+- [alpaca-trading-api-stock-broker](deepset-haystack-rag-framework-complete-guide)
+- [appwrite-backend-as-service](deepset-haystack-rag-framework-complete-guide)
+- [arize-ai-observability-llm](deepset-haystack-rag-framework-complete-guide)
+- [cognee-ai-memory-platform](deepset-haystack-rag-framework-complete-guide)
+
+
+* * *
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</code></pre>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fdeepset-haystack-rag-framework-complete-guide%2f&text=For%20full%20features%20with%20all%20document%20converters" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fdeepset-haystack-rag-framework-complete-guide%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,524 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routine daily inventory — global packages, toolchains, extensions, MCP configs | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/bumblebee-supply-chain-scanner-perplexity-2026/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Routine daily inventory — global packages, toolchains, extensions, MCP configs</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Routine daily inventory — global packages, toolchains, extensions, MCP configs</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;Bumblebee 2026: Perplexity AI Open-Sources Its Internal &hellip;
+description: &ldquo;Technical guide and comparison&rdquo;
+licensing_model: Open Source
+license_type: Apache-2.0
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &lsquo;<a href="https://github.com/perplexityai/bumblebee%27">https://github.com/perplexityai/bumblebee'</a>
+backup_url: &rsquo;&rsquo;
+last_maintained: &ldquo;2026-05-22&rdquo;
+draft: false
+categories: [&ldquo;dev-utils&rdquo;]
+tags: [&ldquo;bumblebee&rdquo;, &ldquo;supply-chain&rdquo;, &ldquo;security&rdquo;, &ldquo;mcp&rdquo;, &ldquo;developer-tools&rdquo;, &ldquo;go&rdquo;, &ldquo;npm&rdquo;, &ldquo;pypi&rdquo;, &ldquo;perplexity-ai&rdquo;]
+aliases:</p>
+<ul>
+<li>/posts/bumblebee-supply-chain-scanner-perplexity-2026/
+faqs: - q: &lsquo;What is Bumblebee and what does it scan?&rsquo;
+a: &lsquo;Bumblebee is a read-only developer endpoint scanner open-sourced by Perplexity AI. It scans on-disk metadata for npm, pnpm, Yarn, Bun, PyPI, Go modules, RubyGems, Composer, MCP configurations, editor extensions (VS Code, Cursor, Windsurf, Zed), and browser extensions. It never executes install scripts or invokes package managers — it only reads what is already on disk.&rsquo;</li>
+<li>q: &lsquo;Why does Bumblebee matter for AI developers using MCP?&rsquo;
+a: &lsquo;MCP (Model Context Protocol) servers run with elevated privileges on your machine. A compromised MCP package could exfiltrate data or run arbitrary code. Bumblebee is the first publicly available tool that scans MCP configuration files (claude_desktop_config.json, mcp_settings.json, .mcp.json, etc.) against its threat intelligence catalog, making it essential for anyone using Claude Desktop, Cursor, or other MCP-enabled tools.&rsquo;</li>
+<li>q: &lsquo;What are the three scan profiles?&rsquo;
+a: &lsquo;Baseline scans your global package roots, toolchain installs, editor extensions, and MCP configs — suitable for routine daily inventory. Project focuses on configured development directories (e.g. ~/code or ~/src) alongside the baseline. Deep sweeps an operator-supplied root, typically your full home directory, and is designed for active incident response when you need certainty.&rsquo;</li>
+<li>q: &lsquo;How do I install and run Bumblebee?&rsquo;
+a: &lsquo;Run &lsquo;&lsquo;go install <a href="mailto:github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1">github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1</a>&rsquo;&rsquo;. For a routine global inventory run &lsquo;&lsquo;bumblebee scan &ndash;profile baseline &gt; inventory.ndjson&rsquo;&rsquo;. For an exposure check against a specific advisory run &lsquo;&lsquo;bumblebee scan &ndash;profile deep &ndash;root &ldquo;$HOME&rdquo; &ndash;exposure-catalog ./catalog.json &ndash;findings-only &ndash;max-duration 10m&rsquo;&rsquo;.&rsquo;</li>
+<li>q: &lsquo;Does Bumblebee run on Windows?&rsquo;
+a: &lsquo;Bumblebee v0.1.1 supports macOS and Linux. Windows support is planned. For Windows users, running Bumblebee under WSL2 gives full coverage of Linux-side packages and MCP configs, though Windows-native paths (AppData, LOCALAPPDATA) require native Windows support.&rsquo;&mdash;</li>
+</ul>
+<p><img alt="Bumblebee 2026: Perplexity AI Supply-Chain Scanner — dibi8.com" loading="lazy" src="/images/articles/bumblebee-supply-chain-scanner-perplexity-2026/cover.jpg"></p>
+<p>On May 22, 2026, Perplexity AI published <a href="https://github.com/perplexityai/bumblebee">Bumblebee</a> — the internal tool their security team uses to audit developer laptops for supply-chain exposure. Within a week it had over 1,500 GitHub stars and 112 forks. The premise is deceptively simple: given an advisory naming a compromised package, version, or extension, which machines in your fleet actually have it?</p>
+<h2 id="why-supply-chain-attacks-hit-developers-first">Why Supply-Chain Attacks Hit Developers First</h2>
+<p>The 2024–2026 wave of supply-chain incidents (xz, polyfill.io, dozens of malicious npm packages targeting AI tooling) share a pattern: they land on a developer&rsquo;s machine months before they cause damage in production. Developer laptops are high-value targets because they hold API keys, SSH credentials, source code, and now — increasingly — MCP server configs that grant AI models access to files, databases, and web browsers.</p>
+<p>Traditional SCA tools (Snyk, Dependabot) check what your code declares as a dependency. They miss: - Globally installed CLIs (<code>npm install -g</code>, <code>pip install --user</code>)</p>
+<ul>
+<li>Editor extensions loaded by Cursor, VS Code, or Windsurf</li>
+<li>Browser extensions with broad host permissions</li>
+<li>MCP config files that reference packages pulled from npm or PyPI</li>
+</ul>
+<p>Bumblebee was built to fill exactly those gaps.</p>
+<h2 id="the-read-only-guarantee">The Read-Only Guarantee</h2>
+<p>The tool&rsquo;s defining constraint is that <strong>it never executes anything</strong>. No <code>npm ls</code>, no <code>pip check</code>, no <code>go list</code>. Supply-chain attacks have increasingly targeted the inspection phase — a malicious <code>postinstall</code> or a poisoned metadata endpoint can turn a routine audit into an exploit. Bumblebee bypasses this entirely by reading on-disk metadata files: <code>package.json</code>, <code>package-lock.json</code>, <code>go.sum</code>, <code>requirements.txt</code>, <code>Gemfile.lock</code>, extension manifests, and MCP config JSON.</p>
+<p>This makes it safe to run during an active incident, on machines where you don&rsquo;t fully trust the installed packages.</p>
+<h2 id="three-scan-profiles">Three Scan Profiles</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Routine daily inventory — global packages, toolchains, extensions, MCP configs</span>
+</span></span><span style="display:flex;"><span>bumblebee scan --profile baseline &gt; inventory.ndjson
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Project-scoped scan — includes ~/code, ~/src, or your configured dev roots</span>
+</span></span><span style="display:flex;"><span>bumblebee scan --profile project --project-root ~/code
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Incident response — sweep full home directory against a threat catalog</span>
+</span></span><span style="display:flex;"><span>bumblebee scan --profile deep <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --root <span style="color:#e6db74">&#34;</span>$HOME<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --exposure-catalog ./catalog.json <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --findings-only <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --max-duration 10m
+</span></span></code></pre></div><p><strong>Baseline</strong> is what you run daily. It covers global package roots for all supported ecosystems, language toolchain installs (pyenv, nvm, rbenv, GOPATH), editor extensions, browser extensions, and every MCP config file it can find.</p>
+<p><strong>Project</strong> adds your development directories on top of baseline. Use this when investigating a newly compromised package that might exist in vendored copies inside repos.</p>
+<p><strong>Deep</strong> takes an arbitrary root and sweeps recursively. It is designed for the scenario where you have an advisory and need to know, with certainty, whether any copy of the package exists on this machine.</p>
+<h2 id="mcp-config-coverage">MCP Config Coverage</h2>
+<h2 id="heading">This is the feature most relevant to AI developers in 2026. Bumblebee scans the following config file paths: | File | Tool |
+|</h2>
+<p>|</p>
+<hr>
+<p>|
+| <code>~/.claude.json</code> | Claude CLI |
+| <code>claude_desktop_config.json</code> | Claude Desktop |
+| <code>mcp_settings.json</code> | Cline / Roo Code |
+| <code>cline_mcp_settings.json</code> | Cline |
+| <code>.mcp.json</code> | generic MCP |
+| <code>mcp.json</code> | generic MCP |
+| <code>mcp_config.json</code> | generic MCP |
+| <code>~/.gemini/settings.json</code> | Gemini CLI |</p>
+<p>For each MCP server entry, Bumblebee records the package name, version, and the npm/PyPI registry from which it came. When you run an exposure scan against a threat catalog, MCP packages are checked alongside your regular dependencies — which is novel, because no other tool currently does this.</p>
+<h2 id="zero-dependencies-by-design">Zero Dependencies by Design</h2>
+<p>Bumblebee is written in Go 1.25 and imports <strong>nothing outside the standard library</strong>. The result is a single, statically linked binary with no glibc dependency, distributable via MDM to a fleet of developer machines without managing runtime environments. There are no third-party packages that could themselves be compromised — the tool that checks for supply-chain issues has no supply chain to attack.</p>
+<p>Install is one line: `````bash
+go install <a href="mailto:github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1">github.com/perplexityai/bumblebee/cmd/bumblebee@v0.1.1</a></p>
+<pre tabindex="0"><code>
+Or download a pre-built binary from the [GitHub releases page](https://github.com/perplexityai/bumblebee/releases).
+
+## Output Format
+
+Bumblebee outputs **NDJSON** (newline-delimited JSON), one record per scanned artifact. This makes it easy to pipe into ``jq``, ingest into a SIEM, or diff against a previous inventory to detect new packages: `````bash
+# Show only packages with known exposures
+bumblebee scan --profile baseline --findings-only | jq &#39;.name + &#34; &#34; + .version&#39;
+
+# Diff today&#39;s inventory against yesterday&#39;s
+comm -23 \
+  &lt;(bumblebee scan --profile baseline | jq -r &#39;.name + &#34;@&#34; + .version&#39; | sort) \
+  &lt;(cat yesterday.ndjson | jq -r &#39;.name + &#34;@&#34; + .version&#39; | sort)
+</code></pre><p>The NDJSON schema includes: ecosystem (npm/pypi/go/gem/composer), package name, version, install path, and (when applicable) findings from the threat catalog.</p>
+<h2 id="integrating-with-ci-and-mdm">Integrating with CI and MDM</h2>
+<p>For fleet-wide deployment, Perplexity&rsquo;s own workflow runs <code>bumblebee scan --profile baseline</code> as a daily cron job on developer machines, ships the output to a central store, and alerts when any machine&rsquo;s inventory matches an active advisory. The Apache 2.0 license permits this kind of centralized use without restriction.</p>
+<p>For CI pipelines, the <strong>project</strong> profile is more appropriate: it scans the vendored dependencies and toolchain installs within a specific repository, producing a repeatable SBOM-style artifact that can be checked into version control or archived per-release.</p>
+<h2 id="what-bumblebee-does-not-do">What Bumblebee Does Not Do</h2>
+<p>Bumblebee is a scanner, not a remediation tool. It tells you what is on disk; it does not remove packages, patch versions, or block execution. Remediation is intentionally out of scope — the team&rsquo;s view is that accurate read-only detection is hard enough, and that mixing detection with mutation increases the risk of unintended consequences.</p>
+<p>It also does not scan Docker images, container registries, or cloud infrastructure. The scope is strictly developer laptops (macOS and Linux in v0.1.1).</p>
+<h2 id="related-tools">Related Tools</h2>
+<p>If Bumblebee surfaces a finding in your npm packages, <a href="https://socket.dev">socket.dev</a> provides deeper static analysis of the flagged packages. For Python, <a href="https://pypi.org/project/pip-audit/">pip-audit</a> complements Bumblebee by querying the OSV and PyPI Advisory databases — Bumblebee finds the package, pip-audit explains the vulnerability. For a broader security toolkit covering vulnerability scanners and penetration testing tools, see our <a href="/resources/dev-utils/scanners-box-cybersecurity-tools-collection/">Scanners Box cybersecurity collection</a>.</p>
+<blockquote>
+<p><strong>Deploy secure AI infrastructure:</strong> If you&rsquo;re running MCP servers or AI workloads on a VPS, hardening the host OS is the first line of defence. A <a href="https://m.do.co/c/eca87ac14ee0">$6/month DigitalOcean Droplet</a> (2 vCPU, 2 GB RAM) gives you full root access to configure your own firewall, user isolation, and audit logging. New users get <strong>$200 in free credits</strong>.</p>
+</blockquote>
+<h2 id="bottom-line">Bottom Line</h2>
+<p>Bumblebee solves a specific, underserved problem: auditing the full surface of a developer machine — global packages, editor extensions, browser extensions, and MCP configs — for supply-chain exposure, without executing anything that could make the situation worse. If you use Claude Desktop, Cursor, or any MCP-enabled AI tool, running ````bumblebee scan &ndash;profile baseline``` should be part of your weekly routine.</p>
+<p><strong>GitHub:</strong> <a href="https://github.com/perplexityai/bumblebee">perplexityai/bumblebee</a> · v0.1.1 · Apache-2.0</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Bumblebee 2026: Perplexity AI Open-Sources Its Internal Supply-Chain Scanner for Developer Machines&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-06-09&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-06-09&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/bumblebee-supply-chain-scanner-perplexity-2026%22">https://dibi8.com/resources/bumblebee-supply-chain-scanner-perplexity-2026"</a>
+}
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters</h2>
+<p>Understanding bumblebee 2026: perplexity ai open-sources its internal supply-chain scanner for developer machines is crucial for modern AI development. Here&quot;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications</h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
+2. Generate documentation automatically
+3. Build internal knowledge bases
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started</h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>Bumblebee 2026: Perplexity AI Open-Sources Its Internal Supply-Chain Scanner for Developer Machines represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~5 minutes</em></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/bumblebee-supply-chain-scanner-perplexity-2026/">free-mcp-tools-top10-2026</a></li>
+<li><a href="/ai-coding-agents/bumblebee-supply-chain-scanner-perplexity-2026/">cc-switch-all-in-one-ai-coding-agent-manager</a></li>
+<li><a href="/ai-coding-agents/bumblebee-supply-chain-scanner-perplexity-2026/">codebase-memory-mcp-high-performance-code-intelligence</a></li>
+<li><a href="/ai-coding-agents/bumblebee-supply-chain-scanner-perplexity-2026/">headroom-token-compression-proxy-library-mcp-server</a></li>
+<li><a href="/ai-coding-agents/bumblebee-supply-chain-scanner-perplexity-2026/">codebase-memory-mcp-deep-code-intelligence</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fbumblebee-supply-chain-scanner-perplexity-2026%2f&text=Routine%20daily%20inventory%20%e2%80%94%20global%20packages%2c%20toolchains%2c%20extensions%2c%20MCP%20configs" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fbumblebee-supply-chain-scanner-perplexity-2026%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,625 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG vs Fine-Tuning 2026: Data-Driven Decision Framework | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/rag-vs-fine-tuning-2026-decision-framework/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">RAG vs Fine-Tuning 2026: Data-Driven Decision Framework</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">RAG vs Fine-Tuning 2026: Data-Driven Decision Framework</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;RAG vs Fine-Tuning 2026: A Data-Driven Decision Framewor&hellip;
+description: &ldquo;Technical guide and comparison&rdquo;
+date: 2026-05-25T00:00:00+08:00
+lastmod: 2026-05-25T00:00:00+08:00
+tech_stack: [RAG, &lsquo;Fine-Tuning&rsquo;, LangChain, LlamaIndex, OpenAI, Anthropic]
+application_domain: LLM Frameworks
+source_version: &ldquo;2026 Q2 pricing&rdquo;
+licensing_model: Mixed
+license_type: &lsquo;Open-source frameworks + commercial APIs&rsquo;
+last_maintained: &ldquo;2026-05-25&rdquo;
+draft: false
+categories: [&ldquo;llm-frameworks&rdquo;]
+tags: [&ldquo;rag&rdquo;, &ldquo;fine-tuning&rdquo;, &ldquo;llm&rdquo;, &ldquo;cost-optimization&rdquo;, &ldquo;decision-framework&rdquo;, &ldquo;2026&rdquo;]
+aliases:</p>
+<ul>
+<li>/posts/rag-vs-fine-tuning-2026-decision-framework/
+faq: - q: &ldquo;When does RAG win over fine-tuning in 2026?&rdquo;
+a: &ldquo;RAG wins when (a) your knowledge base updates more than weekly, (b) you need citation/provenance, (c) document corpus &lt; 100K chunks, (d) latency budget allows ~200-400ms retrieval. Fine-tuning wins when you need style/format consistency, when knowledge is stable, and when you can afford the upfront training cost.&rdquo;</li>
+<li>q: &ldquo;How much does RAG actually cost in production?&rdquo;
+a: &ldquo;Per-query cost in 2026: embedding lookup ~$0.0001, retrieval+rerank ~$0.0003, LLM generation ~$0.003-0.015 depending on model. Total ~$0.005 per query for Claude Sonnet, ~$0.001 for GPT-4o-mini. At 100K queries/month: $100-500 range for compute, $20-100 for vector DB hosting.&rdquo;</li>
+<li>q: &ldquo;What&rsquo;s the break-even point for fine-tuning?&rdquo;
+a: &ldquo;Fine-tuning makes economic sense at ~1M+ queries/month with stable knowledge. Below that, RAG&rsquo;s lower upfront cost wins even with higher per-query cost. The breakeven shifts when you factor in maintenance — fine-tuned models lock you out of the base model&rsquo;s improvements unless you retrain.&rdquo;</li>
+<li>q: &ldquo;Can I combine RAG + fine-tuning?&rdquo;
+a: &ldquo;Yes, and it&rsquo;s increasingly the production answer. Fine-tune for style/format/tone, RAG for facts. The fine-tuned model writes in your company voice; the RAG layer injects current data. Costs add up but each layer solves a different problem.&rdquo;</li>
+<li>q: &ldquo;What&rsquo;s changed between 2024 RAG advice and 2026 reality?&rdquo;
+a: &ldquo;Three things: (1) Context windows grew (1M tokens viable) — sometimes you can skip RAG and stuff everything. (2) Embedding quality jumped (text-embedding-3-large, Voyage-3) — retrieval works for messier corpora. (3) Open-source local models (Llama 3.3, Mistral Large) good enough for fine-tuning on commodity hardware — changed the cost equation.&rdquo;</li>
+<li>q: &ldquo;Should I use Vector DB or just SQLite with full-text search?&rdquo;
+a: &ldquo;Under 10K chunks: full-text search (FTS5, MeiliSearch) is often enough and 10x simpler. Above 50K chunks: vector DB justifies its complexity. The 10K-50K gray zone — try FTS first, switch to vectors only when retrieval quality drops below 80% precision@5.&rdquo;</li>
+</ul>
+<hr>
+<h1 id="rag-vs-fine-tuning-2026-data-driven-decision-framework">RAG vs Fine-Tuning 2026: Data-Driven Decision Framework</h1>
+<blockquote>
+<p><strong>Meta Description</strong>: When to RAG, when to fine-tune, when to do both. Real cost numbers, decision tree, and the 2026 reality that changed the answer.</p>
+</blockquote>
+<p>The RAG-vs-fine-tuning question has accumulated three years of conflicting advice. In 2026, the landscape shifted enough that earlier articles are misleading. This piece gives you the current decision framework with real cost numbers, the patterns where each wins, and the increasingly common hybrid approach.</p>
+<h2 id="-tldr--2-min">⚡ TL;DR — 2 min</h2>
+<blockquote>
+<p><strong>RAG wins when</strong>: knowledge updates weekly+, citation needed, &lt; 100K chunks, 200-400ms retrieval latency acceptable.</p>
+<p><strong>Fine-tune wins when</strong>: stable knowledge, style/format consistency matters, &gt; 1M queries/month.</p>
+<p><strong>Hybrid is increasingly the answer</strong>: fine-tune for voice/format, RAG for facts.</p>
+<p><strong>2026 shifts</strong>: 1M context windows can replace RAG for small corpora. Open-source models make fine-tuning cheap. Embedding quality jumped — RAG works for messier data.</p>
+<p><strong>Break-even</strong>: fine-tune economically beats RAG above ~1M queries/month with stable knowledge.</p>
+</blockquote>
+<hr>
+<h2 id="what-changed-since-2024">What Changed Since 2024</h2>
+<p>Three forces shifted the calculus: 1. <strong>Context windows grew</strong>: Gemini 2.5 Pro and Claude Sonnet 4.6 hit 1M tokens. For corpora &lt; 200K tokens, you can stuff context and skip RAG entirely. This was unthinkable in 2024.</p>
+<ol start="2">
+<li>
+<p><strong>Embeddings got dramatically better</strong>: ```text-embedding-3-large```` (OpenAI), Voyage-3, BGE-M3 — retrieval precision@5 at 80%+ on messy enterprise corpora that 2024 embeddings struggled with.</p>
+</li>
+<li>
+<p><strong>Open-source fine-tuning got cheap</strong>: LoRA + Unsloth + commodity GPUs (RTX 4090, single H100) made fine-tuning $50-200 instead of $5K-50K. The &ldquo;fine-tune is expensive&rdquo; argument is outdated.</p>
+</li>
+</ol>
+<h2 id="rag-when-its-still-the-right-answer">RAG: When It&rsquo;s Still the Right Answer</h2>
+<h3 id="use-rag-when---knowledge-base-updates-more-than-weekly">Use RAG when: - Knowledge base updates more than weekly</h3>
+<ul>
+<li>Citation/provenance is required (legal, medical, compliance)</li>
+<li>Corpus is &lt; 100K chunks (above that, retrieval quality drops)</li>
+<li>Latency budget allows 200-400ms retrieval + LLM</li>
+<li>You need to update facts without retraining</li>
+</ul>
+<h3 id="rag-actual-costs-2026-q2-pricing-">RAG actual costs (2026 Q2 pricing): `````</h3>
+<p>Embedding lookup: $0.0001/query
+Retrieval + rerank: $0.0003/query
+LLM generation: $0.003-0.015/query (model dependent)
+─────────
+Total: ~$0.005/query (Claude Sonnet)
+~$0.001/query (GPT-4o-mini)</p>
+<pre tabindex="0"><code>
+At 100K queries/month: $100-500 compute + $20-100 vector DB hosting.
+
+### RAG infrastructure choices in 2026: | Tier | Stack | Best for |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Lightweight | SQLite FTS5 / MeiliSearch | &lt; 10K docs |
+| Mid | pgvector / Weaviate (self-hosted) | 10K-1M docs |
+| Heavy | Qdrant / Pinecone | 1M+ docs, multi-tenant |
+
+## Fine-Tuning: When It&#39;s Still the Right Answer
+
+### Use fine-tuning when: - Style/format/tone consistency matters more than knowledge accuracy
+- Knowledge is stable (updates monthly or less frequent)
+- You need predictable structured outputs (e.g., specific JSON schemas)
+- Volume &gt; 1M queries/month justifies upfront cost
+- You want to lock in performance characteristics (no surprise API changes)
+
+### Fine-tuning actual costs (2026): `````
+LoRA fine-tune (Llama 3.3 70B): Hardware: single H100 ($2/hr × ~10hrs)         = $20
+  Data prep: 1-2 days engineer time              = ~$1K labor
+  Storage: LoRA adapter ~100MB                  = trivial
+                                                       ─────
+  Upfront: ~$50 compute + labor
+
+Inference (self-hosted): Per 1K tokens generated: ~$0.0001 (on owned GPU amortized)
+</code></pre><p>Compare to API: $0.003-0.015/1K tokens. Break-even at high volume.</p>
+<h2 id="the-decision-tree">The Decision Tree</h2>
+<pre tabindex="0"><code>START
+  │
+  ├─ Knowledge updates more than weekly?
+  │   ├─ Yes → RAG (mandatory)
+  │   └─ No → continue
+  │
+  ├─ Citation/provenance required (legal/medical)?
+  │   ├─ Yes → RAG (mandatory)
+  │   └─ No → continue
+  │
+  ├─ Corpus fits in context window (&lt; 200K tokens)?
+  │   ├─ Yes → Stuff context, skip RAG
+  │   └─ No → continue
+  │
+  ├─ Style/format consistency critical?
+  │   ├─ Yes → Fine-tune + RAG hybrid
+  │   └─ No → continue
+  │
+  ├─ Volume &gt; 1M queries/month?
+  │   ├─ Yes → Fine-tune (cost wins)
+  │   └─ No → RAG (simpler ops)
+````
+
+## The Hybrid: Fine-Tune + RAG
+
+Increasingly the production answer. Fine-tune the model for: - Brand voice / writing style
+- Output format consistency (always JSON / always markdown)
+- Domain language fluency (medical, legal, financial jargon)
+
+Add RAG for: - Current facts
+- Customer-specific data
+- Citations
+
+**Real example**: A legal-tech startup fine-tunes Claude on contract-drafting style (one-time, $200), then uses RAG to inject specific case law (continuous, $0.005/query). Without fine-tuning, they&#39;d burn tokens on style prompts every query. Without RAG, they couldn&#39;t cite recent rulings.
+
+## Mistakes to Avoid
+
+### 1. Fine-tuning when you should RAG
+Symptom: model gives outdated answers, you have to retrain weekly.
+Fix: switch to RAG, problem disappears.
+
+### 2. RAG when you should stuff context
+Symptom: 200KB documentation, 50 queries/day, you built a vector DB.
+Fix: drop the vector DB, paste the docs into the system prompt.
+
+### 3. Neither when you need both
+Symptom: weird brand voice + outdated facts.
+Fix: fine-tune for voice, RAG for facts.
+
+### 4. RAG with terrible chunking
+Symptom: retrieval returns chunks that don&#39;t answer the query.
+Fix: experiment with chunk size (256-1024 tokens), overlap (10-20%), and rerank with cross-encoders.
+
+## 2026 Cost Comparison Table
+
+| Approach | Setup cost | Per-query cost (1K tokens) | Latency | Update lag |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Stuff context | $0 | $0.003-0.015 | 200ms | Real-time |
+| RAG (vector DB) | $100-500/mo | $0.005 | 200-400ms | Hours |
+| Fine-tune (API, OpenAI) | $50-500 | $0.0015 | 100ms | Re-train needed |
+| Fine-tune (self-host) | $50 + GPU | $0.0001 | 50ms | Re-train needed |
+| Fine-tune + RAG | $50-500 + $100-500/mo | $0.005 | 300-500ms | Hours for facts |
+
+## Recommended Infrastructure
+
+For RAG / fine-tuning hosting: - **** — $200 credit, GPU droplets for fine-tuning
+- **** — Hong Kong VPS, low-latency vector DB hosting
+
+*Affiliate links — same price, supports dibi8.com.*
+
+## Conclusion
+
+The 2024 advice (&#34;RAG for facts, fine-tune for style&#34;) still works as a starting point but misses two 2026 realities: (a) huge context windows can replace RAG for small corpora, (b) fine-tuning got 10x cheaper and is no longer the prestige-only option.
+
+For most production systems in 2026: start with RAG, add fine-tuning when style/volume justifies it. The hybrid is increasingly the default — and it&#39;s not because anyone planned it that way, but because each layer solves a different real problem.
+
+
+* * *
+**Related**: [MCP Servers 2026 Rankings](https://dibi8.com/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) · [AI Agent Memory Systems 2026](https://dibi8.com/resources/llm-frameworks/ai-agent-memory-systems-open-source-infrastructure-2026/) · [12-Factor Agents Guide](https://dibi8.com/resources/llm-frameworks/12-factor-agents-production-llm-software-2026/)
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;RAG vs Fine-Tuning 2026: A Data-Driven Decision Framework with Real Cost Numbers&#34;,
+  &#34;datePublished&#34;: &#34;2026-05-25&#34;,
+  &#34;dateModified&#34;: &#34;2026-05-25&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/rag-vs-fine-tuning-2026-decision-framework&#34;
+  }
+}
+&lt;/script&gt;
+
+## Why This Matters
+
+Understanding rag vs fine-tuning 2026: a data-driven decision framework with real cost numbers is crucial for modern AI development. Here&#34;s why: ### Key Benefits
+- **Efficiency**: Save time on repetitive tasks
+- **Quality**: Improve output consistency  
+- **Scalability**: Handle larger workloads
+- **Cost**: Reduce operational expenses
+
+### Real-World Applications
+Organizations are using similar approaches to: 1. Automate code review processes
+2. Generate documentation automatically
+3. Build internal knowledge bases
+4. Streamline deployment pipelines
+
+### Getting Started
+To implement this in your workflow: 1. **Assess Your Needs**
+   - Identify repetitive tasks
+   - Measure current time costs
+   - Define success metrics
+
+2. **Choose Your Approach**
+   - Start with simple automations
+   - Gradually increase complexity
+   - Test and iterate
+
+3. **Measure Results**
+   - Track time savings
+   - Monitor quality improvements
+   - Calculate ROI
+
+## Conclusion
+
+RAG vs Fine-Tuning 2026: A Data-Driven Decision Framework with Real Cost Numbers represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
+
+For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
+
+* * *
+
+*Last updated: 2026-09-20*
+*Read time: ~5 minutes*
+
+* * *
+
+## Related Articles
+
+- [12-factor-agents-production-llm-software-2026](rag-vs-fine-tuning-2026-decision-framework)
+- [12-factor-agents](rag-vs-fine-tuning-2026-decision-framework)
+- [1m-context-window-llm-2026-real-test](rag-vs-fine-tuning-2026-decision-framework)
+- [9router-smart-llm-proxy-token-saver-free-coding](rag-vs-fine-tuning-2026-decision-framework)
+- [ai-engineering-from-scratch](rag-vs-fine-tuning-2026-decision-framework)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+
+## Frequently Asked Questions (FAQ)
+
+**问：LangChain和LlamaIndex哪个更好？**
+
+LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。
+
+**问：如何评估LLM框架的性能？**
+
+基准测试包括：推理速度、准确率、资源消耗、可扩展性。
+
+**问：开源LLM框架的商业使用限制？**
+
+大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。
+
+**问：是否需要GPU才能运行LLM框架？**
+
+推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。
+
+**问：企业级部署的最佳实践？**
+
+使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
+</code></pre>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2frag-vs-fine-tuning-2026-decision-framework%2f&text=RAG%20vs%20Fine-Tuning%202026%3a%20Data-Driven%20Decision%20Framework" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2frag-vs-fine-tuning-2026-decision-framework%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

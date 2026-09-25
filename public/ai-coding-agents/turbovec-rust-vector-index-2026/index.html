@@ -1,0 +1,663 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a TurboVec index with 4-bit quantization | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/turbovec-rust-vector-index-2026/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Create a TurboVec index with 4-bit quantization</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Create a TurboVec index with 4-bit quantization</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p><img alt="TurboVec Vector Index" loading="lazy" src="https://opengraph.github.com/github/RyanCodrai/turbovec"></p>
+<p><img alt="TurboQuant Benchmark" loading="lazy" src="https://opengraph.github.com/github/RyanCodrai/turbovec/tree/main/benchmarks"></p>
+<p><img alt="TurboVec Python Bindings" loading="lazy" src="https://opengraph.github.com/github/RyanCodrai/turbovec/tree/main/turbovec"></p>
+<h2 id="introduction">Introduction</h2>
+<p>RAG applications spend most of their inference time waiting for vector search to return results. TurboVec changes this equation by combining Rust-level performance with Python convenience, delivering up to 10x faster vector search through a novel quantization technique called TurboQuant. With 10,500+ GitHub stars and drop-in replacements for LangChain, LlamaIndex, Haystack, and Agno, TurboVec is becoming the default vector store for teams that refuse to accept 500ms query latency. The library is actively maintained, with regular releases that add framework integrations, new quantization modes, and performance improvements based on community feedback from production deployments.</p>
+<p>For teams building high-performance RAG systems, the choice between vector search libraries ultimately comes down to three factors: query latency, memory efficiency, and integration depth. TurboVec excels on all three dimensions, making it a compelling default choice for new projects in 2026.</p>
+<h2 id="what-is-turbovec">What Is TurboVec?</h2>
+<p>TurboVec is a high-performance vector index that prioritizes two things: query speed and memory efficiency. Under the hood, it uses TurboQuant — a custom quantization scheme that compresses embeddings to 4-bit precision while maintaining 99%+ retrieval accuracy. Written in Rust and exposed via Python bindings, it gives you C-level performance without leaving the Python ecosystem.</p>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────┐
+│              TurboVec Architecture               │
+├─────────────────────────────────────────────────┤
+│                                                  │
+│  Python API Layer (pip install turbovec)         │
+│    ├─ VectorStore (LangChain drop-in)           │
+│    ├─ VectorStore (LlamaIndex drop-in)          │
+│    ├─ VectorStore (Haystack drop-in)            │
+│    └─ VectorDB (Agno drop-in)                   │
+│                                                  │
+│  TurboQuant Engine (Rust)                        │
+│    ├─ 4-bit vector compression                   │
+│    ├─ AVX2/AVX-512 optimized search             │
+│    ├─ Disk-backed indexing (10M+ vectors)       │
+│    └─ Multi-threaded query execution            │
+│                                                  │
+│  Persistence Layer                               │
+│    ├─ In-memory index                            │
+│    ├─ On-disk checkpoint                         │
+│    └─ Incremental updates                         │
+└─────────────────────────────────────────────────┘
+</code></pre><h2 id="how-turboquant-works">How TurboQuant Works</h2>
+<p>Traditional vector stores store embeddings as 32-bit floats (4 bytes per dimension). TurboQuant compresses these to 4 bits (0.5 bytes per dimension) using a combination of product quantization and residual coding.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> turbovec
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a TurboVec index with 4-bit quantization</span>
+</span></span><span style="display:flex;"><span>index <span style="color:#f92672">=</span> turbovec<span style="color:#f92672">.</span>Index(
+</span></span><span style="display:flex;"><span>    dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1536</span>,                    <span style="color:#75715e"># embedding dimension</span>
+</span></span><span style="display:flex;"><span>    metric<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cosine&#34;</span>,             <span style="color:#75715e"># cosine similarity</span>
+</span></span><span style="display:flex;"><span>    quantization<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;4bit&#34;</span>,         <span style="color:#75715e"># TurboQuant 4-bit</span>
+</span></span><span style="display:flex;"><span>    capacity<span style="color:#f92672">=</span><span style="color:#ae81ff">1_000_000</span>,          <span style="color:#75715e"># 1M vectors max</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Index embeddings</span>
+</span></span><span style="display:flex;"><span>embeddings <span style="color:#f92672">=</span> generate_embeddings(documents)  <span style="color:#75715e"># your embedding function</span>
+</span></span><span style="display:flex;"><span>index<span style="color:#f92672">.</span>add(embeddings)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Search — returns top-k results in milliseconds</span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> index<span style="color:#f92672">.</span>search(query_embedding, k<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+</span></span></code></pre></div><p>The quantization pipeline works in three stages. First, the embedding space is divided into subspaces using product quantization. Second, residual vectors capture quantization error for high-frequency components. Third, runtime feature detection selects between AVX2 (2013+ CPUs) and AVX-512 (2017+ CPUs) kernels automatically.</p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<p><strong>Option 1: pip install (recommended)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install turbovec
+</span></span></code></pre></div><p><strong>Option 2: Framework-specific installation</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># LangChain integration</span>
+</span></span><span style="display:flex;"><span>pip install turbovec<span style="color:#f92672">[</span>langchain<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># LlamaIndex integration</span>
+</span></span><span style="display:flex;"><span>pip install turbovec<span style="color:#f92672">[</span>llama-index<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Haystack integration</span>
+</span></span><span style="display:flex;"><span>pip install turbovec<span style="color:#f92672">[</span>haystack<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Agno integration</span>
+</span></span><span style="display:flex;"><span>pip install turbovec<span style="color:#f92672">[</span>agno<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p><strong>Option 3: Build from source (Rust development)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/RyanCodrai/turbovec.git
+</span></span><span style="display:flex;"><span>cd turbovec
+</span></span><span style="display:flex;"><span>pip install maturin
+</span></span><span style="display:flex;"><span>maturin develop --release
+</span></span></code></pre></div><p><strong>Option 4: Docker</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker build -t turbovec:latest .
+</span></span><span style="display:flex;"><span>docker run -p 8000:8000 turbovec:latest
+</span></span></code></pre></div><h2 id="integration-with-langchain-llamaindex-and-haystack">Integration with LangChain, LlamaIndex, and Haystack</h2>
+<p>TurboVec&rsquo;s killer feature is its drop-in replacement design. You swap the import and your pipeline keeps running without code changes.</p>
+<p><strong>LangChain Integration</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.vectorstores <span style="color:#f92672">import</span> TurboVec
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Drop-in replacement for InMemoryVectorStore</span>
+</span></span><span style="display:flex;"><span>store <span style="color:#f92672">=</span> TurboVec(
+</span></span><span style="display:flex;"><span>    client<span style="color:#f92672">=</span>client,
+</span></span><span style="display:flex;"><span>    embedding_function<span style="color:#f92672">=</span>embeddings,
+</span></span><span style="display:flex;"><span>    metric<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cosine&#34;</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Same API as any LangChain vector store</span>
+</span></span><span style="display:flex;"><span>store<span style="color:#f92672">.</span>add_documents(documents)
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> store<span style="color:#f92672">.</span>similarity_search(<span style="color:#e6db74">&#34;your query&#34;</span>, k<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+</span></span></code></pre></div><p><strong>LlamaIndex Integration</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.vector_stores <span style="color:#f92672">import</span> TurboVecVectorStore
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vector_store <span style="color:#f92672">=</span> TurboVecVectorStore(
+</span></span><span style="display:flex;"><span>    client<span style="color:#f92672">=</span>client,
+</span></span><span style="display:flex;"><span>    dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1536</span>,
+</span></span><span style="display:flex;"><span>    metric<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cosine&#34;</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>index <span style="color:#f92672">=</span> VectorStoreIndex<span style="color:#f92672">.</span>from_vector_store(vector_store)
+</span></span><span style="display:flex;"><span>query_engine <span style="color:#f92672">=</span> index<span style="color:#f92672">.</span>as_query_engine()
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> query_engine<span style="color:#f92672">.</span>query(<span style="color:#e6db74">&#34;What did the author learn?&#34;</span>)
+</span></span></code></pre></div><p><strong>Haystack Integration</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> haystack.document_stores <span style="color:#f92672">import</span> TurboVecDocumentStore
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>document_store <span style="color:#f92672">=</span> TurboVecDocumentStore(
+</span></span><span style="display:flex;"><span>    embedding_dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1536</span>,
+</span></span><span style="display:flex;"><span>    similarity<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cosine&#34;</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use with Haystack&#39;s Retriever</span>
+</span></span><span style="display:flex;"><span>retriever <span style="color:#f92672">=</span> Retriever(document_store<span style="color:#f92672">=</span>document_store)
+</span></span><span style="display:flex;"><span>documents <span style="color:#f92672">=</span> retriever<span style="color:#f92672">.</span>run(query<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your query&#34;</span>)
+</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases</h2>
+<p>TurboVec&rsquo;s performance advantage comes from TurboQuant&rsquo;s 4-bit compression combined with Rust&rsquo;s zero-cost abstractions.</p>
+<p>| Metric | TurboVec | FAISS IVF | Pinecone | Weaviate |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Query latency (100K vectors) | 2.3 ms | 8.7 ms | 15 ms | 12 ms |
+| Query speed (1M) | 4.1 ms | 23 ms | 28 ms | 21 ms |
+| Memory efficiency | 0.5B/dim | 4B/dim | N/A | 4B/dim |
+| Accuracy (quantized) | 99.2% | 97.8% | 99.5% | 99.1% |
+| Max vectors per index | 100M | 100M | 2M | 10M |</p>
+<p>Real-world benchmark command: `````bash</p>
+<h1 id="run-turbovecs-built-in-benchmark-suite">Run TurboVec&rsquo;s built-in benchmark suite</h1>
+<p>cargo test &ndash;release benchmarks</p>
+<h1 id="compare-with-faiss">Compare with FAISS</h1>
+<p>python benchmarks/compare_turbovec_faiss.py <br>
+&ndash;vectors 1000000 <br>
+&ndash;dim 1536 <br>
+&ndash;queries 10000</p>
+<pre tabindex="0"><code>
+In practice, TurboVec delivers the best performance when used with embeddings that are 768 dimensions or higher. Below 384 dimensions, the quantization savings diminish because the overhead of the quantization pipeline itself becomes significant relative to the small vector sizes. For embeddings in the 384-512 range, consider using 8-bit quantization for the best accuracy-speed tradeoff.
+
+## Advanced Usage / Production Hardening
+
+**Persistent Index with Checkpointing**
+
+`````python
+import turbovec
+
+# Create a disk-backed index
+index = turbovec.Index(
+    dim=1536,
+    metric=&#34;cosine&#34;,
+    quantization=&#34;4bit&#34;,
+    capacity=10_000_000,
+)
+
+# Add vectors over time
+for batch in document_batches: embeddings = embed(batch)
+    index.add(embeddings)
+
+# Save checkpoint to disk
+index.save(&#34;my_index.turbovec&#34;)
+
+# Load checkpoint in a new process
+loaded = turbovec.Index.load(&#34;my_index.turbovec&#34;)
+results = loaded.search(query_emb, k=10)
+</code></pre><p><strong>Multi-threaded Query Execution</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># TurboVec uses all available CPU cores by default</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#34;RAYON_NUM_THREADS&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;16&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Each query runs in parallel across threads</span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> index<span style="color:#f92672">.</span>search_parallel(
+</span></span><span style="display:flex;"><span>    query_embeddings,    <span style="color:#75715e"># multiple queries</span>
+</span></span><span style="display:flex;"><span>    k<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>    num_threads<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p><strong>Monitoring Index Performance in Production</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Benchmark current index throughput</span>
+</span></span><span style="display:flex;"><span>start <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>perf_counter()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1000</span>): index<span style="color:#f92672">.</span>search(query_emb, k<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>elapsed <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>perf_counter() <span style="color:#f92672">-</span> start
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Throughput: </span><span style="color:#e6db74">{</span><span style="color:#ae81ff">1000</span><span style="color:#f92672">/</span>elapsed<span style="color:#e6db74">:</span><span style="color:#e6db74">.0f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> queries/sec&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Average latency: </span><span style="color:#e6db74">{</span>elapsed<span style="color:#f92672">/</span><span style="color:#ae81ff">1000</span><span style="color:#f92672">*</span><span style="color:#ae81ff">1000</span><span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> ms per query&#34;</span>)
+</span></span></code></pre></div><p><strong>Custom Quantization Configurations</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Trade accuracy for speed: 3-bit quantization</span>
+</span></span><span style="display:flex;"><span>index_3bit <span style="color:#f92672">=</span> turbovec<span style="color:#f92672">.</span>Index(
+</span></span><span style="display:flex;"><span>    dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1536</span>,
+</span></span><span style="display:flex;"><span>    quantization<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;3bit&#34;</span>,    <span style="color:#75715e"># even smaller, ~98.5% accuracy</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Conservative: 8-bit for maximum accuracy</span>
+</span></span><span style="display:flex;"><span>index_8bit <span style="color:#f92672">=</span> turbovec<span style="color:#f92672">.</span>Index(
+</span></span><span style="display:flex;"><span>    dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1536</span>,
+</span></span><span style="display:flex;"><span>    quantization<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;8bit&#34;</span>,    <span style="color:#75715e"># 99.8% accuracy, 2x bigger</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><p><strong>Building a Full RAG Pipeline with TurboVec</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> turbovec
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> transformers <span style="color:#f92672">import</span> AutoTokenizer, AutoModel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load embedding model</span>
+</span></span><span style="display:flex;"><span>tokenizer <span style="color:#f92672">=</span> AutoTokenizer<span style="color:#f92672">.</span>from_pretrained(<span style="color:#e6db74">&#34;sentence-transformers/all-MiniLM-L6-v2&#34;</span>)
+</span></span><span style="display:flex;"><span>model <span style="color:#f92672">=</span> AutoModel<span style="color:#f92672">.</span>from_pretrained(<span style="color:#e6db74">&#34;sentence-transformers/all-MiniLM-L6-v2&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">embed_texts</span>(texts): inputs <span style="color:#f92672">=</span> tokenizer(texts, padding<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, truncation<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, return_tensors<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pt&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> torch<span style="color:#f92672">.</span>no_grad(): outputs <span style="color:#f92672">=</span> model(<span style="color:#f92672">**</span>inputs)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> outputs<span style="color:#f92672">.</span>last_hidden_state<span style="color:#f92672">.</span>mean(dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">.</span>numpy()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build index</span>
+</span></span><span style="display:flex;"><span>index <span style="color:#f92672">=</span> turbovec<span style="color:#f92672">.</span>Index(dim<span style="color:#f92672">=</span><span style="color:#ae81ff">384</span>, metric<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cosine&#34;</span>, quantization<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;4bit&#34;</span>, capacity<span style="color:#f92672">=</span><span style="color:#ae81ff">1_000_000</span>)
+</span></span><span style="display:flex;"><span>index<span style="color:#f92672">.</span>add(embed_texts(document_chunks))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Query pipeline</span>
+</span></span><span style="display:flex;"><span>query_emb <span style="color:#f92672">=</span> embed_texts([<span style="color:#e6db74">&#34;What is machine learning?&#34;</span>])[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> index<span style="color:#f92672">.</span>search(query_emb, k<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i, (idx, score) <span style="color:#f92672">in</span> enumerate(results): print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;  [</span><span style="color:#e6db74">{</span>i<span style="color:#e6db74">}</span><span style="color:#e6db74">] score=</span><span style="color:#e6db74">{</span>score<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> chunk=</span><span style="color:#e6db74">{</span>document_chunks[idx][:<span style="color:#ae81ff">100</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><p><strong>Docker Compose for Production Serving</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: turbovec: image</span>: <span style="color:#ae81ff">ryan-codrai/turbovec:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;8000:8000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./index:/data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">TURBOVEC_CAPACITY=10000000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TURBOVEC_DIM=1536</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TURBOVEC_METRIC=cosine</span>
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | TurboVec | FAISS | Pinecone | Weaviate |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Self-hostable | ✓ | ✓ | No | ✓ |
+| Python API | ✓ | ✓ | ✓ | ✓ |
+| Rust implementation | ✓ | C++ | No | Go |
+| Quantization | TurboQuant 4-bit | PQ/HNSW | N/A | HNSW |
+| Query speed (1M) | 4.1 ms | 23 ms | 28 ms | 21 ms |
+| Memory efficiency | 0.5B/dim | 4B/dim | N/A | 4B/dim |
+| Accuracy (quantized) | 99.2% | 97.8% | 99.5% | 99.1% |
+| Scale per node | 100M vectors | 100M vectors | 2M vectors | 10M vectors |
+| Open source | ✓ (MIT) | ✓ (Apache 2.0) | No | ✓ (BSD) |
+| Cost | Free | Free | $150+/mo | Self-host free |
+| Build times | 45s (release) | 2-5 min | N/A | 1-3 min |
+| Production maturity | 10.5K stars | 60K+ stars | N/A | 20K+ stars |</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p>TurboVec is impressive for its performance profile, but there are honest limitations to consider: 1. <strong>Newer library</strong>: With 10,500 stars vs FAISS&rsquo;s 60,000+, TurboVec has less community documentation and fewer third-party tutorials. Production teams should budget time for trial runs.
+2. <strong>Rust dependency</strong>: Building from source requires <code>cargo</code> and a Rust toolchain. The pip install path avoids this, but custom builds need Rust 1.70+.
+3. <strong>Single-node only</strong>: Unlike Weaviate or Qdrant, TurboVec does not have built-in horizontal scaling. For indexes exceeding 100M vectors, you need to shard across multiple instances.
+4. <strong>Limited vector types</strong>: Currently only supports dense vector search. Sparse vectors, hybrid search, and graph-based indexing are not yet available.
+5. <strong>No built-in REST API</strong>: TurboVec is an in-process library. If you need a networked vector search service, you must wrap it in a FastAPI or similar layer.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>Q: How does TurboQuant compare to HNSW quantization?</strong></p>
+<p>TurboQuant is a product quantization method optimized for the specific query patterns common in RAG applications. HNSW (used by FAISS and Weaviate) provides better recall at the cost of higher memory and build time. TurboQuant achieves comparable accuracy at 8x less memory, making it ideal for resource-constrained deployments.</p>
+<p><strong>Q: Can I upgrade quantization bits without re-indexing?</strong></p>
+<p>No. Quantization is applied during the indexing phase. Upgrading from 4-bit to 8-bit requires re-indexing all vectors. However, downgrading is lossy and reduces accuracy. Plan your quantization level based on your accuracy requirements before building the index.</p>
+<p><strong>Q: Does TurboVec support GPU acceleration?</strong></p>
+<p>Not currently. TurboVec is optimized for CPU execution using SIMD instructions (AVX2 and AVX-512). GPU acceleration is on the roadmap but not yet implemented. For GPU-based vector search, consider FAISS with GPU indices or dedicated vector databases with GPU support.</p>
+<p><strong>Q: How do I handle vector updates and deletions?</strong></p>
+<p>TurboVec supports incremental adds to existing indexes. Deletions are handled via tombstone markers — deleted vectors are logically removed but occupy space until you rebuild the index. Use ````index.rebuild()``` to compact deleted vectors and reclaim disk space.</p>
+<p><strong>Q: What is the maximum index size?</strong></p>
+<p>Each TurboVec index supports up to 100 million vectors on a single node. The practical limit depends on available memory: with 4-bit quantization at 1536 dimensions, 100M vectors require approximately 59 GB of RAM. For larger datasets, implement horizontal sharding.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>TurboVec represents a significant step forward in vector search performance. By combining Rust&rsquo;s system-level performance with a novel 4-bit quantization scheme, it delivers sub-5ms query latency for million-vector indexes while using a fraction of the memory required by traditional solutions.</p>
+<p>The drop-in replacement design for LangChain, LlamaIndex, Haystack, and Agno means you can swap into TurboVec with minimal code changes — just install the package and update your import. For teams building RAG applications that need speed without the operational complexity of managed vector databases, TurboVec is the compelling choice in 2026.</p>
+<p>For teams deploying high-performance applications: check out <a href="https://webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a> for reliable proxy infrastructure that complements fast vector search.</p>
+<p>For teams needing affordable cloud GPU instances: <a href="https://m.do.co/c/oa14d5f0wx4f">DigitalOcean</a> offers scalable compute for training and inference workloads.</p>
+<p>For teams requiring enterprise proxy solutions: <a href="https://www.htstack.com/">HTStack</a> provides high-performance proxy networks for scalable data pipelines.</p>
+<p>For financial AI research teams: <a href="https://promoohubly.com">OKX</a> offers market data APIs and trading infrastructure.</p>
+<p>For institutional-grade crypto trading: <a href="https://bsmkweb.cc">Binance</a> provides the world&quot;s largest exchange API.</p>
+<p>Read more about <a href="dibi8-internal-link">Building RAG Pipelines with Vector Search</a> and <a href="dibi8-internal-link">Rust Tools for Python Developers</a> for deeper technical content.</p>
+<p>Join the DIBI8 community on <a href="https://t.me/DIBI8_Group">Telegram</a> for discussions on AI tools, Rust, and developer infrastructure.</p>
+<hr>
+<p><strong>Sources &amp; Further Reading</strong>: - Official repository: <a href="https://github.com/RyanCodrai/turbovec">https://github.com/RyanCodrai/turbovec</a></p>
+<ul>
+<li>TurboQuant paper: <a href="https://github.com/RyanCodrai/turbovec/blob/main/docs/turboquant.md">https://github.com/RyanCodrai/turbovec/blob/main/docs/turboquant.md</a></li>
+<li>LangChain integration docs: <a href="https://github.com/RyanCodrai/turbovec/blob/main/docs/integrations/langchain.md">https://github.com/RyanCodrai/turbovec/blob/main/docs/integrations/langchain.md</a></li>
+<li>LlamaIndex integration docs: <a href="https://github.com/RyanCodrai/turbovec/blob/main/docs/integrations/llama_index.md">https://github.com/RyanCodrai/turbovec/blob/main/docs/integrations/llama_index.md</a></li>
+<li>Benchmark comparison: <a href="https://github.com/RyanCodrai/turbovec/blob/main/benchmarks/">https://github.com/RyanCodrai/turbovec/blob/main/benchmarks/</a></li>
+<li>Community discussion: <a href="https://github.com/RyanCodrai/turbovec/discussions">https://github.com/RyanCodrai/turbovec/discussions</a></li>
+</ul>
+<p><strong>Disclosure</strong>: This article contains affiliate links. If you sign up through our links, we may earn a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;TurboVec: Rust-Powered Vector Index 10x Faster Than FAISS — AI Search Guide 2026&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-06-09&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-06-09&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/turbovec-rust-vector-index-2026%22">https://dibi8.com/resources/turbovec-rust-vector-index-2026"</a>
+}
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/turbovec-rust-vector-index-2026/">turbovec-rust-vector-index-2026</a></li>
+<li><a href="/ai-coding-agents/turbovec-rust-vector-index-2026/">turbovec-rust-vector-index-2026</a></li>
+<li><a href="/ai-coding-agents/turbovec-rust-vector-index-2026/">supermemory-open-source-ai-memory-api</a></li>
+<li><a href="/ai-coding-agents/turbovec-rust-vector-index-2026/">ai-agent-frameworks-comparison-2026</a></li>
+<li><a href="/ai-coding-agents/turbovec-rust-vector-index-2026/">ai-agent-frameworks-comparison-2026</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p>
+<p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p>
+<p><strong>问：如何评估LLM框架的性能？</strong></p>
+<p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p>
+<p><strong>问：开源LLM框架的商业使用限制？</strong></p>
+<p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p>
+<p><strong>问：是否需要GPU才能运行LLM框架？</strong></p>
+<p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p>
+<p><strong>问：企业级部署的最佳实践？</strong></p>
+<p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fturbovec-rust-vector-index-2026%2f&text=Create%20a%20TurboVec%20index%20with%204-bit%20quantization" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fturbovec-rust-vector-index-2026%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,775 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NVIDIA Cosmos: Open-Source World Models for Physical AI (10K Stars) | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/nvidia-cosmos-world-models-platform-2026/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">NVIDIA Cosmos: Open-Source World Models for Physical AI (10K Stars)</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">NVIDIA Cosmos: Open-Source World Models for Physical AI (10K Stars)</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p><img alt="NVIDIA Cosmos platform" loading="lazy" src="https://raw.githubusercontent.com/NVIDIA/cosmos/main/cookbooks/cosmos3/cosmos3-model-architecture.png"></p>
+<h1 id="nvidia-cosmos-open-source-world-models-for-physical-ai-10k-stars">NVIDIA Cosmos: Open-Source World Models for Physical AI (10K Stars)</h1>
+<p>What if you could predict how the physical world behaves — not by simulating physics equations, but by learning from the world itself?</p>
+<p>NVIDIA Cosmos is exactly that: an open-source platform of world models trained to understand and generate the physical world. It doesn&rsquo;t just generate images of a robot moving — it predicts the physics, the timing, the cause-and-effect of that motion.</p>
+<p>Cosmos 3 is NVIDIA&rsquo;s latest model family, built on a unified Mixture-of-Transformers (MoT) architecture that handles language, images, video, audio, and action sequences simultaneously. Two runtimes: a <strong>Reasoner</strong> (for world understanding and planning) and a <strong>Generator</strong> (for world simulation and synthetic data creation).</p>
+<p>The models range from 16B (Nano) to 64B (Super) parameters, available on HuggingFace. This is infrastructure for the next generation of physical AI — robots, autonomous vehicles, smart infrastructure.</p>
+<h2 id="what-is-nvidia-cosmos">What Is NVIDIA Cosmos?</h2>
+<p>NVIDIA Cosmos is an <strong>open platform of world models, datasets, and tools</strong> designed for building Physical AI systems. It goes beyond what traditional AI can do: ````
+Traditional AI: Cosmos: Input → Output      →  Input → Reasoning → Output
+(image in,          (understand physics,
+caption out)        predict future,
+generate actions)</p>
+<pre tabindex="0"><code>
+Key capabilities: - **World understanding**: Analyze videos and images for captions, temporal events, next actions, spatial grounding, physical plausibility, and causal outcomes
+- **World generation**: Produce images, videos, synchronized sound, and action-conditioned rollouts from text, image, video, or action inputs
+- **Action modeling**: Predict policy actions, inverse dynamics, and forward dynamics for robotics, camera motion, egocentric motion, and autonomous driving
+
+The Cosmos 3 model family includes: | Model | Size | Capability |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Cosmos3-Nano | 16B | Compact omnimodal model for understanding and simulation |
+| Cosmos3-Super | 64B | Frontier-scale model for advanced multimodal tasks |
+| Cosmos3-Super-Text2Image | 64B | High-fidelity text-to-image generation |
+| Cosmos3-Super-Image2Video | 64B | Temporally coherent image-to-video |
+| Cosmos3-Nano-Policy-DROID | 16B | Vision-language robot policy for DROID manipulation |
+
+## Model Architecture: Mixture-of-Transformers
+
+Cosmos 3 uses a unified **Mixture-of-Transformers (MoT)** architecture that combines: 1. **Autoregressive (AR) transformer** for reasoning — processes language and visual tokens through causal self-attention for next-token prediction
+2. **Diffusion Transformer (DM)** for generation — denoises image, video, audio, and action tokens through full attention
+</code></pre><p>┌─────────────────────────────────────────────┐
+│         Cosmos 3: Unified MoT               │
+├─────────────────┬───────────────────────────┤
+│  Reasoner Mode  │    Generator Mode         │
+│  (Perception)   │    (Generation)           │
+├─────────────────┼───────────────────────────┤
+│ Text + Vision   │ Noisy Image/Video/        │
+│ → Text          │ Audio/Action              │
+│ (understanding) │ → Clean Image/Video/      │
+│                 │ Action/Sound              │
+├─────────────────┼───────────────────────────┤
+│ Shared: │                          │
+│ - Transformer layers                     │
+│ - Multimodal attention layers            │
+│ - 3D mRoPE (spatial + temporal encoding) │
+└─────────────────┴──────────────────────────┘</p>
+<pre tabindex="0"><code>
+Both modes share the same transformer architecture, multimodal attention layers, and a unified 3D multi-dimensional rotary position embedding (mRoPE) that encodes spatial and temporal structure across modalities.
+
+## Two Runtime Surfaces
+
+Cosmos 3 exposes two distinct runtime surfaces: ### Reasoner (Understanding)
+
+Processes inputs and produces textual output for world understanding tasks: `````
+Input: Text + Image + Video + Action
+         ↓
+    Reasoner (AR Transformer)
+         ↓
+Output: Text (captions, next actions, physical reasoning, task plans)
+</code></pre><p><strong>Use cases</strong>: - World understanding from video streams</p>
+<ul>
+<li>Next action prediction for robots</li>
+<li>Physical plausibility checking</li>
+<li>Causal outcome prediction</li>
+<li>Embodied agent reasoning</li>
+</ul>
+<h3 id="generator-creation">Generator (Creation)</h3>
+<p>Produces non-text outputs conditioned by multimodal inputs: `````
+Input: Text + Image + Video + Sound + Action
+↓
+Generator (Diffusion Transformer)
+↓
+Output: Image + Video + Sound + Action</p>
+<pre tabindex="0"><code>
+**Use cases**: - Text-to-image generation
+- Image-to-video generation
+- World simulation and future prediction
+- Synthetic data generation for training robots
+- Action-conditioned video generation
+- Policy learning from demonstration
+
+## Quickstart: Installation
+
+Cosmos runs on Linux with NVIDIA GPUs (Ampere, Hopper, or Blackwell). Installation uses ````uv```` (the fast Python package manager): ### System Requirements
+
+- **OS**: Linux
+- **GPU**: NVIDIA GPU (Ampere/A100/H100/Blackwell RTX 6000+)
+- **CUDA**: 12.8 or 13.0
+- **Python**: 3.10+
+- **RAM**: 64GB+ (recommended 128GB for 64B models)
+
+### Install with uv
+
+`````bash
+# Install system dependencies
+sudo apt-get install -y --no-install-recommends curl ffmpeg git-lfs \
+  libx11-dev tree wget
+
+# Clone the framework
+git clone https://github.com/NVIDIA/cosmos-framework.git
+cd cosmos-framework
+
+# Install with uv (CUDA 12.8 variant)
+uv sync --all-extras --group=cu128-train
+source .venv/bin/activate
+
+# Or CUDA 13.0 (recommended): # uv sync --all-extras --group=cu130-train
+</code></pre><h3 id="quick-inference">Quick Inference</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Single-GPU inference with Diffusers backend</span>
+</span></span><span style="display:flex;"><span>python <span style="color:#f92672">-</span>m cosmos_framework<span style="color:#f92672">.</span>scripts<span style="color:#f92672">.</span>inference \
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">--</span>parallelism<span style="color:#f92672">-</span>preset<span style="color:#f92672">=</span>latency \
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-</span>i inputs<span style="color:#f92672">/</span>omni<span style="color:#f92672">/</span>t2v<span style="color:#f92672">.</span>json \
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">-</span>o outputs<span style="color:#f92672">/</span>omni_nano \
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">--</span>checkpoint<span style="color:#f92672">-</span>path Cosmos3<span style="color:#f92672">-</span>Nano \
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">--</span>seed<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>
+</span></span></code></pre></div><h3 id="huggingface-models">HuggingFace Models</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Download a model from HuggingFace</span>
+</span></span><span style="display:flex;"><span>huggingface-cli download nvidia/Cosmos3-Nano <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --local-dir ~/cosmos/models/nano
+</span></span></code></pre></div><h2 id="generator-mode-world-generation">Generator Mode: World Generation</h2>
+<p>The Generator produces images, videos, audio, and action outputs conditioned by multimodal inputs: ### Text-to-Image</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> cosmos_framework.scripts.inference <span style="color:#f92672">import</span> run_inference
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate an image from text</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> run_inference(
+</span></span><span style="display:flex;"><span>    checkpoint<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Cosmos3-Super-Text2Image&#34;</span>,
+</span></span><span style="display:flex;"><span>    input_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>,
+</span></span><span style="display:flex;"><span>    input_text<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A robot arm assembling a circuit board in a modern lab&#34;</span>,
+</span></span><span style="display:flex;"><span>    output_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;image&#34;</span>,
+</span></span><span style="display:flex;"><span>    resolution<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;720p&#34;</span>,
+</span></span><span style="display:flex;"><span>    seed<span style="color:#f92672">=</span><span style="color:#ae81ff">42</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: High-fidelity image of robot assembling circuit board</span>
+</span></span></code></pre></div><h3 id="image-to-video">Image-to-Video</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Generate temporally coherent video from a single image</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> run_inference(
+</span></span><span style="display:flex;"><span>    checkpoint<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Cosmos3-Super-Image2Video&#34;</span>,
+</span></span><span style="display:flex;"><span>    input_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;image&#34;</span>,
+</span></span><span style="display:flex;"><span>    input_image<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;robot_lab.jpg&#34;</span>,
+</span></span><span style="display:flex;"><span>    output_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;video&#34;</span>,
+</span></span><span style="display:flex;"><span>    frame_count<span style="color:#f92672">=</span><span style="color:#ae81ff">189</span>,  <span style="color:#75715e"># default: 189 frames (~7.8s at 24fps)</span>
+</span></span><span style="display:flex;"><span>    fps<span style="color:#f92672">=</span><span style="color:#ae81ff">24</span>,
+</span></span><span style="display:flex;"><span>    resolution<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;720p&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: Video of the robot lab scene in motion</span>
+</span></span></code></pre></div><h3 id="text-to-video">Text-to-Video</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Generate video directly from text prompt</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> run_inference(
+</span></span><span style="display:flex;"><span>    checkpoint<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Cosmos3-Nano&#34;</span>,
+</span></span><span style="display:flex;"><span>    input_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>,
+</span></span><span style="display:flex;"><span>    input_text<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A self-driving car navigating through heavy rain at night, city lights reflecting on wet pavement&#34;</span>,
+</span></span><span style="display:flex;"><span>    output_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;video&#34;</span>,
+</span></span><span style="display:flex;"><span>    frame_count<span style="color:#f92672">=</span><span style="color:#ae81ff">300</span>,
+</span></span><span style="display:flex;"><span>    fps<span style="color:#f92672">=</span><span style="color:#ae81ff">30</span>,
+</span></span><span style="display:flex;"><span>    resolution<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;720p&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: Video with synchronized audio (AAC stereo at 48kHz)</span>
+</span></span></code></pre></div><h3 id="supported-generation-settings">Supported Generation Settings</h3>
+<p>| Parameter | Options |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Resolution | 256p, 480p, 720p (default: 480p) |
+| Aspect Ratio | 16:9, 4:3, 1:1, 3:4, 9:16 (default: 16:9) |
+| Frame Rate | 10, 16, 24, 30 FPS (default: 24) |
+| Frame Count | 5 to 300 frames (default: 189) |
+| Precision | BF16 (tested) |</p>
+<h2 id="reasoner-mode-world-understanding">Reasoner Mode: World Understanding</h2>
+<p>The Reasoner provides textual output for understanding and planning: `````python</p>
+<h1 id="world-understanding-from-video">World understanding from video</h1>
+<p>result = run_inference(
+checkpoint=&ldquo;Cosmos3-Nano&rdquo;,
+input_type=&ldquo;video&rdquo;,
+input_video=&ldquo;warehouse_robots.mp4&rdquo;,
+output_type=&ldquo;text&rdquo;,
+task=&ldquo;describe_temporal_events&rdquo;
+)</p>
+<h1 id="output-at-frame-0-30-two-robot-arms-coordinate">Output: &ldquo;At frame 0-30, two robot arms coordinate&hellip;&rdquo;</h1>
+<h1 id="next-action-prediction-for-a-robot">Next action prediction for a robot</h1>
+<p>result = run_inference(
+checkpoint=&ldquo;Cosmos3-Nano-Policy-DROID&rdquo;,
+input_type=&ldquo;image+text&rdquo;,
+input_image=&ldquo;robot_workspace.jpg&rdquo;,
+input_text=&ldquo;What should the robot do next?&rdquo;,
+output_type=&ldquo;text&rdquo;
+)</p>
+<h1 id="output-pick-up-the-red-component-from-the-left-tray">Output: &ldquo;Pick up the red component from the left tray&hellip;&rdquo;</h1>
+<h1 id="physical-plausibility-check">Physical plausibility check</h1>
+<p>result = run_inference(
+checkpoint=&ldquo;Cosmos3-Super&rdquo;,
+input_type=&ldquo;video&rdquo;,
+input_video=&ldquo;physics_demo.mp4&rdquo;,
+output_type=&ldquo;text&rdquo;,
+task=&ldquo;check_physical_plausibility&rdquo;
+)</p>
+<h1 id="output-the-ball-trajectory-violates-gravity">Output: &ldquo;The ball trajectory violates gravity&hellip;&rdquo;</h1>
+<pre tabindex="0"><code>
+## Use Cases
+
+### Robot Training with Synthetic Data
+
+Cosmos generates synthetic training data for robots, reducing the need for expensive real-world data collection: `````bash
+# Generate 1000 synthetic video clips of warehouse robots
+# for training a manipulation policy
+cosmos_framework.scripts.training.train \
+    --recipe examples/launch_sft_vision_nano.sh \
+    --num-samples 1000 \
+    --output-dir /data/warehouse_synthetic
+</code></pre><h3 id="autonomous-vehicle-simulation">Autonomous Vehicle Simulation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Simulate autonomous driving scenarios</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> run_inference(
+</span></span><span style="display:flex;"><span>    checkpoint<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Cosmos3-Nano&#34;</span>,
+</span></span><span style="display:flex;"><span>    input_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text+image&#34;</span>,
+</span></span><span style="display:flex;"><span>    input_text<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A self-driving car at an intersection with red light&#34;</span>,
+</span></span><span style="display:flex;"><span>    input_image<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;intersection.jpg&#34;</span>,
+</span></span><span style="display:flex;"><span>    output_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;video+action&#34;</span>,
+</span></span><span style="display:flex;"><span>    task<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;predict_vehicle_dynamics&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: Video of car stopping + action vector (steering, throttle, brake)</span>
+</span></span></code></pre></div><h3 id="smart-infrastructure-monitoring">Smart Infrastructure Monitoring</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Analyze security camera footage for anomalies</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> run_inference(
+</span></span><span style="display:flex;"><span>    checkpoint<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Cosmos3-Super&#34;</span>,
+</span></span><span style="display:flex;"><span>    input_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;video&#34;</span>,
+</span></span><span style="display:flex;"><span>    input_video<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;factory_cam_01.mp4&#34;</span>,
+</span></span><span style="display:flex;"><span>    output_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>,
+</span></span><span style="display:flex;"><span>    task<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;detect_anomalies&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: &#34;At 14:32:15, unmarked vehicle entered restricted zone...&#34;</span>
+</span></span></code></pre></div><h2 id="training-fine-tuning-cosmos-models">Training: Fine-Tuning Cosmos Models</h2>
+<p>The Cosmos framework includes training scripts for supervised fine-tuning (SFT) on custom data: `````bash</p>
+<h1 id="multi-gpu-sft-training-on-8-h100-80gb">Multi-GPU SFT training on 8× H100 80GB</h1>
+<p>bash examples/launch_sft_vision_nano.sh</p>
+<h1 id="key-configuration-options">Key configuration options</h1>
+<h1 id="--dpcpfsdp-parallelism-strategies">- DP/CP/FSDP parallelism strategies</h1>
+<h1 id="--native-dcp-checkpoints-with-huggingface-safetensors">- Native DCP checkpoints with HuggingFace safetensors</h1>
+<h1 id="--jsonl--webdataset--lerobot-dataset-adapters">- JSONL / WebDataset / LeRobot dataset adapters</h1>
+<h1 id="--mixed-precision-training">- Mixed precision training</h1>
+<h1 id="--checkpoint-resume-support">- Checkpoint resume support</h1>
+<pre tabindex="0"><code>
+`````python
+# Training configuration example
+training_config = {
+    &#34;model&#34;: &#34;Cosmos3-Nano&#34;,
+    &#34;num_gpus&#34;: 8,
+    &#34;parallelism&#34;: &#34;FSDP&#34;,  # Fully Sharded Data Parallel
+    &#34;mixed_precision&#34;: &#34;bf16&#34;,
+    &#34;batch_size_per_gpu&#34;: 4,
+    &#34;dataset&#34;: {
+        &#34;type&#34;: &#34;jsonl&#34;,
+        &#34;path&#34;: &#34;/data/training_samples.jsonl&#34;
+    },
+    &#34;checkpoint_dir&#34;: &#34;/checkpoints/sft_nano&#34;
+}
+````
+
+## Comparison with Alternatives
+
+| Feature | NVIDIA Cosmos | Runway Gen-3 | Sora | Pika Labs |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| **Open-source** | ✅ Yes | ❌ Proprietary | ❌ Proprietary | ❌ Proprietary |
+| **Reasoning mode** | ✅ Built-in | ❌ | ❌ | ❌ |
+| **Action generation** | ✅ Built-in | ❌ | ❌ | ❌ |
+| **Robot policy** | ✅ DROID model | ❌ | ❌ | ❌ |
+| **Local inference** | ✅ Yes | ❌ API only | ❌ API only | ❌ API only |
+| **Synthetic data** | ✅ Built-in | ❌ | ❌ | ❌ |
+| **Fine-tuning** | ✅ Supported | ❌ | ❌ | ❌ |
+| **Available models** | 5 (Nano + Super variants) | 1 | 1 | 1 |
+| **GPU requirement** | H100/A100 recommended | Cloud-only | Cloud-only | Cloud-only |
+| **License** | Apache-2.0 | Proprietary | Proprietary | Proprietary |
+
+| Feature | NVIDIA Cosmos | Stable Video Diffusion | Luma Dream Machine |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| **Open-source** | ✅ Yes | ✅ Yes | ❌ Proprietary |
+| **Multimodal** | ✅ Text+Image+Video+Audio+Action | ❌ Image→Video only | ❌ Text→Video only |
+| **Physical reasoning** | ✅ Built-in | ❌ | ❌ |
+| **Robotics support** | ✅ DROID policy model | ❌ | ❌ |
+
+## Benchmarks
+
+### Generation Quality
+
+Cosmos 3 models are evaluated on multiple benchmarks: | Benchmark | Cosmos3-Nano | Cosmos3-Super | Runway Gen-3 | Sora |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| VideoFID (↓) | 8.2 | 5.1 | 6.3 | 4.8 |
+| CLIP-I Score (↑) | 0.89 | 0.93 | 0.91 | 0.92 |
+| Physical Plausibility (↑) | 0.76 | 0.89 | N/A | N/A |
+| Action Accuracy (↑) | 0.71 | 0.84 | N/A | N/A |
+
+**Sources**: NVIDIA internal evaluation, May 2026. VideoFID: lower is better. CLIP-I: higher is better (image-text alignment). Physical Plausibility: human-evaluated score for physical correctness. Action Accuracy: predicted actions vs ground truth.
+
+### Inference Speed
+
+| Model | Resolution | Frame Count | GPU | Time |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Cosmos3-Nano | 480p | 189 frames | 1× H100 | ~45s |
+| Cosmos3-Nano | 720p | 189 frames | 1× H100 | ~90s |
+| Cosmos3-Super | 480p | 189 frames | 1× H100 | ~180s |
+| Cosmos3-Super | 720p | 189 frames | 2× H100 | ~240s |
+
+## Limitations and Honest Assessment
+
+Cosmos is groundbreaking, but it&#39;s important to understand its limitations: 1. **Heavy hardware requirements**: You need at least one H100/A100-level GPU for decent performance. The 64B models may require 2+ GPUs. This is not something you can run on consumer hardware.
+
+2. **Linux only**: The framework runs on Linux only, with CUDA. No macOS support currently.
+
+3. **Very young project**: First committed December 2024. Despite NVIDIA&#39;s resources, this is still a rapidly evolving project with potential breaking changes.
+
+4. **No consumer-friendly API**: Unlike Runway, Sora, or Pika, Cosmos requires you to set up the framework yourself. There&#39;s no &#34;click and generate&#34; interface (though the website at nvidia.com/en-us/ai/cosmos/ provides a guided experience).
+
+5. **Dataset dependency**: The quality of Cosmos depends heavily on the training data. If you try to fine-tune on your own domain (medical imaging, scientific visualization), you&#39;ll need domain-specific training data.
+
+6. **NVIDIA ecosystem lock-in**: While the models are open-source (Apache-2.0), the entire toolchain (Cosmos framework, NGC images, NVIDIA optimizations) is tightly coupled to NVIDIA hardware. Running on AMD or Intel GPUs is not currently supported.
+
+7. **Small community**: 19 open issues, 657 forks. The project is moving fast, but the community is small compared to models like Stable Diffusion or Llama.
+
+## Frequently Asked Questions
+
+**Q: Can I run Cosmos on a consumer GPU?**
+Technically, you might be able to run Cosmos3-Nano on a high-end consumer GPU (RTX 4090 with 24GB VRAM) for small generations (256p, short videos), but performance will be limited. The 64B models require A100/H100-class GPUs.
+
+**Q: How does Cosmos differ from Stable Video Diffusion?**
+SVD is an image-to-video model only. Cosmos is a unified multimodal platform that handles text-to-image, text-to-video, image-to-video, video-understanding, physical reasoning, and robot policy prediction — all in one framework.
+
+**Q: Can I fine-tune Cosmos on my own data?**
+Yes. The framework supports supervised fine-tuning (SFT) with JSONL, WebDataset, and LeRobot dataset formats. You need 8× H100 GPUs for full fine-tuning of the 64B model. For smaller models (Nano), 4 GPUs may suffice.
+
+**Q: Is Cosmos available as an API?**
+Not directly. However, NVIDIA offers Cosmos through their NIM (NVIDIA Inference Microservices) platform, which provides an OpenAI-compatible API for Cosmos models.
+
+**Q: What&#39;s the license?**
+Apache-2.0 for the code, with model weights available under NVIDIA&#39;s research license. Commercial use is permitted with proper attribution.
+
+## Conclusion
+
+NVIDIA Cosmos represents a fundamental shift in how we approach AI and the physical world. Instead of treating video generation, image generation, robot policy, and physical reasoning as separate problems, Cosmos unifies them in a single Mixture-of-Transformers architecture.
+
+The combination of Reasoner Mode (understanding) and Generator Mode (creation) — both sharing the same transformer backbone — means you can go from understanding a scene to generating the future of that scene in one pipeline.
+
+For robotics, autonomous driving, and smart infrastructure, Cosmos is not just another AI model. It&#39;s infrastructure.
+
+If you&#34;re building Physical AI systems, Cosmos should be at the top of your research list.
+
+
+* * *
+**Sources &amp; Further Reading**: - Technical report: https://research.nvidia.com/labs/cosmos-lab/cosmos3/technical-report.pdf
+- Cosmos 3 models: https://huggingface.co/collections/nvidia/cosmos3
+- Cosmos Framework: https://github.com/NVIDIA/cosmos-framework
+- Website: https://www.nvidia.com/en-us/ai/cosmos/
+
+
+* * *
+**Try NVIDIA Cosmos**: Visit [nvidia.com/en-us/ai/cosmos/](https://www.nvidia.com/en-us/ai/cosmos/) for a guided experience, or clone [github.com/NVIDIA/cosmos-framework](https://github.com/NVIDIA/cosmos-framework) for the full framework.
+
+Join the community: [Telegram](https://t.me/DIBI8_Group) · [HuggingFace](https://huggingface.co/collections/nvidia/cosmos3)
+
+Internal links: [runway-gen3-review-2026](https://dibi8.com/runway-gen3-review-2026) · [stability-ai-stable-video-diffusion](https://dibi8.com/stability-ai-stable-video-diffusion)
+
+**Disclosure**: This article mentions tools that may have affiliate relationships. We do not accept payment for positive reviews. All benchmarks are self-conducted or sourced from official documentation.
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;NVIDIA Cosmos: Open-Source World Models for Physical AI (10K Stars)&#34;,
+  &#34;datePublished&#34;: &#34;2026-06-13&#34;,
+  &#34;dateModified&#34;: &#34;2026-06-13&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/nvidia-cosmos-world-models-platform-2026&#34;
+  }
+}
+&lt;/script&gt;
+
+* * *
+
+## Related Articles
+
+- [2026-06-15-trending-ai-agents](nvidia-cosmos-world-models-platform-2026)
+- [2026-06-22-trending-ai-agents](nvidia-cosmos-world-models-platform-2026)
+- [prompts-chat](nvidia-cosmos-world-models-platform-2026)
+- [paddleocr-81k-star-ocr-engine](nvidia-cosmos-world-models-platform-2026)
+- [markitdown-universal-file-to-markdown-converter](nvidia-cosmos-world-models-platform-2026)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</code></pre>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fnvidia-cosmos-world-models-platform-2026%2f&text=NVIDIA%20Cosmos%3a%20Open-Source%20World%20Models%20for%20Physical%20AI%20%2810K%20Stars%29" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fnvidia-cosmos-world-models-platform-2026%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

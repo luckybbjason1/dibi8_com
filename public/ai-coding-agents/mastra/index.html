@@ -1,0 +1,627 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scaffold a new Mastra project with the interactive CLI | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/mastra/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Scaffold a new Mastra project with the interactive CLI</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Scaffold a new Mastra project with the interactive CLI</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;Scaffold a new Mastra project with the interactive CLI&rdquo;
+description: &ldquo;AI tool guide&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Llm Frameworks
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: Apache-2.0
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;llm-frameworks&rdquo;]
+tags: [&ldquo;mastra&rdquo;, &ldquo;typescript&rdquo;, &ldquo;ai-framework&rdquo;, &ldquo;agents&rdquo;, &ldquo;llm&rdquo;, &ldquo;mastra-tutorial&rdquo;, &ldquo;mastra-vs-langchain&rdquo;, &ldquo;open-source&rdquo;]
+aliases:</p>
+<ul>
+<li>/posts/mastra/-</li>
+</ul>
+<hr>
+<p>Most AI frameworks are built for Python. If your stack runs on TypeScript and Node.js, you either bridge languages or accept a sub-par developer experience. That changed when the Gatsby team launched Mastra — a TypeScript-native framework for building AI agents that reached <strong>24,050 GitHub stars</strong> by May 2026 and is now used in production at Replit, PayPal, and Sanity. This article covers everything you need to install Mastra, build your first agent, and understand how its Observational Memory reduces token costs by 4-10x compared to traditional RAG approaches.</p>
+<h2 id="what-is-mastra">What Is Mastra?</h2>
+<p>Mastra is an open-source TypeScript framework for building AI-powered applications and agents. It provides a unified toolkit that covers agents, workflows, RAG pipelines, memory systems, evaluation frameworks, and observability — all with first-class TypeScript types. Unlike Python-first frameworks ported to JavaScript, Mastra was built from the ground up for the TypeScript ecosystem. It sits on top of the Vercel AI SDK for low-level model interactions and adds the higher-level abstractions that production AI applications require.</p>
+<p><img alt="Mastra Logo" loading="lazy" src="https://raw.githubusercontent.com/mastra-ai/mastra/main/docs/public/logo.png"></p>
+<p>The core idea is simple: agents handle open-ended conversational tasks with tool access, workflows manage deterministic multi-step processes, RAG grounds responses in your data, memory persists context across conversations, and evals measure quality. All six primitives ship in ```@mastra/core```` and work together through consistent Zod-typed APIs.</p>
+<p><img alt="Mastra Studio — Local development UI for debugging agents, workflows, and memory" loading="lazy" src="https://www.firecrawl.dev/images/blog/mastra-tutorial/workflow-graph.webp"></p>
+<h2 id="how-mastra-works--architecture-and-core-concepts">How Mastra Works — Architecture and Core Concepts</h2>
+<p>Mastra&rsquo;s architecture revolves around six building blocks that mirror what production AI systems actually need: ### Agents
+Agents are the primary actors. You give them instructions, a model, and access to tools. They decide what to call, when to stop, and how to respond. Agents expose <code>.generate()</code> for complete responses and <code>.stream()</code> for real-time token streaming — essential for chat UIs where users expect to see responses form progressively.</p>
+<h3 id="workflows">Workflows</h3>
+<p>Workflows provide deterministic orchestration for multi-step operations where you need explicit control. Built on XState, they support branching, parallel execution, loops, and human-in-the-loop patterns where execution pauses for approval before resuming.</p>
+<h3 id="rag-retrieval-augmented-generation">RAG (Retrieval-Augmented Generation)</h3>
+<p>Mastra&rsquo;s RAG pipeline handles document chunking, embedding generation, vector storage, similarity search, and reranking. It works with Pinecone, Qdrant, ChromaDB, pgvector, and many other vector databases.</p>
+<h3 id="memory">Memory</h3>
+<p>The memory system includes conversation history (raw message storage), semantic recall (embedding-based similarity search), working memory (structured facts and preferences as a Markdown scratchpad), and the standout feature — Observational Memory — which compresses old conversations into dense observations, cutting token costs by 4-10x.</p>
+<h3 id="tools">Tools</h3>
+<p>Tools are typed functions defined with Zod schemas that agents can invoke. They provide structured interfaces to external APIs, databases, and services. Mastra also supports the Model Context Protocol (MCP) for connecting to external tool ecosystems with over 10,000 available MCP servers.</p>
+<h3 id="evals">Evals</h3>
+<p>Evaluation frameworks track agent quality through model-graded, rule-based, and statistical methods. You can assess relevance, faithfulness, toxicity, tone consistency, and define custom metrics.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// Core Mastra architecture — all six primitives in one setup
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Mastra</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@mastra/core&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">openai</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@ai-sdk/openai&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mastra</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Mastra</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">agents</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">supportAgent</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">researchAgent</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">workflows</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ticketPipeline</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">storage</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PgStorage</span>({ <span style="color:#a6e22e">connectionString</span>: <span style="color:#66d9ef">process.env.DATABASE_URL</span> }),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">vectorStore</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">PgVector</span>(<span style="color:#a6e22e">connectionString</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">telemetry</span>: <span style="color:#66d9ef">otel</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h2 id="installation-and-setup--under-5-minutes">Installation and Setup — Under 5 Minutes</h2>
+<p>Mastra requires Node.js 22.13.0 or later. The recommended path is the CLI wizard, which scaffolds a complete project with the right package structure, configuration files, and example code.</p>
+<h3 id="step-1-create-a-new-project">Step 1: Create a New Project</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Scaffold a new Mastra project with the interactive CLI</span>
+</span></span><span style="display:flex;"><span>npm create mastra@latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The wizard prompts for: # - Project name</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Components (agents, workflows, RAG, memory)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - LLM provider (OpenAI, Anthropic, Google, etc.)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Whether to include example code</span>
+</span></span></code></pre></div><h3 id="step-2-manual-installation-alternative">Step 2: Manual Installation (Alternative)</h3>
+<p>If you prefer to add Mastra to an existing project: `````bash</p>
+<h1 id="install-core-package-with-zod-for-schema-validation">Install core package with Zod for schema validation</h1>
+<p>npm install @mastra/core@latest zod@^4</p>
+<h1 id="install-your-preferred-llm-provider-from-the-ai-sdk">Install your preferred LLM provider from the AI SDK</h1>
+<p>npm install @ai-sdk/openai</p>
+<h1 id="optional-vector-store-memory-and-deployer-packages">Optional: vector store, memory, and deployer packages</h1>
+<p>npm install @mastra/pg @mastra/memory @mastra/deployer-vercel</p>
+<pre tabindex="0"><code>
+### Step 3: Environment Setup
+
+`````bash
+# .env — Mastra loads these automatically at runtime
+OPENAI_API_KEY=sk-xxxx
+DATABASE_URL=postgresql://user:pass@localhost:5432/mastra
+</code></pre><h3 id="step-4-project-structure">Step 4: Project Structure</h3>
+<pre tabindex="0"><code>my-mastra-project/
+├── src/
+│   └── mastra/
+│       ├── agents/
+│       │   └── support.ts
+│       ├── tools/
+│       │   └── search.ts
+│       ├── workflows/
+│       │   └── ticket.ts
+│       └── index.ts
+├── .env
+├── package.json
+└── tsconfig.json
+</code></pre><h3 id="step-5-launch-mastra-studio">Step 5: Launch Mastra Studio</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Start the local development UI at localhost:4111</span>
+</span></span><span style="display:flex;"><span>npx mastra dev
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Studio lets you chat with agents, inspect tool calls,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># view memory state, visualize workflows, and iterate on prompts</span>
+</span></span></code></pre></div><p><img alt="Mastra Changelog Digest Workflow — showing the INPUT → SCRAPE → EXTRACT → OUTPUT pipeline" loading="lazy" src="https://www.firecrawl.dev/images/blog/mastra-tutorial/changelog-pipeline.webp"></p>
+<h2 id="building-your-first-agent--real-code-examples">Building Your First Agent — Real Code Examples</h2>
+<h3 id="basic-agent-with-tools">Basic Agent with Tools</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// src/mastra/agents/support.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Agent</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@mastra/core&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">openai</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@ai-sdk/openai&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createTool</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@mastra/core&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">z</span> } <span style="color:#66d9ef">from</span> <span style="color:#a6e22e">zod</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">searchTool</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createTool</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;search-docs&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">description</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;AI tool guide&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">inputSchema</span>: <span style="color:#66d9ef">z.object</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">query</span>: <span style="color:#66d9ef">z.string</span>().<span style="color:#a6e22e">describe</span>(<span style="color:#e6db74">&#39;The search...&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    environment: - OPENAI_API_KEY=${OPENAI_API_KEY}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      - DATABASE_URL=postgresql://postgres:postgres@db:5432/mastra
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    depends_on: - db
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  db: image: pgvector/pgvector:pg17
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    environment: POSTGRES_USER: postgres
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      POSTGRES_PASSWORD: postgres
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      POSTGRES_DB: mastra
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    volumes: - pgdata:/var/lib/postgresql/data
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">volumes: pgdata: `````
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">## Comparison with Alternatives
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">| Feature | Mastra | LangChain | CrewAI | Vercel AI SDK |
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">* * *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">* * *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">* * *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">* * *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">* * *
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">|
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">| **Primary Language** | TypeScript (99.2%) | Python (also JS) | Python | TypeScript |
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">| **GitHub Stars** | 24,050 | 117,000 | 39,200 | N/A (part of Vercel) |
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">| **Setup Time** | &lt; 5 min | 15-30 min | 10-15 min | &lt; 5 min (manual wiring) |
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">| **Agent Abstractions** | Native Agent class | Chain/Agent classes | Role-based crew | Manual composition |
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">| **Workflow Engine** | XState-based, durable | LangGraph (graph) | Sequential/hierarchical | None |
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">| **Memory System** | Observational Memory (4-10x cost reduction) | ConversationBufferMemory | Short-term only | Manual |
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">| **Type Safety** | Zod throughout, full TS | Partial in JS version | Python type hints | Zod supported |
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">| **Observability** | Built-in + OTEL | LangSmith (SaaS) | Built-in basic | Vercel platform |
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">| **MCP Support** | Native | Via adapter | Limited | Via integration |
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">| **Multi-Agent** | Supervisor pattern | LangGraph multi-agent | Core feature | Manual |
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">| **Best For** | TS teams, Next.js, Node.js | Python teams, complex graphs | Python multi-agent prototyping | React/Next.js UI-heavy apps |
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">| **LLM Providers** | 40+ | 100+ | 20+ | 10+ |
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">| **Production Users** | Replit, PayPal, Sanity | Uber, LinkedIn | Startups, agencies | Vercel-hosted apps |
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">| **Deployment** | Any Node.js server, Vercel, CF Workers | LangSmith Cloud, self-hosted | Self-hosted, CrewAI Cloud | Vercel (optimal) |
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">## Limitations — Honest Assessment
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Mastra is not the right tool for every situation. Here is what the framework is NOT good at: **Python Ecosystem Lock-In:** If your entire data science stack is Python — pandas, NumPy, PyTorch, Jupyter — Mastra forces you to bridge two languages. The framework is TypeScript-only. For teams deeply invested in Python, LangChain or CrewAI remain more natural choices.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">**Smaller Integration Ecosystem:** LangChain has 100+ LLM integrations and 50+ vector stores. Mastra supports 40+ providers and covers the major vector databases, but if you need an obscure model or a niche vector store, you may need to write custom integration code.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">**Younger Project, Higher Churn:** Mastra hit v1.0 in January 2026. The API has stabilized but breaking changes still occur more frequently than in LangChain&#39;</span><span style="color:#a6e22e">s</span> <span style="color:#a6e22e">mature</span> <span style="color:#a6e22e">ecosystem</span>. <span style="color:#a6e22e">Budget</span> <span style="color:#a6e22e">time</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">version</span> <span style="color:#a6e22e">upgrades</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#a6e22e">No</span> <span style="color:#a6e22e">Native</span> <span style="color:#a6e22e">Visual</span> <span style="color:#a6e22e">Workflow</span> <span style="color:#a6e22e">Builder</span><span style="color:#f92672">:**</span> <span style="color:#a6e22e">Unlike</span> <span style="color:#a6e22e">n8n</span> <span style="color:#a6e22e">or</span> <span style="color:#a6e22e">Langflow</span>, <span style="color:#a6e22e">Mastra</span> <span style="color:#a6e22e">has</span> <span style="color:#a6e22e">no</span> <span style="color:#a6e22e">drag</span><span style="color:#f92672">-</span><span style="color:#a6e22e">and</span><span style="color:#f92672">-</span><span style="color:#a6e22e">drop</span> <span style="color:#a6e22e">workflow</span> <span style="color:#a6e22e">designer</span>. <span style="color:#a6e22e">Everything</span> <span style="color:#66d9ef">is</span> <span style="color:#a6e22e">code</span>. <span style="color:#a6e22e">For</span> <span style="color:#a6e22e">non</span><span style="color:#f92672">-</span><span style="color:#a6e22e">technical</span> <span style="color:#a6e22e">team</span> <span style="color:#a6e22e">members</span> <span style="color:#a6e22e">who</span> <span style="color:#a6e22e">need</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">modify</span> <span style="color:#a6e22e">workflows</span>, <span style="color:#66d9ef">this</span> <span style="color:#66d9ef">is</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">barrier</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#a6e22e">Community</span> <span style="color:#a6e22e">Size</span><span style="color:#f92672">:**</span> <span style="color:#a6e22e">At</span> <span style="color:#ae81ff">24</span><span style="color:#a6e22e">K</span> <span style="color:#a6e22e">stars</span>, <span style="color:#a6e22e">Mastra</span><span style="color:#e6db74">&#39;s community is active but significantly smaller than LangChain&#39;</span><span style="color:#a6e22e">s</span>. <span style="color:#a6e22e">You</span> <span style="color:#a6e22e">will</span> <span style="color:#a6e22e">find</span> <span style="color:#a6e22e">fewer</span> <span style="color:#a6e22e">Stack</span> <span style="color:#a6e22e">Overflow</span> <span style="color:#a6e22e">answers</span>, <span style="color:#a6e22e">fewer</span> <span style="color:#a6e22e">third</span><span style="color:#f92672">-</span><span style="color:#a6e22e">party</span> <span style="color:#a6e22e">tutorials</span>, <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">narrower</span> <span style="color:#a6e22e">selection</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">blog</span> <span style="color:#a6e22e">posts</span> <span style="color:#a6e22e">covering</span> <span style="color:#a6e22e">edge</span> <span style="color:#a6e22e">cases</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#a6e22e">Limited</span> <span style="color:#a6e22e">UI</span> <span style="color:#a6e22e">Components</span><span style="color:#f92672">:**</span> <span style="color:#a6e22e">While</span> <span style="color:#a6e22e">Mastra</span> <span style="color:#a6e22e">Studio</span> <span style="color:#a6e22e">provides</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">development</span> <span style="color:#a6e22e">playground</span>, <span style="color:#a6e22e">it</span> <span style="color:#a6e22e">does</span> <span style="color:#a6e22e">not</span> <span style="color:#a6e22e">ship</span> <span style="color:#a6e22e">production</span> <span style="color:#a6e22e">UI</span> <span style="color:#a6e22e">components</span> <span style="color:#a6e22e">like</span> <span style="color:#a6e22e">chat</span> <span style="color:#a6e22e">widgets</span>. <span style="color:#a6e22e">You</span> <span style="color:#a6e22e">still</span> <span style="color:#a6e22e">need</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">build</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">frontend</span> <span style="color:#a6e22e">yourself</span> <span style="color:#a6e22e">or</span> <span style="color:#a6e22e">pair</span> <span style="color:#a6e22e">Mastra</span> <span style="color:#66d9ef">with</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">Vercel</span> <span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">SDK</span><span style="color:#e6db74">&#39;s UI libraries.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">## Frequently Asked Questions
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">**Q: Does Mastra require TypeScript knowledge?**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Yes, Mastra is TypeScript-native. Basic familiarity with TypeScript, async/await, and Zod schemas is expected. If your team only knows Python, the learning curve for TypeScript plus Mastra will be steeper than using LangChain directly.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">**Q: How does Mastra&#39;</span><span style="color:#a6e22e">s</span> <span style="color:#a6e22e">Observational</span> <span style="color:#a6e22e">Memory</span> <span style="color:#a6e22e">compare</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">LangChain</span><span style="color:#e6db74">&#39;s memory classes?**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">LangChain provides ConversationBufferMemory, ConversationSummaryMemory, and vector-based retrieval. These work but either consume full context window or rely on vector search that invalidates prompt caches. Mastra&#39;</span><span style="color:#a6e22e">s</span> <span style="color:#a6e22e">Observational</span> <span style="color:#a6e22e">Memory</span> <span style="color:#a6e22e">compresses</span> <span style="color:#a6e22e">context</span> <span style="color:#a6e22e">into</span> <span style="color:#a6e22e">cacheable</span> <span style="color:#a6e22e">observations</span>, <span style="color:#a6e22e">achieving</span> <span style="color:#ae81ff">4</span><span style="color:#f92672">-</span><span style="color:#ae81ff">10</span><span style="color:#a6e22e">x</span> <span style="color:#a6e22e">cost</span> <span style="color:#a6e22e">reduction</span> <span style="color:#66d9ef">while</span> <span style="color:#a6e22e">scoring</span> <span style="color:#a6e22e">higher</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">LongMemEval</span> <span style="color:#a6e22e">benchmarks</span> (<span style="color:#ae81ff">84.23</span><span style="color:#f92672">%</span> <span style="color:#a6e22e">vs</span> <span style="color:#ae81ff">80.05</span><span style="color:#f92672">%</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">RAG</span>).
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#a6e22e">Q</span>: <span style="color:#66d9ef">Can</span> <span style="color:#a6e22e">I</span> <span style="color:#a6e22e">deploy</span> <span style="color:#a6e22e">Mastra</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">DigitalOcean</span> <span style="color:#a6e22e">or</span> <span style="color:#a6e22e">AWS</span> <span style="color:#a6e22e">instead</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">Vercel</span><span style="color:#f92672">?**</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Yes</span>. <span style="color:#a6e22e">Mastra</span> <span style="color:#66d9ef">is</span> <span style="color:#a6e22e">fully</span> <span style="color:#a6e22e">open</span><span style="color:#f92672">-</span><span style="color:#a6e22e">source</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">deploys</span> <span style="color:#a6e22e">to</span> <span style="color:#66d9ef">any</span> <span style="color:#a6e22e">Node</span>.<span style="color:#a6e22e">js</span> <span style="color:#a6e22e">runtime</span>. <span style="color:#a6e22e">Build</span> <span style="color:#66d9ef">with</span> <span style="color:#e6db74">````</span><span style="color:#a6e22e">mastra</span> <span style="color:#a6e22e">build</span><span style="color:#e6db74">````</span>, <span style="color:#a6e22e">then</span> <span style="color:#a6e22e">run</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">output</span> <span style="color:#a6e22e">on</span> <span style="color:#a6e22e">DigitalOcean</span> <span style="color:#a6e22e">App</span> <span style="color:#a6e22e">Platform</span>, <span style="color:#a6e22e">AWS</span> <span style="color:#a6e22e">ECS</span>, <span style="color:#a6e22e">Google</span> <span style="color:#a6e22e">Cloud</span> <span style="color:#a6e22e">Run</span>, <span style="color:#a6e22e">or</span> <span style="color:#66d9ef">any</span> <span style="color:#a6e22e">Docker</span> <span style="color:#a6e22e">host</span>. <span style="color:#a6e22e">Deployers</span> <span style="color:#a6e22e">exist</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">Vercel</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">Cloudflare</span> <span style="color:#a6e22e">Workers</span>, <span style="color:#a6e22e">but</span> <span style="color:#a6e22e">they</span> <span style="color:#a6e22e">are</span> <span style="color:#a6e22e">optional</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#a6e22e">Q</span>: <span style="color:#66d9ef">What</span> <span style="color:#a6e22e">LLM</span> <span style="color:#a6e22e">providers</span> <span style="color:#a6e22e">does</span> <span style="color:#a6e22e">Mastra</span> <span style="color:#a6e22e">support</span><span style="color:#f92672">?**</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Mastra</span> <span style="color:#a6e22e">supports</span> <span style="color:#ae81ff">40</span><span style="color:#f92672">+</span> <span style="color:#a6e22e">providers</span> <span style="color:#a6e22e">through</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">Vercel</span> <span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">SDK</span>: <span style="color:#66d9ef">OpenAI</span>, <span style="color:#a6e22e">Anthropic</span>, <span style="color:#a6e22e">Google</span>, <span style="color:#a6e22e">Mistral</span>, <span style="color:#a6e22e">Cohere</span>, <span style="color:#a6e22e">xAI</span>, <span style="color:#a6e22e">DeepSeek</span>, <span style="color:#a6e22e">Fireworks</span>, <span style="color:#a6e22e">Together</span>, <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">many</span> <span style="color:#a6e22e">more</span>. <span style="color:#a6e22e">Switching</span> <span style="color:#a6e22e">providers</span> <span style="color:#66d9ef">is</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">one</span><span style="color:#f92672">-</span><span style="color:#a6e22e">line</span> <span style="color:#a6e22e">code</span> <span style="color:#a6e22e">change</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#a6e22e">Q</span>: <span style="color:#66d9ef">How</span> <span style="color:#a6e22e">does</span> <span style="color:#a6e22e">Mastra</span> <span style="color:#a6e22e">handle</span> <span style="color:#a6e22e">errors</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">retries</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">production</span><span style="color:#f92672">?**</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Mastra</span> <span style="color:#a6e22e">workflows</span> <span style="color:#a6e22e">include</span> <span style="color:#a6e22e">configurable</span> <span style="color:#a6e22e">retry</span> <span style="color:#a6e22e">policies</span> <span style="color:#66d9ef">with</span> <span style="color:#a6e22e">exponential</span> <span style="color:#a6e22e">backoff</span> <span style="color:#a6e22e">at</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">step</span> <span style="color:#a6e22e">level</span>. <span style="color:#a6e22e">Agents</span> <span style="color:#a6e22e">have</span> <span style="color:#a6e22e">built</span><span style="color:#f92672">-</span><span style="color:#66d9ef">in</span> <span style="color:#a6e22e">timeout</span> <span style="color:#a6e22e">handling</span>. <span style="color:#a6e22e">The</span> <span style="color:#a6e22e">observability</span> <span style="color:#a6e22e">integration</span> (<span style="color:#a6e22e">OpenTelemetry</span>) <span style="color:#a6e22e">traces</span> <span style="color:#a6e22e">every</span> <span style="color:#a6e22e">call</span>, <span style="color:#a6e22e">making</span> <span style="color:#a6e22e">it</span> <span style="color:#a6e22e">straightforward</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">identify</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">debug</span> <span style="color:#a6e22e">failures</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">production</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#a6e22e">Q</span>: <span style="color:#66d9ef">Is</span> <span style="color:#a6e22e">Mastra</span> <span style="color:#a6e22e">free</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">commercial</span> <span style="color:#a6e22e">use</span><span style="color:#f92672">?**</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Yes</span>. <span style="color:#a6e22e">Mastra</span> <span style="color:#66d9ef">is</span> <span style="color:#a6e22e">licensed</span> <span style="color:#a6e22e">under</span> <span style="color:#a6e22e">Apache</span> <span style="color:#ae81ff">2.0</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">free</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">commercial</span> <span style="color:#a6e22e">use</span>. <span style="color:#a6e22e">Mastra</span> <span style="color:#a6e22e">Cloud</span> (<span style="color:#a6e22e">managed</span> <span style="color:#a6e22e">hosting</span>) <span style="color:#a6e22e">offers</span> <span style="color:#a6e22e">paid</span> <span style="color:#a6e22e">tiers</span>, <span style="color:#a6e22e">but</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">core</span> <span style="color:#a6e22e">framework</span> <span style="color:#66d9ef">is</span> <span style="color:#a6e22e">fully</span> <span style="color:#a6e22e">open</span><span style="color:#f92672">-</span><span style="color:#a6e22e">source</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">self</span><span style="color:#f92672">-</span><span style="color:#a6e22e">hostable</span> <span style="color:#a6e22e">at</span> <span style="color:#a6e22e">no</span> <span style="color:#a6e22e">cost</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#a6e22e">Q</span>: <span style="color:#66d9ef">How</span> <span style="color:#66d9ef">do</span> <span style="color:#a6e22e">I</span> <span style="color:#a6e22e">add</span> <span style="color:#a6e22e">memory</span> <span style="color:#a6e22e">to</span> <span style="color:#a6e22e">an</span> <span style="color:#a6e22e">existing</span> <span style="color:#a6e22e">Mastra</span> <span style="color:#a6e22e">agent</span><span style="color:#f92672">?**</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Pass</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">memory</span> <span style="color:#a6e22e">instance</span> <span style="color:#a6e22e">when</span> <span style="color:#a6e22e">creating</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">Mastra</span> <span style="color:#a6e22e">instance</span>. <span style="color:#a6e22e">The</span> <span style="color:#a6e22e">agent</span> <span style="color:#a6e22e">automatically</span> <span style="color:#a6e22e">tracks</span> <span style="color:#a6e22e">conversation</span> <span style="color:#a6e22e">threads</span> <span style="color:#a6e22e">per</span> <span style="color:#a6e22e">user</span>. <span style="color:#a6e22e">For</span> <span style="color:#a6e22e">multi</span><span style="color:#f92672">-</span><span style="color:#a6e22e">turn</span> <span style="color:#a6e22e">conversations</span>, <span style="color:#a6e22e">initialize</span> <span style="color:#a6e22e">memory</span> <span style="color:#66d9ef">with</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">storage</span> <span style="color:#a6e22e">backend</span> (<span style="color:#a6e22e">PostgreSQL</span>, <span style="color:#a6e22e">libSQL</span>, <span style="color:#a6e22e">or</span> <span style="color:#a6e22e">MongoDB</span>) <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">agent</span> <span style="color:#a6e22e">handles</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">rest</span>.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#a6e22e">Conclusion</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Mastra</span> <span style="color:#a6e22e">fills</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">clear</span> <span style="color:#a6e22e">gap</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">the</span> <span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">framework</span> <span style="color:#a6e22e">landscape</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">production</span><span style="color:#f92672">-</span><span style="color:#a6e22e">grade</span>, <span style="color:#a6e22e">TypeScript</span><span style="color:#f92672">-</span><span style="color:#a6e22e">native</span> <span style="color:#a6e22e">toolkit</span> <span style="color:#a6e22e">that</span> <span style="color:#a6e22e">lets</span> <span style="color:#a6e22e">JavaScript</span> <span style="color:#a6e22e">developers</span> <span style="color:#a6e22e">build</span> <span style="color:#a6e22e">agents</span> <span style="color:#a6e22e">without</span> <span style="color:#a6e22e">leaving</span> <span style="color:#a6e22e">their</span> <span style="color:#a6e22e">ecosystem</span>. <span style="color:#a6e22e">The</span> <span style="color:#ae81ff">4</span><span style="color:#f92672">-</span><span style="color:#ae81ff">10</span><span style="color:#a6e22e">x</span> <span style="color:#a6e22e">token</span> <span style="color:#a6e22e">cost</span> <span style="color:#a6e22e">reduction</span> <span style="color:#66d9ef">from</span> <span style="color:#a6e22e">Observational</span> <span style="color:#a6e22e">Memory</span> <span style="color:#66d9ef">is</span> <span style="color:#a6e22e">not</span> <span style="color:#a6e22e">marketing</span> <span style="color:#a6e22e">hype</span>; <span style="color:#a6e22e">it</span> <span style="color:#66d9ef">is</span> <span style="color:#a6e22e">a</span> <span style="color:#a6e22e">measurable</span> <span style="color:#a6e22e">production</span> <span style="color:#a6e22e">advantage</span> <span style="color:#a6e22e">backed</span> <span style="color:#a6e22e">by</span> <span style="color:#a6e22e">LongMemEval</span> <span style="color:#a6e22e">benchmarks</span>. <span style="color:#a6e22e">The</span> <span style="color:#a6e22e">framework</span><span style="color:#e6db74">&#39;s DX score of 9/10 and sub-5-minute setup time make it the fastest path from idea to deployed agent for TypeScript teams.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">If you are building AI features into a Next.js application, Node.js service, or any TypeScript project, Mastra deserves a serious evaluation. Start with ````npm create mastra@latest````, build a workflow, and measure the token cost difference for yourself.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">**Action items:**
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1. Clone the Mastra repo and run the quickstart: ````npm create mastra@latest```
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2. Join the [Mastra Discord community](https://discord.gg/mastra) (5,500+ members)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3. Explore the [official documentation](https://mastra.ai/docs)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4. Follow the [Mastra GitHub repository](https://github.com/mastra-ai/mastra) for updates
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">*Some links in this article are affiliate links. If you sign up for DigitalOcean through our referral link, we may earn a commission at no extra cost to you. This helps fund independent technical research.*
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">## Recommended Hosting &amp; Infrastructure
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Before you deploy any of the tools above into production, you&#39;</span><span style="color:#a6e22e">ll</span> <span style="color:#a6e22e">need</span> <span style="color:#a6e22e">solid</span> <span style="color:#a6e22e">infrastructure</span>. <span style="color:#a6e22e">Two</span> <span style="color:#a6e22e">options</span> <span style="color:#a6e22e">dibi8</span> <span style="color:#a6e22e">actually</span> <span style="color:#a6e22e">uses</span> <span style="color:#a6e22e">and</span> <span style="color:#a6e22e">recommends</span><span style="color:#f92672">:</span> <span style="color:#f92672">-</span> <span style="color:#f92672">**</span>[<span style="color:#a6e22e">DigitalOcean</span>](<span style="color:#a6e22e">https</span><span style="color:#f92672">:</span><span style="color:#75715e">//m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.
+</span></span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">**</span>[<span style="color:#a6e22e">HTStack</span>](<span style="color:#a6e22e">https</span><span style="color:#f92672">:</span><span style="color:#75715e">//my.htstack.com/aff.php?aff=27187)** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#a6e22e">Affiliate</span> <span style="color:#a6e22e">links</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#a6e22e">they</span> <span style="color:#a6e22e">don</span><span style="color:#e6db74">&#34;t cost you extra and they help keep dibi8.com running.*
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">## Sources and Further Reading
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [Mastra Official Website](https://mastra.ai)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [Mastra GitHub Repository](https://github.com/mastra-ai/mastra)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [Mastra Documentation](https://mastra.ai/docs)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [Mastra Course - Learn to Build AI Agents](https://mastra.ai/course)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [Mastra Tutorial: Changelog Tracker with Firecrawl](https://www.firecrawl.dev/blog/mastra-tutorial)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [Mastra Observational Memory Deep Dive](https://agentmarketcap.ai/blog/2026/04/13/mastra-observational-memory-observer-reflector-pattern-agent-costs-longmemeval-2026)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [ByteIota: Mastra TypeScript AI Framework Analysis](https://byteiota.com/mastra-typescript-ai-framework-cuts-token-costs-4-10x/)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [Mastra vs LangChain Comparison on xpay](https://www.xpay.sh/resources/agentic-frameworks/compare/langchain-vs-mastra/)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [CrewAI vs Mastra Comparison on respan.ai](https://respan.ai/market-map/compare/crewai-vs-mastra)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [Top JavaScript/TypeScript Gen AI Frameworks for 2026](https://xavidop.me/genkit/2026-04-16-top-jsts-genai-frameworks-2026/)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [Mastra Workshop: Build Your Own Coding Agent](https://github.com/mastra-ai/workshop-mastracode)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [Mastra Observational Memory Workshop](https://github.com/mastra-ai/mastra-observational-memory-workshop)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [LangChain GitHub Repository](https://github.com/langchain-ai/langchain)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [CrewAI GitHub Repository](https://github.com/crewAIInc/crewAI)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">- [Vercel AI SDK Documentation](https://sdk.vercel.ai/docs)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#34;</span><span style="color:#66d9ef">@context</span><span style="color:#e6db74">&#34;: &#34;</span><span style="color:#a6e22e">https</span><span style="color:#f92672">:</span><span style="color:#75715e">//schema.org&#34;,
+</span></span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Mastra: 24K+ Stars — TypeScript AI Framework That Cuts Token Costs 4-10x in 2026&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;2026-05-19&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;2026-05-19&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://dibi8.com/resources/mastra&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#a6e22e">Related</span> <span style="color:#a6e22e">Articles</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [<span style="color:#ae81ff">12</span><span style="color:#f92672">-</span><span style="color:#a6e22e">factor</span><span style="color:#f92672">-</span><span style="color:#a6e22e">agents</span><span style="color:#f92672">-</span><span style="color:#a6e22e">production</span><span style="color:#f92672">-</span><span style="color:#a6e22e">llm</span><span style="color:#f92672">-</span><span style="color:#a6e22e">software</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2026</span>](<span style="color:#a6e22e">mastra</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [<span style="color:#ae81ff">12</span><span style="color:#f92672">-</span><span style="color:#a6e22e">factor</span><span style="color:#f92672">-</span><span style="color:#a6e22e">agents</span>](<span style="color:#a6e22e">mastra</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [<span style="color:#ae81ff">1</span><span style="color:#a6e22e">m</span><span style="color:#f92672">-</span><span style="color:#a6e22e">context</span><span style="color:#f92672">-</span>window<span style="color:#f92672">-</span><span style="color:#a6e22e">llm</span><span style="color:#f92672">-</span><span style="color:#ae81ff">2026</span><span style="color:#f92672">-</span><span style="color:#a6e22e">real</span><span style="color:#f92672">-</span><span style="color:#a6e22e">test</span>](<span style="color:#a6e22e">mastra</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [<span style="color:#ae81ff">9</span><span style="color:#a6e22e">router</span><span style="color:#f92672">-</span><span style="color:#a6e22e">smart</span><span style="color:#f92672">-</span><span style="color:#a6e22e">llm</span><span style="color:#f92672">-</span><span style="color:#a6e22e">proxy</span><span style="color:#f92672">-</span><span style="color:#a6e22e">token</span><span style="color:#f92672">-</span><span style="color:#a6e22e">saver</span><span style="color:#f92672">-</span><span style="color:#a6e22e">free</span><span style="color:#f92672">-</span><span style="color:#a6e22e">coding</span>](<span style="color:#a6e22e">mastra</span>)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [<span style="color:#a6e22e">ai</span><span style="color:#f92672">-</span><span style="color:#a6e22e">engineering</span><span style="color:#f92672">-</span><span style="color:#66d9ef">from</span><span style="color:#f92672">-</span><span style="color:#a6e22e">scratch</span>](<span style="color:#a6e22e">mastra</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span><span style="color:#a6e22e">Found</span> <span style="color:#66d9ef">this</span> <span style="color:#a6e22e">helpful</span><span style="color:#f92672">?</span> [<span style="color:#a6e22e">Join</span> <span style="color:#a6e22e">our</span> <span style="color:#a6e22e">Telegram</span> <span style="color:#a6e22e">community</span>](<span style="color:#a6e22e">https</span><span style="color:#f92672">:</span><span style="color:#75715e">//t.me/DIBI8_Group) for daily AI tool updates!*
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">##</span> <span style="color:#a6e22e">Frequently</span> <span style="color:#a6e22e">Asked</span> <span style="color:#a6e22e">Questions</span> (<span style="color:#a6e22e">FAQ</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#960050;background-color:#1e0010">问：</span><span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">Agent和传统自动化有什么区别</span><span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">Agent具有自主决策能力</span><span style="color:#960050;background-color:#1e0010">，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#960050;background-color:#1e0010">问：如何选择合适的</span><span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">Agent框架</span><span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">考虑因素包括：部署难度、社区活跃度、扩展性、成本。</span><span style="color:#a6e22e">Claude</span> <span style="color:#a6e22e">Code适合开发者</span><span style="color:#960050;background-color:#1e0010">，</span><span style="color:#a6e22e">AutoGen适合复杂多智能体场景</span><span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#960050;background-color:#1e0010">问：</span><span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">Agent的安全性如何保证</span><span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">实施权限最小化、输入验证、审计日志、以及定期安全评估。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#960050;background-color:#1e0010">问：</span><span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">Agent的学习成本有多高</span><span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">入门级使用</span><span style="color:#ae81ff">3</span><span style="color:#f92672">-</span><span style="color:#ae81ff">5</span><span style="color:#960050;background-color:#1e0010">天，高级配置需要</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span><span style="color:#ae81ff">4</span><span style="color:#960050;background-color:#1e0010">周，取决于团队技术基础。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span><span style="color:#960050;background-color:#1e0010">问：能否自定义</span><span style="color:#a6e22e">AI</span> <span style="color:#a6e22e">Agent的行为</span><span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</span>
+</span></span></code></pre></div>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmastra%2f&text=Scaffold%20a%20new%20Mastra%20project%20with%20the%20interactive%20CLI" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fmastra%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

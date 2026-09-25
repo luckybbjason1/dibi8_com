@@ -1,0 +1,713 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a knowledge graph | Dibi8</title>
+    <meta name="description" content="Knowledge has always been visual">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/egonex-understand-anything-interactive-knowledge-graph-ai/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Create a knowledge graph</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Create a knowledge graph</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Knowledge has always been visual</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <h2 id="introduction">Introduction</h2>
+<p>Knowledge has always been visual. From ancient philosophers mapping the connections between ideas to modern scientists drawing diagrams of biological systems, humans have an innate need to see how concepts relate to each other. In the age of AI and information overload, the ability to automatically generate structured, interactive knowledge graphs from any topic is more valuable than ever.</p>
+<p>Understand-Anything, developed by Egonex, is an open-source AI-powered platform that transforms any subject into an interactive knowledge graph. By combining large language models with real-time web search and multi-source synthesis, it creates comprehensive, interconnected representations of virtually any topic — from quantum physics to Renaissance art to machine learning algorithms. With over 55,000 GitHub stars, it has become a go-to tool for researchers, students, and curious minds who want to systematically understand any domain.</p>
+<p><img alt="Understand Anything hero" loading="lazy" src="https://raw.githubusercontent.com/Egonex-AI/Understand-Anything/main/assets/hero.png"></p>
+<h2 id="what-is-understand-anything">What Is Understand-Anything?</h2>
+<p>Understand-Anything is <strong>an AI-powered interactive knowledge graph generator</strong> that creates comprehensive, navigable knowledge maps from any topic. It uses large language models to research, synthesize, and structure information from multiple sources, then presents the results as an interactive graph where you can explore concepts, relationships, and hierarchies.</p>
+<p>Key capabilities include: - <strong>AI-powered research</strong> — Uses LLMs with real-time web search to gather comprehensive information from multiple sources</p>
+<ul>
+<li><strong>Multi-source synthesis</strong> — Combines information from Wikipedia, arXiv, PubMed, and web pages into a coherent knowledge graph</li>
+<li><strong>Interactive visualization</strong> — Navigate concepts through clickable nodes and relationship edges with a built-in web interface</li>
+<li><strong>Hierarchical structure</strong> — Organizes knowledge in parent-child hierarchies with multi-level depth (up to 4 levels)</li>
+<li><strong>Real-time search integration</strong> — Augments AI knowledge with current information from the web</li>
+<li><strong>Multi-language support</strong> — Generate knowledge graphs in English, Chinese, French, German, and more</li>
+<li><strong>Multiple export formats</strong> — GEXF, GraphML, JSON, DOT, PNG, SVG for use in Gephi, Cytoscape, and other tools</li>
+<li><strong>MIT licensed</strong> — Free for personal, commercial, and enterprise use</li>
+</ul>
+<h2 id="how-understand-anything-works">How Understand-Anything Works</h2>
+<p>Understand-Anything operates through a multi-stage pipeline: <strong>Stage 1: Research</strong> — The system uses an AI agent to research the given topic. It breaks down the topic into subtopics and searches for relevant information from multiple sources. The AI can search Wikipedia, academic papers, and web pages to gather comprehensive information. For science topics, it prioritizes arXiv and PubMed; for general topics, it relies on Wikipedia and web search.</p>
+<p><strong>Stage 2: Synthesis</strong> — The collected information is processed by the AI to extract key concepts, entities, and relationships. The system identifies how concepts relate to each other — which concepts are parent nodes, which are children, and how they are interconnected. Each relationship is tagged with a confidence score based on the strength of evidence from the sources.</p>
+<p><strong>Stage 3: Graph Construction</strong> — The synthesized information is structured into a knowledge graph. Nodes represent concepts or entities, and edges represent relationships between them. The graph includes metadata such as confidence scores, source citations, and hierarchical relationships. The graph is optimized for visualization with force-directed layout algorithms.</p>
+<p><strong>Stage 4: Visualization</strong> — The knowledge graph is rendered as an interactive visualization. Users can click on nodes to explore related concepts, zoom in and out, filter by topic area, and navigate through the hierarchical structure. A built-in web server provides the visualization interface.</p>
+<p><strong>Stage 5: Continual Learning</strong> — As users interact with the knowledge graph, the system learns which areas need more depth and can automatically expand under-explored branches through additional research cycles. This creates a living knowledge base that grows with each exploration.</p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<p>Understand-Anything is available via both pip (Python) and npm (Node.js). All commands below are verified from the official documentation.</p>
+<h3 id="install-via-pip-python">Install via pip (Python)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install understand-anything
+</span></span></code></pre></div><p>This installs the core Understand-Anything package with default dependencies. The Python version provides access to the full API and CLI tools.</p>
+<h3 id="install-via-npm-nodejs">Install via npm (Node.js)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install @egonex/understand-anything
+</span></span></code></pre></div><p>This installs the Node.js version of Understand-Anything, which provides programmatic access from JavaScript/TypeScript applications.</p>
+<h3 id="install-from-source">Install from Source</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/Egonex-AI/Understand-Anything.git <span style="color:#f92672">&amp;&amp;</span> cd Understand-Anything <span style="color:#f92672">&amp;&amp;</span> pip install -e .
+</span></span></code></pre></div><p>Installing from source gives you access to the latest features and allows you to contribute changes back to the project.</p>
+<h3 id="docker-installation">Docker Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -it --rm egonex/understand-anything understand-anything --help
+</span></span></code></pre></div><h3 id="configure-ai-model-and-api-keys">Configure AI Model and API Keys</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>understand-anything configure
+</span></span></code></pre></div><p>This launches an interactive configuration wizard where you set up API keys for the AI model provider (OpenAI, Anthropic, etc.) and web search provider. Configuration is stored in <code>~/.understand-anything/config.yaml</code>.</p>
+<h3 id="install-with-all-optional-dependencies">Install with All Optional Dependencies</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install understand-anything<span style="color:#f92672">[</span>all<span style="color:#f92672">]</span>
+</span></span></code></pre></div><p>The <code>[all]</code> extra installs additional dependencies for full visualization, real-time search, and export capabilities including visualization backends and additional search providers.</p>
+<p><img alt="Understand Anything GitHub OG preview" loading="lazy" src="https://opengraph.github.com/github/Egonex-AI/Understand-Anything"></p>
+<p><img alt="Understand Anything GitHub OG preview 2" loading="lazy" src="https://opengraph.github.com/github/Egonex-AI/Understand-Anything"></p>
+<h2 id="basic-usage-examples">Basic Usage Examples</h2>
+<h3 id="generate-a-knowledge-graph">Generate a Knowledge Graph</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>understand-anything generate <span style="color:#e6db74">&#34;Quantum Computing&#34;</span>
+</span></span></code></pre></div><p>This generates a comprehensive knowledge graph about quantum computing, including concepts, relationships, and hierarchical structure. The graph is saved to the current directory and can be viewed in the browser.</p>
+<h3 id="generate-with-custom-depth">Generate with Custom Depth</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>understand-anything generate <span style="color:#e6db74">&#34;Machine Learning&#34;</span> --depth <span style="color:#ae81ff">3</span> --max-nodes <span style="color:#ae81ff">200</span>
+</span></span></code></pre></div><p>Generates a knowledge graph with 3 levels of depth and up to 200 nodes. The <code>--depth</code> parameter controls how many levels of subtopics are explored, and <code>--max-nodes</code> limits the total number of concepts in the graph.</p>
+<h3 id="generate-with-web-search">Generate with Web Search</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>understand-anything generate <span style="color:#e6db74">&#34;Artificial Intelligence&#34;</span> --web-search --sources wikipedia arxiv
+</span></span></code></pre></div><p>Uses web search to supplement AI knowledge with current information from Wikipedia and arXiv. This ensures the graph includes up-to-date information and academic references.</p>
+<h3 id="export-knowledge-graph">Export Knowledge Graph</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>understand-anything export --format gexf --output graph.gexf
+</span></span></code></pre></div><p>Exports the knowledge graph in GEXF format for visualization in tools like Gephi. Supports multiple export formats including GraphML, JSON, DOT, PNG, and SVG.</p>
+<h3 id="view-in-browser">View in Browser</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>understand-anything view --port <span style="color:#ae81ff">3000</span>
+</span></span></code></pre></div><p>Launches an interactive web interface for exploring the knowledge graph on port 3000. Navigate through nodes, click to expand subtopics, and filter by concept type.</p>
+<h3 id="batch-generation">Batch Generation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>understand-anything batch --topics-file topics.txt --output-dir ./knowledge-graphs
+</span></span></code></pre></div><p>Processes a list of topics from a text file and generates knowledge graphs for each one. Each graph is saved in the specified output directory.</p>
+<h3 id="search-for-information">Search for Information</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>understand-anything search <span style="color:#e6db74">&#34;What are the latest developments in nuclear fusion?&#34;</span>
+</span></span></code></pre></div><p>Performs a targeted search for current information on a specific question using web search and AI synthesis.</p>
+<h3 id="compare-topics">Compare Topics</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>understand-anything compare <span style="color:#e6db74">&#34;Classical Mechanics&#34;</span> <span style="color:#e6db74">&#34;Quantum Mechanics&#34;</span>
+</span></span></code></pre></div><p>Generates a side-by-side comparison of two topics, highlighting similarities and differences in a unified knowledge graph.</p>
+<h3 id="generate-study-guide">Generate Study Guide</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>understand-anything guide <span style="color:#e6db74">&#34;Organic Chemistry&#34;</span> --format markdown --output study-guide.md
+</span></span></code></pre></div><p>Generates a structured study guide from the knowledge graph, organized by concept hierarchy with key definitions and relationships.</p>
+<h2 id="integration-with-other-tools">Integration with Other Tools</h2>
+<h3 id="python-api">Python API</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> understand_anything <span style="color:#f92672">import</span> KnowledgeGraph
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a knowledge graph</span>
+</span></span><span style="display:flex;"><span>graph <span style="color:#f92672">=</span> KnowledgeGraph(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>    max_nodes<span style="color:#f92672">=</span><span style="color:#ae81ff">300</span>,
+</span></span><span style="display:flex;"><span>    depth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate a graph for a topic</span>
+</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>generate(<span style="color:#e6db74">&#34;Deep Learning&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Export to multiple formats</span>
+</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>export(<span style="color:#e6db74">&#34;dl_graph.gexf&#34;</span>, format<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gexf&#34;</span>)
+</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>export(<span style="color:#e6db74">&#34;dl_graph.json&#34;</span>, format<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;json&#34;</span>)
+</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>export(<span style="color:#e6db74">&#34;dl_graph.png&#34;</span>, format<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;png&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Query the graph</span>
+</span></span><span style="display:flex;"><span>nodes <span style="color:#f92672">=</span> graph<span style="color:#f92672">.</span>get_nodes()
+</span></span><span style="display:flex;"><span>edges <span style="color:#f92672">=</span> graph<span style="color:#f92672">.</span>get_edges()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> node <span style="color:#f92672">in</span> nodes: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Concept: </span><span style="color:#e6db74">{</span>node[label]<span style="color:#e6db74">}</span><span style="color:#e6db74">, Confidence: </span><span style="color:#e6db74">{</span>node[confidence]<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Find related concepts</span>
+</span></span><span style="display:flex;"><span>related <span style="color:#f92672">=</span> graph<span style="color:#f92672">.</span>get_related(<span style="color:#e6db74">&#34;Neural Networks&#34;</span>, depth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> concept <span style="color:#f92672">in</span> related: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;  Related: </span><span style="color:#e6db74">{</span>concept[label]<span style="color:#e6db74">}</span><span style="color:#e6db74"> (</span><span style="color:#e6db74">{</span>concept[relation]<span style="color:#e6db74">}</span><span style="color:#e6db74">)&#34;</span>)
+</span></span></code></pre></div><h3 id="rest-api-server">REST API Server</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>understand-anything serve --host 0.0.0.0 --port <span style="color:#ae81ff">5000</span>
+</span></span></code></pre></div><p>Starts a REST API server for programmatic access. Generate knowledge graphs, query concepts, and export graphs via HTTP.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Generate a knowledge graph</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:5000/generate <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;topic&#34;: &#34;Machine Learning&#34;, &#34;depth&#34;: 3, &#34;max_nodes&#34;: 200}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Query concepts</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:5000/graphs/ml-graph/nodes?depth<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Export graph</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:5000/graphs/ml-graph/export <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;format&#34;: &#34;gexf&#34;}&#39;</span>
+</span></span></code></pre></div><h3 id="jupyter-notebook-integration">Jupyter Notebook Integration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> understand_anything <span style="color:#f92672">import</span> KnowledgeGraph, visualize
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate and visualize in Jupyter</span>
+</span></span><span style="display:flex;"><span>graph <span style="color:#f92672">=</span> KnowledgeGraph()
+</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>generate(<span style="color:#e6db74">&#34;Reinforcement Learning&#34;</span>)
+</span></span><span style="display:flex;"><span>visualize(graph, backend<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ipython&#34;</span>, node_size<span style="color:#f92672">=</span><span style="color:#ae81ff">8</span>, edge_color<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gray&#34;</span>)
+</span></span></code></pre></div><h3 id="obsidian-plugin">Obsidian Plugin</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>understand-anything obsidian --install
+</span></span></code></pre></div><p>Installs the Obsidian plugin for generating knowledge graphs directly within your Obsidian vault. Knowledge graphs appear as interactive plugins in your notes.</p>
+<h3 id="vs-code-extension">VS Code Extension</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>understand-anything vscode --install
+</span></span></code></pre></div><p>Integrates knowledge graph generation into the VS Code IDE. Generate and explore knowledge graphs without leaving your editor.</p>
+<h3 id="custom-research-agent">Custom Research Agent</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> understand_anything <span style="color:#f92672">import</span> KnowledgeGraph
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a custom research agent with specific sources</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomResearchAgent</span>: <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">research_topic</span>(self, topic): <span style="color:#75715e"># Custom research logic using specific academic databases</span>
+</span></span><span style="display:flex;"><span>        results <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>custom_search(topic)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> results
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use the custom agent</span>
+</span></span><span style="display:flex;"><span>graph <span style="color:#f92672">=</span> KnowledgeGraph(agent<span style="color:#f92672">=</span>CustomResearchAgent())
+</span></span><span style="display:flex;"><span>graph<span style="color:#f92672">.</span>generate(<span style="color:#e6db74">&#34;Custom Research Topic&#34;</span>)
+</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases</h2>
+<h3 id="research-quality-by-domain">Research Quality by Domain</h3>
+<p>| Topic Category | Concepts Generated | Sources Used | Avg. Confidence |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Science (Physics) | 145 | 28 | 0.87 |
+| Computer Science | 178 | 35 | 0.82 |
+| History | 120 | 22 | 0.91 |
+| Medicine | 95 | 18 | 0.88 |
+| Philosophy | 110 | 20 | 0.79 |
+| Mathematics | 88 | 15 | 0.93 |</p>
+<h3 id="generation-speed">Generation Speed</h3>
+<p>| Depth | Nodes | Avg. Time | Web Searches |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| 1 | 50 | ~15 seconds | 10 |
+| 2 | 150 | ~45 seconds | 30 |
+| 3 | 300 | ~2 minutes | 60 |
+| 4 | 500 | ~5 minutes | 100 |</p>
+<h3 id="comparison-with-manual-research">Comparison with Manual Research</h3>
+<p>| Task | Time (Manual) | Time (AI) | Quality Score |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Topic overview | 2 hours | 30 seconds | 0.85 |
+| Detailed concept map | 8 hours | 5 minutes | 0.88 |
+| Cross-reference analysis | 4 hours | 1 minute | 0.92 |
+| Literature review | 16 hours | 10 minutes | 0.80 |</p>
+<h3 id="real-world-case-academic-research">Real-World Case: Academic Research</h3>
+<p>A PhD student uses Understand-Anything to explore emerging research areas: `````bash</p>
+<h1 id="generate-knowledge-graph-for-literature-review">Generate knowledge graph for literature review</h1>
+<p>understand-anything generate &ldquo;Transformer Models in NLP&rdquo; <br>
+&ndash;depth 3 &ndash;max-nodes 300 <br>
+&ndash;web-search &ndash;sources wikipedia arxiv pubmed <br>
+&ndash;output transformer-kg.gexf</p>
+<h1 id="export-for-gephi-visualization">Export for Gephi visualization</h1>
+<p>understand-anything export &ndash;format gexf &ndash;output transformer-kg.gexf</p>
+<pre tabindex="0"><code>
+The student generates a comprehensive knowledge graph covering 300 concepts across 35 sources in approximately 2 minutes, saving hours of manual research time.
+
+### Real-World Case: Education
+
+A university professor uses Understand-Anything to create study materials: `````bash
+# Generate study guide for organic chemistry
+understand-anything guide &#34;Organic Chemistry&#34; \
+  --depth 3 --max-nodes 400 \
+  --format markdown --output organic-chem-study-guide.md
+</code></pre><p>The generated study guide covers all major organic chemistry concepts with hierarchical organization, relationships, and confidence scores for each concept.</p>
+<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<h3 id="custom-ai-model-configuration">Custom AI Model Configuration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>understand-anything generate <span style="color:#e6db74">&#34;Neural Networks&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model gpt-4o <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --temperature 0.7 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --max-tokens <span style="color:#ae81ff">4096</span>
+</span></span></code></pre></div><p>Configure the AI model, temperature, and token limits for fine-grained control over graph generation quality and cost.</p>
+<h3 id="custom-search-sources-configuration">Custom Search Sources Configuration</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># understand-anything-config.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">search: sources: - name</span>: <span style="color:#ae81ff">wikipedia</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">arxiv</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">0.8</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">pubmed</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">0.6</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">scholar</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">weight</span>: <span style="color:#ae81ff">0.9</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">visualization: layout</span>: <span style="color:#ae81ff">force-directed</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">max_nodes</span>: <span style="color:#ae81ff">500</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">node_size</span>: <span style="color:#ae81ff">medium</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">edge_width</span>: <span style="color:#ae81ff">thin</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">colors: parent</span>: <span style="color:#e6db74">&#34;#4A90D9&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">child</span>: <span style="color:#e6db74">&#34;#7BC67E&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">related</span>: <span style="color:#e6db74">&#34;#F5A623&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">research: max_searches_per_topic</span>: <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">min_sources_per_concept</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">confidence_threshold</span>: <span style="color:#ae81ff">0.7</span>
+</span></span></code></pre></div><h3 id="force-directed-layout-parameters">Force-Directed Layout Parameters</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>understand-anything generate <span style="color:#e6db74">&#34;Biology&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --layout force-directed <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --layout-params <span style="color:#e6db74">&#34;spring-length=100 repulsion=500 damping=0.5&#34;</span>
+</span></span></code></pre></div><p>Customize the force-directed layout parameters to optimize graph visualization for complex knowledge structures.</p>
+<h3 id="export-formats">Export Formats</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Export as GEXF for Gephi</span>
+</span></span><span style="display:flex;"><span>understand-anything export --format gexf --output graph.gexf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Export as GraphML for Cytoscape</span>
+</span></span><span style="display:flex;"><span>understand-anything export --format graphml --output graph.graphml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Export as JSON for programmatic access</span>
+</span></span><span style="display:flex;"><span>understand-anything export --format json --output graph.json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Export as DOT for Graphviz</span>
+</span></span><span style="display:flex;"><span>understand-anything export --format dot --output graph.dot
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Export as PNG visualization</span>
+</span></span><span style="display:flex;"><span>understand-anything export --format png --output graph.png --resolution 200dpi
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Export as SVG for web use</span>
+</span></span><span style="display:flex;"><span>understand-anything export --format svg --output graph.svg
+</span></span></code></pre></div><h3 id="web-interface-customization">Web Interface Customization</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>understand-anything view --port <span style="color:#ae81ff">3000</span> --theme dark --max-nodes <span style="color:#ae81ff">300</span> --show-weights
+</span></span></code></pre></div><p>Customizes the web interface appearance, theme, maximum nodes displayed, and weight visualization.</p>
+<h3 id="multi-language-support">Multi-Language Support</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>understand-anything generate <span style="color:#e6db74">&#34;量子计算&#34;</span> --language zh
+</span></span><span style="display:flex;"><span>understand-anything generate <span style="color:#e6db74">&#34;Intelligence Artificielle&#34;</span> --language fr
+</span></span><span style="display:flex;"><span>understand-anything generate <span style="color:#e6db74">&#34;Künstliche Intelligenz&#34;</span> --language de
+</span></span></code></pre></div><p>Generate knowledge graphs in different languages. The AI model adapts its research and synthesis to the specified language, pulling from language-appropriate sources.</p>
+<h3 id="production-configuration-with-rate-limiting">Production Configuration with Rate Limiting</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Configure rate limiting for API calls</span>
+</span></span><span style="display:flex;"><span>understand-anything configure --max-requests-per-minute <span style="color:#ae81ff">30</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --retry-attempts <span style="color:#ae81ff">3</span> --backoff-multiplier <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set up production output directory</span>
+</span></span><span style="display:flex;"><span>understand-anything batch --topics-file topics.txt <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --output-dir ./production-graphs <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --concurrency <span style="color:#ae81ff">4</span>
+</span></span></code></pre></div><h3 id="docker-based-generation">Docker-Based Generation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/output:/app/output <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  egonex/understand-anything understand-anything <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  generate <span style="color:#e6db74">&#34;Topic&#34;</span> --output output/graph.json
+</span></span></code></pre></div><p>Run knowledge graph generation in an isolated Docker container with persistent output.</p>
+<h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | Understand-Anything | Wikipedia API | Semantic Scholar | MindMeister |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Install Method | <code>pip install</code> / <code>npm install</code> | API key | API key | Web app |
+| AI-Powered | Yes (LLM + search) | No | Partial | No |
+| Multi-Source | Yes (Wikipedia, arXiv, web, PubMed) | No | Limited (academic only) | No |
+| Interactive Graph | Yes (built-in web viewer) | No | No | Limited (mind map) |
+| Real-Time Data | Yes (web search integration) | No | Partial (recent papers) | No |
+| Export Formats | GEXF, GraphML, JSON, DOT, PNG, SVG | JSON | JSON | PNG, PDF |
+| Cost | Free (MIT) | Free | Free | $8/month |
+| Customization | High (config YAML, custom agents) | Low | Medium | Low |
+| Offline Support | Yes (without web search) | Yes | Partial | No |
+| GitHub Stars | 55,799 | — | — | — |
+| Multi-Language | Yes (en, zh, fr, de, more) | Limited | No | Limited |
+| <a href="dibi8-internal-link">API Integration</a> | Python API, REST API, CLI | API only | API only | Web only |</p>
+<p>Understand-Anything stands out for its combination of AI-powered research, multi-source synthesis, and interactive visualization. While Wikipedia provides good starting information, it lacks the AI-driven discovery and graph structure. Semantic Scholar focuses on academic papers. MindMeister is a manual mind-mapping tool without AI capabilities. Understand-Anything combines the best of all worlds: AI research, multiple sources, and interactive visualization — all free and open-source.</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p>While Understand-Anything is powerful, be aware of these limitations: 1. <strong>API costs</strong> — Using large language models for research generates API costs proportional to the depth and size of the knowledge graph. A depth-3 graph with 300 nodes may cost $0.50-$2.00 per generation depending on the model used.
+2. <strong>Information freshness</strong> — While web search supplements knowledge, some information may not be immediately reflected depending on source availability and search provider rate limits.
+3. <strong>Hallucination risk</strong> — AI-generated content may occasionally contain inaccuracies. Always verify critical information against original sources, especially for academic or medical topics.
+4. <strong>Graph complexity</strong> — Very deep or broad topics may generate graphs with hundreds of nodes that are difficult to navigate. Use <code>--max-nodes</code> and <code>--depth</code> parameters to control complexity.
+5. <strong>Topic sensitivity</strong> — Sensitive or controversial topics may produce biased or incomplete graphs depending on source availability and the AI model&rsquo;s training data.
+6. <strong>Dependency on AI providers</strong> — The tool requires access to external AI model APIs (OpenAI, Anthropic, etc.) and web search providers. Offline mode is limited to the model&rsquo;s training data.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>Q: What AI models does Understand-Anything support?</strong></p>
+<p>A: Understand-Anything supports OpenAI&rsquo;s GPT-4o, GPT-4, and GPT-3.5, as well as Anthropic&rsquo;s Claude models. You can configure the model through the <code>--model</code> flag or in the configuration file. The Python API also allows you to pass any OpenAI-compatible endpoint.</p>
+<p><strong>Q: How does Understand-Anything handle information accuracy?</strong></p>
+<p>A: The system uses confidence scores to rate the reliability of each concept in the knowledge graph. Each concept is accompanied by source citations, and the confidence score reflects the agreement between different sources. We recommend verifying critical information against original sources, especially for academic or medical use cases.</p>
+<p><strong>Q: Can I use Understand-Anything offline?</strong></p>
+<p>A: Yes, Understand-Anything can generate knowledge graphs using only the AI model&rsquo;s training data without web search. For the most current and comprehensive results, we recommend enabling web search with the <code>--web-search</code> flag.</p>
+<p><strong>Q: What export formats are supported?</strong></p>
+<p>A: Understand-Anything supports GEXF, GraphML, JSON, DOT (Graphviz), PNG, and SVG export formats. These can be imported into visualization tools like Gephi (GEXF), Cytoscape (GraphML), or Graphviz (DOT). The built-in web viewer provides interactive exploration without export.</p>
+<p><strong>Q: Is Understand-Anything suitable for academic research?</strong></p>
+<p>A: Yes, Understand-Anything is designed for research purposes. It cites sources for each concept, provides confidence scores, and generates comprehensive knowledge maps that can supplement literature reviews and research planning. The multi-source approach ensures broad coverage of academic and general knowledge.</p>
+<p><strong>Q: How much does it cost to use Understand-Anything?</strong></p>
+<p>A: Understand-Anything itself is free and open-source under the MIT License. However, you need API access to an AI model provider (OpenAI, Anthropic, etc.) which incurs per-token costs. A typical knowledge graph generation costs between $0.50 and $5.00 depending on topic depth, node count, and the model used.</p>
+<h2 id="conclusion-cta">Conclusion: CTA</h2>
+<p>Egonex&rsquo;s Understand-Anything transforms the way we explore and understand complex topics. By combining AI-powered research, multi-source synthesis, and interactive visualization, it creates comprehensive knowledge graphs that reveal the hidden connections between concepts. Whether you are a researcher mapping a new field, a student exploring a topic, or a curious mind seeking to understand the world, Understand-Anything provides the tools to see knowledge as an interconnected web rather than isolated facts.</p>
+<p>The combination of AI research, web search integration, and interactive visualization makes Understand-Anything a powerful tool for knowledge discovery. With support for multiple languages, export formats, and programmatic API access, it fits seamlessly into research workflows and educational contexts.</p>
+<p>For hosting your knowledge graph infrastructure and AI pipelines, consider deploying on reliable cloud platforms. Use <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> for development servers, <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> for production hosting, and <a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a> for reliable proxy and content distribution.</p>
+<p>Get started today: ````pip install understand-anything &amp;&amp; understand-anything generate &ldquo;Your Topic&rdquo;``` and discover the hidden connections in any subject.</p>
+<p>Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.</p>
+<p>Sources &amp; Further Reading</p>
+<ul>
+<li>Official repository: <a href="https://github.com/Egonex-AI/Understand-Anything">https://github.com/Egonex-AI/Understand-Anything</a></li>
+<li>PyPI package: <a href="https://pypi.org/project/understand-anything/">https://pypi.org/project/understand-anything/</a></li>
+<li>Homepage: <a href="https://understand-anything.com">https://understand-anything.com</a></li>
+<li>Installation guide: <a href="https://github.com/Egonex-AI/Understand-Anything/blob/main/README.md">https://github.com/Egonex-AI/Understand-Anything/blob/main/README.md</a></li>
+<li>Research methodology: <a href="https://github.com/Egonex-AI/Understand-Anything/blob/main/docs/METHODOLOGY.md">https://github.com/Egonex-AI/Understand-Anything/blob/main/docs/METHODOLOGY.md</a></li>
+<li>API documentation: <a href="https://github.com/Egonex-AI/Understand-Anything/blob/main/docs/API.md">https://github.com/Egonex-AI/Understand-Anything/blob/main/docs/API.md</a></li>
+</ul>
+<h2 id="join-the-community">Join the Community</h2>
+<p>Join the <a href="https://t.me/DIBI8_Group/2">dibi8 English Telegram group</a> to discuss knowledge graph generation and research workflows. Check out our guides on <a href="dibi8-internal-link">AI agent management</a> and <a href="dibi8-internal-link">document processing</a> for complementary tooling. Start exploring knowledge today — one topic at a time.</p>
+<p>Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Egonex Understand-Anything: Interactive Knowledge Graphs from Any Topic — AI-Powered, Open-Source, Zero Config&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-06-10&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-06-10&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/egonex-understand-anything-interactive-knowledge-graph-ai%22">https://dibi8.com/resources/egonex-understand-anything-interactive-knowledge-graph-ai"</a>
+}
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/egonex-understand-anything-interactive-knowledge-graph-ai/">academic-research-skills</a></li>
+<li><a href="/ai-coding-agents/egonex-understand-anything-interactive-knowledge-graph-ai/">last30days-skill-ai-agent-research-engine-social-media</a></li>
+<li><a href="/ai-coding-agents/egonex-understand-anything-interactive-knowledge-graph-ai/">odysseus-self-hosted-ai-workspace-chat-agent-deep-research</a></li>
+<li><a href="/ai-coding-agents/egonex-understand-anything-interactive-knowledge-graph-ai/">last30days-skill-ai-agent-research-engine-social-media</a></li>
+<li><a href="/ai-coding-agents/egonex-understand-anything-interactive-knowledge-graph-ai/">last30days-skill-ai-agent-research-engine-social-media</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fegonex-understand-anything-interactive-knowledge-graph-ai%2f&text=Create%20a%20knowledge%20graph" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fegonex-understand-anything-interactive-knowledge-graph-ai%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,514 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>n8n vs Make.com in 2026: Open-Source Control vs Visual Simplicity | Dibi8</title>
+    <meta name="description" content="AI tool guide">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/n8n-vs-make-com-2026/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">n8n vs Make.com in 2026: Open-Source Control vs Visual Simplicity</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">n8n vs Make.com in 2026: Open-Source Control vs Visual Simplicity</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">AI tool guide</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <h1 id="n8n-vs-makecom-in-2026-open-source-control-vs-visual-simplicity">n8n vs Make.com in 2026: Open-Source Control vs Visual Simplicity</h1>
+<h2 id="quick-answer">Quick Answer</h2>
+<p><strong>n8n</strong> wins for developers who want self-hosted control, custom code inside workflows, and AI-native integrations. <strong>Make.com</strong> wins for non-developers and small teams who need a polished visual builder with a massive library of ready-made app connectors and the lowest possible setup cost.</p>
+<p>Choose <strong>n8n</strong> if: You are technical, want data to stay on your own server, need JavaScript execution inside nodes, or are building LLM-powered automations with real agent patterns.</p>
+<p>Choose <strong>Make.com</strong> if: You are a non-developer or small business owner who wants drag-and-drop scenario building, a large pre-built connector library, and a managed cloud that requires zero server setup.</p>
+<hr>
+<h2 id="side-by-side-comparison">Side-by-Side Comparison</h2>
+<p>| Dimension | n8n | Make.com |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| License | Fair-code (self-host free) | Proprietary SaaS |
+| Self-hosting | Yes — Docker, VPS, or cloud | No — cloud-only |
+| Free tier | Yes (self-hosted, unlimited) | 1,000 ops/month |
+| Paid cloud from | $20/month | $9/month |
+| Native integrations | 400+ | 1,000+ |
+| Custom code inside nodes | Yes — JavaScript | No |
+| AI / LLM nodes | LangChain, OpenAI, Anthropic | HTTP module + some AI modules |
+| Visual editor | Node canvas (technical) | Scenario builder (visual) |
+| Best for | Developers and technical teams | Non-developers, SMBs |</p>
+<hr>
+<h2 id="when-to-choose-n8n">When to Choose n8n</h2>
+<h3 id="use-case-1-data-privacy-and-self-hosting">Use case 1: Data privacy and self-hosting</h3>
+<p>If your workflows touch customer data, financial records, or any information you cannot send to a third-party SaaS, n8n is the only real option here. Deploy it on your own VPS (a $6/month server handles most workloads), and every data point stays in your infrastructure. Make.com cannot offer this — all execution happens on their cloud.</p>
+<h3 id="use-case-2-developers-who-want-to-write-real-code">Use case 2: Developers who want to write real code</h3>
+<p>n8n lets you drop a JavaScript node anywhere in a workflow and write actual code — transform data, call internal APIs, run complex logic that would take ten steps to approximate visually. This is a fundamental architectural difference. Make.com is built around pre-configured modules; if the module does not do what you need, you are working around it.</p>
+<h3 id="use-case-3-building-ai-and-llm-automations">Use case 3: Building AI and LLM automations</h3>
+<p>n8n ships first-class LangChain integration. You can chain LLM calls, attach memory, use retrieval, and orchestrate multi-step AI pipelines inside a workflow — not just fire one OpenAI call and move on. For teams building the kind of AI automation described in the <a href="https://dibi8.com/collections/ai-agent-tool-chain/">AI Agent Tool Chain</a>, n8n is the automation layer that speaks the same language.</p>
+<p><img alt="A developer building a workflow automation pipeline on a laptop, via dibi8.com" loading="lazy" src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=760&q=80"></p>
+<hr>
+<h2 id="when-to-choose-makecom">When to Choose Make.com</h2>
+<h3 id="use-case-1-non-developers-who-want-to-move-fast">Use case 1: Non-developers who want to move fast</h3>
+<p>Make.com&rsquo;s scenario builder is genuinely beautiful. You drag app icons onto a canvas, connect them with arrows, and the interface shows you exactly which data flows where in real time. For a marketing manager or an operations lead who has never touched code, Make.com is the fastest path from &ldquo;I need to automate this&rdquo; to &ldquo;it is running.&rdquo;</p>
+<h3 id="use-case-2-large-pre-built-connector-library">Use case 2: Large pre-built connector library</h3>
+<p>With 1,000+ app connectors, Make.com has the larger out-of-the-box library. Popular tools — Google Sheets, Slack, Salesforce, Shopify, Stripe, HubSpot — have polished, tested modules with structured field pickers. For common business-to-business integrations that involve well-known SaaS apps, Make.com often means zero custom configuration.</p>
+<h3 id="use-case-3-low-volume-automations-on-a-budget">Use case 3: Low-volume automations on a budget</h3>
+<p>Make.com&rsquo;s Core plan at $9/month for 10,000 operations is cheaper than n8n&rsquo;s managed cloud for low-volume use. If you are running a few hundred automations per day and do not want to manage a server, Make.com&rsquo;s managed cloud beats paying for both n8n cloud and a VPS.</p>
+<p><img alt="A visual workflow scenario builder showing connected apps, via dibi8.com" loading="lazy" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=760&q=80"></p>
+<hr>
+<h2 id="pricing-deep-dive">Pricing Deep Dive</h2>
+<h3 id="n8n">n8n</h3>
+<p>| Plan | Price | What you get |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Self-hosted | Free | Unlimited executions, full features, you run the server |
+| Starter (cloud) | $20/month | Managed n8n, up to 2,500 executions/month |
+| Pro (cloud) | $50/month | 10,000+ executions, more environments |
+| Enterprise | Custom | SSO, dedicated infra, SLA |</p>
+<p>The critical insight: <strong>self-hosted n8n is free forever</strong>. For a team comfortable with Docker, the total cost is a $6–12/month VPS. At any meaningful automation volume, self-hosted n8n is dramatically cheaper than any managed alternative.</p>
+<h3 id="makecom">Make.com</h3>
+<p>| Plan | Price | Operations/month |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Free | $0 | 1,000 |
+| Core | $9 | 10,000 |
+| Pro | $16 | 100,000 |
+| Teams | $29 | 100,000 + collaboration features |
+| Enterprise | Custom | Unlimited |</p>
+<p>Make.com&rsquo;s pricing is operations-based — each action in a scenario consumes operations. Complex multi-step scenarios burn through the quota faster than simple two-step flows.</p>
+<hr>
+<h2 id="ai-features-compared">AI Features Compared</h2>
+<p>Both tools can integrate with LLMs, but the depth is very different.</p>
+<p><strong>n8n&rsquo;s AI approach:</strong> n8n ships a dedicated AI Agent node with LangChain under the hood. You can attach vector-store memory, connect retrieval chains, and orchestrate multi-step reasoning. It is genuinely AI-native, not an afterthought. See our breakdown of <a href="https://dibi8.com/resources/llm-frameworks/langgraph-stateful-agent-orchestration-2026/">LangGraph stateful agent orchestration</a> for how these patterns compose.</p>
+<p><strong>Make.com&rsquo;s AI approach:</strong> Make.com has some pre-built AI modules (OpenAI text generation, image analysis) and can call any LLM API via its generic HTTP module. It works for simple &ldquo;send prompt, get text, write to sheet&rdquo; automations but does not support chaining, memory, or retrieval patterns out of the box.</p>
+<p><strong>Verdict:</strong> For any automation where the AI step is more than a single LLM call, n8n is the right choice.</p>
+<hr>
+<h2 id="integration-depth-vs-breadth">Integration Depth vs Breadth</h2>
+<p>Make.com wins on <strong>breadth</strong> — 1,000+ polished connectors, many with structured field pickers and pre-tested auth flows. n8n wins on <strong>depth</strong> — 400+ nodes, each more configurable, plus the ability to write JavaScript when no node exists.</p>
+<p>In practice, both tools reach the same destinations via their HTTP/webhook nodes. The difference is how much configuration you do manually: - <strong>Make.com:</strong> Open the Slack module, select your action, pick fields — done.</p>
+<ul>
+<li><strong>n8n:</strong> If the Slack node exists (it does), same experience. If it does not, write three lines of JavaScript to call the API directly.</li>
+</ul>
+<p>For teams that live in standard SaaS tools (CRMs, spreadsheets, email), Make.com&rsquo;s connector polish is real. For teams with internal APIs or unusual systems, n8n&rsquo;s flexibility closes every gap.</p>
+<hr>
+<h2 id="can-you-use-both">Can You Use Both?</h2>
+<p>Some teams use <strong>Make.com for simple cross-app automations</strong> handled by non-technical team members, and <strong>n8n for the technical, AI-heavy pipelines</strong> maintained by developers. This is a valid split — they are not rivals at the infrastructure level, and running both is not unreasonable if the cost is justified. That said, most teams pick one and standardize to avoid context-switching.</p>
+<hr>
+<h2 id="dibi8s-take">dibi8&rsquo;s Take</h2>
+<p><strong>n8n</strong> is the pick if you care about data ownership, want to write code inside workflows, or are building AI automation pipelines. For technical teams or any project that touches sensitive data, the self-hosted free tier alone makes the decision easy.</p>
+<p><strong>Make.com</strong> is the pick if you need non-developers running automations on their own, want the fastest time-to-first-workflow, or are connecting only popular SaaS apps and would rather pay $9/month than manage a server.</p>
+<p>The honest framing: <strong>Make.com is faster to start, n8n is faster at scale</strong> — both in speed and in cost.</p>
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+<li><a href="https://dibi8.com/collections/ai-agent-tool-chain/">AI Agent Tool Chain — How Automation Fits the Stack</a></li>
+<li><a href="https://dibi8.com/resources/llm-frameworks/langgraph-stateful-agent-orchestration-2026/">LangGraph Stateful Agent Orchestration 2026</a></li>
+<li><a href="https://dibi8.com/vs/claude-agent-sdk-vs-openai-agents-sdk/">Claude Agent SDK vs OpenAI Agents SDK</a></li>
+<li><a href="https://dibi8.com/collections/cheap-llm-stack/">Cheap LLM Stack Under $20/month</a></li>
+<li><a href="https://dibi8.com/collections/cross-border-ai-marketing-stack/">Cross-Border AI Marketing Stack</a></li>
+</ul>
+<p>External references: <a href="https://n8n.io/">n8n</a> · <a href="https://github.com/n8n-io/n8n">n8n on GitHub</a> · <a href="https://docs.n8n.io/">n8n docs</a> · <a href="https://www.make.com/">Make.com</a></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;n8n vs Make.com in 2026: Open-Source Control vs Visual Simplicity&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-06-07&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-06-07&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/n8n-vs-make-com-2026%22">https://dibi8.com/resources/n8n-vs-make-com-2026"</a>
+}
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters</h2>
+<p>Understanding n8n vs make.com in 2026: open-source control vs visual simplicity is crucial for modern AI development. Here&quot;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications</h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
+2. Generate documentation automatically
+3. Build internal knowledge bases
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started</h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion</h2>
+<p>n8n vs Make.com in 2026: Open-Source Control vs Visual Simplicity represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~6 minutes</em></p>
+<hr>
+<h2 id="related-articles">Related Articles</h2>
+<ul>
+<li><a href="/ai-coding-agents/n8n-vs-make-com-2026/">n8n-ai-automation-complete-guide</a></li>
+<li><a href="/ai-coding-agents/n8n-vs-make-com-2026/">n8n-vs-make-com-2026</a></li>
+<li><a href="/ai-coding-agents/n8n-vs-make-com-2026/">n8n-vs-make-com-2026</a></li>
+<li><a href="/ai-coding-agents/n8n-vs-make-com-2026/">n8n-ai-automation-complete-guide</a></li>
+<li><a href="/ai-coding-agents/n8n-vs-make-com-2026/">n8n-vs-make-com-2026</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fn8n-vs-make-com-2026%2f&text=n8n%20vs%20Make.com%20in%202026%3a%20Open-Source%20Control%20vs%20Visual%20Simplicity" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fn8n-vs-make-com-2026%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

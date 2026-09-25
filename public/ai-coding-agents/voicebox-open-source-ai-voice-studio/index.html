@@ -1,0 +1,700 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoiceBox: The Open-Source AI Voice Studio | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/voicebox-open-source-ai-voice-studio/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">VoiceBox: The Open-Source AI Voice Studio</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">VoiceBox: The Open-Source AI Voice Studio</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;VoiceBox: The Open-Source AI Voice Studio for Cloning, D&hellip;
+description: &ldquo;Technical guide and comparison&rdquo;
+date: 2026-06-25
+lastmod: 2026-06-25
+draft: false
+lang: en
+category: ai-tools
+tags: [&ldquo;ai&rdquo;, &ldquo;voice-ai&rdquo;, &ldquo;voice-clone&rdquo;, &ldquo;speech-to-text&rdquo;, &ldquo;text-to-speech&rdquo;, &ldquo;whisper&rdquo;, &ldquo;qwen3-tts&rdquo;, &ldquo;cuda&rdquo;, &ldquo;mlx&rdquo;]
+slug: voicebox-open-source-ai-voice-studio</p>
+<h1 id="voicebox-the-open-source-ai-voice-studio">VoiceBox: The Open-Source AI Voice Studio</h1>
+<p><strong>VoiceBox</strong> is a comprehensive, open-source AI voice studio that enables voice cloning, speech generation, and dictation — all running locally on your machine. With <strong>33,745 GitHub stars</strong> and an active development community, it has become the go-to solution for developers, content creators, and privacy-conscious users who need powerful voice AI without relying on cloud APIs.</p>
+<p>This article covers installation, voice cloning, dictation mode, API usage, hardware requirements, and practical applications.</p>
+<h2 id="tldr">TL;DR</h2>
+<p>VoiceBox provides a complete voice AI stack running entirely on your hardware. It supports voice cloning from as little as 3 seconds of audio, real-time dictation into any application, and high-quality text-to-speech generation. With support for both NVIDIA CUDA and Apple Silicon (MLX), it adapts to your hardware while maintaining privacy — your voice data never leaves your machine.</p>
+<h2 id="what-is-voicebox">What Is VoiceBox?</h2>
+<p>VoiceBox is a self-hosted voice AI platform that combines several cutting-edge technologies into a single, unified interface. Unlike commercial voice services that require uploading your audio to the cloud, VoiceBox processes everything locally, giving you complete control over your voice data.</p>
+<p>The platform supports three primary modes of operation: - <strong>Voice Cloning</strong>: Record or upload a short audio sample and create a digital voice model that can generate speech in that voice</p>
+<ul>
+<li><strong>Dictation</strong>: Use your microphone to dictate text into any application on your system, with real-time transcription</li>
+<li><strong>Text-to-Speech</strong>: Generate natural-sounding speech from text using cloned voices or built-in voice models</li>
+</ul>
+<p>Built on top of modern open-source models including Qwen3-TTS, Whisper, and various voice cloning architectures, VoiceBox provides enterprise-grade voice AI capabilities at zero cost.</p>
+<h2 id="installation-guide">Installation Guide</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>VoiceBox supports multiple hardware configurations: <strong>GPU Accelerated (Recommended):</strong></p>
+<ul>
+<li>NVIDIA GPU with 8GB+ VRAM (RTX 3060 or better)</li>
+<li>CUDA 12.x toolkit installed</li>
+<li>16GB system RAM</li>
+<li>Linux (Ubuntu 22.04+) or Windows 11</li>
+</ul>
+<p><strong>Apple Silicon:</strong></p>
+<ul>
+<li>M1/M2/M3 chip with 16GB+ unified memory</li>
+<li>macOS 14+ (Sonoma or newer)</li>
+<li>MLX framework installed</li>
+</ul>
+<p><strong>CPU-Only (Slower but functional):</strong></p>
+<ul>
+<li>16GB+ system RAM</li>
+<li>8+ CPU cores</li>
+<li>Any modern operating system</li>
+</ul>
+<h3 id="option-1-quick-install-with-pip">Option 1: Quick Install with Pip</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install VoiceBox from PyPI</span>
+</span></span><span style="display:flex;"><span>pip install voicebox-ai
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify installation</span>
+</span></span><span style="display:flex;"><span>voicebox --version
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize the application</span>
+</span></span><span style="display:flex;"><span>voicebox init --model qwen3-tts
+</span></span></code></pre></div><h3 id="option-2-from-source-latest-features">Option 2: From Source (Latest Features)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone the repository</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/jamiepine/voicebox.git
+</span></span><span style="display:flex;"><span>cd voicebox
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create a virtual environment</span>
+</span></span><span style="display:flex;"><span>python -m venv .venv
+</span></span><span style="display:flex;"><span>source .venv/bin/activate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install dependencies</span>
+</span></span><span style="display:flex;"><span>pip install -r requirements.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install the package in development mode</span>
+</span></span><span style="display:flex;"><span>pip install -e .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Download the default voice models</span>
+</span></span><span style="display:flex;"><span>voicebox download-models --all
+</span></span></code></pre></div><h3 id="option-3-docker-deployment">Option 3: Docker Deployment</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Pull the official image</span>
+</span></span><span style="display:flex;"><span>docker pull jamiepine/voicebox:latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run with GPU support (NVIDIA)</span>
+</span></span><span style="display:flex;"><span>docker run -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --name voicebox <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --gpus all <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -p 8000:8000 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -v <span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span>/voicebox-data:/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -e VOICEBOX_MODEL<span style="color:#f92672">=</span>qwen3-tts <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  jamiepine/voicebox:latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run on Apple Silicon (no GPU flag needed)</span>
+</span></span><span style="display:flex;"><span>docker run -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --name voicebox <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -p 8000:8000 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -v <span style="color:#e6db74">${</span>HOME<span style="color:#e6db74">}</span>/voicebox-data:/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -e VOICEBOX_MODEL<span style="color:#f92672">=</span>qwen3-tts <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  jamiepine/voicebox:latest
+</span></span></code></pre></div><h3 id="option-4-windows-installation">Option 4: Windows Installation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># Install Python 3.11+ from microsoft store</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Then install VoiceBox</span>
+</span></span><span style="display:flex;"><span>pip install voicebox-ai
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># For GPU acceleration, install CUDA toolkit</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Download from: https://developer.nvidia.com/cuda-downloads</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize VoiceBox</span>
+</span></span><span style="display:flex;"><span>voicebox init --gpu cuda
+</span></span></code></pre></div><h2 id="voice-cloning">Voice Cloning</h2>
+<h3 id="recording-a-voice-sample">Recording a Voice Sample</h3>
+<p>To clone a voice, you need at least 3 seconds of clear audio. For best results, provide 30-60 seconds of speech: `````bash</p>
+<h1 id="record-audio-using-the-built-in-recorder">Record audio using the built-in recorder</h1>
+<p>voicebox record &ndash;output sample.wav &ndash;duration 30</p>
+<h1 id="or-upload-an-existing-audio-file">Or upload an existing audio file</h1>
+<p>voicebox clone &ndash;audio my_voice_sample.mp3 &ndash;name &ldquo;my-voice&rdquo;</p>
+<h1 id="voicebox-automatically-processes-the-audio-and-extracts-voice-characteristics">VoiceBox automatically processes the audio and extracts voice characteristics</h1>
+<pre tabindex="0"><code>
+### Voice Processing Pipeline
+
+The voice cloning pipeline consists of several stages: `````python
+from voicebox.engine import VoiceCloner
+from voicebox.audio import AudioProcessor
+
+# Initialize the cloner
+cloner = VoiceCloner(model=&#34;qwen3-tts-voice-clone&#34;)
+
+# Load and preprocess the reference audio
+processor = AudioProcessor()
+reference = processor.load_audio(&#34;sample.wav&#34;)
+reference = processor.normalize(reference, target_rms=-20)
+reference = processor.remove_noise(reference, method=&#34;spectral&#34;)
+
+# Extract voice embeddings
+embeddings = cloner.extract_embeddings(reference)
+
+# Create the voice model
+voice_model = cloner.create_voice(
+    embeddings=embeddings,
+    name=&#34;my-voice&#34;,
+    quality=&#34;high&#34;
+)
+
+# Test the cloned voice
+output = voice_model.synthesize(
+    text=&#34;Hello, this is my cloned voice speaking.&#34;,
+    speed=1.0,
+    emotion=&#34;neutral&#34;
+)
+voice_model.save(output, &#34;test_output.wav&#34;)
+</code></pre><h3 id="advanced-voice-parameters">Advanced Voice Parameters</h3>
+<p>VoiceBox exposes fine-grained control over voice synthesis: `````bash</p>
+<h1 id="control-speech-rate">Control speech rate</h1>
+<p>voicebox synthesize &ndash;input script.txt &ndash;output speech.wav &ndash;speed 0.8</p>
+<h1 id="add-emotional-inflection">Add emotional inflection</h1>
+<p>voicebox synthesize &ndash;input script.txt &ndash;output emotional.wav &ndash;emotion happy</p>
+<h1 id="adjust-pitch">Adjust pitch</h1>
+<p>voicebox synthesize &ndash;input script.txt &ndash;output pitched.wav &ndash;pitch +200</p>
+<h1 id="combine-multiple-parameters">Combine multiple parameters</h1>
+<p>voicebox synthesize <br>
+&ndash;input script.txt <br>
+&ndash;output natural.wav <br>
+&ndash;speed 1.1 <br>
+&ndash;pitch +100 <br>
+&ndash;emotion confident <br>
+&ndash;clarity high</p>
+<pre tabindex="0"><code>
+### Multi-Voice Support
+
+You can create and manage multiple voice clones simultaneously: `````python
+from voicebox.engine import VoiceManager
+
+manager = VoiceManager()
+
+# List all cloned voices
+voices = manager.list_voices()
+for v in voices: print(f&#34;{v.name}: {v.quality} ({v.duration}s of training data)&#34;)
+
+# Switch between voices
+manager.set_active_voice(&#34;my-voice&#34;)
+output = manager.synthesize(&#34;Hello from my cloned voice!&#34;)
+
+# Blend two voices for hybrid speech
+hybrid = manager.blend_voices(
+    voice_a=&#34;my-voice&#34;,
+    voice_b=&#34;partner-voice&#34;,
+    weight_a=0.7,
+    weight_b=0.3
+)
+output = hybrid.synthesize(&#34;Blended voice output&#34;)
+</code></pre><h2 id="dictation-mode">Dictation Mode</h2>
+<p>VoiceBox&rsquo;s dictation mode provides real-time speech-to-text transcription that works with any application on your system.</p>
+<h3 id="system-wide-dictation-setup">System-Wide Dictation Setup</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Enable system-wide dictation</span>
+</span></span><span style="display:flex;"><span>voicebox dictation --enable
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Choose the recognition model</span>
+</span></span><span style="display:flex;"><span>voicebox dictation --model whisper-large-v3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set the output language</span>
+</span></span><span style="display:flex;"><span>voicebox dictation --language en
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Configure hotkey</span>
+</span></span><span style="display:flex;"><span>voicebox dictation --hotkey <span style="color:#e6db74">&#34;ctrl+space&#34;</span>
+</span></span></code></pre></div><h3 id="dictation-api-usage">Dictation API Usage</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> voicebox.dictation <span style="color:#f92672">import</span> DictationEngine
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize the dictation engine</span>
+</span></span><span style="display:flex;"><span>engine <span style="color:#f92672">=</span> DictationEngine(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;whisper-large-v3&#34;</span>,
+</span></span><span style="display:flex;"><span>    language<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;auto&#34;</span>,
+</span></span><span style="display:flex;"><span>    beam_size<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>    vad_threshold<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start listening</span>
+</span></span><span style="display:flex;"><span>engine<span style="color:#f92672">.</span>start_listening(
+</span></span><span style="display:flex;"><span>    hotkey<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ctrl+shift+d&#34;</span>,
+</span></span><span style="display:flex;"><span>    output_mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;clipboard&#34;</span>,
+</span></span><span style="display:flex;"><span>    append_mode<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Process a dictation session</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> engine<span style="color:#f92672">.</span>listen_session(
+</span></span><span style="display:flex;"><span>    timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">300</span>,           <span style="color:#75715e"># 5 minute session</span>
+</span></span><span style="display:flex;"><span>    silence_threshold<span style="color:#f92672">=</span><span style="color:#ae81ff">1.5</span>, <span style="color:#75715e"># Stop after 1.5s of silence</span>
+</span></span><span style="display:flex;"><span>    language<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Transcribed: </span><span style="color:#e6db74">{</span>result<span style="color:#f92672">.</span>text<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Confidence: </span><span style="color:#e6db74">{</span>result<span style="color:#f92672">.</span>confidence<span style="color:#e6db74">:</span><span style="color:#e6db74">.2%</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Words: </span><span style="color:#e6db74">{</span>result<span style="color:#f92672">.</span>word_count<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="multi-language-dictation">Multi-Language Dictation</h3>
+<p>VoiceBox supports simultaneous multi-language dictation with automatic language detection: `````bash</p>
+<h1 id="enable-auto-detection">Enable auto-detection</h1>
+<p>voicebox dictation &ndash;auto-detect</p>
+<h1 id="specify-supported-languages">Specify supported languages</h1>
+<p>voicebox dictation &ndash;languages en,zh,ko,ja,es,fr,de</p>
+<h1 id="set-primary-language-for-better-accuracy">Set primary language (for better accuracy)</h1>
+<p>voicebox dictation &ndash;primary-language en</p>
+<pre tabindex="0"><code>
+## Text-to-Speech API
+
+VoiceBox exposes a full REST API for programmatic text-to-speech generation: ### Basic TTS
+
+`````bash
+# Simple text-to-speech conversion
+curl -X POST &#34;https://your-voicebox/api/v1/tts&#34; \
+  -H &#34;Content-Type: application/json&#34; \
+  -d &#39;{
+    &#34;text&#34;: &#34;Hello, this is a test of VoiceBox text-to-speech.&#34;,
+    &#34;voice&#34;: &#34;default&#34;,
+    &#34;speed&#34;: 1.0,
+    &#34;output_format&#34;: &#34;wav&#34;
+  }&#39; \
+  --output speech.wav
+</code></pre><h3 id="streaming-tts">Streaming TTS</h3>
+<p>For real-time audio streaming applications: `````bash</p>
+<h1 id="stream-audio-in-chunks">Stream audio in chunks</h1>
+<p>curl -N -X POST &ldquo;https://your-voicebox/api/v1/tts/stream&rdquo; <br>
+-H &ldquo;Content-Type: application/json&rdquo; <br>
+-d &lsquo;{&ldquo;text&rdquo;: &ldquo;This audio will stream in real-time&hellip;&rdquo;, &ldquo;voice&rdquo;: &ldquo;cloned-voice&rdquo;}&rsquo; <br>
+&ndash;output - | aplay</p>
+<pre tabindex="0"><code>
+### Batch Processing
+
+Process multiple texts simultaneously: `````python
+from voicebox.api import VoiceBoxClient
+
+client = VoiceBoxClient(&#34;https://your-voicebox&#34;)
+
+texts = [
+    &#34;First sentence for processing.&#34;,
+    &#34;Second sentence with different content.&#34;,
+    &#34;Third sentence in another voice.&#34;,
+]
+
+results = await client.tts.batch(
+    texts=texts,
+    voice=&#34;default&#34;,
+    output_format=&#34;mp3&#34;,
+    parallel_workers=4
+)
+
+for i, result in enumerate(results): print(f&#34;Generated: speech_{i}.mp3 ({result.duration:.1f}s)&#34;)
+````
+
+## Hardware Requirements and Performance
+
+### GPU Performance Benchmarks
+
+| Hardware | Model | Cloning Time | TTS Speed | Dictation Latency |
+|
+Join the community: [Telegram](https://t.me/DIBI8_Group) · [HuggingFace](https://huggingface.co/collections/nvidia/cosmos3)
+
+Internal links: [nvidia-cosmos-world-models-platform-2026](https://dibi8.com/en/resources/ai-tools/nvidia-cosmos-world-models-platform-2026) · [bytedance-ui-tars-desktop-ai-agent-guide](https://dibi8.com/en/resources/ai-tools/bytedance-ui-tars-desktop-ai-agent-guide)
+
+**Disclosure**: This article mentions tools that may have affiliate relationships. We do not accept payment for reviews. All opinions are our own.
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;VoiceBox: The Open-Source AI Voice Studio for Cloning, Dictation, and Generation&#34;,
+  &#34;datePublished&#34;: &#34;2026-06-25&#34;,
+  &#34;dateModified&#34;: &#34;2026-06-25&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/voicebox-open-source-ai-voice-studio&#34;
+  }
+}
+&lt;/script&gt;
+
+## Why This Matters
+
+Understanding voicebox: the open-source ai voice studio for cloning, dictation, and generation is crucial for modern AI development. Here&#34;s why: ### Key Benefits
+- **Efficiency**: Save time on repetitive tasks
+- **Quality**: Improve output consistency  
+- **Scalability**: Handle larger workloads
+- **Cost**: Reduce operational expenses
+
+### Real-World Applications
+Organizations are using similar approaches to: 1. Automate code review processes
+2. Generate documentation automatically
+3. Build internal knowledge bases
+4. Streamline deployment pipelines
+
+### Getting Started
+To implement this in your workflow: 1. **Assess Your Needs**
+   - Identify repetitive tasks
+   - Measure current time costs
+   - Define success metrics
+
+2. **Choose Your Approach**
+   - Start with simple automations
+   - Gradually increase complexity
+   - Test and iterate
+
+3. **Measure Results**
+   - Track time savings
+   - Monitor quality improvements
+   - Calculate ROI
+
+## Conclusion
+
+VoiceBox: The Open-Source AI Voice Studio for Cloning, Dictation, and Generation represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
+
+For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
+
+
+---
+*Last updated: 2026-09-20*
+*Read time: ~6 minutes*
+
+
+* * *
+## Related Articles
+
+- [open-llm-vtuber-voice-powered-ai-avatar](voicebox-open-source-ai-voice-studio)
+- [open-llm-vtuber-voice-powered-ai-avatar](voicebox-open-source-ai-voice-studio)
+- [12-factor-agents](voicebox-open-source-ai-voice-studio)
+- [2026-05-25-trending-ai-agents](voicebox-open-source-ai-voice-studio)
+- [2026-06-01-trending-ai-agents](voicebox-open-source-ai-voice-studio)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</code></pre>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fvoicebox-open-source-ai-voice-studio%2f&text=VoiceBox%3a%20The%20Open-Source%20AI%20Voice%20Studio" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fvoicebox-open-source-ai-voice-studio%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

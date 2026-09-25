@@ -1,0 +1,929 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Initialize Vanna with your API key | Dibi8</title>
+    <meta name="description" content="The ability to interact with databases using natural language has long been the holy grail of data analytics">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/vanna-ai-sql-generation/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Initialize Vanna with your API key</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Initialize Vanna with your API key</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">The ability to interact with databases using natural language has long been the holy grail of data analytics</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>The ability to interact with databases using natural language has long been the holy grail of data analytics. Every day, countless hours are lost translating business questions into SQL queries — a process that requires deep knowledge of database schemas, table relationships, and SQL syntax. In 2026, this bottleneck is rapidly dissolving thanks to <strong>Vanna AI</strong>, an open-source Python library that trains on your database schema and generates production-ready SQL from plain English with over 90% accuracy.</p>
+<p>With more than 18,000 GitHub stars and an MIT license, Vanna AI has emerged as the leading text-to-SQL solution for teams that demand both accuracy and data privacy. Unlike generic LLM approaches that treat SQL generation as just another translation task, Vanna uses a <strong>Retrieval-Augmented Generation (RAG)</strong> architecture specifically designed for database querying. It learns your schema, understands your business logic, and produces SQL that actually runs — validated, optimized, and ready for production.</p>
+<p>In this comprehensive guide, we will walk through everything you need to know about Vanna AI: from installation and schema training to advanced SQL generation, validation, and integration into your analytics workflows. Whether you are a data analyst who wants to ask questions in English, or an engineer building natural language interfaces for your data platform, Vanna AI provides the tools you need to make text-to-SQL a reality.</p>
+<hr>
+<h2 id="what-is-vanna-ai-natural-language-meets-sql">What Is Vanna AI? Natural Language Meets SQL</h2>
+<p>Vanna AI is an open-source Python library that bridges the gap between human language and structured query language. At its core, Vanna is a ** Retrieval-Augmented Generation (RAG) ** framework built specifically for SQL generation. Unlike generic LLM chatbots that occasionally hallucinate table names or invent column references, Vanna trains on your actual database schema — learning your tables, columns, relationships, and even your organization&rsquo;s naming conventions.</p>
+<p>The workflow is elegantly simple: 1. <strong>Connect</strong> Vanna to your database
+2. <strong>Train</strong> it on your schema (DDL statements, documentation, sample queries)
+3. <strong>Ask</strong> questions in natural language
+4. <strong>Receive</strong> accurate, executable SQL</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> vanna <span style="color:#66d9ef">as</span> vn
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> vanna.remote <span style="color:#f92672">import</span> VannaDefault
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize Vanna with your API key</span>
+</span></span><span style="display:flex;"><span>vn <span style="color:#f92672">=</span> VannaDefault(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;my-model&#34;</span>, api_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;vn-...&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Connect to your database</span>
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>connect_to_postgres(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;localhost&#34;</span>, dbname<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;analytics&#34;</span>,
+</span></span><span style="display:flex;"><span>                       user<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;analyst&#34;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;secret&#34;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">5432</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Train on your schema</span>
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(ddl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">CREATE TABLE sales (
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    id SERIAL PRIMARY KEY,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    customer_id INT REFERENCES customers(id),
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    amount DECIMAL(10,2),
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    sale_date TIMESTAMP,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    region VARCHAR(50)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ask a question in plain English</span>
+</span></span><span style="display:flex;"><span>sql <span style="color:#f92672">=</span> vn<span style="color:#f92672">.</span>generate_sql(<span style="color:#e6db74">&#34;What are the top 5 regions by total sales in 2026?&#34;</span>)
+</span></span><span style="display:flex;"><span>print(sql)
+</span></span></code></pre></div><p>The generated SQL is not just syntactically correct — it is semantically accurate, referencing the correct tables, columns, and relationships from your actual schema.</p>
+<hr>
+<h2 id="why-vanna-ai-matters-in-2026">Why Vanna AI Matters in 2026</h2>
+<p>The explosion of Large Language Models in recent years has created enormous opportunities for natural language interfaces. However, generic LLMs struggle with SQL generation for several critical reasons: they hallucinate schema elements, ignore database-specific syntax, and have no awareness of your actual data model. Sending your raw data to third-party API endpoints also raises serious privacy and compliance concerns.</p>
+<p>Vanna AI addresses all of these challenges head-on: - <strong>Schema-Aware Generation</strong>: Vanna learns your specific schema, eliminating hallucination</p>
+<ul>
+<li><strong>Privacy-First Design</strong>: Your data never leaves your infrastructure unless you choose otherwise</li>
+<li><strong>Self-Hosted Option</strong>: Run everything locally with open-source LLMs</li>
+<li><strong>SQL Validation</strong>: Every generated query is validated against your database before being returned</li>
+<li><strong>Multiple LLM Backends</strong>: Use OpenAI, Anthropic, Google, or local models like Ollama</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Vanna supports multiple LLM backends</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> vanna.ollama <span style="color:#f92672">import</span> Ollama
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> vanna.chromadb <span style="color:#f92672">import</span> ChromaDB_VectorStore
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyVanna</span>(ChromaDB_VectorStore, Ollama): <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, config<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>): ChromaDB_VectorStore<span style="color:#f92672">.</span><span style="color:#a6e22e">__init__</span>(self, config<span style="color:#f92672">=</span>config)
+</span></span><span style="display:flex;"><span>        Ollama<span style="color:#f92672">.</span><span style="color:#a6e22e">__init__</span>(self, config<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;model&#34;</span>: <span style="color:#e6db74">&#34;llama3&#34;</span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Fully local, self-hosted setup</span>
+</span></span><span style="display:flex;"><span>vn <span style="color:#f92672">=</span> MyVanna()
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>connect_to_sqlite(<span style="color:#e6db74">&#34;my_database.db&#34;</span>)
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(ddl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;SELECT sql FROM sqlite_master WHERE type=table;&#34;</span>)
+</span></span></code></pre></div><p>In 2026, as organizations grapple with increasingly complex data schemas and stricter compliance requirements, Vanna&rsquo;s approach — training on schema rather than sending data to the cloud — represents the gold standard for secure, accurate text-to-SQL.</p>
+<hr>
+<h2 id="installing-and-configuring-vanna-ai">Installing and Configuring Vanna AI</h2>
+<p>Vanna is designed to be easy to install and configure, with sensible defaults that get you productive quickly.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Install Vanna core</span>
+</span></span><span style="display:flex;"><span>pip install vanna
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install with specific LLM backend support</span>
+</span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;vanna[openai]&#34;</span>
+</span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;vanna[anthropic]&#34;</span>
+</span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;vanna[google]&#34;</span>
+</span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;vanna[ollama]&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install with database drivers</span>
+</span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;vanna[postgres]&#34;</span>
+</span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;vanna[mysql]&#34;</span>
+</span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;vanna[snowflake]&#34;</span>
+</span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;vanna[bigquery]&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install everything</span>
+</span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;vanna[all]&#34;</span>
+</span></span></code></pre></div><p>Quick configuration for the most common setup: `````python
+from vanna.remote import VannaDefault</p>
+<h1 id="use-vannas-hosted-service-easiest-setup">Use Vanna&rsquo;s hosted service (easiest setup)</h1>
+<p>vn = VannaDefault(
+model=&ldquo;my-database-model&rdquo;,
+api_key=&ldquo;vn-your-api-key&rdquo;
+)</p>
+<h1 id="connect-to-postgresql">Connect to PostgreSQL</h1>
+<p>vn.connect_to_postgres(
+host=&ldquo;db.company.com&rdquo;,
+dbname=&ldquo;analytics&rdquo;,
+user=&ldquo;analyst&rdquo;,
+password=&ldquo;secure-password&rdquo;,
+port=5432
+)</p>
+<pre tabindex="0"><code>
+For a fully self-hosted setup with local LLMs: `````python
+from vanna.ollama import Ollama
+from vanna.chromadb import ChromaDB_VectorStore
+
+class LocalVanna(ChromaDB_VectorStore, Ollama): def __init__(self, config=None): ChromaDB_VectorStore.__init__(self, config=config)
+        Ollama.__init__(self, config={&#34;model&#34;: &#34;codellama:13b&#34;})
+
+vn = LocalVanna()
+vn.connect_to_postgres(host=&#34;localhost&#34;, dbname=&#34;sales&#34;,
+                       user=&#34;admin&#34;, password=&#34;admin&#34;, port=5432)
+</code></pre><hr>
+<h2 id="training-vanna-on-your-database-schema">Training Vanna on Your Database Schema</h2>
+<p>Training is where Vanna truly shines. The more you train Vanna on your schema, the more accurate its SQL generation becomes. There are three primary types of training data you can provide.</p>
+<h3 id="training-with-ddl-statements">Training with DDL Statements</h3>
+<p>The most fundamental training method is providing your database&rsquo;s DDL (Data Definition Language) — the CREATE TABLE statements that define your schema.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Train with individual DDL statements</span>
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(ddl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">CREATE TABLE customers (
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    id SERIAL PRIMARY KEY,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    name VARCHAR(255) NOT NULL,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    email VARCHAR(255) UNIQUE,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    segment VARCHAR(50)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(ddl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">CREATE TABLE orders (
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    id SERIAL PRIMARY KEY,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    customer_id INT REFERENCES customers(id),
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    total_amount DECIMAL(12,2),
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    order_date TIMESTAMP,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    status VARCHAR(20)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(ddl<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">CREATE TABLE order_items (
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    id SERIAL PRIMARY KEY,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    order_id INT REFERENCES orders(id),
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    product_name VARCHAR(255),
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    quantity INT,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    unit_price DECIMAL(10,2)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>)
+</span></span></code></pre></div><h3 id="training-with-schema-auto-discovery">Training with Schema Auto-Discovery</h3>
+<p>For large databases, manually writing DDL is impractical. Vanna can automatically extract schema information from your database.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># PostgreSQL: extract schema from information_schema</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> psycopg2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>conn <span style="color:#f92672">=</span> psycopg2<span style="color:#f92672">.</span>connect(
+</span></span><span style="display:flex;"><span>    host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;localhost&#34;</span>, dbname<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;analytics&#34;</span>,
+</span></span><span style="display:flex;"><span>    user<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;analyst&#34;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;secret&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>cursor <span style="color:#f92672">=</span> conn<span style="color:#f92672">.</span>cursor()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Get all table definitions</span>
+</span></span><span style="display:flex;"><span>cursor<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    SELECT table_name
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    FROM information_schema.tables
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    WHERE table_schema = public;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>tables <span style="color:#f92672">=</span> cursor<span style="color:#f92672">.</span>fetchall()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (table_name,) <span style="color:#f92672">in</span> tables: cursor<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        SELECT column_name, data_type, is_nullable
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        FROM information_schema.columns
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        WHERE table_name = &#39;</span><span style="color:#e6db74">{</span>table_name<span style="color:#e6db74">}</span><span style="color:#e6db74">&#39;;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>    columns <span style="color:#f92672">=</span> cursor<span style="color:#f92672">.</span>fetchall()
+</span></span><span style="display:flex;"><span>    ddl <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;CREATE TABLE </span><span style="color:#e6db74">{</span>table_name<span style="color:#e6db74">}</span><span style="color:#e6db74"> (</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    ddl <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;,</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>join([
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;    </span><span style="color:#e6db74">{</span>col[<span style="color:#ae81ff">0</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>col[<span style="color:#ae81ff">1</span>]<span style="color:#e6db74">}{</span><span style="color:#e6db74">&#39;&#39;</span> <span style="color:#66d9ef">if</span> col[<span style="color:#ae81ff">2</span>] <span style="color:#f92672">==</span> YES <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#39; NOT NULL&#39;</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> col <span style="color:#f92672">in</span> columns
+</span></span><span style="display:flex;"><span>    ])
+</span></span><span style="display:flex;"><span>    ddl <span style="color:#f92672">+=</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">);&#34;</span>
+</span></span><span style="display:flex;"><span>    vn<span style="color:#f92672">.</span>train(ddl<span style="color:#f92672">=</span>ddl)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>conn<span style="color:#f92672">.</span>close()
+</span></span></code></pre></div><h3 id="training-with-documentation-and-business-logic">Training with Documentation and Business Logic</h3>
+<p>Beyond raw schema, you can train Vanna on business context — helping it understand what your columns actually mean.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Train with documentation</span>
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(documentation<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">The sales table records all completed transactions.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">The amount column is in USD and includes tax.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">The region column uses standard US Census regions: Northeast, Midwest, South, and West.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">A high_value_customer is anyone with lifetime purchases &gt; $10,000.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Train with example SQL queries</span>
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(sql<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">SELECT region, SUM(amount) as total_sales, COUNT(*) as order_count
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">FROM sales
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">WHERE sale_date &gt;= &#39;2026-01-01&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">GROUP BY region
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">ORDER BY total_sales DESC;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(sql<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">SELECT c.name, COUNT(o.id) as order_count, SUM(o.total_amount) as lifetime_value
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">FROM customers c
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">JOIN orders o ON c.id = o.customer_id
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">WHERE o.status = completed
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">GROUP BY c.id, c.name
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">HAVING SUM(o.total_amount) &gt; 10000;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>)
+</span></span></code></pre></div><h3 id="training-with-question-sql-pairs">Training with Question-SQL Pairs</h3>
+<p>For maximum accuracy, provide pairs of natural language questions and their corresponding SQL queries.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Gold-standard training data</span>
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(
+</span></span><span style="display:flex;"><span>    question<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;What are the top 10 customers by lifetime value?&#34;</span>,
+</span></span><span style="display:flex;"><span>    sql<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    SELECT c.name, SUM(o.total_amount) as lifetime_value
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    FROM customers c
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    JOIN orders o ON c.id = o.customer_id
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    GROUP BY c.id, c.name
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    ORDER BY lifetime_value DESC
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    LIMIT 10;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(
+</span></span><span style="display:flex;"><span>    question<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;How many orders were placed each month in 2026?&#34;</span>,
+</span></span><span style="display:flex;"><span>    sql<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    SELECT DATE_TRUNC(month, order_date) as month, COUNT(*) as order_count
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    FROM orders
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    WHERE order_date &gt;= &#39;2026-01-01&#39; AND order_date &lt; &#39;2027-01-01&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    GROUP BY month
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    ORDER BY month;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><hr>
+<h2 id="generating-sql-from-natural-language">Generating SQL from Natural Language</h2>
+<p>Once trained, Vanna can generate SQL from natural language questions with remarkable accuracy. The <code>generate_sql</code> method is the primary interface.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Simple questions</span>
+</span></span><span style="display:flex;"><span>sql <span style="color:#f92672">=</span> vn<span style="color:#f92672">.</span>generate_sql(<span style="color:#e6db74">&#34;Show me all customers from the West region&#34;</span>)
+</span></span><span style="display:flex;"><span>print(sql)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: SELECT * FROM customers WHERE region = West;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Aggregation queries</span>
+</span></span><span style="display:flex;"><span>sql <span style="color:#f92672">=</span> vn<span style="color:#f92672">.</span>generate_sql(<span style="color:#e6db74">&#34;What is the average order value by customer segment?&#34;</span>)
+</span></span><span style="display:flex;"><span>print(sql)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: SELECT c.segment, AVG(o.total_amount) as avg_order_value</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         FROM customers c JOIN orders o ON c.id = o.customer_id</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#         GROUP BY c.segment;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Complex multi-table joins</span>
+</span></span><span style="display:flex;"><span>sql <span style="color:#f92672">=</span> vn<span style="color:#f92672">.</span>generate_sql(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Find the top 5 products by revenue in Q2 2026, &#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;including how many unique customers bought each product&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(sql)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Time-based filtering</span>
+</span></span><span style="display:flex;"><span>sql <span style="color:#f92672">=</span> vn<span style="color:#f92672">.</span>generate_sql(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Compare monthly sales between 2025 and 2026, &#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;showing year-over-year growth percentage&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(sql)
+</span></span></code></pre></div><p>Vanna also supports generating SQL with specific constraints or patterns: `````python</p>
+<h1 id="generate-sql-with-explanation">Generate SQL with explanation</h1>
+<p>sql, explanation = vn.generate_sql(
+&ldquo;Which customers haven&rsquo;t placed an order in the last 90 days?&rdquo;,
+explain=True
+)
+print(f&quot;SQL: {sql}&quot;)
+print(f&quot;Explanation: {explanation}&quot;)</p>
+<h1 id="generate-sql-and-also-run-it">Generate SQL and also run it</h1>
+<p>result_df = vn.ask(&ldquo;What are the monthly sales trends?&rdquo;)
+print(result_df)</p>
+<h1 id="the-ask-method-generates-sql-validates-it-executes-it">The ask() method generates SQL, validates it, executes it,</h1>
+<h1 id="and-returns-a-pandas-dataframe--all-in-one-call">and returns a pandas DataFrame — all in one call</h1>
+<pre tabindex="0"><code>
+* * *
+
+## SQL Validation and Error Handling
+
+One of Vanna&#39;s standout features is its **automatic SQL validation**. Before returning a query to you, Vanna can check that it actually runs against your database, catching syntax errors and schema mismatches.
+
+`````python
+# Enable automatic validation
+vn = VannaDefault(model=&#34;my-model&#34;, api_key=&#34;vn-...&#34;, 
+                  config={&#34;validate_sql&#34;: True})
+
+# Invalid queries are caught and corrected
+try: sql = vn.generate_sql(&#34;Show me the top 10 products by revenue&#34;)
+    print(f&#34;Validated SQL: {sql}&#34;)
+except Exception as e: print(f&#34;Validation failed: {e}&#34;)
+    # Vanna will attempt to fix and regenerate
+    sql = vn.generate_sql_with_retry(
+        &#34;Show me the top 10 products by revenue&#34;,
+        max_retries=3
+    )
+</code></pre><p>Vanna can also handle follow-up questions that reference previous context: `````python</p>
+<h1 id="first-question">First question</h1>
+<p>result1 = vn.ask(&ldquo;What were total sales in 2026?&rdquo;)</p>
+<h1 id="follow-up-question-vanna-maintains-context">Follow-up question (Vanna maintains context)</h1>
+<p>result2 = vn.ask(&ldquo;Break that down by region&rdquo;)</p>
+<h1 id="generates-select-region-sumamount-from-sales">Generates: SELECT region, SUM(amount) FROM sales</h1>
+<h1 id="where-sale_date--2026-01-01-group-by-region">WHERE sale_date &gt;= &lsquo;2026-01-01&rsquo; GROUP BY region</h1>
+<h1 id="another-follow-up">Another follow-up</h1>
+<p>result3 = vn.ask(&ldquo;Now show only regions with more than $1M in sales&rdquo;)</p>
+<h1 id="generates-select-region-sumamount-as-total">Generates: SELECT region, SUM(amount) as total</h1>
+<h1 id="from-sales-where-sale_date--2026-01-01">FROM sales WHERE sale_date &gt;= &lsquo;2026-01-01&rsquo;</h1>
+<h1 id="group-by-region-having-sumamount--1000000">GROUP BY region HAVING SUM(amount) &gt; 1000000</h1>
+<pre tabindex="0"><code>
+* * *
+
+## Advanced Features and Customization
+
+Vanna offers extensive customization options for advanced users and production deployments.
+
+### Custom Prompt Templates
+
+`````python
+# Override the default prompt template
+vn.set_prompt_template(&#34;&#34;&#34;
+You are an expert SQL analyst. Given the following database schema,
+generate a PostgreSQL-compatible query to answer the user&#39;s question.
+
+Schema: {schema}
+
+User Question: {question}
+
+Generate only the SQL query, with no additional explanation.
+&#34;&#34;&#34;)
+
+sql = vn.generate_sql(&#34;List all high-value customers&#34;)
+</code></pre><h3 id="working-with-multiple-databases">Working with Multiple Databases</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Create separate Vanna instances for different databases</span>
+</span></span><span style="display:flex;"><span>vn_sales <span style="color:#f92672">=</span> VannaDefault(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sales-model&#34;</span>, api_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;vn-...&#34;</span>)
+</span></span><span style="display:flex;"><span>vn_sales<span style="color:#f92672">.</span>connect_to_postgres(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sales-db&#34;</span>, dbname<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sales&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vn_hr <span style="color:#f92672">=</span> VannaDefault(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hr-model&#34;</span>, api_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;vn-...&#34;</span>)
+</span></span><span style="display:flex;"><span>vn_hr<span style="color:#f92672">.</span>connect_to_mysql(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;hr-db&#34;</span>, dbname<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;human_resources&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Query the appropriate database</span>
+</span></span><span style="display:flex;"><span>sales_sql <span style="color:#f92672">=</span> vn_sales<span style="color:#f92672">.</span>generate_sql(<span style="color:#e6db74">&#34;Total revenue by quarter&#34;</span>)
+</span></span><span style="display:flex;"><span>hr_sql <span style="color:#f92672">=</span> vn_hr<span style="color:#f92672">.</span>generate_sql(<span style="color:#e6db74">&#34;Employee count by department&#34;</span>)
+</span></span></code></pre></div><h3 id="using-custom-vector-stores">Using Custom Vector Stores</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> vanna.pinecone <span style="color:#f92672">import</span> Pinecone_VectorStore
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> vanna.openai <span style="color:#f92672">import</span> OpenAI_Chat
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">PineconeVanna</span>(Pinecone_VectorStore, OpenAI_Chat): <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, config<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>): Pinecone_VectorStore<span style="color:#f92672">.</span><span style="color:#a6e22e">__init__</span>(self, config<span style="color:#f92672">=</span>config)
+</span></span><span style="display:flex;"><span>        OpenAI_Chat<span style="color:#f92672">.</span><span style="color:#a6e22e">__init__</span>(self, config<span style="color:#f92672">=</span>config)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vn <span style="color:#f92672">=</span> PineconeVanna(config<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;api_key&#34;</span>: <span style="color:#e6db74">&#34;your-openai-key&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;pinecone_api_key&#34;</span>: <span style="color:#e6db74">&#34;your-pinecone-key&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;pinecone_index&#34;</span>: <span style="color:#e6db74">&#34;vanna-index&#34;</span>
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><hr>
+<h2 id="jupyter-integration-and-interactive-workflows">Jupyter Integration and Interactive Workflows</h2>
+<p>Vanna shines in Jupyter notebooks, offering rich interactive widgets and visualization capabilities.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> vanna.remote <span style="color:#f92672">import</span> VannaDefault
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> vanna <span style="color:#66d9ef">as</span> vn
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vn <span style="color:#f92672">=</span> VannaDefault(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;my-model&#34;</span>, api_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;vn-...&#34;</span>)
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>connect_to_postgres(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;localhost&#34;</span>, dbname<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;analytics&#34;</span>,
+</span></span><span style="display:flex;"><span>                       user<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;analyst&#34;</span>, password<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;secret&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Launch the interactive chat interface in Jupyter</span>
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>ask(<span style="color:#e6db74">&#34;What are the top selling products?&#34;</span>)
+</span></span></code></pre></div><p>The <code>ask()</code> method in Jupyter returns rich output including the generated SQL, explanation, and results table. For a full interactive experience: `````python</p>
+<h1 id="launch-the-interactive-web-ui-within-jupyter">Launch the interactive web UI within Jupyter</h1>
+<p>from vanna.flask import VannaFlaskApp</p>
+<p>app = VannaFlaskApp(vn)
+app.run()</p>
+<pre tabindex="0"><code>
+Vanna also generates visualizations automatically when appropriate: `````python
+# Generate SQL and auto-create chart
+vn.ask(&#34;Plot monthly sales trends for 2026&#34;)
+
+# Generates SQL, executes it, and creates a line chart
+# from the time-series results automatically
+</code></pre><hr>
+<h2 id="vanna-ai-architecture-and-privacy-model">Vanna AI Architecture and Privacy Model</h2>
+<p>Understanding Vanna&rsquo;s architecture is key to deploying it securely in production environments.</p>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────────────┐
+│                    Vanna AI Architecture                     │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   User Question  ──▶  Vector Store (Schema/Examples)       │
+│       │                       │                            │
+│       │                       ▼                            │
+│       │              Relevant Context                      │
+│       │              Retrieved via RAG                     │
+│       │                       │                            │
+│       ▼                       ▼                            │
+│   ┌──────────────────────────────────────┐                │
+│   │        LLM Backend                   │                │
+│   │  (OpenAI / Anthropic / Ollama / ...) │                │
+│   │                                      │                │
+│   │  Prompt: Question + Schema Context   │                │
+│   │  Output: Generated SQL               │                │
+│   └──────────────────────────────────────┘                │
+│                       │                                     │
+│                       ▼                                     │
+│              SQL Validation                                 │
+│                       │                                     │
+│                       ▼                                     │
+│              Execute Against DB                             │
+│                       │                                     │
+│                       ▼                                     │
+│               Return Results                                │
+└─────────────────────────────────────────────────────────────┘
+</code></pre><p>The privacy model works as follows: `````python</p>
+<h1 id="privacy-first-configuration-recommended">Privacy-First Configuration (Recommended)</h1>
+<p>from vanna.ollama import Ollama
+from vanna.chromadb import ChromaDB_VectorStore</p>
+<p>class PrivateVanna(ChromaDB_VectorStore, Ollama): &ldquo;&ldquo;&ldquo;Fully self-hosted. Zero data leaves your network.&rdquo;&rdquo;&rdquo;
+def <strong>init</strong>(self, config=None): ChromaDB_VectorStore.<strong>init</strong>(self, config=config)
+Ollama.<strong>init</strong>(self, config={&ldquo;model&rdquo;: &ldquo;llama3:70b&rdquo;})</p>
+<p>vn = PrivateVanna()
+vn.connect_to_postgres(host=&ldquo;internal-db&rdquo;, dbname=&ldquo;analytics&rdquo;,
+user=&ldquo;readonly&rdquo;, password=&ldquo;secret&rdquo;)</p>
+<h1 id="schema-metadata-is-stored-locally-in-chromadb">Schema metadata is stored locally in ChromaDB</h1>
+<h1 id="llm-runs-locally-via-ollama">LLM runs locally via Ollama</h1>
+<h1 id="database-queries-execute-against-your-internal-database">Database queries execute against your internal database</h1>
+<h1 id="no-data-ever-reaches-external-apis">No data ever reaches external APIs</h1>
+<pre tabindex="0"><code>
+* * *
+
+## Benchmarks and Accuracy
+
+Vanna&#39;s accuracy depends heavily on the quality and quantity of training data. Here are typical performance characteristics observed in 2026: `````python
+# Accuracy evaluation script
+import pandas as pd
+
+test_cases = [
+    {
+        &#34;question&#34;: &#34;Total sales in 2026&#34;,
+        &#34;expected_sql&#34;: &#34;SELECT SUM(amount) FROM sales WHERE sale_date &gt;= &#39;2026-01-01&#39;&#34;
+    },
+    {
+        &#34;question&#34;: &#34;Top 5 customers by order count&#34;,
+        &#34;expected_sql&#34;: &#34;&#34;&#34;
+            SELECT customer_id, COUNT(*) as order_count 
+            FROM orders GROUP BY customer_id ORDER BY order_count DESC LIMIT 5
+        &#34;&#34;&#34;
+    },
+    {
+        &#34;question&#34;: &#34;Average order value by region&#34;,
+        &#34;expected_sql&#34;: &#34;&#34;&#34;
+            SELECT region, AVG(total_amount) 
+            FROM orders GROUP BY region
+        &#34;&#34;&#34;
+    }
+]
+
+correct = 0
+for test in test_cases: generated = vn.generate_sql(test[&#34;question&#34;])
+    # Semantic comparison (normalized)
+    if normalize_sql(generated) == normalize_sql(test[&#34;expected_sql&#34;]): correct += 1
+
+accuracy = correct / len(test_cases) * 100
+print(f&#34;Accuracy: {accuracy:.1f}%&#34;)
+</code></pre><p>With comprehensive training (DDL + documentation + example queries), Vanna consistently achieves: - <strong>90-95% accuracy</strong> on common analytical queries</p>
+<ul>
+<li><strong>85-90% accuracy</strong> on complex multi-table joins</li>
+<li><strong>80-85% accuracy</strong> on queries requiring business context</li>
+<li>Near <strong>100% accuracy</strong> when question-SQL pairs are provided as training data</li>
+</ul>
+<p>The key to high accuracy is thorough training. A well-trained Vanna instance with 50+ DDL statements, 20+ example queries, and relevant documentation outperforms generic LLM approaches by a significant margin.</p>
+<hr>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<h3 id="is-vanna-ai-completely-free-to-use">Is Vanna AI completely free to use?</h3>
+<p>Yes, Vanna AI is open-source under the MIT license and free to use. The core library, all integrations, and the RAG-based training system are available at no cost. Vanna also offers a hosted cloud service with a free tier for small projects, with paid plans for enterprise features like team collaboration and advanced analytics. The self-hosted option using local LLMs (via Ollama) and local vector stores (via ChromaDB) is entirely free with no usage limits.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Free, fully self-hosted setup</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> vanna.ollama <span style="color:#f92672">import</span> Ollama
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> vanna.chromadb <span style="color:#f92672">import</span> ChromaDB_VectorStore
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FreeVanna</span>(ChromaDB_VectorStore, Ollama): <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, config<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>): ChromaDB_VectorStore<span style="color:#f92672">.</span><span style="color:#a6e22e">__init__</span>(self, config<span style="color:#f92672">=</span>config)
+</span></span><span style="display:flex;"><span>        Ollama<span style="color:#f92672">.</span><span style="color:#a6e22e">__init__</span>(self, config<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;model&#34;</span>: <span style="color:#e6db74">&#34;llama3&#34;</span>})
+</span></span></code></pre></div><h3 id="how-does-vanna-handle-schema-changes">How does Vanna handle schema changes?</h3>
+<p>When your database schema changes, you need to retrain Vanna with the updated DDL statements. The recommended approach is to version your training data and set up an automated pipeline that extracts the latest schema and retrains Vanna on deployment.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Automated retraining pipeline</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> subprocess
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Extract latest schema</span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> subprocess<span style="color:#f92672">.</span>run(
+</span></span><span style="display:flex;"><span>    [<span style="color:#e6db74">&#34;pg_dump&#34;</span>, <span style="color:#e6db74">&#34;--schema-only&#34;</span>, <span style="color:#e6db74">&#34;mydb&#34;</span>],
+</span></span><span style="display:flex;"><span>    capture_output<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, text<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>new_ddl <span style="color:#f92672">=</span> result<span style="color:#f92672">.</span>stdout
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Clear old training and retrain</span>
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>remove_training_data()
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(ddl<span style="color:#f92672">=</span>new_ddl)
+</span></span></code></pre></div><h3 id="can-i-use-vanna-with-non-english-languages">Can I use Vanna with non-English languages?</h3>
+<p>Yes, Vanna supports natural language questions in multiple languages. The LLM backend handles the translation to SQL generation. You can train Vanna with documentation and examples in your preferred language.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Training with Chinese documentation</span>
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(documentation<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">销售额表记录所有完成的交易。
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">amount 列单位为美元，含税。
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">大客户定义为累计购买超过 $10,000 的客户。
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sql <span style="color:#f92672">=</span> vn<span style="color:#f92672">.</span>generate_sql(<span style="color:#e6db74">&#34;显示2026年每个区域的总销售额&#34;</span>)
+</span></span></code></pre></div><h3 id="what-databases-does-vanna-support">What databases does Vanna support?</h3>
+<p>Vanna supports virtually all major databases through its flexible connection system: PostgreSQL, MySQL, SQLite, SQL Server, Snowflake, BigQuery, Redshift, Oracle, DuckDB, ClickHouse, and any database with a Python DB-API driver. Custom connectors can also be implemented for specialized systems.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># SQLite</span>
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>connect_to_sqlite(<span style="color:#e6db74">&#34;mydb.sqlite&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Snowflake</span>
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>connect_to_snowflake(
+</span></span><span style="display:flex;"><span>    account<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;myaccount&#34;</span>, username<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user&#34;</span>,
+</span></span><span style="display:flex;"><span>    password<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pass&#34;</span>, database<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;analytics&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># BigQuery</span>
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>connect_to_bigquery(project_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;my-project&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># DuckDB</span>
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>connect_to_duckdb(<span style="color:#e6db74">&#34;mydb.duckdb&#34;</span>)
+</span></span></code></pre></div><h3 id="how-can-i-improve-vannas-accuracy-for-my-specific-use-case">How can I improve Vanna&rsquo;s accuracy for my specific use case?</h3>
+<p>The most effective way to improve accuracy is through comprehensive training. Follow this hierarchy of training data quality: 1. <strong>Question-SQL pairs</strong> (highest impact — near 100% accuracy)
+2. <strong>Example SQL queries</strong> (high impact — teaches patterns)
+3. <strong>Business documentation</strong> (medium impact — adds context)
+4. <strong>DDL statements</strong> (foundational — eliminates hallucination)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Maximum accuracy training regimen</span>
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(ddl<span style="color:#f92672">=</span>all_schema_ddl)
+</span></span><span style="display:flex;"><span>vn<span style="color:#f92672">.</span>train(documentation<span style="color:#f92672">=</span>business_context)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> example <span style="color:#f92672">in</span> curated_sql_examples: vn<span style="color:#f92672">.</span>train(sql<span style="color:#f92672">=</span>example)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> qa <span style="color:#f92672">in</span> historical_question_sql_pairs: vn<span style="color:#f92672">.</span>train(question<span style="color:#f92672">=</span>qa[<span style="color:#e6db74">&#34;question&#34;</span>], sql<span style="color:#f92672">=</span>qa[<span style="color:#e6db74">&#34;sql&#34;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Recommended Hosting &amp; Infrastructure</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Before you deploy any of the tools above into production, you<span style="color:#e6db74">&#39;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — $200 free credit for 60 days across 14+ global regions.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">**</span>[HTStack](https:<span style="color:#f92672">//</span>my<span style="color:#f92672">.</span>htstack<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>aff<span style="color:#f92672">.</span>php<span style="color:#960050;background-color:#1e0010">?</span>aff<span style="color:#f92672">=</span><span style="color:#ae81ff">27187</span>)<span style="color:#f92672">**</span> <span style="color:#960050;background-color:#1e0010">—</span> Hong Kong VPS <span style="color:#66d9ef">with</span> low<span style="color:#f92672">-</span>latency access <span style="color:#f92672">from</span> mainland China<span style="color:#f92672">.</span> This <span style="color:#f92672">is</span> the same IDC that hosts dibi8<span style="color:#f92672">.</span>com<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>Affiliate links <span style="color:#960050;background-color:#1e0010">—</span> they don<span style="color:#e6db74">&#39;t cost you extra and they help keep dibi8.com running.*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Final Thoughts</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Vanna AI represents a significant leap forward <span style="color:#f92672">in</span> democratizing database access<span style="color:#f92672">.</span> By combining the power of modern Large Language Models <span style="color:#66d9ef">with</span> a purpose<span style="color:#f92672">-</span>built RAG architecture <span style="color:#66d9ef">for</span> SQL generation, it delivers an accuracy level that makes natural language querying practical <span style="color:#66d9ef">for</span> real<span style="color:#f92672">-</span>world production environments<span style="color:#f92672">.</span> The <span style="color:#ae81ff">90</span><span style="color:#f92672">%+</span> accuracy achieved <span style="color:#66d9ef">with</span> proper training, combined <span style="color:#66d9ef">with</span> its privacy<span style="color:#f92672">-</span>first design <span style="color:#f92672">and</span> self<span style="color:#f92672">-</span>hosting capabilities, makes Vanna the tool of choice <span style="color:#66d9ef">for</span> organizations that want to empower their teams <span style="color:#66d9ef">with</span> text<span style="color:#f92672">-</span>to<span style="color:#f92672">-</span>SQL without compromising data security<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>In <span style="color:#ae81ff">2026</span>, <span style="color:#66d9ef">as</span> the gap between data analysts <span style="color:#f92672">and</span> database experts continues to narrow, Vanna AI stands at the forefront <span style="color:#960050;background-color:#1e0010">—</span> turning <span style="color:#e6db74">&#34;What were our Q2 sales by region?&#34;</span> into executable SQL <span style="color:#f92672">in</span> seconds, <span style="color:#f92672">not</span> minutes<span style="color:#f92672">.</span> For any team looking to reduce the SQL bottleneck <span style="color:#f92672">and</span> let people ask questions <span style="color:#f92672">in</span> the language they think <span style="color:#f92672">in</span>, Vanna AI <span style="color:#f92672">is</span> an investment that pays dividends immediately<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;vanna-ai-sql-generation&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-05-20&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-05-20&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/resources/vanna-ai-sql-generation&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>script<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [<span style="color:#ae81ff">12</span><span style="color:#f92672">-</span>factor<span style="color:#f92672">-</span>agents](vanna<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>sql<span style="color:#f92672">-</span>generation)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [<span style="color:#ae81ff">2026</span><span style="color:#f92672">-</span><span style="color:#ae81ff">05</span><span style="color:#f92672">-</span><span style="color:#ae81ff">25</span><span style="color:#f92672">-</span>trending<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>agents](vanna<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>sql<span style="color:#f92672">-</span>generation)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [<span style="color:#ae81ff">2026</span><span style="color:#f92672">-</span><span style="color:#ae81ff">06</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span>trending<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>agents](vanna<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>sql<span style="color:#f92672">-</span>generation)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [<span style="color:#ae81ff">2026</span><span style="color:#f92672">-</span><span style="color:#ae81ff">06</span><span style="color:#f92672">-</span><span style="color:#ae81ff">08</span><span style="color:#f92672">-</span>trending<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>agents](vanna<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>sql<span style="color:#f92672">-</span>generation)
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> [<span style="color:#ae81ff">2026</span><span style="color:#f92672">-</span><span style="color:#ae81ff">06</span><span style="color:#f92672">-</span><span style="color:#ae81ff">15</span><span style="color:#f92672">-</span>trending<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>agents](vanna<span style="color:#f92672">-</span>ai<span style="color:#f92672">-</span>sql<span style="color:#f92672">-</span>generation)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>Found this helpful<span style="color:#960050;background-color:#1e0010">?</span> [Join our Telegram community](https:<span style="color:#f92672">//</span>t<span style="color:#f92672">.</span>me<span style="color:#f92672">/</span>DIBI8_Group) <span style="color:#66d9ef">for</span> daily AI tool updates<span style="color:#960050;background-color:#1e0010">!</span><span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions (FAQ)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>问<span style="color:#960050;background-color:#1e0010">：</span>LangChain和LlamaIndex哪个更好<span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>LangChain适合复杂工作流和Agent构建<span style="color:#960050;background-color:#1e0010">，</span>LlamaIndex专注于RAG和数据检索优化<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>问<span style="color:#960050;background-color:#1e0010">：</span>如何评估LLM框架的性能<span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>基准测试包括<span style="color:#960050;background-color:#1e0010">：</span>推理速度<span style="color:#960050;background-color:#1e0010">、</span>准确率<span style="color:#960050;background-color:#1e0010">、</span>资源消耗<span style="color:#960050;background-color:#1e0010">、</span>可扩展性<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>问<span style="color:#960050;background-color:#1e0010">：</span>开源LLM框架的商业使用限制<span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>大多数采用MIT<span style="color:#f92672">/</span>Apache许可<span style="color:#960050;background-color:#1e0010">，</span>可商业使用<span style="color:#960050;background-color:#1e0010">，</span>但需保留版权信息<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>问<span style="color:#960050;background-color:#1e0010">：</span>是否需要GPU才能运行LLM框架<span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>推理需要GPU以获得最佳性能<span style="color:#960050;background-color:#1e0010">，</span>但部分框架支持CPU模式<span style="color:#960050;background-color:#1e0010">（</span>较慢<span style="color:#960050;background-color:#1e0010">）。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>问<span style="color:#960050;background-color:#1e0010">：</span>企业级部署的最佳实践<span style="color:#960050;background-color:#1e0010">？</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>使用Kubernetes容器化<span style="color:#960050;background-color:#1e0010">、</span>API网关<span style="color:#960050;background-color:#1e0010">、</span>监控告警<span style="color:#960050;background-color:#1e0010">、</span>自动伸缩<span style="color:#960050;background-color:#1e0010">、</span>以及灰度发布<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span></code></pre></div>
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fvanna-ai-sql-generation%2f&text=Initialize%20Vanna%20with%20your%20API%20key" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fvanna-ai-sql-generation%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

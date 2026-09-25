@@ -1,0 +1,795 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check current vm.max_map_count | Dibi8</title>
+    <meta name="description" content="Technical guide and comparison">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/ragflow/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">Check current vm.max_map_count</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">Check current vm.max_map_count</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">Technical guide and comparison</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>title: &ldquo;RAGFlow: Deploy a Production-Ready RAG Engine with 80K+ &hellip;
+description: &ldquo;Technical guide and comparison&rdquo;
+date: 2026-05-19T00:00:00+08:00
+lastmod: 2026-05-19T00:00:00+08:00
+tech_stack: []
+application_domain: Llm Frameworks
+source_version: &rsquo;'
+licensing_model: Open Source
+license_type: Apache-2.0
+file_size: &rsquo;'
+file_md5: &rsquo;'
+download_url: &rsquo;'
+backup_url: &rsquo;'
+last_maintained: &ldquo;2026-05-19&rdquo;
+draft: false
+categories: [&ldquo;llm-frameworks&rdquo;]
+tags: [&ldquo;ragflow&rdquo;, &ldquo;rag-engine&rdquo;, &ldquo;document-understanding&rdquo;, &ldquo;docker-deployment&rdquo;, &ldquo;llm-agent&rdquo;, &ldquo;production-rag&rdquo;, &ldquo;open-source-ai&rdquo;]
+aliases:</p>
+<ul>
+<li>/posts/ragflow/-</li>
+</ul>
+<hr>
+<p><img alt="RAGFlow Logo" loading="lazy" src="https://raw.githubusercontent.com/infiniflow/ragflow/main/web/public/logo.svg"></p>
+<h2 id="introduction">Introduction</h2>
+<p>Most RAG pipelines fail in production because they treat PDFs and PowerPoints as plain text. Tables get mangled, image captions disappear, and scanned documents become unreadable. The result is a retrieval system that returns garbage context to your LLM — and hallucinated answers follow. RAGFlow, an open-source RAG engine with over 80,000 GitHub stars, was built to solve exactly this. Its DeepDoc engine understands document layouts, and its built-in agent framework lets you build autonomous knowledge workers, not just chatbots. In this guide, you will deploy RAGFlow on a production server, configure document ingestion, tune retrieval quality, and integrate it with your existing LLM stack.</p>
+<h2 id="what-is-ragflow">What Is RAGFlow?</h2>
+<p>RAGFlow is an open-source retrieval-augmented generation engine that combines deep document understanding with LLM-powered agents to deliver truthful, cited answers from complex enterprise documents. Unlike generic RAG libraries that rely on simple text splitting, RAGFlow analyzes document structure — tables, images, headers, and scanned pages — to preserve semantic meaning during ingestion. It ships as a Docker-based platform with a web UI, REST API, and agent builder, making it suitable for both developers building pipelines and non-technical users managing knowledge bases.</p>
+<h2 id="how-ragflow-works">How RAGFlow Works</h2>
+<p><img alt="RAGFlow System Architecture" loading="lazy" src="https://raw.githubusercontent.com/infiniflow/ragflow/main/docs/img/ragflow-architecture.png"></p>
+<p>RAGFlow&rsquo;s architecture follows a modular pipeline design with six core stages: ### 1. Document Ingestion (DeepDoc)</p>
+<p>Documents enter RAGFlow through the <strong>DeepDoc</strong> parsing engine. DeepDoc performs layout analysis on PDFs, Word files, Excel sheets, PowerPoint slides, images, and scanned copies. It identifies tables, figures, headers, paragraphs, and text blocks using a vision-based document layout model. This stage also supports external parsers like MinerU and Docling for specialized formats.</p>
+<h3 id="2-knowledge-extraction-and-chunking">2. Knowledge Extraction and Chunking</h3>
+<p>After parsing, RAGFlow applies template-based chunking strategies. You can choose from multiple chunking modes — naive, manual, Q&amp;A, table, paper, book, laws, presentation, picture, and one — depending on your document type. Each chunk preserves its structural context, and RAGFlow optionally extracts keywords and generates related questions to improve retrieval recall.</p>
+<h3 id="3-indexing-hybrid-search-backend">3. Indexing (Hybrid Search Backend)</h3>
+<p>Chunks are indexed into either <strong>Elasticsearch</strong> (default) or <strong>Infinity</strong> for hybrid search. Both full-text search and dense vector search are supported. The system computes embeddings using configurable embedding models and stores vectors alongside inverted indices for keyword retrieval.</p>
+<h3 id="4-retrieval-and-re-ranking">4. Retrieval and Re-ranking</h3>
+<p>When a query arrives, RAGFlow performs multi-channel retrieval: keyword search, vector similarity search, and knowledge graph traversal (if GraphRAG is enabled). Results are fused and re-ranked using a cross-encoder re-ranker before being passed to the LLM context window.</p>
+<h3 id="5-generation-with-citations">5. Generation with Citations</h3>
+<p>RAGFlow constructs a prompt that includes retrieved chunks with traceable citations. The LLM generates an answer grounded in the retrieved context, and RAGFlow displays the source chunks alongside the response so users can verify every claim.</p>
+<h3 id="6-agent-execution-optional">6. Agent Execution (Optional)</h3>
+<p>Beyond simple question answering, RAGFlow&rsquo;s agent framework supports multi-step workflows with memory, tool calling, MCP (Model Context Protocol) integration, and code execution in sandboxed environments. Agents can browse the web, query databases, and chain multiple retrieval operations.</p>
+<h3 id="infrastructure-stack">Infrastructure Stack</h3>
+<p>| Service | Purpose | Default Backend |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Vector + Full-Text Store | Document indexing and search | Elasticsearch or Infinity |
+| Object Storage | File storage for uploaded documents | MinIO |
+| Metadata Database | User data, dataset configs, chat history | MySQL |
+| Cache &amp; Queue | Task queuing and session caching | Redis |
+| Document Parser | Layout analysis and OCR | DeepDoc (built-in) |
+| Frontend | Web UI for dataset management | React + TypeScript |
+| Backend API | Core orchestration logic | Python + Go |</p>
+<h2 id="installation--setup">Installation &amp; Setup</h2>
+<h3 id="hardware-requirements">Hardware Requirements</h3>
+<p>| Resource | Minimum | Recommended for Production |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| CPU | 4 cores (x86_64) | 8+ cores |
+| RAM | 16 GB | 32+ GB |
+| Disk | 50 GB SSD | 200+ GB NVMe |
+| Docker | 24.0.0+ | Latest stable |
+| Docker Compose | v2.26.1+ | Latest stable |</p>
+<blockquote>
+<p><strong>Note:</strong> RAGFlow officially supports x86_64 platforms. ARM64 is community-tested but requires building your own Docker image.</p>
+</blockquote>
+<h3 id="pre-deployment-system-tuning">Pre-Deployment: System Tuning</h3>
+<p>Before starting RAGFlow, ensure your kernel parameters are tuned for Elasticsearch: ````bash</p>
+<h1 id="check-current-vmmax_map_count">Check current vm.max_map_count</h1>
+<p>sysctl vm.max_map_count</p>
+<h1 id="set-to-at-least-262144-required-by-elasticsearch">Set to at least 262144 (required by Elasticsearch)</h1>
+<p>sudo sysctl -w vm.max_map_count=262144</p>
+<h1 id="persist-across-reboots">Persist across reboots</h1>
+<p>echo &ldquo;vm.max_map_count=262144&rdquo; | sudo tee -a /etc/sysctl.conf</p>
+<pre tabindex="0"><code>
+### Step 1: Clone the Repository
+
+`````bash
+git clone https://github.com/infiniflow/ragflow.git
+cd ragflow/docker
+git checkout -f v0.25.4
+</code></pre><h3 id="step-2-configure-environment-variables">Step 2: Configure Environment Variables</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Edit the environment file</span>
+</span></span><span style="display:flex;"><span>cp .env .env.backup
+</span></span><span style="display:flex;"><span>nano .env
+</span></span></code></pre></div><p>Key variables to set: `````bash</p>
+<h1 id="dockerenv">docker/.env</h1>
+<p>RAGFLOW_IMAGE=infiniflow/ragflow:v0.25.4
+SVR_HTTP_PORT=80
+MYSQL_PASSWORD=your_secure_mysql_password
+MINIO_PASSWORD=your_secure_minio_password
+REDIS_PASSWORD=your_secure_redis_password</p>
+<h1 id="choose-your-document-engine-elasticsearch-or-infinity">Choose your document engine: elasticsearch or infinity</h1>
+<p>DOC_ENGINE=elasticsearch</p>
+<pre tabindex="0"><code>
+### Step 3: Launch with Docker Compose
+
+`````bash
+# CPU-only deployment
+docker compose -f docker-compose.yml up -d
+
+# GPU-accelerated document parsing (NVIDIA)
+# sed -i &#39;1i DEVICE=gpu&#39; .env
+# docker compose -f docker-compose.yml up -d
+</code></pre><p>Verify the deployment: `````bash</p>
+<h1 id="watch-the-logs-until-you-see-the-success-message">Watch the logs until you see the success message</h1>
+<p>docker logs -f ragflow-server</p>
+<h1 id="expected-output------____---___----______-______-__">Expected output: #     ____   ___    ______ ______ __</h1>
+<h1 id="-__--------____----_------__">/ __ \ /   |  / ____// <strong><strong>// /</strong></strong>  _      __</h1>
+<h1 id="-------__-----__-----">/ /<em>/ // /| | / / __ / /</em>   / // __ | | /| / /</h1>
+<h1 id="------">/ <em>, <em>// ___ |/ /</em>/ // __/  / // /</em>/ /| |/ |/ /</h1>
+<h1 id="---_-__">/<em>/ |</em>|/<em>/  |</em>|_<em><em><em>//</em>/    /</em>/ _</em><strong>/ |</strong>/|__/</h1>
+<h1 id="-running-on-all-addresses-0000">* Running on all addresses (0.0.0.0)</h1>
+<pre tabindex="0"><code>
+### Step 4: Configure Your LLM Provider
+
+Edit ``service_conf.yaml.template`` to add your LLM API keys: `````yaml
+# docker/service_conf.yaml.template
+user_default_llm: factory: OpenAI
+  api_key: sk-your-openai-api-key
+  base_url: https://api.openai.com/v1
+  default_model: gpt-4.1-mini
+</code></pre><p>Supported LLM providers include OpenAI, Anthropic, DeepSeek, Gemini, Azure OpenAI, Bedrock, and local models via Ollama or vLLM. Restart the containers after configuration changes: `````bash
+docker compose -f docker-compose.yml down
+docker compose -f docker-compose.yml up -d</p>
+<pre tabindex="0"><code>
+### Step 5: Access the Web UI
+
+Open your browser and navigate to ``http://YOUR_SERVER_IP``. The default login is: `````
+Email: admin@ragflow.io
+Password: (set during first login)
+</code></pre><p><img alt="RAGFlow Web Interface" loading="lazy" src="https://raw.githubusercontent.com/infiniflow/ragflow/main/docs/img/login.png"></p>
+<h2 id="integration-with-popular-tools">Integration with Popular Tools</h2>
+<h3 id="ollama-local-llms">Ollama (Local LLMs)</h3>
+<p>For air-gapped or privacy-sensitive deployments, connect RAGFlow to Ollama: `````yaml</p>
+<h1 id="dockerservice_confyamltemplate">docker/service_conf.yaml.template</h1>
+<p>user_default_llm: factory: Ollama
+api_key: &quot;&rdquo;
+base_url: <a href="http://host.docker.internal:11434">http://host.docker.internal:11434</a>
+default_model: llama3.2</p>
+<pre tabindex="0"><code>
+Pull models in Ollama before using them: `````bash
+ollama pull llama3.2
+ollama pull nomic-embed-text
+</code></pre><p>Configure the embedding model in the RAGFlow web UI under <strong>Settings &gt; Model Providers</strong>.</p>
+<h3 id="openai-cloud-api">OpenAI (Cloud API)</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">user_default_llm: factory</span>: <span style="color:#ae81ff">OpenAI</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">api_key</span>: <span style="color:#ae81ff">${OPENAI_API_KEY}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">base_url</span>: <span style="color:#ae81ff">https://api.openai.com/v1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">default_model</span>: <span style="color:#ae81ff">gpt-4.1-mini</span>
+</span></span></code></pre></div><p>Use environment variable substitution to avoid hardcoding secrets: `````bash</p>
+<h1 id="in-env">In .env</h1>
+<p>OPENAI_API_KEY=sk-your-key</p>
+<pre tabindex="0"><code>
+### Elasticsearch to Infinity Migration
+
+Infinity is RAGFlow&#39;s converged context engine optimized for large-scale deployments. To switch: `````bash
+# 1. Stop all containers and clear volumes
+docker compose -f docker-compose.yml down -v
+
+# 2. Update .env
+sed -i &#39;s/DOC_ENGINE=elasticsearch/DOC_ENGINE=infinity/&#39; .env
+
+# 3. Restart
+docker compose -f docker-compose.yml up -d
+</code></pre><blockquote>
+<p><strong>Warning:</strong> This wipes existing data. Back up your datasets before migrating.</p>
+</blockquote>
+<h3 id="redis-as-external-cache">Redis as External Cache</h3>
+<p>For production deployments, use an external Redis cluster: `````yaml</p>
+<h1 id="docker-composeyml-excerpt">docker-compose.yml (excerpt)</h1>
+<p>services: redis: image: redis:7-alpine
+command: redis-server &ndash;requirepass ${REDIS_PASSWORD}
+volumes: - redis_data:/data
+deploy: resources: limits: memory: 2G</p>
+<pre tabindex="0"><code>
+### Qdrant as Alternative Vector Store
+
+While RAGFlow uses Elasticsearch or Infinity natively, you can integrate Qdrant via the Python SDK for custom retrieval pipelines: `````python
+from qdrant_client import QdrantClient
+from ragflow_sdk import RAGFlow
+
+# Connect to both systems
+ragflow = RAGFlow(api_key=&#34;your-key&#34;, base_url=&#34;http://localhost:9380&#34;)
+qdrant = QdrantClient(url=&#34;http://localhost:6333&#34;)
+
+# Custom hybrid retrieval combining RAGFlow chunks with Qdrant vectors
+chunks = ragflow.retrieve(dataset_id=&#34;ds_123&#34;, query=&#34;annual revenue 2025&#34;)
+vectors = qdrant.search(collection=&#34;financial_reports&#34;, vector=query_embedding, limit=5)
+</code></pre><h2 id="benchmarks--real-world-use-cases">Benchmarks / Real-World Use Cases</h2>
+<h3 id="retrieval-quality-benchmarks">Retrieval Quality Benchmarks</h3>
+<p>A 2026 benchmark by AI Multiple compared RAGFlow against other frameworks using 100 standardized queries with GPT-4.1-mini as the generation model: | Metric | RAGFlow | LlamaIndex | Haystack | LangChain RAG |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Answer Accuracy | 97% | 94% | 95% | 91% |
+| Avg. Retrieval Latency | 420ms | 380ms | 450ms | 510ms |
+| Token Efficiency (per query) | 1,450 | 1,600 | 1,570 | 2,400 |
+| Framework Overhead | 8ms | 6ms | 5.9ms | 10ms |
+| Citation Grounding Score | 96% | 88% | 90% | 82% |</p>
+<p>RAGFlow leads in accuracy and citation grounding due to DeepDoc&rsquo;s layout-aware parsing, which preserves table structures and image captions that other frameworks strip during text splitting.</p>
+<h3 id="document-parsing-performance">Document Parsing Performance</h3>
+<p>| Document Type | RAGFlow (DeepDoc) | LlamaIndex | Haystack |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| PDF with tables | Full structure preserved | Flat text | Flat text |
+| Scanned PDF (OCR) | Native support | Requires extension | Requires extension |
+| PowerPoint slides | Slide-aware chunking | Per-slide | Per-slide |
+| Excel spreadsheets | Cell-level extraction | CSV conversion | CSV conversion |
+| Multi-language docs | Cross-language query | Monolingual | Monolingual |</p>
+<h3 id="production-deployment-profiles">Production Deployment Profiles</h3>
+<p>| Profile | Users | Documents | Hardware | Monthly Cloud Cost |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Team (10 users) | 10 | 10,000 | 4 vCPU, 16 GB RAM | ~$80 (DigitalOcean) |
+| Department (100 users) | 100 | 100,000 | 8 vCPU, 32 GB RAM | ~$200 (DigitalOcean) |
+| Enterprise (1000+ users) | 1000+ | 1M+ | 16 vCPU, 64 GB RAM + GPU | ~$800+ (cloud) |</p>
+<blockquote>
+<p>Looking for a reliable cloud host for RAGFlow? Deploy on <a href="https://www.digitalocean.com/">DigitalOcean</a> with one-click Docker setup, or use <a href="https://www.htstack.com/">HTStack</a> for managed container hosting with built-in monitoring.</p>
+</blockquote>
+<h2 id="advanced-usage--production-hardening">Advanced Usage / Production Hardening</h2>
+<h3 id="enable-https-with-reverse-proxy">Enable HTTPS with Reverse Proxy</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#75715e"># /etc/nginx/sites-available/ragflow
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">listen</span> <span style="color:#ae81ff">443</span> <span style="color:#e6db74">ssl</span> <span style="color:#e6db74">http2</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server_name</span> <span style="color:#e6db74">ragflow.yourcompany.com</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ssl_certificate</span> <span style="color:#e6db74">/etc/letsencrypt/live/ragflow.yourcompany.com/fullchain.pem</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ssl_certificate_key</span> <span style="color:#e6db74">/etc/letsencrypt/live/ragflow.yourcompany.com/privkey.pem</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://localhost:80</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $host;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-Proto</span> $scheme;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_read_timeout</span> <span style="color:#e6db74">300s</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="enable-graphrag-for-multi-hop-reasoning">Enable GraphRAG for Multi-Hop Reasoning</h3>
+<p>GraphRAG extracts knowledge graphs from documents, enabling cross-document reasoning: `````python</p>
+<h1 id="via-the-ragflow-web-ui-or-api">Via the RAGFlow web UI or API</h1>
+<p>POST /api/datasets/{dataset_id}/chunks/graph
+{
+&ldquo;method&rdquo;: &ldquo;ligh&rdquo;,
+&ldquo;entity_types&rdquo;: [&ldquo;PERSON&rdquo;, &ldquo;ORGANIZATION&rdquo;, &ldquo;PRODUCT&rdquo;, &ldquo;EVENT&rdquo;],
+&ldquo;max_workers&rdquo;: 4
+}</p>
+<pre tabindex="0"><code>
+GraphRAG is especially effective for legal documents, research papers, and financial reports where relationships between entities span multiple pages.
+
+### Configure the Sandbox (Code Execution)
+
+RAGFlow&#39;s agent can execute Python and JavaScript code in a sandboxed environment. This requires gVisor: `````bash
+# Install gVisor (required for sandbox)
+sudo apt-get install -y runsc
+
+# Enable in docker-compose.yml
+services: ragflow: environment: - ENABLE_SANDBOX=true
+    devices: - /dev/kvm
+</code></pre><h3 id="monitoring-with-prometheus">Monitoring with Prometheus</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Add to docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: prometheus: image</span>: <span style="color:#ae81ff">prom/prometheus:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./prometheus.yml:/etc/prometheus/prometheus.yml</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">prometheus_data:/prometheus</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;9090:9090&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">grafana: image</span>: <span style="color:#ae81ff">grafana/grafana:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;3000:3000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">grafana_data:/var/lib/grafana</span>
+</span></span></code></pre></div><p>Key metrics to monitor: `````yaml</p>
+<h1 id="prometheusyml">prometheus.yml</h1>
+<p>scrape_configs: - job_name: ragflow
+static_configs: - targets: [ragflow-server:9380]
+metrics_path: /metrics</p>
+<pre tabindex="0"><code>
+### Backup Strategy
+
+`````bash
+#!/bin/bash
+# /opt/ragflow/backup.sh
+
+BACKUP_DIR=&#34;/backups/ragflow/$(date +%Y%m%d)&#34;
+mkdir -p $BACKUP_DIR
+
+# Backup MySQL
+docker exec ragflow-mysql mysqldump -u root -p$MYSQL_PASSWORD ragflow &gt; $BACKUP_DIR/mysql.sql
+
+# Backup Elasticsearch indices
+docker exec ragflow-es curl -sX POST &#34;localhost:9200/_snapshot/backup&#34; \
+  -H &#39;Content-Type: application/json&#39; \
+  -d&#39;{&#34;indices&#34;: &#34;ragflow_*&#34;}&#39;
+
+# Backup MinIO objects
+docker exec ragflow-minio mc mirror /data $BACKUP_DIR/minio
+
+# Sync to remote storage
+rclone sync $BACKUP_DIR s3:my-backup-bucket/ragflow/
+</code></pre><h2 id="comparison-with-alternatives">Comparison with Alternatives</h2>
+<p>| Feature | RAGFlow | LlamaIndex | Haystack | LangChain RAG |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>GitHub Stars</strong> | 80,853 | 49,500 | 25,300 | 105,000 |
+| <strong>License</strong> | Apache-2.0 | MIT | Apache-2.0 | MIT |
+| <strong>Deep Document Parsing</strong> | DeepDoc (built-in) | LlamaParse (paid) | Basic | Basic |
+| <strong>Visual Workflow Builder</strong> | Yes | No | No | No |
+| <strong>Built-in Web UI</strong> | Yes | No | No | No |
+| <strong>Agent Framework</strong> | Native (with memory) | External | External | LangGraph |
+| <strong>Hybrid Search</strong> | Full-text + Vector | Vector-only | Full-text + Vector | Depends on store |
+| <strong>GraphRAG Support</strong> | Yes | Yes | Via extension | Via extension |
+| <strong>OCR for Scanned Docs</strong> | Native | Paid addon | Via extension | Via extension |
+| <strong>Code Execution Sandbox</strong> | Yes (gVisor) | No | No | No |
+| <strong>Self-Hosted Deployment</strong> | Docker Compose | Python package | Python package | Python package |
+| <strong>MCP Protocol Support</strong> | Yes | No | No | No |
+| <strong>REST API</strong> | Full API | Requires building | Requires building | Requires building |
+| <strong>Enterprise SSO</strong> | Yes | Cloud only | Cloud only | Cloud only |</p>
+<h3 id="when-to-choose-what">When to Choose What</h3>
+<ul>
+<li><strong>RAGFlow</strong>: You need a complete self-hosted RAG platform with deep document understanding, a visual UI, and built-in agents. Best for enterprises handling complex documents (PDFs, scans, spreadsheets) that want full data control.</li>
+<li><strong>LlamaIndex</strong>: You are building a custom Python application with specific indexing needs and prefer a library over a platform. Best for developers who need maximum flexibility and don&rsquo;t mind building their own UI.</li>
+<li><strong>Haystack</strong>: You need a production-grade pipeline framework with strong evaluation tools and enterprise support from deepset. Best for teams that prioritize pipeline observability and testing.</li>
+<li><strong>LangChain RAG</strong>: You want the largest ecosystem of integrations and don&rsquo;t mind assembling components yourself. Best for rapid prototyping and startups that need to iterate quickly.</li>
+</ul>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment</h2>
+<p><strong>Not a lightweight tool.</strong> RAGFlow requires a minimum of 16 GB RAM and multiple backend services (Elasticsearch, MySQL, Redis, MinIO). This is not a single-binary deployment. If you need a simple RAG setup for a side project, consider lighter alternatives like LightRAG or a direct LlamaIndex implementation.</p>
+<p><strong>x86 only for official images.</strong> ARM64 platforms (including Apple Silicon and AWS Graviton) require building your own Docker image from source. This adds significant time to deployment.</p>
+<p><strong>Learning curve for advanced features.</strong> The visual UI covers 80% of use cases, but enabling GraphRAG, configuring custom embedding pipelines, or building agents requires reading the documentation carefully.</p>
+<p><strong>No native multi-region replication.</strong> While you can back up and restore datasets, RAGFlow does not offer built-in cross-region replication for the underlying storage. You will need to configure MySQL and Elasticsearch replication separately.</p>
+<p><strong>Embedding models are not included in slim images.</strong> Starting with v0.22.0, only slim images are published. You must either download embedding models at runtime or connect to external embedding services.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<h3 id="what-hardware-do-i-need-for-a-production-ragflow-deployment">What hardware do I need for a production RAGFlow deployment?</h3>
+<p>For a production deployment serving 50+ users, use a server with at least 8 vCPU cores, 32 GB RAM, and 200 GB NVMe SSD. If you are parsing large scanned PDFs with OCR, add a GPU with at least 8 GB VRAM to accelerate DeepDoc tasks. For small teams of under 10 users, the minimum specs (4 vCPU, 16 GB RAM) are sufficient.</p>
+<h3 id="can-i-use-ragflow-with-local-llms-only">Can I use RAGFlow with local LLMs only?</h3>
+<p>Yes. RAGFlow integrates with Ollama, vLLM, Xinference, and LocalAI. Configure the LLM provider in <code>service_conf.yaml.template</code> with the base URL of your local inference server. For embeddings, pull an embedding model through Ollama (such as <code>nomic-embed-text</code>) and configure it in the web UI under Model Providers.</p>
+<h3 id="how-does-ragflow-handle-scanned-pdfs-and-images">How does RAGFlow handle scanned PDFs and images?</h3>
+<p>RAGFlow&rsquo;s DeepDoc engine includes a built-in OCR pipeline that processes scanned PDFs, PNGs, and JPEGs. It uses a document layout analysis model to identify text regions, tables, and images before applying OCR. The extracted text maintains its structural context — tables are preserved as tables, not flattened into paragraphs.</p>
+<h3 id="is-my-data-secure-when-using-ragflow">Is my data secure when using RAGFlow?</h3>
+<p>When self-hosted, all data remains on your infrastructure. Documents are stored in MinIO, vectors in Elasticsearch/Infinity, and metadata in MySQL — all within your network. RAGFlow does not send documents to external services unless you configure a cloud LLM provider. For maximum privacy, use local LLMs and embedding models.</p>
+<h3 id="how-do-i-upgrade-ragflow-to-a-new-version">How do I upgrade RAGFlow to a new version?</h3>
+<p>First, back up your MySQL database and Elasticsearch indices. Then pull the new Docker image, update the <code>RAGFLOW_IMAGE</code> variable in <code>.env</code>, and restart the containers. Always check the release notes for breaking changes between versions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd ragflow/docker
+</span></span><span style="display:flex;"><span>git fetch --tags
+</span></span><span style="display:flex;"><span>git checkout -f v0.25.4
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Update .env with new image tag</span>
+</span></span><span style="display:flex;"><span>docker compose -f docker-compose.yml down
+</span></span><span style="display:flex;"><span>docker compose -f docker-compose.yml pull
+</span></span><span style="display:flex;"><span>docker compose -f docker-compose.yml up -d
+</span></span></code></pre></div><h3 id="can-i-integrate-ragflow-into-my-existing-application">Can I integrate RAGFlow into my existing application?</h3>
+<p>Yes. RAGFlow exposes a full REST API and provides Python and JavaScript SDKs. You can create datasets, upload documents, start chat sessions, and retrieve answers programmatically. The API documentation is available at ````/api/docs``` on your RAGFlow instance.</p>
+<h3 id="what-document-formats-does-ragflow-support">What document formats does RAGFlow support?</h3>
+<p>RAGFlow supports Word (DOC, DOCX), PowerPoint (PPT, PPTX), Excel (XLS, XLSX), PDF, TXT, Markdown, images (PNG, JPG, BMP, TIFF), scanned copies, HTML, and CSV. It also supports importing data from Confluence, Notion, Google Drive, Discord, and S3.</p>
+<h3 id="does-ragflow-support-multi-tenancy">Does RAGFlow support multi-tenancy?</h3>
+<p>RAGFlow supports multiple users and datasets with role-based access control within a single instance. For true multi-tenancy (isolated tenants with separate data), you currently need to run separate RAGFlow instances or implement tenant filtering at the application layer.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>RAGFlow stands out as the only open-source RAG platform that combines deep document understanding, a production-ready web UI, and built-in agent capabilities in a single deployable system. With 80,853 GitHub stars and an active development cycle, it has proven its value for teams that need more than a basic text-splitting RAG pipeline. The Docker-based deployment takes under 30 minutes, and the hybrid search architecture delivers measurably better retrieval quality than framework-only alternatives.</p>
+<p><strong>Your next steps:</strong></p>
+<ol>
+<li>Clone the repository and deploy RAGFlow on your server using Docker Compose</li>
+<li>Upload a complex PDF with tables and verify the parsing quality in the web UI</li>
+<li>Configure your preferred LLM provider (OpenAI, DeepSeek, or Ollama)</li>
+<li>Set up HTTPS and automated backups for production use</li>
+<li>Join the community for support and feature updates</li>
+</ol>
+<p>Join our <a href="https://t.me/dibi8opensource">Telegram developer community</a> for deployment tips and production RAG discussions. Share your RAGFlow setup — we feature the best configurations in our weekly newsletter.</p>
+<p><em>Some links in this article are affiliate links. We may earn a commission if you purchase hosting services through these links. This does not affect our editorial recommendations.</em></p>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure</h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading</h2>
+<ul>
+<li><a href="https://github.com/infiniflow/ragflow">RAGFlow GitHub Repository</a></li>
+<li><a href="https://ragflow.io/docs/dev/">RAGFlow Official Documentation</a></li>
+<li><a href="https://ragflow.io/docs/dev/">RAGFlow Quickstart Guide</a></li>
+<li><a href="https://github.com/infiniflow/ragflow/blob/main/docker/README.md">RAGFlow Docker Deployment README</a></li>
+<li><a href="https://github.com/infiniflow/ragflow/tree/main/deepdoc">DeepDoc Document Understanding</a></li>
+<li><a href="https://ragflow.io/docs/dev/category/references">RAGFlow REST API Reference</a></li>
+<li><a href="https://aimultiple.com/rag-frameworks">RAGFlow vs Other RAG Frameworks Benchmark</a></li>
+<li><a href="https://github.com/run-llama/llama_index">LlamaIndex GitHub Repository</a></li>
+<li><a href="https://github.com/deepset-ai/haystack">Haystack GitHub Repository</a></li>
+<li><a href="https://www.firecrawl.dev/blog/best-open-source-rag-frameworks">Best Open Source RAG Frameworks 2026 Comparison</a></li>
+<li><a href="https://milvus.io/ai-quick-reference/what-is-ragflow-and-how-does-it-work">RAGFlow Architecture Explained</a></li>
+<li><a href="https://zhujibaike.com/2497.html">RAGFlow Production Deployment on VPS</a></li>
+</ul>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;RAGFlow: Deploy a Production-Ready RAG Engine with 80K+ Stars — Docker Setup and Benchmarks for 2026&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/ragflow%22">https://dibi8.com/resources/ragflow"</a>
+}
+}
+</script></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+<hr>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fragflow%2f&text=Check%20current%20vm.max_map_count" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fragflow%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>

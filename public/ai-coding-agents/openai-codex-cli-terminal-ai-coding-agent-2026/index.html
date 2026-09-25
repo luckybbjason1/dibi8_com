@@ -1,0 +1,697 @@
+
+<!DOCTYPE html>
+<html lang="zh" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGENTS.md — AI Engineering Assistant Guide | Dibi8</title>
+    <meta name="description" content="## What Is OpenAI Codex CLI and Why Developers Are Switching in 2026">
+    <meta name="keywords" content="AI工具,人工智能,工具导航,Dibi8">
+    <meta name="author" content="Dibi8 Team">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="canonical" href="https://dibi8.com/ai-coding-agents/openai-codex-cli-terminal-ai-coding-agent-2026/">
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    
+    
+</head>
+<body class="bg-[#f8fafc] font-sans antialiased text-gray-900">
+    <nav class="site-nav" role="navigation" aria-label="主导航">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-3" aria-label="Dibi8首页">
+            <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-violet-600 flex items-center justify-center">
+                <i class="fas fa-bolt text-white text-sm"></i>
+            </div>
+            <span class="text-lg font-semibold text-gray-900 tracking-tight">Dibi8</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-8">
+            <a href="/" class="nav-link">首页</a>
+            <a href="/categories/" class="nav-link">分类</a>
+            <a href="/collections/" class="nav-link">合集</a>
+            <a href="/tools/" class="nav-link">工具</a>
+            <a href="/about/" class="nav-link">关于</a>
+            <a href="/translations/" class="nav-link flex items-center gap-2">
+                <i class="fas fa-globe text-xs"></i>多语言
+            </a>
+        </div>
+
+        <div class="flex items-center gap-3">
+            <button onclick="openSearch()" class="hidden sm:flex items-center gap-2 px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg text-sm text-gray-500 transition-colors border border-gray-200" aria-label="搜索工具">
+                <i class="fas fa-search text-xs"></i>
+                搜索
+                <kbd class="text-[11px] bg-white border border-gray-300 rounded px-1.5 py-0.5 text-gray-400">⌘K</kbd>
+            </button>
+            <button onclick="openSearch()" aria-label="搜索" class="sm:hidden w-9 h-9 rounded-lg bg-gray-100 border border-gray-200 flex items-center justify-center text-gray-500">
+                <i class="fas fa-search text-xs"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">AGENTS.md — AI Engineering Assistant Guide</span>
+        </nav>
+
+        
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">AGENTS.md — AI Engineering Assistant Guide</h1>
+
+        
+        <p class="text-gray-500 text-lg mb-8">## What Is OpenAI Codex CLI and Why Developers Are Switching in 2026</p>
+        
+
+        
+        <div class="flex flex-wrap gap-2 mb-10">
+            
+            <a href="/tags/ai/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#ai</a>
+            
+            <a href="/tags/tools/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#tools</a>
+            
+        </div>
+
+        
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-img:rounded-xl prose-img:shadow-md">
+            <p>{&lt;/* resource-info */&gt;}</p>
+<h2 id="what-is-openai-codex-cli-and-why-developers-are-switching-in-2026">What Is OpenAI Codex CLI and Why Developers Are Switching in 2026</h2>
+<p>The developer tooling landscape has shifted dramatically between 2025 and 2026. We have moved from static code completion (GitHub Copilot) to conversational coding (ChatGPT, Cursor) and now to <strong>terminal-native autonomous agents</strong>—AI systems that live inside your terminal, understand your entire codebase, and execute real engineering tasks.</p>
+<p>OpenAI Codex CLI sits at the center of this shift. With <strong>83,000+ GitHub stars</strong> and one of the fastest growth trajectories in the AI developer tools category, it is not merely a chatbot wrapper. It is an open-source, Rust-built coding agent that reads files, edits code, runs shell commands, executes tests, performs code reviews, and delegates long-running tasks to cloud sandboxes.</p>
+<p>Here is what distinguishes Codex CLI from earlier-generation tools: - <strong>Zero marginal cost for ChatGPT subscribers</strong> — If you already pay for Plus ($20/month) or Pro ($200/month), Codex CLI usage is bundled. No separate API billing.</p>
+<ul>
+<li><strong>Fully open source (Apache-2.0)</strong> — Fork it, audit it, extend it. The Rust rewrite from the original TypeScript base delivers sub-second cold starts.</li>
+<li><strong>Four entry points, one shared state</strong> — Start a task in VS Code, hand it off to the cloud agent while you sleep, and merge the PR from GitHub the next morning.</li>
+<li><strong>Multi-agent concurrency</strong> — Run up to 6 parallel sub-agents with distinct roles: explorer, worker, reviewer, tester.</li>
+<li><strong>MCP-native</strong> — First-class Model Context Protocol support for connecting databases, APIs, documentation systems, and observability platforms.</li>
+<li><strong>Enterprise-grade sandboxing</strong> — Linux Landlock and macOS Seatbelt restrict filesystem access; network egress is opt-in; every action is auditable.</li>
+</ul>
+<p>If you are still copy-pasting snippets from a browser tab, this tool will fundamentally restructure how you write software.</p>
+<hr>
+<h2 id="zero-to-production-installation-in-under-five-minutes">Zero-to-Production Installation in Under Five Minutes</h2>
+<h3 id="prerequisites">Prerequisites</h3>
+<ul>
+<li>Node.js 18+ (for the npm path)</li>
+<li>Or macOS with Homebrew (native Rust binary, no Node dependency)</li>
+<li>A ChatGPT Plus, Pro, Business, or Enterprise subscription — OR — an OpenAI API key</li>
+</ul>
+<h3 id="three-install-paths">Three Install Paths</h3>
+<p><strong>Option A: npm (cross-platform)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install -g @openai/codex
+</span></span><span style="display:flex;"><span>codex --version
+</span></span></code></pre></div><p><strong>Option B: Homebrew (macOS native binary)</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew update
+</span></span><span style="display:flex;"><span>brew install --cask codex
+</span></span><span style="display:flex;"><span>codex --version
+</span></span></code></pre></div><p><strong>Option C: One-line installer</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -sSL https://releases.openai.com/codex/install.sh | bash
+</span></span></code></pre></div><h3 id="authentication">Authentication</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex login
+</span></span></code></pre></div><p>Your default browser opens the OpenAI authorization flow. Sign in with your ChatGPT account, approve the OAuth request, and return to the terminal. No API key management. No separate billing dashboard. Your usage counts against your ChatGPT plan quota.</p>
+<p>For teams requiring API-key mode (common in enterprise environments where shared subscriptions are insufficient): `````bash
+export OPENAI_API_KEY=&ldquo;sk-&hellip;&rdquo;
+codex</p>
+<pre tabindex="0"><code>
+Or persist it in ``~/.codex/config.toml``: `````toml
+preferred_auth_method = &#34;apikey&#34;
+</code></pre><h3 id="first-task-the-canonical-smoke-test">First Task: The Canonical Smoke Test</h3>
+<p>Navigate to any repository and issue a bounded task: `````bash
+cd ~/projects/your-repo
+codex &ldquo;Add a unit test for the parseDate function in src/utils/date.ts. Cover valid inputs, edge cases, and invalid formats. Run the test suite and confirm all tests pass.&rdquo;</p>
+<pre tabindex="0"><code>
+Watch Codex: 1. Scan the repository to identify the test framework (Jest, Vitest, Mocha, pytest, etc.)
+2. Read the implementation of ````parseDate````
+3. Generate a test file with meaningful cases
+4. Execute the tests
+5. Present a diff and ask for approval before writing to disk
+
+
+* * *
+## The Mental Model Shift: From Typing Code to Directing Agents
+
+The single most important adaptation when using Codex CLI is changing your self-conception. You are no longer the person who types every semicolon. You are the **engineering lead who delegates tasks to an AI teammate**—and that teammate needs context, constraints, and clear acceptance criteria.
+
+### The Four-Element Prompt Structure
+
+| Element | Purpose | Example |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| **Objective** | What to build or modify | &#34;Implement JWT-based auth middleware&#34; |
+| **Context** | Which files, frameworks, or conventions matter | &#34;Use Go + Gin. Database connection is in db/conn.go. Follow existing error handling patterns.&#34; |
+| **Constraints** | Rules that must not be violated | &#34;Do not break the existing REST API contract. Every new function must have unit tests.&#34; |
+| **Verification** | How to prove the task is complete | &#34;Run ````go test ./...````. All tests pass. Provide curl commands to test login and refresh flows.&#34; |
+
+**Weak prompt:** &#34;Write a login function.&#34;
+
+**Strong prompt:**
+
+&gt; &#34;Build a user authentication system for this Go/Gin project: &gt; 1. Registration and login REST endpoints with JWT tokens
+&gt; 2. MySQL user table schema matching the existing conventions in db/schema.sql
+&gt; 3. Run the server and give me curl commands to verify registration and login end-to-end.&#34;
+
+Codex will scaffold the package structure, write the handlers, wire the database layer, install dependencies, start the server, and hand you working curl commands.
+
+### Three Approval Modes for Different Trust Levels
+
+| Mode | File Read | File Edit | Command Execution | When to Use |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| **Auto (default)** | Auto-allowed | Requires approval | Requires approval | Daily development; safe default |
+| **Read Only** | Auto-allowed | Prohibited | Prohibited | Codebase exploration, onboarding, audits |
+| **Full Access** | Auto-allowed | Auto-allowed | Auto-allowed | CI/CD containers, isolated VMs, trusted automation |
+
+Launch flags: `````bash
+codex --sandbox read-only              # Pure analysis; zero mutation risk
+codex --sandbox workspace-write        # Can edit files; untrusted commands still require approval
+codex --full-auto                      # Automates approvals; sandbox still active
+codex --yolo                           # Disables sandbox AND approvals. Isolated environments ONLY.
+</code></pre><p><strong>Critical safety note:</strong> <code>--yolo</code> (long form: <code>--dangerously-bypass-approvals-and-sandbox</code>) is intended exclusively for throwaway containers, CI runners, and sandboxed VMs. Never run it against a production repository on your local workstation.</p>
+<hr>
+<h2 id="agentsmd-the-single-file-that-determines-code-quality">AGENTS.md: The Single File That Determines Code Quality</h2>
+<p>Codex CLI automatically discovers and reads <code>AGENTS.md</code> files before every task. Think of this as the onboarding document you would give a new human engineer—except your new teammate reads it in milliseconds and follows it with perfect recall.</p>
+<h3 id="a-production-ready-agentsmd-template">A Production-Ready AGENTS.md Template</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span># AGENTS.md — AI Engineering Assistant Guide
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Repository Layout
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> ```<span style="color:#e6db74">`src/`</span>``` — Business logic; all handlers, services, and domain models
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> ```<span style="color:#e6db74">`tests/`</span>``<span style="color:#e6db74">` — Mirror structure of `</span>``<span style="color:#e6db74">`src/`</span>```; one test file per source file
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> ```<span style="color:#e6db74">`migrations/`</span>``` — Alembic-managed database migrations; never edit by hand
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Technology Stack &amp; Standards
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Runtime: Python 3.11+
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Web Framework: FastAPI with async route handlers
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Formatting: Black (line length 100) + isort
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Type Hints: Required on every function signature and public class attribute
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Testing Requirements
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Command: ```<span style="color:#e6db74">`pytest tests/`</span>```
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Coverage threshold: 85% for new features
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Async tests: Must use ```<span style="color:#e6db74">`pytest-asyncio`</span>``<span style="color:#e6db74">` with `</span>``<span style="color:#e6db74">`@pytest.mark.asyncio`</span>```
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Git &amp; CI
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Commit format: ```<span style="color:#e6db74">`[Type] Short description`</span>``` — Type ∈ {Feat, Fix, Refactor, Docs, Test}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> No direct pushes to ```<span style="color:#e6db74">`main`</span>```; all changes through PR with at least one review
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Pre-merge checks: lint → typecheck → test → build
+</span></span></code></pre></div><h3 id="hierarchical-configuration-for-monorepos">Hierarchical Configuration for Monorepos</h3>
+<p>Place root-level <code>AGENTS.md</code> for global conventions. Add nested <code>AGENTS.md</code> files inside subdirectories (e.g., <code>src/ml/</code>, <code>src/api/</code>) for module-specific rules. Codex merges configurations with proximity-based precedence—closer files override distant ones.</p>
+<hr>
+<h2 id="multi-agent-parallel-development-one-human-multiple-ai-teammates">Multi-Agent Parallel Development: One Human, Multiple AI Teammates</h2>
+<p>The post-April-2026 Codex CLI introduces <strong>Subagents</strong>—concurrently running specialized agents that collaborate on a single feature without blocking each other.</p>
+<h3 id="standard-agent-roles">Standard Agent Roles</h3>
+<p>| Role | Responsibility | Trigger |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Explorer</strong> | Map repository structure, identify dependencies, locate relevant files | Auto-attached to complex tasks |
+| <strong>Worker</strong> | Implement code changes, create files, modify logic | Default primary agent |
+| <strong>Reviewer</strong> | Audit changes for correctness, security, and style compliance | <code>/review</code> or pre-merge hook |
+| <strong>Tester</strong> | Generate test cases, validate coverage, reproduce reported bugs | Explicitly requested in prompt |</p>
+<h3 id="real-world-parallel-workflow">Real-World Parallel Workflow</h3>
+<p>Imagine adding a &ldquo;loyalty discount&rdquo; feature to an e-commerce backend. Instead of sequencing work, you parallelize it across three surfaces: <strong>Terminal 1 — Implementation (CLI):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;Add ````loyalty_discount(price, customer_tier)```` to pricing.py. Tiers: bronze(0%), silver(5%), gold(10%). Reject unknown tiers with ValueError. Do not modify any other function.&#34;</span>
+</span></span></code></pre></div><p><strong>Cloud 2 — Test Generation (chatgpt.com/codex):</strong></p>
+<blockquote>
+<p>&ldquo;Generate exhaustive tests in test_pricing.py for loyalty_discount covering each tier, unknown tier, negative price, zero price, and decimal prices. Do not modify pricing.py—assume the function will exist.&rdquo;</p>
+</blockquote>
+<p><strong>VS Code 3 — Documentation (IDE extension):</strong></p>
+<blockquote>
+<p>&ldquo;Add a section to README.md documenting loyalty_discount: signature, tier table, and one usage example.&rdquo;</p>
+</blockquote>
+<p>All three tasks proceed simultaneously. When the implementation lands, tests validate it, and documentation is already live. No human waiting time between sequential stages.</p>
+<hr>
+<h2 id="mcp--skills-extending-codex-beyond-code">MCP &amp; Skills: Extending Codex Beyond Code</h2>
+<h3 id="model-context-protocol-mcp-integrations">Model Context Protocol (MCP) Integrations</h3>
+<p>MCP has become the universal adapter for AI tools in 2026. Codex CLI ships with first-class MCP support, enabling direct connections to: - <strong>PostgreSQL / MySQL / Redis</strong> — Query schema and sample data as context for code generation</p>
+<ul>
+<li><strong>Stripe / Twilio / SendGrid APIs</strong> — Read OpenAPI specs to generate typed SDK calls</li>
+<li><strong>Notion / Confluence / Internal Wikis</strong> — Pull business rules and feature specifications into the coding session</li>
+<li><strong>Datadog / Sentry / CloudWatch</strong> — Ingest error traces to auto-diagnose and patch production incidents</li>
+</ul>
+<p>Command references: `````bash
+codex /mcp          # List configured MCP servers and tools
+codex /apps         # Browse and activate available app connectors</p>
+<pre tabindex="0"><code>
+### Skills Catalog: Reusable Workflow Automation
+
+Recurring prompt patterns should be encapsulated as **Skills**—shareable, versioned instruction sets.
+
+`````bash
+$skill-creator      # Interactive wizard for authoring new skills
+</code></pre><p>Skills follow the open Agent Skills standard, making them portable across Codex CLI, Claude Code, and GitHub Copilot. Typical skill applications: - Localization PR generation (extract strings → translate → open PR)</p>
+<ul>
+<li>Security audit checklists (scan for SQL injection, XSS, secrets leakage)</li>
+<li>Release note drafting from commit history</li>
+<li>Migration scripts (Python 2→3, Flask→FastAPI, JavaScript→TypeScript)</li>
+</ul>
+<hr>
+<h2 id="security-architecture-why-enterprises-are-approving-codex-cli">Security Architecture: Why Enterprises Are Approving Codex CLI</h2>
+<p>Developer adoption is only half the battle; enterprise security teams are the gatekeepers. Codex CLI addresses their concerns with a defense-in-depth model: | Layer | Technology | What It Protects |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Filesystem sandbox</strong> | Linux Landlock / macOS Seatbelt | Restricts file access to designated workspace trees |
+| <strong>Network egress control</strong> | Default deny; opt-in per command | Prevents accidental data exfiltration to unauthorized endpoints |
+| <strong>Approval gating</strong> | Three-mode policy engine | Human-in-the-loop or policy-driven auto-approval |
+| <strong>Audit trail</strong> | Local SQLite database | Every file read, edit, and command execution is timestamped and diffable |
+| <strong>Environment variable filtering</strong> | Configurable allowlists/denylists | Blocks secrets (API keys, passwords) from being logged or transmitted |</p>
+<p>For regulated industries, additional enterprise controls include: - <strong>Hook Engine</strong>: Intercept prompts pre-submission for compliance scanning; auto-trigger post-execution tests</p>
+<ul>
+<li><strong>RBAC Workspaces</strong>: Separate admin and user scopes with different approval thresholds</li>
+<li><strong>Context Compaction</strong>: Automatically compress long-running session history to prevent sensitive data from lingering in context windows</li>
+</ul>
+<hr>
+<h2 id="model-selection-gpt-53-codex-vs-gpt-53-codex-spark">Model Selection: GPT-5.3-Codex vs. GPT-5.3-Codex-Spark</h2>
+<p>Codex CLI defaults to <code>gpt-5.3-codex</code>, OpenAI&quot;s flagship coding-optimized model. A second variant, <strong>Spark</strong>, was introduced in early 2026 for latency-critical workflows.</p>
+<p>| Model | Strength | Ideal Use Case | Availability |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>gpt-5.3-codex</strong> | Deep reasoning, architecture design, multi-file refactoring, code review | Complex migrations, bug archaeology, security audits | All ChatGPT paid tiers |
+| <strong>gpt-5.3-codex-spark</strong> | 1,000+ tokens/second; sub-100ms first-token latency | Live pair programming, rapid UI iteration, interactive debugging | ChatGPT Pro only (research preview) |</p>
+<p>Spark is co-engineered with Cerebras on the WSE-3 wafer-scale chip—the first production OpenAI model not running on NVIDIA silicon. It minimizes target edits by default and does not auto-run tests, so it is best for tight feedback loops rather than autonomous long-horizon tasks.</p>
+<p>Switch models on the fly: `````bash
+codex -m gpt-5.3-codex
+codex -m gpt-5.3-codex-spark
+/model                    # Interactive model menu during session</p>
+<pre tabindex="0"><code>
+Tune reasoning effort per task type: `````toml
+# ~/.codex/config.toml
+model_reasoning_effort = &#34;high&#34;      # Architecture, debugging, audits
+model_reasoning_effort = &#34;medium&#34;    # Daily coding, tests, refactors (default)
+model_reasoning_effort = &#34;low&#34;       # Formatting, renaming, simple queries
+</code></pre><hr>
+<h2 id="codex-cli-vs-claude-code-an-unbiased-decision-framework">Codex CLI vs. Claude Code: An Unbiased Decision Framework</h2>
+<p>Both tools dominate the terminal AI coding space in 2026. The right choice depends on your existing subscriptions, codebase scale, and workflow preferences.</p>
+<p>| Dimension | Codex CLI | Claude Code |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Pricing</strong> | Bundled with ChatGPT Plus/Pro/Business | Separate Anthropic subscription (Pro $20/mo, Max tiers $100–200/mo) |
+| <strong>License</strong> | Apache-2.0, fully open source | Closed source; API access only |
+| <strong>Context window</strong> | 1M tokens (advertised) | 1M+ tokens (demonstrably stronger on 100k+ file repos) |
+| <strong>Ecosystem</strong> | MCP + OpenAI platform + GitHub native | Skills framework + Superpowers + MCP |
+| <strong>Large monorepo handling</strong> | Good | Best-in-class |
+| <strong>Enterprise features</strong> | Cloud delegation, GitHub app, hook engine | Deep audit trails, multi-modal inputs (screenshots/PDFs) |
+| <strong>Onboarding friction</strong> | Lower (zero cost for existing ChatGPT users) | Higher (requires new vendor relationship) |</p>
+<p><strong>My recommendation:</strong></p>
+<ul>
+<li><strong>Start with Codex CLI</strong> if you already pay for ChatGPT Plus. It covers 80–90% of daily engineering tasks at zero incremental cost.</li>
+<li><strong>Add Claude Code</strong> when you regularly work with repositories exceeding 50,000 files, need multi-modal context (UI screenshots, PDF specifications), or require the deepest-available code review rigor.</li>
+<li><strong>Use both.</strong> Many senior engineers run Codex for rapid prototyping and quick fixes, then switch to Claude for large-scale refactoring and architectural changes. Tools serve you; you do not serve tools.</li>
+</ul>
+<hr>
+<h2 id="ten-battle-tested-prompt-templates-you-can-copy-today">Ten Battle-Tested Prompt Templates You Can Copy Today</h2>
+<h3 id="1-new-developer-onboarding">1. New-developer onboarding</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;Explain the architecture of this project, map the dependency graph of major modules, and tell me which three files a new team member should read first&#34;</span>
+</span></span></code></pre></div><h3 id="2-dead-code-elimination">2. Dead-code elimination</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;Find all unused imports and unreachable functions in src/, remove them, and ensure the test suite still passes&#34;</span>
+</span></span></code></pre></div><h3 id="3-dependency-modernization">3. Dependency modernization</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;Upgrade React from 18 to 19. Handle all breaking changes, run the test suite, fix any failures, and update the migration notes in CHANGELOG.md&#34;</span>
+</span></span></code></pre></div><h3 id="4-database-query-optimization">4. Database query optimization</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;Analyze api/routes.py for N+1 query patterns. Replace them with eager loading (joinload or selectinload). Provide before/after benchmark numbers.&#34;</span>
+</span></span></code></pre></div><h3 id="5-security-vulnerability-scan">5. Security vulnerability scan</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;Audit every API endpoint for missing authentication or input validation. For each vulnerability found, provide a fix and a regression test.&#34;</span>
+</span></span></code></pre></div><h3 id="6-documentation-generation">6. Documentation generation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;Generate Google-style docstrings for all public functions and update the API Reference section in README.md&#34;</span>
+</span></span></code></pre></div><h3 id="7-cross-language-port">7. Cross-language port</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;Translate scripts/data_processor.py into equivalent TypeScript. Preserve all logic, error handling, and async behavior.&#34;</span>
+</span></span></code></pre></div><h3 id="8-cicd-pipeline-creation">8. CI/CD pipeline creation</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;Create a GitHub Actions workflow: lint + test + typecheck on PR; build Docker image and push to GHCR on merge to main&#34;</span>
+</span></span></code></pre></div><h3 id="9-production-incident-diagnosis">9. Production incident diagnosis</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex <span style="color:#e6db74">&#34;This error log just hit Sentry. Explain the root cause, locate the offending code, and propose a minimal fix: [paste stack trace]&#34;</span>
+</span></span></code></pre></div><h3 id="10-pre-commit-self-review">10. Pre-commit self-review</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>codex /review --uncommitted
+</span></span></code></pre></div><hr>
+<h2 id="30-60-90-day-mastery-roadmap">30-60-90 Day Mastery Roadmap</h2>
+<h3 id="days-130-build-fundamental-habits">Days 1–30: Build Fundamental Habits</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Install Codex CLI in 3+ distinct projects</li>
+<li><input disabled="" type="checkbox"> Author a v1 AGENTS.md for each project</li>
+<li><input disabled="" type="checkbox"> Complete 15+ end-to-end tasks using Auto and Read-Only modes</li>
+<li><input disabled="" type="checkbox"> Integrate ````/review``` into your pre-commit ritual</li>
+<li><input disabled="" type="checkbox"> Document 5 prompt patterns that work well for your codebase</li>
+</ul>
+<h3 id="days-3160-expand-your-toolkit">Days 31–60: Expand Your Toolkit</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Configure 3 MCP servers (database, API docs, monitoring)</li>
+<li><input disabled="" type="checkbox"> Author your first custom Skill and share it with your team</li>
+<li><input disabled="" type="checkbox"> Execute one multi-agent parallel task (CLI + Cloud combination)</li>
+<li><input disabled="" type="checkbox"> Benchmark gpt-5.3-codex against spark on 5 typical tasks</li>
+<li><input disabled="" type="checkbox"> Publish internal team guidelines for AGENTS.md conventions</li>
+</ul>
+<h3 id="days-6190-scale-to-team-and-automation">Days 61–90: Scale to Team and Automation</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Deploy CI/CD hooks for automated pre-merge code review</li>
+<li><input disabled="" type="checkbox"> Maintain a team-wide Skills repository with version control</li>
+<li><input disabled="" type="checkbox"> Use Codex Cloud for overnight tasks across time zones</li>
+<li><input disabled="" type="checkbox"> Measure productivity metrics (time-to-PR, bug regression rate, test coverage)</li>
+<li><input disabled="" type="checkbox"> Evaluate whether Claude Code adds measurable value as a secondary tool</li>
+</ul>
+<hr>
+<h2 id="frequently-asked-questions">Frequently Asked Questions</h2>
+<p><strong>Q: Is Codex CLI actually free?</strong>
+A: The tool is open source and free to install. The AI inference requires an OpenAI model. ChatGPT subscribers use included quota; API-key users pay per token ($1.50/1M input, $6.00/1M output for codex-mini-latest as of May 2026).</p>
+<p><strong>Q: Can I use it without a ChatGPT subscription?</strong>
+A: Yes, via API key. However, Plus subscribers receive $5 in promotional API credits monthly; Pro subscribers receive $50. These expire after 30 days.</p>
+<p><strong>Q: Will my code be used to train OpenAI models?</strong>
+A: No, if you opt out in Data Controls. Codex CLI operates locally by default. Cloud sandbox tasks run in isolated environments that are destroyed after completion.</p>
+<p><strong>Q: Which languages are best supported?</strong>
+A: Python and JavaScript/TypeScript are first-class. Go, Rust, Java, C/C++, Ruby, and PHP are well supported. Niche languages may require more explicit context in prompts.</p>
+<p><strong>Q: Is Windows supported?</strong>
+A: CLI runs on Windows via WSL2. A native Windows desktop application launched in April 2026.</p>
+<hr>
+<h2 id="conclusion-the-terminal-is-your-new-ide">Conclusion: The Terminal Is Your New IDE</h2>
+<p>In 2026, the most productive developers are not those who type the fastest. They are those who <strong>delegate most effectively</strong>. OpenAI Codex CLI is the most accessible entry point into this delegation-first paradigm: it is open source, bundled with a subscription millions already have, and improving at a pace that makes quarterly reviews feel outdated.</p>
+<p>Install it today. Issue one real task before bedtime. By tomorrow morning, you may have already crossed a task off your backlog that would have taken hours of manual typing.</p>
+<p>The era of vibe coding is not coming. It is here. And Codex CLI is your invitation to join.</p>
+<hr>
+<p><strong>Further Reading:</strong></p>
+<ul>
+<li><a href="https://github.com/openai/codex">OpenAI Codex CLI on GitHub</a></li>
+<li><a href="https://platform.openai.com/docs/guides/codex">Official OpenAI Codex Documentation</a></li>
+<li><a href="https://openai.com/index/codex-agents-md-guide">AGENTS.md Best Practices Guide</a></li>
+<li><a href="https://modelcontextprotocol.io">Model Context Protocol Specification</a></li>
+</ul>
+<p><em>Last updated: May 17, 2026. Codex CLI is under rapid iteration; verify current capabilities against the official documentation.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;OpenAI Codex CLI: The Definitive 2026 Guide to Terminal-Native AI Coding Agents (Install, Multi-Agent Workflows, MCP &amp; Security)&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-17&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-17&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/openai-codex-cli-terminal-ai-coding-agent-2026%22">https://dibi8.com/resources/openai-codex-cli-terminal-ai-coding-agent-2026"</a>
+}
+}
+</script></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)</h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+        </div>
+
+        
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fopenai-codex-cli-terminal-ai-coding-agent-2026%2f&text=AGENTS.md%20%e2%80%94%20AI%20Engineering%20Assistant%20Guide" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u=https%3a%2f%2fdibi8.com%2fai-coding-agents%2fopenai-codex-cli-terminal-ai-coding-agent-2026%2f" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
+        </div>
+
+        
+        
+        
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <a href="/ai-coding-agents/12-factor-agents-production-llm-software-2026/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">title: &ldquo;12-Factor Agents 解读：构建生产级 LLM 软件的 12 条原则（2026 完整指南）&rdquo; …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/1m-context-window-llm-2026-real-test/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">1M Context Window LLM 2026: Gemini 2.5 Pro vs Claude Sonnet 4.6 Real Test</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">This is a comprehensive technical comparison of ultra-long context window …</p>
+                </a>
+                
+                <a href="/ai-coding-agents/2026-06-08-trending-ai-agents/" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">2026 06 08 trending AI</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2"></p>
+                </a>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
+</script>
+
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8 - AI工具目录</a></span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+
+<div id="translation-widget" style="position:fixed;bottom:20px;right:20px;z-index:9999;background:#fff;border-radius:12px;padding:12px;box-shadow:0 4px 12px rgba(0,0,0,0.15);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:20px;">🌐</span>
+        <span style="font-size:13px;font-weight:600;color:#333;">Translate / 翻译</span>
+    </div>
+    <select id="lang-select" style="width:140px;padding:6px 10px;border:1px solid #ddd;border-radius:6px;font-size:13px;background:#f8f9fa;cursor:pointer;" onchange="translatePage(this.value)">
+        <option value="">Select language...</option>
+        <option value="zh">中文 (Chinese)</option>
+        <option value="en">English</option>
+        <option value="ko">한국어 (Korean)</option>
+        <option value="vi">Tiếng Việt (Vietnamese)</option>
+        <option value="ja">日本語 (Japanese)</option>
+        <option value="fr">Français (French)</option>
+        <option value="de">Deutsch (German)</option>
+        <option value="es">Español (Spanish)</option>
+        <option value="ar">العربية (Arabic)</option>
+        <option value="pt">Português (Portuguese)</option>
+        <option value="ru">Русский (Russian)</option>
+        <option value="hi">हिन्दी (Hindi)</option>
+        <option value="th">ไทย (Thai)</option>
+        <option value="id">Indonesia (Indonesian)</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    
+    
+    const url = window.location.href;
+    const translatedUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    
+    
+    window.open(translatedUrl, '_blank');
+}
+
+
+(function() {
+    var navLang = navigator.language || navigator.userLanguage;
+    var langMap = {
+        'zh': 'zh', 'zh-CN': 'zh', 'zh-TW': 'zh',
+        'en': 'en',
+        'ko': 'ko',
+        'vi': 'vi',
+        'ja': 'ja',
+        'fr': 'fr',
+        'de': 'de',
+        'es': 'es',
+        'ar': 'ar',
+        'pt': 'pt',
+        'ru': 'ru',
+        'hi': 'hi',
+        'th': 'th',
+        'id': 'id'
+    };
+    var detected = langMap[navLang] || 'en';
+    document.getElementById('lang-select').value = detected;
+})();
+</script>
+
+
+<div id="google_translate_element" style="display:none;"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'zh',
+        includedLanguages: 'zh,en,ko,vi,ja,fr,de,es,ar,pt,ru,hi,th,id',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
+    
+<div id="search-modal" class="fixed inset-0 z-[100] hidden">
+    <div class="absolute inset-0 bg-gray-900/40 backdrop-blur-sm" onclick="closeSearch()"></div>
+    <div class="relative max-w-2xl mx-auto mt-24 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
+        <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-100">
+            <i class="fas fa-search text-gray-400 text-sm"></i>
+            <input id="search-input" type="text" placeholder="搜索 AI 工具、框架、标签…"
+                   class="flex-1 outline-none text-[15px] bg-transparent placeholder-gray-400"
+                   autocomplete="off">
+            <kbd class="text-[11px] text-gray-400 border border-gray-200 rounded px-1.5 py-0.5 font-mono">Esc</kbd>
+        </div>
+        <div id="search-results" class="max-h-[420px] overflow-y-auto p-2"></div>
+    </div>
+</div>
+
+<script>
+(function () {
+    var searchData = [];
+    fetch('search-index.json')
+        .then(function (r) { return r.ok ? r.json() : []; })
+        .then(function (d) { searchData = Array.isArray(d) ? d : []; renderResults(''); })
+        .catch(function () { renderResults(''); });
+
+    window.openSearch = function () {
+        var m = document.getElementById('search-modal');
+        m.classList.remove('hidden');
+        setTimeout(function () {
+            var i = document.getElementById('search-input');
+            i.value = '';
+            i.focus();
+            renderResults('');
+        }, 50);
+    };
+
+    window.closeSearch = function () {
+        document.getElementById('search-modal').classList.add('hidden');
+    };
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+            e.preventDefault();
+            openSearch();
+        }
+        if (e.key === 'Escape') closeSearch();
+    });
+
+    var input = document.getElementById('search-input');
+    input.addEventListener('input', function () {
+        renderResults(input.value);
+    });
+
+    function score(q, t) {
+        q = q.trim().toLowerCase();
+        if (!q) return 1;
+        if (t.title.toLowerCase().indexOf(q) !== -1) return 3;
+        if (t.cat.toLowerCase().indexOf(q) !== -1) return 2;
+        if (t.desc.toLowerCase().indexOf(q) !== -1) return 1;
+        
+        var words = q.split(/\s+/);
+        var hay = (t.title + ' ' + t.desc + ' ' + t.cat).toLowerCase();
+        for (var i = 0; i < words.length; i++) {
+            if (words[i] && hay.indexOf(words[i]) === -1) return 0;
+        }
+        return 1;
+    }
+
+    function renderResults(q) {
+        var box = document.getElementById('search-results');
+        var hits = searchData
+            .map(function (t) { return { t: t, s: score(q, t) }; })
+            .filter(function (x) { return x.s > 0; })
+            .sort(function (a, b) { return b.s - a.s; })
+            .slice(0, 12);
+
+        if (!hits.length) {
+            box.innerHTML = '<div class="search-empty">' +
+                (q ? '没有找到与「' + q + '」相关的工具' : '输入关键词开始搜索') + '</div>';
+            return;
+        }
+
+        box.innerHTML = hits.map(function (x) {
+            var cat = x.t.cat ? x.t.cat.replace(/-/g, ' ') : '工具';
+            return '<a class="search-row" href="' + x.t.url + '">' +
+                '<span class="shrink-0 px-2 py-1 text-[11px] font-medium bg-blue-50 text-blue-600 rounded-md border border-blue-100">' + cat + '</span>' +
+                '<span class="text-[14px] font-medium text-gray-900 truncate">' + x.t.title + '</span>' +
+                '<i class="fas fa-arrow-right text-[10px] text-gray-300 ml-auto shrink-0"></i>' +
+                '</a>';
+        }).join('');
+    }
+})();
+</script>
+
+</body>
+</html>
