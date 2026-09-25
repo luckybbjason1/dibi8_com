@@ -1,0 +1,341 @@
+/* ============================================================
+   Dibi8 — Design System (Bright / Clean / Calm)
+   Aesthetic: 亮堂 · 干净 · 利索 · 大气
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --border: #e5e7eb;
+  --border-soft: #f0f1f3;
+  --text: #111827;
+  --text-2: #4b5563;
+  --text-3: #9ca3af;
+  --accent: #3b82f6;
+  --accent-2: #8b5cf6;
+  --accent-soft: #eff6ff;
+}
+
+* { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+}
+
+code, pre, kbd, .font-mono {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* ---------- Typography ---------- */
+.hero-title {
+  font-size: clamp(44px, 7vw, 76px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.06;
+}
+
+.eyebrow {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.gradient-text {
+  background: linear-gradient(120deg, var(--accent) 0%, var(--accent-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ---------- Navigation ---------- */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.85);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.nav-link {
+  color: var(--text-2);
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+.nav-link:hover { color: var(--text); }
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  transition: all 0.2s ease;
+}
+
+.card-hover:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.10);
+  transform: translateY(-2px);
+}
+
+.tool-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.tool-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.08);
+  transform: translateY(-1px);
+}
+
+.category-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.category-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 10px 28px rgba(59, 130, 246, 0.12);
+  transform: translateY(-2px);
+}
+
+/* ---------- Buttons ---------- */
+.btn-primary {
+  background: var(--text);
+  color: #fff;
+  padding: 13px 26px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+.btn-primary:hover {
+  background: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.25);
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 13px 26px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+.btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------- Pills & Chips ---------- */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--accent-soft);
+  color: #2563eb;
+  border: 1px solid #dbeafe;
+}
+
+.tag-pill {
+  display: inline-block;
+  padding: 4px 11px;
+  border-radius: 999px;
+  background: #f3f4f6;
+  border: 1px solid var(--border);
+  color: var(--text-2);
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+.tag-pill:hover {
+  background: var(--accent-soft);
+  border-color: #bfdbfe;
+  color: var(--accent);
+}
+
+/* ---------- Prose (light) ---------- */
+.prose-light {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-2);
+}
+.prose-light > * + * { margin-top: 1.1em; }
+.prose-light h1, .prose-light h2, .prose-light h3,
+.prose-light h4 {
+  color: var(--text);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+}
+.prose-light h2 { font-size: 26px; margin-top: 2em; padding-top: 1.2em; border-top: 1px solid var(--border-soft); }
+.prose-light h3 { font-size: 20px; margin-top: 1.6em; }
+.prose-light h4 { font-size: 17px; }
+.prose-light p { margin: 0; }
+.prose-light a {
+  color: var(--accent);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid #bfdbfe;
+  transition: border-color 0.15s;
+}
+.prose-light a:hover { border-color: var(--accent); }
+.prose-light code {
+  background: #f3f4f6;
+  border: 1px solid var(--border-soft);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-size: 0.85em;
+  color: #111827;
+}
+.prose-light pre {
+  background: #111827;
+  color: #e5e7eb;
+  padding: 18px 20px;
+  border-radius: 12px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.prose-light pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+}
+.prose-light ul, .prose-light ol { padding-left: 1.4em; }
+.prose-light li { margin: 0.35em 0; }
+.prose-light li::marker { color: var(--text-3); }
+.prose-light blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 4px 0 4px 18px;
+  color: var(--text-2);
+  font-style: italic;
+}
+.prose-light table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.prose-light th, .prose-light td {
+  border: 1px solid var(--border);
+  padding: 10px 14px;
+  text-align: left;
+}
+.prose-light th { background: #f9fafb; font-weight: 600; color: var(--text); }
+.prose-light img {
+  border-radius: 12px;
+  border: 1px solid var(--border-soft);
+}
+.prose-light hr { border: none; border-top: 1px solid var(--border-soft); }
+
+/* ---------- Section ---------- */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+/* ---------- Forms ---------- */
+.field {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 14px;
+  background: #fff;
+  color: var(--text);
+  outline: none;
+  transition: all 0.15s ease;
+}
+.field:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+.field::placeholder { color: var(--text-3); }
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+
+/* ---------- Search modal ---------- */
+#search-results .search-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text);
+  transition: background 0.12s ease;
+}
+#search-results .search-row:hover { background: #f3f4f6; }
+#search-results .search-empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--text-3);
+  font-size: 14px;
+}
+
+/* ---------- Language switcher ---------- */
+.lang-switch {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(17, 24, 39, 0.10);
+  padding: 8px 14px;
+}
+.lang-switch select {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+  cursor: pointer;
+  font-family: inherit;
+}
