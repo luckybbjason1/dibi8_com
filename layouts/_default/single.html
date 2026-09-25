@@ -1,193 +1,68 @@
-{{- define "main" }}
-<article class="max-w-4xl mx-auto px-4 py-12">
-  <!-- Breadcrumb -->
-  <nav class="flex items-center space-x-2 text-sm text-zinc-500 mb-8" aria-label="Breadcrumb">
-    <a href="/" class="hover:text-violet-400 transition-colors">首页</a>
-    <span>/</span>
-    <a href="/categories/" class="hover:text-violet-400 transition-colors">分类</a>
-    <span>/</span>
-    <span class="text-zinc-100">{{ .Title }}</span>
-  </nav>
-  
-  <!-- Article Header -->
-  <header class="mb-8">
-    <div class="flex items-center space-x-3 mb-4">
-      <span class="px-3 py-1 bg-violet-500/20 text-violet-400 rounded-full text-sm">{{ .Params.category | default "AI工具" }}</span>
-      <span class="text-zinc-500 text-sm"><i class="far fa-calendar mr-1"></i>{{ .Date.Format "2006年1月2日" }}</span>
-      <span class="text-zinc-500 text-sm"><i class="far fa-clock mr-1"></i>{{ .Params.reading_time | default "5" }}分钟阅读</span>
-    </div>
-    
-    <h1 class="text-4xl font-bold text-zinc-100 mb-4">{{ .Title }}</h1>
-    {{ with .Description }}
-    <p class="text-xl text-zinc-400">{{ . | plainify | safeHTML }}</p>
-    {{ end }}
-    
-    <!-- Rating and Social -->
-    <div class="flex items-center justify-between mt-6 pt-6 border-t border-zinc-800">
-      <div class="flex items-center space-x-4">
-        <div class="flex items-center space-x-1 text-yellow-400">
-          <i class="fas fa-star"></i>
-          <span class="font-medium">{{ .Params.rating | default "4.5" }}</span>
-          <span class="text-zinc-500 text-sm">({{ .Params.reviews | default "128" }} 评论)</span>
+{{ define "title" }}{{ .Title }} | Dibi8{{ end }}
+{{ define "main" }}
+<article class="pt-28 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        <!-- 面包屑 -->
+        <nav class="text-sm text-gray-400 mb-8">
+            <a href="/" class="hover:text-gray-600">首页</a>
+            <span class="mx-2">/</span>
+            <span class="text-gray-600">{{ .Title }}</span>
+        </nav>
+        
+        <!-- 标题 -->
+        <h1 class="text-3xl md:text-4xl font-bold mb-6 leading-tight">{{ .Title }}</h1>
+        
+        {{ with .Params.description }}
+        <p class="text-gray-500 text-lg mb-8">{{ . }}</p>
+        {{ end }}
+        
+        <!-- 标签 -->
+        <div class="flex flex-wrap gap-2 mb-10">
+            {{ range .Params.tags }}
+            <a href="/tags/{{ . | urlize }}/" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors">#{{ . }}</a>
+            {{ end }}
         </div>
-        <div class="text-zinc-500 text-sm">
-          <i class="fas fa-eye mr-1"></i>{{ .Params.views | default 1000 }} 次浏览
+        
+        <!-- 内容 -->
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900">
+            {{ .Content }}
         </div>
-      </div>
-      
-      <div class="flex items-center space-x-2">
-        <button onclick="shareTool('twitter')" class="p-2 bg-zinc-900 hover:bg-blue-500/20 rounded-lg transition">
-          <i class="fab fa-twitter text-zinc-400"></i>
-        </button>
-        <button onclick="shareTool('linkedin')" class="p-2 bg-zinc-900 hover:bg-blue-600/20 rounded-lg transition">
-          <i class="fab fa-linkedin text-zinc-400"></i>
-        </button>
-        <button onclick="shareTool('wechat')" class="p-2 bg-zinc-900 hover:bg-green-500/20 rounded-lg transition">
-          <i class="fab fa-weixin text-zinc-400"></i>
-        </button>
-        <button onclick="copyLink()" class="p-2 bg-zinc-900 hover:bg-violet-500/20 rounded-lg transition">
-          <i class="fas fa-link text-zinc-400"></i>
-        </button>
-      </div>
-    </div>
-  </header>
-  
-  <!-- Article Content -->
-  <div class="prose prose-invert prose-lg max-w-none mb-12">
-    {{ .Content }}
-  </div>
-  
-  <!-- Tags -->
-  <div class="mb-12 pt-8 border-t border-zinc-800">
-    <div class="flex flex-wrap gap-2">
-      {{ range .Params.tags }}
-      <a href="/tags/{{ . | urlize }}/" class="px-3 py-1 bg-zinc-900 hover:bg-violet-500/20 text-zinc-400 hover:text-violet-400 rounded-full text-sm transition">
-        #{{ . }}
-      </a>
-      {{ end }}
-    </div>
-  </div>
-  
-  <!-- Related Articles -->
-  <section class="mb-12">
-    <h2 class="text-2xl font-bold text-zinc-100 mb-6">相关文章</h2>
-    <div class="grid md:grid-cols-2 gap-6">
-      {{ $related := .Site.RegularPages.Related . | first 2 }}
-      {{ range $related }}
-      <article class="p-6 bg-zinc-900/50 border border-zinc-800 rounded-2xl hover:border-violet-500/50 transition-all">
-        <h3 class="text-lg font-semibold text-zinc-100 mb-2">
-          <a href="{{ .RelPermalink }}" class="hover:text-violet-400 transition-colors">
-            {{ .Title }}
-          </a>
-        </h3>
-        <p class="text-zinc-500 text-sm mb-4">{{ .Summary | truncate 80 }}</p>
-        <div class="flex items-center justify-between text-sm">
-          <span class="text-zinc-600"><i class="far fa-calendar mr-1"></i>{{ .Date.Format "2006-01-02" }}</span>
-          <a href="{{ .RelPermalink }}" class="text-violet-400 hover:text-violet-300 transition-colors">查看详情 →</a>
+        
+        <!-- 分享 -->
+        <div class="border-t border-gray-200 pt-8 mt-12">
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-gray-500">分享给朋友：</span>
+                <a href="https://twitter.com/intent/tweet?url={{ .Permalink }}&text={{ .Title }}" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-twitter"></i></a>
+                <a href="https://facebook.com/sharer.php?u={{ .Permalink }}" target="_blank" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fab fa-facebook-f"></i></a>
+                <button onclick="copyLink()" class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-gray-500 hover:bg-blue-50 hover:text-blue-600 transition-colors"><i class="fas fa-link"></i></button>
+            </div>
         </div>
-      </article>
-      {{ end }}
+        
+        <!-- 相关文章 -->
+        {{ $related := .Site.RegularPages.Related . | first 3 }}
+        {{ with $related }}
+        <div class="border-t border-gray-200 pt-12 mt-12">
+            <h2 class="text-xl font-bold mb-6">相关文章</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {{ range . }}
+                <a href="{{ .RelPermalink }}" class="card group">
+                    <div class="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center mb-3 group-hover:bg-blue-50 transition-colors">
+                        <i class="fas fa-arrow-right text-gray-400 group-hover:text-blue-600"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-2">{{ .Title }}</h3>
+                    <p class="text-sm text-gray-500 mt-2 line-clamp-2">{{ .Summary | plainify | truncate 80 }}</p>
+                </a>
+                {{ end }}
+            </div>
+        </div>
+        {{ end }}
     </div>
-  </section>
-  
-  <!-- Schema.org JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "{{ .Title }}",
-    "description": {{ with .Description }}{{ . | plainify | jsonify }}{{ else }}{{ .Title | jsonify }}{{ end }},
-    "url": "{{ .Permalink }}",
-    "applicationCategory": "{{ .Params.category | default "EducationalApplication" }}",
-    "operatingSystem": "Web",
-    "offers": {
-      "@type": "Offer",
-      "price": {{ .Params.pricing | default "0" }},
-      "priceCurrency": "USD"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": {{ .Params.rating | default "4.5" }},
-      "ratingCount": {{ .Params.reviews | default "128" }}
-    },
-    "breadcrumb": {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "首页",
-          "item": "{{ .Site.BaseURL }}"
-        },
-        {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "分类",
-          "item": "{{ .Site.BaseURL }}categories/"
-        },
-        {
-          "@type": "ListItem",
-          "position": 3,
-          "name": "{{ .Title }}"
-        }
-      ]
-    }
-  }
-  </script>
 </article>
 
-<!-- Related Tools Navigation -->
-<nav class="max-w-4xl mx-auto px-4 py-8 border-t border-zinc-800">
-  <div class="flex items-center justify-between">
-    {{ with .PrevInSection }}
-    <a href="{{ .RelPermalink }}" class="flex items-center space-x-2 text-zinc-400 hover:text-violet-400 transition-colors">
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-      </svg>
-      <span>{{ .Title }}</span>
-    </a>
-    {{ else }}
-    <span></span>
-    {{ end }}
-    
-    {{ with .NextInSection }}
-    <a href="{{ .RelPermalink }}" class="flex items-center space-x-2 text-zinc-400 hover:text-violet-400 transition-colors">
-      <span>{{ .Title }}</span>
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-      </svg>
-    </a>
-    {{ end }}
-  </div>
-</nav>
-
 <script>
-  function shareTool(platform) {
-    const url = window.location.href;
-    const title = document.title;
-    let shareUrl = '';
-    
-    switch(platform) {
-      case 'twitter':
-        shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`;
-        break;
-      case 'linkedin':
-        shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent(title)}`;
-        break;
-      case 'wechat':
-        alert('请在微信中打开此页面，点击右上角分享给朋友');
-        return;
-    }
-    
-    if (shareUrl) {
-      window.open(shareUrl, '_blank', 'width=600,height=400');
-    }
-  }
-  
-  function copyLink() {
-    navigator.clipboard.writeText(window.location.href).then(() => {
-      alert('链接已复制到剪贴板');
-    });
-  }
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href);
+    alert('链接已复制！');
+}
 </script>
-{{- end }}
+{{ end }}

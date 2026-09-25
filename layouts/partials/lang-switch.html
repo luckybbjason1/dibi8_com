@@ -1,0 +1,24 @@
+<!-- 语言切换器（全站通用，亮色风格） -->
+<div class="lang-switch">
+    <i class="fas fa-globe text-gray-400 text-sm"></i>
+    <select id="lang-select" onchange="translatePage(this.value)" title="翻译此页">
+        <option value="">选择语言</option>
+        <option value="zh">中文</option>
+        <option value="en">English</option>
+        <option value="ko">한국어</option>
+        <option value="vi">Tiếng Việt</option>
+        <option value="ja">日本語</option>
+        <option value="fr">Français</option>
+        <option value="de">Deutsch</option>
+        <option value="es">Español</option>
+    </select>
+</div>
+
+<script>
+function translatePage(lang) {
+    if (!lang) return;
+    var url = window.location.href;
+    var tUrl = 'https://translate.google.com/translate?sl=auto&tl=' + lang + '&u=' + encodeURIComponent(url);
+    window.open(tUrl, '_blank');
+}
+</script>

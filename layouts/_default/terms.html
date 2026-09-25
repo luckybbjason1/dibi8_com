@@ -1,0 +1,23 @@
+{{ define "title" }}服务条款 | Dibi8{{ end }}
+{{ define "main" }}
+<section class="pt-32 pb-20 px-6">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+            <span class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-blue-50 text-blue-600 text-2xl mb-6">
+                <i class="fas fa-file-contract"></i>
+            </span>
+            <h1 class="text-4xl font-bold mb-4">{{ .Title }}</h1>
+        </div>
+        <div class="prose prose-lg max-w-none prose-headings:font-bold prose-p:text-gray-600">
+            <h2>1. 使用条款</h2>
+            <p>使用 Dibi8 即表示您同意本服务条款。</p>
+            
+            <h2>2. 内容责任</h2>
+            <p>网站上的内容由 AI 生成，仅供参考。</p>
+            
+            <h2>3. 免责声明</h2>
+            <p>Dibi8 不对第三方链接的内容负责。</p>
+        </div>
+    </div>
+</section>
+{{ end }}
